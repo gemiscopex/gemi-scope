@@ -1,7 +1,14 @@
 import feedparser
 import json
+import unicodedata
 from datetime import datetime
 from pathlib import Path
+
+def quitar_acentos(texto):
+    return ''.join(
+        c for c in unicodedata.normalize('NFD', texto)
+        if unicodedata.category(c) != 'Mn'
+    )
 
 FUENTES = [
     {"nombre": "El Universal", "rss": "https://www.eluniversal.com.mx/rss.xml"},
@@ -17,18 +24,21 @@ PALABRAS_CLAVE = [
     "cambio climatico", "clima", "calentamiento global", "emisiones", "carbono",
     "energia", "energia renovable", "solar", "eolica", "hidroelectrica",
     "biodiversidad", "ecosistema", "deforestacion", "bosque",
-    "semarnat", "conagua", "inecc", "residuos", "reciclaje", "plastico"
+    "semarnat", "conagua", "inecc", "residuos", "reciclaje", "plastico",
+    "naturaleza", "flora", "fauna", "parque nacional", "reserva",
+    "contaminante", "toxico", "vertido", "derrame"
 ]
 
 def es_relevante(titulo, descripcion=""):
-    texto = f"{titulo} {descripcion}".lower()
-    return any(palabra.lower() in texto for palabra in PALABRAS_CLAVE)
+    texto = quitar_acentos(f"{titulo} {descripcion}".lower())
+    return any(quitar_acentos(palabra) in texto for palabra in PALABRAS_CLAVE)
 
 def scrape():
     noticias_nuevas = []
     for fuente in FUENTES:
         try:
             feed = feedparser.parse(fuente["rss"])
+            print(f"{fuente['nombre']}: {len(feed.entries)} entradas encontradas en RSS")
             for entrada in feed.entries:
                 titulo = entrada.get("title", "")
                 descripcion = entrada.get("summary", "")
