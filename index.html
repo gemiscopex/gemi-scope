@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMI SCOPE</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f8fafc;
+      color: #1e293b;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      padding-bottom: 48px;
+    }
+
+    header {
+      background: #ffffff;
+      text-align: center;
+      padding: 28px 0 16px;
+      border-bottom: 3px solid #16a34a;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .logo {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: 16px;
+      color: #15803d;
+      font-family: 'Arial Black', sans-serif;
+    }
+
+    .tagline {
+      font-size: 11px;
+      color: #64748b;
+      letter-spacing: 4px;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    .tabs {
+      display: flex;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0 32px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .tab {
+      padding: 14px 28px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #94a3b8;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab.active { color: #15803d; border-bottom-color: #15803d; }
+    .tab:hover:not(.active) { color: #475569; }
+
+    .tab-content { display: none; padding: 28px 32px; }
+    .tab-content.active { display: block; }
+
+    .dashboard { display: grid; gap: 24px; }
+
+    .panel {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+
+    .panel-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #15803d;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #dcfce7;
+    }
+
+    #map-container { width: 100%; display: flex; justify-content: center; }
+    #mexico-map { width: 100%; max-width: 860px; }
+
+    .state {
+      fill: #dcfce7;
+      stroke: #ffffff;
+      stroke-width: 1;
+      transition: fill 0.2s;
+      cursor: pointer;
+    }
+    .state:hover { fill: #16a34a; }
+
+    .tooltip {
+      position: fixed;
+      background: #ffffff;
+      border: 1px solid #16a34a;
+      border-left: 4px solid #16a34a;
+      border-radius: 6px;
+      padding: 16px 20px;
+      max-width: 300px;
+      font-size: 12px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .tooltip.visible { opacity: 1; }
+
+    .tooltip-state {
+      font-size: 13px;
+      color: #15803d;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .tooltip-label {
+      color: #15803d;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      margin-top: 10px;
+    }
+
+    .tooltip-item { color: #475569; line-height: 1.6; font-size: 11px; }
+
+    #chart-container { height: 280px; position: relative; }
+
+    .legend-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .chip {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+    }
+
+    .ley-item {
+      border: 1px solid #e2e8f0;
+      padding: 16px 20px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .ley-item:hover { border-color: #16a34a; box-shadow: 0 2px 8px rgba(22,163,74,0.08); }
+
+    .ley-sigla {
+      font-size: 12px;
+      font-weight: 800;
+      color: #15803d;
+      min-width: 80px;
+      letter-spacing: 1px;
+    }
+
+    .ley-nombre { color: #334155; font-size: 13px; flex: 1; }
+
+    .ley-tema {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 10px;
+      background: #f0fdf4;
+      color: #15803d;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 32px;
+      background: #f1f5f9;
+      border-top: 1px solid #e2e8f0;
+      font-size: 10px;
+      color: #94a3b8;
+      letter-spacing: 1px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      background: #16a34a;
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">SCOPE</div>
+  <div class="tagline">Sistema de Monitoreo Ambiental &middot; M&eacute;xico &middot; 32 Estados</div>
+</header>
+
+<nav class="tabs">
+  <div class="tab active" onclick="showTab('dashboard', this)">Dashboard</div>
+  <div class="tab" onclick="showTab('legislacion', this)">Legislaci&oacute;n Federal</div>
+</nav>
+
+<div id="tab-dashboard" class="tab-content active">
+  <div class="dashboard">
+    <div class="panel">
+      <div class="panel-title">Monitor Territorial &mdash; 32 Estados</div>
+      <div id="map-container"><svg id="mexico-map"></svg></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Tendencias por Categor&iacute;a &mdash; &Uacute;ltimas 8 Semanas</div>
+      <div id="chart-container"><canvas id="trend-chart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-legislacion" class="tab-content">
+  <div class="panel">
+    <div class="panel-title">Legislaci&oacute;n Federal Ambiental</div>
+    <div id="ley-list"></div>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip">
+  <div class="tooltip-state" id="tt-state"></div>
+  <div class="tooltip-label">Legislaci&oacute;n Ambiental</div>
+  <div class="tooltip-item" id="tt-leg"></div>
+  <div class="tooltip-label">Impuestos Ambientales</div>
+  <div class="tooltip-item" id="tt-imp"></div>
+</div>
+
+<div class="status-bar">
+  <span><span class="status-dot"></span>GEMI SCOPE &mdash; SISTEMA ACTIVO</span>
+  <span id="clock"></span>
+  <span>M&Eacute;XICO &mdash; 32 ESTADOS</span>
+</div>
+
+<script>
+function showTab(id, el) {
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  el.classList.add('active');
+}
+
+setInterval(() => {
+  const n = new Date();
+  document.getElementById('clock').textContent = n.toLocaleDateString('es-MX') + ' ' + n.toLocaleTimeString('es-MX');
+}, 1000);
+
+const estadoData = {
+  "Aguascalientes": { legislacion: "Ley Ambiental del Estado, Ley de Residuos Solidos", impuestos: "Impuesto sobre emisiones atmosfericas" },
+  "Baja California": { legislacion: "Ley de Proteccion al Ambiente de BC", impuestos: "Derechos por descarga de aguas residuales" },
+  "Baja California Sur": { legislacion: "Ley del Equilibrio Ecologico de BCS", impuestos: "En proceso de actualizacion" },
+  "Campeche": { legislacion: "Ley de Proteccion al Ambiente de Campeche", impuestos: "Impuesto ecologico estatal" },
+  "Chiapas": { legislacion: "Ley Ambiental de Chiapas", impuestos: "En proceso de actualizacion" },
+  "Chihuahua": { legislacion: "Ley Ambiental del Estado de Chihuahua", impuestos: "Impuesto sobre contaminacion" },
+  "Ciudad de Mexico": { legislacion: "Ley Ambiental de Proteccion a la Tierra CDMX", impuestos: "Impuesto sobre tenencia vehicular ambiental" },
+  "Coahuila de Zaragoza": { legislacion: "Ley del Equilibrio Ecologico de Coahuila", impuestos: "En proceso de actualizacion" },
+  "Colima": { legislacion: "Ley de Equilibrio Ecologico de Colima", impuestos: "En proceso de actualizacion" },
+  "Durango": { legislacion: "Ley de Proteccion Ambiental de Durango", impuestos: "En proceso de actualizacion" },
+  "Guanajuato": { legislacion: "Ley para la Proteccion del Ambiente de Guanajuato", impuestos: "Impuesto sobre residuos industriales" },
+  "Guerrero": { legislacion: "Ley del Equilibrio Ecologico de Guerrero", impuestos: "En proceso de actualizacion" },
+  "Hidalgo": { legislacion: "Ley de Proteccion Ambiental de Hidalgo", impuestos: "En proceso de actualizacion" },
+  "Jalisco": { legislacion: "Ley del Equilibrio Ecologico de Jalisco", impuestos: "Impuesto ecologico sobre emisiones" },
+  "Mexico": { legislacion: "Ley del Medio Ambiente del Estado de Mexico", impuestos: "Impuesto sobre residuos de manejo especial" },
+  "Michoacan de Ocampo": { legislacion: "Ley Ambiental de Michoacan", impuestos: "En proceso de actualizacion" },
+  "Morelos": { legislacion: "Ley Ambiental para el Desarrollo Sustentable de Morelos", impuestos: "En proceso de actualizacion" },
+  "Nayarit": { legislacion: "Ley de Proteccion al Ambiente de Nayarit", impuestos: "En proceso de actualizacion" },
+  "Nuevo Leon": { legislacion: "Ley Ambiental del Estado de Nuevo Leon", impuestos: "Impuesto sobre emisiones industriales" },
+  "Oaxaca": { legislacion: "Ley de Proteccion Ambiental de Oaxaca", impuestos: "En proceso de actualizacion" },
+  "Puebla": { legislacion: "Ley para la Proteccion del Ambiente Natural de Puebla", impuestos: "En proceso de actualizacion" },
+  "Queretaro": { legislacion: "Ley Ambiental del Estado de Queretaro", impuestos: "En proceso de actualizacion" },
+  "Quintana Roo": { legislacion: "Ley del Equilibrio Ecologico de Quintana Roo", impuestos: "Impuesto ecologico hotelero" },
+  "San Luis Potosi": { legislacion: "Ley Ambiental de San Luis Potosi", impuestos: "En proceso de actualizacion" },
+  "Sinaloa": { legislacion: "Ley Ambiental de Sinaloa", impuestos: "En proceso de actualizacion" },
+  "Sonora": { legislacion: "Ley de Equilibrio Ecologico de Sonora", impuestos: "En proceso de actualizacion" },
+  "Tabasco": { legislacion: "Ley de Proteccion Ambiental de Tabasco", impuestos: "En proceso de actualizacion" },
+  "Tamaulipas": { legislacion: "Ley Ambiental de Tamaulipas", impuestos: "En proceso de actualizacion" },
+  "Tlaxcala": { legislacion: "Ley Ambiental del Estado de Tlaxcala", impuestos: "En proceso de actualizacion" },
+  "Veracruz de Ignacio de la Llave": { legislacion: "Ley de Proteccion Ambiental de Veracruz", impuestos: "Impuesto sobre residuos mineros" },
+  "Yucatan": { legislacion: "Ley de Proteccion al Medio Ambiente de Yucatan", impuestos: "Impuesto ecologico estatal" },
+  "Zacatecas": { legislacion: "Ley Ambiental de Zacatecas", impuestos: "En proceso de actualizacion" }
+};
+const defData = { legislacion: "Datos en actualizacion", impuestos: "Datos en actualizacion" };
+
+const tooltip = document.getElementById('tooltip');
+const svgEl = d3.select('#mexico-map');
+const W = document.getElementById('map-container').offsetWidth;
+const H = W * 0.58;
+svgEl.attr('viewBox', `0 0 ${W} ${H}`).attr('width','100%');
+const proj = d3.geoMercator().center([-102,24]).scale(W*1.18).translate([W/2,H/2]);
+const pathGen = d3.geoPath().projection(proj);
+
+d3.json('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json')
+  .then(data => {
+    svgEl.selectAll('path').data(data.features).enter().append('path')
+      .attr('class','state').attr('d', pathGen)
+      .on('mousemove', function(event, d) {
+        const name = d.properties.NAME_1 || d.properties.name || d.properties.NOMGEO || '';
+        const info = estadoData[name] || defData;
+        document.getElementById('tt-state').textContent = name.toUpperCase();
+        document.getElementById('tt-leg').textContent = info.legislacion;
+        document.getElementById('tt-imp').textContent = info.impuestos;
+        tooltip.classList.add('visible');
+        tooltip.style.left = (event.clientX + 18) + 'px';
+        tooltip.style.top = (event.clientY - 10) + 'px';
+        d3.select(this).style('fill','#16a34a');
+      })
+      .on('mouseleave', function() {
+        tooltip.classList.remove('visible');
+        d3.select(this).style('fill', null);
+      });
+  })
+  .catch(() => {
+    document.getElementById('map-container').innerHTML = '<p style="color:#94a3b8;text-align:center;padding:60px;font-size:13px">Cargando mapa de Mexico...</p>';
+  });
+
+const weeks = ['Sem 1','Sem 2','Sem 3','Sem 4','Sem 5','Sem 6','Sem 7','Sem 8'];
+new Chart(document.getElementById('trend-chart').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: weeks,
+    datasets: [
+      { label: 'Economia Circular', data: [12,19,15,22,18,25,21,28], borderColor:'#16a34a', backgroundColor:'rgba(22,163,74,0.06)', tension:0.4, fill:true, pointRadius:4 },
+      { label: 'Agua', data: [20,25,18,30,35,28,40,38], borderColor:'#0284c7', backgroundColor:'rgba(2,132,199,0.06)', tension:0.4, fill:true, pointRadius:4 },
+      { label: 'Energia', data: [15,12,20,18,22,30,25,32], borderColor:'#d97706', backgroundColor:'rgba(217,119,6,0.06)', tension:0.4, fill:true, pointRadius:4 },
+      { label: 'Impuestos Ambientales', data: [8,10,9,14,12,15,18,16], borderColor:'#dc2626', backgroundColor:'rgba(220,38,38,0.06)', tension:0.4, fill:true, pointRadius:4 },
+      { label: 'Residuos', data: [18,22,20,25,22,28,24,30], borderColor:'#7c3aed', backgroundColor:'rgba(124,58,237,0.06)', tension:0.4, fill:true, pointRadius:4 }
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    plugins: { legend: { labels: { color:'#475569', font:{ size:11, family:'Segoe UI' }, boxWidth:12, padding:16 } } },
+    scales: {
+      x: { grid:{ color:'#f1f5f9' }, ticks:{ color:'#94a3b8', font:{ size:10 } } },
+      y: { grid:{ color:'#f1f5f9' }, ticks:{ color:'#94a3b8', font:{ size:10 } } }
+    }
+  }
+});
+
+const leyes = [
+  { sigla:'LGEEPA', nombre:'Ley General del Equilibrio Ecologico y la Proteccion al Ambiente', tema:'Medio Ambiente' },
+  { sigla:'LGPGIR', nombre:'Ley General para la Prevencion y Gestion Integral de los Residuos', tema:'Residuos' },
+  { sigla:'LAN', nombre:'Ley de Aguas Nacionales', tema:'Agua' },
+  { sigla:'LTE', nombre:'Ley de Transicion Energetica', tema:'Energia' },
+  { sigla:'LGCC', nombre:'Ley General de Cambio Climatico', tema:'Clima' },
+  { sigla:'LFD', nombre:'Ley Federal de Derechos (Seccion Ambiental)', tema:'Impuestos' },
+  { sigla:'LGDFS', nombre:'Ley General de Desarrollo Forestal Sustentable', tema:'Bosques' },
+  { sigla:'LGVS', nombre:'Ley General de Vida Silvestre', tema:'Biodiversidad' },
+  { sigla:'LIE', nombre:'Ley de Industria Electrica', tema:'Energia' },
+  { sigla:'LRSPCFA', nombre:'Ley de Responsabilidad Ambiental', tema:'Responsabilidad' }
+];
+const ll = document.getElementById('ley-list');
+leyes.forEach(l => {
+  ll.innerHTML += `<div class="ley-item"><div class="ley-sigla">${l.sigla}</div><div class="ley-nombre">${l.nombre}</div><span class="ley-tema">${l.tema}</span></div>`;
+});
+</script>
+</body>
+</html>
