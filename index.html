@@ -185,20 +185,20 @@ new Chart(document.getElementById('trend-chart').getContext('2d'),{
 });
 
 const leyes=[
-  {sigla:'LGEEPA',nombre:'Ley General del Equilibrio Ecologico y la Proteccion al Ambiente',tema:'Medio Ambiente'},
-  {sigla:'LGPGIR',nombre:'Ley General para la Prevencion y Gestion Integral de los Residuos',tema:'Residuos'},
-  {sigla:'LAN',nombre:'Ley de Aguas Nacionales',tema:'Agua'},
-  {sigla:'LTE',nombre:'Ley de Transicion Energetica',tema:'Energia'},
-  {sigla:'LGCC',nombre:'Ley General de Cambio Climatico',tema:'Clima'},
-  {sigla:'LFD',nombre:'Ley Federal de Derechos (Seccion Ambiental)',tema:'Impuestos'},
-  {sigla:'LGDFS',nombre:'Ley General de Desarrollo Forestal Sustentable',tema:'Bosques'},
-  {sigla:'LGVS',nombre:'Ley General de Vida Silvestre',tema:'Biodiversidad'},
-  {sigla:'LIE',nombre:'Ley de Industria Electrica',tema:'Energia'},
-  {sigla:'LRSPCFA',nombre:'Ley Federal de Responsabilidad Ambiental',tema:'Responsabilidad'}
+  {sigla:'LGEEPA',nombre:'Ley General del Equilibrio Ecologico y la Proteccion al Ambiente',tema:'Medio Ambiente',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEEPA.pdf'},
+  {sigla:'LGPGIR',nombre:'Ley General para la Prevencion y Gestion Integral de los Residuos',tema:'Residuos',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGPGIR.pdf'},
+  {sigla:'LAN',nombre:'Ley de Aguas Nacionales',tema:'Agua',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LAN.pdf'},
+  {sigla:'LTE',nombre:'Ley de Transicion Energetica',tema:'Energia',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LTE.pdf'},
+  {sigla:'LGCC',nombre:'Ley General de Cambio Climatico',tema:'Clima',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGCC.pdf'},
+  {sigla:'LFD',nombre:'Ley Federal de Derechos (Seccion Ambiental)',tema:'Impuestos',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFD.pdf'},
+  {sigla:'LGDFS',nombre:'Ley General de Desarrollo Forestal Sustentable',tema:'Bosques',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGDFS.pdf'},
+  {sigla:'LGVS',nombre:'Ley General de Vida Silvestre',tema:'Biodiversidad',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGVS.pdf'},
+  {sigla:'LIE',nombre:'Ley de Industria Electrica',tema:'Energia',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LIE.pdf'},
+  {sigla:'LRSPCFA',nombre:'Ley Federal de Responsabilidad Ambiental',tema:'Responsabilidad',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFRA.pdf'}
 ];
 const ll=document.getElementById('ley-list');
 leyes.forEach(l=>{
-  ll.innerHTML+=`<div class="ley-item"><div class="ley-sigla">${l.sigla}</div><div class="ley-nombre">${l.nombre}</div><span class="ley-tema">${l.tema}</span></div>`;
+    ll.innerHTML+=`<a class="ley-item" href="${l.url}" target="_blank" rel="noopener">${l.sigla ? `<div class="ley-sigla">${l.sigla}</div>` : ''}<div class="ley-nombre">${l.nombre}</div><span class="ley-tema">${l.tema}</span></a>`;
 });
 </script>
 </body>
