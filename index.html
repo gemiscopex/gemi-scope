@@ -5,36 +5,201 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GEMI SCOPE</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#f8fafc; color:#1e293b; font-family:'Montserrat',sans-serif; min-height:100vh; padding-bottom:48px; }
+    header { background:#fff; text-align:center; padding:28px 0 16px; border-bottom:3px solid #16a34a; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+    .logo { font-size:52px; font-weight:900; letter-spacing:16px; color:#15803d; font-family:'Montserrat',sans-serif; }
+    .tagline { font-size:11px; color:#64748b; letter-spacing:4px; margin-top:4px; text-transform:uppercase; font-weight:600; }
+    .tabs { display:flex; background:#fff; border-bottom:1px solid #e2e8f0; padding:0 32px; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+    .tab { padding:14px 28px; cursor:pointer; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#94a3b8; border-bottom:3px solid transparent; transition:all 0.2s; font-family:'Montserrat',sans-serif; }
+    .tab.active { color:#15803d; border-bottom-color:#15803d; }
+    .tab:hover:not(.active) { color:#475569; }
+    .tab-content { display:none; padding:28px 32px; }
+    .tab-content.active { display:block; }
+    .dashboard { display:grid; gap:24px; }
+    .panel { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:24px; box-shadow:0 1px 6px rgba(0,0,0,0.05); }
+    .panel-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#15803d; margin-bottom:20px; padding-bottom:10px; border-bottom:1px solid #dcfce7; font-family:'Montserrat',sans-serif; }
+    #map-container { width:100%; display:flex; justify-content:center; }
+    #mexico-map { width:100%; max-width:860px; }
+    .state { fill:#dcfce7; stroke:#fff; stroke-width:1; transition:fill 0.2s; cursor:pointer; }
+    .state:hover { fill:#16a34a; }
+    .tooltip { position:fixed; background:#fff; border:1px solid #16a34a; border-left:4px solid #16a34a; border-radius:6px; padding:16px 20px; max-width:320px; font-size:12px; pointer-events:none; opacity:0; transition:opacity 0.15s; z-index:1000; box-shadow:0 4px 16px rgba(0,0,0,0.12); font-family:'Montserrat',sans-serif; }
+    .tooltip.visible { opacity:1; }
+    .tooltip-state { font-size:12px; color:#15803d; font-weight:800; margin-bottom:10px; letter-spacing:1px; text-transform:uppercase; }
+    .tooltip-label { color:#15803d; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; margin-top:10px; }
+    .tooltip-item { color:#475569; line-height:1.7; font-size:11px; }
+    #chart-container { height:280px; position:relative; }
+    .ley-item { border:1px solid #e2e8f0; padding:16px 20px; margin-bottom:8px; border-radius:6px; transition:border-color 0.2s,box-shadow 0.2s; display:flex; align-items:center; gap:16px; }
+    .ley-item:hover { border-color:#16a34a; box-shadow:0 2px 8px rgba(22,163,74,0.08); }
+    .ley-sigla { font-size:12px; font-weight:800; color:#15803d; min-width:90px; letter-spacing:1px; font-family:'Montserrat',sans-serif; }
+    .ley-nombre { color:#334155; font-size:13px; flex:1; }
+    .ley-tema { font-size:10px; font-weight:700; padding:3px 10px; background:#f0fdf4; color:#15803d; border-radius:999px; letter-spacing:0.5px; white-space:nowrap; font-family:'Montserrat',sans-serif; }
+    .status-bar { display:flex; justify-content:space-between; padding:8px 32px; background:#f1f5f9; border-top:1px solid #e2e8f0; font-size:10px; color:#94a3b8; letter-spacing:1px; position:fixed; bottom:0; width:100%; font-weight:600; font-family:'Montserrat',sans-serif; }
+    .status-dot { display:inline-block; width:7px; height:7px; background:#16a34a; border-radius:50%; margin-right:6px; animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">SCOPE</div>
+  <div class="tagline">Sistema de Monitoreo Ambiental &middot; M&eacute;xico &middot; 32 Estados</div>
+</header>
+<nav class="tabs">
+  <div class="tab active" onclick="showTab('dashboard',this)">Dashboard</div>
+  <div class="tab" onclick="showTab('legislacion',this)">Legislaci&oacute;n Federal</div>
+</nav>
+<div id="tab-dashboard" class="tab-content active">
+  <div class="dashboard">
+    <div class="panel">
+      <div class="panel-title">Monitor Territorial &mdash; 32 Estados</div>
+      <div id="map-container"><svg id="mexico-map"></svg></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Tendencias por Categor&iacute;a &mdash; &Uacute;ltimas 8 Semanas</div>
+      <div id="chart-container"><canvas id="trend-chart"></canvas></div>
+    </div>
+  </div>
+</div>
+<div id="tab-legislacion" class="tab-content">
+  <div class="panel">
+    <div class="panel-title">Legislaci&oacute;n Federal Ambiental</div>
+    <div id="ley-list"></div>
+  </div>
+</div>
+<div class="tooltip" id="tooltip">
+  <div class="tooltip-state" id="tt-state"></div>
+  <div class="tooltip-label">Legislaci&oacute;n Ambiental</div>
+  <div class="tooltip-item" id="tt-leg"></div>
+  <div class="tooltip-label">Impuestos Ambientales</div>
+  <div class="tooltip-item" id="tt-imp"></div>
+</div>
+<div class="status-bar">
+  <span><span class="status-dot"></span>GEMI SCOPE &mdash; SISTEMA ACTIVO</span>
+  <span id="clock"></span>
+  <span>M&Eacute;XICO &mdash; 32 ESTADOS</span>
+</div>
+<script>
+function showTab(id,el){
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+}
+setInterval(()=>{
+  const n=new Date();
+  document.getElementById('clock').textContent=n.toLocaleDateString('es-MX')+' '+n.toLocaleTimeString('es-MX');
+},1000);
 
+const estadoData={
+  "Aguascalientes":{legislacion:"Ley Ambiental del Estado · Ley de Residuos Solidos · Ley de Agua Potable y Saneamiento",impuestos:"Impuesto sobre emisiones a la atmosfera · Derechos por descarga de aguas residuales"},
+  "Baja California":{legislacion:"Ley de Proteccion al Ambiente para el Estado de BC · Ley de Gestion Integral de Residuos · Ley del Agua",impuestos:"Derechos por descarga de aguas residuales · Impuesto sobre vehiculos contaminantes"},
+  "Baja California Sur":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente de BCS · Ley de Agua Potable y Alcantarillado",impuestos:"Sin impuesto ambiental especifico vigente"},
+  "Campeche":{legislacion:"Ley de Proteccion al Ambiente del Estado · Ley del Agua · Ley de Pesca y Acuacultura",impuestos:"Impuesto ecologico a actividades petroleras · Derechos por servicios ambientales"},
+  "Chiapas":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente · Ley de Agua para Chiapas · Ley de Residuos",impuestos:"Impuesto sobre aprovechamientos forestales · En proceso de actualizacion"},
+  "Chihuahua":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente · Ley de Gestion Integral de Residuos · Ley de Aguas",impuestos:"Impuesto sobre mineria con impacto ambiental · Derechos por descarga industrial"},
+  "Ciudad de Mexico":{legislacion:"Ley Ambiental de Proteccion a la Tierra del DF (LAPTDF) · Ley del Agua del DF · Ley de Residuos Solidos",impuestos:"Impuesto sobre tenencia y verificacion vehicular · Impuesto predial diferenciado"},
+  "Coahuila de Zaragoza":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente · Ley de Residuos Solidos · Ley de Agua",impuestos:"Derechos ambientales estatales · Impuesto sobre emision de contaminantes atmosfericos"},
+  "Colima":{legislacion:"Ley del Equilibrio Ecologico y Proteccion del Ambiente · Ley del Agua · Ley de Residuos",impuestos:"Sin impuesto ambiental especifico vigente"},
+  "Durango":{legislacion:"Ley de Proteccion Ambiental para el Estado · Ley de Aguas · Ley de Desarrollo Forestal",impuestos:"Derechos por aprovechamiento de recursos naturales · En proceso"},
+  "Guanajuato":{legislacion:"Ley para la Proteccion y Preservacion del Ambiente · Ley de Aguas · Ley de Residuos Solidos",impuestos:"Impuesto sobre residuos industriales y contaminantes · Derechos ambientales"},
+  "Guerrero":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente · Ley del Agua · Ley Forestal del Estado",impuestos:"Sin impuesto ambiental consolidado · En proceso"},
+  "Hidalgo":{legislacion:"Ley de Proteccion Ambiental para el Estado · Ley de Aguas · Ley de Residuos Solidos",impuestos:"Derechos por aprovechamiento de aguas subterraneas · En proceso"},
+  "Jalisco":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente · Ley del Agua para Jalisco · Ley para Gestion Integral de Residuos",impuestos:"Impuesto sobre generacion de energia electrica renovable · Derechos ambientales"},
+  "Mexico":{legislacion:"Ley del Medio Ambiente del Estado de Mexico · Ley del Agua · Ley para Prevencion y Gestion Integral de Residuos",impuestos:"Impuesto sobre residuos de manejo especial · Derechos por extraccion de materiales"},
+  "Michoacan de Ocampo":{legislacion:"Ley Ambiental del Estado de Michoacan · Ley de Agua y Gestion de Cuencas · Ley de Desarrollo Rural Sustentable",impuestos:"Impuesto sobre aprovechamientos forestales · En proceso"},
+  "Morelos":{legislacion:"Ley Ambiental para el Desarrollo Sustentable del Estado · Ley del Agua para Morelos · Ley de Residuos",impuestos:"Derechos por servicios de gestion ambiental · En proceso"},
+  "Nayarit":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente · Ley del Agua · Ley de Pesca del Estado",impuestos:"Sin impuesto ambiental especifico vigente · En proceso"},
+  "Nuevo Leon":{legislacion:"Ley Ambiental del Estado · Ley de Agua y Gestion Integral de Cuencas · Ley de Residuos Solidos de NL",impuestos:"Impuesto sobre emisiones de CO2 · Impuesto sobre generacion de residuos industriales"},
+  "Oaxaca":{legislacion:"Ley de Proteccion Ambiental para el Desarrollo Sustentable · Ley de Aguas · Ley Forestal",impuestos:"Impuesto sobre aprovechamientos de recursos naturales · En proceso"},
+  "Puebla":{legislacion:"Ley para la Proteccion del Ambiente Natural y Desarrollo Sustentable · Ley del Agua · Ley de Residuos",impuestos:"Derechos ambientales estatales · En proceso"},
+  "Queretaro":{legislacion:"Ley Ambiental del Estado de Queretaro · Ley del Agua · Ley de Residuos Solidos",impuestos:"Impuesto sobre extraccion de materiales · Derechos por servicios ambientales"},
+  "Quintana Roo":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente · Ley del Agua · Ley de Turismo Sustentable",impuestos:"Impuesto ecologico sobre hospedaje y actividades turisticas · Impuesto por acceso a zonas protegidas"},
+  "San Luis Potosi":{legislacion:"Ley Ambiental del Estado · Ley del Agua · Ley de Gestion Integral de Residuos",impuestos:"Impuesto sobre residuos peligrosos · Derechos por extraccion de minerales"},
+  "Sinaloa":{legislacion:"Ley Ambiental del Estado de Sinaloa · Ley del Agua para Sinaloa · Ley de Desarrollo Forestal Sustentable",impuestos:"Derechos por servicios de proteccion ambiental · En proceso"},
+  "Sonora":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente · Ley del Agua · Ley de Gestion de Residuos",impuestos:"Impuesto sobre actividades mineras con impacto ambiental · Derechos por aprovechamiento de agua"},
+  "Tabasco":{legislacion:"Ley de Proteccion Ambiental del Estado · Ley del Agua · Ley de Prevencion y Control de la Contaminacion",impuestos:"Impuesto sobre actividades petroleras con impacto ambiental · Derechos por vertidos industriales"},
+  "Tamaulipas":{legislacion:"Ley Ambiental del Estado · Ley del Agua · Ley de Gestion Integral de Residuos",impuestos:"Derechos por servicios ambientales · En proceso"},
+  "Tlaxcala":{legislacion:"Ley Ambiental del Estado · Ley del Agua para Tlaxcala · Ley de Residuos Solidos",impuestos:"Sin impuesto ambiental especifico vigente · En proceso"},
+  "Veracruz de Ignacio de la Llave":{legislacion:"Ley de Proteccion Ambiental para el Desarrollo Sustentable · Ley del Agua · Ley de Residuos",impuestos:"Impuesto sobre extraccion de materiales petreos y mineros · Derechos ambientales estatales"},
+  "Yucatan":{legislacion:"Ley de Proteccion al Medio Ambiente del Estado · Ley de Aguas · Ley de Residuos Solidos",impuestos:"Impuesto ecologico estatal · Derechos por aprovechamiento de cenotes y aguas subterraneas"},
+  "Zacatecas":{legislacion:"Ley Ambiental del Estado · Ley del Agua para Zacatecas · Ley de Mineria Sustentable",impuestos:"Impuesto sobre actividades mineras con impacto ambiental · En proceso"}
+};
+const defData={legislacion:"Datos en actualizacion",impuestos:"Datos en actualizacion"};
 
-    body {
-      background: #f8fafc;
-      color: #1e293b;
-      font-family: 'Montserrat', sans-serif;
-      min-height: 100vh;
-      padding-bottom: 48px;
+const tooltip=document.getElementById('tooltip');
+const svgEl=d3.select('#mexico-map');
+const W=document.getElementById('map-container').offsetWidth;
+const H=W*0.58;
+svgEl.attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%');
+const proj=d3.geoMercator().center([-102,24]).scale(W*1.18).translate([W/2,H/2]);
+const pathGen=d3.geoPath().projection(proj);
+
+d3.json('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json')
+  .then(data=>{
+    svgEl.selectAll('path').data(data.features).enter().append('path')
+      .attr('class','state').attr('d',pathGen)
+      .on('mousemove',function(event,d){
+        const name=d.properties.NAME_1||d.properties.name||d.properties.NOMGEO||'';
+        const info=estadoData[name]||defData;
+        document.getElementById('tt-state').textContent=name.toUpperCase();
+        document.getElementById('tt-leg').textContent=info.legislacion;
+        document.getElementById('tt-imp').textContent=info.impuestos;
+        tooltip.classList.add('visible');
+        tooltip.style.left=(event.clientX+18)+'px';
+        tooltip.style.top=(event.clientY-10)+'px';
+        d3.select(this).style('fill','#16a34a');
+      })
+      .on('mouseleave',function(){
+        tooltip.classList.remove('visible');
+        d3.select(this).style('fill',null);
+      });
+  })
+  .catch(()=>{
+    document.getElementById('map-container').innerHTML='<p style="color:#94a3b8;text-align:center;padding:60px;font-size:13px">Cargando mapa...</p>';
+  });
+
+const weeks=['Sem 1','Sem 2','Sem 3','Sem 4','Sem 5','Sem 6','Sem 7','Sem 8'];
+new Chart(document.getElementById('trend-chart').getContext('2d'),{
+  type:'line',
+  data:{
+    labels:weeks,
+    datasets:[
+      {label:'Economia Circular',data:[12,19,15,22,18,25,21,28],borderColor:'#16a34a',backgroundColor:'rgba(22,163,74,0.06)',tension:0.4,fill:true,pointRadius:4},
+      {label:'Agua',data:[20,25,18,30,35,28,40,38],borderColor:'#0284c7',backgroundColor:'rgba(2,132,199,0.06)',tension:0.4,fill:true,pointRadius:4},
+      {label:'Energia',data:[15,12,20,18,22,30,25,32],borderColor:'#d97706',backgroundColor:'rgba(217,119,6,0.06)',tension:0.4,fill:true,pointRadius:4},
+      {label:'Impuestos Ambientales',data:[8,10,9,14,12,15,18,16],borderColor:'#dc2626',backgroundColor:'rgba(220,38,38,0.06)',tension:0.4,fill:true,pointRadius:4},
+      {label:'Residuos',data:[18,22,20,25,22,28,24,30],borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,0.06)',tension:0.4,fill:true,pointRadius:4}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:'#475569',font:{size:11,family:'Montserrat'},boxWidth:12,padding:16}}},
+    scales:{
+      x:{grid:{color:'#f1f5f9'},ticks:{color:'#94a3b8',font:{size:10,family:'Montserrat'}}},
+      y:{grid:{color:'#f1f5f9'},ticks:{color:'#94a3b8',font:{size:10,family:'Montserrat'}}}
     }
+  }
+});
 
-
-    header {
-      background: #ffffff;
-      text-align: center;
-      padding: 28px 0 16px;
-      border-bottom: 3px solid #16a34a;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-
-
-    .logo {
-      font-size: 52px;
-      font-weight: 900;
-      letter-spacing: 16px;
-      color: #15803d;
-      font-family: 'Montserrat', sans-serif;
-    }
-
+const leyes=[
+  {sigla:'LGEEPA',nombre:'Ley General del Equilibrio Ecologico y la Proteccion al Ambiente',tema:'Medio Ambiente'},
+  {sigla:'LGPGIR',nombre:'Ley General para la Prevencion y Gestion Integral de los Residuos',tema:'Residuos'},
+  {sigla:'LAN',nombre:'Ley de Aguas Nacionales',tema:'Agua'},
+  {sigla:'LTE',nombre:'Ley de Transicion Energetica',tema:'Energia'},
+  {sigla:'LGCC',nombre:'Ley General de Cambio Climatico',tema:'Clima'},
+  {sigla:'LFD',nombre:'Ley Federal de Derechos (Seccion Ambiental)',tema:'Impuestos'},
+  {sigla:'LGDFS',nombre:'Ley General de Desarrollo Forestal Sustentable',tema:'Bosques'},
+  {sigla:'LGVS',nombre:'Ley General de Vida Silvestre',tema:'Biodiversidad'},
+  {sigla:'LIE',nombre:'Ley de Industria Electrica',tema:'Energia'},
+  {sigla:'LRSPCFA',nombre:'Ley Federal de Responsabilidad Ambiental',tema:'Responsabilidad'}
+];
+const ll=document.getElementById('ley-list');
+leyes.forEach(l=>{
+  ll.innerHTML+=`<div class="ley-item"><div class="ley-sigla">${l.sigla}</div><div class="ley-nombre">${l.nombre}</div><span class="ley-tema">${l.tema}</span></div>`;
+});
+</script>
+</body>
+  </html>
