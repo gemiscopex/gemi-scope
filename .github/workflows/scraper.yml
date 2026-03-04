@@ -1,0 +1,33 @@
+name: GEMI Scope Scraper
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        run: python scraper/scraper.py
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "gemi-scope-bot@github.com"
+          git config --local user.name "GEMI Scope Bot"
+          git add data/noticias.json
+          git diff --staged --quiet || git commit -m "Actualizacion de noticias"
+          git push
