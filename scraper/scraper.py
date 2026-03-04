@@ -11,11 +11,41 @@ def quitar_acentos(texto):
     )
 
 FUENTES = [
-    {"nombre": "El Universal", "rss": "https://www.eluniversal.com.mx/rss.xml"},
-    {"nombre": "La Jornada", "rss": "https://www.jornada.com.mx/rss.xml"},
-    {"nombre": "El Financiero", "rss": "https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/"},
-    {"nombre": "SEMARNAT", "rss": "https://www.gob.mx/semarnat/rss.xml"},
-    {"nombre": "Presidencia", "rss": "https://www.gob.mx/presidencia/rss.xml"}
+    {
+        "nombre": "Google News - Medio Ambiente MX",
+        "rss": "https://news.google.com/rss/search?q=medio+ambiente+Mexico+semarnat&hl=es-419&gl=MX&ceid=MX:es-419",
+        "categoria": "circular"
+    },
+    {
+        "nombre": "Google News - Energia MX",
+        "rss": "https://news.google.com/rss/search?q=energia+renovable+solar+eolica+Mexico&hl=es-419&gl=MX&ceid=MX:es-419",
+        "categoria": "energia"
+    },
+    {
+        "nombre": "Google News - Agua MX",
+        "rss": "https://news.google.com/rss/search?q=agua+Mexico+sequia+contaminacion+conagua&hl=es-419&gl=MX&ceid=MX:es-419",
+        "categoria": "agua"
+    },
+    {
+        "nombre": "Google News - Residuos MX",
+        "rss": "https://news.google.com/rss/search?q=residuos+reciclaje+plastico+basura+Mexico&hl=es-419&gl=MX&ceid=MX:es-419",
+        "categoria": "residuos"
+    },
+    {
+        "nombre": "Google News - Impuestos Ambientales MX",
+        "rss": "https://news.google.com/rss/search?q=impuesto+ambiental+carbono+economia+circular+Mexico&hl=es-419&gl=MX&ceid=MX:es-419",
+        "categoria": "impuestos"
+    },
+    {
+        "nombre": "SEMARNAT",
+        "rss": "https://www.gob.mx/semarnat/rss.xml",
+        "categoria": None
+    },
+    {
+        "nombre": "Presidencia",
+        "rss": "https://www.gob.mx/presidencia/rss.xml",
+        "categoria": None
+    },
 ]
 
 PALABRAS_CLAVE = [
@@ -44,7 +74,8 @@ def scrape():
                 descripcion = entrada.get("summary", "")
                 url = entrada.get("link", "")
                 fecha = entrada.get("published", str(datetime.now()))
-                if es_relevante(titulo, descripcion):
+                # Google News feeds already filtered by search query; gob.mx needs keyword check
+                if fuente.get("categoria") or es_relevante(titulo, descripcion):
                     noticias_nuevas.append({
                         "titulo": titulo,
                         "descripcion": descripcion,
@@ -69,6 +100,8 @@ def main():
     noticias_nuevas = scrape()
     noticias_nuevas = [n for n in noticias_nuevas if n["url"] not in urls_existentes]
     todas = noticias_nuevas + noticias_existentes
+    # Keep only latest 300 articles to control file size
+    todas = todas[:300]
     with open(data_file, "w", encoding="utf-8") as f:
         json.dump(todas, f, ensure_ascii=False, indent=2)
     print(f"{len(noticias_nuevas)} noticias nuevas encontradas")
