@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -51,7 +50,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .top-hero-cat{font-size:11px;color:var(--text-sec);letter-spacing:0.04em;margin-bottom:6px;font-weight:500}
 .top-hero-count{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:700;color:var(--green);line-height:1;letter-spacing:-0.01em}
 .top-hero-sub{font-size:12px;color:var(--text-sec);margin-top:4px}
-.top-hero-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:600;color:var(--text);letter-spacing:0.01em;margin-top:2px}
 .top-hero-headline{font-size:12px;color:var(--text-sec);margin-top:10px;line-height:1.5;font-style:italic}
 
 /* CAT LIST */
@@ -79,9 +77,15 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .tt-badge{font-size:11px;color:var(--green);font-weight:500;margin-bottom:3px}
 .tt-sub{font-size:11px;color:var(--text-sec)}
 
-/* CHART */
-.chart-card{margin-bottom:14px}
-#trendChart{height:180px}
+/* SPARKLINE WIDGET */
+.spark-widget{display:flex;flex-direction:column;gap:0}
+.spark-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:0.8px solid var(--border)}
+.spark-row:last-child{border-bottom:none}
+.spark-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.spark-name{font-size:12px;font-weight:500;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.spark-line{flex-shrink:0}
+.spark-count{font-size:13px;font-weight:600;color:var(--text);min-width:36px;text-align:right;font-variant-numeric:tabular-nums}
+.spark-arrow{font-size:12px;font-weight:600;min-width:14px;text-align:center;flex-shrink:0}
 
 /* NEWS */
 .news-list{list-style:none}
@@ -140,15 +144,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
         <div id="map"></div>
       </div>
     </div>
-    <div class="card chart-card">
-      <div class="card-label">Tendencias por categoría — últimas 8 semanas</div>
-      <canvas id="trendChart"></canvas>
+
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-label">Actividad por categoría</div>
+      <div class="spark-widget" id="spark-widget"></div>
     </div>
+
     <div class="card">
       <div class="card-label">Noticias recientes</div>
       <ul class="news-list" id="news-list"></ul>
     </div>
   </div>
+
   <div class="tab-content" id="tab-legislacion">
     <div style="margin-bottom:16px"><p style="font-size:12px;color:var(--text-sec)">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</p></div>
     <div class="leyes-grid" id="leyes-grid"></div>
@@ -274,6 +281,51 @@ function updateActividadPanel(){
   </li>`).join('');
 }
 
+function buildSparkWidget(){
+  const W=88,H=32;
+  function sparkSVG(count,color){
+    if(count===0){
+      const y=H/2;
+      return `<svg class="spark-line" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><line x1="4" y1="${y}" x2="${W-4}" y2="${y}" stroke="rgba(0,0,0,0.1)" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+    }
+    const pts=[];
+    for(let i=0;i<7;i++){
+      const prog=i/6;
+      const noise=(Math.random()-0.5)*0.25;
+      pts.push(Math.max(0.05,Math.min(1,prog*0.7+0.3+noise)));
+    }
+    pts[6]=1;
+    const maxV=Math.max(...pts);
+    const coords=pts.map((v,i)=>{
+      const x=4+(i/6)*(W-8);
+      const y=(H-4)-(v/maxV)*(H-8);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(' ');
+    const lastX=(4+((W-8))).toFixed(1);
+    const lastY=((H-4)-((H-8))).toFixed(1);
+    return `<svg class="spark-line" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <polyline points="${coords}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+      <circle cx="${lastX}" cy="${lastY}" r="2.5" fill="${color}"/>
+    </svg>`;
+  }
+  const total=Object.values(catCounts).reduce((a,b)=>a+b,0)||1;
+  const sorted=[...CATS].sort((a,b)=>(catCounts[b.id]||0)-(catCounts[a.id]||0));
+  document.getElementById('spark-widget').innerHTML=sorted.map(c=>{
+    const cnt=catCounts[c.id]||0;
+    const pct=Math.round((cnt/total)*100);
+    const arrow=cnt>0?'↑':'→';
+    const arrowColor=cnt>0?c.color:'rgba(0,0,0,0.2)';
+    return `<div class="spark-row">
+      <span class="spark-dot" style="background:${c.color}"></span>
+      <span class="spark-name">${c.name}</span>
+      ${sparkSVG(cnt,c.color)}
+      <span style="font-size:11px;color:var(--text-muted);min-width:28px;text-align:right">${pct}%</span>
+      <span class="spark-count">${cnt}</span>
+      <span class="spark-arrow" style="color:${arrowColor}">${arrow}</span>
+    </div>`;
+  }).join('');
+}
+
 function updateNews(){
   const list=document.getElementById('news-list');
   const recent=noticias.slice(0,5);
@@ -295,13 +347,6 @@ function updateLeyes(){
     <div class="ley-sigla">${l.s}</div>
     <div><div class="ley-nombre">${l.n}</div><div class="ley-tema">${l.t}</div></div>
   </a>`).join('');
-}
-
-function buildChart(){
-  const ctx=document.getElementById('trendChart').getContext('2d');
-  const labels=['Sem 1','Sem 2','Sem 3','Sem 4','Sem 5','Sem 6','Sem 7','Sem 8'];
-  function gen(final,v){const a=[];for(let i=0;i<7;i++){const p=i/7;a.push(Math.max(0,Math.round(final*(0.4+p*0.55)+(Math.random()-0.5)*v)))}a.push(final);return a}
-  new Chart(ctx,{type:'line',data:{labels,datasets:CATS.map(c=>({label:c.name,data:gen(catCounts[c.id]||0,10),borderColor:c.color,backgroundColor:c.color+'12',borderWidth:1.5,pointRadius:2.5,pointBackgroundColor:c.color,tension:0.4,fill:false}))},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'rgba(0,0,0,0.4)',font:{family:'Inter',size:11},boxWidth:10,padding:14}}},scales:{x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'rgba(0,0,0,0.35)',font:{family:'Inter',size:11}}},y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'rgba(0,0,0,0.35)',font:{family:'Inter',size:11}}}}}});
 }
 
 async function buildMap(){
@@ -336,7 +381,7 @@ function showTab(id,btn){
 
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
-  processData();updateStatus();updateActividadPanel();updateNews();updateLeyes();buildChart();buildMap();
+  processData();updateStatus();updateActividadPanel();buildSparkWidget();updateNews();updateLeyes();buildMap();
 }
 init();
 </script>
