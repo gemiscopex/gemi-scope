@@ -22,37 +22,23 @@
   --radius:16px;
 }
 body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--text);min-height:100vh;padding-bottom:48px}
-
-/* NAV */
 .nav{background:#fff;border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
 .nav-left{display:flex;align-items:baseline;gap:12px}
 .nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;letter-spacing:0.08em;color:var(--green)}
 .nav-tagline{font-size:11px;color:var(--text-muted);letter-spacing:0.05em;font-weight:400}
 .nav-time{font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums}
-
-/* TABS */
 .tabs{display:flex;padding:0 28px;border-bottom:1px solid var(--border);background:#fff}
 .tab-btn{padding:13px 0;margin-right:24px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:'Inter',sans-serif}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
-
-/* MAIN */
 .main{max-width:1200px;margin:0 auto;padding:24px 28px}
-
-/* CARD */
 .card{background:#fff;border:0.8px solid var(--border-med);border-radius:var(--radius);padding:22px 24px}
 .card-label{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:18px}
-
-/* TOP GRID */
 .top-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-
-/* ACTIVIDAD HERO */
 .top-hero{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
 .top-hero-cat{font-size:11px;color:var(--text-sec);letter-spacing:0.04em;margin-bottom:6px;font-weight:500}
 .top-hero-count{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:700;color:var(--green);line-height:1;letter-spacing:-0.01em}
 .top-hero-sub{font-size:12px;color:var(--text-sec);margin-top:4px}
 .top-hero-headline{font-size:12px;color:var(--text-sec);margin-top:10px;line-height:1.5;font-style:italic}
-
-/* CAT LIST */
 .cat-list{list-style:none}
 .cat-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.8px solid var(--border)}
 .cat-item:last-child{border-bottom:none}
@@ -62,22 +48,17 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .cat-bar-wrap{width:80px;height:3px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden}
 .cat-bar{height:100%;border-radius:2px}
 .cat-count{font-size:13px;font-weight:600;color:var(--text);min-width:28px;text-align:right;font-variant-numeric:tabular-nums}
-
-/* MAP */
 #map svg{width:100%;height:260px}
 .estado{fill:rgba(10,194,133,0.1);stroke:rgba(0,0,0,0.12);stroke-width:0.5;cursor:pointer;transition:fill 0.15s}
 .estado:hover{fill:var(--green-btn)}
 .estado.hasnews{fill:rgba(10,194,133,0.3)}
 .estado.hasnews:hover{fill:var(--green-btn)}
-
-/* TOOLTIP */
+.estado.selected{fill:var(--green)!important;stroke:rgba(0,0,0,0.25);stroke-width:1}
 .tooltip{position:absolute;background:#fff;border:0.8px solid var(--border-med);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--text);pointer-events:none;opacity:0;transition:opacity 0.12s;z-index:999;min-width:160px;box-shadow:0 4px 16px rgba(0,0,0,0.08)}
 .tooltip.show{opacity:1}
 .tt-name{font-weight:600;margin-bottom:4px}
 .tt-badge{font-size:11px;color:var(--green);font-weight:500;margin-bottom:3px}
 .tt-sub{font-size:11px;color:var(--text-sec)}
-
-/* SPARKLINE WIDGET */
 .spark-widget{display:flex;flex-direction:column;gap:0}
 .spark-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:0.8px solid var(--border)}
 .spark-row:last-child{border-bottom:none}
@@ -86,8 +67,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .spark-line{flex-shrink:0}
 .spark-count{font-size:13px;font-weight:600;color:var(--text);min-width:36px;text-align:right;font-variant-numeric:tabular-nums}
 .spark-arrow{font-size:12px;font-weight:600;min-width:14px;text-align:center;flex-shrink:0}
-
-/* NEWS */
 .news-list{list-style:none}
 .news-item{display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:0.8px solid var(--border);cursor:pointer}
 .news-item:last-child{border-bottom:none}
@@ -96,28 +75,47 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .news-title{font-size:13px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:3px;transition:color 0.15s}
 .news-meta{font-size:11px;color:var(--text-muted)}
 .news-empty{padding:20px 0;color:var(--text-muted);font-size:13px;text-align:center;line-height:1.8}
-
-/* LEYES */
 .leyes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .ley-item{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;border:0.8px solid var(--border-med);border-radius:12px;text-decoration:none;transition:border-color 0.15s,background 0.15s;background:#fff}
 .ley-item:hover{border-color:var(--green);background:var(--green-tint)}
 .ley-sigla{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--green);min-width:72px;letter-spacing:0.03em;padding-top:1px}
 .ley-nombre{font-size:12px;font-weight:500;color:var(--text);line-height:1.4}
 .ley-tema{font-size:11px;color:var(--text-muted);margin-top:2px}
-
-/* TAB CONTENT */
 .tab-content{display:none}
 .tab-content.active{display:block}
-
-/* STATUS BAR */
 .statusbar{position:fixed;bottom:0;left:0;right:0;height:36px;background:#fff;border-top:0.8px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;font-size:11px;color:var(--text-muted);letter-spacing:0.04em}
 .sb-dot{width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:7px;display:inline-block;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.state-panel{margin-bottom:14px;animation:spSlide 0.22s ease}
+@keyframes spSlide{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.sp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.sp-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;color:var(--text)}
+.sp-sub{font-size:12px;color:var(--text-muted);margin-left:10px;vertical-align:middle}
+.sp-close{background:none;border:1px solid var(--border-med);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text-sec);font-family:'Inter',sans-serif;transition:background 0.15s}
+.sp-close:hover{background:var(--green-tint)}
+.sp-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px;overflow-x:auto;gap:0}
+.sp-tab{background:none;border:none;border-bottom:2px solid transparent;padding:10px 16px;font-size:11px;font-weight:600;letter-spacing:0.6px;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color 0.15s;font-family:'Inter',sans-serif}
+.sp-tab.active{color:var(--green);border-bottom-color:var(--green)}
+.sp-content{display:none}
+.sp-content.active{display:block}
+.sp-stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:16px}
+.sp-stat{background:var(--green-tint);border-radius:10px;padding:14px}
+.sp-stat-label{font-size:10px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px}
+.sp-stat-value{font-size:17px;font-weight:600;color:var(--text)}
+.sp-law-block{border:1px solid var(--border-med);border-radius:10px;padding:14px;margin-bottom:14px}
+.sp-law-name{font-size:14px;font-weight:600;color:var(--text);margin-top:4px;line-height:1.4}
+.sp-news-item{padding:10px 0;border-bottom:0.8px solid var(--border)}
+.sp-news-item:last-child{border-bottom:none}
+.sp-news-title a{font-size:13px;color:var(--text);text-decoration:none;line-height:1.4;display:block}
+.sp-news-title a:hover{color:var(--green)}
+.sp-news-meta{font-size:11px;color:var(--text-muted);margin-top:3px}
+.sp-gaceta-link{display:flex;align-items:center;gap:12px;padding:16px;background:var(--green-tint);border-radius:12px;text-decoration:none;color:var(--text);font-weight:600;font-size:14px;margin-bottom:14px;border:1px solid rgba(10,194,133,0.15);transition:background 0.15s}
+.sp-gaceta-link:hover{background:rgba(10,194,133,0.15)}
+.sp-empty{text-align:center;padding:28px;color:var(--text-muted);font-size:13px}
 </style>
 </head>
 <body>
 <div class="tooltip" id="tt"></div>
-
 <nav class="nav">
   <div class="nav-left">
     <span class="nav-logo">SCOPE</span>
@@ -125,12 +123,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
   </div>
   <span class="nav-time" id="nav-clock"></span>
 </nav>
-
 <div class="tabs">
   <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
   <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación Federal</button>
 </div>
-
 <div class="main">
   <div class="tab-content active" id="tab-dashboard">
     <div class="top-grid">
@@ -140,34 +136,50 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
         <ul class="cat-list" id="cat-list"></ul>
       </div>
       <div class="card">
-        <div class="card-label">Monitor territorial — 32 estados</div>
+        <div class="card-label">Monitor territorial — 32 estados · click para detalle</div>
         <div id="map"></div>
       </div>
     </div>
-
+    <div id="state-panel" class="state-panel" style="display:none">
+      <div class="card">
+        <div class="sp-header">
+          <div>
+            <span class="sp-name" id="sp-name"></span>
+            <span class="sp-sub" id="sp-sub"></span>
+          </div>
+          <button class="sp-close" onclick="closeStatePanel()">✕ Cerrar</button>
+        </div>
+        <div class="sp-tabs">
+          <button class="sp-tab active" onclick="showSPTab('ficha',this)">FICHA TÉCNICA</button>
+          <button class="sp-tab" onclick="showSPTab('legislacion',this)">LEGISLACIÓN LOCAL</button>
+          <button class="sp-tab" onclick="showSPTab('impuestos',this)">IMPUESTOS AMBIENTALES</button>
+          <button class="sp-tab" onclick="showSPTab('gaceta',this)">MONITOREO GACETA</button>
+        </div>
+        <div id="sp-ficha" class="sp-content active"></div>
+        <div id="sp-legislacion" class="sp-content"></div>
+        <div id="sp-impuestos" class="sp-content"></div>
+        <div id="sp-gaceta" class="sp-content"></div>
+      </div>
+    </div>
     <div class="card" style="margin-bottom:14px">
       <div class="card-label">Actividad por categoría</div>
       <div class="spark-widget" id="spark-widget"></div>
     </div>
-
     <div class="card">
       <div class="card-label">Noticias recientes</div>
       <ul class="news-list" id="news-list"></ul>
     </div>
   </div>
-
   <div class="tab-content" id="tab-legislacion">
     <div style="margin-bottom:16px"><p style="font-size:12px;color:var(--text-sec)">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</p></div>
     <div class="leyes-grid" id="leyes-grid"></div>
   </div>
 </div>
-
 <div class="statusbar">
   <div><span class="sb-dot"></span>GEMI SCOPE — SISTEMA ACTIVO</div>
   <div id="status-update">Scraper corre cada 4h vía GitHub Actions</div>
   <div>MÉXICO — 32 ESTADOS</div>
 </div>
-
 <script>
 const CATS=[
   {id:'circular',name:'Economía Circular',color:'#0ac285',kw:['economia circular','circularidad','reciclaje economico','reutilizacion','ecodiseno','simbiosis industrial']},
@@ -177,38 +189,38 @@ const CATS=[
   {id:'residuos',name:'Residuos',color:'#a78bfa',kw:['residuo','basura','desecho','plastico','reciclaje','vertedero','relleno sanitario','contaminacion','toxico','derrame']}
 ];
 const estadoData={
-  "Aguascalientes":{l:"Ley Ambiental del Estado"},
-  "Baja California":{l:"Ley de Protección al Ambiente"},
-  "Baja California Sur":{l:"Ley del Equilibrio Ecológico"},
-  "Campeche":{l:"Ley de Ecología"},
-  "Chiapas":{l:"Ley Ambiental de Chiapas"},
-  "Chihuahua":{l:"Ley de Equilibrio Ecológico"},
-  "Coahuila":{l:"Ley del Equilibrio Ecológico y Protección al Ambiente"},
-  "Colima":{l:"Ley Ambiental para el Desarrollo Sustentable"},
-  "Ciudad de México":{l:"Ley Ambiental de Protección a la Tierra"},
-  "Durango":{l:"Ley de Equilibrio Ecológico y Protección al Ambiente"},
-  "Guanajuato":{l:"Ley para la Protección y Preservación del Ambiente"},
-  "Guerrero":{l:"Ley del Equilibrio Ecológico"},
-  "Hidalgo":{l:"Ley de Protección Ambiental"},
-  "Jalisco":{l:"Ley Estatal del Equilibrio Ecológico"},
-  "México":{l:"Código para la Biodiversidad"},
-  "Michoacán":{l:"Ley Ambiental y de Protección del Patrimonio Natural"},
-  "Morelos":{l:"Ley Ambiental del Estado"},
-  "Nayarit":{l:"Ley del Equilibrio Ecológico"},
-  "Nuevo León":{l:"Ley Ambiental del Estado"},
-  "Oaxaca":{l:"Ley de Protección al Ambiente"},
-  "Puebla":{l:"Ley para la Protección del Ambiente Natural"},
-  "Querétaro":{l:"Ley Ambiental del Estado"},
-  "Quintana Roo":{l:"Ley del Equilibrio Ecológico"},
-  "San Luis Potosí":{l:"Ley Ambiental del Estado"},
-  "Sinaloa":{l:"Ley del Equilibrio Ecológico"},
-  "Sonora":{l:"Ley de Equilibrio Ecológico y Protección al Ambiente"},
-  "Tabasco":{l:"Ley de Protección Ambiental"},
-  "Tamaulipas":{l:"Ley del Equilibrio Ecológico"},
-  "Tlaxcala":{l:"Ley del Equilibrio Ecológico"},
-  "Veracruz":{l:"Ley Estatal de Protección Ambiental"},
-  "Yucatán":{l:"Ley de Protección al Medio Ambiente"},
-  "Zacatecas":{l:"Ley de Protección Ambiental"}
+  "Aguascalientes":{l:"Ley Ambiental del Estado",capital:"Aguascalientes",pop:"1.4M",area:"5,618 km²",region:"Norte-Centro",congreso:"https://www.congresoags.gob.mx/"},
+  "Baja California":{l:"Ley de Protección al Ambiente",capital:"Mexicali",pop:"3.8M",area:"70,113 km²",region:"Noroeste",congreso:"https://www.congresobc.gob.mx/"},
+  "Baja California Sur":{l:"Ley del Equilibrio Ecológico",capital:"La Paz",pop:"798k",area:"73,909 km²",region:"Noroeste",congreso:"https://www.cbcs.gob.mx/"},
+  "Campeche":{l:"Ley de Ecología",capital:"Campeche",pop:"928k",area:"57,507 km²",region:"Sureste",congreso:"https://congresocam.gob.mx/"},
+  "Chiapas":{l:"Ley Ambiental de Chiapas",capital:"Tuxtla Gutiérrez",pop:"5.5M",area:"73,289 km²",region:"Sur",congreso:"https://www.congresochiapas.gob.mx/"},
+  "Chihuahua":{l:"Ley de Equilibrio Ecológico",capital:"Chihuahua",pop:"3.7M",area:"247,455 km²",region:"Norte",congreso:"https://www.congresochihuahua2.gob.mx/"},
+  "Coahuila":{l:"Ley del Equilibrio Ecológico y Protección al Ambiente",capital:"Saltillo",pop:"3.1M",area:"151,563 km²",region:"Norte",congreso:"https://congresocoahuila.gob.mx/"},
+  "Colima":{l:"Ley Ambiental para el Desarrollo Sustentable",capital:"Colima",pop:"731k",area:"5,455 km²",region:"Occidente",congreso:"https://congresocolima.gob.mx/"},
+  "Ciudad de México":{l:"Ley Ambiental de Protección a la Tierra",capital:"Ciudad de México",pop:"9.2M",area:"1,485 km²",region:"Centro",congreso:"https://www.congresocdmx.gob.mx/"},
+  "Durango":{l:"Ley de Equilibrio Ecológico y Protección al Ambiente",capital:"Durango",pop:"1.8M",area:"123,451 km²",region:"Norte",congreso:"https://www.congresodurango.gob.mx/"},
+  "Guanajuato":{l:"Ley para la Protección y Preservación del Ambiente",capital:"Guanajuato",pop:"6.2M",area:"30,589 km²",region:"Centro",congreso:"https://www.congresogto.gob.mx/"},
+  "Guerrero":{l:"Ley del Equilibrio Ecológico",capital:"Chilpancingo",pop:"3.5M",area:"63,596 km²",region:"Sur",congreso:"https://congresoguerrero.gob.mx/"},
+  "Hidalgo":{l:"Ley de Protección Ambiental",capital:"Pachuca",pop:"3.1M",area:"20,813 km²",region:"Centro",congreso:"https://www.congreso-hidalgo.gob.mx/"},
+  "Jalisco":{l:"Ley Estatal del Equilibrio Ecológico",capital:"Guadalajara",pop:"8.3M",area:"78,599 km²",region:"Occidente",congreso:"https://congresojal.gob.mx/"},
+  "México":{l:"Código para la Biodiversidad",capital:"Toluca",pop:"16.9M",area:"22,357 km²",region:"Centro",congreso:"https://www.cddiputados.gob.mx/"},
+  "Michoacán":{l:"Ley Ambiental y de Protección del Patrimonio Natural",capital:"Morelia",pop:"4.7M",area:"58,643 km²",region:"Occidente",congreso:"https://congresomich.gob.mx/"},
+  "Morelos":{l:"Ley Ambiental del Estado",capital:"Cuernavaca",pop:"2.0M",area:"4,879 km²",region:"Centro",congreso:"https://www.congresomorelos.gob.mx/"},
+  "Nayarit":{l:"Ley del Equilibrio Ecológico",capital:"Tepic",pop:"1.2M",area:"27,815 km²",region:"Occidente",congreso:"https://www.congresonayarit.mx/"},
+  "Nuevo León":{l:"Ley Ambiental del Estado",capital:"Monterrey",pop:"5.8M",area:"64,156 km²",region:"Noreste",congreso:"https://www.hcnl.gob.mx/"},
+  "Oaxaca":{l:"Ley de Protección al Ambiente",capital:"Oaxaca de Juárez",pop:"4.1M",area:"93,952 km²",region:"Sur",congreso:"https://www.congresooaxaca.gob.mx/"},
+  "Puebla":{l:"Ley para la Protección del Ambiente Natural",capital:"Puebla de Zaragoza",pop:"6.6M",area:"34,251 km²",region:"Centro",congreso:"https://congresopuebla.gob.mx/"},
+  "Querétaro":{l:"Ley Ambiental del Estado",capital:"Santiago de Querétaro",pop:"2.4M",area:"11,699 km²",region:"Centro",congreso:"https://www.legislaturaqro.gob.mx/"},
+  "Quintana Roo":{l:"Ley del Equilibrio Ecológico",capital:"Chetumal",pop:"1.9M",area:"44,705 km²",region:"Sureste",congreso:"https://www.congresoqroo.gob.mx/"},
+  "San Luis Potosí":{l:"Ley Ambiental del Estado",capital:"San Luis Potosí",pop:"2.8M",area:"60,983 km²",region:"Norte-Centro",congreso:"https://www.congresoslp.gob.mx/"},
+  "Sinaloa":{l:"Ley del Equilibrio Ecológico",capital:"Culiacán",pop:"3.0M",area:"57,377 km²",region:"Noroeste",congreso:"https://congresosinaloa.gob.mx/"},
+  "Sonora":{l:"Ley de Equilibrio Ecológico y Protección al Ambiente",capital:"Hermosillo",pop:"3.0M",area:"179,503 km²",region:"Noroeste",congreso:"https://www.congresosonora.gob.mx/"},
+  "Tabasco":{l:"Ley de Protección Ambiental",capital:"Villahermosa",pop:"2.4M",area:"24,747 km²",region:"Sureste",congreso:"https://www.congresotabasco.gob.mx/"},
+  "Tamaulipas":{l:"Ley del Equilibrio Ecológico",capital:"Ciudad Victoria",pop:"3.5M",area:"79,384 km²",region:"Noreste",congreso:"https://congresotam.gob.mx/"},
+  "Tlaxcala":{l:"Ley del Equilibrio Ecológico",capital:"Tlaxcala de Xicohténcatl",pop:"1.3M",area:"3,991 km²",region:"Centro",congreso:"https://www.congresotlaxcala.gob.mx/"},
+  "Veracruz":{l:"Ley Estatal de Protección Ambiental",capital:"Xalapa",pop:"8.1M",area:"71,826 km²",region:"Golfo",congreso:"https://www.legisver.gob.mx/"},
+  "Yucatán":{l:"Ley de Protección al Medio Ambiente",capital:"Mérida",pop:"2.3M",area:"39,524 km²",region:"Sureste",congreso:"https://www.congresoyucatan.gob.mx/"},
+  "Zacatecas":{l:"Ley de Protección Ambiental",capital:"Zacatecas",pop:"1.6M",area:"75,040 km²",region:"Norte-Centro",congreso:"https://www.congresozac.gob.mx/"}
 };
 const leyes=[
   {s:'LGEEPA',n:'Ley General del Equilibrio Ecológico y la Protección al Ambiente',t:'Medio Ambiente',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEEPA.pdf'},
@@ -222,10 +234,8 @@ const leyes=[
   {s:'LIE',n:'Ley de la Industria Eléctrica',t:'Energía',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LIE.pdf'},
   {s:'LRSPCFA',n:'Ley de Responsabilidad Ambiental',t:'Responsabilidad',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFRA.pdf'}
 ];
-
 let noticias=[],catCounts={},stateNews={};
-
-function qa(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function qa(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'')}
 function catArt(t){
   const s=qa(t.toLowerCase());
   for(const c of CATS){if(c.kw.some(k=>s.includes(qa(k))))return c.id}
@@ -245,68 +255,35 @@ function processData(){
   });
 }
 function getTopCat(){let top=null,max=-1;CATS.forEach(c=>{if(catCounts[c.id]>max){max=catCounts[c.id];top=c}});return{cat:top,count:max}}
-
 function updateClock(){document.getElementById('nav-clock').textContent=new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
 setInterval(updateClock,1000);updateClock();
-
 function updateStatus(){
   const el=document.getElementById('status-update');
   if(noticias.length>0){const last=noticias[0]?.fecha_scraping;if(last){const d=new Date(last);el.textContent='Actualizado: '+d.toLocaleString('es-MX',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}}
 }
-
 function updateActividadPanel(){
   const hero=document.getElementById('top-hero');
   const list=document.getElementById('cat-list');
   const{cat,count}=getTopCat();
   const maxCount=Math.max(...Object.values(catCounts),1);
-  if(!cat||count===0){
-    hero.innerHTML='<div style="color:var(--text-muted);font-size:13px;padding:16px 0">Sin datos — el scraper corre cada 4h</div>';
-    list.innerHTML='';return;
-  }
+  if(!cat||count===0){hero.innerHTML='<div style="color:var(--text-muted);font-size:13px;padding:16px 0">Sin datos — el scraper corre cada 4h</div>';list.innerHTML='';return;}
   const topArt=noticias.find(n=>catArt(n.titulo||'')===cat.id);
   const headline=topArt?topArt.titulo.split(' - ')[0].substring(0,90):'';
-  hero.innerHTML=`<div class="top-hero">
-    <div class="top-hero-cat">${cat.name}</div>
-    <div class="top-hero-count">${count}</div>
-    <div class="top-hero-sub">artículos esta semana</div>
-    ${headline?'<div class="top-hero-headline">&ldquo;'+headline+'&hellip;&rdquo;</div>':''}
-  </div>`;
+  hero.innerHTML=`<div class="top-hero"><div class="top-hero-cat">${cat.name}</div><div class="top-hero-count">${count}</div><div class="top-hero-sub">artículos esta semana</div>${headline?'<div class="top-hero-headline">&ldquo;'+headline+'&hellip;&rdquo;</div>':''}</div>`;
   const sorted=[...CATS].sort((a,b)=>(catCounts[b.id]||0)-(catCounts[a.id]||0));
-  list.innerHTML=sorted.map((c,i)=>`<li class="cat-item">
-    <span class="cat-rank">${i+1}</span>
-    <span class="cat-dot" style="background:${c.color}"></span>
-    <span class="cat-name">${c.name}</span>
-    <div class="cat-bar-wrap"><div class="cat-bar" style="width:${Math.round(((catCounts[c.id]||0)/maxCount)*100)}%;background:${c.color}"></div></div>
-    <span class="cat-count">${catCounts[c.id]||0}</span>
-  </li>`).join('');
+  list.innerHTML=sorted.map((c,i)=>`<li class="cat-item"><span class="cat-rank">${i+1}</span><span class="cat-dot" style="background:${c.color}"></span><span class="cat-name">${c.name}</span><div class="cat-bar-wrap"><div class="cat-bar" style="width:${Math.round(((catCounts[c.id]||0)/maxCount)*100)}%;background:${c.color}"></div></div><span class="cat-count">${catCounts[c.id]||0}</span></li>`).join('');
 }
-
 function buildSparkWidget(){
   const W=88,H=32;
   function sparkSVG(count,color){
-    if(count===0){
-      const y=H/2;
-      return `<svg class="spark-line" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><line x1="4" y1="${y}" x2="${W-4}" y2="${y}" stroke="rgba(0,0,0,0.1)" stroke-width="1.5" stroke-linecap="round"/></svg>`;
-    }
+    if(count===0){const y=H/2;return `<svg class="spark-line" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><line x1="4" y1="${y}" x2="${W-4}" y2="${y}" stroke="rgba(0,0,0,0.1)" stroke-width="1.5" stroke-linecap="round"/></svg>`;}
     const pts=[];
-    for(let i=0;i<7;i++){
-      const prog=i/6;
-      const noise=(Math.random()-0.5)*0.25;
-      pts.push(Math.max(0.05,Math.min(1,prog*0.7+0.3+noise)));
-    }
+    for(let i=0;i<7;i++){const prog=i/6;const noise=(Math.random()-0.5)*0.25;pts.push(Math.max(0.05,Math.min(1,prog*0.7+0.3+noise)));}
     pts[6]=1;
     const maxV=Math.max(...pts);
-    const coords=pts.map((v,i)=>{
-      const x=4+(i/6)*(W-8);
-      const y=(H-4)-(v/maxV)*(H-8);
-      return `${x.toFixed(1)},${y.toFixed(1)}`;
-    }).join(' ');
-    const lastX=(4+((W-8))).toFixed(1);
-    const lastY=((H-4)-((H-8))).toFixed(1);
-    return `<svg class="spark-line" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
-      <polyline points="${coords}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
-      <circle cx="${lastX}" cy="${lastY}" r="2.5" fill="${color}"/>
-    </svg>`;
+    const coords=pts.map((v,i)=>{const x=4+(i/6)*(W-8);const y=(H-4)-(v/maxV)*(H-8);return `${x.toFixed(1)},${y.toFixed(1)}`;}).join(' ');
+    const lastX=(4+((W-8))).toFixed(1);const lastY=((H-4)-((H-8))).toFixed(1);
+    return `<svg class="spark-line" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><polyline points="${coords}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/><circle cx="${lastX}" cy="${lastY}" r="2.5" fill="${color}"/></svg>`;
   }
   const total=Object.values(catCounts).reduce((a,b)=>a+b,0)||1;
   const sorted=[...CATS].sort((a,b)=>(catCounts[b.id]||0)-(catCounts[a.id]||0));
@@ -315,17 +292,9 @@ function buildSparkWidget(){
     const pct=Math.round((cnt/total)*100);
     const arrow=cnt>0?'↑':'→';
     const arrowColor=cnt>0?c.color:'rgba(0,0,0,0.2)';
-    return `<div class="spark-row">
-      <span class="spark-dot" style="background:${c.color}"></span>
-      <span class="spark-name">${c.name}</span>
-      ${sparkSVG(cnt,c.color)}
-      <span style="font-size:11px;color:var(--text-muted);min-width:28px;text-align:right">${pct}%</span>
-      <span class="spark-count">${cnt}</span>
-      <span class="spark-arrow" style="color:${arrowColor}">${arrow}</span>
-    </div>`;
+    return `<div class="spark-row"><span class="spark-dot" style="background:${c.color}"></span><span class="spark-name">${c.name}</span>${sparkSVG(cnt,c.color)}<span style="font-size:11px;color:var(--text-muted);min-width:28px;text-align:right">${pct}%</span><span class="spark-count">${cnt}</span><span class="spark-arrow" style="color:${arrowColor}">${arrow}</span></div>`;
   }).join('');
 }
-
 function updateNews(){
   const list=document.getElementById('news-list');
   const recent=noticias.slice(0,5);
@@ -335,20 +304,12 @@ function updateNews(){
     const color=cat?cat.color:'rgba(0,0,0,0.2)';
     const fuente=(n.fuente||'').replace('Google News - ','');
     const fecha=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
-    return`<li class="news-item" onclick="window.open('${n.url||'#'}','_blank')">
-      <span class="news-dot" style="background:${color}"></span>
-      <div><div class="news-title">${n.titulo||''}</div><div class="news-meta">${fuente}${fecha?' · '+fecha:''}</div></div>
-    </li>`;
+    return `<li class="news-item" onclick="window.open('${n.url||'#'}','_blank')"><span class="news-dot" style="background:${color}"></span><div><div class="news-title">${n.titulo||''}</div><div class="news-meta">${fuente}${fecha?' · '+fecha:''}</div></div></li>`;
   }).join('');
 }
-
 function updateLeyes(){
-  document.getElementById('leyes-grid').innerHTML=leyes.map(l=>`<a class="ley-item" href="${l.u}" target="_blank" rel="noopener">
-    <div class="ley-sigla">${l.s}</div>
-    <div><div class="ley-nombre">${l.n}</div><div class="ley-tema">${l.t}</div></div>
-  </a>`).join('');
+  document.getElementById('leyes-grid').innerHTML=leyes.map(l=>`<a class="ley-item" href="${l.u}" target="_blank" rel="noopener"><div class="ley-sigla">${l.s}</div><div><div class="ley-nombre">${l.n}</div><div class="ley-tema">${l.t}</div></div></a>`).join('');
 }
-
 async function buildMap(){
   const geo=await d3.json('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json');
   const container=document.getElementById('map');
@@ -369,16 +330,94 @@ async function buildMap(){
       tt.innerHTML=h2;tt.classList.add('show');
       tt.style.left=(event.pageX+14)+'px';tt.style.top=(event.pageY-10)+'px';
     })
-    .on('mouseleave',()=>tt.classList.remove('show'));
+    .on('mouseleave',()=>tt.classList.remove('show'))
+    .on('click',(event,d)=>{
+      tt.classList.remove('show');
+      d3.selectAll('.estado').classed('selected',false);
+      d3.select(event.currentTarget).classed('selected',true);
+      openStatePanel(d.properties.name);
+    });
 }
-
 function showTab(id,btn){
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
 }
-
+function formatFecha(f){
+  if(!f)return'';
+  try{const d=new Date(f);return d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});}catch(e){return f.slice(0,10);}
+}
+function filterNoticiasEstado(state,kws){
+  const sn=qa(state.toLowerCase());
+  return noticias.filter(n=>{
+    const txt=qa((n.titulo+' '+(n.descripcion||'')).toLowerCase());
+    return txt.includes(sn)||(kws&&kws.some(k=>txt.includes(qa(k))));
+  });
+}
+function showSPTab(id,btn){
+  document.querySelectorAll('.sp-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.sp-tab').forEach(el=>el.classList.remove('active'));
+  document.getElementById('sp-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function renderSPFicha(state,data){
+  const nc=stateNews[state]||0;
+  document.getElementById('sp-ficha').innerHTML=`
+    <div class="sp-stat-grid">
+      <div class="sp-stat"><div class="sp-stat-label">Capital</div><div class="sp-stat-value">${data.capital||'—'}</div></div>
+      <div class="sp-stat"><div class="sp-stat-label">Población</div><div class="sp-stat-value">${data.pop||'—'}</div></div>
+      <div class="sp-stat"><div class="sp-stat-label">Superficie</div><div class="sp-stat-value">${data.area||'—'}</div></div>
+      <div class="sp-stat"><div class="sp-stat-label">Región</div><div class="sp-stat-value">${data.region||'—'}</div></div>
+      <div class="sp-stat"><div class="sp-stat-label">Noticias esta semana</div><div class="sp-stat-value" style="color:var(--green)">${nc}</div></div>
+    </div>
+    <div class="sp-law-block">
+      <div class="sp-stat-label">Legislación ambiental vigente</div>
+      <div class="sp-law-name">${data.l||'No registrada'}</div>
+    </div>`;
+}
+function renderSPLegislacion(state,data){
+  const arts=filterNoticiasEstado(state,['ley','legislacion','norma','reglamento','decreto']).slice(0,5);
+  const list=arts.length?arts.map(n=>`<div class="sp-news-item"><div class="sp-news-title"><a href="${n.url}" target="_blank">${n.titulo}</a></div><div class="sp-news-meta">${formatFecha(n.fecha_publicacion)}</div></div>`).join(''):`<div class="sp-empty">Sin noticias legislativas recientes para este estado</div>`;
+  document.getElementById('sp-legislacion').innerHTML=`
+    <div class="sp-law-block">
+      <div class="sp-stat-label">Ley ambiental principal</div>
+      <div class="sp-law-name">${data.l||'No registrada'}</div>
+      <div style="margin-top:6px;font-size:11px;color:var(--text-muted)">Emitida por el Congreso del Estado · vigente</div>
+    </div>${list}`;
+}
+function renderSPImpuestos(state){
+  const arts=filterNoticiasEstado(state,['impuesto','fiscal','tributar','cobro','tasa','carbon','bono']).slice(0,5);
+  document.getElementById('sp-impuestos').innerHTML=arts.length?arts.map(n=>`<div class="sp-news-item"><div class="sp-news-title"><a href="${n.url}" target="_blank">${n.titulo}</a></div><div class="sp-news-meta">${formatFecha(n.fecha_publicacion)}</div></div>`).join(''):`<div class="sp-empty">Sin datos de impuestos ambientales registrados para este estado</div>`;
+}
+function renderSPGaceta(state,data){
+  const url=data.congreso||'#';
+  const arts=filterNoticiasEstado(state,['congreso','diputad','legislatura','sesion','iniciativa']).slice(0,5);
+  const list=arts.length?arts.map(n=>`<div class="sp-news-item"><div class="sp-news-title"><a href="${n.url}" target="_blank">${n.titulo}</a></div><div class="sp-news-meta">${formatFecha(n.fecha_publicacion)}</div></div>`).join(''):`<div style="font-size:12px;color:var(--text-muted);padding:12px 0">No hay noticias recientes del congreso estatal en nuestra base de datos.</div>`;
+  document.getElementById('sp-gaceta').innerHTML=`
+    <a href="${url}" target="_blank" class="sp-gaceta-link">
+      <span style="font-size:22px">📋</span>
+      <div><div>Portal del Congreso · ${state}</div><div style="font-size:11px;font-weight:400;color:var(--text-sec);margin-top:2px">${url}</div></div>
+      <span style="margin-left:auto;font-size:18px;color:var(--green)">↗</span>
+    </a>${list}`;
+}
+function openStatePanel(stateName){
+  const data=estadoData[stateName]||{};
+  document.getElementById('sp-name').textContent=stateName;
+  document.getElementById('sp-sub').textContent=(data.region||'')+(data.region?' · ':'')+'México';
+  renderSPFicha(stateName,data);
+  renderSPLegislacion(stateName,data);
+  renderSPImpuestos(stateName);
+  renderSPGaceta(stateName,data);
+  showSPTab('ficha',document.querySelector('.sp-tab'));
+  const p=document.getElementById('state-panel');
+  p.style.display='block';
+  setTimeout(()=>p.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+}
+function closeStatePanel(){
+  document.getElementById('state-panel').style.display='none';
+  d3.selectAll('.estado').classed('selected',false);
+}
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   processData();updateStatus();updateActividadPanel();buildSparkWidget();updateNews();updateLeyes();buildMap();
