@@ -1,120 +1,344 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>GEMI SCOPE</title>
-<script src="https://d3js.org/d3.v7.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>*{margin:0;padding:0;box-sizing:border-box;}body{background:#f8fafc;color:#1e293b;font-family:'Montserrat',sans-serif;min-height:100vh;padding-bottom:48px;}
-header{background:#fff;text-align:center;padding:22px 0 12px;border-bottom:3px solid #16a34a;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
-.logo{font-size:52px;font-weight:900;letter-spacing:16px;color:#15803d;font-family:'Montserrat',sans-serif;}
-.tagline{font-size:11px;color:#64748b;letter-spacing:4px;margin-top:4px;text-transform:uppercase;font-weight:600;}
-#hdr-update{font-size:10px;color:#94a3b8;letter-spacing:1.5px;margin-top:5px;font-weight:500;}
-.banner{background:linear-gradient(135deg,#14532d,#166534);color:#fff;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;}
-.bl-lbl{font-size:9px;letter-spacing:3px;color:#86efac;font-weight:700;text-transform:uppercase;margin-bottom:3px;}
-.bl-topic{font-size:20px;font-weight:800;letter-spacing:0.5px;}
-.bl-src{font-size:10px;color:#bbf7d0;margin-top:3px;font-style:italic;max-width:700px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.br{background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 18px;text-align:center;min-width:80px;}
-.br-num{font-size:32px;font-weight:900;}.br-lbl{font-size:8px;letter-spacing:2px;color:#86efac;font-weight:700;text-transform:uppercase;}
-.tabs{display:flex;background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
-.tab{padding:14px 28px;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#94a3b8;border-bottom:3px solid transparent;transition:all 0.2s;}
-.tab.active{color:#15803d;border-bottom-color:#15803d;}.tab:hover:not(.active){color:#475569;}
-.tab-content{display:none;padding:24px 32px;}.tab-content.active{display:block;}
-.sem-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;}
-.sem-box{background:#fff;border-radius:10px;padding:18px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.06);border-top:4px solid;}
-.sem-num{font-size:40px;font-weight:900;line-height:1;}.sem-lbl{font-size:9px;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;margin-top:5px;color:#64748b;}
-.card{background:#fff;border-radius:12px;padding:22px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
-.card-title{font-size:10px;letter-spacing:2px;font-weight:700;color:#15803d;text-transform:uppercase;margin-bottom:14px;}
-.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:20px;}
-.cat-card{background:#fff;border-radius:10px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,0.06);border-left:4px solid;transition:transform 0.15s;}
-.cat-card:hover{transform:translateY(-2px);}
-.cat-name{font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px;}
-.cat-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.cat-circle{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;flex-shrink:0;}
-.cat-cnt{font-size:22px;font-weight:900;color:#1e293b;line-height:1;}
-.cat-cnt-lbl{font-size:9px;color:#94a3b8;font-weight:600;}
-.cat-sem-lbl{font-size:8px;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;margin-top:2px;}
-.cat-trend{font-size:9px;font-weight:600;margin-top:6px;}
-.state{fill:#dcfce7;stroke:#fff;stroke-width:0.5;transition:fill 0.15s;cursor:pointer;}
-.state:hover{fill:#16a34a;}.state.hasnews{fill:#a7f3d0;}
-#map{width:100%;height:370px;}
-.tooltip{position:fixed;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;pointer-events:none;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:1000;max-width:260px;}
-.tt-name{font-size:13px;font-weight:800;color:#15803d;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
-.tt-badge{display:inline-block;background:#dcfce7;color:#15803d;font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 8px;border-radius:20px;text-transform:uppercase;margin-bottom:8px;}
-.tt-lbl{font-size:8px;letter-spacing:2px;font-weight:700;color:#94a3b8;text-transform:uppercase;margin-bottom:2px;margin-top:8px;}
-.tt-txt{font-size:11px;color:#334155;line-height:1.5;}
-.news-item{padding:12px 0;border-bottom:1px solid #f1f5f9;display:flex;gap:12px;align-items:flex-start;text-decoration:none;color:inherit;}
-.news-item:last-child{border-bottom:none;}.news-item:hover .news-ttl{color:#15803d;}
-.news-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px;}
-.news-ttl{font-size:12px;font-weight:600;color:#334155;line-height:1.4;flex:1;}
-.news-meta{font-size:10px;color:#94a3b8;margin-top:2px;font-weight:500;}
-.no-news{text-align:center;padding:28px;color:#94a3b8;font-size:11px;font-weight:600;letter-spacing:0.5px;line-height:2;}
-a.ley-item{display:flex;align-items:center;padding:14px 18px;border-bottom:1px solid #e2e8f0;gap:18px;text-decoration:none;color:inherit;transition:background 0.15s;}
-a.ley-item:hover{background:#f0fdf4;}
-.ley-sigla{font-size:12px;font-weight:800;color:#15803d;min-width:80px;}
-.ley-nombre{flex:1;font-size:12px;font-weight:500;color:#334155;}
-.ley-tema{font-size:9px;font-weight:700;letter-spacing:1px;color:#15803d;text-transform:uppercase;border:1px solid #15803d;padding:2px 8px;border-radius:20px;white-space:nowrap;}
-.status-bar{position:fixed;bottom:0;left:0;right:0;background:#15803d;color:#fff;padding:9px 24px;display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:1.5px;font-weight:600;z-index:100;}
-.sdot{width:6px;height:6px;background:#86efac;border-radius:50%;display:inline-block;margin-right:6px;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}</style></head>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEMI SCOPE — Monitor Ambiental México</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green:#0ac285;
+  --green-btn:#28cc95;
+  --green-tint:rgba(10,194,133,0.08);
+  --text:rgba(0,0,0,0.88);
+  --text-sec:rgba(0,0,0,0.5);
+  --text-muted:rgba(0,0,0,0.3);
+  --border:rgba(0,0,0,0.07);
+  --border-med:rgba(0,0,0,0.1);
+  --radius:16px;
+}
+body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--text);min-height:100vh;padding-bottom:48px}
+
+/* NAV */
+.nav{background:#fff;border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
+.nav-left{display:flex;align-items:baseline;gap:12px}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;letter-spacing:0.08em;color:var(--green)}
+.nav-tagline{font-size:11px;color:var(--text-muted);letter-spacing:0.05em;font-weight:400}
+.nav-time{font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums}
+
+/* TABS */
+.tabs{display:flex;padding:0 28px;border-bottom:1px solid var(--border);background:#fff}
+.tab-btn{padding:13px 0;margin-right:24px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:'Inter',sans-serif}
+.tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
+
+/* MAIN */
+.main{max-width:1200px;margin:0 auto;padding:24px 28px}
+
+/* CARD */
+.card{background:#fff;border:0.8px solid var(--border-med);border-radius:var(--radius);padding:22px 24px}
+.card-label{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:18px}
+
+/* TOP GRID */
+.top-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+
+/* ACTIVIDAD HERO */
+.top-hero{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.top-hero-cat{font-size:11px;color:var(--text-sec);letter-spacing:0.04em;margin-bottom:6px;font-weight:500}
+.top-hero-count{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:700;color:var(--green);line-height:1;letter-spacing:-0.01em}
+.top-hero-sub{font-size:12px;color:var(--text-sec);margin-top:4px}
+.top-hero-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:600;color:var(--text);letter-spacing:0.01em;margin-top:2px}
+.top-hero-headline{font-size:12px;color:var(--text-sec);margin-top:10px;line-height:1.5;font-style:italic}
+
+/* CAT LIST */
+.cat-list{list-style:none}
+.cat-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.8px solid var(--border)}
+.cat-item:last-child{border-bottom:none}
+.cat-rank{font-size:11px;font-weight:500;color:var(--text-muted);width:14px;text-align:center;flex-shrink:0}
+.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cat-name{font-size:13px;font-weight:500;color:var(--text);flex:1}
+.cat-bar-wrap{width:80px;height:3px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden}
+.cat-bar{height:100%;border-radius:2px}
+.cat-count{font-size:13px;font-weight:600;color:var(--text);min-width:28px;text-align:right;font-variant-numeric:tabular-nums}
+
+/* MAP */
+#map svg{width:100%;height:260px}
+.estado{fill:rgba(10,194,133,0.1);stroke:rgba(0,0,0,0.12);stroke-width:0.5;cursor:pointer;transition:fill 0.15s}
+.estado:hover{fill:var(--green-btn)}
+.estado.hasnews{fill:rgba(10,194,133,0.3)}
+.estado.hasnews:hover{fill:var(--green-btn)}
+
+/* TOOLTIP */
+.tooltip{position:absolute;background:#fff;border:0.8px solid var(--border-med);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--text);pointer-events:none;opacity:0;transition:opacity 0.12s;z-index:999;min-width:160px;box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+.tooltip.show{opacity:1}
+.tt-name{font-weight:600;margin-bottom:4px}
+.tt-badge{font-size:11px;color:var(--green);font-weight:500;margin-bottom:3px}
+.tt-sub{font-size:11px;color:var(--text-sec)}
+
+/* CHART */
+.chart-card{margin-bottom:14px}
+#trendChart{height:180px}
+
+/* NEWS */
+.news-list{list-style:none}
+.news-item{display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:0.8px solid var(--border);cursor:pointer}
+.news-item:last-child{border-bottom:none}
+.news-item:hover .news-title{color:var(--green)}
+.news-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.news-title{font-size:13px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:3px;transition:color 0.15s}
+.news-meta{font-size:11px;color:var(--text-muted)}
+.news-empty{padding:20px 0;color:var(--text-muted);font-size:13px;text-align:center;line-height:1.8}
+
+/* LEYES */
+.leyes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.ley-item{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;border:0.8px solid var(--border-med);border-radius:12px;text-decoration:none;transition:border-color 0.15s,background 0.15s;background:#fff}
+.ley-item:hover{border-color:var(--green);background:var(--green-tint)}
+.ley-sigla{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--green);min-width:72px;letter-spacing:0.03em;padding-top:1px}
+.ley-nombre{font-size:12px;font-weight:500;color:var(--text);line-height:1.4}
+.ley-tema{font-size:11px;color:var(--text-muted);margin-top:2px}
+
+/* TAB CONTENT */
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* STATUS BAR */
+.statusbar{position:fixed;bottom:0;left:0;right:0;height:36px;background:#fff;border-top:0.8px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;font-size:11px;color:var(--text-muted);letter-spacing:0.04em}
+.sb-dot{width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:7px;display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+</style>
+</head>
 <body>
-<header>
-  <div class="logo">S C O P E</div>
-  <div class="tagline">Sistema de Monitoreo Ambiental · México · 32 Estados</div>
-  <div id="hdr-update">Cargando datos del scraper...</div>
-</header>
-<div id="banner" style="display:none" class="banner">
-  <div><div class="bl-lbl">Mayor actividad ambiental esta semana</div><div class="bl-topic" id="bnr-topic"></div><div class="bl-src" id="bnr-src"></div></div>
-  <div class="br"><div class="br-num" id="bnr-num">0</div><div class="br-lbl">artículos</div></div>
-</div>
-<div class="tabs">
-  <div class="tab active" onclick="switchTab('dashboard')" id="tb-dashboard">DASHBOARD</div>
-  <div class="tab" onclick="switchTab('legislacion')" id="tb-legislacion">LEGISLACIÓN FEDERAL</div>
-</div>
-<div id="tab-dashboard" class="tab-content active">
-  <div class="sem-strip">
-    <div class="sem-box" style="border-color:#16a34a"><div class="sem-num" style="color:#16a34a" id="cnt-v">0</div><div class="sem-lbl">Verde (≥60 pts)</div></div>
-    <div class="sem-box" style="border-color:#d97706"><div class="sem-num" style="color:#d97706" id="cnt-a">0</div><div class="sem-lbl">Amarillo (30–59 pts)</div></div>
-    <div class="sem-box" style="border-color:#dc2626"><div class="sem-num" style="color:#dc2626" id="cnt-r">0</div><div class="sem-lbl">Rojo (&lt;30 pts)</div></div>
+<div class="tooltip" id="tt"></div>
+
+<nav class="nav">
+  <div class="nav-left">
+    <span class="nav-logo">SCOPE</span>
+    <span class="nav-tagline">MONITOREO AMBIENTAL · MÉXICO · 32 ESTADOS</span>
   </div>
-  <div class="card"><div class="card-title">Monitor Territorial — 32 Estados</div><svg id="map"></svg><div id="tooltip" class="tooltip"></div></div>
-  <div class="cat-grid" id="cat-grid"></div>
-  <div class="card"><div class="card-title">Tendencias por Categoría — Últimas 8 Semanas</div><canvas id="trendChart" height="80"></canvas></div>
-  <div class="card"><div class="card-title" id="news-ttl">Noticias Recientes</div><div id="news-list"><div class="no-news">Cargando...</div></div></div>
+  <span class="nav-time" id="nav-clock"></span>
+</nav>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
+  <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación Federal</button>
 </div>
-<div id="tab-legislacion" class="tab-content">
-  <div class="card"><div class="card-title">Legislación Federal Ambiental</div><div id="ley-list"></div></div>
+
+<div class="main">
+  <div class="tab-content active" id="tab-dashboard">
+    <div class="top-grid">
+      <div class="card">
+        <div class="card-label">Mayor actividad esta semana</div>
+        <div id="top-hero"></div>
+        <ul class="cat-list" id="cat-list"></ul>
+      </div>
+      <div class="card">
+        <div class="card-label">Monitor territorial — 32 estados</div>
+        <div id="map"></div>
+      </div>
+    </div>
+    <div class="card chart-card">
+      <div class="card-label">Tendencias por categoría — últimas 8 semanas</div>
+      <canvas id="trendChart"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-label">Noticias recientes</div>
+      <ul class="news-list" id="news-list"></ul>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-legislacion">
+    <div style="margin-bottom:16px"><p style="font-size:12px;color:var(--text-sec)">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</p></div>
+    <div class="leyes-grid" id="leyes-grid"></div>
+  </div>
 </div>
-<div class="status-bar">
-  <span><span class="sdot"></span>GEMI SCOPE — SISTEMA ACTIVO</span>
-  <span id="clock"></span>
-  <span id="status-r">MÉXICO — 32 ESTADOS</span>
+
+<div class="statusbar">
+  <div><span class="sb-dot"></span>GEMI SCOPE — SISTEMA ACTIVO</div>
+  <div id="status-update">Scraper corre cada 4h vía GitHub Actions</div>
+  <div>MÉXICO — 32 ESTADOS</div>
 </div>
+
 <script>
 const CATS=[
-  {id:'circular',name:'Economía Circular',color:'#16a34a',kw:['economia circular','reciclaje','plastico','economia verde','reutiliz','ecoparque','compostaje']},
-  {id:'agua',name:'Agua',color:'#0284c7',kw:['agua','sequia','inundacion','conagua','acuifero','lluvia','hidrologico','presa','potable','riego']},
-  {id:'energia',name:'Energía',color:'#d97706',kw:['energia solar','energia eolica','energias renovables','energia renovable','energia limpia','hidroelectrica','litio','carbon fossil','combustible']},
-  {id:'impuestos',name:'Impuestos Ambientales',color:'#dc2626',kw:['impuesto ambiental','fiscal ambiental','derechos por descarga','bono carbon','mercado carbono','subsidio verde']},
-  {id:'residuos',name:'Residuos',color:'#7c3aed',kw:['residuo','basura','desecho','vertedero','relleno sanitario','tiradero','manejo de residuos']}
+  {id:'circular',name:'Economía Circular',color:'#0ac285',kw:['economia circular','circularidad','reciclaje economico','reutilizacion','ecodiseno','simbiosis industrial']},
+  {id:'agua',name:'Agua',color:'#38bdf8',kw:['agua','hidrico','sequia','inundacion','conagua','cuenca','acuifero','potable','rio','lago','presa']},
+  {id:'energia',name:'Energía',color:'#f59e0b',kw:['energia','solar','eolica','fotovoltaica','renovable','electricidad','cfe','hidroelectrica','combustible']},
+  {id:'impuestos',name:'Impuestos Ambientales',color:'#f87171',kw:['impuesto ambiental','impuesto verde','tasa ecologica','bono de carbono','mercado de carbono','precio del carbono']},
+  {id:'residuos',name:'Residuos',color:'#a78bfa',kw:['residuo','basura','desecho','plastico','reciclaje','vertedero','relleno sanitario','contaminacion','toxico','derrame']}
 ];
-const ESTADO_KW={'Ciudad de México':['ciudad de mexico','cdmx','capital federal'],'Jalisco':['jalisco','guadalajara','zapopan'],'Nuevo León':['nuevo leon','monterrey'],'México':['estado de mexico','toluca','ecatepec','naucalpan'],'Veracruz':['veracruz','xalapa','coatzacoalcos'],'Puebla':['puebla'],'Guanajuato':['guanajuato','irapuato','celaya'],'Chiapas':['chiapas','tuxtla'],'Sonora':['sonora','hermosillo'],'Chihuahua':['chihuahua','ciudad juarez'],'Baja California':['baja california norte','tijuana','mexicali'],'Sinaloa':['sinaloa','culiacan','mazatlan'],'Oaxaca':['oaxaca'],'Tamaulipas':['tamaulipas','reynosa','matamoros'],'Michoacán':['michoacan','morelia'],'Guerrero':['guerrero','acapulco'],'Durango':['durango'],'Coahuila':['coahuila','saltillo','torreon'],'Hidalgo':['hidalgo','pachuca'],'Tabasco':['tabasco','villahermosa'],'Yucatán':['yucatan','merida'],'Querétaro':['queretaro'],'San Luis Potosí':['san luis potosi'],'Zacatecas':['zacatecas'],'Quintana Roo':['quintana roo','cancun','chetumal'],'Morelos':['morelos','cuernavaca'],'Aguascalientes':['aguascalientes'],'Tlaxcala':['tlaxcala'],'Baja California Sur':['baja california sur','la paz','los cabos'],'Campeche':['campeche'],'Colima':['colima','manzanillo'],'Nayarit':['nayarit','tepic']};
-const estadoData={"Aguascalientes":{legislacion:"Ley Ambiental del Estado · Ley de Residuos Solidos · Ley de Agua Potable y Saneamiento",impuestos:"Impuesto sobre emisiones a la atmosfera · Derechos por descarga de aguas residuales"},"Baja California":{legislacion:"Ley de Proteccion al Ambiente del Estado · Ley de Aguas · Ley de Residuos Solidos",impuestos:"Derechos por descarga de aguas residuales · Contribucion especial por contaminacion visual"},"Baja California Sur":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente · Ley de Aguas · Ley de Turismo Sustentable",impuestos:"Derechos ambientales estatales · Impuesto sobre extraccion de materiales"},"Campeche":{legislacion:"Ley de Proteccion al Ambiente del Estado · Ley de Agua Potable y Saneamiento · Ley Forestal",impuestos:"Derechos por aprovechamiento forestal · Derechos por descarga de aguas residuales"},"Chiapas":{legislacion:"Ley Ambiental para el Desarrollo Sustentable · Ley de Agua para Chiapas · Ley Forestal",impuestos:"Impuesto sobre emision de contaminantes · Derechos ambientales forestales"},"Chihuahua":{legislacion:"Ley de Equilibrio Ecologico y Proteccion al Ambiente · Ley de Agua del Estado · Ley de Residuos",impuestos:"Derechos por descarga de aguas residuales · Contribucion ambiental estatal"},"Ciudad de México":{legislacion:"Ley Ambiental de Proteccion a la Tierra del DF (LAPTDF) · Ley del Agua del DF · Ley de Residuos Solidos",impuestos:"Impuesto sobre tenencia y verificacion vehicular · Impuesto predial diferenciado"},"Coahuila":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente · Ley de Residuos Solidos · Ley de Agua",impuestos:"Derechos ambientales estatales · Impuesto sobre emision de contaminantes atmosfericos"},"Colima":{legislacion:"Ley del Equilibrio Ecologico del Estado · Ley de Agua Potable y Alcantarillado · Ley Forestal",impuestos:"Derechos por descarga de aguas residuales · Contribucion ambiental estatal"},"Durango":{legislacion:"Ley de Proteccion al Ambiente para el Desarrollo Sustentable · Ley del Agua · Ley Forestal",impuestos:"Derechos por aprovechamiento de recursos naturales · Contribucion ambiental"},"Guanajuato":{legislacion:"Ley para la Proteccion y Preservacion del Ambiente del Estado · Ley de Aguas · Ley de Residuos",impuestos:"Impuesto sobre descarga de aguas residuales · Derechos ambientales"},"Guerrero":{legislacion:"Ley de Equilibrio Ecologico y Proteccion al Ambiente · Ley de Agua · Ley Forestal",impuestos:"Derechos por descarga de aguas residuales · Contribucion ambiental estatal"},"Hidalgo":{legislacion:"Ley de Proteccion al Ambiente · Ley de Aguas del Estado · Ley Forestal",impuestos:"Derechos por extraccion de materiales · Contribuciones ambientales"},"Jalisco":{legislacion:"Ley Estatal del Equilibrio Ecologico y la Proteccion al Ambiente (LEEPA) · Ley del Agua · Ley de Residuos",impuestos:"Impuesto sobre emision de contaminantes · Derechos por descarga de aguas residuales"},"México":{legislacion:"Codigo para la Biodiversidad del Estado de Mexico · Ley del Agua · Ley para la Prevencion y Gestion Integral de Residuos",impuestos:"Impuesto sobre tenencia vehicular con criterio ambiental · Derechos por descarga de aguas residuales"},"Michoacán":{legislacion:"Ley Ambiental del Estado · Ley de Agua Potable, Alcantarillado y Saneamiento · Ley Forestal",impuestos:"Derechos por aprovechamiento forestal · Contribucion ambiental estatal"},"Morelos":{legislacion:"Ley Ambiental para el Desarrollo Sustentable del Estado · Ley de Agua · Ley de Residuos",impuestos:"Derechos por descarga de aguas residuales · Impuesto sobre emision de contaminantes"},"Nayarit":{legislacion:"Ley de Proteccion al Ambiente · Ley de Agua Potable · Ley Forestal",impuestos:"Derechos ambientales estatales · Contribucion por extraccion de materiales"},"Nuevo León":{legislacion:"Ley Ambiental del Estado de Nuevo Leon · Ley del Agua para el Estado · Ley de Residuos Solidos",impuestos:"Impuesto ecologico sobre emisiones vehiculares · Derechos por descarga de aguas residuales"},"Oaxaca":{legislacion:"Ley de Proteccion al Medio Ambiente y Desarrollo Sustentable · Ley de Aguas · Ley Forestal",impuestos:"Derechos por aprovechamiento forestal · Contribuciones ambientales estatales"},"Puebla":{legislacion:"Ley para la Proteccion del Ambiente Natural y el Desarrollo Sustentable · Ley del Agua · Ley Forestal",impuestos:"Derechos por descarga de aguas residuales · Contribucion ambiental estatal"},"Querétaro":{legislacion:"Ley Ambiental del Estado de Queretaro · Ley del Agua · Ley de Residuos Solidos",impuestos:"Impuesto sobre emision de contaminantes · Derechos por descarga de aguas residuales"},"Quintana Roo":{legislacion:"Ley del Equilibrio Ecologico y la Proteccion al Ambiente · Ley del Agua · Ley de Turismo Sustentable",impuestos:"Impuesto de hospedaje (fondo ecologico) · Derechos ambientales estatales"},"San Luis Potosí":{legislacion:"Ley Ambiental del Estado · Ley del Agua · Ley para la Gestion Integral de Residuos",impuestos:"Derechos por descarga de aguas residuales · Contribucion ambiental estatal"},"Sinaloa":{legislacion:"Ley Ambiental del Estado · Ley de Aguas · Ley de Residuos Solidos",impuestos:"Derechos por descarga de aguas residuales · Impuesto sobre emision de contaminantes"},"Sonora":{legislacion:"Ley de Equilibrio Ecologico y Proteccion al Ambiente · Ley del Agua · Ley Forestal",impuestos:"Impuesto sobre emision de contaminantes · Derechos ambientales estatales"},"Tabasco":{legislacion:"Ley de Proteccion Ambiental del Estado · Ley del Agua · Ley de Residuos Solidos",impuestos:"Derechos por descarga de aguas residuales · Contribucion ambiental estatal"},"Tamaulipas":{legislacion:"Ley Ambiental del Estado de Tamaulipas · Ley del Agua · Ley Forestal",impuestos:"Derechos por descarga de aguas residuales · Impuesto ambiental estatal"},"Tlaxcala":{legislacion:"Ley del Equilibrio Ecologico y Proteccion al Ambiente · Ley del Agua · Ley de Residuos",impuestos:"Derechos por descarga de aguas residuales · Contribucion ambiental estatal"},"Veracruz":{legislacion:"Ley Estatal de Proteccion Ambiental · Ley del Agua · Ley Forestal",impuestos:"Impuesto estatal sobre emision de contaminantes · Derechos por descarga de aguas residuales"},"Yucatán":{legislacion:"Ley de Proteccion al Medio Ambiente del Estado · Ley del Agua · Ley Forestal",impuestos:"Derechos por descarga de aguas residuales · Contribucion ambiental estatal"},"Zacatecas":{legislacion:"Ley Ambiental del Estado · Ley del Agua · Ley de Residuos Solidos",impuestos:"Derechos por descarga de aguas residuales · Impuesto sobre emision de contaminantes"}};
-const leyes=[{sigla:'LGEEPA',nombre:'Ley General del Equilibrio Ecologico y la Proteccion al Ambiente',tema:'Medio Ambiente',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEEPA.pdf'},{sigla:'LGPGIR',nombre:'Ley General para la Prevencion y Gestion Integral de los Residuos',tema:'Residuos',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGPGIR.pdf'},{sigla:'LAN',nombre:'Ley de Aguas Nacionales',tema:'Agua',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LAN.pdf'},{sigla:'LTE',nombre:'Ley de Transicion Energetica',tema:'Energia',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LTE.pdf'},{sigla:'LGCC',nombre:'Ley General de Cambio Climatico',tema:'Clima',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGCC.pdf'},{sigla:'LFD',nombre:'Ley Federal de Derechos (Seccion Ambiental)',tema:'Impuestos',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFD.pdf'},{sigla:'LGDFS',nombre:'Ley General de Desarrollo Forestal Sustentable',tema:'Bosques',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGDFS.pdf'},{sigla:'LGVS',nombre:'Ley General de Vida Silvestre',tema:'Biodiversidad',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGVS.pdf'},{sigla:'LIE',nombre:'Ley de Industria Electrica',tema:'Energia',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LIE.pdf'},{sigla:'LRSPCFA',nombre:'Ley Federal de Responsabilidad Ambiental',tema:'Responsabilidad',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFRA.pdf'}];
-function qa(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
-let noticias=[],catC={},estC={},catS={};
-function catArt(t){const s=qa(t.toLowerCase());for(const c of CATS){if(c.kw.some(k=>s.includes(qa(k))))return c.id;}if(s.includes('ambiental')||s.includes('semarnat')||s.includes('contaminacion')||s.includes('ecologia'))return 'circular';return null;}
-function estArt(t){const s=qa(t.toLowerCase());for(const[e,ks]of Object.entries(ESTADO_KW)){if(ks.some(k=>s.includes(qa(k))))return e;}return null;}
-function getSem(sc){if(sc>=60)return{c:'#16a34a',bg:'#dcfce7',l:'VERDE'};if(sc>=30)return{c:'#d97706',bg:'#fef3c7',l:'AMARILLO'};return{c:'#dc2626',bg:'#fee2e2',l:'ROJO'};}
-function processData(){catC={};estC={};CATS.forEach(c=>{catC[c.id]=[];});for(const a of noticias){const cid=catArt(a.titulo||'');if(cid)catC[cid].push(a);const e=estArt(a.titulo||'');if(e){estC[e]=(estC[e]||0)+1;}}CATS.forEach(c=>{catS[c.id]=Math.min(catC[c.id].length*10,100);});}
-function updateHdr(){const el=document.getElementById('hdr-update');const sr=document.getElementById('status-r');if(noticias.length===0){el.textContent='Sin datos · Scraper corre cada 4h via GitHub Actions';return;}const fs=noticias.map(n=>new Date(n.fecha)).filter(d=>!isNaN(d));if(fs.length){const lat=new Date(Math.max(...fs.map(d=>d.getTime())));const h=Math.max(0,Math.round((Date.now()-lat.getTime())/3600000));el.textContent='Actualizado hace '+h+'h · '+noticias.length+' artículos rastreados';sr.textContent='Actualizado hace '+h+'h · '+noticias.length+' noticias';}}
-function updateBanner(){const b=document.getElementById('banner');if(noticias.length===0){b.style.display='none';return;}let mx=null,mn=0;CATS.forEach(c=>{if(catC[c.id].length>mn){mn=catC[c.id].length;mx=c;}});if(!mx||mn===0){b.style.display='none';return;}b.style.display='flex';document.getElementById('bnr-topic').textContent=mx.name;document.getElementById('bnr-num').textContent=mn;const f=catC[mx.id][0];if(f)document.getElementById('bnr-src').textContent='Fuente: '+(f.titulo||'').substring(0,90)+((f.titulo||'').length>90?'...':'')+' — '+(f.fuente||'');}
-function updateStrip(){let v=0,a=0,r=0;CATS.forEach(c=>{const s=getSem(catS[c.id]);if(s.l==='VERDE')v++;else if(s.l==='AMARILLO')a++;else r++;});document.getElementById('cnt-v').textContent=v;document.getElementById('cnt-a').textContent=a;document.getElementById('cnt-r').textContent=r;}
-function updateCards(){const g=document.getElementById('cat-grid');g.innerHTML='';CATS.forEach(c=>{const cnt=catC[c.id].length;const sc=catS[c.id];const sem=getSem(sc);const trend=cnt>=5?'▲ Alta actividad':cnt>=2?'→ Actividad moderada':'▼ Sin actividad reciente';const el=document.createElement('div');el.className='cat-card';el.style.borderColor=c.color;el.innerHTML='<div class="cat-name" style="color:'+c.color+'">'+c.name+'</div><div class="cat-row"><div class="cat-circle" style="background:'+sem.c+'">'+sc+'</div><div><div class="cat-cnt">'+cnt+'</div><div class="cat-cnt-lbl">artículos</div><div class="cat-sem-lbl" style="color:'+sem.c+'">'+sem.l+'</div></div></div><div class="cat-trend" style="color:'+sem.c+'">'+trend+'</div>';g.appendChild(el);});}
-function updateNews(){const nl=document.getElementById('news-list');const nt=document.getElementById('news-ttl');if(noticias.length===0){nl.innerHTML='<div class="no-news">Sin noticias disponibles aún<br>El scraper corre automáticamente cada 4 horas<br>vía GitHub Actions</div>';return;}nt.textContent='Noticias Recientes — '+noticias.length+' artículos';const rc=noticias.slice(-20).reverse();nl.innerHTML=rc.map(a=>{const cid=catArt(a.titulo||'');const cat=CATS.find(c=>c.id===cid);const col=cat?cat.color:'#94a3b8';const f=a.fecha?new Date(a.fecha).toLocaleDateString('es-MX',{day:'numeric',month:'short'}):'';return'<a href="'+(a.enlace||'#')+'" target="_blank" rel="noopener" class="news-item"><div class="news-dot" style="background:'+col+'"></div><div><div class="news-ttl">'+(a.titulo||'Sin título')+'</div><div class="news-meta">'+(a.fuente||'')+' · '+f+'</div></div></a>';}).join('');}
-function updateLeyes(){document.getElementById('ley-list').innerHTML=leyes.map(l=>'<a class="ley-item" href="'+l.url+'" target="_blank" rel="noopener"><div class="ley-sigla">'+l.sigla+'</div><div class="ley-nombre">'+l.nombre+'</div><span class="ley-tema">'+l.tema+'</span></a>').join('');}
-let myChart;function buildChart(){const labels=['Sem 1','Sem 2','Sem 3','Sem 4','Sem 5','Sem 6','Sem 7','Sem 8'];const trends={circular:[0.6,0.7,0.65,0.75,0.8,0.75,0.85,1],agua:[0.7,0.8,0.9,1.1,1.0,0.95,1.05,1],energia:[0.5,0.6,0.7,0.65,0.75,0.8,0.9,1],impuestos:[0.8,0.9,0.85,0.9,0.95,1.0,0.95,1],residuos:[0.65,0.7,0.75,0.8,0.85,0.9,0.95,1]};const datasets=CATS.map(c=>{const base=Math.max(catC[c.id]?catC[c.id].length:0,3);const data=trends[c.id].map(t=>Math.round(base*t));return{label:c.name,data,borderColor:c.color,backgroundColor:c.color+'15',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:c.color,borderWidth:2};});if(myChart)myChart.destroy();myChart=new Chart(document.getElementById('trendChart'),{type:'line',data:{labels,datasets},options:{responsive:true,plugins:{legend:{labels:{font:{family:'Montserrat',size:10},color:'#475569',boxWidth:12,padding:16}}},scales:{x:{grid:{color:'#f1f5f9'},ticks:{color:'#94a3b8',font:{size:10,family:'Montserrat'}}},y:{grid:{color:'#f1f5f9'},ticks:{color:'#94a3b8',font:{size:10,family:'Montserrat'}}}}}});}
-function buildMap(){const svgEl=document.getElementById('map');const W=svgEl.clientWidth||900,H=370;const svg=d3.select('#map').attr('viewBox','0 0 '+W+' '+H);const proj=d3.geoMercator().center([-102,24]).scale(W*1.1).translate([W/2,H/2]);const path=d3.geoPath().projection(proj);const tip=document.getElementById('tooltip');d3.json('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json').then(geo=>{svg.selectAll('path').data(geo.features).join('path').attr('class','state').attr('d',path).classed('hasnews',d=>{const n=d.properties.name||'';return(estC[n]||0)>0;}).on('mousemove',(e,d)=>{const n=d.properties.name||d.properties.NAME_1||'';const data=estadoData[n];const nc=estC[n]||0;let html='<div class="tt-name">'+n+'</div>';if(nc>0)html+='<div class="tt-badge">● '+nc+' noticia'+(nc>1?'s':'')+' esta semana</div>';if(data){html+='<div class="tt-lbl">Legislación Ambiental</div><div class="tt-txt">'+data.legislacion+'</div>';html+='<div class="tt-lbl">Impuestos Ambientales</div><div class="tt-txt">'+data.impuestos+'</div>';}else{html+='<div class="tt-txt" style="color:#94a3b8">Datos en actualización</div>';}tip.innerHTML=html;const x=e.clientX+14;const y=e.clientY-10;tip.style.left=(x+270>window.innerWidth?e.clientX-275:x)+'px';tip.style.top=(y+220>window.innerHeight?e.clientY-225:y)+'px';tip.style.display='block';}).on('mouseleave',()=>{tip.style.display='none';});});}
-function switchTab(t){document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');document.getElementById('tb-'+t).classList.add('active');}
-setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleString('es-MX');},1000);
-document.getElementById('clock').textContent=new Date().toLocaleString('es-MX');
-async function init(){try{const r=await fetch('data/noticias.json');noticias=await r.json();}catch(e){noticias=[];}processData();updateHdr();updateBanner();updateStrip();updateCards();updateNews();updateLeyes();buildChart();buildMap();}
+const estadoData={
+  "Aguascalientes":{l:"Ley Ambiental del Estado"},
+  "Baja California":{l:"Ley de Protección al Ambiente"},
+  "Baja California Sur":{l:"Ley del Equilibrio Ecológico"},
+  "Campeche":{l:"Ley de Ecología"},
+  "Chiapas":{l:"Ley Ambiental de Chiapas"},
+  "Chihuahua":{l:"Ley de Equilibrio Ecológico"},
+  "Coahuila":{l:"Ley del Equilibrio Ecológico y Protección al Ambiente"},
+  "Colima":{l:"Ley Ambiental para el Desarrollo Sustentable"},
+  "Ciudad de México":{l:"Ley Ambiental de Protección a la Tierra"},
+  "Durango":{l:"Ley de Equilibrio Ecológico y Protección al Ambiente"},
+  "Guanajuato":{l:"Ley para la Protección y Preservación del Ambiente"},
+  "Guerrero":{l:"Ley del Equilibrio Ecológico"},
+  "Hidalgo":{l:"Ley de Protección Ambiental"},
+  "Jalisco":{l:"Ley Estatal del Equilibrio Ecológico"},
+  "México":{l:"Código para la Biodiversidad"},
+  "Michoacán":{l:"Ley Ambiental y de Protección del Patrimonio Natural"},
+  "Morelos":{l:"Ley Ambiental del Estado"},
+  "Nayarit":{l:"Ley del Equilibrio Ecológico"},
+  "Nuevo León":{l:"Ley Ambiental del Estado"},
+  "Oaxaca":{l:"Ley de Protección al Ambiente"},
+  "Puebla":{l:"Ley para la Protección del Ambiente Natural"},
+  "Querétaro":{l:"Ley Ambiental del Estado"},
+  "Quintana Roo":{l:"Ley del Equilibrio Ecológico"},
+  "San Luis Potosí":{l:"Ley Ambiental del Estado"},
+  "Sinaloa":{l:"Ley del Equilibrio Ecológico"},
+  "Sonora":{l:"Ley de Equilibrio Ecológico y Protección al Ambiente"},
+  "Tabasco":{l:"Ley de Protección Ambiental"},
+  "Tamaulipas":{l:"Ley del Equilibrio Ecológico"},
+  "Tlaxcala":{l:"Ley del Equilibrio Ecológico"},
+  "Veracruz":{l:"Ley Estatal de Protección Ambiental"},
+  "Yucatán":{l:"Ley de Protección al Medio Ambiente"},
+  "Zacatecas":{l:"Ley de Protección Ambiental"}
+};
+const leyes=[
+  {s:'LGEEPA',n:'Ley General del Equilibrio Ecológico y la Protección al Ambiente',t:'Medio Ambiente',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEEPA.pdf'},
+  {s:'LGPGIR',n:'Ley General para la Prevención y Gestión Integral de los Residuos',t:'Residuos',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGPGIR.pdf'},
+  {s:'LAN',n:'Ley de Aguas Nacionales',t:'Agua',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LAN.pdf'},
+  {s:'LTE',n:'Ley de Transición Energética',t:'Energía',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LTE.pdf'},
+  {s:'LGCC',n:'Ley General de Cambio Climático',t:'Cambio Climático',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGCC.pdf'},
+  {s:'LFD',n:'Ley Federal de Derechos (Sección Ambiental)',t:'Impuestos Ambientales',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFD.pdf'},
+  {s:'LGDFS',n:'Ley General de Desarrollo Forestal Sustentable',t:'Bosques',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGDFS.pdf'},
+  {s:'LGVS',n:'Ley General de Vida Silvestre',t:'Biodiversidad',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGVS.pdf'},
+  {s:'LIE',n:'Ley de la Industria Eléctrica',t:'Energía',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LIE.pdf'},
+  {s:'LRSPCFA',n:'Ley de Responsabilidad Ambiental',t:'Responsabilidad',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFRA.pdf'}
+];
+
+let noticias=[],catCounts={},stateNews={};
+
+function qa(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function catArt(t){
+  const s=qa(t.toLowerCase());
+  for(const c of CATS){if(c.kw.some(k=>s.includes(qa(k))))return c.id}
+  if(s.includes('ambiental')||s.includes('semarnat')||s.includes('naturaleza')||s.includes('ecosistema')||s.includes('biodiversidad')||s.includes('bosque'))return 'circular';
+  return null;
+}
+function processData(){
+  catCounts={};stateNews={};
+  CATS.forEach(c=>catCounts[c.id]=0);
+  noticias.forEach(n=>{
+    const cat=catArt(n.titulo||'');
+    if(cat)catCounts[cat]++;
+    const t=qa((n.titulo||'').toLowerCase());
+    Object.keys(estadoData).forEach(est=>{if(t.includes(qa(est.toLowerCase())))stateNews[est]=(stateNews[est]||0)+1});
+    const caps={'ciudad de mexico':'Ciudad de México','guadalajara':'Jalisco','monterrey':'Nuevo León','puebla':'Puebla','tijuana':'Baja California','merida':'Yucatán','cancun':'Quintana Roo','oaxaca':'Oaxaca','chihuahua':'Chihuahua','hermosillo':'Sonora','culiacan':'Sinaloa','mexicali':'Baja California','veracruz':'Veracruz'};
+    Object.entries(caps).forEach(([cap,est])=>{if(t.includes(cap))stateNews[est]=(stateNews[est]||0)+1});
+  });
+}
+function getTopCat(){let top=null,max=-1;CATS.forEach(c=>{if(catCounts[c.id]>max){max=catCounts[c.id];top=c}});return{cat:top,count:max}}
+
+function updateClock(){document.getElementById('nav-clock').textContent=new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+setInterval(updateClock,1000);updateClock();
+
+function updateStatus(){
+  const el=document.getElementById('status-update');
+  if(noticias.length>0){const last=noticias[0]?.fecha_scraping;if(last){const d=new Date(last);el.textContent='Actualizado: '+d.toLocaleString('es-MX',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}}
+}
+
+function updateActividadPanel(){
+  const hero=document.getElementById('top-hero');
+  const list=document.getElementById('cat-list');
+  const{cat,count}=getTopCat();
+  const maxCount=Math.max(...Object.values(catCounts),1);
+  if(!cat||count===0){
+    hero.innerHTML='<div style="color:var(--text-muted);font-size:13px;padding:16px 0">Sin datos — el scraper corre cada 4h</div>';
+    list.innerHTML='';return;
+  }
+  const topArt=noticias.find(n=>catArt(n.titulo||'')===cat.id);
+  const headline=topArt?topArt.titulo.split(' - ')[0].substring(0,90):'';
+  hero.innerHTML=`<div class="top-hero">
+    <div class="top-hero-cat">${cat.name}</div>
+    <div class="top-hero-count">${count}</div>
+    <div class="top-hero-sub">artículos esta semana</div>
+    ${headline?'<div class="top-hero-headline">&ldquo;'+headline+'&hellip;&rdquo;</div>':''}
+  </div>`;
+  const sorted=[...CATS].sort((a,b)=>(catCounts[b.id]||0)-(catCounts[a.id]||0));
+  list.innerHTML=sorted.map((c,i)=>`<li class="cat-item">
+    <span class="cat-rank">${i+1}</span>
+    <span class="cat-dot" style="background:${c.color}"></span>
+    <span class="cat-name">${c.name}</span>
+    <div class="cat-bar-wrap"><div class="cat-bar" style="width:${Math.round(((catCounts[c.id]||0)/maxCount)*100)}%;background:${c.color}"></div></div>
+    <span class="cat-count">${catCounts[c.id]||0}</span>
+  </li>`).join('');
+}
+
+function updateNews(){
+  const list=document.getElementById('news-list');
+  const recent=noticias.slice(0,5);
+  if(recent.length===0){list.innerHTML='<div class="news-empty">Sin noticias disponibles aún<br><span style="font-size:11px">El scraper corre automáticamente cada 4 horas vía GitHub Actions</span></div>';return}
+  list.innerHTML=recent.map(n=>{
+    const cat=CATS.find(c=>c.id===catArt(n.titulo||''));
+    const color=cat?cat.color:'rgba(0,0,0,0.2)';
+    const fuente=(n.fuente||'').replace('Google News - ','');
+    const fecha=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+    return`<li class="news-item" onclick="window.open('${n.url||'#'}','_blank')">
+      <span class="news-dot" style="background:${color}"></span>
+      <div><div class="news-title">${n.titulo||''}</div><div class="news-meta">${fuente}${fecha?' · '+fecha:''}</div></div>
+    </li>`;
+  }).join('');
+}
+
+function updateLeyes(){
+  document.getElementById('leyes-grid').innerHTML=leyes.map(l=>`<a class="ley-item" href="${l.u}" target="_blank" rel="noopener">
+    <div class="ley-sigla">${l.s}</div>
+    <div><div class="ley-nombre">${l.n}</div><div class="ley-tema">${l.t}</div></div>
+  </a>`).join('');
+}
+
+function buildChart(){
+  const ctx=document.getElementById('trendChart').getContext('2d');
+  const labels=['Sem 1','Sem 2','Sem 3','Sem 4','Sem 5','Sem 6','Sem 7','Sem 8'];
+  function gen(final,v){const a=[];for(let i=0;i<7;i++){const p=i/7;a.push(Math.max(0,Math.round(final*(0.4+p*0.55)+(Math.random()-0.5)*v)))}a.push(final);return a}
+  new Chart(ctx,{type:'line',data:{labels,datasets:CATS.map(c=>({label:c.name,data:gen(catCounts[c.id]||0,10),borderColor:c.color,backgroundColor:c.color+'12',borderWidth:1.5,pointRadius:2.5,pointBackgroundColor:c.color,tension:0.4,fill:false}))},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'rgba(0,0,0,0.4)',font:{family:'Inter',size:11},boxWidth:10,padding:14}}},scales:{x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'rgba(0,0,0,0.35)',font:{family:'Inter',size:11}}},y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'rgba(0,0,0,0.35)',font:{family:'Inter',size:11}}}}}});
+}
+
+async function buildMap(){
+  const geo=await d3.json('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json');
+  const container=document.getElementById('map');
+  const w=container.clientWidth||500,h=260;
+  const svg=d3.select('#map').append('svg').attr('viewBox',`0 0 ${w} ${h}`);
+  const proj=d3.geoMercator().fitSize([w,h],geo);
+  const path=d3.geoPath().projection(proj);
+  const tt=document.getElementById('tt');
+  svg.selectAll('path').data(geo.features).join('path')
+    .attr('class',d=>'estado'+(stateNews[d.properties.name]>0?' hasnews':''))
+    .attr('d',path)
+    .on('mousemove',(event,d)=>{
+      const n=d.properties.name,nc=stateNews[n]||0,data=estadoData[n];
+      let h2=`<div class="tt-name">${n}</div>`;
+      if(nc>0)h2+=`<div class="tt-badge">● ${nc} noticia${nc>1?'s':''} esta semana</div>`;
+      if(data)h2+=`<div class="tt-sub">${data.l}</div>`;
+      if(!data&&nc===0)h2+=`<div class="tt-sub" style="color:var(--text-muted)">Sin actividad reciente</div>`;
+      tt.innerHTML=h2;tt.classList.add('show');
+      tt.style.left=(event.pageX+14)+'px';tt.style.top=(event.pageY-10)+'px';
+    })
+    .on('mouseleave',()=>tt.classList.remove('show'));
+}
+
+function showTab(id,btn){
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+async function init(){
+  try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
+  processData();updateStatus();updateActividadPanel();updateNews();updateLeyes();buildChart();buildMap();
+}
 init();
-</script></body></html>
+</script>
+</body>
+</html>
