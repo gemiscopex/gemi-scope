@@ -138,59 +138,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
   <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
   <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación Federal</button>
 </div>
-<div class="main">
-  <div class="tab-content active" id="tab-dashboard">
-    <div class="top-grid">
-      <div class="card">
-        <div class="card-label">Mayor actividad esta semana</div>
-        <div id="top-hero"></div>
-        <ul class="cat-list" id="cat-list"></ul>
-      </div>
-      <div class="card">
-        <div class="card-label">Monitor Territorial — 32 estados · click para detalle</div>
-        <div id="map"></div>
-      </div>
-    </div>
-    <div id="state-panel" class="state-panel" style="display:none">
-      <div class="card">
-        <div class="sp-header">
-          <div>
-            <span class="sp-name" id="sp-name"></span>
-            <span class="sp-sub" id="sp-sub"></span>
-          </div>
-          <button class="sp-close" onclick="closeStatePanel()">✕ Cerrar</button>
-        </div>
-        <div class="sp-tabs">
-          <button class="sp-tab active" onclick="showSPTab('ficha',this)">FICHA T[ÉCNICA</button>
-          <button class="sp-tab" onclick="showSPTab('legislacion',this)">LEGISLACIÓN LOCAL</button>
-          <button class="sp-tab" onclick="showSPTab('impuestos',this)">IMPUESTOS AMBIENTALES</button>
-          <button class="sp-tab" onclick="showSPTab('gaceta',this)">MONITOREO GACETA</button>
-        </div>
-        <div id="sp-ficha" class="sp-content active"></div>
-        <div id="sp-legislacion" class="sp-content"></div>
-        <div id="sp-impuestos" class="sp-content"></div>
-        <div id="sp-gaceta" class="sp-content"></div>
-      </div>
-    </div>
-    <div class="card" style="margin-bottom:14px">
-      <div class="card-label">Actividad por categoría</div>
-      <div class="spark-widget" id="spark-widget"></div>
-    </div>
-    <div class="card">
-      <div class="card-label">Noticias recientes</div>
-      <ul class="news-list" id="news-list"></ul>
-    </div>
-  </div>
-  <div class="tab-content" id="tab-legislacion">
-    <div style="margin-bottom:16px"><p style="font-size:12px;color:var(--text-sec)">Leyes federales ambientales vigentes. Haz-clic para abrir el PDF oficial en diputados.gob.mx</p></div>
-    <div class="leyes-grid" id="leyes-grid"></div>
-  </div>
-</div>
-<div class="statusbar">
-  <div><span class="sb-dot"></span>GEMI SCOPE — SISTEMA ACTIVO</div>
-  <div id="status-update">Scraper corre cada 4h vía GitHub Actions</div>
-  <div>MÉXICO — 32 ESTADOS</div>
-</div>class="tabs">
+<div class="main">class="tabs">
   <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
   <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación Federal</button>
 </div>
@@ -238,7 +186,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     </div>
   </div>
   <div class="tab-content" id="tab-legislacion">
-    <div style="margin-bottom:16px"><p style="font-size:12px;color:var(--text-sec)">Leyes federales ambientales vigentes. Hay clic para abrir el PDF oficial en diputados.gob.mx</p></div>
+    <div style="margin-bottom:16px"><p style="font-size:12px;color:var(--text-sec)">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</p></div>
     <div class="leyes-grid" id="leyes-grid"></div>
   </div>
 </div>
@@ -284,7 +232,7 @@ const estadoData={
   "Sonora":{l:"Ley de Equilibrio Ecológico y Protección al Ambiente",capital:"Hermosillo",pop:"3.0M",area:"179,503 km²",region:"Noroeste",congreso:"https://www.congresosonora.gob.mx/"},
   "Tabasco":{l:"Ley de Protección Ambiental",capital:"Villahermosa",pop:"2.4M",area:"24,747 km²",region:"Sureste",congreso:"https://www.congresotabasco.gob.mx/"},
   "Tamaulipas":{l:"Ley del Equilibrio Ecológico",capital:"Ciudad Victoria",pop:"3.5M",area:"79,384 km²",region:"Noreste",congreso:"https://congresotam.gob.mx/"},
-  "Tlaxcala":{l:"Ley del Equilibrio Ecológico",capital:"Tlaxcala de Xicohtìncatl",pop:"1.3M",area:"3,991 km²",region:"Centro",congreso:"https://www.congresotlaxcala.gob.mx/"},
+  "Tlaxcala":{l:"Ley del Equilibrio Ecológico",capital:"Tlaxcala de Xicohténcatl",pop:"1.3M",area:"3,991 km²",region:"Centro",congreso:"https://www.congresotlaxcala.gob.mx/"},
   "Veracruz":{l:"Ley Estatal de Protección Ambiental",capital:"Xalapa",pop:"8.1M",area:"71,826 km²",region:"Golfo",congreso:"https://www.legisver.gob.mx/"},
   "Yucatán":{l:"Ley de Protección al Medio Ambiente",capital:"Mérida",pop:"2.3M",area:"39,524 km²",region:"Sureste",congreso:"https://www.congresoyucatan.gob.mx/"},
   "Zacatecas":{l:"Ley de Protección Ambiental",capital:"Zacatecas",pop:"1.6M",area:"75,040 km²",region:"Norte-Centro",congreso:"https://www.congresozac.gob.mx/"}
@@ -302,7 +250,7 @@ const leyes=[
   {s:'LIE',n:'Ley de la Industria Eléctrica',t:'Energía',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LIE.pdf'},
   {s:'LRSPCFA',n:'Ley de Responsabilidad Ambiental',t:'Responsabilidad',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFRA.pdf'}
 ];
-let noticias=[],catCounts={},stateNews={};
+let noticias=[],catCounts={},stateNews={},impuestosDB={};
 function qa(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'')}
 function catArt(t){
   const s=qa(t.toLowerCase());
@@ -322,7 +270,7 @@ function processData(){
     Object.entries(caps).forEach(([cap,est])=>{if(t.includes(cap))stateNews[est]=(stateNews[est]||0)+1});
   });
 }
-function getTopCat(){let top=null,max=-1;CATS.forEach(c=>{if(catCounts[c.id]>max){max=catCounts[c.id];top=c}});return{let:top,count:max}}
+function getTopCat(){let top=null,max=-1;CATS.forEach(c=>{if(catCounts[c.id]>max){max=catCounts[c.id];top=c}});return{cat:top,count:max}}
 function updateClock(){document.getElementById('nav-clock').textContent=new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
 setInterval(updateClock,1000);updateClock();
 function updateStatus(){
@@ -355,7 +303,7 @@ function showCatNews(catId,catName,catColor){
   hero.innerHTML=`<div class="cat-news-panel"><div class="cat-news-hdr"><span style="width:8px;height:8px;border-radius:50%;background:${catColor||'#ccc'};display:inline-block;flex-shrink:0"></span><span style="font-size:12px;font-weight:600;color:var(--text);margin-left:2px">${catName}</span><span style="font-size:10px;color:var(--text-muted);margin-left:6px">${arts.length} noticias recientes</span><button class="cat-news-back" onclick="updateActividadPanel()">\u2190 Volver</button></div>${items}</div>`;
 }
 function buildSparkWidget(){
-  const W=88,H=32;
+  const W=88,I=32;
   function sparkSVG(count,color){
     if(count===0){const y=H/2;return `<svg class="spark-line" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><line x1="4" y1="${y}" x2="${W-4}" y2="${y}" stroke="rgba(0,0,0,0.1)" stroke-width="1.5" stroke-linecap="round"/></svg>`;}
     const pts=[];
@@ -378,11 +326,11 @@ function buildSparkWidget(){
 }
 function updateNews(){
   const list=document.getElementById('news-list');
-  if(noticias.length===0){list.innerHTML='<div class="news-empty">Sin noticias disponibles aún<br><span style="font-size:11px">El scraper corre automáticamente cada 4 horas vía GitHub Actions</span></div>';return}
+  if(noticias.length===0){list.innerHTML='<div class="news-empty">Sin noticias disponibles aún<br><span style="font-size:11px">El scraper corre autom\u00e1ticamente cada 4 horas v\u00eda GitHub Actions</span></div>';return}
   const sorted=[...noticias].sort((a,b)=>new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0));
   const recent=sorted.slice(0,10);
   list.innerHTML=recent.map(n=>{
-    const cat=CATS.find(c=>c.id===catArt(n.titulo||''));
+    const cat=CATSt.find(c=>c.id===catArt(n.titulo||''));
     const color=cat?cat.color:'rgba(0,0,0,0.2)';
     const fuente=(n.fuente||'').replace('Google News - ','');
     const fecha=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
@@ -487,8 +435,31 @@ function renderSPLegislacion(state,data){
   document.getElementById('sp-legislacion').innerHTML=html;
 }
 function renderSPImpuestos(state){
-  const arts=filterNoticiasEstado(state,['impuesto','fiscal','tributar','cobro','tasa','carbon','bono']).slice(0,5);
-  document.getElementById('sp-impuestos').innerHTML=arts.length?arts.map(n=>`<div class="sp-news-item"><div class="sp-news-title"><a href="${n.url}" target="_blank">${n.titulo}</a></div><div class="sp-news-meta">${formatFecha(n.fecha_publicacion)}</div></div>`).join(''):`<div class="sp-empty">Sin datos de impuestos ambientales registrados para este estado</div>`;
+  const TC={
+    'GEI':{c:'#0ac285',b:'rgba(10,194,133,0.1)',label:'GEI'},
+    'Extracción de Materiales':{c:'#f59e0b',b:'rgba(245,158,11,0.1)',label:'EXTRACCIÓN'},
+    'Agua':{c:'#3b82f6',b:'rgba(59,130,246,0.1)',label:'AGUA'},
+    'Suelo y/o Subsuelo':{c:'#8b5cf6',b:'rgba(139,92,246,0.1)',label:'SUELO'},
+    'Residuos':{c:'#ef4444',b:'rgba(239,68,68,0.1)',label:'RESIDUOS'}
+  };
+  const taxes=impuestosDB[state]||impuestosDB[state==='México'?'México':state]||[];
+  if(!taxes.length){
+    document.getElementById('sp-impuestos').innerHTML=`<div class="sp-empty">Sin impuestos ambientales estatales registrados para este estado<br><span style="font-size:11px">Aplica únicamente el marco federal (LGEEPA, LAN, LGPGIR)</span></div>`;
+    return;
+  }
+  const hasUMA=taxes.some(t=>t.unidad==='UMA');
+  const cards=taxes.map(t=>{
+    const tc=TC[t.tipo]||{c:'var(--text-muted)',b:'var(--border)',label:t.tipo};
+    const badge=`<span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;background:${tc.b};color:${tc.c};letter-spacing:0.5px">${tc.label}</span>`;
+    const contro=t.controversia?`<span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:rgba(251,191,36,0.15);color:#92400e;border:1px solid rgba(251,191,36,0.3)">⚠ CONTROVERSIA</span>`:'';
+    const precio=t.precio&&t.precio!=='—'?`<div style="font-size:15px;font-weight:700;color:${tc.c};margin:6px 0 4px">${t.precio} <span style="font-size:10px;font-weight:500;color:var(--text-muted)">${t.unidad}</span></div>`:'';
+    const specs=t.especificaciones?`<div style="font-size:12px;color:var(--text);line-height:1.5;margin-bottom:6px">${t.especificaciones}</div>`:'';
+    const oblig=t.obligados?`<div style="font-size:11px;color:var(--text-sec);margin-bottom:5px"><span style="font-weight:600">Obligados:</span> ${t.obligados}</div>`:'';
+    const fechas=(t.fechaPublicado&&t.fechaPublicado!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted)">Publicado: <b>${t.fechaPublicado}</b></span>`:'')+(t.vigencia&&t.vigencia!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted);margin-left:14px">Vigencia: <b>${t.vigencia}</b></span>`:'');
+    return `<div class="sp-law-block" style="margin-bottom:12px"><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">${badge}${contro}</div>${precio}${specs}${oblig}${fechas?`<div style="margin-top:4px">${fechas}</div>`:''}</div>`;
+  }).join('');
+  const footer=hasUMA?`<div style="margin-top:10px;padding:10px 12px;background:var(--green-tint);border-radius:8px;font-size:10px;color:var(--text-muted)">📌 UMA 2026 (INEGI): <b>$117.31 MXN/día</b> · Fuente: ANIQ — Guía de Impuestos Ambientales Estatales, Feb 2026</div>`:`<div style="margin-top:10px;font-size:10px;color:var(--text-muted);text-align:right">Fuente: ANIQ — Guía de Impuestos Ambientales Estatales, Feb 2026</div>`;
+  document.getElementById('sp-impuestos').innerHTML=cards+footer;
 }
 function renderSPGaceta(state,data){
   const url=data.congreso||'#';
@@ -520,6 +491,7 @@ function closeStatePanel(){
 }
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
+  try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
   processData();updateStatus();updateActividadPanel();buildSparkWidget();updateNews();updateLeyes();buildMap();
 }
 init();
