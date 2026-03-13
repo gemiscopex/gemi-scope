@@ -701,18 +701,24 @@ function renderAlertas(filter){
   </div>`).join('');
 }
 function renderRankingWidget(){
-  const el=document.getElementById('ranking-list');
+  var el=document.getElementById('ranking-list');
   if(!el)return;
-  const top10=Object.entries(stateScores).sort((a,b)=>b[1].master-a[1].master).slice(0,10);
-  const mx=top10[0]?.[1]?.master||100;
-  el.innerHTML=top10.map(([s,sc],i)=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:${i<9?'0.8px solid var(--border)':'none'}">
-    <span style="font-size:11px;font-weight:700;color:var(--text-muted);min-width:18px">${i+1}</span>
-    <span style="font-size:13px;flex:1;cursor:pointer;color:var(--text)" onclick="openStatePanel('${s}')">${s}</span>
-    <div style="width:90px;height:5px;background:var(--green-tint);border-radius:3px;overflow:hidden">
-      <div style="width:${Math.round((sc.master/mx)*100)}%;height:100%;background:${scoreColor(sc.master)};border-radius:3px"></div>
-    </div>
-    ${scoreBadge(sc.master)}
-  </div>`).join('');
+  var top10=Object.entries(stateScores).sort(function(a,b){return b[1].master-a[1].master;}).slice(0,10);
+  var mx=(top10[0]&&top10[0][1]&&top10[0][1].master)||100;
+  var html='';
+  for(var i=0;i<top10.length;i++){
+    var s=top10[i][0],sc=top10[i][1];
+    var bd=i<9?'0.8px solid rgba(0,0,0,0.07)':'none';
+    var pct=Math.round((sc.master/mx)*100);
+    html+='<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:'+bd+'">';
+    html+='<span style="font-size:11px;font-weight:700;color:var(--text-muted);min-width:18px">'+(i+1)+'</span>';
+    html+='<span style="font-size:13px;flex:1;cursor:pointer;color:var(--text)" onclick="openStatePanel(\''+s+'\')">' +s+'</span>';
+    html+='<div style="width:90px;height:5px;background:var(--green-tint);border-radius:3px;overflow:hidden">';
+    html+='<div style="width:'+pct+'%;height:100%;background:'+scoreColor(sc.master)+';border-radius:3px"></div></div>';
+    html+=scoreBadge(sc.master);
+    html+='</div>';
+  }
+  el.innerHTML=html;
 }
 function renderScoreNacional(){
   const scores=Object.values(stateScores);
