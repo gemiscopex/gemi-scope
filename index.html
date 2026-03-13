@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -123,6 +123,30 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .sp-gaceta-link{display:flex;align-items:center;gap:12px;padding:16px;background:var(--green-tint);border-radius:12px;text-decoration:none;color:var(--text);font-weight:600;font-size:14px;margin-bottom:14px;border:1px solid rgba(10,194,133,0.15);transition:background 0.15s}
 .sp-gaceta-link:hover{background:rgba(10,194,133,0.15)}
 .sp-empty{text-align:center;padding:28px;color:var(--text-muted);font-size:13px}
+/* SCOPE 3 — Scores */
+.score-badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:0.5px}
+.score-critico{background:#047857;color:#fff}
+.score-alto{background:#0ac285;color:#fff}
+.score-medio{background:#6ee7b7;color:#065f46}
+.score-baixo{background:#d1fae5;color:#065f46}
+.map-legend{display:flex;flex-wrap:wrap;gap:10px;padding:6px 14px 10px;font-size:10px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted)}
+.legend-item{display:flex;align-items:center;gap:4px}
+.legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.alerta-card{border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;border-left:3px solid transparent}
+.alerta-fiscal{border-left-color:#f59e0b}
+.alerta-regulatoria{border-left-color:#3b82f6}
+.alerta-territorial{border-left-color:#ef4444}
+.alerta-complejidad{border-left-color:#8b5cf6}
+.alerta-nivel{font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:2px 7px;border-radius:20px}
+.alerta-nivel-critico{background:#fee2e2;color:#dc2626}
+.alerta-nivel-alto{background:#fef3c7;color:#d97706}
+.alerta-nivel-medio{background:#ede9fe;color:#7c3aed}
+.alerta-filter-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:'Inter',sans-serif}
+.alerta-filter-btn.active{background:var(--green-tint);border-color:var(--green);color:var(--green)}
+.nav-badge{display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;border-radius:8px;background:#ef4444;color:#fff;font-size:9px;font-weight:700;margin-left:4px;padding:0 3px}
+.radar-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);transition:all 0.15s;white-space:nowrap;font-family:'Inter',sans-serif}
+.act-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:'Inter',sans-serif}
+.act-btn.active{background:var(--green-tint);border-color:var(--green);color:var(--green)}
 </style>
 </head>
 <body>
@@ -137,6 +161,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 <div class="tabs">
   <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
   <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación Federal</button>
+  <button class="tab-btn" onclick="showTab('alertas',this)" id="btn-alertas">Alertas <span id="alertas-badge" class="nav-badge" style="display:none"></span></button>
+  <button class="tab-btn" onclick="showTab('radares',this)">Radares</button>
 </div>
 <div class="main">
   <div class="tab-content active" id="tab-dashboard">
@@ -149,7 +175,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
       <div class="card">
         <div class="card-label">Monitor territorial — 32 estados · click para detalle</div>
         <div id="map"></div>
+        <div class="map-legend">
+          <span class="legend-item"><span class="legend-dot" style="background:#047857"></span>Crítico 70+</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#0ac285"></span>Alto 45–69</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#6ee7b7"></span>Moderado 20–44</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#d1fae5;border:1px solid #ccc"></span>Bajo 0–19</span>
+        </div>
+        <div id="score-nac" style="font-size:11px;color:var(--text-muted);padding:0 0 4px;letter-spacing:0.02em"></div>
       </div>
+    </div>
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-label">Ranking de presión regulatoria</div>
+      <div id="ranking-list" style="margin-top:4px"></div>
     </div>
     <div id="state-panel" class="state-panel" style="display:none">
       <div class="card">
@@ -161,14 +198,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
           <button class="sp-close" onclick="closeStatePanel()">✕ Cerrar</button>
         </div>
         <div class="sp-tabs">
-          <button class="sp-tab active" onclick="showSPTab('ficha',this)">FICHA TÉCNICA</button>
-          <button class="sp-tab" onclick="showSPTab('legislacion',this)">LEGISLACIÓN LOCAL</button>
-          <button class="sp-tab" onclick="showSPTab('impuestos',this)">IMPUESTOS AMBIENTALES</button>
-          <button class="sp-tab" onclick="showSPTab('gaceta',this)">MONITOREO GACETA</button>
+          <button class="sp-tab active" onclick="showSPTab('perfil',this)">PERFIL</button>
+          <button class="sp-tab" onclick="showSPTab('legislacion',this)">LEGISLACIÓN</button>
+          <button class="sp-tab" onclick="showSPTab('impuestos',this)">IMPUESTOS</button>
+          <button class="sp-tab" onclick="showSPTab('actividad',this)">ACTIVIDAD</button>
+          <button class="sp-tab" onclick="showSPTab('sectorial',this)">RIESGO SECTORIAL</button>
+          <button class="sp-tab" onclick="showSPTab('gaceta',this)">GACETA</button>
         </div>
-        <div id="sp-ficha" class="sp-content active"></div>
+        <div id="sp-perfil" class="sp-content active"></div>
         <div id="sp-legislacion" class="sp-content"></div>
         <div id="sp-impuestos" class="sp-content"></div>
+        <div id="sp-actividad" class="sp-content"></div>
+        <div id="sp-sectorial" class="sp-content"></div>
         <div id="sp-gaceta" class="sp-content"></div>
       </div>
     </div>
@@ -185,6 +226,25 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     <div style="margin-bottom:16px"><p style="font-size:12px;color:var(--text-sec)">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</p></div>
     <div class="leyes-grid" id="leyes-grid"></div>
   </div>
+  <div id="tab-alertas" class="tab-content" style="padding:28px 0">
+    <div style="margin-bottom:20px">
+      <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Centro de Alertas</div>
+      <div id="alertas-summary-line" style="font-size:12px;color:var(--text-muted);margin-bottom:16px"></div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <button class="alerta-filter-btn active" onclick="setAlertaFilter('all',this)">Todas</button>
+        <button class="alerta-filter-btn" onclick="setAlertaFilter('fiscal',this)">💰 Fiscal</button>
+        <button class="alerta-filter-btn" onclick="setAlertaFilter('regulatoria',this)">📋 Regulatoria</button>
+        <button class="alerta-filter-btn" onclick="setAlertaFilter('territorial',this)">🌍 Territorial</button>
+        <button class="alerta-filter-btn" onclick="setAlertaFilter('complejidad',this)">📊 Complejidad</button>
+      </div>
+    </div>
+    <div id="alertas-list"></div>
+  </div>
+  <div id="tab-radares" class="tab-content" style="padding:28px 0">
+    <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em;margin-bottom:16px">Radares Temáticos</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px" id="radar-selector"></div>
+    <div class="card" id="radar-panel" style="padding:20px"><div class="sp-empty">Selecciona un tema para ver el radar</div></div>
+  </div>
 </div>
 <div class="statusbar">
   <div><span class="sb-dot"></span>GEMI SCOPE — SISTEMA ACTIVO</div>
@@ -198,6 +258,52 @@ const CATS=[
   {id:'energia',name:'Energía',color:'#f59e0b',kw:['energia','solar','eolica','fotovoltaica','renovable','electricidad','cfe','hidroelectrica','combustible']},
   {id:'impuestos',name:'Impuestos Ambientales',color:'#f87171',kw:['impuesto ambiental','impuesto verde','tasa ecologica','bono de carbono','mercado de carbono','precio del carbono']},
   {id:'residuos',name:'Residuos',color:'#a78bfa',kw:['residuo','basura','desecho','plastico','reciclaje','vertedero','relleno sanitario','contaminacion','toxico','derrame']}
+];
+const SECTOR_PROFILE={
+  "Aguascalientes":{alimentos:70,manufactura:85,envases:75,retail:60,energia:55,logistica:65,agro:50},
+  "Baja California":{alimentos:60,manufactura:90,envases:70,retail:65,energia:70,logistica:85,agro:45},
+  "Baja California Sur":{alimentos:50,manufactura:40,envases:55,retail:80,energia:65,logistica:60,agro:40},
+  "Campeche":{alimentos:55,manufactura:60,envases:50,retail:55,energia:90,logistica:60,agro:65},
+  "Chiapas":{alimentos:75,manufactura:45,envases:60,retail:50,energia:70,logistica:55,agro:85},
+  "Chihuahua":{alimentos:80,manufactura:85,envases:75,retail:65,energia:60,logistica:80,agro:70},
+  "Ciudad de M\u00e9xico":{alimentos:85,manufactura:80,envases:90,retail:95,energia:75,logistica:80,agro:30},
+  "Coahuila":{alimentos:70,manufactura:90,envases:75,retail:65,energia:75,logistica:80,agro:60},
+  "Colima":{alimentos:60,manufactura:55,envases:55,retail:60,energia:65,logistica:70,agro:65},
+  "Durango":{alimentos:65,manufactura:70,envases:60,retail:55,energia:65,logistica:60,agro:75},
+  "Guanajuato":{alimentos:80,manufactura:90,envases:80,retail:70,energia:65,logistica:75,agro:70},
+  "Guerrero":{alimentos:65,manufactura:45,envases:55,retail:70,energia:55,logistica:50,agro:70},
+  "Hidalgo":{alimentos:70,manufactura:75,envases:70,retail:55,energia:70,logistica:65,agro:65},
+  "Jalisco":{alimentos:90,manufactura:85,envases:90,retail:80,energia:70,logistica:75,agro:80},
+  "M\u00e9xico":{alimentos:85,manufactura:95,envases:90,retail:80,energia:75,logistica:85,agro:65},
+  "Michoac\u00e1n":{alimentos:75,manufactura:60,envases:65,retail:60,energia:65,logistica:65,agro:85},
+  "Morelos":{alimentos:70,manufactura:65,envases:65,retail:65,energia:60,logistica:60,agro:70},
+  "Nayarit":{alimentos:60,manufactura:45,envases:50,retail:65,energia:55,logistica:55,agro:70},
+  "Nuevo Le\u00f3n":{alimentos:85,manufactura:95,envases:85,retail:80,energia:80,logistica:85,agro:60},
+  "Oaxaca":{alimentos:70,manufactura:50,envases:55,retail:60,energia:80,logistica:55,agro:80},
+  "Puebla":{alimentos:80,manufactura:85,envases:80,retail:70,energia:65,logistica:70,agro:75},
+  "Quer\u00e9taro":{alimentos:80,manufactura:90,envases:80,retail:70,energia:70,logistica:75,agro:65},
+  "Quintana Roo":{alimentos:65,manufactura:40,envases:70,retail:90,energia:60,logistica:70,agro:50},
+  "San Luis Potos\u00ed":{alimentos:70,manufactura:80,envases:70,retail:60,energia:65,logistica:70,agro:70},
+  "Sinaloa":{alimentos:75,manufactura:55,envases:60,retail:65,energia:55,logistica:70,agro:90},
+  "Sonora":{alimentos:75,manufactura:70,envases:65,retail:65,energia:70,logistica:75,agro:85},
+  "Tabasco":{alimentos:65,manufactura:55,envases:55,retail:60,energia:90,logistica:65,agro:70},
+  "Tamaulipas":{alimentos:70,manufactura:85,envases:70,retail:65,energia:80,logistica:85,agro:70},
+  "Tlaxcala":{alimentos:70,manufactura:75,envases:70,retail:55,energia:55,logistica:60,agro:65},
+  "Veracruz":{alimentos:75,manufactura:70,envases:70,retail:65,energia:90,logistica:70,agro:80},
+  "Yucat\u00e1n":{alimentos:70,manufactura:60,envases:65,retail:80,energia:60,logistica:65,agro:70},
+  "Zacatecas":{alimentos:65,manufactura:60,envases:55,retail:50,energia:65,logistica:60,agro:75}
+};
+const RADAR_TEMAS=[
+  {id:'agua',name:'Agua',icon:'\ud83d\udca7',color:'#38bdf8',kw:['agua','hidrico','sequia','conagua','cuenca','acuifero'],leyKey:'agua'},
+  {id:'residuos',name:'Residuos',icon:'\u267b\ufe0f',color:'#a78bfa',kw:['residuo','basura','reciclaje','plastico','vertedero'],leyKey:'residuos'},
+  {id:'circular',name:'Econom\u00eda Circular',icon:'\ud83d\udd04',color:'#0ac285',kw:['economia circular','circularidad','ecodiseno','REP'],leyKey:'economia_circular'},
+  {id:'cc',name:'Cambio Clim\u00e1tico',icon:'\ud83c\udf21\ufe0f',color:'#6366f1',kw:['cambio climatico','GEI','carbono','emisiones','ndc'],leyKey:'cambio_climatico'},
+  {id:'fiscal',name:'Impuestos Ambientales',icon:'\ud83d\udcb0',color:'#f87171',kw:['impuesto ambiental','tasa ecologica','bono carbono'],leyKey:null},
+  {id:'plasticos',name:'Pl\u00e1sticos',icon:'&#x1F9F4;',color:'#ec4899',kw:['plastico','unicel','poliestireno','monouso','bolsa'],leyKey:'plasticos'},
+  {id:'energia',name:'Energ\u00eda',icon:'\u26a1',color:'#f59e0b',kw:['energia solar','renovable','fotovoltaica','eolica','cfe'],leyKey:null},
+  {id:'sanciones',name:'Cumplimiento',icon:'\u2696\ufe0f',color:'#ef4444',kw:['sancion','multa','clausura','infraccion','profepa'],leyKey:null},
+  {id:'biodiv',name:'Biodiversidad',icon:'\ud83c\udf3f',color:'#22c55e',kw:['biodiversidad','restauracion','forestal','silvestre'],leyKey:'forestal_biodiversidad'},
+  {id:'infra',name:'Infraestructura',icon:'\ud83c\udfd7\ufe0f',color:'#64748b',kw:['infraestructura','tratamiento','alcantarillado','planta'],leyKey:'agua'}
 ];
 const estadoData={
   "Aguascalientes":{l:"Ley Ambiental del Estado",capital:"Aguascalientes",pop:"1.4M",area:"5,618 km²",region:"Norte-Centro",congreso:"https://www.congresoags.gob.mx/"},
@@ -246,7 +352,7 @@ const leyes=[
   {s:'LIE',n:'Ley de la Industria Eléctrica',t:'Energía',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LIE.pdf'},
   {s:'LRSPCFA',n:'Ley de Responsabilidad Ambiental',t:'Responsabilidad',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFRA.pdf'}
 ];
-let noticias=[],catCounts={},stateNews={},impuestosDB={};
+let noticias=[],catCounts={},stateNews={},impuestosDB={},stateScores={},alertas=[];
 function qa(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'')}
 function catArt(t){
   const s=qa(t.toLowerCase());
@@ -299,7 +405,8 @@ function showCatNews(catId,catName,catColor){
   hero.innerHTML=`<div class="cat-news-panel"><div class="cat-news-hdr"><span style="width:8px;height:8px;border-radius:50%;background:${catColor||'#ccc'};display:inline-block;flex-shrink:0"></span><span style="font-size:12px;font-weight:600;color:var(--text);margin-left:2px">${catName}</span><span style="font-size:10px;color:var(--text-muted);margin-left:6px">${arts.length} noticias recientes</span><button class="cat-news-back" onclick="updateActividadPanel()">\u2190 Volver</button></div>${items}</div>`;
 }
 function buildSparkWidget(){
-  const W=88,H=32;  function sparkSVG(count,color){
+  const W=88,H=32;
+  function sparkSVG(count,color){
     if(count===0){const y=H/2;return `<svg class="spark-line" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><line x1="4" y1="${y}" x2="${W-4}" y2="${y}" stroke="rgba(0,0,0,0.1)" stroke-width="1.5" stroke-linecap="round"/></svg>`;}
     const pts=[];
     for(let i=0;i<7;i++){const prog=i/6;const noise=(Math.random()-0.5)*0.25;pts.push(Math.max(0.05,Math.min(1,prog*0.7+0.3+noise)));}
@@ -345,12 +452,14 @@ async function buildMap(){
   const tt=document.getElementById('tt');
   svg.selectAll('path').data(geo.features).join('path')
     .attr('class',d=>'estado'+(stateNews[d.properties.name]>0?' hasnews':''))
+    .attr('fill',d=>scoreColor(stateScores[d.properties.name]?.master||0))
     .attr('d',path)
     .on('mousemove',(event,d)=>{
-      const n=d.properties.name,nc=stateNews[n]||0,data=estadoData[n];
+      const n=d.properties.name,nc=stateNews[n]||0,data=estadoData[n],sc=stateScores[n]||{};
       let h2=`<div class="tt-name">${n}</div>`;
-      if(nc>0)h2+=`<div class="tt-badge">● ${nc} noticia${nc>1?'s':''} esta semana</div>`;
-      if(data)h2+=`<div class="tt-sub">${data.l}</div>`;
+      if(sc.master)h2+=`<div class="tt-badge" style="color:${scoreColor(sc.master)}">${scoreLabel(sc.master)} · Score ${sc.master}</div>`;
+      if(nc>0)h2+=`<div class="tt-sub">&#9679; ${nc} noticia${nc>1?'s':''} esta semana</div>`;
+      if(sc.icr)h2+=`<div class="tt-sub" style="font-size:10px;margin-top:3px">ICR ${sc.icr} &nbsp;·&nbsp; IPR ${sc.ipr} &nbsp;·&nbsp; IRF ${sc.irf}</div>`;
       if(!data&&nc===0)h2+=`<div class="tt-sub" style="color:var(--text-muted)">Sin actividad reciente</div>`;
       tt.innerHTML=h2;tt.classList.add('show');
       tt.style.left=(event.pageX+14)+'px';tt.style.top=(event.pageY-10)+'px';
@@ -469,13 +578,16 @@ function renderSPGaceta(state,data){
 }
 function openStatePanel(stateName){
   const data=estadoData[stateName]||{};
+  const sc=stateScores[stateName]||{icr:0,ipr:0,irf:0,iis:0,master:0,rank:32};
   document.getElementById('sp-name').textContent=stateName;
-  document.getElementById('sp-sub').textContent=(data.region||'')+(data.region?' · ':'')+'México';
-  renderSPFicha(stateName,data);
+  document.getElementById('sp-sub').textContent=(data.region||'')+(data.region?' \u00b7 ':'')+'M\u00e9xico';
+  renderSPPerfil(stateName,data,sc);
   renderSPLegislacion(stateName,data);
   renderSPImpuestos(stateName);
+  renderSPActividad(stateName);
+  renderSPSectorial(stateName);
   renderSPGaceta(stateName,data);
-  showSPTab('ficha',document.querySelector('.sp-tab'));
+  showSPTab('perfil',document.querySelector('.sp-tab'));
   const p=document.getElementById('state-panel');
   p.style.display='block';
   setTimeout(()=>p.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
@@ -484,10 +596,277 @@ function closeStatePanel(){
   document.getElementById('state-panel').style.display='none';
   d3.selectAll('.estado').classed('selected',false);
 }
+/* ── SCOPE 3 SCORING ENGINE ── */
+function scoreColor(score){if(score>=70)return'#047857';if(score>=45)return'#0ac285';if(score>=20)return'#6ee7b7';return'#d1fae5';}
+function scoreLabel(score){return score>=70?'Cr\u00edtico':score>=45?'Alto':score>=20?'Moderado':'Bajo';}
+function scoreBadge(score){const l=scoreLabel(score);const cls=score>=70?'critico':score>=45?'alto':score>=20?'medio':'baixo';return`<span class="score-badge score-${cls}">${l} ${score}</span>`;}
+function computeICR(sn){
+  const e=leyesAmbientales.estados.find(e=>e.nombre===sn);
+  const th=e?Object.keys(e.leyes||{}):[];
+  const nl=th.reduce((a,t)=>a+(e.leyes[t]?.length||0),0);
+  const nt=(impuestosDB[sn]||[]).length;
+  return Math.round(Math.min(100,(th.length/7)*40+Math.min(30,nl*3)+Math.min(20,nt*6)+(estadoData[sn]?.congreso?10:0)));
+}
+function computeIPR(sn){
+  const mx=Math.max(...Object.values(stateNews),1);
+  const ns=((stateNews[sn]||0)/mx)*70;
+  const la=filterNoticiasEstado(sn,['reforma','iniciativa','decreto','ley','gaceta','reglamento']);
+  return Math.round(Math.min(100,ns+Math.min(30,la.length*6)));
+}
+function computeIRF(sn){
+  const tx=impuestosDB[sn]||[];
+  const nt=new Set(tx.map(t=>t.tipo)).size;
+  return Math.round(Math.min(100,tx.length*15+nt*10+(tx.some(t=>t.controversia)?20:0)));
+}
+function computeIIS(sn){
+  const sp=SECTOR_PROFILE[sn]||{};
+  const v=Object.values(sp);
+  return v.length?Math.round(v.reduce((a,x)=>a+x,0)/v.length):50;
+}
+function computeScores(){
+  const states=Object.keys(estadoData);
+  states.forEach(s=>{
+    const icr=computeICR(s),ipr=computeIPR(s),irf=computeIRF(s),iis=computeIIS(s);
+    stateScores[s]={icr,ipr,irf,iis,master:Math.round(0.35*icr+0.30*ipr+0.20*irf+0.15*iis)};
+  });
+  const sorted=[...states].sort((a,b)=>stateScores[b].master-stateScores[a].master);
+  sorted.forEach((s,i)=>stateScores[s].rank=i+1);
+  generateAlerts();
+}
+function generateAlerts(){
+  alertas=[];
+  Object.keys(estadoData).forEach(state=>{
+    const sc=stateScores[state]||{};
+    const taxes=impuestosDB[state]||[];
+    if(sc.irf>=40&&taxes.some(t=>t.controversia)){
+      alertas.push({estado:state,tipo:'fiscal',nivel:sc.irf>=60?'critico':'alto',
+        titulo:'Riesgo fiscal verde \u2014 '+state,
+        que:taxes.filter(t=>t.controversia).length+' impuesto(s) con controversia activa',
+        porQue:'Litigiosidad tributaria puede generar incertidumbre operativa',
+        sectores:Object.keys(SECTOR_PROFILE[state]||{}).filter(k=>(SECTOR_PROFILE[state]||{})[k]>=75)
+      });
+    }
+    if(sc.ipr>=55){
+      alertas.push({estado:state,tipo:'regulatoria',nivel:sc.ipr>=70?'critico':'alto',
+        titulo:'Alta actividad regulatoria \u2014 '+state,
+        que:(stateNews[state]||0)+' menciones en medios + actividad legislativa elevada',
+        porQue:'Marco regulatorio en movimiento, posibles reformas en curso',
+        sectores:[]
+      });
+    }
+    const ca=filterNoticiasEstado(state,['sequia','crisis hidrica','incendio','emergencia ambiental','derrame','contaminacion']);
+    if(ca.length>=2){
+      alertas.push({estado:state,tipo:'territorial',nivel:'alto',
+        titulo:'Evento ambiental territorial \u2014 '+state,
+        que:ca.length+' nota(s) de crisis ambiental detectadas',
+        porQue:'Eventos territoriales suelen detonar presi\u00f3n legislativa o regulatoria',
+        sectores:['agua','agroindustria']
+      });
+    }
+    if(sc.icr>=65){
+      alertas.push({estado:state,tipo:'complejidad',nivel:'medio',
+        titulo:'Marco regulatorio denso \u2014 '+state,
+        que:'ICR: '+sc.icr+'/100 \u2014 m\u00faltiples instrumentos activos en varias materias',
+        porQue:'Alta carga de cumplimiento regulatorio para operadores en el estado',
+        sectores:[]
+      });
+    }
+  });
+  alertas.sort((a,b)=>({'critico':0,'alto':1,'medio':2}[a.nivel]||0)-({'critico':0,'alto':1,'medio':2}[b.nivel]||0));
+  const badge=document.getElementById('alertas-badge');
+  if(badge){const n=alertas.filter(a=>a.nivel==='critico').length;badge.textContent=n>0?n:'';badge.style.display=n>0?'':'none';}
+  const sl=document.getElementById('alertas-summary-line');
+  if(sl){const nc=alertas.filter(a=>a.nivel==='critico').length,na=alertas.filter(a=>a.nivel==='alto').length,nm=alertas.filter(a=>a.nivel==='medio').length;sl.textContent=alertas.length+' alertas activas \u00b7 '+nc+' cr\u00edticas \u00b7 '+na+' altas \u00b7 '+nm+' medias';}
+}
+function setAlertaFilter(filter,btn){
+  document.querySelectorAll('.alerta-filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAlertas(filter);
+}
+function renderAlertas(filter){
+  const el=document.getElementById('alertas-list');
+  if(!el)return;
+  const filtered=filter&&filter!=='all'?alertas.filter(a=>a.tipo===filter):alertas;
+  const icons={fiscal:'\ud83d\udcb0',regulatoria:'\ud83d\udccb',territorial:'\ud83c\udf0d',complejidad:'\ud83d\udcca'};
+  if(!filtered.length){el.innerHTML='<div class="sp-empty">No hay alertas activas en esta categor\u00eda</div>';return;}
+  el.innerHTML=filtered.map(a=>`<div class="alerta-card alerta-${a.tipo}">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <span>${icons[a.tipo]||'\u26a0'}</span>
+      <span style="font-size:14px;font-weight:600;color:var(--text)">${a.titulo}</span>
+      <span class="alerta-nivel alerta-nivel-${a.nivel}" style="margin-left:auto">${a.nivel.toUpperCase()}</span>
+    </div>
+    <div style="font-size:12px;color:var(--text-sec);margin-bottom:4px"><strong>Qu\u00e9:</strong> ${a.que}</div>
+    <div style="font-size:12px;color:var(--text-sec)"><strong>Por qu\u00e9 importa:</strong> ${a.porQue}</div>
+    ${a.sectores&&a.sectores.length?'<div style="font-size:11px;color:var(--text-muted);margin-top:6px">Sectores: '+a.sectores.join(', ')+'</div>':''}
+  </div>`).join('');
+}
+function renderRankingWidget(){
+  const el=document.getElementById('ranking-list');
+  if(!el)return;
+  const top10=Object.entries(stateScores).sort((a,b)=>b[1].master-a[1].master).slice(0,10);
+  const mx=top10[0]?.[1]?.master||100;
+  el.innerHTML=top10.map(([s,sc],i)=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:${i<9?'0.8px solid var(--border)':'none'}">
+    <span style="font-size:11px;font-weight:700;color:var(--text-muted);min-width:18px">${i+1}</span>
+    <span style="font-size:13px;flex:1;cursor:pointer;color:var(--text)" onclick="openStatePanel('${s.replace(/'/g,'\\'+'\\'')}');if(document.querySelector('.tab-btn.active').textContent.trim()!=='Dashboard')document.querySelector('.tab-btn').click()">${s}</span>
+    <div style="width:90px;height:5px;background:var(--green-tint);border-radius:3px;overflow:hidden">
+      <div style="width:${Math.round((sc.master/mx)*100)}%;height:100%;background:${scoreColor(sc.master)};border-radius:3px"></div>
+    </div>
+    ${scoreBadge(sc.master)}
+  </div>`).join('');
+}
+function renderScoreNacional(){
+  const scores=Object.values(stateScores);
+  if(!scores.length)return;
+  const avg=Math.round(scores.reduce((a,s)=>a+s.master,0)/scores.length);
+  const criticos=scores.filter(s=>s.master>=70).length;
+  const altos=scores.filter(s=>s.master>=45&&s.master<70).length;
+  const el=document.getElementById('score-nac');
+  if(el)el.innerHTML=`Score nacional promedio <strong>${avg}/100</strong> &nbsp;&middot;&nbsp; ${criticos} estados cr\u00edticos &nbsp;&middot;&nbsp; ${altos} altos`;
+}
+function showRadarTema(temaId){
+  const tema=RADAR_TEMAS.find(t=>t.id===temaId);
+  if(!tema)return;
+  const stateActivity={};
+  Object.keys(estadoData).forEach(s=>{stateActivity[s]=filterNoticiasEstado(s,tema.kw).length;});
+  const top5=Object.entries(stateActivity).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const maxVal=Math.max(...top5.map(e=>e[1]),1);
+  const instruments=[];
+  if(tema.leyKey){
+    leyesAmbientales.estados.forEach(entry=>{
+      (entry.leyes[tema.leyKey]||[]).forEach(ley=>{
+        if(!instruments.find(i=>i.n===ley.nombre))instruments.push({n:ley.nombre,e:entry.nombre});
+      });
+    });
+  }
+  const recentArts=noticias.filter(n=>{
+    const txt=qa((n.titulo+' '+(n.descripcion||'')).toLowerCase());
+    return tema.kw.some(k=>txt.includes(qa(k)));
+  }).slice(0,5);
+  const totalArts=noticias.filter(n=>tema.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length;
+  const el=document.getElementById('radar-panel');
+  if(!el)return;
+  el.innerHTML=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+    <span style="font-size:36px">${tema.icon}</span>
+    <div><div style="font-size:20px;font-weight:700;color:var(--text)">${tema.name}</div>
+    <div style="font-size:12px;color:var(--text-muted)">${totalArts} noticias en base</div></div>
+    <div class="sp-stat" style="margin-left:auto;text-align:center;min-width:70px">
+      <div class="sp-stat-label">NOTICIAS</div>
+      <div class="sp-stat-value" style="color:${tema.color}">${totalArts}</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">Top Estados</div>
+      ${top5.map(([s,cnt],i)=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-size:11px;font-weight:700;color:var(--text-muted);min-width:16px">${i+1}</span>
+        <span style="font-size:13px;flex:1">${s}</span>
+        <div style="width:80px;height:5px;background:var(--green-tint);border-radius:3px;overflow:hidden">
+          <div style="width:${Math.round((cnt/maxVal)*100)}%;height:100%;background:${tema.color};border-radius:3px"></div>
+        </div>
+        <span style="font-size:12px;font-weight:600;color:${tema.color};min-width:20px;text-align:right">${cnt}</span>
+      </div>`).join('')}
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">Noticias Recientes</div>
+      ${recentArts.map(n=>`<div class="sp-news-item"><div class="sp-news-title"><a href="${n.url}" target="_blank" style="font-size:12px">${n.titulo}</a></div><div class="sp-news-meta">${formatFecha(n.fecha_publicacion)}</div></div>`).join('')||'<div class="sp-empty">Sin noticias recientes</div>'}
+    </div>
+  </div>
+  ${instruments.length?`<div style="margin-top:16px"><div style="font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">Instrumentos Legales Activos</div><div style="display:flex;flex-wrap:wrap;gap:6px">${instruments.slice(0,8).map(i=>`<div style="border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:11px"><div style="font-weight:600;color:var(--text)">${i.e}</div><div style="color:var(--text-muted)">${(i.n||'').substring(0,50)}${(i.n||'').length>50?'\u2026':''}</div></div>`).join('')}</div></div>`:''}`;
+}
+/* ── SCOPE 3 STATE PANEL NEW TABS ── */
+function renderSPPerfil(state,data,sc){
+  const scList=Object.values(stateScores);
+  const avg=scList.length?Math.round(scList.reduce((a,s)=>a+s.master,0)/scList.length):0;
+  const entry=leyesAmbientales.estados.find(e=>e.nombre===state);
+  const numThemes=entry?Object.keys(entry.leyes||{}).length:0;
+  const complexity=sc.icr>=60?'alta':sc.icr>=30?'moderada':'baja';
+  const pressure=sc.ipr>=60?'elevada':sc.ipr>=30?'moderada':'baja';
+  const fiscal=sc.irf>=40?'activo con posibles controversias':sc.irf>=20?'en desarrollo':'incipiente';
+  const narrative=`${state} presenta una complejidad regulatoria ambiental <strong>${complexity}</strong> (ICR: ${sc.icr}/100), con cobertura en ${numThemes} materias ambientales. La presi\u00f3n regulatoria es <strong>${pressure}</strong> en el per\u00edodo reciente, con ${stateNews[state]||0} menciones en medios especializados. Su r\u00e9gimen de impuestos ambientales es <strong>${fiscal}</strong>. La capital ${data.capital||'\u2014'} concentra la actividad legislativa del congreso estatal. Con un Master Score de ${sc.master}/100, ${state} ocupa la posici\u00f3n #${sc.rank||'\u2014'} en el ranking nacional de presi\u00f3n regulatoria ambiental.`;
+  document.getElementById('sp-perfil').innerHTML=`
+    <div style="display:flex;gap:10px;margin-bottom:16px">
+      ${['ICR','IPR','IRF','IIS'].map((k,i)=>{const val=[sc.icr,sc.ipr,sc.irf,sc.iis][i]||0;return`<div class="sp-stat" style="text-align:center;flex:1"><div class="sp-stat-label">${k}</div><div class="sp-stat-value" style="color:${scoreColor(val)}">${val}</div></div>`;}).join('')}
+      <div class="sp-stat" style="text-align:center;flex:1.5;background:${scoreColor(sc.master||0)}22">
+        <div class="sp-stat-label">MASTER</div>
+        <div class="sp-stat-value" style="font-size:22px;color:${scoreColor(sc.master||0)}">${sc.master||0}</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      ${scoreBadge(sc.master||0)}
+      <span style="font-size:12px;color:var(--text-muted)">Posici\u00f3n #${sc.rank||'\u2014'} de 32 \u00b7 Promedio nacional: ${avg}</span>
+    </div>
+    <div class="sp-law-block" style="font-size:13px;line-height:1.6;color:var(--text-sec)">${narrative}</div>`;
+}
+function renderSPActividad(state){
+  const doRender=(d)=>{
+    const cutoff=new Date(Date.now()-d*86400000);
+    const arts=filterNoticiasEstado(state,[]).filter(n=>new Date(n.fecha_publicacion)>cutoff).slice(0,10);
+    const listEl=document.getElementById('sp-actividad-list');
+    if(!listEl)return;
+    listEl.innerHTML=arts.length?arts.map(n=>`<div class="sp-news-item"><div class="sp-news-title"><a href="${n.url}" target="_blank">${n.titulo}</a></div><div class="sp-news-meta">${formatFecha(n.fecha_publicacion)} \u00b7 ${(n.fuente||'').replace('Google News - ','')}</div></div>`).join(''):`<div class="sp-empty">Sin actividad registrada en los \u00faltimos ${d} d\u00edas</div>`;
+  };
+  window._spActState=state;window._spActRender=doRender;
+  document.getElementById('sp-actividad').innerHTML=`
+    <div style="display:flex;gap:6px;margin-bottom:14px">
+      <button class="act-btn active" onclick="document.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');window._spActRender(30)">30 d\u00edas</button>
+      <button class="act-btn" onclick="document.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');window._spActRender(60)">60 d\u00edas</button>
+      <button class="act-btn" onclick="document.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');window._spActRender(90)">90 d\u00edas</button>
+    </div>
+    <div id="sp-actividad-list"></div>`;
+  doRender(30);
+}
+function renderSPSectorial(state){
+  const sp=SECTOR_PROFILE[state]||{};
+  const sectors=[
+    {k:'alimentos',n:'Alimentos y Bebidas',icon:'\ud83e\udd64'},
+    {k:'manufactura',n:'Manufactura',icon:'\ud83c\udfed'},
+    {k:'envases',n:'Envases y Empaques',icon:'\ud83d\udce6'},
+    {k:'retail',n:'Retail',icon:'\ud83d\udecd\ufe0f'},
+    {k:'energia',n:'Energ\u00eda',icon:'\u26a1'},
+    {k:'logistica',n:'Log\u00edstica',icon:'\ud83d\ude9b'},
+    {k:'agro',n:'Agroindustria',icon:'\ud83c\udf3e'}
+  ];
+  const rows=sectors.map(s=>{
+    const val=sp[s.k]||0;const color=scoreColor(val);
+    return`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border)">
+      <span style="width:22px;text-align:center;font-size:16px">${s.icon}</span>
+      <span style="font-size:13px;flex:1;color:var(--text)">${s.n}</span>
+      <div style="width:130px;height:6px;background:var(--green-tint);border-radius:3px;overflow:hidden">
+        <div style="width:${val}%;height:100%;background:${color};border-radius:3px"></div>
+      </div>
+      <span style="font-size:12px;font-weight:600;color:${color};min-width:28px;text-align:right">${val}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('sp-sectorial').innerHTML=`
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px">Exposici\u00f3n Regulatoria por Sector (0\u2013100)</div>
+    ${rows}
+    <div style="font-size:10px;color:var(--text-muted);margin-top:10px">Basado en perfil econ\u00f3mico-industrial del estado + complejidad normativa activa.</div>`;
+}
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
-  processData();updateStatus();updateActividadPanel();buildSparkWidget();updateNews();updateLeyes();buildMap();
+  processData();
+  computeScores();
+  updateStatus();updateActividadPanel();buildSparkWidget();updateNews();updateLeyes();buildMap();
+  renderRankingWidget();
+  renderScoreNacional();
+  renderAlertas('all');
+  const rsel=document.getElementById('radar-selector');
+  if(rsel){
+    RADAR_TEMAS.forEach((t,i)=>{
+      const btn=document.createElement('button');
+      btn.className='radar-btn';
+      if(i===0){btn.style.background=t.color;btn.style.borderColor=t.color;btn.style.color='#fff';}
+      btn.innerHTML=t.icon+' '+t.name;
+      btn.onclick=()=>{
+        document.querySelectorAll('.radar-btn').forEach(b=>{b.style.background='';b.style.borderColor='';b.style.color='';});
+        btn.style.background=t.color;btn.style.borderColor=t.color;btn.style.color='#fff';
+        showRadarTema(t.id);
+      };
+      rsel.appendChild(btn);
+    });
+    showRadarTema(RADAR_TEMAS[0].id);
+  }
 }
 init();
 </script>
