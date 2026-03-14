@@ -64,10 +64,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .estado.hasnews{fill:rgba(10,194,133,0.3)}
 .estado.hasnews:hover{fill:var(--green-btn)}
 .estado.selected{fill:var(--green)!important;stroke:rgba(0,0,0,0.25);stroke-width:1}
-.tooltip{position:absolute;background:#fff;border:0.8px solid var(--border-med);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--text);pointer-events:none;opacity:0;transition:opacity 0.12s;z-index:999;min-width:160px;box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+.tooltip{position:fixed;background:#fff;border:1px solid var(--border-med);border-radius:14px;padding:14px 16px;font-size:12px;color:var(--text);pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:9999;min-width:230px;max-width:270px;box-shadow:0 8px 32px rgba(0,0,0,0.14)}
 .tooltip.show{opacity:1}
 .tt-name{font-weight:600;margin-bottom:4px}
-.tt-badge{font-size:11px;color:var(--green);font-weight:500;margin-bottom:3px}
+.tt-badge{font-size:11px;font-weight:500;margin-bottom:3px}
 .tt-sub{font-size:11px;color:var(--text-sec)}
 .spark-widget{display:flex;flex-direction:column;gap:0}
 .spark-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:0.8px solid var(--border);cursor:pointer;border-radius:6px;transition:background 0.12s}
@@ -125,10 +125,19 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .sp-empty{text-align:center;padding:28px;color:var(--text-muted);font-size:13px}
 /* SCOPE 3 — Scores */
 .score-badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:0.5px}
-.score-critico{background:#047857;color:#fff}
-.score-alto{background:#0ac285;color:#fff}
-.score-medio{background:#6ee7b7;color:#065f46}
-.score-baixo{background:#d1fae5;color:#065f46}
+.score-critico{background:#fee2e2;color:#dc2626}
+.score-alto{background:#fff7ed;color:#c2410c}
+.score-medio{background:#ecfdf5;color:#065f46}
+.score-baixo{background:#f3f4f6;color:#6b7280}
+/* Map pulsing animations */
+@keyframes mapPulseCritico{0%,100%{stroke-width:0.5;stroke-opacity:0.4}50%{stroke-width:3;stroke-opacity:1}}
+@keyframes mapPulseAlto{0%,100%{stroke-width:0.5;stroke-opacity:0.3}50%{stroke-width:1.8;stroke-opacity:0.9}}
+.estado.nivel-critico{animation:mapPulseCritico 1.8s ease-in-out infinite;stroke:#ef4444!important}
+.estado.nivel-alto{animation:mapPulseAlto 2.4s ease-in-out infinite;stroke:#f97316!important}
+.estado.nivel-moderado{stroke:#10b981!important;stroke-width:0.5}
+.estado.nivel-bajo{stroke:rgba(0,0,0,0.1)!important;stroke-width:0.5}
+/* State abbreviation labels */
+.estado-lbl{font-size:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;fill:rgba(0,0,0,0.55);text-anchor:middle;dominant-baseline:middle;pointer-events:none;letter-spacing:0.03em}
 .map-legend{display:flex;flex-wrap:wrap;gap:10px;padding:6px 14px 10px;font-size:10px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted)}
 .legend-item{display:flex;align-items:center;gap:4px}
 .legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
@@ -173,13 +182,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
         <ul class="cat-list" id="cat-list"></ul>
       </div>
       <div class="card">
-        <div class="card-label">Monitor territorial — 32 estados · click para detalle</div>
+        <div class="card-label">Monitor territorial — 32 estados · hover para info · click para panel</div>
         <div id="map"></div>
         <div class="map-legend">
-          <span class="legend-item"><span class="legend-dot" style="background:#047857"></span>Crítico 70+</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#0ac285"></span>Alto 45–69</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#6ee7b7"></span>Moderado 20–44</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#d1fae5;border:1px solid #ccc"></span>Bajo 0–19</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span>Crítico 70+</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#f97316"></span>Alto 45–69</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#10b981"></span>Moderado 20–44</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#9ca3af"></span>Bajo 0–19</span>
         </div>
         <div id="score-nac" style="font-size:11px;color:var(--text-muted);padding:0 0 4px;letter-spacing:0.02em"></div>
       </div>
@@ -353,6 +362,7 @@ const leyes=[
   {s:'LRSPCFA',n:'Ley de Responsabilidad Ambiental',t:'Responsabilidad',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFRA.pdf'}
 ];
 let noticias=[],catCounts={},stateNews={},impuestosDB={},stateScores={},alertas=[];
+const STATE_ABBR={'Aguascalientes':'AGS','Baja California':'BC','Baja California Sur':'BCS','Campeche':'CAM','Chiapas':'CHIS','Chihuahua':'CHIH','Ciudad de México':'CDMX','Coahuila':'COAH','Colima':'COL','Durango':'DGO','Guanajuato':'GTO','Guerrero':'GRO','Hidalgo':'HGO','Jalisco':'JAL','México':'MEX','Michoacán':'MICH','Morelos':'MOR','Nayarit':'NAY','Nuevo León':'NL','Oaxaca':'OAX','Puebla':'PUE','Querétaro':'QRO','Quintana Roo':'QROO','San Luis Potosí':'SLP','Sinaloa':'SIN','Sonora':'SON','Tabasco':'TAB','Tamaulipas':'TAM','Tlaxcala':'TLAX','Veracruz':'VER','Yucatán':'YUC','Zacatecas':'ZAC'};
 function qa(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'')}
 function catArt(t){
   const s=qa(t.toLowerCase());
@@ -445,32 +455,64 @@ function updateLeyes(){
 async function buildMap(){
   const geo=await d3.json('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json');
   const container=document.getElementById('map');
-  const w=container.clientWidth||500,h=260;
-  const svg=d3.select('#map').append('svg').attr('viewBox',`0 0 ${w} ${h}`);
+  const w=container.clientWidth||500,h=270;
+  const svg=d3.select('#map').append('svg').attr('viewBox','0 0 '+w+' '+h).style('overflow','visible');
   const proj=d3.geoMercator().fitSize([w,h],geo);
   const path=d3.geoPath().projection(proj);
   const tt=document.getElementById('tt');
-  svg.selectAll('path').data(geo.features).join('path')
-    .attr('class',d=>'estado'+(stateNews[d.properties.name]>0?' hasnews':''))
-    .attr('fill',d=>scoreColor(stateScores[d.properties.name]?.master||0))
-    .attr('d',path)
-    .on('mousemove',(event,d)=>{
-      const n=d.properties.name,nc=stateNews[n]||0,data=estadoData[n],sc=stateScores[n]||{};
-      let h2=`<div class="tt-name">${n}</div>`;
-      if(sc.master)h2+=`<div class="tt-badge" style="color:${scoreColor(sc.master)}">${scoreLabel(sc.master)} · Score ${sc.master}</div>`;
-      if(nc>0)h2+=`<div class="tt-sub">&#9679; ${nc} noticia${nc>1?'s':''} esta semana</div>`;
-      if(sc.icr)h2+=`<div class="tt-sub" style="font-size:10px;margin-top:3px">ICR ${sc.icr} &nbsp;·&nbsp; IPR ${sc.ipr} &nbsp;·&nbsp; IRF ${sc.irf}</div>`;
-      if(!data&&nc===0)h2+=`<div class="tt-sub" style="color:var(--text-muted)">Sin actividad reciente</div>`;
-      tt.innerHTML=h2;tt.classList.add('show');
-      tt.style.left=(event.pageX+14)+'px';tt.style.top=(event.pageY-10)+'px';
+  /* State paths — colored + pulsing by score level */
+  svg.selectAll('path.estado').data(geo.features).join('path')
+    .attr('class',function(d){
+      var n=d.properties.name,m=(stateScores[n]||{}).master||0;
+      var lvl=m>=70?'nivel-critico':m>=45?'nivel-alto':m>=20?'nivel-moderado':'nivel-bajo';
+      return 'estado '+lvl;
     })
-    .on('mouseleave',()=>tt.classList.remove('show'))
-    .on('click',(event,d)=>{
+    .attr('fill',function(d){return scoreColor((stateScores[d.properties.name]||{}).master||0);})
+    .attr('d',path)
+    .on('mousemove',function(event,d){
+      var n=d.properties.name;
+      var nc=stateNews[n]||0;
+      var sc=stateScores[n]||{};
+      var abbr=STATE_ABBR[n]||n.substring(0,3).toUpperCase();
+      var col=scoreColor(sc.master||0);
+      var lbl=scoreLabel(sc.master||0);
+      var html='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)">';
+      html+='<div><div style="font-size:9px;font-weight:700;color:var(--text-muted);letter-spacing:0.8px">'+abbr+'</div>';
+      html+='<div style="font-size:15px;font-weight:700;color:var(--text);line-height:1.2">'+n+'</div></div>';
+      html+='<span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:'+col+'20;color:'+col+'">'+lbl+' '+(sc.master||0)+'</span>';
+      html+='</div>';
+      if(sc.master){
+        html+='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:10px">';
+        var idxs=[['ICR',sc.icr||0],['IPR',sc.ipr||0],['IRF',sc.irf||0],['IIS',sc.iis||0]];
+        idxs.forEach(function(ix){
+          html+='<div style="text-align:center;border-radius:6px;padding:5px 2px;background:'+scoreColor(ix[1])+'18">';
+          html+='<div style="font-size:9px;color:var(--text-muted);font-weight:700;letter-spacing:0.3px">'+ix[0]+'</div>';
+          html+='<div style="font-size:14px;font-weight:700;color:'+scoreColor(ix[1])+'">'+ix[1]+'</div>';
+          html+='</div>';
+        });
+        html+='</div>';
+      }
+      if(nc>0){html+='<div style="font-size:11px;color:var(--text-sec);margin-bottom:6px">&#9679; '+nc+' noticia'+(nc>1?'s':'')+' esta semana</div>';}
+      else{html+='<div style="font-size:11px;color:var(--text-muted);margin-bottom:6px">Sin actividad reciente</div>';}
+      html+='<div style="font-size:10px;color:var(--text-muted);text-align:center;border-top:1px solid var(--border);padding-top:8px">Haz clic para panel completo</div>';
+      tt.innerHTML=html;
+      tt.classList.add('show');
+      tt.style.left=(event.clientX+18)+'px';
+      tt.style.top=(event.clientY-24)+'px';
+    })
+    .on('mouseleave',function(){tt.classList.remove('show');})
+    .on('click',function(event,d){
       tt.classList.remove('show');
       d3.selectAll('.estado').classed('selected',false);
       d3.select(event.currentTarget).classed('selected',true);
       openStatePanel(d.properties.name);
     });
+  /* State abbreviation labels */
+  svg.selectAll('text.estado-lbl').data(geo.features).join('text')
+    .attr('class','estado-lbl')
+    .attr('x',function(d){var c=path.centroid(d);return isNaN(c[0])?0:c[0];})
+    .attr('y',function(d){var c=path.centroid(d);return isNaN(c[1])?0:c[1];})
+    .text(function(d){return STATE_ABBR[d.properties.name]||'';});
 }
 function showTab(id,btn){
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
@@ -590,14 +632,13 @@ function openStatePanel(stateName){
   showSPTab('perfil',document.querySelector('.sp-tab'));
   const p=document.getElementById('state-panel');
   p.style.display='block';
-  setTimeout(()=>p.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
 }
 function closeStatePanel(){
   document.getElementById('state-panel').style.display='none';
   d3.selectAll('.estado').classed('selected',false);
 }
 /* ── SCOPE 3 SCORING ENGINE ── */
-function scoreColor(score){if(score>=70)return'#047857';if(score>=45)return'#0ac285';if(score>=20)return'#6ee7b7';return'#d1fae5';}
+function scoreColor(score){if(score>=70)return'#ef4444';if(score>=45)return'#f97316';if(score>=20)return'#10b981';return'#9ca3af';}
 function scoreLabel(score){return score>=70?'Cr\u00edtico':score>=45?'Alto':score>=20?'Moderado':'Bajo';}
 function scoreBadge(score){const l=scoreLabel(score);const cls=score>=70?'critico':score>=45?'alto':score>=20?'medio':'baixo';return`<span class="score-badge score-${cls}">${l} ${score}</span>`;}
 function computeICR(sn){
