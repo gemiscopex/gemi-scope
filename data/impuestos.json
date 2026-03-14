@@ -1,0 +1,569 @@
+{
+  "_meta": {
+    "fuente": "ANIQ — Guía para Impuestos Ambientales Estatales, Febrero 2026",
+    "uma2026": 117.31,
+    "nota_uma": "Valor diario UMA 2026 (INEGI): $117.31 MXN"
+  },
+  "Aguascalientes": [],
+  "Baja California": [
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Materiales que constituyan depósitos tales como: rocas, piedras, sustrato o capa fértil.",
+      "fechaPublicado": "31/12/2019",
+      "vigencia": "01/01/2023",
+      "precio": "$4.78/m³",
+      "unidad": "MXN",
+      "obligados": "Que realicen actividades de extracción y aprovechamiento de material pétreo.",
+      "controversia": false
+    },
+    {
+      "tipo": "GEI",
+      "especificaciones": "La base es el total de kg de contaminantes a la atmósfera por los bienes o productos adquiridos por el consumidor final.",
+      "fechaPublicado": "30/04/2020",
+      "vigencia": "01/05/2020",
+      "precio": "$0.17/kg",
+      "unidad": "MXN",
+      "obligados": "Que tengan instalaciones o fuentes fijas en las que se expendan al consumidor final bienes o productos que generen emisiones.",
+      "controversia": true
+    }
+  ],
+  "Baja California Sur": [],
+  "Campeche": [
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Materiales que constituyan depósitos tales como: rocas, piedras, sustrato o capa fértil.",
+      "fechaPublicado": "26/12/2014",
+      "vigencia": "01/01/2015",
+      "precio": "0.14/m³",
+      "unidad": "UMA",
+      "obligados": "Que extraigan materiales que constituyan depósitos de igual o semejante naturaleza a los componentes del terreno.",
+      "controversia": false
+    }
+  ],
+  "Chiapas": [
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Materiales pétreos: rocas, piedras, sustrato o capa fértil. Cada material representa un pago de impuesto diferente.",
+      "fechaPublicado": "09/12/2025",
+      "vigencia": "01/01/2026",
+      "precio": "$8–10/m³",
+      "unidad": "MXN",
+      "obligados": "Que realicen la extracción, o aprovechamiento de materiales pétreos.",
+      "controversia": false
+    },
+    {
+      "tipo": "Suelo y/o Subsuelo",
+      "especificaciones": "Se considera la cantidad de mg/kg, base seca, obtenidos conforme a las NMX en cada 100m² de terreno.",
+      "fechaPublicado": "09/12/2025",
+      "vigencia": "01/01/2026",
+      "precio": "$25/m²",
+      "unidad": "MXN",
+      "obligados": "Que viertan o descarguen directamente o a través de intermediarios, contaminantes en el suelo y/o subsuelo.",
+      "controversia": false
+    },
+    {
+      "tipo": "Agua",
+      "especificaciones": "Grasas y Aceites, SST, DBO, NT, PT y Metales Pesados y Cianuros.",
+      "fechaPublicado": "09/12/2025",
+      "vigencia": "01/01/2026",
+      "precio": "$100/m³",
+      "unidad": "MXN",
+      "obligados": "Que viertan o descarguen directamente o a través de intermediarios, contaminantes en ríos, arroyos, canales, embalses.",
+      "controversia": false
+    },
+    {
+      "tipo": "Residuos",
+      "especificaciones": "Quedan exentos los residuos destinados a la reutilización, reciclado o co-procesamiento o valorización.",
+      "fechaPublicado": "09/12/2025",
+      "vigencia": "01/01/2026",
+      "precio": "$100/ton",
+      "unidad": "MXN",
+      "obligados": "Que depositen o almacenen residuos directamente, o a través de intermediarios, en vertederos públicos o privados.",
+      "controversia": false
+    }
+  ],
+  "Chihuahua": [],
+  "Ciudad de México": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "CO₂, CH₄, N₂O. Aplicable con emisiones iguales o superiores a una tonelada al mes.",
+      "fechaPublicado": "27/12/2024",
+      "vigencia": "01/01/2025",
+      "precio": "$60/tonCO₂eq",
+      "unidad": "MXN",
+      "obligados": "Que generen emisiones por fuentes fijas.",
+      "controversia": false
+    }
+  ],
+  "Coahuila": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "CO₂, CH₄, N₂O, HFC, CFs, SF₆.",
+      "fechaPublicado": "No aplica",
+      "vigencia": "No aplica",
+      "precio": "4.5/tonCO₂eq",
+      "unidad": "UMA",
+      "obligados": "Que tengan instalaciones o fuentes fijas y generen emisiones a la atmósfera.",
+      "controversia": false
+    },
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Materiales pétreos: piedras de construcción y de adorno. Cada material representa un pago de impuesto diferente.",
+      "fechaPublicado": "22/12/2015",
+      "vigencia": "01/01/2016",
+      "precio": "0.03–5.00/m³",
+      "unidad": "UMA",
+      "obligados": "Que realicen la extracción, o aprovechamiento de materiales pétreos.",
+      "controversia": false
+    }
+  ],
+  "Colima": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "CO₂, CH₄, N₂O, HFC, CFs, SF₆.",
+      "fechaPublicado": "25/01/2024",
+      "vigencia": "26/01/2025",
+      "precio": "5.00/tonCO₂eq",
+      "unidad": "UMA",
+      "obligados": "Que tengan instalaciones o fuentes fijas y generen emisiones a la atmósfera.",
+      "controversia": false
+    }
+  ],
+  "Durango": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "Se considera la expulsión directa o indirecta de CO₂, CH₄, N₂O, CN, hidrofluorocarburos y perfluorocarburos.",
+      "fechaPublicado": "27/12/2022",
+      "vigencia": "01/01/2024",
+      "precio": "$100/tonCO₂eq",
+      "unidad": "MXN",
+      "obligados": "Que tengan instalaciones o fuentes fijas y generen emisiones a la atmósfera.",
+      "controversia": false
+    },
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Materiales: pétreos, rocas o productos de su descomposición para la construcción u ornamento de obras.",
+      "fechaPublicado": "27/12/2022",
+      "vigencia": "01/01/2024",
+      "precio": "$4.81–214/m³",
+      "unidad": "MXN",
+      "obligados": "Que extraigan materiales que constituyan depósitos de igual o semejante naturaleza a los componentes del terreno.",
+      "controversia": false
+    },
+    {
+      "tipo": "Suelo y/o Subsuelo",
+      "especificaciones": "Si el suelo, subsuelo o agua fueron contaminados con dos o más sustancias, la cuota se pagará por cada contaminante.",
+      "fechaPublicado": "27/12/2022",
+      "vigencia": "01/01/2024",
+      "precio": "$25/100 m²",
+      "unidad": "MXN",
+      "obligados": "Que depositen, desechen o descarguen en el subsuelo y/o suelo sustancias contaminantes.",
+      "controversia": false
+    },
+    {
+      "tipo": "Agua",
+      "especificaciones": "Grasas y Aceites, SST, DBO, NT, PT y Metales Pesados y Cianuros.",
+      "fechaPublicado": "27/12/2022",
+      "vigencia": "01/01/2024",
+      "precio": "$100/m³",
+      "unidad": "MXN",
+      "obligados": "Que depositen, desechen o descarguen sustancias contaminantes en el agua.",
+      "controversia": false
+    },
+    {
+      "tipo": "Residuos",
+      "especificaciones": "Residuo destinado a la reutilización, reciclado, coprocesamiento o valorización, queda exento.",
+      "fechaPublicado": "27/12/2022",
+      "vigencia": "01/01/2024",
+      "precio": "$100/ton",
+      "unidad": "MXN",
+      "obligados": "Que depositen o almacenen residuos en vertederos públicos o privados, generando efectos en la salud y el ambiente.",
+      "controversia": false
+    }
+  ],
+  "Guanajuato": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "CO₂, CH₄, N₂O, HFC, CFs, CN, SF₆.",
+      "fechaPublicado": "30/11/2022",
+      "vigencia": "01/01/2023",
+      "precio": "$100/tonCO₂eq",
+      "unidad": "MXN",
+      "obligados": "Que cuenten con fuentes fijas, dentro del territorio, que generen emisiones.",
+      "controversia": false
+    },
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Pendiente de especificaciones técnicas completas.",
+      "fechaPublicado": "",
+      "vigencia": "",
+      "precio": "—",
+      "unidad": "",
+      "obligados": "",
+      "controversia": true
+    },
+    {
+      "tipo": "Suelo y/o Subsuelo",
+      "especificaciones": "La base del impuesto son las sustancias contaminantes que se emitan desde instalaciones o fuentes fijas.",
+      "fechaPublicado": "30/11/2022",
+      "vigencia": "01/01/2027",
+      "precio": "$25/100 m²",
+      "unidad": "MXN",
+      "obligados": "Que viertan o descarguen directamente o a través de intermediarios, contaminantes en el suelo y/o subsuelo.",
+      "controversia": true
+    },
+    {
+      "tipo": "Agua",
+      "especificaciones": "Grasas y Aceites, SST, DQO, COT, NT, PT, Escherichia Coli, Enterococos Fecales y Metales Pesados y Cianuros.",
+      "fechaPublicado": "30/11/2022",
+      "vigencia": "03/04/2027",
+      "precio": "$100/m³",
+      "unidad": "MXN",
+      "obligados": "Que viertan o descarguen directamente o a través de intermediarios, contaminantes en ríos, arroyos, canales, embalses.",
+      "controversia": true
+    },
+    {
+      "tipo": "Residuos",
+      "especificaciones": "Se considera un aumento de $20/ton por cada año transcurrido.",
+      "fechaPublicado": "30/11/2022",
+      "vigencia": "01/01/2023",
+      "precio": "$100/ton",
+      "unidad": "MXN",
+      "obligados": "Que genere igual o más de 10 toneladas anuales de residuos.",
+      "controversia": false
+    }
+  ],
+  "Guerrero": [],
+  "Hidalgo": [],
+  "Jalisco": [],
+  "México": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "CO₂, CH₄, N₂O. A partir de la tonelada 36 de CO₂e emitida.",
+      "fechaPublicado": "31/01/2022",
+      "vigencia": "01/04/2022",
+      "precio": "$58/tonCO₂eq",
+      "unidad": "MXN",
+      "obligados": "Que cuenten con fuentes fijas que generen emisiones directas, a partir de la tonelada 36 de CO₂e emitida.",
+      "controversia": false
+    },
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Pendiente de especificaciones técnicas completas.",
+      "fechaPublicado": "",
+      "vigencia": "",
+      "precio": "—",
+      "unidad": "",
+      "obligados": "",
+      "controversia": true
+    },
+    {
+      "tipo": "Agua",
+      "especificaciones": "Grasas y Aceites, SST, DBO, NT, PT y Metales Pesados y Cianuros.",
+      "fechaPublicado": "28/12/2023",
+      "vigencia": "01/01/2025",
+      "precio": "$141–108/m³",
+      "unidad": "MXN",
+      "obligados": "Que viertan o descarguen directamente o a través de intermediarios, contaminantes en ríos, arroyos, canales, embalses.",
+      "controversia": false
+    },
+    {
+      "tipo": "Residuos",
+      "especificaciones": "Quedan exceptuados los residuos que puedan ser reutilizados, reciclados o revalorizados.",
+      "fechaPublicado": "28/12/2023",
+      "vigencia": "01/01/2025",
+      "precio": "$100/ton",
+      "unidad": "MXN",
+      "obligados": "Generadoras de residuos que, por sí mismas o por intermediarios realicen su disposición o confinamiento en SDF.",
+      "controversia": false
+    }
+  ],
+  "Michoacán": [],
+  "Morelos": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "CO₂, CH₄, N₂O, HFC, CFs, SF₆.",
+      "fechaPublicado": "31/12/2024",
+      "vigencia": "01/01/2025",
+      "precio": "0.88/CO₂eq",
+      "unidad": "UMA",
+      "obligados": "Que cuenten con fuentes fijas, dentro del territorio, que generen emisiones.",
+      "controversia": false
+    }
+  ],
+  "Nayarit": [
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Aplica en transporte de vehículos o camiones de volteo con material pétreo: rocas, piedras, sustrato.",
+      "fechaPublicado": "02/12/2022",
+      "vigencia": "06/02/2023",
+      "precio": "0.20/m³",
+      "unidad": "UMA",
+      "obligados": "Que extraigan materiales que constituyan depósitos de naturaleza a los componentes del terreno.",
+      "controversia": false
+    }
+  ],
+  "Nuevo León": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "PM10, PM2.5, PST, NOx, SO₂. El impuesto se determina a partir de la primera tonelada.",
+      "fechaPublicado": "23/12/2021",
+      "vigencia": "23/05/2023",
+      "precio": "2.79/tonCO₂eq",
+      "unidad": "UMA",
+      "obligados": "Que cuenten con fuentes fijas que generen emisiones.",
+      "controversia": false
+    },
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Materiales pétreos: piedras de construcción y de adorno.",
+      "fechaPublicado": "23/12/2021",
+      "vigencia": "23/05/2023",
+      "precio": "0.8–1.5/m³",
+      "unidad": "UMA",
+      "obligados": "Que realicen la extracción, o aprovechamiento de materiales pétreos.",
+      "controversia": false
+    },
+    {
+      "tipo": "Suelo y/o Subsuelo",
+      "especificaciones": "El impuesto a pagar será por cada kg o mg por kg según corresponda, de contaminante en 100 m² de terreno afectado.",
+      "fechaPublicado": "23/12/2021",
+      "vigencia": "23/05/2023",
+      "precio": "1.1/100 m²",
+      "unidad": "UMA",
+      "obligados": "Que depositen, desechen o descarguen en el subsuelo y/o suelo sustancias contaminantes.",
+      "controversia": false
+    },
+    {
+      "tipo": "Agua",
+      "especificaciones": "Grasas y Aceites, SST, DBO, NT y Metales Pesados y Cianuros.",
+      "fechaPublicado": "23/12/2021",
+      "vigencia": "23/05/2023",
+      "precio": "1.1/m³",
+      "unidad": "UMA",
+      "obligados": "Que se depositen, desechen o descarguen sustancias contaminantes en el agua.",
+      "controversia": false
+    }
+  ],
+  "Oaxaca": [
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Materiales que constituyan depósitos tales como: rocas, piedras, sustrato o capa fértil.",
+      "fechaPublicado": "24/12/2019",
+      "vigencia": "01/01/2020",
+      "precio": "0.13–7.45/m³",
+      "unidad": "UMA",
+      "obligados": "Que extraigan materiales que constituyan depósitos de naturaleza a los componentes del terreno.",
+      "controversia": false
+    }
+  ],
+  "Puebla": [],
+  "Querétaro": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "CO₂, CH₄, N₂O, HFC, CFs, SF₆.",
+      "fechaPublicado": "01/01/2022",
+      "vigencia": "01/01/2023",
+      "precio": "5.9/tonCO₂eq",
+      "unidad": "UMA",
+      "obligados": "Que tengan instalaciones o fuentes fijas y estén obligadas a presentar el RETC de competencia estatal.",
+      "controversia": false
+    },
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Minerales no metálicos: arena, arenilla, tezontle, arcilla, en combinación o aquellas de igual o semejante naturaleza.",
+      "fechaPublicado": "01/01/2022",
+      "vigencia": "01/01/2023",
+      "precio": "0.20–0.50/m³",
+      "unidad": "UMA",
+      "obligados": "Que realicen la extracción de los materiales referidos.",
+      "controversia": false
+    },
+    {
+      "tipo": "Residuos",
+      "especificaciones": "Están exceptuados los residuos que ingresen a cadenas de valor o vayan a procesos de valorización.",
+      "fechaPublicado": "01/01/2022",
+      "vigencia": "01/01/2023",
+      "precio": "1.25/ton",
+      "unidad": "UMA",
+      "obligados": "Que realicen la disposición final de residuos, almacenamiento temporal o confinamiento controlado de residuo peligroso/especial.",
+      "controversia": false
+    }
+  ],
+  "Quintana Roo": [
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Materiales: rocas, piedras, sustrato o capa fértil y sascab.",
+      "fechaPublicado": "08/12/2006",
+      "vigencia": "01/01/2007",
+      "precio": "0.14–0.22/m³",
+      "unidad": "UMA",
+      "obligados": "Que extraigan materiales que constituyan depósitos de igual o semejante naturaleza a los componentes del terreno.",
+      "controversia": false
+    }
+  ],
+  "San Luis Potosí": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "CO₂, CH₄, N₂O, HFC, CFs, SF₆, HCFC, CFC.",
+      "fechaPublicado": "18/12/2023",
+      "vigencia": "01/01/2025",
+      "precio": "3.00/tonCO₂eq",
+      "unidad": "UMA",
+      "obligados": "Que tengan instalaciones o fuentes fijas y que emitan compuestos y gases de efecto invernadero.",
+      "controversia": false
+    }
+  ],
+  "Sinaloa": [],
+  "Sonora": [],
+  "Tabasco": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "Sin especificar (aprobado, pendiente de publicación oficial).",
+      "fechaPublicado": "05/12/2024",
+      "vigencia": "Sin publicar",
+      "precio": "5/tonCO₂eq",
+      "unidad": "UMA",
+      "obligados": "Que tengan instalaciones o fuentes fijas y que emitan compuestos y gases de efecto invernadero.",
+      "controversia": true
+    },
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Material pétreo: arcilla, arenas, gravas, piedras, rocas.",
+      "fechaPublicado": "05/12/2024",
+      "vigencia": "Sin publicar",
+      "precio": "4.01/m³",
+      "unidad": "UMA",
+      "obligados": "Que realicen la extracción, o aprovechamiento de materiales pétreos.",
+      "controversia": true
+    },
+    {
+      "tipo": "Residuos",
+      "especificaciones": "Sin especificar (aprobado, pendiente de publicación oficial).",
+      "fechaPublicado": "05/12/2024",
+      "vigencia": "Sin publicar",
+      "precio": "1.0/ton",
+      "unidad": "UMA",
+      "obligados": "Que realicen la disposición final de residuos, almacenamiento temporal o confinamiento controlado de residuo peligroso/especial.",
+      "controversia": true
+    },
+    {
+      "tipo": "Suelo y/o Subsuelo",
+      "especificaciones": "Sin especificar (aprobado, pendiente de publicación oficial).",
+      "fechaPublicado": "05/12/2024",
+      "vigencia": "Sin publicar",
+      "precio": "1.0/100 m²",
+      "unidad": "UMA",
+      "obligados": "Que emitan contaminantes generadas por fuentes fijas industriales o agropecuarias, que se depositen al suelo o subsuelo.",
+      "controversia": true
+    },
+    {
+      "tipo": "Agua",
+      "especificaciones": "Sin especificar (aprobado, pendiente de publicación oficial).",
+      "fechaPublicado": "05/12/2024",
+      "vigencia": "Sin publicar",
+      "precio": "1.0/m³",
+      "unidad": "UMA",
+      "obligados": "Que se depositen, desechen o descarguen sustancias contaminantes en el agua.",
+      "controversia": true
+    }
+  ],
+  "Tamaulipas": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "CO₂, CH₄, N₂O, HFC, CFs, SF₆.",
+      "fechaPublicado": "23/12/2023",
+      "vigencia": "01/12/2024",
+      "precio": "8.5/tonCO₂eq",
+      "unidad": "UMA",
+      "obligados": "Que tengan instalaciones o fuentes fijas y que emitan compuestos y gases de efecto invernadero.",
+      "controversia": false
+    }
+  ],
+  "Tlaxcala": [],
+  "Veracruz": [],
+  "Yucatán": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "CO₂, CH₄, N₂O, HFC, CFs, SF₆.",
+      "fechaPublicado": "30/12/2021",
+      "vigencia": "01/12/2022",
+      "precio": "2.70/tonCO₂eq",
+      "unidad": "UMA",
+      "obligados": "Que tengan instalaciones o fuentes fijas dentro del territorio y generen emisiones.",
+      "controversia": false
+    },
+    {
+      "tipo": "Suelo y/o Subsuelo",
+      "especificaciones": "Se considera la cantidad de mg/kg, base seca, obtenidos conforme a las NMX en cada 100 m² de terreno.",
+      "fechaPublicado": "30/12/2021",
+      "vigencia": "01/12/2022",
+      "precio": "0.27/100 m²",
+      "unidad": "UMA",
+      "obligados": "Que emitan contaminantes generadas por fuentes fijas industriales o agropecuarias, que se depositen al suelo o subsuelo.",
+      "controversia": false
+    },
+    {
+      "tipo": "Agua",
+      "especificaciones": "Se considera en mg/L, que se presenten por cada m³.",
+      "fechaPublicado": "30/12/2021",
+      "vigencia": "01/12/2022",
+      "precio": "0.2/m³",
+      "unidad": "UMA",
+      "obligados": "Que emitan contaminantes generadas por fuentes fijas industriales o agropecuarias, que se depositen al agua.",
+      "controversia": false
+    }
+  ],
+  "Zacatecas": [
+    {
+      "tipo": "GEI",
+      "especificaciones": "CO₂, CH₄, N₂O, HFC, CFs, SF₆.",
+      "fechaPublicado": "31/12/2016",
+      "vigencia": "01/01/2017",
+      "precio": "$250/tonCO₂eq",
+      "unidad": "MXN",
+      "obligados": "Que tengan instalaciones o fuentes fijas dentro del territorio y generen emisiones.",
+      "controversia": false
+    },
+    {
+      "tipo": "Extracción de Materiales",
+      "especificaciones": "Materiales: agregados pétreos, andesita, arcillas, arena, caliza, cantera, caolín, grava, riolita, rocas, piedras y sustrato o capa fértil.",
+      "fechaPublicado": "31/12/2016",
+      "vigencia": "01/01/2017",
+      "precio": "$11.25–456/m³",
+      "unidad": "MXN",
+      "obligados": "Que extraigan materiales que constituyan depósitos de igual naturaleza a los componentes de los terrenos.",
+      "controversia": false
+    },
+    {
+      "tipo": "Suelo y/o Subsuelo",
+      "especificaciones": "Se considera la cantidad de mg/kg, base seca, obtenidos conforme a las NMX en cada 100 m² de terreno.",
+      "fechaPublicado": "31/12/2016",
+      "vigencia": "01/01/2017",
+      "precio": "$25/100 m²",
+      "unidad": "MXN",
+      "obligados": "Que emitan, desde la o las instalaciones o fuentes fijas, sustancias contaminantes al suelo o subsuelo.",
+      "controversia": false
+    },
+    {
+      "tipo": "Agua",
+      "especificaciones": "Se considera en mg/L, que se presenten por cada m³.",
+      "fechaPublicado": "31/12/2016",
+      "vigencia": "01/01/2017",
+      "precio": "$100/m³",
+      "unidad": "MXN",
+      "obligados": "Que emitan, desde la o las instalaciones o fuentes fijas, sustancias contaminantes al agua.",
+      "controversia": false
+    },
+    {
+      "tipo": "Residuos",
+      "especificaciones": "Quedan exceptuados los residuos que puedan ser reutilizados, reciclados o revalorizados.",
+      "fechaPublicado": "31/12/2016",
+      "vigencia": "01/01/2017",
+      "precio": "$100/ton",
+      "unidad": "MXN",
+      "obligados": "Que depositen o almacenen residuos en vertederos públicos o privados, generando efectos en la salud y el ambiente.",
+      "controversia": false
+    }
+  ]
+}
