@@ -1,0 +1,556 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "descripcion": "Taxonomía de categorías, subcategorías y keywords para monitoreo nacional de noticias SCOPE 3",
+    "alcance": "República Mexicana – 32 entidades federativas",
+    "fuente": "GEMI / SCOPE 3",
+    "ultima_actualizacion": "2026-03-21"
+  },
+
+  "categorias": [
+
+    {
+      "nombre": "Energía",
+      "clave": "energia",
+      "color": "#f59e0b",
+      "icono": "⚡",
+      "subcategorias": [
+        {
+          "nombre": "Pemex y petróleo",
+          "clave": "pemex_petroleo",
+          "keywords": [
+            "Octavio Romero","Pemex","director de Pemex","fracking",
+            "gasolina","hidrocarburos","huachicol","huachicoleo",
+            "mezcla mexicana","perforación","petróleo","plataforma petrolera",
+            "precio del petróleo","producción de barriles","producción petrolera",
+            "refinería","toma clandestina","combustóleo","refinación",
+            "Dos Bocas","Deer Park","Cadereyta","Minatitlán","Salina Cruz"
+          ]
+        },
+        {
+          "nombre": "CFE y electricidad",
+          "clave": "cfe_electricidad",
+          "keywords": [
+            "CFE","apagón","apagón masivo","contrato de electricidad",
+            "corte de luz","electricidad","falla eléctrica","generación eléctrica",
+            "subsidio energético","tarifa doméstica","tarifas eléctricas",
+            "interconexión","subestación","red eléctrica","Manuel Bartlett",
+            "Cenace","despacho eléctrico","planta combinado de ciclo"
+          ]
+        },
+        {
+          "nombre": "Energías renovables",
+          "clave": "energias_renovables",
+          "keywords": [
+            "energía limpia","eólica","renovable","solar","transición energética",
+            "fotovoltaico","geotérmica","biomasa","biogás","hidrógeno verde",
+            "almacenamiento de energía","batería de almacenamiento","parque solar",
+            "parque eólico","energía distribuida","autoconsumo energético",
+            "certificado de energía limpia","CEL","net metering"
+          ]
+        },
+        {
+          "nombre": "Minería y recursos",
+          "clave": "mineria_recursos",
+          "keywords": [
+            "Rocío Nahle","concesión minera","gas LP","gas natural","gasoducto",
+            "litio","minería","reforma energética","secretaria de energía",
+            "soberanía energética","Litio para México","LitioMx","cobre",
+            "plata","zinc","oro","extracción minera","impacto ambiental minero",
+            "Sener","Comisión Nacional de Hidrocarburos","CNH"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Agua y Medio Ambiente",
+      "clave": "agua_medioambiente",
+      "color": "#06b6d4",
+      "icono": "💧",
+      "subcategorias": [
+        {
+          "nombre": "Gestión hídrica",
+          "clave": "gestion_hidrica",
+          "keywords": [
+            "agua potable","acuífero","concesión de agua","Conagua",
+            "sequía","presas","cuenca hidrológica","escasez de agua",
+            "derecho de agua","veda de agua","extracción de agua subterránea",
+            "trasvase","Ley de Aguas Nacionales","título de concesión hídrica",
+            "Lerma","Bravo","Balsas","Grijalva","presa Inbursa","El Zapotillo",
+            "zona de disponibilidad","contaminación de ríos","cuerpo de agua"
+          ]
+        },
+        {
+          "nombre": "Regulación ambiental",
+          "clave": "regulacion_ambiental",
+          "keywords": [
+            "impacto ambiental","MIA","manifestación de impacto ambiental",
+            "NOM ambiental","norma oficial mexicana","Semarnat","Profepa",
+            "auditoría ambiental","licencia ambiental","área natural protegida",
+            "zona de amortiguamiento","biosfera","Cofepris ambiental",
+            "secretaría de medio ambiente","infracción ambiental",
+            "clausura por contaminación","dictamen ambiental"
+          ]
+        },
+        {
+          "nombre": "Contaminación y residuos",
+          "clave": "contaminacion_residuos",
+          "keywords": [
+            "contaminación del aire","IMECA","contingencia ambiental",
+            "contaminación del suelo","contaminación del agua",
+            "residuo peligroso","residuo tóxico","pasivo ambiental",
+            "derrame","emergencia ambiental","jales mineros",
+            "Semarnat residuos","Ley General para la Prevención de Residuos",
+            "LGPGIR","tiradero","relleno sanitario","lixiviado"
+          ]
+        },
+        {
+          "nombre": "Biodiversidad y ecosistemas",
+          "clave": "biodiversidad",
+          "keywords": [
+            "deforestación","tala ilegal","veda forestal","reforestación",
+            "Conafor","servicios ecosistémicos","pago por servicios ambientales",
+            "corredor biológico","especie en riesgo","especie endémica",
+            "pérdida de biodiversidad","manglares","selva","bosque","arrecife",
+            "Semahn","tortuga marina","jaguar","vaquita marina","lobo mexicano"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Economía Circular y Residuos",
+      "clave": "economia_circular",
+      "color": "#10b981",
+      "icono": "♻️",
+      "subcategorias": [
+        {
+          "nombre": "Residuos sólidos urbanos",
+          "clave": "residuos_solidos",
+          "keywords": [
+            "basura","residuo sólido urbano","relleno sanitario","basurero",
+            "separación de residuos","reciclaje","acopio","centro de reciclaje",
+            "gestión de residuos municipales","recolección de basura",
+            "disposición final","compostaje","orgánicos","inorgánicos",
+            "tasa de reciclaje","economía circular","residuo de manejo especial"
+          ]
+        },
+        {
+          "nombre": "Plásticos y envases",
+          "clave": "plasticos_envases",
+          "keywords": [
+            "plástico de un solo uso","bolsa de plástico","unicel","popote",
+            "prohibición de plástico","envase retornable","EPR",
+            "responsabilidad extendida del productor","envase y embalaje",
+            "PET","plástico reciclado","economía circular de envases",
+            "bisfenol","microplásticos","plástico biodegradable"
+          ]
+        },
+        {
+          "nombre": "Residuos industriales y peligrosos",
+          "clave": "residuos_industriales",
+          "keywords": [
+            "REPRIS","residuo peligroso","manifiesto de residuos",
+            "confinamiento","incineración de residuos","CRETIB",
+            "corriente de residuos","empresa autorizada de residuos",
+            "eliminación de residuos","tratamiento de residuos peligrosos",
+            "Cofepris residuos","NOM-052","lodo industrial"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Cambio Climático y Sostenibilidad",
+      "clave": "cambio_climatico",
+      "color": "#6366f1",
+      "icono": "🌡",
+      "subcategorias": [
+        {
+          "nombre": "Política climática nacional",
+          "clave": "politica_climatica",
+          "keywords": [
+            "LGCC","Ley General de Cambio Climático","NDC","contribuciones nacionalmente determinadas",
+            "Plan Nacional de Adaptación","Semarnat cambio climático",
+            "Comité Intersecretarial de Cambio Climático","CICC",
+            "presupuesto climático","gasto etiquetado para cambio climático",
+            "carbono neutral","cero emisiones netas","net zero","descarbonización",
+            "inventario nacional de emisiones","INGEI"
+          ]
+        },
+        {
+          "nombre": "Impuestos y mercados de carbono",
+          "clave": "mercado_carbono",
+          "keywords": [
+            "impuesto al carbono","precio al carbono","bono de carbono",
+            "mercado voluntario de carbono","RETC","registro de emisiones",
+            "GEI","gases de efecto invernadero","huella de carbono",
+            "carbono IEPS","SINAME","mecanismo de ajuste en frontera de carbono",
+            "CBAM","VERRA","Gold Standard","certificado de reducción de emisiones"
+          ]
+        },
+        {
+          "nombre": "Fenómenos hidrometeorológicos",
+          "clave": "fenomenos_hidromet",
+          "keywords": [
+            "huracán","tormenta tropical","ciclón","frente frío","lluvias atípicas",
+            "inundación","deslizamiento","alerta temprana","Conagua fenómeno",
+            "ola de calor","sequía extrema","granizo","vaguada","nortes",
+            "temporada de ciclones","declaratoria de emergencia climatológica"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Fiscal y Regulatorio",
+      "clave": "fiscal_regulatorio",
+      "color": "#ef4444",
+      "icono": "⚖️",
+      "subcategorias": [
+        {
+          "nombre": "Impuestos ambientales estatales",
+          "clave": "impuestos_ambientales",
+          "keywords": [
+            "impuesto ecológico","impuesto ambiental","impuesto verde",
+            "impuesto sobre emisiones","impuesto sobre residuos",
+            "impuesto sobre plásticos","contribución de mejora ambiental",
+            "derecho de emisión","gaceta oficial impuesto","reforma fiscal ambiental",
+            "SAT ambiental","IEPS combustibles","IEPS pesticidas"
+          ]
+        },
+        {
+          "nombre": "Normatividad federal (NOMs)",
+          "clave": "noms_federales",
+          "keywords": [
+            "NOM","norma oficial mexicana","proyecto de norma","consulta pública NOM",
+            "Diario Oficial de la Federación","DOF","publicación NOM",
+            "COFEMER","Conamer","Mejora Regulatoria","regulación base cero",
+            "análisis de impacto regulatorio","AIR","manifestación de impacto regulatorio"
+          ]
+        },
+        {
+          "nombre": "Legislación ambiental",
+          "clave": "legislacion_ambiental",
+          "keywords": [
+            "LGEEPA","Ley del Equilibrio Ecológico","ley ambiental",
+            "reglamento ambiental","decreto presidencial ambiental",
+            "acuerdo secretarial Semarnat","reforma legal ambiental",
+            "iniciativa de ley ambiental","dictamen comisión de medio ambiente",
+            "Senado comisión de medio ambiente","Cámara de Diputados ambiental",
+            "Cofepris regulación","Ley de Bioseguridad","CIBIOGEM"
+          ]
+        },
+        {
+          "nombre": "Verificación y cumplimiento",
+          "clave": "verificacion_cumplimiento",
+          "keywords": [
+            "infracción ambiental","multa ambiental","clausura","Profepa visita",
+            "inspección ambiental","auditoría ambiental voluntaria",
+            "programa de cumplimiento","convenio de concertación",
+            "medida de urgente aplicación","querella ambiental",
+            "delito ambiental","Fiscalía ambiental","Semarnat sanción"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Industria y Manufactura",
+      "clave": "industria_manufactura",
+      "color": "#78716c",
+      "icono": "🏭",
+      "subcategorias": [
+        {
+          "nombre": "Industria química y petroquímica",
+          "clave": "quimica_petroquimica",
+          "keywords": [
+            "ANIQ","industria química","petroquímica","plástico","resina",
+            "solvente","sustancia química","inventario de sustancias",
+            "REACH México","Registro de Plaguicidas","Cofepris plaguicida",
+            "autorización de sustancia","lista de sustancias prioritarias",
+            "producto químico","insumo químico","formulación"
+          ]
+        },
+        {
+          "nombre": "Manufactura y parques industriales",
+          "clave": "manufactura_parques",
+          "keywords": [
+            "parque industrial","zona industrial","licencia de uso de suelo industrial",
+            "IMMEX","maquiladora","manufactura avanzada","industria automotriz",
+            "cluster industrial","Promexico","ProMéxico inversión",
+            "permiso de construcción industrial","impacto ambiental industrial",
+            "NOM industria","descarga industrial","emisiones industriales"
+          ]
+        },
+        {
+          "nombre": "Minería e industria extractiva",
+          "clave": "industria_extractiva",
+          "keywords": [
+            "Camimex","concesión minera suspendida","impugnación concesión minera",
+            "derecho de paso","servidumbre minera","impacto social minería",
+            "comunidad indígena minería","consulta previa CPLI",
+            "Secretaría de Economía minería","Servicio Geológico Mexicano",
+            "royalty minero","impuesto especial minería","Ley Minera reforma"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Agro y Desarrollo Rural",
+      "clave": "agro_rural",
+      "color": "#84cc16",
+      "icono": "🌾",
+      "subcategorias": [
+        {
+          "nombre": "Agricultura y cultivos",
+          "clave": "agricultura_cultivos",
+          "keywords": [
+            "Sader","Segalmex","agricultura","cosecha","distrito de riego",
+            "fertilizante","glifosato","granizada","helada","importación de maíz",
+            "maíz","maíz transgénico","plaga","precio del frijol","precio del maíz",
+            "pérdida de cosecha","riego","secretario de agricultura",
+            "sequía agrícola","soberanía alimentaria","temporal","tortilla","transgénico",
+            "cultivo protegido","invernadero","sistema de riego","temporal agrícola",
+            "apoyo al campo","subsidio agrícola","FONDEN campo","seguro agrícola",
+            "Proagro","organismo genéticamente modificado","OGM"
+          ]
+        },
+        {
+          "nombre": "Ganadería y pesca",
+          "clave": "ganaderia_pesca",
+          "keywords": [
+            "acuacultura","ganadería","ganado","pesca","flota pesquera",
+            "veda pesquera","captura de atún","captura de camarón",
+            "pesca ilegal","arrastre","pesca deportiva","Conapesca",
+            "Senasica","fiebre aftosa","tuberculosis bovina",
+            "trazabilidad ganadera","SINIIGA","rastro TIF",
+            "exportación de carne","NOM sanidad animal"
+          ]
+        },
+        {
+          "nombre": "Forestal y silvicultura",
+          "clave": "forestal",
+          "keywords": [
+            "Conafor","programa forestal","reforestación","deforestación",
+            "tala ilegal","incendio forestal","plan de manejo forestal",
+            "PMFM","autorización forestal","veda forestal","ejido forestal",
+            "aprovechamiento forestal","silvicultura comunitaria",
+            "pago por servicios ambientales","bosque certificado","FSC",
+            "madera legal","cambio de uso de suelo forestal","CUSF"
+          ]
+        },
+        {
+          "nombre": "Agua agrícola y campo",
+          "clave": "agua_agricola",
+          "keywords": [
+            "módulo de riego","distrito de riego","Conagua campo",
+            "agua para riego","concesión agrícola","acuífero sobreexplotado",
+            "presa de almacenamiento agrícola","pozos agrícolas",
+            "eficiencia hídrica","tecnificación del riego","goteo agrícola"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Transporte y Logística",
+      "clave": "transporte_logistica",
+      "color": "#3b82f6",
+      "icono": "🚛",
+      "subcategorias": [
+        {
+          "nombre": "Transporte terrestre",
+          "clave": "transporte_terrestre",
+          "keywords": [
+            "NOM transporte","verificación vehicular","holograma",
+            "transporte de carga","autotransporte","SCT","SICT",
+            "peso y dimensiones","permiso de transporte","placa",
+            "licencia de conducir federal","REPUVE","chatarrización",
+            "programa de renovación vehicular","diesel","camión",
+            "tracto camión","emisiones vehiculares"
+          ]
+        },
+        {
+          "nombre": "Infraestructura y obra pública",
+          "clave": "infraestructura_obra",
+          "keywords": [
+            "carretera","autopista","concesión carretera","PINFRA",
+            "ICA","OHL","obra pública","licitación obra","contrato obra",
+            "Capufe","Fonadin","proyecto de infraestructura","APP",
+            "asociación público privada","MIA carretera","túnel","puente"
+          ]
+        },
+        {
+          "nombre": "Puertos y comercio exterior",
+          "clave": "puertos_comercio",
+          "keywords": [
+            "puerto","Manzanillo","Veracruz","Lázaro Cárdenas","Altamira",
+            "API","Fonatur","contenedor","importación","exportación",
+            "aduana","SAT aduana","despacho aduanero","pedimento",
+            "NOM de importación","IMMEX maquila","zona libre",
+            "nearshoring","relocalización de empresas","corredor interoceánico"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Salud Pública",
+      "clave": "salud_publica",
+      "color": "#ec4899",
+      "icono": "🏥",
+      "subcategorias": [
+        {
+          "nombre": "Regulación sanitaria",
+          "clave": "regulacion_sanitaria",
+          "keywords": [
+            "Cofepris","registro sanitario","autorización sanitaria",
+            "NOM Cofepris","alerta sanitaria","retiro del mercado",
+            "publicidad alimentos","etiquetado frontal","octágono",
+            "IMSS","ISSSTE","Insabi","Imss-Bienestar",
+            "medicamento genérico","desabasto de medicamento","UNOPS"
+          ]
+        },
+        {
+          "nombre": "Sustancias y plaguicidas",
+          "clave": "sustancias_plaguicidas",
+          "keywords": [
+            "plaguicida","herbicida","fungicida","insecticida",
+            "glifosato prohibición","bromuro de metilo","clorpirifos",
+            "paraquat","Cicoplafest","Cofepris plaguicidas","Sader plaguicidas",
+            "RPP","registro de plaguicidas","importación de plaguicidas"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Comercio e Inversión",
+      "clave": "comercio_inversion",
+      "color": "#f97316",
+      "icono": "📈",
+      "subcategorias": [
+        {
+          "nombre": "Política comercial",
+          "clave": "politica_comercial",
+          "keywords": [
+            "T-MEC","TMEC","USMCA","arancel","medida arancelaria",
+            "cuota de importación","salvaguarda","antidumping",
+            "SE política comercial","SHCP arancel","SAT comercio",
+            "paneles de controversia T-MEC","OMC","reglas de origen",
+            "preferencia arancelaria","zona libre de comercio",
+            "retaliación comercial","panel laboral T-MEC"
+          ]
+        },
+        {
+          "nombre": "Inversión extranjera y nacional",
+          "clave": "inversion",
+          "keywords": [
+            "IED","inversión extranjera directa","CNIE","Comisión Nacional de Inversiones",
+            "permiso de inversión","restricción a inversión extranjera",
+            "nearshoring","industria estratégica","decreto de inversión",
+            "parque industrial nuevo","SE inversión","Proinversión",
+            "fideicomiso de inversión","FIBRA E","fondo de capital"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Política y Gobernanza",
+      "clave": "politica_gobernanza",
+      "color": "#8b5cf6",
+      "icono": "🏛",
+      "subcategorias": [
+        {
+          "nombre": "Poder Ejecutivo Federal",
+          "clave": "ejecutivo_federal",
+          "keywords": [
+            "Presidencia de la República","decreto presidencial",
+            "acuerdo presidencial","Claudia Sheinbaum","gabinete federal",
+            "plan de gobierno","programa sectorial","presupuesto federal",
+            "PEF","PPEF","Segob","Hacienda SHCP","plan nacional de desarrollo",
+            "conferencia mañanera","gira presidencial"
+          ]
+        },
+        {
+          "nombre": "Poder Legislativo Federal",
+          "clave": "legislativo_federal",
+          "keywords": [
+            "Cámara de Diputados","Senado de la República","iniciativa de ley",
+            "dictamen","comisión legislativa","reforma constitucional",
+            "sesión del congreso","periodo ordinario","periodo extraordinario",
+            "diputado","senador","grupo parlamentario","mayoría legislativa",
+            "Gaceta Parlamentaria","gaceta del Senado","orden del día"
+          ]
+        },
+        {
+          "nombre": "Gobiernos estatales",
+          "clave": "gobiernos_estatales",
+          "keywords": [
+            "gobernador","gobierno del estado","secretaría estatal",
+            "decreto estatal","ley estatal","congreso local","gaceta oficial estatal",
+            "presupuesto estatal","finanzas públicas estatales","deuda estatal",
+            "participaciones federales","auditoría superior estatal",
+            "ASF estatal","reforma a ley estatal"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Social y Derechos",
+      "clave": "social_derechos",
+      "color": "#14b8a6",
+      "icono": "🤝",
+      "subcategorias": [
+        {
+          "nombre": "Pueblos indígenas y comunidades",
+          "clave": "indigenas_comunidades",
+          "keywords": [
+            "consulta indígena","consulta previa, libre e informada","CPLI",
+            "CDI","INPI","comunidad indígena","ejido","comunidad agraria",
+            "Tribunal Agrario","RAN","derecho agrario","conflicto agrario",
+            "territorio indígena","autonomía indígena","usos y costumbres",
+            "Convenio 169 OIT","pueblos originarios"
+          ]
+        },
+        {
+          "nombre": "Trabajo y seguridad laboral",
+          "clave": "trabajo_laboral",
+          "keywords": [
+            "STPS","inspección laboral","NOM laboral","NOM-035","NOM-037",
+            "seguridad e higiene","accidente laboral","ENF laboral",
+            "sindicato","huelga","contrato colectivo","outsourcing",
+            "salario mínimo","IMSS cuotas","Infonavit","reforma laboral",
+            "panel laboral T-MEC","OTLA"
+          ]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Tecnología y Digital",
+      "clave": "tecnologia_digital",
+      "color": "#0ea5e9",
+      "icono": "💻",
+      "subcategorias": [
+        {
+          "nombre": "Regulación digital y datos",
+          "clave": "regulacion_digital",
+          "keywords": [
+            "datos personales","INAI","LFPDPPP","aviso de privacidad",
+            "ciberseguridad","infraestructura crítica digital","IFT",
+            "concesión de telecomunicaciones","espectro radioeléctrico",
+            "plataforma digital","economía digital","factura electrónica CFDI",
+            "SAT digital","inteligencia artificial regulación","IA regulación"
+          ]
+        }
+      ]
+    }
+
+  ]
+}
