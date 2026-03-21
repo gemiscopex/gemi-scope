@@ -244,7 +244,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
         </div>
       </div>
       <div class="card">
-        <div class="card-label">Monitor territorial — 32 estados · hover para info · click para detalle</div>
+        <div class="card-label">Mapa político de México</div>
         <div id="map"></div>
         <div class="map-legend">
           <span class="legend-item"><span class="legend-dot" style="background:#ff4757"></span>Crítico 70+</span>
@@ -478,6 +478,7 @@ function buildSparkWidget(){
 }
 function updateNews(){
   const list=document.getElementById('news-list');
+  if(!list)return;
   if(noticias.length===0){list.innerHTML='<div class="news-empty">Sin noticias disponibles aún<br><span style="font-size:11px">El scraper corre automáticamente cada 4 horas vía GitHub Actions</span></div>';return}
   const sorted=[...noticias].sort((a,b)=>new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0));
   const recent=sorted.slice(0,10);
