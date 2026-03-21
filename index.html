@@ -7,7 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://d3js.org/d3.v7.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -58,17 +59,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .cat-bar-wrap{width:80px;height:3px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden}
 .cat-bar{height:100%;border-radius:2px}
 .cat-count{font-size:13px;font-weight:600;color:var(--text);min-width:28px;text-align:right;font-variant-numeric:tabular-nums}
-#map svg{width:100%;height:320px}
-.estado{fill:rgba(10,194,133,0.1);stroke:rgba(0,0,0,0.12);stroke-width:0.5;cursor:pointer;transition:fill 0.15s}
-.estado:hover{fill:var(--green-btn)}
-.estado.hasnews{fill:rgba(10,194,133,0.3)}
-.estado.hasnews:hover{fill:var(--green-btn)}
-.estado.selected{fill:var(--green)!important;stroke:rgba(0,0,0,0.25);stroke-width:1}
-.tooltip{position:fixed;background:#fff;border:1px solid var(--border-med);border-radius:14px;padding:14px 16px;font-size:12px;color:var(--text);pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:9999;min-width:230px;max-width:270px;box-shadow:0 8px 32px rgba(0,0,0,0.14)}
-.tooltip.show{opacity:1}
-.tt-name{font-weight:600;margin-bottom:4px}
-.tt-badge{font-size:11px;font-weight:500;margin-bottom:3px}
-.tt-sub{font-size:11px;color:var(--text-sec)}
+#map{width:100%;height:380px;border-radius:12px;overflow:hidden}
+/* Leaflet pulsing markers */
+.pulse-marker-container{background:transparent!important;border:none!important;box-shadow:none!important}
+.pulse-marker{position:relative;width:20px;height:20px}
+.pulse-ring{position:absolute;width:40px;height:40px;top:-10px;left:-10px;border-radius:50%;animation:pulseRing 1.8s ease-out infinite;opacity:0.5}
+.pulse-core{position:absolute;width:20px;height:20px;border-radius:50%;border:2.5px solid rgba(255,255,255,0.85);box-shadow:0 2px 8px rgba(0,0,0,0.22)}
+@keyframes pulseRing{0%{transform:scale(0.5);opacity:0.65}100%{transform:scale(2.3);opacity:0}}
+.marker-label{position:absolute;bottom:-17px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:700;color:#222;white-space:nowrap;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.06em;text-shadow:0 1px 3px rgba(255,255,255,0.95)}
+/* Leaflet popup override */
+.scope-popup .leaflet-popup-content-wrapper{border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.16);border:1px solid rgba(0,0,0,0.07);padding:0}
+.scope-popup .leaflet-popup-content{margin:16px;font-family:'Inter',sans-serif}
+.scope-popup .leaflet-popup-tip-container{display:none}
 .spark-widget{display:flex;flex-direction:column;gap:0}
 .spark-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:0.8px solid var(--border);cursor:pointer;border-radius:6px;transition:background 0.12s}
 .spark-row:hover{background:rgba(10,194,133,0.06)}
@@ -129,15 +131,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .score-alto{background:#fff7ed;color:#c2410c}
 .score-medio{background:#ecfdf5;color:#065f46}
 .score-baixo{background:#f3f4f6;color:#6b7280}
-/* Map pulsing animations */
-@keyframes mapPulseCritico{0%,100%{stroke-width:0.5;stroke-opacity:0.4}50%{stroke-width:3;stroke-opacity:1}}
-@keyframes mapPulseAlto{0%,100%{stroke-width:0.5;stroke-opacity:0.3}50%{stroke-width:1.8;stroke-opacity:0.9}}
-.estado.nivel-critico{animation:mapPulseCritico 1.8s ease-in-out infinite;stroke:#ef4444!important}
-.estado.nivel-alto{animation:mapPulseAlto 2.4s ease-in-out infinite;stroke:#f97316!important}
-.estado.nivel-moderado{stroke:#10b981!important;stroke-width:0.5}
-.estado.nivel-bajo{stroke:rgba(0,0,0,0.1)!important;stroke-width:0.5}
-/* State abbreviation labels */
-.estado-lbl{font-size:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;fill:rgba(0,0,0,0.55);text-anchor:middle;dominant-baseline:middle;pointer-events:none;letter-spacing:0.03em}
 .map-legend{display:flex;flex-wrap:wrap;gap:10px;padding:6px 14px 10px;font-size:10px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted)}
 .legend-item{display:flex;align-items:center;gap:4px}
 .legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
@@ -232,10 +225,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
         <div class="card-label">Monitor territorial — 32 estados · hover para info · click para detalle</div>
         <div id="map"></div>
         <div class="map-legend">
-          <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span>Crítico 70+</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#f97316"></span>Alto 45–69</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#10b981"></span>Moderado 20–44</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#9ca3af"></span>Bajo 0–19</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#ff4757"></span>Crítico 70+</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#ffa502"></span>Alto 45–69</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#2ed573"></span>Moderado 20–44</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#a4b0be"></span>Bajo 0–19</span>
         </div>
         <div id="score-nac" style="font-size:11px;color:var(--text-muted);padding:0 0 4px;letter-spacing:0.02em"></div>
       </div>
@@ -391,6 +384,7 @@ const leyes=[
 ];
 let noticias=[],catCounts={},stateNews={},impuestosDB={},stateScores={},alertas=[];
 const STATE_ABBR={'Aguascalientes':'AGS','Baja California':'BC','Baja California Sur':'BCS','Campeche':'CAM','Chiapas':'CHIS','Chihuahua':'CHIH','Ciudad de México':'CDMX','Coahuila':'COAH','Colima':'COL','Durango':'DGO','Guanajuato':'GTO','Guerrero':'GRO','Hidalgo':'HGO','Jalisco':'JAL','México':'MEX','Michoacán':'MICH','Morelos':'MOR','Nayarit':'NAY','Nuevo León':'NL','Oaxaca':'OAX','Puebla':'PUE','Querétaro':'QRO','Quintana Roo':'QROO','San Luis Potosí':'SLP','Sinaloa':'SIN','Sonora':'SON','Tabasco':'TAB','Tamaulipas':'TAM','Tlaxcala':'TLAX','Veracruz':'VER','Yucatán':'YUC','Zacatecas':'ZAC'};
+const STATE_COORDS={'Aguascalientes':[21.876,-102.296],'Baja California':[30.840,-115.285],'Baja California Sur':[26.011,-111.346],'Campeche':[19.830,-90.535],'Chiapas':[16.756,-93.129],'Chihuahua':[28.632,-106.068],'Ciudad de México':[19.432,-99.133],'Coahuila':[27.058,-101.706],'Colima':[19.245,-103.724],'Durango':[24.027,-104.653],'Guanajuato':[20.917,-101.162],'Guerrero':[17.549,-99.500],'Hidalgo':[20.091,-98.762],'Jalisco':[20.659,-103.349],'México':[19.359,-99.851],'Michoacán':[19.566,-101.707],'Morelos':[18.924,-99.233],'Nayarit':[21.751,-104.845],'Nuevo León':[25.592,-99.996],'Oaxaca':[17.073,-96.726],'Puebla':[19.041,-98.206],'Querétaro':[20.588,-100.389],'Quintana Roo':[19.181,-88.480],'San Luis Potosí':[22.150,-100.976],'Sinaloa':[25.022,-107.604],'Sonora':[29.291,-110.309],'Tabasco':[17.987,-92.948],'Tamaulipas':[24.266,-98.836],'Tlaxcala':[19.318,-98.238],'Veracruz':[19.173,-96.134],'Yucatán':[20.710,-89.073],'Zacatecas':[22.770,-102.583]};
 function qa(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'')}
 function catArt(t){
   const s=qa(t.toLowerCase());
@@ -480,68 +474,45 @@ function updateNews(){
 function updateLeyes(){
   document.getElementById('leyes-grid').innerHTML=leyes.map(l=>`<a class="ley-item" href="${l.u}" target="_blank" rel="noopener"><div class="ley-sigla">${l.s}</div><div><div class="ley-nombre">${l.n}</div><div class="ley-tema">${l.t}</div></div></a>`).join('');
 }
-async function buildMap(){
-  const geo=await d3.json('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json');
-  const container=document.getElementById('map');
-  const w=container.clientWidth||500,h=270;
-  const svg=d3.select('#map').append('svg').attr('viewBox','0 0 '+w+' '+h).style('overflow','visible');
-  const proj=d3.geoMercator().fitSize([w,h],geo);
-  const path=d3.geoPath().projection(proj);
-  const tt=document.getElementById('tt');
-  /* State paths — colored + pulsing by score level */
-  svg.selectAll('path.estado').data(geo.features).join('path')
-    .attr('class',function(d){
-      var n=d.properties.name,m=(stateScores[n]||{}).master||0;
-      var lvl=m>=70?'nivel-critico':m>=45?'nivel-alto':m>=20?'nivel-moderado':'nivel-bajo';
-      return 'estado '+lvl;
-    })
-    .attr('fill',function(d){return scoreColor((stateScores[d.properties.name]||{}).master||0);})
-    .attr('d',path)
-    .on('mousemove',function(event,d){
-      var n=d.properties.name;
-      var nc=stateNews[n]||0;
-      var sc=stateScores[n]||{};
-      var abbr=STATE_ABBR[n]||n.substring(0,3).toUpperCase();
-      var col=scoreColor(sc.master||0);
-      var lbl=scoreLabel(sc.master||0);
-      var html='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)">';
-      html+='<div><div style="font-size:9px;font-weight:700;color:var(--text-muted);letter-spacing:0.8px">'+abbr+'</div>';
-      html+='<div style="font-size:15px;font-weight:700;color:var(--text);line-height:1.2">'+n+'</div></div>';
-      html+='<span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:'+col+'20;color:'+col+'">'+lbl+' '+(sc.master||0)+'</span>';
-      html+='</div>';
-      if(sc.master){
-        html+='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:10px">';
-        var idxs=[['ICR',sc.icr||0],['IPR',sc.ipr||0],['IRF',sc.irf||0],['IIS',sc.iis||0]];
-        idxs.forEach(function(ix){
-          html+='<div style="text-align:center;border-radius:6px;padding:5px 2px;background:'+scoreColor(ix[1])+'18">';
-          html+='<div style="font-size:9px;color:var(--text-muted);font-weight:700;letter-spacing:0.3px">'+ix[0]+'</div>';
-          html+='<div style="font-size:14px;font-weight:700;color:'+scoreColor(ix[1])+'">'+ix[1]+'</div>';
-          html+='</div>';
-        });
-        html+='</div>';
-      }
-      if(nc>0){html+='<div style="font-size:11px;color:var(--text-sec);margin-bottom:6px">&#9679; '+nc+' noticia'+(nc>1?'s':'')+' esta semana</div>';}
-      else{html+='<div style="font-size:11px;color:var(--text-muted);margin-bottom:6px">Sin actividad reciente</div>';}
-      html+='<div style="font-size:10px;color:var(--text-muted);text-align:center;border-top:1px solid var(--border);padding-top:8px">Haz clic para panel completo</div>';
-      tt.innerHTML=html;
-      tt.classList.add('show');
-      tt.style.left=(event.clientX+18)+'px';
-      tt.style.top=(event.clientY-24)+'px';
-    })
-    .on('mouseleave',function(){tt.classList.remove('show');})
-    .on('click',function(event,d){
-      tt.classList.remove('show');
-      d3.selectAll('.estado').classed('selected',false);
-      d3.select(event.currentTarget).classed('selected',true);
-      openStatePanel(d.properties.name);
-    });
-  /* State abbreviation labels */
-  svg.selectAll('text.estado-lbl').data(geo.features).join('text')
-    .attr('class','estado-lbl')
-    .attr('x',function(d){var c=path.centroid(d);return isNaN(c[0])?0:c[0];})
-    .attr('y',function(d){var c=path.centroid(d);return isNaN(c[1])?0:c[1];})
-    .text(function(d){return STATE_ABBR[d.properties.name]||'';});
+var _scopeMap=null;
+function buildMap(){
+  if(_scopeMap){_scopeMap.remove();_scopeMap=null;}
+  var map=L.map('map',{center:[23.6345,-102.5528],zoom:5,scrollWheelZoom:false,zoomControl:true,attributionControl:false});
+  _scopeMap=map;
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,subdomains:'abcd'}).addTo(map);
+  Object.keys(STATE_COORDS).forEach(function(state){
+    var coords=STATE_COORDS[state];
+    if(!coords)return;
+    var sc=stateScores[state]||{master:0,icr:0,ipr:0,irf:0,iis:0,rank:32};
+    var col=scoreColor(sc.master||0);
+    var abbr=STATE_ABBR[state]||state.substring(0,3).toUpperCase();
+    var icon=L.divIcon({className:'pulse-marker-container',iconSize:[20,20],iconAnchor:[10,10],html:'<div class="pulse-marker"><div class="pulse-ring" style="background:'+col+'"></div><div class="pulse-core" style="background:'+col+'"></div><div class="marker-label">'+abbr+'</div></div>'});
+    var marker=L.marker([coords[0],coords[1]],{icon:icon}).addTo(map);
+    var lbl=scoreLabel(sc.master||0);
+    var nc=stateNews[state]||0;
+    var popHtml='<div style="min-width:180px">';
+    popHtml+='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #eee">';
+    popHtml+='<div><div style="font-size:9px;font-weight:700;color:#888;letter-spacing:0.8px">'+abbr+'</div>';
+    popHtml+='<div style="font-size:15px;font-weight:700;color:#111;line-height:1.2">'+state+'</div></div>';
+    popHtml+='<span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:'+col+'22;color:'+col+'">'+lbl+' '+(sc.master||0)+'</span>';
+    popHtml+='</div>';
+    if(sc.master){
+      popHtml+='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-bottom:8px">';
+      [['ICR',sc.icr||0],['IPR',sc.ipr||0],['IRF',sc.irf||0],['IIS',sc.iis||0]].forEach(function(ix){
+        popHtml+='<div style="text-align:center;border-radius:5px;padding:4px 2px;background:'+scoreColor(ix[1])+'18"><div style="font-size:8px;color:#888;font-weight:700">'+ix[0]+'</div><div style="font-size:13px;font-weight:700;color:'+scoreColor(ix[1])+'">'+ix[1]+'</div></div>';
+      });
+      popHtml+='</div>';
+    }
+    if(nc>0){popHtml+='<div style="font-size:11px;color:#555;margin-bottom:8px">'+nc+' noticia'+(nc>1?'s':'')+' reciente'+(nc>1?'s':'')+'</div>';}
+    var stateEsc=state.replace(/'/g,"\'");
+    popHtml+='<button onclick="openStatePanel(\''+stateEsc+'\')" style="width:100%;padding:7px;background:#0ac285;color:#fff;border:none;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif">Ver panel completo \u2192</button>';
+    popHtml+='</div>';
+    marker.bindPopup(popHtml,{className:'scope-popup',maxWidth:240,closeButton:false});
+    marker.on('mouseover',function(){this.openPopup();});
+    marker.on('click',function(){openStatePanel(state);});
+  });
 }
+
 function showTab(id,btn){
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
@@ -665,7 +636,6 @@ function openStatePanel(stateName){
 function closeStatePanel(){
   document.getElementById('state-modal-bg').style.display='none';
   document.body.style.overflow='';
-  d3.selectAll('.estado').classed('selected',false);
 }
 /* ── SCOPE 3 SCORING ENGINE ── */
 function scoreColor(score){if(score>=70)return'#ef4444';if(score>=45)return'#f97316';if(score>=20)return'#10b981';return'#9ca3af';}
