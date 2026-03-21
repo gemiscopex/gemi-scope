@@ -22,18 +22,18 @@
   --radius:16px;
 }
 body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--text);min-height:100vh;padding-bottom:48px}
-.nav{background:#fff;border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
-.nav-left{display:flex;align-items:baseline;gap:12px}
+.nav{background:#fff;border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:stretch;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100;gap:0}
+.nav-left{display:flex;align-items:center;gap:12px;flex-shrink:0;padding-right:20px;border-right:1px solid var(--border)}
 .nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;letter-spacing:0.08em;color:var(--green)}
 .nav-tagline{font-size:11px;color:var(--text-muted);letter-spacing:0.05em;font-weight:400}
-.nav-time{font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums}
-.tabs{display:flex;padding:0 28px;border-bottom:1px solid var(--border);background:#fff}
-.tab-btn{padding:13px 0;margin-right:24px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:'Inter',sans-serif}
+.nav-time{font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums;align-self:center;flex-shrink:0;padding-left:20px}
+.nav-tabs{display:flex;align-items:stretch;flex:1;padding:0 4px 0 20px}
+.tab-btn{padding:0 2px;margin-right:20px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:'Inter',sans-serif;white-space:nowrap}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
 .main{max-width:1200px;margin:0 auto;padding:24px 28px}
 .card{background:#fff;border:0.8px solid var(--border-med);border-radius:var(--radius);padding:22px 24px}
 .card-label{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:18px}
-.top-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.top-grid{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:14px}
 .top-hero{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
 .top-hero-cat{font-size:11px;color:var(--text-sec);letter-spacing:0.04em;margin-bottom:6px;font-weight:500}
 .top-hero-count{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:700;color:var(--green);line-height:1;letter-spacing:-0.01em}
@@ -58,7 +58,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .cat-bar-wrap{width:80px;height:3px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden}
 .cat-bar{height:100%;border-radius:2px}
 .cat-count{font-size:13px;font-weight:600;color:var(--text);min-width:28px;text-align:right;font-variant-numeric:tabular-nums}
-#map svg{width:100%;height:260px}
+#map svg{width:100%;height:320px}
 .estado{fill:rgba(10,194,133,0.1);stroke:rgba(0,0,0,0.12);stroke-width:0.5;cursor:pointer;transition:fill 0.15s}
 .estado:hover{fill:var(--green-btn)}
 .estado.hasnews{fill:rgba(10,194,133,0.3)}
@@ -156,6 +156,26 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .radar-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);transition:all 0.15s;white-space:nowrap;font-family:'Inter',sans-serif}
 .act-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:'Inter',sans-serif}
 .act-btn.active{background:var(--green-tint);border-color:var(--green);color:var(--green)}
+/* News Ticker */
+.news-ticker-wrap{height:340px;overflow:hidden;position:relative}
+.news-ticker-inner{animation:tickerScroll 40s linear infinite}
+.news-ticker-inner:hover{animation-play-state:paused;cursor:pointer}
+@keyframes tickerScroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+.ticker-item{padding:9px 0;border-bottom:0.8px solid var(--border);cursor:pointer}
+.ticker-item:hover .ticker-title{color:var(--green)}
+.ticker-title{font-size:12px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:4px}
+.ticker-meta{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.ticker-badge{font-size:9px;font-weight:700;letter-spacing:0.4px;padding:2px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.ticker-date{font-size:10px;color:var(--text-muted);white-space:nowrap}
+/* State Modal */
+.state-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.42);z-index:1000;display:flex;align-items:flex-start;justify-content:flex-end;padding:16px}
+.state-modal{background:#fff;border-radius:20px;width:600px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow-y:auto;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,0.2);animation:modalIn 0.22s ease;flex-shrink:0}
+@keyframes modalIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+/* Bottom 50/50 widgets */
+.bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+/* Gaceta link item */
+.gaceta-link-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-tint);border-radius:10px;text-decoration:none;color:var(--text);font-size:12px;font-weight:500;margin-bottom:6px;border:1px solid rgba(10,194,133,0.15);transition:background 0.15s}
+.gaceta-link-item:hover{background:rgba(10,194,133,0.15)}
 </style>
 </head>
 <body>
@@ -165,24 +185,51 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     <span class="nav-logo">SCOPE</span>
     <span class="nav-tagline">UNA PLATAFORMA DE INICIATIVA GEMI</span>
   </div>
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
+    <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación Federal</button>
+    <button class="tab-btn" onclick="showTab('alertas',this)" id="btn-alertas">Alertas <span id="alertas-badge" class="nav-badge" style="display:none"></span></button>
+    <button class="tab-btn" onclick="showTab('radares',this)">Radares</button>
+  </div>
   <span class="nav-time" id="nav-clock"></span>
 </nav>
-<div class="tabs">
-  <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
-  <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación Federal</button>
-  <button class="tab-btn" onclick="showTab('alertas',this)" id="btn-alertas">Alertas <span id="alertas-badge" class="nav-badge" style="display:none"></span></button>
-  <button class="tab-btn" onclick="showTab('radares',this)">Radares</button>
+<!-- STATE MODAL -->
+<div id="state-modal-bg" class="state-modal-bg" style="display:none" onclick="closeStatePanel()">
+  <div class="state-modal" onclick="event.stopPropagation()">
+    <div class="sp-header">
+      <div>
+        <span class="sp-name" id="sp-name"></span>
+        <span class="sp-sub" id="sp-sub"></span>
+      </div>
+      <button class="sp-close" onclick="closeStatePanel()">✕ Cerrar</button>
+    </div>
+    <div class="sp-tabs">
+      <button class="sp-tab active" onclick="showSPTab('perfil',this)">PERFIL</button>
+      <button class="sp-tab" onclick="showSPTab('legislacion',this)">LEGISLACIÓN</button>
+      <button class="sp-tab" onclick="showSPTab('impuestos',this)">IMPUESTOS</button>
+      <button class="sp-tab" onclick="showSPTab('actividad',this)">ACTIVIDAD</button>
+      <button class="sp-tab" onclick="showSPTab('sectorial',this)">RIESGO SECTORIAL</button>
+      <button class="sp-tab" onclick="showSPTab('gaceta',this)">GACETA</button>
+    </div>
+    <div id="sp-perfil" class="sp-content active"></div>
+    <div id="sp-legislacion" class="sp-content"></div>
+    <div id="sp-impuestos" class="sp-content"></div>
+    <div id="sp-actividad" class="sp-content"></div>
+    <div id="sp-sectorial" class="sp-content"></div>
+    <div id="sp-gaceta" class="sp-content"></div>
+  </div>
 </div>
 <div class="main">
   <div class="tab-content active" id="tab-dashboard">
     <div class="top-grid">
-      <div class="card">
-        <div class="card-label">Mayor actividad esta semana</div>
-        <div id="top-hero"></div>
-        <ul class="cat-list" id="cat-list"></ul>
+      <div class="card" style="display:flex;flex-direction:column;overflow:hidden">
+        <div class="card-label">Últimas Noticias</div>
+        <div class="news-ticker-wrap" id="news-ticker-wrap">
+          <div class="news-ticker-inner" id="news-ticker"></div>
+        </div>
       </div>
       <div class="card">
-        <div class="card-label">Monitor territorial — 32 estados · hover para info · click para panel</div>
+        <div class="card-label">Monitor territorial — 32 estados · hover para info · click para detalle</div>
         <div id="map"></div>
         <div class="map-legend">
           <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span>Crítico 70+</span>
@@ -193,33 +240,14 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
         <div id="score-nac" style="font-size:11px;color:var(--text-muted);padding:0 0 4px;letter-spacing:0.02em"></div>
       </div>
     </div>
-    <div class="card" style="margin-bottom:14px">
-      <div class="card-label">Ranking de presión regulatoria</div>
-      <div id="ranking-list" style="margin-top:4px"></div>
-    </div>
-    <div id="state-panel" class="state-panel" style="display:none">
+    <div class="bottom-row">
       <div class="card">
-        <div class="sp-header">
-          <div>
-            <span class="sp-name" id="sp-name"></span>
-            <span class="sp-sub" id="sp-sub"></span>
-          </div>
-          <button class="sp-close" onclick="closeStatePanel()">✕ Cerrar</button>
-        </div>
-        <div class="sp-tabs">
-          <button class="sp-tab active" onclick="showSPTab('perfil',this)">PERFIL</button>
-          <button class="sp-tab" onclick="showSPTab('legislacion',this)">LEGISLACIÓN</button>
-          <button class="sp-tab" onclick="showSPTab('impuestos',this)">IMPUESTOS</button>
-          <button class="sp-tab" onclick="showSPTab('actividad',this)">ACTIVIDAD</button>
-          <button class="sp-tab" onclick="showSPTab('sectorial',this)">RIESGO SECTORIAL</button>
-          <button class="sp-tab" onclick="showSPTab('gaceta',this)">GACETA</button>
-        </div>
-        <div id="sp-perfil" class="sp-content active"></div>
-        <div id="sp-legislacion" class="sp-content"></div>
-        <div id="sp-impuestos" class="sp-content"></div>
-        <div id="sp-actividad" class="sp-content"></div>
-        <div id="sp-sectorial" class="sp-content"></div>
-        <div id="sp-gaceta" class="sp-content"></div>
+        <div class="card-label">Actividad Legislativa Federal</div>
+        <div id="widget-federal"></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Monitoreo Estatal de Gacetas</div>
+        <div id="widget-gacetas"></div>
       </div>
     </div>
     <div class="card" style="margin-bottom:14px">
@@ -433,7 +461,7 @@ function buildSparkWidget(){
     const pct=Math.round((cnt/total)*100);
     const arrow=cnt>0?'↑':'→';
     const arrowColor=cnt>0?c.color:'rgba(0,0,0,0.2)';
-    return `<div class="spark-row" onclick="showCatNews('${c.id}','${c.name}','${c.color}')" title="Ver \u00faltimas noticias de ${c.name}"><span class="spark-dot" style="background:${c.color}"></span><span class="spark-name">${c.name}</span>${sparkSVG(cnt,c.color)}<span style="font-size:11px;color:var(--text-muted);min-width:28px;text-align:right">${pct}%</span><span class="spark-count">${cnt}</span><span class="spark-arrow" style="color:${arrowColor}">${arrow}</span></div>`;
+    return `<div class="spark-row" style="cursor:default"><span class="spark-dot" style="background:${c.color}"></span><span class="spark-name">${c.name}</span>${sparkSVG(cnt,c.color)}<span style="font-size:11px;color:var(--text-muted);min-width:28px;text-align:right">${pct}%</span><span class="spark-count">${cnt}</span><span class="spark-arrow" style="color:${arrowColor}">${arrow}</span></div>`;
   }).join('');
 }
 function updateNews(){
@@ -619,8 +647,8 @@ function renderSPGaceta(state,data){
     </a>${list}`;
 }
 function openStatePanel(stateName){
-  const data=estadoData[stateName]||{};
-  const sc=stateScores[stateName]||{icr:0,ipr:0,irf:0,iis:0,master:0,rank:32};
+  var data=estadoData[stateName]||{};
+  var sc=stateScores[stateName]||{icr:0,ipr:0,irf:0,iis:0,master:0,rank:32};
   document.getElementById('sp-name').textContent=stateName;
   document.getElementById('sp-sub').textContent=(data.region||'')+(data.region?' \u00b7 ':'')+'M\u00e9xico';
   renderSPPerfil(stateName,data,sc);
@@ -629,12 +657,14 @@ function openStatePanel(stateName){
   renderSPActividad(stateName);
   renderSPSectorial(stateName);
   renderSPGaceta(stateName,data);
-  showSPTab('perfil',document.querySelector('.sp-tab'));
-  const p=document.getElementById('state-panel');
-  p.style.display='block';
+  showSPTab('perfil',document.querySelector('#state-modal-bg .sp-tab'));
+  var bg=document.getElementById('state-modal-bg');
+  bg.style.display='flex';
+  document.body.style.overflow='hidden';
 }
 function closeStatePanel(){
-  document.getElementById('state-panel').style.display='none';
+  document.getElementById('state-modal-bg').style.display='none';
+  document.body.style.overflow='';
   d3.selectAll('.estado').classed('selected',false);
 }
 /* ── SCOPE 3 SCORING ENGINE ── */
@@ -793,7 +823,6 @@ function showRadarTema(temaId){
   const el=document.getElementById('radar-panel');
   if(!el)return;
   el.innerHTML=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
-    <span style="font-size:36px">${tema.icon}</span>
     <div><div style="font-size:20px;font-weight:700;color:var(--text)">${tema.name}</div>
     <div style="font-size:12px;color:var(--text-muted)">${totalArts} noticias en base</div></div>
     <div class="sp-stat" style="margin-left:auto;text-align:center;min-width:70px">
@@ -889,22 +918,89 @@ function renderSPSectorial(state){
     ${rows}
     <div style="font-size:10px;color:var(--text-muted);margin-top:10px">Basado en perfil econ\u00f3mico-industrial del estado + complejidad normativa activa.</div>`;
 }
+function renderLatestNewsTicker(){
+  var el=document.getElementById('news-ticker');
+  if(!el)return;
+  var items=[...noticias].sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);}).slice(0,20);
+  if(!items.length){el.innerHTML='<div style="color:var(--text-muted);font-size:12px;padding:20px 0;text-align:center">Sin noticias disponibles<br><span style="font-size:10px">El scraper corre cada 4h vía GitHub Actions</span></div>';return;}
+  var html='';
+  for(var i=0;i<items.length;i++){
+    var n=items[i];
+    var cat=null;
+    for(var j=0;j<CATS.length;j++){if(catArt(n.titulo||'')===CATS[j].id){cat=CATS[j];break;}}
+    var badgeHtml=cat?'<span class="ticker-badge" style="background:'+cat.color+'22;color:'+cat.color+'">'+cat.name+'</span>':'';
+    var fecha=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+    var url=(n.url||'#').replace(/'/g,'%27');
+    html+='<div class="ticker-item" onclick="window.open(\''+url+'\',\'_blank\')">';
+    html+='<div class="ticker-title">'+(n.titulo||'')+'</div>';
+    html+='<div class="ticker-meta">'+badgeHtml+'<span class="ticker-date">'+fecha+'</span></div>';
+    html+='</div>';
+  }
+  el.innerHTML=html+html;
+}
+function renderWidgetFederal(){
+  var el=document.getElementById('widget-federal');
+  if(!el)return;
+  var gacetas=[
+    {name:'Gaceta Parlamentaria — Cámara de Diputados',url:'https://gaceta.diputados.gob.mx/'},
+    {name:'Gaceta del Senado de la República',url:'https://www.senado.gob.mx/65/gaceta_del_senado'},
+    {name:'Diario Oficial de la Federación (DOF)',url:'https://www.dof.gob.mx/'}
+  ];
+  var kws=['diputados','senado','congreso','camara de diputados','sesion plenaria','iniciativa de ley','legislativo federal','reforma federal'];
+  var arts=noticias.filter(function(n){
+    var t=qa((n.titulo||'').toLowerCase());
+    return kws.some(function(k){return t.includes(k);});
+  }).sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);}).slice(0,5);
+  var html='';
+  gacetas.forEach(function(g){
+    html+='<a href="'+g.url+'" target="_blank" class="gaceta-link-item"><span style="flex:1">'+g.name+'</span><span style="color:var(--green);font-size:14px;font-weight:600">↗</span></a>';
+  });
+  html+='<div style="font-size:10px;font-weight:700;letter-spacing:0.7px;color:var(--text-muted);text-transform:uppercase;margin:14px 0 8px">Actividad reciente detectada</div>';
+  if(arts.length){arts.forEach(function(n){html+='<div class="sp-news-item"><div class="sp-news-title"><a href="'+(n.url||'#')+'" target="_blank">'+(n.titulo||'')+'</a></div><div class="sp-news-meta">'+formatFecha(n.fecha_publicacion)+'</div></div>';});}
+  else{html+='<div class="sp-empty">Sin actividad federal en el período de monitoreo</div>';}
+  el.innerHTML=html;
+}
+function renderWidgetGacetas(){
+  var el=document.getElementById('widget-gacetas');
+  if(!el)return;
+  var kws=['gaceta','periodico oficial','legislatura','decreto estatal','reforma','congreso local','sesion ordinaria'];
+  var activity={};
+  Object.keys(estadoData).forEach(function(s){activity[s]=filterNoticiasEstado(s,kws).length;});
+  var active=Object.entries(activity).filter(function(e){return e[1]>0;}).sort(function(a,b){return b[1]-a[1];}).slice(0,10);
+  var html='<div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Estados con actividad detectada en gacetas y periódicos oficiales</div>';
+  if(active.length){
+    active.forEach(function(e){
+      var s=e[0],cnt=e[1];
+      var sc=stateScores[s]||{};
+      var col=scoreColor(sc.master||0);
+      var abbr=STATE_ABBR[s]||s.substring(0,3).toUpperCase();
+      html+='<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:0.8px solid var(--border);cursor:pointer" onclick="openStatePanel(\''+s+'\')">';
+      html+='<span style="font-size:10px;font-weight:700;color:var(--text-muted);min-width:32px">'+abbr+'</span>';
+      html+='<span style="font-size:12px;flex:1;color:var(--text)">'+s+'</span>';
+      html+='<span style="font-size:10px;color:var(--text-muted)">'+cnt+' nota'+(cnt>1?'s':'')+'</span>';
+      html+='<span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:'+col+'22;color:'+col+'">'+scoreLabel(sc.master||0)+'</span>';
+      html+='</div>';
+    });
+  } else {html+='<div class="sp-empty">Sin actividad en gacetas estatales detectada en el período</div>';}
+  el.innerHTML=html;
+}
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
   processData();
   computeScores();
-  updateStatus();updateActividadPanel();buildSparkWidget();updateNews();updateLeyes();buildMap();
-  renderRankingWidget();
+  updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
   renderScoreNacional();
   renderAlertas('all');
+  renderWidgetFederal();
+  renderWidgetGacetas();
   const rsel=document.getElementById('radar-selector');
   if(rsel){
     RADAR_TEMAS.forEach((t,i)=>{
       const btn=document.createElement('button');
       btn.className='radar-btn';
       if(i===0){btn.style.background=t.color;btn.style.borderColor=t.color;btn.style.color='#fff';}
-      btn.innerHTML=t.icon+' '+t.name;
+      btn.textContent=t.name;
       btn.onclick=()=>{
         document.querySelectorAll('.radar-btn').forEach(b=>{b.style.background='';b.style.borderColor='';b.style.color='';});
         btn.style.background=t.color;btn.style.borderColor=t.color;btn.style.color='#fff';
