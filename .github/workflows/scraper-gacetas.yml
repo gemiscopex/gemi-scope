@@ -28,4 +28,10 @@ jobs:
           git config user.name "SCOPE Bot"
           git config user.email "scope-bot@gemiscopex.github.io"
           git add data/gaceta-federal.json
-          git diff --staged --quiet && echo "Sin cambios" || (git commit -m "Auto: Gacetas SCOPE $(date +%Y-%m-%d)" && git push)
+          if git diff --staged --quiet; then
+            echo "Sin cambios nuevos"
+          else
+            git commit -m "Auto: Gacetas SCOPE $(date +%Y-%m-%d)"
+            git pull --rebase origin main
+            git push
+          fi
