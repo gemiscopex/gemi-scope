@@ -1,33 +1,36 @@
-name: GEMI Scope Scraper
+name: SCOPE - Scraper Diario Automatico
 
 on:
   schedule:
-    - cron: '0 */4 * * *'
+    - cron: "0 14 * * 1-5"
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.12"
 
-      - name: Install dependencies
+      - name: Instalar dependencias
         run: pip install -r requirements.txt
 
-      - name: Run scraper
+      - name: Scraper de noticias (Google News RSS)
         run: python scraper/scraper.py
 
-      - name: Commit and push changes
+      - name: Scraper de gacetas legislativas
+        run: python scraper/scraper_gacetas.py --no-upload
+
+      - name: Commit y push
         run: |
-          git config --local user.email "gemi-scope-bot@github.com"
-          git config --local user.name "GEMI Scope Bot"
-          git add data/noticias.json
-          git diff --staged --quiet || git commit -m "Actualizacion de noticias"
+          git config user.name "SCOPE Bot"
+          git config user.email "scope-bot@igemiac.com"
+          git add data/noticias.json data/gaceta-federal.json
+          git diff --staged --quiet || git commit -m "Actualiza noticias y gacetas SCOPE $(date +%Y-%m-%d)"
           git push
