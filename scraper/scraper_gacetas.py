@@ -1,412 +1,627 @@
-#!/usr/bin/env python3
 """
-SCOPE - Scraper de Actividad Legislativa Federal
-Fuentes: Gaceta Parlamentaria (Diputados) + Gaceta del Senado
-Filtro:  Solo iniciativas relevantes a los temas SCOPE
-Salida:  data/gaceta-federal.json
+SCOPE - Scraper Legislativo Federal
+Adaptado de gaceta.py + gaceta_senado.py + clasificador.py originales.
+
+Arquitectura:
+  Diputados: 3 niveles (dia -> Anexos II/III -> subpaginas -> documentos)
+  Senado: AJAX calendario -> paginas diarias -> secciones -> documentos
+
+Filtros: solo iniciativas, proposiciones con punto de acuerdo, dictamenes.
+Clasifica en 8 categorias SCOPE. Max 10 por camara, acumula el mes.
 """
 
-import json
 import re
 import time
-import os
+import json
+import math
+import logging
+import warnings
+import argparse
+import base64
+import unicodedata
+import urllib.request
 from datetime import datetime, timedelta
-from urllib.parse import urljoin
+from collections import Counter
 
-try:
-    import requests
-    from bs4 import BeautifulSoup
-except ImportError:
-    print("Instala dependencias: pip install requests beautifulsoup4")
-    raise
+import requests
+from bs4 import BeautifulSoup
 
-# ──────────────────────────────────────────────
-# KEYWORDS SCOPE (temas que monitoreamos)
-# ──────────────────────────────────────────────
-SCOPE_KEYWORDS = [
-    # Agua
-    "agua", "hidrico", "hídrico", "acuifero", "acuífero", "cuenca", "riego",
-    "saneamiento", "potable", "aguanacional", "ley de aguas",
-    # Energía y emisiones
-    "energia", "energía", "electrica", "eléctrica", "electricidad",
-    "renovable", "solar", "eolica", "eólica", "geotermia", "hidrogeno",
-    "hidrogeno verde", "cfe", "pemex", "hidrocarburo", "petroleo", "petróleo",
-    "gas natural", "gas lp", "carbon", "carbono", "emision", "emisión",
-    "huella de carbono", "transicion energetica", "transición energética",
-    "generacion electrica", "generación eléctrica",
-    # Medio ambiente / ecología
-    "medio ambiente", "ambiental", "ecologia", "ecología", "ecologico",
-    "ecosistema", "biodiversidad", "flora", "fauna", "vida silvestre",
-    "areas naturales protegidas", "áreas naturales protegidas",
-    "lgeepa", "semarnat", "profepa",
-    # Residuos y economía circular
-    "residuos", "basura", "reciclaje", "reciclado", "plastico", "plástico",
-    "plasticos", "plásticos", "envase", "embalaje", "relleno sanitario",
-    "economia circular", "economía circular", "reutilizacion", "reutilización",
-    "residuo solido", "residuo sólido", "lgpgir",
-    # Cambio climático
-    "cambio climatico", "cambio climático", "climatico", "climático",
-    "calentamiento global", "carbono", "ndc", "paris", "cop",
-    "lgcc", "adaptacion", "adaptación", "mitigacion", "mitigación",
-    # Contaminación
-    "contaminacion", "contaminación", "contaminante", "tóxico", "toxico",
-    "quimico", "químico", "sustancia peligrosa", "cromo", "plomo", "mercurio",
-    "gei", "gases efecto invernadero",
-    # Forestal / suelo
-    "forestal", "bosque", "selva", "deforestacion", "deforestación",
-    "reforestacion", "reforestación", "suelo", "erosion", "erosión",
-    "lgdfs", "conafor",
-    # Minería
-    "mineria", "minería", "minero", "litio", "concesion minera",
-    "concesión minera", "extraccion", "extracción",
-    # Agricultura / agro
-    "agricultura", "agricola", "agrícola", "agro", "campo", "campesino",
-    "fertilizante", "plaguicida", "pesticida", "glifosato", "transgenico",
-    "transgénico", "maiz", "maíz", "sader", "segalmex", "cosecha",
-    "sequía", "sequia", "temporal", "ganaderia", "ganadería",
-    # Fiscal / impuestos ambientales
-    "impuesto ambiental", "impuesto verde", "derecho ambiental",
-    "isan", "ieps", "carbon tax", "impuesto ecologico", "impuesto ecológico",
-    # Industria química / procesos
-    "industria quimica", "industria química", "aniq", "quimico",
-    "clorofluorocarbono", "biocombustible",
+warnings.filterwarnings("ignore")
+logging.basicConfig(level=logging.WARNING)
+
+# ─── CATEGORIAS SCOPE ──────────────────────────────────────────────────────────
+
+SCOPE_CATEGORIAS = {
+    "energia": {
+        "nombre": "Energia",
+        "keywords": [
+            "pemex","petroleo","hidrocarburo","refineria","fracking",
+            "gasolina","huachicol","mezcla mexicana","plataforma petrolera",
+            "toma clandestina","octavio romero","barriles",
+            "cfe","electricidad","apagon","corte de luz","falla electrica",
+            "generacion electrica","subsidio energetico","tarifa domestica",
+            "tarifas electricas",
+            "energia limpia","eolica","solar","transicion energetica","renovable",
+            "litio","gas natural","gas lp","gasoducto","mineria",
+            "concesion minera","reforma energetica","soberania energetica",
+            "secretaria de energia","rocio nahle","industria electrica",
+        ],
+    },
+    "agua": {
+        "nombre": "Agua",
+        "keywords": [
+            "agua","acuifero","cuenca","conagua","ley de aguas",
+            "aguas nacionales","sequia hidrica","tratamiento de agua",
+            "saneamiento","agua potable","alcantarillado",
+            "riego","distrito de riego","zona de veda","acuacultura",
+            "gestion hidrica","infraestructura hidraulica","contaminacion del agua",
+        ],
+    },
+    "medio_ambiente": {
+        "nombre": "Medio Ambiente",
+        "keywords": [
+            "medio ambiente","lgeepa","semarnat","ecologia",
+            "proteccion ambiental","equilibrio ecologico",
+            "area natural protegida","biodiversidad","vida silvestre","lgvs",
+            "forestal","lgdfs","deforestacion","tala ilegal","incendio forestal",
+            "contaminacion","impacto ambiental","manifestacion de impacto",
+            "ordenamiento ecologico","profepa","auditoria ambiental",
+            "responsabilidad ambiental","manglar","humedal","arrecife",
+        ],
+    },
+    "residuos_circular": {
+        "nombre": "Residuos / Economia Circular",
+        "keywords": [
+            "residuos","lgpgir","plasticos","reciclaje","reciclado",
+            "relleno sanitario","desechos","residuo peligroso",
+            "residuo solido","manejo de residuos","economia circular",
+            "ecodiseno","responsabilidad extendida","productor responsable",
+            "unicel","poliestireno","bolsa plastica","popote","envase",
+        ],
+    },
+    "cambio_climatico": {
+        "nombre": "Cambio Climatico",
+        "keywords": [
+            "cambio climatico","lgcc","gases de efecto invernadero",
+            "gei","carbono","huella de carbono","net zero",
+            "emisiones de co2","reduccion de emisiones","adaptacion climatica",
+            "mitigacion","compromisos climaticos","acuerdo de paris",
+            "cop","ipcc","crisis climatica",
+        ],
+    },
+    "agro_rural": {
+        "nombre": "Agro y Desarrollo Rural",
+        "keywords": [
+            "sader","segalmex","agricultura","cosecha","fertilizante",
+            "glifosato","maiz","maiz transgenico","transgenico",
+            "importacion de maiz","precio del maiz","precio del frijol",
+            "sequia agricola","soberania alimentaria","tortilla",
+            "temporal agricola","perdida de cosecha","plaga","granizada",
+            "helada","semilla","campo mexicano","desarrollo rural",
+            "ganaderia","ganado","pesca","zona pesquera","veda pesquera",
+        ],
+    },
+    "impuestos_ambientales": {
+        "nombre": "Impuestos Ambientales",
+        "keywords": [
+            "impuesto ambiental","impuesto verde","impuesto ecologico",
+            "impuesto sobre emisiones","cuota ambiental","ieps combustibles",
+            "derechos mineros","derecho de extraccion","impuesto al carbono",
+            "bono de carbono","mercado de carbono","ley federal de derechos",
+            "lfd","derechos de agua","pago por servicios ambientales",
+        ],
+    },
+    "industria_quimica": {
+        "nombre": "Industria Quimica",
+        "keywords": [
+            "industria quimica","aniq","petroquimica","planta quimica",
+            "sustancia quimica","solvente","aditivo","registro sanitario",
+            "norma oficial mexicana","nom","cofepris","licencia ambiental",
+            "manufactura",
+        ],
+    },
+}
+
+TIPOS_VALIDOS = re.compile(
+    r"iniciativa|proposicion|proposicion|punto\s+de\s+acuerdo|proyecto\s+de\s+decreto|"
+    r"proyecto\s+de\s+ley|dictamen|que\s+reforma|que\s+adiciona|"
+    r"que\s+expide|que\s+abroga|que\s+modifica|que\s+deroga",
+    re.IGNORECASE,
+)
+
+TIPOS_EXCLUIR = re.compile(
+    r"convocatoria|reunion\s+de\s+comision|junta\s+directiva|"
+    r"sesion\s+ordinaria\s+de\s+la\s+comision|informe\s+de\s+actividades|"
+    r"citatorio|acta\s+de\s+la\s+reunion|invitacion|programa\s+de\s+trabajo",
+    re.IGNORECASE,
+)
+
+SENALES_LEG = [
+    "iniciativa", "proyecto de decreto", "punto de acuerdo", "dictamen",
+    "reforma constitucional", "proposicion con punto de acuerdo",
+    "gaceta parlamentaria",
 ]
 
-SCOPE_KEYWORDS_LOWER = [k.lower() for k in SCOPE_KEYWORDS]
-
-# Excluir iniciativas claramente fuera de scope
-EXCLUDE_KEYWORDS = [
-    "reforma judicial", "poder judicial", "suprema corte", "magistrado",
-    "electoral", "partidos politicos", "partidos políticos", "candidato",
-    "eleccion", "elección", "guardia nacional", "seguridad publica",
-    "seguridad pública", "fuerzas armadas", "ejercito", "ejército",
-    "pension", "pensión", "imss", "issste", "seguro social",
-    "educacion basica", "educación básica",
-]
-
-EXCLUDE_LOWER = [k.lower() for k in EXCLUDE_KEYWORDS]
-
-MES_ACTUAL = datetime.now().strftime("%Y-%m")
-
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/122.0.0.0 Safari/537.36"
-    ),
-    "Accept-Language": "es-MX,es;q=0.9,en;q=0.8",
+STOPWORDS = {
+    "de","la","que","el","en","y","a","los","del","se","las","por","un",
+    "para","con","no","una","su","al","lo","como","mas","pero","sus","le",
+    "ya","o","este","porque","esta","entre","cuando","muy","sin","sobre",
+    "tambien","me","hasta","hay","donde","quien","desde","todo","nos",
+    "durante","todos","uno","les","ni","contra","otros","ese","eso","ante",
+    "ellos","e","esto","antes","algunos","unos","yo","otro",
+    "fue","ser","es","son","ha","han","era","sera","sido",
 }
 
 
-# Solo estos tipos de documentos legislativos nos interesan
-TIPOS_VALIDOS = [
-    "iniciativa", "proposicion", "proposición", "punto de acuerdo",
-    "proyecto de decreto", "proyecto de ley", "dictamen",
-    "iniciativa con proyecto", "que reforma", "que adiciona",
-    "que expide", "que abroga", "que modifica",
-]
+def _sin_acentos(texto):
+    if not texto:
+        return ""
+    nfd = unicodedata.normalize("NFD", texto.lower())
+    return "".join(c for c in nfd if unicodedata.category(c) != "Mn" or c == "\u0303")
 
-TIPOS_EXCLUIR = [
-    "convocatoria", "reunion", "reunión", "junta directiva",
-    "sesion ordinaria", "sesión ordinaria", "sesion de trabajo",
-    "sesión de trabajo", "informe de actividades", "acta de",
-    "invitacion", "invitación", "comunicacion", "comunicación",
-    "programa de trabajo", "acuerdo de la junta",
-]
 
-def es_tipo_valido(texto):
-    """Solo iniciativas, proposiciones y puntos de acuerdo."""
-    t = texto.lower()
-    if any(ex in t for ex in TIPOS_EXCLUIR):
+def _norm(texto):
+    t = re.sub(r"https?://\S+", "", _sin_acentos(texto))
+    t = re.sub(r"[^\w\s]", " ", t)
+    return [x for x in t.split() if x not in STOPWORDS and len(x) > 2]
+
+
+def _tf(tokens):
+    c = Counter(tokens)
+    total = len(tokens) or 1
+    return {k: v / total for k, v in c.items()}
+
+
+def clasificar(titulo, resumen=""):
+    texto = _sin_acentos(f"{titulo} {resumen}")
+    hits_leg = sum(1 for s in SENALES_LEG if s in texto)
+    tf_t = _tf(_norm(titulo))
+    tf_r = _tf(_norm(resumen))
+    scores = {}
+    for key, cat in SCOPE_CATEGORIAS.items():
+        score = 0.0
+        for kw in cat["keywords"]:
+            kl = kw.lower()
+            if kl in texto:
+                score += 2.5 if kl in _sin_acentos(titulo) else 1.0
+            else:
+                for tok in _norm(kw):
+                    score += tf_t.get(tok, 0) * 3.0 + tf_r.get(tok, 0) * 1.0
+        if score > 0:
+            score = score / math.sqrt(len(cat["keywords"]))
+            if hits_leg > 0 and score > 0.1:
+                score *= min(1.0 + hits_leg * 0.35, 2.5)
+            scores[key] = round(score, 4)
+    if not scores:
+        return None, None
+    best = max(scores, key=scores.get)
+    return best, SCOPE_CATEGORIAS[best]["nombre"]
+
+
+def es_relevante(titulo, resumen=""):
+    cat, _ = clasificar(titulo, resumen)
+    return cat is not None
+
+
+def es_tipo_valido(titulo):
+    if TIPOS_EXCLUIR.search(titulo):
         return False
-    return any(tv in t for tv in TIPOS_VALIDOS)
-
-def es_relevante(texto):
-    """Devuelve True si es tipo valido, contiene keyword SCOPE
-       y ninguno de exclusion dominante."""
-    t = texto.lower()
-    if not es_tipo_valido(texto):
-        return False
-    if any(ex in t for ex in EXCLUDE_LOWER):
-        return False
-    return any(kw in t for kw in SCOPE_KEYWORDS_LOWER)
+    return bool(TIPOS_VALIDOS.search(titulo))
 
 
-def categoria(texto):
-    """Devuelve la categoría principal del texto."""
-    t = texto.lower()
-    if any(k in t for k in ["agua", "hidrico", "acuifero", "cuenca", "riego", "potable"]):
-        return "Agua"
-    if any(k in t for k in ["energia", "energía", "electrica", "renovable", "solar", "eolica", "cfe", "pemex", "gas"]):
-        return "Energía"
-    if any(k in t for k in ["residuo", "basura", "reciclaje", "plastico", "plástico", "economia circular"]):
-        return "Residuos"
-    if any(k in t for k in ["cambio climatico", "cambio climático", "carbon", "emisión", "emision"]):
-        return "Clima"
-    if any(k in t for k in ["mineria", "minería", "litio", "concesion minera"]):
-        return "Minería"
-    if any(k in t for k in ["agricol", "agro", "campo", "ganaderia", "maiz", "cosecha"]):
-        return "Agro"
-    if any(k in t for k in ["quimico", "industria quimica", "contaminacion", "contaminación"]):
-        return "Industria"
-    return "Ambiental"
+# ─── HTTP ──────────────────────────────────────────────────────────────────────
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "es-MX,es;q=0.9,en;q=0.8",
+}
+_session = None
 
 
-# ──────────────────────────────────────────────
-# DIPUTADOS
-# ──────────────────────────────────────────────
-def scrape_diputados(max_paginas=3):
-    """Scraping de gaceta.diputados.gob.mx — usa el frame gp_hoy.html del día actual."""
-    base = "https://gaceta.diputados.gob.mx/"
-    resultados = []
-    session = requests.Session()
-    session.headers.update(HEADERS)
-
-    # La Gaceta usa frames — el contenido real está en gp_hoy.html
-    # También revisamos los últimos días del mes actual
-    now = datetime.now()
-    urls_a_probar = ["https://gaceta.diputados.gob.mx/gp_hoy.html"]
-    for dias_atras in range(1, 22):
-        d = now - timedelta(days=dias_atras)
-        # Solo días de lunes a viernes
-        if d.weekday() < 5:
-            urls_a_probar.append(
-                f"https://gaceta.diputados.gob.mx/PDF/66/{d.year}/{d.strftime('%b').lower()}/"
-                f"{d.strftime('%Y%m%d')}.html"
-            )
-
-    vistos = set()
-    for url in urls_a_probar[:8]:
-        try:
-            r = session.get(url, timeout=12)
-            if not r.ok:
-                continue
-            # Decodificar correctamente (la gaceta usa iso-8859-1)
-            r.encoding = "iso-8859-1"
-            soup = BeautifulSoup(r.text, "html.parser")
-
-            # Extraer todos los textos con links
-            for a in soup.find_all("a", href=True):
-                texto_a = a.get_text(separator=" ", strip=True)
-                if len(texto_a) < 15:
-                    continue
-                full_url = urljoin(base, a["href"])
-                if es_relevante(texto_a):
-                    titulo_clean = re.sub(r"\s+", " ", texto_a).strip()[:300]
-                    if titulo_clean not in vistos:
-                        vistos.add(titulo_clean)
-                        resultados.append({
-                            "titulo": titulo_clean,
-                            "url": full_url,
-                            "fecha": now.strftime("%Y-%m-%d"),
-                            "categoria": categoria(titulo_clean),
-                            "camara": "diputados",
-                        })
-
-            # También textos de párrafos sin link directo
-            for tag in soup.find_all(["p", "li", "td"]):
-                texto = tag.get_text(separator=" ", strip=True)
-                if len(texto) < 20 or len(texto) > 500:
-                    continue
-                if not es_relevante(texto):
-                    continue
-                link_tag = tag.find("a", href=True)
-                url_item = urljoin(base, link_tag["href"]) if link_tag else url
-                titulo_clean = re.sub(r"\s+", " ", texto).strip()[:300]
-                if titulo_clean not in vistos:
-                    vistos.add(titulo_clean)
-                    resultados.append({
-                        "titulo": titulo_clean,
-                        "url": url_item,
-                        "fecha": now.strftime("%Y-%m-%d"),
-                        "categoria": categoria(titulo_clean),
-                        "camara": "diputados",
-                    })
-        except Exception as e:
-            continue
-
-    print(f"  [Diputados] {len(resultados)} iniciativas SCOPE encontradas")
-    return resultados[:10]
+def get_session():
+    global _session
+    if _session is None:
+        _session = requests.Session()
+        _session.headers.update(HEADERS)
+    return _session
 
 
-# ──────────────────────────────────────────────
-# SENADO
-# ──────────────────────────────────────────────
-def scrape_senado(max_paginas=3):
-    """Scraping de senado.gob.mx/66/gaceta_del_senado — iniciativas del mes."""
-    base_url = "https://www.senado.gob.mx/66/gaceta_del_senado"
-    resultados = []
-    session = requests.Session()
-    session.headers.update(HEADERS)
-
+def fetch(url, verify=True):
     try:
-        r = session.get(base_url, timeout=15)
-        if not r.ok:
-            print(f"  [Senado] HTTP {r.status_code}")
-            return []
-
-        soup = BeautifulSoup(r.text, "html.parser")
-
-        links = []
-        # Buscar links en la página principal
-        for a in soup.find_all("a", href=True):
-            href = a["href"]
-            texto_a = a.get_text(strip=True)
-            if not href or len(texto_a) < 8:
-                continue
-            full_url = urljoin("https://www.senado.gob.mx", href)
-            if es_relevante(texto_a):
-                links.append((texto_a, full_url))
-
-        for tag in soup.find_all(["p", "li", "td", "h3", "h4", "div"]):
-            texto = tag.get_text(strip=True)
-            link_tag = tag.find("a", href=True)
-            url_item = urljoin("https://www.senado.gob.mx", link_tag["href"]) if link_tag else base_url
-            if 15 < len(texto) < 500 and es_relevante(texto):
-                links.append((texto, url_item))
-
-        vistos = set()
-        for titulo, url in links:
-            titulo_clean = re.sub(r"\s+", " ", titulo).strip()[:300]
-            if titulo_clean in vistos or len(titulo_clean) < 15:
-                continue
-            vistos.add(titulo_clean)
-            resultados.append({
-                "titulo": titulo_clean,
-                "url": url,
-                "fecha": datetime.now().strftime("%Y-%m-%d"),
-                "categoria": categoria(titulo_clean),
-                "camara": "senado",
-            })
-
-    except Exception as e:
-        print(f"  [Senado] Error: {e}")
-
-    print(f"  [Senado] {len(resultados)} iniciativas SCOPE encontradas")
-    return resultados[:10]
-
-
-# ──────────────────────────────────────────────
-# GUARDAR JSON
-# ──────────────────────────────────────────────
-def guardar(diputados, senado):
-    os.makedirs("data", exist_ok=True)
-    ruta = "data/gaceta-federal.json"
-
-    # Cargar datos previos del mes si existen
-    previo = {"diputados": [], "senado": []}
-    if os.path.exists(ruta):
-        try:
-            with open(ruta, "r", encoding="utf-8") as f:
-                previo = json.load(f)
-            # Solo conservar del mes actual
-            previo["diputados"] = [
-                x for x in previo.get("diputados", [])
-                if (x.get("fecha", "") or "").startswith(MES_ACTUAL)
-            ]
-            previo["senado"] = [
-                x for x in previo.get("senado", [])
-                if (x.get("fecha", "") or "").startswith(MES_ACTUAL)
-            ]
-        except Exception:
-            pass
-
-    # Combinar: nuevos primero, evitar duplicados por título
-    def merge(existentes, nuevos):
-        titulos = {x["titulo"] for x in existentes}
-        for n in nuevos:
-            if n["titulo"] not in titulos:
-                existentes.append(n)
-                titulos.add(n["titulo"])
-        return existentes
-
-    data = {
-        "ultima_actualizacion": datetime.now().isoformat(),
-        "mes": MES_ACTUAL,
-        "diputados": merge(diputados, previo["diputados"]),
-        "senado": merge(senado, previo["senado"]),
-    }
-
-    with open(ruta, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-
-    print(f"\nGuardado en {ruta}")
-    print(f"   Diputados: {len(data['diputados'])} iniciativas")
-    print(f"   Senado:    {len(data['senado'])} iniciativas")
-    return ruta
-
-
-# ──────────────────────────────────────────────
-# SUBIR A GITHUB
-# ──────────────────────────────────────────────
-def subir_github(ruta_local, token, repo="gemiscopex/gemi-scope"):
-    """Sube el JSON a GitHub Pages via REST API."""
-    import base64
-    api = f"https://api.github.com/repos/{repo}/contents/data/gaceta-federal.json"
-    hdrs = {
-        "Authorization": f"token {token}",
-        "Content-Type": "application/json",
-    }
-
-    with open(ruta_local, "rb") as f:
-        contenido_b64 = base64.b64encode(f.read()).decode()
-
-    # Obtener SHA actual si existe
-    sha = None
-    try:
-        r = requests.get(api, headers=hdrs, timeout=10)
-        if r.ok:
-            sha = r.json().get("sha")
+        r = get_session().get(url, timeout=25, verify=verify)
+        if r.status_code == 200 and len(r.text) > 200:
+            return r.text
     except Exception:
         pass
+    return None
 
-    payload = {
-        "message": f"Gacetas federales SCOPE — {datetime.now().strftime('%Y-%m-%d %H:%M')}",
-        "content": contenido_b64,
+
+# ─── DIPUTADOS — 3 niveles ─────────────────────────────────────────────────────
+
+BASE_DIP = "https://gaceta.diputados.gob.mx"
+MESES_URL = {
+    1: "ene", 2: "feb", 3: "mar", 4: "abr", 5: "may", 6: "jun",
+    7: "jul", 8: "ago", 9: "sep", 10: "oct", 11: "nov", 12: "dic",
+}
+ANEXOS_SCOPE = {"II": "iniciativa", "III": "proposicion"}
+
+TIPO_RE = {
+    "iniciativa": re.compile(r"iniciativa|que\s+reforma|que\s+adiciona|que\s+expide|que\s+abroga", re.IGNORECASE),
+    "proposicion": re.compile(r"proposicion|proposicion|punto\s+de\s+acuerdo", re.IGNORECASE),
+}
+
+
+def _url_dia_dip(fecha):
+    s = fecha.strftime("%Y%m%d")
+    return f"{BASE_DIP}/PDF/66/{fecha.year}/{MESES_URL[fecha.month]}/{s}/{s}.html"
+
+
+def _descubrir_anexos(html):
+    soup = BeautifulSoup(html, "html.parser")
+    anexos = []
+    for a in soup.find_all("a", href=True):
+        m = re.search(r"(\d{8})-([IVX]+)\.html", a["href"], re.IGNORECASE)
+        if m and m.group(2) in ANEXOS_SCOPE:
+            url = a["href"] if a["href"].startswith("http") else f"{BASE_DIP}{a['href']}"
+            if (m.group(2), url) not in anexos:
+                anexos.append((m.group(2), url))
+    return anexos
+
+
+def _descubrir_subpaginas(html, base_url):
+    soup = BeautifulSoup(html, "html.parser")
+    subs = []
+    for a in soup.find_all("a", href=True):
+        if re.search(r"\d{8}-[IVX]+-\d+\.html", a["href"], re.IGNORECASE):
+            url = a["href"] if a["href"].startswith("http") else f"{BASE_DIP}/{a['href']}"
+            if url not in subs:
+                subs.append(url)
+    return subs if subs else [base_url]
+
+
+def _extraer_docs_pagina(html, tipo_doc, fecha_str):
+    soup = BeautifulSoup(html, "html.parser")
+    docs = []
+    seen = set()
+    for a in soup.find_all("a", href=True):
+        titulo = a.get_text(strip=True)
+        if not titulo or len(titulo) < 15:
+            continue
+        tk = titulo[:80]
+        if tk in seen:
+            continue
+        if not es_tipo_valido(titulo):
+            continue
+        if not es_relevante(titulo):
+            continue
+        seen.add(tk)
+        tipo_real = tipo_doc
+        for t, pat in TIPO_RE.items():
+            if pat.search(titulo):
+                tipo_real = t
+                break
+        href = a["href"]
+        url = href if href.startswith("http") else f"{BASE_DIP}/{href}"
+        _, cat = clasificar(titulo)
+        docs.append({
+            "titulo": titulo[:400],
+            "tipo": tipo_real,
+            "fecha": fecha_str,
+            "url": url,
+            "categoria": cat or "General",
+            "camara": "Diputados",
+        })
+    return docs
+
+
+def scrape_diputados(dias=30):
+    resultados = []
+    hoy = datetime.now()
+    fechas = [hoy - timedelta(days=i) for i in range(dias) if (hoy - timedelta(days=i)).weekday() < 5]
+    print(f"  Revisando {len(fechas)} dias habiles en Diputados...")
+    for fecha in fechas:
+        fecha_str = fecha.strftime("%Y-%m-%d")
+        html_dia = fetch(_url_dia_dip(fecha))
+        if not html_dia:
+            continue
+        time.sleep(0.6)
+        anexos = _descubrir_anexos(html_dia)
+        if not anexos:
+            resultados.extend(_extraer_docs_pagina(html_dia, "iniciativa", fecha_str))
+            continue
+        for anexo_num, anexo_url in anexos:
+            tipo_doc = ANEXOS_SCOPE[anexo_num]
+            html_anexo = fetch(anexo_url)
+            if not html_anexo:
+                continue
+            time.sleep(0.4)
+            subs = _descubrir_subpaginas(html_anexo, anexo_url)
+            for sub_url in subs:
+                html_sub = html_anexo if sub_url == anexo_url else fetch(sub_url)
+                if not html_sub:
+                    continue
+                time.sleep(0.3)
+                resultados.extend(_extraer_docs_pagina(html_sub, tipo_doc, fecha_str))
+    seen = set()
+    dedup = []
+    for d in resultados:
+        k = d["titulo"][:80]
+        if k not in seen:
+            seen.add(k)
+            dedup.append(d)
+    dedup.sort(key=lambda x: x["fecha"], reverse=True)
+    print(f"  [Diputados] {len(dedup)} iniciativas/proposiciones SCOPE encontradas")
+    return dedup[:10]
+
+
+# ─── SENADO — AJAX calendario ──────────────────────────────────────────────────
+
+BASE_SEN = "https://www.senado.gob.mx"
+LEG_SEN = "66"
+
+SECCIONES_SENADO = {
+    "iniciativas": "iniciativa",
+    "proposiciones": "proposicion",
+    "dictamenes": "dictamen",
+    "poder ejecutivo federal": "iniciativa",
+}
+
+
+def _gacetas_senado_mes(year, month):
+    ajax = f"{BASE_SEN}/{LEG_SEN}/app/gaceta/functions/calendarioMes.php"
+    try:
+        r = get_session().get(ajax, params={"action": "ajax", "anio": year, "mes": month, "dia": 1},
+                              timeout=25, verify=False)
+        if r.status_code != 200 or len(r.text) < 50:
+            return []
+    except Exception:
+        return []
+    gacetas = []
+    for m in re.finditer(r"gaceta_del_senado/(\d{4})_(\d{2})_(\d{2})/(\d+)", r.text):
+        y, mo, d, gid = m.groups()
+        fecha = f"{y}-{mo}-{d}"
+        url = f"{BASE_SEN}/{LEG_SEN}/gaceta_del_senado/{y}_{mo}_{d}/{gid}"
+        if not any(g["fecha"] == fecha for g in gacetas):
+            gacetas.append({"fecha": fecha, "url": url})
+    return gacetas
+
+
+def _tipo_titulo(titulo):
+    t = titulo.lower()
+    if re.search(r"iniciativa|que\s+reforma|proyecto\s+de\s+decreto", t):
+        return "iniciativa"
+    if re.search(r"proposicion|punto\s+de\s+acuerdo", t):
+        return "proposicion"
+    if re.search(r"dictamen", t):
+        return "dictamen"
+    return "iniciativa"
+
+
+def _parsear_gaceta_senado(html, fecha):
+    soup = BeautifulSoup(html, "html.parser")
+    docs = []
+
+    # Mapa de secciones desde el SUMARIO
+    seccion_map = {}
+    for a in soup.find_all("a", href=lambda h: h and h.startswith("#") and len(h) > 1):
+        aid = a["href"][1:]
+        txt = a.get_text(strip=True)
+        if txt and len(txt) > 3 and not txt.isdigit():
+            seccion_map[aid] = txt
+
+    html_str = str(soup)
+    anchor_ids = list(seccion_map.keys())
+
+    for i, anchor_id in enumerate(anchor_ids):
+        nombre_sec = seccion_map[anchor_id]
+        nombre_lower = nombre_sec.lower()
+        tipo_doc = None
+        for sec_key, sec_tipo in SECCIONES_SENADO.items():
+            if sec_key in nombre_lower:
+                tipo_doc = sec_tipo
+                break
+        if tipo_doc is None:
+            continue
+
+        start = html_str.find(f'name="{anchor_id}"')
+        if start < 0:
+            continue
+        next_id = anchor_ids[i + 1] if i + 1 < len(anchor_ids) else None
+        end = html_str.find(f'name="{next_id}"', start) if next_id else len(html_str)
+        if end < 0:
+            end = len(html_str)
+
+        sec_soup = BeautifulSoup(html_str[start:end], "html.parser")
+        seen = set()
+        for a in sec_soup.find_all("a", href=re.compile(r"gaceta_del_senado/documento/\d+")):
+            m = re.search(r"documento/(\d+)", a["href"])
+            if not m:
+                continue
+            doc_id = m.group(1)
+            if doc_id in seen:
+                continue
+            titulo = a.get_text(strip=True)
+            if not titulo or len(titulo) < 15:
+                continue
+            if TIPOS_EXCLUIR.search(titulo):
+                continue
+            if not es_relevante(titulo):
+                continue
+            seen.add(doc_id)
+            _, cat = clasificar(titulo)
+            docs.append({
+                "titulo": titulo[:400],
+                "tipo": tipo_doc,
+                "fecha": fecha,
+                "url": f"{BASE_SEN}/{LEG_SEN}/gaceta_del_senado/documento/{doc_id}",
+                "categoria": cat or "General",
+                "camara": "Senado",
+            })
+
+    # Fallback: sin sumario
+    if not docs:
+        seen = set()
+        for a in soup.find_all("a", href=re.compile(r"gaceta_del_senado/documento/\d+")):
+            m = re.search(r"documento/(\d+)", a["href"])
+            if not m:
+                continue
+            doc_id = m.group(1)
+            if doc_id in seen:
+                continue
+            titulo = a.get_text(strip=True)
+            if not titulo or len(titulo) < 15:
+                continue
+            if TIPOS_EXCLUIR.search(titulo):
+                continue
+            if not TIPOS_VALIDOS.search(titulo):
+                continue
+            if not es_relevante(titulo):
+                continue
+            seen.add(doc_id)
+            _, cat = clasificar(titulo)
+            docs.append({
+                "titulo": titulo[:400],
+                "tipo": _tipo_titulo(titulo),
+                "fecha": fecha,
+                "url": f"{BASE_SEN}/{LEG_SEN}/gaceta_del_senado/documento/{doc_id}",
+                "categoria": cat or "General",
+                "camara": "Senado",
+            })
+    return docs
+
+
+def scrape_senado(dias=30):
+    hoy = datetime.now()
+    meses = {((hoy - timedelta(days=i)).year, (hoy - timedelta(days=i)).month) for i in range(dias)}
+    gacetas = {}
+    for year, month in meses:
+        for g in _gacetas_senado_mes(year, month):
+            gacetas[g["fecha"]] = g["url"]
+    fecha_limite = (hoy - timedelta(days=dias)).strftime("%Y-%m-%d")
+    gacetas_rango = {f: u for f, u in gacetas.items() if f >= fecha_limite}
+    print(f"  Gacetas del Senado encontradas: {len(gacetas_rango)}")
+    resultados = []
+    for fecha in sorted(gacetas_rango.keys(), reverse=True):
+        html = fetch(gacetas_rango[fecha], verify=False)
+        time.sleep(1.0)
+        if html:
+            resultados.extend(_parsear_gaceta_senado(html, fecha))
+    seen = set()
+    dedup = []
+    for d in resultados:
+        k = d["url"]
+        if k not in seen:
+            seen.add(k)
+            dedup.append(d)
+    dedup.sort(key=lambda x: x["fecha"], reverse=True)
+    print(f"  [Senado] {len(dedup)} iniciativas/proposiciones SCOPE encontradas")
+    return dedup[:10]
+
+
+# ─── MERGE ─────────────────────────────────────────────────────────────────────
+
+def merge_con_existentes(nuevos_dip, nuevos_sen, json_path="data/gaceta-federal.json"):
+    mes_actual = datetime.now().strftime("%Y-%m")
+    try:
+        with open(json_path, "r", encoding="utf-8") as f:
+            existente = json.load(f)
+    except Exception:
+        existente = {"diputados": [], "senado": [], "_meta": {}}
+
+    def merge_camara(existentes, nuevos):
+        del_mes = [d for d in existentes if str(d.get("fecha", "")).startswith(mes_actual)]
+        urls_ex = {d["url"] for d in del_mes}
+        agregados = [d for d in nuevos if d["url"] not in urls_ex]
+        combinados = del_mes + agregados
+        combinados.sort(key=lambda x: x["fecha"], reverse=True)
+        return combinados[:10]
+
+    return {
+        "diputados": merge_camara(existente.get("diputados", []), nuevos_dip),
+        "senado": merge_camara(existente.get("senado", []), nuevos_sen),
+        "_meta": {
+            "ultima_actualizacion": datetime.now().isoformat(),
+            "mes": mes_actual,
+        },
     }
+
+
+# ─── GITHUB ────────────────────────────────────────────────────────────────────
+
+def subir_github(token, contenido_bytes, path_repo, mensaje):
+    api = f"https://api.github.com/repos/gemiscopex/gemi-scope/contents/{path_repo}"
+    headers_api = {"Authorization": f"token {token}", "Content-Type": "application/json"}
+    try:
+        req = urllib.request.Request(api, headers={"Authorization": f"token {token}"})
+        with urllib.request.urlopen(req) as r:
+            sha = json.loads(r.read())["sha"]
+    except Exception:
+        sha = None
+    payload = {"message": mensaje, "content": base64.b64encode(contenido_bytes).decode()}
     if sha:
         payload["sha"] = sha
+    req2 = urllib.request.Request(api, data=json.dumps(payload).encode(), headers=headers_api, method="PUT")
+    try:
+        with urllib.request.urlopen(req2) as r:
+            return r.status
+    except urllib.error.HTTPError as e:
+        print(f"  Error GitHub: {e.code} {e.reason}")
+        return e.code
 
-    r = requests.put(api, headers=hdrs, json=payload, timeout=30)
-    if r.ok:
-        print(f"OK - Subido a GitHub ({repo})")
-    else:
-        print(f"ERROR GitHub: {r.status_code} - {r.text[:200]}")
 
+# ─── MAIN ──────────────────────────────────────────────────────────────────────
 
-# ──────────────────────────────────────────────
-# MAIN
-# ──────────────────────────────────────────────
-if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser(description="Scraper Gacetas Federales SCOPE")
-    parser.add_argument(
-        "--token",
-        default=os.environ.get("GITHUB_TOKEN", ""),
-        help="Token de GitHub (o set GITHUB_TOKEN env var)",
-    )
-    parser.add_argument("--no-upload", action="store_true", help="Solo guardar local, no subir")
+def main():
+    parser = argparse.ArgumentParser(description="SCOPE Scraper Legislativo Federal")
+    parser.add_argument("--token", required=True, help="GitHub token")
+    parser.add_argument("--dias", type=int, default=30, help="Dias a revisar (default: 30)")
+    parser.add_argument("--no-upload", action="store_true", help="No subir a GitHub")
     args = parser.parse_args()
 
-    print("-----------------------------------")
-    print("  SCOPE - Scraper Legislativo Federal")
-    print(f"  Mes: {MES_ACTUAL}")
-    print("-----------------------------------\n")
+    mes = datetime.now().strftime("%Y-%m")
+    print(f"\n{'-'*45}")
+    print(f"  SCOPE - Scraper Legislativo Federal")
+    print(f"  Mes: {mes}  |  Ventana: {args.dias} dias")
+    print(f"{'-'*45}\n")
 
     print("[1/2] Scraping Camara de Diputados...")
-    dip = scrape_diputados()
-    time.sleep(2)
+    dip = scrape_diputados(dias=args.dias)
 
     print("\n[2/2] Scraping Senado de la Republica...")
-    sen = scrape_senado()
+    sen = scrape_senado(dias=args.dias)
 
-    ruta = guardar(dip, sen)
+    resultado = merge_con_existentes(dip, sen)
+
+    json_path = "data/gaceta-federal.json"
+    contenido = json.dumps(resultado, ensure_ascii=False, indent=2).encode("utf-8")
+    with open(json_path, "wb") as f:
+        f.write(contenido)
+
+    n_dip = len(resultado["diputados"])
+    n_sen = len(resultado["senado"])
+    print(f"\nGuardado en {json_path}")
+    print(f"   Diputados: {n_dip} iniciativas")
+    print(f"   Senado:    {n_sen} iniciativas")
 
     if not args.no_upload:
-        if args.token:
-            print("\nSubiendo a GitHub Pages...")
-            subir_github(ruta, args.token)
+        print("\nSubiendo a GitHub Pages...")
+        status = subir_github(
+            args.token, contenido, "data/gaceta-federal.json",
+            f"Gacetas SCOPE {mes}: {n_dip} Dip + {n_sen} Sen",
+        )
+        if status in (200, 201):
+            print("OK - Subido a GitHub (gemiscopex/gemi-scope)")
         else:
-            print("\nSin token GitHub. Usa --token o GITHUB_TOKEN para subir automaticamente.")
-            print("Archivo guardado localmente en:", ruta)
+            print(f"Status: {status}")
+
+    print("\n--- Detalle ---")
+    for d in resultado["diputados"]:
+        print(f"  [Dip/{d.get('tipo','?')}] [{d.get('categoria','?')}] {d['titulo'][:80]}")
+    for d in resultado["senado"]:
+        print(f"  [Sen/{d.get('tipo','?')}] [{d.get('categoria','?')}] {d['titulo'][:80]}")
+    print()
+
+
+if __name__ == "__main__":
+    main()
