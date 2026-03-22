@@ -1,8 +1,10 @@
 """
 SCOPE - Scraper de Gacetas Legislativas Estatales
-Monitorea los 32 congresos estatales de México buscando iniciativas y
-proposiciones con punto de acuerdo relevantes a las categorías SCOPE.
+Estrategia de dos niveles:
+  Nivel 1 (rápido):  requests + BeautifulSoup para portales HTML estáticos
+  Nivel 2 (completo): Playwright (Chromium headless) para portales con JavaScript
 
+Cubre los 32 congresos estatales de México.
 Salida: data/gaceta-estatal.json
 """
 
@@ -25,179 +27,178 @@ from bs4 import BeautifulSoup
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.WARNING)
 
-# ─── DIRECTORIO DE ESTADOS ────────────────────────────────────────────────────
-# Basado en el directorio legislativo proporcionado
+# ─── DIRECTORIO DE ESTADOS ─────────────────────────────────────────────────────
 
 ESTADOS = {
     "Aguascalientes": {
-        "congreso": "https://congresoags.gob.mx",
         "iniciativas": "https://congresoags.gob.mx/agenda_legislativa/iniciativas",
         "periodico": "https://eservicios2.aguascalientes.gob.mx/periodicooficial/",
+        "js": True,
     },
     "Baja California": {
-        "congreso": "https://www.congresobc.gob.mx",
         "iniciativas": "https://www.congresobc.gob.mx/TrabajoLegislativo/Iniciativas",
         "periodico": "https://periodicooficial.ebajacalifornia.gob.mx/oficial/inicioConsulta.jsp",
+        "js": True,
     },
     "Baja California Sur": {
-        "congreso": "https://www.cbcs.gob.mx",
         "iniciativas": "https://www.cbcs.gob.mx/index.php/iniciativas-ley-pes",
         "periodico": "https://finanzas.bcs.gob.mx/boletines-oficiales/",
+        "js": False,
     },
     "Campeche": {
-        "congreso": "https://www.congresocam.gob.mx",
         "iniciativas": "https://www.congresocam.gob.mx",
         "periodico": "http://periodicooficial.campeche.gob.mx/sipoec/public/",
+        "js": True,
     },
     "Chiapas": {
-        "congreso": "https://web.congresochiapas.gob.mx",
         "iniciativas": "https://www.congresochiapas.gob.mx/new/Info-Parlamentaria/iniciativas/",
         "periodico": "https://www.sgg.chiapas.gob.mx/periodico/",
+        "js": True,
     },
     "Chihuahua": {
-        "congreso": "https://www.congresochihuahua.gob.mx",
         "iniciativas": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/",
         "periodico": "https://chihuahua.gob.mx/periodicooficial/buscador",
+        "js": True,
     },
     "Ciudad de México": {
-        "congreso": "https://www.congresocdmx.gob.mx",
         "iniciativas": "https://www.congresocdmx.gob.mx/iniciativas-213-6.html",
         "iniciativas_alt": "https://ciudadana.congresocdmx.gob.mx/Iniciativa/iniciativas",
         "periodico": "https://consejeria.cdmx.gob.mx/gaceta-oficial",
+        "js": True,
     },
     "Coahuila": {
-        "congreso": "https://www.congresocoahuila.gob.mx",
         "iniciativas": "https://www.congresocoahuila.gob.mx/portal/iniciativas/",
         "periodico": "https://periodico.segobcoahuila.gob.mx/",
+        "js": True,
     },
     "Colima": {
-        "congreso": "https://congresocol.gob.mx/web/www/",
         "iniciativas": "https://congresocol.gob.mx/web/www/",
         "periodico": "https://periodicooficial.col.gob.mx/",
+        "js": False,
     },
     "Durango": {
-        "congreso": "https://congresodurango.gob.mx/",
         "iniciativas": "https://congresodurango.gob.mx/",
         "periodico": "https://periodicooficial.durango.gob.mx/",
+        "js": False,
     },
     "México": {
-        "congreso": "https://legislacion.legislativoedomex.gob.mx/asuntos/",
         "iniciativas": "https://legislacion.legislativoedomex.gob.mx/asuntos/",
         "periodico": "https://legislacion.edomex.gob.mx/ve_periodico_oficial",
+        "js": True,
     },
     "Guanajuato": {
-        "congreso": "https://www.congresogto.gob.mx",
         "iniciativas": "https://www.congresogto.gob.mx/gaceta/iniciativas",
         "periodico": "https://periodico.guanajuato.gob.mx/",
+        "js": False,
     },
     "Guerrero": {
-        "congreso": "https://congresogro.gob.mx/",
         "iniciativas": "https://congresogro.gob.mx/",
         "periodico": "https://periodicooficial.guerrero.gob.mx/",
+        "js": True,
     },
     "Hidalgo": {
-        "congreso": "https://www.congreso-hidalgo.gob.mx/",
         "iniciativas": "https://www.congreso-hidalgo.gob.mx/",
         "periodico": "https://periodico.hidalgo.gob.mx/",
+        "js": True,
     },
     "Jalisco": {
-        "congreso": "https://www.congresojal.gob.mx/",
         "iniciativas": "https://www.congresojal.gob.mx/",
         "periodico": "https://periodicooficial.jalisco.gob.mx/",
+        "js": True,
     },
     "Michoacán": {
-        "congreso": "https://congresomich.site",
         "iniciativas": "https://congresomich.site/iniciativas/",
         "periodico": "https://periodicooficial.michoacan.gob.mx/",
+        "js": True,
     },
     "Morelos": {
-        "congreso": "https://congresomorelos.gob.mx/",
         "iniciativas": "https://congresomorelos.gob.mx/category/iniciativas-legislativas/",
         "periodico": "https://periodico.morelos.gob.mx/",
+        "js": False,
     },
     "Nayarit": {
-        "congreso": "https://congresonayarit.gob.mx/",
         "iniciativas": "https://procesolegislativo.congresonayarit.gob.mx/iniciativas/",
         "periodico": "https://periodicooficial.nayarit.gob.mx/",
+        "js": True,
     },
     "Nuevo León": {
-        "congreso": "https://www.hcnl.gob.mx/",
         "iniciativas": "https://www.hcnl.gob.mx/trabajo_legislativo/iniciativas/",
         "periodico": "https://sistec.nl.gob.mx/Transparencia_2015_LYPOE/Acciones/PeriodicoOficial.aspx",
+        "js": True,
     },
     "Oaxaca": {
-        "congreso": "https://www.congresooaxaca.gob.mx/",
         "iniciativas": "https://www.congresooaxaca.gob.mx/",
         "periodico": "https://periodicooficial.oaxaca.gob.mx/",
+        "js": True,
     },
     "Puebla": {
-        "congreso": "https://www.congresopuebla.gob.mx/",
         "iniciativas": "https://micrositios.congresopuebla.gob.mx/buscadores/iniciativas/index.php",
         "periodico": "https://periodicooficial.puebla.gob.mx/",
+        "js": False,
     },
     "Querétaro": {
-        "congreso": "http://legislaturaqueretaro.gob.mx/",
         "iniciativas": "http://legislaturaqueretaro.gob.mx/iniciativas/",
         "periodico": "https://lasombradearteaga.segobqueretaro.gob.mx/",
+        "js": True,
     },
     "Quintana Roo": {
-        "congreso": "https://www.congresoqroo.gob.mx/",
         "iniciativas": "https://www.congresoqroo.gob.mx/iniciativas/",
         "periodico": "http://po.segob.qroo.gob.mx/sitiopo/",
+        "js": False,
     },
     "San Luis Potosí": {
-        "congreso": "https://congresosanluis.gob.mx/",
         "iniciativas": "https://congresosanluis.gob.mx/trabajo/trabajo-legislativo/iniciativas",
         "periodico": "https://periodicooficial.slp.gob.mx/",
+        "js": True,
     },
     "Sinaloa": {
-        "congreso": "https://www.congresosinaloa.gob.mx/",
         "iniciativas": "https://www.congresosinaloa.gob.mx/iniciativas/",
         "puntos_acuerdo": "https://www.congresosinaloa.gob.mx/puntos-de-acuerdo/",
         "periodico": "https://iip.congresosinaloa.gob.mx/poes.html",
+        "js": True,
     },
     "Sonora": {
-        "congreso": "https://congresoson.gob.mx/",
         "iniciativas": "https://congresoson.gob.mx/iniciativas",
         "periodico": "https://boletinoficial.sonora.gob.mx/",
+        "js": True,
     },
     "Tabasco": {
-        "congreso": "https://congresotabasco.gob.mx/",
         "iniciativas": "https://congresotabasco.gob.mx/iniciativas/",
         "puntos_acuerdo": "https://congresotabasco.gob.mx/puntos-de-acuerdo/",
         "gaceta_parl": "https://congresotabasco.gob.mx/gaceta-legislativa/",
         "periodico": "https://tabasco.gob.mx/PeriodicoOficial",
+        "js": False,
     },
     "Tamaulipas": {
-        "congreso": "https://www.congresotamaulipas.gob.mx/",
         "iniciativas": "https://www.congresotamaulipas.gob.mx/Parlamentario/Archivos/Iniciativas/",
         "periodico": "https://po.tamaulipas.gob.mx/",
+        "js": True,
     },
     "Tlaxcala": {
-        "congreso": "https://congresodetlaxcala.gob.mx/",
         "iniciativas": "https://congresodetlaxcala.gob.mx/iniciativas/",
         "gaceta_parl": "https://congresodetlaxcala.gob.mx/gacetas-parlamentarias/",
         "periodico": "https://periodico.tlaxcala.gob.mx/",
+        "js": False,
     },
     "Veracruz": {
-        "congreso": "https://www.legisver.gob.mx/",
         "iniciativas": "https://www.legisver.gob.mx/",
         "periodico": "https://editoraveracruz.gob.mx/",
+        "js": True,
     },
     "Yucatán": {
-        "congreso": "https://www.congresoyucatan.gob.mx/",
         "iniciativas": "https://www.congresoyucatan.gob.mx/gaceta/iniciativas",
         "periodico": "https://www.yucatan.gob.mx/gobierno/diario_oficial.php",
+        "js": True,
     },
     "Zacatecas": {
-        "congreso": "https://www.congresozac.gob.mx/",
         "iniciativas": "https://www.congresozac.gob.mx/64/gaceta",
         "periodico": "https://periodico.zacatecas.gob.mx/",
-        "nota": "El /64/ es la legislatura actual; detectar dinámicamente si cambia",
+        "js": True,
+        "nota": "El /64/ es la legislatura actual; puede variar",
     },
 }
 
-# ─── CLASIFICADOR SCOPE (mismo que scraper federal) ───────────────────────────
+# ─── CLASIFICADOR SCOPE ─────────────────────────────────────────────────────────
 
 SCOPE_CATEGORIAS = {
     "energia": {
@@ -299,8 +300,8 @@ TIPOS_EXCLUIR = re.compile(
 )
 
 SENALES_LEG = [
-    "iniciativa","proyecto de decreto","punto de acuerdo","dictamen",
-    "reforma constitucional","proposicion con punto de acuerdo",
+    "iniciativa", "proyecto de decreto", "punto de acuerdo", "dictamen",
+    "reforma constitucional", "proposicion con punto de acuerdo",
 ]
 
 STOPWORDS = {
@@ -311,13 +312,11 @@ STOPWORDS = {
     "durante","todos","uno","les","ni","contra","otros","ese","eso","ante",
     "ellos","e","esto","antes","algunos","unos","yo","otro",
     "fue","ser","es","son","ha","han","era","sera","sido",
-    # Palabras legislativas genéricas que causan falsos positivos
     "ley","reforma","codigo","articulo","fraccion","parrafo","decreto",
     "estado","estados","municipio","municipios","federal","nacional",
 }
 
-# Umbral mínimo de score para considerar un documento relevante a SCOPE
-MIN_SCORE_ESTATAL = 0.35
+MIN_SCORE = 0.35
 
 
 def _sin_acentos(texto):
@@ -340,12 +339,6 @@ def _tf(tokens):
 
 
 def clasificar(titulo, resumen=""):
-    """
-    Clasificador estricto para portales estatales:
-    - Solo coincidencias de frase completa (no tokens individuales)
-    - Umbral de score más alto que el scraper federal
-    - Evita falsos positivos por palabras genéricas como 'ley', 'reforma'
-    """
     texto = _sin_acentos(f"{titulo} {resumen}")
     titulo_n = _sin_acentos(titulo)
     hits_leg = sum(1 for s in SENALES_LEG if s in texto)
@@ -354,15 +347,13 @@ def clasificar(titulo, resumen=""):
         score = 0.0
         for kw in cat["keywords"]:
             kl = kw.lower()
-            # Solo coincidencia de frase completa — sin fallback a tokens individuales
             if kl in texto:
-                # Bonus extra si aparece en el título (no solo en el resumen)
                 score += 3.0 if kl in titulo_n else 1.5
         if score > 0:
             score = score / math.sqrt(len(cat["keywords"]))
             if hits_leg > 0 and score > 0.2:
                 score *= min(1.0 + hits_leg * 0.35, 2.5)
-            if score >= MIN_SCORE_ESTATAL:
+            if score >= MIN_SCORE:
                 scores[key] = round(score, 4)
     if not scores:
         return None, None
@@ -381,7 +372,18 @@ def es_tipo_valido(titulo):
     return bool(TIPOS_VALIDOS.search(titulo))
 
 
-# ─── HTTP ──────────────────────────────────────────────────────────────────────
+def _inferir_tipo(titulo):
+    t = titulo.lower()
+    if re.search(r"iniciativa|que\s+reforma|que\s+adiciona|proyecto\s+de\s+decreto", t):
+        return "iniciativa"
+    if re.search(r"proposicion|punto\s+de\s+acuerdo", t):
+        return "proposicion"
+    if re.search(r"dictamen", t):
+        return "dictamen"
+    return "iniciativa"
+
+
+# ─── NIVEL 1: requests + BeautifulSoup ─────────────────────────────────────────
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
@@ -399,11 +401,9 @@ def get_session():
     return _session
 
 
-def fetch(url, verify=False):
-    """Descarga una página. verify=False por defecto: muchos portales estatales
-    tienen certificados SSL vencidos o autofirmados."""
+def fetch_html(url):
     try:
-        r = get_session().get(url, timeout=20, verify=verify)
+        r = get_session().get(url, timeout=20, verify=False)
         if r.status_code == 200 and len(r.text) > 300:
             return r.text
     except Exception:
@@ -411,20 +411,12 @@ def fetch(url, verify=False):
     return None
 
 
-# ─── SCRAPER GENÉRICO ESTATAL ─────────────────────────────────────────────────
-
-def _extraer_docs_genericos(html, base_url, estado, max_docs=5):
-    """
-    Extrae iniciativas/proposiciones de cualquier portal estatal.
-    Estrategia: buscar links con texto largo que contengan palabras clave
-    de tipo legislativo y sean relevantes a SCOPE.
-    """
+def _extraer_docs_html(html, base_url, estado, max_docs=5):
     if not html:
         return []
     soup = BeautifulSoup(html, "html.parser")
     docs = []
     seen = set()
-
     for a in soup.find_all("a", href=True):
         titulo = a.get_text(strip=True)
         if not titulo or len(titulo) < 20:
@@ -437,18 +429,15 @@ def _extraer_docs_genericos(html, base_url, estado, max_docs=5):
         if not es_relevante(titulo):
             continue
         seen.add(tk)
-
         href = a["href"]
         if href.startswith("http"):
             url = href
         elif href.startswith("/"):
-            # Extraer base del dominio
             from urllib.parse import urlparse
-            parsed = urlparse(base_url)
-            url = f"{parsed.scheme}://{parsed.netloc}{href}"
+            p = urlparse(base_url)
+            url = f"{p.scheme}://{p.netloc}{href}"
         else:
             url = f"{base_url.rstrip('/')}/{href}"
-
         _, cat = clasificar(titulo)
         docs.append({
             "titulo": titulo[:400],
@@ -457,50 +446,116 @@ def _extraer_docs_genericos(html, base_url, estado, max_docs=5):
             "url": url,
             "categoria": cat or "General",
             "estado": estado,
+            "metodo": "requests",
         })
-
         if len(docs) >= max_docs:
             break
-
     return docs
 
 
-def _inferir_tipo(titulo):
-    t = titulo.lower()
-    if re.search(r"iniciativa|que\s+reforma|que\s+adiciona|proyecto\s+de\s+decreto", t):
-        return "iniciativa"
-    if re.search(r"proposicion|punto\s+de\s+acuerdo", t):
-        return "proposicion"
-    if re.search(r"dictamen", t):
-        return "dictamen"
-    return "iniciativa"
+# ─── NIVEL 2: Playwright (navegador headless) ───────────────────────────────────
+
+_playwright_instance = None
+_browser_instance = None
 
 
-def scrape_estado(nombre, config):
+def get_browser():
+    global _playwright_instance, _browser_instance
+    if _browser_instance is None:
+        from playwright.sync_api import sync_playwright
+        _playwright_instance = sync_playwright().start()
+        _browser_instance = _playwright_instance.chromium.launch(
+            headless=True,
+            args=["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"],
+        )
+    return _browser_instance
+
+
+def close_browser():
+    global _playwright_instance, _browser_instance
+    try:
+        if _browser_instance:
+            _browser_instance.close()
+        if _playwright_instance:
+            _playwright_instance.stop()
+    except Exception:
+        pass
+    _browser_instance = None
+    _playwright_instance = None
+
+
+def fetch_playwright(url, wait_selector=None, timeout=25000):
+    """Descarga una página con Playwright, esperando a que el JS renderice."""
+    browser = get_browser()
+    try:
+        page = browser.new_page()
+        page.set_extra_http_headers({"Accept-Language": "es-MX,es;q=0.9"})
+        page.goto(url, timeout=timeout, wait_until="domcontentloaded")
+        # Esperar a que cargue el contenido dinámico
+        if wait_selector:
+            try:
+                page.wait_for_selector(wait_selector, timeout=8000)
+            except Exception:
+                pass
+        else:
+            page.wait_for_timeout(3000)
+        html = page.content()
+        page.close()
+        return html
+    except Exception as e:
+        logging.debug(f"Playwright error {url}: {e}")
+        try:
+            page.close()
+        except Exception:
+            pass
+        return None
+
+
+def _extraer_docs_playwright(url, estado, max_docs=5):
+    """Extrae documentos usando Playwright para portales con JavaScript."""
+    html = fetch_playwright(url)
+    if not html:
+        return []
+    return _extraer_docs_html(html, url, estado, max_docs)
+
+
+# ─── SCRAPER PRINCIPAL POR ESTADO ──────────────────────────────────────────────
+
+def scrape_estado(nombre, config, usar_playwright=True):
     """
-    Scrapea las URLs de iniciativas de un estado.
-    Intenta la URL principal y opcionalmente la alternativa.
-    Retorna lista de docs relevantes a SCOPE.
+    Scrapea un estado con estrategia de dos niveles:
+    1. Intenta con requests (rápido)
+    2. Si no encuentra nada y el portal usa JS, usa Playwright
     """
     docs = []
-    urls_a_intentar = []
+    urls = []
 
     if config.get("iniciativas"):
-        urls_a_intentar.append(config["iniciativas"])
+        urls.append(config["iniciativas"])
     if config.get("iniciativas_alt"):
-        urls_a_intentar.append(config["iniciativas_alt"])
+        urls.append(config["iniciativas_alt"])
     if config.get("puntos_acuerdo"):
-        urls_a_intentar.append(config["puntos_acuerdo"])
+        urls.append(config["puntos_acuerdo"])
     if config.get("gaceta_parl"):
-        urls_a_intentar.append(config["gaceta_parl"])
+        urls.append(config["gaceta_parl"])
 
     seen_urls = set()
-    for url in urls_a_intentar:
-        html = fetch(url)
-        time.sleep(0.8)
+
+    for url in urls:
+        # Nivel 1: requests
+        html = fetch_html(url)
+        time.sleep(0.5)
         if html:
-            nuevos = _extraer_docs_genericos(html, url, nombre, max_docs=5)
+            nuevos = _extraer_docs_html(html, url, nombre, max_docs=5)
             for d in nuevos:
+                if d["url"] not in seen_urls:
+                    seen_urls.add(d["url"])
+                    docs.append(d)
+
+        # Nivel 2: Playwright si no encontramos nada y el portal usa JS
+        if not docs and usar_playwright and config.get("js", False):
+            nuevos_pw = _extraer_docs_playwright(url, nombre, max_docs=5)
+            for d in nuevos_pw:
                 if d["url"] not in seen_urls:
                     seen_urls.add(d["url"])
                     docs.append(d)
@@ -511,38 +566,40 @@ def scrape_estado(nombre, config):
     return docs[:5]
 
 
-# ─── SCRAPER PRINCIPAL ────────────────────────────────────────────────────────
+# ─── SCRAPER TODOS LOS ESTADOS ─────────────────────────────────────────────────
 
-def scrape_todos_estados():
-    """
-    Scrapea todos los estados y retorna resultados organizados por estado.
-    """
+def scrape_todos_estados(usar_playwright=True):
     resultados = {}
     total_docs = 0
     estados_con_actividad = 0
 
-    print(f"  Scrapeando {len(ESTADOS)} congresos estatales...")
+    print(f"  Scrapeando {len(ESTADOS)} congresos estatales "
+          f"({'con' if usar_playwright else 'sin'} Playwright)...")
 
     for i, (nombre, config) in enumerate(ESTADOS.items(), 1):
         print(f"  [{i:02d}/{len(ESTADOS)}] {nombre}...", end=" ", flush=True)
         try:
-            docs = scrape_estado(nombre, config)
+            docs = scrape_estado(nombre, config, usar_playwright=usar_playwright)
             if docs:
                 resultados[nombre] = docs
                 total_docs += len(docs)
                 estados_con_actividad += 1
-                print(f"{len(docs)} docs SCOPE")
+                metodo = docs[0].get("metodo", "?")
+                print(f"{len(docs)} docs [{metodo}]")
             else:
                 print("sin resultados")
         except Exception as e:
             print(f"error: {e}")
-            resultados[nombre] = []
 
-    print(f"\n  Total: {total_docs} iniciativas en {estados_con_actividad} estados")
+    print(f"\n  Total: {total_docs} iniciativas SCOPE en {estados_con_actividad} estados")
+
+    if usar_playwright:
+        close_browser()
+
     return resultados
 
 
-# ─── MERGE CON JSON EXISTENTE ─────────────────────────────────────────────────
+# ─── MERGE CON JSON EXISTENTE ──────────────────────────────────────────────────
 
 def merge_con_existentes(nuevos, json_path="data/gaceta-estatal.json"):
     mes_actual = datetime.now().strftime("%Y-%m")
@@ -556,7 +613,6 @@ def merge_con_existentes(nuevos, json_path="data/gaceta-estatal.json"):
     estados_merged = {}
     for nombre, docs_nuevos in nuevos.items():
         docs_existentes = estados_existentes.get(nombre, [])
-        # Filtrar existentes del mes actual
         del_mes = [d for d in docs_existentes if str(d.get("fecha", "")).startswith(mes_actual)]
         urls_ex = {d["url"] for d in del_mes}
         agregados = [d for d in docs_nuevos if d["url"] not in urls_ex]
@@ -565,7 +621,6 @@ def merge_con_existentes(nuevos, json_path="data/gaceta-estatal.json"):
         if combinados:
             estados_merged[nombre] = combinados[:5]
 
-    # Resumen por estado para el widget
     resumen = []
     for nombre, docs in estados_merged.items():
         if docs:
@@ -585,7 +640,7 @@ def merge_con_existentes(nuevos, json_path="data/gaceta-estatal.json"):
 
     return {
         "estados": estados_merged,
-        "resumen": resumen[:15],
+        "resumen": resumen[:20],
         "_meta": {
             "ultima_actualizacion": datetime.now().isoformat(),
             "mes": mes_actual,
@@ -621,32 +676,35 @@ def subir_github(token, contenido_bytes, path_repo, mensaje):
 
 def main():
     parser = argparse.ArgumentParser(description="SCOPE Scraper Gacetas Estatales")
-    parser.add_argument("--token", required=True, help="GitHub token")
+    parser.add_argument("--token", required=True)
     parser.add_argument("--no-upload", action="store_true")
-    parser.add_argument("--estado", help="Scrapear solo un estado específico")
+    parser.add_argument("--no-playwright", action="store_true",
+                        help="Usar solo requests (sin navegador)")
+    parser.add_argument("--estado", help="Scrapear solo un estado")
     args = parser.parse_args()
 
+    usar_playwright = not args.no_playwright
     mes = datetime.now().strftime("%Y-%m")
+
     print(f"\n{'-'*50}")
     print(f"  SCOPE - Scraper Gacetas Estatales")
-    print(f"  Mes: {mes}")
+    print(f"  Mes: {mes} | Playwright: {'SI' if usar_playwright else 'NO'}")
     print(f"{'-'*50}\n")
 
     if args.estado:
-        # Modo: solo un estado
         if args.estado not in ESTADOS:
-            print(f"Estado no encontrado: {args.estado}")
-            print(f"Disponibles: {', '.join(ESTADOS.keys())}")
+            print(f"Estado no encontrado. Disponibles:")
+            print(", ".join(ESTADOS.keys()))
             return
-        config = ESTADOS[args.estado]
-        docs = scrape_estado(args.estado, config)
+        docs = scrape_estado(args.estado, ESTADOS[args.estado], usar_playwright=usar_playwright)
+        if usar_playwright:
+            close_browser()
         print(f"\n[{args.estado}] {len(docs)} docs SCOPE:")
         for d in docs:
             print(f"  [{d['tipo']}] [{d['categoria']}] {d['titulo'][:80]}")
         return
 
-    # Modo completo: todos los estados
-    nuevos = scrape_todos_estados()
+    nuevos = scrape_todos_estados(usar_playwright=usar_playwright)
     resultado = merge_con_existentes(nuevos)
 
     json_path = "data/gaceta-estatal.json"
@@ -656,21 +714,15 @@ def main():
 
     n_estados = resultado["_meta"]["estados_con_actividad"]
     n_docs = sum(len(d) for d in resultado["estados"].values())
-    print(f"\nGuardado en {json_path}")
-    print(f"   Estados con actividad SCOPE: {n_estados}")
-    print(f"   Total iniciativas: {n_docs}")
+    print(f"\nGuardado: {n_estados} estados, {n_docs} iniciativas")
 
     if not args.no_upload:
-        print("\nSubiendo a GitHub Pages...")
+        print("Subiendo a GitHub...")
         status = subir_github(args.token, contenido, "data/gaceta-estatal.json",
-                              f"Gacetas estatales SCOPE {mes}: {n_estados} estados, {n_docs} docs")
-        if status in (200, 201):
-            print("OK - Subido a GitHub (gemiscopex/gemi-scope)")
-        else:
-            print(f"Status: {status}")
+                              f"Gacetas estatales SCOPE {mes}: {n_estados} estados")
+        print("OK" if status in (200, 201) else f"Status: {status}")
 
-    # Mostrar resumen
-    print("\n--- Estados con actividad SCOPE ---")
+    print("\n--- Resumen ---")
     for r in resultado.get("resumen", []):
         print(f"  {r['estado']}: {r['total']} docs | {r['categoria_principal']}")
 
