@@ -121,6 +121,35 @@
         "categoria": "Agua",
         "estado": "Tabasco"
       }
+    ],
+    "Tlaxcala": [
+      {
+        "titulo": "DICTAMEN LEY DE PROTECCION AL MEDIO AMBIENTE Y DESARROLLO SOSTENIBLE DEL ESTADO DE TLAXCALA",
+        "tipo": "dictamen",
+        "fecha": "2026-03-22",
+        "url": "https://congresodetlaxcala.gob.mx/wp-content/uploads/2017/03/DICTAMEN-LEY-DE-PROTECCION-AL-MEDIO-AMBIENTE-Y-DESARROLLO-SOSTENIBLE-DEL-ESTADO-DE-TLAXCALA.pdf",
+        "categoria": "Medio Ambiente",
+        "estado": "Tlaxcala",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "Dictamen de Ley de Ingresos del Municipio de Tetla de la Solaridad, para el Ejercicio Fiscal 2022.",
+        "tipo": "dictamen",
+        "fecha": "2026-03-22",
+        "url": "https://congresodetlaxcala.gob.mx/archivo/ingresos2022/Dictamen_Ley_de_Ingresos_Tetla_2022.pdf",
+        "categoria": "Energia",
+        "estado": "Tlaxcala",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "PROYECTO DE DECRETO LEY DE PROTECCIÓN AL MEDIO AMBIENTE Y EL DESARROLLO SOSTENIBLE DEL ESTADO DE TLAXCALA.",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-22",
+        "url": "https://congresodetlaxcala.gob.mx/wp-content/uploads/2017/03/LEY-DE-MEDIO-AMBIENTE-TLAXCALA.pdf",
+        "categoria": "Medio Ambiente",
+        "estado": "Tlaxcala",
+        "metodo": "requests"
+      }
     ]
   },
   "resumen": [
@@ -134,6 +163,12 @@
       "estado": "Tabasco",
       "total": 4,
       "categoria_principal": "Agro y Desarrollo Rural",
+      "ultima_fecha": "2026-03-22"
+    },
+    {
+      "estado": "Tlaxcala",
+      "total": 3,
+      "categoria_principal": "Medio Ambiente",
       "ultima_fecha": "2026-03-22"
     },
     {
@@ -156,8 +191,8 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-03-22T13:40:36.163570",
+    "ultima_actualizacion": "2026-03-22T20:11:01.891078",
     "mes": "2026-03",
-    "estados_con_actividad": 5
+    "estados_con_actividad": 6
   }
 }
