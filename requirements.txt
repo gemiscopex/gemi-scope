@@ -1,1 +1,2 @@
-# SCOPE 3 Scraper - usa solo Python stdlib, sin dependencias externas\n
+requests>=2.32
+beautifulsoup4>=4.12
