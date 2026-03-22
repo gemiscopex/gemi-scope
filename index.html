@@ -250,13 +250,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
       <div class="card">
         <div class="card-label">Mapa político de México</div>
         <div class="map-wrap"><div id="map"></div></div>
-        <div class="map-legend">
-          <span class="legend-item"><span class="legend-dot" style="background:#ff4757"></span>Crítico 70+</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#ffa502"></span>Alto 45–69</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#2ed573"></span>Moderado 20–44</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#a4b0be"></span>Bajo 0–19</span>
-        </div>
-        <div id="score-nac" style="font-size:11px;color:var(--text-muted);padding:0 0 4px;letter-spacing:0.02em"></div>
       </div>
     </div>
     <div class="bottom-row">
@@ -528,13 +521,6 @@ function buildMap(){
     popHtml+='<div style="font-size:15px;font-weight:700;color:#111;line-height:1.2">'+state+'</div></div>';
     popHtml+='<span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:'+col+'22;color:'+col+'">'+lbl+' '+(sc.master||0)+'</span>';
     popHtml+='</div>';
-    if(sc.master){
-      popHtml+='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-bottom:8px">';
-      [['ICR',sc.icr||0],['IPR',sc.ipr||0],['IRF',sc.irf||0],['IIS',sc.iis||0]].forEach(function(ix){
-        popHtml+='<div style="text-align:center;border-radius:5px;padding:4px 2px;background:'+scoreColor(ix[1])+'18"><div style="font-size:8px;color:#888;font-weight:700">'+ix[0]+'</div><div style="font-size:13px;font-weight:700;color:'+scoreColor(ix[1])+'">'+ix[1]+'</div></div>';
-      });
-      popHtml+='</div>';
-    }
     if(nc>0){popHtml+='<div style="font-size:11px;color:#555;margin-bottom:8px">'+nc+' noticia'+(nc>1?'s':'')+' reciente'+(nc>1?'s':'')+'</div>';}
     var stateEsc=state.replace(/'/g,"\'");
     popHtml+='<button onclick="openStatePanel(\''+stateEsc+'\')" style="width:100%;padding:7px;background:#0ac285;color:#fff;border:none;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif">Ver panel completo \u2192</button>';
@@ -863,13 +849,6 @@ function renderSPPerfil(state,data,sc){
   const fiscal=sc.irf>=40?'activo con posibles controversias':sc.irf>=20?'en desarrollo':'incipiente';
   const narrative=`${state} presenta una complejidad regulatoria ambiental <strong>${complexity}</strong> (ICR: ${sc.icr}/100), con cobertura en ${numThemes} materias ambientales. La presi\u00f3n regulatoria es <strong>${pressure}</strong> en el per\u00edodo reciente, con ${stateNews[state]||0} menciones en medios especializados. Su r\u00e9gimen de impuestos ambientales es <strong>${fiscal}</strong>. La capital ${data.capital||'\u2014'} concentra la actividad legislativa del congreso estatal. Con un Master Score de ${sc.master}/100, ${state} ocupa la posici\u00f3n #${sc.rank||'\u2014'} en el ranking nacional de presi\u00f3n regulatoria ambiental.`;
   document.getElementById('sp-perfil').innerHTML=`
-    <div style="display:flex;gap:10px;margin-bottom:16px">
-      ${['ICR','IPR','IRF','IIS'].map((k,i)=>{const val=[sc.icr,sc.ipr,sc.irf,sc.iis][i]||0;return`<div class="sp-stat" style="text-align:center;flex:1"><div class="sp-stat-label">${k}</div><div class="sp-stat-value" style="color:${scoreColor(val)}">${val}</div></div>`;}).join('')}
-      <div class="sp-stat" style="text-align:center;flex:1.5;background:${scoreColor(sc.master||0)}22">
-        <div class="sp-stat-label">MASTER</div>
-        <div class="sp-stat-value" style="font-size:22px;color:${scoreColor(sc.master||0)}">${sc.master||0}</div>
-      </div>
-    </div>
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
       ${scoreBadge(sc.master||0)}
       <span style="font-size:12px;color:var(--text-muted)">Posici\u00f3n #${sc.rank||'\u2014'} de 32 \u00b7 Promedio nacional: ${avg}</span>
@@ -941,26 +920,29 @@ function renderLatestNewsTicker(){
   }
   el.innerHTML=html+html;
 }
-function renderFederalColumn(elId, items, fallbackUrl, camara){
+function renderFederalColumn(elId, items, fallbackUrl){
   var el=document.getElementById(elId);
   if(!el)return;
   if(!items||!items.length){
-    el.innerHTML='<a href="'+fallbackUrl+'" target="_blank" class="gaceta-link-item" style="margin-bottom:8px"><span style="flex:1">Abrir Gaceta oficial ↗</span></a><div class="sp-empty" style="margin-top:8px">Sin iniciativas SCOPE detectadas este mes.<br>Ejecuta el scraper para actualizar.</div>';
+    el.innerHTML='<a href="'+fallbackUrl+'" target="_blank" class="gaceta-link-item"><span style="flex:1">Abrir Gaceta oficial ↗</span></a><div class="sp-empty" style="margin-top:10px">Sin iniciativas detectadas este mes.</div>';
     return;
   }
-  var html='';
-  items.forEach(function(it){
+  var MAX=10, VISIBLE=4;
+  var shown=items.slice(0,MAX);
+  var html='<div style="max-height:'+(VISIBLE*62)+'px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
+  shown.forEach(function(it){
     var fecha=it.fecha?new Date(it.fecha).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     var cat=it.categoria||'';
     var catColor={'Agua':'#3498db','Energía':'#f39c12','Residuos':'#27ae60','Clima':'#16a085','Minería':'#8e44ad','Agro':'#d35400','Industria':'#2c3e50'}[cat]||'#95a5a6';
-    html+='<div class="sp-news-item" style="padding:7px 0">';
-    html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">';
+    html+='<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">';
+    html+='<div style="display:flex;align-items:center;gap:5px;margin-bottom:3px">';
     if(cat)html+='<span style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;background:'+catColor+'22;color:'+catColor+'">'+cat+'</span>';
     html+='<span style="font-size:10px;color:var(--text-muted)">'+fecha+'</span>';
     html+='</div>';
-    html+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" style="font-size:12px;color:var(--text);text-decoration:none;line-height:1.4">'+(it.titulo||it.title||'')+'</a>';
+    html+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" style="font-size:11.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block">'+(it.titulo||'')+'</a>';
     html+='</div>';
   });
+  html+='</div>';
   el.innerHTML=html;
 }
 function renderWidgetFederal(){
