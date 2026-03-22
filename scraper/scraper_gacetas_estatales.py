@@ -17,6 +17,7 @@ import warnings
 import argparse
 import base64
 import unicodedata
+import csv, io
 import urllib.request
 from datetime import datetime, timedelta
 from collections import Counter
@@ -82,7 +83,7 @@ ESTADOS = {
         "js": False,
     },
     "México": {
-        "iniciativas": "https://legislacion.legislativoedomex.gob.mx/asuntos/",
+        "iniciativas": "https://legislacion.congresoedomex.gob.mx/asuntosparlamentarios/iniciativas",
         "periodico": "https://legislacion.edomex.gob.mx/ve_periodico_oficial",
         "js": True,
     },
@@ -383,6 +384,134 @@ def _inferir_tipo(titulo):
     return "iniciativa"
 
 
+# ─── SCRAPERS PERSONALIZADOS ───────────────────────────────────────────────────
+
+def _exp_num(url):
+    """Extrae número de expediente del nombre del PDF para ordenamiento."""
+    m = re.search(r'EXP(\d+)', url, re.IGNORECASE)
+    return int(m.group(1)) if m else 0
+
+
+def scrape_chihuahua_csv():
+    """
+    Chihuahua: descarga CSV completo de la LXVIII Legislatura y filtra SCOPE.
+    Endpoint: /biblioteca/iniciativas/generarCSV.php?idlegislatura=68
+    """
+    url = "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/generarCSV.php?idlegislatura=68"
+    mes_actual = datetime.now().strftime("%Y-%m")
+    try:
+        r = get_session().get(url, timeout=30, verify=False)
+        if r.status_code != 200:
+            return []
+        content = r.content.decode("utf-8-sig")   # elimina BOM si existe
+        reader = csv.DictReader(io.StringIO(content))
+        docs = []
+        seen = set()
+        for row in reader:
+            # Normalizar nombres de columnas con posibles caracteres raros
+            resumen = ""
+            fecha_str = ""
+            tipo_ini = ""
+            for k, v in row.items():
+                kn = _sin_acentos(k or "")
+                if "resumen" in kn:
+                    resumen = v or ""
+                elif "fecha" in kn and "presentacion" in kn:
+                    fecha_str = v or ""
+                elif "tipo" in kn and "iniciativa" in kn:
+                    tipo_ini = v or ""
+
+            # Filtrar mes actual
+            if not fecha_str.startswith(mes_actual):
+                continue
+            if not resumen or len(resumen) < 20:
+                continue
+
+            # Aplicar clasificador SCOPE
+            cat, cat_nombre = clasificar(resumen)
+            if not cat:
+                continue
+
+            # Construir URL del documento (enlace a la página de búsqueda con filtro)
+            num = row.get("N\xfamero") or row.get("Numero") or ""
+            key = resumen[:80]
+            if key in seen:
+                continue
+            seen.add(key)
+
+            docs.append({
+                "titulo": resumen[:400],
+                "tipo": "iniciativa" if "iniciativa" in resumen.lower() else "proposicion",
+                "fecha": fecha_str[:10],
+                "url": f"https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
+                "categoria": cat_nombre,
+                "estado": "Chihuahua",
+                "metodo": "csv",
+            })
+            if len(docs) >= 5:
+                break
+        return docs
+    except Exception as e:
+        logging.debug(f"Chihuahua CSV error: {e}")
+        return []
+
+
+def scrape_nl_partidos():
+    """
+    Nuevo León: scrapea subpáginas por grupo parlamentario.
+    Las páginas exponen PDFs con títulos completos de iniciativas.
+    """
+    base = "https://www.hcnl.gob.mx/iniciativas_lxxvii/"
+    grupos = ["glpan", "glpri", "glmorena", "glpvem", "glprd"]
+    año_actual = str(datetime.now().year)
+    seen_urls = set()
+    all_docs = []
+
+    for grupo in grupos:
+        url = base + grupo + "/"
+        html = fetch_html(url)
+        if not html:
+            continue
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(html, "html.parser")
+        for a in soup.find_all("a", href=True):
+            href = a.get("href", "")
+            titulo = a.get_text(strip=True)
+            # Solo PDFs de iniciativas (patrón LXXVII-YEAR-EXP)
+            if ".pdf" not in href.lower() or "hcnl.gob.mx" not in href:
+                continue
+            if len(titulo) < 30:
+                continue
+            if href in seen_urls:
+                continue
+            # Filtrar por año actual
+            if año_actual not in href:
+                continue
+            if TIPOS_EXCLUIR.search(titulo):
+                continue
+            cat, cat_nombre = clasificar(titulo)
+            if not cat:
+                continue
+            seen_urls.add(href)
+            all_docs.append({
+                "titulo": titulo[:400],
+                "tipo": _inferir_tipo(titulo),
+                "fecha": datetime.now().strftime("%Y-%m-%d"),
+                "url": href,
+                "categoria": cat_nombre,
+                "estado": "Nuevo León",
+                "metodo": "requests",
+                "exp": _exp_num(href),
+            })
+
+    # Ordenar por número de expediente descendente (más reciente primero)
+    all_docs.sort(key=lambda x: x.get("exp", 0), reverse=True)
+    # Limpiar campo auxiliar
+    for d in all_docs:
+        d.pop("exp", None)
+    return all_docs[:5]
+
+
 # ─── NIVEL 1: requests + BeautifulSoup ─────────────────────────────────────────
 
 HEADERS = {
@@ -498,7 +627,7 @@ def fetch_playwright(url, wait_selector=None, timeout=25000):
             except Exception:
                 pass
         else:
-            page.wait_for_timeout(3000)
+            page.wait_for_timeout(6000)
         html = page.content()
         page.close()
         return html
@@ -521,12 +650,28 @@ def _extraer_docs_playwright(url, estado, max_docs=5):
 
 # ─── SCRAPER PRINCIPAL POR ESTADO ──────────────────────────────────────────────
 
+CUSTOM_SCRAPERS = {
+    "Chihuahua": scrape_chihuahua_csv,
+    "Nuevo León": scrape_nl_partidos,
+}
+
+
 def scrape_estado(nombre, config, usar_playwright=True):
     """
     Scrapea un estado con estrategia de dos niveles:
-    1. Intenta con requests (rápido)
-    2. Si no encuentra nada y el portal usa JS, usa Playwright
+    1. Si existe scraper personalizado, lo usa primero
+    2. Intenta con requests (rápido)
+    3. Si no encuentra nada y el portal usa JS, usa Playwright
     """
+    # Scraper personalizado
+    if nombre in CUSTOM_SCRAPERS:
+        try:
+            docs = CUSTOM_SCRAPERS[nombre]()
+            if docs:
+                return docs
+        except Exception as e:
+            logging.debug(f"Custom scraper {nombre} error: {e}")
+
     docs = []
     urls = []
 
