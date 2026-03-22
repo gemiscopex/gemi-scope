@@ -1,0 +1,32 @@
+name: SCOPE Scraper Legislativo
+
+on:
+  schedule:
+    - cron: "0 14 * * 1-5"
+  workflow_dispatch:
+
+jobs:
+  scraper:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: pip install requests beautifulsoup4
+
+      - name: Ejecutar scraper
+        run: python scraper/scraper_gacetas.py --token ${{ secrets.GITHUB_TOKEN }} --dias 30
+
+      - name: Commit y push
+        run: |
+          git config user.name "SCOPE Bot"
+          git config user.email "scope-bot@gemiscopex.github.io"
+          git add data/gaceta-federal.json
+          git diff --staged --quiet || git commit -m "Auto: Gacetas SCOPE $(date +%Y-%m-%d)"
+          git push
