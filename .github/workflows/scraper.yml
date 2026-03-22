@@ -1,9 +1,12 @@
-name: SCOPE - Scraper Diario Automatico
+name: SCOPE - Scraper Legislativo Diario
 
 on:
   schedule:
+    # Corre todos los dias a las 8:00 AM hora Mexico (UTC-6 = 14:00 UTC)
+    # Lunes a viernes
     - cron: "0 14 * * 1-5"
   workflow_dispatch:
+    # Tambien se puede correr manualmente desde GitHub Actions
 
 permissions:
   contents: write
@@ -11,26 +14,37 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Instalar dependencias
-        run: pip install -r requirements.txt
+      - name: Instalar dependencias Python
+        run: pip install requests beautifulsoup4 playwright
 
-      - name: Scraper de noticias (Google News RSS)
-        run: python scraper/scraper.py
+      - name: Instalar Playwright Chromium
+        run: playwright install --with-deps chromium
 
-      - name: Scraper de gacetas legislativas
-        run: python scraper/scraper_gacetas.py --no-upload
+      - name: Scraper Federal
+        run: python scraper_gacetas.py --token dummy --dias 30 --no-upload
 
-      - name: Commit y push
+      - name: Scraper Estatal (32 estados)
+        run: python scraper_gacetas_estatales.py --token dummy --no-upload
+
+      - name: Commit y push del JSON actualizado
         run: |
           git config user.name "SCOPE Bot"
           git config user.email "scope-bot@igemiac.com"
-          git add data/noticias.json data/gaceta-federal.json
-          git diff --staged --quiet || git commit -m "Actualiza noticias y gacetas SCOPE $(date +%Y-%m-%d)"
-          git push
+          git add data/gaceta-federal.json data/gaceta-estatal.json
+          if git diff --staged --quiet; then
+            echo "Sin cambios nuevos"
+          else
+            git commit -m "Auto: Gacetas SCOPE $(date +'%Y-%m-%d')"
+            git pull --rebase origin main
+            git push
+          fi
