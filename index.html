@@ -959,26 +959,41 @@ function renderWidgetFederal(){
 function renderWidgetGacetas(){
   var el=document.getElementById('widget-gacetas');
   if(!el)return;
-  var kws=['gaceta','periodico oficial','legislatura','decreto estatal','reforma','congreso local','sesion ordinaria'];
-  var activity={};
-  Object.keys(estadoData).forEach(function(s){activity[s]=filterNoticiasEstado(s,kws).length;});
-  var active=Object.entries(activity).filter(function(e){return e[1]>0;}).sort(function(a,b){return b[1]-a[1];}).slice(0,10);
-  var html='<div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Estados con actividad detectada en gacetas y periódicos oficiales</div>';
-  if(active.length){
-    active.forEach(function(e){
-      var s=e[0],cnt=e[1];
-      var sc=stateScores[s]||{};
-      var col=scoreColor(sc.master||0);
-      var abbr=STATE_ABBR[s]||s.substring(0,3).toUpperCase();
-      html+='<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:0.8px solid var(--border);cursor:pointer" onclick="openStatePanel(\''+s+'\')">';
-      html+='<span style="font-size:10px;font-weight:700;color:var(--text-muted);min-width:32px">'+abbr+'</span>';
-      html+='<span style="font-size:12px;flex:1;color:var(--text)">'+s+'</span>';
-      html+='<span style="font-size:10px;color:var(--text-muted)">'+cnt+' nota'+(cnt>1?'s':'')+'</span>';
-      html+='<span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:'+col+'22;color:'+col+'">'+scoreLabel(sc.master||0)+'</span>';
-      html+='</div>';
+  fetch('data/gaceta-estatal.json',{cache:'no-store'})
+    .then(function(r){return r.ok?r.json():null;})
+    .catch(function(){return null;})
+    .then(function(data){
+      var resumen=(data&&data.resumen)||[];
+      var meta=data&&data._meta||{};
+      var CAT_COLORS={'Energia':'#f39c12','Agua':'#3498db','Medio Ambiente':'#27ae60',
+        'Residuos / Economia Circular':'#9b59b6','Cambio Climatico':'#e74c3c',
+        'Agro y Desarrollo Rural':'#d35400','Impuestos Ambientales':'#1abc9c',
+        'Industria Quimica':'#2c3e50','General':'#95a5a6'};
+      var html='';
+      if(meta.ultima_actualizacion){
+        var d=new Date(meta.ultima_actualizacion);
+        html+='<div style="font-size:10px;color:var(--text-muted);margin-bottom:10px">Actualizado: '+
+          d.toLocaleString('es-MX',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})+'</div>';
+      }
+      if(resumen.length){
+        html+='<div style="max-height:248px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
+        resumen.forEach(function(r){
+          var s=r.estado;
+          var abbr=STATE_ABBR[s]||s.substring(0,3).toUpperCase();
+          var col=CAT_COLORS[r.categoria_principal]||'#95a5a6';
+          html+='<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:0.8px solid var(--border);cursor:pointer" onclick="openStatePanel(\''+s+'\')">';
+          html+='<span style="font-size:10px;font-weight:700;color:var(--text-muted);min-width:32px">'+abbr+'</span>';
+          html+='<span style="font-size:12px;flex:1;color:var(--text)">'+s+'</span>';
+          html+='<span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:'+col+'22;color:'+col+'">'+r.categoria_principal+'</span>';
+          html+='<span style="font-size:10px;color:var(--text-muted)">'+r.total+'</span>';
+          html+='</div>';
+        });
+        html+='</div>';
+      } else {
+        html+='<div class="sp-empty">Sin actividad SCOPE detectada en congresos estatales este mes.</div>';
+      }
+      el.innerHTML=html;
     });
-  } else {html+='<div class="sp-empty">Sin actividad en gacetas estatales detectada en el período</div>';}
-  el.innerHTML=html;
 }
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
