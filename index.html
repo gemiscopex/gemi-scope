@@ -72,7 +72,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .cat-bar-wrap{width:80px;height:3px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden}
 .cat-bar{height:100%;border-radius:2px}
 .cat-count{font-size:13px;font-weight:600;color:var(--text);min-width:28px;text-align:right;font-variant-numeric:tabular-nums}
-#map{width:100%;height:380px;border-radius:12px;overflow:hidden}
+.map-wrap{width:100%;height:380px;border-radius:12px;overflow:hidden}
+#map{width:100%;height:100%}
 /* Leaflet pulsing markers */
 .pulse-marker-container{background:transparent!important;border:none!important;box-shadow:none!important}
 .pulse-marker{position:relative;width:20px;height:20px}
@@ -164,7 +165,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .act-btn.active{background:var(--green-tint);border-color:var(--green);color:var(--green)}
 /* News Ticker */
 .news-ticker-wrap{height:340px;overflow:hidden;position:relative}
-.news-ticker-inner{animation:tickerScroll 90s linear infinite}
+.news-ticker-inner{animation:tickerScroll 180s linear infinite}
 .news-ticker-inner:hover{animation-play-state:paused;cursor:pointer}
 @keyframes tickerScroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
 .ticker-item{padding:9px 0;border-bottom:0.8px solid var(--border);cursor:pointer}
@@ -248,7 +249,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
       </div>
       <div class="card">
         <div class="card-label">Mapa político de México</div>
-        <div id="map"></div>
+        <div class="map-wrap"><div id="map"></div></div>
         <div class="map-legend">
           <span class="legend-item"><span class="legend-dot" style="background:#ff4757"></span>Crítico 70+</span>
           <span class="legend-item"><span class="legend-dot" style="background:#ffa502"></span>Alto 45–69</span>
@@ -261,7 +262,16 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     <div class="bottom-row">
       <div class="card">
         <div class="card-label">Actividad Legislativa Federal</div>
-        <div id="widget-federal"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px">
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2ed57322">🏛 Cámara de Diputados</div>
+            <div id="widget-diputados"></div>
+          </div>
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2ed57322">🏛 Senado de la República</div>
+            <div id="widget-senado"></div>
+          </div>
+        </div>
       </div>
       <div class="card">
         <div class="card-label">Monitoreo Estatal de Gacetas</div>
@@ -496,9 +506,11 @@ function updateLeyes(){
 }
 var _scopeMap=null;
 function buildMap(){
+  try{
   if(_scopeMap){_scopeMap.remove();_scopeMap=null;}
   var map=L.map('map',{center:[23.6345,-102.5528],zoom:5,scrollWheelZoom:false,zoomControl:true,attributionControl:false});
   _scopeMap=map;
+  setTimeout(function(){map.invalidateSize();},200);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,subdomains:'abcd'}).addTo(map);
   Object.keys(STATE_COORDS).forEach(function(state){
     var coords=STATE_COORDS[state];
@@ -531,6 +543,7 @@ function buildMap(){
     marker.on('mouseover',function(){this.openPopup();});
     marker.on('click',function(){openStatePanel(state);});
   });
+  }catch(e){console.error('Map error:',e);}
 }
 
 function showTab(id,btn){
@@ -928,27 +941,38 @@ function renderLatestNewsTicker(){
   }
   el.innerHTML=html+html;
 }
-function renderWidgetFederal(){
-  var el=document.getElementById('widget-federal');
+function renderFederalColumn(elId, items, fallbackUrl, camara){
+  var el=document.getElementById(elId);
   if(!el)return;
-  var gacetas=[
-    {name:'Gaceta Parlamentaria — Cámara de Diputados',url:'https://gaceta.diputados.gob.mx/'},
-    {name:'Gaceta del Senado de la República',url:'https://www.senado.gob.mx/65/gaceta_del_senado'},
-    {name:'Diario Oficial de la Federación (DOF)',url:'https://www.dof.gob.mx/'}
-  ];
-  var kws=['diputados','senado','congreso','camara de diputados','sesion plenaria','iniciativa de ley','legislativo federal','reforma federal'];
-  var arts=noticias.filter(function(n){
-    var t=qa((n.titulo||'').toLowerCase());
-    return kws.some(function(k){return t.includes(k);});
-  }).sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);}).slice(0,5);
+  if(!items||!items.length){
+    el.innerHTML='<a href="'+fallbackUrl+'" target="_blank" class="gaceta-link-item" style="margin-bottom:8px"><span style="flex:1">Abrir Gaceta oficial ↗</span></a><div class="sp-empty" style="margin-top:8px">Sin iniciativas SCOPE detectadas este mes.<br>Ejecuta el scraper para actualizar.</div>';
+    return;
+  }
   var html='';
-  gacetas.forEach(function(g){
-    html+='<a href="'+g.url+'" target="_blank" class="gaceta-link-item"><span style="flex:1">'+g.name+'</span><span style="color:var(--green);font-size:14px;font-weight:600">↗</span></a>';
+  items.forEach(function(it){
+    var fecha=it.fecha?new Date(it.fecha).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+    var cat=it.categoria||'';
+    var catColor={'Agua':'#3498db','Energía':'#f39c12','Residuos':'#27ae60','Clima':'#16a085','Minería':'#8e44ad','Agro':'#d35400','Industria':'#2c3e50'}[cat]||'#95a5a6';
+    html+='<div class="sp-news-item" style="padding:7px 0">';
+    html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">';
+    if(cat)html+='<span style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;background:'+catColor+'22;color:'+catColor+'">'+cat+'</span>';
+    html+='<span style="font-size:10px;color:var(--text-muted)">'+fecha+'</span>';
+    html+='</div>';
+    html+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" style="font-size:12px;color:var(--text);text-decoration:none;line-height:1.4">'+(it.titulo||it.title||'')+'</a>';
+    html+='</div>';
   });
-  html+='<div style="font-size:10px;font-weight:700;letter-spacing:0.7px;color:var(--text-muted);text-transform:uppercase;margin:14px 0 8px">Actividad reciente detectada</div>';
-  if(arts.length){arts.forEach(function(n){html+='<div class="sp-news-item"><div class="sp-news-title"><a href="'+(n.url||'#')+'" target="_blank">'+(n.titulo||'')+'</a></div><div class="sp-news-meta">'+formatFecha(n.fecha_publicacion)+'</div></div>';});}
-  else{html+='<div class="sp-empty">Sin actividad federal en el período de monitoreo</div>';}
   el.innerHTML=html;
+}
+function renderWidgetFederal(){
+  fetch('data/gaceta-federal.json',{cache:'no-store'})
+    .then(function(r){return r.ok?r.json():null;})
+    .catch(function(){return null;})
+    .then(function(data){
+      var dip=(data&&data.diputados)||[];
+      var sen=(data&&data.senado)||[];
+      renderFederalColumn('widget-diputados',dip,'https://gaceta.diputados.gob.mx/','Diputados');
+      renderFederalColumn('widget-senado',sen,'https://www.senado.gob.mx/66/gaceta_del_senado','Senado');
+    });
 }
 function renderWidgetGacetas(){
   var el=document.getElementById('widget-gacetas');
