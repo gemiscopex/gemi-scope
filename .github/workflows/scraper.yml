@@ -31,10 +31,10 @@ jobs:
         run: playwright install --with-deps chromium
 
       - name: Scraper Federal
-        run: python scraper_gacetas.py --token dummy --dias 30 --no-upload
+        run: python scraper/scraper_gacetas.py --token dummy --dias 30 --no-upload
 
       - name: Scraper Estatal (32 estados)
-        run: python scraper_gacetas_estatales.py --token dummy --no-upload
+        run: python scraper/scraper_gacetas_estatales.py --token dummy --no-upload
 
       - name: Commit y push del JSON actualizado
         run: |
