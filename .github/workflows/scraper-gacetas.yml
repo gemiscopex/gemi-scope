@@ -21,12 +21,11 @@ jobs:
         run: pip install requests beautifulsoup4
 
       - name: Ejecutar scraper
-        run: python scraper/scraper_gacetas.py --token ${{ secrets.GITHUB_TOKEN }} --dias 30
+        run: python scraper/scraper_gacetas.py --token dummy --dias 30 --no-upload
 
       - name: Commit y push
         run: |
           git config user.name "SCOPE Bot"
           git config user.email "scope-bot@gemiscopex.github.io"
           git add data/gaceta-federal.json
-          git diff --staged --quiet || git commit -m "Auto: Gacetas SCOPE $(date +%Y-%m-%d)"
-          git push
+          git diff --staged --quiet && echo "Sin cambios" || (git commit -m "Auto: Gacetas SCOPE $(date +%Y-%m-%d)" && git push)
