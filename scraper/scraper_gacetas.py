@@ -98,11 +98,35 @@ HEADERS = {
 }
 
 
-def es_relevante(texto):
-    """Devuelve True si el texto contiene al menos un keyword SCOPE
-       y ninguno de exclusión dominante."""
+# Solo estos tipos de documentos legislativos nos interesan
+TIPOS_VALIDOS = [
+    "iniciativa", "proposicion", "proposición", "punto de acuerdo",
+    "proyecto de decreto", "proyecto de ley", "dictamen",
+    "iniciativa con proyecto", "que reforma", "que adiciona",
+    "que expide", "que abroga", "que modifica",
+]
+
+TIPOS_EXCLUIR = [
+    "convocatoria", "reunion", "reunión", "junta directiva",
+    "sesion ordinaria", "sesión ordinaria", "sesion de trabajo",
+    "sesión de trabajo", "informe de actividades", "acta de",
+    "invitacion", "invitación", "comunicacion", "comunicación",
+    "programa de trabajo", "acuerdo de la junta",
+]
+
+def es_tipo_valido(texto):
+    """Solo iniciativas, proposiciones y puntos de acuerdo."""
     t = texto.lower()
-    # Excluir primero
+    if any(ex in t for ex in TIPOS_EXCLUIR):
+        return False
+    return any(tv in t for tv in TIPOS_VALIDOS)
+
+def es_relevante(texto):
+    """Devuelve True si es tipo valido, contiene keyword SCOPE
+       y ninguno de exclusion dominante."""
+    t = texto.lower()
+    if not es_tipo_valido(texto):
+        return False
     if any(ex in t for ex in EXCLUDE_LOWER):
         return False
     return any(kw in t for kw in SCOPE_KEYWORDS_LOWER)
@@ -202,7 +226,7 @@ def scrape_diputados(max_paginas=3):
             continue
 
     print(f"  [Diputados] {len(resultados)} iniciativas SCOPE encontradas")
-    return resultados[:20]
+    return resultados[:10]
 
 
 # ──────────────────────────────────────────────
@@ -259,7 +283,7 @@ def scrape_senado(max_paginas=3):
         print(f"  [Senado] Error: {e}")
 
     print(f"  [Senado] {len(resultados)} iniciativas SCOPE encontradas")
-    return resultados[:20]
+    return resultados[:10]
 
 
 # ──────────────────────────────────────────────
