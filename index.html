@@ -22,7 +22,7 @@
   --border-med:rgba(0,0,0,0.1);
   --radius:16px;
 }
-body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--text);min-height:100vh;padding-bottom:48px}
+body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--text);min-height:100vh}
 .nav{background:#fff;border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:stretch;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100;gap:0}
 .nav-left{display:flex;align-items:center;gap:10px;flex-shrink:0;padding-right:20px;border-right:1px solid var(--border)}
 .nav-logo-img{height:22px;width:auto;display:block}
@@ -110,8 +110,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .ley-tema{font-size:11px;color:var(--text-muted);margin-top:2px}
 .tab-content{display:none}
 .tab-content.active{display:block}
-.statusbar{position:fixed;bottom:0;left:0;right:0;height:36px;background:#fff;border-top:0.8px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;font-size:11px;color:var(--text-muted);letter-spacing:0.04em}
-.sb-dot{width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:7px;display:inline-block;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
 .state-panel{margin-bottom:14px;animation:spSlide 0.22s ease}
 @keyframes spSlide{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
@@ -192,13 +190,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     <img src="assets/logo-gemi.jpeg" class="nav-logo-img" alt="GEMI">
     <div class="nav-logo-sep"></div>
     <span class="nav-logo">SCOPE</span>
-    <span class="nav-tagline">Una plataforma de Iniciativa GEMI</span>
   </div>
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
     <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación Federal</button>
     <button class="tab-btn" onclick="showTab('alertas',this)" id="btn-alertas">Alertas <span id="alertas-badge" class="nav-badge" style="display:none"></span></button>
     <button class="tab-btn" onclick="showTab('radares',this)">Radares</button>
+    <button class="tab-btn" onclick="showTab('acerca',this)">Acerca de</button>
   </div>
   <div class="nav-right">
     <div class="nav-search">
@@ -300,10 +298,65 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     <div class="card" id="radar-panel" style="padding:20px"><div class="sp-empty">Selecciona un tema para ver el radar</div></div>
   </div>
 </div>
-<div class="statusbar">
-  <div><span class="sb-dot"></span>GEMI SCOPE — SISTEMA ACTIVO</div>
-  <div id="status-update">Scraper corre cada 4h vía GitHub Actions</div>
-  <div>MÉXICO — 32 ESTADOS</div>
+
+<!-- TAB: ACERCA DE -->
+<div id="tab-acerca" class="tab-content">
+  <div class="main" style="max-width:780px">
+    <div class="card" style="padding:36px 40px;line-height:1.75">
+      <div style="font-size:26px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.04em;margin-bottom:24px;color:var(--text)">Acerca de SCOPE</div>
+
+      <p style="font-size:15px;color:var(--text);margin-bottom:20px">
+        SCOPE es una plataforma de Iniciativa GEMI creada para monitorear la actividad pública medioambiental en México. GEMI (<em>Global Environment Management Initiative</em>) es una organización que agrupa empresas de clase mundial, dedicada al fomento de políticas sostenibles y la promoción de responsabilidades ambientales en el país.
+      </p>
+
+      <p style="font-size:14px;color:var(--text-sec);margin-bottom:20px">
+        SCOPE integra en tiempo real información legislativa federal y estatal, impuestos ambientales, alertas regulatorias y radares temáticos, permitiendo a las organizaciones anticiparse a cambios normativos con relevancia ambiental.
+      </p>
+
+      <div style="border-top:0.8px solid var(--border);margin:28px 0"></div>
+
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:16px">Lo que monitoreamos</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px">
+        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">💧 Agua e hídrico</div>
+        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">🌿 Medio ambiente</div>
+        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">⚡ Energía y renovables</div>
+        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">♻️ Residuos y economía circular</div>
+        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">🌡️ Cambio climático</div>
+        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">💰 Impuestos ambientales</div>
+        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">🌾 Agro y desarrollo rural</div>
+        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">🏭 Industria química</div>
+      </div>
+
+      <div style="border-top:0.8px solid var(--border);margin:28px 0"></div>
+
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:16px">Cobertura</div>
+      <div style="display:flex;gap:28px;margin-bottom:28px;flex-wrap:wrap">
+        <div style="text-align:center">
+          <div style="font-size:32px;font-weight:700;font-family:'Barlow Condensed',sans-serif;color:var(--green)">32</div>
+          <div style="font-size:12px;color:var(--text-muted)">Estados monitoreados</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:32px;font-weight:700;font-family:'Barlow Condensed',sans-serif;color:var(--green)">2</div>
+          <div style="font-size:12px;color:var(--text-muted)">Cámaras federales</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:32px;font-weight:700;font-family:'Barlow Condensed',sans-serif;color:var(--green)">8</div>
+          <div style="font-size:12px;color:var(--text-muted)">Categorías SCOPE</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:32px;font-weight:700;font-family:'Barlow Condensed',sans-serif;color:var(--green)">L–V</div>
+          <div style="font-size:12px;color:var(--text-muted)">Actualización automática</div>
+        </div>
+      </div>
+
+      <div style="border-top:0.8px solid var(--border);margin:28px 0"></div>
+
+      <div style="font-size:13px;color:var(--text-muted)">
+        Para más información visita
+        <a href="https://mx.linkedin.com/company/igemiac" target="_blank" style="color:var(--green);text-decoration:none;font-weight:500">Iniciativa GEMI en LinkedIn</a>.
+      </div>
+    </div>
+  </div>
 </div>
 <script>
 const CATS=[
