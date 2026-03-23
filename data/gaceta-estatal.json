@@ -1,5 +1,52 @@
 {
   "estados": {
+    "Chihuahua": [
+      {
+        "titulo": "Proposición con carácter de punto de acuerdo, a efecto de exhortar a la titular del Ejecutivo Estatal y a la Secretaría de Salud del Estado, para que, en el ámbito de sus atribuciones, valoren, analicen y autoricen que el nuevo hospital de Gineco-Obstetricia de Hidalgo del Parral, sea denominado oficialmente “Hospital de Gineco-Obstetricia de Parral, Soledad Pastrán”.",
+        "tipo": "proposicion",
+        "fecha": "2026-03-17",
+        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
+        "categoria": "Industria Quimica",
+        "estado": "Chihuahua",
+        "metodo": "csv"
+      },
+      {
+        "titulo": "Iniciativa con carácter de decreto, a fin de que se autorice al Ejecutivo del Estado para que, por conducto de la Secretaría de Hacienda, constituya un Fideicomiso Público, denominado “Fideicomiso Arena Multiusos”, con domicilio en la ciudad de Chihuahua. \r\n",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-11",
+        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
+        "categoria": "Industria Quimica",
+        "estado": "Chihuahua",
+        "metodo": "csv"
+      },
+      {
+        "titulo": "Iniciativa con carácter de decreto, por medio de la cual propone reformar las Tablas de Valores Unitarios de Suelo y Construcción de ese Municipio, para el Ejercicio Fiscal 2026, relativo a los valores unitarios correspondientes a Frutales (nogales) en producción 1 y 2 por riego de bombeo. \r\n",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-06",
+        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
+        "categoria": "Agua",
+        "estado": "Chihuahua",
+        "metodo": "csv"
+      },
+      {
+        "titulo": "Documento mediante el cual formulan preguntas al titular de la Junta Central de Agua y Saneamiento del Estado, con relación a la inversión de presupuesto en materia hidráulica en el Municipio de Hidalgo del Parral. ",
+        "tipo": "proposicion",
+        "fecha": "2026-03-03",
+        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
+        "categoria": "Agua",
+        "estado": "Chihuahua",
+        "metodo": "csv"
+      },
+      {
+        "titulo": "Proposición con carácter de punto de acuerdo, a fin de exhortar al Ejecutivo Estatal, a través de la Junta Central de Agua y Saneamiento y el organismo operador municipal para que visibilice a la población de “Los Kilómetros en Ciudad Juárez” y se les garantice el derecho humano al agua potable, drenaje y alcantarillado a través de la inversión pública en infraestructura hidráulica en el presente ",
+        "tipo": "proposicion",
+        "fecha": "2026-03-03",
+        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
+        "categoria": "Agua",
+        "estado": "Chihuahua",
+        "metodo": "csv"
+      }
+    ],
     "Ciudad de México": [
       {
         "titulo": "Iniciativas Congreso de la Ciudad de México19 mar 2026CON PROYECTO DE DECRETO POR EL QUE SE REFORMAN Y ADICIONAN\r\nDIVERSAS DISPOSICIONES DE LA LEY AMBIENTAL DE LA CIUDAD DE\r\nMÉXICO EN MATERIA DE PREVENCIÓN, COMBATE Y RESTAURACIÓN DE\r\nZONAS AFECTADAS POR INCENDIOS FORESTALESSuscrita por:ADRIANA MARÍA GUADALUPE ESPINOSA DE LOS MONTEROS GARCÍA|MOVIMIENTO DE REGENERACIÓN NACIONAL|Ver más",
@@ -44,6 +91,53 @@
         "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7820",
         "categoria": "Industria Quimica",
         "estado": "Guanajuato"
+      }
+    ],
+    "Nuevo León": [
+      {
+        "titulo": "MEDIANTE EL CUAL PRESENTAN INICIATIVA DE REFORMA POR ADICIÓN DE UN CAPÍTULO V DENOMINADO “DE LA PENSIÓN ALIMENTICIA PRENATAL” QUE CONTIENE LOS ARTÍCULOS DEL 323 BIS 8 AL 323 BIS 15 TODOS DEL CÓDIGO CIVIL PARA EL ESTADO DE NUEVO LEÓN.",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-22",
+        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21194.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Nuevo León",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "PRESENTA INICIATIVA DE ADICION DEL CAPITULO XII DENOMINADO \"DEL FONDO ESTATAL DE PROTECCION Y AUTONOMÍA PARA MUJERES VÍCTIMAS DE VIOLENCIA\" QUE CONTIENE LOS ARTICULOS 67, 68, 69, 70, 71, 72, 73, 74, 75, 76 Y 77 A LA LEY DE ACCESO DE LAS MUJERES A UNA VIDA LIBRE DE VIOLENCIA.",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-22",
+        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21149.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Nuevo León",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA A LOS ARTÍCULOS 168 BIS, 168 BIS I Y 168 BIS II DE LA LEY AMBIENTAL DEL ESTADO DE NUEVO LEÓN, EN RELACIÓN AL USO DE BOLSAS Y POPOTES DE PLÁSTICO.",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-22",
+        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21130.pdf",
+        "categoria": "Residuos / Economia Circular",
+        "estado": "Nuevo León",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "MEDIANTE EL CUAL PRESENTAN INICIATIVA POR LA QUE SE EXPIDE LA LEY DE FOMENTO A LA ECONOMÍA CIRCULAR DEL ESTADO DE NUEVO LEÓN, LA CUAL CONSTA DE 72 ARTÍCULOS Y 6 ARTÍCULOS TRANSITORIOS.",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-22",
+        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21100.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Nuevo León",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA A LA NOMENCLATURA DEL CAPÍTULO PRIMERO DEL TÍTULO TERCERO Y SE ADICIONA UN CAPÍTULO SEGUNDO AL MISMO TÍTULO, BAJO LA DENOMINACIÓN VIOLACIÓN DE SISTEMAS DIGITALES PERSONALES, QUE COMPRENDEN EL ARTÍCULO 179 BIS DEL CÓDIGO PENAL PARA EL ESTADO DE NUEVO LEÓN.",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-22",
+        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21084.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Nuevo León",
+        "metodo": "requests"
       }
     ],
     "Quintana Roo": [
@@ -154,6 +248,12 @@
   },
   "resumen": [
     {
+      "estado": "Nuevo León",
+      "total": 5,
+      "categoria_principal": "Industria Quimica",
+      "ultima_fecha": "2026-03-22"
+    },
+    {
       "estado": "Quintana Roo",
       "total": 5,
       "categoria_principal": "Industria Quimica",
@@ -188,11 +288,17 @@
       "total": 1,
       "categoria_principal": "Agua",
       "ultima_fecha": "2026-03-22"
+    },
+    {
+      "estado": "Chihuahua",
+      "total": 5,
+      "categoria_principal": "Agua",
+      "ultima_fecha": "2026-03-17"
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-03-22T20:11:01.891078",
+    "ultima_actualizacion": "2026-03-23T00:01:28.792986",
     "mes": "2026-03",
-    "estados_con_actividad": 6
+    "estados_con_actividad": 8
   }
 }
