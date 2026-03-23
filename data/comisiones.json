@@ -1,88 +1,1624 @@
 {
   "_meta": {
     "legislatura": "LXVI Legislatura 2024-2027",
-    "nota": "Verificar integración actualizada en diputados.gob.mx y senado.gob.mx"
+    "ultima_actualizacion": "2026-03-23"
   },
-  "diputados": [
-    {"n":"Asuntos Frontera Norte","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Asuntos Frontera Sur-Sureste","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Asuntos Indígenas y Afromexicanos","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Atención a Grupos Vulnerables","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Bienestar Social","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Ciencia, Tecnología e Innovación","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Comunicaciones y Transportes","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Cultura y Cinematografía","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Defensa Nacional","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Deporte","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Derechos de la Niñez y Adolescencia","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Derechos Humanos","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Desarrollo Metropolitano, Urbano, Ordenamiento Territorial y Movilidad","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Desarrollo Rural","url":"https://desarrollorural.diputados.gob.mx/","scope":true,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Economía Social y Fomento del Cooperativismo","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Economía, Comercio y Competitividad","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Educación","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Energía","url":"https://energia.diputados.gob.mx/","scope":true,"ur":"2025-03-18","pr":"2025-04-15","integrantes":[{"n":"Marco Antonio Mendoza Bustamante","cargo":"Presidente","partido":"Morena"},{"n":"Sofía Carvajal Isunza","cargo":"Secretaria","partido":"Morena"},{"n":"Humberto Pedrero Moreno","cargo":"Secretario","partido":"PVEM"},{"n":"Elsa Méndez Martínez","cargo":"Vocal","partido":"Morena"},{"n":"Luis Ángel Xariel Espinosa Cházaro","cargo":"Vocal","partido":"PRD"}]},
-    {"n":"Federalismo y Desarrollo Municipal","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Ganadería","url":"https://ganaderia.diputados.gob.mx/","scope":true,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Gobernación y Población","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Hacienda y Crédito Público","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Igualdad de Género","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Infraestructura","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Justicia","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Marina","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Medio Ambiente y Recursos Naturales","url":"https://medioambiente.diputados.gob.mx/","scope":true,"ur":"2025-03-12","pr":"2025-04-09","integrantes":[{"n":"Arturo Hernández Tapia","cargo":"Presidente","partido":"Morena"},{"n":"Itzel Rentería Medina","cargo":"Secretaria","partido":"Morena"},{"n":"Eduardo Espinoza Pérez","cargo":"Secretario","partido":"PT"},{"n":"Ana Elizabeth Ayala Leyva","cargo":"Vocal","partido":"Morena"},{"n":"Ricardo Astudillo Suárez","cargo":"Vocal","partido":"PAN"}]},
-    {"n":"Pesca","url":"https://pesca.diputados.gob.mx/","scope":true,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Presupuesto y Cuenta Pública","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Puntos Constitucionales","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Radio y Televisión","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Recursos Hidráulicos, Agua Potable y Saneamiento","url":null,"scope":true,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Reforma Agraria","url":null,"scope":true,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Relaciones Exteriores","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Salud","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Seguridad Ciudadana","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Seguridad Social","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Trabajo y Previsión Social","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Transparencia y Anticorrupción","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Turismo","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Vigilancia de la Auditoría Superior de la Federación","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]}
-  ],
-  "senado": [
-    {"n":"Administración","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Agricultura y Ganadería","url":null,"scope":true,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Anticorrupción, Transparencia y Participación Ciudadana","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Asuntos Fronterizos y Migratorios","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Asuntos Indígenas","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Biblioteca y Asuntos Editoriales","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Ciencia, Tecnología e Innovación","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Comunicaciones y Transportes","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Cultura","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Defensa Nacional","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Deporte","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Derechos Humanos","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Desarrollo Municipal y Regional","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Desarrollo Social","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Desarrollo Urbano y Ordenación del Territorio","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Educación","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Energía","url":null,"scope":true,"ur":"2025-03-10","pr":"2025-04-07","integrantes":[{"n":"Adolfo Romero Lainas","cargo":"Presidente","partido":"Morena"},{"n":"Verónica Camino Farjat","cargo":"Secretaria","partido":"Morena"},{"n":"Ernesto Ruffo Appel","cargo":"Secretario","partido":"PAN"},{"n":"Ángel García Yáñez","cargo":"Vocal","partido":"Morena"},{"n":"Claudia Edith Anaya Mota","cargo":"Vocal","partido":"Morena"}]},
-    {"n":"Federalismo","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Gobernación","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Hacienda y Crédito Público","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Igualdad de Género","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Jurisdiccional","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Justicia","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Marina","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Medio Ambiente, Recursos Naturales y Cambio Climático","url":"https://www.senado.gob.mx/66/comisiones/ordinarias","scope":true,"ur":"2025-03-05","pr":"2025-04-02","integrantes":[{"n":"Ana Lilia Rivera Rivera","cargo":"Presidenta","partido":"Morena"},{"n":"Higinio del Toro Pérez","cargo":"Secretario","partido":"Morena"},{"n":"Silvia Guadalupe Garza Galván","cargo":"Secretaria","partido":"PAN"},{"n":"Martha Cecilia Márquez Alvarado","cargo":"Vocal","partido":"Morena"},{"n":"Cristóbal Arias Solís","cargo":"Vocal","partido":"Morena"}]},
-    {"n":"Pesca y Acuacultura","url":null,"scope":true,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Presupuesto y Cuenta Pública","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Puntos Constitucionales","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Recursos Hidráulicos","url":null,"scope":true,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Reforma Agraria","url":null,"scope":true,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Relaciones Exteriores","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Salud","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Seguridad Pública","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Seguridad Social","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Trabajo y Previsión Social","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Turismo","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]},
-    {"n":"Zonas Metropolitanas y Asentamientos Humanos","url":null,"scope":false,"ur":null,"pr":null,"integrantes":[]}
+  "comisiones": [
+    {
+      "id": "medio-ambiente-y-rec-dip",
+      "nombre": "Medio Ambiente y Recursos Naturales",
+      "camara": "Diputados",
+      "url": "https://web.diputados.gob.mx/inicio/comision/f732104b-d212-414c-8b76-4e3f77c55525",
+      "integrantes": [
+        {
+          "n": "Luis Humberto Aldana Navarro",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Giselle Yunueen Arellano Ávila",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Magaly Armenta Oliveros",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Xóchitl Teresa Arzola Vargas",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Ariadna Barrera Vázquez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Gabriela Benavides Cobos",
+          "cargo": "Presidente",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Venustiano Caamal Cocom",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Daniel Campos Plancarte",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Diana Castillo Gabino",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Noel Chávez Velázquez",
+          "cargo": "Secretaría",
+          "partido": "PRI"
+        },
+        {
+          "n": "Fidel Daniel Chimal García",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Manuel Alejandro Cota Cárdenas",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Jesús Martín Cuanalo Araujo",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Fausto Gallardo García",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Diana Estefanía Gutiérrez Valtierra",
+          "cargo": "Secretaría",
+          "partido": "PAN"
+        },
+        {
+          "n": "Asael Hernández Cerón",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Irma Juan Carlos",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "José Antonio López Ruíz",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Miguel Angel Monraz Ibarra",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Santy Montemayor Castillo",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Gabino Morales Mendoza",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Leoncio Alfonso Morán Sánchez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Haro Juan Moreno de",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Ernesto Núñez Aguilar",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Víctor Samuel Palma César",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "la Torre Irais Virginia Reyes De",
+          "cargo": "Secretaría",
+          "partido": "MC"
+        },
+        {
+          "n": "Nancy Guadalupe Sánchez Arredondo",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Nadia Yadira Sepúlveda García",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "José Luis Téllez Marín",
+          "cargo": "Secretaría",
+          "partido": "PT"
+        },
+        {
+          "n": "Isidro Enrique Villegas García",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Xóchitl Nashielly Zagal Ramírez",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Joaquín Zebadúa Alva",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        }
+      ]
+    },
+    {
+      "id": "cambio-clim-tico-y-s-dip",
+      "nombre": "Cambio Climático y Sostenibilidad",
+      "camara": "Diputados",
+      "url": "https://web.diputados.gob.mx/inicio/comision/4508b857-0fc7-44df-b10d-daf0d67d2fad",
+      "integrantes": [
+        {
+          "n": "Carmen Patricia Armendáriz Guerra",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Magaly Armenta Oliveros",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "José Alberto Benavides Castañeda",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Nubia Iris Castillo Medina",
+          "cargo": "Secretaría",
+          "partido": "PAN"
+        },
+        {
+          "n": "Noel Chávez Velázquez",
+          "cargo": "Secretaría",
+          "partido": "PRI"
+        },
+        {
+          "n": "Alejandra Chedraui Peralta",
+          "cargo": "Presidente",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Martha Aracely Cruz Jiménez",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Luz Rivas María Isidra De la",
+          "cargo": "Secretaría",
+          "partido": "PT"
+        },
+        {
+          "n": "Paloma Domínguez Ugarte",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Zenyazen Roberto Escobar García",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Mayra Espino Suárez",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Ana Miriam Ferráez Centeno",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Edén Garcés Medina",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Teresa Ginez Serrano",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Juan Antonio González Hernández",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Rosa Margarita Graniel Zenteno",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Jorge Alberto Mier Acolt",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Jaime Humberto Pérez Bernabe",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Magda Erika Salgado Ponce",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Miguel Ángel Sánchez Rivera",
+          "cargo": "Secretaría",
+          "partido": "MC"
+        },
+        {
+          "n": "Rosalinda Savala Díaz",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Ruth Maricela Silva Andraca",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        }
+      ]
+    },
+    {
+      "id": "desarrollo-urbano-y--dip",
+      "nombre": "Desarrollo Urbano y Ordenamiento Territorial",
+      "camara": "Diputados",
+      "url": "https://web.diputados.gob.mx/inicio/comision/05a413dc-eaf0-4894-8431-5abea5c3aeb3",
+      "integrantes": [
+        {
+          "n": "Xóchitl Teresa Arzola Vargas",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Alejandro Avilés Álvarez",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "David Azuara Zúñiga",
+          "cargo": "Secretaría",
+          "partido": "PAN"
+        },
+        {
+          "n": "Carlos Alonso Castillo Pérez",
+          "cargo": "Presidente",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Margarita Corro Mendoza",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Jesús Martín Cuanalo Araujo",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Vega Vargas Alma Rosa De la",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Francisco Javier Estrada Domínguez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Ana Miriam Ferráez Centeno",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Patricia Galindo Alarcón",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Alcocer Ma. Lorena García Jimeno",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "José Luis Hernández Pérez",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Ivan Marin Rangel",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Luis Enrique Martínez Ventura",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Iván Millán Contreras",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Santy Montemayor Castillo",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "María del Rosario Orozco Caballero",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Jorge Armando Ortiz Rodríguez",
+          "cargo": "Secretaría",
+          "partido": "PT"
+        },
+        {
+          "n": "Jesús Irugami Perea Cruz",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Juan Armando Ruiz Hernández",
+          "cargo": "Integrante",
+          "partido": "MC"
+        },
+        {
+          "n": "Alma Laura Ruiz López",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Juan Ignacio Samperio Montaño",
+          "cargo": "Secretaría",
+          "partido": "MC"
+        },
+        {
+          "n": "Eva María Vásquez Hernández",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Alfredo Vázquez Vázquez",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Francisco Javier Velázquez Vallejo",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Zoraya Villacis Palacios",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Dulce María Corina Villegas Guarneros",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        }
+      ]
+    },
+    {
+      "id": "desarrollo-y-conserv-dip",
+      "nombre": "Desarrollo y Conservación Rural, Agrícola y Autosuficiencia Alimentaria",
+      "camara": "Diputados",
+      "url": "https://web.diputados.gob.mx/inicio/comision/45a90136-88e9-454a-82f2-52c19842b643",
+      "integrantes": [
+        {
+          "n": "Leticia Barrera Maldonado",
+          "cargo": "Presidente",
+          "partido": "PRI"
+        },
+        {
+          "n": "Rufina Benítez Estrada",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Ma. del Carmen Cabrera Lagunas",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Nubia Iris Castillo Medina",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Elda Esther del Carmen Castillo Quintana",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Margarita Corro Mendoza",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "García Ana Luisa del Muro",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Juan Francisco Espinoza Eguía",
+          "cargo": "Secretaría",
+          "partido": "PRI"
+        },
+        {
+          "n": "Briceyda García Antonio",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Jesús Fernando García Hernández",
+          "cargo": "Secretaría",
+          "partido": "PT"
+        },
+        {
+          "n": "la Garza Samantha Margarita Garza de",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "José Gloria López",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Blanca Estela Hernández Rodríguez",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Gilberto Herrera Ruiz",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Lucero Higareda Segura",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "José Mario Iñiguez Franco",
+          "cargo": "Secretaría",
+          "partido": "PAN"
+        },
+        {
+          "n": "Mariana Guadalupe Jiménez Zamora",
+          "cargo": "Secretaría",
+          "partido": "MC"
+        },
+        {
+          "n": "Jaime Humberto Lastra Bastar",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Vanessa López Carrillo",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "la Cruz Amalia López de",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Ricardo Madrid Pérez",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Alberto Maldonado Chavarín",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Ulises Mejía Haro",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Eunice Abigail Mendoza Ramírez",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Celeste Mora Eguiluz",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "José Narro Céspedes",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Any Marilú Porras Baylón",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Ciria Yamile Salomón Durán",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "la Mora Gricelda Valencia de",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Marcela Velázquez Vázquez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "César Augusto Verástegui Ostos",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Gerardo Villarreal Solis",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Mario Zamora Gastélum",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        }
+      ]
+    },
+    {
+      "id": "econom-a-comercio-y--dip",
+      "nombre": "Economía, Comercio y Competitividad",
+      "camara": "Diputados",
+      "url": "https://web.diputados.gob.mx/inicio/comision/de293d92-4aa6-46bc-b119-9c69512e08fa",
+      "integrantes": [
+        {
+          "n": "José Alejandro Aguilar López",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Erubiel Lorenzo Alonso Que",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Mónica Angélica Álvarez Nemer",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Carmen Patricia Armendáriz Guerra",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Claudia Selene Ávila Flores",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Gabriela del Carmen Basto González",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "José Alberto Benavides Castañeda",
+          "cargo": "Secretaría",
+          "partido": "PT"
+        },
+        {
+          "n": "Bruno Blancas Mercado",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Alejandro Carvajal Hidalgo",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Favio Castellanos Polanco",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Sebastián Ebrard Lestrade",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Zenyazen Roberto Escobar García",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "José Antonio Gali López",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Santiago González Soto",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "María Angélica Granados Trespalacios",
+          "cargo": "Secretaría",
+          "partido": "PAN"
+        },
+        {
+          "n": "Hugo Eduardo Gutiérrez Arroyo",
+          "cargo": "Secretaría",
+          "partido": "PRI"
+        },
+        {
+          "n": "Lucero Higareda Segura",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Rocío López Gorosave",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Luis Enrique Miranda Barrera",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Leoncio Alfonso Morán Sánchez",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Daniel Murguía Lardizábal",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Jesús Antonio Nader Nasrallah",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Gloria Elizabeth Núñez Sánchez",
+          "cargo": "Secretaría",
+          "partido": "MC"
+        },
+        {
+          "n": "María Fabiola Karina Pérez Popoca",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Luz María Rodríguez Pérez",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Miguel Ángel Salim Alle",
+          "cargo": "Presidente",
+          "partido": "PAN"
+        },
+        {
+          "n": "Ernesto Sánchez Rodríguez",
+          "cargo": "Secretaría",
+          "partido": "PAN"
+        },
+        {
+          "n": "Julio Javier Scherer Pareyón",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Marcelo de Jesús Torres Cofiño",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Jesús Valdés Peña",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Juan Carlos Valladares Eichelmann",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Enrique Vázquez Navarro",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Mario Zamora Gastélum",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        }
+      ]
+    },
+    {
+      "id": "energ-a-dip",
+      "nombre": "Energía",
+      "camara": "Diputados",
+      "url": "https://web.diputados.gob.mx/inicio/comision/61247e1a-b7b0-41ca-9453-fdfa3961a4f2",
+      "integrantes": [
+        {
+          "n": "Rocío Adriana Abreu Artiñano",
+          "cargo": "Presidente",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Anabel Acosta Islas",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "José Javier Aguirre Gallardo",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Mónica Angélica Álvarez Nemer",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Raúl Álvarez Villaseñor",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Sandra Anaya Villegas",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Daniel Asaf Manjarrez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Ricardo Astudillo Suárez",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "David Azuara Zúñiga",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "María de los Ángeles Ballesteros García",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Gabriela del Carmen Basto González",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Omar Antonio Borboa Becerra",
+          "cargo": "Secretaría",
+          "partido": "PAN"
+        },
+        {
+          "n": "Melva Carrasco Godínez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Antonio Lorenzo Castro Villarreal",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Olga Leticia Chávez Rojas",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Ricardo Crespo Arroyo",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Walther Gustavo Adolfo De Hoyos",
+          "cargo": "Integrante",
+          "partido": "MC"
+        },
+        {
+          "n": "Garza Villarreal Héctor Alfonso de la",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Olga Juliana Elizondo Guerra",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Patricia Flores Elizondo",
+          "cargo": "Secretaría",
+          "partido": "MC"
+        },
+        {
+          "n": "Ramón Angel Flores Robles",
+          "cargo": "Secretaría",
+          "partido": "PT"
+        },
+        {
+          "n": "Fausto Gallardo García",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Maiella Martha Gabriela Gómez Maldonado",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Hugo Eduardo Gutiérrez Arroyo",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Genoveva Huerta Villegas",
+          "cargo": "Secretaría",
+          "partido": "PAN"
+        },
+        {
+          "n": "Naty Poob Pijy Jiménez Vásquez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "la Fuente Theodoros Kalionchiz De",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Verónica Martínez García",
+          "cargo": "Secretaría",
+          "partido": "PRI"
+        },
+        {
+          "n": "Luis Enrique Martínez Ventura",
+          "cargo": "Secretaría",
+          "partido": "PT"
+        },
+        {
+          "n": "Ricardo Sóstenes Mejía Berdeja",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Ulises Mejía Haro",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Tey Mollinedo Cano",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Jesús Antonio Nader Nasrallah",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Adrián Oseguera Kernion",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Lorena Piñón Rivera",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Ernesto Alejandro Prieto Gallardo",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Luis Orlando Quiroga Treviño",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Adriana Belinda Quiroz Gallegos",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Ariana del Rocio Rejón Lara",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Luz María Rodríguez Pérez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Claudia Gabriela Salas Rodríguez",
+          "cargo": "Integrante",
+          "partido": "MC"
+        },
+        {
+          "n": "Gloria Sánchez López",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Reginaldo Sandoval Flores",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Juan Carlos Valladares Eichelmann",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Raymundo Vázquez Conchas",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Aremy Velazco Bautista",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Francisco Javier Velázquez Vallejo",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Maria del Rosario Vera ",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Alma Marina Vitela Rodríguez",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        }
+      ]
+    },
+    {
+      "id": "recursos-hidr-ulicos-dip",
+      "nombre": "Recursos Hidráulicos, Agua Potable y Saneamiento",
+      "camara": "Diputados",
+      "url": "https://web.diputados.gob.mx/inicio/comision/9714e143-4fe8-42c3-b723-875b6bd8beb3",
+      "integrantes": [
+        {
+          "n": "Zaria Aguilera Claro",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Humberto Ambriz Delgadillo",
+          "cargo": "Secretaría",
+          "partido": "PRI"
+        },
+        {
+          "n": "Carmen Patricia Armendáriz Guerra",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Leticia Barrera Maldonado",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "María del Carmen Bautista Peláez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Oscar Bautista Villegas",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Francisco Javier Borrego Adame",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Mario Calzada Mercado",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "la Cruz Elizabeth Cervantes de",
+          "cargo": "Presidente",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Jesús Roberto Corral Ordóñez",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "José Luis Cruz Lucatero",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Jesús Martín Cuanalo Araujo",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Cintia Cuevas Sánchez",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Roberto Ángel Domínguez Rodríguez",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Olga Juliana Elizondo Guerra",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Juan Francisco Espinoza Eguía",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "José Armando Fernández Samaniego",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Patricia Flores Elizondo",
+          "cargo": "Integrante",
+          "partido": "MC"
+        },
+        {
+          "n": "Claudia García Hernández",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Gabriel García Hernández",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Jesús Fernando García Hernández",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Martha Olivia García Vidaña",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "la Garza Samantha Margarita Garza de",
+          "cargo": "Secretaría",
+          "partido": "PAN"
+        },
+        {
+          "n": "José Gloria López",
+          "cargo": "Secretaría",
+          "partido": "PT"
+        },
+        {
+          "n": "Julio Ernesto Gutiérrez Bocanegra",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Denisse Guzmán González",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Azucena Huerta Romero",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "la Fuente Theodoros Kalionchiz De",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Hugo Manuel Luna Vázquez",
+          "cargo": "Secretaría",
+          "partido": "MC"
+        },
+        {
+          "n": "Ricardo Madrid Pérez",
+          "cargo": "Secretaría",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Alberto Maldonado Chavarín",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Paulo Gonzalo Martínez López",
+          "cargo": "Secretaría",
+          "partido": "PAN"
+        },
+        {
+          "n": "Beatriz Milland Pérez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "José Luis Montalvo Luna",
+          "cargo": "Secretaría",
+          "partido": "PT"
+        },
+        {
+          "n": "Moreno Tatiana Tonantzin P. Ángeles",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Francisco Pelayo Covarrubias",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Jesús Irugami Perea Cruz",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Felicita Pompa Robles",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Montserrat Ruiz Páez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Miguel Ángel Sánchez Rivera",
+          "cargo": "Integrante",
+          "partido": "MC"
+        },
+        {
+          "n": "Aciel Sibaja Mendoza",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Marcelo de Jesús Torres Cofiño",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Gerardo Ulloa Pérez",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Juan Carlos Varela Domínguez",
+          "cargo": "Integrante",
+          "partido": "MORENA"
+        },
+        {
+          "n": "Xóchitl Nashielly Zagal Ramírez",
+          "cargo": "Secretaría",
+          "partido": "MORENA"
+        }
+      ]
+    },
+    {
+      "id": "economia-sen",
+      "nombre": "Economía",
+      "camara": "Senado",
+      "url": "https://www.senado.gob.mx/66/comisiones/ordinarias/368",
+      "integrantes": [
+        {
+          "n": "Emmanuel Reyes Carmona",
+          "cargo": "Presidencia",
+          "partido": "Morena"
+        },
+        {
+          "n": "Eugenio Segura Vázquez",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "María de Jesús Díaz Marmolejo",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "Miguel Pavel Jarero Velázquez",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Juan Carlos Loera de la Rosa",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Martha Lucía Micher Camarena",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Karina Isabel Ruiz Ruiz",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Lorenia Iveth Valles Sampedro",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Marko Cortés Mendoza",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Miguel Márquez Márquez",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Juanita Guerra Mena",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Virgilio Mendoza Amezcua",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Manuel Añorve Baños",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Miguel Ángel Riquelme Solís",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        }
+      ]
+    },
+    {
+      "id": "energia-sen",
+      "nombre": "Energía",
+      "camara": "Senado",
+      "url": "https://www.senado.gob.mx/66/comisiones/ordinarias/370",
+      "integrantes": [
+        {
+          "n": "Beatriz Silvia Robles Gutiérrez",
+          "cargo": "Presidencia",
+          "partido": "Morena"
+        },
+        {
+          "n": "Miguel Ángel Yunes Márquez",
+          "cargo": "Secretaría",
+          "partido": "PAN"
+        },
+        {
+          "n": "Agustín Dorantes Lámbarri",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "Clemente Castañeda Hoeflich",
+          "cargo": "Secretaría",
+          "partido": "MC"
+        },
+        {
+          "n": "Raquel Bonilla Herrera",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "Luis Alfonso Silva Romo",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "Olga Patricia Sosa Ruíz",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "Heriberto Marcelo Aguilar Castillo",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "Alejandra Berenice Arias Trevilla",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Óscar Cantón Zetina",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "José Ramón Gómez Leal",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Cecilia Guadalupe Guadiana Mandujano",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Cuauhtémoc Ochoa Fernández",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Lorenia Iveth Valles Sampedro",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        }
+      ]
+    },
+    {
+      "id": "medioambiente-sen",
+      "nombre": "Medio Ambiente, Recursos Naturales y Cambio Climático",
+      "camara": "Senado",
+      "url": "https://www.senado.gob.mx/66/comisiones/ordinarias/381",
+      "integrantes": [
+        {
+          "n": "Maki Esther Ortiz Domínguez",
+          "cargo": "Presidencia",
+          "partido": "PAN"
+        },
+        {
+          "n": "Víctor Mercado Salgado",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "Alejandro González Yáñez",
+          "cargo": "Secretaría",
+          "partido": "PT"
+        },
+        {
+          "n": "Miguel Pavel Jarero Velázquez",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "Gina Gerardina Campuzano González",
+          "cargo": "Secretaría",
+          "partido": "PRI"
+        },
+        {
+          "n": "Sasil De León Villard",
+          "cargo": "Integrante",
+          "partido": "PVEM"
+        },
+        {
+          "n": "Susana Harp Iturribarría",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Julieta Ramírez Padilla",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Lorenia Iveth Valles Sampedro",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Mayuli Latifa Martínez Simón",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Susana Zatarain García",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Juanita Guerra Mena",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Carolina Viggiano Austria",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        }
+      ]
+    },
+    {
+      "id": "agenda2030-sen",
+      "nombre": "Para el Seguimiento a la Implementación de la Agenda 2030",
+      "camara": "Senado",
+      "url": "https://www.senado.gob.mx/66/comisiones/ordinarias/421",
+      "integrantes": [
+        {
+          "n": "Amalia Dolores García Medina",
+          "cargo": "Presidencia",
+          "partido": "Morena"
+        },
+        {
+          "n": "Cuauhtémoc Ochoa Fernández",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "Karen Castrejón Trujillo",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "María Guadalupe Chavira De La Rosa",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Alejandro Murat Hinojosa",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Emmanuel Reyes Carmona",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Mayuli Latifa Martínez Simón",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Mely Romero Celis",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Yeidckol Polevnsky Gurwitz",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        }
+      ]
+    },
+    {
+      "id": "agua-sen",
+      "nombre": "Recursos Hídricos e Infraestructura Hidráulica",
+      "camara": "Senado",
+      "url": "https://www.senado.gob.mx/66/comisiones/ordinarias/390",
+      "integrantes": [
+        {
+          "n": "Armando Ayala Robles",
+          "cargo": "Presidencia",
+          "partido": "PAN"
+        },
+        {
+          "n": "Paloma Sánchez Ramos",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "Heriberto Marcelo Aguilar Castillo",
+          "cargo": "Secretaría",
+          "partido": "Morena"
+        },
+        {
+          "n": "Óscar Cantón Zetina",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Andrea Chávez Treviño",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Manuel Huerta Ladrón de Guevara",
+          "cargo": "Integrante",
+          "partido": "PT"
+        },
+        {
+          "n": "Luis Fernando Salazar Fernández",
+          "cargo": "Integrante",
+          "partido": "PAN"
+        },
+        {
+          "n": "Gina Gerardina Campuzano González",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Agustín Dorantes Lámbarri",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Mario Humberto Vázquez Robles",
+          "cargo": "Integrante",
+          "partido": "Morena"
+        },
+        {
+          "n": "Virgilio Mendoza Amezcua",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Carolina Viggiano Austria",
+          "cargo": "Integrante",
+          "partido": "PRI"
+        },
+        {
+          "n": "Alejandro González Yáñez",
+          "cargo": "Integrante",
+          "partido": "PT"
+        }
+      ]
+    }
   ]
 }
