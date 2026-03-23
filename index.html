@@ -45,6 +45,9 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .tab-btn{padding:0 2px;margin-right:20px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:'Inter',sans-serif;white-space:nowrap}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
 .main{max-width:1200px;margin:0 auto;padding:24px 28px}
+.scope-footer{border-top:0.8px solid var(--border);margin-top:32px;padding:20px 28px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.8}
+.scope-footer a{color:var(--text-muted);text-decoration:underline;text-underline-offset:3px}
+.scope-footer a:hover{color:var(--text)}
 .card{background:#fff;border:0.8px solid var(--border-med);border-radius:var(--radius);padding:22px 24px}
 .card-label{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:18px}
 .top-grid{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:14px}
@@ -1094,5 +1097,9 @@ async function init(){
 }
 init();
 </script>
+<footer class="scope-footer">
+  SCOPE opera a través de Iniciativa GEMI. Versión 1.2 &copy; 2026. Todos los derechos reservados.<br>
+  Consulta nuestros <a href="#">Términos y condiciones</a> y nuestra <a href="#">Política de privacidad</a>.
+</footer>
 </body>
 </html>
