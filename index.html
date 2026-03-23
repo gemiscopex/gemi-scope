@@ -94,6 +94,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .spark-line{flex-shrink:0}
 .spark-count{font-size:13px;font-weight:600;color:var(--text);min-width:36px;text-align:right;font-variant-numeric:tabular-nums}
 .spark-arrow{font-size:12px;font-weight:600;min-width:14px;text-align:center;flex-shrink:0}
+.cat-popover-wrap{position:relative;display:inline-flex;align-items:center}
+.cat-popover-btn{background:none;border:none;font-size:17px;color:var(--text-muted);letter-spacing:3px;cursor:pointer;padding:1px 6px;border-radius:5px;line-height:1;transition:background 0.15s,color 0.15s}
+.cat-popover-btn:hover,.cat-popover-wrap:hover .cat-popover-btn{background:rgba(10,194,133,0.1);color:var(--green)}
+.cat-popover{display:none;position:absolute;right:0;top:calc(100% + 8px);background:var(--card);border:0.8px solid var(--border);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,0.14);padding:14px 16px;width:270px;z-index:300}
+.cat-popover-wrap:hover .cat-popover{display:block}
+.cat-pop-title{font-size:9.5px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:0.8px solid var(--border)}
+.cat-pop-row{display:flex;align-items:center;gap:8px;padding:5px 0}
+.cat-pop-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.cat-pop-name{font-size:12px;font-weight:500;color:var(--text);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cat-pop-bar-wrap{width:60px;height:3px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden}
+.cat-pop-bar{height:100%;border-radius:2px}
+.cat-pop-count{font-size:12px;font-weight:600;color:var(--text);min-width:22px;text-align:right;font-variant-numeric:tabular-nums}
 .news-list{list-style:none}
 .news-item{display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:0.8px solid var(--border);cursor:pointer}
 .news-item:last-child{border-bottom:none}
@@ -240,7 +252,16 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
   <div class="tab-content active" id="tab-dashboard">
     <div class="top-grid">
       <div class="card" style="display:flex;flex-direction:column;overflow:hidden">
-        <div class="card-label">Últimas Noticias</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <div class="card-label" style="margin-bottom:0">Últimas Noticias</div>
+          <div class="cat-popover-wrap">
+            <button class="cat-popover-btn" title="Actividad por categoría">···</button>
+            <div class="cat-popover" id="cat-popover">
+              <div class="cat-pop-title">Actividad por categoría</div>
+              <div id="cat-popover-rows"></div>
+            </div>
+          </div>
+        </div>
         <div class="news-ticker-wrap" id="news-ticker-wrap">
           <div class="news-ticker-inner" id="news-ticker"></div>
         </div>
@@ -268,10 +289,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
         <div class="card-label">Monitoreo Estatal de Gacetas</div>
         <div id="widget-gacetas"></div>
       </div>
-    </div>
-    <div class="card" style="margin-bottom:14px">
-      <div class="card-label">Actividad por categoría</div>
-      <div class="spark-widget" id="spark-widget"></div>
     </div>
   </div>
   <div class="tab-content" id="tab-legislacion">
@@ -522,13 +539,16 @@ function buildSparkWidget(){
   }
   const total=Object.values(catCounts).reduce((a,b)=>a+b,0)||1;
   const sorted=[...CATS].sort((a,b)=>(catCounts[b.id]||0)-(catCounts[a.id]||0));
-  document.getElementById('spark-widget').innerHTML=sorted.map(c=>{
-    const cnt=catCounts[c.id]||0;
-    const pct=Math.round((cnt/total)*100);
-    const arrow=cnt>0?'↑':'→';
-    const arrowColor=cnt>0?c.color:'rgba(0,0,0,0.2)';
-    return `<div class="spark-row" style="cursor:default"><span class="spark-dot" style="background:${c.color}"></span><span class="spark-name">${c.name}</span>${sparkSVG(cnt,c.color)}<span style="font-size:11px;color:var(--text-muted);min-width:28px;text-align:right">${pct}%</span><span class="spark-count">${cnt}</span><span class="spark-arrow" style="color:${arrowColor}">${arrow}</span></div>`;
-  }).join('');
+  const maxCnt=catCounts[sorted[0]?.id]||1;
+  // Render popover rows
+  const popover=document.getElementById('cat-popover-rows');
+  if(popover){
+    popover.innerHTML=sorted.map(c=>{
+      const cnt=catCounts[c.id]||0;
+      const barW=Math.round((cnt/maxCnt)*100);
+      return `<div class="cat-pop-row"><span class="cat-pop-dot" style="background:${c.color}"></span><span class="cat-pop-name">${c.name}</span><div class="cat-pop-bar-wrap"><div class="cat-pop-bar" style="width:${barW}%;background:${c.color}"></div></div><span class="cat-pop-count">${cnt}</span></div>`;
+    }).join('');
+  }
 }
 function updateNews(){
   const list=document.getElementById('news-list');
