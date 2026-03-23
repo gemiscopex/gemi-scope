@@ -482,10 +482,7 @@ function processData(){
   });
 }
 function getTopCat(){let top=null,max=-1;CATS.forEach(c=>{if(catCounts[c.id]>max){max=catCounts[c.id];top=c}});return{cat:top,count:max}}
-function updateStatus(){
-  const el=document.getElementById('status-update');
-  if(noticias.length>0){const last=noticias[0]?.fecha_scraping;if(last){const d=new Date(last);el.textContent='Actualizado: '+d.toLocaleString('es-MX',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}}
-}
+function updateStatus(){}
 function updateActividadPanel(){
   const hero=document.getElementById('top-hero');
   const list=document.getElementById('cat-list');
