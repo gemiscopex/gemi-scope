@@ -206,6 +206,72 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 /* Gaceta link item */
 .gaceta-link-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-tint);border-radius:10px;text-decoration:none;color:var(--text);font-size:12px;font-weight:500;margin-bottom:6px;border:1px solid rgba(10,194,133,0.15);transition:background 0.15s}
 .gaceta-link-item:hover{background:rgba(10,194,133,0.15)}
+/* ═══════════ RESPONSIVE MÓVIL ═══════════ */
+@media (max-width: 680px){
+  /* ── NAV ── */
+  .nav{padding:0 14px;height:auto;flex-wrap:wrap}
+  .nav-left{border-right:none;padding-right:0;height:48px}
+  .nav-tagline{display:none}
+  .nav-right{display:none}
+  .nav-tabs{padding:0 2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;height:38px;border-top:1px solid var(--border);flex-basis:100%;flex-shrink:0;gap:0}
+  .nav-tabs::-webkit-scrollbar{display:none}
+  .tab-btn{font-size:12px;margin-right:14px;padding:0 2px}
+
+  /* ── MAIN ── */
+  .main{padding:14px 12px}
+
+  /* ── GRIDS → columna única ── */
+  .top-grid{grid-template-columns:1fr !important}
+  .bottom-row{grid-template-columns:1fr !important}
+  .leyes-grid{grid-template-columns:1fr !important}
+  .fed-cols{grid-template-columns:1fr !important}
+  .acerca-grid{grid-template-columns:1fr !important}
+
+  /* ── MAPA ── */
+  .map-wrap{height:260px !important}
+
+  /* ── CARDS ── */
+  .card{border-radius:12px;padding:16px 14px}
+
+  /* ── MODAL DE ESTADO ── */
+  .state-modal-bg{padding:0}
+  .state-modal{width:100%;max-width:100%;max-height:100vh;border-radius:0;padding:16px;animation:none}
+
+  /* ── TICKER ── */
+  .news-ticker-wrap{height:180px}
+
+  /* ── SP TABS (dentro del modal) ── */
+  .sp-tab{font-size:10px;padding:8px 10px}
+
+  /* ── ALERTAS ── */
+  .alerta-filter-btn{font-size:11px;padding:4px 10px}
+  #tab-alertas > div > div[style]{flex-wrap:wrap}
+
+  /* ── ACERCA DE ── */
+  #tab-acerca .card[style]{padding:22px 18px !important}
+
+  /* ── FOOTER ── */
+  .scope-footer{padding:16px 14px;font-size:10.5px}
+
+  /* ── TICKER NOTICIAS ── */
+  .news-item{gap:8px;padding:9px 12px}
+
+  /* ── LEYES ITEMS ── */
+  .ley-item{padding:12px}
+  .ley-sigla{font-size:16px;min-width:56px}
+
+  /* ── WIDGET GACETAS ── */
+  .wgt-gaceta-row{gap:6px;padding:8px 0}
+
+  /* ── SEARCH DROPDOWN ── */
+  .search-drop{width:calc(100vw - 28px);right:-14px}
+
+  /* ── CAT POPOVER ── */
+  .cat-popover{right:-8px;width:260px}
+
+  /* ── LEYES ESTATALES GRID ── */
+  #tab-legislacion [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
+}
 </style>
 </head>
 <body>
@@ -290,7 +356,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     <div class="bottom-row">
       <div class="card">
         <div class="card-label">Actividad Legislativa Federal</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px">
+        <div class="fed-cols" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px">
           <div>
             <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2ed57322">🏛 Cámara de Diputados</div>
             <div id="widget-diputados"></div>
@@ -349,7 +415,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
       <div style="border-top:0.8px solid var(--border);margin:28px 0"></div>
 
       <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:16px">Lo que monitoreamos</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px">
+      <div class="acerca-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px">
         <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">💧 Agua e hídrico</div>
         <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">🌿 Medio ambiente</div>
         <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">⚡ Energía y renovables</div>
