@@ -107,6 +107,12 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .sdrop-title{font-size:12.5px;font-weight:500;color:var(--text);line-height:1.35}
 .sdrop-meta{font-size:10.5px;color:var(--text-muted);margin-top:1px}
 .sdrop-empty{padding:20px 16px;text-align:center;font-size:12px;color:var(--text-muted)}
+.fed-tabs{display:flex;gap:4px;margin-bottom:10px}
+.fed-tab{background:rgba(0,0,0,0.04);border:none;border-radius:20px;padding:4px 10px;font-size:10.5px;font-weight:600;color:var(--text-muted);cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;display:flex;align-items:center;gap:5px}
+.fed-tab:hover{background:rgba(10,194,133,0.1);color:var(--green)}
+.fed-tab.active{background:var(--green);color:#fff}
+.fed-tab-badge{background:rgba(255,255,255,0.25);border-radius:10px;padding:0 5px;font-size:9px;font-weight:700}
+.fed-tab:not(.active) .fed-tab-badge{background:rgba(0,0,0,0.08);color:var(--text-muted)}
 .cat-popover-wrap{position:relative;display:inline-flex;align-items:center}
 .cat-popover-btn{background:none;border:none;font-size:17px;color:var(--text-muted);letter-spacing:3px;cursor:pointer;padding:1px 6px;border-radius:5px;line-height:1;transition:background 0.15s,color 0.15s}
 .cat-popover-btn:hover,.cat-popover-wrap:hover .cat-popover-btn{background:rgba(10,194,133,0.1);color:var(--green)}
@@ -1116,30 +1122,60 @@ function renderLatestNewsTicker(){
   }
   el.innerHTML=html+html;
 }
+function inferTipo(titulo){
+  var t=(titulo||'').toLowerCase();
+  if(/proposici[oó]n\s+con\s+punto|punto\s+de\s+acuerdo/.test(t)) return 'punto_acuerdo';
+  if(/iniciativa|que\s+reforma|que\s+adiciona|que\s+expide|que\s+abroga|proyecto\s+de\s+decreto/.test(t)) return 'iniciativa';
+  if(/dictamen/.test(t)) return 'dictamen';
+  return 'otro';
+}
 function renderFederalColumn(elId, items, fallbackUrl){
   var el=document.getElementById(elId);
   if(!el)return;
-  if(!items||!items.length){
-    el.innerHTML='<a href="'+fallbackUrl+'" target="_blank" class="gaceta-link-item"><span style="flex:1">Abrir Gaceta oficial ↗</span></a><div class="sp-empty" style="margin-top:10px">Sin iniciativas detectadas este mes.</div>';
-    return;
-  }
-  var MAX=10, VISIBLE=4;
-  var shown=items.slice(0,MAX);
-  var html='<div style="max-height:'+(VISIBLE*62)+'px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
-  shown.forEach(function(it){
-    var fecha=it.fecha?new Date(it.fecha).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
-    var cat=it.categoria||'';
-    var catColor={'Agua':'#3498db','Energía':'#f39c12','Residuos':'#27ae60','Clima':'#16a085','Minería':'#8e44ad','Agro':'#d35400','Industria':'#2c3e50'}[cat]||'#95a5a6';
-    html+='<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">';
-    html+='<div style="display:flex;align-items:center;gap:5px;margin-bottom:3px">';
-    if(cat)html+='<span style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;background:'+catColor+'22;color:'+catColor+'">'+cat+'</span>';
-    html+='<span style="font-size:10px;color:var(--text-muted)">'+fecha+'</span>';
-    html+='</div>';
-    html+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" style="font-size:11.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block">'+(it.titulo||'')+'</a>';
-    html+='</div>';
+  // Normalize tipo field
+  var normalized=(items||[]).map(function(it){
+    var tipo=it.tipo||inferTipo(it.titulo);
+    // map variants
+    if(tipo==='proposicion'||tipo==='proposicion con punto de acuerdo') tipo='punto_acuerdo';
+    return Object.assign({},it,{tipo:tipo});
   });
-  html+='</div>';
+  var iniciativas=normalized.filter(function(it){return it.tipo==='iniciativa'||it.tipo==='dictamen';});
+  var puntos=normalized.filter(function(it){return it.tipo==='punto_acuerdo';});
+  var CAT_COLOR={'Agua':'#3498db','Energía':'#f39c12','Residuos':'#27ae60','Clima':'#16a085','Minería':'#8e44ad','Agro':'#d35400','Industria':'#2c3e50'};
+  function listHTML(arr){
+    if(!arr.length) return '<div style="font-size:11px;color:var(--text-muted);padding:12px 0;font-style:italic">Sin documentos registrados este mes.</div>';
+    var h='<div style="max-height:248px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
+    arr.slice(0,10).forEach(function(it){
+      var fecha=it.fecha?new Date(it.fecha).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+      var cat=it.categoria||'';
+      var cc=CAT_COLOR[cat]||'#95a5a6';
+      h+='<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">';
+      h+='<div style="display:flex;align-items:center;gap:5px;margin-bottom:3px">';
+      if(cat) h+='<span style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;background:'+cc+'22;color:'+cc+'">'+cat+'</span>';
+      h+='<span style="font-size:10px;color:var(--text-muted)">'+fecha+'</span>';
+      h+='</div>';
+      h+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" style="font-size:11.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block">'+(it.titulo||'')+'</a>';
+      h+='</div>';
+    });
+    return h+'</div>';
+  }
+  // Build tabs UI
+  var uid=elId;
+  var html='<div class="fed-tabs" id="tabs-'+uid+'">'
+    +'<button class="fed-tab active" onclick="switchFedTab(\''+uid+'\',\'ini\',this)">Iniciativas <span class="fed-tab-badge">'+iniciativas.length+'</span></button>'
+    +'<button class="fed-tab" onclick="switchFedTab(\''+uid+'\',\'pto\',this)">Puntos de Acuerdo <span class="fed-tab-badge">'+puntos.length+'</span></button>'
+    +'</div>'
+    +'<div id="'+uid+'-ini" class="fed-panel">'+listHTML(iniciativas)+'</div>'
+    +'<div id="'+uid+'-pto" class="fed-panel" style="display:none">'+listHTML(puntos)+'</div>';
   el.innerHTML=html;
+}
+function switchFedTab(uid,panel,btn){
+  document.querySelectorAll('#tabs-'+uid+' .fed-tab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  ['ini','pto'].forEach(function(p){
+    var el=document.getElementById(uid+'-'+p);
+    if(el) el.style.display=(p===panel?'block':'none');
+  });
 }
 function renderWidgetFederal(){
   fetch('data/gaceta-federal.json',{cache:'no-store'})
