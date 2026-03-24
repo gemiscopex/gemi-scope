@@ -158,7 +158,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .com-arrow{font-size:9px;color:var(--text-muted);transition:transform 0.22s ease;flex-shrink:0}
 .com-row.open .com-arrow{transform:rotate(90deg)}
 .com-body{max-height:0;overflow:hidden;transition:max-height 0.32s ease}
-.com-body.open{max-height:900px}
+.com-body.open{max-height:3600px}
 .com-body-inner{background:rgba(0,0,0,0.018);border-radius:0 0 8px 8px;padding:12px 12px 8px;margin-bottom:4px}
 .com-members{border-top:0.8px solid var(--border);padding-top:8px}
 .com-member{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:0.8px solid var(--border)}
@@ -1291,13 +1291,27 @@ function renderComisiones(data){
     var isLead=m.cargo&&(m.cargo.toLowerCase().includes('president')||m.cargo.toLowerCase().includes('secretari'));
     return '<div class="com-member"><div class="com-avatar" style="background:'+color+'">'+initials(m.n)+'</div><div class="com-info"><div class="com-member-name" style="'+(isLead?'font-weight:650':'')+'">'+m.n+'</div><div class="com-member-cargo">'+m.cargo+'</div></div><span class="com-partido">'+m.partido+'</span></div>';
   }
+  var CARGO_ORDER={'presidencia':0,'presidente':0,'presidenta':0,'secretaría':1,'secretaria':1,'secretario':1};
+  function cargoRank(cargo){var k=(cargo||'').toLowerCase();for(var c in CARGO_ORDER){if(k.includes(c))return CARGO_ORDER[c];}return 2;}
   function renderSection(list,sectionId,label,portalUrl){
     var rows=list.map(function(c,i){
       var id=sectionId+'-'+i;
-      var members=c.integrantes||[];
+      var members=(c.integrantes||[]).slice().sort(function(a,b){
+        var ra=cargoRank(a.cargo),rb=cargoRank(b.cargo);
+        if(ra!==rb)return ra-rb;
+        return (a.n||'').localeCompare(b.n||'','es');
+      });
       var membersBlock=members.length
         ?'<div class="com-members" style="margin-bottom:8px">'+members.map(memberHTML).join('')+'</div>'
         :'<div style="font-size:11px;color:var(--text-muted);font-style:italic;padding:4px 0 8px">Integración pendiente de publicación oficial</div>';
+      var footerBlock='';
+      if(c.ur||c.pr){
+        footerBlock='<div style="display:flex;gap:16px;margin-top:8px;padding-top:8px;border-top:0.8px solid var(--border);flex-wrap:wrap">'
+          +'<div><div style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase">Última sesión</div><div style="font-size:11px;color:var(--text);margin-top:2px">'+(c.ur||'—')+'</div></div>'
+          +'<div><div style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase">Próxima sesión</div><div style="font-size:11px;color:var(--text);margin-top:2px">'+(c.pr||'—')+'</div></div>'
+          +'<div style="margin-left:auto;align-self:center"><a href="'+(c.url||portalUrl)+'" target="_blank" rel="noopener" style="font-size:10px;color:var(--green);text-decoration:none;font-weight:600" onclick="event.stopPropagation()">Convocatoria en Gaceta →</a></div>'
+          +'</div>';
+      }
       return '<div>'
         +'<div class="com-row" id="com-hdr-'+id+'" onclick="toggleComision(\''+id+'\')">'
           +'<span class="com-row-scope"></span>'
@@ -1307,7 +1321,7 @@ function renderComisiones(data){
         +'<div class="com-body" id="com-body-'+id+'">'
           +'<div class="com-body-inner">'
             +membersBlock
-            +'<a href="'+(c.url||portalUrl)+'" target="_blank" rel="noopener" style="font-size:10px;color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:6px" onclick="event.stopPropagation()">Ver en portal oficial →</a>'
+            +(footerBlock||'<a href="'+(c.url||portalUrl)+'" target="_blank" rel="noopener" style="font-size:10px;color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:6px" onclick="event.stopPropagation()">Ver en portal oficial →</a>')
           +'</div>'
         +'</div>'
       +'</div>';
