@@ -59,6 +59,15 @@
     ],
     "Guanajuato": [
       {
+        "titulo": "Presentación de la propuesta de punto de acuerdo formulada por personas diputadas integrantes del Grupo Parlamentario del Partido Acción Nacional y de la Representación Parlamentaria del Partido de la Revolución Democrática a efecto de exhortar a las personas titulares de la Secretaría de Agricultura y Desarrollo Rural, la Secretaría de Hacienda y Crédito Público, la Secretaría de Energía, la Secr",
+        "tipo": "proposicion",
+        "fecha": "2026-03-26",
+        "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7847",
+        "categoria": "Agro y Desarrollo Rural",
+        "estado": "Guanajuato",
+        "metodo": "requests"
+      },
+      {
         "titulo": "Presentación de la propuesta de punto de acuerdo formulada por personas diputadas integrantes del Grupo Parlamentario del Partido Acción Nacional y de la Representación Parlamentaria del Partido de la Revolución Democrática a efecto de exhortar a la Secretaría de Agricultura y Desarrollo Rural y a la Comisión Federal de Electricidad para que, considerando que el plazo actualmente establecido para ",
         "tipo": "proposicion",
         "fecha": "2026-03-22",
@@ -76,6 +85,15 @@
       }
     ],
     "Nuevo León": [
+      {
+        "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA AL ARTÍCULO 7 Y POR ADICIÓN DE UN ARTÍCULO 16 BIS 2 DE LA LEY PARA PREVENIR Y ELIMINAR LA DISCRIMINACIÓN EN EL ESTADO DE NUEVO LEÓN, EN MATERIA DE SUBSANAR EL VACÍO NORMATIVO EXISTENTE MEDIANTE LA PROHIBICIÓN Y LA ELIMINACIÓN DE LA FIGURA DEL DENOMINADO “CADENERO”, ENTENDIDA COMO LA PERSONA ENCARGADA DE SELECCIONAR DISCRECIONALMENTE QUIEN PUDE ENTRAR",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-26",
+        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21220.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Nuevo León",
+        "metodo": "requests"
+      },
       {
         "titulo": "MEDIANTE EL CUAL PRESENTAN INICIATIVA DE REFORMA POR ADICIÓN DE UN CAPÍTULO V DENOMINADO “DE LA PENSIÓN ALIMENTICIA PRENATAL” QUE CONTIENE LOS ARTÍCULOS DEL 323 BIS 8 AL 323 BIS 15 TODOS DEL CÓDIGO CIVIL PARA EL ESTADO DE NUEVO LEÓN.",
         "tipo": "iniciativa",
@@ -108,15 +126,6 @@
         "tipo": "iniciativa",
         "fecha": "2026-03-22",
         "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21100.pdf",
-        "categoria": "Industria Quimica",
-        "estado": "Nuevo León",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA A LA NOMENCLATURA DEL CAPÍTULO PRIMERO DEL TÍTULO TERCERO Y SE ADICIONA UN CAPÍTULO SEGUNDO AL MISMO TÍTULO, BAJO LA DENOMINACIÓN VIOLACIÓN DE SISTEMAS DIGITALES PERSONALES, QUE COMPRENDEN EL ARTÍCULO 179 BIS DEL CÓDIGO PENAL PARA EL ESTADO DE NUEVO LEÓN.",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-22",
-        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21084.pdf",
         "categoria": "Industria Quimica",
         "estado": "Nuevo León",
         "metodo": "requests"
@@ -165,6 +174,15 @@
       }
     ],
     "Tabasco": [
+      {
+        "titulo": "Punto de acuerdo exhorto medio ambienten cambio climatico",
+        "tipo": "proposicion",
+        "fecha": "2026-03-26",
+        "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Punto-de-acuerdo-exhorto-medio-ambienten-cambio-climatico.pdf",
+        "categoria": "Cambio Climatico",
+        "estado": "Tabasco",
+        "metodo": "requests"
+      },
       {
         "titulo": "Iniciativa reforma Ley Forestal del Estado",
         "tipo": "iniciativa",
@@ -233,7 +251,19 @@
       "estado": "Nuevo León",
       "total": 5,
       "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-03-22"
+      "ultima_fecha": "2026-03-26"
+    },
+    {
+      "estado": "Tabasco",
+      "total": 5,
+      "categoria_principal": "Agro y Desarrollo Rural",
+      "ultima_fecha": "2026-03-26"
+    },
+    {
+      "estado": "Guanajuato",
+      "total": 3,
+      "categoria_principal": "Agro y Desarrollo Rural",
+      "ultima_fecha": "2026-03-26"
     },
     {
       "estado": "Quintana Roo",
@@ -242,21 +272,9 @@
       "ultima_fecha": "2026-03-22"
     },
     {
-      "estado": "Tabasco",
-      "total": 4,
-      "categoria_principal": "Agro y Desarrollo Rural",
-      "ultima_fecha": "2026-03-22"
-    },
-    {
       "estado": "Tlaxcala",
       "total": 3,
       "categoria_principal": "Medio Ambiente",
-      "ultima_fecha": "2026-03-22"
-    },
-    {
-      "estado": "Guanajuato",
-      "total": 2,
-      "categoria_principal": "Agro y Desarrollo Rural",
       "ultima_fecha": "2026-03-22"
     },
     {
@@ -273,7 +291,7 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-03-23T17:15:31.194564",
+    "ultima_actualizacion": "2026-03-26T17:21:07.815803",
     "mes": "2026-03",
     "estados_con_actividad": 7
   }
