@@ -1169,10 +1169,22 @@ function toggleInstr(id){const el=document.getElementById(id);const arr=document
 function showRadarTema(temaId){
   const tema=RADAR_TEMAS.find(t=>t.id===temaId);
   if(!tema)return;
+  const cutoff=new Date(Date.now()-90*86400000);
+  const recentNoticias=noticias.filter(n=>new Date(n.fecha_publicacion)>cutoff);
+  const matchFn=n=>{const txt=qa((n.titulo+' '+(n.descripcion||'')).toLowerCase());return tema.kw.some(k=>txt.includes(qa(k)));};
+  // Top estados (solo 90 dias)
   const stateActivity={};
-  Object.keys(estadoData).forEach(s=>{stateActivity[s]=filterNoticiasEstado(s,tema.kw).length;});
+  Object.keys(estadoData).forEach(s=>{
+    const arts=recentNoticias.filter(n=>{
+      const t=qa((n.titulo||'').toLowerCase());
+      const st=qa(s.toLowerCase());
+      return (t.includes(st)||t.includes(qa((STATE_ABBR[s]||'').toLowerCase()))) && tema.kw.some(k=>t.includes(qa(k)));
+    });
+    stateActivity[s]=arts.length;
+  });
   const top5=Object.entries(stateActivity).sort((a,b)=>b[1]-a[1]).slice(0,5);
   const maxVal=Math.max(...top5.map(e=>e[1]),1);
+  // Instrumentos legales estatales
   const instruments=[];
   if(tema.leyKey){
     leyesAmbientales.estados.forEach(entry=>{
@@ -1181,39 +1193,39 @@ function showRadarTema(temaId){
       });
     });
   }
-  const recentArts=noticias.filter(n=>{
-    const txt=qa((n.titulo+' '+(n.descripcion||'')).toLowerCase());
-    return tema.kw.some(k=>txt.includes(qa(k)));
-  }).slice(0,5);
-  const totalArts=noticias.filter(n=>tema.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length;
+  // Noticias recientes: filtradas + ordenadas por fecha desc
+  const recentArts=recentNoticias.filter(matchFn)
+    .sort((a,b)=>new Date(b.fecha_publicacion)-new Date(a.fecha_publicacion))
+    .slice(0,6);
+  const totalArts=recentNoticias.filter(matchFn).length;
+  const totalAll=noticias.filter(n=>tema.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length;
   const el=document.getElementById('radar-panel');
   if(!el)return;
   el.innerHTML=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
     <div><div style="font-size:20px;font-weight:700;color:var(--text)">${tema.name}</div>
-    <div style="font-size:12px;color:var(--text-muted)">${totalArts} noticias en base</div></div>
+    <div style="font-size:12px;color:var(--text-muted)">${totalArts} noticias · últimos 90 días <span style="opacity:0.5">(${totalAll} histórico)</span></div></div>
     <div class="sp-stat" style="margin-left:auto;text-align:center;min-width:70px">
-      <div class="sp-stat-label">NOTICIAS</div>
+      <div class="sp-stat-label">90 DÍAS</div>
       <div class="sp-stat-value" style="color:${tema.color}">${totalArts}</div>
     </div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
     <div>
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">Top Estados</div>
-      ${top5.map(([s,cnt],i)=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">Top Estados — 90 días</div>
+      ${top5.filter(([,cnt])=>cnt>0).length?top5.filter(([,cnt])=>cnt>0).map(([s,cnt],i)=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
         <span style="font-size:11px;font-weight:700;color:var(--text-muted);min-width:16px">${i+1}</span>
         <span style="font-size:13px;flex:1">${s}</span>
         <div style="width:80px;height:5px;background:var(--green-tint);border-radius:3px;overflow:hidden">
           <div style="width:${Math.round((cnt/maxVal)*100)}%;height:100%;background:${tema.color};border-radius:3px"></div>
         </div>
         <span style="font-size:12px;font-weight:600;color:${tema.color};min-width:20px;text-align:right">${cnt}</span>
-      </div>`).join('')}
+      </div>`).join(''):'<div class="sp-empty">Sin actividad estatal reciente</div>'}
     </div>
     <div>
       <div style="font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">Noticias Recientes</div>
-      ${recentArts.map(n=>`<div class="sp-news-item"><div class="sp-news-title"><a href="${n.url}" target="_blank" style="font-size:12px">${n.titulo}</a></div><div class="sp-news-meta">${formatFecha(n.fecha_publicacion)}</div></div>`).join('')||'<div class="sp-empty">Sin noticias recientes</div>'}
+      ${recentArts.map(n=>`<div class="sp-news-item"><div class="sp-news-title"><a href="${n.url}" target="_blank" style="font-size:12px">${n.titulo}</a></div><div class="sp-news-meta">${formatFecha(n.fecha_publicacion)}</div></div>`).join('')||'<div class="sp-empty">Sin noticias en los últimos 90 días</div>'}
     </div>
   </div>
-  <div style="margin-top:16px">
     <div style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Marco Legal Aplicable</div>
     <div class="instr-section">
       <div class="instr-hdr" onclick="toggleInstr('fed-${temaId}')">
