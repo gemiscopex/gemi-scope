@@ -23,12 +23,15 @@ jobs:
         run: pip install requests beautifulsoup4
 
       - name: Scraper Noticias (Google News RSS)
+        continue-on-error: true
         run: python scraper/scraper.py
 
       - name: Scraper Federal (Diputados + Senado)
+        continue-on-error: true
         run: python scraper/scraper_gacetas.py --token dummy --dias 30 --no-upload
 
       - name: Scraper Estatal (32 congresos)
+        continue-on-error: true
         run: python scraper/scraper_gacetas_estatales.py --token dummy --no-upload
 
       - name: Commit y push
