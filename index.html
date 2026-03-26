@@ -1492,6 +1492,23 @@ function renderComisiones(data){
         if(ra!==rb)return ra-rb;
         return (a.n||'').localeCompare(b.n||'','es');
       });
+      // ── Ficha técnica ──
+      var partyCounts={};
+      members.forEach(function(m){var p=m.partido||'N/D';partyCounts[p]=(partyCounts[p]||0)+1;});
+      var partyEntries=Object.keys(partyCounts).map(function(k){return[k,partyCounts[k]];}).sort(function(a,b){return b[1]-a[1];});
+      var partyChips=partyEntries.map(function(e){
+        var color=PARTIDO_COLOR[e[0]]||PARTIDO_COLOR[(e[0]||'').toUpperCase()]||'#6b7280';
+        return '<span style="display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:10px;background:'+color+'18;font-size:10px;font-weight:600;color:'+color+';white-space:nowrap">'
+          +'<span style="width:6px;height:6px;border-radius:50%;background:'+color+';flex-shrink:0"></span>'
+          +e[0]+' <span style="opacity:0.65">'+e[1]+'</span></span>';
+      }).join('');
+      var fichaBlock='<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:0.8px solid var(--border)">'
+        +'<div style="flex:1;min-width:0">'
+          +'<div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px">'+members.length+' integrantes</div>'
+          +'<div style="display:flex;flex-wrap:wrap;gap:4px">'+partyChips+'</div>'
+        +'</div>'
+        +(c.at?'<a href="'+c.at+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="flex-shrink:0;padding:5px 12px;background:var(--green);color:#fff;border-radius:8px;font-size:10px;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:0.02em;margin-top:2px">Asuntos Turnados →</a>':'')
+        +'</div>';
       var membersBlock=members.length
         ?'<div class="com-members" style="margin-bottom:8px">'+members.map(memberHTML).join('')+'</div>'
         :'<div style="font-size:11px;color:var(--text-muted);font-style:italic;padding:4px 0 8px">Integración pendiente de publicación oficial</div>';
@@ -1511,6 +1528,7 @@ function renderComisiones(data){
         +'</div>'
         +'<div class="com-body" id="com-body-'+id+'">'
           +'<div class="com-body-inner">'
+            +fichaBlock
             +membersBlock
             +(footerBlock||'<a href="'+(c.url||portalUrl)+'" target="_blank" rel="noopener" style="font-size:10px;color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:6px" onclick="event.stopPropagation()">Ver en portal oficial →</a>')
           +'</div>'
