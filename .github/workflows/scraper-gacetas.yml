@@ -22,6 +22,9 @@ jobs:
       - name: Instalar dependencias
         run: pip install requests beautifulsoup4
 
+      - name: Scraper Noticias (Google News RSS)
+        run: python scraper/scraper.py
+
       - name: Scraper Federal (Diputados + Senado)
         run: python scraper/scraper_gacetas.py --token dummy --dias 30 --no-upload
 
@@ -32,11 +35,11 @@ jobs:
         run: |
           git config user.name "SCOPE Bot"
           git config user.email "scope-bot@gemiscopex.github.io"
-          git add data/gaceta-federal.json data/gaceta-estatal.json
+          git add data/noticias.json data/gaceta-federal.json data/gaceta-estatal.json
           if git diff --staged --quiet; then
             echo "Sin cambios nuevos"
           else
-            git commit -m "Auto: Gacetas SCOPE $(date +%Y-%m-%d)"
+            git commit -m "Auto: SCOPE $(date +%Y-%m-%d)"
             git pull --rebase origin main
             git push
           fi
