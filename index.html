@@ -107,6 +107,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .sdrop-title{font-size:12.5px;font-weight:500;color:var(--text);line-height:1.35}
 .sdrop-meta{font-size:10.5px;color:var(--text-muted);margin-top:1px}
 .sdrop-empty{padding:20px 16px;text-align:center;font-size:12px;color:var(--text-muted)}
+.fed-ley-pill.active{background:#111!important;color:#fff!important;border-color:#111!important}
 .fed-tabs{display:flex;gap:4px;margin-bottom:10px}
 .fed-tab{background:rgba(0,0,0,0.04);border:none;border-radius:20px;padding:4px 10px;font-size:10.5px;font-weight:600;color:var(--text-muted);cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;display:flex;align-items:center;gap:5px}
 .fed-tab:hover{background:rgba(10,194,133,0.1);color:var(--green)}
@@ -658,7 +659,8 @@ const leyes=[
   {s:'LGDFS',n:'Ley General de Desarrollo Forestal Sustentable',t:'Bosques',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGDFS.pdf',r:'26 de abril de 2022'},
   {s:'LGVS',n:'Ley General de Vida Silvestre',t:'Biodiversidad',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGVS.pdf',r:'8 de noviembre de 2023'},
   {s:'LIE',n:'Ley de la Industria Eléctrica',t:'Energía',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LIE.pdf',r:'9 de marzo de 2021'},
-  {s:'LFRA',n:'Ley Federal de Responsabilidad Ambiental',t:'Responsabilidad',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFRA.pdf',r:'7 de junio de 2013'}
+  {s:'LFRA',n:'Ley Federal de Responsabilidad Ambiental',t:'Responsabilidad',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFRA.pdf',r:'7 de junio de 2013'},
+  {s:'LGEC',n:'Ley General de Economía Circular',t:'Economía Circular',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEC.pdf',r:'19 de enero de 2026'}
 ];
 let noticias=[],catCounts={},stateNews={},impuestosDB={},stateScores={},alertas=[];
 const STATE_ABBR={'Aguascalientes':'AGS','Baja California':'BC','Baja California Sur':'BCS','Campeche':'CAM','Chiapas':'CHIS','Chihuahua':'CHIH','Ciudad de México':'CDMX','Coahuila':'COAH','Colima':'COL','Durango':'DGO','Guanajuato':'GTO','Guerrero':'GRO','Hidalgo':'HGO','Jalisco':'JAL','México':'MEX','Michoacán':'MICH','Morelos':'MOR','Nayarit':'NAY','Nuevo León':'NL','Oaxaca':'OAX','Puebla':'PUE','Querétaro':'QRO','Quintana Roo':'QROO','San Luis Potosí':'SLP','Sinaloa':'SIN','Sonora':'SON','Tabasco':'TAB','Tamaulipas':'TAM','Tlaxcala':'TLAX','Veracruz':'VER','Yucatán':'YUC','Zacatecas':'ZAC'};
@@ -1258,44 +1260,104 @@ function inferTipo(titulo){
   if(/dictamen/.test(t)) return 'dictamen';
   return 'otro';
 }
+var LEY_KW={
+  'LGEEPA':['equilibrio ecol','lgeepa','protecci.*al ambiente'],
+  'LGPGIR':['gesti.n integral de los residuos','lgpgir','residuos s.lidos urbanos','residuos de manejo especial'],
+  'LAN':['aguas nacionales','ley de aguas','\\blan\\b'],
+  'LTE':['transici.n energ.tica','\\blte\\b'],
+  'LGCC':['cambio clim.tico','\\blgcc\\b'],
+  'LFD':['ley federal de derechos','\\blfd\\b'],
+  'LGDFS':['desarrollo forestal','\\blgdfs\\b','forestal sustentable'],
+  'LGVS':['vida silvestre','\\blgvs\\b','flora y fauna silvestre'],
+  'LIE':['industria el.ctrica','\\blie\\b','ley de la industria el'],
+  'LFRA':['responsabilidad ambiental','\\blfra\\b','da.o ambiental'],
+  'LGEC':['econom.a circular','\\blgec\\b']
+};
+function _norm(s){return(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+function inferLey(titulo){
+  var t=_norm(titulo);
+  var found=[];
+  for(var sigla in LEY_KW){
+    if(LEY_KW[sigla].some(function(kw){return new RegExp(kw).test(t);})) found.push(sigla);
+  }
+  return found;
+}
+var _fedData={}, _fedLey={};
+var CAT_COLOR={'Agua':'#3498db','Energía':'#f39c12','Residuos':'#27ae60','Clima':'#16a085','Minería':'#8e44ad','Agro':'#d35400','Industria':'#2c3e50'};
+function _listHTML(arr,fallbackUrl){
+  if(!arr.length) return '<div style="font-size:11px;color:var(--text-muted);padding:12px 0;font-style:italic">Sin documentos registrados para este filtro.</div>';
+  var h='<div style="max-height:248px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
+  arr.slice(0,15).forEach(function(it){
+    var fecha=it.fecha?new Date(it.fecha).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+    var cat=it.categoria||'';
+    var cc=CAT_COLOR[cat]||'#95a5a6';
+    h+='<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">';
+    h+='<div style="display:flex;align-items:center;gap:5px;margin-bottom:3px">';
+    if(cat) h+='<span style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;background:'+cc+'22;color:'+cc+'">'+cat+'</span>';
+    h+='<span style="font-size:10px;color:var(--text-muted)">'+fecha+'</span>';
+    h+='</div>';
+    h+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" style="font-size:11.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block">'+(it.titulo||'')+'</a>';
+    h+='</div>';
+  });
+  return h+'</div>';
+}
+function _rerenderFedPanels(uid){
+  var normalized=_fedData[uid]||[];
+  var ley=_fedLey[uid]||'todas';
+  var fallback=uid==='widget-diputados'?'https://gaceta.diputados.gob.mx/':'https://www.senado.gob.mx/66/gaceta_del_senado';
+  var filtered=ley==='todas'?normalized:normalized.filter(function(it){return(it._leyes||[]).indexOf(ley)>=0;});
+  var ini=filtered.filter(function(it){return it.tipo==='iniciativa'||it.tipo==='dictamen';});
+  var pto=filtered.filter(function(it){return it.tipo==='punto_acuerdo';});
+  var b1=document.querySelector('#tabs-'+uid+' .fed-tab:first-child .fed-tab-badge');
+  var b2=document.querySelector('#tabs-'+uid+' .fed-tab:last-child .fed-tab-badge');
+  if(b1)b1.textContent=ini.length;
+  if(b2)b2.textContent=pto.length;
+  var e1=document.getElementById(uid+'-ini');
+  var e2=document.getElementById(uid+'-pto');
+  if(e1)e1.innerHTML=_listHTML(ini,fallback);
+  if(e2)e2.innerHTML=_listHTML(pto,fallback);
+}
+function switchFedLey(uid,ley,btn){
+  _fedLey[uid]=ley;
+  document.querySelectorAll('#ley-pills-'+uid+' .fed-ley-pill').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  _rerenderFedPanels(uid);
+}
 function renderFederalColumn(elId, items, fallbackUrl){
   var el=document.getElementById(elId);
   if(!el)return;
-  // Normalize tipo field
   var normalized=(items||[]).map(function(it){
     var tipo=it.tipo||inferTipo(it.titulo);
-    // map variants
     if(tipo==='proposicion'||tipo==='proposicion con punto de acuerdo') tipo='punto_acuerdo';
-    return Object.assign({},it,{tipo:tipo});
+    var _leyes=inferLey(it.titulo);
+    return Object.assign({},it,{tipo:tipo,_leyes:_leyes});
   });
+  _fedData[elId]=normalized;
+  _fedLey[elId]='todas';
+  // Detect which laws appear in data
+  var leyesEnData={};
+  normalized.forEach(function(it){(it._leyes||[]).forEach(function(l){leyesEnData[l]=(leyesEnData[l]||0)+1;});});
+  var leyesDisponibles=Object.keys(leyesEnData).sort();
   var iniciativas=normalized.filter(function(it){return it.tipo==='iniciativa'||it.tipo==='dictamen';});
   var puntos=normalized.filter(function(it){return it.tipo==='punto_acuerdo';});
-  var CAT_COLOR={'Agua':'#3498db','Energía':'#f39c12','Residuos':'#27ae60','Clima':'#16a085','Minería':'#8e44ad','Agro':'#d35400','Industria':'#2c3e50'};
-  function listHTML(arr){
-    if(!arr.length) return '<div style="font-size:11px;color:var(--text-muted);padding:12px 0;font-style:italic">Sin documentos registrados este mes.</div>';
-    var h='<div style="max-height:248px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
-    arr.slice(0,10).forEach(function(it){
-      var fecha=it.fecha?new Date(it.fecha).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
-      var cat=it.categoria||'';
-      var cc=CAT_COLOR[cat]||'#95a5a6';
-      h+='<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">';
-      h+='<div style="display:flex;align-items:center;gap:5px;margin-bottom:3px">';
-      if(cat) h+='<span style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;background:'+cc+'22;color:'+cc+'">'+cat+'</span>';
-      h+='<span style="font-size:10px;color:var(--text-muted)">'+fecha+'</span>';
-      h+='</div>';
-      h+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" style="font-size:11.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block">'+(it.titulo||'')+'</a>';
-      h+='</div>';
-    });
-    return h+'</div>';
-  }
-  // Build tabs UI
   var uid=elId;
-  var html='<div class="fed-tabs" id="tabs-'+uid+'">'
+  // Law filter pills (only if there are matches)
+  var leyPills='';
+  if(leyesDisponibles.length){
+    leyPills='<div id="ley-pills-'+uid+'" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">'
+      +'<button class="fed-ley-pill active" onclick="switchFedLey(\''+uid+'\',\'todas\',this)" style="padding:3px 9px;border-radius:12px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#111;color:#fff;letter-spacing:0.03em">Todas</button>';
+    leyesDisponibles.forEach(function(sigla){
+      leyPills+='<button class="fed-ley-pill" onclick="switchFedLey(\''+uid+'\',\''+sigla+'\',this)" style="padding:3px 9px;border-radius:12px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text-sec);letter-spacing:0.03em">'+sigla+' <span style="opacity:0.5">'+leyesEnData[sigla]+'</span></button>';
+    });
+    leyPills+='</div>';
+  }
+  var html=leyPills
+    +'<div class="fed-tabs" id="tabs-'+uid+'">'
     +'<button class="fed-tab active" onclick="switchFedTab(\''+uid+'\',\'ini\',this)">Iniciativas <span class="fed-tab-badge">'+iniciativas.length+'</span></button>'
     +'<button class="fed-tab" onclick="switchFedTab(\''+uid+'\',\'pto\',this)">Puntos de Acuerdo <span class="fed-tab-badge">'+puntos.length+'</span></button>'
     +'</div>'
-    +'<div id="'+uid+'-ini" class="fed-panel">'+listHTML(iniciativas)+'</div>'
-    +'<div id="'+uid+'-pto" class="fed-panel" style="display:none">'+listHTML(puntos)+'</div>';
+    +'<div id="'+uid+'-ini" class="fed-panel">'+_listHTML(iniciativas,fallbackUrl)+'</div>'
+    +'<div id="'+uid+'-pto" class="fed-panel" style="display:none">'+_listHTML(puntos,fallbackUrl)+'</div>';
   el.innerHTML=html;
 }
 function switchFedTab(uid,panel,btn){
