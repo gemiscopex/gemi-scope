@@ -223,6 +223,32 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .alerta-nivel-medio{background:#ede9fe;color:#7c3aed}
 .alerta-filter-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:'Inter',sans-serif}
 .alerta-filter-btn.active{background:var(--green-tint);border-color:var(--green);color:var(--green)}
+/* Alertas Bloomberg table */
+.alerta-table{width:100%}
+.alerta-th{display:grid;grid-template-columns:72px 96px 140px 1fr 20px;gap:10px;padding:0 8px 8px;border-bottom:1.5px solid var(--border)}
+.alerta-th span{font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted)}
+.alerta-row{display:grid;grid-template-columns:72px 96px 140px 1fr 20px;gap:10px;padding:8px;border-bottom:0.8px solid var(--border);cursor:pointer;border-radius:4px;transition:background 0.1s;align-items:center}
+.alerta-row:hover{background:var(--green-tint)}
+.alerta-row:last-child{border-bottom:none}
+.ar-nivel{font-size:8px;font-weight:700;letter-spacing:0.6px;padding:2px 6px;border-radius:2px;display:inline-block;text-align:center;width:60px;box-sizing:border-box}
+.ar-critico{background:#fee2e2;color:#dc2626}
+.ar-alto{background:#fef3c7;color:#d97706}
+.ar-medio{background:#ede9fe;color:#7c3aed}
+.ar-tipo{font-size:9px;font-weight:700;color:var(--text-muted);letter-spacing:0.4px}
+.ar-estado{font-size:12px;font-weight:600;color:var(--text)}
+.ar-desc{font-size:11px;color:var(--text-sec);line-height:1.3}
+.ar-action{font-size:13px;color:var(--text-muted);text-align:right}
+.alerta-group-sep{padding:10px 8px 4px;font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--text-muted);display:flex;align-items:center;gap:6px;border-top:1px solid var(--border);margin-top:4px}
+/* Instrumentos legales radar */
+.instr-section{border:0.8px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:8px}
+.instr-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;font-size:12px;font-weight:600;color:var(--text);cursor:pointer;background:var(--surface);user-select:none}
+.instr-hdr:hover{background:var(--green-tint)}
+.instr-arr{font-size:14px;color:var(--text-muted);transition:transform 0.2s;display:inline-block}
+.instr-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:8px 14px;border-top:0.8px solid var(--border);font-size:11px}
+.instr-row a{color:var(--text);text-decoration:none;flex:1;line-height:1.4}
+.instr-row a:hover{color:var(--green)}
+.instr-row-date{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0}
+.instr-row-state{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-weight:600}
 .nav-badge{display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;border-radius:8px;background:#ef4444;color:#fff;font-size:9px;font-weight:700;margin-left:4px;padding:0 3px}
 .radar-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);transition:all 0.15s;white-space:nowrap;font-family:'Inter',sans-serif}
 .act-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:'Inter',sans-serif}
@@ -351,7 +377,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
   <div class="nav-left">
     <img src="assets/logo-gemi.jpeg" class="nav-logo-img" alt="GEMI">
     <div class="nav-logo-sep"></div>
-    <span class="nav-logo">SCOPE</span>
+    <span class="nav-logo" style="cursor:pointer" onclick="showTab('dashboard',document.querySelector('.tab-btn[onclick*=dashboard]'))">SCOPE</span>
   </div>
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
@@ -486,10 +512,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
       <div id="alertas-summary-line" style="font-size:12px;color:var(--text-muted);margin-bottom:16px"></div>
       <div style="display:flex;flex-wrap:wrap;gap:6px">
         <button class="alerta-filter-btn active" onclick="setAlertaFilter('all',this)">Todas</button>
-        <button class="alerta-filter-btn" onclick="setAlertaFilter('fiscal',this)">💰 Fiscal</button>
-        <button class="alerta-filter-btn" onclick="setAlertaFilter('regulatoria',this)">📋 Regulatoria</button>
-        <button class="alerta-filter-btn" onclick="setAlertaFilter('territorial',this)">🌍 Territorial</button>
-        <button class="alerta-filter-btn" onclick="setAlertaFilter('complejidad',this)">📊 Complejidad</button>
+        <button class="alerta-filter-btn" onclick="setAlertaFilter('fiscal',this)">Fiscal</button>
+        <button class="alerta-filter-btn" onclick="setAlertaFilter('regulatoria',this)">Regulatoria</button>
+        <button class="alerta-filter-btn" onclick="setAlertaFilter('territorial',this)">Territorial</button>
+        <button class="alerta-filter-btn" onclick="setAlertaFilter('complejidad',this)">Complejidad</button>
       </div>
     </div>
     <div id="alertas-list"></div>
@@ -1071,18 +1097,23 @@ function renderAlertas(filter){
   const el=document.getElementById('alertas-list');
   if(!el)return;
   const filtered=filter&&filter!=='all'?alertas.filter(a=>a.tipo===filter):alertas;
-  const icons={fiscal:'\ud83d\udcb0',regulatoria:'\ud83d\udccb',territorial:'\ud83c\udf0d',complejidad:'\ud83d\udcca'};
-  if(!filtered.length){el.innerHTML='<div class="sp-empty">No hay alertas activas en esta categor\u00eda</div>';return;}
-  el.innerHTML=filtered.map(a=>`<div class="alerta-card alerta-${a.tipo}">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-      <span>${icons[a.tipo]||'\u26a0'}</span>
-      <span style="font-size:14px;font-weight:600;color:var(--text)">${a.titulo}</span>
-      <span class="alerta-nivel alerta-nivel-${a.nivel}" style="margin-left:auto">${a.nivel.toUpperCase()}</span>
-    </div>
-    <div style="font-size:12px;color:var(--text-sec);margin-bottom:4px"><strong>Qu\u00e9:</strong> ${a.que}</div>
-    <div style="font-size:12px;color:var(--text-sec)"><strong>Por qu\u00e9 importa:</strong> ${a.porQue}</div>
-    ${a.sectores&&a.sectores.length?'<div style="font-size:11px;color:var(--text-muted);margin-top:6px">Sectores: '+a.sectores.join(', ')+'</div>':''}
-  </div>`).join('');
+  if(!filtered.length){el.innerHTML='<div class="sp-empty">Sin alertas activas en esta categor\u00eda</div>';return;}
+  const groups=[
+    {key:'critico',label:'CR\u00CDTICO',items:filtered.filter(a=>a.nivel==='critico')},
+    {key:'alto',label:'ALTO',items:filtered.filter(a=>a.nivel==='alto')},
+    {key:'medio',label:'MEDIO',items:filtered.filter(a=>a.nivel==='medio')}
+  ].filter(g=>g.items.length);
+  const tipoLabel={fiscal:'FISCAL',regulatoria:'REGULATORIA',territorial:'TERRITORIAL',complejidad:'COMPLEJIDAD'};
+  let html='<div class="alerta-table">';
+  html+='<div class="alerta-th"><span>Nivel</span><span>Tipo</span><span>Estado</span><span>Se\u00f1al</span><span></span></div>';
+  groups.forEach(g=>{
+    html+=`<div class="alerta-group-sep">${g.label} <span style="font-weight:400">\u00b7 ${g.items.length}</span></div>`;
+    g.items.forEach(a=>{
+      html+=`<div class="alerta-row" onclick="openStatePanel('${a.estado}')"><span class="ar-nivel ar-${g.key}">${g.label}</span><span class="ar-tipo">${tipoLabel[a.tipo]||a.tipo.toUpperCase()}</span><span class="ar-estado">${a.estado}</span><span class="ar-desc">${a.que}</span><span class="ar-action">\u2192</span></div>`;
+    });
+  });
+  html+='</div>';
+  el.innerHTML=html;
 }
 function renderRankingWidget(){
   var el=document.getElementById('ranking-list');
@@ -1113,6 +1144,8 @@ function renderScoreNacional(){
   const el=document.getElementById('score-nac');
   if(el)el.innerHTML=`Score nacional promedio <strong>${avg}/100</strong> &nbsp;&middot;&nbsp; ${criticos} estados cr\u00edticos &nbsp;&middot;&nbsp; ${altos} altos`;
 }
+const TEMA_FED_LAWS={agua:['LAN','LGEEPA','LFRA'],agua_inf:['LAN','LGEEPA'],residuos:['LGPGIR','LGEEPA','LFRA'],circular:['LGEC','LGPGIR'],cc:['LGCC','LGEEPA'],fiscal:['LFD','LGEEPA'],plasticos:['LGPGIR'],energia:['LTE','LIE'],sanciones:['LGEEPA','LGPGIR','LAN','LFRA'],biodiv:['LGEEPA','LGDFS','LGVS','LFRA']};
+function toggleInstr(id){const el=document.getElementById(id);const arr=document.getElementById('arr-'+id);const open=el.style.maxHeight&&el.style.maxHeight!=='0px';el.style.maxHeight=open?'0px':(el.scrollHeight+200)+'px';if(arr)arr.style.transform=open?'':'rotate(90deg)';}
 function showRadarTema(temaId){
   const tema=RADAR_TEMAS.find(t=>t.id===temaId);
   if(!tema)return;
@@ -1160,7 +1193,27 @@ function showRadarTema(temaId){
       ${recentArts.map(n=>`<div class="sp-news-item"><div class="sp-news-title"><a href="${n.url}" target="_blank" style="font-size:12px">${n.titulo}</a></div><div class="sp-news-meta">${formatFecha(n.fecha_publicacion)}</div></div>`).join('')||'<div class="sp-empty">Sin noticias recientes</div>'}
     </div>
   </div>
-  ${instruments.length?`<div style="margin-top:16px"><div style="font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">Instrumentos Legales Activos</div><div style="display:flex;flex-wrap:wrap;gap:6px">${instruments.slice(0,8).map(i=>`<div style="border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:11px"><div style="font-weight:600;color:var(--text)">${i.e}</div><div style="color:var(--text-muted)">${(i.n||'').substring(0,50)}${(i.n||'').length>50?'\u2026':''}</div></div>`).join('')}</div></div>`:''}`;
+  <div style="margin-top:16px">
+    <div style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Marco Legal Aplicable</div>
+    <div class="instr-section">
+      <div class="instr-hdr" onclick="toggleInstr('fed-${temaId}')">
+        <span>Legislaci\u00f3n Federal</span>
+        <span class="instr-arr" id="arr-fed-${temaId}">\u203a</span>
+      </div>
+      <div id="fed-${temaId}" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">
+        ${(TEMA_FED_LAWS[temaId]||[]).map(s=>leyes.find(l=>l.s===s)).filter(Boolean).map(l=>`<div class="instr-row"><a href="${l.u}" target="_blank"><strong>${l.s}</strong> \u2014 ${l.n}</a><span class="instr-row-date">${l.r||''}</span></div>`).join('') || '<div class="instr-row" style="color:var(--text-muted)">Sin instrumentos federales mapeados</div>'}
+      </div>
+    </div>
+    <div class="instr-section">
+      <div class="instr-hdr" onclick="toggleInstr('est-${temaId}')">
+        <span>Legislaci\u00f3n Estatal</span>
+        <span class="instr-arr" id="arr-est-${temaId}">\u203a</span>
+      </div>
+      <div id="est-${temaId}" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">
+        ${instruments.length ? instruments.map(i=>`<div class="instr-row"><span style="flex:1;line-height:1.4;color:var(--text)">${(i.n||'').substring(0,70)}${(i.n||'').length>70?'\u2026':''}</span><span class="instr-row-state">${(i.e||'').substring(0,6).toUpperCase()}</span></div>`).join('') : '<div class="instr-row" style="color:var(--text-muted)">Sin instrumentos estatales para este tema</div>'}
+      </div>
+    </div>
+  </div>`;
 }
 /* ── SCOPE 3 STATE PANEL NEW TABS ── */
 function renderSPPerfil(state,data,sc){
