@@ -912,7 +912,7 @@ function renderSPLegislacion(state,data){
     html+=`<div style="margin-bottom:10px"><div style="font-size:9px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">${cl[cat]||cat}</div>`;
     laws.forEach(law=>{
       const pend=law.estado_vigencia==='Pendiente';
-      const badge=`<span style="flex-shrink:0;font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px;border:1px solid;${pend?'color:#92400e;border-color:rgba(251,191,36,0.4)':\'color:var(--green);border-color:rgba(10,194,133,0.3)\'}">${pend?'PEND':'VIG'}</span>`;
+      const badge=`<span style="flex-shrink:0;font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px;border:1px solid;${pend?'color:#92400e;border-color:rgba(251,191,36,0.4)':'color:var(--green);border-color:rgba(10,194,133,0.3)'}">${pend?'PEND':'VIG'}</span>`;
       const reforma=law.ultima_reforma?`<span style="font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0">DOF ${law.ultima_reforma}</span>`:'';
       const nombre=law.url
         ?`<a href="${law.url}" target="_blank" style="font-size:11.5px;color:var(--text);text-decoration:none;flex:1;min-width:0;line-height:1.3">${law.nombre}</a>`
