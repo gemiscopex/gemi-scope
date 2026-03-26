@@ -1457,6 +1457,14 @@ function fmtReunion(iso){
   if(!iso)return '—';
   try{const d=new Date(iso+'T12:00:00');return d.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'});}catch(e){return iso;}
 }
+function toggleComSub(subId){
+  var el=document.getElementById(subId);
+  var arr=document.getElementById('arr-'+subId);
+  if(!el)return;
+  var isOpen=el.style.maxHeight&&el.style.maxHeight!=='0px';
+  el.style.maxHeight=isOpen?'0px':(el.scrollHeight+400)+'px';
+  if(arr)arr.style.transform=isOpen?'':'rotate(90deg)';
+}
 function toggleComision(id){
   var body=document.getElementById('com-body-'+id);
   var hdr=document.getElementById('com-hdr-'+id);
@@ -1509,17 +1517,35 @@ function renderComisiones(data){
         +'</div>'
         +(c.at?'<a href="'+c.at+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="flex-shrink:0;padding:5px 12px;background:var(--green);color:#fff;border-radius:8px;font-size:10px;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:0.02em;margin-top:2px">Asuntos Turnados →</a>':'')
         +'</div>';
-      var membersBlock=members.length
-        ?'<div class="com-members" style="margin-bottom:8px">'+members.map(memberHTML).join('')+'</div>'
-        :'<div style="font-size:11px;color:var(--text-muted);font-style:italic;padding:4px 0 8px">Integración pendiente de publicación oficial</div>';
-      var footerBlock='';
-      if(c.ur||c.pr){
-        footerBlock='<div style="display:flex;gap:16px;margin-top:8px;padding-top:8px;border-top:0.8px solid var(--border);flex-wrap:wrap">'
-          +'<div><div style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase">Última sesión</div><div style="font-size:11px;color:var(--text);margin-top:2px">'+(c.ur||'—')+'</div></div>'
-          +'<div><div style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase">Próxima sesión</div><div style="font-size:11px;color:var(--text);margin-top:2px">'+(c.pr||'—')+'</div></div>'
-          +'<div style="margin-left:auto;align-self:center"><a href="'+(c.url||portalUrl)+'" target="_blank" rel="noopener" style="font-size:10px;color:var(--green);text-decoration:none;font-weight:600" onclick="event.stopPropagation()">Convocatoria en Gaceta →</a></div>'
-          +'</div>';
+      // Split members into groups
+      var grpPres=members.filter(function(m){return cargoRank(m.cargo)===0;});
+      var grpSec=members.filter(function(m){return cargoRank(m.cargo)===1;});
+      var grpInt=members.filter(function(m){return cargoRank(m.cargo)===2;});
+      function subGroup(grp,label,subId){
+        if(!grp.length) return '';
+        var rows=grp.map(memberHTML).join('');
+        return '<div style="border-top:0.8px solid var(--border);margin-top:4px">'
+          +'<div class="com-subhdr" onclick="toggleComSub(\''+subId+'\')" style="display:flex;align-items:center;justify-content:space-between;padding:7px 4px;cursor:pointer;user-select:none">'
+            +'<span style="font-size:10px;font-weight:700;letter-spacing:0.05em;color:var(--text-sec);text-transform:uppercase">'+label+' <span style="font-weight:400;opacity:0.6">('+grp.length+')</span></span>'
+            +'<span class="com-sub-arrow" id="arr-'+subId+'" style="font-size:9px;color:var(--text-muted);transition:transform 0.2s">▶</span>'
+          +'</div>'
+          +'<div id="'+subId+'" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">'
+            +'<div class="com-members" style="padding-bottom:4px">'+rows+'</div>'
+          +'</div>'
+        +'</div>';
       }
+      var presBlock=grpPres.length
+        ?'<div class="com-members" style="margin-bottom:4px">'+grpPres.map(memberHTML).join('')+'</div>'
+        :'';
+      var membersBlock=members.length
+        ?presBlock+subGroup(grpSec,'Secretarías',id+'-sec')+subGroup(grpInt,'Integrantes',id+'-int')
+        :'<div style="font-size:11px;color:var(--text-muted);font-style:italic;padding:4px 0 8px">Integración pendiente de publicación oficial</div>';
+      // Footer always visible
+      var footerBlock='<div style="display:flex;gap:16px;margin-top:10px;padding-top:10px;border-top:0.8px solid var(--border);flex-wrap:wrap">'
+        +'<div><div style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase">Última sesión</div><div style="font-size:11px;color:var(--text);margin-top:2px">'+(c.ur||'—')+'</div></div>'
+        +'<div><div style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase">Próxima sesión</div><div style="font-size:11px;color:var(--text);margin-top:2px">'+(c.pr||'—')+'</div></div>'
+        +'<div style="margin-left:auto;align-self:center"><a href="'+(c.url||portalUrl)+'" target="_blank" rel="noopener" style="font-size:10px;color:var(--green);text-decoration:none;font-weight:600" onclick="event.stopPropagation()">Convocatoria en Gaceta →</a></div>'
+        +'</div>';
       return '<div>'
         +'<div class="com-row" id="com-hdr-'+id+'" onclick="toggleComision(\''+id+'\')">'
           +'<span class="com-row-scope"></span>'
@@ -1530,7 +1556,7 @@ function renderComisiones(data){
           +'<div class="com-body-inner">'
             +fichaBlock
             +membersBlock
-            +(footerBlock||'<a href="'+(c.url||portalUrl)+'" target="_blank" rel="noopener" style="font-size:10px;color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:6px" onclick="event.stopPropagation()">Ver en portal oficial →</a>')
+            +footerBlock
           +'</div>'
         +'</div>'
       +'</div>';
