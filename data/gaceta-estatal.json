@@ -86,6 +86,24 @@
     ],
     "Nuevo León": [
       {
+        "titulo": "PRESENTA INICIATIVA CON PROYECTO DE DECRETO POR EL QUE SE REFORMA EL ARTICULO 8 Y SE ADICIONA UN ARTICULO 8 BIS DE LA LEY QUE CREA UNA INSTITUCIÓN PUBLICA DESCENTRALIZADA CON PERSONALIDAD JURIDICA PROPIA Y CON DOMICILIO EN LA CIUDAD DE MONTERREY QUE SE DENOMINARA \"SERVICIOS DE AGUA Y DRENAJE DE MONTERREY\".",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-27",
+        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21243.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Nuevo León",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA AL ARTÍCULO 57 Y POR ADICIÓN DE UN ARTÍCULO 58 BIS A LA LEY DE AGUA POTABLE Y SANEAMIENTO PARA EL ESTADO DE NUEVO LEÓN, EN MATERIA DE PROHIBICIÓN DE PROPAGANDA GUBERNAMENTAL EN RECIBOS DE SERVICIOS.",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-27",
+        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21236.pdf",
+        "categoria": "Agua",
+        "estado": "Nuevo León",
+        "metodo": "requests"
+      },
+      {
         "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA AL ARTÍCULO 7 Y POR ADICIÓN DE UN ARTÍCULO 16 BIS 2 DE LA LEY PARA PREVENIR Y ELIMINAR LA DISCRIMINACIÓN EN EL ESTADO DE NUEVO LEÓN, EN MATERIA DE SUBSANAR EL VACÍO NORMATIVO EXISTENTE MEDIANTE LA PROHIBICIÓN Y LA ELIMINACIÓN DE LA FIGURA DEL DENOMINADO “CADENERO”, ENTENDIDA COMO LA PERSONA ENCARGADA DE SELECCIONAR DISCRECIONALMENTE QUIEN PUDE ENTRAR",
         "tipo": "iniciativa",
         "fecha": "2026-03-26",
@@ -108,24 +126,6 @@
         "tipo": "iniciativa",
         "fecha": "2026-03-22",
         "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21149.pdf",
-        "categoria": "Industria Quimica",
-        "estado": "Nuevo León",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA A LOS ARTÍCULOS 168 BIS, 168 BIS I Y 168 BIS II DE LA LEY AMBIENTAL DEL ESTADO DE NUEVO LEÓN, EN RELACIÓN AL USO DE BOLSAS Y POPOTES DE PLÁSTICO.",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-22",
-        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21130.pdf",
-        "categoria": "Residuos / Economia Circular",
-        "estado": "Nuevo León",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "MEDIANTE EL CUAL PRESENTAN INICIATIVA POR LA QUE SE EXPIDE LA LEY DE FOMENTO A LA ECONOMÍA CIRCULAR DEL ESTADO DE NUEVO LEÓN, LA CUAL CONSTA DE 72 ARTÍCULOS Y 6 ARTÍCULOS TRANSITORIOS.",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-22",
-        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21100.pdf",
         "categoria": "Industria Quimica",
         "estado": "Nuevo León",
         "metodo": "requests"
@@ -251,7 +251,7 @@
       "estado": "Nuevo León",
       "total": 5,
       "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-03-26"
+      "ultima_fecha": "2026-03-27"
     },
     {
       "estado": "Tabasco",
@@ -291,7 +291,7 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-03-26T17:50:18.320967",
+    "ultima_actualizacion": "2026-03-27T16:51:33.253237",
     "mes": "2026-03",
     "estados_con_actividad": 7
   }
