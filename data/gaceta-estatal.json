@@ -47,16 +47,6 @@
         "metodo": "csv"
       }
     ],
-    "Colima": [
-      {
-        "titulo": "Manzanillo se suma a iniciativa de Ley de Alimentación Adecuada y Sostenible; llevan a cabo foro en Salagua",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-22",
-        "url": "https://congresocol.gob.mx/web/www/comunicacion/index2.php#notas3",
-        "categoria": "Agua",
-        "estado": "Colima"
-      }
-    ],
     "Guanajuato": [
       {
         "titulo": "Presentación de la propuesta de punto de acuerdo formulada por personas diputadas integrantes del Grupo Parlamentario del Partido Acción Nacional y de la Representación Parlamentaria del Partido de la Revolución Democrática a efecto de exhortar a las personas titulares de la Secretaría de Agricultura y Desarrollo Rural, la Secretaría de Hacienda y Crédito Público, la Secretaría de Energía, la Secr",
@@ -175,6 +165,33 @@
     ],
     "Tabasco": [
       {
+        "titulo": "Iniciativa reforma a la Ley de Proteccion Ambiental",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-30",
+        "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Iniciativa-reforma-a-la-Ley-de-Proteccion-Ambiental.pdf",
+        "categoria": "Medio Ambiente",
+        "estado": "Tabasco",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "Dictamen Enajenación CFE",
+        "tipo": "dictamen",
+        "fecha": "2026-03-30",
+        "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Dictamen-Enajenacion-CFE.pdf",
+        "categoria": "Energia",
+        "estado": "Tabasco",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "Punto de acuerdo exhorto hidrocarburo",
+        "tipo": "proposicion",
+        "fecha": "2026-03-30",
+        "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Punto-de-acuerdo-exhorto-hidracarburo.pdf",
+        "categoria": "Energia",
+        "estado": "Tabasco",
+        "metodo": "requests"
+      },
+      {
         "titulo": "Punto de acuerdo exhorto medio ambienten cambio climatico",
         "tipo": "proposicion",
         "fecha": "2026-03-26",
@@ -189,30 +206,6 @@
         "fecha": "2026-03-22",
         "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Iniciativa-reforma-Ley-de-Forestal-del-Estado.pdf",
         "categoria": "Medio Ambiente",
-        "estado": "Tabasco"
-      },
-      {
-        "titulo": "Iniciativa reformas a la Ley de Desarrollo Rural",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-22",
-        "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Iniciativa-reformas-Ley-de-Desarrollo-Rural-final.pdf",
-        "categoria": "Agro y Desarrollo Rural",
-        "estado": "Tabasco"
-      },
-      {
-        "titulo": "Iniciativa Ley de Acuicultura y Pesca",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-22",
-        "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/455.-iniciativa-Ley-de-Acuicultura-y-de-Pesca.pdf",
-        "categoria": "Agro y Desarrollo Rural",
-        "estado": "Tabasco"
-      },
-      {
-        "titulo": "Dictamen Renuncia Magistrado TSJ Enrique Priego Oropeza",
-        "tipo": "dictamen",
-        "fecha": "2026-03-22",
-        "url": "https://congresotabasco.gob.mx/wp-content/uploads/2024/10/DICTAMEN-RENUNCIA-MAGISTRADO-DEL-TSJ-ENRIQUE-PRIEGO-OROPEZA.pdf",
-        "categoria": "Agua",
         "estado": "Tabasco"
       }
     ],
@@ -248,16 +241,16 @@
   },
   "resumen": [
     {
+      "estado": "Tabasco",
+      "total": 5,
+      "categoria_principal": "Medio Ambiente",
+      "ultima_fecha": "2026-03-30"
+    },
+    {
       "estado": "Nuevo León",
       "total": 5,
       "categoria_principal": "Industria Quimica",
       "ultima_fecha": "2026-03-27"
-    },
-    {
-      "estado": "Tabasco",
-      "total": 5,
-      "categoria_principal": "Agro y Desarrollo Rural",
-      "ultima_fecha": "2026-03-26"
     },
     {
       "estado": "Guanajuato",
@@ -278,12 +271,6 @@
       "ultima_fecha": "2026-03-22"
     },
     {
-      "estado": "Colima",
-      "total": 1,
-      "categoria_principal": "Agua",
-      "ultima_fecha": "2026-03-22"
-    },
-    {
       "estado": "Chihuahua",
       "total": 5,
       "categoria_principal": "Agua",
@@ -291,8 +278,8 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-03-27T16:51:33.253237",
+    "ultima_actualizacion": "2026-03-30T17:25:31.295285",
     "mes": "2026-03",
-    "estados_con_actividad": 7
+    "estados_con_actividad": 6
   }
 }
