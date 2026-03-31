@@ -123,6 +123,24 @@
     ],
     "Quintana Roo": [
       {
+        "titulo": "Iniciativa Ciudadana que reforma el artículo 236 del Capítulo Segundo denominado “De las Sanciones de Tránsito y Vialidad” de la Ley de Movilidad del Estado de Quintana Roo;  presentada por el Ciudadano Ángel Mauricio Mora Castillo, en términos de la Ley de Participación Ciudadana del Estado de Quintana Roo.",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-31",
+        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260327-130944.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Quintana Roo",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "Iniciativa de Decreto por el que se reforman diversas disposiciones de la Ley Orgánica del Poder Legislativo del Estado de Quintana Roo y del Reglamento para el Gobierno Interior de la Legislatura del Estado de Quintana Roo; presentada por el Diputado Hugo Alday Nieto, Presidente de la Comisión de Desarrollo Urbano Sustentable y Asuntos Metropolitanos; por la Diputada María José Osorio Rosas, Pres",
+        "tipo": "iniciativa",
+        "fecha": "2026-03-31",
+        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260327-132241.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Quintana Roo",
+        "metodo": "requests"
+      },
+      {
         "titulo": "Iniciativa con Proyecto de Decreto por el que se reforman diversas disposiciones de la Ley del Sistema Anticorrupción del Estado de Quintana Roo; presentada por el Diputado César Santiago Augusto Frias Canché, Presidente de la Comisión Anticorrupción, Participación Ciudadana y Órganos Autónomos; por el Diputado Jorge Arturo Sanén Cervantes, Presidente de la Comisión de Puntos Constitucionales; por",
         "tipo": "iniciativa",
         "fecha": "2026-03-22",
@@ -144,22 +162,6 @@
         "fecha": "2026-03-22",
         "url": "https://storage.googleapis.com/sigca/files/2026/3/216_Iniciativa_366_Ley_de_protección_y_bienestar_animal_(Dip._Renán_Sánchez_Tajonar_y_otros)_0001.pdf",
         "categoria": "Industria Quimica",
-        "estado": "Quintana Roo"
-      },
-      {
-        "titulo": "Iniciativa de Decreto por el que se reforman diversas disposiciones de la Ley de Movilidad del Estado de Quintana Roo, la Ley de Asentamientos Humanos, Ordenamiento Territorial y Desarrollo Urbano del Estado de Quintana Roo y la Ley de Obras Públicas y Servicios relacionados con las mismas del Estado de Quintana Roo, en materia de accesibilidad en estacionamientos para personas con discapacidad, m",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-22",
-        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260226-143644.pdf",
-        "categoria": "Industria Quimica",
-        "estado": "Quintana Roo"
-      },
-      {
-        "titulo": "Iniciativa de Decreto por el que se adiciona el inciso y), a la fracción I del artículo 66, de la Ley de los Municipios del Estado de Quintana Roo; presentada por el Diputado Jorge Arturo Sanén Cervantes, Presidente de la Comisión de Puntos Constitucionales; por el Diputado Ricardo Velazco Rodríguez, Presidente Comisión de Seguridad Ciudadana, Protección Civil y Bomberos; por el Diputado Wilbert A",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-22",
-        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260226-141859.pdf",
-        "categoria": "Cambio Climatico",
         "estado": "Quintana Roo"
       }
     ],
@@ -241,6 +243,12 @@
   },
   "resumen": [
     {
+      "estado": "Quintana Roo",
+      "total": 5,
+      "categoria_principal": "Industria Quimica",
+      "ultima_fecha": "2026-03-31"
+    },
+    {
       "estado": "Tabasco",
       "total": 5,
       "categoria_principal": "Medio Ambiente",
@@ -259,12 +267,6 @@
       "ultima_fecha": "2026-03-26"
     },
     {
-      "estado": "Quintana Roo",
-      "total": 5,
-      "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-03-22"
-    },
-    {
       "estado": "Tlaxcala",
       "total": 3,
       "categoria_principal": "Medio Ambiente",
@@ -278,7 +280,7 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-03-30T17:25:31.295285",
+    "ultima_actualizacion": "2026-03-31T17:28:42.119640",
     "mes": "2026-03",
     "estados_con_actividad": 6
   }
