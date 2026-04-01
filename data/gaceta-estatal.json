@@ -1,84 +1,21 @@
 {
   "estados": {
-    "Chihuahua": [
-      {
-        "titulo": "Proposición con carácter de punto de acuerdo, a efecto de exhortar a la titular del Ejecutivo Estatal y a la Secretaría de Salud del Estado, para que, en el ámbito de sus atribuciones, valoren, analicen y autoricen que el nuevo hospital de Gineco-Obstetricia de Hidalgo del Parral, sea denominado oficialmente “Hospital de Gineco-Obstetricia de Parral, Soledad Pastrán”.",
-        "tipo": "proposicion",
-        "fecha": "2026-03-17",
-        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
-        "categoria": "Industria Quimica",
-        "estado": "Chihuahua",
-        "metodo": "csv"
-      },
-      {
-        "titulo": "Iniciativa con carácter de decreto, a fin de que se autorice al Ejecutivo del Estado para que, por conducto de la Secretaría de Hacienda, constituya un Fideicomiso Público, denominado “Fideicomiso Arena Multiusos”, con domicilio en la ciudad de Chihuahua. \r\n",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-11",
-        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
-        "categoria": "Industria Quimica",
-        "estado": "Chihuahua",
-        "metodo": "csv"
-      },
-      {
-        "titulo": "Iniciativa con carácter de decreto, por medio de la cual propone reformar las Tablas de Valores Unitarios de Suelo y Construcción de ese Municipio, para el Ejercicio Fiscal 2026, relativo a los valores unitarios correspondientes a Frutales (nogales) en producción 1 y 2 por riego de bombeo. \r\n",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-06",
-        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
-        "categoria": "Agua",
-        "estado": "Chihuahua",
-        "metodo": "csv"
-      },
-      {
-        "titulo": "Documento mediante el cual formulan preguntas al titular de la Junta Central de Agua y Saneamiento del Estado, con relación a la inversión de presupuesto en materia hidráulica en el Municipio de Hidalgo del Parral. ",
-        "tipo": "proposicion",
-        "fecha": "2026-03-03",
-        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
-        "categoria": "Agua",
-        "estado": "Chihuahua",
-        "metodo": "csv"
-      },
-      {
-        "titulo": "Proposición con carácter de punto de acuerdo, a fin de exhortar al Ejecutivo Estatal, a través de la Junta Central de Agua y Saneamiento y el organismo operador municipal para que visibilice a la población de “Los Kilómetros en Ciudad Juárez” y se les garantice el derecho humano al agua potable, drenaje y alcantarillado a través de la inversión pública en infraestructura hidráulica en el presente ",
-        "tipo": "proposicion",
-        "fecha": "2026-03-03",
-        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
-        "categoria": "Agua",
-        "estado": "Chihuahua",
-        "metodo": "csv"
-      }
-    ],
     "Guanajuato": [
       {
         "titulo": "Presentación de la propuesta de punto de acuerdo formulada por personas diputadas integrantes del Grupo Parlamentario del Partido Acción Nacional y de la Representación Parlamentaria del Partido de la Revolución Democrática a efecto de exhortar a las personas titulares de la Secretaría de Agricultura y Desarrollo Rural, la Secretaría de Hacienda y Crédito Público, la Secretaría de Energía, la Secr",
         "tipo": "proposicion",
-        "fecha": "2026-03-26",
+        "fecha": "2026-04-01",
         "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7847",
         "categoria": "Agro y Desarrollo Rural",
         "estado": "Guanajuato",
         "metodo": "requests"
-      },
-      {
-        "titulo": "Presentación de la propuesta de punto de acuerdo formulada por personas diputadas integrantes del Grupo Parlamentario del Partido Acción Nacional y de la Representación Parlamentaria del Partido de la Revolución Democrática a efecto de exhortar a la Secretaría de Agricultura y Desarrollo Rural y a la Comisión Federal de Electricidad para que, considerando que el plazo actualmente establecido para ",
-        "tipo": "proposicion",
-        "fecha": "2026-03-22",
-        "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7827",
-        "categoria": "Agro y Desarrollo Rural",
-        "estado": "Guanajuato"
-      },
-      {
-        "titulo": "Iniciativa formulada por la diputada Carolina León Medina de la Representación Parlamentaria del Partido del Trabajo por la que se reforman los artículos 2 fracción VI, 19 fracción IX y 34 fracción II de la Ley para el Desarrollo y Competitividad Económica del Estado de Guanajuato y sus Municipios, en materia de apoyo, capacitación y dignificación a las mujeres rurales del estado de Guanajuato.",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-22",
-        "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7820",
-        "categoria": "Industria Quimica",
-        "estado": "Guanajuato"
       }
     ],
     "Nuevo León": [
       {
         "titulo": "PRESENTA INICIATIVA CON PROYECTO DE DECRETO POR EL QUE SE REFORMA EL ARTICULO 8 Y SE ADICIONA UN ARTICULO 8 BIS DE LA LEY QUE CREA UNA INSTITUCIÓN PUBLICA DESCENTRALIZADA CON PERSONALIDAD JURIDICA PROPIA Y CON DOMICILIO EN LA CIUDAD DE MONTERREY QUE SE DENOMINARA \"SERVICIOS DE AGUA Y DRENAJE DE MONTERREY\".",
         "tipo": "iniciativa",
-        "fecha": "2026-03-27",
+        "fecha": "2026-04-01",
         "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21243.pdf",
         "categoria": "Industria Quimica",
         "estado": "Nuevo León",
@@ -87,7 +24,7 @@
       {
         "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA AL ARTÍCULO 57 Y POR ADICIÓN DE UN ARTÍCULO 58 BIS A LA LEY DE AGUA POTABLE Y SANEAMIENTO PARA EL ESTADO DE NUEVO LEÓN, EN MATERIA DE PROHIBICIÓN DE PROPAGANDA GUBERNAMENTAL EN RECIBOS DE SERVICIOS.",
         "tipo": "iniciativa",
-        "fecha": "2026-03-27",
+        "fecha": "2026-04-01",
         "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21236.pdf",
         "categoria": "Agua",
         "estado": "Nuevo León",
@@ -96,7 +33,7 @@
       {
         "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA AL ARTÍCULO 7 Y POR ADICIÓN DE UN ARTÍCULO 16 BIS 2 DE LA LEY PARA PREVENIR Y ELIMINAR LA DISCRIMINACIÓN EN EL ESTADO DE NUEVO LEÓN, EN MATERIA DE SUBSANAR EL VACÍO NORMATIVO EXISTENTE MEDIANTE LA PROHIBICIÓN Y LA ELIMINACIÓN DE LA FIGURA DEL DENOMINADO “CADENERO”, ENTENDIDA COMO LA PERSONA ENCARGADA DE SELECCIONAR DISCRECIONALMENTE QUIEN PUDE ENTRAR",
         "tipo": "iniciativa",
-        "fecha": "2026-03-26",
+        "fecha": "2026-04-01",
         "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21220.pdf",
         "categoria": "Industria Quimica",
         "estado": "Nuevo León",
@@ -105,7 +42,7 @@
       {
         "titulo": "MEDIANTE EL CUAL PRESENTAN INICIATIVA DE REFORMA POR ADICIÓN DE UN CAPÍTULO V DENOMINADO “DE LA PENSIÓN ALIMENTICIA PRENATAL” QUE CONTIENE LOS ARTÍCULOS DEL 323 BIS 8 AL 323 BIS 15 TODOS DEL CÓDIGO CIVIL PARA EL ESTADO DE NUEVO LEÓN.",
         "tipo": "iniciativa",
-        "fecha": "2026-03-22",
+        "fecha": "2026-04-01",
         "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21194.pdf",
         "categoria": "Industria Quimica",
         "estado": "Nuevo León",
@@ -114,7 +51,7 @@
       {
         "titulo": "PRESENTA INICIATIVA DE ADICION DEL CAPITULO XII DENOMINADO \"DEL FONDO ESTATAL DE PROTECCION Y AUTONOMÍA PARA MUJERES VÍCTIMAS DE VIOLENCIA\" QUE CONTIENE LOS ARTICULOS 67, 68, 69, 70, 71, 72, 73, 74, 75, 76 Y 77 A LA LEY DE ACCESO DE LAS MUJERES A UNA VIDA LIBRE DE VIOLENCIA.",
         "tipo": "iniciativa",
-        "fecha": "2026-03-22",
+        "fecha": "2026-04-01",
         "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21149.pdf",
         "categoria": "Industria Quimica",
         "estado": "Nuevo León",
@@ -125,7 +62,7 @@
       {
         "titulo": "Iniciativa Ciudadana que reforma el artículo 236 del Capítulo Segundo denominado “De las Sanciones de Tránsito y Vialidad” de la Ley de Movilidad del Estado de Quintana Roo;  presentada por el Ciudadano Ángel Mauricio Mora Castillo, en términos de la Ley de Participación Ciudadana del Estado de Quintana Roo.",
         "tipo": "iniciativa",
-        "fecha": "2026-03-31",
+        "fecha": "2026-04-01",
         "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260327-130944.pdf",
         "categoria": "Industria Quimica",
         "estado": "Quintana Roo",
@@ -134,7 +71,7 @@
       {
         "titulo": "Iniciativa de Decreto por el que se reforman diversas disposiciones de la Ley Orgánica del Poder Legislativo del Estado de Quintana Roo y del Reglamento para el Gobierno Interior de la Legislatura del Estado de Quintana Roo; presentada por el Diputado Hugo Alday Nieto, Presidente de la Comisión de Desarrollo Urbano Sustentable y Asuntos Metropolitanos; por la Diputada María José Osorio Rosas, Pres",
         "tipo": "iniciativa",
-        "fecha": "2026-03-31",
+        "fecha": "2026-04-01",
         "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260327-132241.pdf",
         "categoria": "Industria Quimica",
         "estado": "Quintana Roo",
@@ -143,33 +80,36 @@
       {
         "titulo": "Iniciativa con Proyecto de Decreto por el que se reforman diversas disposiciones de la Ley del Sistema Anticorrupción del Estado de Quintana Roo; presentada por el Diputado César Santiago Augusto Frias Canché, Presidente de la Comisión Anticorrupción, Participación Ciudadana y Órganos Autónomos; por el Diputado Jorge Arturo Sanén Cervantes, Presidente de la Comisión de Puntos Constitucionales; por",
         "tipo": "iniciativa",
-        "fecha": "2026-03-22",
+        "fecha": "2026-04-01",
         "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260313-150724.pdf",
         "categoria": "Industria Quimica",
-        "estado": "Quintana Roo"
+        "estado": "Quintana Roo",
+        "metodo": "requests"
       },
       {
         "titulo": "Iniciativa de Decreto por el que se adiciona el Título Séptimo denominado “De los Cabildos Juveniles Municipales” a la Ley de la Juventud del Estado Libre y Soberano de Quintana Roo; presentada por el Diputado Cesar Santiago Augusto Frías Canché, Presidente de la Comisión Anticorrupción, Participación Ciudadana y Órganos Autónomos; por el Diputado Jorge Arturo Sanen Cervantes, Presidente de la Com",
         "tipo": "iniciativa",
-        "fecha": "2026-03-22",
+        "fecha": "2026-04-01",
         "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260310-115828.pdf",
         "categoria": "Industria Quimica",
-        "estado": "Quintana Roo"
+        "estado": "Quintana Roo",
+        "metodo": "requests"
       },
       {
         "titulo": "Iniciativa de Decreto por el que se adicionan y reforman diversas disposiciones del Código Penal para el Estado Libre y Soberano de Quintana Roo y se reforman y adicionan diversas disposiciones de la Ley de Protección y Bienestar Animal del Estado de Quintana Roo; presentada por el Diputado Renán Eduardo Sánchez Tajonar, Presidente de la Comisión de Hacienda, Presupuesto y Cuenta; por la Diputada ",
         "tipo": "iniciativa",
-        "fecha": "2026-03-22",
+        "fecha": "2026-04-01",
         "url": "https://storage.googleapis.com/sigca/files/2026/3/216_Iniciativa_366_Ley_de_protección_y_bienestar_animal_(Dip._Renán_Sánchez_Tajonar_y_otros)_0001.pdf",
         "categoria": "Industria Quimica",
-        "estado": "Quintana Roo"
+        "estado": "Quintana Roo",
+        "metodo": "requests"
       }
     ],
     "Tabasco": [
       {
         "titulo": "Iniciativa reforma a la Ley de Proteccion Ambiental",
         "tipo": "iniciativa",
-        "fecha": "2026-03-30",
+        "fecha": "2026-04-01",
         "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Iniciativa-reforma-a-la-Ley-de-Proteccion-Ambiental.pdf",
         "categoria": "Medio Ambiente",
         "estado": "Tabasco",
@@ -178,7 +118,7 @@
       {
         "titulo": "Dictamen Enajenación CFE",
         "tipo": "dictamen",
-        "fecha": "2026-03-30",
+        "fecha": "2026-04-01",
         "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Dictamen-Enajenacion-CFE.pdf",
         "categoria": "Energia",
         "estado": "Tabasco",
@@ -187,35 +127,36 @@
       {
         "titulo": "Punto de acuerdo exhorto hidrocarburo",
         "tipo": "proposicion",
-        "fecha": "2026-03-30",
+        "fecha": "2026-04-01",
         "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Punto-de-acuerdo-exhorto-hidracarburo.pdf",
         "categoria": "Energia",
         "estado": "Tabasco",
         "metodo": "requests"
       },
       {
-        "titulo": "Punto de acuerdo exhorto medio ambienten cambio climatico",
-        "tipo": "proposicion",
-        "fecha": "2026-03-26",
-        "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Punto-de-acuerdo-exhorto-medio-ambienten-cambio-climatico.pdf",
-        "categoria": "Cambio Climatico",
+        "titulo": "Iniciativa reforma Ley Forestal del Estado",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-01",
+        "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Iniciativa-reforma-Ley-de-Forestal-del-Estado.pdf",
+        "categoria": "Medio Ambiente",
         "estado": "Tabasco",
         "metodo": "requests"
       },
       {
-        "titulo": "Iniciativa reforma Ley Forestal del Estado",
-        "tipo": "iniciativa",
-        "fecha": "2026-03-22",
-        "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Iniciativa-reforma-Ley-de-Forestal-del-Estado.pdf",
-        "categoria": "Medio Ambiente",
-        "estado": "Tabasco"
+        "titulo": "Punto de acuerdo exhorto medio ambiente y cambio climático",
+        "tipo": "proposicion",
+        "fecha": "2026-04-01",
+        "url": "https://congresotabasco.gob.mx/wp-content/uploads/2026/03/Punto-de-acuerdo-exhorto-medio-ambienten-cambio-climatico.pdf",
+        "categoria": "Cambio Climatico",
+        "estado": "Tabasco",
+        "metodo": "requests"
       }
     ],
     "Tlaxcala": [
       {
         "titulo": "DICTAMEN LEY DE PROTECCION AL MEDIO AMBIENTE Y DESARROLLO SOSTENIBLE DEL ESTADO DE TLAXCALA",
         "tipo": "dictamen",
-        "fecha": "2026-03-22",
+        "fecha": "2026-04-01",
         "url": "https://congresodetlaxcala.gob.mx/wp-content/uploads/2017/03/DICTAMEN-LEY-DE-PROTECCION-AL-MEDIO-AMBIENTE-Y-DESARROLLO-SOSTENIBLE-DEL-ESTADO-DE-TLAXCALA.pdf",
         "categoria": "Medio Ambiente",
         "estado": "Tlaxcala",
@@ -224,7 +165,7 @@
       {
         "titulo": "Dictamen de Ley de Ingresos del Municipio de Tetla de la Solaridad, para el Ejercicio Fiscal 2022.",
         "tipo": "dictamen",
-        "fecha": "2026-03-22",
+        "fecha": "2026-04-01",
         "url": "https://congresodetlaxcala.gob.mx/archivo/ingresos2022/Dictamen_Ley_de_Ingresos_Tetla_2022.pdf",
         "categoria": "Energia",
         "estado": "Tlaxcala",
@@ -233,7 +174,7 @@
       {
         "titulo": "PROYECTO DE DECRETO LEY DE PROTECCIÓN AL MEDIO AMBIENTE Y EL DESARROLLO SOSTENIBLE DEL ESTADO DE TLAXCALA.",
         "tipo": "iniciativa",
-        "fecha": "2026-03-22",
+        "fecha": "2026-04-01",
         "url": "https://congresodetlaxcala.gob.mx/wp-content/uploads/2017/03/LEY-DE-MEDIO-AMBIENTE-TLAXCALA.pdf",
         "categoria": "Medio Ambiente",
         "estado": "Tlaxcala",
@@ -243,45 +184,39 @@
   },
   "resumen": [
     {
+      "estado": "Nuevo León",
+      "total": 5,
+      "categoria_principal": "Industria Quimica",
+      "ultima_fecha": "2026-04-01"
+    },
+    {
       "estado": "Quintana Roo",
       "total": 5,
       "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-03-31"
+      "ultima_fecha": "2026-04-01"
     },
     {
       "estado": "Tabasco",
       "total": 5,
       "categoria_principal": "Medio Ambiente",
-      "ultima_fecha": "2026-03-30"
-    },
-    {
-      "estado": "Nuevo León",
-      "total": 5,
-      "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-03-27"
-    },
-    {
-      "estado": "Guanajuato",
-      "total": 3,
-      "categoria_principal": "Agro y Desarrollo Rural",
-      "ultima_fecha": "2026-03-26"
+      "ultima_fecha": "2026-04-01"
     },
     {
       "estado": "Tlaxcala",
       "total": 3,
       "categoria_principal": "Medio Ambiente",
-      "ultima_fecha": "2026-03-22"
+      "ultima_fecha": "2026-04-01"
     },
     {
-      "estado": "Chihuahua",
-      "total": 5,
-      "categoria_principal": "Agua",
-      "ultima_fecha": "2026-03-17"
+      "estado": "Guanajuato",
+      "total": 1,
+      "categoria_principal": "Agro y Desarrollo Rural",
+      "ultima_fecha": "2026-04-01"
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-03-31T17:28:42.119640",
-    "mes": "2026-03",
-    "estados_con_actividad": 6
+    "ultima_actualizacion": "2026-04-01T17:25:12.162521",
+    "mes": "2026-04",
+    "estados_con_actividad": 5
   }
 }
