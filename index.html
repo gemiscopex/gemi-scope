@@ -280,6 +280,26 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 /* Gaceta link item */
 .gaceta-link-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-tint);border-radius:10px;text-decoration:none;color:var(--text);font-size:12px;font-weight:500;margin-bottom:6px;border:1px solid rgba(10,194,133,0.15);transition:background 0.15s}
 .gaceta-link-item:hover{background:rgba(10,194,133,0.15)}
+/* ═══════════ DOF ═══════════ */
+.dof-nav{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:12px 16px;background:var(--bg-sec);border:0.8px solid var(--border);border-radius:10px}
+.dof-nav-btn{width:30px;height:30px;border-radius:6px;border:0.8px solid var(--border);background:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s;flex-shrink:0;color:var(--text);line-height:1}
+.dof-nav-btn:hover:not([disabled]){background:var(--border)}.dof-nav-btn[disabled]{opacity:0.3;cursor:default}
+.dof-nav-label{flex:1;text-align:center}
+.dof-nav-week{font-size:14px;font-weight:700;color:var(--text);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.04em;display:block}
+.dof-nav-dates{font-size:11px;color:var(--text-muted);display:block;margin-top:1px}
+.dof-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.dof-pill{padding:4px 11px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--text-sec);transition:all 0.15s;letter-spacing:0.02em}
+.dof-pill.active{background:#111;border-color:#111;color:#fff}
+.dof-date-hdr{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);padding:12px 0 6px;border-bottom:0.8px solid var(--border);margin-bottom:4px}
+.dof-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:0.8px solid rgba(0,0,0,0.04);min-height:32px}
+.dof-row:last-child{border-bottom:none}
+.dof-tipo{font-size:9px;font-weight:700;letter-spacing:0.06em;padding:2px 7px;border-radius:4px;border:1px solid;flex-shrink:0;min-width:72px;text-align:center}
+.dof-dep{font-size:10px;font-weight:600;color:var(--text-sec);width:82px;flex-shrink:0;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dof-titulo{font-size:12px;color:var(--text);text-decoration:none;flex:1;line-height:1.35;min-width:0}
+.dof-titulo:hover{color:var(--green);text-decoration:underline}
+.dof-rel-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;opacity:0.75}
+.dof-footer{font-size:11px;color:var(--text-muted);text-align:right;padding-top:10px;border-top:0.8px solid var(--border);margin-top:8px}
+.dof-table{padding:4px 0}
 /* ═══════════ NORMAS ═══════════ */
 .normas-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;align-items:center}
 .normas-pill{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--text-sec);letter-spacing:0.03em;transition:all 0.15s}
@@ -390,6 +410,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
     <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación Federal</button>
     <button class="tab-btn" onclick="showTab('normas',this)">Normas</button>
+    <button class="tab-btn" onclick="showTab('dof',this)">DOF</button>
     <button class="tab-btn" onclick="showTab('alertas',this)" id="btn-alertas">Alertas <span id="alertas-badge" class="nav-badge" style="display:none"></span></button>
     <button class="tab-btn" onclick="showTab('radares',this)">Radares</button>
     <button class="tab-btn" onclick="showTab('acerca',this)">Acerca de</button>
@@ -511,6 +532,16 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
       </div>
     </div>
     <div id="normas-list"></div>
+  </div>
+
+  <!-- TAB: DOF -->
+  <div id="tab-dof" class="tab-content" style="padding:28px 0">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
+      <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em">Diario Oficial de la Federaci&#243;n</div>
+      <div style="font-size:11px;color:var(--text-muted)">dof.gob.mx &middot; actualizaci&#243;n 8 AM y 2:30 PM L&#8211;V</div>
+    </div>
+    <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">Publicaciones con relevancia para agua, energ&#237;a, medio ambiente, fiscal y regulatorio. Historial por semana.</div>
+    <div id="dof-content"><div class="sp-empty">Cargando DOF&#8230;</div></div>
   </div>
 
   <div id="tab-alertas" class="tab-content" style="padding:28px 0">
@@ -1494,14 +1525,78 @@ function renderWidgetGacetas(){
       el.innerHTML=html;
     });
 }
+// ── DOF ───────────────────────────────────────────────────────────────────────
+var _dofData=[], _dofSemanas=[], _dofSemIdx=0, _dofFiltroActivo='todas';
+var _DOF_TIPO_COLORS={NOM:'#2563eb',DECRETO:'#dc2626',ACUERDO:'#d97706',LEY:'#7c3aed',REGLAMENTO:'#0891b2',CONVENIO:'#16a34a',CIRCULAR:'#78716c',RESOLUCION:'#9333ea',PROGRAMA:'#0284c7',AVISO:'#6b7280',EXTRACTO:'#94a3b8',OTRO:'#94a3b8'};
+function _isoWeekLabel(w){
+  var p=w.split('-W'),year=+p[0],week=+p[1];
+  var jan4=new Date(year,0,4);
+  var d1=new Date(jan4);d1.setDate(jan4.getDate()-((jan4.getDay()+6)%7));
+  var start=new Date(d1);start.setDate(d1.getDate()+(week-1)*7);
+  var end=new Date(start);end.setDate(start.getDate()+6);
+  var ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  var ss=start.getDate()+' '+ms[start.getMonth()],es=end.getDate()+' '+ms[end.getMonth()];
+  return {w:'Semana '+week,d:ss+(ms[start.getMonth()]!==ms[end.getMonth()]?' \u2013 '+es:' \u2013 '+end.getDate())+' \xb7 '+year};
+}
+function _dofWeek(dir){_dofSemIdx+=dir;if(_dofSemIdx<0)_dofSemIdx=0;if(_dofSemIdx>=_dofSemanas.length)_dofSemIdx=_dofSemanas.length-1;renderDOF();}
+function _dofSetFiltro(f){_dofFiltroActivo=f;renderDOF();}
+function renderDOF(){
+  var el=document.getElementById('dof-content');
+  if(!el)return;
+  if(!_dofData.length){el.innerHTML='<div class="sp-empty">Sin datos del DOF \u2014 el scraper corre a las 8 AM y 2:30 PM L\u2013V</div>';return;}
+  var seenW={};_dofData.forEach(function(n){seenW[n.semana]=1;});
+  _dofSemanas=Object.keys(seenW).sort().reverse();
+  if(_dofSemIdx>=_dofSemanas.length)_dofSemIdx=0;
+  var sem=_dofSemanas[_dofSemIdx];
+  var lbl=_isoWeekLabel(sem);
+  var canPrev=_dofSemIdx<_dofSemanas.length-1, canNext=_dofSemIdx>0;
+  var nav='<div class="dof-nav">'
+    +'<button class="dof-nav-btn" onclick="_dofWeek(1)"'+(canPrev?'':' disabled')+'>\u2190</button>'
+    +'<div class="dof-nav-label"><span class="dof-nav-week">'+lbl.w+'</span><span class="dof-nav-dates">'+lbl.d+'</span></div>'
+    +'<button class="dof-nav-btn" onclick="_dofWeek(-1)"'+(canNext?'':' disabled')+'>\u2192</button>'
+    +'</div>';
+  var weekItems=_dofData.filter(function(n){return n.semana===sem;});
+  var tipos={};weekItems.forEach(function(n){tipos[n.tipo]=(tipos[n.tipo]||0)+1;});
+  var pills='<div class="dof-pills">'
+    +'<button class="dof-pill'+(_dofFiltroActivo==='todas'?' active':'')+'" onclick="_dofSetFiltro(\'todas\')">Todas ('+weekItems.length+')</button>'
+    +'<button class="dof-pill'+(_dofFiltroActivo==='relevante'?' active':'')+'" onclick="_dofSetFiltro(\'relevante\')">Relevantes ('+weekItems.filter(function(n){return n.relevante;}).length+')</button>';
+  Object.keys(tipos).sort().forEach(function(t){pills+='<button class="dof-pill'+(_dofFiltroActivo===t?' active':'')+'" onclick="_dofSetFiltro(\''+t+'\')">'+t+' ('+tipos[t]+')</button>';});
+  pills+='</div>';
+  var items=weekItems;
+  if(_dofFiltroActivo==='relevante')items=items.filter(function(n){return n.relevante;});
+  else if(_dofFiltroActivo!=='todas')items=items.filter(function(n){return n.tipo===_dofFiltroActivo;});
+  if(!items.length){el.innerHTML=nav+pills+'<div class="sp-empty">Sin publicaciones para este filtro</div>';return;}
+  var byFecha={};items.forEach(function(n){if(!byFecha[n.fecha])byFecha[n.fecha]=[];byFecha[n.fecha].push(n);});
+  var ms2=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  var rows='';
+  Object.keys(byFecha).sort().reverse().forEach(function(f){
+    var dobj=new Date(f+'T12:00:00');
+    rows+='<div class="dof-date-hdr">'+dobj.getDate()+' '+ms2[dobj.getMonth()]+' \xb7 '+byFecha[f].length+' publicaciones</div>';
+    byFecha[f].forEach(function(n){
+      var c=_DOF_TIPO_COLORS[n.tipo]||'#94a3b8';
+      rows+='<div class="dof-row">'
+        +'<span class="dof-tipo" style="background:'+c+'1a;color:'+c+';border-color:'+c+'33">'+n.tipo+'</span>'
+        +'<span class="dof-dep" title="'+n.dependencia+'">'+n.dependencia+'</span>'
+        +'<a class="dof-titulo" href="'+n.url+'" target="_blank" rel="noopener">'+n.titulo+'</a>'
+        +(n.relevante?'<span class="dof-rel-dot" title="Relevante para SCOPE"></span>':'')
+        +'</div>';
+    });
+  });
+  var rel=weekItems.filter(function(n){return n.relevante;}).length;
+  var footer='<div class="dof-footer">'+weekItems.length+' publicaciones esta semana &middot; '+rel+' relevantes</div>';
+  el.innerHTML=nav+pills+'<div class="dof-table">'+rows+'</div>'+footer;
+}
+// ─────────────────────────────────────────────────────────────────────────────
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
+  try{const r=await fetch('data/dof.json',{cache:'no-store'});_dofData=await r.json()}catch(e){_dofData=[]}
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
   renderScoreNacional();
   renderAlertas('all');
+  renderDOF();
   renderWidgetFederal();
   renderWidgetGacetas();
   const rsel=document.getElementById('radar-selector');
