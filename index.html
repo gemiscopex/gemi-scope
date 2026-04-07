@@ -293,8 +293,9 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .normas-type-toggle{display:flex;gap:4px;margin-left:auto}
 .normas-type-btn{padding:5px 11px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--text-sec);transition:all 0.15s}
 .normas-type-btn.active{background:#111;border-color:#111;color:#fff}
-.nom-card{border:0.8px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:8px;display:flex;align-items:flex-start;gap:14px;transition:box-shadow 0.15s,border-color 0.15s;background:#fff}
-.nom-card:hover{box-shadow:0 3px 12px rgba(0,0,0,0.07);border-color:var(--border-med)}
+.nom-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid rgba(0,0,0,0.06)}
+.nom-row:last-child{border-bottom:none}
+.nom-row:hover .nom-titulo{color:var(--green)}
 .nom-badge{min-width:52px;padding:4px 0;text-align:center;border-radius:6px;font-size:9px;font-weight:700;letter-spacing:0.07em;flex-shrink:0}
 .nom-badge.vigente{background:rgba(10,194,133,0.12);color:#0a8a5f}
 .nom-badge.proyecto{background:rgba(245,158,11,0.12);color:#b45309}
@@ -388,7 +389,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
   </div>
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
-    <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación Federal</button>
+    <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación</button>
     <button class="tab-btn" onclick="showTab('normas',this)">Normas</button>
     <button class="tab-btn" onclick="showTab('alertas',this)" id="btn-alertas">Alertas <span id="alertas-badge" class="nav-badge" style="display:none"></span></button>
     <button class="tab-btn" onclick="showTab('radares',this)">Radares</button>
@@ -420,12 +421,12 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
       <button class="sp-close" onclick="closeStatePanel()">✕ Cerrar</button>
     </div>
     <div class="sp-tabs">
-      <button class="sp-tab active" onclick="showSPTab('perfil',this)">PERFIL</button>
+      <button class="sp-tab active" onclick="showSPTab('actividad',this)">ACTIVIDAD</button>
+      <button class="sp-tab" onclick="showSPTab('sectorial',this)">RIESGO SECTORIAL</button>
       <button class="sp-tab" onclick="showSPTab('legislacion',this)">LEGISLACIÓN</button>
       <button class="sp-tab" onclick="showSPTab('impuestos',this)">IMPUESTOS</button>
-      <button class="sp-tab" onclick="showSPTab('actividad',this)">ACTIVIDAD</button>
-      <button class="sp-tab" onclick="showSPTab('sectorial',this)">RIESGO SECTORIAL</button>
       <button class="sp-tab" onclick="showSPTab('gaceta',this)">GACETA</button>
+      <button class="sp-tab" onclick="showSPTab('perfil',this)">PERFIL</button>
     </div>
     <div id="sp-perfil" class="sp-content active"></div>
     <div id="sp-legislacion" class="sp-content"></div>
@@ -807,7 +808,11 @@ function buildMap(){
     var sc=stateScores[state]||{master:0,icr:0,ipr:0,irf:0,iis:0,rank:32};
     var col=scoreColor(sc.master||0);
     var abbr=STATE_ABBR[state]||state.substring(0,3).toUpperCase();
-    var icon=L.divIcon({className:'pulse-marker-container',iconSize:[20,20],iconAnchor:[10,10],html:'<div class="pulse-marker"><div class="pulse-ring" style="background:'+col+'"></div><div class="pulse-core" style="background:'+col+'"></div><div class="marker-label">'+abbr+'</div></div>'});
+    var isCritico=(sc.irf>=60||sc.ipr>=70);
+    var iconHtml=isCritico
+      ?'<div class="pulse-marker"><div class="pulse-ring" style="background:'+col+'"></div><div class="pulse-core" style="background:'+col+'"></div><div class="marker-label">'+abbr+'</div></div>'
+      :'<div class="pulse-marker"><div class="pulse-core" style="background:'+col+';opacity:0.7"></div><div class="marker-label">'+abbr+'</div></div>';
+    var icon=L.divIcon({className:'pulse-marker-container',iconSize:[20,20],iconAnchor:[10,10],html:iconHtml});
     var marker=L.marker([coords[0],coords[1]],{icon:icon}).addTo(map);
     var lbl=scoreLabel(sc.master||0);
     var nc=stateNews[state]||0;
@@ -891,20 +896,13 @@ function renderNormas(){
       var isProy=n.tipo==='PROY';
       var nomColor=isProy?'#b45309':'#0a8a5f';
       var nomBg=isProy?'rgba(245,158,11,0.1)':'rgba(10,194,133,0.1)';
-      html+='<div class="nom-card">'
-        +'<div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0;width:70px">'
-          +'<div style="padding:3px 8px;border-radius:5px;font-size:8px;font-weight:700;letter-spacing:0.07em;background:'+nomBg+';color:'+nomColor+'">'+(isProy?'PROY-NOM':'NOM')+'</div>'
-          +'<div style="font-size:9px;font-weight:700;color:var(--text-sec);text-align:center;line-height:1.2;word-break:break-all">'+n.id.replace('PROY-NOM-','').replace('NOM-','')+'</div>'
-        +'</div>'
-        +'<div class="nom-body">'
-          +'<div class="nom-objeto">'+n.objeto+'</div>'
-          +'<div class="nom-implic">'+n.implic+'</div>'
-          +'<div class="nom-meta">'
-            +'<span class="nom-tema-badge" style="background:'+color+'">'+n.tema+'</span>'
-            +'<span class="nom-dep">'+n.dep+'</span>'
-            +'<a href="'+n.url+'" target="_blank" rel="noopener" class="nom-link">Consultar →</a>'
-          +'</div>'
-        +'</div>'
+      html+='<div class="nom-row">'
+        +'<span style="font-size:8px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:3px;background:'+nomBg+';color:'+nomColor+';flex-shrink:0">'+(isProy?'PROY-NOM':'NOM')+'</span>'
+        +'<span style="font-size:10px;font-weight:700;color:var(--text-muted);flex-shrink:0;min-width:50px">'+n.id.replace('PROY-NOM-','').replace('NOM-','')+'</span>'
+        +'<span class="nom-titulo" style="font-size:12px;color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+n.objeto+' — '+n.implic+'">'+n.objeto+'</span>'
+        +'<span style="font-size:9px;color:var(--text-muted);flex-shrink:0;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+n.dep+'</span>'
+        +'<span style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;background:'+color+'22;color:'+color+';flex-shrink:0">'+n.tema+'</span>'
+        +'<a href="'+n.url+'" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;color:var(--green);flex-shrink:0;text-decoration:none">\u2197</a>'
       +'</div>';
     });
   });
@@ -1011,7 +1009,7 @@ function openStatePanel(stateName){
   renderSPActividad(stateName);
   renderSPSectorial(stateName);
   renderSPGaceta(stateName,data);
-  showSPTab('perfil',document.querySelector('#state-modal-bg .sp-tab'));
+  showSPTab('actividad',document.querySelector('#state-modal-bg .sp-tab'));
   var bg=document.getElementById('state-modal-bg');
   bg.style.display='flex';
   document.body.style.overflow='hidden';
