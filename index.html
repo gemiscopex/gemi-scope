@@ -1519,8 +1519,8 @@ function renderDOF(){
   var isoSun=now.getFullYear()+'-'+pad(sun.getMonth()+1)+'-'+pad(sun.getDate());
   var ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
   var weekLabel=mon.getDate()+' '+ms[mon.getMonth()]+' \u2013 '+sun.getDate()+' '+ms[sun.getMonth()]+' '+now.getFullYear();
-  // Items de esta semana
-  var items=_dofData.filter(function(n){return n.fecha>=isoMon&&n.fecha<=isoSun;});
+  // Items de esta semana — solo relevantes para SCOPE
+  var items=_dofData.filter(function(n){return n.fecha>=isoMon&&n.fecha<=isoSun&&n.relevante;});
   if(meta)meta.textContent=weekLabel+' \xb7 '+items.length+' publicaciones';
   if(!items.length){
     el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:6px 0">Sin publicaciones esta semana todav\u00eda</div>';
