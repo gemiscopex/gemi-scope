@@ -795,6 +795,14 @@ function updateLeyes(){
   document.getElementById('leyes-grid').innerHTML=leyes.map(l=>`<a class="ley-item" href="${l.u}" target="_blank" rel="noopener"><div class="ley-sigla">${l.s}</div><div><div class="ley-nombre">${l.n}</div><div class="ley-tema">${l.t}</div>${l.r?`<div class="ley-reforma">Última reforma publicada en el Diario Oficial de la Federación el ${l.r}</div>`:''}</div></a>`).join('');
 }
 var _scopeMap=null;
+// GeoJSON name → SCOPE name for mismatches
+var GEO_TO_SCOPE={
+  'Coahuila de Zaragoza':'Coahuila',
+  'Michoacán de Ocampo':'Michoacán',
+  'Veracruz de Ignacio de la Llave':'Veracruz',
+  'Estado de México':'México',
+  'Mexico':'México'
+};
 function buildMap(){
   try{
   if(_scopeMap){_scopeMap.remove();_scopeMap=null;}
@@ -802,32 +810,59 @@ function buildMap(){
   _scopeMap=map;
   setTimeout(function(){map.invalidateSize();},200);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,subdomains:'abcd'}).addTo(map);
+
+  // ── GeoJSON layer: polígonos clickeables para TODOS los estados ──────────
+  fetch('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json',{cache:'force-cache'})
+    .then(function(r){return r.json();})
+    .then(function(geo){
+      var geoLayer=L.geoJSON(geo,{
+        style:function(feature){
+          var name=GEO_TO_SCOPE[feature.properties.name]||feature.properties.name;
+          var sc=stateScores[name]||{master:0};
+          var col=scoreColor(sc.master||0);
+          return {fillColor:col,fillOpacity:0.07,color:col,weight:0.8,opacity:0.25};
+        },
+        onEachFeature:function(feature,layer){
+          var name=GEO_TO_SCOPE[feature.properties.name]||feature.properties.name;
+          var sc=stateScores[name]||{master:0,irf:0,ipr:0};
+          var col=scoreColor(sc.master||0);
+          var lbl=scoreLabel(sc.master||0);
+          var nc=stateNews[name]||0;
+          var nameEsc=name.replace(/'/g,"\\'");
+          var popHtml='<div style="min-width:170px">'
+            +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;padding-bottom:7px;border-bottom:1px solid #eee">'
+            +'<div style="font-size:14px;font-weight:700;color:#111">'+name+'</div>'
+            +'<span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:'+col+'22;color:'+col+'">'+lbl+' '+(sc.master||0)+'</span>'
+            +'</div>'
+            +(nc>0?'<div style="font-size:11px;color:#555;margin-bottom:7px">'+nc+' noticia'+(nc>1?'s':'')+' reciente'+(nc>1?'s':'')+'</div>':'')
+            +'<button onclick="openStatePanel(\''+nameEsc+'\')" style="width:100%;padding:6px;background:#0ac285;color:#fff;border:none;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif">Ver panel \u2192</button>'
+            +'</div>';
+          layer.bindPopup(popHtml,{className:'scope-popup',maxWidth:220,closeButton:false});
+          layer.on('mouseover',function(e){
+            layer.setStyle({fillOpacity:0.18,weight:1.5,opacity:0.55});
+            layer.openPopup(e.latlng);
+          });
+          layer.on('mouseout',function(){
+            geoLayer.resetStyle(layer);
+            layer.closePopup();
+          });
+          layer.on('click',function(){openStatePanel(name);});
+        }
+      }).addTo(map);
+    })
+    .catch(function(e){console.warn('GeoJSON error:',e);});
+
+  // ── Marcadores pulsantes solo para estados con alerta CRÍTICA ────────────
   Object.keys(STATE_COORDS).forEach(function(state){
     var coords=STATE_COORDS[state];
     if(!coords)return;
-    var sc=stateScores[state]||{master:0,icr:0,ipr:0,irf:0,iis:0,rank:32};
+    var sc=stateScores[state]||{master:0,irf:0,ipr:0};
+    if(sc.irf<60&&sc.ipr<70)return; // solo críticos
     var col=scoreColor(sc.master||0);
     var abbr=STATE_ABBR[state]||state.substring(0,3).toUpperCase();
-    var isCritico=(sc.irf>=60||sc.ipr>=70);
-    var iconHtml=isCritico
-      ?'<div class="pulse-marker"><div class="pulse-ring" style="background:'+col+'"></div><div class="pulse-core" style="background:'+col+'"></div><div class="marker-label">'+abbr+'</div></div>'
-      :'<div class="pulse-marker"><div class="pulse-core" style="background:'+col+';opacity:0.7"></div><div class="marker-label">'+abbr+'</div></div>';
+    var iconHtml='<div class="pulse-marker"><div class="pulse-ring" style="background:'+col+'"></div><div class="pulse-core" style="background:'+col+'"></div><div class="marker-label">'+abbr+'</div></div>';
     var icon=L.divIcon({className:'pulse-marker-container',iconSize:[20,20],iconAnchor:[10,10],html:iconHtml});
     var marker=L.marker([coords[0],coords[1]],{icon:icon}).addTo(map);
-    var lbl=scoreLabel(sc.master||0);
-    var nc=stateNews[state]||0;
-    var popHtml='<div style="min-width:180px">';
-    popHtml+='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #eee">';
-    popHtml+='<div><div style="font-size:9px;font-weight:700;color:#888;letter-spacing:0.8px">'+abbr+'</div>';
-    popHtml+='<div style="font-size:15px;font-weight:700;color:#111;line-height:1.2">'+state+'</div></div>';
-    popHtml+='<span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:'+col+'22;color:'+col+'">'+lbl+' '+(sc.master||0)+'</span>';
-    popHtml+='</div>';
-    if(nc>0){popHtml+='<div style="font-size:11px;color:#555;margin-bottom:8px">'+nc+' noticia'+(nc>1?'s':'')+' reciente'+(nc>1?'s':'')+'</div>';}
-    var stateEsc=state.replace(/'/g,"\'");
-    popHtml+='<button onclick="openStatePanel(\''+stateEsc+'\')" style="width:100%;padding:7px;background:#0ac285;color:#fff;border:none;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif">Ver panel completo \u2192</button>';
-    popHtml+='</div>';
-    marker.bindPopup(popHtml,{className:'scope-popup',maxWidth:240,closeButton:false});
-    marker.on('mouseover',function(){this.openPopup();});
     marker.on('click',function(){openStatePanel(state);});
   });
   }catch(e){console.error('Map error:',e);}
