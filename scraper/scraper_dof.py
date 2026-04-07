@@ -30,8 +30,8 @@ HEADERS = {
     "Accept-Language": "es-MX,es;q=0.9",
 }
 
-# ── Dependencias relevantes para SCOPE y su categoria ─────────────────────────
-DEPENDENCIAS_RELEVANTES = {
+# ── Dependencias CORE: siempre relevantes para SCOPE ─────────────────────────
+CORE_DEPS = {
     "SEMARNAT":  "agua_medioambiente",
     "PROFEPA":   "agua_medioambiente",
     "CONAGUA":   "agua_medioambiente",
@@ -42,18 +42,31 @@ DEPENDENCIAS_RELEVANTES = {
     "CRE":       "energia",
     "PEMEX":     "energia",
     "CFE":       "energia",
-    "SHCP":      "fiscal_regulatorio",
-    "SAT":       "fiscal_regulatorio",
-    "SE ":       "comercio_inversion",
-    "COFEPRIS":  "salud_publica",
     "SADER":     "agro_rural",
     "SENASICA":  "agro_rural",
     "CONAPESCA": "agro_rural",
     "SICT":      "transporte_logistica",
     "SCT":       "transporte_logistica",
-    "SEDATU":    "economia_circular",
-    "SEGOB":     "politica_gobernanza",
 }
+
+# ── Dependencias condicionales: solo relevantes si el título tiene palabras clave ──
+COND_DEPS = {
+    "SHCP":   "fiscal_regulatorio",
+    "SAT":    "fiscal_regulatorio",
+    "SE":     "comercio_inversion",
+    "SEDATU": "economia_circular",
+    "COFEPRIS": "salud_publica",
+}
+
+# Palabras clave que califican una publicación de SHCP/SAT/SE/etc. como relevante
+SCOPE_KW = re.compile(
+    r"ambiental|ecol|agua|residuo|energ|renovable|forestal|biodiver|"
+    r"clim|carbono|emision|contamin|hidric|acuifer|cuenca|"
+    r"nom-|norma oficial|proy-nom|economia circular|reciclaj|"
+    r"impuesto.*ambiental|tasa.*ecol|bono.*carbono|"
+    r"agr|ganad|pesca|siembra|fitosanit|sanidad animal|"
+    r"transporte.*peligros|residuo.*peligros|sustanci.*peligros"
+)
 
 # Tipo de instrumento basado en el titulo
 TIPOS_KEYWORDS = [
@@ -137,22 +150,35 @@ def resolve_dep(raw: str) -> str:
     return "OTRO"
 
 
-def detect_categoria(dep: str, titulo: str) -> str:
-    cat = DEPENDENCIAS_RELEVANTES.get(dep)
-    if cat:
-        return cat
+def detect_categoria(dep: str, titulo: str) -> tuple[str, bool]:
+    """Returns (categoria, es_relevante)."""
     t = titulo.lower()
+
+    # Dependencias core: siempre relevantes
+    if dep in CORE_DEPS:
+        return CORE_DEPS[dep], True
+
+    # Dependencias condicionales: solo si el título contiene palabras clave SCOPE
+    if dep in COND_DEPS:
+        if SCOPE_KW.search(t):
+            return COND_DEPS[dep], True
+        return COND_DEPS[dep], False
+
+    # Dependencias no relevantes para SCOPE (avisos administrativos, financieros, etc.)
+    if dep in ("SEGOB", "BANXICO", "EJECUTIVO", "JUDICIAL", "LEGISLATIVO", "OTRO"):
+        return "general", False
+
+    # Resto: inferir por palabras clave en el título
     if re.search(r'agua|ambiental|ecol|residuo|forestal|biodiver', t):
-        return "agua_medioambiente"
+        return "agua_medioambiente", True
     if re.search(r'energ|petrole|gas natural|electric|hidrocarburo', t):
-        return "energia"
-    if re.search(r'fiscal|impuesto|tributar|hacienda|arancelari', t):
-        return "fiscal_regulatorio"
+        return "energia", True
     if re.search(r'clim|carbono|emision|gei', t):
-        return "cambio_climatico"
-    if re.search(r'agr|ganad|pesca|forestal|siembra', t):
-        return "agro_rural"
-    return "general"
+        return "cambio_climatico", True
+    if re.search(r'agr|ganad|pesca|siembra', t):
+        return "agro_rural", True
+
+    return "general", False
 
 
 # ── Scraper principal ─────────────────────────────────────────────────────────
@@ -216,10 +242,10 @@ def fetch_dof_dia(target_date: date) -> list[dict]:
                 continue
             seen_codigos.add(codigo)
 
-            tipo      = detect_tipo(titulo)
-            categoria = detect_categoria(current_dep, titulo)
-            nota_id   = make_id(codigo, fecha_iso)
-            full_url  = f"https://www.dof.gob.mx/nota_detalle.php?codigo={codigo}&fecha={fecha_str}"
+            tipo               = detect_tipo(titulo)
+            categoria, relevante = detect_categoria(current_dep, titulo)
+            nota_id            = make_id(codigo, fecha_iso)
+            full_url           = f"https://www.dof.gob.mx/nota_detalle.php?codigo={codigo}&fecha={fecha_str}"
 
             notas.append({
                 "id":           nota_id,
@@ -231,7 +257,7 @@ def fetch_dof_dia(target_date: date) -> list[dict]:
                 "codigo":       codigo,
                 "url":          full_url,
                 "categoria":    categoria,
-                "relevante":    categoria != "general",
+                "relevante":    relevante,
                 "scrapeado_en": datetime.now(timezone.utc).isoformat(),
             })
 
