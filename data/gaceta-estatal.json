@@ -60,6 +60,15 @@
     ],
     "Quintana Roo": [
       {
+        "titulo": "Iniciativa con Proyecto de Decreto por el que se adiciona un párrafo tercero al artículo 98 y se reforman los artículos 99 y 100 todos de la Ley de Movilidad del Estado de Quintana Roo; presentada por la Diputada María José Osorio Rosas, Presidenta de la Comisión de Planeación y Desarrollo Económico, y por el Diputado Hugo Alday Nieto, Presidente de la Comisión de Desarrollo Urbano Sustentable y A",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-07",
+        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260331-165813.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Quintana Roo",
+        "metodo": "requests"
+      },
+      {
         "titulo": "Iniciativa Ciudadana que reforma el artículo 236 del Capítulo Segundo denominado “De las Sanciones de Tránsito y Vialidad” de la Ley de Movilidad del Estado de Quintana Roo;  presentada por el Ciudadano Ángel Mauricio Mora Castillo, en términos de la Ley de Participación Ciudadana del Estado de Quintana Roo.",
         "tipo": "iniciativa",
         "fecha": "2026-04-01",
@@ -91,15 +100,6 @@
         "tipo": "iniciativa",
         "fecha": "2026-04-01",
         "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260310-115828.pdf",
-        "categoria": "Industria Quimica",
-        "estado": "Quintana Roo",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "Iniciativa de Decreto por el que se adicionan y reforman diversas disposiciones del Código Penal para el Estado Libre y Soberano de Quintana Roo y se reforman y adicionan diversas disposiciones de la Ley de Protección y Bienestar Animal del Estado de Quintana Roo; presentada por el Diputado Renán Eduardo Sánchez Tajonar, Presidente de la Comisión de Hacienda, Presupuesto y Cuenta; por la Diputada ",
-        "tipo": "iniciativa",
-        "fecha": "2026-04-01",
-        "url": "https://storage.googleapis.com/sigca/files/2026/3/216_Iniciativa_366_Ley_de_protección_y_bienestar_animal_(Dip._Renán_Sánchez_Tajonar_y_otros)_0001.pdf",
         "categoria": "Industria Quimica",
         "estado": "Quintana Roo",
         "metodo": "requests"
@@ -184,13 +184,13 @@
   },
   "resumen": [
     {
-      "estado": "Nuevo León",
+      "estado": "Quintana Roo",
       "total": 5,
       "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-04-01"
+      "ultima_fecha": "2026-04-07"
     },
     {
-      "estado": "Quintana Roo",
+      "estado": "Nuevo León",
       "total": 5,
       "categoria_principal": "Industria Quimica",
       "ultima_fecha": "2026-04-01"
@@ -215,7 +215,7 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-04-06T16:21:22.789900",
+    "ultima_actualizacion": "2026-04-07T15:10:38.817198",
     "mes": "2026-04",
     "estados_con_actividad": 5
   }
