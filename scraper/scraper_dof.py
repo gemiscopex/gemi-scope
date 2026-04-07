@@ -11,6 +11,7 @@ import re
 import hashlib
 import time
 import warnings
+import unicodedata
 from datetime import datetime, timezone, date, timedelta
 from pathlib import Path
 
@@ -119,11 +120,16 @@ def detect_tipo(titulo: str) -> str:
     return "OTRO"
 
 
+def _norm(s: str) -> str:
+    """Normaliza a mayúsculas sin acentos para comparación robusta."""
+    return unicodedata.normalize("NFD", s.upper()).encode("ascii", "ignore").decode()
+
+
 def resolve_dep(raw: str) -> str:
     """Convierte nombre largo de dependencia a sigla."""
-    upper = raw.upper().strip()
+    upper = _norm(raw.strip())
     for alias, sigla in DEP_ALIAS.items():
-        if alias in upper:
+        if _norm(alias) in upper:
             return sigla
     # Si es texto corto y ya parece sigla
     if len(upper) <= 12 and re.match(r'^[A-Z\s]+$', upper):
@@ -177,26 +183,28 @@ def fetch_dof_dia(target_date: date) -> list[dict]:
     seen_codigos: set[str] = set()
     current_dep = "OTRO"
 
-    # Recorrer DOM en orden; las dependencias aparecen como celdas/encabezados antes de las notas
-    for el in soup.descendants:
-        if not hasattr(el, 'name') or el.name is None:
-            continue
+    # DOF page structure (verified):
+    #   <td class="txt_blanco2">  → top-level section (PODER EJECUTIVO, etc.)
+    #   <td class="subtitle_azul">→ dependencia header (SECRETARIA DE MEDIO AMBIENTE, etc.)
+    #   <td><a href="/nota_detalle.php?...">título</a></td>  → actual publication
+    #
+    # We iterate all <tr>s in document order, updating current_dep when we hit headers.
+    for tr in soup.find_all("tr"):
+        # Check for section / dependencia header cells
+        for td in tr.find_all("td"):
+            css = " ".join(td.get("class") or [])
+            if "txt_blanco2" in css or "subtitle_azul" in css:
+                raw_text = td.get_text(" ", strip=True)
+                candidate = resolve_dep(raw_text)
+                if candidate != "OTRO":
+                    current_dep = candidate
 
-        text = el.get_text(" ", strip=True)
-
-        # Detectar encabezado de dependencia (celda grande, sin enlace, texto largo conocido)
-        if el.name in ("td", "th", "div", "h2", "h3", "b", "strong", "span"):
-            if not el.find("a") and 5 < len(text) < 200:
-                dep_candidate = resolve_dep(text)
-                if dep_candidate != "OTRO":
-                    current_dep = dep_candidate
-
-        # Detectar enlace a nota
-        if el.name == "a":
-            href = el.get("href", "")
+        # Check for nota_detalle links in this row
+        for a in tr.find_all("a", href=True):
+            href = a.get("href", "")
             if "nota_detalle" not in href:
                 continue
-            titulo = el.get_text(" ", strip=True)
+            titulo = a.get_text(" ", strip=True)
             if not titulo or len(titulo) < 8:
                 continue
 
