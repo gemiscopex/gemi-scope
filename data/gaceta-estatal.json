@@ -1,5 +1,25 @@
 {
   "estados": {
+    "Chihuahua": [
+      {
+        "titulo": "Iniciativa con carácter de decreto, a fin de adicionar diversas disposiciones al Código Penal del Estado, con el propósito de establecer la creación de un nuevo tipo penal denominado “Abuso Coercitivo”.",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-07",
+        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
+        "categoria": "Industria Quimica",
+        "estado": "Chihuahua",
+        "metodo": "csv"
+      },
+      {
+        "titulo": "Proposición con carácter de punto de acuerdo, con el propósito de exhortar a los poderes Ejecutivo Federal y Estatal, así como a los 67 Municipios del estado, para que implementen medidas y acciones que refuercen la productividad del campo mexicano; y a la Comisión Nacional del Agua, para que implemente con efecto retroactivo el Programa Especial de Energía para el Campo en materia de Energía Eléc",
+        "tipo": "proposicion",
+        "fecha": "2026-04-07",
+        "url": "https://www.congresochihuahua.gob.mx/biblioteca/iniciativas/index.php",
+        "categoria": "Agua",
+        "estado": "Chihuahua",
+        "metodo": "csv"
+      }
+    ],
     "Guanajuato": [
       {
         "titulo": "Presentación de la propuesta de punto de acuerdo formulada por personas diputadas integrantes del Grupo Parlamentario del Partido Acción Nacional y de la Representación Parlamentaria del Partido de la Revolución Democrática a efecto de exhortar a las personas titulares de la Secretaría de Agricultura y Desarrollo Rural, la Secretaría de Hacienda y Crédito Público, la Secretaría de Energía, la Secr",
@@ -190,6 +210,12 @@
       "ultima_fecha": "2026-04-07"
     },
     {
+      "estado": "Chihuahua",
+      "total": 2,
+      "categoria_principal": "Industria Quimica",
+      "ultima_fecha": "2026-04-07"
+    },
+    {
       "estado": "Nuevo León",
       "total": 5,
       "categoria_principal": "Industria Quimica",
@@ -215,8 +241,8 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-04-07T15:10:38.817198",
+    "ultima_actualizacion": "2026-04-08T15:11:53.181286",
     "mes": "2026-04",
-    "estados_con_actividad": 5
+    "estados_con_actividad": 6
   }
 }
