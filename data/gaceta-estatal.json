@@ -22,6 +22,24 @@
     ],
     "Guanajuato": [
       {
+        "titulo": "Iniciativa formulada por personas diputadas integrantes del Grupo Parlamentario del Partido MORENA a efecto de reformar la denominación y diversas disposiciones de la Ley del Trabajo de los Servidores Públicos al Servicio del Estado y de los Municipios.",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-09",
+        "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7855",
+        "categoria": "Industria Quimica",
+        "estado": "Guanajuato",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "Iniciativa formulada por el diputado Ernesto Millán Soberanes integrante del Grupo Parlamentario del Partido MORENA a efecto de reformar y adicionar diversas disposiciones de la Ley de Economía Circular para el Estado de Guanajuato y sus Municipios.",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-09",
+        "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7852",
+        "categoria": "Industria Quimica",
+        "estado": "Guanajuato",
+        "metodo": "requests"
+      },
+      {
         "titulo": "Presentación de la propuesta de punto de acuerdo formulada por personas diputadas integrantes del Grupo Parlamentario del Partido Acción Nacional y de la Representación Parlamentaria del Partido de la Revolución Democrática a efecto de exhortar a las personas titulares de la Secretaría de Agricultura y Desarrollo Rural, la Secretaría de Hacienda y Crédito Público, la Secretaría de Energía, la Secr",
         "tipo": "proposicion",
         "fecha": "2026-04-01",
@@ -80,6 +98,15 @@
     ],
     "Quintana Roo": [
       {
+        "titulo": "Iniciativa con Proyecto de Decreto por el que se adiciona el artículo 32 Bis de la Constitución Política del Estado Libre y Soberano de Quintana Roo, en materia de suficiencia presupuestaria para la Universidad Autónoma del Estado de Quintana Roo; presentada por el Diputado José Luis Pech Várguez, Presidente de la Comisión de Cultura de la XVIII Legislatura del Estado.",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-09",
+        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260401-132531.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Quintana Roo",
+        "metodo": "requests"
+      },
+      {
         "titulo": "Iniciativa con Proyecto de Decreto por el que se adiciona un párrafo tercero al artículo 98 y se reforman los artículos 99 y 100 todos de la Ley de Movilidad del Estado de Quintana Roo; presentada por la Diputada María José Osorio Rosas, Presidenta de la Comisión de Planeación y Desarrollo Económico, y por el Diputado Hugo Alday Nieto, Presidente de la Comisión de Desarrollo Urbano Sustentable y A",
         "tipo": "iniciativa",
         "fecha": "2026-04-07",
@@ -111,15 +138,6 @@
         "tipo": "iniciativa",
         "fecha": "2026-04-01",
         "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260313-150724.pdf",
-        "categoria": "Industria Quimica",
-        "estado": "Quintana Roo",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "Iniciativa de Decreto por el que se adiciona el Título Séptimo denominado “De los Cabildos Juveniles Municipales” a la Ley de la Juventud del Estado Libre y Soberano de Quintana Roo; presentada por el Diputado Cesar Santiago Augusto Frías Canché, Presidente de la Comisión Anticorrupción, Participación Ciudadana y Órganos Autónomos; por el Diputado Jorge Arturo Sanen Cervantes, Presidente de la Com",
-        "tipo": "iniciativa",
-        "fecha": "2026-04-01",
-        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260310-115828.pdf",
         "categoria": "Industria Quimica",
         "estado": "Quintana Roo",
         "metodo": "requests"
@@ -207,7 +225,13 @@
       "estado": "Quintana Roo",
       "total": 5,
       "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-04-07"
+      "ultima_fecha": "2026-04-09"
+    },
+    {
+      "estado": "Guanajuato",
+      "total": 3,
+      "categoria_principal": "Industria Quimica",
+      "ultima_fecha": "2026-04-09"
     },
     {
       "estado": "Chihuahua",
@@ -232,16 +256,10 @@
       "total": 3,
       "categoria_principal": "Medio Ambiente",
       "ultima_fecha": "2026-04-01"
-    },
-    {
-      "estado": "Guanajuato",
-      "total": 1,
-      "categoria_principal": "Agro y Desarrollo Rural",
-      "ultima_fecha": "2026-04-01"
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-04-08T15:11:53.181286",
+    "ultima_actualizacion": "2026-04-09T15:24:35.915446",
     "mes": "2026-04",
     "estados_con_actividad": 6
   }
