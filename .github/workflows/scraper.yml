@@ -25,10 +25,7 @@ jobs:
           python-version: "3.12"
 
       - name: Instalar dependencias Python
-        run: pip install requests beautifulsoup4 playwright
-
-      - name: Instalar Playwright Chromium
-        run: playwright install --with-deps chromium
+        run: pip install requests beautifulsoup4 lxml
 
       # ── Scrapers de contenido ─────────────────────────────────────────────
 
@@ -39,10 +36,7 @@ jobs:
         run: python scraper/scraper_dof.py
 
       - name: Scraper Federal (Gaceta Parlamentaria)
-        run: python scraper/scraper_gacetas.py --token dummy --dias 30 --no-upload
-
-      - name: Scraper Estatal (32 estados)
-        run: python scraper/scraper_gacetas_estatales.py --token dummy --no-upload
+        run: python scraper/scraper_gacetas.py
 
       # ── Commit y push ─────────────────────────────────────────────────────
 
