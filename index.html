@@ -1427,7 +1427,7 @@ function _listHTML(arr,fallbackUrl){
     if(cat) h+='<span style="font-size:8.5px;font-weight:700;padding:1px 6px;border-radius:3px;background:'+cc+'18;color:'+cc+';letter-spacing:0.04em">'+cat.toUpperCase()+'</span>';
     h+='<span style="font-size:9.5px;color:var(--text-muted);margin-left:auto">'+fecha+'</span>';
     h+='</div>';
-    h+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" rel="noopener" style="font-size:11.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block" title="'+titulo.replace(/"/g,\'&quot;\')+'" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text)\'">'+tCorto+'</a>';
+    h+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" rel="noopener" style="font-size:11.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block" title="'+titulo.replace(/"/g,'&quot;')+'" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text)\'">'+tCorto+'</a>';
     h+=autor;
     h+='</div>';
   });
