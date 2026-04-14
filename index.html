@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEMI SCOPE — Monitor Ambiental México</title>
+<title>Scope GEMI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -391,6 +391,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
     <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación</button>
     <button class="tab-btn" onclick="showTab('normas',this)">Normas</button>
+    <button class="tab-btn" onclick="showTab('congreso',this)">Congreso Federal</button>
+    <button class="tab-btn" onclick="showTab('congresos-est',this)">Congresos Estatales</button>
     <button class="tab-btn" onclick="showTab('alertas',this)" id="btn-alertas">Alertas <span id="alertas-badge" class="nav-badge" style="display:none"></span></button>
     <button class="tab-btn" onclick="showTab('radares',this)">Radares</button>
     <button class="tab-btn" onclick="showTab('acerca',this)">Acerca de</button>
@@ -487,15 +489,24 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     </div>
   </div>
   <div class="tab-content" id="tab-legislacion">
-    <div class="leg-layout">
-      <div class="leg-leyes-col">
-        <div style="margin-bottom:14px"><p style="font-size:12px;color:var(--text-sec)">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</p></div>
-        <div class="leyes-grid" id="leyes-grid"></div>
-      </div>
-      <div class="leg-com-col">
-        <div class="leg-com-title">Comisiones Legislativas</div>
-        <div id="comisiones-list"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones…</div></div>
-      </div>
+    <div style="margin-bottom:14px"><p style="font-size:12px;color:var(--text-sec)">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</p></div>
+    <div class="leyes-grid" id="leyes-grid"></div>
+  </div>
+
+  <!-- TAB: CONGRESO FEDERAL -->
+  <div id="tab-congreso" class="tab-content" style="padding:28px 0">
+    <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Congreso Federal</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Comisiones legislativas con agenda ambiental activa · LXVI Legislatura</div>
+    <div id="comisiones-list"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
+  </div>
+
+  <!-- TAB: CONGRESOS ESTATALES -->
+  <div id="tab-congresos-est" class="tab-content" style="padding:28px 0">
+    <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Congresos Estatales</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:32px">Actividad legislativa ambiental en los 32 congresos locales</div>
+    <div style="display:flex;align-items:center;justify-content:center;flex-direction:column;padding:60px 20px;border:0.8px dashed var(--border);border-radius:16px;gap:12px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted)">En desarrollo</div>
+      <div style="font-size:12px;color:var(--text-muted);text-align:center;max-width:380px;line-height:1.6">Estamos construyendo el monitoreo de los 32 congresos estatales. Próximamente disponible.</div>
     </div>
   </div>
   <!-- TAB: NORMAS -->
@@ -1098,8 +1109,8 @@ function generateAlerts(){
     if(sc.irf>=40&&taxes.some(t=>t.controversia)){
       alertas.push({estado:state,tipo:'fiscal',nivel:sc.irf>=60?'critico':'alto',
         titulo:'Riesgo fiscal verde \u2014 '+state,
-        que:taxes.filter(t=>t.controversia).length+' impuesto(s) con controversia activa',
-        porQue:'Litigiosidad tributaria puede generar incertidumbre operativa',
+        que:'Impuesto sobre '+taxes.filter(t=>t.controversia).map(t=>t.tipo).join(', ')+' — constitucionalidad impugnada vía amparo',
+        porQue:'Litigiosidad tributaria activa: empresas del sector han interpuesto juicios de amparo cuestionando la constitucionalidad de estos impuestos estatales. Puede generar incertidumbre en planeación fiscal operativa.',
         sectores:Object.keys(SECTOR_PROFILE[state]||{}).filter(k=>(SECTOR_PROFILE[state]||{})[k]>=75)
       });
     }
@@ -1401,18 +1412,23 @@ function inferLey(titulo){
 var _fedData={}, _fedLey={};
 var CAT_COLOR={'Agua':'#3498db','Energía':'#f39c12','Residuos':'#27ae60','Clima':'#16a085','Minería':'#8e44ad','Agro':'#d35400','Industria':'#2c3e50'};
 function _listHTML(arr,fallbackUrl){
-  if(!arr.length) return '<div style="font-size:11px;color:var(--text-muted);padding:12px 0;font-style:italic">Sin documentos registrados para este filtro.</div>';
-  var h='<div style="max-height:248px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
-  arr.slice(0,15).forEach(function(it){
+  if(!arr.length) return '<div style="font-size:11px;color:var(--text-muted);padding:12px 0;font-style:italic">Sin documentos registrados este mes</div>';
+  var h='<div style="max-height:280px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
+  arr.slice(0,20).forEach(function(it){
     var fecha=it.fecha?new Date(it.fecha).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     var cat=it.categoria||'';
     var cc=CAT_COLOR[cat]||'#95a5a6';
-    h+='<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">';
-    h+='<div style="display:flex;align-items:center;gap:5px;margin-bottom:3px">';
-    if(cat) h+='<span style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;background:'+cc+'22;color:'+cc+'">'+cat+'</span>';
-    h+='<span style="font-size:10px;color:var(--text-muted)">'+fecha+'</span>';
+    var titulo=it.titulo||'';
+    // Truncate at 110 chars for readability
+    var tCorto=titulo.length>110?titulo.substring(0,107)+'...':titulo;
+    var autor=it.autor?'<span style="font-size:9px;color:var(--text-muted);display:block;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+it.autor+'</span>':'';
+    h+='<div style="padding:8px 0;border-bottom:0.8px solid rgba(0,0,0,0.05)">';
+    h+='<div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">';
+    if(cat) h+='<span style="font-size:8.5px;font-weight:700;padding:1px 6px;border-radius:3px;background:'+cc+'18;color:'+cc+';letter-spacing:0.04em">'+cat.toUpperCase()+'</span>';
+    h+='<span style="font-size:9.5px;color:var(--text-muted);margin-left:auto">'+fecha+'</span>';
     h+='</div>';
-    h+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" style="font-size:11.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block">'+(it.titulo||'')+'</a>';
+    h+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" rel="noopener" style="font-size:11.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block" title="'+titulo.replace(/"/g,\'&quot;\')+'" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text)\'">'+tCorto+'</a>';
+    h+=autor;
     h+='</div>';
   });
   return h+'</div>';
