@@ -114,6 +114,54 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .fed-tab.active{background:var(--green);color:#fff}
 .fed-tab-badge{background:rgba(255,255,255,0.25);border-radius:10px;padding:0 5px;font-size:9px;font-weight:700}
 .fed-tab:not(.active) .fed-tab-badge{background:rgba(0,0,0,0.08);color:var(--text-muted)}
+/* ── Legislative mini-search ── */
+.leg-search-wrap{position:relative;margin-bottom:10px}
+.leg-search-input{width:100%;box-sizing:border-box;padding:6px 10px 6px 28px;border:0.8px solid var(--border);border-radius:8px;font-size:11px;font-family:'Inter',sans-serif;color:var(--text);background:#fafafa;outline:none;transition:border-color 0.15s}
+.leg-search-input:focus{border-color:var(--green);background:#fff}
+.leg-search-icon{position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text-muted);pointer-events:none}
+/* ── Radar market-style ── */
+.radar-market-grid{display:flex;flex-direction:column;gap:1px;margin-bottom:20px;border:0.8px solid var(--border);border-radius:12px;overflow:hidden}
+.radar-market-card{display:flex;align-items:center;gap:12px;padding:11px 14px;background:#fff;cursor:pointer;transition:background 0.12s;border-bottom:0.8px solid var(--border)}
+.radar-market-card:last-child{border-bottom:none}
+.radar-market-card:hover{background:rgba(10,194,133,0.04)}
+.radar-market-card.active{background:rgba(10,194,133,0.07);border-left:3px solid var(--green)}
+.radar-market-card.active .radar-mkt-name{color:var(--green);font-weight:700}
+.radar-mkt-icon{font-size:16px;flex-shrink:0;width:28px;text-align:center}
+.radar-mkt-name{font-size:13px;font-weight:500;color:var(--text);flex:1}
+.radar-mkt-count{font-size:11px;font-weight:700;color:var(--text-muted);font-variant-numeric:tabular-nums;min-width:30px;text-align:right}
+.radar-mkt-bar{width:60px;height:3px;border-radius:2px;overflow:hidden;background:rgba(0,0,0,0.06)}
+.radar-mkt-fill{height:100%;border-radius:2px}
+/* ── Radar panel Kalshi-style ── */
+.radar-panel-wrap{background:#fff;border:0.8px solid var(--border);border-radius:12px;overflow:hidden}
+.radar-panel-header{padding:20px 24px 16px;border-bottom:0.8px solid var(--border)}
+.radar-panel-title{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;letter-spacing:0.01em;color:var(--text);margin-bottom:4px}
+.radar-panel-meta{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.radar-panel-stat{display:flex;flex-direction:column;align-items:center;padding:0 18px;border-right:0.8px solid var(--border)}
+.radar-panel-stat:last-child{border-right:none}
+.radar-stat-val{font-size:28px;font-weight:700;font-family:'Barlow Condensed',sans-serif;line-height:1}
+.radar-stat-lbl{font-size:9.5px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:3px}
+.radar-panel-body{display:grid;grid-template-columns:1fr 1.2fr;gap:0}
+.radar-panel-col{padding:20px 24px;border-right:0.8px solid var(--border)}
+.radar-panel-col:last-child{border-right:none}
+.radar-col-lbl{font-size:9.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;padding-bottom:8px;border-bottom:0.8px solid var(--border)}
+.radar-state-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:0.8px solid rgba(0,0,0,0.04)}
+.radar-state-row:last-child{border-bottom:none}
+.radar-state-rank{font-size:11px;font-weight:700;color:var(--text-muted);min-width:16px}
+.radar-state-name{font-size:12px;color:var(--text);flex:1}
+.radar-state-bar-wrap{width:70px;height:4px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden}
+.radar-state-bar{height:100%;border-radius:2px}
+.radar-state-cnt{font-size:11px;font-weight:700;min-width:24px;text-align:right;font-variant-numeric:tabular-nums}
+.radar-news-item{padding:9px 0;border-bottom:0.8px solid rgba(0,0,0,0.04)}
+.radar-news-item:last-child{border-bottom:none}
+.radar-news-title{font-size:12px;color:var(--text);line-height:1.4;margin-bottom:3px}
+.radar-news-title a{color:inherit;text-decoration:none}
+.radar-news-title a:hover{color:var(--green)}
+.radar-news-date{font-size:10px;color:var(--text-muted)}
+.radar-panel-laws{padding:0 24px 20px}
+/* ── Gaceta estatal expandable ── */
+.gaceta-state-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:0.8px solid var(--border);cursor:pointer;transition:background 0.12s;border-radius:4px}
+.gaceta-state-row:hover{background:rgba(10,194,133,0.04)}
+.gaceta-state-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease}
 .cat-popover-wrap{position:relative;display:inline-flex;align-items:center}
 .cat-popover-btn{background:none;border:none;font-size:17px;color:var(--text-muted);letter-spacing:3px;cursor:pointer;padding:1px 6px;border-radius:5px;line-height:1;transition:background 0.15s,color 0.15s}
 .cat-popover-btn:hover,.cat-popover-wrap:hover .cat-popover-btn{background:rgba(10,194,133,0.1);color:var(--green)}
@@ -459,6 +507,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
       <div class="card">
         <div class="card-label">Mapa político de México</div>
         <div class="map-wrap"><div id="map"></div></div>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:10px;padding-top:8px;border-top:0.8px solid var(--border)">
+          <span style="font-size:9.5px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted)">Señal</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#ef4444;display:inline-block;animation:pulseRing 1.8s ease-out infinite;opacity:0.8"></span><span style="font-size:10px;color:var(--text-sec)">Crítica</span></span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#f97316;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Alta</span></span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#10b981;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Moderada</span></span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#9ca3af;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Baja</span></span>
+        </div>
       </div>
     </div>
     <div class="bottom-row">
@@ -547,9 +602,12 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     <div id="alertas-list"></div>
   </div>
   <div id="tab-radares" class="tab-content" style="padding:28px 0">
-    <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em;margin-bottom:16px">Radares Temáticos</div>
-    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px" id="radar-selector"></div>
-    <div class="card" id="radar-panel" style="padding:20px"><div class="sp-empty">Selecciona un tema para ver el radar</div></div>
+    <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Radares Temáticos</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Monitoreo de señales regulatorias y de presi&#xF3;n ambiental por tema · últimos 90 d&#xED;as</div>
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start">
+      <div class="radar-market-grid" id="radar-selector"></div>
+      <div class="radar-panel-wrap" id="radar-panel"><div style="padding:40px 24px;text-align:center;color:var(--text-muted);font-size:12px">Selecciona un tema</div></div>
+    </div>
   </div>
 </div>
 
@@ -863,15 +921,23 @@ function buildMap(){
     })
     .catch(function(e){console.warn('GeoJSON error:',e);});
 
-  // ── Marcadores pulsantes solo para estados con alerta CRÍTICA ────────────
+  // ── Marcadores: pulsantes SOLO para señal roja (master>=70), iluminados para el resto ──
   Object.keys(STATE_COORDS).forEach(function(state){
     var coords=STATE_COORDS[state];
     if(!coords)return;
     var sc=stateScores[state]||{master:0,irf:0,ipr:0};
-    if(sc.irf<60&&sc.ipr<70)return; // solo críticos
     var col=scoreColor(sc.master||0);
     var abbr=STATE_ABBR[state]||state.substring(0,3).toUpperCase();
-    var iconHtml='<div class="pulse-marker"><div class="pulse-ring" style="background:'+col+'"></div><div class="pulse-core" style="background:'+col+'"></div><div class="marker-label">'+abbr+'</div></div>';
+    var isRed=sc.master>=70;
+    var iconHtml;
+    if(isRed){
+      iconHtml='<div class="pulse-marker"><div class="pulse-ring" style="background:'+col+'"></div><div class="pulse-core" style="background:'+col+'"></div><div class="marker-label">'+abbr+'</div></div>';
+    } else if(sc.master>=20){
+      // Solo punto iluminado, sin animación
+      iconHtml='<div style="position:relative;width:20px;height:20px"><div style="position:absolute;width:10px;height:10px;top:5px;left:5px;border-radius:50%;background:'+col+';opacity:0.75;border:2px solid rgba(255,255,255,0.8);box-shadow:0 1px 4px rgba(0,0,0,0.18)"></div><div style="position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;color:#222;white-space:nowrap;font-family:Barlow Condensed,sans-serif;letter-spacing:0.05em;text-shadow:0 1px 2px rgba(255,255,255,0.9)">'+abbr+'</div></div>';
+    } else {
+      return; // Baja señal: no marker
+    }
     var icon=L.divIcon({className:'pulse-marker-container',iconSize:[20,20],iconAnchor:[10,10],html:iconHtml});
     var marker=L.marker([coords[0],coords[1]],{icon:icon}).addTo(map);
     marker.on('click',function(){openStatePanel(state);});
@@ -1217,25 +1283,48 @@ function renderScoreNacional(){
 }
 const TEMA_FED_LAWS={agua:['LAN','LGEEPA','LFRA'],agua_inf:['LAN','LGEEPA'],residuos:['LGPGIR','LGEEPA','LFRA'],circular:['LGEC','LGPGIR'],cc:['LGCC','LGEEPA'],fiscal:['LFD','LGEEPA'],plasticos:['LGPGIR'],energia:['LTE','LIE'],sanciones:['LGEEPA','LGPGIR','LAN','LFRA'],biodiv:['LGEEPA','LGDFS','LGVS','LFRA']};
 function toggleInstr(id){const el=document.getElementById(id);const arr=document.getElementById('arr-'+id);const open=el.style.maxHeight&&el.style.maxHeight!=='0px';el.style.maxHeight=open?'0px':(el.scrollHeight+200)+'px';if(arr)arr.style.transform=open?'':'rotate(90deg)';}
+function _buildRadarSelector(){
+  const rsel=document.getElementById('radar-selector');
+  if(!rsel)return;
+  const cutoff=new Date(Date.now()-90*86400000);
+  const recentNoticias=noticias.filter(n=>new Date(n.fecha_publicacion)>cutoff);
+  const maxCount=Math.max(...RADAR_TEMAS.map(t=>recentNoticias.filter(n=>t.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length),1);
+  rsel.innerHTML=RADAR_TEMAS.map((t,i)=>{
+    const cnt=recentNoticias.filter(n=>t.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length;
+    const barW=Math.round((cnt/maxCount)*100);
+    return `<div class="radar-market-card${i===0?' active':''}" id="radar-card-${t.id}" onclick="_selectRadar('${t.id}')">
+      <span class="radar-mkt-icon">${t.icon}</span>
+      <span class="radar-mkt-name">${t.name}</span>
+      <div class="radar-mkt-bar"><div class="radar-mkt-fill" style="width:${barW}%;background:${t.color}"></div></div>
+      <span class="radar-mkt-count" style="color:${t.color}">${cnt}</span>
+    </div>`;
+  }).join('');
+}
+function _selectRadar(temaId){
+  document.querySelectorAll('.radar-market-card').forEach(c=>c.classList.remove('active'));
+  const card=document.getElementById('radar-card-'+temaId);
+  if(card)card.classList.add('active');
+  showRadarTema(temaId);
+}
 function showRadarTema(temaId){
   const tema=RADAR_TEMAS.find(t=>t.id===temaId);
   if(!tema)return;
   const cutoff=new Date(Date.now()-90*86400000);
   const recentNoticias=noticias.filter(n=>new Date(n.fecha_publicacion)>cutoff);
   const matchFn=n=>{const txt=qa((n.titulo+' '+(n.descripcion||'')).toLowerCase());return tema.kw.some(k=>txt.includes(qa(k)));};
-  // Top estados (solo 90 dias)
+  // Top estados
   const stateActivity={};
   Object.keys(estadoData).forEach(s=>{
     const arts=recentNoticias.filter(n=>{
       const t=qa((n.titulo||'').toLowerCase());
       const st=qa(s.toLowerCase());
-      return (t.includes(st)||t.includes(qa((STATE_ABBR[s]||'').toLowerCase()))) && tema.kw.some(k=>t.includes(qa(k)));
+      return (t.includes(st)||t.includes(qa((STATE_ABBR[s]||'').toLowerCase())))&&tema.kw.some(k=>t.includes(qa(k)));
     });
     stateActivity[s]=arts.length;
   });
-  const top5=Object.entries(stateActivity).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const top5=Object.entries(stateActivity).sort((a,b)=>b[1]-a[1]).slice(0,5).filter(([,c])=>c>0);
   const maxVal=Math.max(...top5.map(e=>e[1]),1);
-  // Instrumentos legales estatales
+  // Instrumentos estatales
   const instruments=[];
   if(tema.leyKey){
     leyesAmbientales.estados.forEach(entry=>{
@@ -1244,57 +1333,66 @@ function showRadarTema(temaId){
       });
     });
   }
-  // Noticias recientes: filtradas + ordenadas por fecha desc
-  const recentArts=recentNoticias.filter(matchFn)
-    .sort((a,b)=>new Date(b.fecha_publicacion)-new Date(a.fecha_publicacion))
-    .slice(0,6);
+  const recentArts=recentNoticias.filter(matchFn).sort((a,b)=>new Date(b.fecha_publicacion)-new Date(a.fecha_publicacion)).slice(0,8);
   const totalArts=recentNoticias.filter(matchFn).length;
-  const totalAll=noticias.filter(n=>tema.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length;
+  const totalAll=noticias.filter(matchFn).length;
+  const trend30=noticias.filter(n=>new Date(n.fecha_publicacion)>new Date(Date.now()-30*86400000)&&matchFn(n)).length;
   const el=document.getElementById('radar-panel');
   if(!el)return;
-  el.innerHTML=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
-    <div><div style="font-size:20px;font-weight:700;color:var(--text)">${tema.name}</div>
-    <div style="font-size:12px;color:var(--text-muted)">${totalArts} noticias · últimos 90 días <span style="opacity:0.5">(${totalAll} histórico)</span></div></div>
-    <div class="sp-stat" style="margin-left:auto;text-align:center;min-width:70px">
-      <div class="sp-stat-label">90 DÍAS</div>
-      <div class="sp-stat-value" style="color:${tema.color}">${totalArts}</div>
-    </div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-    <div>
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">Top Estados — 90 días</div>
-      ${top5.filter(([,cnt])=>cnt>0).length?top5.filter(([,cnt])=>cnt>0).map(([s,cnt],i)=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-        <span style="font-size:11px;font-weight:700;color:var(--text-muted);min-width:16px">${i+1}</span>
-        <span style="font-size:13px;flex:1">${s}</span>
-        <div style="width:80px;height:5px;background:var(--green-tint);border-radius:3px;overflow:hidden">
-          <div style="width:${Math.round((cnt/maxVal)*100)}%;height:100%;background:${tema.color};border-radius:3px"></div>
+  el.innerHTML=`
+  <div class="radar-panel-header">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+      <div>
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:4px;font-weight:500">${tema.icon} Radar · ${tema.name}</div>
+        <div class="radar-panel-title">${tema.name}</div>
+        <div class="radar-panel-meta">
+          <span>${totalArts} menciones en 90 d&#xED;as</span>
+          <span style="opacity:0.4">·</span>
+          <span>${totalAll} hist&#xF3;rico</span>
+          <span style="opacity:0.4">·</span>
+          <span style="color:${tema.color};font-weight:600">${trend30} &#xFA;ltimos 30 d</span>
         </div>
-        <span style="font-size:12px;font-weight:600;color:${tema.color};min-width:20px;text-align:right">${cnt}</span>
-      </div>`).join(''):'<div class="sp-empty">Sin actividad estatal reciente</div>'}
-    </div>
-    <div>
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">Noticias Recientes</div>
-      ${recentArts.map(n=>`<div class="sp-news-item"><div class="sp-news-title"><a href="${n.url}" target="_blank" style="font-size:12px">${n.titulo}</a></div><div class="sp-news-meta">${formatFecha(n.fecha_publicacion)}</div></div>`).join('')||'<div class="sp-empty">Sin noticias en los últimos 90 días</div>'}
+      </div>
+      <div style="display:flex;gap:0;border:0.8px solid var(--border);border-radius:10px;overflow:hidden;flex-shrink:0">
+        <div class="radar-panel-stat">
+          <div class="radar-stat-val" style="color:${tema.color}">${totalArts}</div>
+          <div class="radar-stat-lbl">90 d&#xED;as</div>
+        </div>
+        <div class="radar-panel-stat">
+          <div class="radar-stat-val" style="color:${trend30>0?tema.color:'var(--text-muted)'}">${trend30}</div>
+          <div class="radar-stat-lbl">30 d&#xED;as</div>
+        </div>
+        <div class="radar-panel-stat">
+          <div class="radar-stat-val">${top5.length}</div>
+          <div class="radar-stat-lbl">Estados</div>
+        </div>
+      </div>
     </div>
   </div>
-    <div style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Marco Legal Aplicable</div>
-    <div class="instr-section">
-      <div class="instr-hdr" onclick="toggleInstr('fed-${temaId}')">
-        <span>Legislaci\u00f3n Federal</span>
-        <span class="instr-arr" id="arr-fed-${temaId}">\u203a</span>
-      </div>
-      <div id="fed-${temaId}" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">
-        ${(TEMA_FED_LAWS[temaId]||[]).map(s=>leyes.find(l=>l.s===s)).filter(Boolean).map(l=>`<div class="instr-row"><a href="${l.u}" target="_blank"><strong>${l.s}</strong> \u2014 ${l.n}</a><span class="instr-row-date">${l.r||''}</span></div>`).join('') || '<div class="instr-row" style="color:var(--text-muted)">Sin instrumentos federales mapeados</div>'}
+  <div class="radar-panel-body">
+    <div class="radar-panel-col">
+      <div class="radar-col-lbl">Top Estados · 90 d&#xED;as</div>
+      ${top5.length?top5.map(([s,cnt],i)=>`
+        <div class="radar-state-row" style="cursor:pointer" onclick="openStatePanel('${s}')">
+          <span class="radar-state-rank">${i+1}</span>
+          <span class="radar-state-name">${s}</span>
+          <div class="radar-state-bar-wrap"><div class="radar-state-bar" style="width:${Math.round((cnt/maxVal)*100)}%;background:${tema.color}"></div></div>
+          <span class="radar-state-cnt" style="color:${tema.color}">${cnt}</span>
+        </div>`).join(''):'<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Sin actividad estatal reciente</div>'}
+      <div style="margin-top:16px">
+        <div class="radar-col-lbl">Marco Legal Federal</div>
+        ${(TEMA_FED_LAWS[temaId]||[]).map(s=>leyes.find(l=>l.s===s)).filter(Boolean).map(l=>`
+          <div class="instr-row"><a href="${l.u}" target="_blank" style="font-size:11px"><strong>${l.s}</strong> &mdash; ${l.n}</a><span class="instr-row-date">${l.r||''}</span></div>
+        `).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:8px 0">Sin instrumentos federales mapeados</div>'}
       </div>
     </div>
-    <div class="instr-section">
-      <div class="instr-hdr" onclick="toggleInstr('est-${temaId}')">
-        <span>Legislaci\u00f3n Estatal</span>
-        <span class="instr-arr" id="arr-est-${temaId}">\u203a</span>
-      </div>
-      <div id="est-${temaId}" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">
-        ${instruments.length ? instruments.map(i=>`<div class="instr-row"><span style="flex:1;line-height:1.4;color:var(--text)">${(i.n||'').substring(0,70)}${(i.n||'').length>70?'\u2026':''}</span><span class="instr-row-state">${(i.e||'').substring(0,6).toUpperCase()}</span></div>`).join('') : '<div class="instr-row" style="color:var(--text-muted)">Sin instrumentos estatales para este tema</div>'}
-      </div>
+    <div class="radar-panel-col" style="border-right:none">
+      <div class="radar-col-lbl">Noticias Recientes</div>
+      ${recentArts.length?recentArts.map(n=>`
+        <div class="radar-news-item">
+          <div class="radar-news-title"><a href="${n.url}" target="_blank">${n.titulo}</a></div>
+          <div class="radar-news-date">${formatFecha(n.fecha_publicacion)}${n.fuente?' · '+(n.fuente||'').replace('Google News - ','').split(',')[0]:''}</div>
+        </div>`).join(''):'<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Sin noticias en los &#xFA;ltimos 90 d&#xED;as</div>'}
     </div>
   </div>`;
 }
@@ -1455,6 +1553,24 @@ function switchFedLey(uid,ley,btn){
   btn.classList.add('active');
   _rerenderFedPanels(uid);
 }
+function _fedSearch(uid){
+  var q=(document.getElementById('fed-search-'+uid)||{}).value||'';
+  q=q.toLowerCase().trim();
+  var data=_fedData[uid]||[];
+  var ley=_fedLey[uid]||'todas';
+  var filtered=data.filter(function(it){
+    var leyOk=ley==='todas'||(it._leyes||[]).includes(ley);
+    var qOk=!q||(it.titulo||'').toLowerCase().includes(q);
+    return leyOk&&qOk;
+  });
+  var ini=filtered.filter(function(it){return it.tipo==='iniciativa'||it.tipo==='dictamen';});
+  var pto=filtered.filter(function(it){return it.tipo==='punto_acuerdo';});
+  var fallback=document.getElementById(uid+'_fallback_url_')?document.getElementById(uid+'_fallback_url_').value:'';
+  var e1=document.getElementById(uid+'-ini');
+  var e2=document.getElementById(uid+'-pto');
+  if(e1)e1.innerHTML=_listHTML(ini,fallback);
+  if(e2)e2.innerHTML=_listHTML(pto,fallback);
+}
 function renderFederalColumn(elId, items, fallbackUrl){
   var el=document.getElementById(elId);
   if(!el)return;
@@ -1466,13 +1582,16 @@ function renderFederalColumn(elId, items, fallbackUrl){
   });
   _fedData[elId]=normalized;
   _fedLey[elId]='todas';
-  // Detect which laws appear in data
   var leyesEnData={};
   normalized.forEach(function(it){(it._leyes||[]).forEach(function(l){leyesEnData[l]=(leyesEnData[l]||0)+1;});});
   var leyesDisponibles=Object.keys(leyesEnData).sort();
   var iniciativas=normalized.filter(function(it){return it.tipo==='iniciativa'||it.tipo==='dictamen';});
   var puntos=normalized.filter(function(it){return it.tipo==='punto_acuerdo';});
   var uid=elId;
+  // Search box
+  var searchBox='<div class="leg-search-wrap"><span class="leg-search-icon">&#x2315;</span><input class="leg-search-input" id="fed-search-'+uid+'" placeholder="Buscar iniciativa..." oninput="_fedSearch(\''+uid+'\')" type="text"></div>';
+  // Hidden fallback url
+  var hiddenUrl='<input type="hidden" id="'+uid+'_fallback_url_" value="'+fallbackUrl+'">';
   // Law filter pills (only if there are matches)
   var leyPills='';
   if(leyesDisponibles.length){
@@ -1483,7 +1602,7 @@ function renderFederalColumn(elId, items, fallbackUrl){
     });
     leyPills+='</div>';
   }
-  var html=leyPills
+  var html=hiddenUrl+searchBox+leyPills
     +'<div class="fed-tabs" id="tabs-'+uid+'">'
     +'<button class="fed-tab active" onclick="switchFedTab(\''+uid+'\',\'ini\',this)">Iniciativas <span class="fed-tab-badge">'+iniciativas.length+'</span></button>'
     +'<button class="fed-tab" onclick="switchFedTab(\''+uid+'\',\'pto\',this)">Puntos de Acuerdo <span class="fed-tab-badge">'+puntos.length+'</span></button>'
@@ -1511,6 +1630,15 @@ function renderWidgetFederal(){
       renderFederalColumn('widget-senado',sen,'https://www.senado.gob.mx/66/gaceta_del_senado','Senado');
     });
 }
+var _gacetaEstatalData=null;
+function _toggleGacetaRow(sid){
+  var body=document.getElementById('gaceta-body-'+sid);
+  var arr=document.getElementById('gaceta-arr-'+sid);
+  if(!body)return;
+  var open=body.style.maxHeight&&body.style.maxHeight!=='0px';
+  body.style.maxHeight=open?'0px':'600px';
+  if(arr)arr.style.transform=open?'':'rotate(90deg)';
+}
 function renderWidgetGacetas(){
   var el=document.getElementById('widget-gacetas');
   if(!el)return;
@@ -1519,7 +1647,9 @@ function renderWidgetGacetas(){
     .catch(function(){return null;})
     .then(function(data){
       var resumen=(data&&data.resumen)||[];
-      var meta=data&&data._meta||{};
+      var items=(data&&data.items)||[];
+      var meta=(data&&data._meta)||{};
+      _gacetaEstatalData=data;
       var CAT_COLORS={'Energia':'#f39c12','Agua':'#3498db','Medio Ambiente':'#27ae60',
         'Residuos / Economia Circular':'#9b59b6','Cambio Climatico':'#e74c3c',
         'Agro y Desarrollo Rural':'#d35400','Impuestos Ambientales':'#1abc9c',
@@ -1531,16 +1661,39 @@ function renderWidgetGacetas(){
           d.toLocaleString('es-MX',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})+'</div>';
       }
       if(resumen.length){
-        html+='<div style="max-height:248px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
+        html+='<div style="max-height:260px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
         resumen.forEach(function(r){
           var s=r.estado;
+          var sid=s.replace(/\s+/g,'_');
           var abbr=STATE_ABBR[s]||s.substring(0,3).toUpperCase();
           var col=CAT_COLORS[r.categoria_principal]||'#95a5a6';
-          html+='<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:0.8px solid var(--border);cursor:pointer" onclick="openStatePanel(\''+s+'\')">';
-          html+='<span style="font-size:10px;font-weight:700;color:var(--text-muted);min-width:32px">'+abbr+'</span>';
-          html+='<span style="font-size:12px;flex:1;color:var(--text)">'+s+'</span>';
-          html+='<span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:'+col+'22;color:'+col+'">'+r.categoria_principal+'</span>';
-          html+='<span style="font-size:10px;color:var(--text-muted)">'+r.total+'</span>';
+          // Items for this state
+          var stateItems=items.filter(function(it){return it.estado===s;});
+          var hasItems=stateItems.length>0;
+          html+='<div style="border-bottom:0.8px solid var(--border)">';
+          html+='<div class="gaceta-state-row" onclick="'+(hasItems?'_toggleGacetaRow(\''+sid+'\')':'openStatePanel(\''+s+'\')')+'">';
+          html+='<span style="font-size:9px;font-weight:700;color:var(--text-muted);min-width:28px">'+abbr+'</span>';
+          html+='<span style="font-size:11.5px;flex:1;color:var(--text)">'+s+'</span>';
+          html+='<span style="font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:10px;background:'+col+'18;color:'+col+'">'+r.categoria_principal+'</span>';
+          html+='<span style="font-size:10px;color:var(--text-muted);min-width:18px;text-align:right;margin-left:6px">'+r.total+'</span>';
+          if(hasItems) html+='<span id="gaceta-arr-'+sid+'" style="font-size:10px;color:var(--text-muted);margin-left:4px;transition:transform 0.2s;display:inline-block">›</span>';
+          html+='</div>';
+          if(hasItems){
+            html+='<div id="gaceta-body-'+sid+'" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease">';
+            html+='<div style="padding:4px 0 8px 28px">';
+            stateItems.slice(0,8).forEach(function(it){
+              var fecha=it.fecha?new Date(it.fecha+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+              html+='<div style="padding:5px 0;border-bottom:0.8px solid rgba(0,0,0,0.04)">';
+              html+='<div style="display:flex;align-items:center;gap:5px;margin-bottom:2px">';
+              html+='<span style="font-size:8.5px;font-weight:700;padding:1px 5px;border-radius:3px;background:'+(CAT_COLORS[it.categoria]||'#95a5a6')+'18;color:'+(CAT_COLORS[it.categoria]||'#95a5a6')+'">'+((it.categoria||'').toUpperCase())+'</span>';
+              html+='<span style="font-size:9px;color:var(--text-muted);margin-left:auto">'+fecha+'</span>';
+              html+='</div>';
+              html+='<a href="'+(it.url||'#')+'" target="_blank" rel="noopener" style="font-size:10.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text)\'">'+(it.titulo||'').substring(0,100)+((it.titulo||'').length>100?'…':'')+'</a>';
+              html+='</div>';
+            });
+            if(stateItems.length>8) html+='<div style="font-size:10px;color:var(--text-muted);padding:4px 0">+ '+(stateItems.length-8)+' documentos más → <span style="cursor:pointer;color:var(--green)" onclick="openStatePanel(\''+s+'\')">ver ficha</span></div>';
+            html+='</div></div>';
+          }
           html+='</div>';
         });
         html+='</div>';
@@ -1607,22 +1760,8 @@ async function init(){
   renderDOF();
   renderWidgetFederal();
   renderWidgetGacetas();
-  const rsel=document.getElementById('radar-selector');
-  if(rsel){
-    RADAR_TEMAS.forEach((t,i)=>{
-      const btn=document.createElement('button');
-      btn.className='radar-btn';
-      if(i===0){btn.style.background=t.color;btn.style.borderColor=t.color;btn.style.color='#fff';}
-      btn.textContent=t.name;
-      btn.onclick=()=>{
-        document.querySelectorAll('.radar-btn').forEach(b=>{b.style.background='';b.style.borderColor='';b.style.color='';});
-        btn.style.background=t.color;btn.style.borderColor=t.color;btn.style.color='#fff';
-        showRadarTema(t.id);
-      };
-      rsel.appendChild(btn);
-    });
-    showRadarTema(RADAR_TEMAS[0].id);
-  }
+  _buildRadarSelector();
+  showRadarTema(RADAR_TEMAS[0].id);
 }
 // ── COMISIONES ────────────────────────────────────────────────
 const PARTIDO_COLOR={
