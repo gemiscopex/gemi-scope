@@ -51,6 +51,15 @@
     ],
     "Nuevo León": [
       {
+        "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA POR ADICIÓN DE UN CAPÍTULO III QUATER DENOMINADO “COHABITACIÓN FORZADA DE PERSONAS MENORES DE EDAD”, AL TÍTULO QUINTO “DELITOS CONTRA LA MORAL PÚBLICA” DEL LIBRO SEGUNDO DEL CÓDIGO PENAL PARA EL ESTADO DE NUEVO LEÓN.",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-16",
+        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21259.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Nuevo León",
+        "metodo": "requests"
+      },
+      {
         "titulo": "PRESENTA INICIATIVA CON PROYECTO DE DECRETO POR EL QUE SE REFORMA EL ARTICULO 8 Y SE ADICIONA UN ARTICULO 8 BIS DE LA LEY QUE CREA UNA INSTITUCIÓN PUBLICA DESCENTRALIZADA CON PERSONALIDAD JURIDICA PROPIA Y CON DOMICILIO EN LA CIUDAD DE MONTERREY QUE SE DENOMINARA \"SERVICIOS DE AGUA Y DRENAJE DE MONTERREY\".",
         "tipo": "iniciativa",
         "fecha": "2026-04-01",
@@ -85,18 +94,18 @@
         "categoria": "Industria Quimica",
         "estado": "Nuevo León",
         "metodo": "requests"
-      },
-      {
-        "titulo": "PRESENTA INICIATIVA DE ADICION DEL CAPITULO XII DENOMINADO \"DEL FONDO ESTATAL DE PROTECCION Y AUTONOMÍA PARA MUJERES VÍCTIMAS DE VIOLENCIA\" QUE CONTIENE LOS ARTICULOS 67, 68, 69, 70, 71, 72, 73, 74, 75, 76 Y 77 A LA LEY DE ACCESO DE LAS MUJERES A UNA VIDA LIBRE DE VIOLENCIA.",
-        "tipo": "iniciativa",
-        "fecha": "2026-04-01",
-        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21149.pdf",
-        "categoria": "Industria Quimica",
-        "estado": "Nuevo León",
-        "metodo": "requests"
       }
     ],
     "Quintana Roo": [
+      {
+        "titulo": "Iniciativa con Proyecto de Decreto por el que se reforma el artículo 85 de la Ley de Desarrollo Rural Sustentable del Estado de Quintana Roo; presentada por la Diputada Diana Frine Gutiérrez García, Presidenta de la Comisión de Desarrollo Juvenil con Igualdad de Oportunidades y por el Diputado Rubén Antonio Carrillo Buenfil, Presidente de la Comisión de Trabajo y Previsión Social de la XVIII Legis",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-16",
+        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260414-115514.pdf",
+        "categoria": "Agro y Desarrollo Rural",
+        "estado": "Quintana Roo",
+        "metodo": "requests"
+      },
       {
         "titulo": "Iniciativa de Decreto por el que se Declara el día 06 de abril de cada año, como “El Día Estatal del Deporte Inclusivo”; presentada por la Diputada Luz Gabriela Mora Castillo, Presidenta de la Comisión de Deporte; por el Diputado Jorge Arturo Sanén Cervantes,  Presidente de la Comisión de Puntos Constitucionales; por el Diputado Ricardo Velazco Rodríguez, Presidente de la Comisión de Seguridad Ciu",
         "tipo": "iniciativa",
@@ -129,15 +138,6 @@
         "tipo": "iniciativa",
         "fecha": "2026-04-01",
         "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260327-130944.pdf",
-        "categoria": "Industria Quimica",
-        "estado": "Quintana Roo",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "Iniciativa de Decreto por el que se reforman diversas disposiciones de la Ley Orgánica del Poder Legislativo del Estado de Quintana Roo y del Reglamento para el Gobierno Interior de la Legislatura del Estado de Quintana Roo; presentada por el Diputado Hugo Alday Nieto, Presidente de la Comisión de Desarrollo Urbano Sustentable y Asuntos Metropolitanos; por la Diputada María José Osorio Rosas, Pres",
-        "tipo": "iniciativa",
-        "fecha": "2026-04-01",
-        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260327-132241.pdf",
         "categoria": "Industria Quimica",
         "estado": "Quintana Roo",
         "metodo": "requests"
@@ -222,10 +222,16 @@
   },
   "resumen": [
     {
+      "estado": "Nuevo León",
+      "total": 5,
+      "categoria_principal": "Industria Quimica",
+      "ultima_fecha": "2026-04-16"
+    },
+    {
       "estado": "Quintana Roo",
       "total": 5,
       "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-04-14"
+      "ultima_fecha": "2026-04-16"
     },
     {
       "estado": "Guanajuato",
@@ -238,12 +244,6 @@
       "total": 2,
       "categoria_principal": "Industria Quimica",
       "ultima_fecha": "2026-04-07"
-    },
-    {
-      "estado": "Nuevo León",
-      "total": 5,
-      "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-04-01"
     },
     {
       "estado": "Tabasco",
@@ -259,7 +259,7 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-04-15T15:39:52.242559",
+    "ultima_actualizacion": "2026-04-16T15:30:38.773467",
     "mes": "2026-04",
     "estados_con_actividad": 6
   }
