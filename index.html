@@ -468,7 +468,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
         <span class="sp-name" id="sp-name"></span>
         <span class="sp-sub" id="sp-sub"></span>
       </div>
-      <button class="sp-close" onclick="closeStatePanel()">✕ Cerrar</button>
+      <button class="sp-close" onclick="closeStatePanel()">Cerrar</button>
     </div>
     <div class="sp-tabs">
       <button class="sp-tab active" onclick="showSPTab('actividad',this)">ACTIVIDAD</button>
@@ -521,11 +521,11 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
         <div class="card-label">Actividad Legislativa Federal</div>
         <div class="fed-cols" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px">
           <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2ed57322">🏛 Cámara de Diputados</div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2ed57322">Cámara de Diputados</div>
             <div id="widget-diputados"></div>
           </div>
           <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2ed57322">🏛 Senado de la República</div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2ed57322">Senado de la República</div>
             <div id="widget-senado"></div>
           </div>
         </div>
@@ -713,16 +713,16 @@ const SECTOR_PROFILE={
   "Zacatecas":{alimentos:65,manufactura:60,envases:55,retail:50,energia:65,logistica:60,agro:75}
 };
 const RADAR_TEMAS=[
-  {id:'agua',name:'Agua',icon:'\ud83d\udca7',color:'#38bdf8',kw:['agua','hidrico','sequia','conagua','cuenca','acuifero'],leyKey:'agua'},
-  {id:'residuos',name:'Residuos',icon:'\u267b\ufe0f',color:'#a78bfa',kw:['residuo','basura','reciclaje','plastico','vertedero'],leyKey:'residuos'},
-  {id:'circular',name:'Econom\u00eda Circular',icon:'\ud83d\udd04',color:'#0ac285',kw:['economia circular','circularidad','ecodiseno','REP'],leyKey:'economia_circular'},
-  {id:'cc',name:'Cambio Clim\u00e1tico',icon:'\ud83c\udf21\ufe0f',color:'#6366f1',kw:['cambio climatico','GEI','carbono','emisiones','ndc'],leyKey:'cambio_climatico'},
-  {id:'fiscal',name:'Impuestos Ambientales',icon:'\ud83d\udcb0',color:'#f87171',kw:['impuesto ambiental','tasa ecologica','bono carbono'],leyKey:null},
-  {id:'plasticos',name:'Pl\u00e1sticos',icon:'&#x1F9F4;',color:'#ec4899',kw:['plastico','unicel','poliestireno','monouso','bolsa'],leyKey:'plasticos'},
-  {id:'energia',name:'Energ\u00eda',icon:'\u26a1',color:'#f59e0b',kw:['energia solar','renovable','fotovoltaica','eolica','cfe'],leyKey:null},
-  {id:'sanciones',name:'Cumplimiento',icon:'\u2696\ufe0f',color:'#ef4444',kw:['sancion','multa','clausura','infraccion','profepa'],leyKey:null},
-  {id:'biodiv',name:'Biodiversidad',icon:'\ud83c\udf3f',color:'#22c55e',kw:['biodiversidad','restauracion','forestal','silvestre'],leyKey:'forestal_biodiversidad'},
-  {id:'infra',name:'Infraestructura',icon:'\ud83c\udfd7\ufe0f',color:'#64748b',kw:['infraestructura','tratamiento','alcantarillado','planta'],leyKey:'agua'}
+  {id:'agua',name:'Agua',icon:'',color:'#38bdf8',kw:['agua','hidrico','sequia','conagua','cuenca','acuifero'],leyKey:'agua'},
+  {id:'residuos',name:'Residuos',icon:'',color:'#a78bfa',kw:['residuo','basura','reciclaje','plastico','vertedero'],leyKey:'residuos'},
+  {id:'circular',name:'Econom\u00eda Circular',icon:'',color:'#0ac285',kw:['economia circular','circularidad','ecodiseno','REP'],leyKey:'economia_circular'},
+  {id:'cc',name:'Cambio Clim\u00e1tico',icon:'',color:'#6366f1',kw:['cambio climatico','GEI','carbono','emisiones','ndc'],leyKey:'cambio_climatico'},
+  {id:'fiscal',name:'Impuestos Ambientales',icon:'',color:'#f87171',kw:['impuesto ambiental','tasa ecologica','bono carbono'],leyKey:null},
+  {id:'plasticos',name:'Pl\u00e1sticos',icon:'',color:'#ec4899',kw:['plastico','unicel','poliestireno','monouso','bolsa'],leyKey:'plasticos'},
+  {id:'energia',name:'Energ\u00eda',icon:'',color:'#f59e0b',kw:['energia solar','renovable','fotovoltaica','eolica','cfe'],leyKey:null},
+  {id:'sanciones',name:'Cumplimiento',icon:'',color:'#ef4444',kw:['sancion','multa','clausura','infraccion','profepa'],leyKey:null},
+  {id:'biodiv',name:'Biodiversidad',icon:'',color:'#22c55e',kw:['biodiversidad','restauracion','forestal','silvestre'],leyKey:'forestal_biodiversidad'},
+  {id:'infra',name:'Infraestructura',icon:'',color:'#64748b',kw:['infraestructura','tratamiento','alcantarillado','planta'],leyKey:'agua'}
 ];
 const estadoData={
   "Aguascalientes":{l:"Ley Ambiental del Estado",capital:"Aguascalientes",pop:"1.4M",area:"5,618 km²",region:"Norte-Centro",congreso:"https://www.congresoags.gob.mx/"},
@@ -1091,21 +1091,21 @@ function renderSPImpuestos(state){
   const cards=taxes.map(t=>{
     const tc=TC[t.tipo]||{c:'var(--text-muted)',b:'var(--border)',label:t.tipo};
     const badge=`<span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;background:${tc.b};color:${tc.c};letter-spacing:0.5px">${tc.label}</span>`;
-    const contro=t.controversia?`<span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:rgba(251,191,36,0.15);color:#92400e;border:1px solid rgba(251,191,36,0.3)">⚠ CONTROVERSIA</span>`:'';
+    const contro=t.controversia?`<span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:rgba(251,191,36,0.15);color:#92400e;border:1px solid rgba(251,191,36,0.3)">CONTROVERSIA</span>`:'';
     const precio=t.precio&&t.precio!=='—'?`<div style="font-size:15px;font-weight:700;color:${tc.c};margin:6px 0 4px">${t.precio} <span style="font-size:10px;font-weight:500;color:var(--text-muted)">${t.unidad}</span></div>`:'';
     const specs=t.especificaciones?`<div style="font-size:12px;color:var(--text);line-height:1.5;margin-bottom:6px">${t.especificaciones}</div>`:'';
     const oblig=t.obligados?`<div style="font-size:11px;color:var(--text-sec);margin-bottom:5px"><span style="font-weight:600">Obligados:</span> ${t.obligados}</div>`:'';
     const fechas=(t.fechaPublicado&&t.fechaPublicado!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted)">Publicado: <b>${t.fechaPublicado}</b></span>`:'')+(t.vigencia&&t.vigencia!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted);margin-left:14px">Vigencia: <b>${t.vigencia}</b></span>`:'');
     return `<div class="sp-law-block" style="margin-bottom:12px"><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">${badge}${contro}</div>${precio}${specs}${oblig}${fechas?`<div style="margin-top:4px">${fechas}</div>`:''}</div>`;
   }).join('');
-  const footer=hasUMA?`<div style="margin-top:10px;padding:10px 12px;background:var(--green-tint);border-radius:8px;font-size:10px;color:var(--text-muted)">📌 UMA 2026 (INEGI): <b>$117.31 MXN/día</b> · Fuente: ANIQ — Guía de Impuestos Ambientales Estatales, Feb 2026</div>`:`<div style="margin-top:10px;font-size:10px;color:var(--text-muted);text-align:right">Fuente: ANIQ — Guía de Impuestos Ambientales Estatales, Feb 2026</div>`;
+  const footer=hasUMA?`<div style="margin-top:10px;padding:10px 12px;background:var(--green-tint);border-radius:8px;font-size:10px;color:var(--text-muted)"> UMA 2026 (INEGI): <b>$117.31 MXN/día</b> · Fuente: ANIQ — Guía de Impuestos Ambientales Estatales, Feb 2026</div>`:`<div style="margin-top:10px;font-size:10px;color:var(--text-muted);text-align:right">Fuente: ANIQ — Guía de Impuestos Ambientales Estatales, Feb 2026</div>`;
   document.getElementById('sp-impuestos').innerHTML=cards+footer;
 }
 function renderSPGaceta(state,data){
   const url=data.congreso||'#';
   document.getElementById('sp-gaceta').innerHTML=`
     <a href="${url}" target="_blank" class="sp-gaceta-link">
-      <span style="font-size:22px">📋</span>
+      <span style="font-size:22px"></span>
       <div><div>Portal del Congreso · ${state}</div><div style="font-size:11px;font-weight:400;color:var(--text-sec);margin-top:2px">${url}</div></div>
       <span style="margin-left:auto;font-size:18px;color:var(--green)">↗</span>
     </a>`;
@@ -1293,7 +1293,7 @@ function _buildRadarSelector(){
     const cnt=recentNoticias.filter(n=>t.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length;
     const barW=Math.round((cnt/maxCount)*100);
     return `<div class="radar-market-card${i===0?' active':''}" id="radar-card-${t.id}" onclick="_selectRadar('${t.id}')">
-      <span class="radar-mkt-icon">${t.icon}</span>
+      <span class="radar-mkt-icon"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${t.color}"></span></span>
       <span class="radar-mkt-name">${t.name}</span>
       <div class="radar-mkt-bar"><div class="radar-mkt-fill" style="width:${barW}%;background:${t.color}"></div></div>
       <span class="radar-mkt-count" style="color:${t.color}">${cnt}</span>
@@ -1343,7 +1343,7 @@ function showRadarTema(temaId){
   <div class="radar-panel-header">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
       <div>
-        <div style="font-size:13px;color:var(--text-muted);margin-bottom:4px;font-weight:500">${tema.icon} Radar · ${tema.name}</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:4px;font-weight:500">Radar · ${tema.name}</div>
         <div class="radar-panel-title">${tema.name}</div>
         <div class="radar-panel-meta">
           <span>${totalArts} menciones en 90 d&#xED;as</span>
@@ -1434,13 +1434,13 @@ function renderSPActividad(state){
 function renderSPSectorial(state){
   const sp=SECTOR_PROFILE[state]||{};
   const sectors=[
-    {k:'alimentos',n:'Alimentos y Bebidas',icon:'\ud83e\udd64'},
-    {k:'manufactura',n:'Manufactura',icon:'\ud83c\udfed'},
-    {k:'envases',n:'Envases y Empaques',icon:'\ud83d\udce6'},
-    {k:'retail',n:'Retail',icon:'\ud83d\udecd\ufe0f'},
-    {k:'energia',n:'Energ\u00eda',icon:'\u26a1'},
-    {k:'logistica',n:'Log\u00edstica',icon:'\ud83d\ude9b'},
-    {k:'agro',n:'Agroindustria',icon:'\ud83c\udf3e'}
+    {k:'alimentos',n:'Alimentos y Bebidas',icon:''},
+    {k:'manufactura',n:'Manufactura',icon:''},
+    {k:'envases',n:'Envases y Empaques',icon:''},
+    {k:'retail',n:'Retail',icon:''},
+    {k:'energia',n:'Energ\u00eda',icon:''},
+    {k:'logistica',n:'Log\u00edstica',icon:''},
+    {k:'agro',n:'Agroindustria',icon:''}
   ];
   const rows=sectors.map(s=>{
     const val=sp[s.k]||0;const color=scoreColor(val);
@@ -2016,7 +2016,7 @@ loadComisiones();
       </button>
     </form>
     <div id="reg-success" style="display:none;text-align:center;padding:20px 0">
-      <div style="font-size:36px;margin-bottom:12px">✅</div>
+      <div style="font-size:36px;margin-bottom:12px"></div>
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px">¡Listo!</div>
       <div style="font-size:13px;color:var(--text-sec);line-height:1.6">Te avisaremos cuando SCOPE esté disponible.<br>¡Gracias por tu interés!</div>
     </div>
