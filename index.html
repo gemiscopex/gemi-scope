@@ -50,7 +50,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .scope-footer a:hover{color:var(--text)}
 .card{background:#fff;border:0.8px solid var(--border-med);border-radius:var(--radius);padding:22px 24px}
 .card-label{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:18px}
-.top-grid{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:14px}
+.top-grid{display:grid;grid-template-columns:1fr 2.6fr;gap:14px;margin-bottom:14px}
 .top-hero{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
 .top-hero-cat{font-size:11px;color:var(--text-sec);letter-spacing:0.04em;margin-bottom:6px;font-weight:500}
 .top-hero-count{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:700;color:var(--green);line-height:1;letter-spacing:-0.01em}
@@ -75,7 +75,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .cat-bar-wrap{width:80px;height:3px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden}
 .cat-bar{height:100%;border-radius:2px}
 .cat-count{font-size:13px;font-weight:600;color:var(--text);min-width:28px;text-align:right;font-variant-numeric:tabular-nums}
-.map-wrap{width:100%;height:380px;border-radius:12px;overflow:hidden;isolation:isolate;z-index:0;position:relative}
+.map-wrap{width:100%;height:440px;border-radius:12px;overflow:hidden;isolation:isolate;z-index:0;position:relative}
 #map{width:100%;height:100%}
 /* Leaflet pulsing markers */
 .pulse-marker-container{background:transparent!important;border:none!important;box-shadow:none!important}
@@ -534,13 +534,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
         <div class="card-label">Monitoreo Estatal de Gacetas</div>
         <div id="widget-gacetas"></div>
       </div>
-    </div>
-    <div class="card" style="margin-top:14px">
-      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px">
-        <div class="card-label" style="margin-bottom:0">Publicaciones DOF</div>
-        <div id="dof-widget-meta" style="font-size:10px;color:var(--text-muted)"></div>
-      </div>
-      <div id="dof-content"></div>
     </div>
   </div>
   <div class="tab-content" id="tab-legislacion">
@@ -1557,11 +1550,8 @@ function _fedSearch(uid){
   var q=(document.getElementById('fed-search-'+uid)||{}).value||'';
   q=q.toLowerCase().trim();
   var data=_fedData[uid]||[];
-  var ley=_fedLey[uid]||'todas';
   var filtered=data.filter(function(it){
-    var leyOk=ley==='todas'||(it._leyes||[]).includes(ley);
-    var qOk=!q||(it.titulo||'').toLowerCase().includes(q);
-    return leyOk&&qOk;
+    return !q||(it.titulo||'').toLowerCase().includes(q);
   });
   var ini=filtered.filter(function(it){return it.tipo==='iniciativa'||it.tipo==='dictamen';});
   var pto=filtered.filter(function(it){return it.tipo==='punto_acuerdo';});
@@ -1577,32 +1567,15 @@ function renderFederalColumn(elId, items, fallbackUrl){
   var normalized=(items||[]).map(function(it){
     var tipo=it.tipo||inferTipo(it.titulo);
     if(tipo==='proposicion'||tipo==='proposicion con punto de acuerdo') tipo='punto_acuerdo';
-    var _leyes=inferLey(it.titulo);
-    return Object.assign({},it,{tipo:tipo,_leyes:_leyes});
+    return Object.assign({},it,{tipo:tipo});
   });
   _fedData[elId]=normalized;
-  _fedLey[elId]='todas';
-  var leyesEnData={};
-  normalized.forEach(function(it){(it._leyes||[]).forEach(function(l){leyesEnData[l]=(leyesEnData[l]||0)+1;});});
-  var leyesDisponibles=Object.keys(leyesEnData).sort();
   var iniciativas=normalized.filter(function(it){return it.tipo==='iniciativa'||it.tipo==='dictamen';});
   var puntos=normalized.filter(function(it){return it.tipo==='punto_acuerdo';});
   var uid=elId;
-  // Search box
-  var searchBox='<div class="leg-search-wrap"><span class="leg-search-icon">&#x2315;</span><input class="leg-search-input" id="fed-search-'+uid+'" placeholder="Buscar iniciativa..." oninput="_fedSearch(\''+uid+'\')" type="text"></div>';
-  // Hidden fallback url
+  var searchBox='<div class="leg-search-wrap"><span class="leg-search-icon">&#x2315;</span><input class="leg-search-input" id="fed-search-'+uid+'" placeholder="Buscar instrumento..." oninput="_fedSearch(\''+uid+'\')" type="text"></div>';
   var hiddenUrl='<input type="hidden" id="'+uid+'_fallback_url_" value="'+fallbackUrl+'">';
-  // Law filter pills (only if there are matches)
-  var leyPills='';
-  if(leyesDisponibles.length){
-    leyPills='<div id="ley-pills-'+uid+'" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">'
-      +'<button class="fed-ley-pill active" onclick="switchFedLey(\''+uid+'\',\'todas\',this)" style="padding:3px 9px;border-radius:12px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#111;color:#fff;letter-spacing:0.03em">Todas</button>';
-    leyesDisponibles.forEach(function(sigla){
-      leyPills+='<button class="fed-ley-pill" onclick="switchFedLey(\''+uid+'\',\''+sigla+'\',this)" style="padding:3px 9px;border-radius:12px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text-sec);letter-spacing:0.03em">'+sigla+' <span style="opacity:0.5">'+leyesEnData[sigla]+'</span></button>';
-    });
-    leyPills+='</div>';
-  }
-  var html=hiddenUrl+searchBox+leyPills
+  var html=hiddenUrl+searchBox
     +'<div class="fed-tabs" id="tabs-'+uid+'">'
     +'<button class="fed-tab active" onclick="switchFedTab(\''+uid+'\',\'ini\',this)">Iniciativas <span class="fed-tab-badge">'+iniciativas.length+'</span></button>'
     +'<button class="fed-tab" onclick="switchFedTab(\''+uid+'\',\'pto\',this)">Puntos de Acuerdo <span class="fed-tab-badge">'+puntos.length+'</span></button>'
