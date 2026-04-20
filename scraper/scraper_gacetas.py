@@ -37,14 +37,66 @@ MONTH3 = {
     7: "jul", 8: "ago", 9: "sep", 10: "oct", 11: "nov", 12: "dic",
 }
 
-ENV_KW = [
-    "agua", "hidric", "ambient", "ecol", "residuo", "energi", "renova",
-    "solar", "eolic", "clima", "carbon", "emision", "forestal", "biodiver",
-    "contaminac", "mineri", "semarnat", "profepa", "nom-", "norma oficial",
-    "lgeepa", "lgcc", "lan ", "lte ", "sustentabl", "medio ambiente",
-    "responsabilidad ambiental", "pesca", "acuacultura", "natural",
-    "lgpgir", "lgdfs", "lgvs", "lfra", "lie ", "lgec", "conafor",
+# Palabras clave de alta confianza: una sola basta para incluir el título
+STRONG_KW = [
+    "medio ambiente", "cambio climatico", "cambio clim",
+    "semarnat", "profepa", "conagua", "conafor", "conanp",
+    "lgeepa", "lgcc", "lgpgir", "lgdfs", "lgvs", "lfra", "lan ",
+    "lte ", "lie ", "lgec",
+    "nom-", "norma oficial mexicana",
+    "residuo", "contaminac", "biodiver",
+    "forestal", "reforest", "deforest",
+    "hidric", "acuifer", "cuenca hidro",
+    "emision", "gases de efecto",
+    "sustentabilidad", "sostenibilidad",
+    "responsabilidad ambiental",
+    "impuesto ecolog", "tasa ecolog", "impuesto ambient",
+    "area natural protegida", "anp ",
+    "ecosis", "habitat",
 ]
+
+# Palabras clave débiles: se requieren al menos 2 coincidencias en el título
+WEAK_KW = [
+    "agua", "energi", "renova", "solar", "eolic", "clima",
+    "carbon", "ambient", "ecol", "mineri", "pesca", "acuacultura",
+    "natural", "sustentabl", "verde", "green",
+]
+
+# Términos que invalidan el resultado aunque haya keyword match (falsos positivos comunes)
+EXCLUDE_KW = [
+    "derechos de agua",        # trámites de concesión, no política ambiental
+    "agua potable municipal",  # infraestructura, no regulación ambiental
+    "seguridad social",
+    "pension", "pensión",
+    "educacion", "educación",
+    "salud publica",
+    "violencia",
+    "derechos humanos",
+    "genero", "género",
+    "cultura",
+    "deporte",
+    "turismo",
+    "vivienda",
+    "transporte",
+]
+
+
+def is_relevant(titulo: str) -> bool:
+    """True si el título tiene relación genuina con medio ambiente / sostenibilidad."""
+    t = titulo.lower()
+    # Exclusión directa: si contiene algún término típico de falso positivo, descarta
+    if any(ex in t for ex in EXCLUDE_KW):
+        return False
+    # Una palabra clave fuerte basta
+    if any(k in t for k in STRONG_KW):
+        return True
+    # Palabras débiles: se necesitan al menos dos ocurrencias distintas
+    weak_hits = [k for k in WEAK_KW if k in t]
+    return len(weak_hits) >= 2
+
+
+# Alias para compatibilidad con código existente
+ENV_KW = STRONG_KW + WEAK_KW
 
 SESSION = requests.Session()
 SESSION.verify = False
