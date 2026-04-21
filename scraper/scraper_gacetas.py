@@ -164,13 +164,12 @@ def safe_get(url: str, timeout: int = 20):
         return None, False
 
 
-def soup_from_url(url: str, encoding: str = "latin-1"):
+def soup_from_url(url: str):
     resp, ok = safe_get(url)
     if not ok or resp is None:
         return None
     try:
-        resp.encoding = encoding
-        return BeautifulSoup(resp.text, "html.parser")
+        return BeautifulSoup(resp.content, "html.parser")
     except Exception as exc:
         print(f"  [PARSE ERR] {url} -> {exc}")
         return None
