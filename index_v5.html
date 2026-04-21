@@ -12,18 +12,30 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --green:#0ac285;
-  --green-btn:#28cc95;
-  --green-tint:rgba(10,194,133,0.08);
-  --text:rgba(0,0,0,0.88);
-  --text-sec:rgba(0,0,0,0.5);
-  --text-muted:rgba(0,0,0,0.3);
+  --bg:#F0F4F8;
+  --card:#FFFFFF;
+  --card2:#F8FAFC;
   --border:rgba(0,0,0,0.07);
-  --border-med:rgba(0,0,0,0.1);
-  --radius:16px;
+  --border2:rgba(0,0,0,0.13);
+  --border-med:rgba(0,0,0,0.13);
+  --text:#0D1B2A;
+  --text2:#5A7A98;
+  --text-sec:#5A7A98;
+  --text3:#A8C2D8;
+  --text-muted:#A8C2D8;
+  --teal:#009E90;
+  --teal-l:#E6F7F5;
+  --teal-m:rgba(0,158,144,0.15);
+  --green:#009E90;
+  --green-btn:#009E90;
+  --green-tint:#E6F7F5;
+  --radius:10px;
+  --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 12px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.05);
+  --surface:#F8FAFC;
 }
-body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:#fff;color:var(--text);min-height:100vh}
-.nav{background:#fff;border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:stretch;justify-content:space-between;height:52px;position:sticky;top:0;z-index:400;gap:0;transform:translateZ(0)}
+body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.nav{background:var(--card);border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:stretch;justify-content:space-between;height:54px;position:sticky;top:0;z-index:400;gap:0;transform:translateZ(0)}
 .nav-left{display:flex;align-items:center;gap:10px;flex-shrink:0;padding-right:20px;border-right:1px solid var(--border)}
 .nav-logo-img{height:22px;width:auto;display:block}
 .nav-logo-sep{width:1px;height:20px;background:var(--border-med);margin:0 2px}
@@ -31,7 +43,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:#fff;color:
 .nav-tagline{font-size:11px;color:var(--text-muted);letter-spacing:0.02em;font-weight:400}
 .nav-time{font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums;align-self:center;flex-shrink:0;padding-left:20px}
 .nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0;padding-left:16px;border-left:1px solid var(--border)}
-.nav-search{display:flex;align-items:center;gap:6px;background:#f5f5f5;border:1px solid var(--border);border-radius:20px;padding:0 12px;height:32px}
+.nav-search{display:flex;align-items:center;gap:6px;background:var(--card2);border:1px solid var(--border2);border-radius:20px;padding:0 12px;height:32px}
 .nav-search input{border:none;background:none;font-size:12px;color:var(--text);outline:none;width:140px;font-family:'IBM Plex Sans',sans-serif}
 .nav-search input::placeholder{color:var(--text-muted)}
 .nav-search svg{opacity:0.35;flex-shrink:0}
@@ -45,12 +57,35 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:#fff;color:
 .tab-btn{padding:0 2px;margin-right:20px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:'IBM Plex Sans',sans-serif;white-space:nowrap}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
 .main{max-width:1200px;margin:0 auto;padding:24px 28px}
-.scope-footer{border-top:0.8px solid var(--border);margin-top:32px;padding:20px 28px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.8}
+.scope-footer{background:var(--card);border-top:1px solid var(--border);margin-top:32px;padding:20px 28px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.8}
 .scope-footer a{color:var(--text-muted);text-decoration:underline;text-underline-offset:3px}
 .scope-footer a:hover{color:var(--text)}
-.card{background:#fff;border:0.8px solid var(--border-med);border-radius:var(--radius);padding:22px 24px}
-.card-label{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:18px}
-.top-grid{display:grid;grid-template-columns:1fr 2.6fr;gap:14px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
+.card-label{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px}
+/* ── Dashboard layout ── */
+.dash-main{display:grid;grid-template-columns:2fr 1fr;gap:10px;align-items:start}
+.dash-left{display:flex;flex-direction:column;gap:10px}
+.dash-right{display:flex;flex-direction:column;gap:10px}
+.dash-feeds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* ── KPI Bar ── */
+.kpi-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:10px}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.kpi-label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.kpi-value{font-size:28px;font-weight:700;color:var(--text);line-height:1;font-family:'IBM Plex Sans',sans-serif;margin-bottom:8px}
+.kpi-row{display:flex;align-items:center;justify-content:space-between}
+/* ── Badge component ── */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.04em}
+.badge-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.badge-critico{background:#FEF2F2;border:1px solid rgba(220,38,38,0.16);color:#DC2626}
+.badge-alto{background:#FFFBEB;border:1px solid rgba(217,119,6,0.16);color:#D97706}
+.badge-medio{background:#FEFCE8;border:1px solid rgba(202,138,4,0.16);color:#CA8A04}
+.badge-bajo{background:#F0FDF4;border:1px solid rgba(22,163,74,0.16);color:#16A34A}
+.badge-info{background:#EFF6FF;border:1px solid rgba(37,99,235,0.16);color:#2563EB}
+/* ── Tag + CodePill ── */
+.tag{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;border:1px solid transparent}
+.code-pill{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px;display:inline-block}
+/* Legacy grid — kept for non-dashboard use */
+.top-grid{display:grid;grid-template-columns:1fr 2.6fr;gap:10px;margin-bottom:10px}
 .top-hero{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
 .top-hero-cat{font-size:11px;color:var(--text-sec);letter-spacing:0.04em;margin-bottom:6px;font-weight:500}
 .top-hero-count{font-family:'IBM Plex Sans',sans-serif;font-size:64px;font-weight:700;color:var(--green);line-height:1;letter-spacing:-0.01em}
@@ -248,7 +283,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:#fff;color:
 .sp-content{display:none}
 .sp-content.active{display:block}
 .sp-stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:16px}
-.sp-stat{background:var(--green-tint);border-radius:10px;padding:14px}
+.sp-stat{background:var(--teal-l);border-radius:10px;padding:14px}
 .sp-stat-label{font-size:10px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px}
 .sp-stat-value{font-size:17px;font-weight:600;color:var(--text)}
 .sp-law-block{border:1px solid var(--border-med);border-radius:10px;padding:14px;margin-bottom:14px}
@@ -331,7 +366,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:#fff;color:
 .ticker-date{font-size:10px;color:var(--text-muted);white-space:nowrap}
 /* State Modal */
 .state-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.42);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px}
-.state-modal{background:#fff;border-radius:20px;width:560px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow-y:auto;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,0.2);animation:modalIn 0.22s ease;flex-shrink:0}
+.state-modal{background:var(--card);border-radius:14px;width:600px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow-y:auto;padding:24px;box-shadow:var(--shadow-md);animation:modalIn 0.22s ease;flex-shrink:0}
 @keyframes modalIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
 /* Bottom 50/50 widgets */
 .bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
@@ -384,6 +419,9 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:#fff;color:
   /* ── GRIDS → columna única ── */
   .top-grid{grid-template-columns:1fr !important}
   .bottom-row{grid-template-columns:1fr !important}
+  .dash-main{grid-template-columns:1fr !important}
+  .dash-feeds{grid-template-columns:1fr !important}
+  .kpi-bar{grid-template-columns:repeat(2,1fr) !important}
   .leyes-grid{grid-template-columns:1fr !important}
   .fed-cols{grid-template-columns:1fr !important}
   .acerca-grid{grid-template-columns:1fr !important}
@@ -512,59 +550,105 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:#fff;color:
 </div>
 <div class="main">
   <div class="tab-content active" id="tab-dashboard">
-    <div class="top-grid">
-      <div class="card" style="display:flex;flex-direction:column;overflow:visible">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
-          <div class="card-label" style="margin-bottom:0">Últimas Noticias</div>
-          <div class="cat-popover-wrap">
-            <button class="cat-popover-btn" title="Actividad por categoría">···</button>
-            <div class="cat-popover" id="cat-popover">
-              <div class="cat-pop-title">Actividad por categoría</div>
-              <div id="cat-popover-rows"></div>
-            </div>
-          </div>
-        </div>
-        <div class="news-ticker-wrap" id="news-ticker-wrap">
-          <div class="news-ticker-inner" id="news-ticker"></div>
-        </div>
-        <!-- Presidencia / Sheinbaum widget -->
-        <div class="pres-widget" id="pres-widget">
-          <div class="pres-widget-hdr">
-            <span class="pres-widget-label">Presidencia · Sheinbaum</span>
-            <span class="pres-widget-src">gob.mx</span>
-          </div>
-          <div class="pres-items" id="pres-items"><div class="pres-empty">Cargando…</div></div>
+    <!-- KPI Bar -->
+    <div class="kpi-bar">
+      <div class="kpi-card">
+        <div class="kpi-label">Alertas Críticas</div>
+        <div class="kpi-value" id="kpi-val-criticas">—</div>
+        <div class="kpi-row">
+          <span class="badge badge-critico"><span class="badge-dot" style="background:#DC2626"></span>Crítico</span>
+          <svg id="kpi-spark-criticas" width="60" height="24" viewBox="0 0 60 24"></svg>
         </div>
       </div>
-      <div class="card">
-        <div class="card-label">Mapa político de México</div>
-        <div class="map-wrap"><div id="map"></div></div>
-        <div style="display:flex;align-items:center;gap:14px;margin-top:10px;padding-top:8px;border-top:0.8px solid var(--border)">
-          <span style="font-size:9.5px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted)">Señal</span>
-          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#ef4444;display:inline-block;animation:pulseRing 1.8s ease-out infinite;opacity:0.8"></span><span style="font-size:10px;color:var(--text-sec)">Crítica</span></span>
-          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#f97316;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Alta</span></span>
-          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#10b981;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Moderada</span></span>
-          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#9ca3af;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Baja</span></span>
+      <div class="kpi-card">
+        <div class="kpi-label">Iniciativas Activas</div>
+        <div class="kpi-value" id="kpi-val-iniciativas">—</div>
+        <div class="kpi-row">
+          <span class="badge badge-info"><span class="badge-dot" style="background:#2563EB"></span>Federal</span>
+          <svg id="kpi-spark-iniciativas" width="60" height="24" viewBox="0 0 60 24"></svg>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Normas en Revisión</div>
+        <div class="kpi-value" id="kpi-val-normas">3</div>
+        <div class="kpi-row">
+          <span class="badge badge-medio"><span class="badge-dot" style="background:#CA8A04"></span>Medio</span>
+          <svg id="kpi-spark-normas" width="60" height="24" viewBox="0 0 60 24"></svg>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Estados con Alertas</div>
+        <div class="kpi-value" id="kpi-val-estados">—</div>
+        <div class="kpi-row">
+          <span class="badge badge-alto"><span class="badge-dot" style="background:#D97706"></span>Alto</span>
+          <svg id="kpi-spark-estados" width="60" height="24" viewBox="0 0 60 24"></svg>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Noticias Hoy</div>
+        <div class="kpi-value" id="kpi-val-hoy">—</div>
+        <div class="kpi-row">
+          <span class="badge badge-info"><span class="badge-dot" style="background:#2563EB"></span>Hoy</span>
+          <svg id="kpi-spark-hoy" width="60" height="24" viewBox="0 0 60 24"></svg>
         </div>
       </div>
     </div>
-    <div class="bottom-row">
-      <div class="card">
-        <div class="card-label">Actividad Legislativa Federal</div>
-        <div class="fed-cols" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px">
-          <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2ed57322">Cámara de Diputados</div>
+
+    <!-- Main grid: mapa+feeds izquierda, noticias+ejecutivo derecha -->
+    <div class="dash-main">
+      <div class="dash-left">
+        <!-- Mapa -->
+        <div class="card">
+          <div class="card-label">Mapa Político de México</div>
+          <div class="map-wrap"><div id="map"></div></div>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:10px;padding-top:8px;border-top:0.8px solid var(--border)">
+            <span style="font-size:9.5px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted)">Señal</span>
+            <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#ef4444;display:inline-block;animation:pulseRing 1.8s ease-out infinite;opacity:0.8"></span><span style="font-size:10px;color:var(--text-sec)">Crítica</span></span>
+            <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#f97316;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Alta</span></span>
+            <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#10b981;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Moderada</span></span>
+            <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#9ca3af;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Baja</span></span>
+          </div>
+        </div>
+        <!-- Feeds legislativos -->
+        <div class="dash-feeds">
+          <div class="card">
+            <div class="card-label">Cámara de Diputados</div>
             <div id="widget-diputados"></div>
           </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2ed57322">Senado de la República</div>
+          <div class="card">
+            <div class="card-label">Senado de la República</div>
             <div id="widget-senado"></div>
           </div>
         </div>
+        <!-- Gacetas estatales -->
+        <div class="card">
+          <div class="card-label">Monitoreo Estatal de Gacetas</div>
+          <div id="widget-gacetas"></div>
+        </div>
       </div>
-      <div class="card">
-        <div class="card-label">Monitoreo Estatal de Gacetas</div>
-        <div id="widget-gacetas"></div>
+
+      <!-- Columna derecha: noticias + observatorio -->
+      <div class="dash-right">
+        <div class="card" style="display:flex;flex-direction:column;overflow:visible">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div class="card-label" style="margin-bottom:0">Últimas Noticias</div>
+            <div class="cat-popover-wrap">
+              <button class="cat-popover-btn" title="Actividad por categoría">···</button>
+              <div class="cat-popover" id="cat-popover">
+                <div class="cat-pop-title">Actividad por categoría</div>
+                <div id="cat-popover-rows"></div>
+              </div>
+            </div>
+          </div>
+          <div class="news-ticker-wrap" id="news-ticker-wrap">
+            <div class="news-ticker-inner" id="news-ticker"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label" style="margin-bottom:6px">Observatorio del Ejecutivo</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:12px">Menciones ambientales · Presidenta Sheinbaum</div>
+          <div class="pres-items" id="pres-items"><div class="pres-empty">Cargando…</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -895,6 +979,31 @@ const TEMA_COLORS={
   'Biodiversidad':'#22c55e','Impuestos Ambientales':'#f87171','Responsabilidad':'#64748b',
   'Economía Circular':'#0ac285'
 };
+function drawBarSpark(svgId,color){
+  var svg=document.getElementById(svgId);if(!svg)return;
+  var vals=[0.3,0.5,0.4,0.65,0.55,0.75,1];
+  var w=60,h=24,bw=6,gap=2;
+  svg.setAttribute('viewBox','0 0 '+(7*(bw+gap)-gap)+' '+h);
+  svg.innerHTML=vals.map(function(v,i){
+    var bh=Math.round(v*(h-2));var x=i*(bw+gap);var y=h-bh;
+    return '<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+bh+'" rx="2" fill="'+color+'" opacity="'+(i===6?'1':'0.25')+'"/>';
+  }).join('');
+}
+function renderKpiBar(){
+  var criticas=(alertas||[]).filter(function(a){var n=(a.nivel||a.level||'').toLowerCase();return n==='crítico'||n==='critico';}).length;
+  var elC=document.getElementById('kpi-val-criticas');if(elC)elC.textContent=criticas;
+  var estadosAlerta=Object.values(stateScores||{}).filter(function(s){return(s.master||0)>=50;}).length;
+  var elE=document.getElementById('kpi-val-estados');if(elE)elE.textContent=estadosAlerta;
+  var hoy=new Date();var offset=-6;var cdmxNow=new Date(hoy.getTime()+offset*3600000);
+  var todayStr=cdmxNow.toISOString().substring(0,10);
+  var hoyCount=(noticias||[]).filter(function(n){return(n.fecha_publicacion||'').substring(0,10)===todayStr;}).length;
+  var elH=document.getElementById('kpi-val-hoy');if(elH)elH.textContent=hoyCount;
+  drawBarSpark('kpi-spark-criticas','#DC2626');
+  drawBarSpark('kpi-spark-iniciativas','#2563EB');
+  drawBarSpark('kpi-spark-normas','#CA8A04');
+  drawBarSpark('kpi-spark-estados','#D97706');
+  drawBarSpark('kpi-spark-hoy','#2563EB');
+}
 function updateLeyes(){
   const tc=TEMA_COLORS;
   document.getElementById('leyes-grid').innerHTML=leyes.map(l=>{
@@ -1677,6 +1786,8 @@ function renderWidgetFederal(){
       var sen=(data&&data.senado)||[];
       renderFederalColumn('widget-diputados',dip,'https://gaceta.diputados.gob.mx/','Diputados');
       renderFederalColumn('widget-senado',sen,'https://www.senado.gob.mx/66/gaceta_del_senado','Senado');
+      var total=(dip.length||0)+(sen.length||0);
+      var el=document.getElementById('kpi-val-iniciativas');if(el)el.textContent=total||'0';
     });
 }
 var _gacetaEstatalData=null;
@@ -1805,6 +1916,7 @@ async function init(){
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
   renderScoreNacional();
+  renderKpiBar();
   renderAlertas('all');
   renderDOF();
   renderWidgetFederal();
@@ -1849,10 +1961,19 @@ function toggleComision(id){
 function renderComisiones(data){
   var el=document.getElementById('comisiones-list');
   if(!el)return;
-  var coms=(data&&data.comisiones)||[];
-  if(!coms.length){el.innerHTML='<div style="font-size:12px;color:var(--text-muted)">Sin datos de comisiones disponibles</div>';return;}
-  var dip=coms.filter(function(c){return c.camara==='Diputados';});
-  var sen=coms.filter(function(c){return c.camara==='Senado';});
+  // Soporta ambas estructuras: {comisiones:[]} y {diputados:[], senado:[]}
+  var dip,sen;
+  if(data&&data.diputados){
+    dip=data.diputados||[];
+    sen=data.senado||[];
+  } else {
+    var coms=(data&&data.comisiones)||[];
+    dip=coms.filter(function(c){return c.camara==='Diputados';});
+    sen=coms.filter(function(c){return c.camara==='Senado';});
+  }
+  if(!dip.length&&!sen.length){el.innerHTML='<div style="font-size:12px;color:var(--text-muted)">Sin datos de comisiones disponibles</div>';return;}
+  // Renombrar campo 'n' → 'nombre' si aplica
+  function norm(c){return {nombre:c.nombre||c.n||'',url:c.url||'',at:c.at||'',ur:c.ur||'',pr:c.pr||'',integrantes:(c.integrantes||[]).map(function(m){return{n:m.n||m.nombre||'',cargo:m.cargo||'',partido:m.partido||''};})};}
   function memberHTML(m){
     var color=PARTIDO_COLOR[m.partido]||PARTIDO_COLOR[m.partido&&m.partido.toUpperCase()]||'#6b7280';
     var isLead=m.cargo&&(m.cargo.toLowerCase().includes('president')||m.cargo.toLowerCase().includes('secretari'));
@@ -1935,8 +2056,8 @@ function renderComisiones(data){
       +'<div class="com-accordion">'+rows+'</div>'
     +'</div>';
   }
-  el.innerHTML=renderSection(dip,'dip','Cámara de Diputados','https://web.diputados.gob.mx/inicio/comisiones?Tipo=Ordinarias')
-    +renderSection(sen,'sen','Senado de la República','https://www.senado.gob.mx/66/comisiones/ordinarias');
+  el.innerHTML=renderSection(dip.map(norm),'dip','Cámara de Diputados','https://web.diputados.gob.mx/inicio/comisiones?Tipo=Ordinarias')
+    +renderSection(sen.map(norm),'sen','Senado de la República','https://www.senado.gob.mx/66/comisiones/ordinarias');
 }
 async function loadComisiones(){
   try{var r=await fetch('data/comisiones.json',{cache:'no-store'});if(r.ok)renderComisiones(await r.json());else renderComisiones(null);}catch(e){renderComisiones(null);}
