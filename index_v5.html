@@ -1961,19 +1961,11 @@ function toggleComision(id){
 function renderComisiones(data){
   var el=document.getElementById('comisiones-list');
   if(!el)return;
-  // Soporta ambas estructuras: {comisiones:[]} y {diputados:[], senado:[]}
-  var dip,sen;
-  if(data&&data.diputados){
-    dip=data.diputados||[];
-    sen=data.senado||[];
-  } else {
-    var coms=(data&&data.comisiones)||[];
-    dip=coms.filter(function(c){return c.camara==='Diputados';});
-    sen=coms.filter(function(c){return c.camara==='Senado';});
-  }
+  // Estructura {diputados:[], senado:[]} — filtrar solo scope:true y normalizar campos
+  var dip=((data&&data.diputados)||[]).filter(function(c){return c.scope;});
+  var sen=((data&&data.senado)||[]).filter(function(c){return c.scope;});
   if(!dip.length&&!sen.length){el.innerHTML='<div style="font-size:12px;color:var(--text-muted)">Sin datos de comisiones disponibles</div>';return;}
-  // Renombrar campo 'n' → 'nombre' si aplica
-  function norm(c){return {nombre:c.nombre||c.n||'',url:c.url||'',at:c.at||'',ur:c.ur||'',pr:c.pr||'',integrantes:(c.integrantes||[]).map(function(m){return{n:m.n||m.nombre||'',cargo:m.cargo||'',partido:m.partido||''};})};}
+  function norm(c){return {nombre:c.nombre||c.n||'',url:c.url||'',at:c.at||'',ur:c.ur?fmtReunion(c.ur):'—',pr:c.pr?fmtReunion(c.pr):'—',integrantes:(c.integrantes||[]).map(function(m){return{n:m.n||m.nombre||'',cargo:m.cargo||'',partido:m.partido||''};})};}
   function memberHTML(m){
     var color=PARTIDO_COLOR[m.partido]||PARTIDO_COLOR[m.partido&&m.partido.toUpperCase()]||'#6b7280';
     var isLead=m.cargo&&(m.cargo.toLowerCase().includes('president')||m.cargo.toLowerCase().includes('secretari'));
