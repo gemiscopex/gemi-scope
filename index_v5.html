@@ -1935,7 +1935,13 @@ const PARTIDO_COLOR={
 function initials(name){return name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();}
 function fmtReunion(iso){
   if(!iso)return '—';
-  try{const d=new Date(iso+'T12:00:00');return d.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'});}catch(e){return iso;}
+  try{
+    // Handle DD/MM/YYYY format from comisiones scraper
+    var s=iso.trim();
+    if(/^\d{2}\/\d{2}\/\d{4}$/.test(s)){var p=s.split('/');s=p[2]+'-'+p[1]+'-'+p[0];}
+    const d=new Date(s+'T12:00:00');
+    return d.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'});
+  }catch(e){return iso;}
 }
 function toggleComSub(subId){
   var el=document.getElementById(subId);
@@ -1961,9 +1967,9 @@ function toggleComision(id){
 function renderComisiones(data){
   var el=document.getElementById('comisiones-list');
   if(!el)return;
-  // Estructura {diputados:[], senado:[]} — filtrar solo scope:true y normalizar campos
-  var dip=((data&&data.diputados)||[]).filter(function(c){return c.scope;});
-  var sen=((data&&data.senado)||[]).filter(function(c){return c.scope;});
+  var coms=(data&&data.comisiones)||[];
+  var dip=coms.filter(function(c){return c.camara==='Diputados';});
+  var sen=coms.filter(function(c){return c.camara==='Senado';});
   if(!dip.length&&!sen.length){el.innerHTML='<div style="font-size:12px;color:var(--text-muted)">Sin datos de comisiones disponibles</div>';return;}
   function norm(c){return {nombre:c.nombre||c.n||'',url:c.url||'',at:c.at||'',ur:c.ur?fmtReunion(c.ur):'—',pr:c.pr?fmtReunion(c.pr):'—',integrantes:(c.integrantes||[]).map(function(m){return{n:m.n||m.nombre||'',cargo:m.cargo||'',partido:m.partido||''};})};}
   function memberHTML(m){
