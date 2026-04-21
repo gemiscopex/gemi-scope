@@ -98,6 +98,15 @@
     ],
     "Quintana Roo": [
       {
+        "titulo": "Iniciativa por la que se expide la Ley de Economía Circular del Estado de Quintana Roo y se reforman y derogan diversas disposiciones de la Ley para la Prevención, Gestión Integral y Economía Circular de los Residuos del Estado de Quintana Roo; presentada por el Diputado Jorge Arturo Sanén Cervantes, Presidente de la Comisión de Puntos Constitucionales de la H. XVIII Legislatura del Estado.",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-21",
+        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260417-115319.pdf",
+        "categoria": "Residuos / Economia Circular",
+        "estado": "Quintana Roo",
+        "metodo": "requests"
+      },
+      {
         "titulo": "Iniciativa con Proyecto de Decreto por el que se reforma el artículo 85 de la Ley de Desarrollo Rural Sustentable del Estado de Quintana Roo; presentada por la Diputada Diana Frine Gutiérrez García, Presidenta de la Comisión de Desarrollo Juvenil con Igualdad de Oportunidades y por el Diputado Rubén Antonio Carrillo Buenfil, Presidente de la Comisión de Trabajo y Previsión Social de la XVIII Legis",
         "tipo": "iniciativa",
         "fecha": "2026-04-16",
@@ -129,15 +138,6 @@
         "tipo": "iniciativa",
         "fecha": "2026-04-07",
         "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260331-165813.pdf",
-        "categoria": "Industria Quimica",
-        "estado": "Quintana Roo",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "Iniciativa Ciudadana que reforma el artículo 236 del Capítulo Segundo denominado “De las Sanciones de Tránsito y Vialidad” de la Ley de Movilidad del Estado de Quintana Roo;  presentada por el Ciudadano Ángel Mauricio Mora Castillo, en términos de la Ley de Participación Ciudadana del Estado de Quintana Roo.",
-        "tipo": "iniciativa",
-        "fecha": "2026-04-01",
-        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260327-130944.pdf",
         "categoria": "Industria Quimica",
         "estado": "Quintana Roo",
         "metodo": "requests"
@@ -222,13 +222,13 @@
   },
   "resumen": [
     {
-      "estado": "Nuevo León",
+      "estado": "Quintana Roo",
       "total": 5,
       "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-04-16"
+      "ultima_fecha": "2026-04-21"
     },
     {
-      "estado": "Quintana Roo",
+      "estado": "Nuevo León",
       "total": 5,
       "categoria_principal": "Industria Quimica",
       "ultima_fecha": "2026-04-16"
@@ -259,7 +259,7 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-04-20T15:20:47.245640",
+    "ultima_actualizacion": "2026-04-21T15:18:46.991682",
     "mes": "2026-04",
     "estados_con_actividad": 6
   }
