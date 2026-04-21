@@ -442,9 +442,6 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:#fff;color:
 .pres-widget-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .pres-widget-label{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)}
 .pres-widget-src{font-size:9.5px;color:var(--text-muted);opacity:0.7}
-.pres-topic-pills{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
-.pres-pill{padding:2px 8px;border-radius:10px;font-size:9.5px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text-muted);transition:all 0.12s;white-space:nowrap}
-.pres-pill.active{border-color:var(--green);background:rgba(10,194,133,0.1);color:var(--green)}
 .pres-items{display:flex;flex-direction:column;gap:0}
 .pres-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:0.8px solid rgba(0,0,0,0.04);cursor:pointer;transition:background 0.1s}
 .pres-item:last-child{border-bottom:none}
@@ -452,20 +449,6 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:#fff;color:
 .pres-item-title{font-size:11.5px;color:var(--text);line-height:1.38;flex:1;transition:color 0.15s}
 .pres-item-meta{font-size:9.5px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'IBM Plex Mono',monospace}
 .pres-empty{font-size:11px;color:var(--text-muted);padding:8px 0;text-align:center}
-/* Leyes filter pills */
-.leyes-filter-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px}
-.leyes-fpill{padding:4px 11px;border-radius:20px;font-size:10.5px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--text-sec);transition:all 0.15s;white-space:nowrap}
-.leyes-fpill.active{border-color:transparent;color:#fff;background:#111}
-.leyes-fpill[data-tema="Agua"].active{background:#2563eb}
-.leyes-fpill[data-tema="Residuos"].active{background:#d97706}
-.leyes-fpill[data-tema="Energía"].active{background:#f59e0b}
-.leyes-fpill[data-tema="Cambio Climático"].active{background:#6366f1}
-.leyes-fpill[data-tema="Medio Ambiente"].active{background:#16a34a}
-.leyes-fpill[data-tema="Bosques"].active{background:#15803d}
-.leyes-fpill[data-tema="Biodiversidad"].active{background:#22c55e}
-.leyes-fpill[data-tema="Impuestos Ambientales"].active{background:#f87171;color:#fff}
-.leyes-fpill[data-tema="Responsabilidad"].active{background:#64748b}
-.leyes-fpill[data-tema="Economía Circular"].active{background:#0ac285}
 </style>
 </head>
 <body>
@@ -550,7 +533,6 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:#fff;color:
             <span class="pres-widget-label">Presidencia · Sheinbaum</span>
             <span class="pres-widget-src">gob.mx</span>
           </div>
-          <div class="pres-topic-pills" id="pres-pills"></div>
           <div class="pres-items" id="pres-items"><div class="pres-empty">Cargando…</div></div>
         </div>
       </div>
@@ -592,19 +574,6 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:#fff;color:
       <div style="font-size:11px;color:var(--text-muted)">México · LXVI Legislatura</div>
     </div>
     <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</div>
-    <div class="leyes-filter-row" id="leyes-filter-row">
-      <button class="leyes-fpill active" data-tema="todos" onclick="filterLeyes('todos',this)">Todas</button>
-      <button class="leyes-fpill" data-tema="Agua" onclick="filterLeyes('Agua',this)">Agua</button>
-      <button class="leyes-fpill" data-tema="Energía" onclick="filterLeyes('Energía',this)">Energía</button>
-      <button class="leyes-fpill" data-tema="Residuos" onclick="filterLeyes('Residuos',this)">Residuos</button>
-      <button class="leyes-fpill" data-tema="Cambio Climático" onclick="filterLeyes('Cambio Climático',this)">Cambio Climático</button>
-      <button class="leyes-fpill" data-tema="Medio Ambiente" onclick="filterLeyes('Medio Ambiente',this)">Medio Ambiente</button>
-      <button class="leyes-fpill" data-tema="Bosques" onclick="filterLeyes('Bosques',this)">Bosques</button>
-      <button class="leyes-fpill" data-tema="Biodiversidad" onclick="filterLeyes('Biodiversidad',this)">Biodiversidad</button>
-      <button class="leyes-fpill" data-tema="Impuestos Ambientales" onclick="filterLeyes('Impuestos Ambientales',this)">Impuestos Ambientales</button>
-      <button class="leyes-fpill" data-tema="Responsabilidad" onclick="filterLeyes('Responsabilidad',this)">Responsabilidad</button>
-      <button class="leyes-fpill" data-tema="Economía Circular" onclick="filterLeyes('Economía Circular',this)">Economía Circular</button>
-    </div>
     <div class="leyes-grid" id="leyes-grid"></div>
   </div>
 
@@ -926,11 +895,9 @@ const TEMA_COLORS={
   'Biodiversidad':'#22c55e','Impuestos Ambientales':'#f87171','Responsabilidad':'#64748b',
   'Economía Circular':'#0ac285'
 };
-let _leyesFiltro='todos';
-function _renderLeyes(){
-  const filtered=_leyesFiltro==='todos'?leyes:leyes.filter(l=>l.t===_leyesFiltro);
+function updateLeyes(){
   const tc=TEMA_COLORS;
-  document.getElementById('leyes-grid').innerHTML=filtered.map(l=>{
+  document.getElementById('leyes-grid').innerHTML=leyes.map(l=>{
     const color=tc[l.t]||'#6b7280';
     const year=l.r?l.r.match(/\d{4}/)?.[0]:'';
     return `<div class="ley-row" onclick="window.open('${l.u}','_blank')">
@@ -942,54 +909,24 @@ function _renderLeyes(){
     </div>`;
   }).join('');
 }
-function updateLeyes(){_renderLeyes();}
-function filterLeyes(tema,btn){
-  _leyesFiltro=tema;
-  document.querySelectorAll('.leyes-fpill').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-  _renderLeyes();
-}
 /* ── Presidencia / Sheinbaum ── */
-let presData=[];let _presFiltro='todos';
-const PRES_TOPIC_LABELS={agua:'Agua',energia:'Energía',residuos:'Residuos',clima:'Clima',ambiente:'Ambiente',forestal:'Forestal',biodiversidad:'Biodiversidad',fiscal:'Fiscal',industria:'Industria',mineria:'Minería'};
-const PRES_COLORS={agua:'#2563eb',energia:'#f59e0b',residuos:'#d97706',clima:'#6366f1',ambiente:'#16a34a',forestal:'#15803d',biodiversidad:'#22c55e',fiscal:'#f87171',industria:'#64748b',mineria:'#92400e'};
-function _buildPresPills(){
-  const counts={};presData.forEach(a=>(a.categorias||[]).forEach(c=>{counts[c]=(counts[c]||0)+1}));
-  const active=Object.keys(counts).sort((a,b)=>counts[b]-counts[a]);
-  const pillsEl=document.getElementById('pres-pills');
-  if(!pillsEl)return;
-  pillsEl.innerHTML='<button class="pres-pill active" data-topic="todos" onclick="filtrarPres(\'todos\',this)">Todos</button>'+
-    active.map(t=>`<button class="pres-pill" data-topic="${t}" onclick="filtrarPres('${t}',this)" style="border-color:${PRES_COLORS[t]||'var(--border)'}">${PRES_TOPIC_LABELS[t]||t} <span style="opacity:0.6">${counts[t]}</span></button>`).join('');
-}
-function _renderPresItems(){
-  const el=document.getElementById('pres-items');if(!el)return;
-  const filtered=_presFiltro==='todos'?presData:presData.filter(a=>(a.categorias||[]).includes(_presFiltro));
-  const shown=filtered.slice(0,5);
-  if(!shown.length){el.innerHTML='<div class="pres-empty">Sin artículos disponibles</div>';return;}
-  el.innerHTML=shown.map(a=>{
-    const fecha=a.fecha?a.fecha.substring(0,10):'';
-    return `<div class="pres-item" onclick="window.open('${(a.url||'#').replace(/'/g,'%27')}','_blank')">
-      <div class="pres-item-title">${a.titulo||''}</div>
-      ${fecha?`<div class="pres-item-meta">${fecha}</div>`:''}
-    </div>`;
-  }).join('');
-}
-function filtrarPres(topic,btn){
-  _presFiltro=topic;
-  document.querySelectorAll('.pres-pill').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-  _renderPresItems();
-}
+let presData=[];
 function loadPresidencia(){
   fetch('data/presidencia.json').then(r=>r.ok?r.json():null).then(d=>{
+    const el=document.getElementById('pres-items');
+    if(!el)return;
     if(!d||!d.articulos||!d.articulos.length){
-      const el=document.getElementById('pres-items');
-      if(el)el.innerHTML='<div class="pres-empty">Sin datos aún · el scraper corre al mediodía</div>';
+      el.innerHTML='<div class="pres-empty">Sin datos aún · el scraper corre al mediodía</div>';
       return;
     }
     presData=d.articulos;
-    _buildPresPills();
-    _renderPresItems();
+    el.innerHTML=presData.slice(0,5).map(a=>{
+      const fecha=a.fecha?a.fecha.substring(0,10):'';
+      return `<div class="pres-item" onclick="window.open('${(a.url||'#').replace(/'/g,'%27')}','_blank')">
+        <div class="pres-item-title">${a.titulo||''}</div>
+        ${fecha?`<div class="pres-item-meta">${fecha}</div>`:''}
+      </div>`;
+    }).join('');
   }).catch(()=>{
     const el=document.getElementById('pres-items');
     if(el)el.innerHTML='<div class="pres-empty">Sin datos disponibles</div>';
