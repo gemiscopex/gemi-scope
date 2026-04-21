@@ -4,6 +4,8 @@ on:
   schedule:
     # 8:00 AM hora Mexico (CDMX = UTC-6  =>  14:00 UTC)
     - cron: "0 14 * * 1-5"
+    # 12:00 PM hora Mexico (CDMX = UTC-6  =>  18:00 UTC)
+    - cron: "0 18 * * 1-5"
     # 2:30 PM hora Mexico (CDMX = UTC-6  =>  20:30 UTC)
     - cron: "30 20 * * 1-5"
   workflow_dispatch:
@@ -38,13 +40,16 @@ jobs:
       - name: Scraper Federal (Gaceta Parlamentaria)
         run: python scraper/scraper_gacetas.py
 
+      - name: Scraper Presidencia (Sheinbaum)
+        run: python scraper/scraper_presidencia.py
+
       # ── Commit y push ─────────────────────────────────────────────────────
 
       - name: Commit y push del JSON actualizado
         run: |
           git config user.name "SCOPE Bot"
           git config user.email "scope-bot@igemiac.com"
-          git add data/noticias.json data/dof.json data/gaceta-federal.json data/gaceta-estatal.json
+          git add data/noticias.json data/dof.json data/gaceta-federal.json data/gaceta-estatal.json data/presidencia.json
           if git diff --staged --quiet; then
             echo "Sin cambios nuevos"
           else
