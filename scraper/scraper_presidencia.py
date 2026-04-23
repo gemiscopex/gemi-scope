@@ -1,19 +1,20 @@
 """
 scraper_presidencia.py
 ======================
-Scrapes press releases and articles from Presidencia de la República
-(Claudia Sheinbaum) filtered by environmental topics.
+Scrapes mentions of Claudia Sheinbaum on environmental topics.
 
-Source: https://www.gob.mx/presidencia/es/archivo/articulos
+Source: Google News RSS (no JS captcha, no auth needed)
 Output: data/presidencia.json
 """
 
+import email.utils
 import hashlib
 import json
 import os
 import re
 import sys
 import time
+import unicodedata
 from datetime import datetime, date
 
 import requests
@@ -48,60 +49,36 @@ TOPIC_KW = {
 ALL_KW = [kw for kws in TOPIC_KW.values() for kw in kws]
 
 # ---------------------------------------------------------------------------
-# HTTP helpers
+# Google News RSS — fuente principal (sin captcha)
 # ---------------------------------------------------------------------------
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                  "AppleWebKit/537.36 (KHTML, like Gecko) "
-                  "Chrome/124.0.0.0 Safari/537.36",
-    "Accept-Language": "es-MX,es;q=0.9",
-}
+GNEWS_BASE = "https://news.google.com/rss/search?hl=es-MX&gl=MX&ceid=MX:es-419"
 
-def safe_get(url: str, timeout: int = 20):
-    for attempt in range(3):
-        try:
-            resp = requests.get(url, headers=HEADERS, timeout=timeout, verify=False)
-            if resp.status_code == 200:
-                return resp, True
-            print(f"  [HTTP {resp.status_code}] {url}")
-            return None, False
-        except Exception as exc:
-            print(f"  [ERR attempt {attempt+1}] {url} -> {exc}")
-            if attempt < 2:
-                time.sleep(2 ** attempt)
-    return None, False
+QUERIES = [
+    "Sheinbaum ambiente OR ambiental OR semarnat OR profepa OR ecologia",
+    "Sheinbaum energia OR renovable OR solar OR eolica OR cfe OR pemex",
+    "Sheinbaum agua OR conagua OR hidrica OR acuifero OR sequia",
+    "Sheinbaum cambio climatico OR carbono OR emisiones OR cop",
+    "Sheinbaum bosque OR forestal OR biodiversidad OR conafor OR conanp",
+    "Sheinbaum residuos OR contaminacion OR aire OR basura OR reciclaje",
+    "Sheinbaum plan ambiental OR agenda ambiental OR politica ambiental",
+]
 
-
-def soup_from_url(url: str):
-    resp, ok = safe_get(url)
-    if not ok or resp is None:
-        return None
-    try:
-        return BeautifulSoup(resp.content, "html.parser")
-    except Exception as exc:
-        print(f"  [PARSE ERR] {url} -> {exc}")
-        return None
+HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; curl/7.68.0)", "Accept": "*/*"}
 
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
 def normalize(text: str) -> str:
-    """Lowercase + remove accents for keyword matching."""
-    import unicodedata
-    text = text.lower()
-    text = unicodedata.normalize('NFD', text)
-    text = ''.join(c for c in text if unicodedata.category(c) != 'Mn')
-    return text
+    t = text.lower()
+    t = unicodedata.normalize("NFD", t)
+    return "".join(c for c in t if unicodedata.category(c) != "Mn")
 
 
-def detect_topics(text: str) -> list[str]:
+def detect_topics(text: str) -> list:
     t = normalize(text)
-    found = []
-    for topic, kws in TOPIC_KW.items():
-        if any(normalize(kw) in t for kw in kws):
-            found.append(topic)
-    return found
+    return [topic for topic, kws in TOPIC_KW.items()
+            if any(normalize(kw) in t for kw in kws)]
 
 
 def is_relevant(text: str) -> bool:
@@ -113,129 +90,93 @@ def make_id(url: str) -> str:
     return hashlib.md5(url.encode()).hexdigest()[:10]
 
 
-def parse_date(raw: str) -> str:
-    """Try to parse Spanish dates like '21 de abril de 2026' → '2026-04-21'."""
-    MESES = {
-        "enero": 1, "febrero": 2, "marzo": 3, "abril": 4,
-        "mayo": 5, "junio": 6, "julio": 7, "agosto": 8,
-        "septiembre": 9, "octubre": 10, "noviembre": 11, "diciembre": 12,
-    }
-    raw = raw.strip().lower()
-    m = re.search(r'(\d{1,2})\s+de\s+(\w+)\s+de\s+(\d{4})', raw)
-    if m:
-        day, mes_str, year = m.group(1), m.group(2), m.group(3)
-        mes = MESES.get(mes_str)
-        if mes:
-            return f"{year}-{mes:02d}-{int(day):02d}"
-    # fallback: return as-is
-    return raw
+def parse_rfc2822(raw: str) -> str:
+    try:
+        dt = email.utils.parsedate_to_datetime(raw)
+        return dt.strftime("%Y-%m-%d")
+    except Exception:
+        return ""
+
+
+def clean_snippet(html: str) -> str:
+    if not html:
+        return ""
+    return BeautifulSoup(html, "html.parser").get_text(" ", strip=True)[:300]
 
 
 # ---------------------------------------------------------------------------
-# Scraper
+# Scraper — Google News RSS
 # ---------------------------------------------------------------------------
-PRESIDENCIA_URL = "https://www.gob.mx/presidencia/es/archivo/articulos"
+def scrape_articles(window_days: int = 3) -> list:
+    """Fetch articles from the last `window_days` days via Google News RSS."""
+    all_raw = []
+    seen_titles = set()
 
-def scrape_articles(max_pages: int = 5) -> list[dict]:
-    articulos = []
-    seen_ids = set()
-
-    for page in range(1, max_pages + 1):
-        url = PRESIDENCIA_URL if page == 1 else f"{PRESIDENCIA_URL}?page={page}"
-        print(f"  Página {page}: {url}")
-        soup = soup_from_url(url)
-        if soup is None:
-            print(f"  [SKIP] No se pudo cargar página {page}")
-            break
-
-        # Articles appear as <article> or <li> with class containing 'articulo' / card items
-        # The gob.mx archive uses a list with class 'items-wrap' or similar
-        items = soup.select("article") or soup.select(".item") or soup.select(".items-wrap li")
-
-        if not items:
-            # Try generic link scan
-            items = soup.select("a[href*='/articulos/']")
-
-        found_on_page = 0
-        for item in items:
-            # Title
-            title_tag = (
-                item.select_one("h2") or
-                item.select_one("h3") or
-                item.select_one(".title") or
-                item.select_one("a")
-            )
-            if title_tag is None:
+    for i, q in enumerate(QUERIES, 1):
+        url = f"{GNEWS_BASE}&q={requests.utils.quote(q)}+when:{window_days}d"
+        print(f"  [{i}/{len(QUERIES)}] {q[:65]}")
+        try:
+            resp = requests.get(url, headers=HEADERS, timeout=20, verify=False)
+            if resp.status_code != 200:
+                print(f"    [HTTP {resp.status_code}]")
                 continue
-            titulo = title_tag.get_text(strip=True)
-            if not titulo or len(titulo) < 8:
+        except Exception as exc:
+            print(f"    [ERR] {exc}")
+            continue
+
+        soup = BeautifulSoup(resp.content, "xml")
+        found = 0
+        for item in soup.find_all("item"):
+            title_tag   = item.find("title")
+            link_tag    = item.find("link")
+            pubdate_tag = item.find("pubDate")
+            desc_tag    = item.find("description")
+            source_tag  = item.find("source")
+
+            titulo  = title_tag.text.strip()  if title_tag  else ""
+            link    = link_tag.text.strip()   if link_tag   else ""
+            pubdate = pubdate_tag.text.strip() if pubdate_tag else ""
+            snippet = clean_snippet(desc_tag.text if desc_tag else "")
+            fuente  = source_tag.text.strip() if source_tag else ""
+
+            if fuente and titulo.endswith(f" - {fuente}"):
+                titulo = titulo[:-(len(fuente) + 3)]
+
+            fecha = parse_rfc2822(pubdate)
+            tkey  = normalize(titulo)[:60]
+            if tkey in seen_titles:
                 continue
 
-            # URL
-            link_tag = item.select_one("a") or (title_tag if title_tag.name == "a" else None)
-            if link_tag:
-                href = link_tag.get("href", "")
-                if href.startswith("http"):
-                    art_url = href
-                elif href.startswith("/"):
-                    art_url = "https://www.gob.mx" + href
-                else:
-                    art_url = ""
-            else:
-                art_url = ""
-
-            # Date
-            date_tag = item.select_one("time") or item.select_one(".date") or item.select_one(".post-date")
-            fecha_raw = ""
-            if date_tag:
-                fecha_raw = date_tag.get("datetime", "") or date_tag.get_text(strip=True)
-            fecha = parse_date(fecha_raw) if fecha_raw else ""
-
-            # Relevance check — title + any snippet text
-            snippet_tag = item.select_one("p") or item.select_one(".excerpt") or item.select_one(".description")
-            snippet = snippet_tag.get_text(strip=True) if snippet_tag else ""
             full_text = titulo + " " + snippet
-
             if not is_relevant(full_text):
                 continue
 
-            art_id = make_id(art_url or titulo)
-            if art_id in seen_ids:
-                continue
-            seen_ids.add(art_id)
-
-            topics = detect_topics(full_text)
-            articulos.append({
-                "id": art_id,
-                "titulo": titulo,
-                "fecha": fecha,
-                "url": art_url,
-                "categorias": topics,
+            seen_titles.add(tkey)
+            all_raw.append({
+                "id":         make_id(link or titulo),
+                "titulo":     titulo,
+                "fecha":      fecha,
+                "url":        link,
+                "fuente":     fuente,
+                "categorias": detect_topics(full_text),
             })
-            found_on_page += 1
+            found += 1
 
-        print(f"    → {found_on_page} artículos relevantes encontrados")
-
-        # If first page found nothing, don't continue
-        if page == 1 and found_on_page == 0 and len(items) == 0:
-            print("  No se encontraron artículos. Verificar estructura de la página.")
-            break
-
+        print(f"    → {found} relevantes")
         time.sleep(0.8)
 
-    return articulos
+    return all_raw
 
 
 # ---------------------------------------------------------------------------
 # Load existing data
 # ---------------------------------------------------------------------------
-def load_existing() -> list[dict]:
+def load_existing() -> list:
     if not os.path.exists(OUTPUT_FILE):
         return []
     try:
         with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        return data.get("articulos", [])
+            return json.load(f).get("articulos", [])
     except Exception:
         return []
 
@@ -244,38 +185,36 @@ def load_existing() -> list[dict]:
 # Main
 # ---------------------------------------------------------------------------
 def main():
-    print("=== Scraper Presidencia (Sheinbaum) ===")
+    print("=== Scraper Presidencia (Sheinbaum) — Google News RSS ===")
     print(f"Fecha: {date.today().isoformat()}")
     print()
 
-    existing = load_existing()
+    existing     = load_existing()
     existing_ids = {a["id"] for a in existing}
-    print(f"Artículos existentes en JSON: {len(existing)}")
+    print(f"Artículos existentes: {len(existing)}")
 
-    print("Scrapeando nuevos artículos...")
-    nuevos = scrape_articles(max_pages=5)
+    print("Scrapeando artículos recientes (últimos 3 días)...")
+    nuevos_raw = scrape_articles(window_days=3)
 
-    # Merge: add only truly new items
     added = 0
-    for art in nuevos:
+    for art in nuevos_raw:
         if art["id"] not in existing_ids:
             existing.append(art)
             existing_ids.add(art["id"])
             added += 1
 
-    # Sort by date descending (articles without date go to the end)
     existing.sort(key=lambda a: a.get("fecha", ""), reverse=True)
-
-    # Keep last 200
-    existing = existing[:200]
+    existing = existing[:300]
 
     output = {
         "articulos": existing,
         "_meta": {
-            "fuente": "https://www.gob.mx/presidencia/es/archivo/articulos",
-            "total": len(existing),
+            "fuente":    "Google News RSS / menciones Sheinbaum temas ambientales",
+            "total":     len(existing),
             "nuevos_hoy": added,
-            "actualizado": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "actualizado": datetime.now(datetime.UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+                           if hasattr(datetime, "UTC")
+                           else datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
         }
     }
 
