@@ -1,9 +1,1229 @@
 {
-  "articulos": [],
+  "articulos": [
+    {
+      "id": "e817964873",
+      "titulo": "Tercer Grado | Visita de Sheinbaum a Cumbre en Barcelona y Pemex",
+      "fecha": "2026-04-23",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQVG1udzJ5YmNfdThJaXpiVG10N0lUckNfU1JSRVJRSGFYeTBxc3lGQ3FCNnU0elRfVEQ5bW4yVTkwLThzVzNodDZMN19Dekl5LVppRWxma21yZFZTRVhZOWdHQ0txTWpEcnZrMHZiUlNEajFqM1Itd3NXLXRJZVlVS0F6cHhXdWNDcXA1VElPd3RuZlZHUUNLaHpxYlRiTUNpSmhyYnI2dU5uS083VzVGNFNPcnhfV0RvdGc?oc=5",
+      "fuente": "N+",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "ac685c6146",
+      "titulo": "Defiende Claudia Sheinbaum parque de reciclaje en Puebla: “no tendrá alto consumo de agua”",
+      "fecha": "2026-04-23",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPODVTTFlRM3RWSE4wV2hiQmJ3Ukk5NmdaNHFaN2pSTUNuUzhxdGxPcE03NnVJNnhGVnVEaUl3Snhsb3VXSmhRa2t5aXBMRThtQ2JnU2dSLWpHaU9Fa2Y3YUxzTlAycGY0OEd2WXhvZ1U4VjJjZmpZUTludjJDS0o1V1Y2SXZMRjhXQWtDVXR1S0dTcThwaVpUZHdiYS1QSjI4NUczdXVFbndRQmhVTXo2SUZiY3lfYno4X0FoQm5mdWVVRXI4b0NNMVJXUE92TmZBMDQ0?oc=5",
+      "fuente": "El Sol de México",
+      "categorias": [
+        "agua",
+        "residuos"
+      ]
+    },
+    {
+      "id": "094138f5b6",
+      "titulo": "México y Japón dialogan sobre envíos petroleros y colaboración ambiental: Sheinbaum",
+      "fecha": "2026-04-22",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPOWFLTzQzOTRhdl9uQThKTVc2Y3g0SDZ4N0dDQnJkUEh6U1Y2ZEkwQ0M1cXRhUF84MmtTTlNmVTBSYnh3S0JRMVZwNFZXZlgxNWc0eHZjbEtVd1hvX1Vvc0EtYU5wRHluR3ZMQkFRanNqbWxRYmtBVWNaNGF6d2RuYmM2WlRUTWJDTnRMelEzNFJFaWJSZlhGRWtfSHg5Sm1ZZFdlVHZSZ29uRVFwOXBfcFlNankwRldfdkNJ?oc=5",
+      "fuente": "XEVT",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "d2a6903977",
+      "titulo": "Sheinbaum discute con Japón envíos petroleros y colaboración en materia ambiental",
+      "fecha": "2026-04-22",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPdnRjUFAwSlZua050Z1RMWFFUamktR0xLOEo3NTVzYzdmOTQ5ZWNGdi1nV005SUZIVFh5c0JZcWN2Nkh2T3Q5RHpmS2c1Tkh1cmpEaEdQOFFLNHEtN1lRWC1nZnIwcGp3cm5KT24zTmpwSE5CdnJ4ZTZBbjlSOGJXMVNPMmJ1Q2JfQjNPblZDZllwUkFLbzd2RGNqNzJ3V3k3eTdlejBQNlNWc3NOcFFlR3VQdG5HQzRvN1RLeG05aWRWTm9iYXc?oc=5",
+      "fuente": "XEVT",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "cc9f5553ee",
+      "titulo": "Anuncia Sheinbaum Plan Ambiental para Nuevo León",
+      "fecha": "2026-04-22",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOcG9xNVlLNHBIQ1pnb1dZWXpQNENsbjNVYWhSQnVQd2pVdDk3MGJQT2hIdlF1QlV1b1paai03eWRlTGVNbWRYQlV1MUZHS1BJU3dPalFmRUVDeDZQcHdQUmlJLXM5UkFkQWwtVGR6MVJFalI1dGJRX3J4RzRfLUtCdWx6NXMwaHZsUGdtR3lnZHhCZ3ZWZVNQVE9JaTFEam8?oc=5",
+      "fuente": "Meganoticias.MX",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "6edc4b8d8a",
+      "titulo": "Jubilados de la CFE protestan en Michoacán por reducción de pensiones tras reforma",
+      "fecha": "2026-04-22",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNRGpFSUkyWlhJUTRIQlVkaFBpcnBPSmpadXFZX3cxLUJDZ3ZlaExVWWFoSmJxZzhFZS13V091Zk9PajlOcnE3Rlp2THdObndaLXdIWnREeENCU2dHUVkwZnVNX1lsLWV3QW9keExNV1pheEVCQTZ3eFBKR295bElrZGU3ZlRxVk9nZElkLUcxS0FhR1oyYWtDOE5xUFRFc3JOQmxlbDgtTkRqUUg2am95MzVlNHNrbmRGT2VIRjVqTThOYTlqWldTVTV1Tl95MFFMRXJlQnlOUnJTVGJfZGFPQQ?oc=5",
+      "fuente": "El Sol de México",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "99f3e0e043",
+      "titulo": "MILENIO. . 🐒 ¡Qué ‘monito’! Conanp anuncia el nacimiento de la tercera cría de mono araña en Chiapas El mono araña se encuentra en peligro de extinción de acuerdo con la NOM-059-SEMARNAT-201. Con el nacimiento del mono, se consolida la presenci",
+      "fecha": "2026-04-22",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQNndZU1VKY0hqTDhfbTdSOVc5cjdDemlfb1NncUlSU29sdDM3bURCdnU1clJZQ3RBajBzb0E0Uzhuanl4MGtGQlBDSHA5YjFCanJNbDBEM25Lek9fSDREUEFHWm1aZTNMWHppUi1PeHRPQ2M1d0JETGZqVGF6NlNpbVk3NEF3eU1DaXpiaDlPbHBwOHBKblk4R1JGRTZmYW11YmFBR0ZVRkN3TzJYd05HVnptM2VHVHJ1M3VPQzhSTnVYZkpwYmFELTV6ajFzOHRodEZkZ0ItclVjaDItRlBfODRXUklTX0gya3lPeXQ5dw?oc=5",
+      "fuente": "Facebook",
+      "categorias": [
+        "ambiente",
+        "forestal"
+      ]
+    },
+    {
+      "id": "aff9480b54",
+      "titulo": "Maru Campos solicita reunión con Claudia Sheinbaum para coordinar seguridad en zonas mineras de Chihuahua",
+      "fecha": "2026-04-22",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPM01MVkJ4Q1BhZmFoTGp3SEdlb0QwcEhtTXRja2MtZFl4ZzBSQVZTNG5sdGhrZzRGa0RBWkpRVk11ZnFpeEl3My1GcVczMGVQcDdaRXpxYVBuVlA0dWh6QnQ5eE5ldmpsQktveWR2bHJxX2IzUlZLaWcydURxLXczUHVUNkY1eUR1eEI0a2RFeFZ2NEM2dzNuV3NqNjhZTS1xdzJpZmRza05tQmtBdnY1ck9Hc2JKRE1ramZSSTZ3eGhjd25aLVFQc0F4WWh2NExUOC1kekNjM3Y?oc=5",
+      "fuente": "Minería en Línea",
+      "categorias": [
+        "mineria"
+      ]
+    },
+    {
+      "id": "43d478b37d",
+      "titulo": "RIM Zacatecas 2026: El encuentro minero que posicionará a México como epicentro de la industria",
+      "fecha": "2026-04-22",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPQWY0ODlrR1VRczJfZmJ3VUJOQ1JfY3N3TkhOb195b3pvMS1QUzBSd09md3RXOFlPV3pyLUx3T3o2Q2NxZlRRdFhXQjZNeUlqc3NqZGxaUlBUR3VTUDlja1ZRelBpdTdNMkMwd3dsMTRtbGxCZkE4WF9CRVYtUWNPdEZtVU55c2huNlNrRVJubFhsUng5TjRXMmxGQ3dZcnRjemQwVkVLcmhQWGtSQjY4SzJxVEpyRVQ5LXlNanNZams4cklQS1I5T0d3?oc=5",
+      "fuente": "Minería en Línea",
+      "categorias": [
+        "mineria"
+      ]
+    },
+    {
+      "id": "0e0083b5c5",
+      "titulo": "¿Hay contingencia ambiental? Hoy No Circula: qué autos no circulan en CDMX y Edomex este Miércoles 22 de Abril 2026",
+      "fecha": "2026-04-22",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQSzlGcWF1aVM2Tk9wYWZpaDFYSFVlelJyZTNFb3Zad0lDaEliUmFoSlBkTnFucWpEOWtxaGNWMHQweklsNkh0djZ6VVhIdnFCaW1hanlYX2tfQkN0aHgySVpJR1I5a1F0Vm9KS0dkOTJmSjFkcUQtTFBmLU1iSTU4dVNGc2hURzVmOHJkSmFR0gGOAUFVX3lxTFBLOUZxYXVpUzZOT3BhZmloMVhIVWV6UnJlM0Vvdlp3SUNoSWJSYWhKUGROcW5xakQ5a3FoY1YwdDB6SWw2SHR2NnpVWEh2cUJpbWFqeVhfa19CQ3RoeDJJWklHUjlrUXRWb0pLR2Q5MmZKMWRxRC1MUGYtTWJJNTh1U0ZzaFRHNWY4cmRKYVE?oc=5",
+      "fuente": "MARCA",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "21c3b260ad",
+      "titulo": "Sheinbaum Trata Inversiones Con Takaichi; Plantea Mayor Cooperación Ambiental",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNMW9wTnpiZ1B2dUZPNXk0SUkzYVJHekxLcEk0VjNVVVV4NnpuUExVb3RTQ21NakVZVVVvb05rSjc2NFFLMlRUMTNMRlhTUk1RdjBPN0dLYUxoQkw1YV9TeHZXb1JDY3FBQWdSb1NyTDVQY0tCMWR1TGVvWmNsSVcwWjROenFIOVBpZ2s4OHZmcWcxRkFDamhmN3hhc21WRVBqRmhXZHVPOEIyVEZ2RnZrbTQxQ05LX2VZa2VjVE5tN25TWlZUN1hv?oc=5",
+      "fuente": "N+",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "5e1dbad56c",
+      "titulo": "Sheinbaum y Primera Ministra de Japón fortalecen relación en inversión y medio ambiente",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPVnd3Y3VYcV8zRGZxdkhISHlhUVluQ3prMmp2dTRpcHZmWnlCMEpJOWNydFhaVV91akVkckI2bUNYU0cyNDR4bEZTRDc0LWFwUV9EZUY3NDBwUlVKWnFGandHMGZITXYwNW5haENqaUpjeE43Yl9XLVRrWl95WmU3dVBOR1NXRkpzUXU2cURKTUx2Y3hkRVlRYlhQOUZfVkJjTFBZTktJcXRjUQ?oc=5",
+      "fuente": "enfoquenoticias.com.mx",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "1cf2fd628a",
+      "titulo": "Sheinbaum Trata Temas de Inversión Con Takaichi; Plantea Mayor Cooperación Ambiental",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOeDNzVlpMLV95SnQ5OFNET3NSMXdCdHpCVV9raHBXRHdjSzlENGI1SmJxR2pVbkV0TXF6NlM1ZEtSN25sRXl0aEEyX3dyeHRSa1pCZUZQZjlNQkVjeklUVTdhaUc5OG54RHpyXzRXcVhYVkRjczZLNEdLbUtaR0RVV0pkTFo5clBWTDVaWnQtQmYtdWtjSkd5aVR1dkNhME5uc1NvWmtJTWhGa25mNjBpX0oyQkZkX2FDdnZQYXdBd01iX0F6cGc?oc=5",
+      "fuente": "N+",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "6512c2655f",
+      "titulo": "La Presidenta Claudia Sheinbaum sostiene llamada con la primera ministra de Japón: hablaron de comercio, inversión y medio ambiente",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQNnl4OGhMbnhGQ1dzWk5LNnRXamFFNFp2U3hzakdwTG4wZGI4em51RERVaTBXYnl0Vzd6b0lTQXRocDVadEVuZFU2a2lNVUdUZUNOQkU0UGNwenNMMWdPSjhoMEMyZ1JfY1g3TVVkOWNJZWdvTXEtWXRHMUxsaXJoNkc1aFNLSEFJYzZhOG5JZXNodnZ5eTRqNXY3SmsxY29lbUg5TXFsM1dtZ1JBRk5kOEZJNVlfMzVGSVZGc2ZKcVpMa1BZVWt1akhJbTcxRGZQZnNBNkJaaTRVRlhyV2htNkUzaUlZbjVUSUNiY3pMODNvWHdZZWc?oc=5",
+      "fuente": "El Soberano",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "2fe695f92b",
+      "titulo": "Sheinbaum habla con primera ministra de Japón sobre inversiones y medio ambiente",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPTVhka1F4UmU5X05EWUdiMVV3R0liYVR0bHJkRko0U2hRTDFFVTZuYzRuOWl5Y0RGX1F3N3BOdXdEUlA5QnhiUjAwR29ZRTFDSHF6N2VCRW1DU3cwdy0zN3ZxUF9rVnhsazZaU0lJOWF0YmNydEt6T1pYUWRJd0M2V2NrR00wbkdOcEMtLTlHUS1uczA2dXloaTRobkFrTnZzMUxsMWJmOE53aHJwNGRwUzVUMU5TZw?oc=5",
+      "fuente": "Excélsior",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "973662ea06",
+      "titulo": "Por decreto se creará observatorio de vigilancia ambiental permanente al Golfo de México tras derrame: Sheinbaum",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOSDhVSnBuVWlYcFV0SUE0SUZiMFdVS3VkdTdVRERQVUNvZThwdEx6TW9odmtUVlRjS3lxbHFScldMTGppdWd6VTZmTVRTWkgtaFF6dzNhS1dFQ091enZlWnVMTjBkbnJ0bjBDQWJheW9aaF9uUDNCS0V1Um5FM2Y2Um9YZ3dralp5YmVBbC1NeGlMWU9lTHNPa0N4YXZJTVZRZ19QWDVSR0R3Y3dsbU1idG1EYll6NjRRRWR2dHRBU1hjR1F2UkF4dHNHcTJVWER2UFE1T1M4YWgzOGNmUTN3?oc=5",
+      "fuente": "La Querella Digital",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "2b75a14136",
+      "titulo": "Sheinbaum fortalece alianza comercial y ambiental con la primera ministra de Japón",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNU0lPcm92TEZSVVg2cndkUVlxMmstSkEwLXY0RHp2RU9WZHZPNW1wb3dLd1RnUVQtVktlVHZvNU54d09kS1VuTE1wbnVEcDhSdVRZZ0lmaG5Vd1hHanByN1A5Z1Z3WlJCMkd5R2NOSTJhbk5TNkNqbXRTUHZpMnU4VjFNYmFMRUpIZnZpNlZaSWREbFA2TGlqMUJkTDQ4QWloLXJUZ3RCT2MwYXY5Qk9PTQ?oc=5",
+      "fuente": "Caribe Peninsular",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "bcde701065",
+      "titulo": "Sheinbaum discute envíos petroleros de Pemex a Japón con primera ministra Takaichi",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNejIwaGYxZGZRNVNUeEhXaDI2cjBDbmZiYWk1Wll4NUZycDA5XzBOcWZ6aVRLczJHUE9aWDdpdlNTQ1IyWjJoWlJRNG1mQklNR1pYTXpiZWRySEpfYVNnamNaS0UyX1QwNzZIaFZfS09zcFZVMzhSam8yUFZ4b050Sk5Scjl2UEgxMnpCcDVBUEZSNF94clpaSml1cG9Da0xNRU8tNTZPU0NqRUsyNll5OWFEV2lHV2pTQ2otck11Rzh6RXhGVWFld0NEMkQwbXFV0gHkAUFVX3lxTE1qSjliYkl5UlVCNjJpNVF0ZzBXRzI4a1V2VWp1bk9qNnJGOC1TX1lCRWFqWk1LV21VbU84aVJHU0VGWFF4TG5JaHc0VTRyNjBiMTg3S2VraDE5OWkxV09qdWJkcnh5M1VBUXFFU0IzMTdGU0dNczJZNkpwT0JQc3JfSXVxQ2FSN3dPMjRZdUk2a2F6cDJIS3d5Z09NdmJtaG1XNUZDcVJSUUItREZ4NV9fNWpkUEhLRmppWS1qR2lHM3ZhNVdfSWRwc19jMng3bWw3T2JfSFlNS0xzMkdpWEh3X2V5QQ?oc=5",
+      "fuente": "Bloomberg Línea",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "8aeadf745a",
+      "titulo": "Economía - Pemex exportará petróleo a Japón; esto hablaron Sheinbaum y Sanae Takaichi",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNV3hBUl90NldiOWRZbGRRTUZmQ3RENUhfQXZNNFl3WVhZVEhYTDdzYWVzdnBqdS1Hc09lVnlaYUlZTy1jZmE3YlBwYVFlQ0cyRDJmel9EdnViX3BtMm1aLVFsanN0VkdrVThKM3hjWlFaeFZTeGtQeUJUMG44R0JHc25qbG1pLXlFb0lTLW9rbWliNVg2QThoc253bDlXdEUySlNidXhMSFQ1NkRFaFJmTE1qQ3RDcnFvVGc?oc=5",
+      "fuente": "DineroenImagen",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "8d30a7949d",
+      "titulo": "FGR indagará posible negligencia en derrame de Pemex en el Golfo: Sheinbaum",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNLVJCUUNmQVYzblJ4a3lSWU9ZeWV1czZnTUVpRTdxNzU4SnJHUDBjWnZraGlZY0FXR3dURnB4WUFSdkJqRzc3X2J2d3pjNUIweEwyY0tWajdTSVlWQWptYkZuOEthcUhjVkItZ3YwR094WUtyb000dDNLNHZIN1NuUU4yck1LREotYjZJeVlkWUNqb1NJelNRbXZmM1c4X2RlRC1WeHZOUXlnWFJCNWFQeg?oc=5",
+      "fuente": "XEVT",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "fdd7f32701",
+      "titulo": "Sheinbaum: FGR y Pemex investigan si hubo negligencia por derrame de hidrocarburo",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPU0h1SVBqQ3hoUzZrbmNaTkxLNXFkQV8wWU9GOTFhcXhsTTFlazdVSEg3QUZEZ0V0NkZEUmgxSGJLQkFueTl2TFpWRGFxSndyaDBPMEdiVGNBazRFQm1xV0RqbTBxT0VTc3M2dnVGMElOMzdZNnJyNnQtTWRNVzNEbFhsMy02Z2RDTXRZU0VERDNJYk02NmpsQ3RVRi1RejNnRHFfMnE4Tk9KTWNyc2dHQ25PdTZUZFdoa0JqcUI3dGkyN3BGakFURGJ2eGRkM0JB?oc=5",
+      "fuente": "Diario de Colima",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "4fb0ab649e",
+      "titulo": "Sheinbaum dice que trabajadores de Pemex escondieron información sobre derrame; pide investigación y aduce que no se ocultó nada, aunque lo negó durante semanas",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE14WDdXNU1BeWhuTmtFaW83bmZndElrb1JYSGpCRDVnbkNZclc1SjBYNDc5NjNibi0talFSVzNOOFdmUkdRT0R2T19HYlQxWmszUUJBT3dtbmJsMGp4?oc=5",
+      "fuente": "Gobernantes.com",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "071e4c0c26",
+      "titulo": "Sheinbaum rechaza presión de Estados Unidos por tratado de aguas",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNNGJZUXJZTVFib29mTC0xLUZfc05mU3F2LWE4OGd1WUZ6ZVpQUGNFUzFSX21uaXdHRmhVTEZLQkNlWDZGZzkzNHYtNDZJRlg3REZ4QjVWNjE0dTJSQktNNU5hbGJLcFRLSnhFcFVQdk53REE3MzBqRmN1ZWFPclp0UlRlSnRGNktLaVEzR0RpVDkxTE9GTG56X2xRNDBOTGJiWVhZS1AtaThIaU1ta1AtMFlJZ2l5WEZTQVF3?oc=5",
+      "fuente": "Meganoticias.MX",
+      "categorias": [
+        "agua"
+      ]
+    },
+    {
+      "id": "f02034a65c",
+      "titulo": "Sheinbaum empuja inversión y agenda ambiental en diálogo con primera ministra de Japón",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNV185ZzNjdk1UNU5FdE9XYk11TE1YcEhzeFlHU3ItM1MxbElrWEs4Z1hRblZ1OHRQOWF4S1FLZGc5VWVaQjBRR2lCYmhnOHJSeE5SeWFwdU54UExZbzNqalVpMVptVXZXTmdLejYzVGo1cHZJTGNhcFpxdkhqU0xPQWNxX0U3MWkzMWZGWFQ4OG5Ya1JzYUJTbDd0WUtER3diNVR4a3VfUVRmb2czZXZiZXNhWWtMaVNlT0RoZUR0QmtQb3VfYWJaaV9HTi1SSE5nQ1l2VHZlZkg1WWZmSzFPcHVraGrSAeQBQVVfeXFMTVdfOWczY3ZNVDVORXRPV2JNdUxNWHBIc3hZR1NyLTNTMWxJa1hLOGdYUW5WdTh0UDlheEtRS2RnOVVlWkIwUUdpQmJoZzhyUnhOUnlhcHVOeFBMWW8zampVaTFabVV2V05nS3o2M1RqNXB2SUxjYXBacXZIalNMT0FjcV9FNzFpMzFmRlhUODhuWGtSc2FCU2w3dFlLREd3YjVUeGt1X1FUZm9nM2V2YmVzYVlrTGlTZU9EaGVEdEJrUG91X2FiWmlfR04tUkhOZ0NZdlR2ZWZINVlmZksxT3B1a2hq?oc=5",
+      "fuente": "Radio Fórmula",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "2aa7cf4579",
+      "titulo": "Pasta de Conchos: Recuperan cuerpo 26 tras 21 años de lucha por justicia minera",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPWl9iSGV1clJwQUxBVVRraTMycFRBSVVtUGxsLWlkUUZXc1d2X1QyRXZGUzR4elB3bkZxTzloU3N1TjVGWW43akVNM2dkRDY1ZFNWb0xQa0hzVUdWR1lMcHF1b05SZ1BjNEJMLUl0OXRUeEhHNC1IaWlqdkZyVkhVOFFqejR5dHZiM1NjZmJ3b0xyT1JPcDN1d2JJa1F4djlZUXA2ZGhJeS1zQUwzX3Z0WmNYLUg?oc=5",
+      "fuente": "Minería en Línea",
+      "categorias": [
+        "mineria"
+      ]
+    },
+    {
+      "id": "4fdd3c15a2",
+      "titulo": "Coahuila, en la mira por proyecto de fracking y debate ambiental",
+      "fecha": "2026-04-21",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPenJFWXVadl95NVA2YTBmTzRPX1dKSU85SlZicVJwa2pQVlhvUEdRbzZNbUFHdG8xVjJiUEtRa2JrdG1fbldyX3pqVzdESDI4d1dLd1I1S0ZlWWw4NW96dm5NSG1zUHpzc0FtVkhWNXdSMGRRZEZLUnpyTExiR3l0YVlSZGtvVzVqRUVjMm0wX25BNEpxSWF2SDJLQmxKR0I1VmFJdVA0YUREelQ0YUpNbVpWRTY?oc=5",
+      "fuente": "Meganoticias.MX",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "6fa4b12cb3",
+      "titulo": "Sheinbaum concluye gira en Barcelona: Propone plan ambiental global e impulsa supercomputadora mexicana",
+      "fecha": "2026-04-20",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOTUxKb29jNElpX2paWDVuX1N2Zmo0TWp0OVBTVUszZ0Vvai1weDg1bHQtSkEyNVFuNkZDQTExbDFEcnFPQlpWZ3BBYkNTWE9qUF96OFQzOUZ1aUdnVVpIak9LbzZrQ2dtYWFFVThWTTUxRjdISllNQm05MGpPVUNaODV4b09TUVNadXhramxkMVJwZTJEbFkxX3dKMC1tNWx2cWIzbVVDNTFqcGRLTHlWZGJCMjJBS2lqNnNzNnloeUlxVzZET19Pd2U3MUUxeEZUWE0xWFdCRVhUVXJOdHZ0N21RY9IB9wFBVV95cUxNMlZLYVJjR3g0WHVwVWVoZDh6OXJfUVlJYjQ2RDVOZVZhMjVLbjlMRHJXbGtpelZSQVM1QTJpX0dOTTJXOEZMeDFKamNFMjVkeHFNbmxEOFlfNnlid2FWVWJMNmMxWE5PcFVLVzY1OVlFZXhFWkNUcE9ZS29UMXJRazJrUkpkaFFGV1ZuamhoVEZ2ZHpiXzFrQzFqT1pQWkJvMDZCUkVaN3pRVkZsSWJHclZaTTFYU1FHeTZ3S1k4Q3o3YUZ4MzNIYzl5Wll1ZmpVUXVCNGZJZ3dReEhSZEJGb0E3TThqcy1KMG92WDZEVWxKYUtNOTRR?oc=5",
+      "fuente": "El Universal Edomex",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "6178fb50c6",
+      "titulo": "Vigilancia ambiental permanente al Golfo de México tras derrame de hidrocarburo, anuncia Sheinbaum",
+      "fecha": "2026-04-20",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQeXNaZUFnaElpVWE5YkZRWmRhUkdOWVZYeWRlTGpIYWtDTEFIOHdUMzdnTjZTWFdxTHZLTEoxLUpqd015S3NXM2NoeHdPVk9ncS1meUtZblBoZzJnVllibGtfUzBETkx1TV9Ocmt0b2hHUGJYNTNidnBPYk1OWmgwUlJaRHNhaFBEQmQtdGRQb0hhTV9KX2kzVzlXZG9xMzNHT3drcWZ5VkR2TGNGSXNYdlN6TnhvRDFMQUZGWTVRa2VWTGFNQmdJcmZYU19aRHhXWVRNV0R0QdIB8gFBVV95cUxNVEN5UWNvdjdPRDRDd3M0M21ZU2F6Ry0tMmZFVWxqSUR0M01DalB6bkJyOWNCZGw3MmtjUVp5YURfdHcxM0NfMGJTaUIydEdLYWlOLWNQR3hfSmlzVWUxZHJBcGF6dGVFbE1MdjlTMjNZZF9ibF93QTY3b3RUNGk3enlFcHBUX1NwekZoQ1JqblV2X1hWcXg1TnhYeEUyT3U0bDFidEExLVFTdnBfYzRVSE1MclYwekRlaC1UQ1lnUDNPQXBjOWk3ZXBQdnJ1Z3JwdF83T3VSVktuT3NmdndFQTAtekQyWkU2d1hzSlJsUHR3dw?oc=5",
+      "fuente": "Infobae",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "9d91f924a8",
+      "titulo": "Sheinbaum concluye gira en España: Propone plan ambiental global e impulsa colaboración tecnológica",
+      "fecha": "2026-04-20",
+      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPUUdBZWFuUTBsaDdWQzhtRnNVZjc5NnpiZU1aQzhqTU1ZYXhWMHowbktRdXJtZ0hxRTNIZWROVUxJRzQzR0Zac3I3bUlKaEhadFBtNUVNTmc4M1JQRnBMVDA1aXRvMnVJY3JEM1NocUNpMGsxckp6YUlZZ2lnVjd6Z2M0SV9FTWxrV1NOT0JicmxhZlptY2xmWWtnT1l2UkZ5TEdrQ01EamJDQksyYkhYWEcyaFZEZzZXN2R0R1RSNkVRRnFpS1ZrdGQtQjRoYzVFekg4MDBvMTNrei1xbDh2bF9zZEsya3hIa01VZQ?oc=5",
+      "fuente": "lineadirectaportal.com",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "0ebbb944c5",
+      "titulo": "FGR y Pemex investigan si hubo negligencia por derrame de hidrocarburo en el Golfo: Sheinbaum",
+      "fecha": "2026-04-20",
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNejQyLWlGVU1OTmNPWE5GVUdlcFIwSUxRRnkzdWR0NnBwNEZ6RERFNFVYMDZyODhCMzQ3ZE5CTzNla3k4MnRqT0JYcVhlUGVFUXM2aklEUDZRYVJCMXRfM0w5WWktMnJYbzFTMnQtWTF1bXIyUzZKaDA4UV85eGxxUFU4cXRGRmVzOXNzVEg5dzJDVEUyLWpVWUMxcjk2REFhdUE2RUcyeDB6Y19fQUU3cHhqb2xsWVI2SUFiQ1RoM2lkZ1BuZk8xdnNzcmZIRC1neHkxbFlOckxNYmhIWmlkYWRIeHdWRTQtaGhpWFBMX05JOU0?oc=5",
+      "fuente": "La Jornada",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "7c84017efc",
+      "titulo": "Sheinbaum pide investigación profunda sobre negligencia en derrame de Pemex",
+      "fecha": "2026-04-20",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPMlNOa21vN2h4SUJmZzk0V0Z0Wi14WWhZU1VRaFZsaVdQeTRnVTFKZUVuckh0OUJjdUhYdHFmUzFxNFFTR0lhVGNXTTI0SUQ5ZERpbGZoVEY3R0psd1hjWFNmTnNTLVUwdV9yc0VLSk1uc3ZEd3M3dWZ5MzFuMHd4UERrVnVrUy1CUEJxWXNHVUpUM214NVBLNUNPWUJWZGFlRm4yMDhZdjJPMS1DZ0VvNFd4U2VuTktUSFNjQlpXNF80RGJaZG5V0gHbAUFVX3lxTE13cmxodFlKNWRhcW40aXVUQ00xRFpJcE9XaUNQTmx6WkNKSFo4R3d0eW9FSWR4VjltbS1mbk1LbjhKWnlPdDRQelN2UTdWSVFtN25NellPbmZwQVcyTmRHLS1OV1o3VmhDaW13M1J4R1BLS2Q4V0RJMnpVUVRPajJibC1YdXRTUURGZ1FFWkVBeUlXdGpERmRuVm1XbDlSaFRjSzFnWEYzYk80WHAxRU5lWnZlb2k5dVVQUXZXenhfcWRDV2VXU3N1WG5CeFZ2N29Nc0dPX2ZBQk1zSQ?oc=5",
+      "fuente": "Bloomberg Línea",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "ff2700daea",
+      "titulo": "Pemex confirma fracking durante los gobiernos de López Obrador y Claudia Sheinbaum",
+      "fecha": "2026-04-20",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQNU5tYkZDbnk3Ni1kbTlRUlRaNGRIbzdjVDZnZUMzeTBSX21xZEZuOXNnalZnN0I1M01DTzF4Tk55TVRSRU1NTHVlcUtqb0xaLUNsLVRXV0dwb2pBbFdPVXhURmhoVjNSb2ZHa2d2emZURXVwZFBweFgwaWtQelgtUzZwSDR3QkVFRC1tQlAyWkFhdmRmbjhN?oc=5",
+      "fuente": "Yahoo",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "3e66c0b245",
+      "titulo": "Derrame en el Golfo: Así fue como Pemex descubrió que 3 funcionarios escondieron información",
+      "fecha": "2026-04-20",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQMW8xRlZQWVNKS21MczhJUFIyWi1Cb2VMRFRZaW9YS3lUZ0d6cmw3S3d4dEJ4MXdYS2phY0ZodXBaLVJvSVdyYkJXamdiaGk3MnBGdzg1Qm5kdGdJMmxHQVQtWlk3U1BubmtncFEtTzV2Ym00QkJ4OU1JNnJLU1cyMnZ3aWFqd3FTeUM0VjllNTVHTjZENlRrN2dYVVpfSy1tVnlHay1Hb1cyd1l6Q2UzTURhVExDS21LX0JaTGNYMjhpOHpLblhLS3ZONWwwVjlrUWFRczRyUUNmdDRRVHlsSndqdVZkRG1MbGc?oc=5",
+      "fuente": "El Financiero",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "251a669a1c",
+      "titulo": "Claudia Sheinbaum detalla anomalías en Pemex tras derrame de hidrocarburo; viajará a Veracruz por Gesta Heroica",
+      "fecha": "2026-04-20",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPdTZja0s0UGlYMjZwMVlIcHdmZVlqQjNRS3g3bTRla0V5VnkzQTFqaklERFJCM0ZVMTdUR3JXZzVyTTJMbzJtNjhIYkxHM0xhT3NDejFXZWNObnV3eWRYSy1QVG4yVEk0VUJPdmx5T1YtRVNiUUo1dVIxX055cFVpa3JJOElKYUdvNWI4cnJEbmx0ZTBxcE9YX1pjNWM0RzdFU2R2WkQtYXVzNGJmUlhyN0tFejJ3QnBUUWJIN1RmNmp5NlRlLTZKVTk1S0EtZTNaZkoyNzlIbmo?oc=5",
+      "fuente": "El Sol de México",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "ab1e3b19f4",
+      "titulo": "FGR y Pemex investigan posible negligencia de derrame de hidrocarburo",
+      "fecha": "2026-04-20",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNMWE1Q1NBM3IzaUkyazJLZUoyUU1iLV9SMnJtcy0ycUkxRUhCTnhzbm5TbTBYQWY4Z3NQd3cwdXBZcUlBVE43R1kxLXVZS2d6Z3B0Y1NiVWhIMmctdE9FU2pIeFU2TWRiRUJSb0NLOFNqZFZLLXN5VXlVUFIwelVuZkdENURBQWc1eWk4YW5NTDM0ZjByLVNHRjRSTXRxUQ?oc=5",
+      "fuente": "24 HORAS | El Diario sin Límites",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "c6de975e3a",
+      "titulo": "Sheinbaum respalda denuncia de Pemex contra anfitriona de fiesta millonaria; \"no toleramos la corrupción\", asegura",
+      "fecha": "2026-04-20",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNVHJ5eXg2SWhfS3VVYmU3aFFEYUZiVVVGMWgyb1ptdzZaeXhrRDlONEw2SjNSaU9pR2lOaHZTSFBTWTktbERvQ0hDYWJreDlTd1pvS1I3X0ZpWWlLOHRuWEF4dTYtejcxZmNSQW95ZW9Ebmtnc1NWZ2I3UHpYMUpwcEtxR2NoY3hYS2E4aTFPV1l1U1QtN2xUVHc1emlKSE1ZQWNzY21UYl9aUUwxS0tTei15WFp6U2Z6cjZCeTQ3YWpGMG00N1RBYjFFYVJjN3NhVHRNUnRWTGZ2V2tqQzd1aEU2dE9OMi1oREt3RlNZVUVPSEczYk8wNzh3NGxNZw?oc=5",
+      "fuente": "MSN",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "23dcfda288",
+      "titulo": "Libia Dennise entrega escrituras y lanza agenda ambiental en Guanajuato",
+      "fecha": "2026-04-20",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPRk1MTE5WN1VMNGFKTDRaekIyeDFDUzNLRml3SVBMSXVjSHVzSlhpNk82b2hyRHV1WGVaX2swMG9wOV8tYTh1TnI3N0dONm1JUnEzWkVFSVBlZEM0aFE1aHFWamg1ZUpIRVEtOWNneHJoZTdTekx3VnEtSjZiOW1OVWdxbTJ2YjdHYW4wdnpoZHZFNXJsdGstRHlhVEY5YVd4cG5jeWE1eHlvTlJldFlaYjdZRnc5WmtNR3NxcG5fWXZQLW9Ub3BMNtIBzgFBVV95cUxPUEZVMkk5RTI5dS1TdHdMcVhoQTJjVXczYmhYU2UyemFxZWVLMVJIeVhWSE9lcmtYLVE4Sl9kekRneXVpLXFZZVJyUk1LZkJhSGtQMVdiYm0wV2JjUGt1c2hIdHMzTTZDek9BZDJLSXllc0g1eVl3Wmw5S2lsT1dJUzV1LW1qUzhLdk1yRFczekZJRDI3MHVEbkw0MGM0SnJLdW9ETnIwdnVpTTJTWWdVcFlOZWZTRnNWY0otbGVWOUdFbFoxUW5xOE5jYzhlZw?oc=5",
+      "fuente": "Reporte Indigo",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "54dd7ccdb4",
+      "titulo": "Claudia Sheinbaum cierra gira en Barcelona con respaldo internacional y propuestas globales sobre democracia y medio ambiente",
+      "fecha": "2026-04-19",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPVlFmMjZCUnp3eHk5b282V0dNUU53d2pwMWFzQURJVjE5OHJ4eXNMWDRLQVEyS21LNEQyUDNRUjFxSU9iUVNySndNM0YwZnp1T0hqNWc3cUpBQXJlOTd6Sy1VcWJKQTRHRktSaUJyOGo4bHRvSERpWHIwSDh2RHpyZHczUjF2VHVEbHhiSVVlMnIzNUhsVGd0YjdNYjh0LWQ3NjN5UlM0RER0d2xhSlRxWUJsSTZzeVNVbzdqVjh3N0E3cEJvSGxQZ25RYmR4aW15Mng2YVIzeWtDanNIQnc?oc=5",
+      "fuente": "Zacatecas Hoy Noticias",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "6c284ee1cb",
+      "titulo": "Concluyó Sheinbaum gira en Barcelona con propuesta ambiental global🎦",
+      "fecha": "2026-04-19",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYTVaR242OHpXWG82RGxvdXVVdk1vejZ6bkRDTngyb3FqWUlJSVhKcTNxZGVOYURhaGhlSno1eFVmbWwtNDE4N3FNZTlUTVU0cHdINWlkOVBDNGxlT1cyclhNaDc1a3FXYzl4bVc4ZVVJcVpOemVtUEtRMHhLd2V5VVp0ZThNTHc2S3pZT0hvUV9GczZHREJqQktLOWpHcFJ6ck1LMVYwTU1tM0xxam9v?oc=5",
+      "fuente": "Tiempo La Noticia Digital",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "00c1324799",
+      "titulo": "El plan de fracking de Sheinbaum choca con la crisis de Pemex",
+      "fecha": "2026-04-19",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQV3ZhVGdta3BJZmc4UHZVRi16MFVhVmxjQkNZdnBCaVQtVkVuNmRRTDE3N1lra3JrZW9WU3ZuMC1MRlc0blBlQjd3b25ZVGk1LWM4eGwybVlnWW12d0Q2Nk94ZF9mM0kwUDM4QlYtcWlzWmRDTFJha2JOb0NSS3FuLVZYWlNVa1MxYWFmdnZPcldSQ1lxZmd4cU5nRFdvWHFsSzZjNFRMNHk0YlFJOWRQX2tmb0VqeWpLVFHSAaoBQVVfeXFMTjNNQlZsaTZsdzVkTkpjTEQ1LTlHNk5GeGJZLVRlc2hHRUFUSTJCLWttcjRwbHFRQklyUEhGbURSdmVjM21WMjJMN1pxV0pncDg0NnlWSXJfSXNWaTBtQmZCWmdNLWFSVHA4VTJwY09Fc3M3THVEZHdZRFhuWVN1Y1RXYUVLaGRmekhSNU1wazV1Yno4LXExS19RRllxT1dGUF9XSy1xc3R4a0E?oc=5",
+      "fuente": "La Política Online",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "440f25b3a6",
+      "titulo": "Claudia Sheinbaum impulsa agenda global de paz y medio ambiente desde Barcelona",
+      "fecha": "2026-04-18",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1ndng4T0dxYVVFS0tRbTU0TTZPaXhpLTBZbjdoeGoxTFFhZjFEZTh1TnU4NlE3UVZaNjc4WkdnZnZfcW5vcEIwQVNSMWdudmN0a3dHakZPWlM?oc=5",
+      "fuente": "elexpres.com",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "a6d55bd810",
+      "titulo": "Propone Sheinbaum transformar el gasto armamentista en bienestar ambiental",
+      "fecha": "2026-04-18",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOMGlIZU5oRjZjQm9WM1V1RW5zVGpMZnJLa2pZZlAzWWl0NUNQc3VKQ1EtTVN0bmJvcVVmRFBFXzFIREx5YzVnTUQyVGNzLWhTb0F1dWFocG9EZVhMLTlSVmk4d3pPbFpKTGdzeWNsUklwVDN1UkVzelFnSi1rcVExQ3JGX3VjdDVhdHlUc1d5MjJvWXlyNDhfbXREOWJVMmdqX20yQkdwTGdsdVZ1?oc=5",
+      "fuente": "López-Dóriga Digital",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "2dc579a4a1",
+      "titulo": "Desde Barcelona, Sheinbaum plantea viraje global: menos armas, más medio ambiente",
+      "fecha": "2026-04-18",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNVnp4c2dJMVlnVlZzdmpBSm9EUmsyNktySGRXaHBFaHFuUy02SjVudlgtanhaQ3Q2QzExbmdFREJjb3lGX2Y4TzBMUUJOLVI1djdUNC1nZ2prOHNtemhRRkl6UGpMQjR0N0Q2UHJqOWpIQmJvcDNHT25qdmJIbnlsTGlaQmJ6OFVyVXowYVprS0ttTEJpUUxvUXl2QlU0dGxhRXZGMEFUWVVyZW5jOWZZYjU0b3piYTIxQzVCaS1MLXZzbnRQOWFqaHM4enVpXzZJ?oc=5",
+      "fuente": "El Capitalino",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "2d35dad547",
+      "titulo": "Formalizó Pemex instalación de Comisión Consultiva del Petróleo",
+      "fecha": "2026-04-18",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOWC11SnEteUQ3M0Jvcnp6czJ0dU00bmYxZkVxajV4ZUltbkpUcjRROHF1V3ctZTF0QlFPV2k3akZ3UEQxSmFVSjlJV1BYZDI5dlhITmlCVTViQW5nU3NsRFNHMW1oSzdBM3Fock1aejFna09xSi04S19UelRpV1lKMElqa1pDYnR3UmtydGtVSHRfQ3E4bUhHcU1QT3pkbU9lRWhFTHlfcGZWUQ?oc=5",
+      "fuente": "Contralínea",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "0dd57a492b",
+      "titulo": "Así participó Sheinbaum en la Cumbre de la Democracia con temas como el cambio climático, no intervención y justicia social",
+      "fecha": "2026-04-18",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNaEJPSHEyUUtERVFvMi1nUVdkdVBrTXVCM0JnSUhtZmdmeFkzeU5GdUdnR2ZjMGs0UXlsX1ZWaFM3OUgxelhyamV2TkJpUWVvRnQ0VFNPVWFaUWpVdzNTdzB2bjh6eTB6V21od3ZGRWtWUno2cmJzWTlNWElKejdBWkRrRTR0cTNYcURGaVg4d0lJdmFkLW8tNlIzZkNfSi1jUGgwbzg0MW1hMmtJQlpLZ2JqZ1otc1VRN01nQjJfRWpQU1NFVzBpTEU2VDhxMmNHME1jU1pVVGRjVnhFczNyb1VwdlBfcTVGekl0NFJ5UWtSNm1seGNvNG1HNjdvUdIBmAJBVV95cUxOT3d2SDdVcEVxUkFTVWwtcjdaZ1pxLVdQbkMxc0JaMmZRVWRONjFYVTBueUZKY0NDQzJZZHlMOU1nRnFXSFgwbVhFczBrMGVEajFXeE14OHNJQXJ1T3l0Y1NMQ182S1huLUd6Q0c4RW80WS12ZkZXcG1NWW9CclhVNUp5ZVFpbVR5MDNEcEozQ2RhbEtBRDNuamJaTXBKVlYyZ0ROQ3phRUJNb0cwSnk5ZXZpY3d5QnB1aDFGWFpKQlBnM2VqLTA4akw1U1Nxemd3eEl2TUROandmUXV3eUV6NDN3dmt0TElNekN3bEgwNXUtbGYwX1l3ZkkwTWdNMnZ1aFRiS2xsQW5zVWlxSk5nbU5QUVg1aVBi?oc=5",
+      "fuente": "El Imparcial",
+      "categorias": [
+        "clima"
+      ]
+    },
+    {
+      "id": "a01282ff79",
+      "titulo": "Un bosque contra las balas: la apuesta de México en Madrid",
+      "fecha": "2026-04-18",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOWFB2WlYyVVpqRVpHdEVjZjlsbjB4Y1NkUWdDeVdqWjBLdHJUc3JVVkRFUmJ2WE9NY2I2ZkRTUlN5dlEyN2lWZVVrbEtERUxHZ01aelBteWNFaVRQU1kxVXk4eEVuMmdmU283eC1YNjdEQ0ZsMENGWHVSeHp6R040dUgxalRUVXlJMDlMTmlLN25sMFJ5QlZZ?oc=5",
+      "fuente": "mipuntodevista.com.mx",
+      "categorias": [
+        "forestal"
+      ]
+    },
+    {
+      "id": "132ca8ce97",
+      "titulo": "Retiran 21 toneladas de basura y mil llantas en Periférico Oriente",
+      "fecha": "2026-04-18",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOYWlSWEFEUzVzbll5eUd1MGJjVTdEVlk2bVZnWUZSM1lyWklVdVVOazlteFc0c2hKaFlOeWVqb2l2c3hsLUUxRDVnaFRvNXZuZkZDcl8wMTJNZEpZbzdmWlpIQ1RIbHZxVFV4Z2d5WjU1WV9Pc3dVUU1uLWhpZ1ZHQVRRZVQ0NXZPaVoweFQ2Zk5Eek1NOW1XSHFCejRxU0pMb0FZZ0E4SVhac0dxeHZqcXNkMk9aQTh5QkNhcw?oc=5",
+      "fuente": "La Jornada",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "8036c28d75",
+      "titulo": "Claudia Sheinbaum propone programa global de reforestación con inversión militar durante visita a Barcelona",
+      "fecha": "2026-04-18",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQc01WRVpkUFRoSjd4THBfdjQ4T3VGSUM3WlM3UkI2ZWZiZnpGQWFTVXZ2VjJ4Zkx4YTU2cU5BZ0FrQm52czVWTGlBYW95Z0Q3VDR1ZVZzRnRHRVdGMFZQZUtENHEyd3M4cTJWbTlaNm5qUldKNy1jT0ZjY1NOcV92V1Vwc0dGeUpoVDMtTmFCUDdIay1IMVFNTlpnd0pqdjdlM1VhZUEwMnp5U2lGUTkxZGptX2FYQ2pkNkNfbGJ0a29iMHg1WWtyZ2x1UXQ0MzZ1bVlvQTYzcUl0bDlrRENxbVlhWVpEVjBIZmc?oc=5",
+      "fuente": "Periódico Central",
+      "categorias": [
+        "forestal"
+      ]
+    },
+    {
+      "id": "b7f527ac73",
+      "titulo": "Desde Barcelona, Sheinbaum plantea convertir armas en inversión ambiental",
+      "fecha": "2026-04-18",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOTVNheFlvcXBTekUwY2VNeXhvdE9odzJJYTZXUEdMd1gxNlhYeURyLUtoMTRXMzdVVVlXbWg3Q0o4bVhFRGZ2SU9WcGIwRl9JQS1ZWGRNSXVaLUpxMjAtNXk4S0tXQnEzeFlOYlBHcjdwbHp1S0dWLVZ1OEp0YzUwLTc0SUFOUzhZandqMVktY0w5Z2VmeV9ZSU1hc1k3LV9iRmRYbFZVOA?oc=5",
+      "fuente": "NotiGape",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "3238467318",
+      "titulo": "Desde Barcelona, Sheinbaum propone transformar gasto armamentista en cuidado ambiental",
+      "fecha": "2026-04-18",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNZmtIVmRka1JHS182UC1LRmJPYWJCWG9vODFQcTBHM3VpeW1JZVpfRndIOV9sN18tOWhVTms2YkxwRC1hU0JWUnMwVXpPaEZwSm1xU2J4aHRibndCZVlmdDBLdEdQUHhKTzVkNHdLNXpyQnRKZ1FjYXVhX09aMnlyX0RKR2JUb1NvMGdkRlJ2bEJ0cjNUZU8tUHpSQjlxMVZkbXZkZVJ6QnVxeFNzcGVGX3RUb29faGNxeWtMUVB5aVJMRTlzZUlidFF5cw?oc=5",
+      "fuente": "Noventa Grados",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "432d75b61c",
+      "titulo": "\"En vez de sembrar guerra, sembremos paz\": Sheinbaum propone destinar gasto militar global a reforestación",
+      "fecha": "2026-04-18",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPOUd0ZlJ5d3BjZU0xSnRXcWt1MjA3U1lxNWFzTkEwZU1ZZ2FBTk4zcWRucW52RzlHTkF4Q3piTnhOTHR5aENyNFRLVjVFN3dFalZKNkltX2FaUXZLZHJGMUZqR3NDSC1HUzl1UGdUQXgzeDhicWZWLWVud29EY0NwZGFJRy02M2V6N1lMbVB4V1cxM3R2SkpncmppVVNRbmhJV3p5WmFZd3dxVGFCbWhUZVR5Qkh1OTZKM012SWMxUzFBTkZWbWRfWU8waGFQV294VWpLb3NSa3hkUHVT?oc=5",
+      "fuente": "Diario del Yaqui",
+      "categorias": [
+        "forestal"
+      ]
+    },
+    {
+      "id": "f90d389702",
+      "titulo": "Pemex reconoce derrame en Golfo de México; Sheinbaum instruye investigación para esclarecer origen",
+      "fecha": "2026-04-17",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQNmMyV1FuNlBhV2Z4SENrQmlCbXphM0xUc0RLZkF0NjhTejY4ZzJxck1adlE0QjdZcTdtRFFMN2kzQlBpR0ZNYWRBWlJqaHVMT0xaZm9MUEQ1ekRQSVA0ZG0zRkRha1ZJcDJDcnV2bk1HcnVxbmVxMk9kWUMxTEZDUWVuNmZNN2JPSnF1THdveWJhbWFzWGZrOE1Dc1JHcWJpV3h2ZTBkb2xIMzh5SXR4R2RKZ0lmOGF2QTVRZkVXeWF2SnRGcGE2ZFB6bXdVWEQ4UE5ramJCYVpidmtpZF9n?oc=5",
+      "fuente": "El Sol de México",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "f260d0092e",
+      "titulo": "Jubilados de CFE se manifiestan en CDMX por recortes a pensiones impulsados por Sheinbaum",
+      "fecha": "2026-04-17",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPZ1phMDFMWnJzck5QSER6eVhvVEpKa2YyOVZBWnd3aXJBcVk4T3J5ekEzUVUtcGlyOV83VFF5ZjRnNTlHQjRUSDFmXzI1N2RwWTlCa3RMUkx6NzJELUZiSXJmRVg3TmRpTlRqWGozSUZ4Z0liVVlNcXRaTE9EOWhzNjZudE1NVXEyRXZWemU1MjFoMHFicFQzV19GZ3pQQ0k0emFvTFlxcE9LWE91bGtCUC1DMjBiNmtMWkNzV0h4aUpWaHVPNTktMEN1dGlQZEx30gHQAUFVX3lxTE9nWmEwMUxacnNyTlBIRHp5WG9USkprZjI5VkFad3dpckFxWThPcnl6QTNRVS1waXI5XzdUUXlmNGc1OUdCNFRIMWZfMjU3ZHBZOUJrdExSTHo3MkQtRmJJcmZFWDdOZGlOVGpYajNJRnhnSWJVWU1xdFpMT0Q5aHM2Nm50TU1VcTJFdlZ6ZTUyMWgwcWJwVDNXX0ZnelBDSTR6YW9MWXFwT0tYT3Vsa0JQLUMyMGI2a0xaQ3NXSHhpSlZodU81OS0wQ3V0aVBkTHc?oc=5",
+      "fuente": "LatinUS",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "eaafd29b8f",
+      "titulo": "Claudia Sheinbaum purga Pemex: ordena cese de tres directivos por ocultar derrame en el Golfo de México",
+      "fecha": "2026-04-17",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQQV9HOURfTncyT3B5Y0hmR0paeXNlN1c2eDU4YXo1QmdSZFU4bHpCVGpjS2ctejJWNlNENDN5RVpfMkNNMm8tLUFWdXZILTNfTnh5SWtVdldETXFHaUlYSzlqWW5KQUgyXzJwSl8xTG5VdmFLaGFUWkg1Y0tyQ0p6VmQ3V2s3dVFONy0wUEFLRnhCcXVYTElBRVhIWkJRd2VYb25JMHFuakhLS0pZaHpFRzlCTnBKRmRRZWtKN282RXpuSDYzRE9QS2JjMHR5eVR1UzZDR19PS1czZG9jNHFscFpORGZtRlFU0gGDAkFVX3lxTE5tN05Bd0xVVGNiSXpydW9KU0FxcEdHbHY0Qm1QQzBhcDJ3Wm4tX2hVaE9Way1IWEloMVRuTWt1UlppOVZhVlN2dFNMNTBMN0VocXZ6bkFpWFB1NmlHSXZTQnhEMTNQYU93cHp2Q01XSkR6ZEZhTEJ4Ykx0d0tUUWIyRVVEMzZCWXR0d3RNYUpDZ095NmFZRlVVbUJVdWE5TXhraEh2bEl3Z3NWeWRvVXRIbHRxeTI4RnFkS0YxSE53TkttSEVRNEU3VWRhVzFqbjVxQzRqSlBaRHdCU2JxVXVaek1wT2xEbFRRUXkwSVhJRnZfYUpyVW5VUFdWZE9sNzliQTA?oc=5",
+      "fuente": "El Cronista",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "6a4a88c6b5",
+      "titulo": "Gobierno de Sheinbaum admite inconsistencias de Pemex tras derrame",
+      "fecha": "2026-04-17",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNYWdmNm0yZlc2Y01fenJyeTJZU1hpQXpHaHhDb2Y2a3I0cDJuR2luUHNUVmhldlg3c1FQdGxQLU9iX19wZy1LNnlQelhfMmladW1UbW5LbHN6Zng3Q3dvcUxzOG53UjZOWnQ5WjQ4akxnS2hXZUZZRUk1OWotdjJab056YjNzOEZkemplOGJ4QV9NVUU5X2MyUHdNNGwzTk1uV0pmSkIxUlNIRzg?oc=5",
+      "fuente": "XEVT",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "1f61ca7b86",
+      "titulo": "Separan 3 funcionarios de Pemex por derrame en el Golfo; Sheinbaum instruye investigación",
+      "fecha": "2026-04-17",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQNVJha21oOTBvSnpaVWdBeVo1XzFYOE54U3VIdGZnSlF5WXV2RFlxUGRUSWExQ3JrTzlVd3FLeXdtektJVTZickJVTHdVYzd3bTFyRXpEVElyTm1QLWlPdHIzQnY3UFJGaktqZ1E1M3k1dmVlb285OXphNlR2Qm1ObHRUMHFjYkdxWTRMZmlsRmtVcm55VHU2UEFIbERreGthX2N0Y0lTWl8wYkNfN0lwMmtlVEgxTXpE?oc=5",
+      "fuente": "siker.com.mx",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "52743e44c2",
+      "titulo": "Sheinbaum ordena investigar derrame; separan a tres funcionarios de Pemex",
+      "fecha": "2026-04-17",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOVTMyMGZoQXdwVDhFejhxZlFYNWl3dGNZMGtlM2UyYThmT2YwM3FuMjBuZUhQenFIcGlnclJ1bU5MVVJJUjJHRnprdm9YalNnOFRqUEY5dkl0TEdmQUdCZlktRkxzUUxiRkNlSHdwc1IzWnZ4Tkp5NWtkSk9qWVJma3FmUkFCV2JlcEZFOXo3dXNNb3JLcnNJdFVPbk9iU2ptWkYzWlNQYi1ya21VTXF1TU1xLVV0SGpVVFdQNg?oc=5",
+      "fuente": "Meganoticias.MX",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "e7370eac89",
+      "titulo": "Presidenta Sheinbaum ordena investigación por derrame en el Golfo; separan a 3 funcionarios de Pemex",
+      "fecha": "2026-04-17",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQdFRmUi04Q0FQMjFwRUhfTk9QbEtGb1hWUDdQWVRHY1BVLW1qMDdkXzliQmFjRml3X2NyeFAtdVp4VFFPRDZtaVlxN1otWEI4bndCRWVBMGtrWU1PdG1MT2lTNDMxQ3dpY25zaGtrcVBwMzFYZzBJUF9ocnBuOXZlVHVScGVGbkNQVi1UQzRCejlsaXJjd1hXZjE2NV9pdEs4NmVhRFNDM1dyUEpQc0VTRUpxalMwMFllZGdXVkpJLVlNLTM4RVEtTXVOX2E5Zw?oc=5",
+      "fuente": "El Soberano",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "cef84218ab",
+      "titulo": "Dos meses y medio después, acepta gobierno de Sheinbaum que derrame de crudo en el Golfo se originó en Cantarell y fue responsabilidad de Pemex: cesan a tres funcionarios menores",
+      "fecha": "2026-04-17",
+      "url": "https://news.google.com/rss/articles/CBMiugJBVV95cUxNZnROWXdIa0VKZjVnX0tYcDFudjV1cUljQl93S0NtYXliaFI5MW9jRjUtRnlfX3dWdzRIVE1iaG13cVFRTTNZNnBhVkZQT1k2Q2RBSDdNemVhUVNVVGxsaS16Z0tydWVieEdjZUJtZ3pFODk3Zm8xdVgyYW9aSHJxblFmajdVUTVUT25XUUQ1WmJ5YXNoSmdVX2twM3Jkd2RCM054U1FmWDBTRDdUbXBfMXpoLTVpZ1Y4MTM4UDJHdTRYczFkYW1xeWE3Y0RHYktsZGpjWjkxTU93b3ZtR2pDN3psamJJSmJaajZnSFk5YjdZRHR6YXlsaXVPZ3BKNWJSY0s3Q3d5TGE1SE9kVnZ3ZGF5N0Y3aEVjcVQ0OG02Xzlhd0xfemhVYVpXejVfR3ZlQnJCNjJrZVRjUQ?oc=5",
+      "fuente": "La Clave Online",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "7bff3f6dcb",
+      "titulo": "Sheinbaum y BlackRock: Energía, agua y poder",
+      "fecha": "2026-04-17",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNRm5EcmtwUmIyN2xkeUk2YVFuLVBIOU1pdVhkdVl6QTNxOWNreTlRdE9xX3Z3dzRvY1N0VkYwTVNjSHRJaXRjTlV3SUFYSGZzaUp1N0J1NkMwYW9oMkt4S0Zfazc4UlRDVEtFbUdoRmNmLWVvRXlUX2p1RlZwaElEZ25PYWFlb2dGRWc?oc=5",
+      "fuente": "El Heraldo de Puebla",
+      "categorias": [
+        "agua",
+        "energia"
+      ]
+    },
+    {
+      "id": "4d9268e67d",
+      "titulo": "Sector ambiental federal realiza Feria del Bienestar en Tlalpujahua de Rayón, Michoacán, con atención a 39 mil 308 personas",
+      "fecha": "2026-04-17",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPbWI0R1lXTnlxbkxTdkJEMVZ5QmdEaHF4WFVXYUlKWlZzNDJQbzlvRFZtM2pwNlBYNERlbVJZY0l0Q0NUUVp6aG9zVjllbDlmeGFJWWpZaWJ6R0hvRmN2aS1aWkRxcEZLcXowMGdYZWY3RFhNck9HTWxCNWZjVXlsMVI1Y3Y5MmlYTkFaSkdWcXFxWGZmRzZZd2I0d2VuRl9rZU1seW1BS3hLcUNRR0FRbEUxSGV5STlvRmVaag?oc=5",
+      "fuente": "Gob MX",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "13bbba31d7",
+      "titulo": "Sheinbaum y el regreso del fracking: ¿soberanía o ruptura ambiental?",
+      "fecha": "2026-04-16",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYWpoQ1h1WWZkSUZaNVAya0tsbWJoR1N5UDBGY2ltd0VlY0FtcFV1SnBMYmVaUC1vdGpZdl8ybkwyaWwyQjRiQnhaN0tHcWp2aThiQ2dRcTR1UmdVd0stVGQ5RFhnLVVFOEg5bUZBcHF2d0dibGpZUDhqenJLbHBMVm41MUk3U09CU2pJUG5ya01mUFh3bUs1MENrX1pFajdGX3hSRzBHVDQxYU1qcHFZ?oc=5",
+      "fuente": "UnoTV",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "17cb102414",
+      "titulo": "Confía Moheno en que Sheinbaum garantizará que uso de \"fracking\" no genere daño ambiental",
+      "fecha": "2026-04-16",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQN1B3TjlIdzBQMFVzWDdXbHN6WXVPVE9LUC1aTE1HSzBpSkRVTjZfaDV1OE5GWUxQQ1MwWkMxZlJMcHFmT0dzeXpSelVocENpZ3BtcENkY09jdl9ZdS1KVV9Jd3BFeVA5NEEzdkVkem9VSFljYlk3UGFHa2hkbkdhOTJmR2R6dWMwMFptenN5MGRwdG9YQjk4dmEzODRrTkluVDI5VDJiazY4M19pVnA0OHMwLVpSQzdHTUF5aVRGSW0?oc=5",
+      "fuente": "XEVT",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "fee28ccf3b",
+      "titulo": "VIDEO: Rocío Nahle agradece a Claudia Sheinbaum Inversión Histórica en infraestructura hídrica en Veracruz",
+      "fecha": "2026-04-16",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQZXBld1h0N29Pb0dzZXJYRndYci1mSEtCTTFaa1N3VEo2Z1B0RDR1d2dTVndfMmNpcnBnWGxEdGp6TkVibXJxQ0dwdkhrZUU5NnNJTW5pSXhTdjRBRDJiQUFpd0dFVVkxcjVjZGVKUF9mcWRGLTVTX0JnVGhCQXVMdzVYd09vN01KY0l1el94MkV0aFJma2NTajlrQ2dwOS1IWndIQi1aU28wc1FSZnhjRmU4al9VMUl0elJGbzc3d29xdGtWV3M3V1BqRC13WHZPMVpnZWx3?oc=5",
+      "fuente": "Billie Parker Noticias",
+      "categorias": [
+        "agua"
+      ]
+    },
+    {
+      "id": "1090a0ece3",
+      "titulo": "Presidenta Claudia Sheinbaum Presenta Comité de Científicos y Especialistas Que Analizarán La Explotación de Gas Natural No Convencional Para Fortalecer La Soberanía Energética",
+      "fecha": "2026-04-16",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1feGpvaHJ0UjZfcmxIOWtsRWp5SGJaY1RBcm91VGN1SENMTm9ZSG8zNjFxU1VRaU9SWnd4dDdiTXlwekptQ3h6YmVQUF93SkQ0d3c?oc=5",
+      "fuente": "Diario Noti7",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "2032722bca",
+      "titulo": "Columna | Al Aire: Sheinbaum, la influencer",
+      "fecha": "2026-04-16",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPdFhIUnAwMnNiSE9EeDJNTXZaWDJGSEJ0akQzODNycWhpTERlMFRoUHZuMUh4TmJId3JoQ1ZoWkE0eEhyeGRCeS1rYUtYUC1JNnFRSHNNZF9lNTVKZThhRDNTbUFmTVd4WUVwV1ROSVgwWU1sVmlJZFVNUC1zdzdBdEZBaUg3b1pL?oc=5",
+      "fuente": "Revista Fortuna",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "4bf4e05468",
+      "titulo": "México revisará el fracking: Sheinbaum prioriza soberanía y mitigación ambiental",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOUC1LM0FxN1ExVnlkRlppNlVOMVBBTk56amMtRkd0Y0FKUU5KZTgtUGw5RUczbk85T25yN0Q5N1hFY1Rkd1FmdU9TeUhsNVpSNS1vZ1dwNG9iSkk2UDVLM2lVUmw0SWpMTjlYQzY5ZjlWN2ZZOWU4eGV2QjhRY2RIdlJpVDZzWmYwcHg5MFZTRWhaMDJDdDF0X1lha2gwS0JxZXhrMVBEZDJiZVNiMTVFZERxVGM4QjVLTXlZZkJn?oc=5",
+      "fuente": "Revista Fortuna",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "af9daf5525",
+      "titulo": "Sheinbaum llama a reconsiderar fracking; presentará informe sobre impacto ambiental",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOT190UjdSeUM3ZXdRTENsVVRsX2tBTVpzRjBUZllmcWx4QWk4OU92S2hXUFBjTXkwbHN0RnBxeTlJSUlHdy1WMDBCbHlpRVJaVGs3SC1SWkFhclJJVWxLUDFTdWxvYzdFbjJrc3hVVDh5Yll1aUdLaVQyd3Z4WFpvVGxIYVYzSDVEMDN1d0VRRXpNejhCZEk1SEplX2Fhc1BLQWZJa2ZLdnBVcEZyTUowNVcyMUc5RzJ1R0l1d2JKMjJiZw?oc=5",
+      "fuente": "La Silla Rota",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "f681d8f7a3",
+      "titulo": "Mandataria Sheinbaum Pardo prioriza la soberanía energética sin ignorar el impacto ambiental",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOcE9fSzREMGlUTlY1UFZkQ3dncmk5OHhId3BGSUhNbi1mZGd0d1NEWmxwNktxSnhMZC1aRmhVejM5eFBGNlphTjI5TEJ4dVdnTVNRQmlqaUxTRGZYX0JkRDdhbHBQcm5KV1ZLb3J5UlNMTGJrNVVTMUY1d0p3djd5N3Z6NWp2emZabnMwTXlIeWR5U05iZUY3TXk3N3oteE9DNkdVXzRvR2FkZEZDcWdnVGdZQXZUOUxfQ3puME5sQ0RSSzdaYUE?oc=5",
+      "fuente": "elvalle.com.mx",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "e8940a07cc",
+      "titulo": "Sheinbaum admite que antes se oponía al ‘fracking’, pero ahora lo evalúa para reducir la dependencia del 75% del gas que México importa, con una decisión que quedará en manos de científicos según su impacto ambiental",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxPaXpxS0VNTnZOQlc2bmNPOVE5OEhRMzMwLVduZnFEa2pmYXAxSU1YcEhRYjlGNkdzQzNPbTFSVzc4bnV6Q2tSMENEZEVMRHh6aExfLVVzNUstWmVJV09JX2otR3RiZkdVSC1MUUhBLUN1NWJINWx0RWxSTk51MERPRVduc1Vac29jY1B5WjZYUzFDRXpESzc1dXk4V2lPSFIycVRSNVZRRXRydTY2RWdyRlBibzBUX3lCTlcxUVB2eDM4VHlKUnNSN0dRV21TQWZyTDNVa3JSTkdSVFZCN2VudVRpd3pGN2Nwa1pWLW9TX19OV3FibUVIb1hYU1BoS3RHV0N0Q0RJSWsyM09uQnNxbF8wY9IBrgJBVV95cUxQNl9xQjl2NWVXVFowSmJ5eEZPR014eDhmQnVoZHdqNUZ6YmJCSGZIVUdJb1ZIZTlndHVBUzFieEo4OHI0eVM2elRQVzRlOXM5RWFtb1VLbEZwbi1QMGhsZVpSVmk5WVhTbWFRTjNYdExCQ25xazJ5cDAtOFFLSDlmdTAxWUlKeUFOS2dYOER6dU85cGNMc0JwdVg1X3ZTaDdQLXZZVWdhc0FOQjdxZ0xtWTJBQmRHZzhNV3lnVEJ5RjhhZkxIR2NDMnNvX3F1bkVhYWpPWUhlRkxHX1lGOXJTMFcxMjBubHBrcmU2TDFBeHYtSG9NTFVEdEIxWE1BejNlNERCYjhucldQZFlpeW04ZEJpWlh5dVFTejBjSXBueDNFa2dVUDk3cGdHOVNUUQ?oc=5",
+      "fuente": "El Imparcial",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "df89af837e",
+      "titulo": "Desmiente Sheinbaum que haya apagones programados por CFE para este día",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOLThDYzdTamljb3NWbndkS0Q5Nk91ekFRSjVMQXFZalFHLV92cGNrTTJ1TkMtYi1kS2gwZ19ZNElyeEdwY3k0TTJUVmNzdWg3NnlaYmFjcFNST2lLdGF3V0ZnNG5USW51ZDlCNGtBeGRaS29wWFR0TVdtQnlHMjVwQ2VvZ2VJQlZNa0xsVGpMaVhVOGNnOGtlSFFiNWFMWUY2?oc=5",
+      "fuente": "Tabasco HOY",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "d1bd41a374",
+      "titulo": "Sheinbaum niega apagones de CFE y anuncia reuniones con gasolineros y productores",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNTnlHd2c0VEFNLWNaMkxFeU9UX3ZoOWh3N3BsX1U4eGNMZUhIOHYtNU5nX3I1YU9EX2p3QTRudG9pNUZrZmVjMmVyTy1VVzJvSnZqUkNrWWVCOEtiNFB6NUYtalMtU2VnZzFZaE9IMWh6M0RtYV9qa0thNkpDOGRHUU4xNjl0Y1Z4dVJTcmk3T3g5anBQdDhVOVE5TktXNEdDMGIxbURrRGs4RmQ0Mmc5ZW1qM2hZRktvNmFF?oc=5",
+      "fuente": "Notisistema",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "895b8e70bc",
+      "titulo": "¿Habrá apagón de luz HOY 15 de abril en México? Claudia Sheinbaum y CFE aclaran rumores de supuestos cortes",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOUy1CTXF3MXF6NVIyd2pXQzFJR0NXeWxzbWNRSE5fQVI5Um9hSUJ0cmNFTXhLQUwyb1I3NndJdFAySWpzODJnYzJuY080NDlCLXFUd0dtS29EeDl1SDItVmdlWjUyTzVWTmxub0NpakRzbDZBOEFzTk5ZV3lFZ28wVlNYQV92UjZhaUFRamhVMzZLXzlEU3UyeEIzMG9ET0cxanFDblktY9IBpwFBVV95cUxOVklrQnhZbE0zcWE2YWRqcjJtajNYS0tjOHZLM0F4ZTI0aUszUE92N3FXMEJTMFhlM2VaSlViS1JDU0VZdUlyMUhxTWtjVjgxVm42anJ4VThIR3pvOG56RURWNUdVb0VvLUR1Zzl2ZHlsQWstOUxGYjJrYXlzV3h2TVplcFV3cWZ5Slo0NlJocG96V3dnX19DZzdRdVE5Sy15dktkdHV2QQ?oc=5",
+      "fuente": "Milenio",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "800ba03b09",
+      "titulo": "Pemex baraja asociaciones en gas de esquisto mientras fracking gana fuerza",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNRUNuSnQ1UzFpWFFFU2RYNHlRemhmeFRfX3QzME1OS3RCblRPSEFXdGZqckdZbjQ0TG1Lcld4NVh3MmU4bXM1SnhPaHh2YmdlVEkyV1NseU4yRUUtWTR6ZmdGM3U3U3NRc2dhem5aWXh3YWc5b0ZVZmR6ZHlUS2xJMjR6eWNaWS1DdXYxUktRMWVvcHJxSTlzSDZ3UWU2OFRKVDVlTUsybXNpa2x6VEpCMUIyWEVONXM?oc=5",
+      "fuente": "BNamericas",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "a9d7d87ee1",
+      "titulo": "Fake News: Sheinbaum sobre apagón de CFE",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBub3poa3FWUktuak96ZVctVmVDaWhmeTc2dTZQS3g1YUdTZF8waU9oNndzQkF5Unl3YWhZX1lYaVdRMU02MkVVRDYxQnU3YnVIQm1MX2hlaGlCZFlxOW1tZTRpNGlta3h1ZjlqZExVYnJFRm00S2VHM2ZtS0pNQQ?oc=5",
+      "fuente": "W Radio México",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "51fd31fdb5",
+      "titulo": "Piden Jubilados de CFE a Sheinbaum Auditoría a Pensiones",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNY3FKeXBGY19oSFNRczRJSUJxUHVOU3puZzhWcGNqZjVqVFJ3ZVlEdVB6UXB4NlhBV3ZDMUhMTDFmZXBkdUF6cWdDR1BoUWQwbDVlQ2ppM3BJREt1ekFUbzUzSUg4QmpseUdMOTdCYl9OX3JFU01KejZxblNJQ08tNlFxdGU4Ui1ONjdZX1dtSQ?oc=5",
+      "fuente": "noticiasdetampico.mx",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "2304fea54e",
+      "titulo": "Sheinbaum presenta comité de expertos para soberanía de gas natural",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPbnNCclRNOVdmbDdnOHB5VGExbUFnZzlibmFnSXJNdUg1S3ZIckR5ZmJQbmJrcHZ6RlBHNzZRZVJic1ZNNTVJVUpPRWVOOUxNdlgtUlFuckIxUDFFZlFpTUlTazJTazFWMzk3MDFtSWhEdnRXdGx5MEhocWtqUGFyNHVpZTJINzJ2RE0tZlQ4ZkNKSFR5SEpOUk9CSG1zZGPSAaQBQVVfeXFMT29oaFQ3VUszRzZJWjV3SjQtaWxfLVFjdW9YVXRuMDFBTXQxdHlFRzBEakpTbGp0blJaMzBVTGhSRUtYT2xYb1diUld1RlI1eW5mS3VKWTBZcVRxN3RmVlRna0FvdTl4Rk5Ob1oyU0g0M2ZTbnRlZTA1OFZObk91RTZ3YmF1ODIxSkJuWHNaZ0pvYUtUMUVRcnUzNmljZ1l2S1pUYms?oc=5",
+      "fuente": "Imagen Radio 90.5",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "8642a3c379",
+      "titulo": "Sheinbaum pacta entrega de agua con EU; \"hasta “donde se puede y entre los márgenes posibles\", dice",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMi_wJBVV95cUxQT2dtVV9UM2dTMmRzRXA1Q3U5S3NnUnQxcWw0aGhmUU9VUUc3Tzk5VFhBU3VKS0VFMTR0Sl9mUk1panQtWXViZVV4R2VyNU04eU1OS2FUTGtQbXMtYWVRbVQ5WnNYMU0wZHRubTBSTHZMN2lRRGNHWEJVYnFYTHJhUlFmWW0tdmpzaU9saWRzWFFaRU44OUVZN09aVGhKYUFmU1lodGxiaXduRkQ3SGw4b2ZMQVpiMnFqc2pSdEg2NC1iMWVnaXJtQWRtdTF2aEVBcWkwUThjQVNyR2hoeGRST3hOTWlsZC1MeFRXWVVnam1iTVBNaEpkLVZEem5CbmFYV3A1UGt6cmE1Q0ZNSWZPOW92aks4UFpuSEo2cEMxaFVFZkRXRHk5RktjcS1YeDljbUg5czlvdGN2M043TDloSmdPTFF2M1JYVlJtVWYyTzljTWZ5VHRuci1xR1lZdFlqUWd4enotWU5IdTYzQUxFcEU2eUZaVEFROVl0NlNnUQ?oc=5",
+      "fuente": "MSN",
+      "categorias": [
+        "agua"
+      ]
+    },
+    {
+      "id": "823d857d75",
+      "titulo": "Sheinbaum arma comité científico para analizar explotación de gas natural en México",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNQXgyZ1BQdkdnVFRwZUpNdVJYbG1IVzdadVZTb1ZGQ0FmVnZWQlVkWTdXOU1ObzRYUkdEYzlSbHJvbjctZzlnazMzeExkeDZtNTR4dHEyeGhmalptYjB6aTQxWWJ1ZVZHc3JoWVdjOXhIdWt5NEVuMVFvbWRsYmt1a3oyZENqc1otVm0tckl1NjVPa2NWZFlIUjdtWWxCRDF0TmMwa3cxRlRwV0Z0cEtjNy1ldmJBdVZoaHhyb2JZYkZ4by1pM19VaE50RjhxNG1ueDY1bzBSU2JxUW_SAeABQVVfeXFMT3dERWhMNG1GWXk0MzZlVkV5bHYxV2t6VVgyWFVwQW13RVN5TkxDc2xEN3NIbnhwWGx1X3kxZzJmbHFEMTJiSURBV1Z0TjVDZGVGWmdDM2RLT3R4QkFMamxXTWhJczZyTWFWTkY5LXVvXzNIdU9IVTVHcUVkNDlGUnAzVlBvV3N0c0I0b05LaFFuY3RsSjE4Z2NPcGxxVlozTjV6STE1S0JVRlVNVXZ0N3d5RTc2VjFIVTFrZFJSbHF6VkpjWmlEaGhTRW9LTzV3dktqQ0pVaTVPMUFjTXhVYUo?oc=5",
+      "fuente": "Radio Fórmula",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "dcc5d08a00",
+      "titulo": "Industriales de NL listos para colaborar en emisiones de Sheinbaum",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQNjBaWGQwdXpOUFY5QndHWkxJN19Pc05IMHhUdXZOLV9jZW14eHZNTWFsVjVmY2JnQnJ1Q1BWdzVMdlhUbURyVHpqVlNFTlVOVnZKYkJEc19YeWhSelN6NDVyaElWMU1scW9vRzhkRGJ5R0k3eWVWbGR2eWx0N2hPUHQxU0tHNHFDUGc?oc=5",
+      "fuente": "Consulta Monterrey",
+      "categorias": [
+        "clima"
+      ]
+    },
+    {
+      "id": "b142c0cca0",
+      "titulo": "Esperan diagnóstico y la mala calidad del aire sigue en Nuevo León",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOdnVtZTNqcncyYms4dGxWcHdoV0hINEVJU0w2VEg0QmxkMnY3azJETzdVVExPd09CMEc1Qi1IcDE2S3I3cHRuUGNIOFY5S3RZSHRMenJnS0VUdlhkalhIdFpkS0VwOE8zaTI0MGI1R0VxSUZXM2VpY3VOWVBsQWxZVFFIQVQxQnJYVTY2OVV2amtzSkpQWFlORUI0VWp5MVpPYm5wdjFqeUtrbmloZXUwMlZtZWFhUdIBtgFBVV95cUxOdnVtZTNqcncyYms4dGxWcHdoV0hINEVJU0w2VEg0QmxkMnY3azJETzdVVExPd09CMEc1Qi1IcDE2S3I3cHRuUGNIOFY5S3RZSHRMenJnS0VUdlhkalhIdFpkS0VwOE8zaTI0MGI1R0VxSUZXM2VpY3VOWVBsQWxZVFFIQVQxQnJYVTY2OVV2amtzSkpQWFlORUI0VWp5MVpPYm5wdjFqeUtrbmloZXUwMlZtZWFhUQ?oc=5",
+      "fuente": "ABCNoticias.mx",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "0a6a59c2c2",
+      "titulo": "\"Sí estamos a bordo\": Caintra NL responde a Sheinbaum y pide atacar todas las fuentes de contaminación en Monterrey",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNaUxRR1RZWVNpbEthWlRSdVFKOU9rRTZIb3dFa1FwZkRTYUoycnFab29yTUt0NEFaM2xQM1JWLUFzVjZPTlltQ1dyQldOanlNYVA3R1hxMWlEWjVCbW9KbmdJUDBoWUxtWDdZSXQ1LUI5MVVWcjhDQXRRZ3Ezam16UC1GR3BhbVBrWFFqaGZwa045c25BbW1KVVp5Tkl5Zkw3S0FLX2FobjQ2cnFpQmRmM0Z4SUxXakJVV1gtZzB0MzlEZDNUSzl5eXlTaGt6Zjg1YTZ5a3VqZkliQUZsWUpySWZSQTVGZXZmN0djeUw1bi05MU1RWHfSAfYBQVVfeXFMTWlMUUdUWVlTaWxLYVpUUnVRSjlPa0U2SG93RWtRcGZEU2FKMnJxWm9vck1LdDRBWjNsUDNSVi1Bc1Y2T05ZbUNXckJXTmp5TWFQN0dYcTFpRFo1Qm1vSm5nSVAwaFlMbVg3WUl0NS1COTFVVnI4Q0F0UWdxM2ptelAtRkdwYW1Qa1hRamhmcGtOOXNuQW1tSlVaeU5JeWZMN0tBS19haG40NnJxaUJkZjNGeElMV2pCVVdYLWcwdDM5RGQzVEs5eXl5U2hremY4NWE2eWt1amZJYkFGbFlKcklmUkE1RmV2ZjdHY3lMNW4tOTFNUVh3?oc=5",
+      "fuente": "MVS Noticias",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "3ca1da5e08",
+      "titulo": "Gobierno federal integra comité científico para evaluar plan de fracking con enfoque ambiental",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNZXJnYV83Z09VS01ITjVIZTF1bURqYjVaMXdieS1jYjdoWnc5VVRENkM5cmRmM1ZaSnQ4THpXTHk0X1RCa3pHekV6bG5FdzNOemhGaHBPb0otNVJoT2lUT3RXbWpjMTJ2RTl2OGdDSWY5WktiUzNNcnBCMG1VTm5HZWgyQ2p3SUZlc00wVUFLSDV5UmdVRTdobG9fNEJlQVdmZnQwdDBEYXpQZkV2d2JidjRSN0dPRmxTanpseUFKLXN6VTR6U0kw0gHiAUFVX3lxTFByRnZJc19td3YyYUIzQlU4S3IxUy05RU94VnBsWkxYbG9HTG94R29Vc0JWdzJlWHR4Zmt5YnRaYkRtYzVIR1Vmem4wWExYa0FJQlQ3LVJpcmRKZzdnMzB3eVpCVUYyR3ltNFdoNmNselJSQjdteW1abE9Zdi1LXzVVTUw1RmtYMHNJemp2ZUlWUlFqUDFSR005ODhEeGdwSDJKbXQwUU9kRXA2MERzdlVabjZsU3pEd0hKT0hRcmE2VW02X1k4MXhxajdZdjUxc3lMSjRVWENJbFI0SGliSTJmd3c?oc=5",
+      "fuente": "La Razón de México",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "5c59317791",
+      "titulo": "Kenia López respalda el fracking, pero sugiere usarlo con responsabilidad ambiental",
+      "fecha": "2026-04-15",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQRjloLXhfZ011QWdwei15d0dyd2xTWmRfbzllNFRvMi1aVXZMUHFXTG5XWlpoNTdQYW1SU0wydnNHajA3akR6Mzlxd3d0UDlMd1BvbzAzV1JEZmppeGEtb1pYMTFMU2hPSlpObEVxajROMGVCLUtrbndnLTBNNnlBaFg3TDIwT0tFZXBwaURGbFVFeGdCbW5ZVEdwU3E5YXBiblc3akhKcDIyakVqS1VaZFg3bmt6YU0?oc=5",
+      "fuente": "El Sol de México",
+      "categorias": [
+        "ambiente",
+        "industria"
+      ]
+    },
+    {
+      "id": "791abd3ccf",
+      "titulo": "¿Qué necesita Pemex para ‘hacerla’ en el plan de fracking de Sheinbaum?",
+      "fecha": "2026-04-14",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOOHIyMWhWOGJtZ3ctQzNPVHFCT2V5TW0zNmJxdlJYUmNjRFJFbzNRTksyZVNQR0VFeXY1eVkwZjByT19OZ0hjbmxYNm1xQWIxdGlFNlh5QVVDVjNZa2RweG1wMkV2YUNaS3BLa3J2MzlBRjhQYmo0MkVCaXpseHlMWUZBNTVJWDVQeXROdGVFTHk5Q092Z1kzR181S2hQM2xzWE45Mk95MXVOblFqSXlxUWNlTFhJSTFWNkNWYg?oc=5",
+      "fuente": "El Financiero",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "bdbf99b52f",
+      "titulo": "Corte de Canadá falló contra México y obliga al gobierno de Claudia Sheinbaum a pagar 270 millones de dólares a inversionistas de la empresa Oro Negro por contratos con Pemex en disputa bajo el TLCAN (hoy T-MEC)",
+      "fecha": "2026-04-14",
+      "url": "https://news.google.com/rss/articles/CBMi8gJBVV95cUxNcGN2S3dTVnNlb3ItS0hmQjNJdWE5a1Y0OWhSNWgtWWIwaHBNa1ZZa1dxUHJuSHQ4ZEphOGVTMHdIX1E4TXozRU1MeDJZdk9xUUU5aFEtUXBWMUp5NFFGcTl1VTNWdjU3Z05tUUNwYWhWMzVuOFMyWmtocjBJLThqNlRxSl83YVZyQnhMeFVnb0dJbm0zRDIwMVotR040TGFGeGJDSzMxdkZ2dUNWWjktSXBISllWNzlLMk1CTmFWNEJ4a25jd19HamRhZEZLb0hySDF1MmVnQ2tXdXJYVi1UTmdONS11T1BWNFp5V0pkNGhxaHVGbF9CNkxYeVo2dzVlMlZzeko3MGQtZUdsOF9FdTIyWGdveXEzWkZZTGVNeHdlSFVJcUlXSjItNTQzdGxKdDh6c2JaaDlqOGFKZzRuQ0dsUFJZV2lXbXVvNVdNODg4aERsaW45cjNhSU1ON09LcEtvNF9IbENZaTdvVnc4NE5B0gGMA0FVX3lxTE5zUVlITXAzZklXclY1LVk1dWZmUEotQkFOMms0RlVrbXFua1RsaGZXYlNKcU8wamZjVGVtYWNfQm5VS0hOanFyYS1xd2lEdkMtVTRWZEc1T2gtcjY4SFY4Z0hUYkJiWHNkcGFTblVtUmhBeU9XTTdOM2pNcHVqZ1A0eFVjTExXOVhjUFIwMTJleU51RjE3RWwwT1BhUHBFT05nZlI5cGFHN082c3NOaWZ6dFQxMlMwaXhjYVVielUtRl9jRE9aSEJDZk5pTlR2WTFOWmsxd2hDR1JZNVphb09IVHFkX3Zfb0l2ME0zN3d4c29VUTJLelZnOW8tNUh4Nmt6OWJsd1VtaFJyZ09HYzVtcVp6emFyZWRvRU9MempiQ3g1RVRmcG5OV3VtNld4eW5Pem50dWl4MEZIN1JtanhGeG5BbzRBY1Q2WnpxXzdjcUpUczl3ZllhUlhSWE5MOWNQa2dXa0lURDFEUWR6RDA1UGVEVzJBMk5aTDNpV3Y1UWVvb1dXdEVCVENOXw?oc=5",
+      "fuente": "El Imparcial",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "dcc3d0e51a",
+      "titulo": "Proyectos de infraestructura y energía de Sheinbaum impulsarán emisiones en las bolsas: Citi casa de bolsa",
+      "fecha": "2026-04-14",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxNUGh2WEsxOHZDRlhqRUZnM3dBNjdjQWYwWllvbzBTTUNUTEVJaEkzLXpVSWdwaWhfQzhTdjJZclhKamhyTVk0dmwyUHZLcEtkVjVBdW5DTkxtdnhxbHZqOFZDWmpZYzZfczFPTU5TZUFnelVkVi1WTGx3WXlZUi1Ha2ZLcGxVVzd0OXQzUl9Nd2ExSU5xcVp5NVl4bVdoQjhuZWt1U0JKVHVVVUd6XzZ2UGFtc2p2bnlDMEFDbWZOMEtybHAyMTdTVGZTNnNVeDVYTXRtM21OazVoSE9fMWVDM0Yzc3JvbjdGaVRkS1Bta9IBgwJBVV95cUxPV0pGWG1CYmVtMFg3ZDd2UnRXZW9UZV9QN0xIU0E2M3lSMkZjZnJ4MmM0NFFnT0ZQU3UtNFVtLWEwVnZTNV9RS2ZQSTQwenQwX1U3TGR4MEhLNEJpSm03Mkh6cXR2TnJrbUJlWjkxZHhmYWRNNThsQWU2UUh3OWpMWjBveGVKbTg5cWI4cFJzbWVBWThiRnI0MnZKeExzdWEtYWJURDhnSkRyb2wzYV9Pal9XTnh1eGF5b3ZTTFNNYjVic2lWS3RJUUlMbGtOTGFab1l0UkhZa00yWXBGRmw3R0pQNGJWNXNPWExXdW9keWR2MUtpaUlFRlQ5Wkl1M1ZxRW1z?oc=5",
+      "fuente": "Bloomberg Línea",
+      "categorias": [
+        "energia",
+        "clima"
+      ]
+    },
+    {
+      "id": "6ec30464e3",
+      "titulo": "Operativo en Bosque de Agua desmantela aserradero clandestino en Huitzilac",
+      "fecha": "2026-04-14",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPdWVxLVRPN1pKbnNnTzdzdU5GOHU2cFlhVi1BNTRVaFVnUVVZTXVfVHJMcEk1T0Fqbjl5WlFXQUlyMFhBSDEtYWNfRnY3eHJJTlBNQ01EellHZms3T2RKTFk5M0F2M3R5TXJSVGlLMmJPWWFzQ3hiN3diUDU0OFZiYjNZZXlOX05leEtzb3U4N0dYVGEyRXppWEFGNVhtVGRtaXJnZUg0Zi1JSTZtVlRXUE4zcEZnUVBs?oc=5",
+      "fuente": "Contralínea",
+      "categorias": [
+        "agua",
+        "forestal"
+      ]
+    },
+    {
+      "id": "a84417486e",
+      "titulo": "Sheinbaum anuncia cierre del relleno sanitario en San José Chiapa que se convirtió en tiradero a cielo abierto",
+      "fecha": "2026-04-14",
+      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNVlBoWEwwWDdHWXVhQ09LMkxyQUdMbEk1VDVObS1zMzdfU1ZoMVVkTzZYRnY1eTMtcjJpNHhrS0RKbGtJOURLRVI0NVIzNkZQLVAwbWtxX2NyeUQyWGVuTUVOUUc1Q0VXMi15RnRKSGxnb0V6NjlWd1BPT29fN1N4SGVlUG5TMGFNSG5tZXVFTTlwbjNuRHNZaFpHSkJYUEwxbHRKOVQzZFNFVDhQWXhTOXM1U1p1NVRWTkZxdndsY2RfbzJsbWpvblNyZDl3dVdLLU5pNWlHRVIyOHJsanVtbXRKTVU3ZVlyRWlLUg?oc=5",
+      "fuente": "La Jornada de Oriente",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "905ba98ae4",
+      "titulo": "Residuos del derrame en Golfo se envían a plantas de tratamiento: Sheinbaum",
+      "fecha": "2026-04-14",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPT3J6Q0JROGo1TjhnWnlZLWY5bzFjXzZsSWhYaEtTdlFieTVMUHVMWGNJaUVHOFVBaUVXT1F0cGJBcGxqNHNMamtoSU9FMXlWa0RKeFVMeEE5VkhFTjJOeHZrMnhvLUx2cDdmUkt3YVY2SnFfV19BU0tQVmZHQmYtcWkwVFlKT0U3S0RoN2xSUm93LTF1R3NRZ2Ywb29hc2tsQlN6Ui1tZjlwMTExbG16QjNaS1A2bmM2b09Ub0p6UXlXRmdfWm8zRUhyekdXYm9ydHVHTEJB?oc=5",
+      "fuente": "AVC Noticias",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "8c28b7dc1a",
+      "titulo": "Presidenta Sheinbaum niega haber regañado a manifestantes en Puebla tras video de su reacción durante protesta por proyecto de reciclaje, mientras habitantes rechazan su versión",
+      "fecha": "2026-04-14",
+      "url": "https://news.google.com/rss/articles/CBMixgJBVV95cUxNQU9GRWFRZzBNSzhUclVSTVZXSzAzNTl6ei1oNkVFVFhZc1VmV3hpQUlYczlhclJwWkk2bnExTUVSWWc2elRKU25IZ0hIYUt4VExRLWJsUEYxZXphbmZEQ1BaQzR0S2dpVG9QdktiTTZkM3MwaVkyMEZVUUFsa3NvRjdjMkdNVGpwSG5GYXE0QUE1SkJ2VkJxcEhaOGg0aEItMXdUdUtDRXZGWGYwb2U3N0kzTUJpeHg5Q2pfUUoyRWVZdjJVX1VyelRVSkhuenRoN3RYWXBDRW1iWXl4SGQ4cFc1dEpwYURLanRMdmUwUGthelg4bDFqRGpIOXZoUlYtY3ZZUVpYSnlFY0ZXdUozXzVpQVB0Y2NBc0tzWTdMTWJaZ2sxbzVmWEVOX1R4UGgweHdZZ3RIT2UwQVhSbU9tUTZBMm00UdIB4AJBVV95cUxNbmJXYUd6ODBULXJRZHI5bWpURWxVX2daQ1d0bDdXcmdtQTZ2SVJWcXA4Y2NVTjJVTmQ4OVpFLVpTZ2FYamFjMGVsOHFpZ1JuTG1vZF9GSDV1cnN3NTlEWmQxX2gzbzhueW81dFRGRHFOWGNaQ0x4eGd3c0k5SEpYaFd2YU0wSkpxX3BtckpaSlJ5MG9vQndOQUdDcGIzbHBUOWp6bUk2SUxUZGZheG9ibUZNS2s4TVNDQWxLRzlhQ2Rxa1MwOWR2S2ZkejcwQWFsTnVmX3czVndaa2hSQ0JuR3N6ekp4eGU1aV9ySXB5OTZocXgya2twN09kMk9VUUFseUZkUFpVVlZPVmVNWHB6VzhlbU1TREJKTlNza0NjSUUxaW4xUzF2bmRCUzFQa0ZEY3Q5a0xKb20zdEJ4VklGcFlYQS0wRUxUaFlxeFNVc1VSRjJDRElGcUFyYlZRQk5U?oc=5",
+      "fuente": "El Imparcial",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "f204e55e26",
+      "titulo": "Pemex controla derrame de diésel en Deer Park; Sheinbaum asegura que \"está todo bajo control\"",
+      "fecha": "2026-04-13",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQRkkyUEJsZDdXdDNwUzBYWEFDTl9YR0EyU0JhdUVDSjZDZHRHWUpTaUNFQlFRb0g1R2FjMjRFTENfYmY5T25uVk4tbHV0UnlPUW4yeUZzdHZNclhRQjQ2WWNtM2MxRDFTSTZFelZCWTJQZkx0XzFhQVF5Zk5COFJaaF9Xc1V5czNLbl9WcHJKSDdLSmR2SDdUeHg5a1dTcklhS3NRdVlHQngyTERMcDNDXzlDbzY0amJ0Y0RBNw?oc=5",
+      "fuente": "Alto Nivel",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "175dac1527",
+      "titulo": "Pemex frena derrame de diésel en muelle de refinería Deer Park: ‘Fue por la interacción de 2 barcos’",
+      "fecha": "2026-04-13",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPZ2MyS251RV8xVEVBY0twNVNscXk1YkZrNF83RHFydjFtQXhVVm82cE12VFJVcVhxQXliNjY2OVNtemxkOVFmMTVFQmRPclQ4MGItY0t6TFl3WUhKTEhaUzlZVU5rRkVBSVVPY19Oc2NZQ19PNFVGWGFJQ1ZBS01ZUU9rUkJJcEdiWVFsZWJ0bnFGS0YtVjRkbXI4ZDVwa3JJRy1KNkJKWWxnTTl6LVhudEphQ09iQzA5eDJjcG4wb0hTbmVvamwwXzU4M29OSFJ6dEFOekVTQ2lJbFpHRXkzQllMeDBlWmFS?oc=5",
+      "fuente": "El Financiero",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "08904758cf",
+      "titulo": "Derrame de diésel en refinería de Pemex: Sheinbaum asegura que “está bajo control” la fuga en Deer Park",
+      "fecha": "2026-04-13",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOZWlIb3VsdVNpdGpObzgxVnFScE50SW9mOU5ZbllPdzFaREV0QWJFRmw4VUpRTjQ0X3ZYT0poazRsLXpFWjVQUTA2REhiUjNzb3M2M01jVTFoM1RBMmFMQ2FJZE8tUTk0bW51UnNKZ2FzUU44NnlmNHJNeGh0c0VrMC1FaGhYTlRlN0tXTGp5X0RmRS1UeEVQVGx4YTNfMEE0a0RSNl9vRmxYSHVELUNCV2VtYmdub1M5SEZVS1NDTHd6Z0tWcUFnS2dDRGgtb1F0M0JjUkRQZDhNaXZFLXBwMzlB?oc=5",
+      "fuente": "La Crónica de Hoy",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "0a8b3e40c2",
+      "titulo": "Alianza Mexicana contra el Fracking rechaza comité de Claudia Sheinbaum por considerar que busca legitimar la extracción de gas y advierte riesgos irreversibles para el agua y la salud",
+      "fecha": "2026-04-13",
+      "url": "https://news.google.com/rss/articles/CBMi0AJBVV95cUxPWVBsVko3ZEg4Q1BDLUhZRmpTQ1lGS3FrVVRuNFd0Q0gxUDY4NDZGWWNXRkJmbTRqdW5hS1NhMFNrUjhIUkRhTlNCTzh1STROSTdYOWNudjhud3QyaENjMHg2Y2VKbUV0alUycmhkVkdhc2VWRm1IMW9EbkdWU2ZwUWNyd2ZFWTNXSVBCWU0yVFBDdlBkRkE1MFV0aExRSUFPTDB6MUQ2T2s2ZktySWxGZnNfUnRxNVFCcFdnQ1cwOEd1cDZPZi1rc0xXNEUwUC1QNi0xLTFDaFBaNnJvbmpsSkFDQjNUMTd1cVNQeEt6MHpGZWw1YlNTQk5DYmN6MTdDeDQ4eGNvV2tNMWJHSnFNemJCU3U4cWJ3VWphR1U0QVAycXF5dy02SXdKNVc5UTN3alBoY2h2M1RYbGRhcFpUVFhyeEwwUXl2VVh0c2JOOG7SAesCQVVfeXFMTWhZTnp5ZmRWa2dQZjFtVkRjS2pvM2dsZUJOWkxBaUNoVTJkQlJuYm83Z3F3WmVMVnlGaE5FcXMzTW9pTmFka2dYb1NDcWNGWlNGVmJTVzBmNUJSeC1ZZTA3YTFncllzUjJleHNzNnpXc1p4dlN2R1h1RTY2SmtyVXdVTmJOWW9tVkd5SDh5MjY1NU1QSGc4d1Y1WklNQUczNWoxOUhhVjBSLWZGWkcwSkF1WEpsY1FRNGFlZnZRQ2tVeEcxNUdvai1zU3FaeWh4akZHQzY4T0dVa1FnRzdFMlA5c1Z1NkRjTktPVUQzR2ptaEpua3NFQTRBTjFfOTNLWmlHQlJvMmc0Q3d2MTlDbGQ4UUVNYk1YNU9SQmgtRkNqaFFORlU2TnNKeTdhVnhCeWJFSzJkaHhMbTJXSDhlYnl2YThsQWZtazJnTC1nMU9xUk5PSHNpVk4ySXd1X1RfMHp4SzdrUzNoNk5z?oc=5",
+      "fuente": "El Imparcial",
+      "categorias": [
+        "agua",
+        "mineria"
+      ]
+    },
+    {
+      "id": "dc261a11e5",
+      "titulo": "Podecobi: el plan de reciclaje que Sheinbaum defiende en Puebla en el marco del Plan de México",
+      "fecha": "2026-04-13",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOa25TWGU4aURIMXAwZy1HY3VFX0dIckhBSHJHU1JxNTFxeWVwZ0R5VEpWUnpWeTN3US1kQ2kzX3pzLUpXdUZMTVlFSzhaUkJiT3pfbnV6YktHNUZILUdMaTVsS0kxdWx2NkhPTFdhcWt1RUY5WG83U2VqRDA1NXR3ZzZqMXB0VDhiRmNFVWw2YlhHWWo0RWN3NXVjZ0pKT2JNOWRKLWVIS1pVd2tPT1BmUEUwcUZwSTJVV0YyTkNWWC04am1yT3NieGpfU2FobGlDLWp3Wk1yMy1xUQ?oc=5",
+      "fuente": "El Sol de México",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "46bd71e3f2",
+      "titulo": "Sheinbaum dialogó con opositores al parque de reciclaje en San José Chiapa; se va ha consensuar el proyecto, dijo",
+      "fecha": "2026-04-13",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNb0s0RTg1MDdiTE9kZGREY1U3RnJwS2lCZDBsTzh3eWhxM01NLXRKbVNrdXlfNWZCdVFoNGp6ZGcxRDZSUHRCVWNyVkRBVkU3WEdybEZteTNRZ1hRSkFhRGwyZ1VPZW0zUllpM2xuNkthaFRDOVNweEljVzZHYnhXRkVYcE12dm1jTUZfUDFZME1Fa3VoWVZmVVVwODJ1S2xmdUZXZE1Sa3dFTnM5eDNscDlZUk5SXzRwNm04cFFNRkFIaXhzYXNIZ2VkdnpqWHdxQnc1eW42cHlKSVZDQ3M4MUdfbVFhUzF4bFRXN1JR?oc=5",
+      "fuente": "La Jornada de Oriente",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "e3a23e4ec0",
+      "titulo": "Residuos del derrame en el Golfo son procesados en plantas de Veracruz, Tabasco y Tamaulipas",
+      "fecha": "2026-04-13",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPclFRMDQxb0hRMXlEMERWTmFYR044NEFMOGgxY3IwM0lrcXhpTm9kRUotbVMwVUlJTjllSTR5UWFmbFpHZUp2a1p0Wjh6UERRTVNHRWlmMzR3clBjYVVpcVdZX0MzaHY4eEJ0bVNWOHM3ZV9zbG9rM3luZlZvY093ZExQamRhQVBKclhBZUt1NWpGdzR5eE15Q1NGTnJwYVpSMmlsZXk5UkFISjY5OE5XYjZSaWs1NEthemNTYkdNZnpXMFZ3UTFULXFNWU9VMXFFYjQzV2hWamxjME0?oc=5",
+      "fuente": "El Sol de México",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "7ea26e9961",
+      "titulo": "No crece el rechazo al parque de reciclaje en San José Chiapa; buscamos procesar 6 mil toneladas de basura diaria: Armenta",
+      "fecha": "2026-04-13",
+      "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPdWpfb0dnUkFzZVkyUFc1eHFUSXdCdGE1YU9QQVFseFhzb1g1V0lIUkg2M2ZfV0xtWk00YjNlUnoxOHltUDZ3Tkc3SUhadGhmekdhaHJ4MXg1T3ZLeVl6MjZhc0Y1azljMC1aTVBEa0gtMzI1M2F1QzVuVC11OWZtSHp0V2FhdkdseG15VEJhS19JSDVIUDhJT1NhR1kzRVU1dXVIMTgwLVUtNkFXM3hYamtkejdUTkxWNkJSOVpLV3RNcXVPRUFncHNvUkNnSTl5Y0R1WV94Rm0ta24tM1d3UTQ0bGhpQ2Y2ZWF1Q3dRcE5SaXBRRzNYRDdQTnM?oc=5",
+      "fuente": "La Jornada de Oriente",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "9ed9d33a26",
+      "titulo": "Sheinbaum anuncia el cierre del relleno sanitario en San José Chiapa, mismo que se convirtió en un tiradero a cielo abierto",
+      "fecha": "2026-04-13",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNdk9aT1RCelNDU2ZhRmRobHVEV2VNSFUxNklESDZpb0JUc0QxalhaQVhEMm0wanJ6RU9iOTNrTURPWGxHazJpUmZpaVNYOUtoVUJlOUNkOWsxSmE0b2NwdzFaTXVIWEhjeTQxY05KRXZGakEtTmY3UUpkd1p4WGFXVGN1ZnUzTUVTeXNuNVM4MnVJamRHUHh2cEVn?oc=5",
+      "fuente": "La Jornada de Oriente",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "e44b9a1ae5",
+      "titulo": "¿Qué es el fracking? la técnica para extraer gas que está en el centro del debate ambiental en México tras el enfoque del Gobierno de Sheinbaum en aprovechar gas natural sin usar métodos tradicionales",
+      "fecha": "2026-04-12",
+      "url": "https://news.google.com/rss/articles/CBMi4wJBVV95cUxOV28yblFxT1VBLVl6Y3VCZDBtcUx5Rzk3QXZsMGlpSFBXbVFRSkdMMXc1S2wwbV9DbzhkTFVCRFJvY19nekV6Y2JEeDF6MWJKU3lNNmZFVS1Td212RFItcG1MVTMtRkdrbHRwMmtPOVUxdjY0ZTlhNDRpdEVDM2dyRGxsNndMMEx3bnN1bXJQWk9IQ1l2ZWN1S0RWWFBEU3lQbDIyOWRuVEFHV3hRYjRsN290OGk3eGtNcHljZ2J1WnNYdFVwdHV0UHBGTUc0MnNZSEMydGFkOVVYRUdoM0VKSDFFR21GVWZRdkdGaUxmcWNUQ0EwOFdKWjItR1czWGNLRWt6RUtsLWY0OUc5cjNCVHNHbWZwSTVLWHpXaHNkQ3lsTVMtUG8yLVBJOVdFMFcyMDkxaHY3VEtJeGgwcDl4QlNyeGdSSmRDdzB6d2RvcEtTd29YRkZ3aEQ4NGF0ajQ2QU040gH-AkFVX3lxTE1OYVFERVFQRk84aE5LT3Q3QlNhVHZpdVJMVWRad2trVm80eHduZFl3UHZHNXRJY0JfVVVQOVdBZDAyYzkwRGZ0MDIwR0d4aWoydzBKSVBCN2stZEFiMm1NY25rUEsxWWRfTkZEZFB1c3o2QmlDdFg4OGFaOVNYQXBNdGtwY3VCUkdvY1dGVmJ0Qk03R1RaTnotOTVGaU1rZjdiVGRmbDNlS1ZMcWJ5bk9FcXF5Z1hjNEYwYjlVQ1hmM0FxT1hzR3l6Um9nX3U1SkxIVFdYeXlLb2JXdWJGZmJZY282MVQ0T2tmalBPWnFQRDhKQlRfRVVBWE9BQ29MdkkzYVBpTkVGV292R3ZMZ3Z4NWtOdUJHTlQ1Q2poWFhEa21VWHVzZ21vRnB1LXdfaG9EeE5iZHRaaDBNWVFJWHVxeTYxdFd5UmdOamJ6ZEVwZDVfeEN4c2NZb0lWa3Q1TXZzWTBRVlJCc2RST0tvUDB5bHdoOWd1VFZLZWhpSFE?oc=5",
+      "fuente": "El Imparcial",
+      "categorias": [
+        "energia",
+        "ambiente"
+      ]
+    },
+    {
+      "id": "7beae34117",
+      "titulo": "Sheinbaum entrega viviendas en San José Chiapa entre apoyo ciudadano y protestas por proyecto ambiental",
+      "fecha": "2026-04-12",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPMFliZXFwaGNteTdXUEpwLXdUeERwOXI3M0ZscnFMczBwVklYVEZiLUJOWjhfUWhqZUdNYkV6ZURlaHJxWHdVY1dZRUFhYXYtV3g3RlIyUHRRaTYtNDlaWE9sVkNRNGNJZkJRQkl1eFIwOTl2VjU3THo5bXUzU29mY0t6RW9jSnJTdnR5S0FoNVE0VGVDVUwwWDRwQkt3ZGhLSFI4ZHJkdlQ4azJHdGlHWnZ5aVczNkNzM041eUJOQm1rOXRzejFQcFkzclpHSG9xaTd2OVBzSHpnX2FKVHlHTw?oc=5",
+      "fuente": "Reto Diario",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "e50414b9c4",
+      "titulo": "Padre encabeza búsqueda de su hijo desaparecido en bosque de Milpa Alta",
+      "fecha": "2026-04-12",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNNWJTdUlrYVgwSlZENFJRZTRLMmg1WHB6ZnZobS1RS2JtbnNaUGZDV1BVSmZESk9UcEk3NmlnMDVmeWlWX1dBdEkwd0YtRGVyQkJMbU16aWZNeFUyekJ5alk3YV96a25RcDBZczk5OHdhWEdSNG9KaW4tTVptMGNlWFpzY1RaOHBDYlFQeDlXLXh2ZmRxWXUtREhDU2hEcWhyenZYUjlXcVBrY1EzcEE3cFpXYlpyN2lzZ1lhU3hmNFNEN21sd1E?oc=5",
+      "fuente": "La Silla Rota",
+      "categorias": [
+        "forestal"
+      ]
+    },
+    {
+      "id": "8315126c21",
+      "titulo": "Entre regaños y consignas, Sheinbaum atiende personalmente a opositores al Parque de Reciclaje",
+      "fecha": "2026-04-12",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNQThLaDVjcmotY3lMWW10LTdkR2drdmRxYXdraFJRdWlhSjh5UDBvZWE2SWJUTE5DSlJVR29jS3ZTZEhkR0hHMnJfOHR2N1R0ektxOXRPalB0M2NLUFh6NG93dkhLOVhneFRPQlNQbG4zOXpmekk1RFc1M1B2SjVSZGRvZ3NDdms0QldTb0hPUm5jdHpVeVM2RnBCeVdjWGpOWlozSnFJU0V1eHowQWtlcmt3?oc=5",
+      "fuente": "La Jornada de Oriente",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "8a4e518e9a",
+      "titulo": "Sheinbaum regaña a manifestantes durante mitin en Puebla: protestaban contra planta de reciclaje",
+      "fecha": "2026-04-12",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNM0h1d1VVd3l5RXZOV0otT01JSjlpeEx5eDBUT2lMNTdDZVYxNU5fYmtieEUxZlpINWt4VWV0Vk0tWi1QZXN5VF9CX3JNRl8wMkFjQ1ViQU92RWpycTVxMG1IVGh4VzA3RlFhN2Q1ektNX203Z0EwdzlGLTBkOUE3Q0Rnem5aX3h6M213ZFVRcV8wQUJtd2JyTjczaDF1ZTVxLWpqOXI5OFJKX3U4V2hyZ05FT2Jvd25rU2ZfM29oZ1RTMElTRHlka0RiaHBzNVpjVEVJ?oc=5",
+      "fuente": "Proyecto Puente",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "e03fc4d401",
+      "titulo": "Sheinbaum propone diálogo ante protestas de habitantes de Puebla; se oponen a planta recicladora de basura",
+      "fecha": "2026-04-11",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOTDNybHlSWGFITjJxNWVlRkxMT3NkZjdJTDBGclQzb3Y5eFBsUXVITjk4a0tkNWJfU1h4LTJySnFUU0hmRjcwMVh3Y1gzUGQ4eFpsQVA4elNYd3ZoNkVtWlR3clZheUdFeXoxc09BWWx5djNJUGgxWkVmOTFUR3FVQ2lQYXhITUlITTljblRkQlpET2RBWUpiXzl3RDZLal9Rb1paZFhKOXRhTVF1S21oajg4aUl0bERxelQxNnJZTU9wb1FSeFpRVWZIRTdZVFRTS2tpa050WG5pdFNv0gHwAUFVX3lxTFBlaDctaG1HUUk2dHhmWU01dUs3LXJaVHVXRlI3bExpM0hNX2FQanNnQ1RiSGY0OXdNaEZSOVFybWwyc21GVnBfeG5CdWRvMDk2YWlod1lSZ2djbWJjcnVWNk9ZZVk4eXBNNXhya0tNcjV6ODJjWDZ0UXN0bDJFalU3Y3VHOHdBR2lTYnFTZERsNGpORWpaMElXRGs2ZTVUSDNLZWZlaTh6LUhtbFFhR090STJ0eHdJNXZLRDF1LW82X3FYU3h2LTFXMXlleHVCY0pUd0p5RE9uT1hfdDhfVmhDWUpBYmRWVHZ4V1UxNjR0UA?oc=5",
+      "fuente": "El Universal",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "428a4e722c",
+      "titulo": "Sheinbaum respalda proyecto de economía circular en San José Chiapa para atender problema de basura en el estado",
+      "fecha": "2026-04-11",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQWm1vQjE5WEtKV3JiYTVORVFXUUpzd0I5NjN4NW50Q0ZWajctYVpHWnpoczljZGFMMDhyNGY1clBwcFpSbEk3QWZRMFVST0g3OVBZMTlsdE5oZjJXTS1XUFBxdFNHVjloNUUxcTMweTVmOXpXSkVWU2hUbTlkeS1fWHZPMFowbWpXdWxXNHNJcFVhVGhuOC0tbQ?oc=5",
+      "fuente": "La Jornada de Oriente",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "c7069ee271",
+      "titulo": "En San José Chiapa, Sheinbaum promete: \"el parque de reciclaje será un proyecto consensuado\"",
+      "fecha": "2026-04-11",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNWGs4MnY4ZFk5RHl2TXJucl9BbnBPQk1ZOVhaUW0yQnV1UHFud2laNUY2cVhuTXlRV1AwbHZ0MXVkZGtXR2NmVkY2ZEMxU2dGcDk4N1d0dkx5UUVodk80RmFUc05fWjdiQWZDUFhaeDU4VDNqSHhiLUlyS0R2ckJnV3RkU3JBc3doSVFuRXp1VWkxUUpjUG5WQmFHeHltWnd6NGF3dkJ3?oc=5",
+      "fuente": "La Jornada de Oriente",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "928c0b46ec",
+      "titulo": "En Oriental apoyamos el parque de reciclaje; el conflicto está en San José Chiapa: Alcalde",
+      "fecha": "2026-04-11",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPWlk0MTVPM3ZkY1pOT3AxeU5JRjRoeTFaZ1dKRjNxNGdfUUZKSC1FaGRkSG94QVd2MmVpcE02NWU1YTRid3JjOEpGYXhzemppZXpTZlI4UFJBdDVsaVlkQTE4cVd2MUJVZVhFWFhZOVhJLUZ4UUNBaVZ2ajkwSExrMC1kbWVVTmNaUnB2VjJVaTBaWVRQNVVGVllKXzhwbDNSUU1EOVVIRm1mdWhtRkgxSGItR25Ca00?oc=5",
+      "fuente": "La Jornada de Oriente",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "eb198a3614",
+      "titulo": "Sheinbaum plantea uso de técnicas de fracking 'de bajo impacto ambiental'",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPR2ZEZDltSGRrTHpMbmtIakZvX3hoNVhkdFc3dTJFVW9ZTlFGUWpXS1VsclVCYmlIaldyOFdmS0JkTE9PYjk3d1duREhhcXFvMlFvQmhpNlhibmlZMzllX2NNVUhZVUM3SU9VeDFUcDRqYWQ5M1FPYS1xQWRSaWFVWFEzWFh4ZTluaHZ2cDQ3QUF6LVpsOGxFQm4xNmtKbnpqM1JUeC1BSW9KdTFVTlZqUmRiWkNwQW82TDN6bVlKdjIzS0XSAcMBQVVfeXFMT0dmRGQ5bUhka0x6TG5rSGpGb194aDVYZHRXN3UyRVVvWU5RRlFqV0tVbHJVQmJpSGpXcjhXZktCZExPT2I5N3dXbkRIYXFxbzJRb0JoaTZYYm5pWTM5ZV9jTVVIWVVDN0lPVXgxVHA0amFkOTNRT2EtcUFkUmlhVVhRM1hYeGU5bmh2dnA0N0FBei1abDhsRUJuMTZrSm56ajNSVHgtQUlvSnUxVU5WalJkYlpDcEFvNkwzem1ZSnYyM0tF?oc=5",
+      "fuente": "ABCNoticias.mx",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "94af096c49",
+      "titulo": "Gas sin impacto ambiental",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5FaFFtUW9UX25yZnNjZjlCVkVxUmoyRHV4TFowaWoxMmdrQ1M2NGhraTRaMUY4dUZ4NDNXNFFZT1NUQmFwMVY5c2dSa2g1RWUxQ2JyYlQtR0lMQnhPNWpUV1JvWDYyM0JiZVJqaDUwQU8tbVdpTk5zRg?oc=5",
+      "fuente": "Eje Central",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "b876646dbb",
+      "titulo": "Fracking ‘sustentable’ no existe, denuncian organizaciones ambientales y acusan de traición a Claudia Sheinbaum",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQNkliamQ3MG11OVZfZWdYNXVYbFA5dnhBQkd4bkZUZG9OcmFRMW5CNUM3QVFFcVU2dlNvNlBLTWJSX19QRmVkWGtJVk9YWFM3ek5qdlNqU0xwY0pENE9jVEpRbVhrLXVLTmlObUV5dDJXbWd6am5pTU95LWhKcjJHU3llOWNvNXdIUm02RmpLQnFmRW9NZ3lCVFZ2bWJFWlpXRU82U05PeVNydkVxZFNvazNoelRqWFVTVm5MOU43MjZjRWtxQXdjMXBnbkJJX1YxYk1fUUtxTEVWdDMzNXNEVzcyU2c4QdIBgAJBVV95cUxPN2UxcF93SDBHSGFXTnlfTXNwOGVUREVmVVktWno1eVIwUEZiX3Z0MEVFeTh4aEg0WWFoQVMweFRDQ1U5Qkp5Um5PR1RqVDNwSGJQWGo1RC03MXV0eVpzd3RFdWtvTEVrT0lrYmJNZ25aTFVtS3l3Y25HdXpFQ0duZnRLRFhieHBXN0s3OVRERmJWSHhTeWNsbUpiOVMwRXkyVTdNY1NvZEtRRGgyZ201U0pNQmJ5MDJ5dk5hWGN4NlRvdlZIOExBLUZlYTlEQlk1QjB0dW5lbWM3VVdoUUpJbGxRd1ZoeEdlRXdfemtENEFnYlhHZUozMklmVWIxbEVs?oc=5",
+      "fuente": "Infobae",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "6d9011da9c",
+      "titulo": "Fracking sí pero de bajo impacto ambiental: Sheinbaum, ante críticas por plan energético",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQV2NjcF9Wb3JpcUxWYmdnNkhnWWIxYi0yLXdnMnZBNTFiSWxNMWhSVXRweDlGZDk4dmE1enZocmdTTUNjb09CTDUzM0lQb2ZmaU5vT3F4MjdoczM4NEg2WXhxRHhTdnVoMDRyZ2JYbG95bS1nQzQzSzBwZWFaeDRfMHBiWDczTE9CWFU1UGloNmFTY3piX1l2TFJVRjZ6TUJuRUJ3eWhfVEp6NFlrd3hTcEJSSnN0MzR4UUN3dQ?oc=5",
+      "fuente": "Quinceminutos.MX",
+      "categorias": [
+        "ambiente"
+      ]
+    },
+    {
+      "id": "ab13bee6c8",
+      "titulo": "Luego de que AMLO prohibió el fracking por el grave daño ambiental, Sheinbaum y Pemex evalúan reactivarlo con nuevas tecnologías y participación privada para dejar de depender del gas de EEUU: ¿qué es y qué efectos tendría en México?",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMijANBVV95cUxQVXctQkNSV3hTUnNWRWNxTFlNWE1UQUY2bUd0VW1nVFM3TGh1UU9HSGJuLUhiS3EyTXV1cVFmc0hwUzRrZXNtQnVhTzhtNE5oTnM2US1PUk9HTmsyTFQ4bUt1ZVZvZTZkaVNCdDFUR1JWdXVMWk1acVRlbTJ4TXZyWmZ2Tl9Ha2dTVGdiTmh4TkFvaTdEZXdiV1pnZS1sRmtTTkNwSlV0TFhNWVY5ZTIyV1BQN3k0ZGxYbGV1ZGFsT05WbFV3VmVNYzA2MEgyM1NWYkdlZjI2c3VmRm9JRlpCeWR2ZDVybDNHQmtTLTFPZ3ZHcUt6emVwRU1KdkI1cEZ0WjJSOHRJU0FHSzVJaUdycTVtajNsZndvUUI1TzNCcjhpVjJHRi0zM2hLc1FCV2NhRm5LLUZNOXZMVEpIdkVzWTZzUWZKRUUtLWFMLU1KQlVYTGswc2tRaktkLWd2ZVZqTmtVYk9YdVczVXY4eXVkVTIwMDAxWk1vM3BlU01iaEJodEg0MzR5MFNqc0zSAacDQVVfeXFMTmhmVWl6UDRRWFBzZGx4LUNvLUxjbWZUSnVDNDdDeDliRkxIazNOLUR1ZURROWlFakNIMkVDREtQamt6ZkxMTExaNG1YYld4SEpmYjRmbTBJcTF3NXRxTVNYU2F4eUZNaEhRWTRuWVFOSWN0cTNVNV9JeEw2TF83TnNfeU1DTzlPRS0tVnZnZGtjV1ZtclE5NU9VeEpWUjkzRUFUeUZIMHJiZFF4ZVZXZGZhd3U5eWhtU1NYeWZtckFMRXVDZkNKRGR5U2phemRxWkNxMGV5YkM3N0k0RDBFZzZEQkJRV04wOG1oaGVZY3k0TVh1c1FNaW82NDFnaU85RTF4VzBpaFVvRmdnYXVjNkRTQm05UjhjXzFQZXFpdmxIWGU2TVNTM1d6Q0p2Y1lYcG1SOEQyRFZUUFB4UHJQV2g0ZmttVXRrSm9CZmZxYXZsdTJsMFJZd3VOWlNMWXpvUER3UzJpMVg5WnUtclVfWGwyWlFvRkx6d2pITDBwVkJ0VGlHb1VLZzQzbkw2NzRISlJQd0xvbnpBbUJFVjNFQ29BZUVqUmhB?oc=5",
+      "fuente": "El Imparcial",
+      "categorias": [
+        "energia",
+        "ambiente"
+      ]
+    },
+    {
+      "id": "b1f6874aed",
+      "titulo": "Sheinbaum: incendio en Dos Bocas, controlado; destaca coordinación con Javier May y mandos de Pemex",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNTFZEX1YySmFOYTJUZ1RpQ0g1VDZuS3l6WnhpbmhxV0s2SFZUdmpteC1KcmVHcUh4UkdWVnNHNkg0N0VrTnR2TzA5OHBnMTZQNDhKNlQ5SWl1X0tqamMyanB4WHREZ0NUOG5QRXExbE1IWHJWLS16Q3V0MUtYVUFiTXF1MXVkNF9NTU55NGJ0QW9PQ0RVV1pHczhCYmFwMV8xbXFqNEE5YzdYN2FUVkZsY2N0TDJvNDIxWmU5SGFfeV93Z0VPQWltVzZzOUZ4eFlFd3lIa0ppMGctSWdTc3Q0Xw?oc=5",
+      "fuente": "diariodetabasco.mx",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "4a2508b5c4",
+      "titulo": "Deuda de Pemex: ¿Qué sabemos del plan ‘Orión 2′ que se ‘cocina’ para pagar a proveedores?",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPZ1dtQ1o1S3ZweUotbHF6RXowSE42YVFCb3NnZ085cUhPajJNR3o5RndiWnpJYWs0aktFaUdkb055VlRRRnpybURLanlIam5jekJYcUtfZi1pNjRlNlJRR0hNZkJOWFJ4R3Z6Snl2eU5tYV9ycGQwM0YySExmc3Rkcm50OEJrMHNtREtkSDlLV3VIeE5BSlk1T3psUUJNeDJ1RWcxaXBmanFCbHVCa1BVcFk4VDJBLXB6TWZHQ0IydFMwT244eXZhZUswMjVfenlT?oc=5",
+      "fuente": "El Financiero",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "a6b115cf0e",
+      "titulo": "Pemex investiga causas del incendio en refinería Dos Bocas; pudo ser por temperatura de coque, dice Sheinbaum",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNNnpUSHhLZms4UlVBeEp4SU5iWi1KR3hBQkFaRnFVcTBnWGJiSXZSbzMtb2UweWVRQXRYeFg4bTV1Nks3b1VVc2FzclQzWjVzUzZ3TkYwRXRCVk8ySUJNcm9ySWhJSXZBNEo2bXBuMlotMG1pbGZlUmpfdXZWMzlQV1FSa20tRUd5RnAxWUpGYTBGX3RCQW82cDBDcGZGbDZZQkdNNy1veGUydU0xS0E?oc=5",
+      "fuente": "El Sol de México",
+      "categorias": [
+        "energia"
+      ]
+    },
+    {
+      "id": "61206ef144",
+      "titulo": "México y EU abordan migración y seguridad; Sheinbaum suma gusano barrenador, agua y comercio",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxONWcwQm5SNjczSnIxMHBEVWNJR3ZyY2hXcVF0eTVZaHNDUUpCeUdUSFk0cFQyQkxjU25JRGxBNlV0VkVBUDR1TkpIaFpjclFpMFhTWm5rb19RRFFkc2VlRTdaVUdJM25ubHJVOHpEWlpHT01DeUNIM2xBblNZTEtuT3lYRnFJN1k3MURFb3RJajlKZ2RnSFpjWE1mUThoZkpLcTRmdXZYRmRCWTE2Z3hPWUtvNmFQbG9FdFZoaF8wa1dHLUVDREFDQXJCbDVVdDUxVkE?oc=5",
+      "fuente": "vanguardia.com.mx",
+      "categorias": [
+        "agua"
+      ]
+    },
+    {
+      "id": "d01bc3ab47",
+      "titulo": "Rubio felicita a Velasco y hablan sobre comercio, migración, agua y seguridad: Sheinbaum",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOSVRPU1JTMm9pYXZHS0JxTUNwV0NhT3l6Uk1Eb1pLUHF1b3h0WTJ6eWtaM2J3ZGkxTS05dHJSbkRxQVBlNC1YekNaZGgyZFNQajNnLU51QVpBYktuRmdIcllJYkE0Si00MjRMU1lwMXpUaVZJUEpsQ3hVWENPdjdidERDRHhWeWFZNEZUN21KQjdPWnhwTldhdXlQODFyVS1KZUd3c1d4SEZBcVU?oc=5",
+      "fuente": "La Hoguera Mx",
+      "categorias": [
+        "agua"
+      ]
+    },
+    {
+      "id": "8def9dbec5",
+      "titulo": "Se ha evitado la especulación inmobiliaria en torno al proyecto de reciclaje en San Jose Chiapa: Sheinbaum",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQYm0wS3dYd0lhRTdkdC1NZkVKb0hpaUFTaS14cDdLTTd5M2p4VzB3SFpoM1VWMm13akN4b0Q2NW92eXJfdURrQTNsTFVmdWpkRTNnTVl6dHAzNG1hSGpBd0ctckZCY1g2dFpDOTBza0M5bENQaXp1dXV1elFCX01DazBDWmlOZ2w2ZTJva2Itb3hER2NDd3VJVU1HUDRNWGRBcXZvbkRIaUVnTkpkY040VXk0MXk5MVE?oc=5",
+      "fuente": "La Jornada de Oriente",
+      "categorias": [
+        "residuos"
+      ]
+    },
+    {
+      "id": "7c099f1cee",
+      "titulo": "Incendio en bodega de refinería Dos Bocas habría sido provocado por alta temperatura de residuos: Sheinbaum",
+      "fecha": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPc0toSllfX2xmM2RnalF0SEtIdVNRLUNVUVhIbzcxY1pXb3ZoaVdZRnVvdWRkSk1udnF5NUFPNEgxS0o5ejN5ZzhLUjY1M1BQdDI5Y00tTkhGUWNoSlFIVWVueDZrZjlLcDBxSVUycjBvc1I3R0N0cE90THNsSUFfMnFkTFMtNzA?oc=5",
+      "fuente": "Grupo Animal",
+      "categorias": [
+        "residuos"
+      ]
+    }
+  ],
   "_meta": {
-    "fuente": "https://www.gob.mx/presidencia/es/archivo/articulos",
-    "total": 0,
-    "nuevos_hoy": 0,
-    "actualizado": "2026-04-21T00:00:00Z"
+    "fuente": "Google News RSS / menciones Sheinbaum temas ambientales",
+    "total": 121,
+    "nuevos": 121,
+    "actualizado": "2026-04-23T16:40:34Z"
   }
 }
