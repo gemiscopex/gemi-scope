@@ -160,10 +160,10 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .radar-market-card:last-child{border-bottom:none}
 .radar-market-card:hover{background:rgba(10,194,133,0.04)}
 .radar-market-card.active{background:rgba(10,194,133,0.07);border-left:3px solid var(--green)}
-.radar-market-card.active .radar-mkt-name{color:var(--green);font-weight:700}
+.radar-market-card.active .radar-mkt-name{color:var(--text);font-weight:700}
 .radar-mkt-icon{font-size:16px;flex-shrink:0;width:28px;text-align:center}
 .radar-mkt-name{font-size:13px;font-weight:500;color:var(--text);flex:1}
-.radar-mkt-count{font-size:11px;font-weight:700;color:var(--text-muted);font-variant-numeric:tabular-nums;min-width:30px;text-align:right}
+.radar-mkt-count{font-size:12px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;min-width:30px;text-align:right}
 .radar-mkt-bar{width:60px;height:3px;border-radius:2px;overflow:hidden;background:rgba(0,0,0,0.06)}
 .radar-mkt-fill{height:100%;border-radius:2px}
 /* ── Radar panel Kalshi-style ── */
@@ -225,7 +225,8 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .ley-row:hover .ley-nombre{color:var(--green)}
 .ley-sigla{font-family:'IBM Plex Mono','IBM Plex Sans',monospace;font-size:11px;font-weight:600;color:var(--green);min-width:70px;letter-spacing:0.02em;flex-shrink:0}
 .ley-nombre{font-size:13px;font-weight:500;color:var(--text);flex:1;line-height:1.35;transition:color 0.15s}
-.ley-tema-badge{font-size:9px;font-weight:700;letter-spacing:0.05em;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0;color:#fff}
+.ley-tema-badge{display:none}
+.ley-tema-txt{font-size:10px;font-weight:500;color:var(--text-muted);white-space:nowrap;flex-shrink:0;letter-spacing:0.01em}
 .ley-reforma-date{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'IBM Plex Mono',monospace}
 .ley-link-icon{font-size:11px;color:var(--text-muted);flex-shrink:0;opacity:0.5}
 /* Legacy ley-item — not used anymore */
@@ -555,42 +556,27 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
       <div class="kpi-card">
         <div class="kpi-label">Alertas Críticas</div>
         <div class="kpi-value" id="kpi-val-criticas">—</div>
-        <div class="kpi-row">
-          <span class="badge badge-critico"><span class="badge-dot" style="background:#DC2626"></span>Crítico</span>
-          <svg id="kpi-spark-criticas" width="60" height="24" viewBox="0 0 60 24"></svg>
-        </div>
+        <div class="kpi-row"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#DC2626"></span></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Iniciativas Activas</div>
         <div class="kpi-value" id="kpi-val-iniciativas">—</div>
-        <div class="kpi-row">
-          <span class="badge badge-info"><span class="badge-dot" style="background:#2563EB"></span>Federal</span>
-          <svg id="kpi-spark-iniciativas" width="60" height="24" viewBox="0 0 60 24"></svg>
-        </div>
+        <div class="kpi-row"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#2563EB"></span></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Normas en Revisión</div>
         <div class="kpi-value" id="kpi-val-normas">3</div>
-        <div class="kpi-row">
-          <span class="badge badge-medio"><span class="badge-dot" style="background:#CA8A04"></span>Medio</span>
-          <svg id="kpi-spark-normas" width="60" height="24" viewBox="0 0 60 24"></svg>
-        </div>
+        <div class="kpi-row"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#CA8A04"></span></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Estados con Alertas</div>
         <div class="kpi-value" id="kpi-val-estados">—</div>
-        <div class="kpi-row">
-          <span class="badge badge-alto"><span class="badge-dot" style="background:#D97706"></span>Alto</span>
-          <svg id="kpi-spark-estados" width="60" height="24" viewBox="0 0 60 24"></svg>
-        </div>
+        <div class="kpi-row"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#D97706"></span></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Noticias Hoy</div>
         <div class="kpi-value" id="kpi-val-hoy">—</div>
-        <div class="kpi-row">
-          <span class="badge badge-info"><span class="badge-dot" style="background:#2563EB"></span>Hoy</span>
-          <svg id="kpi-spark-hoy" width="60" height="24" viewBox="0 0 60 24"></svg>
-        </div>
+        <div class="kpi-row"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#009E90"></span></div>
       </div>
     </div>
 
@@ -979,16 +965,7 @@ const TEMA_COLORS={
   'Biodiversidad':'#22c55e','Impuestos Ambientales':'#f87171','Responsabilidad':'#64748b',
   'Economía Circular':'#0ac285'
 };
-function drawBarSpark(svgId,color){
-  var svg=document.getElementById(svgId);if(!svg)return;
-  var vals=[0.3,0.5,0.4,0.65,0.55,0.75,1];
-  var w=60,h=24,bw=6,gap=2;
-  svg.setAttribute('viewBox','0 0 '+(7*(bw+gap)-gap)+' '+h);
-  svg.innerHTML=vals.map(function(v,i){
-    var bh=Math.round(v*(h-2));var x=i*(bw+gap);var y=h-bh;
-    return '<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+bh+'" rx="2" fill="'+color+'" opacity="'+(i===6?'1':'0.25')+'"/>';
-  }).join('');
-}
+function drawBarSpark(){/* removed – no historical data available */}
 function renderKpiBar(){
   var criticas=(alertas||[]).filter(function(a){var n=(a.nivel||a.level||'').toLowerCase();return n==='crítico'||n==='critico';}).length;
   var elC=document.getElementById('kpi-val-criticas');if(elC)elC.textContent=criticas;
@@ -998,11 +975,6 @@ function renderKpiBar(){
   var todayStr=cdmxNow.toISOString().substring(0,10);
   var hoyCount=(noticias||[]).filter(function(n){return(n.fecha_publicacion||'').substring(0,10)===todayStr;}).length;
   var elH=document.getElementById('kpi-val-hoy');if(elH)elH.textContent=hoyCount;
-  drawBarSpark('kpi-spark-criticas','#DC2626');
-  drawBarSpark('kpi-spark-iniciativas','#2563EB');
-  drawBarSpark('kpi-spark-normas','#CA8A04');
-  drawBarSpark('kpi-spark-estados','#D97706');
-  drawBarSpark('kpi-spark-hoy','#2563EB');
 }
 function updateLeyes(){
   const tc=TEMA_COLORS;
@@ -1012,7 +984,7 @@ function updateLeyes(){
     return `<div class="ley-row" onclick="window.open('${l.u}','_blank')">
       <span class="ley-sigla">${l.s}</span>
       <span class="ley-nombre">${l.n}</span>
-      <span class="ley-tema-badge" style="background:${color}">${l.t}</span>
+      <span class="ley-tema-txt">${l.t}</span>
       ${year?`<span class="ley-reforma-date">${year}</span>`:''}
       <span class="ley-link-icon">&#8599;</span>
     </div>`;
@@ -1466,17 +1438,26 @@ function _buildRadarSelector(){
   if(!rsel)return;
   const cutoff=new Date(Date.now()-90*86400000);
   const recentNoticias=noticias.filter(n=>new Date(n.fecha_publicacion)>cutoff);
-  const maxCount=Math.max(...RADAR_TEMAS.map(t=>recentNoticias.filter(n=>t.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length),1);
-  rsel.innerHTML=RADAR_TEMAS.map((t,i)=>{
-    const cnt=recentNoticias.filter(n=>t.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length;
+  // Score each tema
+  const scored=RADAR_TEMAS.map(t=>({
+    t,
+    cnt:recentNoticias.filter(n=>t.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length
+  }));
+  // Sort by count desc
+  scored.sort((a,b)=>b.cnt-a.cnt);
+  const maxCount=Math.max(...scored.map(s=>s.cnt),1);
+  // First item after sort is default selected
+  rsel.innerHTML=scored.map(({t,cnt},i)=>{
     const barW=Math.round((cnt/maxCount)*100);
     return `<div class="radar-market-card${i===0?' active':''}" id="radar-card-${t.id}" onclick="_selectRadar('${t.id}')">
       <span class="radar-mkt-icon"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${t.color}"></span></span>
       <span class="radar-mkt-name">${t.name}</span>
       <div class="radar-mkt-bar"><div class="radar-mkt-fill" style="width:${barW}%;background:${t.color}"></div></div>
-      <span class="radar-mkt-count" style="color:${t.color}">${cnt}</span>
+      <span class="radar-mkt-count">${cnt}</span>
     </div>`;
   }).join('');
+  // Auto-select top tema
+  if(scored.length)_selectRadar(scored[0].t.id);
 }
 function _selectRadar(temaId){
   document.querySelectorAll('.radar-market-card').forEach(c=>c.classList.remove('active'));
