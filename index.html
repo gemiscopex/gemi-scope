@@ -6,54 +6,89 @@
 <title>Scope GEMI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --green:#0ac285;
-  --green-btn:#28cc95;
-  --green-tint:rgba(10,194,133,0.08);
-  --text:rgba(0,0,0,0.88);
-  --text-sec:rgba(0,0,0,0.5);
-  --text-muted:rgba(0,0,0,0.3);
+  --bg:#F0F4F8;
+  --card:#FFFFFF;
+  --card2:#F8FAFC;
   --border:rgba(0,0,0,0.07);
-  --border-med:rgba(0,0,0,0.1);
-  --radius:16px;
+  --border2:rgba(0,0,0,0.13);
+  --border-med:rgba(0,0,0,0.13);
+  --text:#0D1B2A;
+  --text2:#5A7A98;
+  --text-sec:#5A7A98;
+  --text3:#A8C2D8;
+  --text-muted:#A8C2D8;
+  --teal:#009E90;
+  --teal-l:#E6F7F5;
+  --teal-m:rgba(0,158,144,0.15);
+  --green:#009E90;
+  --green-btn:#009E90;
+  --green-tint:#E6F7F5;
+  --radius:10px;
+  --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 12px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.05);
+  --surface:#F8FAFC;
 }
-body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--text);min-height:100vh}
-.nav{background:#fff;border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:stretch;justify-content:space-between;height:52px;position:sticky;top:0;z-index:400;gap:0;transform:translateZ(0)}
+body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.nav{background:var(--card);border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:stretch;justify-content:space-between;height:54px;position:sticky;top:0;z-index:400;gap:0;transform:translateZ(0)}
 .nav-left{display:flex;align-items:center;gap:10px;flex-shrink:0;padding-right:20px;border-right:1px solid var(--border)}
 .nav-logo-img{height:22px;width:auto;display:block}
 .nav-logo-sep{width:1px;height:20px;background:var(--border-med);margin:0 2px}
-.nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;letter-spacing:0.08em;color:var(--green)}
+.nav-logo{font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:700;letter-spacing:0.12em;color:var(--green)}
 .nav-tagline{font-size:11px;color:var(--text-muted);letter-spacing:0.02em;font-weight:400}
 .nav-time{font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums;align-self:center;flex-shrink:0;padding-left:20px}
 .nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0;padding-left:16px;border-left:1px solid var(--border)}
-.nav-search{display:flex;align-items:center;gap:6px;background:#f5f5f5;border:1px solid var(--border);border-radius:20px;padding:0 12px;height:32px}
-.nav-search input{border:none;background:none;font-size:12px;color:var(--text);outline:none;width:140px;font-family:'Inter',sans-serif}
+.nav-search{display:flex;align-items:center;gap:6px;background:var(--card2);border:1px solid var(--border2);border-radius:20px;padding:0 12px;height:32px}
+.nav-search input{border:none;background:none;font-size:12px;color:var(--text);outline:none;width:140px;font-family:'IBM Plex Sans',sans-serif}
 .nav-search input::placeholder{color:var(--text-muted)}
 .nav-search svg{opacity:0.35;flex-shrink:0}
 .nav-linkedin{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:1px solid var(--border);color:#0a66c2;transition:background 0.15s;text-decoration:none;flex-shrink:0}
 .nav-linkedin:hover{background:#e8f0fe}
-.nav-btn-login{height:32px;padding:0 14px;border:1px solid var(--border-med);border-radius:8px;background:none;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.15s,color 0.15s;white-space:nowrap}
+.nav-btn-login{height:32px;padding:0 14px;border:1px solid var(--border-med);border-radius:8px;background:none;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:background 0.15s,color 0.15s;white-space:nowrap}
 .nav-btn-login:hover{background:var(--border);color:var(--text)}
-.nav-btn-register{height:32px;padding:0 14px;border:none;border-radius:8px;background:#111;font-size:12px;font-weight:600;color:#fff;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.15s;white-space:nowrap}
+.nav-btn-register{height:32px;padding:0 14px;border:none;border-radius:8px;background:#111;font-size:12px;font-weight:600;color:#fff;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:background 0.15s;white-space:nowrap}
 .nav-btn-register:hover{background:#333}
 .nav-tabs{display:flex;align-items:stretch;flex:1;padding:0 4px 0 20px}
-.tab-btn{padding:0 2px;margin-right:20px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:'Inter',sans-serif;white-space:nowrap}
+.tab-btn{padding:0 2px;margin-right:20px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:'IBM Plex Sans',sans-serif;white-space:nowrap}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
 .main{max-width:1200px;margin:0 auto;padding:24px 28px}
-.scope-footer{border-top:0.8px solid var(--border);margin-top:32px;padding:20px 28px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.8}
+.scope-footer{background:var(--card);border-top:1px solid var(--border);margin-top:32px;padding:20px 28px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.8}
 .scope-footer a{color:var(--text-muted);text-decoration:underline;text-underline-offset:3px}
 .scope-footer a:hover{color:var(--text)}
-.card{background:#fff;border:0.8px solid var(--border-med);border-radius:var(--radius);padding:22px 24px}
-.card-label{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:18px}
-.top-grid{display:grid;grid-template-columns:1fr 2.6fr;gap:14px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
+.card-label{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px}
+/* ── Dashboard layout ── */
+.dash-main{display:grid;grid-template-columns:2fr 1fr;gap:10px;align-items:start}
+.dash-left{display:flex;flex-direction:column;gap:10px}
+.dash-right{display:flex;flex-direction:column;gap:10px}
+.dash-feeds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* ── KPI Bar ── */
+.kpi-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:10px}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.kpi-label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.kpi-value{font-size:28px;font-weight:700;color:var(--text);line-height:1;font-family:'IBM Plex Sans',sans-serif;margin-bottom:8px}
+.kpi-row{display:flex;align-items:center;justify-content:space-between}
+/* ── Badge component ── */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.04em}
+.badge-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.badge-critico{background:#FEF2F2;border:1px solid rgba(220,38,38,0.16);color:#DC2626}
+.badge-alto{background:#FFFBEB;border:1px solid rgba(217,119,6,0.16);color:#D97706}
+.badge-medio{background:#FEFCE8;border:1px solid rgba(202,138,4,0.16);color:#CA8A04}
+.badge-bajo{background:#F0FDF4;border:1px solid rgba(22,163,74,0.16);color:#16A34A}
+.badge-info{background:#EFF6FF;border:1px solid rgba(37,99,235,0.16);color:#2563EB}
+/* ── Tag + CodePill ── */
+.tag{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;border:1px solid transparent}
+.code-pill{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px;display:inline-block}
+/* Legacy grid — kept for non-dashboard use */
+.top-grid{display:grid;grid-template-columns:1fr 2.6fr;gap:10px;margin-bottom:10px}
 .top-hero{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
 .top-hero-cat{font-size:11px;color:var(--text-sec);letter-spacing:0.04em;margin-bottom:6px;font-weight:500}
-.top-hero-count{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:700;color:var(--green);line-height:1;letter-spacing:-0.01em}
+.top-hero-count{font-family:'IBM Plex Sans',sans-serif;font-size:64px;font-weight:700;color:var(--green);line-height:1;letter-spacing:-0.01em}
 .top-hero-sub{font-size:12px;color:var(--text-sec);margin-top:4px}
 .top-hero-headline{font-size:12px;color:var(--text-sec);margin-top:10px;line-height:1.5;font-style:italic}
 .cat-list{list-style:none}
@@ -83,10 +118,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .pulse-ring{position:absolute;width:40px;height:40px;top:-10px;left:-10px;border-radius:50%;animation:pulseRing 1.8s ease-out infinite;opacity:0.5}
 .pulse-core{position:absolute;width:20px;height:20px;border-radius:50%;border:2.5px solid rgba(255,255,255,0.85);box-shadow:0 2px 8px rgba(0,0,0,0.22)}
 @keyframes pulseRing{0%{transform:scale(0.5);opacity:0.65}100%{transform:scale(2.3);opacity:0}}
-.marker-label{position:absolute;bottom:-17px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:700;color:#222;white-space:nowrap;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.06em;text-shadow:0 1px 3px rgba(255,255,255,0.95)}
+.marker-label{position:absolute;bottom:-17px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:600;color:#222;white-space:nowrap;font-family:'IBM Plex Mono',monospace;letter-spacing:0.04em;text-shadow:0 1px 3px rgba(255,255,255,0.95)}
 /* Leaflet popup override */
 .scope-popup .leaflet-popup-content-wrapper{border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.16);border:1px solid rgba(0,0,0,0.07);padding:0}
-.scope-popup .leaflet-popup-content{margin:16px;font-family:'Inter',sans-serif}
+.scope-popup .leaflet-popup-content{margin:16px;font-family:'IBM Plex Sans',sans-serif}
 .scope-popup .leaflet-popup-tip-container{display:none}
 .spark-widget{display:flex;flex-direction:column;gap:0}
 .spark-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:0.8px solid var(--border);cursor:pointer;border-radius:6px;transition:background 0.12s}
@@ -109,14 +144,14 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .sdrop-empty{padding:20px 16px;text-align:center;font-size:12px;color:var(--text-muted)}
 .fed-ley-pill.active{background:#111!important;color:#fff!important;border-color:#111!important}
 .fed-tabs{display:flex;gap:4px;margin-bottom:10px}
-.fed-tab{background:rgba(0,0,0,0.04);border:none;border-radius:20px;padding:4px 10px;font-size:10.5px;font-weight:600;color:var(--text-muted);cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;display:flex;align-items:center;gap:5px}
+.fed-tab{background:rgba(0,0,0,0.04);border:none;border-radius:20px;padding:4px 10px;font-size:10.5px;font-weight:600;color:var(--text-muted);cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:all 0.15s;display:flex;align-items:center;gap:5px}
 .fed-tab:hover{background:rgba(10,194,133,0.1);color:var(--green)}
 .fed-tab.active{background:var(--green);color:#fff}
 .fed-tab-badge{background:rgba(255,255,255,0.25);border-radius:10px;padding:0 5px;font-size:9px;font-weight:700}
 .fed-tab:not(.active) .fed-tab-badge{background:rgba(0,0,0,0.08);color:var(--text-muted)}
 /* ── Legislative mini-search ── */
 .leg-search-wrap{position:relative;margin-bottom:10px}
-.leg-search-input{width:100%;box-sizing:border-box;padding:6px 10px 6px 28px;border:0.8px solid var(--border);border-radius:8px;font-size:11px;font-family:'Inter',sans-serif;color:var(--text);background:#fafafa;outline:none;transition:border-color 0.15s}
+.leg-search-input{width:100%;box-sizing:border-box;padding:6px 10px 6px 28px;border:0.8px solid var(--border);border-radius:8px;font-size:11px;font-family:'IBM Plex Sans',sans-serif;color:var(--text);background:#fafafa;outline:none;transition:border-color 0.15s}
 .leg-search-input:focus{border-color:var(--green);background:#fff}
 .leg-search-icon{position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text-muted);pointer-events:none}
 /* ── Radar market-style ── */
@@ -134,11 +169,11 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 /* ── Radar panel Kalshi-style ── */
 .radar-panel-wrap{background:#fff;border:0.8px solid var(--border);border-radius:12px;overflow:hidden}
 .radar-panel-header{padding:20px 24px 16px;border-bottom:0.8px solid var(--border)}
-.radar-panel-title{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;letter-spacing:0.01em;color:var(--text);margin-bottom:4px}
+.radar-panel-title{font-family:'IBM Plex Sans',sans-serif;font-size:26px;font-weight:700;letter-spacing:0.01em;color:var(--text);margin-bottom:4px}
 .radar-panel-meta{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .radar-panel-stat{display:flex;flex-direction:column;align-items:center;padding:0 18px;border-right:0.8px solid var(--border)}
 .radar-panel-stat:last-child{border-right:none}
-.radar-stat-val{font-size:28px;font-weight:700;font-family:'Barlow Condensed',sans-serif;line-height:1}
+.radar-stat-val{font-size:28px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;line-height:1}
 .radar-stat-lbl{font-size:9.5px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:3px}
 .radar-panel-body{display:grid;grid-template-columns:1fr 1.2fr;gap:0}
 .radar-panel-col{padding:20px 24px;border-right:0.8px solid var(--border)}
@@ -182,11 +217,21 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .news-title{font-size:13px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:3px;transition:color 0.15s}
 .news-meta{font-size:11px;color:var(--text-muted)}
 .news-empty{padding:20px 0;color:var(--text-muted);font-size:13px;text-align:center;line-height:1.8}
-.leyes-grid{display:flex;flex-direction:column;gap:7px}
+.leyes-grid{display:flex;flex-direction:column;gap:0}
+/* New compact ley row */
+.ley-row{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:0.8px solid rgba(0,0,0,0.06);cursor:pointer;transition:background 0.1s;border-radius:4px}
+.ley-row:last-child{border-bottom:none}
+.ley-row:hover{background:rgba(10,194,133,0.04)}
+.ley-row:hover .ley-nombre{color:var(--green)}
+.ley-sigla{font-family:'IBM Plex Mono','IBM Plex Sans',monospace;font-size:11px;font-weight:600;color:var(--green);min-width:70px;letter-spacing:0.02em;flex-shrink:0}
+.ley-nombre{font-size:13px;font-weight:500;color:var(--text);flex:1;line-height:1.35;transition:color 0.15s}
+.ley-tema-badge{font-size:9px;font-weight:700;letter-spacing:0.05em;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0;color:#fff}
+.ley-reforma-date{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'IBM Plex Mono',monospace}
+.ley-link-icon{font-size:11px;color:var(--text-muted);flex-shrink:0;opacity:0.5}
+/* Legacy ley-item — not used anymore */
 .ley-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:0.8px solid var(--border-med);border-radius:10px;text-decoration:none;transition:border-color 0.15s,background 0.15s;background:#fff}
 .ley-item:hover{border-color:var(--green);background:var(--green-tint)}
-.ley-sigla{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:var(--green);min-width:58px;letter-spacing:0.03em;padding-top:1px;line-height:1.2}
-.ley-nombre{font-size:11.5px;font-weight:500;color:var(--text);line-height:1.35}
+.ley-nombre-old{font-size:11.5px;font-weight:500;color:var(--text);line-height:1.35}
 .ley-tema{font-size:10px;color:var(--text-muted);margin-top:2px}
 .ley-reforma{font-size:10px;color:var(--text-muted);margin-top:4px;line-height:1.3}
 /* ── COMISIONES ── */
@@ -195,7 +240,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 /* ─ Accordion comisiones ─ */
 .com-section{margin-bottom:32px}
 .com-section-hdr{padding-bottom:10px;border-bottom:1.5px solid var(--text);margin-bottom:2px}
-.com-section-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:0.04em;color:var(--text);text-transform:uppercase}
+.com-section-name{font-family:'IBM Plex Sans',sans-serif;font-size:18px;font-weight:700;letter-spacing:0.04em;color:var(--text);text-transform:uppercase}
 .com-section-sub{font-size:10px;color:var(--text-muted);margin-top:4px;letter-spacing:0.02em}
 .com-row{display:flex;align-items:center;gap:8px;padding:8px 10px;cursor:pointer;transition:background 0.12s;border-bottom:0.8px solid rgba(0,0,0,0.05);border-radius:6px}
 .com-row:hover{background:rgba(10,194,133,0.05)}
@@ -216,7 +261,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .com-info{flex:1;min-width:0}
 .com-member-name{font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .com-member-cargo{font-size:10px;color:var(--text-muted);margin-top:1px}
-.com-partido{font-size:9px;font-weight:700;letter-spacing:0.04em;padding:2px 6px;border-radius:4px;background:rgba(0,0,0,0.05);color:var(--text-muted);white-space:nowrap;flex-shrink:0}
+.com-partido{font-size:9px;font-weight:600;letter-spacing:0.04em;padding:2px 6px;border-radius:4px;background:rgba(0,0,0,0.05);color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'IBM Plex Mono',monospace}
 .com-footer{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;padding-top:10px;border-top:0.8px solid var(--border)}
 .com-footer-item{}
 .com-footer-lbl{font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:3px}
@@ -228,17 +273,17 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .state-panel{margin-bottom:14px;animation:spSlide 0.22s ease}
 @keyframes spSlide{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .sp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.sp-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;color:var(--text)}
+.sp-name{font-family:'IBM Plex Sans',sans-serif;font-size:26px;font-weight:700;color:var(--text)}
 .sp-sub{font-size:12px;color:var(--text-muted);margin-left:10px;vertical-align:middle}
-.sp-close{background:none;border:1px solid var(--border-med);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text-sec);font-family:'Inter',sans-serif;transition:background 0.15s}
+.sp-close{background:none;border:1px solid var(--border-med);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text-sec);font-family:'IBM Plex Sans',sans-serif;transition:background 0.15s}
 .sp-close:hover{background:var(--green-tint)}
 .sp-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px;overflow-x:auto;gap:0}
-.sp-tab{background:none;border:none;border-bottom:2px solid transparent;padding:10px 16px;font-size:11px;font-weight:600;letter-spacing:0.6px;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color 0.15s;font-family:'Inter',sans-serif}
+.sp-tab{background:none;border:none;border-bottom:2px solid transparent;padding:10px 16px;font-size:11px;font-weight:600;letter-spacing:0.6px;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color 0.15s;font-family:'IBM Plex Sans',sans-serif}
 .sp-tab.active{color:var(--green);border-bottom-color:var(--green)}
 .sp-content{display:none}
 .sp-content.active{display:block}
 .sp-stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:16px}
-.sp-stat{background:var(--green-tint);border-radius:10px;padding:14px}
+.sp-stat{background:var(--teal-l);border-radius:10px;padding:14px}
 .sp-stat-label{font-size:10px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px}
 .sp-stat-value{font-size:17px;font-weight:600;color:var(--text)}
 .sp-law-block{border:1px solid var(--border-med);border-radius:10px;padding:14px;margin-bottom:14px}
@@ -269,7 +314,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .alerta-nivel-critico{background:#fee2e2;color:#dc2626}
 .alerta-nivel-alto{background:#fef3c7;color:#d97706}
 .alerta-nivel-medio{background:#ede9fe;color:#7c3aed}
-.alerta-filter-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:'Inter',sans-serif}
+.alerta-filter-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:'IBM Plex Sans',sans-serif}
 .alerta-filter-btn.active{background:var(--green-tint);border-color:var(--green);color:var(--green)}
 /* Alertas Bloomberg table */
 .alerta-table{width:100%}
@@ -302,14 +347,14 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .instr-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:8px 14px;border-top:0.8px solid var(--border);font-size:11px}
 .instr-row a{color:var(--text);text-decoration:none;flex:1;line-height:1.4}
 .instr-row a:hover{color:var(--green)}
-.instr-row-date{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0}
+.instr-row-date{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'IBM Plex Mono',monospace}
 .instr-row-state{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-weight:600}
 .nav-badge{display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;border-radius:8px;background:#ef4444;color:#fff;font-size:9px;font-weight:700;margin-left:4px;padding:0 3px}
-.radar-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);transition:all 0.15s;white-space:nowrap;font-family:'Inter',sans-serif}
-.act-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:'Inter',sans-serif}
+.radar-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);transition:all 0.15s;white-space:nowrap;font-family:'IBM Plex Sans',sans-serif}
+.act-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:'IBM Plex Sans',sans-serif}
 .act-btn.active{background:var(--green-tint);border-color:var(--green);color:var(--green)}
 /* News Ticker */
-.news-ticker-wrap{height:340px;overflow:hidden;position:relative}
+.news-ticker-wrap{height:200px;overflow:hidden;position:relative}
 .news-ticker-inner{animation:tickerScroll 180s linear infinite}
 .news-ticker-inner:hover{animation-play-state:paused;cursor:pointer}
 @keyframes tickerScroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
@@ -321,7 +366,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 .ticker-date{font-size:10px;color:var(--text-muted);white-space:nowrap}
 /* State Modal */
 .state-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.42);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px}
-.state-modal{background:#fff;border-radius:20px;width:560px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow-y:auto;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,0.2);animation:modalIn 0.22s ease;flex-shrink:0}
+.state-modal{background:var(--card);border-radius:14px;width:600px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow-y:auto;padding:24px;box-shadow:var(--shadow-md);animation:modalIn 0.22s ease;flex-shrink:0}
 @keyframes modalIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
 /* Bottom 50/50 widgets */
 .bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
@@ -374,6 +419,9 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
   /* ── GRIDS → columna única ── */
   .top-grid{grid-template-columns:1fr !important}
   .bottom-row{grid-template-columns:1fr !important}
+  .dash-main{grid-template-columns:1fr !important}
+  .dash-feeds{grid-template-columns:1fr !important}
+  .kpi-bar{grid-template-columns:repeat(2,1fr) !important}
   .leyes-grid{grid-template-columns:1fr !important}
   .fed-cols{grid-template-columns:1fr !important}
   .acerca-grid{grid-template-columns:1fr !important}
@@ -389,7 +437,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
   .state-modal{width:100%;max-width:100%;max-height:100vh;border-radius:0;padding:16px;animation:none}
 
   /* ── TICKER ── */
-  .news-ticker-wrap{height:180px}
+  .news-ticker-wrap{height:140px}
 
   /* ── SP TABS (dentro del modal) ── */
   .sp-tab{font-size:10px;padding:8px 10px}
@@ -424,7 +472,21 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
   #tab-legislacion [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
   /* ── LEGISLACIÓN 2-COL → 1-COL ── */
   .leg-layout{grid-template-columns:1fr !important}
+  /* ── PRESIDENCIA ── */
+  .pres-widget{margin-top:14px;padding-top:12px;border-top:0.8px solid var(--border)}
 }
+/* ── Presidencia widget ── */
+.pres-widget{margin-top:14px;padding-top:12px;border-top:0.8px solid var(--border);flex-shrink:0}
+.pres-widget-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.pres-widget-label{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)}
+.pres-widget-src{font-size:9.5px;color:var(--text-muted);opacity:0.7}
+.pres-items{display:flex;flex-direction:column;gap:0}
+.pres-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:0.8px solid rgba(0,0,0,0.04);cursor:pointer;transition:background 0.1s}
+.pres-item:last-child{border-bottom:none}
+.pres-item:hover .pres-item-title{color:var(--green)}
+.pres-item-title{font-size:11.5px;color:var(--text);line-height:1.38;flex:1;transition:color 0.15s}
+.pres-item-meta{font-size:9.5px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'IBM Plex Mono',monospace}
+.pres-empty{font-size:11px;color:var(--text-muted);padding:8px 0;text-align:center}
 </style>
 </head>
 <body>
@@ -488,69 +550,127 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 </div>
 <div class="main">
   <div class="tab-content active" id="tab-dashboard">
-    <div class="top-grid">
-      <div class="card" style="display:flex;flex-direction:column;overflow:visible">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
-          <div class="card-label" style="margin-bottom:0">Últimas Noticias</div>
-          <div class="cat-popover-wrap">
-            <button class="cat-popover-btn" title="Actividad por categoría">···</button>
-            <div class="cat-popover" id="cat-popover">
-              <div class="cat-pop-title">Actividad por categoría</div>
-              <div id="cat-popover-rows"></div>
-            </div>
-          </div>
-        </div>
-        <div class="news-ticker-wrap" id="news-ticker-wrap">
-          <div class="news-ticker-inner" id="news-ticker"></div>
+    <!-- KPI Bar -->
+    <div class="kpi-bar">
+      <div class="kpi-card">
+        <div class="kpi-label">Alertas Críticas</div>
+        <div class="kpi-value" id="kpi-val-criticas">—</div>
+        <div class="kpi-row">
+          <span class="badge badge-critico"><span class="badge-dot" style="background:#DC2626"></span>Crítico</span>
+          <svg id="kpi-spark-criticas" width="60" height="24" viewBox="0 0 60 24"></svg>
         </div>
       </div>
-      <div class="card">
-        <div class="card-label">Mapa político de México</div>
-        <div class="map-wrap"><div id="map"></div></div>
-        <div style="display:flex;align-items:center;gap:14px;margin-top:10px;padding-top:8px;border-top:0.8px solid var(--border)">
-          <span style="font-size:9.5px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted)">Señal</span>
-          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#ef4444;display:inline-block;animation:pulseRing 1.8s ease-out infinite;opacity:0.8"></span><span style="font-size:10px;color:var(--text-sec)">Crítica</span></span>
-          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#f97316;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Alta</span></span>
-          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#10b981;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Moderada</span></span>
-          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#9ca3af;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Baja</span></span>
+      <div class="kpi-card">
+        <div class="kpi-label">Iniciativas Activas</div>
+        <div class="kpi-value" id="kpi-val-iniciativas">—</div>
+        <div class="kpi-row">
+          <span class="badge badge-info"><span class="badge-dot" style="background:#2563EB"></span>Federal</span>
+          <svg id="kpi-spark-iniciativas" width="60" height="24" viewBox="0 0 60 24"></svg>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Normas en Revisión</div>
+        <div class="kpi-value" id="kpi-val-normas">3</div>
+        <div class="kpi-row">
+          <span class="badge badge-medio"><span class="badge-dot" style="background:#CA8A04"></span>Medio</span>
+          <svg id="kpi-spark-normas" width="60" height="24" viewBox="0 0 60 24"></svg>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Estados con Alertas</div>
+        <div class="kpi-value" id="kpi-val-estados">—</div>
+        <div class="kpi-row">
+          <span class="badge badge-alto"><span class="badge-dot" style="background:#D97706"></span>Alto</span>
+          <svg id="kpi-spark-estados" width="60" height="24" viewBox="0 0 60 24"></svg>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Noticias Hoy</div>
+        <div class="kpi-value" id="kpi-val-hoy">—</div>
+        <div class="kpi-row">
+          <span class="badge badge-info"><span class="badge-dot" style="background:#2563EB"></span>Hoy</span>
+          <svg id="kpi-spark-hoy" width="60" height="24" viewBox="0 0 60 24"></svg>
         </div>
       </div>
     </div>
-    <div class="bottom-row">
-      <div class="card">
-        <div class="card-label">Actividad Legislativa Federal</div>
-        <div class="fed-cols" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px">
-          <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2ed57322">Cámara de Diputados</div>
+
+    <!-- Main grid: mapa+feeds izquierda, noticias+ejecutivo derecha -->
+    <div class="dash-main">
+      <div class="dash-left">
+        <!-- Mapa -->
+        <div class="card">
+          <div class="card-label">Mapa Político de México</div>
+          <div class="map-wrap"><div id="map"></div></div>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:10px;padding-top:8px;border-top:0.8px solid var(--border)">
+            <span style="font-size:9.5px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted)">Señal</span>
+            <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#ef4444;display:inline-block;animation:pulseRing 1.8s ease-out infinite;opacity:0.8"></span><span style="font-size:10px;color:var(--text-sec)">Crítica</span></span>
+            <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#f97316;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Alta</span></span>
+            <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#10b981;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Moderada</span></span>
+            <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:50%;background:#9ca3af;display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">Baja</span></span>
+          </div>
+        </div>
+        <!-- Feeds legislativos -->
+        <div class="dash-feeds">
+          <div class="card">
+            <div class="card-label">Cámara de Diputados</div>
             <div id="widget-diputados"></div>
           </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2ed57322">Senado de la República</div>
+          <div class="card">
+            <div class="card-label">Senado de la República</div>
             <div id="widget-senado"></div>
           </div>
         </div>
+        <!-- Gacetas estatales -->
+        <div class="card">
+          <div class="card-label">Monitoreo Estatal de Gacetas</div>
+          <div id="widget-gacetas"></div>
+        </div>
       </div>
-      <div class="card">
-        <div class="card-label">Monitoreo Estatal de Gacetas</div>
-        <div id="widget-gacetas"></div>
+
+      <!-- Columna derecha: noticias + observatorio -->
+      <div class="dash-right">
+        <div class="card" style="display:flex;flex-direction:column;overflow:visible">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div class="card-label" style="margin-bottom:0">Últimas Noticias</div>
+            <div class="cat-popover-wrap">
+              <button class="cat-popover-btn" title="Actividad por categoría">···</button>
+              <div class="cat-popover" id="cat-popover">
+                <div class="cat-pop-title">Actividad por categoría</div>
+                <div id="cat-popover-rows"></div>
+              </div>
+            </div>
+          </div>
+          <div class="news-ticker-wrap" id="news-ticker-wrap">
+            <div class="news-ticker-inner" id="news-ticker"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label" style="margin-bottom:6px">Observatorio del Ejecutivo</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:12px">Menciones ambientales · Presidenta Sheinbaum</div>
+          <div class="pres-items" id="pres-items"><div class="pres-empty">Cargando…</div></div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="tab-content" id="tab-legislacion">
-    <div style="margin-bottom:14px"><p style="font-size:12px;color:var(--text-sec)">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</p></div>
+  <div class="tab-content" id="tab-legislacion" style="padding:28px 0">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
+      <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.01em">Legislación Ambiental Federal</div>
+      <div style="font-size:11px;color:var(--text-muted)">México · LXVI Legislatura</div>
+    </div>
+    <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</div>
     <div class="leyes-grid" id="leyes-grid"></div>
   </div>
 
   <!-- TAB: CONGRESO FEDERAL -->
   <div id="tab-congreso" class="tab-content" style="padding:28px 0">
-    <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Congreso Federal</div>
+    <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Congreso Federal</div>
     <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Comisiones legislativas con agenda ambiental activa · LXVI Legislatura</div>
     <div id="comisiones-list"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
   </div>
 
   <!-- TAB: CONGRESOS ESTATALES -->
   <div id="tab-congresos-est" class="tab-content" style="padding:28px 0">
-    <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Congresos Estatales</div>
+    <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Congresos Estatales</div>
     <div style="font-size:12px;color:var(--text-muted);margin-bottom:32px">Actividad legislativa ambiental en los 32 congresos locales</div>
     <div style="display:flex;align-items:center;justify-content:center;flex-direction:column;padding:60px 20px;border:0.8px dashed var(--border);border-radius:16px;gap:12px">
       <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted)">En desarrollo</div>
@@ -560,7 +680,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
   <!-- TAB: NORMAS -->
   <div id="tab-normas" class="tab-content" style="padding:28px 0">
     <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
-      <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em">Normas Oficiales Mexicanas</div>
+      <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em">Normas Oficiales Mexicanas</div>
       <div style="font-size:11px;color:var(--text-muted)">Relevancia ambiental · LXVI Legislatura</div>
     </div>
     <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">NOMs vigentes y proyectos (PROY-NOMs) con implicación estratégica para agua, aire, residuos, logística y comercio.</div>
@@ -582,7 +702,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 
   <div id="tab-alertas" class="tab-content" style="padding:28px 0">
     <div style="margin-bottom:20px">
-      <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Centro de Alertas</div>
+      <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Centro de Alertas</div>
       <div id="alertas-summary-line" style="font-size:12px;color:var(--text-muted);margin-bottom:16px"></div>
       <div style="display:flex;flex-wrap:wrap;gap:6px">
         <button class="alerta-filter-btn active" onclick="setAlertaFilter('all',this)">Todas</button>
@@ -595,7 +715,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
     <div id="alertas-list"></div>
   </div>
   <div id="tab-radares" class="tab-content" style="padding:28px 0">
-    <div style="font-size:22px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Radares Temáticos</div>
+    <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Radares Temáticos</div>
     <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Monitoreo de señales regulatorias y de presi&#xF3;n ambiental por tema · últimos 90 d&#xED;as</div>
     <div style="display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start">
       <div class="radar-market-grid" id="radar-selector"></div>
@@ -608,7 +728,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
 <div id="tab-acerca" class="tab-content">
   <div class="main" style="max-width:780px">
     <div class="card" style="padding:36px 40px;line-height:1.75">
-      <div style="font-size:26px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.04em;margin-bottom:24px;color:var(--text)">Acerca de SCOPE</div>
+      <div style="font-size:26px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.04em;margin-bottom:24px;color:var(--text)">Acerca de SCOPE</div>
 
       <p style="font-size:15px;color:var(--text);margin-bottom:20px">
         SCOPE es una plataforma de Iniciativa GEMI creada para monitorear la actividad pública medioambiental en México. GEMI (<em>Global Environment Management Initiative</em>) es una organización que agrupa empresas de clase mundial, dedicada al fomento de políticas sostenibles y la promoción de responsabilidades ambientales en el país.
@@ -637,19 +757,19 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--te
       <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:16px">Cobertura</div>
       <div style="display:flex;gap:28px;margin-bottom:28px;flex-wrap:wrap">
         <div style="text-align:center">
-          <div style="font-size:32px;font-weight:700;font-family:'Barlow Condensed',sans-serif;color:var(--green)">32</div>
+          <div style="font-size:32px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;color:var(--green)">32</div>
           <div style="font-size:12px;color:var(--text-muted)">Estados monitoreados</div>
         </div>
         <div style="text-align:center">
-          <div style="font-size:32px;font-weight:700;font-family:'Barlow Condensed',sans-serif;color:var(--green)">2</div>
+          <div style="font-size:32px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;color:var(--green)">2</div>
           <div style="font-size:12px;color:var(--text-muted)">Cámaras federales</div>
         </div>
         <div style="text-align:center">
-          <div style="font-size:32px;font-weight:700;font-family:'Barlow Condensed',sans-serif;color:var(--green)">8</div>
+          <div style="font-size:32px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;color:var(--green)">8</div>
           <div style="font-size:12px;color:var(--text-muted)">Categorías SCOPE</div>
         </div>
         <div style="text-align:center">
-          <div style="font-size:32px;font-weight:700;font-family:'Barlow Condensed',sans-serif;color:var(--green)">L–V</div>
+          <div style="font-size:32px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;color:var(--green)">L–V</div>
           <div style="font-size:12px;color:var(--text-muted)">Actualización automática</div>
         </div>
       </div>
@@ -853,8 +973,73 @@ function updateNews(){
     return `<li class="news-item" onclick="window.open('${n.url||'#'}','_blank')"><span class="news-dot" style="background:${color}"></span><div><div class="news-title">${n.titulo||''}</div><div class="news-meta">${fuente}${fecha?' \u00b7 '+fecha:''}</div></div></li>`;
   }).join('');
 }
+const TEMA_COLORS={
+  'Agua':'#2563eb','Energía':'#f59e0b','Residuos':'#d97706',
+  'Cambio Climático':'#6366f1','Medio Ambiente':'#16a34a','Bosques':'#15803d',
+  'Biodiversidad':'#22c55e','Impuestos Ambientales':'#f87171','Responsabilidad':'#64748b',
+  'Economía Circular':'#0ac285'
+};
+function drawBarSpark(svgId,color){
+  var svg=document.getElementById(svgId);if(!svg)return;
+  var vals=[0.3,0.5,0.4,0.65,0.55,0.75,1];
+  var w=60,h=24,bw=6,gap=2;
+  svg.setAttribute('viewBox','0 0 '+(7*(bw+gap)-gap)+' '+h);
+  svg.innerHTML=vals.map(function(v,i){
+    var bh=Math.round(v*(h-2));var x=i*(bw+gap);var y=h-bh;
+    return '<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+bh+'" rx="2" fill="'+color+'" opacity="'+(i===6?'1':'0.25')+'"/>';
+  }).join('');
+}
+function renderKpiBar(){
+  var criticas=(alertas||[]).filter(function(a){var n=(a.nivel||a.level||'').toLowerCase();return n==='crítico'||n==='critico';}).length;
+  var elC=document.getElementById('kpi-val-criticas');if(elC)elC.textContent=criticas;
+  var estadosAlerta=Object.values(stateScores||{}).filter(function(s){return(s.master||0)>=50;}).length;
+  var elE=document.getElementById('kpi-val-estados');if(elE)elE.textContent=estadosAlerta;
+  var hoy=new Date();var offset=-6;var cdmxNow=new Date(hoy.getTime()+offset*3600000);
+  var todayStr=cdmxNow.toISOString().substring(0,10);
+  var hoyCount=(noticias||[]).filter(function(n){return(n.fecha_publicacion||'').substring(0,10)===todayStr;}).length;
+  var elH=document.getElementById('kpi-val-hoy');if(elH)elH.textContent=hoyCount;
+  drawBarSpark('kpi-spark-criticas','#DC2626');
+  drawBarSpark('kpi-spark-iniciativas','#2563EB');
+  drawBarSpark('kpi-spark-normas','#CA8A04');
+  drawBarSpark('kpi-spark-estados','#D97706');
+  drawBarSpark('kpi-spark-hoy','#2563EB');
+}
 function updateLeyes(){
-  document.getElementById('leyes-grid').innerHTML=leyes.map(l=>`<a class="ley-item" href="${l.u}" target="_blank" rel="noopener"><div class="ley-sigla">${l.s}</div><div><div class="ley-nombre">${l.n}</div><div class="ley-tema">${l.t}</div>${l.r?`<div class="ley-reforma">Última reforma publicada en el Diario Oficial de la Federación el ${l.r}</div>`:''}</div></a>`).join('');
+  const tc=TEMA_COLORS;
+  document.getElementById('leyes-grid').innerHTML=leyes.map(l=>{
+    const color=tc[l.t]||'#6b7280';
+    const year=l.r?l.r.match(/\d{4}/)?.[0]:'';
+    return `<div class="ley-row" onclick="window.open('${l.u}','_blank')">
+      <span class="ley-sigla">${l.s}</span>
+      <span class="ley-nombre">${l.n}</span>
+      <span class="ley-tema-badge" style="background:${color}">${l.t}</span>
+      ${year?`<span class="ley-reforma-date">${year}</span>`:''}
+      <span class="ley-link-icon">&#8599;</span>
+    </div>`;
+  }).join('');
+}
+/* ── Presidencia / Sheinbaum ── */
+let presData=[];
+function loadPresidencia(){
+  fetch('data/presidencia.json').then(r=>r.ok?r.json():null).then(d=>{
+    const el=document.getElementById('pres-items');
+    if(!el)return;
+    if(!d||!d.articulos||!d.articulos.length){
+      el.innerHTML='<div class="pres-empty">Sin datos aún · el scraper corre al mediodía</div>';
+      return;
+    }
+    presData=d.articulos;
+    el.innerHTML=presData.slice(0,5).map(a=>{
+      const fecha=a.fecha?a.fecha.substring(0,10):'';
+      return `<div class="pres-item" onclick="window.open('${(a.url||'#').replace(/'/g,'%27')}','_blank')">
+        <div class="pres-item-title">${a.titulo||''}</div>
+        ${fecha?`<div class="pres-item-meta">${fecha}</div>`:''}
+      </div>`;
+    }).join('');
+  }).catch(()=>{
+    const el=document.getElementById('pres-items');
+    if(el)el.innerHTML='<div class="pres-empty">Sin datos disponibles</div>';
+  });
 }
 var _scopeMap=null;
 // GeoJSON name → SCOPE name for mismatches
@@ -1601,6 +1786,8 @@ function renderWidgetFederal(){
       var sen=(data&&data.senado)||[];
       renderFederalColumn('widget-diputados',dip,'https://gaceta.diputados.gob.mx/','Diputados');
       renderFederalColumn('widget-senado',sen,'https://www.senado.gob.mx/66/gaceta_del_senado','Senado');
+      var total=(dip.length||0)+(sen.length||0);
+      var el=document.getElementById('kpi-val-iniciativas');if(el)el.textContent=total||'0';
     });
 }
 var _gacetaEstatalData=null;
@@ -1729,12 +1916,14 @@ async function init(){
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
   renderScoreNacional();
+  renderKpiBar();
   renderAlertas('all');
   renderDOF();
   renderWidgetFederal();
   renderWidgetGacetas();
   _buildRadarSelector();
   showRadarTema(RADAR_TEMAS[0].id);
+  loadPresidencia();
 }
 // ── COMISIONES ────────────────────────────────────────────────
 const PARTIDO_COLOR={
@@ -1746,7 +1935,13 @@ const PARTIDO_COLOR={
 function initials(name){return name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();}
 function fmtReunion(iso){
   if(!iso)return '—';
-  try{const d=new Date(iso+'T12:00:00');return d.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'});}catch(e){return iso;}
+  try{
+    // Handle DD/MM/YYYY format from comisiones scraper
+    var s=iso.trim();
+    if(/^\d{2}\/\d{2}\/\d{4}$/.test(s)){var p=s.split('/');s=p[2]+'-'+p[1]+'-'+p[0];}
+    const d=new Date(s+'T12:00:00');
+    return d.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'});
+  }catch(e){return iso;}
 }
 function toggleComSub(subId){
   var el=document.getElementById(subId);
@@ -1773,9 +1968,10 @@ function renderComisiones(data){
   var el=document.getElementById('comisiones-list');
   if(!el)return;
   var coms=(data&&data.comisiones)||[];
-  if(!coms.length){el.innerHTML='<div style="font-size:12px;color:var(--text-muted)">Sin datos de comisiones disponibles</div>';return;}
   var dip=coms.filter(function(c){return c.camara==='Diputados';});
   var sen=coms.filter(function(c){return c.camara==='Senado';});
+  if(!dip.length&&!sen.length){el.innerHTML='<div style="font-size:12px;color:var(--text-muted)">Sin datos de comisiones disponibles</div>';return;}
+  function norm(c){return {nombre:c.nombre||c.n||'',url:c.url||'',at:c.at||'',ur:c.ur?fmtReunion(c.ur):'—',pr:c.pr?fmtReunion(c.pr):'—',integrantes:(c.integrantes||[]).map(function(m){return{n:m.n||m.nombre||'',cargo:m.cargo||'',partido:m.partido||''};})};}
   function memberHTML(m){
     var color=PARTIDO_COLOR[m.partido]||PARTIDO_COLOR[m.partido&&m.partido.toUpperCase()]||'#6b7280';
     var isLead=m.cargo&&(m.cargo.toLowerCase().includes('president')||m.cargo.toLowerCase().includes('secretari'));
@@ -1858,8 +2054,8 @@ function renderComisiones(data){
       +'<div class="com-accordion">'+rows+'</div>'
     +'</div>';
   }
-  el.innerHTML=renderSection(dip,'dip','Cámara de Diputados','https://web.diputados.gob.mx/inicio/comisiones?Tipo=Ordinarias')
-    +renderSection(sen,'sen','Senado de la República','https://www.senado.gob.mx/66/comisiones/ordinarias');
+  el.innerHTML=renderSection(dip.map(norm),'dip','Cámara de Diputados','https://web.diputados.gob.mx/inicio/comisiones?Tipo=Ordinarias')
+    +renderSection(sen.map(norm),'sen','Senado de la República','https://www.senado.gob.mx/66/comisiones/ordinarias');
 }
 async function loadComisiones(){
   try{var r=await fetch('data/comisiones.json',{cache:'no-store'});if(r.ok)renderComisiones(await r.json());else renderComisiones(null);}catch(e){renderComisiones(null);}
@@ -1959,38 +2155,38 @@ loadComisiones();
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
       <img src="thumbnail_LOGO GEMI_COLOR_HORIZONTAL.jpeg" alt="GEMI" style="height:18px;width:auto">
       <span style="width:1px;height:16px;background:var(--border-med);display:inline-block"></span>
-      <span style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:0.08em;color:var(--green)">SCOPE</span>
+      <span style="font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:700;letter-spacing:0.08em;color:var(--green)">SCOPE</span>
     </div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;letter-spacing:0.02em;color:var(--text);margin-bottom:8px;margin-top:16px;line-height:1.2">SCOPE está terminando<br>su desarrollo</div>
+    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:26px;font-weight:700;letter-spacing:0.02em;color:var(--text);margin-bottom:8px;margin-top:16px;line-height:1.2">SCOPE está terminando<br>su desarrollo</div>
     <div style="font-size:13px;color:var(--text-sec);margin-bottom:28px;line-height:1.6">Si quieres enterarte del lanzamiento, déjanos tus datos y serás de los primeros en acceder.</div>
     <form id="reg-form" onsubmit="submitReg(event)" style="display:flex;flex-direction:column;gap:14px">
       <div>
         <label style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;display:block;margin-bottom:6px">Nombre</label>
         <input id="reg-nombre" type="text" placeholder="Tu nombre completo" required
-          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:'Inter',sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
+          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:'IBM Plex Sans',sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
           onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-med)'">
       </div>
       <div>
         <label style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;display:block;margin-bottom:6px">Correo electrónico</label>
         <input id="reg-email" type="email" placeholder="correo@empresa.com" required
-          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:'Inter',sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
+          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:'IBM Plex Sans',sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
           onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-med)'">
       </div>
       <div>
         <label style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;display:block;margin-bottom:6px">Empresa que representa</label>
         <input id="reg-empresa" type="text" placeholder="Nombre de tu organización"
-          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:'Inter',sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
+          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:'IBM Plex Sans',sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
           onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-med)'">
       </div>
       <button type="submit" id="reg-submit-btn"
-        style="margin-top:6px;height:44px;background:#111;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:background 0.15s;letter-spacing:0.02em"
+        style="margin-top:6px;height:44px;background:#111;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;font-family:'IBM Plex Sans',sans-serif;cursor:pointer;transition:background 0.15s;letter-spacing:0.02em"
         onmouseover="this.style.background='#333'" onmouseout="this.style.background='#111'">
         Regístrame
       </button>
     </form>
     <div id="reg-success" style="display:none;text-align:center;padding:20px 0">
       <div style="font-size:36px;margin-bottom:12px"></div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px">¡Listo!</div>
+      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px">¡Listo!</div>
       <div style="font-size:13px;color:var(--text-sec);line-height:1.6">Te avisaremos cuando SCOPE esté disponible.<br>¡Gracias por tu interés!</div>
     </div>
   </div>
