@@ -20,36 +20,16 @@
         "metodo": "csv"
       }
     ],
-    "Guanajuato": [
-      {
-        "titulo": "Iniciativa formulada por personas diputadas integrantes del Grupo Parlamentario del Partido MORENA a efecto de reformar la denominación y diversas disposiciones de la Ley del Trabajo de los Servidores Públicos al Servicio del Estado y de los Municipios.",
-        "tipo": "iniciativa",
-        "fecha": "2026-04-09",
-        "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7855",
-        "categoria": "Industria Quimica",
-        "estado": "Guanajuato",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "Iniciativa formulada por el diputado Ernesto Millán Soberanes integrante del Grupo Parlamentario del Partido MORENA a efecto de reformar y adicionar diversas disposiciones de la Ley de Economía Circular para el Estado de Guanajuato y sus Municipios.",
-        "tipo": "iniciativa",
-        "fecha": "2026-04-09",
-        "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7852",
-        "categoria": "Industria Quimica",
-        "estado": "Guanajuato",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "Presentación de la propuesta de punto de acuerdo formulada por personas diputadas integrantes del Grupo Parlamentario del Partido Acción Nacional y de la Representación Parlamentaria del Partido de la Revolución Democrática a efecto de exhortar a las personas titulares de la Secretaría de Agricultura y Desarrollo Rural, la Secretaría de Hacienda y Crédito Público, la Secretaría de Energía, la Secr",
-        "tipo": "proposicion",
-        "fecha": "2026-04-01",
-        "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7847",
-        "categoria": "Agro y Desarrollo Rural",
-        "estado": "Guanajuato",
-        "metodo": "requests"
-      }
-    ],
     "Nuevo León": [
+      {
+        "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA POR ADICIÓN AL ARTÍCULO 10 DE LA LEY AMBIENTAL DEL ESTADO DE NUEVO LEÓN, EN MATERIA DE COBERTURA EQUITATIVA DEL AGUA.",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-23",
+        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21294.pdf",
+        "categoria": "Agua",
+        "estado": "Nuevo León",
+        "metodo": "requests"
+      },
       {
         "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA POR ADICIÓN DE UN CAPÍTULO III QUATER DENOMINADO “COHABITACIÓN FORZADA DE PERSONAS MENORES DE EDAD”, AL TÍTULO QUINTO “DELITOS CONTRA LA MORAL PÚBLICA” DEL LIBRO SEGUNDO DEL CÓDIGO PENAL PARA EL ESTADO DE NUEVO LEÓN.",
         "tipo": "iniciativa",
@@ -82,15 +62,6 @@
         "tipo": "iniciativa",
         "fecha": "2026-04-01",
         "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21220.pdf",
-        "categoria": "Industria Quimica",
-        "estado": "Nuevo León",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "MEDIANTE EL CUAL PRESENTAN INICIATIVA DE REFORMA POR ADICIÓN DE UN CAPÍTULO V DENOMINADO “DE LA PENSIÓN ALIMENTICIA PRENATAL” QUE CONTIENE LOS ARTÍCULOS DEL 323 BIS 8 AL 323 BIS 15 TODOS DEL CÓDIGO CIVIL PARA EL ESTADO DE NUEVO LEÓN.",
-        "tipo": "iniciativa",
-        "fecha": "2026-04-01",
-        "url": "https://www.hcnl.gob.mx/iniciativas_lxxvii/pdf/LXXVII-2026-EXP21194.pdf",
         "categoria": "Industria Quimica",
         "estado": "Nuevo León",
         "metodo": "requests"
@@ -222,22 +193,16 @@
   },
   "resumen": [
     {
+      "estado": "Nuevo León",
+      "total": 5,
+      "categoria_principal": "Industria Quimica",
+      "ultima_fecha": "2026-04-23"
+    },
+    {
       "estado": "Quintana Roo",
       "total": 5,
       "categoria_principal": "Industria Quimica",
       "ultima_fecha": "2026-04-21"
-    },
-    {
-      "estado": "Nuevo León",
-      "total": 5,
-      "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-04-16"
-    },
-    {
-      "estado": "Guanajuato",
-      "total": 3,
-      "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-04-09"
     },
     {
       "estado": "Chihuahua",
@@ -259,8 +224,8 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-04-22T15:19:16.340384",
+    "ultima_actualizacion": "2026-04-23T15:42:32.240135",
     "mes": "2026-04",
-    "estados_con_actividad": 6
+    "estados_con_actividad": 5
   }
 }
