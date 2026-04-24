@@ -20,6 +20,17 @@
         "metodo": "csv"
       }
     ],
+    "Guanajuato": [
+      {
+        "titulo": "Iniciativa formulada por personas diputadas integrantes del Grupo Parlamentario del Partido Acción Nacional y de la Representación Parlamentaria del Partido de la Revolución Democrática, por la que se adicionan diversas disposiciones a la Ley de Fomento y Desarrollo Agrícola para el Estado de Guanajuato y se reforman y adicionan diversas disposiciones de la Ley Ganadera para el Estado de Guanajuat",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-24",
+        "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7883",
+        "categoria": "Agua",
+        "estado": "Guanajuato",
+        "metodo": "requests"
+      }
+    ],
     "Nuevo León": [
       {
         "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA POR ADICIÓN AL ARTÍCULO 10 DE LA LEY AMBIENTAL DEL ESTADO DE NUEVO LEÓN, EN MATERIA DE COBERTURA EQUITATIVA DEL AGUA.",
@@ -193,6 +204,12 @@
   },
   "resumen": [
     {
+      "estado": "Guanajuato",
+      "total": 1,
+      "categoria_principal": "Agua",
+      "ultima_fecha": "2026-04-24"
+    },
+    {
       "estado": "Nuevo León",
       "total": 5,
       "categoria_principal": "Industria Quimica",
@@ -224,8 +241,8 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-04-23T15:42:32.240135",
+    "ultima_actualizacion": "2026-04-24T15:14:13.706107",
     "mes": "2026-04",
-    "estados_con_actividad": 5
+    "estados_con_actividad": 6
   }
 }
