@@ -43,13 +43,16 @@ jobs:
       - name: Scraper Presidencia (Sheinbaum)
         run: python scraper/scraper_presidencia.py
 
+      - name: Scraper SIL (Iniciativas Legislativas)
+        run: python scraper/scraper_sil.py
+
       # ── Commit y push ─────────────────────────────────────────────────────
 
       - name: Commit y push del JSON actualizado
         run: |
           git config user.name "SCOPE Bot"
           git config user.email "scope-bot@igemiac.com"
-          git add data/noticias.json data/dof.json data/gaceta-federal.json data/gaceta-estatal.json data/presidencia.json
+          git add data/noticias.json data/dof.json data/gaceta-federal.json data/gaceta-estatal.json data/presidencia.json data/sil.json
           if git diff --staged --quiet; then
             echo "Sin cambios nuevos"
           else
