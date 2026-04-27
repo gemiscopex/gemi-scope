@@ -27,7 +27,7 @@ jobs:
           python-version: "3.12"
 
       - name: Instalar dependencias Python
-        run: pip install requests beautifulsoup4 lxml
+        run: pip install requests beautifulsoup4 lxml feedparser
 
       # ── Scrapers de contenido ─────────────────────────────────────────────
 
