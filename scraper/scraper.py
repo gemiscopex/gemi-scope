@@ -1,340 +1,365 @@
 #!/usr/bin/env python3
 """
-SCOPE 3 — Scraper de noticias ambientales y regulatorias para México
-Fuentes: Google News RSS por keyword, agrupadas por categoría/subcategoría
-Output:  data/noticias.json  (se despliega automáticamente en GitHub Pages)
+SCOPE — Scraper de noticias ambientales y regulatorias para México
+Fuentes: RSS directos de medios mexicanos (sin Google News)
+Output:  data/noticias.json
+
+Fuentes verificadas y activas:
+  Especializadas: Mongabay Latam, Causa Natura, Pie de Página, CEMDA, Greenpeace MX
+  Generales:      La Jornada, El Financiero, Expansión, Reforma, Gaceta UNAM
 """
 
-import json, re, hashlib, os, time
+import feedparser
+import hashlib
+import json
+import os
+import re
+import sys
+import time
+import unicodedata
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
-import urllib.request
-import xml.etree.ElementTree as ET
 
-# ── Configuración ──────────────────────────────────────────────────────────────
+import requests
+import urllib3
+from bs4 import BeautifulSoup
+
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 OUTPUT_FILE = Path(__file__).parent.parent / "data" / "noticias.json"
-MAX_PER_KEYWORD = 5          # artículos máximo por keyword
-MAX_TOTAL = 500              # límite total del archivo
-SLEEP_BETWEEN_REQUESTS = 1.5 # segundos entre peticiones (respetar rate limit)
+MAX_TOTAL   = 600
 
-# ── Categorías y keywords (de categorias_monitoreo.json) ──────────────────────
-CATEGORIAS = {
-    "energia": {
-        "nombre": "Energía",
-        "color": "#f59e0b",
-        "subcategorias": {
-            "pemex_petroleo": ["Pemex", "petróleo México", "refinería Pemex", "gasolina México",
-                               "hidrocarburos México", "huachicoleo", "producción petrolera México",
-                               "fracking México", "mezcla mexicana petróleo"],
-            "cfe_electricidad": ["CFE electricidad", "apagón México", "tarifas eléctricas México",
-                                 "generación eléctrica México", "subsidio energético México",
-                                 "falla eléctrica México", "corte de luz México"],
-            "energias_renovables": ["energía solar México", "energía eólica México",
-                                    "transición energética México", "energía renovable México",
-                                    "parque solar México", "parque eólico México",
-                                    "certificado energía limpia México"],
-            "mineria_recursos": ["litio México", "minería México", "concesión minera México",
-                                 "gas natural México", "gasoducto México", "reforma energética México",
-                                 "gas LP México", "secretaría de energía México"]
-        }
-    },
-    "agua_medioambiente": {
-        "nombre": "Agua y Medio Ambiente",
-        "color": "#06b6d4",
-        "subcategorias": {
-            "gestion_hidrica": ["Conagua México", "sequía México", "acuífero México",
-                                "presa México agua", "escasez de agua México",
-                                "Ley de Aguas México", "cuenca hidrológica México"],
-            "regulacion_ambiental": ["Semarnat", "Profepa", "impacto ambiental México",
-                                     "NOM ambiental México", "área natural protegida México",
-                                     "licencia ambiental México", "auditoría ambiental México"],
-            "contaminacion_residuos": ["contaminación ambiental México", "residuo peligroso México",
-                                       "derrame tóxico México", "emergencia ambiental México",
-                                       "contaminación río México", "jales mineros México"],
-            "biodiversidad": ["deforestación México", "Conafor México", "incendio forestal México",
-                              "especie en riesgo México", "veda forestal México",
-                              "manglares México", "biodiversidad México"]
-        }
-    },
-    "economia_circular": {
-        "nombre": "Economía Circular",
-        "color": "#10b981",
-        "subcategorias": {
-            "residuos_solidos": ["residuo sólido urbano México", "reciclaje México",
-                                 "relleno sanitario México", "gestión de residuos México",
-                                 "separación de residuos México"],
-            "plasticos_envases": ["plástico de un solo uso México", "prohibición plástico México",
-                                  "bolsa de plástico México", "unicel México",
-                                  "economía circular México", "envase retornable México"],
-            "residuos_industriales": ["residuo peligroso industrial México", "CRETIB México",
-                                      "confinamiento residuos México", "manifiesto residuos México"]
-        }
-    },
-    "cambio_climatico": {
-        "nombre": "Cambio Climático",
-        "color": "#6366f1",
-        "subcategorias": {
-            "politica_climatica": ["cambio climático México", "LGCC México", "NDC México",
-                                   "descarbonización México", "cero emisiones México",
-                                   "política climática México", "adaptación climática México"],
-            "mercado_carbono": ["impuesto carbono México", "mercado carbono México",
-                                "bono de carbono México", "GEI México", "RETC México",
-                                "huella de carbono México", "IEPS combustibles México"],
-            "fenomenos_hidromet": ["huracán México", "tormenta tropical México",
-                                   "inundación México", "sequía extrema México",
-                                   "ola de calor México", "ciclón México"]
-        }
-    },
-    "fiscal_regulatorio": {
-        "nombre": "Fiscal y Regulatorio",
-        "color": "#ef4444",
-        "subcategorias": {
-            "impuestos_ambientales": ["impuesto ecológico México", "impuesto ambiental México",
-                                      "impuesto verde México", "impuesto emisiones México",
-                                      "reforma fiscal ambiental México", "IEPS plaguicidas México"],
-            "noms_federales": ["NOM México ambiental", "Diario Oficial de la Federación ambiental",
-                               "Conamer regulación", "Mejora Regulatoria México",
-                               "norma oficial mexicana ambiental", "consulta pública NOM"],
-            "legislacion_ambiental": ["LGEEPA reforma", "ley ambiental México",
-                                      "decreto ambiental México", "Semarnat acuerdo",
-                                      "reforma legal ambiental México"]
-        }
-    },
-    "industria_manufactura": {
-        "nombre": "Industria y Manufactura",
-        "color": "#78716c",
-        "subcategorias": {
-            "quimica_petroquimica": ["ANIQ México", "industria química México",
-                                     "petroquímica México", "plaguicida registro México",
-                                     "sustancia química regulación México"],
-            "manufactura_parques": ["parque industrial México", "IMMEX México",
-                                    "manufactura avanzada México", "industria automotriz México",
-                                    "nearshoring México", "relocalización empresas México"],
-            "industria_extractiva": ["Camimex México", "concesión minera suspendida",
-                                     "impugnación concesión minera", "royalty minero México",
-                                     "Ley Minera reforma México"]
-        }
-    },
-    "agro_rural": {
-        "nombre": "Agro y Desarrollo Rural",
-        "color": "#84cc16",
-        "subcategorias": {
-            "agricultura_cultivos": ["Sader México", "Segalmex", "maíz transgénico México",
-                                     "glifosato México", "soberanía alimentaria México",
-                                     "sequía agrícola México", "pérdida cosecha México",
-                                     "precio maíz México", "fertilizante México",
-                                     "importación maíz México"],
-            "ganaderia_pesca": ["ganadería México", "pesca México veda",
-                                "acuacultura México", "Conapesca", "Senasica México",
-                                "fiebre aftosa México", "exportación carne México"],
-            "forestal": ["Conafor reforestación", "deforestación México",
-                         "tala ilegal México", "incendio forestal México",
-                         "cambio uso de suelo forestal México", "plan manejo forestal"],
-            "agua_agricola": ["riego agrícola México", "distrito de riego México",
-                              "pozos agrícolas México", "eficiencia hídrica agricultura"]
-        }
-    },
-    "transporte_logistica": {
-        "nombre": "Transporte y Logística",
-        "color": "#3b82f6",
-        "subcategorias": {
-            "transporte_terrestre": ["verificación vehicular México", "NOM autotransporte",
-                                     "SICT México", "emisiones vehiculares México",
-                                     "transporte de carga México", "diesel México precio"],
-            "infraestructura_obra": ["carretera concesión México", "obra pública México",
-                                     "autopista México", "APP infraestructura México",
-                                     "MIA carretera México", "Capufe México"],
-            "puertos_comercio": ["puerto México", "Manzanillo contenedor", "importación México",
-                                 "exportación México", "nearshoring México",
-                                 "corredor interoceánico México", "aduana México"]
-        }
-    },
-    "salud_publica": {
-        "nombre": "Salud Pública",
-        "color": "#ec4899",
-        "subcategorias": {
-            "regulacion_sanitaria": ["Cofepris", "registro sanitario México",
-                                     "alerta sanitaria México", "etiquetado alimentos México",
-                                     "octágono nutricional México", "desabasto medicamento México"],
-            "sustancias_plaguicidas": ["plaguicida México", "glifosato prohibición México",
-                                       "herbicida México", "Cicoplafest México",
-                                       "registro plaguicidas México"]
-        }
-    },
-    "comercio_inversion": {
-        "nombre": "Comercio e Inversión",
-        "color": "#f97316",
-        "subcategorias": {
-            "politica_comercial": ["T-MEC México", "USMCA México", "arancel México",
-                                   "antidumping México", "panel T-MEC",
-                                   "retaliación comercial México", "OMC México"],
-            "inversion": ["inversión extranjera México", "IED México", "nearshoring México",
-                          "parque industrial nuevo México", "Proinversión México",
-                          "fideicomiso inversión México"]
-        }
-    },
-    "politica_gobernanza": {
-        "nombre": "Política y Gobernanza",
-        "color": "#8b5cf6",
-        "subcategorias": {
-            "ejecutivo_federal": ["Claudia Sheinbaum decreto", "decreto presidencial México",
-                                  "gabinete federal México", "Semarnat acuerdo",
-                                  "presupuesto federal México ambiental"],
-            "legislativo_federal": ["Cámara de Diputados ley ambiental", "Senado México ambiental",
-                                    "iniciativa ley ambiental México", "Gaceta Parlamentaria ambiental",
-                                    "reforma constitucional ambiental México"],
-            "gobiernos_estatales": ["gaceta oficial estatal ambiental", "ley estatal ambiental",
-                                    "decreto estatal ambiental", "congreso local ambiental México"]
-        }
-    }
+# ---------------------------------------------------------------------------
+# RSS feeds verificados y activos
+# ---------------------------------------------------------------------------
+RSS_FEEDS = {
+    # ── Especializadas en medio ambiente ─────────────────────────────────────
+    "Mongabay Latam":   "https://es.mongabay.com/feed/",
+    "Causa Natura":     "https://causanatura.org/feed",
+    "Pie de Pagina":    "https://piedepagina.mx/feed/",
+    "CEMDA":            "https://www.cemda.org.mx/feed/",
+    "Greenpeace MX":    "https://www.greenpeace.org/mexico/feed/",
+    # ── Medios generales de calidad ──────────────────────────────────────────
+    "La Jornada":       "https://www.jornada.com.mx/rss/edicion.xml",
+    "El Financiero":    "https://www.elfinanciero.com.mx/rss/feed.xml",
+    "Expansion":        "https://expansion.mx/rss",
+    "Reforma":          "https://www.reforma.com/rss/portada.xml",
+    "Gaceta UNAM":      "https://www.gaceta.unam.mx/feed/",
 }
 
-# Mapeo de keywords/términos a estados mexicanos
-ESTADOS_KEYWORDS = {
-    "Aguascalientes": ["Aguascalientes"],
-    "Baja California": ["Baja California", "Tijuana", "Mexicali", "Ensenada"],
-    "Baja California Sur": ["Baja California Sur", "La Paz BCS", "Los Cabos"],
-    "Campeche": ["Campeche"],
-    "Chiapas": ["Chiapas", "Tuxtla Gutiérrez", "San Cristóbal de las Casas"],
-    "Chihuahua": ["Chihuahua", "Ciudad Juárez", "Juárez Chihuahua"],
-    "Ciudad de México": ["Ciudad de México", "CDMX", "capitalina", "Jefatura de Gobierno"],
-    "Coahuila": ["Coahuila", "Saltillo", "Torreón"],
-    "Colima": ["Colima"],
-    "Durango": ["Durango"],
-    "Guanajuato": ["Guanajuato", "León Guanajuato", "Irapuato", "Celaya"],
-    "Guerrero": ["Guerrero", "Acapulco", "Chilpancingo"],
-    "Hidalgo": ["Hidalgo", "Pachuca"],
-    "Jalisco": ["Jalisco", "Guadalajara", "Zapopan"],
-    "México": ["Estado de México", "Edomex", "Toluca", "Ecatepec", "Naucalpan"],
-    "Michoacán": ["Michoacán", "Morelia", "Uruapan"],
-    "Morelos": ["Morelos", "Cuernavaca"],
-    "Nayarit": ["Nayarit", "Tepic"],
-    "Nuevo León": ["Nuevo León", "Monterrey", "regiomontano"],
-    "Oaxaca": ["Oaxaca"],
-    "Puebla": ["Puebla", "Angelópolis"],
-    "Querétaro": ["Querétaro"],
-    "Quintana Roo": ["Quintana Roo", "Cancún", "Playa del Carmen", "Tulum"],
-    "San Luis Potosí": ["San Luis Potosí", "SLP"],
-    "Sinaloa": ["Sinaloa", "Culiacán", "Mazatlán"],
-    "Sonora": ["Sonora", "Hermosillo", "Guaymas", "Nogales Sonora"],
-    "Tabasco": ["Tabasco", "Villahermosa"],
-    "Tamaulipas": ["Tamaulipas", "Matamoros", "Tampico", "Reynosa"],
-    "Tlaxcala": ["Tlaxcala"],
-    "Veracruz": ["Veracruz", "Xalapa", "Coatzacoalcos"],
-    "Yucatán": ["Yucatán", "Mérida"],
-    "Zacatecas": ["Zacatecas"]
+UA  = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+HDR = {"User-Agent": UA, "Accept": "application/rss+xml, application/xml, text/xml, */*"}
+
+# ---------------------------------------------------------------------------
+# Keywords ambientales (alineadas con scraper_presidencia.py)
+# ---------------------------------------------------------------------------
+KEYWORDS_AMBIENTAL = {
+    "agua":             ["agua","cuenca","rio","lago","acuifero","hidric",
+                         "conagua","sequia","inundacion","presa",
+                         "agua potable","escasez de agua","descarga de aguas"],
+    "energia_renovable":["solar","eolica","fotovoltaic","hidroelectric",
+                         "renovable","cfe","sener","geotermia",
+                         "parque eolico","parque solar","energia limpia",
+                         "transicion energetica"],
+    "hidrocarburos":    ["pemex","refineria","ducto","oleoducto","gasoducto",
+                         "fracking","hidrocarburos","petroleo","gas natural",
+                         "combustible","combustibles fosiles"],
+    "biodiversidad":    ["semarnat","conanp","area natural","reserva",
+                         "especie","extincion","jaguar","ballena","manati",
+                         "vida silvestre","corredor biologico","parque nacional",
+                         "zona protegida"],
+    "deforestacion":    ["bosque","selva","tala","deforest","incendio forestal",
+                         "conafor","manglar","reforest","cambio de uso de suelo"],
+    "calidad_aire":     ["contingencia","ozono","pm2.5","pm10","emision",
+                         "calidad del aire","contaminacion atmosferica",
+                         "smog","calidad del aire"],
+    "residuos":         ["basura","residuo","relleno sanitario","reciclaj",
+                         "plastico","incinerador","economia circular",
+                         "desecho peligroso","residuo toxico"],
+    "cambio_climatico": ["cambio climatico","calentamiento global",
+                         "carbono","gei","co2","inecc","mitigacion",
+                         "lgcc","cop","paris","descarbonizacion",
+                         "gases de efecto invernadero","neutralidad de carbono"],
+    "mineria":          ["mineria","cianuro","tajo","concesion minera",
+                         "litio","minera","camimex","royalty minero",
+                         "extraccion minera"],
+    "transgenico":      ["transgenico","glifosato","bayer","monsanto",
+                         "semilla","soberania alimentaria","maiz nativo",
+                         "plaguicida","glifo"],
 }
 
+# Fuentes especializadas: todos sus artículos pasan aunque no tengan keyword explícito
+FUENTES_ESPECIALIZADAS = {"Mongabay Latam", "Causa Natura", "Pie de Pagina",
+                           "CEMDA", "Greenpeace MX"}
 
-def google_news_rss(query: str) -> list[dict]:
-    """Obtiene artículos de Google News RSS para una query."""
-    q = urllib.parse.quote(query)
-    url = f"https://news.google.com/rss/search?q={q}&hl=es-419&gl=MX&ceid=MX:es-419"
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (SCOPE3-Monitor/1.0)"})
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            content = resp.read()
-        root = ET.fromstring(content)
-        items = []
-        for item in root.findall(".//item")[:MAX_PER_KEYWORD]:
-            title = item.findtext("title", "").strip()
-            link = item.findtext("link", "").strip()
-            pub_date = item.findtext("pubDate", "")
-            source = item.findtext("source", "")
-            # Limpiar título (Google News a veces añade " - Fuente" al final)
-            if " - " in title:
-                parts = title.rsplit(" - ", 1)
-                title = parts[0].strip()
-                if not source:
-                    source = parts[1].strip()
-            # Parsear fecha
-            fecha_iso = ""
-            if pub_date:
-                try:
-                    from email.utils import parsedate_to_datetime
-                    fecha_iso = parsedate_to_datetime(pub_date).isoformat()
-                except Exception:
-                    fecha_iso = ""
-            items.append({"titulo": title, "url": link, "fuente": source,
-                          "fecha_publicacion": fecha_iso})
-        return items
-    except Exception as e:
-        print(f"  ⚠ Error en '{query}': {e}")
-        return []
+ALL_KW = [kw for kws in KEYWORDS_AMBIENTAL.values() for kw in kws]
 
+CAT_LABEL = {
+    "agua":             "Agua",
+    "energia_renovable":"Energía Renovable",
+    "hidrocarburos":    "Hidrocarburos",
+    "biodiversidad":    "Biodiversidad",
+    "deforestacion":    "Forestal",
+    "calidad_aire":     "Calidad del Aire",
+    "residuos":         "Residuos",
+    "cambio_climatico": "Cambio Climático",
+    "mineria":          "Minería",
+    "transgenico":      "Transgénico",
+}
 
-def detect_state(titulo: str) -> str | None:
-    """Detecta el estado mexicano mencionado en el título."""
-    t = titulo.lower()
-    for estado, kws in ESTADOS_KEYWORDS.items():
+# ---------------------------------------------------------------------------
+# Detección de estados
+# ---------------------------------------------------------------------------
+ESTADOS_KW = {
+    "Aguascalientes":    ["Aguascalientes"],
+    "Baja California":   ["Baja California","Tijuana","Mexicali","Ensenada"],
+    "Baja California Sur":["Baja California Sur","La Paz BCS","Los Cabos"],
+    "Campeche":          ["Campeche"],
+    "Chiapas":           ["Chiapas","Tuxtla Gutierrez","San Cristobal"],
+    "Chihuahua":         ["Chihuahua","Ciudad Juarez"],
+    "Ciudad de Mexico":  ["Ciudad de Mexico","CDMX","capitalina"],
+    "Coahuila":          ["Coahuila","Saltillo","Torreon"],
+    "Colima":            ["Colima"],
+    "Durango":           ["Durango"],
+    "Guanajuato":        ["Guanajuato","Leon Guanajuato","Irapuato","Celaya"],
+    "Guerrero":          ["Guerrero","Acapulco","Chilpancingo"],
+    "Hidalgo":           ["Hidalgo","Pachuca"],
+    "Jalisco":           ["Jalisco","Guadalajara","Zapopan"],
+    "Mexico":            ["Estado de Mexico","Edomex","Toluca","Ecatepec"],
+    "Michoacan":         ["Michoacan","Morelia","Uruapan"],
+    "Morelos":           ["Morelos","Cuernavaca"],
+    "Nayarit":           ["Nayarit","Tepic"],
+    "Nuevo Leon":        ["Nuevo Leon","Monterrey","regiomontano"],
+    "Oaxaca":            ["Oaxaca"],
+    "Puebla":            ["Puebla","Angelopolis"],
+    "Queretaro":         ["Queretaro"],
+    "Quintana Roo":      ["Quintana Roo","Cancun","Playa del Carmen","Tulum"],
+    "San Luis Potosi":   ["San Luis Potosi","SLP"],
+    "Sinaloa":           ["Sinaloa","Culiacan","Mazatlan"],
+    "Sonora":            ["Sonora","Hermosillo","Guaymas"],
+    "Tabasco":           ["Tabasco","Villahermosa"],
+    "Tamaulipas":        ["Tamaulipas","Matamoros","Tampico","Reynosa"],
+    "Tlaxcala":          ["Tlaxcala"],
+    "Veracruz":          ["Veracruz","Xalapa","Coatzacoalcos"],
+    "Yucatan":           ["Yucatan","Merida"],
+    "Zacatecas":         ["Zacatecas"],
+}
+
+# ---------------------------------------------------------------------------
+# Spanish month abbrev → English (for feedparser date fallback)
+_MESES_ES = {"ene":"Jan","feb":"Feb","mar":"Mar","abr":"Apr","may":"May",
+             "jun":"Jun","jul":"Jul","ago":"Aug","sep":"Sep","oct":"Oct",
+             "nov":"Nov","dic":"Dec"}
+
+def normalize(text: str) -> str:
+    t = text.lower()
+    t = unicodedata.normalize("NFD", t)
+    return "".join(c for c in t if unicodedata.category(c) != "Mn")
+
+def _kw_match(kw_norm: str, text_norm: str) -> bool:
+    """Word-boundary match for short keywords, substring for long ones."""
+    if len(kw_norm) <= 6:
+        return bool(re.search(r"\b" + re.escape(kw_norm) + r"\b", text_norm))
+    return kw_norm in text_norm
+
+def detect_categories(titulo: str, resumen: str = "") -> list:
+    t = normalize(f"{titulo} {resumen}")
+    return [cat for cat, kws in KEYWORDS_AMBIENTAL.items()
+            if any(_kw_match(normalize(kw), t) for kw in kws)]
+
+def is_relevant(titulo: str, resumen: str = "") -> bool:
+    t = normalize(f"{titulo} {resumen}")
+    return any(_kw_match(normalize(kw), t) for kw in ALL_KW)
+
+def detect_state(titulo: str, resumen: str = "") -> str | None:
+    t = normalize(f"{titulo} {resumen}")
+    for estado, kws in ESTADOS_KW.items():
         for kw in kws:
-            if kw.lower() in t:
+            if normalize(kw) in t:
                 return estado
     return None
 
+def parse_date_str(raw: str) -> str:
+    """Parse date strings including Spanish month abbrevs."""
+    if not raw:
+        return ""
+    s = raw.lower()
+    for es, en in _MESES_ES.items():
+        s = s.replace(es, en)
+    # Try RFC2822
+    try:
+        from email.utils import parsedate_to_datetime
+        dt = parsedate_to_datetime(s.title())
+        return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+    except Exception:
+        pass
+    # Try ISO
+    try:
+        dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+    except Exception:
+        pass
+    return ""
 
-def make_id(titulo: str, url: str) -> str:
-    return hashlib.md5((titulo + url).encode()).hexdigest()[:12]
+def make_id(titulo: str, fuente: str) -> str:
+    return hashlib.md5(f"{titulo.lower()}|{fuente}".encode()).hexdigest()[:12]
 
+# ---------------------------------------------------------------------------
+# RSS fetcher
+# ---------------------------------------------------------------------------
+def fetch_feed(nombre: str, url: str) -> list:
+    """Fetch one RSS feed. Returns list of normalized article dicts."""
+    try:
+        r = requests.get(url, headers=HDR, timeout=20, allow_redirects=True)
+        if r.status_code not in (200, 301, 302):
+            print(f"  [HTTP {r.status_code}] {nombre}")
+            return []
+        feed = feedparser.parse(r.content)
+    except Exception as e:
+        print(f"  [ERR] {nombre}: {e}")
+        return []
 
+    if feed.bozo and not feed.entries:
+        print(f"  [BOZO/EMPTY] {nombre}")
+        return []
+
+    items = []
+    for e in feed.entries:
+        titulo = (e.get("title") or "").strip()
+        if not titulo:
+            continue
+
+        # Fecha — feedparser parsed → raw string → fallback hoy
+        fecha = ""
+        for key in ("published_parsed", "updated_parsed"):
+            val = e.get(key)
+            if val:
+                try:
+                    fecha = datetime(*val[:6], tzinfo=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                except Exception:
+                    pass
+                if fecha:
+                    break
+        if not fecha:
+            for key in ("published", "updated"):
+                fecha = parse_date_str(e.get(key, ""))
+                if fecha:
+                    break
+        if not fecha:
+            # Fallback: fecha actual (para especializadas sin fecha en RSS)
+            fecha = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+        # Resumen — limpia HTML
+        raw = (e.get("summary") or e.get("description") or
+               (e.get("content", [{}])[0].get("value", "") if e.get("content") else ""))
+        resumen = BeautifulSoup(raw, "html.parser").get_text(" ", strip=True)[:500] if raw else ""
+
+        items.append({
+            "fuente":  nombre,
+            "titulo":  titulo,
+            "fecha":   fecha,
+            "resumen": resumen,
+            "url":     e.get("link", ""),
+        })
+
+    return items
+
+# ---------------------------------------------------------------------------
+def load_existing() -> list:
+    if not OUTPUT_FILE.exists():
+        return []
+    try:
+        with open(OUTPUT_FILE, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+# ---------------------------------------------------------------------------
 def main():
-    import urllib.parse  # noqa – needed inside google_news_rss
-    print(f"🔍 SCOPE 3 Scraper — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+    print(f"SCOPE Noticias — RSS Directo — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+    print(f"Fuentes: {len(RSS_FEEDS)}")
 
-    # Cargar noticias existentes para deduplicar
-    existing_ids: set[str] = set()
-    existing: list[dict] = []
-    if OUTPUT_FILE.exists():
-        try:
-            with open(OUTPUT_FILE, encoding="utf-8") as f:
-                existing = json.load(f)
-            existing_ids = {a.get("id", "") for a in existing}
-            print(f"  📂 {len(existing)} artículos existentes cargados")
-        except Exception:
-            existing = []
+    existing = load_existing()
+    existing_ids = {a.get("id", "") for a in existing}
+    print(f"Artículos existentes: {len(existing)}")
 
-    nuevos: list[dict] = []
+    # Fetch all feeds in parallel
+    raw_all = []
+    with ThreadPoolExecutor(max_workers=5) as pool:
+        futures = {pool.submit(fetch_feed, nombre, url): nombre
+                   for nombre, url in RSS_FEEDS.items()}
+        for fut in as_completed(futures):
+            nombre = futures[fut]
+            try:
+                items = fut.result()
+                print(f"  {nombre:22} {len(items):3} entradas")
+                raw_all.extend(items)
+            except Exception as e:
+                print(f"  {nombre:22} ERROR: {e}")
 
-    for cat_clave, cat in CATEGORIAS.items():
-        for sub_clave, keywords in cat["subcategorias"].items():
-            for kw in keywords:
-                print(f"  🔎 [{cat['nombre']} / {sub_clave}] {kw}")
-                arts = google_news_rss(kw)
-                for a in arts:
-                    art_id = make_id(a["titulo"], a["url"])
-                    if art_id in existing_ids:
-                        continue
-                    estado = detect_state(a["titulo"])
-                    nuevos.append({
-                        "id": art_id,
-                        "titulo": a["titulo"],
-                        "url": a["url"],
-                        "fuente": a["fuente"],
-                        "fecha_publicacion": a["fecha_publicacion"],
-                        "categoria": cat_clave,
-                        "categoria_nombre": cat["nombre"],
-                        "subcategoria": sub_clave,
-                        "keyword": kw,
-                        "estado": estado,
-                        "scrapeado_en": datetime.now(timezone.utc).isoformat()
-                    })
-                    existing_ids.add(art_id)
-                time.sleep(SLEEP_BETWEEN_REQUESTS)
+    print(f"\nTotal bruto: {len(raw_all)} artículos")
 
-    print(f"\n✅ {len(nuevos)} artículos nuevos encontrados")
+    # Filter, categorize, deduplicate
+    nuevos = []
+    for item in raw_all:
+        titulo  = item["titulo"]
+        resumen = item["resumen"]
+        fuente  = item["fuente"]
 
-    # Combinar: nuevos primero, luego existentes, limitar total
+        especializada = fuente in FUENTES_ESPECIALIZADAS
+        cats = detect_categories(titulo, resumen)
+
+        # Las fuentes especializadas pasan siempre; las generales necesitan keyword
+        if not cats and not especializada:
+            continue
+        if not cats and especializada:
+            # Fuente especializada sin keyword → categoría genérica
+            cats = ["biodiversidad"]
+
+        art_id = make_id(titulo, fuente)
+        if art_id in existing_ids:
+            continue
+
+        estado = detect_state(titulo, resumen)
+        cat_primary = cats[0]
+
+        nuevos.append({
+            "id":               art_id,
+            "titulo":           titulo,
+            "url":              item["url"],
+            "fuente":           fuente,
+            "resumen":          resumen,
+            "fecha_publicacion": item["fecha"],
+            "categoria":        cat_primary,
+            "categoria_nombre": CAT_LABEL.get(cat_primary, cat_primary),
+            "categorias":       cats,
+            "estado":           estado,
+            "scrapeado_en":     datetime.now(timezone.utc).isoformat(),
+        })
+        existing_ids.add(art_id)
+
+    print(f"Nuevos con relevancia ambiental: {len(nuevos)}")
+
+    # Breakdown por fuente
+    from collections import Counter
+    cnt = Counter(a["fuente"] for a in nuevos)
+    for src, n in cnt.most_common():
+        print(f"  {src:22} {n}")
+
+    # Merge and sort
     combined = nuevos + existing
-    combined = sorted(combined, key=lambda x: x.get("fecha_publicacion", ""), reverse=True)
+    combined.sort(key=lambda x: x.get("fecha_publicacion", ""), reverse=True)
     combined = combined[:MAX_TOTAL]
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(combined, f, ensure_ascii=False, indent=2)
 
-    print(f"💾 Guardado: {OUTPUT_FILE}  ({len(combined)} artículos totales)")
+    print(f"\nGuardado: {OUTPUT_FILE}")
+    print(f"Total: {len(combined)} artículos  |  Nuevos: {len(nuevos)}")
 
 
 if __name__ == "__main__":
-    import urllib.parse
     main()
