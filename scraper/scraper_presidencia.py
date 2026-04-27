@@ -71,27 +71,63 @@ KEYWORDS_AMBIENTAL = {
                          "hídric","hidric","conagua","sequía","sequia","inundación","inundacion",
                          "presa","tratamiento de aguas","agua potable","escasez de agua"],
     "energia_renovable":["solar","eólica","eolica","fotovoltaic","hidroelectric",
-                         "renovable","cfe","sener","geotermia","parque eólico","parque eolico"],
+                         "renovable","cfe","sener","geotermia","parque eólico","parque eolico",
+                         "energia limpia","transicion energetica"],
     "hidrocarburos":    ["pemex","refinería","refineria","ducto","oleoducto","gasoducto",
-                         "fracking","exploración","sondeo","hidrocarburos","petróleo","petroleo"],
-    "biodiversidad":    ["semarnat","conanp","área natural","area natural","reserva",
-                         "especie","extinción","extincion","jaguar","ballena","manatí","manati",
-                         "vida silvestre","corredor biológico","corredor biologico"],
-    "deforestacion":    ["bosque","selva","tala","deforesta","incendio forestal",
-                         "conafor","manglar","reforest"],
-    "calidad_aire":     ["contingencia","ozono","pm2.5","pm10","emisiones",
-                         "calidad del aire","contaminación atmosférica","contaminacion atmosferica"],
-    "residuos":         ["basura","residuo","relleno sanitario","reciclaj",
-                         "plástico","plastico","incinerador","economía circular","economia circular"],
-    "cambio_climatico": ["cambio climático","cambio climatico","carbono","gei","co2",
-                         "calentamiento","inecc","mitigación","mitigacion","lgcc","cop","paris"],
-    "mineria":          ["minería","mineria","cianuro","tajo","concesión minera",
-                         "concesion minera","litio"],
-    "transgenico":      ["transgénico","transgenico","glifosato","bayer","monsanto",
-                         "semilla","cofepris","maíz","maiz"],
+                         "fracking","hidrocarburos","petróleo","petroleo","combustibles fosiles"],
+    "biodiversidad":    ["semarnat","conanp","área natural protegida","area natural protegida",
+                         "reserva natural","reserva de la biosfera","especie en peligro",
+                         "extinción","extincion","jaguar","ballena","manatí","manati",
+                         "vida silvestre","corredor biológico","corredor biologico",
+                         "parque nacional"],
+    "deforestacion":    ["bosque","selva","tala ilegal","deforestacion","incendio forestal",
+                         "conafor","manglar","reforest","cambio de uso de suelo"],
+    "calidad_aire":     ["ozono","pm2.5","pm10","emisiones de gases","calidad del aire",
+                         "contaminación atmosférica","contaminacion atmosferica","smog",
+                         "contingencia ambiental"],
+    "residuos":         ["residuo peligroso","relleno sanitario","reciclaj",
+                         "plástico","plastico","incinerador","economía circular",
+                         "economia circular","desecho toxico"],
+    "cambio_climatico": ["cambio climático","cambio climatico","carbono","gases de efecto",
+                         "gei","co2","calentamiento global","inecc","mitigación","mitigacion",
+                         "lgcc","cumbre climatica","acuerdo de paris","descarbonizacion",
+                         "neutralidad de carbono","huella de carbono"],
+    "mineria":          ["minería","mineria","concesion minera","litio","extraccion minera",
+                         "minera","cianuro"],
+    "transgenico":      ["transgénico","transgenico","glifosato","semilla nativa",
+                         "soberania alimentaria","maíz nativo","maiz nativo","plaguicida"],
 }
 
 ALL_KW = [kw for kws in KEYWORDS_AMBIENTAL.values() for kw in kws]
+
+# ---------------------------------------------------------------------------
+# Frases que indican que el fragmento es de seguridad/crimen, no ambiental
+# ---------------------------------------------------------------------------
+EXCLUIR_FRAGS = [
+    "secretario de seguridad",
+    "secretaria de seguridad",
+    "guardia nacional",
+    "crimen organizado",
+    "ministerio publico",
+    "fiscal general",
+    "ley de seguridad nacional",
+    "colaboracion en seguridad",
+    "agencia de inteligencia",
+    "agencias de estados unidos",
+    "fuerza armada",
+    "fuerzas armadas",
+    "operativo policial",
+    "narcotrafico",
+    "cartel",
+    "homicidio",
+    "feminicidio",
+    "desaparicion forzada",
+    "extorsion",
+    "delincuencia organizada",
+    "antisecuestro",
+    "detencion de presuntos",
+    "presunto culpable",
+]
 
 # ---------------------------------------------------------------------------
 def normalize(text: str) -> str:
@@ -99,19 +135,41 @@ def normalize(text: str) -> str:
     t = unicodedata.normalize("NFD", t)
     return "".join(c for c in t if unicodedata.category(c) != "Mn")
 
-def is_relevant(text: str) -> bool:
-    t = normalize(text)
-    return any(normalize(kw) in t for kw in ALL_KW)
+def _kw_match(kw_norm: str, text_norm: str) -> bool:
+    """Word-boundary match para keywords cortos (≤6 chars), substring para largos."""
+    if len(kw_norm) <= 6:
+        return bool(re.search(r"\b" + re.escape(kw_norm) + r"\b", text_norm))
+    return kw_norm in text_norm
 
-def classify(text: str) -> dict:
-    """Return {category: [keywords_found]}."""
-    t = text.lower()
-    hits = {}
-    for cat, keys in KEYWORDS_AMBIENTAL.items():
-        found = [k for k in keys if k in t]
-        if found:
-            hits[cat] = found
-    return hits
+def is_relevant(text: str) -> bool:
+    """True si el texto contiene al menos un keyword ambiental (con límite de palabra)."""
+    t = normalize(text)
+    return any(_kw_match(normalize(kw), t) for kw in ALL_KW)
+
+def _env_hit_count(text_norm: str) -> int:
+    """Cuenta cuántos keywords ambientales distintos aparecen en el texto."""
+    return sum(1 for kw in ALL_KW if _kw_match(normalize(kw), text_norm))
+
+def is_env_fragment(line: str) -> bool:
+    """
+    True si el fragmento tiene contenido ambiental genuino:
+    - Al menos 1 keyword ambiental con word-boundary
+    - Sin frases de seguridad/crimen (o con ellas pero con 3+ hits ambientales)
+    """
+    t = normalize(line)
+    hits = _env_hit_count(t)
+    if hits == 0:
+        return False
+    has_security = any(normalize(d) in t for d in EXCLUIR_FRAGS)
+    if has_security and hits < 3:
+        return False
+    return True
+
+def classify(text: str) -> list:
+    """Devuelve lista de categorías ambientales detectadas."""
+    t = normalize(text)
+    return [cat for cat, kws in KEYWORDS_AMBIENTAL.items()
+            if any(_kw_match(normalize(kw), t) for kw in kws)]
 
 def make_id(url: str) -> str:
     return hashlib.md5(url.encode()).hexdigest()[:10]
@@ -170,22 +228,24 @@ def extraer_intervenciones_csp(html: str) -> list:
         intervenciones.append("\n".join(actual))
     return intervenciones
 
-def extract_env_fragments(html: str, max_frags: int = 8) -> list:
-    """From Sheinbaum's words only, return paragraphs with environmental keywords."""
+def extract_env_fragments(html: str, max_frags: int = 6) -> list:
+    """
+    De las palabras de Sheinbaum únicamente, devuelve párrafos con
+    contenido ambiental genuino (sin seguridad, sin menciones de paso).
+    Si no se pueden aislar los turnos de la Presidenta, devuelve [].
+    """
     intervenciones = extraer_intervenciones_csp(html)
     if not intervenciones:
-        # Fallback: scan all paragraphs
-        soup = BeautifulSoup(html, "html.parser")
-        body = soup.find("div", class_="article-body") or soup
-        intervenciones = [p.get_text(" ", strip=True) for p in body.find_all("p")]
+        # Sin turnos identificados: no incluimos fragmentos para evitar ruido
+        return []
 
     fragments = []
     for bloque in intervenciones:
         for line in bloque.split("\n"):
             line = line.strip()
-            if len(line) < 60:
+            if len(line) < 80:           # párrafos muy cortos son poco informativos
                 continue
-            if is_relevant(line):
+            if is_env_fragment(line):
                 fragments.append(line[:500])
             if len(fragments) >= max_frags:
                 return fragments
@@ -202,18 +262,16 @@ def scrape_date(d: date) -> dict | None:
     title_tag = soup.find("h1") or soup.find("title")
     titulo = title_tag.get_text(strip=True) if title_tag else f"Mañanera {d.isoformat()}"
 
-    # Full text relevance check
-    body = soup.find("div", class_="article-body") or soup
-    full_text = body.get_text(" ", strip=True)
-    if not is_relevant(full_text):
-        return None
-
-    cats_dict = classify(full_text)
-    categorias = list(cats_dict.keys())
-    if not categorias:
-        return None
-
+    # Extraer fragmentos ambientales de los turnos de la Presidenta
     fragmentos = extract_env_fragments(html)
+    if not fragmentos:
+        return None   # sin contenido ambiental en sus propias palabras
+
+    # Categorías derivadas de los fragmentos (no del texto completo)
+    texto_frags = " ".join(fragmentos)
+    categorias  = classify(texto_frags)
+    if not categorias:
+        categorias = ["cambio_climatico"]   # fallback genérico
 
     return {
         "id":         make_id(url),
