@@ -93,20 +93,49 @@ KEYWORDS_AMBIENTAL = {
 }
 ALL_KW = [kw for kws in KEYWORDS_AMBIENTAL.values() for kw in kws]
 
+EXCLUIR_FRAGS = [
+    "secretario de seguridad","secretaria de seguridad",
+    "guardia nacional","crimen organizado","ministerio publico",
+    "fiscal general","ley de seguridad nacional",
+    "colaboracion en seguridad","agencia de inteligencia",
+    "agencias de estados unidos","fuerza armada","fuerzas armadas",
+    "operativo policial","narcotrafico","cartel","homicidio",
+    "feminicidio","desaparicion forzada","extorsion",
+    "delincuencia organizada",
+]
+
 # ---------------------------------------------------------------------------
 def normalize(text: str) -> str:
     t = text.lower()
     t = unicodedata.normalize("NFD", t)
     return "".join(c for c in t if unicodedata.category(c) != "Mn")
 
+def _kw_match(kw_norm: str, text_norm: str) -> bool:
+    if len(kw_norm) <= 6:
+        return bool(re.search(r"\b" + re.escape(kw_norm) + r"\b", text_norm))
+    return kw_norm in text_norm
+
 def is_relevant(text: str) -> bool:
     t = normalize(text)
-    return any(normalize(kw) in t for kw in ALL_KW)
+    return any(_kw_match(normalize(kw), t) for kw in ALL_KW)
+
+def _env_hit_count(text_norm: str) -> int:
+    return sum(1 for kw in ALL_KW if _kw_match(normalize(kw), text_norm))
+
+def is_env_fragment(line: str) -> bool:
+    t = normalize(line)
+    hits = _env_hit_count(t)
+    if hits == 0:
+        return False
+    has_security = any(normalize(d) in t for d in EXCLUIR_FRAGS)
+    if has_security and hits < 3:
+        return False
+    return True
 
 def classify(text: str) -> list:
-    t = text.lower()
-    return [cat for cat, keys in KEYWORDS_AMBIENTAL.items()
-            if any(k in t for k in keys)]
+    t = normalize(text)
+    return [cat for cat, kws in KEYWORDS_AMBIENTAL.items()
+            if any(_kw_match(normalize(kw), t) for kw in kws)]
 
 def make_id(url: str) -> str:
     return hashlib.md5(url.encode()).hexdigest()[:10]
@@ -160,22 +189,19 @@ def extraer_intervenciones_csp(html: str) -> list:
         intervenciones.append("\n".join(actual))
     return intervenciones
 
-def extract_env_fragments(html: str, max_frags: int = 8) -> list:
-    """From Sheinbaum's own words, return paragraphs with environmental content."""
+def extract_env_fragments(html: str, max_frags: int = 6) -> list:
+    """De las palabras de la Presidenta, devuelve párrafos con contenido ambiental genuino."""
     intervenciones = extraer_intervenciones_csp(html)
     if not intervenciones:
-        # Fallback: all paragraphs in the article
-        soup = BeautifulSoup(html, "html.parser")
-        body = soup.find("div", class_="article-body") or soup
-        intervenciones = [p.get_text(" ", strip=True) for p in body.find_all("p")]
+        return []   # sin turnos identificados, no incluir fragmentos
 
     fragments = []
     for bloque in intervenciones:
         for line in bloque.split("\n"):
             line = line.strip()
-            if len(line) < 60:
+            if len(line) < 80:
                 continue
-            if is_relevant(line):
+            if is_env_fragment(line):
                 fragments.append(line[:500])
             if len(fragments) >= max_frags:
                 return fragments
@@ -191,17 +217,11 @@ def scrape_date(d: date) -> dict | None:
     title_tag = soup.find("h1") or soup.find("title")
     titulo = title_tag.get_text(strip=True) if title_tag else f"Mañanera {d.isoformat()}"
 
-    body = soup.find("div", class_="article-body") or soup
-    full_text = body.get_text(" ", strip=True)
-
-    if not is_relevant(full_text):
-        return None
-
-    categorias = classify(full_text)
-    if not categorias:
-        return None
-
     fragmentos = extract_env_fragments(html)
+    if not fragmentos:
+        return None   # sin contenido ambiental en palabras de la Presidenta
+
+    categorias = classify(" ".join(fragmentos))
 
     return {
         "id":         make_id(url),
