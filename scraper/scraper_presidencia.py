@@ -1,175 +1,230 @@
 """
 scraper_presidencia.py
 ======================
-Scrapes mentions of Claudia Sheinbaum on environmental topics.
+Scrapes real Mañanera transcripts (estenográficas) from gob.mx/presidencia.
+Extracts only Sheinbaum's own words on environmental topics.
 
-Source: Google News RSS (no JS captcha, no auth needed)
-Output: data/presidencia.json
+Source:  https://www.gob.mx/presidencia/es/articulos/
+Output:  data/presidencia.json
+
+Pattern: /version-estenografica-...-del-{D}-de-{mes}-de-{YYYY}
+UA note:  default requests UA bypasses gob.mx WAF (confirmed). Curl fallback included.
 """
 
-import email.utils
 import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 import unicodedata
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 import requests
 import urllib3
 from bs4 import BeautifulSoup
 
-sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# ---------------------------------------------------------------------------
-# Paths
 # ---------------------------------------------------------------------------
 BASE_DIR    = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT_FILE = os.path.join(BASE_DIR, "data", "presidencia.json")
 
 # ---------------------------------------------------------------------------
-# Environmental topic keyword sets
+# URL pattern (FIAT production — day NOT zero-padded)
 # ---------------------------------------------------------------------------
-TOPIC_KW = {
-    "agua":        ["agua", "hidric", "acuifer", "cuenca", "conagua", "sequía", "inundac"],
-    "energia":     ["energía", "energia", "solar", "eólico", "eolico", "renovable", "geotermia", "hidroeléctric", "cfe", "pemex"],
-    "residuos":    ["residuo", "basura", "reciclaj", "economía circular", "economia circular", "plástico", "plastico", "relleno sanitario"],
-    "clima":       ["cambio climático", "cambio climatico", "clima", "temperatura", "carbono", "emisión", "emision", "lgcc", "cop", "paris"],
-    "ambiente":    ["medio ambiente", "semarnat", "profepa", "ecológico", "ecologico", "ambiental", "contaminac", "aire"],
-    "forestal":    ["forestal", "bosque", "selva", "reforest", "deforest", "conafor", "conanp", "biodiver"],
-    "biodiversidad":["biodiversidad", "especie", "fauna", "flora", "área natural", "area natural", "reserva", "corredor biológico"],
-    "fiscal":      ["impuesto ambiental", "carbono precio", "bono verde", "finanzas sostenible", "ieps combustible"],
-    "industria":   ["industria sostenible", "manufactura verde", "economía verde", "economia verde", "ecoparque", "responsabilidad ambiental"],
-    "mineria":     ["minería", "mineria", "extracción", "extraccion", "concesión minera", "concesion minera"],
+URL_BASE = "https://www.gob.mx/presidencia/es/articulos/"
+MESES    = ["enero","febrero","marzo","abril","mayo","junio",
+            "julio","agosto","septiembre","octubre","noviembre","diciembre"]
+
+def build_url(d: date) -> str:
+    return (
+        f"{URL_BASE}version-estenografica-conferencia-de-prensa-"
+        f"de-la-presidenta-claudia-sheinbaum-pardo-del-"
+        f"{d.day}-de-{MESES[d.month-1]}-de-{d.year}"
+    )
+
+# ---------------------------------------------------------------------------
+# Speaker-extraction regexes (from FIAT)
+# ---------------------------------------------------------------------------
+RE_CSP_LABEL = re.compile(
+    r"PRESIDENTA(?:\s+DE\s+(?:LA\s+REP[ÚU]BLICA|M[ÉE]XICO))?"
+    r"[,:]?\s*(?:CLAUDIA\s+SHEINBAUM\s+PARDO)?[:\s]",
+    re.IGNORECASE,
+)
+
+RE_OTHER_SPEAKER = re.compile(
+    r"^(?:SECRETARI[OA]|MINISTR[OA]|PRESIDENTE|DIPUTAD[OA]|"
+    r"SENADOR[A]?|GOBERNADOR[A]?|FISCAL|PROCURADOR[A]?|"
+    r"ALMIRANTE|GENERAL|COMANDANTE|DIRECTOR[A]?|PERIODISTA|"
+    r"PREGUNTA|INTERLOCUTOR)\b",
+    re.IGNORECASE | re.MULTILINE,
+)
+
+# ---------------------------------------------------------------------------
+# Environmental keywords (FIAT + SCOPE extensions)
+# ---------------------------------------------------------------------------
+KEYWORDS_AMBIENTAL = {
+    "agua":             ["agua","cuenca","río","rio","lago","acuífero","acuifero",
+                         "hídric","hidric","conagua","sequía","sequia","inundación","inundacion",
+                         "presa","tratamiento de aguas","agua potable","escasez de agua"],
+    "energia_renovable":["solar","eólica","eolica","fotovoltaic","hidroelectric",
+                         "renovable","cfe","sener","geotermia","parque eólico","parque eolico"],
+    "hidrocarburos":    ["pemex","refinería","refineria","ducto","oleoducto","gasoducto",
+                         "fracking","exploración","sondeo","hidrocarburos","petróleo","petroleo"],
+    "biodiversidad":    ["semarnat","conanp","área natural","area natural","reserva",
+                         "especie","extinción","extincion","jaguar","ballena","manatí","manati",
+                         "vida silvestre","corredor biológico","corredor biologico"],
+    "deforestacion":    ["bosque","selva","tala","deforesta","incendio forestal",
+                         "conafor","manglar","reforest"],
+    "calidad_aire":     ["contingencia","ozono","pm2.5","pm10","emisiones",
+                         "calidad del aire","contaminación atmosférica","contaminacion atmosferica"],
+    "residuos":         ["basura","residuo","relleno sanitario","reciclaj",
+                         "plástico","plastico","incinerador","economía circular","economia circular"],
+    "cambio_climatico": ["cambio climático","cambio climatico","carbono","gei","co2",
+                         "calentamiento","inecc","mitigación","mitigacion","lgcc","cop","paris"],
+    "mineria":          ["minería","mineria","cianuro","tajo","concesión minera",
+                         "concesion minera","litio"],
+    "transgenico":      ["transgénico","transgenico","glifosato","bayer","monsanto",
+                         "semilla","cofepris","maíz","maiz"],
 }
 
-ALL_KW = [kw for kws in TOPIC_KW.values() for kw in kws]
+ALL_KW = [kw for kws in KEYWORDS_AMBIENTAL.values() for kw in kws]
 
-# ---------------------------------------------------------------------------
-# Google News RSS — fuente principal (sin captcha)
-# ---------------------------------------------------------------------------
-GNEWS_BASE = "https://news.google.com/rss/search?hl=es-MX&gl=MX&ceid=MX:es-419"
-
-QUERIES = [
-    "Sheinbaum ambiente OR ambiental OR semarnat OR profepa OR ecologia",
-    "Sheinbaum energia OR renovable OR solar OR eolica OR cfe OR pemex",
-    "Sheinbaum agua OR conagua OR hidrica OR acuifero OR sequia",
-    "Sheinbaum cambio climatico OR carbono OR emisiones OR cop",
-    "Sheinbaum bosque OR forestal OR biodiversidad OR conafor OR conanp",
-    "Sheinbaum residuos OR contaminacion OR aire OR basura OR reciclaje",
-    "Sheinbaum plan ambiental OR agenda ambiental OR politica ambiental",
-]
-
-HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; curl/7.68.0)", "Accept": "*/*"}
-
-
-# ---------------------------------------------------------------------------
-# Helpers
 # ---------------------------------------------------------------------------
 def normalize(text: str) -> str:
     t = text.lower()
     t = unicodedata.normalize("NFD", t)
     return "".join(c for c in t if unicodedata.category(c) != "Mn")
 
-
-def detect_topics(text: str) -> list:
-    t = normalize(text)
-    return [topic for topic, kws in TOPIC_KW.items()
-            if any(normalize(kw) in t for kw in kws)]
-
-
 def is_relevant(text: str) -> bool:
     t = normalize(text)
     return any(normalize(kw) in t for kw in ALL_KW)
 
+def classify(text: str) -> dict:
+    """Return {category: [keywords_found]}."""
+    t = text.lower()
+    hits = {}
+    for cat, keys in KEYWORDS_AMBIENTAL.items():
+        found = [k for k in keys if k in t]
+        if found:
+            hits[cat] = found
+    return hits
 
 def make_id(url: str) -> str:
     return hashlib.md5(url.encode()).hexdigest()[:10]
 
-
-def parse_rfc2822(raw: str) -> str:
-    try:
-        dt = email.utils.parsedate_to_datetime(raw)
-        return dt.strftime("%Y-%m-%d")
-    except Exception:
-        return ""
-
-
-def clean_snippet(html: str) -> str:
-    if not html:
-        return ""
-    return BeautifulSoup(html, "html.parser").get_text(" ", strip=True)[:300]
-
-
 # ---------------------------------------------------------------------------
-# Scraper — Google News RSS
+# Downloader with curl fallback (FIAT pattern)
 # ---------------------------------------------------------------------------
-def scrape_articles(window_days: int = 3) -> list:
-    """Fetch articles from the last `window_days` days via Google News RSS."""
-    all_raw = []
-    seen_titles = set()
-
-    for i, q in enumerate(QUERIES, 1):
-        url = f"{GNEWS_BASE}&q={requests.utils.quote(q)}+when:{window_days}d"
-        print(f"  [{i}/{len(QUERIES)}] {q[:65]}")
+def fetch_html(url: str, retries: int = 2) -> str | None:
+    sess = requests.Session()
+    for _ in range(retries):
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=20, verify=False)
-            if resp.status_code != 200:
-                print(f"    [HTTP {resp.status_code}]")
-                continue
-        except Exception as exc:
-            print(f"    [ERR] {exc}")
-            continue
-
-        soup = BeautifulSoup(resp.content, "xml")
-        found = 0
-        for item in soup.find_all("item"):
-            title_tag   = item.find("title")
-            link_tag    = item.find("link")
-            pubdate_tag = item.find("pubDate")
-            desc_tag    = item.find("description")
-            source_tag  = item.find("source")
-
-            titulo  = title_tag.text.strip()  if title_tag  else ""
-            link    = link_tag.text.strip()   if link_tag   else ""
-            pubdate = pubdate_tag.text.strip() if pubdate_tag else ""
-            snippet = clean_snippet(desc_tag.text if desc_tag else "")
-            fuente  = source_tag.text.strip() if source_tag else ""
-
-            if fuente and titulo.endswith(f" - {fuente}"):
-                titulo = titulo[:-(len(fuente) + 3)]
-
-            fecha = parse_rfc2822(pubdate)
-            tkey  = normalize(titulo)[:60]
-            if tkey in seen_titles:
-                continue
-
-            full_text = titulo + " " + snippet
-            if not is_relevant(full_text):
-                continue
-
-            seen_titles.add(tkey)
-            all_raw.append({
-                "id":         make_id(link or titulo),
-                "titulo":     titulo,
-                "fecha":      fecha,
-                "url":        link,
-                "fuente":     fuente,
-                "categorias": detect_topics(full_text),
-            })
-            found += 1
-
-        print(f"    → {found} relevantes")
-        time.sleep(0.8)
-
-    return all_raw
-
+            r = sess.get(url, timeout=30)
+            if r.status_code == 404:
+                return None
+            if r.status_code == 200 and "Challenge" not in r.text[:300]:
+                r.encoding = "utf-8"
+                return r.text
+        except Exception:
+            pass
+        time.sleep(2.0)
+    # Curl fallback
+    try:
+        out = subprocess.run(
+            ["curl", "-sL", "--max-time", "30", url],
+            capture_output=True, text=True, timeout=35, encoding="utf-8"
+        )
+        if out.returncode == 0 and "Challenge" not in out.stdout[:300]:
+            return out.stdout
+    except Exception:
+        pass
+    return None
 
 # ---------------------------------------------------------------------------
-# Load existing data
+# Extract Sheinbaum's own words, split into paragraphs
+# ---------------------------------------------------------------------------
+def extraer_intervenciones_csp(html: str) -> list:
+    """Return list of CSP intervention strings."""
+    soup = BeautifulSoup(html, "html.parser")
+    body = soup.find("div", class_="article-body") or soup
+    parrafos = [p.get_text("\n", strip=True) for p in body.find_all(["p", "div"])]
+    intervenciones = []
+    capturando = False
+    actual = []
+    for parr in parrafos:
+        if RE_CSP_LABEL.search(parr):
+            capturando = True
+            actual = [parr]
+        elif capturando and RE_OTHER_SPEAKER.match(parr.strip()):
+            if actual:
+                intervenciones.append("\n".join(actual))
+            capturando = False
+            actual = []
+        elif capturando:
+            actual.append(parr)
+    if actual:
+        intervenciones.append("\n".join(actual))
+    return intervenciones
+
+def extract_env_fragments(html: str, max_frags: int = 8) -> list:
+    """From Sheinbaum's words only, return paragraphs with environmental keywords."""
+    intervenciones = extraer_intervenciones_csp(html)
+    if not intervenciones:
+        # Fallback: scan all paragraphs
+        soup = BeautifulSoup(html, "html.parser")
+        body = soup.find("div", class_="article-body") or soup
+        intervenciones = [p.get_text(" ", strip=True) for p in body.find_all("p")]
+
+    fragments = []
+    for bloque in intervenciones:
+        for line in bloque.split("\n"):
+            line = line.strip()
+            if len(line) < 60:
+                continue
+            if is_relevant(line):
+                fragments.append(line[:500])
+            if len(fragments) >= max_frags:
+                return fragments
+    return fragments
+
+# ---------------------------------------------------------------------------
+def scrape_date(d: date) -> dict | None:
+    url  = build_url(d)
+    html = fetch_html(url)
+    if html is None:
+        return None
+
+    soup = BeautifulSoup(html, "html.parser")
+    title_tag = soup.find("h1") or soup.find("title")
+    titulo = title_tag.get_text(strip=True) if title_tag else f"Mañanera {d.isoformat()}"
+
+    # Full text relevance check
+    body = soup.find("div", class_="article-body") or soup
+    full_text = body.get_text(" ", strip=True)
+    if not is_relevant(full_text):
+        return None
+
+    cats_dict = classify(full_text)
+    categorias = list(cats_dict.keys())
+    if not categorias:
+        return None
+
+    fragmentos = extract_env_fragments(html)
+
+    return {
+        "id":         make_id(url),
+        "titulo":     titulo,
+        "fecha":      d.isoformat(),
+        "url":        url,
+        "fuente":     "Presidencia de México — Estenográfica",
+        "categorias": categorias,
+        "fragmentos": fragmentos,
+    }
+
 # ---------------------------------------------------------------------------
 def load_existing() -> list:
     if not os.path.exists(OUTPUT_FILE):
@@ -180,51 +235,58 @@ def load_existing() -> list:
     except Exception:
         return []
 
+def save(articulos: list, nuevos: int):
+    output = {
+        "articulos": articulos,
+        "_meta": {
+            "fuente":      "Presidencia de México — Estenográficas mañanera",
+            "total":       len(articulos),
+            "nuevos_hoy":  nuevos,
+            "actualizado": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        },
+    }
+    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
 
 # ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
 def main():
-    print("=== Scraper Presidencia (Sheinbaum) — Google News RSS ===")
-    print(f"Fecha: {date.today().isoformat()}")
-    print()
+    print("=== Scraper Presidencia — Mañaneras Estenográficas ===")
+    today = date.today()
+    print(f"Fecha: {today.isoformat()}")
 
     existing     = load_existing()
     existing_ids = {a["id"] for a in existing}
     print(f"Artículos existentes: {len(existing)}")
 
-    print("Scrapeando artículos recientes (últimos 3 días)...")
-    nuevos_raw = scrape_articles(window_days=3)
-
+    # Try today and yesterday (transcript sometimes published with delay)
     added = 0
-    for art in nuevos_raw:
-        if art["id"] not in existing_ids:
+    for delta in [0, 1]:
+        d = today - timedelta(days=delta)
+        if d.weekday() >= 5:  # skip weekends
+            continue
+        url    = build_url(d)
+        art_id = make_id(url)
+        if art_id in existing_ids:
+            print(f"  {d}: ya existe")
+            continue
+        print(f"  Scrapeando {d}...", end=" ", flush=True)
+        art = scrape_date(d)
+        if art:
             existing.append(art)
             existing_ids.add(art["id"])
             added += 1
+            print(f"✓ temas: {art['categorias']} | {len(art['fragmentos'])} fragmentos")
+        else:
+            print("— sin contenido ambiental o no publicada aún")
+        time.sleep(1.5)
 
     existing.sort(key=lambda a: a.get("fecha", ""), reverse=True)
-    existing = existing[:300]
+    existing = existing[:500]
 
-    output = {
-        "articulos": existing,
-        "_meta": {
-            "fuente":    "Google News RSS / menciones Sheinbaum temas ambientales",
-            "total":     len(existing),
-            "nuevos_hoy": added,
-            "actualizado": datetime.now(datetime.UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
-                           if hasattr(datetime, "UTC")
-                           else datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        }
-    }
-
-    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-
-    print(f"\nTotal guardados: {len(existing)}  |  Nuevos: {added}")
+    save(existing, added)
+    print(f"\nTotal: {len(existing)}  |  Nuevos: {added}")
     print(f"Archivo: {OUTPUT_FILE}")
-
 
 if __name__ == "__main__":
     main()
