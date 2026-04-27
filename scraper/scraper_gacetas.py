@@ -388,171 +388,198 @@ def scrape_diputados(days: int = 30, max_items: int = 100) -> list:
 
 
 # ---------------------------------------------------------------------------
-# Senado scraper
+# Senado scraper — AJAX calendar (FIAT pattern)
 # ---------------------------------------------------------------------------
-SENADO_BASE     = "https://www.senado.gob.mx"
-SENADO_GACETA_URL = "https://www.senado.gob.mx/66/gaceta_del_senado"
+SENADO_BASE = "https://www.senado.gob.mx"
+SENADO_CAL  = "https://www.senado.gob.mx/66/app/gaceta/functions/calendarioMes.php"
+
+SENADO_SESSION = requests.Session()
+SENADO_SESSION.verify = False
+SENADO_SESSION.headers.update({
+    "User-Agent":      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept-Language": "es-MX,es;q=0.9",
+    "Referer":         "https://www.senado.gob.mx/",
+})
 
 
-def _parse_senado_gaceta_page(page_url: str, fecha_str: str) -> list:
-    """Parse a single Senado gaceta page for env-relevant items."""
-    soup = soup_from_url(page_url)
-    if soup is None:
+def _gacetas_del_mes(anio: int, mes: int) -> list:
+    """
+    AJAX calendar endpoint → list of (fecha_iso, gaceta_id, gaceta_url).
+    Rate: 1 call per month, very fast.
+    """
+    try:
+        r = SENADO_SESSION.get(
+            SENADO_CAL,
+            params={"action": "ajax", "anio": anio, "mes": mes, "dia": 1},
+            timeout=30,
+        )
+        if r.status_code != 200:
+            print(f"  [Senado cal] HTTP {r.status_code} for {anio}-{mes:02d}")
+            return []
+    except Exception as e:
+        print(f"  [Senado cal] ERR {anio}-{mes:02d}: {e}")
         return []
 
-    items = []
-    seen = set()
-
-    for a in soup.find_all("a", href=True):
-        title = a.get_text(separator=" ", strip=True)
-        href  = a["href"].strip()
-
-        if len(title) < 20:
+    # Response contains hrefs like: gaceta_del_senado/2026_04_15/12345
+    matches = re.findall(
+        r"gaceta_del_senado/(\d{4})_(\d{2})_(\d{2})/(\d+)",
+        r.text,
+    )
+    results = []
+    seen_ids: set = set()
+    for y, m, d, gid in matches:
+        if gid in seen_ids:
             continue
-        if not is_relevant(title):
+        seen_ids.add(gid)
+        fecha = f"{y}-{m}-{d}"
+        url   = f"{SENADO_BASE}/66/gaceta_del_senado/{y}_{m}_{d}/{gid}"
+        results.append((fecha, gid, url))
+    return results
+
+
+def _parse_senado_gaceta(gaceta_url: str, fecha_str: str) -> list:
+    """
+    Parse one Senado gaceta page.
+    Strategy:
+      1. Try SUMARIO div with anchor-based sections (FIAT primary).
+      2. Fallback: scan all /gaceta_del_senado/documento/{id} links directly.
+    Rate: caller must sleep 2.5s between calls (Incapsula WAF).
+    """
+    try:
+        r = SENADO_SESSION.get(gaceta_url, timeout=30)
+        if r.status_code != 200:
+            print(f"    [HTTP {r.status_code}] {gaceta_url}")
+            return []
+    except Exception as e:
+        print(f"    [ERR] {gaceta_url}: {e}")
+        return []
+
+    soup     = BeautifulSoup(r.content, "html.parser")
+    items    = []
+    seen_ids = set()
+
+    # ── Strategy 1: SUMARIO div with anchor sections ──────────────────────
+    sumario = soup.find("div", id="sumario")
+    if sumario:
+        secciones = []
+        for a in sumario.find_all("a", href=re.compile(r"^#\d+")):
+            anchor_id = a["href"].lstrip("#")
+            tipo_raw  = a.get_text(strip=True).lower()
+            secciones.append({"anchor_id": anchor_id, "tipo_raw": tipo_raw})
+
+        html_str = str(soup)
+        for i, sec in enumerate(secciones):
+            ini = html_str.find(f'name="{sec["anchor_id"]}"')
+            fin = (
+                html_str.find(f'name="{secciones[i+1]["anchor_id"]}"')
+                if i + 1 < len(secciones) else len(html_str)
+            )
+            if ini < 0:
+                continue
+            chunk = BeautifulSoup(html_str[ini:fin], "html.parser")
+            tipo  = detect_tipo(sec["tipo_raw"])
+            for link in chunk.find_all("a", href=re.compile(r"/gaceta_del_senado/documento/\d+")):
+                doc_id  = re.search(r"documento/(\d+)", link["href"]).group(1)
+                titulo  = link.get_text(" ", strip=True)
+                if doc_id in seen_ids or not is_relevant(titulo):
+                    continue
+                seen_ids.add(doc_id)
+                full_url = SENADO_BASE + link["href"]
+                items.append({
+                    "titulo":    titulo[:400],
+                    "tipo":      tipo,
+                    "fecha":     fecha_str,
+                    "autor":     _extract_autor(titulo),
+                    "partido":   _extract_partido(titulo),
+                    "categoria": detect_cat(titulo),
+                    "url":       full_url,
+                    "id":        make_id(full_url),
+                })
+
+    # ── Strategy 2 (fallback / supplement): all documento links ───────────
+    # Also catches pages without sumario div (most current gacetas)
+    for link in soup.find_all("a", href=re.compile(r"/gaceta_del_senado/documento/\d+")):
+        doc_id  = re.search(r"documento/(\d+)", link["href"]).group(1)
+        titulo  = link.get_text(" ", strip=True)
+        if doc_id in seen_ids:
             continue
-
-        # Build absolute URL
-        if href.startswith("http"):
-            full_url = href
-        elif href.startswith("/"):
-            full_url = SENADO_BASE + href
-        else:
-            base_path = page_url.rsplit("/", 1)[0]
-            full_url  = base_path + "/" + href
-
-        if full_url in seen:
+        if not is_relevant(titulo):
             continue
-        seen.add(full_url)
-
-        autor   = _extract_autor(title)
-        partido = _extract_partido(title)
-
+        seen_ids.add(doc_id)
+        full_url = SENADO_BASE + link["href"]
         items.append({
-            "titulo":    title[:400],
-            "tipo":      detect_tipo(title),
+            "titulo":    titulo[:400],
+            "tipo":      detect_tipo(titulo),
             "fecha":     fecha_str,
-            "autor":     autor,
-            "partido":   partido,
-            "categoria": detect_cat(title),
+            "autor":     _extract_autor(titulo),
+            "partido":   _extract_partido(titulo),
+            "categoria": detect_cat(titulo),
             "url":       full_url,
-            "id":        make_id(full_url or title),
+            "id":        make_id(full_url),
         })
 
     return items
 
 
-def _extract_senado_fecha(text: str, href: str) -> str:
-    """Try to parse a date from a gaceta link's label or URL."""
-    # Look for patterns like "14 de abril de 2026", "abril 14, 2026", or "20260414"
-    months_es = {
-        "enero": 1, "febrero": 2, "marzo": 3, "abril": 4,
-        "mayo": 5, "junio": 6, "julio": 7, "agosto": 8,
-        "septiembre": 9, "octubre": 10, "noviembre": 11, "diciembre": 12,
-    }
-    # Pattern: "14 de abril de 2026"
-    m = re.search(
-        r"(\d{1,2})\s+de\s+(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)\s+de\s+(\d{4})",
-        text, re.I
-    )
-    if m:
-        day   = int(m.group(1))
-        month = months_es[m.group(2).lower()]
-        year  = int(m.group(3))
-        try:
-            return date(year, month, day).strftime("%Y-%m-%d")
-        except ValueError:
-            pass
-
-    # Pattern in URL: YYYYMMDD
-    m2 = re.search(r"(\d{4})(\d{2})(\d{2})", href)
-    if m2:
-        try:
-            return date(int(m2.group(1)), int(m2.group(2)), int(m2.group(3))).strftime("%Y-%m-%d")
-        except ValueError:
-            pass
-
-    # Fall back to today
-    return date.today().strftime("%Y-%m-%d")
-
-
-def scrape_senado(max_items: int = 100) -> list:
-    print("\n=== Scraping Senado de la República ===")
+def scrape_senado(months: int = 2, max_items: int = 120) -> list:
+    """
+    Scrape Senado gacetas for the last `months` months via AJAX calendar.
+    Uses 2.5s delay between gaceta pages (Incapsula rate limit).
+    """
+    print("\n=== Scraping Senado — AJAX calendar ===")
     all_items: list = []
     seen_ids: set   = set()
 
-    # Fetch the main listing page
-    soup = soup_from_url(SENADO_GACETA_URL)
-    if soup is None:
-        print("  Could not fetch Senado gaceta listing page.")
-        return []
+    # Build list of (year, month) to query
+    today = date.today()
+    month_targets = []
+    for delta in range(months):
+        m = today.month - delta
+        y = today.year
+        while m <= 0:
+            m += 12
+            y -= 1
+        month_targets.append((y, m))
 
-    cutoff = date.today() - timedelta(days=60)
+    # Collect all gacetas across months
+    all_gacetas = []
+    for anio, mes in month_targets:
+        gacetas = _gacetas_del_mes(anio, mes)
+        print(f"  {anio}-{mes:02d}: {len(gacetas)} gacetas en calendario AJAX")
+        all_gacetas.extend(gacetas)
+        time.sleep(0.5)
 
-    # Collect links to individual gaceta pages
-    gaceta_links = []
-    for a in soup.find_all("a", href=True):
-        href = a["href"].strip()
-        text = a.get_text(separator=" ", strip=True)
+    # Sort newest first, deduplicate
+    all_gacetas.sort(key=lambda x: x[0], reverse=True)
+    seen_gaceta_ids: set = set()
+    unique_gacetas = []
+    for fecha, gid, url in all_gacetas:
+        if gid not in seen_gaceta_ids:
+            seen_gaceta_ids.add(gid)
+            unique_gacetas.append((fecha, gid, url))
 
-        # Filter for links that look like gaceta entries
-        if not href:
-            continue
+    print(f"  Total gacetas únicas: {len(unique_gacetas)}")
 
-        is_gaceta = (
-            "gaceta" in href.lower()
-            or "gaceta" in text.lower()
-            or re.search(r"\d{8}", href)  # date-stamped URLs
-            or re.search(r"\d{4}/\d{2}/", href)  # year/month paths
-        )
-        if not is_gaceta:
-            continue
-
-        # Build absolute URL
-        if href.startswith("http"):
-            full_url = href
-        elif href.startswith("/"):
-            full_url = SENADO_BASE + href
-        else:
-            full_url = SENADO_GACETA_URL.rsplit("/", 1)[0] + "/" + href
-
-        fecha_str = _extract_senado_fecha(text, href)
-
-        # Filter to last 60 days
-        try:
-            entry_date = date.fromisoformat(fecha_str)
-            if entry_date < cutoff:
-                continue
-        except ValueError:
-            pass
-
-        gaceta_links.append((full_url, fecha_str, text))
-
-    # Deduplicate links
-    seen_links: set = set()
-    unique_links    = []
-    for url, fecha, text in gaceta_links:
-        if url not in seen_links:
-            seen_links.add(url)
-            unique_links.append((url, fecha, text))
-
-    print(f"  Found {len(unique_links)} gaceta links on listing page")
-
-    for gaceta_url, fecha_str, label in unique_links:
+    for fecha_str, gid, gaceta_url in unique_gacetas:
         if len(all_items) >= max_items:
             break
-        print(f"  [Senado] {fecha_str} -> {gaceta_url}")
-        time.sleep(0.5)
-        page_items = _parse_senado_gaceta_page(gaceta_url, fecha_str)
-        print(f"    -> {len(page_items)} relevant items")
+        print(f"  [Senado] {fecha_str}  gaceta={gid}", end=" ", flush=True)
+
+        page_items = _parse_senado_gaceta(gaceta_url, fecha_str)
+
+        new_for_page = 0
         for item in page_items:
             if item["id"] not in seen_ids:
                 seen_ids.add(item["id"])
                 all_items.append(item)
+                new_for_page += 1
                 if len(all_items) >= max_items:
                     break
 
-    print(f"  Senado total: {len(all_items)} items")
+        print(f"→ {new_for_page} relevantes (total: {len(all_items)})")
+        time.sleep(2.5)   # Incapsula rate limit
+
+    print(f"\n  Senado total: {len(all_items)} items")
     return all_items
 
 
