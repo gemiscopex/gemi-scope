@@ -20,6 +20,17 @@
         "metodo": "csv"
       }
     ],
+    "Guanajuato": [
+      {
+        "titulo": "Iniciativa formulada por personas diputadas integrantes del Grupo Parlamentario del Partido Acción Nacional y de la Representación Parlamentaria del Partido de la Revolución Democrática, por la que se adicionan diversas disposiciones a la Ley de Fomento y Desarrollo Agrícola para el Estado de Guanajuato y se reforman y adicionan diversas disposiciones de la Ley Ganadera para el Estado de Guanajuat",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-28",
+        "url": "https://www.congresogto.gob.mx/expedientes_legislativos_digitales/iniciativas/7883",
+        "categoria": "Agua",
+        "estado": "Guanajuato",
+        "metodo": "requests"
+      }
+    ],
     "Nuevo León": [
       {
         "titulo": "MEDIANTE EL CUAL PRESENTA INICIATIVA DE REFORMA POR ADICIÓN AL ARTÍCULO 10 DE LA LEY AMBIENTAL DEL ESTADO DE NUEVO LEÓN, EN MATERIA DE COBERTURA EQUITATIVA DEL AGUA.",
@@ -69,6 +80,33 @@
     ],
     "Quintana Roo": [
       {
+        "titulo": "Iniciativa Ciudadana con Proyecto de Decreto por el que se reforman: el párrafo segundo del artículo 1°; las fracciones VII, VIII y IX del artículo 700 para quedar como Derogadas; el artículo 768; la fracción II del artículo 770; el artículo 800; el artículo 802; la fracción VI y el párrafo penúltimo del artículo 814; el artículo 822; el párrafo primero del artículo 825 Bis; el artículo 825 Ter; e",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-28",
+        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260424-154310.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Quintana Roo",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "Iniciativa con Proyecto de Decreto, por el que se reforman y adicionan, diversas disposiciones de la Ley de Acceso de las Mujeres a una Vida Libre de Violencia en el Estado de Quintana Roo; presentada por Diputada María Jimena Pamela Lasa Aguilar, Presidenta de la Comisión para la Igualdad de Género; por la Diputada Paola Elizabeth Moreno Córdova, Presidenta de la Comisión de Justicia; por la Dipu",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-28",
+        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260424-154530.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Quintana Roo",
+        "metodo": "requests"
+      },
+      {
+        "titulo": "Iniciativa de Decreto por el que se declara el 23 de septiembre de cada año como el “Día Estatal de las Personas Promotoras Digitales del Turismo”; presentada por el Diputado Cesar Santiago Augusto Frías Canche, Presidente de la Comisión Anticorrupción, Participación Ciudadana y Órganos Autónomos; por el Diputado Jorge Arturo Sanén Cervantes, Presidente de la Comisión de Puntos Constitucionales y ",
+        "tipo": "iniciativa",
+        "fecha": "2026-04-28",
+        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260424-154757.pdf",
+        "categoria": "Industria Quimica",
+        "estado": "Quintana Roo",
+        "metodo": "requests"
+      },
+      {
         "titulo": "Iniciativa por la que se expide la Ley de Economía Circular del Estado de Quintana Roo y se reforman y derogan diversas disposiciones de la Ley para la Prevención, Gestión Integral y Economía Circular de los Residuos del Estado de Quintana Roo; presentada por el Diputado Jorge Arturo Sanén Cervantes, Presidente de la Comisión de Puntos Constitucionales de la H. XVIII Legislatura del Estado.",
         "tipo": "iniciativa",
         "fecha": "2026-04-21",
@@ -83,33 +121,6 @@
         "fecha": "2026-04-16",
         "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260414-115514.pdf",
         "categoria": "Agro y Desarrollo Rural",
-        "estado": "Quintana Roo",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "Iniciativa de Decreto por el que se Declara el día 06 de abril de cada año, como “El Día Estatal del Deporte Inclusivo”; presentada por la Diputada Luz Gabriela Mora Castillo, Presidenta de la Comisión de Deporte; por el Diputado Jorge Arturo Sanén Cervantes,  Presidente de la Comisión de Puntos Constitucionales; por el Diputado Ricardo Velazco Rodríguez, Presidente de la Comisión de Seguridad Ciu",
-        "tipo": "iniciativa",
-        "fecha": "2026-04-14",
-        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260410-115051.pdf",
-        "categoria": "Industria Quimica",
-        "estado": "Quintana Roo",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "Iniciativa con Proyecto de Decreto por el que se adiciona el artículo 32 Bis de la Constitución Política del Estado Libre y Soberano de Quintana Roo, en materia de suficiencia presupuestaria para la Universidad Autónoma del Estado de Quintana Roo; presentada por el Diputado José Luis Pech Várguez, Presidente de la Comisión de Cultura de la XVIII Legislatura del Estado.",
-        "tipo": "iniciativa",
-        "fecha": "2026-04-09",
-        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260401-132531.pdf",
-        "categoria": "Industria Quimica",
-        "estado": "Quintana Roo",
-        "metodo": "requests"
-      },
-      {
-        "titulo": "Iniciativa con Proyecto de Decreto por el que se adiciona un párrafo tercero al artículo 98 y se reforman los artículos 99 y 100 todos de la Ley de Movilidad del Estado de Quintana Roo; presentada por la Diputada María José Osorio Rosas, Presidenta de la Comisión de Planeación y Desarrollo Económico, y por el Diputado Hugo Alday Nieto, Presidente de la Comisión de Desarrollo Urbano Sustentable y A",
-        "tipo": "iniciativa",
-        "fecha": "2026-04-07",
-        "url": "https://documentos.congresoqroo.gob.mx/iniciativas/INI-XVIII-20260331-165813.pdf",
-        "categoria": "Industria Quimica",
         "estado": "Quintana Roo",
         "metodo": "requests"
       }
@@ -193,16 +204,22 @@
   },
   "resumen": [
     {
+      "estado": "Quintana Roo",
+      "total": 5,
+      "categoria_principal": "Industria Quimica",
+      "ultima_fecha": "2026-04-28"
+    },
+    {
+      "estado": "Guanajuato",
+      "total": 1,
+      "categoria_principal": "Agua",
+      "ultima_fecha": "2026-04-28"
+    },
+    {
       "estado": "Nuevo León",
       "total": 5,
       "categoria_principal": "Industria Quimica",
       "ultima_fecha": "2026-04-23"
-    },
-    {
-      "estado": "Quintana Roo",
-      "total": 5,
-      "categoria_principal": "Industria Quimica",
-      "ultima_fecha": "2026-04-21"
     },
     {
       "estado": "Chihuahua",
@@ -224,8 +241,8 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-04-27T15:43:02.439770",
+    "ultima_actualizacion": "2026-04-28T16:10:05.446027",
     "mes": "2026-04",
-    "estados_con_actividad": 5
+    "estados_con_actividad": 6
   }
 }
