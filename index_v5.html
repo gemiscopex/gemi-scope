@@ -668,15 +668,31 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
     <div id="comisiones-list"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
   </div>
 
-  <!-- TAB: CONGRESOS ESTATALES -->
+  <!-- TAB: LEGISLACIÓN ESTATAL -->
+
   <div id="tab-congresos-est" class="tab-content" style="padding:28px 0">
-    <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Congresos Estatales</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:32px">Actividad legislativa ambiental en los 32 congresos locales</div>
-    <div style="display:flex;align-items:center;justify-content:center;flex-direction:column;padding:60px 20px;border:0.8px dashed var(--border);border-radius:16px;gap:12px">
-      <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted)">En desarrollo</div>
-      <div style="font-size:12px;color:var(--text-muted);text-align:center;max-width:380px;line-height:1.6">Estamos construyendo el monitoreo de los 32 congresos estatales. Próximamente disponible.</div>
+
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
+      <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em">Legislación Ambiental Estatal</div>
     </div>
+
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px">Leyes, códigos y reglamentos ambientales vigentes por entidad federativa · ordenjuridico.gob.mx</div>
+
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap">
+      <div style="position:relative">
+        <select id="leyes-est-selector" onchange="selectLeyesEstado(this.value)"
+          style="appearance:none;-webkit-appearance:none;padding:9px 36px 9px 14px;font-size:13px;font-weight:500;color:var(--text);background:var(--card);border:0.8px solid var(--border);border-radius:10px;cursor:pointer;outline:none;min-width:240px">
+          <option value="">Selecciona un estado…</option>
+        </select>
+        <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);font-size:10px">▾</span>
+      </div>
+      <span id="leyes-est-meta" style="font-size:12px;color:var(--text-muted)"></span>
+    </div>
+
+    <div id="leyes-est-list"></div>
+
   </div>
+
   <!-- TAB: NORMAS -->
   <div id="tab-normas" class="tab-content" style="padding:28px 0">
     <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
@@ -1018,6 +1034,66 @@ function updateLeyes(){
     </div>`;
   }).join('');
 }
+/* ── Legislación Estatal ── */
+var leyesEstatalesData=null;
+var LEYES_EST_TEMA_COLOR={
+  'agua':'#2563eb','forestal':'#15803d','biodiversidad':'#22c55e',
+  'residuos':'#d97706','cambio_climatico':'#6366f1','energia_renovable':'#f59e0b',
+  'mineria':'#78716c','hidrocarburos':'#dc2626','pesca':'#0ea5e9','ambiental_general':'#16a34a'
+};
+var LEYES_EST_TEMA_LABEL={
+  'agua':'Agua','forestal':'Forestal','biodiversidad':'Biodiversidad',
+  'residuos':'Residuos','cambio_climatico':'Clima','energia_renovable':'Energía',
+  'mineria':'Minería','hidrocarburos':'Hidrocarburos','pesca':'Pesca','ambiental_general':'Ambiental'
+};
+function loadLeyesEstatales(){
+  if(leyesEstatalesData)return;
+  fetch('data/leyes-estatales.json').then(function(r){return r.ok?r.json():null;}).then(function(d){
+    if(!d)return;
+    leyesEstatalesData=d;
+    var sel=document.getElementById('leyes-est-selector');
+    if(!sel)return;
+    var estados=Object.entries(d.estados)
+      .filter(function(e){return e[1]&&e[1].length>0;})
+      .sort(function(a,b){return a[0].localeCompare(b[0],'es');});
+    estados.forEach(function(pair){
+      var opt=document.createElement('option');
+      opt.value=pair[0];
+      opt.textContent=pair[0]+' ('+pair[1].length+')';
+      sel.appendChild(opt);
+    });
+  }).catch(function(){});
+}
+function selectLeyesEstado(nombre){
+  var list=document.getElementById('leyes-est-list');
+  var meta=document.getElementById('leyes-est-meta');
+  if(!list)return;
+  if(!nombre||!leyesEstatalesData){list.innerHTML='';if(meta)meta.textContent='';return;}
+  var leyes=leyesEstatalesData.estados[nombre]||[];
+  if(meta)meta.textContent=leyes.length+' ordenamiento'+(leyes.length!==1?'s':'')+' ambientales vigentes';
+  if(!leyes.length){
+    list.innerHTML='<div style="padding:32px 0;font-size:13px;color:var(--text-muted)">Sin datos disponibles para este estado.</div>';
+    return;
+  }
+  var html=leyes.map(function(l){
+    var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
+    var tipoAbr=l.tipo==='Ley'?'LEY':l.tipo==='Código'?'CÓD':l.tipo==='Reglamento'?'REG':'NOR';
+    var u=(l.ficha_url||l.url||'').replace(/"/g,'%22');
+    var temasBadges=(l.temas||[]).map(function(t){
+      var c=LEYES_EST_TEMA_COLOR[t]||'#6b7280';
+      var lb=LEYES_EST_TEMA_LABEL[t]||t;
+      return '<span class="ley-tema-badge" style="background:'+c+'">'+lb+'</span>';
+    }).join('');
+    var year='';
+    if(l.fecha_publicacion){var m=l.fecha_publicacion.match(/[0-9]{4}/);if(m)year='<span class="ley-reforma-date">'+m[0]+'</span>';}
+    var row='<div class="ley-row" onclick="window.open(&quot;'+u+'&quot;,&quot;_blank&quot;)">';
+    row+='<span class="ley-sigla" style="color:'+tipoColor+'">'+tipoAbr+'</span>';
+    row+='<span class="ley-nombre">'+l.nombre+'</span>';
+    row+=temasBadges+year+'<span class="ley-link-icon">↗</span></div>';
+    return row;
+  }).join('');
+  list.innerHTML=html;
+}
 /* ── Presidencia / Sheinbaum ── */
 let presData=[];
 function loadPresidencia(){
@@ -1129,6 +1205,7 @@ function showTab(id,btn){
   document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
   if(id==='normas') renderNormas();
+  if(id==='congresos-est') loadLeyesEstatales();
 }
 
 // ── NORMAS ────────────────────────────────────────────────────
