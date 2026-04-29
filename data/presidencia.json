@@ -1,6 +1,24 @@
 {
   "articulos": [
     {
+      "id": "9c1d005af8",
+      "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 29 de abril de 2026",
+      "fecha": "2026-04-29",
+      "url": "https://www.gob.mx/presidencia/es/articulos/version-estenografica-conferencia-de-prensa-de-la-presidenta-claudia-sheinbaum-pardo-del-29-de-abril-de-2026",
+      "fuente": "Presidencia de México — Estenográfica",
+      "categorias": [
+        "agua",
+        "energia_renovable",
+        "hidrocarburos"
+      ],
+      "fragmentos": [
+        "Luz Elena González, a nombre de Pemex, CFE y de todas las… acuerdos de desarrollo de producción de energía en nuestro país, que también use acero mexicano producido en México.",
+        "Efraín Morales, director de Conagua, que son las obras que tienen que ver con la Comisión Nacional del Agua.",
+        "Ya fue noche cuando publicamos el video, pero logramos un Acuerdo realmente muy importante para todo el país. Participa Pemex, participa Secretaría de Energía, participa Hacienda y participa el ramo gasolinero: logramos que el diésel, la próxima semana, se vaya a vender a 27 pesos el litro.",
+        "Petrobras es una muy buena empresa brasileña. Tiene una composición en donde un porcentaje es del Estado brasileño y otro porcentaje es privado. Y ellos han desarrollado muchas metodologías de extracción de petróleo y de otras cosas, como, por ejemplo, producción de biodiésel o de etanol."
+      ]
+    },
+    {
       "id": "e817964873",
       "titulo": "Tercer Grado | Visita de Sheinbaum a Cumbre en Barcelona y Pemex",
       "fecha": "2026-04-23",
@@ -8278,8 +8296,9 @@
     }
   ],
   "_meta": {
-    "fuente": "Presidencia de Mexico -- Estenograficas manhanera",
-    "total": 417,
-    "actualizado": "2026-04-27T21:27:13Z"
+    "fuente": "Presidencia de México — Estenográficas mañanera",
+    "total": 418,
+    "nuevos_hoy": 1,
+    "actualizado": "2026-04-29T21:13:38Z"
   }
 }
