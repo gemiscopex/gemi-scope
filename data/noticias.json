@@ -1,5 +1,35 @@
 [
   {
+    "id": "5e8ec79b87f8",
+    "titulo": "Pemex adjudicó contratos mixtos para elevar producción; grandes petroleras aún no muestran interés",
+    "url": "https://www.elfinanciero.com.mx/economia/2026/04/30/pemex-adjudico-contratos-mixtos-para-elevar-produccion-grandes-petroleras-aun-no-muestran-interes/",
+    "fuente": "El Financiero",
+    "resumen": "Pemex adjudicó tres contratos mixtos para elevar su producción de petróleo y gas.",
+    "fecha_publicacion": "2026-04-30T20:49:29Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-04-30T21:31:02.746365+00:00"
+  },
+  {
+    "id": "5470165763ec",
+    "titulo": "(MAPA) La CDMX se hunde más de 2 cm al mes: Así lo revela nuevo satélite de la NASA",
+    "url": "https://www.elfinanciero.com.mx/cdmx/2026/04/29/foto-la-ciudad-de-mexico-se-hunde-mas-de-2-cm-al-mes-asi-lo-revela-nuevo-satelite-de-la-nasa/",
+    "fuente": "El Financiero",
+    "resumen": "El satélite NISAR de la NASA e ISRO revela que la Ciudad de México se hunde más de 2 cm al mes en algunas zonas, debido a la extracción de agua subterránea.",
+    "fecha_publicacion": "2026-04-30T20:18:48Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Ciudad de Mexico",
+    "scrapeado_en": "2026-04-30T21:31:02.748315+00:00"
+  },
+  {
     "id": "afe0d0718748",
     "titulo": "Pemex baja deuda a su menor nivel desde 2014",
     "url": "https://expansion.mx/empresas/2026/04/30/reportes-trimestrales-pemex-baja-deuda",
@@ -43,6 +73,21 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-04-30T19:18:51.184548+00:00"
+  },
+  {
+    "id": "901c8d929c2b",
+    "titulo": "Pierde Pemex 46 mmdp en primer trimestre de 2026",
+    "url": "https://www.reforma.com/pierde-pemex-46-mmdp-en-primer-trimestre-de-2026/ar3196074",
+    "fuente": "Reforma",
+    "resumen": "Pemex reportó una pérdida neta de 45 mil 991 millones de pesos en el primer trimestre, de acuerdo con el reporte financiero enviado a BMV.",
+    "fecha_publicacion": "2026-04-30T16:12:13Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-04-30T21:31:02.742807+00:00"
   },
   {
     "id": "5d99d32ae5c0",
@@ -103,6 +148,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-04-30T15:44:18.261325+00:00"
+  },
+  {
+    "id": "ea41f0301ae9",
+    "titulo": "Paso inédito en Santa Marta: 57 países acordaron acelerar la transición energética justa",
+    "url": "https://es.mongabay.com/2026/04/paso-inedito-santa-marta-paises-acordaron-acelerar-transicion-energetica-justa/",
+    "fuente": "Mongabay Latam",
+    "resumen": "La transición energética es inevitable. Y urgente. Todos de acuerdo. Al menos es la visión común de los 57 países que participaron en la Primera Conferencia Internacional para dejar atrás los Combustibles Fósiles en Santa Marta, Colombia. Aunque puede parecer un número no tan significativo, el grupo de naciones aquí reunidas representa el 30 % […]",
+    "fecha_publicacion": "2026-04-30T13:45:24Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable",
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-04-30T21:31:02.637386+00:00"
   },
   {
     "id": "8e7b1c9683ce",
