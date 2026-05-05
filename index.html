@@ -56,8 +56,8 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .nav-tabs{display:flex;align-items:stretch;flex:1;padding:0 4px 0 20px}
 .tab-btn{padding:0 2px;margin-right:20px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:'IBM Plex Sans',sans-serif;white-space:nowrap}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
-.main{max-width:1200px;margin:0 auto;padding:24px 28px}
-.scope-footer{background:var(--card);border-top:1px solid var(--border);margin-top:32px;padding:20px 28px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.8}
+.main{max-width:1200px;margin:0 auto;padding:24px 28px 80px}
+.scope-footer{background:var(--card);border-top:1px solid var(--border);padding:14px 28px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.8;position:fixed;bottom:0;left:0;right:0;z-index:200}
 .scope-footer a{color:var(--text-muted);text-decoration:underline;text-underline-offset:3px}
 .scope-footer a:hover{color:var(--text)}
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
@@ -68,8 +68,14 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .dash-right{display:flex;flex-direction:column;gap:10px}
 .dash-feeds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 /* ── KPI Bar ── */
-.kpi-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:10px}
+.kpi-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
 .kpi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.kpi-sub{font-size:11px;color:var(--text-muted);margin-top:4px}
+.leg-sub-bar{display:flex;gap:0;border-bottom:1.5px solid var(--border);margin-bottom:24px}
+.leg-sub-btn{padding:8px 18px;border:none;background:none;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px;font-family:'IBM Plex Sans',sans-serif;transition:color 0.15s}
+.leg-sub-btn.active{color:var(--text);border-bottom-color:var(--green)}
+.normas-filter-link{padding:0;border:none;background:none;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:color 0.15s;letter-spacing:0.02em}
+.normas-filter-link.active{color:var(--text);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 .kpi-label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
 .kpi-value{font-size:28px;font-weight:700;color:var(--text);line-height:1;font-family:'IBM Plex Sans',sans-serif;margin-bottom:8px}
 .kpi-row{display:flex;align-items:center;justify-content:space-between}
@@ -374,7 +380,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .gaceta-link-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-tint);border-radius:10px;text-decoration:none;color:var(--text);font-size:12px;font-weight:500;margin-bottom:6px;border:1px solid rgba(10,194,133,0.15);transition:background 0.15s}
 .gaceta-link-item:hover{background:rgba(10,194,133,0.15)}
 /* ═══════════ NORMAS ═══════════ */
-.normas-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;align-items:center}
+.normas-filters{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:20px;align-items:center}
 .normas-pill{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--text-sec);letter-spacing:0.03em;transition:all 0.15s}
 .normas-pill.active{border-color:transparent;color:#fff}
 .normas-pill[data-tema="todos"].active{background:#111}
@@ -502,7 +508,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
     <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación</button>
     <button class="tab-btn" onclick="showTab('normas',this)">Normas</button>
     <button class="tab-btn" onclick="showTab('congreso',this)">Congreso Federal</button>
-    <button class="tab-btn" onclick="showTab('congresos-est',this)">Congresos Estatales</button>
+
     <button class="tab-btn" onclick="showTab('alertas',this)" id="btn-alertas">Alertas <span id="alertas-badge" class="nav-badge" style="display:none"></span></button>
     <button class="tab-btn" onclick="showTab('radares',this)">Radares</button>
     <button class="tab-btn" onclick="showTab('acerca',this)">Acerca de</button>
@@ -555,42 +561,22 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
       <div class="kpi-card">
         <div class="kpi-label">Alertas Críticas</div>
         <div class="kpi-value" id="kpi-val-criticas">—</div>
-        <div class="kpi-row">
-          <span class="badge badge-critico"><span class="badge-dot" style="background:#DC2626"></span>Crítico</span>
-          <svg id="kpi-spark-criticas" width="60" height="24" viewBox="0 0 60 24"></svg>
-        </div>
+        <div class="kpi-sub" id="kpi-sub-criticas"></div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">Iniciativas Activas</div>
+        <div class="kpi-label">DOF · Publicaciones</div>
         <div class="kpi-value" id="kpi-val-iniciativas">—</div>
-        <div class="kpi-row">
-          <span class="badge badge-info"><span class="badge-dot" style="background:#2563EB"></span>Federal</span>
-          <svg id="kpi-spark-iniciativas" width="60" height="24" viewBox="0 0 60 24"></svg>
-        </div>
+        <div class="kpi-sub" id="kpi-sub-iniciativas"></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Normas en Revisión</div>
-        <div class="kpi-value" id="kpi-val-normas">3</div>
-        <div class="kpi-row">
-          <span class="badge badge-medio"><span class="badge-dot" style="background:#CA8A04"></span>Medio</span>
-          <svg id="kpi-spark-normas" width="60" height="24" viewBox="0 0 60 24"></svg>
-        </div>
+        <div class="kpi-value" id="kpi-val-normas">—</div>
+        <div class="kpi-sub" id="kpi-sub-normas"></div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">Estados con Alertas</div>
-        <div class="kpi-value" id="kpi-val-estados">—</div>
-        <div class="kpi-row">
-          <span class="badge badge-alto"><span class="badge-dot" style="background:#D97706"></span>Alto</span>
-          <svg id="kpi-spark-estados" width="60" height="24" viewBox="0 0 60 24"></svg>
-        </div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Noticias Hoy</div>
+        <div class="kpi-label">Noticias Esta Semana</div>
         <div class="kpi-value" id="kpi-val-hoy">—</div>
-        <div class="kpi-row">
-          <span class="badge badge-info"><span class="badge-dot" style="background:#2563EB"></span>Hoy</span>
-          <svg id="kpi-spark-hoy" width="60" height="24" viewBox="0 0 60 24"></svg>
-        </div>
+        <div class="kpi-sub" id="kpi-sub-hoy"></div>
       </div>
     </div>
 
@@ -620,11 +606,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
             <div id="widget-senado"></div>
           </div>
         </div>
-        <!-- Gacetas estatales -->
-        <div class="card">
-          <div class="card-label">Monitoreo Estatal de Gacetas</div>
-          <div id="widget-gacetas"></div>
-        </div>
+
       </div>
 
       <!-- Columna derecha: noticias + observatorio -->
@@ -653,45 +635,47 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
     </div>
   </div>
   <div class="tab-content" id="tab-legislacion" style="padding:28px 0">
-    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
-      <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.01em">Legislación Ambiental Federal</div>
-      <div style="font-size:11px;color:var(--text-muted)">México · LXVI Legislatura</div>
+    <!-- Sub-toggle: Federal / Por Estado -->
+    <div class="leg-sub-bar">
+      <button class="leg-sub-btn active" id="leg-sub-federal" onclick="showLegSub('federal',this)">Federal</button>
+      <button class="leg-sub-btn" id="leg-sub-estatal" onclick="showLegSub('estatal',this)">Por Estado</button>
     </div>
-    <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</div>
-    <div class="leyes-grid" id="leyes-grid"></div>
+    <!-- Vista Federal -->
+    <div id="leg-view-federal">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
+        <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.01em">Legislación Ambiental Federal</div>
+        <div style="font-size:11px;color:var(--text-muted)">México · LXVI Legislatura</div>
+      </div>
+      <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</div>
+      <div class="leyes-grid" id="leyes-grid"></div>
+    </div>
+    <!-- Vista Estatal -->
+    <div id="leg-view-estatal" style="display:none">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
+        <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em">Legislación Ambiental Estatal</div>
+      </div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px">Leyes, códigos y reglamentos ambientales vigentes por entidad federativa · ordenjuridico.gob.mx</div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap">
+        <div style="position:relative">
+          <select id="leyes-est-selector" onchange="selectLeyesEstado(this.value)"
+            style="appearance:none;-webkit-appearance:none;padding:9px 36px 9px 14px;font-size:13px;font-weight:500;color:var(--text);background:var(--card);border:0.8px solid var(--border);border-radius:10px;cursor:pointer;outline:none;min-width:240px">
+            <option value="">Selecciona un estado…</option>
+          </select>
+          <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);font-size:10px">▾</span>
+        </div>
+        <span id="leyes-est-meta" style="font-size:12px;color:var(--text-muted)"></span>
+      </div>
+      <div id="leyes-est-list"></div>
+    </div>
   </div>
 
   <!-- TAB: CONGRESO FEDERAL -->
   <div id="tab-congreso" class="tab-content" style="padding:28px 0">
     <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Congreso Federal</div>
     <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Comisiones legislativas con agenda ambiental activa · LXVI Legislatura</div>
-    <div id="comisiones-list"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
+    <div id="comisiones-list" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
   </div>
 
-  <!-- TAB: LEGISLACIÓN ESTATAL -->
-
-  <div id="tab-congresos-est" class="tab-content" style="padding:28px 0">
-
-    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
-      <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em">Legislación Ambiental Estatal</div>
-    </div>
-
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px">Leyes, códigos y reglamentos ambientales vigentes por entidad federativa · ordenjuridico.gob.mx</div>
-
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap">
-      <div style="position:relative">
-        <select id="leyes-est-selector" onchange="selectLeyesEstado(this.value)"
-          style="appearance:none;-webkit-appearance:none;padding:9px 36px 9px 14px;font-size:13px;font-weight:500;color:var(--text);background:var(--card);border:0.8px solid var(--border);border-radius:10px;cursor:pointer;outline:none;min-width:240px">
-          <option value="">Selecciona un estado…</option>
-        </select>
-        <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);font-size:10px">▾</span>
-      </div>
-      <span id="leyes-est-meta" style="font-size:12px;color:var(--text-muted)"></span>
-    </div>
-
-    <div id="leyes-est-list"></div>
-
-  </div>
 
   <!-- TAB: NORMAS -->
   <div id="tab-normas" class="tab-content" style="padding:28px 0">
@@ -701,17 +685,12 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
     </div>
     <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">NOMs vigentes y proyectos (PROY-NOMs) con implicación estratégica para agua, aire, residuos, logística y comercio.</div>
     <div class="normas-filters" id="normas-filters">
-      <button class="normas-pill active" data-tema="todos" onclick="filterNormas('todos',this)">Todos</button>
-      <button class="normas-pill" data-tema="Agua" onclick="filterNormas('Agua',this)">Agua</button>
-      <button class="normas-pill" data-tema="Aire" onclick="filterNormas('Aire',this)">Aire / Energía</button>
-      <button class="normas-pill" data-tema="Residuos" onclick="filterNormas('Residuos',this)">Residuos</button>
-      <button class="normas-pill" data-tema="Logística" onclick="filterNormas('Logística',this)">Logística</button>
-      <button class="normas-pill" data-tema="Comercio" onclick="filterNormas('Comercio',this)">Comercio</button>
-      <div class="normas-type-toggle">
-        <button class="normas-type-btn active" data-type="todos" onclick="filterNormasType('todos',this)">Todos</button>
-        <button class="normas-type-btn" data-type="NOM" onclick="filterNormasType('NOM',this)">NOM vigente</button>
-        <button class="normas-type-btn" data-type="PROY" onclick="filterNormasType('PROY',this)">PROY-NOM</button>
-      </div>
+      <button class="normas-filter-link active" data-tema="todos" onclick="filterNormas('todos',this)">Todos</button>
+      <button class="normas-filter-link" data-tema="Agua" onclick="filterNormas('Agua',this)">Agua</button>
+      <button class="normas-filter-link" data-tema="Aire" onclick="filterNormas('Aire',this)">Aire</button>
+      <button class="normas-filter-link" data-tema="Residuos" onclick="filterNormas('Residuos',this)">Residuos</button>
+      <button class="normas-filter-link" data-tema="Logística" onclick="filterNormas('Logística',this)">Logística</button>
+      <button class="normas-filter-link" data-tema="Comercio" onclick="filterNormas('Comercio',this)">Comercio</button>
     </div>
     <div id="normas-list"></div>
   </div>
@@ -995,43 +974,36 @@ const TEMA_COLORS={
   'Biodiversidad':'#22c55e','Impuestos Ambientales':'#f87171','Responsabilidad':'#64748b',
   'Economía Circular':'#0ac285'
 };
-function drawBarSpark(svgId,color){
-  var svg=document.getElementById(svgId);if(!svg)return;
-  var vals=[0.3,0.5,0.4,0.65,0.55,0.75,1];
-  var w=60,h=24,bw=6,gap=2;
-  svg.setAttribute('viewBox','0 0 '+(7*(bw+gap)-gap)+' '+h);
-  svg.innerHTML=vals.map(function(v,i){
-    var bh=Math.round(v*(h-2));var x=i*(bw+gap);var y=h-bh;
-    return '<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+bh+'" rx="2" fill="'+color+'" opacity="'+(i===6?'1':'0.25')+'"/>';
-  }).join('');
-}
 function renderKpiBar(){
-  var criticas=(alertas||[]).filter(function(a){var n=(a.nivel||a.level||'').toLowerCase();return n==='crítico'||n==='critico';}).length;
-  var elC=document.getElementById('kpi-val-criticas');if(elC)elC.textContent=criticas;
-  var estadosAlerta=Object.values(stateScores||{}).filter(function(s){return(s.master||0)>=50;}).length;
-  var elE=document.getElementById('kpi-val-estados');if(elE)elE.textContent=estadosAlerta;
-  var hoy=new Date();var offset=-6;var cdmxNow=new Date(hoy.getTime()+offset*3600000);
+  var cdmxNow=new Date(new Date().getTime()-6*3600000);
   var todayStr=cdmxNow.toISOString().substring(0,10);
-  var hoyCount=(noticias||[]).filter(function(n){return(n.fecha_publicacion||'').substring(0,10)===todayStr;}).length;
-  var elH=document.getElementById('kpi-val-hoy');if(elH)elH.textContent=hoyCount;
-  drawBarSpark('kpi-spark-criticas','#DC2626');
-  drawBarSpark('kpi-spark-iniciativas','#2563EB');
-  drawBarSpark('kpi-spark-normas','#CA8A04');
-  drawBarSpark('kpi-spark-estados','#D97706');
-  drawBarSpark('kpi-spark-hoy','#2563EB');
+  var weekAgo=new Date(cdmxNow.getTime()-7*24*3600000).toISOString().substring(0,10);
+  var criticas=(alertas||[]).filter(function(a){var n=(a.nivel||a.level||"").toLowerCase();return n.indexOf("cr")===0;}).length;
+  var estadosCrit=Object.values(stateScores||{}).filter(function(s){return(s.master||0)>=70;}).length;
+  var elC=document.getElementById("kpi-val-criticas");if(elC)elC.textContent=criticas;
+  var subC=document.getElementById("kpi-sub-criticas");if(subC)subC.textContent=estadosCrit+" estado"+(estadosCrit!==1?"s":"")+" en nivel crítico";
+  var dofTotal=(_dofData||[]).length;
+  var dofSem=(_dofData||[]).filter(function(n){return(n.fecha||"").substring(0,10)>=weekAgo;}).length;
+  var elI=document.getElementById("kpi-val-iniciativas");if(elI)elI.textContent=dofTotal;
+  var subI=document.getElementById("kpi-sub-iniciativas");if(subI)subI.textContent="+"+dofSem+" esta semana";
+  var nomVig=(NORMAS||[]).filter(function(n){return n.tipo==="NOM";}).length;
+  var nomProy=(NORMAS||[]).filter(function(n){return n.tipo==="PROY";}).length;
+  var elN=document.getElementById("kpi-val-normas");if(elN)elN.textContent=(NORMAS||[]).length;
+  var subN=document.getElementById("kpi-sub-normas");if(subN)subN.textContent=nomVig+" vigentes · "+nomProy+" proyectos";
+  var semCount=(noticias||[]).filter(function(n){return(n.fecha_publicacion||"").substring(0,10)>=weekAgo;}).length;
+  var hoyCount=(noticias||[]).filter(function(n){return(n.fecha_publicacion||"").substring(0,10)===todayStr;}).length;
+  var elH=document.getElementById("kpi-val-hoy");if(elH)elH.textContent=semCount;
+  var subH=document.getElementById("kpi-sub-hoy");if(subH)subH.textContent=hoyCount+" publicadas hoy";
 }
 function updateLeyes(){
-  const tc=TEMA_COLORS;
   document.getElementById('leyes-grid').innerHTML=leyes.map(l=>{
-    const color=tc[l.t]||'#6b7280';
-    const year=l.r?l.r.match(/\d{4}/)?.[0]:'';
-    return `<div class="ley-row" onclick="window.open('${l.u}','_blank')">
-      <span class="ley-sigla">${l.s}</span>
-      <span class="ley-nombre">${l.n}</span>
-      <span class="ley-tema-badge" style="background:${color}">${l.t}</span>
-      ${year?`<span class="ley-reforma-date">${year}</span>`:''}
-      <span class="ley-link-icon">&#8599;</span>
-    </div>`;
+    const year=l.r?l.r.match(/\d{4}/)?.[0]:null;
+    let h='<div class="ley-row" onclick="window.open(\''+l.u+'\',\'_blank\')">'
+      +'<span class="ley-sigla">'+l.s+'</span>'
+      +'<span class="ley-nombre">'+l.n+'</span>'
+      +(year?'<span class="ley-reforma-date">'+year+'</span>':'')
+      +'<span class="ley-link-icon">&#8599;</span></div>';
+    return h;
   }).join('');
 }
 /* ── Legislación Estatal ── */
@@ -1079,17 +1051,12 @@ function selectLeyesEstado(nombre){
     var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
     var tipoAbr=l.tipo==='Ley'?'LEY':l.tipo==='Código'?'CÓD':l.tipo==='Reglamento'?'REG':'NOR';
     var u=(l.ficha_url||l.url||'').replace(/"/g,'%22');
-    var temasBadges=(l.temas||[]).map(function(t){
-      var c=LEYES_EST_TEMA_COLOR[t]||'#6b7280';
-      var lb=LEYES_EST_TEMA_LABEL[t]||t;
-      return '<span class="ley-tema-badge" style="background:'+c+'">'+lb+'</span>';
-    }).join('');
     var year='';
     if(l.fecha_publicacion){var m=l.fecha_publicacion.match(/[0-9]{4}/);if(m)year='<span class="ley-reforma-date">'+m[0]+'</span>';}
     var row='<div class="ley-row" onclick="window.open(&quot;'+u+'&quot;,&quot;_blank&quot;)">';
     row+='<span class="ley-sigla" style="color:'+tipoColor+'">'+tipoAbr+'</span>';
     row+='<span class="ley-nombre">'+l.nombre+'</span>';
-    row+=temasBadges+year+'<span class="ley-link-icon">↗</span></div>';
+    row+=year+'<span class="ley-link-icon">↗</span></div>';
     return row;
   }).join('');
   list.innerHTML=html;
@@ -1203,9 +1170,15 @@ function showTab(id,btn){
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
-  btn.classList.add('active');
+  if(btn)btn.classList.add('active');
   if(id==='normas') renderNormas();
-  if(id==='congresos-est') loadLeyesEstatales();
+}
+function showLegSub(sub,btn){
+  document.querySelectorAll('.leg-sub-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.getElementById('leg-view-federal').style.display=sub==='federal'?'':'none';
+  document.getElementById('leg-view-estatal').style.display=sub==='estatal'?'':'none';
+  if(sub==='estatal')loadLeyesEstatales();
 }
 
 // ── NORMAS ────────────────────────────────────────────────────
@@ -1227,7 +1200,7 @@ var NORMAS_TEMA_COLOR={'Agua':'#2563eb','Aire':'#0ea5e9','Residuos':'#d97706','L
 var _normasTema='todos', _normasType='todos', _normasRendered=false;
 function filterNormas(tema,btn){
   _normasTema=tema;
-  document.querySelectorAll('#normas-filters .normas-pill').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('#normas-filters .normas-filter-link').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   renderNormas();
 }
@@ -1240,41 +1213,47 @@ function filterNormasType(type,btn){
 function renderNormas(){
   var el=document.getElementById('normas-list');
   if(!el)return;
-  var list=NORMAS.filter(function(n){
-    var temaMatch=_normasTema==='todos'||n.tema===_normasTema;
-    var typeMatch=_normasType==='todos'||n.tipo===_normasType;
-    return temaMatch&&typeMatch;
-  });
-  // Group by tema
+  var list=NORMAS.filter(function(n){return _normasTema==='todos'||n.tema===_normasTema;});
   var grouped={};
-  list.forEach(function(n){
-    if(!grouped[n.tema])grouped[n.tema]=[];
-    grouped[n.tema].push(n);
-  });
+  list.forEach(function(n){if(!grouped[n.tema])grouped[n.tema]=[];grouped[n.tema].push(n);});
   var temaOrder=['Agua','Aire','Residuos','Logística','Comercio'];
   var html='';
   temaOrder.forEach(function(tema){
     if(!grouped[tema])return;
     var color=NORMAS_TEMA_COLOR[tema]||'#6b7280';
     if(_normasTema==='todos'){
-      html+='<div class="normas-section-hdr" style="color:'+color+'">'+tema+' <span style="font-size:10px;opacity:0.6;text-transform:none;letter-spacing:0">— '+grouped[tema].length+' norma'+(grouped[tema].length>1?'s':'')+'</span></div>';
+      html+='<div class="normas-section-hdr" style="color:'+color+'">'+tema
+        +' <span style="font-size:10px;opacity:0.6;text-transform:none;letter-spacing:0">— '
+        +grouped[tema].length+' norma'+(grouped[tema].length>1?'s':'')+'</span></div>';
     }
-    grouped[tema].forEach(function(n){
+    grouped[tema].forEach(function(n,idx){
       var isProy=n.tipo==='PROY';
       var nomColor=isProy?'#b45309':'#0a8a5f';
       var nomBg=isProy?'rgba(245,158,11,0.1)':'rgba(10,194,133,0.1)';
-      html+='<div class="nom-row">'
+      var uid='nom-'+tema.replace(/[^a-z]/gi,'')+idx;
+      html+='<div class="nom-row" style="cursor:pointer" onclick="toggleNomRow(\''+uid+'\')">'  
         +'<span style="font-size:8px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:3px;background:'+nomBg+';color:'+nomColor+';flex-shrink:0">'+(isProy?'PROY-NOM':'NOM')+'</span>'
         +'<span style="font-size:10px;font-weight:700;color:var(--text-muted);flex-shrink:0;min-width:50px">'+n.id.replace('PROY-NOM-','').replace('NOM-','')+'</span>'
-        +'<span class="nom-titulo" style="font-size:12px;color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+n.objeto+' — '+n.implic+'">'+n.objeto+'</span>'
+        +'<div style="flex:1;min-width:0">'
+          +'<div id="tit-'+uid+'" style="font-size:12px;color:var(--text)">'+n.objeto+'</div>'
+          +'<div id="imp-'+uid+'" style="display:none;font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.4">'+n.implic+'</div>'
+        +'</div>'
         +'<span style="font-size:9px;color:var(--text-muted);flex-shrink:0;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+n.dep+'</span>'
-        +'<span style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;background:'+color+'22;color:'+color+';flex-shrink:0">'+n.tema+'</span>'
-        +'<a href="'+n.url+'" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;color:var(--green);flex-shrink:0;text-decoration:none">\u2197</a>'
+        +'<a href="'+n.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;font-weight:600;color:var(--green);flex-shrink:0;text-decoration:none">↗</a>'
       +'</div>';
     });
   });
-  if(!html) html='<div style="text-align:center;padding:40px 20px;color:var(--text-muted);font-size:13px">Sin normas para los filtros seleccionados</div>';
+  if(!html)html='<div style="text-align:center;padding:40px 20px;color:var(--text-muted);font-size:13px">Sin normas para los filtros seleccionados</div>';
   el.innerHTML=html;
+}
+function toggleNomRow(uid){
+  var tit=document.getElementById('tit-'+uid);
+  var imp=document.getElementById('imp-'+uid);
+  if(!tit||!imp)return;
+  var isOpen=imp.style.display!=='none';
+  document.querySelectorAll('[id^="imp-"]').forEach(function(e){e.style.display='none';});
+  document.querySelectorAll('[id^="tit-"]').forEach(function(e){e.style.fontWeight='';});
+  if(!isOpen){imp.style.display='block';tit.style.fontWeight='700';}
 }
 function formatFecha(f){
   if(!f)return'';
