@@ -10866,6 +10866,28 @@
       "scrapeado_en": "2026-04-29T21:17:07.718566+00:00"
     },
     {
+      "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2025-01-29",
+      "legislatura": "LXVI",
+      "periodo": "1er Receso",
+      "titulo": "Que reforma los artículos 4o. y 27 de la Constitución Política de los Estados Unidos Mexicanos, en materia de conservación y protección de los maíces nativos.",
+      "presentador": "Ejecutivo Federal",
+      "aspectos": "La iniciativa tiene por objeto impulsar la conservación y protección de los maíces nativos. Para ello propone declarar al maíz como elemento de identidad nacional y establecer la obligación del Estado a garantizar el cultivo de maíz libre de transgénicos en el territorio nacional, priorizando su manejo agroecológico.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Puntos Constitucionales  de Cámara de Diputados. Dictamina.",
+      "ultimo_estatus": "Publicado en DOF Aprobado 17/03/2025",
+      "asunto_id": "4829985",
+      "seguimiento": "4843211",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4843211&Asunto=4829985",
+      "categorias": [
+        "transgenico"
+      ],
+      "categoria": "transgenico",
+      "categoria_nombre": "Transgénico",
+      "id": "81d85aefc94b",
+      "scrapeado_en": "2026-05-07T19:47:15.604951+00:00"
+    },
+    {
       "camara_origen": "Cámara de Senadores",
       "camara_revisora": "Cámara de Diputados",
       "fecha_presentacion": "2025-01-29",
@@ -10889,36 +10911,13 @@
       "categoria_nombre": "Biodiversidad",
       "id": "e1d7417334ea",
       "scrapeado_en": "2026-04-29T21:18:50.752858+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2025-01-29",
-      "legislatura": "LXVI",
-      "periodo": "1er Receso",
-      "titulo": "Que reforma el artículo 4º de la Constitución Política de los Estados Unidos Mexicanos, en materia de alimentación libre de maíz transgénico.",
-      "presentador": "Dip. María del Rosario Orozco Caballero (Morena)",
-      "aspectos": "La iniciativa tiene por objeto establecer el derecho a la alimentación nutritiva, suficiente, de calidad y libre de maíz transgénico, para preservar la biodiversidad agrícola, la soberanía alimentaria y la autonomía de los productores mexicanos. Para ello propone precisar que el maíz destinado al consumo humano estará libre de modificaciones genéticas y transgénicas, por lo que el Estado garantizará la preservación y desarrollo de los maíces nativos por ser la base histórica, cultural y económica de la alimentación de México.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Puntos Constitucionales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 29 de enero de 2025, por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 29/01/2025",
-      "asunto_id": "4829891",
-      "seguimiento": "4845874",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4845874&Asunto=4829891",
-      "categorias": [
-        "biodiversidad",
-        "transgenico"
-      ],
-      "categoria": "biodiversidad",
-      "categoria_nombre": "Biodiversidad",
-      "id": "3195559351a4",
-      "scrapeado_en": "2026-04-29T21:22:10.405557+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 83,
-    "actualizado": "2026-05-07T16:06:26Z"
+    "nuevas": 81,
+    "actualizado": "2026-05-07T19:47:53Z"
   }
 }
