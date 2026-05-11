@@ -10823,6 +10823,28 @@
     },
     {
       "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2025-02-25",
+      "legislatura": "LXVI",
+      "periodo": "2do Ordinario",
+      "titulo": "Que reforma y adiciona diversas disposiciones de la Constitución Política de los Estados Unidos Mexicanos.",
+      "presentador": "Dip. Beatriz Milland Pérez (Morena)",
+      "aspectos": "La iniciativa tiene por objeto proteger al maíz nativo en el país. Para ello propone: 1) determinar que el daño y deterioro ambiental generará responsabilidad para quien lo provoque incluida la siembra y cultivo de maíz transgénico; 2) precisar que en el desarrollo rural integral y sustentable, se prohíbirá la siembra de maíz transgénico; y, 3) facultar al Congreso para expedir leyes para la protección de maíz nativo, su proceso de domesticación continua, su riqueza genética y biocultural.\n\nPara tal fin modifica los artículos 4, 27 y 73 de la Constitución Política de los Estados Unidos Mexicanos.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Puntos Constitucionales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 25 de febrero de 2025 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 25/02/2025",
+      "asunto_id": "4842354",
+      "seguimiento": "4845754",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4845754&Asunto=4842354",
+      "categorias": [
+        "transgenico"
+      ],
+      "categoria": "transgenico",
+      "categoria_nombre": "Transgénico",
+      "id": "ddad5919e9d4",
+      "scrapeado_en": "2026-05-11T19:49:46.600246+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2025-02-25",
       "legislatura": "LXVI",
       "periodo": "2do Ordinario",
@@ -10865,36 +10887,13 @@
       "categoria_nombre": "Energía Renovable",
       "id": "7ea4a1f67ca6",
       "scrapeado_en": "2026-04-29T21:17:03.897769+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Senadores",
-      "fecha_presentacion": "2025-02-25",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "presentador": "Sen. Luis Donaldo Colosio Riojas (MC)",
-      "aspectos": "El legislador propone exhortar a la: 1) Sener, en coordinación con Pemex y actores involucrados en la distribución de combustibles, a adoptar medidas para homologar la calidad de la gasolina suministrada en la Zona Metropolitana de Monterrey con otras regiones del país en las que ya se comercializa combustible de menor volatilidad y contenido de azufre, en aras de reducir las emisiones de compuestos orgánicos volátiles y mejorar la calidad del aire; 2) Sener, a Pemex y Pemex Refinación, a impulsar planes y programas de modernización de la Refinería de Cadereyta, a fin de incorporar tecnologías avanzadas de reducción de emisiones, incluyendo sistemas de desulfuración, captura de vapores y monitoreo continuo de fugas; y, 3) Semarnat, así como a las demás dependencias con facultades en la materia, a realizar una revisión y actualización de las NOM referentes a la calidad del aire y a los límites de emisión de fuentes móviles e industriales, con la finalidad de alinearlas con los avances científicos internacionales y con los valores guía recomendados por organismos especializados.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Energía de Cámara de Senadores. Dictamina. El turno se publicó en Gaceta del Senado del 25 de febrero de 2025.",
-      "ultimo_estatus": "Desechado Desechado 30/04/2025",
-      "asunto_id": "4841368",
-      "seguimiento": "4845847",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4845847&Asunto=4841368",
-      "categorias": [
-        "energia_renovable",
-        "hidrocarburos",
-        "biodiversidad",
-        "calidad_aire"
-      ],
-      "categoria": "energia_renovable",
-      "categoria_nombre": "Energía Renovable",
-      "id": "960f9a4f7e32",
-      "scrapeado_en": "2026-04-29T21:20:59.921265+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 57,
-    "actualizado": "2026-05-11T16:32:13Z"
+    "nuevas": 56,
+    "actualizado": "2026-05-11T19:50:05Z"
   }
 }
