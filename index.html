@@ -56,8 +56,8 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .nav-tabs{display:flex;align-items:stretch;flex:1;padding:0 4px 0 20px}
 .tab-btn{padding:0 2px;margin-right:20px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:'IBM Plex Sans',sans-serif;white-space:nowrap}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
-.main{max-width:1200px;margin:0 auto;padding:24px 28px 80px}
-.scope-footer{background:var(--card);border-top:1px solid var(--border);padding:14px 28px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.8;position:fixed;bottom:0;left:0;right:0;z-index:200}
+.main{max-width:1200px;margin:0 auto;padding:24px 28px 32px}
+.scope-footer{background:rgba(240,244,248,0.92);border-top:1px solid rgba(0,0,0,0.05);padding:4px 28px;text-align:center;font-size:10px;color:var(--text3);line-height:1.4;position:fixed;bottom:0;left:0;right:0;z-index:200;backdrop-filter:blur(6px)}
 .scope-footer a{color:var(--text-muted);text-decoration:underline;text-underline-offset:3px}
 .scope-footer a:hover{color:var(--text)}
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
@@ -67,18 +67,11 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .dash-left{display:flex;flex-direction:column;gap:10px}
 .dash-right{display:flex;flex-direction:column;gap:10px}
 .dash-feeds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-/* ── KPI Bar ── */
-.kpi-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
-.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
-.kpi-sub{font-size:11px;color:var(--text-muted);margin-top:4px}
 .leg-sub-bar{display:flex;gap:0;border-bottom:1.5px solid var(--border);margin-bottom:24px}
 .leg-sub-btn{padding:8px 18px;border:none;background:none;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px;font-family:'IBM Plex Sans',sans-serif;transition:color 0.15s}
 .leg-sub-btn.active{color:var(--text);border-bottom-color:var(--green)}
 .normas-filter-link{padding:0;border:none;background:none;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:color 0.15s;letter-spacing:0.02em}
 .normas-filter-link.active{color:var(--text);font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.kpi-label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
-.kpi-value{font-size:28px;font-weight:700;color:var(--text);line-height:1;font-family:'IBM Plex Sans',sans-serif;margin-bottom:8px}
-.kpi-row{display:flex;align-items:center;justify-content:space-between}
 /* ── Badge component ── */
 .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.04em}
 .badge-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
@@ -427,7 +420,6 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
   .bottom-row{grid-template-columns:1fr !important}
   .dash-main{grid-template-columns:1fr !important}
   .dash-feeds{grid-template-columns:1fr !important}
-  .kpi-bar{grid-template-columns:repeat(2,1fr) !important}
   .leyes-grid{grid-template-columns:1fr !important}
   .fed-cols{grid-template-columns:1fr !important}
   .acerca-grid{grid-template-columns:1fr !important}
@@ -556,29 +548,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 </div>
 <div class="main">
   <div class="tab-content active" id="tab-dashboard">
-    <!-- KPI Bar -->
-    <div class="kpi-bar">
-      <div class="kpi-card">
-        <div class="kpi-label">Alertas Críticas</div>
-        <div class="kpi-value" id="kpi-val-criticas">—</div>
-        <div class="kpi-sub" id="kpi-sub-criticas"></div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">DOF · Publicaciones</div>
-        <div class="kpi-value" id="kpi-val-iniciativas">—</div>
-        <div class="kpi-sub" id="kpi-sub-iniciativas"></div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Normas en Revisión</div>
-        <div class="kpi-value" id="kpi-val-normas">—</div>
-        <div class="kpi-sub" id="kpi-sub-normas"></div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Noticias Esta Semana</div>
-        <div class="kpi-value" id="kpi-val-hoy">—</div>
-        <div class="kpi-sub" id="kpi-sub-hoy"></div>
-      </div>
-    </div>
+
 
     <!-- Main grid: mapa+feeds izquierda, noticias+ejecutivo derecha -->
     <div class="dash-main">
@@ -958,7 +928,7 @@ function updateNews(){
   const list=document.getElementById('news-list');
   if(!list)return;
   if(noticias.length===0){list.innerHTML='<div class="news-empty">Sin noticias disponibles aún<br><span style="font-size:11px">El scraper corre automáticamente cada 4 horas vía GitHub Actions</span></div>';return}
-  const sorted=[...noticias].sort((a,b)=>new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0));
+  const sorted=[...noticias].sort((a,b)=>new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0)).filter(n=>catArt(n.titulo||'')!==null);
   const recent=sorted.slice(0,10);
   list.innerHTML=recent.map(n=>{
     const cat=CATS.find(c=>c.id===catArt(n.titulo||''));
@@ -974,27 +944,6 @@ const TEMA_COLORS={
   'Biodiversidad':'#22c55e','Impuestos Ambientales':'#f87171','Responsabilidad':'#64748b',
   'Economía Circular':'#0ac285'
 };
-function renderKpiBar(){
-  var cdmxNow=new Date(new Date().getTime()-6*3600000);
-  var todayStr=cdmxNow.toISOString().substring(0,10);
-  var weekAgo=new Date(cdmxNow.getTime()-7*24*3600000).toISOString().substring(0,10);
-  var criticas=(alertas||[]).filter(function(a){var n=(a.nivel||a.level||"").toLowerCase();return n.indexOf("cr")===0;}).length;
-  var estadosCrit=Object.values(stateScores||{}).filter(function(s){return(s.master||0)>=70;}).length;
-  var elC=document.getElementById("kpi-val-criticas");if(elC)elC.textContent=criticas;
-  var subC=document.getElementById("kpi-sub-criticas");if(subC)subC.textContent=estadosCrit+" estado"+(estadosCrit!==1?"s":"")+" en nivel crítico";
-  var dofTotal=(_dofData||[]).length;
-  var dofSem=(_dofData||[]).filter(function(n){return(n.fecha||"").substring(0,10)>=weekAgo;}).length;
-  var elI=document.getElementById("kpi-val-iniciativas");if(elI)elI.textContent=dofTotal;
-  var subI=document.getElementById("kpi-sub-iniciativas");if(subI)subI.textContent="+"+dofSem+" esta semana";
-  var nomVig=(NORMAS||[]).filter(function(n){return n.tipo==="NOM";}).length;
-  var nomProy=(NORMAS||[]).filter(function(n){return n.tipo==="PROY";}).length;
-  var elN=document.getElementById("kpi-val-normas");if(elN)elN.textContent=(NORMAS||[]).length;
-  var subN=document.getElementById("kpi-sub-normas");if(subN)subN.textContent=nomVig+" vigentes · "+nomProy+" proyectos";
-  var semCount=(noticias||[]).filter(function(n){return(n.fecha_publicacion||"").substring(0,10)>=weekAgo;}).length;
-  var hoyCount=(noticias||[]).filter(function(n){return(n.fecha_publicacion||"").substring(0,10)===todayStr;}).length;
-  var elH=document.getElementById("kpi-val-hoy");if(elH)elH.textContent=semCount;
-  var subH=document.getElementById("kpi-sub-hoy");if(subH)subH.textContent=hoyCount+" publicadas hoy";
-}
 function updateLeyes(){
   document.getElementById('leyes-grid').innerHTML=leyes.map(l=>{
     const year=l.r?l.r.match(/\d{4}/)?.[0]:null;
@@ -1072,12 +1021,30 @@ function loadPresidencia(){
       return;
     }
     presData=d.articulos;
-    el.innerHTML=presData.slice(0,5).map(a=>{
-      const fecha=a.fecha?a.fecha.substring(0,10):'';
-      return `<div class="pres-item" onclick="window.open('${(a.url||'#').replace(/'/g,'%27')}','_blank')">
-        <div class="pres-item-title">${a.titulo||''}</div>
-        ${fecha?`<div class="pres-item-meta">${fecha}</div>`:''}
-      </div>`;
+    el.innerHTML=presData.slice(0,6).map(a=>{
+      const fechaRaw=a.fecha?a.fecha.substring(0,10):'';
+      const fechaFmt=fechaRaw?new Date(fechaRaw+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+      const isCSP=(a.fuente||'').includes('stenogr');
+      const frags=isCSP&&a.fragmentos&&a.fragmentos.length?a.fragmentos:[];
+      const url=(a.url||'#').replace(/'/g,'%27');
+      if(frags.length){
+        const rows=frags.slice(0,2).map(f=>{
+          const s=f.trim();
+          const short=s.length>120?s.substring(0,118)+'…':s;
+          return '<div style="font-size:11px;color:var(--text-sec);font-style:italic;line-height:1.5;padding:4px 0;border-bottom:0.8px solid rgba(0,0,0,0.04)">“'+short+'”</div>';
+        }).join('');
+        return '<div class="pres-item" onclick="window.open(\''+url+'\',\'_blank\')">'  
+          +'<div style="display:flex;gap:8px">'
+          +'<div style="width:2px;background:var(--green);border-radius:2px;flex-shrink:0;opacity:0.55;align-self:stretch"></div>'
+          +'<div style="flex:1">'
+          +'<div style="font-size:9.5px;font-weight:700;letter-spacing:0.05em;color:var(--green);text-transform:uppercase;margin-bottom:4px">CSP · '+fechaFmt+'</div>'
+          +rows
+          +'</div></div></div>';
+      }
+      return '<div class="pres-item" onclick="window.open(\''+url+'\',\'_blank\')">'  
+        +'<div class="pres-item-title">'+(a.titulo||'')+'</div>'
+        +(fechaFmt?'<div class="pres-item-meta">'+fechaFmt+'</div>':'')
+        +'</div>';
     }).join('');
   }).catch(()=>{
     const el=document.getElementById('pres-items');
@@ -1231,12 +1198,12 @@ function renderNormas(){
       var nomColor=isProy?'#b45309':'#0a8a5f';
       var nomBg=isProy?'rgba(245,158,11,0.1)':'rgba(10,194,133,0.1)';
       var uid='nom-'+tema.replace(/[^a-z]/gi,'')+idx;
-      html+='<div class="nom-row" style="cursor:pointer" onclick="toggleNomRow(\''+uid+'\')">'  
+      html+='<div class="nom-row">'  '  
         +'<span style="font-size:8px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:3px;background:'+nomBg+';color:'+nomColor+';flex-shrink:0">'+(isProy?'PROY-NOM':'NOM')+'</span>'
         +'<span style="font-size:10px;font-weight:700;color:var(--text-muted);flex-shrink:0;min-width:50px">'+n.id.replace('PROY-NOM-','').replace('NOM-','')+'</span>'
         +'<div style="flex:1;min-width:0">'
-          +'<div id="tit-'+uid+'" style="font-size:12px;color:var(--text)">'+n.objeto+'</div>'
-          +'<div id="imp-'+uid+'" style="display:none;font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.4">'+n.implic+'</div>'
+          +'<div style="font-size:12px;color:var(--text);font-weight:500">'+n.objeto+'</div>'
+          +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.4">'+n.implic+'</div>'
         +'</div>'
         +'<span style="font-size:9px;color:var(--text-muted);flex-shrink:0;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+n.dep+'</span>'
         +'<a href="'+n.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;font-weight:600;color:var(--green);flex-shrink:0;text-decoration:none">↗</a>'
@@ -1245,15 +1212,6 @@ function renderNormas(){
   });
   if(!html)html='<div style="text-align:center;padding:40px 20px;color:var(--text-muted);font-size:13px">Sin normas para los filtros seleccionados</div>';
   el.innerHTML=html;
-}
-function toggleNomRow(uid){
-  var tit=document.getElementById('tit-'+uid);
-  var imp=document.getElementById('imp-'+uid);
-  if(!tit||!imp)return;
-  var isOpen=imp.style.display!=='none';
-  document.querySelectorAll('[id^="imp-"]').forEach(function(e){e.style.display='none';});
-  document.querySelectorAll('[id^="tit-"]').forEach(function(e){e.style.fontWeight='';});
-  if(!isOpen){imp.style.display='block';tit.style.fontWeight='700';}
 }
 function formatFecha(f){
   if(!f)return'';
@@ -1695,7 +1653,7 @@ function renderSPSectorial(state){
 function renderLatestNewsTicker(){
   var el=document.getElementById('news-ticker');
   if(!el)return;
-  var items=[...noticias].sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);}).slice(0,20);
+  var items=[...noticias].sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);}).filter(function(n){return catArt(n.titulo||'')!==null;}).slice(0,20);
   if(!items.length){el.innerHTML='<div style="color:var(--text-muted);font-size:12px;padding:20px 0;text-align:center">Sin noticias disponibles<br><span style="font-size:10px">El scraper corre cada 4h vía GitHub Actions</span></div>';return;}
   var html='';
   for(var i=0;i<items.length;i++){
@@ -1743,10 +1701,11 @@ function inferLey(titulo){
 }
 var _fedData={}, _fedLey={};
 var CAT_COLOR={'Agua':'#3498db','Energía':'#f39c12','Residuos':'#27ae60','Clima':'#16a085','Minería':'#8e44ad','Agro':'#d35400','Industria':'#2c3e50'};
-function _listHTML(arr,fallbackUrl){
+function _listHTML(arr,fallbackUrl,limit){
+  limit=limit||2;
   if(!arr.length) return '<div style="font-size:11px;color:var(--text-muted);padding:12px 0;font-style:italic">Sin documentos registrados este mes</div>';
-  var h='<div style="max-height:280px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
-  arr.slice(0,20).forEach(function(it){
+  var h='<div style="max-height:240px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">';
+  arr.slice(0,limit).forEach(function(it){
     var fecha=it.fecha?new Date(it.fecha).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     var cat=it.categoria||'';
     var cc=CAT_COLOR[cat]||'#95a5a6';
@@ -1778,8 +1737,8 @@ function _rerenderFedPanels(uid){
   if(b2)b2.textContent=pto.length;
   var e1=document.getElementById(uid+'-ini');
   var e2=document.getElementById(uid+'-pto');
-  if(e1)e1.innerHTML=_listHTML(ini,fallback);
-  if(e2)e2.innerHTML=_listHTML(pto,fallback);
+  if(e1)e1.innerHTML=_listHTML(ini,fallback,20);
+  if(e2)e2.innerHTML=_listHTML(pto,fallback,20);
 }
 function switchFedLey(uid,ley,btn){
   _fedLey[uid]=ley;
@@ -1789,18 +1748,21 @@ function switchFedLey(uid,ley,btn){
 }
 function _fedSearch(uid){
   var q=(document.getElementById('fed-search-'+uid)||{}).value||'';
+  var dv=(document.getElementById('fed-date-'+uid)||{}).value||'';
   q=q.toLowerCase().trim();
   var data=_fedData[uid]||[];
   var filtered=data.filter(function(it){
-    return !q||(it.titulo||'').toLowerCase().includes(q);
+    var mQ=!q||(it.titulo||'').toLowerCase().includes(q);
+    var mD=!dv||((it.fecha||'').substring(0,10)===dv);
+    return mQ&&mD;
   });
   var ini=filtered.filter(function(it){return it.tipo==='iniciativa'||it.tipo==='dictamen';});
   var pto=filtered.filter(function(it){return it.tipo==='punto_acuerdo';});
   var fallback=document.getElementById(uid+'_fallback_url_')?document.getElementById(uid+'_fallback_url_').value:'';
   var e1=document.getElementById(uid+'-ini');
   var e2=document.getElementById(uid+'-pto');
-  if(e1)e1.innerHTML=_listHTML(ini,fallback);
-  if(e2)e2.innerHTML=_listHTML(pto,fallback);
+  if(e1)e1.innerHTML=_listHTML(ini,fallback,20);
+  if(e2)e2.innerHTML=_listHTML(pto,fallback,20);
 }
 function renderFederalColumn(elId, items, fallbackUrl){
   var el=document.getElementById(elId);
@@ -1814,7 +1776,10 @@ function renderFederalColumn(elId, items, fallbackUrl){
   var iniciativas=normalized.filter(function(it){return it.tipo==='iniciativa'||it.tipo==='dictamen';});
   var puntos=normalized.filter(function(it){return it.tipo==='punto_acuerdo';});
   var uid=elId;
-  var searchBox='<div class="leg-search-wrap"><span class="leg-search-icon">&#x2315;</span><input class="leg-search-input" id="fed-search-'+uid+'" placeholder="Buscar instrumento..." oninput="_fedSearch(\''+uid+'\')" type="text"></div>';
+  var searchBox='<div style="display:flex;gap:5px;margin-bottom:6px">'
+    +'<div class="leg-search-wrap" style="flex:1;margin-bottom:0"><span class="leg-search-icon">&#x2315;</span><input class="leg-search-input" id="fed-search-'+uid+'" placeholder="Buscar..." oninput="_fedSearch(\''+uid+'\')" type="text"></div>'
+    +'<input type="date" id="fed-date-'+uid+'" title="Filtrar por fecha" style="font-size:10px;padding:4px 6px;border:0.8px solid var(--border);border-radius:8px;color:var(--text-muted);background:var(--card2);outline:none;font-family:inherit;cursor:pointer" onchange="_fedSearch(\''+uid+'\')">';
+  searchBox+='</div>';
   var hiddenUrl='<input type="hidden" id="'+uid+'_fallback_url_" value="'+fallbackUrl+'">';
   var html=hiddenUrl+searchBox
     +'<div class="fed-tabs" id="tabs-'+uid+'">'
@@ -1972,7 +1937,6 @@ async function init(){
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
   renderScoreNacional();
-  renderKpiBar();
   renderAlertas('all');
   renderDOF();
   renderWidgetFederal();
