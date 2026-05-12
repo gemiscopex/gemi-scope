@@ -1,5 +1,36 @@
 [
   {
+    "id": "85b3f9b67019",
+    "titulo": "(VIDEO) Así rescataron policías a personas atrapadas por lluvias torrenciales en CDMX",
+    "url": "https://www.elfinanciero.com.mx/cdmx/2026/05/12/video-asi-rescataron-policias-a-personas-atrapadas-por-lluvias-torrenciales-en-cdmx/",
+    "fuente": "El Financiero",
+    "resumen": "Las fuertes lluvias colapsaron vialidades en la Ciudad de México, generaron rescates de emergencia y reavivaron críticas por drenaje y basura.",
+    "fecha_publicacion": "2026-05-12T19:07:42Z",
+    "categoria": "residuos",
+    "categoria_nombre": "Residuos",
+    "categorias": [
+      "residuos"
+    ],
+    "estado": "Ciudad de Mexico",
+    "scrapeado_en": "2026-05-12T19:49:27.819505+00:00"
+  },
+  {
+    "id": "068330864570",
+    "titulo": "Semarnat decidirá ¿toboganes o protección ambiental?",
+    "url": "https://www.greenpeace.org/mexico/informacion-prensa/63047/semarnat-decidira-toboganes-o-proteccion-ambiental/",
+    "fuente": "Greenpeace MX",
+    "resumen": "Greenpeace convirtió Bellas Artes en un escenario simbólico para advertir la devastación a la Selva Maya por el megapropyecto \"Perfect Day\"",
+    "fecha_publicacion": "2026-05-12T16:47:41Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad",
+      "deforestacion"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-05-12T19:49:27.812425+00:00"
+  },
+  {
     "id": "c6da419d7038",
     "titulo": "Colombia: casi 200 cocodrilos en peligro crítico de extinción están sin alimento por un conflicto administrativo",
     "url": "https://es.mongabay.com/2026/05/cocodrilos-orinoco-colombia-conflicto-alimento-atencion/",
@@ -360,6 +391,21 @@
     ],
     "estado": "Ciudad de Mexico",
     "scrapeado_en": "2026-05-12T16:14:43.361811+00:00"
+  },
+  {
+    "id": "ce71bfaff95b",
+    "titulo": "Deja 6 heridos explosión en refinería de Salina Cruz",
+    "url": "https://www.reforma.com/deja-6-heridos-explosion-en-refineria-de-salina-cruz/ar3202525",
+    "fuente": "Reforma",
+    "resumen": "Explosión en refinería de Salina Cruz dejó al menos 6 heridos; el fuego ya fue controlado, de acuerdo con Pemex.",
+    "fecha_publicacion": "2026-05-12T04:30:50Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-05-12T19:49:27.811610+00:00"
   },
   {
     "id": "531b6886658d",
