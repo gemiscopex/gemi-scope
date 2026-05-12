@@ -1695,7 +1695,7 @@ function _startTickerScroll(){
   if(!wrap)return;
   if(_tickerRAF)cancelAnimationFrame(_tickerRAF);
   _tickerLastTs=null;
-  var PX_PER_SEC=16;
+  var PX_PER_SEC=10;
   function tick(ts){
     if(_tickerLastTs===null)_tickerLastTs=ts;
     var dt=ts-_tickerLastTs;
