@@ -254,8 +254,10 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .com-body.open{max-height:3600px}
 .com-body-inner{background:rgba(0,0,0,0.018);border-radius:0 0 8px 8px;padding:12px 12px 8px;margin-bottom:4px}
 .com-members{border-top:0.8px solid var(--border);padding-top:8px}
-.com-member{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:0.8px solid var(--border)}
+.com-member{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:0.8px solid var(--border);text-decoration:none;color:inherit;transition:background 0.12s;border-radius:4px;margin:0 -4px;padding-left:4px;padding-right:4px;cursor:pointer}
 .com-member:last-child{border-bottom:none}
+.com-member:hover{background:rgba(10,194,133,0.06)}
+.com-member:hover .com-member-name{color:var(--green)}
 .com-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;letter-spacing:0.01em}
 .com-info{flex:1;min-width:0}
 .com-member-name{font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1482,17 +1484,18 @@ function _buildRadarSelector(){
   if(!rsel)return;
   const cutoff=new Date(Date.now()-90*86400000);
   const recentNoticias=noticias.filter(n=>new Date(n.fecha_publicacion)>cutoff);
-  const maxCount=Math.max(...RADAR_TEMAS.map(t=>recentNoticias.filter(n=>t.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length),1);
-  rsel.innerHTML=RADAR_TEMAS.map((t,i)=>{
-    const cnt=recentNoticias.filter(n=>t.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length;
-    const barW=Math.round((cnt/maxCount)*100);
+  const sorted=RADAR_TEMAS.map(t=>({...t,cnt:recentNoticias.filter(n=>t.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length})).sort((a,b)=>b.cnt-a.cnt);
+  const maxCount=Math.max(...sorted.map(t=>t.cnt),1);
+  rsel.innerHTML=sorted.map((t,i)=>{
+    const barW=Math.round((t.cnt/maxCount)*100);
     return `<div class="radar-market-card${i===0?' active':''}" id="radar-card-${t.id}" onclick="_selectRadar('${t.id}')">
       <span class="radar-mkt-icon"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${t.color}"></span></span>
       <span class="radar-mkt-name">${t.name}</span>
       <div class="radar-mkt-bar"><div class="radar-mkt-fill" style="width:${barW}%;background:${t.color}"></div></div>
-      <span class="radar-mkt-count" style="color:${t.color}">${cnt}</span>
+      <span class="radar-mkt-count" style="color:${t.color}">${t.cnt}</span>
     </div>`;
   }).join('');
+  if(sorted.length)_selectRadar(sorted[0].id);
 }
 function _selectRadar(temaId){
   document.querySelectorAll('.radar-market-card').forEach(c=>c.classList.remove('active'));
@@ -1997,7 +2000,13 @@ function renderComisiones(data){
   function memberHTML(m){
     var color=PARTIDO_COLOR[m.partido]||PARTIDO_COLOR[m.partido&&m.partido.toUpperCase()]||'#6b7280';
     var isLead=m.cargo&&(m.cargo.toLowerCase().includes('president')||m.cargo.toLowerCase().includes('secretari'));
-    return '<div class="com-member"><div class="com-avatar" style="background:'+color+'">'+initials(m.n)+'</div><div class="com-info"><div class="com-member-name" style="'+(isLead?'font-weight:650':'')+'">'+m.n+'</div><div class="com-member-cargo">'+m.cargo+'</div></div><span class="com-partido">'+m.partido+'</span></div>';
+    var silUrl=m.sil_url||('http://sil.gobernacion.gob.mx/Busquedas/Legisladores/busquedas_legisladores_buscar.php?SID=&Nombre='+encodeURIComponent(m.n));
+    return '<a class="com-member" href="'+silUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'
+      +'<div class="com-avatar" style="background:'+color+'">'+initials(m.n)+'</div>'
+      +'<div class="com-info"><div class="com-member-name" style="'+(isLead?'font-weight:650':'')+'">'+m.n+'</div><div class="com-member-cargo">'+m.cargo+'</div></div>'
+      +'<span class="com-partido">'+m.partido+'</span>'
+      +'<span style="font-size:10px;color:var(--green);flex-shrink:0;opacity:0.6;margin-left:2px">↗</span>'
+      +'</a>';
   }
   var CARGO_ORDER={'presidencia':0,'presidente':0,'presidenta':0,'secretaría':1,'secretaria':1,'secretario':1};
   function cargoRank(cargo){var k=(cargo||'').toLowerCase();for(var c in CARGO_ORDER){if(k.includes(c))return CARGO_ORDER[c];}return 2;}
