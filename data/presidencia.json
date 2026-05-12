@@ -1,6 +1,23 @@
 {
   "articulos": [
     {
+      "id": "66f7a308e3",
+      "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 12 de mayo de 2026",
+      "fecha": "2026-05-12",
+      "url": "https://www.gob.mx/presidencia/es/articulos/version-estenografica-conferencia-de-prensa-de-la-presidenta-claudia-sheinbaum-pardo-del-12-de-mayo-de-2026",
+      "fuente": "Presidencia de México — Estenográfica",
+      "categorias": [
+        "hidrocarburos",
+        "cambio_climatico",
+        "mineria"
+      ],
+      "fragmentos": [
+        "―Si puede informarlo, Pemex, porfa. ¿Sí lo tienes aquí, el comunicado? Por favor―.",
+        "El presidente Biden hizo un programa muy intenso para promover el uso de vehículos eléctricos por razones del cambio climático; cuando llega el presidente Trump quita todos esos incentivos.",
+        "Entonces, para inversiones grandes, en 60 días tiene que estar autorizado todo lo que tiene que estar autorizado, con excepción de algunos sectores, como, por ejemplo, la minería, donde tiene impactos ambientales y tiene que pasar por otro tipo de procesos."
+      ]
+    },
+    {
       "id": "ecaa3adff1",
       "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 11 de mayo de 2026",
       "fecha": "2026-05-11",
@@ -8323,8 +8340,8 @@
   ],
   "_meta": {
     "fuente": "Presidencia de México — Estenográficas mañanera",
-    "total": 420,
-    "nuevos_hoy": 0,
-    "actualizado": "2026-05-12T19:52:10Z"
+    "total": 421,
+    "nuevos_hoy": 1,
+    "actualizado": "2026-05-12T21:48:48Z"
   }
 }
