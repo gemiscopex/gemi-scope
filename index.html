@@ -1689,20 +1689,25 @@ function renderLatestNewsTicker(){
   el.innerHTML=html;
   _startTickerScroll();
 }
-var _tickerRAF=null,_tickerLastTs=null;
+var _tickerRAF=null,_tickerLastTs=null,_tickerAcc=0;
 function _startTickerScroll(){
   var wrap=document.getElementById('news-ticker-wrap');
   if(!wrap)return;
   if(_tickerRAF)cancelAnimationFrame(_tickerRAF);
-  _tickerLastTs=null;
-  var PX_PER_SEC=10;
+  _tickerLastTs=null;_tickerAcc=0;
+  var PX_PER_SEC=12;
   function tick(ts){
     if(_tickerLastTs===null)_tickerLastTs=ts;
-    var dt=ts-_tickerLastTs;
+    var dt=Math.min(ts-_tickerLastTs,100);
     _tickerLastTs=ts;
     if(!wrap.matches(':hover')){
-      wrap.scrollTop+=PX_PER_SEC*(dt/1000);
-      if(wrap.scrollTop+wrap.clientHeight>=wrap.scrollHeight-4)wrap.scrollTop=0;
+      _tickerAcc+=PX_PER_SEC*(dt/1000);
+      if(_tickerAcc>=1){
+        var step=Math.floor(_tickerAcc);
+        _tickerAcc-=step;
+        wrap.scrollTop+=step;
+        if(wrap.scrollTop+wrap.clientHeight>=wrap.scrollHeight-4)wrap.scrollTop=0;
+      }
     }
     _tickerRAF=requestAnimationFrame(tick);
   }
