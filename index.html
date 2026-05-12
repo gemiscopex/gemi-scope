@@ -1021,7 +1021,9 @@ function loadPresidencia(){
       return;
     }
     presData=d.articulos;
-    el.innerHTML=presData.slice(0,6).map(a=>{
+    const maneras=presData.filter(a=>(a.fuente||'').toLowerCase().includes('stenogr'));
+    if(!maneras.length){el.innerHTML='<div class="pres-empty">Sin conferencias registradas aún</div>';return;}
+    el.innerHTML=maneras.slice(0,5).map(a=>{
       const fechaRaw=a.fecha?a.fecha.substring(0,10):'';
       const fechaFmt=fechaRaw?new Date(fechaRaw+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
       const isCSP=(a.fuente||'').includes('stenogr');
