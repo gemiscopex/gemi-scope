@@ -683,7 +683,12 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
   </div>
   <div id="tab-radares" class="tab-content" style="padding:28px 0">
     <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Radares Temáticos</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Monitoreo de señales regulatorias y de presi&#xF3;n ambiental por tema · últimos 90 d&#xED;as</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Monitoreo de señales regulatorias y de presi&#xF3;n ambiental por tema · últimos 90 d&#xED;as</div>
+    <div style="margin-bottom:20px;background:var(--card);border:0.8px solid var(--border);border-radius:12px;padding:16px 18px">
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px">Trayectoria tem&#xe1;tica &middot; &#xFA;ltimas 10 semanas</div>
+      <div id="radar-trend-chart" style="width:100%"></div>
+      <div id="radar-trend-legend" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:0.8px solid var(--border)"></div>
+    </div>
     <div style="display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start">
       <div class="radar-market-grid" id="radar-selector"></div>
       <div class="radar-panel-wrap" id="radar-panel"><div style="padding:40px 24px;text-align:center;color:var(--text-muted);font-size:12px">Selecciona un tema</div></div>
@@ -704,42 +709,6 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
       <p style="font-size:14px;color:var(--text-sec);margin-bottom:20px">
         SCOPE integra en tiempo real información legislativa federal y estatal, impuestos ambientales, alertas regulatorias y radares temáticos, permitiendo a las organizaciones anticiparse a cambios normativos con relevancia ambiental.
       </p>
-
-      <div style="border-top:0.8px solid var(--border);margin:28px 0"></div>
-
-      <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:16px">Lo que monitoreamos</div>
-      <div class="acerca-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px">
-        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">Agua e hídrico</div>
-        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">Medio ambiente</div>
-        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">Energía y renovables</div>
-        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">Residuos y economía circular</div>
-        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">Cambio climático</div>
-        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">Impuestos ambientales</div>
-        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">Agro y desarrollo rural</div>
-        <div style="padding:12px 16px;border:0.8px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-sec)">Industria química</div>
-      </div>
-
-      <div style="border-top:0.8px solid var(--border);margin:28px 0"></div>
-
-      <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:16px">Cobertura</div>
-      <div style="display:flex;gap:28px;margin-bottom:28px;flex-wrap:wrap">
-        <div style="text-align:center">
-          <div style="font-size:32px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;color:var(--green)">32</div>
-          <div style="font-size:12px;color:var(--text-muted)">Estados monitoreados</div>
-        </div>
-        <div style="text-align:center">
-          <div style="font-size:32px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;color:var(--green)">2</div>
-          <div style="font-size:12px;color:var(--text-muted)">Cámaras federales</div>
-        </div>
-        <div style="text-align:center">
-          <div style="font-size:32px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;color:var(--green)">8</div>
-          <div style="font-size:12px;color:var(--text-muted)">Categorías SCOPE</div>
-        </div>
-        <div style="text-align:center">
-          <div style="font-size:32px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;color:var(--green)">L–V</div>
-          <div style="font-size:12px;color:var(--text-muted)">Actualización automática</div>
-        </div>
-      </div>
 
       <div style="border-top:0.8px solid var(--border);margin:28px 0"></div>
 
@@ -1143,6 +1112,7 @@ function showTab(id,btn){
   document.getElementById('tab-'+id).classList.add('active');
   if(btn)btn.classList.add('active');
   if(id==='normas') renderNormas();
+  if(id==='radares') buildRadarTrendChart();
 }
 function showLegSub(sub,btn){
   document.querySelectorAll('.leg-sub-btn').forEach(function(b){b.classList.remove('active');});
@@ -1479,6 +1449,48 @@ function renderScoreNacional(){
 }
 const TEMA_FED_LAWS={agua:['LAN','LGEEPA','LFRA'],agua_inf:['LAN','LGEEPA'],residuos:['LGPGIR','LGEEPA','LFRA'],circular:['LGEC','LGPGIR'],cc:['LGCC','LGEEPA'],fiscal:['LFD','LGEEPA'],plasticos:['LGPGIR'],energia:['LTE','LIE'],sanciones:['LGEEPA','LGPGIR','LAN','LFRA'],biodiv:['LGEEPA','LGDFS','LGVS','LFRA']};
 function toggleInstr(id){const el=document.getElementById(id);const arr=document.getElementById('arr-'+id);const open=el.style.maxHeight&&el.style.maxHeight!=='0px';el.style.maxHeight=open?'0px':(el.scrollHeight+200)+'px';if(arr)arr.style.transform=open?'':'rotate(90deg)';}
+function buildRadarTrendChart(){
+  const el=document.getElementById('radar-trend-chart');
+  if(!el||!RADAR_TEMAS||!noticias||!noticias.length)return;
+  const WEEKS=10;
+  const now=new Date();
+  const weeks=[];
+  for(let i=WEEKS-1;i>=0;i--){
+    const end=new Date(now.getTime()-i*7*86400000);
+    const start=new Date(end.getTime()-7*86400000);
+    const lbl=end.toLocaleDateString('es-MX',{month:'short',day:'numeric'});
+    weeks.push({start,end,lbl});
+  }
+  const mfn=(tema,n)=>{const txt=qa((n.titulo||'').toLowerCase());return tema.kw.some(k=>{const qk=qa(k);return qk.includes(' ')?txt.includes(qk):new RegExp('\\b'+qk+'\\b').test(txt);});};
+  const series=RADAR_TEMAS.map(t=>({id:t.id,name:t.name,color:t.color,data:weeks.map(w=>noticias.filter(n=>{const d=new Date(n.fecha_publicacion);return d>=w.start&&d<w.end&&mfn(t,n);}).length)}));
+  const W=el.offsetWidth||560;
+  const H=130,PL=6,PR=6,PT=10,PB=22;
+  const PW=W-PL-PR,PH=H-PT-PB;
+  const maxY=Math.max(...series.flatMap(s=>s.data),1);
+  const toX=i=>PL+(i/(WEEKS-1))*PW;
+  const toY=v=>PT+PH-(v/maxY)*PH;
+  let svg=`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible">`;
+  [0,0.33,0.67,1].forEach(g=>{const y=(PT+PH*g).toFixed(1);svg+=`<line x1="${PL}" y1="${y}" x2="${(PL+PW).toFixed(1)}" y2="${y}" stroke="#e5e7eb" stroke-width="0.5"/>`;});
+  weeks.forEach((w,i)=>{if(i===0||i===WEEKS-1||i===Math.floor(WEEKS/2)){svg+=`<text x="${toX(i).toFixed(1)}" y="${H-4}" text-anchor="middle" font-size="8" fill="#9ca3af">${w.lbl}</text>`;}});
+  series.forEach(s=>{
+    const pts=s.data.map((v,i)=>`${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(' ');
+    svg+=`<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>`;
+    const lv=s.data[WEEKS-1];
+    svg+=`<circle cx="${toX(WEEKS-1).toFixed(1)}" cy="${toY(lv).toFixed(1)}" r="3" fill="${s.color}" stroke="#fff" stroke-width="1"/>`;
+  });
+  svg+='</svg>';
+  el.innerHTML=svg;
+  const leg=document.getElementById('radar-trend-legend');
+  if(leg){
+    const sorted=[...series].sort((a,b)=>b.data[WEEKS-1]-a.data[WEEKS-1]);
+    leg.innerHTML=sorted.map(s=>{
+      const cur=s.data[WEEKS-1],prv=s.data[WEEKS-2]||0;
+      const arr=cur>prv?'↑':cur<prv?'↓':'→';
+      const ac=cur>prv?'#0ac285':cur<prv?'#f87171':'#9ca3af';
+      return `<div style="display:flex;align-items:center;gap:4px;white-space:nowrap"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${s.color};flex-shrink:0"></span><span style="font-size:10px;color:var(--text)">${s.name}</span><span style="font-size:10px;color:${ac};font-weight:700">${arr}${cur}</span></div>`;
+    }).join('');
+  }
+}
 function _buildRadarSelector(){
   const rsel=document.getElementById('radar-selector');
   if(!rsel)return;
@@ -1947,6 +1959,7 @@ async function init(){
   renderWidgetFederal();
   renderWidgetGacetas();
   _buildRadarSelector();
+  buildRadarTrendChart();
   showRadarTema(RADAR_TEMAS[0].id);
   loadPresidencia();
 }
