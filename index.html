@@ -1484,7 +1484,7 @@ function _buildRadarSelector(){
   if(!rsel)return;
   const cutoff=new Date(Date.now()-90*86400000);
   const recentNoticias=noticias.filter(n=>new Date(n.fecha_publicacion)>cutoff);
-  const sorted=RADAR_TEMAS.map(t=>({...t,cnt:recentNoticias.filter(n=>t.kw.some(k=>qa((n.titulo||'').toLowerCase()).includes(qa(k)))).length})).sort((a,b)=>b.cnt-a.cnt);
+  const sorted=RADAR_TEMAS.map(t=>({...t,cnt:recentNoticias.filter(n=>t.kw.some(k=>{const qk=qa(k);const tt=qa((n.titulo||'').toLowerCase());return qk.includes(' ')?tt.includes(qk):new RegExp('\\b'+qk+'\\b').test(tt);})).length})).sort((a,b)=>b.cnt-a.cnt);
   const maxCount=Math.max(...sorted.map(t=>t.cnt),1);
   rsel.innerHTML=sorted.map((t,i)=>{
     const barW=Math.round((t.cnt/maxCount)*100);
@@ -1508,7 +1508,7 @@ function showRadarTema(temaId){
   if(!tema)return;
   const cutoff=new Date(Date.now()-90*86400000);
   const recentNoticias=noticias.filter(n=>new Date(n.fecha_publicacion)>cutoff);
-  const matchFn=n=>{const txt=qa((n.titulo+' '+(n.descripcion||'')).toLowerCase());return tema.kw.some(k=>txt.includes(qa(k)));};
+  const matchFn=n=>{const txt=qa((n.titulo||'').toLowerCase());return tema.kw.some(k=>{const qk=qa(k);return qk.includes(' ')?txt.includes(qk):new RegExp('\\b'+qk+'\\b').test(txt);});};
   // Top estados
   const stateActivity={};
   Object.keys(estadoData).forEach(s=>{
