@@ -1198,7 +1198,7 @@ function renderNormas(){
       var nomColor=isProy?'#b45309':'#0a8a5f';
       var nomBg=isProy?'rgba(245,158,11,0.1)':'rgba(10,194,133,0.1)';
       var uid='nom-'+tema.replace(/[^a-z]/gi,'')+idx;
-      html+='<div class="nom-row">'  '  
+      html+='<div class="nom-row">'
         +'<span style="font-size:8px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:3px;background:'+nomBg+';color:'+nomColor+';flex-shrink:0">'+(isProy?'PROY-NOM':'NOM')+'</span>'
         +'<span style="font-size:10px;font-weight:700;color:var(--text-muted);flex-shrink:0;min-width:50px">'+n.id.replace('PROY-NOM-','').replace('NOM-','')+'</span>'
         +'<div style="flex:1;min-width:0">'
