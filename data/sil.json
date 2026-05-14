@@ -10846,27 +10846,28 @@
       "scrapeado_en": "2026-05-06T16:01:12.195406+00:00"
     },
     {
-      "camara_origen": "Cámara de Senadores",
+      "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
       "fecha_presentacion": "2025-03-25",
       "legislatura": "LXVI",
       "periodo": "2do Ordinario",
-      "presentador": "PVEM",
-      "aspectos": "El grupo parlamentario expone que, a nivel mundial, los bosques cubren el 31 por ciento de la superficie terrestre y son los responsables de la captura de carbono, la regulación del clima y la conservación de la biodiversidad. México cuenta con una riqueza forestal invaluable, con más de 64 millones de hectáreas de bosques y selvas que albergan el 10 por ciento de la biodiversidad mundial y son el sustento de millones de personas, incluidas comunidades indígenas y ejidatarias que han sido guardianes de estos ecosistemas por generaciones. Apunta que la deforestación, el cambio de uso de suelo, la tala ilegal y el cambio climático han provocado la pérdida acelerada de estos espacios vitales, pues de acuerdo con la Conafor, cada año se pierden miles de hectáreas de cobertura forestal, poniendo en riesgo no solo a la flora y fauna que habitan en ellos, también los servicios ambientales que garantizan agua, aire limpio y suelos fértiles. Añade que no se debe olvidar que estos ecosistemas son más que un conjunto de árboles, son el alma y la esencia misma del patrimonio biocultural de la nación, son un hogar para miles de especies de plantas y animales y, son una fuente de vida intrínseca para las y los mexicanos. Por último, se hace un llamado para que se sumen esfuerzos en la protección de los bosques, pues la crisis climática exige actuar con determinación, y desde este Senado se refrenda un compromiso con la agenda ambiental.",
-      "ultimo_tramite": "Instrucciones de la Mesa Directiva: para integrar el asunto al Diario de los Debates.",
-      "ultimo_estatus": "Resuelto / Aprobado Aprobado 25/03/2025",
-      "asunto_id": "4862579",
-      "seguimiento": "4864218",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4864218&Asunto=4862579",
+      "titulo": "Que reforma y adiciona los artículos 8° y 9° de la Ley General de Cambio Climático, en materia de apoyo a pequeños negocios en su sustentabilidad.",
+      "presentador": "Dip. María del Carmen Pinete Vargas (PVEM)",
+      "aspectos": "La iniciativa tiene por objeto apoyar a las Mipymes, priorizando aquellas ubicadas en sectores comerciales vulnerables en la reducción de los costos de energía eléctrica, haciéndolas al mismo tiempo más sustentables para contribuir a la mitigación del cambio climático. Para ello propone: 1) establecer programas para la adopción de tecnologías de energías renovables y eficiencia energética en microempresas, priorizando aquellas que operen en sectores comerciales vulnerables con el objetivo de reducir sus emisiones de gases de efecto invernadero y mejorar su resiliencia frente a fluctuaciones en los precios de la energía; y, 2) generar la coordinación con el sector privado y público la implementación de programas de capacitación y asistencia técnica para las microempresas, con el objetivo de facilitar su transición hacia tecnologías de bajo consumo energético.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Cambio Climático y Sostenibilidad de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 25 de marzo de 2025 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 25/03/2025",
+      "asunto_id": "4863202",
+      "seguimiento": "4864983",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4864983&Asunto=4863202",
       "categorias": [
-        "agua",
-        "biodiversidad",
-        "deforestacion",
+        "energia_renovable",
+        "calidad_aire",
         "cambio_climatico"
       ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "06c42f18f8ec",
-      "scrapeado_en": "2026-04-29T21:18:46.939792+00:00"
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "cc8a4e12d868",
+      "scrapeado_en": "2026-05-14T19:47:39.324643+00:00"
     }
   ],
   "_meta": {
@@ -10874,6 +10875,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 75,
-    "actualizado": "2026-05-14T16:12:46Z"
+    "actualizado": "2026-05-14T19:49:54Z"
   }
 }
