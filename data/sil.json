@@ -1,6 +1,27 @@
 {
   "iniciativas": [
     {
+      "camara_origen": "Cámara de Senadores",
+      "camara_revisora": "Cámara de Diputados",
+      "fecha_presentacion": "2026-05-13",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "presentador": "Secretaría de Medio Ambiente y Recursos Naturales",
+      "aspectos": "La dependencia remite, respuesta al Punto de Acuerdo signado por la Cámara de Senadores, relativo a informar sobre el área total afectada a causa del incendio ocurrido en el mes de agosto de 2025, su severidad y plan integral de remediación, restauración y reforestación para el Área de Protección de Flora y Fauna Balam, en Quintana Roo. \n\nPara tal efecto el documento señala que la Comisión Nacional Forestal (Conafor) opera el Programa de Manejo del Fuero a través del cual reportó un incendio forestal en el predio -Holbox-Yum  Balam- en el municipio de Lázaro Cárdenas, Quintana Roo, ocurrido el 22 al 23 de agosto de 2025, con estatus de -liquidado- de acuerdo con la fecha indicada.",
+      "ultimo_tramite": "Instrucciones de la Mesa Directiva: se remitirá a las legisladoras y los legisladores promoventes y se informará que se encuentra publicados en la Gaceta.",
+      "ultimo_estatus": "Resuelto / Aprobado Aprobado 13/05/2026",
+      "asunto_id": "5092517",
+      "seguimiento": "4975464",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4975464&Asunto=5092517",
+      "categorias": [
+        "deforestacion"
+      ],
+      "categoria": "deforestacion",
+      "categoria_nombre": "Forestal",
+      "id": "c5bace6941ca",
+      "scrapeado_en": "2026-05-14T16:10:59.141504+00:00"
+    },
+    {
       "camara_origen": "Cámara de Diputados",
       "camara_revisora": "Cámara de Senadores",
       "fecha_presentacion": "2026-04-29",
@@ -10846,37 +10867,13 @@
       "categoria_nombre": "Agua",
       "id": "06c42f18f8ec",
       "scrapeado_en": "2026-04-29T21:18:46.939792+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2025-03-25",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que reforma y adiciona los artículos 8° y 9° de la Ley General de Cambio Climático, en materia de apoyo a pequeños negocios en su sustentabilidad.",
-      "presentador": "Dip. María del Carmen Pinete Vargas (PVEM)",
-      "aspectos": "La iniciativa tiene por objeto apoyar a las Mipymes, priorizando aquellas ubicadas en sectores comerciales vulnerables en la reducción de los costos de energía eléctrica, haciéndolas al mismo tiempo más sustentables para contribuir a la mitigación del cambio climático. Para ello propone: 1) establecer programas para la adopción de tecnologías de energías renovables y eficiencia energética en microempresas, priorizando aquellas que operen en sectores comerciales vulnerables con el objetivo de reducir sus emisiones de gases de efecto invernadero y mejorar su resiliencia frente a fluctuaciones en los precios de la energía; y, 2) generar la coordinación con el sector privado y público la implementación de programas de capacitación y asistencia técnica para las microempresas, con el objetivo de facilitar su transición hacia tecnologías de bajo consumo energético.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Cambio Climático y Sostenibilidad de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 25 de marzo de 2025 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 25/03/2025",
-      "asunto_id": "4863202",
-      "seguimiento": "4864983",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4864983&Asunto=4863202",
-      "categorias": [
-        "energia_renovable",
-        "calidad_aire",
-        "cambio_climatico"
-      ],
-      "categoria": "energia_renovable",
-      "categoria_nombre": "Energía Renovable",
-      "id": "cc8a4e12d868",
-      "scrapeado_en": "2026-04-27T21:06:58.831063+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 51,
-    "actualizado": "2026-05-13T21:55:59Z"
+    "nuevas": 75,
+    "actualizado": "2026-05-14T16:12:46Z"
   }
 }
