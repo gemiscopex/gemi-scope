@@ -1,5 +1,50 @@
 [
   {
+    "id": "59d8ecb59723",
+    "titulo": "UIF y bancos buscan prevenir la extorsión desde centros penitenciarios",
+    "url": "https://expansion.mx/economia/2026/05/25/uif-y-bancos-buscan-prevenir-la-extorsion-desde-centros-penitenciarios",
+    "fuente": "Expansion",
+    "resumen": "La autoridad detectó modelos de extorsión desde el interior de centros penitenciarios mediante transferencias de aplicaciones móviles, por lo que implementó una guía para la mitigación del delito.",
+    "fecha_publicacion": "2026-05-25T16:30:12Z",
+    "categoria": "cambio_climatico",
+    "categoria_nombre": "Cambio Climático",
+    "categorias": [
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-05-25T19:27:40.732727+00:00"
+  },
+  {
+    "id": "691de4aa4f6e",
+    "titulo": "México capta récord de inversión extranjera por 23,591 mdd en arranque de 2026",
+    "url": "https://expansion.mx/economia/2026/05/25/mexico-record-inversion-extranjera-23-591-mdd-arranque-2026",
+    "fuente": "Expansion",
+    "resumen": "Servicios financieros, autos, minería y construcción impulsaron el crecimiento de la inversión extranjera directa en México durante el primer trimestre.",
+    "fecha_publicacion": "2026-05-25T16:19:38Z",
+    "categoria": "mineria",
+    "categoria_nombre": "Minería",
+    "categorias": [
+      "mineria"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-05-25T19:27:40.733251+00:00"
+  },
+  {
+    "id": "2ed136cd6eee",
+    "titulo": "Se está poniendo orden  en concesiones de agua.- CSP",
+    "url": "https://www.reforma.com/se-esta-poniendo-orden-en-concesiones-de-agua-csp/ar3210168",
+    "fuente": "Reforma",
+    "resumen": "CSP rechazó que nuevo Programa Nacional Hídrico castigue a productores agrícolas y dijo que medidas buscan recuperar concesiones acaparadas.",
+    "fecha_publicacion": "2026-05-25T15:47:45Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-05-25T19:27:40.749220+00:00"
+  },
+  {
     "id": "1717a7cc1747",
     "titulo": "Se está poniendo orden en concesiones de agua.- CSP",
     "url": "https://www.reforma.com/se-esta-poniendo-orden-en-concesiones-de-agua-csp/ar3210168",
@@ -30,6 +75,22 @@
     "scrapeado_en": "2026-05-25T16:15:36.545394+00:00"
   },
   {
+    "id": "d48e08ebfa04",
+    "titulo": "Perú: “Tenemos evidencia de minería ilegal en 11 regiones amazónicas, prácticamente la totalidad del bioma” | ENTREVISTA",
+    "url": "https://es.mongabay.com/2026/05/peru-evidencia-mineria-ilegal-11-regiones-amazonicas-entrevista/",
+    "fuente": "Mongabay Latam",
+    "resumen": "En Perú, la minería ilegal de oro reinició su expansión en la Reserva Nacional Tambopata, una de las áreas protegidas más emblemáticas del país, ubicada en el sur de la Amazonía. Este es el principal hallazgo del último reporte de MAAP, elaborado por Amazon Conservation y Conservación Amazónica – ACCA. Sin embargo, el problema va […]",
+    "fecha_publicacion": "2026-05-25T14:00:12Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad",
+      "mineria"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-05-25T19:27:40.704626+00:00"
+  },
+  {
     "id": "26980d976169",
     "titulo": "Proveedores de Ciudad del Carmen felicitan y respaldan la nueva dirección general de Pemex",
     "url": "https://www.elfinanciero.com.mx/mundo-empresa/2026/05/25/proveedores-de-ciudad-del-carmen-felicitan-y-respaldan-la-nueva-direccion-general-de-pemex/",
@@ -43,6 +104,21 @@
     ],
     "estado": "Campeche",
     "scrapeado_en": "2026-05-25T16:15:36.654837+00:00"
+  },
+  {
+    "id": "a62de6958c57",
+    "titulo": "Castigarían ahorro de agua en el agro",
+    "url": "https://www.reforma.com/castigarian-ahorro-de-agua-en-el-agro/ar3210010",
+    "fuente": "Reforma",
+    "resumen": "En lugar de incentivar el ahorro de agua en el campo, el nuevo Programa Nacional Hídrico contempla castigarlo.",
+    "fecha_publicacion": "2026-05-25T11:00:30Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-05-25T19:27:40.750724+00:00"
   },
   {
     "id": "a57b36163d7d",
@@ -8984,81 +9060,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-04-27T16:43:28.441151+00:00"
-  },
-  {
-    "id": "79eb5774ed1c",
-    "titulo": "Sin contingencia, pero con caos: Bloquean la México-Pachuca por falta de agua y contaminación",
-    "url": "https://www.elfinanciero.com.mx/cdmx/2026/04/27/bloqueo-en-la-mexico-pachuca-hoy-27-de-abril-que-alternativas-viales-hay/",
-    "fuente": "El Financiero",
-    "resumen": "Debido al cierre de la México-Pachuca a la altura de 'El Caminante', la dirección del Metrobús advirtió que habrá afectaciones en el servicio de la Línea 4.",
-    "fecha_publicacion": "2026-04-27T14:48:36Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua",
-      "calidad_aire"
-    ],
-    "estado": "Hidalgo",
-    "scrapeado_en": "2026-04-27T16:43:28.460189+00:00"
-  },
-  {
-    "id": "aa5f7fd1b77e",
-    "titulo": "Pagos con tarjeta en gasolineras tendrán cero comisión a partir del 1 de mayo",
-    "url": "https://expansion.mx/economia/2026/04/27/adios-comisiones-gasolineras-acuerdo-bancos",
-    "fuente": "Expansion",
-    "resumen": "El titular de la Secretaría de Hacienda y Crédito Público, Édgar Amador Zamora, afirmó que esta inicitiva busca ayudar a la economía de las familias mexicanas ante el incremento en precios de combustibles.",
-    "fecha_publicacion": "2026-04-27T14:48:31Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.441798+00:00"
-  },
-  {
-    "id": "c8a7c36276d8",
-    "titulo": "Pactan bajar comisiones en pagos de gasolina con tarjeta",
-    "url": "https://www.reforma.com/pactan-bajar-comisiones-en-pagos-de-gasolina-con-tarjeta/ar3193740",
-    "fuente": "Reforma",
-    "resumen": "Gobierno, banca y empresas de vales bajarán comisiones en pagos con tarjeta y vales en gasolineras, para contener alza en combustibles.",
-    "fecha_publicacion": "2026-04-27T14:25:34Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.456112+00:00"
-  },
-  {
-    "id": "8031605d8193",
-    "titulo": "¿Martes de Doble Hoy No Circula? Sigue la calidad del aire EN VIVO en CDMX y Edomex",
-    "url": "https://www.elfinanciero.com.mx/cdmx/2026/04/27/martes-de-doble-hoy-no-circula-sigue-la-calidad-del-aire-en-vivo-en-cdmx-y-edomex/",
-    "fuente": "El Financiero",
-    "resumen": "Aquí te decimos cómo está la calidad del aire este lunes 27 de abril en CDMX y Edomex.",
-    "fecha_publicacion": "2026-04-27T14:24:34Z",
-    "categoria": "calidad_aire",
-    "categoria_nombre": "Calidad del Aire",
-    "categorias": [
-      "calidad_aire"
-    ],
-    "estado": "Ciudad de Mexico",
-    "scrapeado_en": "2026-04-27T16:43:28.460447+00:00"
-  },
-  {
-    "id": "08ebc635cae1",
-    "titulo": "Conferencia sobre combustibles fósiles: América Latina sigue apostando por nuevos proyectos de gas y petróleo",
-    "url": "https://es.mongabay.com/2026/04/conferencia-combustibles-fosiles-america-latina-sigue-apostando-por-nuevos-proyectos-gas-petroleo/",
-    "fuente": "Mongabay Latam",
-    "resumen": "Mientras en Santa Marta, Colombia, más de 50 países se reúnen en la Primera Conferencia Internacional para la Transición más allá de los Combustibles Fósiles para acelerar alternativas al petróleo, gas y carbón, en América Latina persisten las apuestas por nuevos proyectos extractivos. Venezuela impulsa iniciativa de gas con Estados Unidos, Bolivia abre pozos petroleros, […]",
-    "fecha_publicacion": "2026-04-27T14:00:58Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.382010+00:00"
   }
 ]
