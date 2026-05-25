@@ -1,5 +1,35 @@
 [
   {
+    "id": "e0e5e8ee12ac",
+    "titulo": "G500 busca nuevas estaciones en un mercado gasolinero cada vez más competido y regulado",
+    "url": "https://expansion.mx/empresas/2026/05/25/g500-historia-retos-para-crecimiento-mexico",
+    "fuente": "Expansion",
+    "resumen": "Con ventas diarias de hasta 7 millones de litros de combustible, G500 apuesta por ampliar su red gasolinera mientras el sector enfrenta mayores exigencias regulatorias y topes al precio de la gasolina.",
+    "fecha_publicacion": "2026-05-25T21:25:59Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-05-25T21:39:04.241659+00:00"
+  },
+  {
+    "id": "3949aa7ca1bf",
+    "titulo": "Nuevo reporte confirma los impactos de sequías e inundaciones extremas en América Latina",
+    "url": "https://es.mongabay.com/short-article/2026/05/nuevo-reporte-confirma-los-impactos-de-sequias-e-inundaciones-extremas-en-america-latina/",
+    "fuente": "Mongabay Latam",
+    "resumen": "El nuevo informe State of Global Water Resources 2024 de la Organización Meteorológica Mundial (OMM) confirma que 2024 fue el sexto año consecutivo con un ciclo hidrológico alterado a nivel global. Seis de cada diez ríos en el mundo mostraron caudales por fuera de lo normal —ya sea demasiado bajos o demasiado altos— mientras los […]",
+    "fecha_publicacion": "2026-05-25T19:48:23Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-05-25T21:39:04.166248+00:00"
+  },
+  {
     "id": "59d8ecb59723",
     "titulo": "UIF y bancos buscan prevenir la extorsión desde centros penitenciarios",
     "url": "https://expansion.mx/economia/2026/05/25/uif-y-bancos-buscan-prevenir-la-extorsion-desde-centros-penitenciarios",
@@ -9030,35 +9060,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-05-01T14:48:07.515559+00:00"
-  },
-  {
-    "id": "9211f975a0c5",
-    "titulo": "El derrame en el Golfo de México necesita un plan de acción integral y urgente de recuperación y regeneración",
-    "url": "https://www.greenpeace.org/mexico/informacion-prensa/62854/derrame-golfo-de-mexico-plan-de-accion-integral/",
-    "fuente": "Greenpeace MX",
-    "resumen": "La afectación por el derrame de petróleo en el Golfo de México continúa. Sigue leyendo para saber más.",
-    "fecha_publicacion": "2026-04-27T19:06:34Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-29T21:10:28.730062+00:00"
-  },
-  {
-    "id": "5ab3fb22d23e",
-    "titulo": "Wall Street abre con cautela y la BMV cae, en semana clave por Fed y resultados tecnológicos",
-    "url": "https://expansion.mx/mercados/2026/04/27/wall-street-abre-con-cautela-y-la-bmv-cae-en-semana-clave-por-fed-y-resultados-tecnologicos",
-    "fuente": "Expansion",
-    "resumen": "Los precios del petróleo operan al alza, el WTI sube alrededor de 0.7% a 95.03 dólares por barril, mientras que el Brent avanza cerca de 1% a 106.36 dólares.",
-    "fecha_publicacion": "2026-04-27T15:15:53Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.441151+00:00"
   }
 ]
