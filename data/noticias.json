@@ -1,5 +1,36 @@
 [
   {
+    "id": "e18adf6304ed",
+    "titulo": "Gasolineros denuncian que Pemex tarda hasta 4 días en abastecerlos de diésel",
+    "url": "https://www.elfinanciero.com.mx/economia/2026/05/28/gasolineros-denuncian-que-pemex-tarda-hasta-4-dias-en-abastecerlos-de-diesel/",
+    "fuente": "El Financiero",
+    "resumen": "El desabasto de combustible en Jalisco amenaza con afectar las cosechas de aguacate o berries que son exportados a Estados Unidos.",
+    "fecha_publicacion": "2026-05-28T22:11:41Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": "Jalisco",
+    "scrapeado_en": "2026-05-28T22:14:51.185619+00:00"
+  },
+  {
+    "id": "288f30d56ad4",
+    "titulo": "Atienden a jubilados por tope a 'pensiones doradas'",
+    "url": "https://www.reforma.com/atienden-a-jubilados-por-tope-a-pensiones-doradas/ar3212407",
+    "fuente": "Reforma",
+    "resumen": "La Segob y Consejería Jurídica se reunieron con jubilados de CFE, Pemex, Banobras y Luz y Fuerza del Centro por tope a 'pensiones doradas'.",
+    "fecha_publicacion": "2026-05-28T20:49:11Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable",
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-05-28T22:14:51.183045+00:00"
+  },
+  {
     "id": "8a9f1a66b66c",
     "titulo": "El ‘regalito’ de Morena a magistrados: Podrían durar 17 años en el cargo por reserva de Sergio Gutiérrez",
     "url": "https://www.elfinanciero.com.mx/nacional/2026/05/28/el-regalito-de-morena-a-magistrados-podrian-durar-17-anos-en-el-cargo-por-reserva-de-sergio-gutierrez/",
@@ -9022,35 +9053,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-05-01T14:48:07.527614+00:00"
-  },
-  {
-    "id": "1204f3ab2ec2",
-    "titulo": "Pese a apoyos de Gobierno, siguen pérdidas en Pemex",
-    "url": "https://www.reforma.com/pese-a-apoyos-de-gobierno-siguen-perdidas-en-pemex/ar3196644",
-    "fuente": "Reforma",
-    "resumen": "Pese a recibir apoyos federales por 45,991 mdp, Pemex tuvo pérdida neta de 45,993 mdp en primer trimestre, revela reporte enviado a BMV.",
-    "fecha_publicacion": "2026-05-01T11:00:59Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-01T19:09:28.434328+00:00"
-  },
-  {
-    "id": "f8d5b7594e0d",
-    "titulo": "El momento nuclear: ¿estamos listos?",
-    "url": "https://www.elfinanciero.com.mx/opinion/raul-asis-monforte-gonzalez/2026/05/01/el-momento-nuclear-estamos-listos/",
-    "fuente": "El Financiero",
-    "resumen": "La construcción de los SMR podría abrir una nueva oportunidad para empresas e infraestructura, al redefinir el tipo de obras que exigirá la transición energética.",
-    "fecha_publicacion": "2026-05-01T06:16:17Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-01T14:48:07.531272+00:00"
   }
 ]
