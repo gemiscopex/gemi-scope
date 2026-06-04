@@ -1835,6 +1835,29 @@
     },
     {
       "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-04-21",
+      "legislatura": "LXVI",
+      "periodo": "2do Ordinario",
+      "titulo": "Que reforma el artículo 27 de la Constitución Política de los Estados Unidos Mexicanos, en materia de extracción de petróleo y gas natural.",
+      "presentador": "Dip. Olga Juliana Elizondo Guerra (PT)",
+      "aspectos": "La iniciativa tiene por objeto prohibir llevar a cabo actos de investigación, exploración o explotación de yacimientos de hidrocarburos líquidos o gaseosos no convencionales mediante fracturamiento hidráulico, fracking o cualquier otro método similar, hasta en tanto se demuestre y sustente que no existe riesgo alguno al medio ambiente, que no impacta la disponibilidad del agua, que no afecta a la población y no contamina el subsuelo y los mantos freáticos.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Puntos Constitucionales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 21 de abril de 2026 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 21/04/2026",
+      "asunto_id": "5073493",
+      "seguimiento": "5080424",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5080424&Asunto=5073493",
+      "categorias": [
+        "agua",
+        "hidrocarburos"
+      ],
+      "categoria": "agua",
+      "categoria_nombre": "Agua",
+      "id": "4f55ed29708a",
+      "scrapeado_en": "2026-06-04T16:48:41.482697+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2026-04-21",
       "legislatura": "LXVI",
       "periodo": "2do Ordinario",
@@ -10852,35 +10875,13 @@
       "categoria_nombre": "Agua",
       "id": "cc67ee008398",
       "scrapeado_en": "2026-04-29T21:19:27.990062+00:00"
-    },
-    {
-      "camara_origen": "Comisión Permanente",
-      "fecha_presentacion": "2025-06-11",
-      "legislatura": "LXVI",
-      "periodo": "2do Receso",
-      "presentador": "Dip. Alejandra Chedraui Peralta (Morena)",
-      "aspectos": "La legisladora propone solicitar a la Semarnat, a la Comisión Nacional para el Conocimiento y Uso de la Biodiversidad (Conabio), y a la Comisión Nacional de Áreas Naturales Protegidas (Conanp): 1) para que diseñen, implementen y fortalezcan un Sistema Nacional de Monitoreo, Protección y Restauración de los Ecosistemas de Carbono Azul, incluyendo manglares, pastos marinos y marismas, con criterios de sustentabilidad climática y bajo estándares científicos y técnicos actualizados; y, 2) a desarrollar e integrar inventarios georreferenciados y actualizados de dichos ecosistemas, e impulsar mecanismos de financiamiento verde como bonos de carbono azul, fondos climáticos y esquemas de pago por servicios ecosistémicos, que permitan su conservación, restauración y aprovechamiento sustentable en beneficio de las comunidades costeras y de los compromisos internacionales de México en materia de cambio climático y biodiversidad.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Segunda Comisión de Trabajo: Asuntos Sociales (01/05/2025-31/08/2025) de Comisión Permanente. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 11 de junio de 2025, por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Resuelto / Aprobado Aprobado 27/08/2025",
-      "asunto_id": "4904793",
-      "seguimiento": "4919953",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4919953&Asunto=4904793",
-      "categorias": [
-        "biodiversidad",
-        "deforestacion",
-        "cambio_climatico"
-      ],
-      "categoria": "biodiversidad",
-      "categoria_nombre": "Biodiversidad",
-      "id": "c71312c4806b",
-      "scrapeado_en": "2026-04-29T21:23:56.671645+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 91,
-    "actualizado": "2026-06-03T22:41:26Z"
+    "nuevas": 86,
+    "actualizado": "2026-06-04T16:51:47Z"
   }
 }
