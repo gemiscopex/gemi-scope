@@ -10807,6 +10807,28 @@
       "scrapeado_en": "2026-04-29T21:20:48.390782+00:00"
     },
     {
+      "camara_origen": "Comisión Permanente",
+      "fecha_presentacion": "2025-06-11",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "presentador": "Dip. Alejandra Chedraui Peralta (PVEM)",
+      "aspectos": "La legisladora propone solicitar a la Semarnat, a la Comisión Nacional para el Conocimiento y Uso de la Biodiversidad (Conabio), y a la Comisión Nacional de Áreas Naturales Protegidas (Conanp): 1) para que diseñen, implementen y fortalezcan un Sistema Nacional de Monitoreo, Protección y Restauración de los Ecosistemas de Carbono Azul, incluyendo manglares, pastos marinos y marismas, con criterios de sustentabilidad climática y bajo estándares científicos y técnicos actualizados; y, 2) a desarrollar e integrar inventarios georreferenciados y actualizados de dichos ecosistemas, e impulsar mecanismos de financiamiento verde como bonos de carbono azul, fondos climáticos y esquemas de pago por servicios ecosistémicos, que permitan su conservación, restauración y aprovechamiento sustentable en beneficio de las comunidades costeras y de los compromisos internacionales de México en materia de cambio climático y biodiversidad.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Segunda Comisión de Trabajo: Asuntos Sociales (01/05/2025-31/08/2025) de Comisión Permanente. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 11 de junio de 2025, por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Resuelto / Aprobado Aprobado 27/08/2025",
+      "asunto_id": "4904793",
+      "seguimiento": "4919953",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4919953&Asunto=4904793",
+      "categorias": [
+        "biodiversidad",
+        "deforestacion",
+        "cambio_climatico"
+      ],
+      "categoria": "biodiversidad",
+      "categoria_nombre": "Biodiversidad",
+      "id": "c71312c4806b",
+      "scrapeado_en": "2026-06-04T20:09:08.018928+00:00"
+    },
+    {
       "camara_origen": "Cámara de Senadores",
       "camara_revisora": "Cámara de Diputados",
       "fecha_presentacion": "2025-06-11",
@@ -10852,29 +10874,6 @@
       "categoria_nombre": "Residuos",
       "id": "e39aed11c036",
       "scrapeado_en": "2026-04-29T21:16:32.920886+00:00"
-    },
-    {
-      "camara_origen": "Comisión Permanente",
-      "fecha_presentacion": "2025-06-11",
-      "legislatura": "LXVI",
-      "periodo": "2do Receso",
-      "presentador": "Dip. Francisco Javier Farias Bailón (MC)",
-      "aspectos": "El legislador propone exhortar: 1) a la Semarnat y a la Conagua para que en coordinación con la Comisión de Agua Potable y Alcantarillado de Campeche, impulsen o en su caso, fortalezcan las medidas y campañas de concientización sobre el cuidado y uso racional del agua en la entidad que, sirvan para prevenir futuras crisis por las graves sequías; y, 2) a la Semarnat, para que, en coordinación con la Secretaría de Medio Ambiente, Biodiversidad, Cambio Climático y Energía de Campeche, lleven a cabo campañas de reforestación en los municipios que se han visto mayormente afectados por la sequía.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Segunda Comisión de Trabajo: Asuntos Sociales (01/05/2025-31/08/2025) de Comisión Permanente. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 11 de junio de 2025, por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Resuelto / Aprobado Aprobado 09/07/2025",
-      "asunto_id": "4904531",
-      "seguimiento": "4912385",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4912385&Asunto=4904531",
-      "categorias": [
-        "agua",
-        "biodiversidad",
-        "deforestacion",
-        "cambio_climatico"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "cc67ee008398",
-      "scrapeado_en": "2026-04-29T21:19:27.990062+00:00"
     }
   ],
   "_meta": {
@@ -10882,6 +10881,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 86,
-    "actualizado": "2026-06-04T16:51:47Z"
+    "actualizado": "2026-06-04T20:09:13Z"
   }
 }
