@@ -10811,6 +10811,29 @@
       "fecha_presentacion": "2025-06-11",
       "legislatura": "LXVI",
       "periodo": "2do Receso",
+      "presentador": "Dip. Francisco Javier Farias Bailón (MC)",
+      "aspectos": "El legislador propone exhortar: 1) a la Semarnat y a la Conagua para que en coordinación con la Comisión de Agua Potable y Alcantarillado de Campeche, impulsen o en su caso, fortalezcan las medidas y campañas de concientización sobre el cuidado y uso racional del agua en la entidad que, sirvan para prevenir futuras crisis por las graves sequías; y, 2) a la Semarnat, para que, en coordinación con la Secretaría de Medio Ambiente, Biodiversidad, Cambio Climático y Energía de Campeche, lleven a cabo campañas de reforestación en los municipios que se han visto mayormente afectados por la sequía.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Segunda Comisión de Trabajo: Asuntos Sociales (01/05/2025-31/08/2025) de Comisión Permanente. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 11 de junio de 2025, por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Resuelto / Aprobado Aprobado 09/07/2025",
+      "asunto_id": "4904531",
+      "seguimiento": "4912385",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4912385&Asunto=4904531",
+      "categorias": [
+        "agua",
+        "biodiversidad",
+        "deforestacion",
+        "cambio_climatico"
+      ],
+      "categoria": "agua",
+      "categoria_nombre": "Agua",
+      "id": "cc67ee008398",
+      "scrapeado_en": "2026-06-04T22:01:58.659508+00:00"
+    },
+    {
+      "camara_origen": "Comisión Permanente",
+      "fecha_presentacion": "2025-06-11",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
       "presentador": "Dip. Alejandra Chedraui Peralta (PVEM)",
       "aspectos": "La legisladora propone solicitar a la Semarnat, a la Comisión Nacional para el Conocimiento y Uso de la Biodiversidad (Conabio), y a la Comisión Nacional de Áreas Naturales Protegidas (Conanp): 1) para que diseñen, implementen y fortalezcan un Sistema Nacional de Monitoreo, Protección y Restauración de los Ecosistemas de Carbono Azul, incluyendo manglares, pastos marinos y marismas, con criterios de sustentabilidad climática y bajo estándares científicos y técnicos actualizados; y, 2) a desarrollar e integrar inventarios georreferenciados y actualizados de dichos ecosistemas, e impulsar mecanismos de financiamiento verde como bonos de carbono azul, fondos climáticos y esquemas de pago por servicios ecosistémicos, que permitan su conservación, restauración y aprovechamiento sustentable en beneficio de las comunidades costeras y de los compromisos internacionales de México en materia de cambio climático y biodiversidad.",
       "ultimo_tramite": "Se turnó a Comisión (es): Segunda Comisión de Trabajo: Asuntos Sociales (01/05/2025-31/08/2025) de Comisión Permanente. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 11 de junio de 2025, por acuerdo de la Mesa Directiva.",
@@ -10852,28 +10875,6 @@
       "categoria_nombre": "Biodiversidad",
       "id": "e947b800021f",
       "scrapeado_en": "2026-04-29T21:16:31.637216+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2025-06-11",
-      "legislatura": "LXVI",
-      "periodo": "2do Receso",
-      "titulo": "Que reforma el artículo 153 de la Ley General de Equilibrio Ecológico y la Protección al Ambiente.",
-      "presentador": "Dip. Amparo Lilia Olivares Castañeda (PAN)",
-      "aspectos": "La iniciativa tiene por objeto proteger los ecosistemas locales frente a una saturación artificial de residuos externos. Para ello propone establecer que podrá autorizarse la importación de materiales o residuos peligrosos para su tratamiento, reciclaje o reuso, cuando se cumpla con la justificación ambiental, económica y sanitaria.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 11 de junio de 2025, por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 11/06/2025",
-      "asunto_id": "4904235",
-      "seguimiento": "4905600",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4905600&Asunto=4904235",
-      "categorias": [
-        "residuos"
-      ],
-      "categoria": "residuos",
-      "categoria_nombre": "Residuos",
-      "id": "e39aed11c036",
-      "scrapeado_en": "2026-04-29T21:16:32.920886+00:00"
     }
   ],
   "_meta": {
@@ -10881,6 +10882,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 86,
-    "actualizado": "2026-06-04T20:09:13Z"
+    "actualizado": "2026-06-04T22:03:39Z"
   }
 }
