@@ -10629,6 +10629,29 @@
       "scrapeado_en": "2026-05-07T16:03:35.203732+00:00"
     },
     {
+      "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2025-07-09",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "titulo": "Que reforma el artículo 26 de la Ley del Sistema Nacional de Información Estadística y Geográfica.",
+      "presentador": "Dip. Ernesto Núñez Aguilar (PVEM)",
+      "aspectos": "La iniciativa tiene por objeto determinar que el Subsistema Nacional de Información Geográfica y del Medio Ambiente, en su componente geográfico, generar los siguientes datos: zonificación de riesgos naturales y antropogénicos; calidad del aire y del agua; áreas arqueológicas y de patrimonio cultural; mapas de vulnerabilidad ante fenómenos meteorológicos y geológicos; registros históricos de variabilidad climática y eventos extremos; así como modelos geoespaciales de impacto ambiental y desarrollo territorial.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Gobernación y Población  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 09 de julio de 2025, por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 09/07/2025",
+      "asunto_id": "4911947",
+      "seguimiento": "4913385",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4913385&Asunto=4911947",
+      "categorias": [
+        "agua",
+        "calidad_aire"
+      ],
+      "categoria": "agua",
+      "categoria_nombre": "Agua",
+      "id": "0c396efaada4",
+      "scrapeado_en": "2026-06-08T22:12:04.281860+00:00"
+    },
+    {
       "camara_origen": "Cámara de Senadores",
       "camara_revisora": "Cámara de Diputados",
       "fecha_presentacion": "2025-07-09",
@@ -10852,28 +10875,6 @@
       "categoria_nombre": "Biodiversidad",
       "id": "0ab5482b0077",
       "scrapeado_en": "2026-04-29T21:19:22.887367+00:00"
-    },
-    {
-      "camara_origen": "Comisión Permanente",
-      "fecha_presentacion": "2025-07-09",
-      "legislatura": "LXVI",
-      "periodo": "2do Receso",
-      "presentador": "Comisión Permanente: Segunda Comisión de Trabajo: Asuntos Sociales (01/05/2025-31/08/2025)",
-      "aspectos": "La comisión aprueba exhortar: 1) a la Secretaría de Medio Ambiente y Recursos Naturales (Semarnat), a la Secretaría de Agricultura y Desarrollo Rural (Sader), a la Comisión Nacional Forestal (Conafor), a la Comisión Nacional de Áreas Naturales Protegidas (Conanp); y, a la Comisión Nacional del Agua (Conagua) para que, en el ámbito de sus respectivas competencias, continúen promoviendo una estrategia integral agroecológica y de saneamiento coordinada con las autoridades estatales y municipales que, entre otros aspectos, contemple acciones de reforestación, de rehabilitación de las plantas de tratamiento de aguas residuales y otras acciones que reduzcan la cantidad de nitrógeno y fósforo que van a los cuerpos de agua en la Cuenca Río Grande de Comitán-Lagos de Montebello; 2) al Congreso de Chiapas a considerar la viabilidad de reformar el Decreto por el que se creó la Junta Intermunicipal para la Cuenca del Río Grande Laguna de Montebello (LA JILAM) con las adecuaciones jurídicas pertinentes para que entre en operación lo más pronto posible, con el fin de que dichos municipios inviertan presupuesto para el mantenimiento de la cuenca Río Grande de Comitán-Lagos de Montebello; y, 3) a la Comisión Nacional del Agua (Conagua) y al ayuntamiento de Comitán de Domínguez, Chiapas, a que se promuevan acciones encaminadas a la rehabilitación de la Planta de Tratamiento de Aguas Residuales de Comitán de Domínguez, Chiapas; así como, al ayuntamiento de La Independencia, Chiapas; para la adecuada y correcta operación de las Plantas de Tratamiento de Aguas Residuales existentes en las localidades ubicadas en la Cuenca del Río Grande de Comitán-Lagos de Montebello.",
-      "ultimo_tramite": "Comuníquese: Ver todos los trámites",
-      "ultimo_estatus": "Resuelto / Aprobado Aprobado 09/07/2025",
-      "asunto_id": "4911899",
-      "seguimiento": "4912380",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4912380&Asunto=4911899",
-      "categorias": [
-        "agua",
-        "biodiversidad",
-        "deforestacion"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "f308ec1e82f2",
-      "scrapeado_en": "2026-04-29T21:19:24.162031+00:00"
     }
   ],
   "_meta": {
@@ -10881,6 +10882,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 97,
-    "actualizado": "2026-06-08T20:18:02Z"
+    "actualizado": "2026-06-08T22:13:30Z"
   }
 }
