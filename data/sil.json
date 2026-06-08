@@ -4114,6 +4114,28 @@
       "scrapeado_en": "2026-04-29T21:17:53.559355+00:00"
     },
     {
+      "camara_origen": "Cámara de Senadores",
+      "camara_revisora": "Cámara de Diputados",
+      "fecha_presentacion": "2026-03-10",
+      "legislatura": "LXVI",
+      "periodo": "2do Ordinario",
+      "titulo": "Que adiciona una fracción XXI al artículo 4 de la Ley General de Movilidad y Seguridad Vial.",
+      "presentador": "Sen. Jorge Carlos Ramírez Marín (PVEM) Sen. Maki Esther Ortiz Domínguez (PVEM) Sen. Virgilio Mendoza Amezcua (PVEM) Sen. Luis Armando Melgar Bravo (PVEM) Sen. Virginia Marie Magaña Fonseca (PVEM) Sen. Gilberto Hernández Villafuerte (PVEM) Sen. Juanita Guerra Mena (PVEM) Sen. Ruth Miriam González Silva (PVEM) Sen. Waldo Fernández González (PVEM) Sen. María del Rocío Corona Nakamura (PVEM) Sen. Jasmine María Bugarín Rodríguez (PVEM) Sen. Karen Castrejón Trujillo (PVEM) Sen. Manuel Velasco Coello (PVEM)",
+      "aspectos": "La iniciativa tiene por objeto garantizar que los sistemas de movilidad implementen tecnologías emergentes, mecanismos, prácticas, energías renovables o cualquier herramienta, diseño o instrumento que, mediante el uso de los avances científicos y tecnológicos, optimicen la movilidad, fortalezcan la seguridad vial e impulsen la transición a la movilidad igualitaria e inclusiva, sostenible y segura. Para ello propone que las autoridades de los tres niveles de gobierno en el ámbito de sus competencias, implementen dentro de sus políticas de movilidad el principio de innovación vial, para garantizar que los sistemas de movilidad hagan uso y aprovechamiento de los avances científicos y tecnológicos, a fin de mejorar la movilidad y la seguridad vial.",
+      "ultimo_tramite": "Se turnó a comisiones unidas: Estudios Legislativos, Primera de Cámara de Senadores. Dictamina. El turno se publicó en Gaceta del Senado del 10 de marzo de 2026. Ver todos los trámites",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 10/03/2026",
+      "asunto_id": "5032020",
+      "seguimiento": "5080631",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5080631&Asunto=5032020",
+      "categorias": [
+        "energia_renovable"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "682d9cbd93dd",
+      "scrapeado_en": "2026-06-08T17:21:08.565965+00:00"
+    },
+    {
       "camara_origen": "Cámara de Diputados",
       "camara_revisora": "Cámara de Senadores",
       "fecha_presentacion": "2026-03-10",
@@ -10852,36 +10874,13 @@
       "categoria_nombre": "Agua",
       "id": "0c396efaada4",
       "scrapeado_en": "2026-04-29T21:20:47.117730+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Senadores",
-      "camara_revisora": "Cámara de Diputados",
-      "fecha_presentacion": "2025-07-09",
-      "legislatura": "LXVI",
-      "periodo": "2do Receso",
-      "titulo": "Que reforma y adiciona los artículos 25 y 27 de la Constitución Política de los Estados Unidos Mexicanos.",
-      "presentador": "Sen. Juan Antonio Martín del Campo Martín del Campo (PAN)",
-      "aspectos": "La iniciativa tiene por objeto legislar en materia de producción y desarrollo de energías limpias y renovables. Entre lo propuesto destaca que, en la planeación y el control del sistema eléctrico nacional, y del servicio público de transmisión y distribución de energía eléctrica, así como de la exploración y extracción de petróleo y demás hidrocarburos, la Nación llevará a cabo dichas actividades -priorizando el desarrollo y producción de energías limpias y renovables- en términos de lo dispuesto por los párrafos sexto y séptimo del artículo 27 de esta Constitución.",
-      "ultimo_tramite": "Se turnó a comisiones unidas: Estudios Legislativos, Segunda de Cámara de Senadores. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 09 de julio de 2025, por acuerdo de la Mesa Directiva. Ver todos los trámites",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 09/07/2025",
-      "asunto_id": "4911678",
-      "seguimiento": "4913389",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4913389&Asunto=4911678",
-      "categorias": [
-        "energia_renovable",
-        "hidrocarburos"
-      ],
-      "categoria": "energia_renovable",
-      "categoria_nombre": "Energía Renovable",
-      "id": "30abd09ee81c",
-      "scrapeado_en": "2026-04-27T21:06:56.207577+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 108,
-    "actualizado": "2026-06-05T22:00:12Z"
+    "nuevas": 97,
+    "actualizado": "2026-06-08T17:23:41Z"
   }
 }
