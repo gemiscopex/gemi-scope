@@ -817,6 +817,21 @@
     "scrapeado_en": "2026-06-05T16:26:27.654968+00:00"
   },
   {
+    "id": "dd205131260b",
+    "titulo": "¿Cuáles son los mayores problemas ambientales?",
+    "url": "https://www.greenpeace.org/mexico/blog/63294/cuales-son-los-problemas-ambientales-de-la-actualidad/",
+    "fuente": "Greenpeace MX",
+    "resumen": "La actividad humana está llevando al planeta a un punto crítico.¿Qué podemos hacer como individuos para detener el cambio climático?",
+    "fecha_publicacion": "2026-06-05T13:00:00Z",
+    "categoria": "cambio_climatico",
+    "categoria_nombre": "Cambio Climático",
+    "categorias": [
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-08T20:12:03.505234+00:00"
+  },
+  {
     "id": "d81e31225a6c",
     "titulo": "¿Cuáles son los mayores problemas ambientales de la actualidad?",
     "url": "https://www.greenpeace.org/mexico/blog/63294/cuales-son-los-problemas-ambientales-de-la-actualidad/",
@@ -1222,6 +1237,21 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-06-04T20:03:21.606050+00:00"
+  },
+  {
+    "id": "80c098d8482c",
+    "titulo": "¡Alerta! Los bebés están comiendo microplásticos.",
+    "url": "https://www.greenpeace.org/mexico/blog/63254/bebes-estan-comiendo-microplasticos/",
+    "fuente": "Greenpeace MX",
+    "resumen": "En el nuevo informe de Greenpeace Internacional se decubrió que los bebés están ingiriendo microplásticos en papillas envasadas de Nestle y Danone .",
+    "fecha_publicacion": "2026-06-04T17:50:23Z",
+    "categoria": "residuos",
+    "categoria_nombre": "Residuos",
+    "categorias": [
+      "residuos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-08T20:12:03.505766+00:00"
   },
   {
     "id": "19e7fb84d9cb",
@@ -9029,36 +9059,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-05-12T16:14:43.305322+00:00"
-  },
-  {
-    "id": "2cf78543e54e",
-    "titulo": "Hallan huachitúnel en instalaciones de Pemex unidas a una casa en NL",
-    "url": "https://www.jornada.com.mx/2026/05/12/politica/006n1pol?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "La Fiscalía General de la República (FGR) informó ayer el aseguramiento de un túnel clandestino utilizado para el robo de combustible en instalaciones de Pemex en Nuevo León, el cual conectaba con un domicilio contiguo.",
-    "fecha_publicacion": "2026-05-12T08:41:32Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": "Nuevo Leon",
-    "scrapeado_en": "2026-05-12T16:14:43.318072+00:00"
-  },
-  {
-    "id": "b2441594605c",
-    "titulo": "Basura, causa de inundaciones",
-    "url": "https://www.jornada.com.mx/2026/05/12/capital/028n3cap?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Debido a la acumulación de basura y las intensas precipitaciones, los niveles de la presa Becerra, en la alcaldía Álvaro Obregón, superaron su límite y anegaron un paso peatonal y vehicular sin llegar a desbordarse, informó la alcaldía.",
-    "fecha_publicacion": "2026-05-12T08:41:32Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua",
-      "residuos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-12T16:14:43.323900+00:00"
   }
 ]

@@ -10629,6 +10629,29 @@
       "scrapeado_en": "2026-05-07T16:03:35.203732+00:00"
     },
     {
+      "camara_origen": "Cámara de Senadores",
+      "camara_revisora": "Cámara de Diputados",
+      "fecha_presentacion": "2025-07-09",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "titulo": "Que reforma y adiciona los artículos 25 y 27 de la Constitución Política de los Estados Unidos Mexicanos.",
+      "presentador": "Sen. Juan Antonio Martín del Campo Martín del Campo (PAN)",
+      "aspectos": "La iniciativa tiene por objeto legislar en materia de producción y desarrollo de energías limpias y renovables. Entre lo propuesto destaca que, en la planeación y el control del sistema eléctrico nacional, y del servicio público de transmisión y distribución de energía eléctrica, así como de la exploración y extracción de petróleo y demás hidrocarburos, la Nación llevará a cabo dichas actividades -priorizando el desarrollo y producción de energías limpias y renovables- en términos de lo dispuesto por los párrafos sexto y séptimo del artículo 27 de esta Constitución.",
+      "ultimo_tramite": "Se turnó a comisiones unidas: Estudios Legislativos, Segunda de Cámara de Senadores. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 09 de julio de 2025, por acuerdo de la Mesa Directiva. Ver todos los trámites",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 09/07/2025",
+      "asunto_id": "4911678",
+      "seguimiento": "4913389",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4913389&Asunto=4911678",
+      "categorias": [
+        "energia_renovable",
+        "hidrocarburos"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "30abd09ee81c",
+      "scrapeado_en": "2026-06-08T20:15:06.162782+00:00"
+    },
+    {
       "camara_origen": "Comisión Permanente",
       "fecha_presentacion": "2025-07-09",
       "legislatura": "LXVI",
@@ -10851,29 +10874,6 @@
       "categoria_nombre": "Agua",
       "id": "f308ec1e82f2",
       "scrapeado_en": "2026-04-29T21:19:24.162031+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2025-07-09",
-      "legislatura": "LXVI",
-      "periodo": "2do Receso",
-      "titulo": "Que reforma el artículo 26 de la Ley del Sistema Nacional de Información Estadística y Geográfica.",
-      "presentador": "Dip. Ernesto Núñez Aguilar (PVEM)",
-      "aspectos": "La iniciativa tiene por objeto determinar que el Subsistema Nacional de Información Geográfica y del Medio Ambiente, en su componente geográfico, generar los siguientes datos: zonificación de riesgos naturales y antropogénicos; calidad del aire y del agua; áreas arqueológicas y de patrimonio cultural; mapas de vulnerabilidad ante fenómenos meteorológicos y geológicos; registros históricos de variabilidad climática y eventos extremos; así como modelos geoespaciales de impacto ambiental y desarrollo territorial.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Gobernación y Población  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 09 de julio de 2025, por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 09/07/2025",
-      "asunto_id": "4911947",
-      "seguimiento": "4913385",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4913385&Asunto=4911947",
-      "categorias": [
-        "agua",
-        "calidad_aire"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "0c396efaada4",
-      "scrapeado_en": "2026-04-29T21:20:47.117730+00:00"
     }
   ],
   "_meta": {
@@ -10881,6 +10881,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 97,
-    "actualizado": "2026-06-08T17:23:41Z"
+    "actualizado": "2026-06-08T20:18:02Z"
   }
 }
