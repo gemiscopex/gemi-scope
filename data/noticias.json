@@ -1,5 +1,50 @@
 [
   {
+    "id": "66c8c6525203",
+    "titulo": "Y en estados bloquean  aeropuertos, bancos, plantas de Pemex",
+    "url": "https://www.reforma.com/y-en-estados-bloquean-aeropuertos-bancos-plantas-de-pemex/ar3219253",
+    "fuente": "Reforma",
+    "resumen": "CNTE bloquea los accesos a los aeropuertos de Oaxaca y Tijuana, mientras que en Guerrero obstaculiza bancos, y en Chiapas terminal de Pemex.",
+    "fecha_publicacion": "2026-06-09T19:43:55Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": "Baja California",
+    "scrapeado_en": "2026-06-09T20:05:06.853729+00:00"
+  },
+  {
+    "id": "4bcbe472f759",
+    "titulo": "Argentina: sanción económica récord por la deforestación de un bosque nativo del tamaño de media ciudad de Buenos Aires",
+    "url": "https://es.mongabay.com/short-article/2026/06/argentina-sancion-economica-record-deforestacion-bosque-nativo/",
+    "fuente": "Mongabay Latam",
+    "resumen": "La Justicia de la provincia de Salta, en el noroeste de Argentina, impuso un embargo preventivo de 21 805 millones de pesos —equivalente a unos 15 millones de dólares— a dos empresarios señalados por la fiscalía como responsables del presunto desmonte ilegal de más de 11 000 hectáreas de bosque nativo cerca de la localidad de […]",
+    "fecha_publicacion": "2026-06-09T19:39:09Z",
+    "categoria": "deforestacion",
+    "categoria_nombre": "Forestal",
+    "categorias": [
+      "deforestacion"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-09T20:05:06.759539+00:00"
+  },
+  {
+    "id": "d5f68df423c2",
+    "titulo": "Reportan daños menores  por 'Boris' en Guerrero y Oaxaca",
+    "url": "https://www.reforma.com/reportan-danos-menores-por-boris-en-guerrero-y-oaxaca/ar3219187",
+    "fuente": "Reforma",
+    "resumen": "Autoridades informaron que 'Boris' dejó daños menores en 7 municipios de Guerrero y 6 de Oaxaca, como inundaciones y caída de bardas.",
+    "fecha_publicacion": "2026-06-09T18:06:52Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Guerrero",
+    "scrapeado_en": "2026-06-09T20:05:06.855219+00:00"
+  },
+  {
     "id": "3a4b6a76778e",
     "titulo": "Mujeres Tortuga: la iniciativa del pueblo indígena siekopai para recuperar las charapas del río Aguarico",
     "url": "https://es.mongabay.com/2026/06/mujeres-tortuga-pueblo-indigena-siekopai-recuperar-charapas-ecuador/",
@@ -9014,51 +9059,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-05-13T16:14:19.969311+00:00"
-  },
-  {
-    "id": "9e34015050d3",
-    "titulo": "Refinería de Salina Cruz registra incendio en medio de retrasos operativos de Pemex",
-    "url": "https://expansion.mx/empresas/2026/05/12/explosion-refineria-salina-cruz-lista-accidentes-pemex",
-    "fuente": "Expansion",
-    "resumen": "Seis colaboradores resultaron lesionados; tres de Pemex y tres más de una empresa contratista.",
-    "fecha_publicacion": "2026-05-12T21:25:28Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-12T21:46:09.744183+00:00"
-  },
-  {
-    "id": "83c272ab2761",
-    "titulo": "Con la mira en México y Venezuela: Petrobras busca opciones para aumentar sus reservas de petróleo",
-    "url": "https://www.elfinanciero.com.mx/mundo/2026/05/12/con-la-mira-en-mexico-y-venezuela-petrobras-busca-opciones-para-aumentar-sus-reservas-de-petroleo/",
-    "fuente": "El Financiero",
-    "resumen": "Petrobras está negociando asociaciones para operar en México y estudia inversiones en Venezuela.",
-    "fecha_publicacion": "2026-05-12T21:04:04Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos",
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-12T21:46:09.770615+00:00"
-  },
-  {
-    "id": "85b3f9b67019",
-    "titulo": "(VIDEO) Así rescataron policías a personas atrapadas por lluvias torrenciales en CDMX",
-    "url": "https://www.elfinanciero.com.mx/cdmx/2026/05/12/video-asi-rescataron-policias-a-personas-atrapadas-por-lluvias-torrenciales-en-cdmx/",
-    "fuente": "El Financiero",
-    "resumen": "Las fuertes lluvias colapsaron vialidades en la Ciudad de México, generaron rescates de emergencia y reavivaron críticas por drenaje y basura.",
-    "fecha_publicacion": "2026-05-12T19:07:42Z",
-    "categoria": "residuos",
-    "categoria_nombre": "Residuos",
-    "categorias": [
-      "residuos"
-    ],
-    "estado": "Ciudad de Mexico",
-    "scrapeado_en": "2026-05-12T19:49:27.819505+00:00"
   }
 ]
