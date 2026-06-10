@@ -1,5 +1,36 @@
 [
   {
+    "id": "50ac839999f5",
+    "titulo": "Aumenta el precio del petróleo tras amenazas de Trump a Irán",
+    "url": "https://www.reforma.com/aumenta-el-precio-del-petroleo-tras-amenazas-de-trump-a-iran/ar3220013",
+    "fuente": "Reforma",
+    "resumen": "El barril del Brent subió 1.80% hasta los 93.10 dólares, mientras que su equivalente estadounidense, el WTI, aumentó 2.08% a 90.03 dólares.",
+    "fecha_publicacion": "2026-06-10T20:16:04Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-10T20:27:45.219061+00:00"
+  },
+  {
+    "id": "e7b98bd7358c",
+    "titulo": "Química logra patente que optimiza la recuperación de hidrocarburos",
+    "url": "https://www.gaceta.unam.mx/quimica-logra-patente-que-optimiza-la-recuperacion-de-hidrocarburos/",
+    "fuente": "Gaceta UNAM",
+    "resumen": "El nanocompuesto en forma de gel permite que sus partículas de hinchamiento retardado controlen el agua en yacimientos, lo que se traduce en una mayor producción de petróleo: Luis Rubén Cruces Lira, miembro del equipo de investigación The post Química logra patente que optimiza la recuperación de hidrocarburos appeared first on Gaceta UNAM .",
+    "fecha_publicacion": "2026-06-10T18:54:43Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua",
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-10T20:27:45.270128+00:00"
+  },
+  {
     "id": "d914071be3e0",
     "titulo": "Tormenta tropical ‘Cristina’ se aproxima a México: ¿Qué estados esperan lluvias intensas HOY 10 de junio?",
     "url": "https://www.elfinanciero.com.mx/estados/2026/06/10/tormenta-tropical-cristina-se-aproxima-a-mexico-que-estados-esperan-lluvias-intensas-hoy-10-de-junio/",
@@ -9021,35 +9052,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-05-14T16:06:09.240131+00:00"
-  },
-  {
-    "id": "cefb812dc915",
-    "titulo": "¿Por qué los aguaceros son una señal de alarma de sequías?",
-    "url": "https://www.elfinanciero.com.mx/ciencia/2026/05/13/por-que-los-aguaceros-son-una-senal-de-alarma-de-sequias/",
-    "fuente": "El Financiero",
-    "resumen": "Investigadores señalan que las tormentas intensas han ido en aumento en años recientes, y dichas lluvias causan paradójicamente que haya menos agua disponible.",
-    "fecha_publicacion": "2026-05-13T20:54:00Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-13T21:50:06.333348+00:00"
-  },
-  {
-    "id": "43f953568403",
-    "titulo": "Venecia a la mexicana: Megafuga de agua convierte calles de Iztapalapa en canales",
-    "url": "https://www.elfinanciero.com.mx/cdmx/2026/05/13/fuga-de-agua-en-iztapalapa-calles-y-colonias-afectadas-hoy-13-de-mayo/",
-    "fuente": "El Financiero",
-    "resumen": "Fuga de agua en Iztapalapa provoca inundaciones, caos vial y movilización de autoridades en avenida Tláhuac.",
-    "fecha_publicacion": "2026-05-13T20:49:45Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-13T21:50:06.334285+00:00"
   }
 ]

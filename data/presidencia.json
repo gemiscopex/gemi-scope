@@ -1,6 +1,19 @@
 {
   "articulos": [
     {
+      "id": "e92cd3df6c",
+      "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 10 de junio de 2026",
+      "fecha": "2026-06-10",
+      "url": "https://www.gob.mx/presidencia/es/articulos/version-estenografica-conferencia-de-prensa-de-la-presidenta-claudia-sheinbaum-pardo-del-10-de-junio-de-2026",
+      "fuente": "Presidencia de México — Estenográfica",
+      "categorias": [
+        "mineria"
+      ],
+      "fragmentos": [
+        "Hay sectores que requieren más tiempo. Por ejemplo, la minería requiere mucho más tiempo de análisis, porque los impactos ambientales pueden ser muy graves. Esos sectores por lo pronto no entran a esta ventanilla; prácticamente minería es la única que queda afuera."
+      ]
+    },
+    {
       "id": "7c5bbdcf6d",
       "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 28 de mayo de 2026",
       "fecha": "2026-05-28",
@@ -8518,8 +8531,8 @@
   ],
   "_meta": {
     "fuente": "Presidencia de México — Estenográficas mañanera",
-    "total": 432,
-    "nuevos_hoy": 0,
-    "actualizado": "2026-06-10T16:55:39Z"
+    "total": 433,
+    "nuevos_hoy": 1,
+    "actualizado": "2026-06-10T20:29:17Z"
   }
 }
