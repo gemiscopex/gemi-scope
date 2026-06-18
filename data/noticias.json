@@ -1,5 +1,50 @@
 [
   {
+    "id": "4d84b359a3ff",
+    "titulo": "🏟️ El otro partido que se está jugando en el Mundial.",
+    "url": "https://www.greenpeace.org/mexico/blog/63468/el-otro-partido-que-se-esta-jugando-en-el-mundial/",
+    "fuente": "Greenpeace MX",
+    "resumen": "El fútbol se juega en colectivo, y para hacer frente al cambio climático, la lógica es similar. Entonces, ¿te unes al equipo para seguir teniendo Mundiales y posiblemente una 4ta sede para México?",
+    "fecha_publicacion": "2026-06-18T21:04:10Z",
+    "categoria": "cambio_climatico",
+    "categoria_nombre": "Cambio Climático",
+    "categorias": [
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-18T22:28:14.889281+00:00"
+  },
+  {
+    "id": "22010d3a73fc",
+    "titulo": "Tono ‘serio’ de la Fed sobre subir la tasa de interés afecta al peso: ¿Cuánto perdió ante el peso HOY?",
+    "url": "https://www.elfinanciero.com.mx/mercados/2026/06/18/peso-dolar-precio-hoy-18-de-junio-de-2026/",
+    "fuente": "El Financiero",
+    "resumen": "Kevin Warsh, nuevo presidente de la Fed, remarcó en conferencia que la Reserva Federal no 'tolerará' una inflación elevada, lo que aumentó las apuestas sobre un aumento a la tasa de interés.",
+    "fecha_publicacion": "2026-06-18T20:33:55Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-18T22:28:14.898819+00:00"
+  },
+  {
+    "id": "ec1435388bd9",
+    "titulo": "Cumple 3 días cerco de CNTE a Terminal de Pemex en Oaxaca",
+    "url": "https://www.reforma.com/cumple-3-dias-cerco-de-cnte-a-terminal-de-pemex-en-oaxaca/ar3225144",
+    "fuente": "Reforma",
+    "resumen": "Cerco de CNTE en Terminal de Almacenamiento de Pemex en Santa María El Tule, Oaxaca, cumple 3 días, mientras gasolineros acusan desabasto.",
+    "fecha_publicacion": "2026-06-18T20:21:27Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": "Oaxaca",
+    "scrapeado_en": "2026-06-18T22:28:14.885898+00:00"
+  },
+  {
     "id": "ccd54fd9c8c5",
     "titulo": "Lluvias ‘refrescan’ al Sistema Cutzamala: ¿Cómo está el nivel de sus presas HOY?",
     "url": "https://www.elfinanciero.com.mx/cdmx/2026/06/18/lluvias-refrescan-al-sistema-cutzamala-como-esta-el-nivel-de-sus-presas-hoy/",
@@ -8999,50 +9044,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-05-21T16:35:21.895124+00:00"
-  },
-  {
-    "id": "3aa3a5dc0735",
-    "titulo": "Moody’s baja nota crediticia a México por debilidad fiscal",
-    "url": "https://www.elfinanciero.com.mx/economia/2026/05/21/moodys-baja-nota-crediticia-a-mexico-por-debilidad-fiscal/",
-    "fuente": "El Financiero",
-    "resumen": "Gasto rígido, bajos ingresos y apoyos a Pemex impiden contener la deuda, de acuerdo con Moody's Ratings.",
-    "fecha_publicacion": "2026-05-21T08:44:49Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-21T16:35:21.895633+00:00"
-  },
-  {
-    "id": "800d94e7590d",
-    "titulo": "(VIDEOS) Extraña ‘cola de agua’ sorprende al Valle de Toluca; lluvias y granizada derriban techos y árboles",
-    "url": "https://www.elfinanciero.com.mx/edomex/2026/05/20/videos-extrana-cola-de-agua-sorprende-al-valle-de-toluca-lluvias-y-granizada-derriban-techos-y-arboles/",
-    "fuente": "El Financiero",
-    "resumen": "Una 'cola de agua' sorprendió al municipio de Mexicaltzingo, en el Estado de México, al tocar tierra en una zona de siembra. El fenómeno provocó lluvias intensas y una granizada.",
-    "fecha_publicacion": "2026-05-21T03:43:30Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Mexico",
-    "scrapeado_en": "2026-05-21T16:35:21.901974+00:00"
-  },
-  {
-    "id": "5cb5b970ced3",
-    "titulo": "Degradan la nota de México por culpa de Pemex: ¿Por qué Moody’s baja calificaciones a los países?",
-    "url": "https://www.elfinanciero.com.mx/economia/2026/05/20/por-que-moodys-ratings-baja-las-calificaciones-crediticias-a-los-paises-y-puso-a-mexico-en-baa3/",
-    "fuente": "El Financiero",
-    "resumen": "¿Cómo funcionan las calificaciones crediticias de Moody's? Esta es la razón por la que redujeron la de México.",
-    "fecha_publicacion": "2026-05-21T01:59:25Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-21T16:35:21.904905+00:00"
   }
 ]
