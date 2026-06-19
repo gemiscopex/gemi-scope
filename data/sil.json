@@ -10833,6 +10833,29 @@
       "fecha_presentacion": "2025-09-17",
       "legislatura": "LXVI",
       "periodo": "1er Ordinario",
+      "presentador": "Dip. Ma. Lorena García Jimeno Alcocer (PAN)",
+      "aspectos": "La legisladora propone exhortar a la Secretaría de Medio Ambiente y Recursos Naturales (Semarnat) para que, en coordinación con la Secretaría de Energía (Sener) y la Secretaría de Infraestructura Comunicaciones y Transportes (SICT), implementen estrategias integrales que aborden prácticas sostenibles para combatir la contaminación ambiental, que contemplen la promoción de un mayor uso de fuentes de energía renovable y tecnologías limpias, el fomento al uso del transporte público, el monitoreo constante de la calidad del aire y la implementación de políticas de reciclaje, a fin del cuidado de la salud pública.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 17 de septiembre de 2025 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Desechado Desechado 30/01/2026",
+      "asunto_id": "4926798",
+      "seguimiento": "4929603",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4929603&Asunto=4926798",
+      "categorias": [
+        "energia_renovable",
+        "biodiversidad",
+        "calidad_aire",
+        "residuos"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "de147385f3d8",
+      "scrapeado_en": "2026-06-19T21:43:44.491739+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
+      "fecha_presentacion": "2025-09-17",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
       "presentador": "Dip. Antonio Lorenzo Castro Villarreal (Morena)",
       "aspectos": "El legislador propone exhortar al gobierno del estado de Coahuila de Zaragoza y a los gobiernos municipales de Saltillo, Arteaga y Ramos Arizpe para que: 1) refuercen la operación y cobertura del sistema de monitoreo atmosférico en la Zona Metropolitana de Saltillo, para garantizar que las estaciones normadas funcionen sin interrupciones y que los datos se reporten de manera pública y continua en el Sistema Nacional de Información de la Calidad del Aire y en los tableros municipales; 2) establezcan mecanismos de transparencia obligatoria para las industrias de la región, con reportes periódicos sobre tecnologías de control de emisiones, mantenimiento de filtros y registros de descargas a la atmósfera; 3) implementen un programa de vigilancia ambiental con participación ciudadana, que incluya a colectivos, universidades y observatorios independientes, para verificar de manera abierta las emisiones y planes de mitigación de las principales fuentes contaminantes; y, 4) refuercen la prevención y sanción de quemas ilegales de residuos, en especial de llantas, que generan contaminantes altamente dañinos y episodios críticos de mala calidad del aire.",
       "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 17 de septiembre de 2025 por acuerdo de la Mesa Directiva.",
@@ -10849,28 +10872,6 @@
       "categoria_nombre": "Calidad del Aire",
       "id": "c4db6713ac27",
       "scrapeado_en": "2026-06-19T19:52:23.109822+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "fecha_presentacion": "2025-09-17",
-      "legislatura": "LXVI",
-      "periodo": "1er Ordinario",
-      "presentador": "Dip. Antonio Lorenzo Castro Villarreal (Morena)",
-      "aspectos": "El legislador propone exhortar al Gobierno de Coahuila de Zaragoza y a los gobiernos municipales de Saltillo, Arteaga y Ramos Arizpe, todos de Coahuila de Zaragoza para que: 1) refuercen la operación y cobertura del sistema de monitoreo atmosférico en la Zona Metropolitana de Saltillo, para garantizar que las estaciones normadas funcionen sin interrupciones y que los datos se reporten de manera pública y continua en el Sistema Nacional de Información de la Calidad del Aire y en los tableros municipales; 2) establezcan mecanismos de transparencia obligatoria para las industrias de la región, con reportes periódicos sobre tecnologías de control de emisiones, mantenimiento de filtros y registros de descargas a la atmósfera; 3) implementen un programa de vigilancia ambiental con participación ciudadana, que incluya a colectivos, universidades y observatorios independientes, para verificar de manera abierta las emisiones y planes de mitigación de las principales fuentes contaminantes; y, 4) refuercen la prevención y sanción de quemas ilegales de residuos, en especial de llantas, que generan contaminantes altamente dañinos y episodios críticos de mala calidad del aire.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 17 de septiembre de 2025 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Desechado Desechado 30/01/2026",
-      "asunto_id": "4926786",
-      "seguimiento": "4929657",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4929657&Asunto=4926786",
-      "categorias": [
-        "calidad_aire",
-        "residuos",
-        "cambio_climatico"
-      ],
-      "categoria": "calidad_aire",
-      "categoria_nombre": "Calidad del Aire",
-      "id": "f667525525eb",
-      "scrapeado_en": "2026-06-19T16:32:57.839073+00:00"
     }
   ],
   "_meta": {
@@ -10878,6 +10879,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 129,
-    "actualizado": "2026-06-19T19:54:08Z"
+    "actualizado": "2026-06-19T21:47:20Z"
   }
 }
