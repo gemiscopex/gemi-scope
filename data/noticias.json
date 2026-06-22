@@ -1,5 +1,36 @@
 [
   {
+    "id": "c958e8fdf24b",
+    "titulo": "La industria eólica alista inversiones históricas por 5,000 millones de dólares para desarrollar 14 parques hacia 2029",
+    "url": "https://expansion.mx/empresas/2026/06/22/la-industria-eolica-alista-inversiones-historicas-por-5-000-millones-de-dolares-para-desarrollar-14-parques-hacia-2029",
+    "fuente": "Expansion",
+    "resumen": "La Asociación Mexicana de Energía Eólica identifica una ventana de crecimiento impulsada por nuevas convocatorias gubernamentales, pero reconoce retos que podrían retrasar parte de los proyectos.",
+    "fecha_publicacion": "2026-06-22T22:13:25Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-22T22:19:39.250279+00:00"
+  },
+  {
+    "id": "23a719d14513",
+    "titulo": "Ola de calor reduce los niveles del río Rin: ¿Por qué amenaza el suministro de combustible en Europa?",
+    "url": "https://www.elfinanciero.com.mx/mundo/2026/06/22/ola-de-calor-reduce-los-niveles-del-rio-rin-por-que-amenaza-el-suministro-de-combustible-en-europa/",
+    "fuente": "El Financiero",
+    "resumen": "El Rin es una de las arterias comerciales más importantes de Europa, por donde se transportan también productos petrolíferos.",
+    "fecha_publicacion": "2026-06-22T21:57:34Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua",
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-22T22:19:39.274138+00:00"
+  },
+  {
     "id": "effc98a866a1",
     "titulo": "¿Qué sabemos del envío de petróleo de México a Cuba? Sheinbaum dice que serán empresas privadas",
     "url": "https://www.elfinanciero.com.mx/mundo/2026/06/22/que-sabemos-del-envio-de-petroleo-de-mexico-a-cuba-sheinbaum-dice-que-seran-empresas-privadas/",
@@ -9013,35 +9044,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-05-25T16:15:36.550038+00:00"
-  },
-  {
-    "id": "0573b15e0ad3",
-    "titulo": "¿Cuál es el costo socioambiental de lanzamientos espaciales privados?",
-    "url": "https://www.greenpeace.org/mexico/informacion-prensa/63179/costo-ambiental-y-social-lanzamientos-espaciales-privados/",
-    "fuente": "Greenpeace MX",
-    "resumen": "Los lanzamientos de SpaceX en la zona fronteriza de Tamaulipas han generado preocupación entre habitantes y activistas.",
-    "fecha_publicacion": "2026-05-23T02:28:25Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": "Tamaulipas",
-    "scrapeado_en": "2026-06-01T19:16:44.754694+00:00"
-  },
-  {
-    "id": "56ae43286358",
-    "titulo": "¿Cuál es el costo ambiental y social de los lanzamientos espaciales privados?",
-    "url": "https://www.greenpeace.org/mexico/informacion-prensa/63179/costo-ambiental-y-social-lanzamientos-espaciales-privados/",
-    "fuente": "Greenpeace MX",
-    "resumen": "Activistas de Greenpeace México llegaron a Playa Bagdad, en Matamoros, Tamaulipas para presenciar el lanzamiento del Starship V3 de SpaceX. Sigue leyendo para saber más.",
-    "fecha_publicacion": "2026-05-23T02:28:25Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": "Tamaulipas",
-    "scrapeado_en": "2026-05-25T16:15:36.647399+00:00"
   }
 ]
