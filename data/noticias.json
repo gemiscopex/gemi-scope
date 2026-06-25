@@ -1,5 +1,20 @@
 [
   {
+    "id": "10b701852f4f",
+    "titulo": "Conagua alerta por potencial ciclón en Baja California: ¿Cuándo se formará y en dónde se ubica?",
+    "url": "https://www.elfinanciero.com.mx/nacional/2026/06/25/conagua-alerta-por-potencial-ciclon-en-baja-california-cuando-se-formara-y-en-donde-se-ubica/",
+    "fuente": "El Financiero",
+    "resumen": "La Conagua prevé la formación de entre 18 y 21 sistemas tropicales en el océano Pacífico y en el Atlántico, entre 11 y 15 fenómenos, con la posibilidad de que uno o dos evolucionen a huracanes de gran intensidad.",
+    "fecha_publicacion": "2026-06-25T19:27:23Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Baja California",
+    "scrapeado_en": "2026-06-25T19:57:43.203400+00:00"
+  },
+  {
     "id": "300fd4b114ca",
     "titulo": "Limpian basura en Reforma tras festejo por triunfo de México",
     "url": "https://www.reforma.com/limpian-basura-en-reforma-tras-festejo-por-triunfo-de-mexico/ar3229081",
@@ -43,6 +58,21 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-06-25T16:16:13.836078+00:00"
+  },
+  {
+    "id": "c3d57b9ea3a7",
+    "titulo": "Afecta CFE a 20 estados",
+    "url": "https://www.reforma.com/afecta-cfe-a-20-estados/ar3228876",
+    "fuente": "Reforma",
+    "resumen": "Una ola de apagones y variaciones de voltaje por parte de la CFE se han registrado en al menos 20 entidades del País en los últimos 10 días.",
+    "fecha_publicacion": "2026-06-25T11:01:01Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-25T19:57:43.201002+00:00"
   },
   {
     "id": "97a37a7ee063",
@@ -9021,35 +9051,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-05-27T16:57:45.598980+00:00"
-  },
-  {
-    "id": "eac1d6009871",
-    "titulo": "Argentina: las ballenas jorobadas regresaron al Canal Beagle en busca de alimento",
-    "url": "https://es.mongabay.com/2026/05/argentina-ballenas-jorobadas-regresaron-canal-beagle-alimento/",
-    "fuente": "Mongabay Latam",
-    "resumen": "En la Patagonia argentina, el Canal Beagle vive más a menudo momentos espectaculares: las ballenas jorobadas (Megaptera novaeangliae) regresaron en los últimos años a este corredor marítimo para realizar un asombroso evento natural. Luego de una serie de políticas de conservación, esta especie marina mostró un incremento poblacional en el sur argentino restableciendo antiguas rutas […]",
-    "fecha_publicacion": "2026-05-27T13:30:02Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-27T16:57:45.514163+00:00"
-  },
-  {
-    "id": "f9e3c976d03b",
-    "titulo": "El Mundial aún no llena hoteles, pero se esperan reservas de última hora",
-    "url": "https://expansion.mx/podcasts-expansion/expansion-daily/2026/05/27/mundial-no-llena-hoteles-pero-esperan-reservas-ultima-hora",
-    "fuente": "Expansion",
-    "resumen": "La expectativa era que el Mundial trajera una ola de reservaciones hoteleras en México. Escucha sobre este y otros temas en Expansión Daily.",
-    "fecha_publicacion": "2026-05-27T12:37:21Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-27T16:57:45.633898+00:00"
   }
 ]
