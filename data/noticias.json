@@ -1,5 +1,84 @@
 [
   {
+    "id": "534fd590ae38",
+    "titulo": "Nayarit entre aguas: una ruta para  descubrir lagunas, manantiales y aguas  termales",
+    "url": "https://www.elfinanciero.com.mx/viajes/2026/06/30/nayarit-entre-aguas-una-ruta-para-descubrir-lagunas-manantiales-y-aguas-termales/",
+    "fuente": "El Financiero",
+    "resumen": "Cuando se habla de Nayarit, las playas suelen ser las protagonistas. Sin embargo, tierra adentro existe un universo natural conformado por lagunas volcánicas, manantiales de agua cristalina, cascadas y aguas termales que permiten descubrir una faceta diferente del estado. Entre montañas, barrancas y bosques, estos cuerpos de agua se han convertido en algunos de los atractivos naturales más emblemáticos de la entidad, ideales para quienes buscan aventura, descanso y contacto con la naturaleza. La",
+    "fecha_publicacion": "2026-06-30T19:08:17Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Nayarit",
+    "scrapeado_en": "2026-06-30T19:52:38.414735+00:00"
+  },
+  {
+    "id": "e808e9e12be3",
+    "titulo": "Deportes Acuáticos en Nayarit: aventura entre olas, bahías y manglares",
+    "url": "https://www.elfinanciero.com.mx/viajes/2026/06/30/deportes-acuaticos-en-nayarit-aventura-entre-olas-bahias-y-manglares/",
+    "fuente": "El Financiero",
+    "resumen": "Nayarit es uno de los destinos más completos de México para quienes disfrutan del contacto con el agua. Su privilegiada ubicación en el Pacífico mexicano, más de 300 kilómetros de litoral, extensos sistemas de manglares, esteros, lagunas costeras y la enorme Bahía de Banderas han convertido al estado en un escenario ideal para la práctica de deportes acuáticos durante prácticamente todo el año. Desde actividades relajadas como el paddle board y el kayak, hasta experiencias llenas de adrenalina c",
+    "fecha_publicacion": "2026-06-30T19:03:28Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua",
+      "deforestacion"
+    ],
+    "estado": "Nayarit",
+    "scrapeado_en": "2026-06-30T19:52:38.415428+00:00"
+  },
+  {
+    "id": "a502a75c34b7",
+    "titulo": "¿Qué está perdiendo México? Y no, no es el Mundial .",
+    "url": "https://www.greenpeace.org/mexico/blog/64816/que-esta-perdiendo-mexico-y-no-no-es-el-mundial/",
+    "fuente": "Greenpeace MX",
+    "resumen": "Las reglas del juego están cambiando, nuestro país debe priorizar la protección ambiental para no perder el marcador final. Mientras celebramos estadios y espectáculos, el cambio climático avanza, la Selva Maya sigue perdiendo hectáreas y los océanos se llenan de plástico.",
+    "fecha_publicacion": "2026-06-30T18:16:27Z",
+    "categoria": "deforestacion",
+    "categoria_nombre": "Forestal",
+    "categorias": [
+      "deforestacion",
+      "residuos",
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-30T19:52:38.447008+00:00"
+  },
+  {
+    "id": "4823545453dd",
+    "titulo": "El auge de la IA lleva las emisiones de centros de datos 57%  arriba de lo previsto",
+    "url": "https://expansion.mx/tecnologia/2026/06/30/centros-de-datos-ia-emiten-millones-toneladas-co2",
+    "fuente": "Expansion",
+    "resumen": "El crecimiento de los centros de datos acelera la demanda de electricidad y agua. México se perfila como uno de los mercados con mayor expansión, pero también con desafíos ambientales.",
+    "fecha_publicacion": "2026-06-30T17:30:26Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua",
+      "calidad_aire"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-30T19:52:38.452430+00:00"
+  },
+  {
+    "id": "c82c498078d4",
+    "titulo": "Elizabeth González, la primera mujer en dirigir las finanzas de Pemex",
+    "url": "https://expansion.mx/empresas/2026/06/30/elizabeth-gonzalez-primera-mujer-en-dirigir-finanzas-pemex",
+    "fuente": "Expansion",
+    "resumen": "Bajo su cargo tendrá la enmienda de que Pemex pueda hacer frente a sus compromisos financieros sin ayuda de Hacienda en 2027.",
+    "fecha_publicacion": "2026-06-30T17:19:04Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-06-30T19:52:38.452913+00:00"
+  },
+  {
     "id": "4e20c3e4f6fd",
     "titulo": "Colombia: en cinco meses asesinaron a 67 líderes y defensores de derechos humanos",
     "url": "https://es.mongabay.com/short-article/2026/06/colombia-defensores-derechos-humanos-asesinatos-2026/",
@@ -8976,80 +9055,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-06-02T18:00:06.763932+00:00"
-  },
-  {
-    "id": "a6ff821c856b",
-    "titulo": "Emergencia en refinería Antonio Dovalí: Activan protocolo ante visibilización de humo",
-    "url": "https://www.elfinanciero.com.mx/estados/2026/06/01/emergencia-en-refineria-antonio-dovali-activan-protocolo-ante-visibilizacion-de-humo/",
-    "fuente": "El Financiero",
-    "resumen": "Se presume que el incidente ocurrió en una zona de la torre de enfriamiento, la cual resultó con daños en el incendio del 11 de mayo.",
-    "fecha_publicacion": "2026-06-02T03:53:39Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-02T18:00:06.764430+00:00"
-  },
-  {
-    "id": "5dc4457a84cc",
-    "titulo": "Cocodrilos sin alimento: autoridades ambientales de Colombia anuncian medidas para resolver conflicto que los pone en riesgo",
-    "url": "https://es.mongabay.com/short-article/2026/06/cocodrilos-colombia-alimento-autoridades-ambientales-medidas/",
-    "fuente": "Mongabay Latam",
-    "resumen": "En medio de un conflicto administrativo que tiene detenido al Programa Nacional para la Conservación del Caimán llanero (Crocodylus intermedius) en Colombia, el Ministerio de Ambiente y la Corporación para el Desarrollo Sostenible del Área de Manejo Especial La Macarena (Cormacarena) anunciaron medidas para retomar este esfuerzo de conservación. Semanas después de que Mongabay Latam […]",
-    "fecha_publicacion": "2026-06-01T22:24:19Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-01T22:39:18.133663+00:00"
-  },
-  {
-    "id": "2c5be3feea3c",
-    "titulo": "Congreso de la CDMX aprueba iniciativa para hacer home office en temporada de lluvias",
-    "url": "https://www.elfinanciero.com.mx/cdmx/2026/06/01/congreso-de-la-cdmx-aprueba-iniciativa-para-hacer-home-office-en-temporada-de-lluvias/",
-    "fuente": "El Financiero",
-    "resumen": "La propuesta de hacer home office en CDMX durante la temporada de lluvias surgió debido a las intensas inundaciones del año pasado.",
-    "fecha_publicacion": "2026-06-01T21:57:38Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Ciudad de Mexico",
-    "scrapeado_en": "2026-06-01T22:39:18.229073+00:00"
-  },
-  {
-    "id": "798d2352e512",
-    "titulo": "Qué significa la flecha que aparece junto a la bomba de gasolina y cuándo puede sacarte de un apuro",
-    "url": "https://expansion.mx/tendencias/2026/06/01/que-significa-la-flecha-tanque-de-gasolina-autos",
-    "fuente": "Expansion",
-    "resumen": "Millones de conductores la ven todos los días sin prestarle atención. Ese pequeño símbolo escondido en el tablero resuelve una duda común al cargar combustible.",
-    "fecha_publicacion": "2026-06-01T21:19:09Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-01T21:31:08.092056+00:00"
-  },
-  {
-    "id": "9d501784c697",
-    "titulo": "Peso cae por falta de acuerdo de paz entre EU e Irán: Así cierra el tipo de cambio HOY",
-    "url": "https://www.elfinanciero.com.mx/mercados/2026/06/01/peso-dolar-precio-hoy-1-de-junio-de-2026/",
-    "fuente": "El Financiero",
-    "resumen": "La noticia de que Irán suspendió las negociaciones con Estados Unidos impulsaron de nuevo el precio del petróleo, que llegó a cotizar por arriba de los 100 dólares en las últimas semanas.",
-    "fecha_publicacion": "2026-06-01T21:14:04Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-01T21:31:08.108614+00:00"
   }
 ]
