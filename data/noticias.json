@@ -1,5 +1,36 @@
 [
   {
+    "id": "eb9a0cda376b",
+    "titulo": "Descubren una diminuta depredadora de agua dulce en la Patagonia Norte, pariente de las medusas",
+    "url": "https://es.mongabay.com/short-article/2026/07/descubren-diminuta-depredadora-agua-dulce-patagonia-norte-pariente-medusas/",
+    "fuente": "Mongabay Latam",
+    "resumen": "Un equipo de investigadores del Instituto de Investigaciones en Biodiversidad y Medioambiente (INIBIOMA, Conicet-Universidad Nacional del Comahue) registró por primera vez la presencia de la especie Hydra vulgaris pedunculata en humedales temporarios de la Patagonia Norte, un hallazgo que amplía el conocimiento sobre la biodiversidad de estos ecosistemas y refuerza su importancia para la conservación. […]",
+    "fecha_publicacion": "2026-07-02T16:35:05Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua",
+      "biodiversidad"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-07-02T19:21:15.165181+00:00"
+  },
+  {
+    "id": "66a37428df27",
+    "titulo": "La comunidad de San José Chiapa, en Puebla, no es territorio de sacrificio.",
+    "url": "https://www.greenpeace.org/mexico/informacion-prensa/64830/comunidad-san-jose-chiapa-no-es-territorio-de-sacrificio/",
+    "fuente": "Greenpeace MX",
+    "resumen": "En la comunidad de San José Chiapa, en Puebla, se oponen a las intenciones gubernamentales de imponer el Parque de Economía Circular, que fue rechazado por la ciudadanía en Hidalgo; y ante esto han denunciado actos de intimidación. Sigue leyendo para saber más.",
+    "fecha_publicacion": "2026-07-02T16:29:30Z",
+    "categoria": "residuos",
+    "categoria_nombre": "Residuos",
+    "categorias": [
+      "residuos"
+    ],
+    "estado": "Hidalgo",
+    "scrapeado_en": "2026-07-02T19:21:15.238018+00:00"
+  },
+  {
     "id": "351d58008596",
     "titulo": "Perú: un modelo indígena en Loreto acelera la titulación de tierras en la Amazonía y fortalece la protección de los bosques | INFORME",
     "url": "https://es.mongabay.com/2026/07/peru-modelo-indigena-loreto-acelera-titulacion-tierras-amazonia-proteccion-bosques-informe/",
@@ -9023,37 +9054,5 @@
     ],
     "estado": "Quintana Roo",
     "scrapeado_en": "2026-06-04T16:45:44.453336+00:00"
-  },
-  {
-    "id": "5be8e77e031d",
-    "titulo": "Piden investigar renta de vehículos del edil de Zacatecas por 104 mdp",
-    "url": "https://www.jornada.com.mx/2026/06/04/estados/030n1est?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Zacatecas, Zac., El presidente municipal del PAN en la capital de Zacatecas, Miguel Ángel Varela Pinedo, arrendó un parque vehicular de 62 unidades que incluye camionetas, automóviles Sedán y camiones para recolectar basura, a un costo que supera 104 millones de pesos, en una adquisición que el edil asegura haber hecho mediante licitación pública nacional; sin embargo, opositores presumen que realizó una asignación directa a un proveedor de Aguascalientes.",
-    "fecha_publicacion": "2026-06-04T10:28:56Z",
-    "categoria": "residuos",
-    "categoria_nombre": "Residuos",
-    "categorias": [
-      "residuos"
-    ],
-    "estado": "Aguascalientes",
-    "scrapeado_en": "2026-06-04T16:45:44.453957+00:00"
-  },
-  {
-    "id": "cdb0096e4546",
-    "titulo": "Detectan derrame de crudo en muelle turístico de Manzanillo",
-    "url": "https://www.jornada.com.mx/2026/06/04/estados/029n3est?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Colima, Col., La Secretaría de Marina activó el Plan Local de Contingencias para Derrames de Hidrocarburos, luego de que se detectó combustible en las inmediaciones del muelle turístico e iridiscencia en la superficie del agua en la bahía de Manzanillo.",
-    "fecha_publicacion": "2026-06-04T10:28:56Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua",
-      "hidrocarburos",
-      "calidad_aire"
-    ],
-    "estado": "Colima",
-    "scrapeado_en": "2026-06-04T16:45:44.455564+00:00"
   }
 ]
