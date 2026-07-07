@@ -1,5 +1,20 @@
 [
   {
+    "id": "cfa1c994039f",
+    "titulo": "Greenpeace exige un alto a la minería submarina promovida unilateralmente por Estados Unidos",
+    "url": "https://www.greenpeace.org/mexico/informacion-prensa/64920/trump-mineria-submarina/",
+    "fuente": "Greenpeace MX",
+    "resumen": "Exige una Moratoria global para contener la minería unilateral en los fondos marinos",
+    "fecha_publicacion": "2026-07-07T18:31:13Z",
+    "categoria": "mineria",
+    "categoria_nombre": "Minería",
+    "categorias": [
+      "mineria"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-07-07T19:52:07.547850+00:00"
+  },
+  {
     "id": "3975e97ac8fb",
     "titulo": "“Fuera de las normas: Por qué el Consejo de la ISA no debería tolerar las medidas de Estados Unidos en materia de minería en aguas profundas”",
     "url": "https://www.greenpeace.org/mexico/investigacion/64898/fuera-de-las-normas-mineria-en-aguas-profundas/",
@@ -73,6 +88,36 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-07-07T16:18:44.840853+00:00"
+  },
+  {
+    "id": "15ad090ff3c8",
+    "titulo": "Biopiratería de cactus: ciudadanos extranjeros son detenidos al intentar sacarlos de Brasil",
+    "url": "https://es.mongabay.com/2026/07/biopirateria-cactus-ciudadanos-extranjeros-detenidos-brasil/",
+    "fuente": "Mongabay Latam",
+    "resumen": "Agentes de la Policía Federal de Brasil encontraron una carga inusual cuando detuvieron, en febrero, a cuatro ciudadanos checos en el Aeropuerto Internacional de Guarulhos, en São Paulo: 214 ejemplares de cactus y sobres que contenían semillas de cactus. Según el caso judicial, que aún está en curso, el material estaba oculto en latas de […]",
+    "fecha_publicacion": "2026-07-07T11:51:59Z",
+    "categoria": "transgenico",
+    "categoria_nombre": "Transgénico",
+    "categorias": [
+      "transgenico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-07-07T19:52:07.460117+00:00"
+  },
+  {
+    "id": "7abfd93ed563",
+    "titulo": "Huachicolean en 52 días ¡144 millones de litros!",
+    "url": "https://www.reforma.com/huachicolean-en-52-dias-144-millones-de-litros/ar3235757",
+    "fuente": "Reforma",
+    "resumen": "FGR detectó que en 52 días ingresaron 144 millones de litros de combustibles, el mayor caso de contrabando de EU a México, ocurrido en 2025.",
+    "fecha_publicacion": "2026-07-07T11:01:17Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-07-07T19:52:07.540976+00:00"
   },
   {
     "id": "373c51336a3a",
@@ -9004,50 +9049,5 @@
     ],
     "estado": "Baja California",
     "scrapeado_en": "2026-06-08T17:17:49.005939+00:00"
-  },
-  {
-    "id": "87cc9a23f441",
-    "titulo": "El danés Christian Eriksen da otro susto; se desploma en amistoso con Ucrania",
-    "url": "https://www.jornada.com.mx/2026/06/08/deportes/a11n2dep?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "París. El mediocampista danés Christian Eriksen, quien lleva un desfibrilador desde que sufrió un paro cardiaco en pleno partido en la Eurocopa 2021, dio un nuevo susto al desplomarse en el césped durante un amistoso contra Ucrania en Odense.",
-    "fecha_publicacion": "2026-06-08T08:42:59Z",
-    "categoria": "cambio_climatico",
-    "categoria_nombre": "Cambio Climático",
-    "categorias": [
-      "cambio_climatico"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-08T17:17:49.006526+00:00"
-  },
-  {
-    "id": "d783fa0656ba",
-    "titulo": "Reparan fuga, pero ignoran socavón en la unidad Vicente Guerrero",
-    "url": "https://www.jornada.com.mx/2026/06/08/capital/033n3cap?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Aunque la Secretaría de Gestión Integral del Agua concluyó la reparación de la fuga que se registró el sábado en la unidad habitacional Vicente Guerrero, en Iztapalapa, vecinos denunciaron que un socavón, ubicado en el estacionamiento entre los edificios 27 y 29, sigue sin atención. Según los quejosos, este hundimiento subterráneo lleva más de dos años expandiéndose, justo frente al punto de la fuga recién reparada, sin que elementos de Protección Civil hayan acudido a revisarlo.",
-    "fecha_publicacion": "2026-06-08T08:42:59Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Guerrero",
-    "scrapeado_en": "2026-06-08T17:17:49.016984+00:00"
-  },
-  {
-    "id": "24910da1417f",
-    "titulo": "Aumenta emisión de visas humanitarias",
-    "url": "https://www.jornada.com.mx/2026/06/08/politica/013n1pol?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "El año pasado, el gobierno de México incrementó exponencialmente la emisión de documentos migratorios, entre ellos las tarjetas de visitante por razones humanitarias (TVRH), cuya expedición aumentó 238 por ciento, lo que refleja que más migrantes buscan establecerse en el país, de acuerdo con la Organización Internacional para las Migraciones (OIM/ONU Migración).",
-    "fecha_publicacion": "2026-06-08T08:42:59Z",
-    "categoria": "calidad_aire",
-    "categoria_nombre": "Calidad del Aire",
-    "categorias": [
-      "calidad_aire"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-08T17:17:49.022375+00:00"
   }
 ]

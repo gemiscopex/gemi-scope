@@ -10691,6 +10691,27 @@
       "scrapeado_en": "2026-04-29T21:23:35.111091+00:00"
     },
     {
+      "camara_origen": "Cámara de Senadores",
+      "fecha_presentacion": "2025-11-04",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Sen. Juan Antonio Martín del Campo Martín del Campo (PAN)",
+      "aspectos": "El legislador aprueba exhortar a la titular del Poder Ejecutivo Federal, a través de la Secretaría de Hacienda y Crédito Público, en coordinación con la Comisión Nacional del Agua y la Secretaría de Energía, a crear un Fondo Nacional de Infraestructura Hídrica y Eficiencia Energética, cuyo propósito sea financiar proyectos de captación, tratamiento y reúso de agua, modernización de redes de distribución para reducir fugas, reconversión productiva agrícola y sustitución de bombas por sistemas de energía renovable y de mayor eficiencia, con el objetivo de garantizar la seguridad hídrica, reducir costos y beneficiar directamente a comunidades y productores.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Hacienda y Crédito Público de Cámara de Senadores. Dictamina. El turno se publicó en Gaceta del Senado del 4 de noviembre de 2025.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 04/11/2025",
+      "asunto_id": "4964833",
+      "seguimiento": "5003171",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5003171&Asunto=4964833",
+      "categorias": [
+        "agua",
+        "energia_renovable"
+      ],
+      "categoria": "agua",
+      "categoria_nombre": "Agua",
+      "id": "4f9072db81b3",
+      "scrapeado_en": "2026-07-07T19:55:03.125208+00:00"
+    },
+    {
       "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2025-11-04",
       "legislatura": "LXVI",
@@ -10851,34 +10872,13 @@
       "categoria_nombre": "Agua",
       "id": "96b95162c57a",
       "scrapeado_en": "2026-04-29T21:22:46.148470+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Senadores",
-      "fecha_presentacion": "2025-11-04",
-      "legislatura": "LXVI",
-      "periodo": "1er Ordinario",
-      "presentador": "PVEM",
-      "aspectos": "Las legisladoras y los legisladores proponen exhortar: 1) a la Empresa Pública del Estado, Pemex a informar a esta soberanía sobre: a) la aplicación del Protocolo de Respuesta a Emergencias, y los Planes de Atención de Emergencia, para atender derrame registrado en el río Pantepec, Veracruz; b) el volumen de hidrocarburo derramado y el volumen recuperado; c) la cuantificación de daños ocasionados por el derrame; y, d) la aplicación de seguros; y, 2) a la Agencia de Seguridad, Energía y Ambiente, a informar a esta soberanía si las acciones realizadas por PEMEX ante el derrame de hidrocarburo en el río Pantepec, Veracruz: i) fueron realizadas de forma oportuna; ii) cumplieron con todas las disposiciones normativas para la atención de la emergencia; y, iii) ya cuentan con una evaluación de daños ambientales y afectaciones a la población aledaña al derrame.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Energía de Cámara de Senadores. Dictamina. El turno se publicó en Gaceta del Senado del 4 de noviembre de 2025.",
-      "ultimo_estatus": "Desechado Desechado 15/12/2025",
-      "asunto_id": "4964866",
-      "seguimiento": "5003162",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5003162&Asunto=4964866",
-      "categorias": [
-        "agua",
-        "hidrocarburos"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "4b41d9e74c7d",
-      "scrapeado_en": "2026-04-29T21:22:48.693756+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 141,
-    "actualizado": "2026-07-07T16:25:23Z"
+    "nuevas": 137,
+    "actualizado": "2026-07-07T19:58:38Z"
   }
 }
