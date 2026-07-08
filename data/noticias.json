@@ -1,5 +1,65 @@
 [
   {
+    "id": "667ccb2ee0da",
+    "titulo": "Vuelve la guerra a Medio Oriente y se dispara el precio del petróleo",
+    "url": "https://expansion.mx/mercados/2026/07/08/vuelve-la-guerra-a-medio-oriente-y-se-dispara-el-precio-del-petroleo",
+    "fuente": "Expansion",
+    "resumen": "Estados Unidos reanudó los ataques contra Irán y los mercados cerraron con resultados mixtos.",
+    "fecha_publicacion": "2026-07-08T21:22:53Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-07-08T21:36:34.836711+00:00"
+  },
+  {
+    "id": "8aaacbc9b77e",
+    "titulo": "‘Pueden subir aún más’: ¿Cuánto se dispararon los precios del petróleo tras ‘truene’ de Trump con Irán?",
+    "url": "https://www.elfinanciero.com.mx/mundo/2026/07/08/pueden-subir-aun-mas-cuanto-se-dispararon-los-precios-del-petroleo-tras-truene-de-trump-con-iran/",
+    "fuente": "El Financiero",
+    "resumen": "El precio del petróleo alcanzó su nivel más alto en dos semanas después de que Estados Unidos reanudara sus ataques contra Irán",
+    "fecha_publicacion": "2026-07-08T21:01:03Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-07-08T21:36:34.870703+00:00"
+  },
+  {
+    "id": "3375803f265b",
+    "titulo": "Detención de Víctor ‘N’, exdirector de Pemex: ¿Cómo se sanciona la violencia familiar en Morelos?",
+    "url": "https://www.elfinanciero.com.mx/estados/2026/07/08/detencion-de-victor-n-exdirector-de-pemex-como-se-sanciona-la-violencia-familiar-en-morelos/",
+    "fuente": "El Financiero",
+    "resumen": "Víctor 'N', exdirector de Pemex, está acusado de violencia familiar y violencia vicaria en contra de su esposa.",
+    "fecha_publicacion": "2026-07-08T19:38:57Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": "Morelos",
+    "scrapeado_en": "2026-07-08T21:36:34.874687+00:00"
+  },
+  {
+    "id": "24124a1c9adb",
+    "titulo": "Revierte SRE, a medias, reserva sobre Rocha e Inzunza",
+    "url": "https://www.reforma.com/revierte-sre-a-medias-reserva-sobre-rocha-e-inzunza/ar3236742",
+    "fuente": "Reforma",
+    "resumen": "SRE transparentará información sobre Rocha e Inzunza por instrucción de Sheinbaum, pero mantendrá reservadas notas diplomáticas judiciales.",
+    "fecha_publicacion": "2026-07-08T19:18:37Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-07-08T21:36:34.860049+00:00"
+  },
+  {
     "id": "079d1727aaaa",
     "titulo": "¿Por qué Víctor ‘N’, exdirector de Pemex, fue entregado a la Fiscalía de Morelos si fue detenido en CDMX?",
     "url": "https://www.elfinanciero.com.mx/cdmx/2026/07/08/por-que-victor-rodriguez-padilla-fue-entregado-a-la-fiscalia-de-morelos-si-fue-detenido-en-cdmx/",
@@ -389,6 +449,21 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-07-07T21:49:04.568635+00:00"
+  },
+  {
+    "id": "40c5b9efabfa",
+    "titulo": "Greenpeace exige un alto a la minería submarina.",
+    "url": "https://www.greenpeace.org/mexico/informacion-prensa/64920/trump-mineria-submarina/",
+    "fuente": "Greenpeace MX",
+    "resumen": "Exige una Moratoria global para contener la minería unilateral en los fondos marinos",
+    "fecha_publicacion": "2026-07-07T18:31:13Z",
+    "categoria": "mineria",
+    "categoria_nombre": "Minería",
+    "categorias": [
+      "mineria"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-07-08T21:36:34.862508+00:00"
   },
   {
     "id": "cfa1c994039f",
@@ -1535,6 +1610,21 @@
     "scrapeado_en": "2026-07-03T15:48:45.391729+00:00"
   },
   {
+    "id": "5f2b4ba8af2f",
+    "titulo": "Equidad, reparto de beneficios y arquitectura financiera en la zona internacional de los fondos marinos.",
+    "url": "https://www.greenpeace.org/mexico/investigacion/64843/reporte_beneficiosy-arquitectura-financiera-mineria-marina/",
+    "fuente": "Greenpeace MX",
+    "resumen": "¡Consulta el Reporte! Minería en los fondos marinos... ¿beneficio para quién y consecuencias para todos?",
+    "fecha_publicacion": "2026-07-03T01:09:34Z",
+    "categoria": "mineria",
+    "categoria_nombre": "Minería",
+    "categorias": [
+      "mineria"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-07-08T21:36:34.864201+00:00"
+  },
+  {
     "id": "b827fa606724",
     "titulo": "Equidad, reparto de beneficiosy arquitectura financieraen la zona internacionalde los fondos marinos.",
     "url": "https://www.greenpeace.org/mexico/investigacion/64843/reporte_beneficiosy-arquitectura-financiera-mineria-marina/",
@@ -1609,6 +1699,21 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-07-02T19:21:15.165181+00:00"
+  },
+  {
+    "id": "df5e244fab72",
+    "titulo": "San José Chiapa, no es territorio de sacrificio.",
+    "url": "https://www.greenpeace.org/mexico/informacion-prensa/64830/comunidad-san-jose-chiapa-no-es-territorio-de-sacrificio/",
+    "fuente": "Greenpeace MX",
+    "resumen": "En la comunidad de San José Chiapa, en Puebla, se oponen a las intenciones gubernamentales de imponer el Parque de Economía Circular, que fue rechazado por la ciudadanía en Hidalgo; y ante esto han denunciado actos de intimidación. Sigue leyendo para saber más.",
+    "fecha_publicacion": "2026-07-02T16:29:30Z",
+    "categoria": "residuos",
+    "categoria_nombre": "Residuos",
+    "categorias": [
+      "residuos"
+    ],
+    "estado": "Hidalgo",
+    "scrapeado_en": "2026-07-08T21:36:34.864738+00:00"
   },
   {
     "id": "66a37428df27",
@@ -8942,111 +9047,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-06-09T16:26:00.753459+00:00"
-  },
-  {
-    "id": "3c2447bd9f7d",
-    "titulo": "Proponen combatir tráfico de vida silvestre marina con IA",
-    "url": "https://www.jornada.com.mx/2026/06/09/ciencias/a06n2cie?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Madrid. Muchos artículos de vida silvestre marina que se trafican habitualmente, como las aletas de tiburón, pueden ocultarse en equipaje o paquetes y transportarse a través de las fronteras con relativa facilidad, sin ser detectados, por lo que para solucionar esto, científicos de la Universidad Macquarie (Australia) utilizaron inteligencia artificial para desarrollar un algoritmo capaz de detectar muestras de criaturas marinas comúnmente traficadas (aletas de tiburón, caballitos de mar y pepin",
-    "fecha_publicacion": "2026-06-09T07:42:39Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-09T16:26:00.754759+00:00"
-  },
-  {
-    "id": "a68069d70387",
-    "titulo": "El calor extremo amenaza con ralentizar los partidos",
-    "url": "https://www.jornada.com.mx/2026/06/09/deportes/a11n3dep?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Es difícil encontrar una esfera que no se vea alterada por el cambio climático. Y la Copa del Mundo 2026 no será la excepción.",
-    "fecha_publicacion": "2026-06-09T07:42:39Z",
-    "categoria": "cambio_climatico",
-    "categoria_nombre": "Cambio Climático",
-    "categorias": [
-      "cambio_climatico"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-09T16:26:00.759687+00:00"
-  },
-  {
-    "id": "6bdb6f573569",
-    "titulo": "Sufre estación San Antonio Abad filtración por el jardín elevado; le harán más drenes",
-    "url": "https://www.jornada.com.mx/2026/06/09/capital/034n2cap?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "El secretario de Obras y Servicios, Raúl Basulto, informó que se ampliará el número de bajadas pluviales y se colocarán canalones complementarios a los ya instalados en el jardín flotante Tlallipan para garantizar los escurrimientos de agua y evitar filtraciones hacia las instalaciones del Sistema de Transporte Colectivo Metro.",
-    "fecha_publicacion": "2026-06-09T07:42:39Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-09T16:26:00.769055+00:00"
-  },
-  {
-    "id": "2b5482aaa49b",
-    "titulo": "ONU exige fin inmediato del bloqueo a Cuba",
-    "url": "https://www.jornada.com.mx/2026/06/09/mundo/023n1mun?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Ginebra. El alto comisionado de Derechos Humanos de la Organización de Naciones Unidas (ONU) exigió ayer el levantamiento inmediato del bloqueo contra Cuba y las sanciones estadunidenses que afectan el acceso a combustible, medicinas y alimentos.",
-    "fecha_publicacion": "2026-06-09T07:42:39Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-09T16:26:00.776958+00:00"
-  },
-  {
-    "id": "90407c67ae05",
-    "titulo": "Precios del petróleo retroceden de nuevo",
-    "url": "https://www.jornada.com.mx/2026/06/09/mundo/026n2mun?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Houston. Los precios del petróleo redujeron las ganancias que los habían elevado más de 5 por ciento el lunes, luego de que Irán e Israel anunciaran el cese de los ataques mutuos tras un llamamiento del presidente estadunidense, Donald Trump. Teherán, sin embargo, advirtió que reanudaría los embates si Israel continúa atacando a Hezbollah en el Líbano.",
-    "fecha_publicacion": "2026-06-09T07:42:39Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-09T16:26:00.780761+00:00"
-  },
-  {
-    "id": "e33e2baf5862",
-    "titulo": "El Correo Ilustrado",
-    "url": "https://www.jornada.com.mx/2026/06/09/opinion/002a2cor?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "El Mundial de Futbol está manchado de indignidad. El principal anfitrión es un imperio voraz que secuestra al presidente de Venezuela y le roba el petróleo, contribuye al genocidio en Gaza, ataca traicioneramente a Irán, y ahora cierra un cerco criminal sobre Cuba para tratar de doblegar a ese pueblo heroico que ha resistido durante seis décadas las agresiones estadunidenses.",
-    "fecha_publicacion": "2026-06-09T07:42:39Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-09T16:26:00.781941+00:00"
-  },
-  {
-    "id": "198a3367d99d",
-    "titulo": "Fracking causa graves daños a los ecosistemas, afirma activista",
-    "url": "https://www.jornada.com.mx/2026/06/09/estados/029n1est?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Rogel del Rosal Valladares, integrante de la Contraloría Autónoma del Agua de la Huasteca Potosina, denunció que el proyecto de fracturación hidráulica, conocido como fracking, que Petróleos Mexicanos (Pemex) planea desarrollar en el periodo 2025-2035, no sólo consiste en extraer agua e hidrocarburos, sino que dañarán los ecosistemas de los que se sustentan 28 municipios y 367 comunidades indígenas de tres entidades.",
-    "fecha_publicacion": "2026-06-09T07:42:39Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua",
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-06-09T16:26:00.782574+00:00"
   }
 ]
