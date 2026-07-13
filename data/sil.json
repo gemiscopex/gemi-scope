@@ -10863,25 +10863,24 @@
       "scrapeado_en": "2026-04-29T21:23:35.111091+00:00"
     },
     {
-      "camara_origen": "Cámara de Senadores",
+      "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2025-11-04",
       "legislatura": "LXVI",
       "periodo": "1er Ordinario",
-      "presentador": "Sen. Juan Antonio Martín del Campo Martín del Campo (PAN)",
-      "aspectos": "El legislador aprueba exhortar a la titular del Poder Ejecutivo Federal, a través de la Secretaría de Hacienda y Crédito Público, en coordinación con la Comisión Nacional del Agua y la Secretaría de Energía, a crear un Fondo Nacional de Infraestructura Hídrica y Eficiencia Energética, cuyo propósito sea financiar proyectos de captación, tratamiento y reúso de agua, modernización de redes de distribución para reducir fugas, reconversión productiva agrícola y sustitución de bombas por sistemas de energía renovable y de mayor eficiencia, con el objetivo de garantizar la seguridad hídrica, reducir costos y beneficiar directamente a comunidades y productores.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Hacienda y Crédito Público de Cámara de Senadores. Dictamina. El turno se publicó en Gaceta del Senado del 4 de noviembre de 2025.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 04/11/2025",
-      "asunto_id": "4964833",
-      "seguimiento": "5003171",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5003171&Asunto=4964833",
+      "presentador": "Dip. Verónica Martínez García (PRI)",
+      "aspectos": "La legisladora propone exhortar a la titular del Ejecutivo federal para que, a través, de la Secretaría de Desarrollo Agrario Territorial y Urbano, instrumente un programa que pueda recibir recursos para contribuir con el desarrollo de aquellas entidades federativas, municipios y demarcaciones territoriales que se dediquen a la minería.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Energía  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 04 de noviembre de 2025 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Desechado Desechado 30/01/2026",
+      "asunto_id": "4966289",
+      "seguimiento": "4969305",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4969305&Asunto=4966289",
       "categorias": [
-        "agua",
-        "energia_renovable"
+        "mineria"
       ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "4f9072db81b3",
-      "scrapeado_en": "2026-07-13T19:23:15.285043+00:00"
+      "categoria": "mineria",
+      "categoria_nombre": "Minería",
+      "id": "1afe41d3ce2e",
+      "scrapeado_en": "2026-07-13T21:30:49.646789+00:00"
     }
   ],
   "_meta": {
@@ -10889,6 +10888,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 149,
-    "actualizado": "2026-07-13T19:27:17Z"
+    "actualizado": "2026-07-13T21:32:13Z"
   }
 }
