@@ -6,7 +6,6 @@
 <title>Scope GEMI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -34,27 +33,27 @@
   --shadow-md:0 4px 16px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.05);
   --surface:#F8FAFC;
 }
-body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 .nav{background:var(--card);border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:stretch;justify-content:space-between;height:54px;position:sticky;top:0;z-index:400;gap:0;transform:translateZ(0)}
 .nav-left{display:flex;align-items:center;gap:10px;flex-shrink:0;padding-right:20px;border-right:1px solid var(--border)}
 .nav-logo-img{height:22px;width:auto;display:block}
 .nav-logo-sep{width:1px;height:20px;background:var(--border-med);margin:0 2px}
-.nav-logo{font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:700;letter-spacing:0.12em;color:var(--green)}
+.nav-logo{font-family:Arial,sans-serif;font-size:20px;font-weight:700;letter-spacing:0.12em;color:var(--green)}
 .nav-tagline{font-size:11px;color:var(--text-muted);letter-spacing:0.02em;font-weight:400}
 .nav-time{font-size:12px;color:var(--text-muted);font-variant-numeric:tabular-nums;align-self:center;flex-shrink:0;padding-left:20px}
 .nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0;padding-left:16px;border-left:1px solid var(--border)}
 .nav-search{display:flex;align-items:center;gap:6px;background:var(--card2);border:1px solid var(--border2);border-radius:20px;padding:0 12px;height:32px}
-.nav-search input{border:none;background:none;font-size:12px;color:var(--text);outline:none;width:140px;font-family:'IBM Plex Sans',sans-serif}
+.nav-search input{border:none;background:none;font-size:12px;color:var(--text);outline:none;width:140px;font-family:Arial,sans-serif}
 .nav-search input::placeholder{color:var(--text-muted)}
 .nav-search svg{opacity:0.35;flex-shrink:0}
 .nav-linkedin{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:1px solid var(--border);color:#0a66c2;transition:background 0.15s;text-decoration:none;flex-shrink:0}
 .nav-linkedin:hover{background:#e8f0fe}
-.nav-btn-login{height:32px;padding:0 14px;border:1px solid var(--border-med);border-radius:8px;background:none;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:background 0.15s,color 0.15s;white-space:nowrap}
+.nav-btn-login{height:32px;padding:0 14px;border:1px solid var(--border-med);border-radius:8px;background:none;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;font-family:Arial,sans-serif;transition:background 0.15s,color 0.15s;white-space:nowrap}
 .nav-btn-login:hover{background:var(--border);color:var(--text)}
-.nav-btn-register{height:32px;padding:0 14px;border:none;border-radius:8px;background:#111;font-size:12px;font-weight:600;color:#fff;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:background 0.15s;white-space:nowrap}
+.nav-btn-register{height:32px;padding:0 14px;border:none;border-radius:8px;background:#111;font-size:12px;font-weight:600;color:#fff;cursor:pointer;font-family:Arial,sans-serif;transition:background 0.15s;white-space:nowrap}
 .nav-btn-register:hover{background:#333}
 .nav-tabs{display:flex;align-items:stretch;flex:1;padding:0 4px 0 20px}
-.tab-btn{padding:0 2px;margin-right:20px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:'IBM Plex Sans',sans-serif;white-space:nowrap}
+.tab-btn{padding:0 2px;margin-right:20px;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.02em;transition:color 0.15s;font-family:Arial,sans-serif;white-space:nowrap}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
 .main{max-width:1200px;margin:0 auto;padding:24px 28px 32px}
 .scope-footer{background:rgba(240,244,248,0.92);border-top:1px solid rgba(0,0,0,0.05);padding:4px 28px;text-align:center;font-size:10px;color:var(--text3);line-height:1.4;position:fixed;bottom:0;left:0;right:0;z-index:200;backdrop-filter:blur(6px)}
@@ -68,9 +67,9 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .dash-right{display:flex;flex-direction:column;gap:10px}
 .dash-feeds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .leg-sub-bar{display:flex;gap:0;border-bottom:1.5px solid var(--border);margin-bottom:24px}
-.leg-sub-btn{padding:8px 18px;border:none;background:none;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px;font-family:'IBM Plex Sans',sans-serif;transition:color 0.15s}
+.leg-sub-btn{padding:8px 18px;border:none;background:none;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px;font-family:Arial,sans-serif;transition:color 0.15s}
 .leg-sub-btn.active{color:var(--text);border-bottom-color:var(--green)}
-.normas-filter-link{padding:0;border:none;background:none;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:color 0.15s;letter-spacing:0.02em}
+.normas-filter-link{padding:0;border:none;background:none;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:Arial,sans-serif;transition:color 0.15s;letter-spacing:0.02em}
 .normas-filter-link.active{color:var(--text);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 /* ── Badge component ── */
 .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.04em}
@@ -82,12 +81,12 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .badge-info{background:#EFF6FF;border:1px solid rgba(37,99,235,0.16);color:#2563EB}
 /* ── Tag + CodePill ── */
 .tag{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;border:1px solid transparent}
-.code-pill{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px;display:inline-block}
+.code-pill{font-family:'SFMono-Regular',ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px;display:inline-block}
 /* Legacy grid — kept for non-dashboard use */
 .top-grid{display:grid;grid-template-columns:1fr 2.6fr;gap:10px;margin-bottom:10px}
 .top-hero{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
 .top-hero-cat{font-size:11px;color:var(--text-sec);letter-spacing:0.04em;margin-bottom:6px;font-weight:500}
-.top-hero-count{font-family:'IBM Plex Sans',sans-serif;font-size:64px;font-weight:700;color:var(--green);line-height:1;letter-spacing:-0.01em}
+.top-hero-count{font-family:Arial,sans-serif;font-size:64px;font-weight:700;color:var(--green);line-height:1;letter-spacing:-0.01em}
 .top-hero-sub{font-size:12px;color:var(--text-sec);margin-top:4px}
 .top-hero-headline{font-size:12px;color:var(--text-sec);margin-top:10px;line-height:1.5;font-style:italic}
 .cat-list{list-style:none}
@@ -117,10 +116,10 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .pulse-ring{position:absolute;width:40px;height:40px;top:-10px;left:-10px;border-radius:50%;animation:pulseRing 1.8s ease-out infinite;opacity:0.5}
 .pulse-core{position:absolute;width:20px;height:20px;border-radius:50%;border:2.5px solid rgba(255,255,255,0.85);box-shadow:0 2px 8px rgba(0,0,0,0.22)}
 @keyframes pulseRing{0%{transform:scale(0.5);opacity:0.65}100%{transform:scale(2.3);opacity:0}}
-.marker-label{position:absolute;bottom:-17px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:600;color:#222;white-space:nowrap;font-family:'IBM Plex Mono',monospace;letter-spacing:0.04em;text-shadow:0 1px 3px rgba(255,255,255,0.95)}
+.marker-label{position:absolute;bottom:-17px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:600;color:#222;white-space:nowrap;font-family:'SFMono-Regular',ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;letter-spacing:0.04em;text-shadow:0 1px 3px rgba(255,255,255,0.95)}
 /* Leaflet popup override */
 .scope-popup .leaflet-popup-content-wrapper{border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.16);border:1px solid rgba(0,0,0,0.07);padding:0}
-.scope-popup .leaflet-popup-content{margin:16px;font-family:'IBM Plex Sans',sans-serif}
+.scope-popup .leaflet-popup-content{margin:16px;font-family:Arial,sans-serif}
 .scope-popup .leaflet-popup-tip-container{display:none}
 .spark-widget{display:flex;flex-direction:column;gap:0}
 .spark-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:0.8px solid var(--border);cursor:pointer;border-radius:6px;transition:background 0.12s}
@@ -143,14 +142,14 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .sdrop-empty{padding:20px 16px;text-align:center;font-size:12px;color:var(--text-muted)}
 .fed-ley-pill.active{background:#111!important;color:#fff!important;border-color:#111!important}
 .fed-tabs{display:flex;gap:4px;margin-bottom:10px}
-.fed-tab{background:rgba(0,0,0,0.04);border:none;border-radius:20px;padding:4px 10px;font-size:10.5px;font-weight:600;color:var(--text-muted);cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:all 0.15s;display:flex;align-items:center;gap:5px}
+.fed-tab{background:rgba(0,0,0,0.04);border:none;border-radius:20px;padding:4px 10px;font-size:10.5px;font-weight:600;color:var(--text-muted);cursor:pointer;font-family:Arial,sans-serif;transition:all 0.15s;display:flex;align-items:center;gap:5px}
 .fed-tab:hover{background:rgba(10,194,133,0.1);color:var(--green)}
 .fed-tab.active{background:var(--green);color:#fff}
 .fed-tab-badge{background:rgba(255,255,255,0.25);border-radius:10px;padding:0 5px;font-size:9px;font-weight:700}
 .fed-tab:not(.active) .fed-tab-badge{background:rgba(0,0,0,0.08);color:var(--text-muted)}
 /* ── Legislative mini-search ── */
 .leg-search-wrap{position:relative;margin-bottom:10px}
-.leg-search-input{width:100%;box-sizing:border-box;padding:6px 10px 6px 28px;border:0.8px solid var(--border);border-radius:8px;font-size:11px;font-family:'IBM Plex Sans',sans-serif;color:var(--text);background:#fafafa;outline:none;transition:border-color 0.15s}
+.leg-search-input{width:100%;box-sizing:border-box;padding:6px 10px 6px 28px;border:0.8px solid var(--border);border-radius:8px;font-size:11px;font-family:Arial,sans-serif;color:var(--text);background:#fafafa;outline:none;transition:border-color 0.15s}
 .leg-search-input:focus{border-color:var(--green);background:#fff}
 .leg-search-icon{position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text-muted);pointer-events:none}
 /* ── Radar market-style ── */
@@ -168,11 +167,11 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 /* ── Radar panel Kalshi-style ── */
 .radar-panel-wrap{background:#fff;border:0.8px solid var(--border);border-radius:12px;overflow:hidden}
 .radar-panel-header{padding:20px 24px 16px;border-bottom:0.8px solid var(--border)}
-.radar-panel-title{font-family:'IBM Plex Sans',sans-serif;font-size:26px;font-weight:700;letter-spacing:0.01em;color:var(--text);margin-bottom:4px}
+.radar-panel-title{font-family:Arial,sans-serif;font-size:26px;font-weight:700;letter-spacing:0.01em;color:var(--text);margin-bottom:4px}
 .radar-panel-meta{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .radar-panel-stat{display:flex;flex-direction:column;align-items:center;padding:0 18px;border-right:0.8px solid var(--border)}
 .radar-panel-stat:last-child{border-right:none}
-.radar-stat-val{font-size:28px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;line-height:1}
+.radar-stat-val{font-size:28px;font-weight:700;font-family:Arial,sans-serif;line-height:1}
 .radar-stat-lbl{font-size:9.5px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:3px}
 .radar-panel-body{display:grid;grid-template-columns:1fr 1.2fr;gap:0}
 .radar-panel-col{padding:20px 24px;border-right:0.8px solid var(--border)}
@@ -222,10 +221,10 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .ley-row:last-child{border-bottom:none}
 .ley-row:hover{background:rgba(10,194,133,0.04)}
 .ley-row:hover .ley-nombre{color:var(--green)}
-.ley-sigla{font-family:'IBM Plex Mono','IBM Plex Sans',monospace;font-size:11px;font-weight:600;color:var(--green);min-width:70px;letter-spacing:0.02em;flex-shrink:0}
+.ley-sigla{font-family:'SFMono-Regular',ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace,Arial,monospace;font-size:11px;font-weight:600;color:var(--green);min-width:70px;letter-spacing:0.02em;flex-shrink:0}
 .ley-nombre{font-size:13px;font-weight:500;color:var(--text);flex:1;line-height:1.35;transition:color 0.15s}
 .ley-tema-badge{font-size:9px;font-weight:700;letter-spacing:0.05em;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0;color:#fff}
-.ley-reforma-date{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'IBM Plex Mono',monospace}
+.ley-reforma-date{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'SFMono-Regular',ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}
 .ley-link-icon{font-size:11px;color:var(--text-muted);flex-shrink:0;opacity:0.5}
 /* Legacy ley-item — not used anymore */
 .ley-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:0.8px solid var(--border-med);border-radius:10px;text-decoration:none;transition:border-color 0.15s,background 0.15s;background:#fff}
@@ -239,7 +238,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 /* ─ Accordion comisiones ─ */
 .com-section{margin-bottom:32px}
 .com-section-hdr{padding-bottom:10px;border-bottom:1.5px solid var(--text);margin-bottom:2px}
-.com-section-name{font-family:'IBM Plex Sans',sans-serif;font-size:18px;font-weight:700;letter-spacing:0.04em;color:var(--text);text-transform:uppercase}
+.com-section-name{font-family:Arial,sans-serif;font-size:18px;font-weight:700;letter-spacing:0.04em;color:var(--text);text-transform:uppercase}
 .com-section-sub{font-size:10px;color:var(--text-muted);margin-top:4px;letter-spacing:0.02em}
 .com-row{display:flex;align-items:center;gap:8px;padding:8px 10px;cursor:pointer;transition:background 0.12s;border-bottom:0.8px solid rgba(0,0,0,0.05);border-radius:6px}
 .com-row:hover{background:rgba(10,194,133,0.05)}
@@ -262,7 +261,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .com-info{flex:1;min-width:0}
 .com-member-name{font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .com-member-cargo{font-size:10px;color:var(--text-muted);margin-top:1px}
-.com-partido{font-size:9px;font-weight:600;letter-spacing:0.04em;padding:2px 6px;border-radius:4px;background:rgba(0,0,0,0.05);color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'IBM Plex Mono',monospace}
+.com-partido{font-size:9px;font-weight:600;letter-spacing:0.04em;padding:2px 6px;border-radius:4px;background:rgba(0,0,0,0.05);color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'SFMono-Regular',ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}
 .com-footer{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;padding-top:10px;border-top:0.8px solid var(--border)}
 .com-footer-item{}
 .com-footer-lbl{font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:3px}
@@ -274,12 +273,12 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .state-panel{margin-bottom:14px;animation:spSlide 0.22s ease}
 @keyframes spSlide{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .sp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.sp-name{font-family:'IBM Plex Sans',sans-serif;font-size:26px;font-weight:700;color:var(--text)}
+.sp-name{font-family:Arial,sans-serif;font-size:26px;font-weight:700;color:var(--text)}
 .sp-sub{font-size:12px;color:var(--text-muted);margin-left:10px;vertical-align:middle}
-.sp-close{background:none;border:1px solid var(--border-med);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text-sec);font-family:'IBM Plex Sans',sans-serif;transition:background 0.15s}
+.sp-close{background:none;border:1px solid var(--border-med);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text-sec);font-family:Arial,sans-serif;transition:background 0.15s}
 .sp-close:hover{background:var(--green-tint)}
 .sp-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px;overflow-x:auto;gap:0}
-.sp-tab{background:none;border:none;border-bottom:2px solid transparent;padding:10px 16px;font-size:11px;font-weight:600;letter-spacing:0.6px;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color 0.15s;font-family:'IBM Plex Sans',sans-serif}
+.sp-tab{background:none;border:none;border-bottom:2px solid transparent;padding:10px 16px;font-size:11px;font-weight:600;letter-spacing:0.6px;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color 0.15s;font-family:Arial,sans-serif}
 .sp-tab.active{color:var(--green);border-bottom-color:var(--green)}
 .sp-content{display:none}
 .sp-content.active{display:block}
@@ -315,7 +314,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .alerta-nivel-critico{background:#fee2e2;color:#dc2626}
 .alerta-nivel-alto{background:#fef3c7;color:#d97706}
 .alerta-nivel-medio{background:#ede9fe;color:#7c3aed}
-.alerta-filter-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:'IBM Plex Sans',sans-serif}
+.alerta-filter-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:Arial,sans-serif}
 .alerta-filter-btn.active{background:var(--green-tint);border-color:var(--green);color:var(--green)}
 /* Alertas Bloomberg table */
 .alerta-table{width:100%}
@@ -348,11 +347,11 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .instr-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:8px 14px;border-top:0.8px solid var(--border);font-size:11px}
 .instr-row a{color:var(--text);text-decoration:none;flex:1;line-height:1.4}
 .instr-row a:hover{color:var(--green)}
-.instr-row-date{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'IBM Plex Mono',monospace}
+.instr-row-date{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'SFMono-Regular',ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}
 .instr-row-state{font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-weight:600}
 .nav-badge{display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;border-radius:8px;background:#ef4444;color:#fff;font-size:9px;font-weight:700;margin-left:4px;padding:0 3px}
-.radar-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);transition:all 0.15s;white-space:nowrap;font-family:'IBM Plex Sans',sans-serif}
-.act-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:'IBM Plex Sans',sans-serif}
+.radar-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);transition:all 0.15s;white-space:nowrap;font-family:Arial,sans-serif}
+.act-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text-sec);font-family:Arial,sans-serif}
 .act-btn.active{background:var(--green-tint);border-color:var(--green);color:var(--green)}
 /* News Ticker */
 .news-ticker-wrap{height:200px;overflow-y:auto;position:relative;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
@@ -486,7 +485,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 .pres-item:last-child{border-bottom:none}
 .pres-item:hover .pres-item-title{color:var(--green)}
 .pres-item-title{font-size:11.5px;color:var(--text);line-height:1.38;flex:1;transition:color 0.15s}
-.pres-item-meta{font-size:9.5px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'IBM Plex Mono',monospace}
+.pres-item-meta{font-size:9.5px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'SFMono-Regular',ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}
 .pres-empty{font-size:11px;color:var(--text-muted);padding:8px 0;text-align:center}
 </style>
 </head>
@@ -616,7 +615,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
     <!-- Vista Federal -->
     <div id="leg-view-federal">
       <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
-        <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.01em">Legislación Ambiental Federal</div>
+        <div style="font-size:22px;font-weight:700;font-family:Arial,sans-serif;letter-spacing:0.01em">Legislación Ambiental Federal</div>
         <div style="font-size:11px;color:var(--text-muted)">México · LXVI Legislatura</div>
       </div>
       <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</div>
@@ -625,7 +624,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
     <!-- Vista Estatal -->
     <div id="leg-view-estatal" style="display:none">
       <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
-        <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em">Legislación Ambiental Estatal</div>
+        <div style="font-size:22px;font-weight:700;font-family:Arial,sans-serif;letter-spacing:0.02em">Legislación Ambiental Estatal</div>
       </div>
       <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px">Leyes, códigos y reglamentos ambientales vigentes por entidad federativa · ordenjuridico.gob.mx</div>
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap">
@@ -644,7 +643,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 
   <!-- TAB: CONGRESO FEDERAL -->
   <div id="tab-congreso" class="tab-content" style="padding:28px 0">
-    <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Congreso Federal</div>
+    <div style="font-size:22px;font-weight:700;font-family:Arial,sans-serif;letter-spacing:0.02em;margin-bottom:4px">Congreso Federal</div>
     <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Comisiones legislativas con agenda ambiental activa · LXVI Legislatura</div>
     <div id="comisiones-list" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
   </div>
@@ -653,7 +652,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
   <!-- TAB: NORMAS -->
   <div id="tab-normas" class="tab-content" style="padding:28px 0">
     <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
-      <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em">Normas Oficiales Mexicanas</div>
+      <div style="font-size:22px;font-weight:700;font-family:Arial,sans-serif;letter-spacing:0.02em">Normas Oficiales Mexicanas</div>
       <div style="font-size:11px;color:var(--text-muted)">Relevancia ambiental · LXVI Legislatura</div>
     </div>
     <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">NOMs vigentes y proyectos (PROY-NOMs) con implicación estratégica para agua, aire, residuos, logística y comercio.</div>
@@ -670,7 +669,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 
   <div id="tab-alertas" class="tab-content" style="padding:28px 0">
     <div style="margin-bottom:20px">
-      <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Centro de Alertas</div>
+      <div style="font-size:22px;font-weight:700;font-family:Arial,sans-serif;letter-spacing:0.02em;margin-bottom:4px">Centro de Alertas</div>
       <div id="alertas-summary-line" style="font-size:12px;color:var(--text-muted);margin-bottom:16px"></div>
       <div style="display:flex;flex-wrap:wrap;gap:6px">
         <button class="alerta-filter-btn active" onclick="setAlertaFilter('all',this)">Todas</button>
@@ -683,7 +682,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
     <div id="alertas-list"></div>
   </div>
   <div id="tab-radares" class="tab-content" style="padding:28px 0">
-    <div style="font-size:22px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.02em;margin-bottom:4px">Radares Temáticos</div>
+    <div style="font-size:22px;font-weight:700;font-family:Arial,sans-serif;letter-spacing:0.02em;margin-bottom:4px">Radares Temáticos</div>
     <div style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Monitoreo de señales regulatorias y de presi&#xF3;n ambiental por tema · últimos 90 d&#xED;as</div>
     <div style="margin-bottom:20px;background:var(--card);border:0.8px solid var(--border);border-radius:12px;padding:16px 18px">
       <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px">Trayectoria tem&#xe1;tica &middot; &#xFA;ltimas 10 semanas</div>
@@ -701,7 +700,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--bg);c
 <div id="tab-acerca" class="tab-content">
   <div class="main" style="max-width:780px">
     <div class="card" style="padding:36px 40px;line-height:1.75">
-      <div style="font-size:26px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.04em;margin-bottom:24px;color:var(--text)">Acerca de SCOPE</div>
+      <div style="font-size:26px;font-weight:700;font-family:Arial,sans-serif;letter-spacing:0.04em;margin-bottom:24px;color:var(--text)">Acerca de SCOPE</div>
 
       <p style="font-size:15px;color:var(--text);margin-bottom:20px">
         SCOPE es una plataforma de Iniciativa GEMI creada para monitorear la actividad pública medioambiental en México. GEMI (<em>Global Environment Management Initiative</em>) es una organización que agrupa empresas de clase mundial, dedicada al fomento de políticas sostenibles y la promoción de responsabilidades ambientales en el país.
@@ -1069,7 +1068,7 @@ function buildMap(){
             +'<span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:'+col+'22;color:'+col+'">'+lbl+' '+(sc.master||0)+'</span>'
             +'</div>'
             +(nc>0?'<div style="font-size:11px;color:#555;margin-bottom:7px">'+nc+' noticia'+(nc>1?'s':'')+' reciente'+(nc>1?'s':'')+'</div>':'')
-            +'<button onclick="openStatePanel(\''+nameEsc+'\')" style="width:100%;padding:6px;background:#0ac285;color:#fff;border:none;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif">Ver panel \u2192</button>'
+            +'<button onclick="openStatePanel(\''+nameEsc+'\')" style="width:100%;padding:6px;background:#0ac285;color:#fff;border:none;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:Arial,sans-serif">Ver panel \u2192</button>'
             +'</div>';
           layer.bindPopup(popHtml,{className:'scope-popup',maxWidth:220,closeButton:false});
           layer.on('mouseover',function(e){
@@ -2228,38 +2227,38 @@ loadComisiones();
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
       <img src="thumbnail_LOGO GEMI_COLOR_HORIZONTAL.jpeg" alt="GEMI" style="height:18px;width:auto">
       <span style="width:1px;height:16px;background:var(--border-med);display:inline-block"></span>
-      <span style="font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:700;letter-spacing:0.08em;color:var(--green)">SCOPE</span>
+      <span style="font-family:Arial,sans-serif;font-size:20px;font-weight:700;letter-spacing:0.08em;color:var(--green)">SCOPE</span>
     </div>
-    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:26px;font-weight:700;letter-spacing:0.02em;color:var(--text);margin-bottom:8px;margin-top:16px;line-height:1.2">SCOPE está terminando<br>su desarrollo</div>
+    <div style="font-family:Arial,sans-serif;font-size:26px;font-weight:700;letter-spacing:0.02em;color:var(--text);margin-bottom:8px;margin-top:16px;line-height:1.2">SCOPE está terminando<br>su desarrollo</div>
     <div style="font-size:13px;color:var(--text-sec);margin-bottom:28px;line-height:1.6">Si quieres enterarte del lanzamiento, déjanos tus datos y serás de los primeros en acceder.</div>
     <form id="reg-form" onsubmit="submitReg(event)" style="display:flex;flex-direction:column;gap:14px">
       <div>
         <label style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;display:block;margin-bottom:6px">Nombre</label>
         <input id="reg-nombre" type="text" placeholder="Tu nombre completo" required
-          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:'IBM Plex Sans',sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
+          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:Arial,sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
           onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-med)'">
       </div>
       <div>
         <label style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;display:block;margin-bottom:6px">Correo electrónico</label>
         <input id="reg-email" type="email" placeholder="correo@empresa.com" required
-          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:'IBM Plex Sans',sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
+          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:Arial,sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
           onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-med)'">
       </div>
       <div>
         <label style="font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;display:block;margin-bottom:6px">Empresa que representa</label>
         <input id="reg-empresa" type="text" placeholder="Nombre de tu organización"
-          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:'IBM Plex Sans',sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
+          style="width:100%;height:40px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:Arial,sans-serif;color:var(--text);outline:none;transition:border 0.15s;background:#fafafa"
           onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border-med)'">
       </div>
       <button type="submit" id="reg-submit-btn"
-        style="margin-top:6px;height:44px;background:#111;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;font-family:'IBM Plex Sans',sans-serif;cursor:pointer;transition:background 0.15s;letter-spacing:0.02em"
+        style="margin-top:6px;height:44px;background:#111;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;font-family:Arial,sans-serif;cursor:pointer;transition:background 0.15s;letter-spacing:0.02em"
         onmouseover="this.style.background='#333'" onmouseout="this.style.background='#111'">
         Regístrame
       </button>
     </form>
     <div id="reg-success" style="display:none;text-align:center;padding:20px 0">
       <div style="font-size:36px;margin-bottom:12px"></div>
-      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px">¡Listo!</div>
+      <div style="font-family:Arial,sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px">¡Listo!</div>
       <div style="font-size:13px;color:var(--text-sec);line-height:1.6">Te avisaremos cuando SCOPE esté disponible.<br>¡Gracias por tu interés!</div>
     </div>
   </div>
