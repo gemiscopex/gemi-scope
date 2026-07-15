@@ -258,7 +258,9 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text);min-hei
 .com-member:last-child{border-bottom:none}
 .com-member:hover{background:rgba(10,194,133,0.06)}
 .com-member:hover .com-member-name{color:var(--green)}
-.com-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;letter-spacing:0.01em}
+.com-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;letter-spacing:0.01em;overflow:hidden;position:relative}
+.com-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.partido-logo{height:22px;width:auto;max-width:56px;object-fit:contain;flex-shrink:0}
 .com-info{flex:1;min-width:0}
 .com-member-name{font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .com-member-cargo{font-size:10px;color:var(--text-muted);margin-top:1px}
@@ -2003,6 +2005,15 @@ const PARTIDO_COLOR={
   'PVEM':'#2e7d32','PRD':'#e6a817','PRI':'#006847',
   'MC':'#f97316','PANAL':'#7c3aed','PES':'#1e40af'
 };
+const PARTIDO_LOGO={
+  'MORENA':'https://upload.wikimedia.org/wikipedia/commons/e/ea/Morena_logo_%28Mexico%29.svg',
+  'PAN':   'https://upload.wikimedia.org/wikipedia/commons/5/5c/PAN_logo_%28Mexico%29.svg',
+  'PRI':   'https://upload.wikimedia.org/wikipedia/commons/b/b5/PRI_logo_%28Mexico%29.svg',
+  'PVEM':  'https://upload.wikimedia.org/wikipedia/commons/f/f4/Logo_Partido_Verde_%28M%C3%A9xico%29.svg',
+  'PT':    'https://upload.wikimedia.org/wikipedia/commons/e/e7/Worker%27s_Party_logo_%28Mexico%29.svg',
+  'MC':    'https://upload.wikimedia.org/wikipedia/commons/3/34/Logo_Partido_Movimiento_Ciudadano_%28M%C3%A9xico%29.svg',
+};
+var _fotosMap={senado:{},diputados:{}};
 function initials(name){return name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();}
 function fmtReunion(iso){
   if(!iso)return '—';
@@ -2044,13 +2055,30 @@ function renderComisiones(data){
   if(!dip.length&&!sen.length){el.innerHTML='<div style="font-size:12px;color:var(--text-muted)">Sin datos de comisiones disponibles</div>';return;}
   function norm(c){return {nombre:c.nombre||c.n||'',url:c.url||'',at:c.at||'',ur:c.ur?fmtReunion(c.ur):'—',pr:c.pr?fmtReunion(c.pr):'—',integrantes:(c.integrantes||[]).map(function(m){return{n:m.n||m.nombre||'',cargo:m.cargo||'',partido:m.partido||''};})};}
   function memberHTML(m){
-    var color=PARTIDO_COLOR[m.partido]||PARTIDO_COLOR[m.partido&&m.partido.toUpperCase()]||'#6b7280';
+    var color=PARTIDO_COLOR[m.partido]||PARTIDO_COLOR[(m.partido||'').toUpperCase()]||'#6b7280';
     var isLead=m.cargo&&(m.cargo.toLowerCase().includes('president')||m.cargo.toLowerCase().includes('secretari'));
     var silUrl=m.sil_url||('http://sil.gobernacion.gob.mx/Busquedas/Legisladores/busquedas_legisladores_buscar.php?SID=&Nombre='+encodeURIComponent(m.n));
+    // Normalize name for photo lookup (strip accents, lowercase)
+    var nk=(m.n||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ').trim();
+    var fotoUrl=(_fotosMap.senado&&_fotosMap.senado[nk])||(_fotosMap.diputados&&_fotosMap.diputados[nk])||null;
+    // Avatar: photo over initials fallback
+    var avatarInner=initials(m.n);
+    var avatarStyle='background:'+color;
+    if(fotoUrl){
+      avatarInner='<img src="'+fotoUrl+'" alt="" onerror="this.remove()">'+initials(m.n);
+      avatarStyle='background:'+color+';padding:0';
+    }
+    // Party logo from Wikimedia; fallback to text badge
+    var partyKey=(m.partido||'').toUpperCase();
+    var logoUrl=PARTIDO_LOGO[partyKey];
+    var partyEl=logoUrl
+      ?'<img class="partido-logo" src="'+logoUrl+'" alt="'+m.partido+'" title="'+m.partido+'" onerror="this.nextSibling.style.display=\'\';this.remove()">'
+        +'<span class="com-partido" style="display:none">'+m.partido+'</span>'
+      :'<span class="com-partido">'+m.partido+'</span>';
     return '<a class="com-member" href="'+silUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'
-      +'<div class="com-avatar" style="background:'+color+'">'+initials(m.n)+'</div>'
+      +'<div class="com-avatar" style="'+avatarStyle+'">'+avatarInner+'</div>'
       +'<div class="com-info"><div class="com-member-name" style="'+(isLead?'font-weight:650':'')+'">'+m.n+'</div><div class="com-member-cargo">'+m.cargo+'</div></div>'
-      +'<span class="com-partido">'+m.partido+'</span>'
+      +partyEl
       +'<span style="font-size:10px;color:var(--green);flex-shrink:0;opacity:0.6;margin-left:2px">↗</span>'
       +'</a>';
   }
@@ -2135,7 +2163,14 @@ function renderComisiones(data){
     +renderSection(sen.map(norm),'sen','Senado de la República','https://www.senado.gob.mx/66/comisiones/ordinarias');
 }
 async function loadComisiones(){
-  try{var r=await fetch('data/comisiones.json',{cache:'no-store'});if(r.ok)renderComisiones(await r.json());else renderComisiones(null);}catch(e){renderComisiones(null);}
+  try{
+    var[comRes,fotosRes]=await Promise.all([
+      fetch('data/comisiones.json',{cache:'no-store'}),
+      fetch('data/fotos_legisladores.json',{cache:'no-store'}).catch(function(){return null;})
+    ]);
+    if(fotosRes&&fotosRes.ok){try{_fotosMap=await fotosRes.json();}catch(e){}}
+    if(comRes.ok)renderComisiones(await comRes.json());else renderComisiones(null);
+  }catch(e){renderComisiones(null);}
 }
 // ── BUSCADOR ──────────────────────────────────────────────────
 function initSearch(){
