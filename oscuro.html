@@ -267,7 +267,8 @@ function rFrentes(){
   const t7=Date.now()-7*86400000, t14=Date.now()-14*86400000;
   const ini=(D.sil&&D.sil.iniciativas)||[];
   const gacTot=((D.gacetas&&D.gacetas.resumen)||[]).reduce((s,r)=>s+r.total,0);
-  const dofRel=D.dof.filter(d=>d.relevante).length;
+  const t30=Date.now()-30*86400000;
+  const dofRel=D.dof.filter(d=>d.relevante&&new Date(d.fecha)>t30).length;
   const presArts=(D.presidencia&&D.presidencia.articulos)||[];
   const pres7=presArts.filter(a=>new Date(a.fecha)>t7).length;
   const pres14=presArts.filter(a=>{const d=new Date(a.fecha);return d>t14&&d<=t7;}).length;
@@ -280,7 +281,7 @@ function rFrentes(){
   const rows=[
     {n:'FEDERAL',  col:'var(--green)', s:`${ini.length} iniciativas en seguimiento`, a:'→'},
     {n:'ESTATAL',  col:'var(--amber)', s:`${gacTot} publicaciones en gacetas`, a:'↑'},
-    {n:'NORMAS',   col:dofRel?'var(--amber)':'var(--dim)', s:`${dofRel} DOF relevantes en monitoreo`, a:dofRel?'↑':'→'},
+    {n:'NORMAS',   col:dofRel?'var(--amber)':'var(--dim)', s:`${dofRel} DOF relevantes · 30 días`, a:dofRel?'↑':'→'},
     {n:'EJECUTIVO',col:presArrow[1], s:presTxt, a:presArrow[0]},
   ];
   document.getElementById('frentes').innerHTML = rows.map(r=>
