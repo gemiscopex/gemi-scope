@@ -1,6 +1,31 @@
 {
   "iniciativas": [
     {
+      "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-07-01",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "titulo": "Que reforma y adiciona el artículo 8 de la Ley de la Empresa Pública del Estado, Petróleos Mexicanos.",
+      "presentador": "Dip. Laura Irais Ballesteros Mancilla (MC)",
+      "aspectos": "La iniciativa tiene por objeto establecer que la empresa productiva del Estado, Pemex, comience a transformarse en empresas que participen activamente en la generación de energías limpias y renovables, a fin de reducir las emisiones altamente contaminantes. Para ello propone que: 1) realice investigación, desarrollo e implementación de energías limpias y renovables que le permitan cumplir con su objeto y con la política en materia de diversificación de fuentes de energía, seguridad energética y las obligaciones de reducción de emisiones de gases de efecto invernadero; y 2) promover e impulsar programas y campañas de información sobre las repercusiones que tienen los gases de efecto invernadero dentro del cambio climático y la salud de las personas.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Energía  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 01 de julio de 2026, por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 01/07/2026",
+      "asunto_id": "5107176",
+      "seguimiento": "5109446",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5109446&Asunto=5107176",
+      "categorias": [
+        "energia_renovable",
+        "hidrocarburos",
+        "calidad_aire",
+        "cambio_climatico"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "5332c3838721",
+      "scrapeado_en": "2026-07-17T19:06:39.895572+00:00"
+    },
+    {
       "camara_origen": "Comisión Permanente",
       "fecha_presentacion": "2026-06-23",
       "legislatura": "LXVI",
@@ -10861,26 +10886,6 @@
       "categoria_nombre": "Biodiversidad",
       "id": "be2d7ec62195",
       "scrapeado_en": "2026-04-29T21:23:35.111091+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "fecha_presentacion": "2025-11-04",
-      "legislatura": "LXVI",
-      "periodo": "1er Ordinario",
-      "presentador": "Dip. Verónica Martínez García (PRI)",
-      "aspectos": "La legisladora propone exhortar a la titular del Ejecutivo federal para que, a través, de la Secretaría de Desarrollo Agrario Territorial y Urbano, instrumente un programa que pueda recibir recursos para contribuir con el desarrollo de aquellas entidades federativas, municipios y demarcaciones territoriales que se dediquen a la minería.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Energía  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 04 de noviembre de 2025 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Desechado Desechado 30/01/2026",
-      "asunto_id": "4966289",
-      "seguimiento": "4969305",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4969305&Asunto=4966289",
-      "categorias": [
-        "mineria"
-      ],
-      "categoria": "mineria",
-      "categoria_nombre": "Minería",
-      "id": "1afe41d3ce2e",
-      "scrapeado_en": "2026-07-17T15:11:07.817215+00:00"
     }
   ],
   "_meta": {
@@ -10888,6 +10893,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 149,
-    "actualizado": "2026-07-17T15:12:33Z"
+    "actualizado": "2026-07-17T19:10:20Z"
   }
 }
