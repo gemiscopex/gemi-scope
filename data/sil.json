@@ -10821,6 +10821,26 @@
     },
     {
       "camara_origen": "Cámara de Diputados",
+      "fecha_presentacion": "2025-11-25",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Dip. Rubén Ignacio Moreira Valdez (PRI)",
+      "aspectos": "El legislador propone exhortar a: 1) la Secretaría de Agricultura y Desarrollo Rural del gobierno federal a establecer de manera inmediata un precio de garantía de $7,200.00 (Siete mil doscientos pesos 00/100 M.N.) por tonelada de maíz blanco, para los productores de Campeche, Yucatán y Quintana Roo, así como implementar un mecanismo de compra directa y acopio regional, con prioridad para pequeños y medianos productores, garantizando que los recursos lleguen sin intermediarios; 2) la Secretaría de Agricultura y Desarrollo Rural y la Secretaría de Economía del gobierno federal a respaldar a los productores de Campeche, en las negociaciones y acuerdos con representantes de empresas del sector industrial para que estas adquieran la totalidad de 700 mil toneladas de maíz blanco producidas a un precio de $7,200.00 (Siete mil doscientos pesos 00/100 M.N.); y, 3) la Secretaría de Economía a revisar las condiciones de importación de maíz transgénico que afectan negativamente el precio nacional y particularmente a productores de la Península de Yucatán.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Desarrollo y Conservación Rural, Agrícola y Autosuficiencia Alimentaria de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 25 de noviembre de 2025 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Desechado Desechado 30/01/2026",
+      "asunto_id": "4982237",
+      "seguimiento": "4986884",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4986884&Asunto=4982237",
+      "categorias": [
+        "transgenico"
+      ],
+      "categoria": "transgenico",
+      "categoria_nombre": "Transgénico",
+      "id": "eeba9608ff54",
+      "scrapeado_en": "2026-07-20T19:46:28.319433+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
       "camara_revisora": "Cámara de Senadores",
       "fecha_presentacion": "2025-11-25",
       "legislatura": "LXVI",
@@ -10843,33 +10863,13 @@
       "categoria_nombre": "Agua",
       "id": "2bce527c4498",
       "scrapeado_en": "2026-04-30T19:25:21.630451+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "fecha_presentacion": "2025-11-25",
-      "legislatura": "LXVI",
-      "periodo": "1er Ordinario",
-      "presentador": "Dip. Carmen Rocío González Alonso (PAN)",
-      "aspectos": "Las legisladoras proponen exhortar a la Comisión de Recursos Hidráulicos, Agua Potable y Saneamiento a efecto de que: 1) se aplace el análisis, discusión y, en su caso, dictaminación de la iniciativa con proyecto de decreto por el que se reforman, adicionan y derogan diversas disposiciones de la Ley de Aguas Nacionales, presentada por la presidenta de la República, la doctora Claudia Sheinbaum Pardo, el 1 de octubre de 2025; y, 2) el aplazamiento persista hasta lograr, mediante un auténtico ejercicio de parlamento abierto, el consenso amplio e incluyente con todos los grupos parlamentarios, sectores productivos, entidades federativas y sociedad civil, garantizando que la nueva ley refleje las realidades territoriales, sociales y económicas del México diverso, las propuestas de los ponentes participantes, y que no genere conflictos ni parálisis productiva.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Recursos Hidráulicos, Agua Potable y Saneamiento  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 25 de noviembre de 2025 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Desechado Desechado 30/01/2026",
-      "asunto_id": "4982225",
-      "seguimiento": "4986905",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4986905&Asunto=4982225",
-      "categorias": [
-        "agua"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "96d2997ffeba",
-      "scrapeado_en": "2026-04-29T21:16:06.041536+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 160,
-    "actualizado": "2026-07-20T15:51:29Z"
+    "nuevas": 144,
+    "actualizado": "2026-07-20T19:47:11Z"
   }
 }
