@@ -1,6 +1,20 @@
 {
   "articulos": [
     {
+      "id": "2a2fa7d9e5",
+      "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 21 de julio de 2026",
+      "fecha": "2026-07-21",
+      "url": "https://www.gob.mx/presidencia/es/articulos/version-estenografica-conferencia-de-prensa-de-la-presidenta-claudia-sheinbaum-pardo-del-21-de-julio-de-2026",
+      "fuente": "Presidencia de México — Estenográfica",
+      "categorias": [
+        "agua"
+      ],
+      "fragmentos": [
+        "El de San Luis Río Colorado [Sonora] que tiene 345 camas, 120 censables, 225 no censables, 27 especialidades. El anterior hospital era de 1964, este sí es una sustitución.",
+        "También en San Luis Río Colorado, en el estado de Nuevo León, es la obra hospitalaria más grande que se ha hecho en…"
+      ]
+    },
+    {
       "id": "b630dc21d8",
       "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 20 de julio de 2026",
       "fecha": "2026-07-20",
@@ -8834,8 +8848,8 @@
   ],
   "_meta": {
     "fuente": "Presidencia de México — Estenográficas mañanera",
-    "total": 451,
+    "total": 452,
     "nuevos_hoy": 1,
-    "actualizado": "2026-07-21T15:29:47Z"
+    "actualizado": "2026-07-21T19:18:29Z"
   }
 }
