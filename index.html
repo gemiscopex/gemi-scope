@@ -297,7 +297,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .sp-close{background:none;border:1px solid var(--border-med);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text-sec);font-family:var(--sans);transition:background 0.15s}
 .sp-close:hover{background:var(--green-tint)}
 .sp-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px;overflow-x:auto;gap:0}
-.sp-tab{background:none;border:none;border-bottom:2px solid transparent;padding:10px 16px;font-size:11px;font-weight:600;letter-spacing:0.6px;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color 0.15s;font-family:var(--sans)}
+.sp-tab{background:none;border:none;border-bottom:2px solid transparent;padding:10px 14px;font-size:12.5px;font-weight:500;letter-spacing:0.01em;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color 0.15s;font-family:var(--sans)}
 .sp-tab.active{color:var(--green);border-bottom-color:var(--green)}
 .sp-content{display:none}
 .sp-content.active{display:block}
@@ -305,7 +305,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .sp-stat{background:var(--teal-l);border-radius:10px;padding:14px}
 .sp-stat-label{font-size:10px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px}
 .sp-stat-value{font-size:17px;font-weight:600;color:var(--text)}
-.sp-law-block{border:1px solid var(--border-med);border-radius:10px;padding:14px;margin-bottom:14px}
+.sp-law-block{border:0;border-bottom:0.8px solid var(--border);border-radius:0;padding:13px 0;margin-bottom:0}
 .sp-law-name{font-size:14px;font-weight:600;color:var(--text);margin-top:4px;line-height:1.4}
 .sp-news-item{padding:10px 0;border-bottom:0.8px solid var(--border)}
 .sp-news-item:last-child{border-bottom:none}
@@ -681,13 +681,13 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <button class="sp-close" onclick="closeStatePanel()">Cerrar</button>
     </div>
     <div class="sp-tabs">
-      <button class="sp-tab active" onclick="showSPTab('perfil',this)">PERFIL</button>
-      <button class="sp-tab" onclick="showSPTab('actividad',this)">ACTIVIDAD</button>
-      <button class="sp-tab" onclick="showSPTab('legislacion',this)">LEGISLACIÓN</button>
-      <button class="sp-tab" onclick="showSPTab('impuestos',this)">IMPUESTOS</button>
-      <button class="sp-tab" onclick="showSPTab('materiales',this)">MATERIALES PROHIBIDOS</button>
-      <button class="sp-tab" onclick="showSPTab('sectorial',this)">SECTOR INDUSTRIAL</button>
-      <button class="sp-tab" onclick="showSPTab('gaceta',this)">GACETA</button>
+      <button class="sp-tab active" onclick="showSPTab('perfil',this)">Perfil</button>
+      <button class="sp-tab" onclick="showSPTab('actividad',this)">Actividad</button>
+      <button class="sp-tab" onclick="showSPTab('legislacion',this)">Legislación</button>
+      <button class="sp-tab" onclick="showSPTab('impuestos',this)">Impuestos</button>
+      <button class="sp-tab" onclick="showSPTab('materiales',this)">Materiales Prohibidos</button>
+      <button class="sp-tab" onclick="showSPTab('sectorial',this)">Sector Industrial</button>
+      <button class="sp-tab" onclick="showSPTab('gaceta',this)">Gaceta</button>
     </div>
     <div id="sp-perfil" class="sp-content active"></div>
     <div id="sp-actividad" class="sp-content"></div>
@@ -1286,6 +1286,33 @@ document.addEventListener('mousedown',function(e){
   document.addEventListener('mousemove',mv);
   document.addEventListener('mouseup',up);
 });
+// Dibujo individual de un estado (outline delgado) para el header de su ficha
+var GEO_TO_SCOPE={'Coahuila de Zaragoza':'Coahuila','Michoacán de Ocampo':'Michoacán','Veracruz de Ignacio de la Llave':'Veracruz','Estado de México':'México','Mexico':'México','Distrito Federal':'Ciudad de México'};
+function _stateOutlineSVG(state,h){
+  if(!_geoOutline||_geoOutline==='loading'||_geoOutline===false)return '';
+  var feat=(_geoOutline.features||[]).find(function(f){
+    var n=(f.properties&&f.properties.name)||'';
+    return (GEO_TO_SCOPE[n]||n)===state;
+  });
+  if(!feat||!feat.geometry)return '';
+  var g=feat.geometry;
+  var polys=g.type==='Polygon'?[g.coordinates]:(g.type==='MultiPolygon'?g.coordinates:[]);
+  var minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
+  polys.forEach(function(p){p.forEach(function(r){r.forEach(function(pt){
+    if(pt[0]<minX)minX=pt[0];if(pt[0]>maxX)maxX=pt[0];
+    if(pt[1]<minY)minY=pt[1];if(pt[1]>maxY)maxY=pt[1];
+  });});});
+  if(!isFinite(minX))return '';
+  var w=maxX-minX,ht=maxY-minY;
+  if(w<=0||ht<=0)return '';
+  var d='';
+  polys.forEach(function(p){p.forEach(function(r){
+    var pts=r.filter(function(_,i){return i%2===0||i===r.length-1;});
+    if(pts.length<3)return;
+    d+='M'+pts.map(function(pt){return (pt[0]-minX).toFixed(3)+' '+(maxY-pt[1]).toFixed(3);}).join('L')+'Z';
+  });});
+  return '<svg viewBox="0 0 '+w.toFixed(3)+' '+ht.toFixed(3)+'" style="height:'+h+'px;width:auto;max-width:100px;vertical-align:middle;opacity:0.65" preserveAspectRatio="xMidYMid meet"><path d="'+d+'" fill="none" stroke="var(--text-sec)" stroke-width="1" vector-effect="non-scaling-stroke"/></svg>';
+}
 // Siluetas de los estados: GeoJSON proyectado al mismo plano que los puntos
 var _geoOutline=null;
 function _loadGeoOutline(){
@@ -1659,16 +1686,16 @@ function renderSPImpuestos(state){
   }
   const hasUMA=taxes.some(t=>t.unidad==='UMA');
   const cards=taxes.map(t=>{
-    const tc=TC[t.tipo]||{c:'var(--text-muted)',b:'var(--border)',label:t.tipo};
-    const badge=`<span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;background:${tc.b};color:${tc.c};letter-spacing:0.5px">${tc.label}</span>`;
-    const contro=t.controversia?`<span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:rgba(251,191,36,0.15);color:#92400e;border:1px solid rgba(251,191,36,0.3)">CONTROVERSIA</span>`:'';
-    const precio=t.precio&&t.precio!=='—'?`<div style="font-size:15px;font-weight:700;color:${tc.c};margin:6px 0 4px">${t.precio} <span style="font-size:10px;font-weight:500;color:var(--text-muted)">${t.unidad}</span></div>`:'';
+    const tipoLbl=(TC[t.tipo]||{label:t.tipo}).label||t.tipo;
+    const badge=`<span style="font-size:9.5px;font-weight:600;color:var(--text-muted);letter-spacing:0.08em">${tipoLbl}</span>`;
+    const contro=t.controversia?`<span style="font-size:9px;font-weight:700;color:#D97706;letter-spacing:0.06em">CONTROVERSIA</span>`:'';
+    const precio=t.precio&&t.precio!=='—'?`<div style="font-size:16px;font-weight:700;color:var(--text);margin:6px 0 4px;font-variant-numeric:tabular-nums">${t.precio} <span style="font-size:10px;font-weight:500;color:var(--text-muted)">${t.unidad}</span></div>`:'';
     const specs=t.especificaciones?`<div style="font-size:12px;color:var(--text);line-height:1.5;margin-bottom:6px">${t.especificaciones}</div>`:'';
     const oblig=t.obligados?`<div style="font-size:11px;color:var(--text-sec);margin-bottom:5px"><span style="font-weight:600">Obligados:</span> ${t.obligados}</div>`:'';
     const fechas=(t.fechaPublicado&&t.fechaPublicado!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted)">Publicado: <b>${t.fechaPublicado}</b></span>`:'')+(t.vigencia&&t.vigencia!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted);margin-left:14px">Vigencia: <b>${t.vigencia}</b></span>`:'');
-    return `<div class="sp-law-block" style="margin-bottom:12px"><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">${badge}${contro}</div>${precio}${specs}${oblig}${fechas?`<div style="margin-top:4px">${fechas}</div>`:''}</div>`;
+    return `<div style="padding:13px 0;border-bottom:0.8px solid var(--border)"><div style="display:flex;align-items:center;gap:12px;margin-bottom:2px">${badge}${contro}</div>${precio}${specs}${oblig}${fechas?`<div style="margin-top:4px">${fechas}</div>`:''}</div>`;
   }).join('');
-  const footer=hasUMA?`<div style="margin-top:10px;padding:10px 12px;background:var(--green-tint);border-radius:8px;font-size:10px;color:var(--text-muted)"> UMA 2026 (INEGI): <b>$117.31 MXN/día</b> · Fuente: ANIQ — Guía de Impuestos Ambientales Estatales, Feb 2026</div>`:`<div style="margin-top:10px;font-size:10px;color:var(--text-muted);text-align:right">Fuente: ANIQ — Guía de Impuestos Ambientales Estatales, Feb 2026</div>`;
+  const footer=hasUMA?`<div style="margin-top:12px;font-size:10px;color:var(--text-muted)">UMA 2026 (INEGI): <b>$117.31 MXN/día</b></div>`:'';
   document.getElementById('sp-impuestos').innerHTML=cards+footer;
 }
 function renderSPGaceta(state,data){
@@ -1684,7 +1711,7 @@ function openStatePanel(stateName){
   var data=estadoData[stateName]||{};
   var sc=stateScores[stateName]||{icr:0,ipr:0,irf:0,iis:0,master:0,rank:32};
   document.getElementById('sp-name').textContent=stateName;
-  document.getElementById('sp-sub').textContent=(data.region||'')+(data.region?' \u00b7 ':'')+'M\u00e9xico';
+  document.getElementById('sp-sub').innerHTML=_stateOutlineSVG(stateName,42)||'';
   renderSPPerfil(stateName,data,sc);
   renderSPLegislacion(stateName,data);
   renderSPImpuestos(stateName);
@@ -2019,25 +2046,32 @@ function renderSPPerfil(state,data,sc){
   const complexity=sc.icr>=60?'alta':sc.icr>=30?'moderada':'baja';
   const pressure=sc.ipr>=60?'elevada':sc.ipr>=30?'moderada':'baja';
   const fiscal=sc.irf>=40?'activo con posibles controversias':sc.irf>=20?'en desarrollo':'incipiente';
-  const narrative=`${state} presenta una complejidad regulatoria ambiental <strong>${complexity}</strong> (ICR: ${sc.icr}/100), con cobertura en ${numThemes} materias ambientales. La presi\u00f3n regulatoria es <strong>${pressure}</strong> en el per\u00edodo reciente, con ${stateNews[state]||0} menciones en medios especializados. Su r\u00e9gimen de impuestos ambientales es <strong>${fiscal}</strong>. La capital ${data.capital||'\u2014'} concentra la actividad legislativa del congreso estatal. Con un Master Score de ${sc.master}/100, ${state} ocupa la posici\u00f3n #${sc.rank||'\u2014'} en el ranking nacional de presi\u00f3n regulatoria ambiental.`;
-  // Estad\u00edsticas estilo Data M\u00e9xico (INEGI Censo 2020)
-  const perfil=((_perfilEstados&&_perfilEstados.estados)||{})[state]||{};
-  const pobTotal=Object.values((_perfilEstados&&_perfilEstados.estados)||{}).reduce((s,e)=>s+(e.poblacion||0),0);
+  const narrative=`${state} presenta una complejidad regulatoria ambiental <strong>${complexity}</strong>, con cobertura en ${numThemes} materias ambientales. La presi\u00f3n regulatoria es <strong>${pressure}</strong> en el per\u00edodo reciente, con ${stateNews[state]||0} menciones en medios especializados. Su r\u00e9gimen de impuestos ambientales es <strong>${fiscal}</strong>. La capital ${data.capital||'\u2014'} concentra la actividad legislativa del congreso estatal.`;
+  // Datos INEGI en filas t\u00e9cnicas: cifra + barra comparativa vs m\u00e1ximo nacional
+  const perfiles=(_perfilEstados&&_perfilEstados.estados)||{};
+  const perfil=perfiles[state]||{};
+  const pobTotal=Object.values(perfiles).reduce((s,e)=>s+(e.poblacion||0),0);
+  const pobMax=Object.values(perfiles).reduce((s,e)=>Math.max(s,e.poblacion||0),0);
   const fmtNum=n=>n?n.toLocaleString('es-MX'):'\u2014';
-  const pct=perfil.poblacion&&pobTotal?((perfil.poblacion/pobTotal)*100).toFixed(1)+'%':'\u2014';
-  const statGrid=`<div class="sp-stat-grid">
-      <div class="sp-stat"><div class="sp-stat-label">Poblaci\u00f3n \u00b7 Censo 2020</div><div class="sp-stat-value">${fmtNum(perfil.poblacion)}</div></div>
-      <div class="sp-stat"><div class="sp-stat-label">% de la poblaci\u00f3n nacional</div><div class="sp-stat-value">${pct}</div></div>
-      <div class="sp-stat"><div class="sp-stat-label">Capital</div><div class="sp-stat-value" style="font-size:14px">${perfil.capital||data.capital||'\u2014'}</div></div>
-      <div class="sp-stat"><div class="sp-stat-label">PEA</div><div class="sp-stat-value" style="font-size:14px">${perfil.pea?fmtNum(perfil.pea):'pr\u00f3ximamente'}</div></div>
+  const pct=perfil.poblacion&&pobTotal?(perfil.poblacion/pobTotal)*100:null;
+  const pctMax=pobMax&&pobTotal?(pobMax/pobTotal)*100:1;
+  function statRow(label,value,barPct,note){
+    return `<div style="display:grid;grid-template-columns:172px 1fr;gap:4px 18px;align-items:baseline;padding:11px 0;border-bottom:0.8px solid var(--border)">
+      <div style="font-size:9.5px;font-weight:600;letter-spacing:0.09em;color:var(--text-muted);text-transform:uppercase">${label}</div>
+      <div>
+        <span style="font-size:17px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">${value}</span>
+        ${note?`<span style="font-size:10.5px;color:var(--text-muted);margin-left:8px">${note}</span>`:''}
+        ${barPct!=null?`<div style="height:3px;background:rgba(0,0,0,0.06);margin-top:7px;max-width:340px"><div style="width:${Math.max(1.5,barPct)}%;height:100%;background:var(--green)"></div></div>`:''}
+      </div>
     </div>`;
-  document.getElementById('sp-perfil').innerHTML=`
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
-      ${scoreBadge(sc.master||0)}
-      <span style="font-size:12px;color:var(--text-muted)">Posici\u00f3n #${sc.rank||'\u2014'} de 32 \u00b7 Promedio nacional: ${avg}</span>
-    </div>
-    ${statGrid}
-    <div class="sp-law-block" style="font-size:13px;line-height:1.6;color:var(--text-sec)">${narrative}</div>`;
+  }
+  const rows=
+     statRow('Poblaci\u00f3n',fmtNum(perfil.poblacion),perfil.poblacion&&pobMax?(perfil.poblacion/pobMax)*100:null,'Censo INEGI 2020')
+    +statRow('% de la poblaci\u00f3n nacional',pct!=null?pct.toFixed(1)+'%':'\u2014',pct!=null?(pct/pctMax)*100:null,'')
+    +statRow('Capital',perfil.capital||data.capital||'\u2014',null,'')
+    +statRow('Poblaci\u00f3n econ\u00f3micamente activa','\u2014',null,'Integraci\u00f3n API INEGI en curso');
+  document.getElementById('sp-perfil').innerHTML=rows
+    +`<div style="margin-top:16px;padding-top:14px;font-size:12.5px;line-height:1.65;color:var(--text-sec)">${narrative}</div>`;
 }
 function renderSPMateriales(state){
   const el=document.getElementById('sp-materiales');
