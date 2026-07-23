@@ -10,9 +10,9 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#F0F4F8;
+  --bg:#FFFFFF;
   --card:#FFFFFF;
-  --card2:#F8FAFC;
+  --card2:#F6F8FA;
   --border:rgba(0,0,0,0.07);
   --border2:rgba(0,0,0,0.13);
   --border-med:rgba(0,0,0,0.13);
@@ -61,15 +61,15 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .tab-btn{padding:0 2px;margin-right:18px;font-size:11px;font-weight:500;color:var(--text-muted);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.06em;transition:color 0.15s;font-family:var(--mono);white-space:nowrap;text-transform:uppercase}
 .tab-btn.active{color:var(--white);border-bottom-color:var(--amber)}
 .main{max-width:1200px;margin:0 auto;padding:24px 28px 32px}
-.scope-footer{background:rgba(240,244,248,0.92);border-top:1px solid rgba(0,0,0,0.05);padding:4px 28px;text-align:center;font-size:10px;color:var(--text3);line-height:1.4;position:fixed;bottom:0;left:0;right:0;z-index:200;backdrop-filter:blur(6px)}
+.scope-footer{background:rgba(255,255,255,0.95);border-top:1px solid rgba(0,0,0,0.05);padding:4px 28px;text-align:center;font-size:10px;color:var(--text3);line-height:1.4;position:fixed;bottom:0;left:0;right:0;z-index:200;backdrop-filter:blur(6px)}
 .scope-footer a{color:var(--text-muted);text-decoration:underline;text-underline-offset:3px}
 .scope-footer a:hover{color:var(--text)}
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
+.card{background:none;border:none;border-radius:0;padding:0;box-shadow:none}
 .card-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px}
 /* ── Dashboard layout ── */
-.dash-main{display:grid;grid-template-columns:2fr 1fr;gap:10px;align-items:start}
-.dash-left{display:flex;flex-direction:column;gap:10px}
-.dash-right{display:flex;flex-direction:column;gap:10px}
+.dash-main{display:grid;grid-template-columns:2fr 1fr;gap:36px 48px;align-items:start}
+.dash-left{display:flex;flex-direction:column;gap:36px;min-width:0}
+.dash-right{display:flex;flex-direction:column;gap:32px;min-width:0}
 .dash-feeds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .leg-sub-bar{display:flex;gap:0;border-bottom:1.5px solid var(--border);margin-bottom:24px}
 .leg-sub-btn{padding:8px 18px;border:none;background:none;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px;font-family:var(--sans);transition:color 0.15s}
@@ -430,16 +430,17 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .semana-card:hover .semana-sub{color:var(--green)}
 .semana-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease}
 .semana-body p{font-size:12px;color:var(--text2);line-height:1.6;margin:10px 0 0}
-.chyron{display:flex;align-items:stretch;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--card);box-shadow:var(--shadow);margin-bottom:10px;height:36px}
-.chyron-label{background:#B91C1C;color:#fff;font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:0.1em;display:flex;align-items:center;gap:6px;padding:0 14px;white-space:nowrap;flex-shrink:0}
-.chyron-live{width:6px;height:6px;border-radius:50%;background:#fff;animation:pulse 1.6s ease-in-out infinite}
-.chyron-track{flex:1;overflow:hidden;display:flex;align-items:center;position:relative}
+#csp-chyron{min-width:0;max-width:100%;overflow:hidden}
+.chyron{display:block;overflow:hidden;max-width:100%}
+.chyron-hdr{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px}
+.chyron-live{width:6px;height:6px;border-radius:50%;background:#DC2626;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0}
+.chyron-track{overflow:hidden;display:flex;align-items:center}
 .chyron-inner{display:inline-flex;white-space:nowrap;will-change:transform;animation:chyronMove var(--chyron-dur,60s) linear infinite}
 .chyron-track:hover .chyron-inner{animation-play-state:paused}
 @keyframes chyronMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.chyron-it{font-size:12px;color:var(--text2);padding:0 26px;cursor:pointer}
+.chyron-it{font-size:12px;color:var(--text2);padding-right:30px;cursor:pointer;font-style:italic}
 .chyron-it:hover{color:var(--green)}
-.chyron-it .cim{font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-left:8px}
+.chyron-it .cim{font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-left:8px;font-style:normal}
 /* ═══════════ MI CONSOLA ═══════════ */
 .cons-hero{max-width:600px;margin:40px auto;text-align:center;padding:52px 44px}
 .cons-hero-t{font-family:var(--mono);font-size:11px;letter-spacing:0.25em;color:var(--green);margin-bottom:14px}
@@ -501,6 +502,17 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .cw-chip span:hover{color:var(--red)}
 .cw-rsg{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border)}
 .cw-rsg-btn{font-family:var(--mono);font-size:9px;letter-spacing:0.05em;padding:3px 9px;border:1px solid var(--border);background:none;color:var(--dim);cursor:pointer;text-transform:uppercase}
+/* ═══════════ NAV EN VIEWPORTS MEDIANOS ═══════════ */
+@media (max-width:1260px){
+  .nav{padding:0 16px}
+  .tab-btn{margin-right:12px}
+  .nav-search input{width:84px}
+}
+@media (max-width:1150px){
+  .nav-linkedin{display:none}
+  .nav-btn-login{display:none}
+  .nav-tagline{display:none}
+}
 /* ═══════════ RESPONSIVE MÓVIL ═══════════ */
 @media (max-width: 680px){
   /* ── NAV ── */
@@ -534,7 +546,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   .cw-grid2{grid-template-columns:1fr !important}
 
   /* ── CARDS ── */
-  .card{border-radius:12px;padding:16px 14px}
+  .card{padding:0}
 
   /* ── MODAL DE ESTADO ── */
   .state-modal-bg{padding:0}
@@ -654,9 +666,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 <div class="main">
   <div class="tab-content active" id="tab-dashboard">
 
-    <!-- Cintillo tipo noticiero: menciones de la CSP -->
-    <div id="csp-chyron"></div>
-
     <!-- Main grid: mapa+feeds izquierda, noticias derecha -->
     <div class="dash-main">
       <div class="dash-left">
@@ -695,10 +704,12 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
               </div>
             </div>
           </div>
-          <div class="news-ticker-wrap" id="news-ticker-wrap" style="height:420px">
+          <div class="news-ticker-wrap" id="news-ticker-wrap" style="height:360px">
             <div class="news-ticker-inner" id="news-ticker"></div>
           </div>
         </div>
+        <!-- Cintillo del Ejecutivo (CSP) -->
+        <div id="csp-chyron"></div>
       </div>
     </div>
   </div>
@@ -1109,9 +1120,9 @@ function loadPresidencia(){
       });
     });
     if(!quotes.length){el.style.display='none';return;}
-    const seq=quotes.map(q=>'<span class="chyron-it" onclick="window.open(\''+q.url+'\',\'_blank\')">“'+q.t+'”<span class="cim">CSP · '+q.f+'</span></span>').join('<span style="color:var(--text3)">◆</span>');
+    const seq=quotes.map(q=>'<span class="chyron-it" onclick="window.open(\''+q.url+'\',\'_blank\')">“'+q.t+'”<span class="cim">CSP · '+q.f+'</span></span>').join('<span style="color:var(--text3);padding-right:30px">◆</span>');
     el.innerHTML='<div class="chyron">'
-      +'<div class="chyron-label"><span class="chyron-live"></span>EJECUTIVO · CSP</div>'
+      +'<div class="chyron-hdr"><span class="chyron-live"></span>Ejecutivo · Conferencias CSP</div>'
       +'<div class="chyron-track"><div class="chyron-inner" id="chyron-inner">'+seq+seq+'</div></div>'
       +'</div>';
     // Velocidad constante: duración proporcional al ancho del contenido
