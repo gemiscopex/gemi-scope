@@ -115,7 +115,11 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .cat-count{font-size:13px;font-weight:600;color:var(--text);min-width:28px;text-align:right;font-variant-numeric:tabular-nums}
 /* ── Mapa de puntos (señal territorial) ── */
 .dotmap-card{position:relative;height:480px;padding:0!important;overflow:hidden}
-.dotmap-grid{display:none}
+.dotmap-grid{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(#EDF2F6 1px,transparent 1px),linear-gradient(90deg,#EDF2F6 1px,transparent 1px);
+  background-size:52px 52px;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 45%,#000 35%,transparent 82%);
+  mask-image:radial-gradient(ellipse at 50% 45%,#000 35%,transparent 82%)}
 #map-viewport{position:absolute;inset:0;overflow:hidden;z-index:1}
 #map-zoom{position:absolute;inset:0;transform-origin:50% 50%}
 .map-zoom-ctrl{position:absolute;right:14px;bottom:14px;z-index:5;display:flex;flex-direction:column;border:1px solid var(--border-med);background:#fff;border-radius:6px;overflow:hidden}
@@ -702,6 +706,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <div class="dash-left">
         <!-- Mapa político -->
         <div class="card dotmap-card">
+          <div class="dotmap-grid"></div>
           <div class="dotmap-title">
             <span class="card-label" style="margin-bottom:0">Mapa Político de México</span>
             <span style="font-size:12px;color:var(--text-muted);margin-top:4px">Selecciona un estado</span>
@@ -1295,23 +1300,48 @@ function _loadGeoOutline(){
 function _renderGeoOutline(){
   var host=document.getElementById('dotmap-annot');
   if(!host||!_geoOutline||_geoOutline==='loading'||_geoOutline===false)return;
-  var paths='';
+  // Solo fronteras INTERIORES: un segmento compartido por dos estados aparece
+  // dos veces en el GeoJSON; la costa y la frontera nacional solo una vez.
+  var segCount={},rings=[];
+  function pk(p){return p[0].toFixed(4)+','+p[1].toFixed(4);}
+  function segKey(a,b){var ka=pk(a),kb=pk(b);return ka<kb?ka+'|'+kb:kb+'|'+ka;}
   (_geoOutline.features||[]).forEach(function(f){
     var g=f.geometry;
     if(!g)return;
     var polys=g.type==='Polygon'?[g.coordinates]:(g.type==='MultiPolygon'?g.coordinates:[]);
     polys.forEach(function(poly){
       poly.forEach(function(ring){
-        // Decimación ligera para mantener el SVG ágil
-        var pts=ring.filter(function(_,i){return i%2===0;});
-        if(pts.length<3)return;
-        paths+='<path d="M'+pts.map(function(p){return _projX(p[0]).toFixed(2)+' '+_projY(p[1]).toFixed(2);}).join('L')+'Z"/>';
+        rings.push(ring);
+        for(var i=0;i<ring.length-1;i++){
+          var key=segKey(ring[i],ring[i+1]);
+          segCount[key]=(segCount[key]||0)+1;
+        }
       });
     });
   });
+  function runToPath(pts){
+    var dec=pts.filter(function(_,i){return i===0||i===pts.length-1||i%2===0;});
+    return 'M'+dec.map(function(p){return _projX(p[0]).toFixed(2)+' '+_projY(p[1]).toFixed(2);}).join('L');
+  }
+  var d='',seen={};
+  rings.forEach(function(ring){
+    var run=[];
+    for(var i=0;i<ring.length-1;i++){
+      var key=segKey(ring[i],ring[i+1]);
+      if(segCount[key]>=2&&!seen[key]){
+        seen[key]=1;
+        if(!run.length)run.push(ring[i]);
+        run.push(ring[i+1]);
+      }else{
+        if(run.length>1)d+=runToPath(run);
+        run=[];
+      }
+    }
+    if(run.length>1)d+=runToPath(run);
+  });
   host.innerHTML='<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">'
     +'<style>path{vector-effect:non-scaling-stroke}</style>'
-    +'<g fill="none" stroke="#C2D0DB" stroke-width="1">'+paths+'</g></svg>';
+    +'<path d="'+d+'" fill="none" stroke="#C8D5DF" stroke-width="1"/></svg>';
 }
 function buildMap(){
   try{
