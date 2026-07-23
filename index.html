@@ -417,7 +417,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .radar-fab:hover{border-color:var(--green)}
 .radar-fab-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:radarPing 2.2s ease-out infinite}
 @keyframes radarPing{0%{box-shadow:0 0 0 0 rgba(0,158,144,0.4)}70%{box-shadow:0 0 0 9px rgba(0,158,144,0)}100%{box-shadow:0 0 0 0 rgba(0,158,144,0)}}
-.semana-card{margin-bottom:10px;cursor:pointer}
+.semana-card{cursor:pointer}
 .semana-toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .semana-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase}
 .semana-semaforo{display:flex;gap:5px;align-items:center}
@@ -425,11 +425,11 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .semana-luz.on{opacity:1;box-shadow:0 0 0 3px var(--luz-halo,transparent)}
 .semana-block{border-left:2.5px solid var(--sem-col,#D97706);padding-left:16px;margin-top:13px}
 .semana-nivel{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:0.08em}
-.semana-titulo{font-size:17.5px;font-weight:700;color:var(--text);line-height:1.4;margin-top:6px;max-width:880px;text-wrap:pretty}
+.semana-titulo{font-size:15.5px;font-weight:700;color:var(--text);line-height:1.45;margin-top:6px;text-wrap:pretty}
 .semana-sub{font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:9px}
 .semana-card:hover .semana-sub{color:var(--green)}
-.semana-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease;max-width:880px}
-.semana-body p{font-size:13px;color:var(--text2);line-height:1.65;margin:11px 0 0}
+.semana-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease}
+.semana-body p{font-size:12px;color:var(--text2);line-height:1.6;margin:10px 0 0}
 .chyron{display:flex;align-items:stretch;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--card);box-shadow:var(--shadow);margin-bottom:10px;height:36px}
 .chyron-label{background:#B91C1C;color:#fff;font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:0.1em;display:flex;align-items:center;gap:6px;padding:0 14px;white-space:nowrap;flex-shrink:0}
 .chyron-live{width:6px;height:6px;border-radius:50%;background:#fff;animation:pulse 1.6s ease-in-out infinite}
@@ -654,8 +654,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 <div class="main">
   <div class="tab-content active" id="tab-dashboard">
 
-    <!-- Banner semanal: noticia principal + semáforo de riesgo -->
-    <div id="semana-banner"></div>
     <!-- Cintillo tipo noticiero: menciones de la CSP -->
     <div id="csp-chyron"></div>
 
@@ -682,8 +680,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 
       </div>
 
-      <!-- Columna derecha: noticias -->
+      <!-- Columna derecha: lectura de la semana + noticias -->
       <div class="dash-right">
+        <!-- Noticia principal de la semana + semáforo (Lectura SCOPE) -->
+        <div id="semana-banner"></div>
         <div class="card" style="display:flex;flex-direction:column;overflow:visible">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
             <div class="card-label" style="margin-bottom:0">Últimas Noticias</div>
@@ -1143,10 +1143,11 @@ function renderSemanaBanner(){
       '<span class="semana-luz'+(i===nv[2]?' on':'')+'" style="background:'+c+';--luz-halo:'+c+'33"></span>').join('');
     el.innerHTML='<div class="card semana-card" id="semana-banner-card" onclick="_toggleSemana()">'
       +'<div class="semana-toprow">'
-        +'<span class="semana-lbl">Lectura SCOPE · '+rango+'</span>'
+        +'<span class="semana-lbl">Lectura SCOPE</span>'
         +'<div class="semana-semaforo">'+luces+'</div>'
       +'</div>'
-      +'<div class="semana-block" style="--sem-col:'+nv[1]+'">'
+      +'<div class="semana-lbl" style="font-size:9.5px;letter-spacing:0.15em;margin-top:14px">'+rango+' · Noticia principal</div>'
+      +'<div class="semana-block" style="--sem-col:'+nv[1]+';margin-top:9px">'
         +'<span class="semana-nivel" style="color:'+nv[1]+'">'+nv[3]+' '+nv[0]+'</span>'
         +'<div class="semana-titulo">'+d.titulo+'</div>'
         +'<div class="semana-body" id="semana-body">'+(d.resumen||[]).map(p=>'<p>'+p+'</p>').join('')+'</div>'
