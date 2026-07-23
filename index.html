@@ -647,6 +647,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
         <div class="nav-drop-it" onclick="showRegulacion('nacional')">Nacional<span class="nd-sub">leyes federales</span></div>
         <div class="nav-drop-it" onclick="showRegulacion('estatal')">Estatal<span class="nd-sub">32 entidades</span></div>
         <div class="nav-drop-it" onclick="showRegulacion('acuerdos')">Internacional<span class="nd-sub">acuerdos y tratados</span></div>
+        <div class="nav-drop-it" onclick="showRegulacion('congresomx')">Congreso de México<span class="nd-sub">actividad legislativa</span></div>
         <div class="nav-drop-sep"></div>
         <div class="nav-drop-it" onclick="showRegulacion('noms')">NOMs<span class="nd-sub">normas oficiales</span></div>
       </div>
@@ -723,9 +724,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
             <button onclick="mapZoom(-1)" title="Alejar">−</button>
           </div>
         </div>
-        <!-- Congreso Federal unificado -->
+        <!-- Congreso de la Unión -->
         <div class="card">
-          <div class="card-label">Congreso Federal · Cámara de Diputados + Senado</div>
+          <div class="card-label" style="cursor:pointer" onclick="showRegulacion('congresomx')" title="Ver Congreso de México">Actividad del Congreso de la Unión <span style="color:var(--green)">↗</span></div>
           <div id="widget-congreso"></div>
         </div>
 
@@ -765,6 +766,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <button class="leg-sub-btn active" id="leg-sub-federal" onclick="showLegSub('federal',this)">Nacional</button>
       <button class="leg-sub-btn" id="leg-sub-estatal" onclick="showLegSub('estatal',this)">Por Estado</button>
       <button class="leg-sub-btn" id="leg-sub-acuerdos" onclick="showLegSub('acuerdos',this)">Internacional · Acuerdos</button>
+      <button class="leg-sub-btn" id="leg-sub-congresomx" onclick="showLegSub('congresomx',this)">Congreso de México</button>
     </div>
     <!-- Vista Federal -->
     <div id="leg-view-federal">
@@ -792,6 +794,17 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
         <span id="leyes-est-meta" style="font-size:12px;color:var(--text-muted)"></span>
       </div>
       <div id="leyes-est-list"></div>
+    </div>
+    <!-- Vista Congreso de México -->
+    <div id="leg-view-congresomx" style="display:none">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
+        <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Congreso de México</div>
+      </div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px">Seguimiento de la actividad legislativa federal · LXVI Legislatura</div>
+      <div style="border-top:0.8px solid var(--border);padding-top:20px;max-width:640px">
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px">En construcción</div>
+        <div style="font-size:12.5px;color:var(--text-sec);line-height:1.65">Aquí vivirá el seguimiento completo del Congreso de la Unión: iniciativas con su estatus y trayectoria, votaciones, actividad por legislador y por comisión. Mientras tanto, la actividad reciente está en el widget del dashboard y las comisiones en la pestaña Actores.</div>
+      </div>
     </div>
     <!-- Vista Internacional · Acuerdos -->
     <div id="leg-view-acuerdos" style="display:none">
@@ -1183,15 +1196,20 @@ function loadPresidencia(){
       });
     });
     if(!quotes.length){el.style.display='none';return;}
-    const seq=quotes.map(q=>'<span class="chyron-it" onclick="window.open(\''+q.url+'\',\'_blank\')">“'+q.t+'”<span class="cim">CSP · '+q.f+'</span></span>').join('<span style="color:var(--text3);padding-right:30px;font-size:8px;vertical-align:middle">●</span>');
+    const mkSeq=arr=>arr.map(q=>'<span class="chyron-it" onclick="window.open(\''+q.url+'\',\'_blank\')">“'+q.t+'”<span class="cim">CSP · '+q.f+'</span></span>').join('<span style="color:var(--text3);padding-right:30px;font-size:8px;vertical-align:middle">●</span>');
+    const l1=quotes.filter((_,i)=>i%2===0),l2=quotes.filter((_,i)=>i%2===1);
+    const seq1=mkSeq(l1),seq2=mkSeq(l2.length?l2:l1);
     el.innerHTML='<div class="chyron">'
       +'<div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo</div>'
-      +'<div class="chyron-track"><div class="chyron-inner" id="chyron-inner">'+seq+seq+'</div></div>'
+      +'<div class="chyron-track"><div class="chyron-inner" id="chyron-inner1">'+seq1+seq1+'</div></div>'
+      +'<div class="chyron-track" style="margin-top:8px"><div class="chyron-inner" id="chyron-inner2">'+seq2+seq2+'</div></div>'
       +'</div>';
-    // Velocidad constante: duración proporcional al ancho del contenido
+    // Mismo pace que Últimas Noticias (~12 px/s)
     requestAnimationFrame(()=>{
-      const inner=document.getElementById('chyron-inner');
-      if(inner)inner.style.setProperty('--chyron-dur',Math.max(30,Math.round(inner.scrollWidth/2/55))+'s');
+      ['chyron-inner1','chyron-inner2'].forEach(id=>{
+        const inner=document.getElementById(id);
+        if(inner)inner.style.setProperty('--chyron-dur',Math.max(60,Math.round(inner.scrollWidth/2/12))+'s');
+      });
     });
   }).catch(()=>{
     const el=document.getElementById('csp-chyron');
@@ -1216,9 +1234,8 @@ function renderSemanaBanner(){
     let preview=(d.resumen&&d.resumen[0])||'';
     if(preview.length>180)preview=preview.slice(0,178).replace(/\s+\S*$/,'')+'…';
     el.innerHTML='<div class="card semana-card" id="semana-banner-card" onclick="_toggleSemana()">'
-      +'<span class="semana-lbl">Noticia de la Semana</span>'
-      +'<div class="semana-lbl" style="font-size:9.5px;letter-spacing:0.15em;margin-top:6px">'+rango+'</div>'
-      +'<div class="semana-block" style="--sem-col:'+nv[1]+';margin-top:11px">'
+      +'<span class="semana-lbl">'+rango+'</span>'
+      +'<div class="semana-block" style="--sem-col:'+nv[1]+';margin-top:12px">'
         +'<div class="semana-titulo" style="margin-top:0">'+d.titulo+'</div>'
         +'<div class="semana-preview" id="semana-preview">'+preview+'</div>'
         +'<div class="semana-body" id="semana-body">'+(d.resumen||[]).map(p=>'<p>'+p+'</p>').join('')+'</div>'
@@ -1410,6 +1427,7 @@ function showLegSub(sub,btn){
   document.getElementById('leg-view-federal').style.display=sub==='federal'?'':'none';
   document.getElementById('leg-view-estatal').style.display=sub==='estatal'?'':'none';
   document.getElementById('leg-view-acuerdos').style.display=sub==='acuerdos'?'':'none';
+  document.getElementById('leg-view-congresomx').style.display=sub==='congresomx'?'':'none';
   if(sub==='estatal')loadLeyesEstatales();
   if(sub==='acuerdos')renderAcuerdos();
 }
@@ -1418,7 +1436,7 @@ function showRegulacion(view){
   var btn=document.getElementById('nav-regulacion');
   if(view==='noms'){showTab('normas',btn);return;}
   showTab('legislacion',btn);
-  showLegSub(view==='estatal'?'estatal':view==='acuerdos'?'acuerdos':'federal',null);
+  showLegSub(['estatal','acuerdos','congresomx'].indexOf(view)>=0?view:'federal',null);
 }
 // ── Acuerdos y tratados internacionales (estatus de México) ──
 var ACUERDOS=[
@@ -1571,19 +1589,17 @@ function renderNormas(){
     if(!grouped[tema])return;
     var color=NORMAS_TEMA_COLOR[tema]||'#6b7280';
     if(_normasTema==='todos'){
-      html+='<div class="normas-section-hdr" style="color:'+color+'">'+tema
+      html+='<div class="normas-section-hdr">'+tema
         +' <span style="font-size:10px;opacity:0.6;text-transform:none;letter-spacing:0">— '
         +grouped[tema].length+' norma'+(grouped[tema].length>1?'s':'')+'</span></div>';
     }
     grouped[tema].forEach(function(n,idx){
       var isProy=n.tipo==='PROY';
-      var nomColor=isProy?'#b45309':'#009E90';
-      var nomBg=isProy?'rgba(245,158,11,0.1)':'rgba(0,158,144,0.1)';
       var uid='nom-'+tema.replace(/[^a-z]/gi,'')+idx;
       var ex=NOM_EXTRA[n.id]||{};
       var gemi=ex.gemi;
       var gemiChip=gemi===true
-        ?'<span style="font-size:9px;font-weight:700;color:#009E90">GEMI ACTIVO</span>'
+        ?'<span style="font-size:9px;font-weight:700;color:var(--text)">GEMI ACTIVO</span>'
         :gemi===false?'<span style="font-size:9px;color:var(--text-muted)">GEMI: sin participación</span>'
         :'<span style="font-size:9px;color:var(--text-muted)">GEMI: por confirmar</span>';
       var docs=(ex.docs||[]).concat([
@@ -1593,7 +1609,7 @@ function renderNormas(){
       html+='<div>'
         +'<div class="nom-row" style="cursor:pointer" onclick="_toggleNomDetail(\''+uid+'\')">'
         +'<span id="'+uid+'-arr" style="font-size:9px;color:var(--text-muted);transition:transform 0.2s;flex-shrink:0;display:inline-block">▶</span>'
-        +'<span style="font-size:8px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:3px;background:'+nomBg+';color:'+nomColor+';flex-shrink:0">'+(isProy?'PROY-NOM':'NOM')+'</span>'
+        +'<span style="font-size:8.5px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted);flex-shrink:0;min-width:58px">'+(isProy?'PROY-NOM':'NOM')+'</span>'
         +'<span style="font-family:var(--mono);font-size:10px;font-weight:600;color:var(--text-muted);flex-shrink:0;min-width:120px">'+n.id+'</span>'
         +'<div style="flex:1;min-width:0">'
           +'<div style="font-size:12px;color:var(--text);font-weight:500">'+n.objeto+'</div>'
@@ -1605,7 +1621,7 @@ function renderNormas(){
         +'<div id="'+uid+'" style="display:none;padding:10px 0 14px 34px;border-bottom:0.8px solid rgba(0,0,0,0.06)">'
           +'<div style="display:flex;gap:22px;flex-wrap:wrap;margin-bottom:10px">'
             +'<div><div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Estatus PNIC</div>'
-            +'<div style="font-size:11.5px;color:'+(isProy?'#b45309':'#009E90')+';font-weight:600;margin-top:3px">'+_nomPnic(n)+'</div></div>'
+            +'<div style="font-size:11.5px;color:var(--text);font-weight:600;margin-top:3px">'+_nomPnic(n)+'</div></div>'
             +'<div><div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Participación GEMI</div>'
             +'<div style="margin-top:4px">'+gemiChip+'</div></div>'
           +'</div>'
@@ -2118,22 +2134,25 @@ function renderSPSectorial(state){
   ];
   const ordered=sectors.map(s=>({n:s.n,val:sp[s.k]||0})).sort((a,b)=>b.val-a.val);
   const lead=ordered.slice(0,2).map(s=>s.n).join(' y ');
-  const rows=ordered.map((s,i)=>{
-    const color=i<2?'var(--green)':'var(--text3)';
-    return`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border)">
-      <span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);width:16px">${i+1}</span>
-      <span style="font-size:13px;flex:1;color:var(--text);${i<2?'font-weight:600':''}">${s.n}</span>
-      <div style="width:130px;height:6px;background:rgba(0,0,0,0.05);border-radius:3px;overflow:hidden">
-        <div style="width:${s.val}%;height:100%;background:${color};border-radius:3px"></div>
-      </div>
-      <span style="font-size:12px;font-weight:600;color:var(--text-sec);min-width:28px;text-align:right">${s.val}</span>
+  // Heatmap monocrom\u00e1tico: intensidad = peso del sector
+  const tiles=ordered.map(s=>{
+    const a=0.05+(s.val/100)*0.85;
+    const dark=a>0.5;
+    return`<div style="background:rgba(0,158,144,${a.toFixed(2)});padding:14px 12px;display:flex;flex-direction:column;gap:4px;min-height:74px;justify-content:space-between">
+      <span style="font-size:10.5px;line-height:1.3;color:${dark?'rgba(255,255,255,0.9)':'var(--text-sec)'}">${s.n}</span>
+      <span style="font-size:19px;font-weight:700;font-variant-numeric:tabular-nums;color:${dark?'#fff':'var(--text)'}">${s.val}</span>
     </div>`;
   }).join('');
   document.getElementById('sp-sectorial').innerHTML=`
     <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">Vocaci\u00f3n industrial del estado</div>
     <div style="font-size:12.5px;color:var(--text-sec);margin-bottom:14px">${state} concentra su actividad en <strong>${lead}</strong>.</div>
-    ${rows}
-    <div style="font-size:10px;color:var(--text-muted);margin-top:10px">Peso relativo (0\u2013100) del sector en el perfil econ\u00f3mico-industrial del estado. Integraci\u00f3n con censos econ\u00f3micos INEGI en curso.</div>`;
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px">${tiles}</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:12px">
+      <span style="font-size:9.5px;color:var(--text-muted)">Menor peso</span>
+      <div style="flex:0 0 120px;height:6px;background:linear-gradient(90deg,rgba(0,158,144,0.05),rgba(0,158,144,0.9))"></div>
+      <span style="font-size:9.5px;color:var(--text-muted)">Mayor peso</span>
+    </div>
+    <div style="font-size:10px;color:var(--text-muted);margin-top:10px">Perfil econ\u00f3mico-industrial estimado por SCOPE (0\u2013100). Sustituci\u00f3n por Censos Econ\u00f3micos INEGI en curso.</div>`;
 }
 var _newsMode='mx';
 function setNewsMode(mode){
@@ -2338,28 +2357,20 @@ function _congPartido(it){
   return '';
 }
 function _congAsunto(it){
-  var t=(it.titulo||'').replace(/\s+/g,' ').trim();
-  // Punto de Acuerdo: lo que sigue de "por el que se exhorta"
-  if(it.tipo==='punto_acuerdo'||/punto de acuerdo/i.test(t)){
-    var m=t.match(/por el que se\s*:?\s*(?:\d+[\.\d]*\s*)?((?:exhorta|solicita|condena|hace un llamado)[\s\S]{0,180})/i);
-    if(m){
-      var s=m[1].trim();
-      s=s.charAt(0).toUpperCase()+s.slice(1);
-      return s.length>150?s.slice(0,148)+'…':s;
-    }
-    return t.length>130?t.slice(0,128)+'…':t;
-  }
-  // Iniciativa / decreto: solo la ley en discusión
-  var leyes=t.match(/(?:Ley|Código|Constitución Política)[^,;.()]{3,90}/g);
-  if(leyes&&leyes.length){
-    var uniq=[];
-    leyes.forEach(function(l){
-      var cl=l.split(/ en materia| para | a fin| con el objeto| con la finalidad| suscrita| a cargo/)[0].replace(/\s+/g,' ').trim();
-      if(cl.length>6&&uniq.indexOf(cl)<0)uniq.push(cl);
-    });
-    if(uniq.length)return uniq.slice(0,2).join(' · ');
-  }
-  return t.length>110?t.slice(0,108)+'…':t;
+  // El texto tal cual viene del scrape (recortado en palabra completa)
+  var t=(it.titulo||'').replace(/\s+/g,' ').replace(/^\d+[\.\d]*\s*/,'').trim();
+  return t.length>190?t.slice(0,188).replace(/\s+\S*$/,'')+'…':t;
+}
+function _congAutor(it){
+  if(it.autor&&it.autor.trim())return it.autor.trim();
+  var t=(it.titulo||'').replace(/\s+/g,' ');
+  var m=t.match(/(?:a cargo de|suscrita por|presentada por)\s+(?:la |el )?(?:diputada|diputado|senadora|senador|dip\.|sen\.)\s+([A-ZÁÉÍÓÚÑ][^,;(]{4,60}?)(?:,|\s+del?\s+Grupo|$)/i);
+  if(m)return m[1].trim();
+  m=t.match(/^\s*(?:De la|Del)\s+(?:Sen\.|Dip\.|senadora|senador|diputada|diputado)\s+([A-ZÁÉÍÓÚÑ][^,;(]{4,60}?)(?:,|\s+del?\s+Grupo|$)/i);
+  if(m)return m[1].trim();
+  m=t.match(/(?:De la|Del)\s+Comisión\s+de\s+([^,;(]{4,70}?)(?:,|$)/i);
+  if(m)return 'Comisión de '+m[1].trim();
+  return '';
 }
 var _congItems=[];
 function _fixMoji(s){
@@ -2407,11 +2418,15 @@ function _renderCongreso(panel){
         :'<span style="width:34px;flex-shrink:0"></span>');
     var fecha=it.fecha?new Date(it.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     var url=(it.url||'#').replace(/'/g,'%27');
-    return '<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid rgba(0,0,0,0.05);cursor:pointer" onclick="window.open(\''+url+'\',\'_blank\')" title="'+(it.titulo||'').replace(/"/g,'&quot;')+'">'
+    var autor=_congAutor(it);
+    return '<div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:0.8px solid rgba(0,0,0,0.05);cursor:pointer" onclick="window.open(\''+url+'\',\'_blank\')" title="'+(it.titulo||'').replace(/"/g,'&quot;')+'">'
       +pEl
-      +'<span style="flex:1;min-width:0;font-size:12px;color:var(--text);line-height:1.4">'+_congAsunto(it)+'</span>'
-      +'<span style="font-family:var(--mono);font-size:8.5px;font-weight:600;color:'+(it.camara==='DIP'?'var(--green)':'var(--amber)')+';flex-shrink:0">'+it.camara+'</span>'
-      +'<span style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);flex-shrink:0">'+fecha+'</span>'
+      +'<div style="flex:1;min-width:0">'
+        +'<div style="font-size:12px;color:var(--text);line-height:1.45">'+_congAsunto(it)+'</div>'
+        +(autor?'<div style="font-size:10px;color:var(--text-muted);margin-top:3px">'+autor+'</div>':'')
+      +'</div>'
+      +'<span style="font-size:9.5px;color:var(--text-muted);flex-shrink:0">'+(it.camara==='DIP'?'Diputados':'Senado')+'</span>'
+      +'<span style="font-size:9.5px;color:var(--text-muted);flex-shrink:0">'+fecha+'</span>'
       +'</div>';
   }).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:12px 0;font-style:italic">Sin documentos registrados</div>';
   var verMas='';
