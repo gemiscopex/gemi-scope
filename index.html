@@ -1219,11 +1219,10 @@ function renderSemanaBanner(){
       +'<span class="semana-lbl">Noticia de la Semana</span>'
       +'<div class="semana-lbl" style="font-size:9.5px;letter-spacing:0.15em;margin-top:6px">'+rango+'</div>'
       +'<div class="semana-block" style="--sem-col:'+nv[1]+';margin-top:11px">'
-        +'<span class="semana-nivel" style="color:'+nv[1]+'">'+nv[2]+' '+nv[0]+'</span>'
-        +'<div class="semana-titulo">'+d.titulo+'</div>'
+        +'<div class="semana-titulo" style="margin-top:0">'+d.titulo+'</div>'
         +'<div class="semana-preview" id="semana-preview">'+preview+'</div>'
         +'<div class="semana-body" id="semana-body">'+(d.resumen||[]).map(p=>'<p>'+p+'</p>').join('')+'</div>'
-        +'<div class="semana-sub" id="semana-sub">▼ leer el análisis completo</div>'
+        +'<div class="semana-sub" id="semana-sub">▼ Leer el análisis completo</div>'
       +'</div></div>';
   }).catch(()=>{const el=document.getElementById('semana-banner');if(el)el.style.display='none';});
 }
@@ -1236,7 +1235,7 @@ function _toggleSemana(){
   const open=card.classList.toggle('open');
   body.style.maxHeight=open?body.scrollHeight+'px':'0px';
   if(prev)prev.style.display=open?'none':'';
-  if(sub)sub.textContent=open?'▲ cerrar':'▼ leer el análisis completo';
+  if(sub)sub.textContent=open?'▲ Cerrar':'▼ Leer el análisis completo';
 }
 // ── Mapa de puntos: proyección equirectangular de STATE_COORDS ──
 var _MAP_BOUNDS={lngMin:-117.8,lngMax:-86.0,latMin:14.0,latMax:33.2};
