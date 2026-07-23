@@ -343,6 +343,15 @@ def main():
     except Exception as e:
         print(f"  ERROR datosgob: {str(e)[:120]}")
 
+    # Perfil de estados (Data México: población, PEA, sectores)
+    print("\n── Perfil de estados (Data México) ──")
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import scraper_datamexico
+        scraper_datamexico.main()
+    except Exception as e:
+        print(f"  ERROR datamexico: {str(e)[:120]}")
+
     # Drift de integrantes (informativo)
     print("\n── Verificación de integrantes (informativo) ──")
     for c in coms_data["comisiones"]:
