@@ -412,6 +412,20 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .nom-link{font-size:10px;font-weight:600;color:var(--green);text-decoration:none;margin-left:auto;flex-shrink:0;padding:4px 10px;border:1px solid rgba(0,158,144,0.3);border-radius:6px;transition:background 0.15s}
 .nom-link:hover{background:var(--green-tint)}
 .normas-section-hdr{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);padding:14px 0 8px;border-bottom:0.8px solid var(--border);margin-bottom:10px}
+/* ═══════════ ETAPA 2: MINI MENÚS DEL NAV ═══════════ */
+.nav-drop-wrap{position:relative;display:flex;align-items:stretch}
+.nav-drop{display:none;position:absolute;top:100%;left:-8px;background:#fff;border:0.8px solid var(--border2);box-shadow:0 10px 36px rgba(0,0,0,0.13);min-width:250px;z-index:500;padding:6px 0}
+.nav-drop-wrap:hover .nav-drop{display:block}
+.nav-drop-it{display:flex;align-items:baseline;gap:8px;padding:9px 16px;font-size:12.5px;color:var(--text);cursor:pointer}
+.nav-drop-it:hover{background:rgba(0,158,144,0.06)}
+.nav-drop-it .nd-sub{font-size:10.5px;color:var(--text-muted);margin-left:auto;padding-left:14px;white-space:nowrap}
+.nav-drop-sep{height:1px;background:var(--border);margin:5px 0}
+.nav-drop-lbl{font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.15em;color:var(--text-muted);text-transform:uppercase;padding:7px 16px 4px}
+.dof-drop{min-width:330px;max-width:380px}
+.dof-it{display:block;padding:8px 16px;cursor:pointer}
+.dof-it:hover{background:rgba(0,158,144,0.06)}
+.dof-it-t{font-size:11.5px;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dof-it-m{font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px}
 /* ═══════════ ETAPA 1: BANNER SEMANAL + CINTILLO + RADAR FAB ═══════════ */
 .radar-fab{width:26px;height:26px;border-radius:50%;border:1px solid var(--border-med);background:var(--card);cursor:pointer;position:relative;flex-shrink:0;align-self:center;margin-left:6px;display:flex;align-items:center;justify-content:center;padding:0}
 .radar-fab:hover{border-color:var(--green)}
@@ -539,6 +553,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   /* ── MAPA ── */
   .dotmap-card{height:300px !important}
 
+  /* ── ACTORES ── */
+  #actores-federal{grid-template-columns:1fr !important}
+  .nav-drop{display:none !important}
+
   /* ── MI CONSOLA ── */
   .cons-grid{grid-template-columns:1fr !important}
   .cons-leg-grid{grid-template-columns:1fr !important}
@@ -615,9 +633,21 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   </div>
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
-    <button class="tab-btn" onclick="showTab('legislacion',this)">Legislación</button>
-    <button class="tab-btn" onclick="showTab('normas',this)">Normas</button>
-    <button class="tab-btn" onclick="showTab('congreso',this)">Congreso Federal</button>
+    <div class="nav-drop-wrap">
+      <button class="tab-btn" id="nav-regulacion" onclick="showRegulacion('nacional')">Regulación ▾</button>
+      <div class="nav-drop">
+        <div class="nav-drop-it" onclick="showRegulacion('nacional')">Nacional<span class="nd-sub">leyes federales</span></div>
+        <div class="nav-drop-it" onclick="showRegulacion('estatal')">Estatal<span class="nd-sub">32 entidades</span></div>
+        <div class="nav-drop-it" onclick="showRegulacion('acuerdos')">Internacional<span class="nd-sub">acuerdos y tratados</span></div>
+        <div class="nav-drop-sep"></div>
+        <div class="nav-drop-it" onclick="showRegulacion('noms')">NOMs<span class="nd-sub">normas oficiales</span></div>
+      </div>
+    </div>
+    <div class="nav-drop-wrap">
+      <button class="tab-btn" onclick="window.open('https://www.dof.gob.mx/','_blank')">DOF ▾</button>
+      <div class="nav-drop dof-drop" id="dof-drop"><div class="nav-drop-lbl">Cargando…</div></div>
+    </div>
+    <button class="tab-btn" onclick="showTab('congreso',this)">Actores</button>
     <button class="tab-btn" onclick="showTab('consola',this)" style="color:var(--green)">◆ Mi Consola</button>
     <button class="tab-btn" onclick="showTab('acerca',this)">Acerca de</button>
     <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos SCOPE"><span class="radar-fab-dot"></span></button>
@@ -715,8 +745,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   <div class="tab-content" id="tab-legislacion" style="padding:28px 0">
     <!-- Sub-toggle: Federal / Por Estado -->
     <div class="leg-sub-bar">
-      <button class="leg-sub-btn active" id="leg-sub-federal" onclick="showLegSub('federal',this)">Federal</button>
+      <button class="leg-sub-btn active" id="leg-sub-federal" onclick="showLegSub('federal',this)">Nacional</button>
       <button class="leg-sub-btn" id="leg-sub-estatal" onclick="showLegSub('estatal',this)">Por Estado</button>
+      <button class="leg-sub-btn" id="leg-sub-acuerdos" onclick="showLegSub('acuerdos',this)">Internacional · Acuerdos</button>
     </div>
     <!-- Vista Federal -->
     <div id="leg-view-federal">
@@ -745,12 +776,23 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       </div>
       <div id="leyes-est-list"></div>
     </div>
+    <!-- Vista Internacional · Acuerdos -->
+    <div id="leg-view-acuerdos" style="display:none">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
+        <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Regulación Internacional</div>
+      </div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Acuerdos y tratados ambientales multilaterales con el estatus de México en cada uno</div>
+      <div id="acuerdos-list"></div>
+    </div>
   </div>
 
-  <!-- TAB: CONGRESO FEDERAL -->
+  <!-- TAB: ACTORES -->
   <div id="tab-congreso" class="tab-content" style="padding:28px 0">
-    <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Congreso Federal</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Comisiones legislativas con agenda ambiental activa · LXVI Legislatura</div>
+    <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Actores</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px">Quién decide en la agenda ambiental: gabinete federal y comisiones del Congreso · LXVI Legislatura</div>
+    <div class="card-label">Gabinete Ambiental Federal</div>
+    <div id="actores-federal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px 24px;margin-bottom:36px"></div>
+    <div class="card-label">Comisiones del Congreso</div>
     <div id="comisiones-list" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
   </div>
 
@@ -1258,10 +1300,94 @@ function showTab(id,btn){
 }
 function showLegSub(sub,btn){
   document.querySelectorAll('.leg-sub-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
+  (btn||document.getElementById('leg-sub-'+sub)||{classList:{add:function(){}}}).classList.add('active');
   document.getElementById('leg-view-federal').style.display=sub==='federal'?'':'none';
   document.getElementById('leg-view-estatal').style.display=sub==='estatal'?'':'none';
+  document.getElementById('leg-view-acuerdos').style.display=sub==='acuerdos'?'':'none';
   if(sub==='estatal')loadLeyesEstatales();
+  if(sub==='acuerdos')renderAcuerdos();
+}
+// ── Regulación: entrada desde el mini menú del nav ──
+function showRegulacion(view){
+  var btn=document.getElementById('nav-regulacion');
+  if(view==='noms'){showTab('normas',btn);return;}
+  showTab('legislacion',btn);
+  showLegSub(view==='estatal'?'estatal':view==='acuerdos'?'acuerdos':'federal',null);
+}
+// ── Acuerdos y tratados internacionales (estatus de México) ──
+var ACUERDOS=[
+  {n:'Acuerdo de París',org:'CMNUCC',anio:2015,tema:'Clima',status:'Ratificado 2016',vig:'En vigor',implic:'Marco de las NDC de México; meta de reducción de emisiones actualizada en 2022',url:'https://unfccc.int/es/process-and-meetings/the-paris-agreement/el-acuerdo-de-paris'},
+  {n:'Acuerdo de Escazú',org:'CEPAL',anio:2018,tema:'Derechos ambientales',status:'Ratificado 2021',vig:'En vigor',implic:'Acceso a información, participación y justicia ambiental; defensores ambientales',url:'https://www.cepal.org/es/acuerdodeescazu'},
+  {n:'Protocolo de Montreal',org:'ONU',anio:1987,tema:'Capa de ozono',status:'Ratificado 1988',vig:'En vigor',implic:'Eliminación de sustancias agotadoras de ozono',url:'https://www.gob.mx/semarnat/acciones-y-programas/protocolo-de-montreal'},
+  {n:'Enmienda de Kigali',org:'Protocolo de Montreal',anio:2016,tema:'HFC / Clima',status:'Ratificada 2018',vig:'En vigor',implic:'Reducción gradual de hidrofluorocarbonos (refrigeración e industria)',url:'https://www.gob.mx/semarnat'},
+  {n:'Convenio sobre la Diversidad Biológica',org:'ONU',anio:1992,tema:'Biodiversidad',status:'Ratificado 1993',vig:'En vigor',implic:'Base del Marco Kunming-Montreal (30x30); estrategia nacional de biodiversidad',url:'https://www.cbd.int/'},
+  {n:'Convenio de Basilea',org:'ONU',anio:1989,tema:'Residuos peligrosos',status:'Ratificado 1991',vig:'En vigor',implic:'Movimientos transfronterizos de residuos peligrosos; comercio de residuos plásticos',url:'https://www.basel.int/'},
+  {n:'Convenio de Estocolmo',org:'ONU',anio:2001,tema:'Contaminantes orgánicos',status:'Ratificado 2003',vig:'En vigor',implic:'Eliminación de contaminantes orgánicos persistentes (COP)',url:'https://www.pops.int/'},
+  {n:'Convenio de Rotterdam',org:'ONU/FAO',anio:1998,tema:'Químicos peligrosos',status:'Ratificado 2005',vig:'En vigor',implic:'Consentimiento previo para comercio de químicos y plaguicidas peligrosos',url:'https://www.pic.int/'},
+  {n:'Convención de Ramsar',org:'—',anio:1971,tema:'Humedales',status:'Adhesión 1986',vig:'En vigor',implic:'México entre los países con más sitios Ramsar; protección de humedales costeros',url:'https://www.ramsar.org/es'},
+  {n:'CITES',org:'ONU',anio:1973,tema:'Especies',status:'Adhesión 1991',vig:'En vigor',implic:'Comercio internacional de especies amenazadas (totoaba, tiburón, cactáceas)',url:'https://cites.org/esp'}
+];
+var TEMA_ACUERDO_COLOR={'Clima':'#f59e0b','Derechos ambientales':'#009E90','Capa de ozono':'#38bdf8','HFC / Clima':'#f59e0b','Biodiversidad':'#16a34a','Residuos peligrosos':'#a78bfa','Contaminantes orgánicos':'#ef4444','Químicos peligrosos':'#8e44ad','Humedales':'#0ea5e9','Especies':'#d35400'};
+function renderAcuerdos(){
+  var el=document.getElementById('acuerdos-list');
+  if(!el||el.dataset.done)return;
+  el.dataset.done='1';
+  el.innerHTML=ACUERDOS.map(function(a){
+    var col=TEMA_ACUERDO_COLOR[a.tema]||'#6b7280';
+    return '<div class="ley-row" onclick="window.open(\''+a.url+'\',\'_blank\')">'
+      +'<span class="ley-sigla" style="min-width:44px">'+a.anio+'</span>'
+      +'<div style="flex:1;min-width:0">'
+        +'<div class="ley-nombre">'+a.n+'</div>'
+        +'<div style="font-size:11px;color:var(--text-muted);margin-top:2px">'+a.implic+'</div>'
+      +'</div>'
+      +'<span class="ley-tema-badge" style="background:'+col+'">'+a.tema.toUpperCase()+'</span>'
+      +'<span style="font-size:10.5px;font-weight:600;color:var(--green);white-space:nowrap;flex-shrink:0">'+a.status+'</span>'
+      +'<span class="ley-link-icon">↗</span>'
+      +'</div>';
+  }).join('');
+}
+// ── Gabinete ambiental federal (Actores) ──
+var ACTORES_FED=[
+  {sig:'SEMARNAT',dep:'Secretaría de Medio Ambiente y Recursos Naturales',titular:'Alicia Bárcena Ibarra',cargo:'Secretaria',url:'https://www.gob.mx/semarnat'},
+  {sig:'CONAGUA',dep:'Comisión Nacional del Agua',titular:'Efraín Morales López',cargo:'Director General',url:'https://www.gob.mx/conagua'},
+  {sig:'PROFEPA',dep:'Procuraduría Federal de Protección al Ambiente',titular:'Mariana Boy Tamborrell',cargo:'Procuradora',url:'https://www.gob.mx/profepa'},
+  {sig:'SENER',dep:'Secretaría de Energía',titular:'Luz Elena González Escobar',cargo:'Secretaria',url:'https://www.gob.mx/sener'},
+  {sig:'ECONOMÍA',dep:'Secretaría de Economía',titular:'Marcelo Ebrard Casaubón',cargo:'Secretario',url:'https://www.gob.mx/se'},
+  {sig:'SADER',dep:'Secretaría de Agricultura y Desarrollo Rural',titular:'Julio Berdegué Sacristán',cargo:'Secretario',url:'https://www.gob.mx/agricultura'},
+  {sig:'CONAFOR',dep:'Comisión Nacional Forestal',titular:'Sergio Graf Montero',cargo:'Director General',url:'https://www.gob.mx/conafor'},
+  {sig:'CONANP',dep:'Comisión Nacional de Áreas Naturales Protegidas',titular:'Pedro Álvarez-Icaza Longoria',cargo:'Comisionado Nacional',url:'https://www.gob.mx/conanp'},
+  {sig:'ASEA',dep:'Agencia de Seguridad, Energía y Ambiente',titular:'Armando Ocampo Zambrano',cargo:'Director Ejecutivo',url:'https://www.gob.mx/asea'}
+];
+function renderActoresFederal(){
+  var el=document.getElementById('actores-federal');
+  if(!el)return;
+  el.innerHTML=ACTORES_FED.map(function(a){
+    return '<a href="'+a.url+'" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:2px;padding:12px 0;border-bottom:0.8px solid var(--border);text-decoration:none;color:inherit">'
+      +'<span style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.12em;color:var(--green)">'+a.sig+'</span>'
+      +'<span style="font-size:13.5px;font-weight:600;color:var(--text)">'+a.titular+'</span>'
+      +'<span style="font-size:11px;color:var(--text-sec)">'+a.cargo+' · '+a.dep+'</span>'
+      +'</a>';
+  }).join('');
+}
+// ── Mini menú DOF: publicaciones recientes al hover ──
+function renderDofMenu(){
+  var el=document.getElementById('dof-drop');
+  if(!el)return;
+  var items=(_dofData||[]).slice().sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
+  if(!items.length){el.innerHTML='<div class="nav-drop-lbl">Sin publicaciones recientes</div>';return;}
+  var hoy=new Date().toLocaleDateString('es-MX',{timeZone:'America/Mexico_City'});
+  var deHoy=items.filter(function(d){return new Date(d.fecha).toLocaleDateString('es-MX',{timeZone:'America/Mexico_City'})===hoy;});
+  var list=(deHoy.length?deHoy:items).slice(0,6);
+  el.innerHTML='<div class="nav-drop-lbl">'+(deHoy.length?'Publicado hoy en el DOF':'Últimas publicaciones DOF · nuestros temas')+'</div>'
+    +list.map(function(d){
+      var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+      return '<div class="dof-it" onclick="window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/'/g,'%27')+'\',\'_blank\')">'
+        +'<div class="dof-it-t">'+(d.titulo||'')+'</div>'
+        +'<div class="dof-it-m">'+(d.dependencia||'DOF')+' · '+f+(d.relevante?' · <span style="color:var(--amber)">RELEVANTE</span>':'')+'</div>'
+        +'</div>';
+    }).join('')
+    +'<div class="nav-drop-sep"></div>'
+    +'<div class="nav-drop-it" onclick="showRegulacion(\'noms\')">Ver NOMs en monitoreo →</div>';
 }
 
 // ── NORMAS ────────────────────────────────────────────────────
@@ -2202,6 +2328,8 @@ async function init(){
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
   renderSemanaBanner();
+  renderDofMenu();
+  renderActoresFederal();
   renderScoreNacional();
   renderAlertas('all');
   renderDOF();
