@@ -555,6 +555,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 
   /* ── ACTORES ── */
   #actores-federal{grid-template-columns:1fr !important}
+  #datosgob-grid{grid-template-columns:1fr !important}
   .nav-drop{display:none !important}
 
   /* ── MI CONSOLA ── */
@@ -679,7 +680,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
     </div>
     <div class="sp-tabs">
       <button class="sp-tab active" onclick="showSPTab('actividad',this)">ACTIVIDAD</button>
-      <button class="sp-tab" onclick="showSPTab('sectorial',this)">RIESGO SECTORIAL</button>
+      <button class="sp-tab" onclick="showSPTab('sectorial',this)">SECTOR INDUSTRIAL</button>
       <button class="sp-tab" onclick="showSPTab('legislacion',this)">LEGISLACIÓN</button>
       <button class="sp-tab" onclick="showSPTab('impuestos',this)">IMPUESTOS</button>
       <button class="sp-tab" onclick="showSPTab('gaceta',this)">GACETA</button>
@@ -725,6 +726,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
         <div class="card" style="display:flex;flex-direction:column;overflow:visible">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
             <div class="card-label" style="margin-bottom:0">Últimas Noticias</div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <button class="normas-filter-link active" id="news-mode-mx" onclick="setNewsMode('mx')">México</button>
+              <button class="normas-filter-link" id="news-mode-int" onclick="setNewsMode('int')">Internacional</button>
+            </div>
             <div class="cat-popover-wrap">
               <button class="cat-popover-btn" title="Actividad por categoría">···</button>
               <div class="cat-popover" id="cat-popover">
@@ -840,6 +845,11 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
     <div style="display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start">
       <div class="radar-market-grid" id="radar-selector"></div>
       <div class="radar-panel-wrap" id="radar-panel"><div style="padding:40px 24px;text-align:center;color:var(--text-muted);font-size:12px">Selecciona un tema</div></div>
+    </div>
+    <!-- Datos abiertos ambientales (datos.gob.mx) -->
+    <div style="margin-top:36px">
+      <div class="card-label">Datos Abiertos Ambientales · datos.gob.mx</div>
+      <div id="datosgob-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px"></div>
     </div>
   </div>
 </div>
@@ -1369,6 +1379,25 @@ function renderActoresFederal(){
       +'</a>';
   }).join('');
 }
+// ── Datos abiertos ambientales (datos.gob.mx, via scraper diario) ──
+function renderDatosGob(){
+  var el=document.getElementById('datosgob-grid');
+  if(!el||!_datosgobData)return;
+  var temas=_datosgobData.temas||{};
+  el.innerHTML=Object.keys(temas).map(function(tema){
+    var items=temas[tema]||[];
+    if(!items.length)return '';
+    return '<div style="padding:12px 0">'
+      +'<div style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;border-bottom:0.8px solid var(--border);padding-bottom:6px;margin-bottom:4px">'+tema+'</div>'
+      +items.slice(0,4).map(function(d){
+        return '<a href="'+d.url+'" target="_blank" rel="noopener" style="display:block;padding:6px 0;text-decoration:none;border-bottom:0.8px solid rgba(0,0,0,0.04)">'
+          +'<div style="font-size:11.5px;color:var(--text);line-height:1.4">'+d.titulo+'</div>'
+          +'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px">'+(d.org||'')+(d.fecha?' · '+d.fecha:'')+'</div>'
+          +'</a>';
+      }).join('')
+      +'</div>';
+  }).join('');
+}
 // ── Mini menú DOF: publicaciones recientes al hover ──
 function renderDofMenu(){
   var el=document.getElementById('dof-drop');
@@ -1419,6 +1448,23 @@ function filterNormasType(type,btn){
   btn.classList.add('active');
   renderNormas();
 }
+// Estatus PNIC y flag GEMI por NOM. gemi: true=participación activa, false=no,
+// null=por confirmar con el equipo GEMI. El estatus PNIC se refinará con el
+// scraper de CONAMER (pendiente); mientras, se deriva del tipo.
+var NOM_EXTRA={};
+function _nomPnic(n){
+  var ex=NOM_EXTRA[n.id]||{};
+  if(ex.pnic)return ex.pnic;
+  return n.tipo==='PROY'?'En proceso normativo · proyecto en el PNIC':'Vigente';
+}
+function _toggleNomDetail(uid){
+  var d=document.getElementById(uid);
+  if(!d)return;
+  var open=d.style.display!=='none';
+  d.style.display=open?'none':'block';
+  var arr=document.getElementById(uid+'-arr');
+  if(arr)arr.style.transform=open?'':'rotate(90deg)';
+}
 function renderNormas(){
   var el=document.getElementById('normas-list');
   if(!el)return;
@@ -1437,18 +1483,41 @@ function renderNormas(){
     }
     grouped[tema].forEach(function(n,idx){
       var isProy=n.tipo==='PROY';
-      var nomColor=isProy?'#b45309':'#0a8a5f';
+      var nomColor=isProy?'#b45309':'#009E90';
       var nomBg=isProy?'rgba(245,158,11,0.1)':'rgba(0,158,144,0.1)';
       var uid='nom-'+tema.replace(/[^a-z]/gi,'')+idx;
-      html+='<div class="nom-row">'
+      var ex=NOM_EXTRA[n.id]||{};
+      var gemi=ex.gemi;
+      var gemiChip=gemi===true
+        ?'<span style="font-size:9px;font-weight:700;color:#009E90">GEMI ACTIVO</span>'
+        :gemi===false?'<span style="font-size:9px;color:var(--text-muted)">GEMI: sin participación</span>'
+        :'<span style="font-size:9px;color:var(--text-muted)">GEMI: por confirmar</span>';
+      var docs=(ex.docs||[]).concat([
+        {t:'Publicación oficial · DOF',u:n.url},
+        {t:'Catálogo Nacional de Regulaciones',u:'https://catalogonacional.gob.mx/'}
+      ]);
+      html+='<div>'
+        +'<div class="nom-row" style="cursor:pointer" onclick="_toggleNomDetail(\''+uid+'\')">'
+        +'<span id="'+uid+'-arr" style="font-size:9px;color:var(--text-muted);transition:transform 0.2s;flex-shrink:0;display:inline-block">▶</span>'
         +'<span style="font-size:8px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:3px;background:'+nomBg+';color:'+nomColor+';flex-shrink:0">'+(isProy?'PROY-NOM':'NOM')+'</span>'
-        +'<span style="font-size:10px;font-weight:700;color:var(--text-muted);flex-shrink:0;min-width:50px">'+n.id.replace('PROY-NOM-','').replace('NOM-','')+'</span>'
+        +'<span style="font-family:var(--mono);font-size:10px;font-weight:600;color:var(--text-muted);flex-shrink:0;min-width:120px">'+n.id+'</span>'
         +'<div style="flex:1;min-width:0">'
           +'<div style="font-size:12px;color:var(--text);font-weight:500">'+n.objeto+'</div>'
           +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.4">'+n.implic+'</div>'
         +'</div>'
         +'<span style="font-size:9px;color:var(--text-muted);flex-shrink:0;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+n.dep+'</span>'
         +'<a href="'+n.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;font-weight:600;color:var(--green);flex-shrink:0;text-decoration:none">↗</a>'
+        +'</div>'
+        +'<div id="'+uid+'" style="display:none;padding:10px 0 14px 34px;border-bottom:0.8px solid rgba(0,0,0,0.06)">'
+          +'<div style="display:flex;gap:22px;flex-wrap:wrap;margin-bottom:10px">'
+            +'<div><div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Estatus PNIC</div>'
+            +'<div style="font-size:11.5px;color:'+(isProy?'#b45309':'#009E90')+';font-weight:600;margin-top:3px">'+_nomPnic(n)+'</div></div>'
+            +'<div><div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Participación GEMI</div>'
+            +'<div style="margin-top:4px">'+gemiChip+'</div></div>'
+          +'</div>'
+          +'<div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Documentos</div>'
+          +docs.map(function(d){return '<a href="'+d.u+'" target="_blank" rel="noopener" style="display:block;font-size:11.5px;color:var(--green);padding:3px 0;text-decoration:none">'+d.t+' ↗</a>';}).join('')
+        +'</div>'
       +'</div>';
     });
   });
@@ -1883,12 +1952,34 @@ function renderSPPerfil(state,data,sc){
   const pressure=sc.ipr>=60?'elevada':sc.ipr>=30?'moderada':'baja';
   const fiscal=sc.irf>=40?'activo con posibles controversias':sc.irf>=20?'en desarrollo':'incipiente';
   const narrative=`${state} presenta una complejidad regulatoria ambiental <strong>${complexity}</strong> (ICR: ${sc.icr}/100), con cobertura en ${numThemes} materias ambientales. La presi\u00f3n regulatoria es <strong>${pressure}</strong> en el per\u00edodo reciente, con ${stateNews[state]||0} menciones en medios especializados. Su r\u00e9gimen de impuestos ambientales es <strong>${fiscal}</strong>. La capital ${data.capital||'\u2014'} concentra la actividad legislativa del congreso estatal. Con un Master Score de ${sc.master}/100, ${state} ocupa la posici\u00f3n #${sc.rank||'\u2014'} en el ranking nacional de presi\u00f3n regulatoria ambiental.`;
+  // Estad\u00edsticas estilo Data M\u00e9xico (INEGI Censo 2020)
+  const perfil=((_perfilEstados&&_perfilEstados.estados)||{})[state]||{};
+  const pobTotal=Object.values((_perfilEstados&&_perfilEstados.estados)||{}).reduce((s,e)=>s+(e.poblacion||0),0);
+  const fmtNum=n=>n?n.toLocaleString('es-MX'):'\u2014';
+  const pct=perfil.poblacion&&pobTotal?((perfil.poblacion/pobTotal)*100).toFixed(1)+'%':'\u2014';
+  const statGrid=`<div class="sp-stat-grid">
+      <div class="sp-stat"><div class="sp-stat-label">Poblaci\u00f3n \u00b7 Censo 2020</div><div class="sp-stat-value">${fmtNum(perfil.poblacion)}</div></div>
+      <div class="sp-stat"><div class="sp-stat-label">% de la poblaci\u00f3n nacional</div><div class="sp-stat-value">${pct}</div></div>
+      <div class="sp-stat"><div class="sp-stat-label">Capital</div><div class="sp-stat-value" style="font-size:14px">${perfil.capital||data.capital||'\u2014'}</div></div>
+      <div class="sp-stat"><div class="sp-stat-label">PEA</div><div class="sp-stat-value" style="font-size:14px">${perfil.pea?fmtNum(perfil.pea):'pr\u00f3ximamente'}</div></div>
+    </div>`;
+  // Materiales prohibidos en el estado
+  const mat=((_materialesData&&_materialesData.estados)||{})[state];
+  const matBlock=mat
+    ?`<div style="margin-top:16px">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px">Materiales prohibidos / restringidos</div>
+        <div style="font-size:12px;color:var(--text-sec);margin-bottom:6px">Desde <strong>${mat.desde}</strong> \u00b7 ${mat.instrumento}</div>
+        ${mat.materiales.map(m=>`<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12.5px;color:var(--text)"><span style="color:#DC2626;font-size:10px">\u2298</span>${m}</div>`).join('')}
+      </div>`
+    :`<div style="margin-top:16px;font-size:11px;color:var(--text-muted)">Sin restricciones de materiales documentadas en el dataset SCOPE (v1 \u00b7 10 entidades cubiertas).</div>`;
   document.getElementById('sp-perfil').innerHTML=`
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
       ${scoreBadge(sc.master||0)}
       <span style="font-size:12px;color:var(--text-muted)">Posici\u00f3n #${sc.rank||'\u2014'} de 32 \u00b7 Promedio nacional: ${avg}</span>
     </div>
-    <div class="sp-law-block" style="font-size:13px;line-height:1.6;color:var(--text-sec)">${narrative}</div>`;
+    ${statGrid}
+    <div class="sp-law-block" style="font-size:13px;line-height:1.6;color:var(--text-sec)">${narrative}</div>
+    ${matBlock}`;
 }
 function renderSPActividad(state){
   const doRender=(d)=>{
@@ -1919,34 +2010,48 @@ function renderSPSectorial(state){
     {k:'logistica',n:'Log\u00edstica',icon:''},
     {k:'agro',n:'Agroindustria',icon:''}
   ];
-  const rows=sectors.map(s=>{
-    const val=sp[s.k]||0;const color=scoreColor(val);
+  const ordered=sectors.map(s=>({n:s.n,val:sp[s.k]||0})).sort((a,b)=>b.val-a.val);
+  const lead=ordered.slice(0,2).map(s=>s.n).join(' y ');
+  const rows=ordered.map((s,i)=>{
+    const color=i<2?'var(--green)':'var(--text3)';
     return`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border)">
-      <span style="width:22px;text-align:center;font-size:16px">${s.icon}</span>
-      <span style="font-size:13px;flex:1;color:var(--text)">${s.n}</span>
-      <div style="width:130px;height:6px;background:var(--green-tint);border-radius:3px;overflow:hidden">
-        <div style="width:${val}%;height:100%;background:${color};border-radius:3px"></div>
+      <span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);width:16px">${i+1}</span>
+      <span style="font-size:13px;flex:1;color:var(--text);${i<2?'font-weight:600':''}">${s.n}</span>
+      <div style="width:130px;height:6px;background:rgba(0,0,0,0.05);border-radius:3px;overflow:hidden">
+        <div style="width:${s.val}%;height:100%;background:${color};border-radius:3px"></div>
       </div>
-      <span style="font-size:12px;font-weight:600;color:${color};min-width:28px;text-align:right">${val}</span>
+      <span style="font-size:12px;font-weight:600;color:var(--text-sec);min-width:28px;text-align:right">${s.val}</span>
     </div>`;
   }).join('');
   document.getElementById('sp-sectorial').innerHTML=`
-    <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px">Exposici\u00f3n Regulatoria por Sector (0\u2013100)</div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">Vocaci\u00f3n industrial del estado</div>
+    <div style="font-size:12.5px;color:var(--text-sec);margin-bottom:14px">${state} concentra su actividad en <strong>${lead}</strong>.</div>
     ${rows}
-    <div style="font-size:10px;color:var(--text-muted);margin-top:10px">Basado en perfil econ\u00f3mico-industrial del estado + complejidad normativa activa.</div>`;
+    <div style="font-size:10px;color:var(--text-muted);margin-top:10px">Peso relativo (0\u2013100) del sector en el perfil econ\u00f3mico-industrial del estado. Integraci\u00f3n con censos econ\u00f3micos INEGI en curso.</div>`;
+}
+var _newsMode='mx';
+function setNewsMode(mode){
+  _newsMode=mode;
+  document.getElementById('news-mode-mx').classList.toggle('active',mode==='mx');
+  document.getElementById('news-mode-int').classList.toggle('active',mode==='int');
+  renderLatestNewsTicker();
 }
 function renderLatestNewsTicker(){
   var el=document.getElementById('news-ticker');
   if(!el)return;
-  var items=[...noticias].sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);}).filter(function(n){return catArt(n.titulo||'')!==null;}).slice(0,20);
-  if(!items.length){el.innerHTML='<div style="color:var(--text-muted);font-size:12px;padding:20px 0;text-align:center">Sin noticias disponibles<br><span style="font-size:10px">El scraper corre cada 4h vía GitHub Actions</span></div>';return;}
+  var items=[...noticias].sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);})
+    .filter(function(n){return catArt(n.titulo||'')!==null;})
+    .filter(function(n){return _newsMode==='int'?!isMxRelevant(n):isMxRelevant(n);})
+    .slice(0,20);
+  if(!items.length){el.innerHTML='<div style="color:var(--text-muted);font-size:12px;padding:20px 0;text-align:center">'+(_newsMode==='int'?'Sin registros internacionales recientes':'Sin noticias disponibles')+'</div>';return;}
   var html='';
   for(var i=0;i<items.length;i++){
     var n=items[i];
     var cat=null;
     for(var j=0;j<CATS.length;j++){if(catArt(n.titulo||'')===CATS[j].id){cat=CATS[j];break;}}
     var badgeHtml=cat?'<span class="ticker-badge" style="background:'+cat.color+'22;color:'+cat.color+'">'+cat.name+'</span>':'';
-    if(n.estado)badgeHtml+='<span class="ticker-badge" style="background:rgba(13,27,42,0.06);color:var(--text-sec)">'+n.estado+'</span>';
+    if(_newsMode==='mx'&&n.estado)badgeHtml+='<span class="ticker-badge" style="background:rgba(13,27,42,0.06);color:var(--text-sec)">'+n.estado+'</span>';
+    if(_newsMode==='int'&&n.fuente)badgeHtml+='<span class="ticker-badge" style="background:rgba(13,27,42,0.06);color:var(--text-sec)">'+(n.fuente||'').replace('Google News - ','').split(',')[0].slice(0,28)+'</span>';
     var fecha=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     var url=(n.url||'#').replace(/'/g,'%27');
     html+='<div class="ticker-item" onclick="window.open(\''+url+'\',\'_blank\')">';
@@ -2320,10 +2425,14 @@ function renderDOF(){
   el.innerHTML=html;
 }
 // ─────────────────────────────────────────────────────────────────────────────
+var _perfilEstados=null,_materialesData=null,_datosgobData=null;
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
   try{const r=await fetch('data/dof.json',{cache:'no-store'});_dofData=await r.json()}catch(e){_dofData=[]}
+  fetch('data/perfil-estados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_perfilEstados=d;}).catch(()=>{});
+  fetch('data/materiales-prohibidos.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_materialesData=d;}).catch(()=>{});
+  fetch('data/datosgob.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_datosgobData=d;renderDatosGob();}).catch(()=>{});
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
