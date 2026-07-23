@@ -58,10 +58,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .nav-btn-register{height:32px;padding:0 14px;border:none;border-radius:8px;background:var(--green);font-size:12px;font-weight:600;color:#fff;cursor:pointer;font-family:var(--sans);transition:background 0.15s;white-space:nowrap}
 .nav-btn-register:hover{background:#00b3a3}
 .nav-tabs{display:flex;align-items:stretch;flex:1;padding:0 4px 0 20px}
-.tab-btn{padding:0 2px;margin-right:18px;font-size:11px;font-weight:500;color:var(--text-muted);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.06em;transition:color 0.15s;font-family:var(--mono);white-space:nowrap;text-transform:uppercase}
-.tab-btn.active{color:var(--white);border-bottom-color:var(--amber)}
+.tab-btn{padding:0 2px;margin-right:18px;font-size:12.5px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.01em;transition:color 0.15s;font-family:var(--sans);white-space:nowrap}
+.tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
 .main{max-width:1200px;margin:0 auto;padding:24px 28px 32px}
-.scope-footer{background:rgba(255,255,255,0.95);border-top:1px solid rgba(0,0,0,0.05);padding:4px 28px;text-align:center;font-size:10px;color:var(--text3);line-height:1.4;position:fixed;bottom:0;left:0;right:0;z-index:200;backdrop-filter:blur(6px)}
+.scope-footer{border-top:1px solid rgba(0,0,0,0.05);padding:26px 28px 30px;text-align:center;font-size:10.5px;color:var(--text3);line-height:1.7;margin-top:56px}
 .scope-footer a{color:var(--text-muted);text-decoration:underline;text-underline-offset:3px}
 .scope-footer a:hover{color:var(--text)}
 .card{background:none;border:none;border-radius:0;padding:0;box-shadow:none}
@@ -75,7 +75,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .leg-sub-btn{padding:8px 18px;border:none;background:none;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px;font-family:var(--sans);transition:color 0.15s}
 .leg-sub-btn.active{color:var(--text);border-bottom-color:var(--green)}
 .normas-filter-link{padding:0;border:none;background:none;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:var(--sans);transition:color 0.15s;letter-spacing:0.02em}
-.normas-filter-link.active{color:var(--text);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.normas-filter-link.active{color:var(--text);font-weight:700}
 /* ── Badge component ── */
 .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.04em}
 .badge-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
@@ -115,7 +115,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .cat-count{font-size:13px;font-weight:600;color:var(--text);min-width:28px;text-align:right;font-variant-numeric:tabular-nums}
 /* ── Mapa de puntos (señal territorial) ── */
 .dotmap-card{position:relative;height:480px;padding:0!important;overflow:hidden}
-.dotmap-grid{position:absolute;inset:0;background-image:linear-gradient(#E9EEF3 1px,transparent 1px),linear-gradient(90deg,#E9EEF3 1px,transparent 1px);background-size:52px 52px;pointer-events:none}
+.dotmap-grid{display:none}
 .dotmap-title{position:absolute;left:22px;top:18px;display:flex;flex-direction:column;gap:2px;z-index:3;pointer-events:none}
 .dotmap-mx{font-size:30px;font-weight:700;letter-spacing:0.02em;color:var(--white);line-height:1.1}
 #map{position:absolute;inset:0;z-index:2}
@@ -148,12 +148,12 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .sdrop-meta{font-size:10.5px;color:var(--text-muted);margin-top:1px}
 .sdrop-empty{padding:20px 16px;text-align:center;font-size:12px;color:var(--text-muted)}
 .fed-ley-pill.active{background:var(--green)!important;color:#fff!important;border-color:var(--green)!important}
-.fed-tabs{display:flex;gap:4px;margin-bottom:10px}
-.fed-tab{background:rgba(0,0,0,0.04);border:none;border-radius:20px;padding:4px 10px;font-size:10.5px;font-weight:600;color:var(--text-muted);cursor:pointer;font-family:var(--sans);transition:all 0.15s;display:flex;align-items:center;gap:5px}
-.fed-tab:hover{background:rgba(0,158,144,0.1);color:var(--green)}
-.fed-tab.active{background:var(--green);color:#fff}
-.fed-tab-badge{background:rgba(255,255,255,0.25);border-radius:10px;padding:0 5px;font-size:9px;font-weight:700}
-.fed-tab:not(.active) .fed-tab-badge{background:rgba(0,0,0,0.08);color:var(--text-muted)}
+.fed-tabs{display:flex;gap:18px;margin-bottom:10px}
+.fed-tab{background:none;border:none;border-radius:0;padding:0;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:var(--sans);transition:color 0.15s;display:flex;align-items:baseline;gap:5px}
+.fed-tab:hover{color:var(--text)}
+.fed-tab.active{color:var(--text);font-weight:700}
+.fed-tab-badge{background:none;border-radius:0;padding:0;font-size:10.5px;font-weight:400;color:var(--text-muted)}
+.fed-tab:not(.active) .fed-tab-badge{background:none;color:var(--text-muted)}
 /* ── Legislative mini-search ── */
 .leg-search-wrap{position:relative;margin-bottom:10px}
 .leg-search-input{width:100%;box-sizing:border-box;padding:6px 10px 6px 28px;border:0.8px solid var(--border);border-radius:8px;font-size:11px;font-family:var(--sans);color:var(--text);background:var(--card2);outline:none;transition:border-color 0.15s}
@@ -434,11 +434,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .radar-fab-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:radarPing 2.2s ease-out infinite}
 @keyframes radarPing{0%{box-shadow:0 0 0 0 rgba(0,158,144,0.4)}70%{box-shadow:0 0 0 9px rgba(0,158,144,0)}100%{box-shadow:0 0 0 0 rgba(0,158,144,0)}}
 .semana-card{cursor:pointer}
-.semana-toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.semana-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase}
-.semana-semaforo{display:flex;gap:5px;align-items:center}
-.semana-luz{width:9px;height:9px;border-radius:50%;opacity:0.15}
-.semana-luz.on{opacity:1;box-shadow:0 0 0 3px var(--luz-halo,transparent)}
+.semana-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;display:block}
+.semana-preview{font-size:12px;color:var(--text2);line-height:1.6;margin-top:8px}
 .semana-block{border-left:2.5px solid var(--sem-col,#D97706);padding-left:16px;margin-top:13px}
 .semana-nivel{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:0.08em}
 .semana-titulo{font-size:15.5px;font-weight:700;color:var(--text);line-height:1.45;margin-top:6px;text-wrap:pretty}
@@ -525,8 +522,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   .nav-search input{width:84px}
 }
 @media (max-width:1150px){
-  .nav-linkedin{display:none}
-  .nav-btn-login{display:none}
   .nav-tagline{display:none}
 }
 /* ═══════════ RESPONSIVE MÓVIL ═══════════ */
@@ -662,11 +657,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       </div>
       <div id="search-drop" class="search-drop"></div>
     </div>
-    <a class="nav-linkedin" href="https://mx.linkedin.com/company/igemiac" target="_blank" rel="noopener" title="GEMI en LinkedIn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-    </a>
     <button class="nav-btn-login">Inicia sesión</button>
-    <button class="nav-btn-register" onclick="openRegModal()">Regístrate</button>
   </div>
 </nav>
 <!-- STATE MODAL -->
@@ -1174,9 +1165,9 @@ function loadPresidencia(){
       });
     });
     if(!quotes.length){el.style.display='none';return;}
-    const seq=quotes.map(q=>'<span class="chyron-it" onclick="window.open(\''+q.url+'\',\'_blank\')">“'+q.t+'”<span class="cim">CSP · '+q.f+'</span></span>').join('<span style="color:var(--text3);padding-right:30px">◆</span>');
+    const seq=quotes.map(q=>'<span class="chyron-it" onclick="window.open(\''+q.url+'\',\'_blank\')">“'+q.t+'”<span class="cim">CSP · '+q.f+'</span></span>').join('<span style="color:var(--text3);padding-right:30px;font-size:8px;vertical-align:middle">●</span>');
     el.innerHTML='<div class="chyron">'
-      +'<div class="chyron-hdr"><span class="chyron-live"></span>Ejecutivo · Conferencias CSP</div>'
+      +'<div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo</div>'
       +'<div class="chyron-track"><div class="chyron-inner" id="chyron-inner">'+seq+seq+'</div></div>'
       +'</div>';
     // Velocidad constante: duración proporcional al ancho del contenido
@@ -1202,19 +1193,17 @@ function renderSemanaBanner(){
         ?'Semana del '+di.getDate()+' al '+df.getDate()+' de '+MESES[df.getMonth()]
         :'Semana del '+di.getDate()+' de '+MESES[di.getMonth()]+' al '+df.getDate()+' de '+MESES[df.getMonth()];
     }catch(e){}
-    const NIV={alto:['RIESGO ALTO','#DC2626',2,'↑'],medio:['RIESGO MEDIO','#D97706',1,'→'],bajo:['RIESGO BAJO','#16A34A',0,'↓']};
+    const NIV={alto:['RIESGO ALTO','#DC2626','↑'],medio:['RIESGO MEDIO','#D97706','→'],bajo:['RIESGO BAJO','#16A34A','↓']};
     const nv=NIV[(d.riesgo||'medio').toLowerCase()]||NIV.medio;
-    const luces=['#16A34A','#D97706','#DC2626'].map((c,i)=>
-      '<span class="semana-luz'+(i===nv[2]?' on':'')+'" style="background:'+c+';--luz-halo:'+c+'33"></span>').join('');
+    let preview=(d.resumen&&d.resumen[0])||'';
+    if(preview.length>180)preview=preview.slice(0,178).replace(/\s+\S*$/,'')+'…';
     el.innerHTML='<div class="card semana-card" id="semana-banner-card" onclick="_toggleSemana()">'
-      +'<div class="semana-toprow">'
-        +'<span class="semana-lbl">Noticia de la Semana</span>'
-        +'<div class="semana-semaforo">'+luces+'</div>'
-      +'</div>'
-      +'<div class="semana-lbl" style="font-size:9.5px;letter-spacing:0.15em;margin-top:14px">'+rango+'</div>'
-      +'<div class="semana-block" style="--sem-col:'+nv[1]+';margin-top:9px">'
-        +'<span class="semana-nivel" style="color:'+nv[1]+'">'+nv[3]+' '+nv[0]+'</span>'
+      +'<span class="semana-lbl">Noticia de la Semana</span>'
+      +'<div class="semana-lbl" style="font-size:9.5px;letter-spacing:0.15em;margin-top:6px">'+rango+'</div>'
+      +'<div class="semana-block" style="--sem-col:'+nv[1]+';margin-top:11px">'
+        +'<span class="semana-nivel" style="color:'+nv[1]+'">'+nv[2]+' '+nv[0]+'</span>'
         +'<div class="semana-titulo">'+d.titulo+'</div>'
+        +'<div class="semana-preview" id="semana-preview">'+preview+'</div>'
         +'<div class="semana-body" id="semana-body">'+(d.resumen||[]).map(p=>'<p>'+p+'</p>').join('')+'</div>'
         +'<div class="semana-sub" id="semana-sub">▼ leer el análisis completo</div>'
       +'</div></div>';
@@ -1224,9 +1213,11 @@ function _toggleSemana(){
   const card=document.getElementById('semana-banner-card');
   const body=document.getElementById('semana-body');
   const sub=document.getElementById('semana-sub');
+  const prev=document.getElementById('semana-preview');
   if(!card||!body)return;
   const open=card.classList.toggle('open');
   body.style.maxHeight=open?body.scrollHeight+'px':'0px';
+  if(prev)prev.style.display=open?'none':'';
   if(sub)sub.textContent=open?'▲ cerrar':'▼ leer el análisis completo';
 }
 // ── Mapa de puntos: proyección equirectangular de STATE_COORDS ──
@@ -1246,6 +1237,37 @@ function _mapTT(ev,state){
   tt.style.top=(ev.clientY+14)+'px';
 }
 function _mapTTHide(){var tt=document.getElementById('tt');if(tt)tt.style.display='none';}
+// Siluetas de los estados: GeoJSON proyectado al mismo plano que los puntos
+var _geoOutline=null;
+function _loadGeoOutline(){
+  if(_geoOutline!==null)return;
+  _geoOutline='loading';
+  fetch('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json',{cache:'force-cache'})
+    .then(function(r){return r.json();})
+    .then(function(geo){_geoOutline=geo;_renderGeoOutline();})
+    .catch(function(){_geoOutline=false;});
+}
+function _renderGeoOutline(){
+  var host=document.getElementById('dotmap-annot');
+  if(!host||!_geoOutline||_geoOutline==='loading'||_geoOutline===false)return;
+  var paths='';
+  (_geoOutline.features||[]).forEach(function(f){
+    var g=f.geometry;
+    if(!g)return;
+    var polys=g.type==='Polygon'?[g.coordinates]:(g.type==='MultiPolygon'?g.coordinates:[]);
+    polys.forEach(function(poly){
+      poly.forEach(function(ring){
+        // Decimación ligera para mantener el SVG ágil
+        var pts=ring.filter(function(_,i){return i%2===0;});
+        if(pts.length<3)return;
+        paths+='<path d="M'+pts.map(function(p){return _projX(p[0]).toFixed(2)+' '+_projY(p[1]).toFixed(2);}).join('L')+'Z"/>';
+      });
+    });
+  });
+  host.innerHTML='<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">'
+    +'<style>path{vector-effect:non-scaling-stroke}</style>'
+    +'<g fill="#F2F6F9" stroke="#C9D6E0" stroke-width="1">'+paths+'</g></svg>';
+}
 function buildMap(){
   try{
   var el=document.getElementById('map');
@@ -1267,8 +1289,8 @@ function buildMap(){
   el.innerHTML=html;
   var lg=document.getElementById('dotmap-legend');
   if(lg)lg.innerHTML='';
-  var annot=document.getElementById('dotmap-annot');
-  if(annot)annot.innerHTML='';
+  _loadGeoOutline();
+  _renderGeoOutline();
   }catch(e){console.error('Map error:',e);}
 }
 
@@ -1387,9 +1409,7 @@ function renderDofMenu(){
         +'<div class="dof-it-t">'+(d.titulo||'')+'</div>'
         +'<div class="dof-it-m">'+(d.dependencia||'DOF')+' · '+f+(d.relevante?' · <span style="color:var(--amber)">RELEVANTE</span>':'')+'</div>'
         +'</div>';
-    }).join('')
-    +'<div class="nav-drop-sep"></div>'
-    +'<div class="nav-drop-it" onclick="showRegulacion(\'noms\')">Ver NOMs en monitoreo →</div>';
+    }).join('');
 }
 
 // ── NORMAS ────────────────────────────────────────────────────
