@@ -673,9 +673,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
         <div class="card dotmap-card">
           <div class="dotmap-grid"></div>
           <div class="dotmap-title">
-            <span style="font-family:var(--mono);font-size:10px;color:var(--green)">● señal territorial</span>
-            <span class="dotmap-mx">MÉXICO</span>
-            <span style="font-family:var(--mono);font-size:11.5px;color:var(--text-muted)" id="dotmap-sub">32 entidades</span>
+            <span class="card-label" style="margin-bottom:0">Mapa Político de México</span>
+            <span style="font-size:12px;color:var(--text-muted);margin-top:4px">Selecciona un estado</span>
           </div>
           <div id="map"></div>
           <div id="dotmap-annot"></div>
@@ -1234,8 +1233,6 @@ function buildMap(){
     +'<span><span style="color:var(--amber)">●</span> ALTA '+counts.a+'</span>'
     +'<span><span style="color:var(--green)">●</span> MODERADA '+counts.m+'</span>'
     +'<span><span style="color:var(--dim)">●</span> BAJA '+counts.b+'</span>';
-  var sub=document.getElementById('dotmap-sub');
-  if(sub)sub.textContent='32 entidades · '+(counts.c+counts.a)+' con señal elevada';
   // Anotación del estado con mayor señal
   var annot=document.getElementById('dotmap-annot');
   if(annot&&topState&&topScore>=45){
