@@ -1419,7 +1419,7 @@ function renderAcuerdos(){
         +'<div class="ley-nombre">'+a.n+'</div>'
         +'<div style="font-size:11px;color:var(--text-muted);margin-top:2px">'+a.implic+'</div>'
       +'</div>'
-      +'<span class="ley-tema-badge" style="background:'+col+'">'+a.tema.toUpperCase()+'</span>'
+      +'<span style="font-size:9.5px;color:var(--text-muted);letter-spacing:0.04em;white-space:nowrap;flex-shrink:0">'+a.tema.toUpperCase()+'</span>'
       +'<span style="font-size:10.5px;font-weight:600;color:var(--green);white-space:nowrap;flex-shrink:0">'+a.status+'</span>'
       +'<span class="ley-link-icon">↗</span>'
       +'</div>';
@@ -2121,9 +2121,11 @@ function renderLatestNewsTicker(){
     var n=items[i];
     var cat=null;
     for(var j=0;j<CATS.length;j++){if(catArt(n.titulo||'')===CATS[j].id){cat=CATS[j];break;}}
-    var badgeHtml=cat?'<span class="ticker-badge" style="background:'+cat.color+'22;color:'+cat.color+'">'+cat.name+'</span>':'';
-    if(_newsMode==='mx'&&n.estado)badgeHtml+='<span class="ticker-badge" style="background:rgba(13,27,42,0.06);color:var(--text-sec)">'+n.estado+'</span>';
-    if(_newsMode==='int'&&n.fuente)badgeHtml+='<span class="ticker-badge" style="background:rgba(13,27,42,0.06);color:var(--text-sec)">'+(n.fuente||'').replace('Google News - ','').split(',')[0].slice(0,28)+'</span>';
+    var metaParts=[];
+    if(cat)metaParts.push(cat.name);
+    if(_newsMode==='mx'&&n.estado)metaParts.push(n.estado);
+    if(_newsMode==='int'&&n.fuente)metaParts.push((n.fuente||'').replace('Google News - ','').split(',')[0].slice(0,28));
+    var badgeHtml=metaParts.length?'<span style="font-size:10px;color:var(--text-muted);letter-spacing:0.02em">'+metaParts.join(' · ')+'</span>':'<span></span>';
     var fecha=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     var url=(n.url||'#').replace(/'/g,'%27');
     html+='<div class="ticker-item" onclick="window.open(\''+url+'\',\'_blank\')">';
@@ -2434,7 +2436,7 @@ function renderWidgetGacetas(){
           html+='<div class="gaceta-state-row" onclick="'+(hasItems?'_toggleGacetaRow(\''+sid+'\')':'openStatePanel(\''+s+'\')')+'">';
           html+='<span style="font-size:9px;font-weight:700;color:var(--text-muted);min-width:28px">'+abbr+'</span>';
           html+='<span style="font-size:11.5px;flex:1;color:var(--text)">'+s+'</span>';
-          html+='<span style="font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:10px;background:'+col+'18;color:'+col+'">'+r.categoria_principal+'</span>';
+          html+='<span style="font-size:9.5px;color:var(--text-muted);white-space:nowrap">'+r.categoria_principal+'</span>';
           html+='<span style="font-size:10px;color:var(--text-muted);min-width:18px;text-align:right;margin-left:6px">'+r.total+'</span>';
           if(hasItems) html+='<span id="gaceta-arr-'+sid+'" style="font-size:10px;color:var(--text-muted);margin-left:4px;transition:transform 0.2s;display:inline-block">›</span>';
           html+='</div>';
@@ -2445,7 +2447,7 @@ function renderWidgetGacetas(){
               var fecha=it.fecha?new Date(it.fecha+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
               html+='<div style="padding:5px 0;border-bottom:0.8px solid rgba(0,0,0,0.04)">';
               html+='<div style="display:flex;align-items:center;gap:5px;margin-bottom:2px">';
-              html+='<span style="font-size:8.5px;font-weight:700;padding:1px 5px;border-radius:3px;background:'+(CAT_COLORS[it.categoria]||'#95a5a6')+'18;color:'+(CAT_COLORS[it.categoria]||'#95a5a6')+'">'+((it.categoria||'').toUpperCase())+'</span>';
+              html+='<span style="font-size:8.5px;color:var(--text-muted);letter-spacing:0.03em">'+((it.categoria||'').toUpperCase())+'</span>';
               html+='<span style="font-size:9px;color:var(--text-muted);margin-left:auto">'+fecha+'</span>';
               html+='</div>';
               html+='<a href="'+(it.url||'#')+'" target="_blank" rel="noopener" style="font-size:10.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text)\'">'+(it.titulo||'').substring(0,100)+((it.titulo||'').length>100?'…':'')+'</a>';
