@@ -15,28 +15,21 @@ el número de la nota original entre corchetes `[N]` para trazabilidad.
 
 ## ✅ Hecho (previo a este roadmap)
 
-- Tema oscuro terminal en toda la plataforma (mapa de puntos, paleta, IBM Plex Mono para datos).
-- **Helvetica en toda la plataforma** — texto general en `Helvetica Neue / Helvetica / Arial`;
-  IBM Plex Mono se conserva solo en etiquetas técnicas, fechas y números (es lo
-  que da el carácter de instrumento; si se quiere Helvetica absoluta, es una línea).
+- **Tema blanco** (el oscuro se probó y se descartó; se conservan el mapa de
+  puntos, Helvetica y IBM Plex Mono para etiquetas técnicas).
+- **Helvetica en toda la plataforma** — texto general en `Helvetica Neue / Helvetica / Arial`.
 - Scraper automático diario (sesiones de comisiones + fotos de legisladores).
 - Mi Consola v1 (wizard 5 pasos, filtrado client-side).
 
+## ✅ Etapa 1 — COMPLETADA (2026-07-21)
+
+Todos los puntos entregados: estado en noticias `[1]`, banner semanal con
+semáforo (contenido editable en `data/semana.json`) `[3]`, mañaneras como
+cintillo de noticiero `[2]`, widget Congreso unificado con logos de partido y
+ley en discusión `[4]`, Centro de Alertas fuera del nav `[15]`, NOMs con
+nomenclatura completa `[11]`, Radares como botón pulsante discreto `[19]`.
+
 ---
-
-## Etapa 1 — Pulido del dashboard (solo frontend; los datos ya existen)
-
-Objetivo: que el dashboard se vea y lea como noticiero profesional. Sin scrapers nuevos.
-
-| # | Qué | Detalle | Esfuerzo |
-|---|-----|---------|----------|
-| 1.1 `[1]` | Estado en Últimas Noticias | El campo `estado` ya viene en `noticias.json`; se muestra como etiqueta junto a la categoría (Agua · Nayarit). | S |
-| 1.2 `[3]` | Banner semanal | Franja arriba de noticias: "Semana del 20 al 24 de julio" + noticia principal de la semana + semáforo de riesgo (verde/ámbar/rojo). La principal se elige por relevancia (categoría con más señal + recencia). | M |
-| 1.3 `[2]` | Mañaneras como cintillo | El Observatorio del Ejecutivo se convierte en banner tipo chyron de noticiero (scroll horizontal continuo de citas de la CSP); deja de ocupar una tarjeta completa. | M |
-| 1.4 `[4]` | Widget Congreso unificado | Una sola tarjeta Diputados + Senado. Cada fila: logo del partido del promovente + **solo la ley en discusión** (ej. "Ley de Aguas Nacionales") extraída del título; en Puntos de Acuerdo, el texto después de "por el que se exhorta". | M |
-| 1.5 `[15]` | Quitar Centro de Alertas | Se elimina la pestaña; las alertas viven en el mapa (ya están ahí como señal territorial). | S |
-| 1.6 `[11]` | NOMs con nomenclatura completa | Auditoría de las 12+ NOMs listadas: clave completa con año (NOM-001-SEMARNAT-2021, no NOM-001-SEMARNAT). | S |
-| 1.7 `[19]` | Radares como botón discreto | Sale del nav principal; se vuelve un botón pequeño con pulso sutil (hidden button de alto valor). | S |
 
 ## Etapa 2 — Nueva arquitectura de navegación (mini menús)
 
