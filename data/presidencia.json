@@ -1,6 +1,19 @@
 {
   "articulos": [
     {
+      "id": "a6820e626f",
+      "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 23 de julio de 2026",
+      "fecha": "2026-07-23",
+      "url": "https://www.gob.mx/presidencia/es/articulos/version-estenografica-conferencia-de-prensa-de-la-presidenta-claudia-sheinbaum-pardo-del-23-de-julio-de-2026",
+      "fuente": "Presidencia de México — Estenográfica",
+      "categorias": [
+        "agua"
+      ],
+      "fragmentos": [
+        "En el Senado, le plantearon que no estamos cumpliendo con la cuota del agua. Y eso es falso, estamos cumpliendo perfectamente y hay total acuerdo con Estados Unidos. Y este año, que esperamos que llueva más todavía, se va a cumplir. O sea, no hay ningún problema, en este momento, con el tema del agua."
+      ]
+    },
+    {
       "id": "d250f5f22c",
       "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 22 de julio de 2026",
       "fecha": "2026-07-22",
@@ -8861,8 +8874,8 @@
   ],
   "_meta": {
     "fuente": "Presidencia de México — Estenográficas mañanera",
-    "total": 453,
-    "nuevos_hoy": 0,
-    "actualizado": "2026-07-23T19:13:45Z"
+    "total": 454,
+    "nuevos_hoy": 1,
+    "actualizado": "2026-07-23T21:33:11Z"
   }
 }
