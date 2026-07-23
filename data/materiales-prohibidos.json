@@ -1,0 +1,63 @@
+{
+  "_meta": {
+    "nota": "Restricciones estatales a plásticos de un solo uso y materiales. Dataset v1: 10 entidades con documentación sólida; ~29 entidades tienen alguna restricción — en expansión.",
+    "actualizado": "2026-07-22",
+    "fuentes": [
+      "https://en15dias.com/politica-ambiental/estados-con-leyes-con-prohibicion-de-plasticos-en-mexico/",
+      "https://sonplayas.com/reportajes/quien-ya-le-dijo-no-al-plastico-en-mexico/",
+      "https://tabasco.gob.mx/noticias/entra-en-vigor-ley-que-prohibe-uso-de-bolsas-de-plastico-popotes-y-unicel"
+    ]
+  },
+  "estados": {
+    "Veracruz": {
+      "desde": 2018,
+      "materiales": ["Bolsas de plástico", "Popotes"],
+      "instrumento": "Reforma a la Ley Estatal de Protección Ambiental (primera entidad del país)"
+    },
+    "Sonora": {
+      "desde": 2018,
+      "materiales": ["Bolsas no biodegradables", "Popotes"],
+      "instrumento": "Reforma en materia de residuos; popotes prohibidos en establecimientos de alimentos"
+    },
+    "Oaxaca": {
+      "desde": 2019,
+      "materiales": ["Bolsas de plástico", "Popotes", "Unicel (poliestireno expandido)"],
+      "instrumento": "Reforma a la Ley para la Prevención y Gestión Integral de Residuos del estado"
+    },
+    "Quintana Roo": {
+      "desde": 2019,
+      "materiales": ["Bolsas de plástico", "Popotes", "Unicel (poliestireno expandido)"],
+      "instrumento": "Reforma a la Ley para la Prevención y Gestión Integral de Residuos del estado"
+    },
+    "Baja California Sur": {
+      "desde": 2019,
+      "materiales": ["Bolsas de plástico", "Contenedores de poliestireno", "Popotes"],
+      "instrumento": "Restricción de venta y distribución en todo el territorio estatal"
+    },
+    "Jalisco": {
+      "desde": 2019,
+      "materiales": ["Unicel (poliestireno expandido)", "Bolsas de plástico", "Popotes"],
+      "instrumento": "Reforma a la Ley Estatal del Equilibrio Ecológico y la Protección al Ambiente"
+    },
+    "Guerrero": {
+      "desde": 2019,
+      "materiales": ["Unicel (envases de polietileno expandido)", "Popotes", "Cucharas y vasos de plástico"],
+      "instrumento": "Prohibición de uso y entrega en establecimientos comerciales"
+    },
+    "Hidalgo": {
+      "desde": 2019,
+      "materiales": ["Popotes", "Bolsas de plástico", "Unicel (poliestireno expandido)"],
+      "instrumento": "Prohibición estatal aprobada por unanimidad en el Congreso local"
+    },
+    "Tabasco": {
+      "desde": 2020,
+      "materiales": ["Bolsas de plástico", "Popotes", "Unicel (poliestireno expandido)"],
+      "instrumento": "Reforma de ley en vigor desde enero de 2020"
+    },
+    "Ciudad de México": {
+      "desde": 2020,
+      "materiales": ["Bolsas de plástico (2020)", "Desechables de un solo uso: cubiertos, popotes, vasos (2021)"],
+      "instrumento": "Ley de Residuos Sólidos de la CDMX, reforma 2019 con entrada en vigor escalonada"
+    }
+  }
+}
