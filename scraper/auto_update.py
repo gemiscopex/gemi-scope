@@ -334,6 +334,15 @@ def main():
         json.dump(fotos_new, f, ensure_ascii=False, separators=(",", ":"))
     print(f"  Guardado {FOTOS.name}")
 
+    # Datos abiertos ambientales (datos.gob.mx)
+    print("\n── Datos abiertos (datos.gob.mx) ──")
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import scraper_datosgob
+        scraper_datosgob.main()
+    except Exception as e:
+        print(f"  ERROR datosgob: {str(e)[:120]}")
+
     # Drift de integrantes (informativo)
     print("\n── Verificación de integrantes (informativo) ──")
     for c in coms_data["comisiones"]:
