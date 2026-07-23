@@ -652,7 +652,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
     </div>
     <button class="tab-btn" onclick="showTab('congreso',this)">Actores</button>
     <button class="tab-btn" onclick="showTab('consola',this)" style="color:var(--green)">◆ Mi Consola</button>
-    <button class="tab-btn" onclick="showTab('acerca',this)">Acerca de</button>
     <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos SCOPE"><span class="radar-fab-dot"></span></button>
   </div>
   <div class="nav-right">
@@ -1239,11 +1238,9 @@ function _projY(lat){var b=_MAP_BOUNDS,i=_MAP_INSET;return i.y0+(b.latMax-lat)/(
 function _mapTT(ev,state){
   var tt=document.getElementById('tt');
   if(!tt)return;
-  var sc=stateScores[state]||{master:0};
   tt.className='dotmap-tt';
   tt.innerHTML='<span style="color:var(--white);font-weight:600">'+state+'</span>'
-    +' <span style="color:'+scoreColor(sc.master||0)+'">'+scoreLabel(sc.master||0).toUpperCase()+' '+(sc.master||0)+'</span>'
-    +'<span style="color:var(--dim)"> · click para panel</span>';
+    +'<span style="color:var(--dim)"> · click para ver panel</span>';
   tt.style.display='block';
   tt.style.left=Math.min(ev.clientX+14,window.innerWidth-260)+'px';
   tt.style.top=(ev.clientY+14)+'px';
@@ -1253,53 +1250,25 @@ function buildMap(){
   try{
   var el=document.getElementById('map');
   if(!el)return;
-  var LV={
-    c:{size:13,glow:22,anim:'pulseDot 2.2s ease-out infinite'},
-    a:{size:9, glow:14,anim:'pulseAlt 2.8s ease-in-out infinite'},
-    m:{size:7, glow:10,anim:'none'},
-    b:{size:5, glow:0, anim:'none'}
-  };
-  var counts={c:0,a:0,m:0,b:0};
-  var topState=null,topScore=-1;
+  // Todos los estados iguales, en verde — sin niveles de señal
   var html='';
   Object.keys(STATE_COORDS).forEach(function(state){
     var coords=STATE_COORDS[state];
     if(!coords)return;
-    var sc=stateScores[state]||{master:0};
-    var m=sc.master||0;
-    var lvl=m>=70?'c':m>=45?'a':m>=20?'m':'b';
-    counts[lvl]++;
-    if(m>topScore){topScore=m;topState=state;}
-    var v=LV[lvl];
-    var col=scoreColor(m);
     var abbr=STATE_ABBR[state]||state.substring(0,3).toUpperCase();
     var x=_projX(coords[1]).toFixed(2),y=_projY(coords[0]).toFixed(2);
     var nameEsc=state.replace(/'/g,"\\'");
     html+='<div class="dot-state" style="left:'+x+'%;top:'+y+'%"'
       +' onclick="openStatePanel(\''+nameEsc+'\')"'
       +' onmousemove="_mapTT(event,\''+nameEsc+'\')" onmouseleave="_mapTTHide()">'
-      +'<div style="width:'+v.size+'px;height:'+v.size+'px;border-radius:50%;background:'+col+';border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.25)'+(v.glow?',0 0 '+v.glow+'px '+col+'55':'')+';animation:'+v.anim+'"></div>'
+      +'<div style="width:8px;height:8px;border-radius:50%;background:var(--green);border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)"></div>'
       +'<span class="dot-abbr">'+abbr+'</span></div>';
   });
   el.innerHTML=html;
-  // Leyenda con conteos
   var lg=document.getElementById('dotmap-legend');
-  if(lg)lg.innerHTML=
-     '<span><span style="color:var(--red)">●</span> CRÍTICA '+counts.c+'</span>'
-    +'<span><span style="color:var(--amber)">●</span> ALTA '+counts.a+'</span>'
-    +'<span><span style="color:var(--green)">●</span> MODERADA '+counts.m+'</span>'
-    +'<span><span style="color:var(--dim)">●</span> BAJA '+counts.b+'</span>';
-  // Anotación del estado con mayor señal
+  if(lg)lg.innerHTML='';
   var annot=document.getElementById('dotmap-annot');
-  if(annot&&topState&&topScore>=45){
-    var tc=STATE_COORDS[topState];
-    var ty=_projY(tc[0]).toFixed(2),tx=_projX(tc[1]).toFixed(2);
-    var tAbbr=STATE_ABBR[topState]||topState;
-    var tLbl=topScore>=70?'señal crítica':'señal alta';
-    var tCol=topScore>=70?'var(--red)':'var(--amber)';
-    annot.innerHTML='<div style="position:absolute;left:calc('+tx+'% + 14px);right:20px;top:'+ty+'%;border-top:1px dashed '+tCol+';display:flex;justify-content:flex-end">'
-      +'<span style="font-family:var(--mono);font-size:9.5px;color:#fff;background:'+tCol+';padding:2px 8px;margin-top:-9px;white-space:nowrap">'+tAbbr+' · '+tLbl+'</span></div>';
-  }else if(annot){annot.innerHTML='';}
+  if(annot)annot.innerHTML='';
   }catch(e){console.error('Map error:',e);}
 }
 
@@ -3163,7 +3132,7 @@ loadComisiones();
 </script>
 <footer class="scope-footer">
   SCOPE opera a través de Iniciativa GEMI. Versión 1.2 &copy; 2026. Todos los derechos reservados.<br>
-  Consulta nuestros <a href="#">Términos y condiciones</a> y nuestra <a href="#">Política de privacidad</a>.
+  <a href="#" onclick="showTab('acerca',null);return false">Acerca de SCOPE</a> · Consulta nuestros <a href="#">Términos y condiciones</a> y nuestra <a href="#">Política de privacidad</a>.
 </footer>
 <!-- MODAL REGISTRO -->
 <div id="reg-modal-bg" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.48);z-index:1200;display:none;align-items:center;justify-content:center;padding:20px" onclick="closeRegModal(event)">
