@@ -32,7 +32,7 @@ jobs:
         run: |
           git config user.name "scope-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/comisiones.json data/fotos_legisladores.json data/datosgob.json
+          git add data/comisiones.json data/fotos_legisladores.json data/datosgob.json data/perfil-estados.json
           if git diff --cached --quiet; then
             echo "Sin cambios"
           else
