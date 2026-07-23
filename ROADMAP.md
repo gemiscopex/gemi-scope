@@ -39,19 +39,22 @@ nomenclatura completa `[11]`, Radares como botón pulsante discreto `[19]`.
 - 2.4 `[17]` Botón DOF ▾ con hover: publicaciones de hoy/recientes filtradas por nuestros temas; clic abre la nota. ✔
 - 2.5 `[14]` "Actores" reemplaza a Congreso Federal: gabinete ambiental federal (9 titulares verificados: SEMARNAT, CONAGUA, PROFEPA, SENER, Economía, SADER, CONAFOR, CONANP, ASEA) + comisiones del Congreso. **Pendiente para Etapa 3:** titulares de medio ambiente de las 32 entidades (requiere scraper de directorios).
 
-## Etapa 3 — Nuevas fuentes de datos
+## ✅ Etapa 3 — COMPLETADA v1 (2026-07-22)
 
-Objetivo: profundidad que nadie más tiene. Cada fuente entra al scraper diario.
+- 3.1 `[5]` Toggle **México · Internacional** en Últimas Noticias: lo que el filtro "solo México" descartaba ahora se clasifica como Internacional. ✔
+- 3.2 `[6]` "Sector Industrial" reemplaza a Riesgo Sectorial: vocación industrial rankeada por estado. ✔
+- 3.3 `[8]` Perfil estilo Data México en el panel de estado: población Censo 2020, % nacional, capital (`data/perfil-estados.json`). ✔
+- 3.4 `[7]` **DatosGob**: scraper del CKAN oficial (`scraper/scraper_datosgob.py`, en el auto-update diario) → bloque "Datos Abiertos Ambientales" en Radares con ~25 datasets por tema. ✔
+- 3.5 `[12]` Estatus PNIC por NOM (derivado de tipo; estructura `NOM_EXTRA` lista para el scraper CONAMER) + flag de participación GEMI. ✔ estructura
+- 3.6 `[13]` Mini menú expandible por NOM: estatus PNIC, GEMI, documentos (DOF + Catálogo Nacional de Regulaciones). ✔
+- 3.7 `[20]` `data/materiales-prohibidos.json` v1 con 10 entidades documentadas, visible en el perfil de cada estado. ✔ v1
 
-| # | Qué | Detalle | Esfuerzo |
-|---|-----|---------|----------|
-| 3.1 `[5]` | Monitoreo internacional | Nueva sección en noticias: lo que hoy se descarta por el filtro "solo México" (Mongabay LatAm, etc.) se reclasifica como Internacional en vez de tirarse; se agregan feeds globales (UE, COP, plásticos). | M |
-| 3.2 `[6]` | Vocación industrial por estado | Muere "Riesgo Sectorial"; nace "Sector Industrial" con la vocación económica real de cada entidad (censos económicos INEGI / Data México). | M |
-| 3.3 `[8]` | Perfil de estado estilo Data México | Población, PEA, unidades económicas, sectores principales — API pública de Data México / INEGI. | M |
-| 3.4 `[7]` | DatosGob ambiental | Inventario de datasets ambientales de datos.gob.mx (emisiones, agua, residuos) y qué métricas alimentan el perfil de estado y los radares. | L |
-| 3.5 `[12]` | Tracker PNIC de NOMs | Estado de cada NOM en el Programa Nacional de Infraestructura de la Calidad (CONAMER/DOF): en revisión, consulta pública, publicada. Flag visible de si **GEMI participa activamente** en cada una. | L |
-| 3.6 `[13]` | Documentos complementarios de NOMs | Mini menú expandible por NOM en la misma página: norma, modificaciones, acuerdos, guías, respuestas a comentarios. | M |
-| 3.7 `[20]` | Materiales prohibidos por estado | Dataset propio: prohibiciones de plásticos/materiales por entidad (derivado de leyes estatales que ya monitoreamos + investigación puntual). Visible en el mapa/dashboard por estado. | L |
+**Deuda de datos (para cerrar la etapa al 100%):**
+1. PEA y unidades económicas por estado → requiere token gratuito de la API INEGI (registro en inegi.org.mx; el JSON ya tiene los campos en null).
+2. Estatus PNIC real por NOM → scraper de CONAMER (hoy se deriva de vigente/proyecto).
+3. Flags "GEMI activo" por NOM → **lo define el equipo GEMI** (llenar `NOM_EXTRA` en index.html o mover a JSON).
+4. Materiales prohibidos: 22 entidades restantes por documentar.
+5. Titulares ambientales de las 32 entidades (arrastrado de Etapa 2.5).
 
 ## Etapa 4 — Consola avanzada y membresía
 
