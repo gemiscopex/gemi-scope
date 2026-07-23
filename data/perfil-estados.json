@@ -1,41 +1,1354 @@
 {
-  "_meta": {
-    "fuente_poblacion": "INEGI · Censo de Población y Vivienda 2020",
-    "nota": "pea y unidades_economicas se completan con la API de INEGI (requiere token gratuito en https://www.inegi.org.mx/servicios/api_indicadores.html); campos en null hasta entonces",
-    "actualizado": "2026-07-22"
+ "_meta": {
+  "fuente": "Data México (economia.gob.mx/datamexico) · INEGI",
+  "poblacion": "inegi_population_total · 2020",
+  "pea": "inegi_enoe · 2026-Q1",
+  "sectores": "inegi_economic_census · 2019 · % de producción bruta total"
+ },
+ "estados": {
+  "Aguascalientes": {
+   "poblacion": 1425607,
+   "poblacion_periodo": "2020",
+   "pea": 711409,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 77.8
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 5.2
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 4.0
+    },
+    {
+     "n": "Minería",
+     "pct": 2.1
+    },
+    {
+     "n": "Construcción",
+     "pct": 1.9
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 1.8
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 1.6
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 1.6
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Aguascalientes"
   },
-  "estados": {
-    "Aguascalientes":      {"capital": "Aguascalientes",       "poblacion": 1425607,  "pea": null, "unidades_economicas": null},
-    "Baja California":     {"capital": "Mexicali",             "poblacion": 3769020,  "pea": null, "unidades_economicas": null},
-    "Baja California Sur": {"capital": "La Paz",               "poblacion": 798447,   "pea": null, "unidades_economicas": null},
-    "Campeche":            {"capital": "San Francisco de Campeche", "poblacion": 928363, "pea": null, "unidades_economicas": null},
-    "Chiapas":             {"capital": "Tuxtla Gutiérrez",     "poblacion": 5543828,  "pea": null, "unidades_economicas": null},
-    "Chihuahua":           {"capital": "Chihuahua",            "poblacion": 3741869,  "pea": null, "unidades_economicas": null},
-    "Ciudad de México":    {"capital": "Ciudad de México",     "poblacion": 9209944,  "pea": null, "unidades_economicas": null},
-    "Coahuila":            {"capital": "Saltillo",             "poblacion": 3146771,  "pea": null, "unidades_economicas": null},
-    "Colima":              {"capital": "Colima",               "poblacion": 731391,   "pea": null, "unidades_economicas": null},
-    "Durango":             {"capital": "Victoria de Durango",  "poblacion": 1832650,  "pea": null, "unidades_economicas": null},
-    "Guanajuato":          {"capital": "Guanajuato",           "poblacion": 6166934,  "pea": null, "unidades_economicas": null},
-    "Guerrero":            {"capital": "Chilpancingo",         "poblacion": 3540685,  "pea": null, "unidades_economicas": null},
-    "Hidalgo":             {"capital": "Pachuca",              "poblacion": 3082841,  "pea": null, "unidades_economicas": null},
-    "Jalisco":             {"capital": "Guadalajara",          "poblacion": 8348151,  "pea": null, "unidades_economicas": null},
-    "México":              {"capital": "Toluca",               "poblacion": 16992418, "pea": null, "unidades_economicas": null},
-    "Michoacán":           {"capital": "Morelia",              "poblacion": 4748846,  "pea": null, "unidades_economicas": null},
-    "Morelos":             {"capital": "Cuernavaca",           "poblacion": 1971520,  "pea": null, "unidades_economicas": null},
-    "Nayarit":             {"capital": "Tepic",                "poblacion": 1235456,  "pea": null, "unidades_economicas": null},
-    "Nuevo León":          {"capital": "Monterrey",            "poblacion": 5784442,  "pea": null, "unidades_economicas": null},
-    "Oaxaca":              {"capital": "Oaxaca de Juárez",     "poblacion": 4132148,  "pea": null, "unidades_economicas": null},
-    "Puebla":              {"capital": "Puebla de Zaragoza",   "poblacion": 6583278,  "pea": null, "unidades_economicas": null},
-    "Querétaro":           {"capital": "Santiago de Querétaro","poblacion": 2368467,  "pea": null, "unidades_economicas": null},
-    "Quintana Roo":        {"capital": "Chetumal",             "poblacion": 1857985,  "pea": null, "unidades_economicas": null},
-    "San Luis Potosí":     {"capital": "San Luis Potosí",      "poblacion": 2822255,  "pea": null, "unidades_economicas": null},
-    "Sinaloa":             {"capital": "Culiacán",             "poblacion": 3026943,  "pea": null, "unidades_economicas": null},
-    "Sonora":              {"capital": "Hermosillo",           "poblacion": 2944840,  "pea": null, "unidades_economicas": null},
-    "Tabasco":             {"capital": "Villahermosa",         "poblacion": 2402598,  "pea": null, "unidades_economicas": null},
-    "Tamaulipas":          {"capital": "Ciudad Victoria",      "poblacion": 3527735,  "pea": null, "unidades_economicas": null},
-    "Tlaxcala":            {"capital": "Tlaxcala de Xicohténcatl", "poblacion": 1342977, "pea": null, "unidades_economicas": null},
-    "Veracruz":            {"capital": "Xalapa",               "poblacion": 8062579,  "pea": null, "unidades_economicas": null},
-    "Yucatán":             {"capital": "Mérida",               "poblacion": 2320898,  "pea": null, "unidades_economicas": null},
-    "Zacatecas":           {"capital": "Zacatecas",            "poblacion": 1622138,  "pea": null, "unidades_economicas": null}
+  "Baja California": {
+   "poblacion": 3769020,
+   "poblacion_periodo": "2020",
+   "pea": 1815173,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 59.9
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 10.9
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 6.3
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 4.2
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 3.0
+    },
+    {
+     "n": "Construcción",
+     "pct": 2.5
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 2.5
+    },
+    {
+     "n": "Otros servicios",
+     "pct": 2.0
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Mexicali"
+  },
+  "Baja California Sur": {
+   "poblacion": 798447,
+   "poblacion_periodo": "2020",
+   "pea": 493795,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Hospitalidad",
+     "pct": 25.0
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 19.0
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 9.1
+    },
+    {
+     "n": "Manufactura",
+     "pct": 7.4
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 7.4
+    },
+    {
+     "n": "Construcción",
+     "pct": 7.1
+    },
+    {
+     "n": "Minería",
+     "pct": 5.9
+    },
+    {
+     "n": "Inmobiliario",
+     "pct": 3.5
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "La Paz"
+  },
+  "Campeche": {
+   "poblacion": 928363,
+   "poblacion_periodo": "2020",
+   "pea": 439352,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Minería",
+     "pct": 88.7
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 2.3
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 1.8
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 1.1
+    },
+    {
+     "n": "Manufactura",
+     "pct": 1.1
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 0.9
+    },
+    {
+     "n": "Construcción",
+     "pct": 0.9
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 0.8
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "San Francisco de Campeche"
+  },
+  "Coahuila": {
+   "poblacion": 3146771,
+   "poblacion_periodo": "2020",
+   "pea": 1659296,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 80.2
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 4.5
+    },
+    {
+     "n": "Minería",
+     "pct": 2.5
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 2.5
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 2.1
+    },
+    {
+     "n": "Construcción",
+     "pct": 1.7
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 1.4
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 1.1
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Saltillo"
+  },
+  "Colima": {
+   "poblacion": 731391,
+   "poblacion_periodo": "2020",
+   "pea": 399185,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 19.4
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 17.2
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 15.3
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 14.7
+    },
+    {
+     "n": "Minería",
+     "pct": 7.5
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 6.7
+    },
+    {
+     "n": "Construcción",
+     "pct": 4.9
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 3.4
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Colima"
+  },
+  "Chiapas": {
+   "poblacion": 5543828,
+   "poblacion_periodo": "2020",
+   "pea": 2228062,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 30.7
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 20.6
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 11.2
+    },
+    {
+     "n": "Minería",
+     "pct": 10.9
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 6.1
+    },
+    {
+     "n": "Construcción",
+     "pct": 3.5
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 3.2
+    },
+    {
+     "n": "Finanzas",
+     "pct": 2.5
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Tuxtla Gutiérrez"
+  },
+  "Chihuahua": {
+   "poblacion": 3741869,
+   "poblacion_periodo": "2020",
+   "pea": 1858617,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 54.9
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 11.7
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 7.7
+    },
+    {
+     "n": "Construcción",
+     "pct": 4.5
+    },
+    {
+     "n": "Minería",
+     "pct": 3.5
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 3.1
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 2.8
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 2.7
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Chihuahua"
+  },
+  "Ciudad de México": {
+   "poblacion": 9209944,
+   "poblacion_periodo": "2020",
+   "pea": 5107533,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Finanzas",
+     "pct": 24.7
+    },
+    {
+     "n": "Medios",
+     "pct": 11.5
+    },
+    {
+     "n": "Manufactura",
+     "pct": 11.1
+    },
+    {
+     "n": "Corporativos",
+     "pct": 10.0
+    },
+    {
+     "n": "Energía y agua",
+     "pct": 7.5
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 6.1
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 5.2
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 5.1
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Ciudad de México"
+  },
+  "Durango": {
+   "poblacion": 1832650,
+   "poblacion_periodo": "2020",
+   "pea": 890749,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 44.1
+    },
+    {
+     "n": "Minería",
+     "pct": 15.0
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 10.4
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 7.6
+    },
+    {
+     "n": "Energía y agua",
+     "pct": 4.5
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 3.4
+    },
+    {
+     "n": "Construcción",
+     "pct": 3.2
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 2.8
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Victoria de Durango"
+  },
+  "Guanajuato": {
+   "poblacion": 6166934,
+   "poblacion_periodo": "2020",
+   "pea": 2894336,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 77.0
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 5.4
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 4.4
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 2.0
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 2.0
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 1.8
+    },
+    {
+     "n": "Finanzas",
+     "pct": 1.6
+    },
+    {
+     "n": "Construcción",
+     "pct": 1.6
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Guanajuato"
+  },
+  "Guerrero": {
+   "poblacion": 3540685,
+   "poblacion_periodo": "2020",
+   "pea": 1531971,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Comercio menudeo",
+     "pct": 23.6
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 15.2
+    },
+    {
+     "n": "Manufactura",
+     "pct": 12.8
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 12.6
+    },
+    {
+     "n": "Minería",
+     "pct": 8.6
+    },
+    {
+     "n": "Inmobiliario",
+     "pct": 6.3
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 3.3
+    },
+    {
+     "n": "Otros servicios",
+     "pct": 3.3
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Chilpancingo"
+  },
+  "Hidalgo": {
+   "poblacion": 3082841,
+   "poblacion_periodo": "2020",
+   "pea": 1490779,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 76.3
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 6.6
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 5.8
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 1.9
+    },
+    {
+     "n": "Construcción",
+     "pct": 1.8
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 1.6
+    },
+    {
+     "n": "Otros servicios",
+     "pct": 1.0
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 0.9
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Pachuca"
+  },
+  "Jalisco": {
+   "poblacion": 8348151,
+   "poblacion_periodo": "2020",
+   "pea": 3910699,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 53.6
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 9.5
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 9.1
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 3.8
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 3.6
+    },
+    {
+     "n": "Energía y agua",
+     "pct": 3.2
+    },
+    {
+     "n": "Construcción",
+     "pct": 3.1
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 2.9
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Guadalajara"
+  },
+  "México": {
+   "poblacion": 16992418,
+   "poblacion_periodo": "2020",
+   "pea": 8393268,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 64.6
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 10.5
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 6.3
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 4.7
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 2.6
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 2.6
+    },
+    {
+     "n": "Otros servicios",
+     "pct": 1.4
+    },
+    {
+     "n": "Construcción",
+     "pct": 1.3
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Toluca"
+  },
+  "Michoacán": {
+   "poblacion": 4748846,
+   "poblacion_periodo": "2020",
+   "pea": 2342284,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 44.9
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 15.6
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 11.7
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 4.8
+    },
+    {
+     "n": "Finanzas",
+     "pct": 3.7
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 3.6
+    },
+    {
+     "n": "Otros servicios",
+     "pct": 2.8
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 2.8
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Morelia"
+  },
+  "Morelos": {
+   "poblacion": 1971520,
+   "poblacion_periodo": "2020",
+   "pea": 913534,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 64.7
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 10.6
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 5.9
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 4.0
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 2.5
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 2.5
+    },
+    {
+     "n": "Construcción",
+     "pct": 1.7
+    },
+    {
+     "n": "Otros servicios",
+     "pct": 1.5
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Cuernavaca"
+  },
+  "Nayarit": {
+   "poblacion": 1235456,
+   "poblacion_periodo": "2020",
+   "pea": 672950,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Hospitalidad",
+     "pct": 22.6
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 21.4
+    },
+    {
+     "n": "Manufactura",
+     "pct": 18.5
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 9.0
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 5.7
+    },
+    {
+     "n": "Finanzas",
+     "pct": 4.1
+    },
+    {
+     "n": "Construcción",
+     "pct": 3.7
+    },
+    {
+     "n": "Otros servicios",
+     "pct": 3.7
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Tepic"
+  },
+  "Nuevo León": {
+   "poblacion": 5784442,
+   "poblacion_periodo": "2020",
+   "pea": 3004332,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 60.4
+    },
+    {
+     "n": "Finanzas",
+     "pct": 5.9
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 5.9
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 4.4
+    },
+    {
+     "n": "Energía y agua",
+     "pct": 3.9
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 3.3
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 3.1
+    },
+    {
+     "n": "Construcción",
+     "pct": 2.4
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Monterrey"
+  },
+  "Oaxaca": {
+   "poblacion": 4132148,
+   "poblacion_periodo": "2020",
+   "pea": 1849090,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 69.7
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 10.2
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 5.6
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 4.4
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 1.5
+    },
+    {
+     "n": "Otros servicios",
+     "pct": 1.3
+    },
+    {
+     "n": "Construcción",
+     "pct": 1.2
+    },
+    {
+     "n": "Finanzas",
+     "pct": 1.2
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Oaxaca de Juárez"
+  },
+  "Puebla": {
+   "poblacion": 6583278,
+   "poblacion_periodo": "2020",
+   "pea": 3127124,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 70.5
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 9.0
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 4.7
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 2.6
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 2.3
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 1.9
+    },
+    {
+     "n": "Construcción",
+     "pct": 1.7
+    },
+    {
+     "n": "Educación",
+     "pct": 1.4
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Puebla de Zaragoza"
+  },
+  "Querétaro": {
+   "poblacion": 2368467,
+   "poblacion_periodo": "2020",
+   "pea": 1230697,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 70.6
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 5.8
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 5.0
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 4.2
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 2.4
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 2.3
+    },
+    {
+     "n": "Construcción",
+     "pct": 2.3
+    },
+    {
+     "n": "Serv. profesionales",
+     "pct": 1.3
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Santiago de Querétaro"
+  },
+  "Quintana Roo": {
+   "poblacion": 1857985,
+   "poblacion_periodo": "2020",
+   "pea": 1038273,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Hospitalidad",
+     "pct": 38.1
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 18.3
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 10.0
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 5.6
+    },
+    {
+     "n": "Manufactura",
+     "pct": 4.9
+    },
+    {
+     "n": "Esparcimiento",
+     "pct": 4.8
+    },
+    {
+     "n": "Inmobiliario",
+     "pct": 4.1
+    },
+    {
+     "n": "Construcción",
+     "pct": 2.4
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Chetumal"
+  },
+  "San Luis Potosí": {
+   "poblacion": 2822255,
+   "poblacion_periodo": "2020",
+   "pea": 1321631,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 75.6
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 5.2
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 3.8
+    },
+    {
+     "n": "Minería",
+     "pct": 2.3
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 1.8
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 1.8
+    },
+    {
+     "n": "Construcción",
+     "pct": 1.7
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 1.7
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "San Luis Potosí"
+  },
+  "Sinaloa": {
+   "poblacion": 3026943,
+   "poblacion_periodo": "2020",
+   "pea": 1447268,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 26.6
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 18.0
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 14.4
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 7.1
+    },
+    {
+     "n": "Construcción",
+     "pct": 6.6
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 4.7
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 3.9
+    },
+    {
+     "n": "Agro y pesca",
+     "pct": 3.1
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Culiacán"
+  },
+  "Sonora": {
+   "poblacion": 2944840,
+   "poblacion_periodo": "2020",
+   "pea": 1449212,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 45.9
+    },
+    {
+     "n": "Minería",
+     "pct": 16.8
+    },
+    {
+     "n": "Energía y agua",
+     "pct": 7.6
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 7.5
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 5.4
+    },
+    {
+     "n": "Construcción",
+     "pct": 3.0
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 2.7
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 2.2
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Hermosillo"
+  },
+  "Tabasco": {
+   "poblacion": 2402598,
+   "poblacion_periodo": "2020",
+   "pea": 1145428,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Minería",
+     "pct": 61.8
+    },
+    {
+     "n": "Manufactura",
+     "pct": 12.1
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 8.8
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 4.5
+    },
+    {
+     "n": "Construcción",
+     "pct": 2.9
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 2.9
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 1.8
+    },
+    {
+     "n": "Otros servicios",
+     "pct": 0.9
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Villahermosa"
+  },
+  "Tamaulipas": {
+   "poblacion": 3527735,
+   "poblacion_periodo": "2020",
+   "pea": 1715509,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 60.6
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 9.5
+    },
+    {
+     "n": "Minería",
+     "pct": 5.8
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 5.4
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 4.8
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 2.5
+    },
+    {
+     "n": "Construcción",
+     "pct": 2.0
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 1.7
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Ciudad Victoria"
+  },
+  "Tlaxcala": {
+   "poblacion": 1342977,
+   "poblacion_periodo": "2020",
+   "pea": 672650,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 76.8
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 8.7
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 3.1
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 2.2
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 1.8
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 1.7
+    },
+    {
+     "n": "Otros servicios",
+     "pct": 1.2
+    },
+    {
+     "n": "Finanzas",
+     "pct": 0.9
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Tlaxcala de Xicohténcatl"
+  },
+  "Veracruz": {
+   "poblacion": 8062579,
+   "poblacion_periodo": "2020",
+   "pea": 3425158,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 52.3
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 9.9
+    },
+    {
+     "n": "Energía y agua",
+     "pct": 7.7
+    },
+    {
+     "n": "Minería",
+     "pct": 7.0
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 5.7
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 5.4
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 2.7
+    },
+    {
+     "n": "Construcción",
+     "pct": 2.0
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Xalapa"
+  },
+  "Yucatán": {
+   "poblacion": 2320898,
+   "poblacion_periodo": "2020",
+   "pea": 1261919,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 36.1
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 15.5
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 13.3
+    },
+    {
+     "n": "Construcción",
+     "pct": 6.6
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 5.6
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 3.5
+    },
+    {
+     "n": "Energía y agua",
+     "pct": 3.3
+    },
+    {
+     "n": "Logística y transporte",
+     "pct": 3.1
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Mérida"
+  },
+  "Zacatecas": {
+   "poblacion": 1622138,
+   "poblacion_periodo": "2020",
+   "pea": 672074,
+   "pea_periodo": "2026-Q1",
+   "sectores": [
+    {
+     "n": "Manufactura",
+     "pct": 40.5
+    },
+    {
+     "n": "Minería",
+     "pct": 22.5
+    },
+    {
+     "n": "Comercio menudeo",
+     "pct": 12.5
+    },
+    {
+     "n": "Comercio mayoreo",
+     "pct": 7.8
+    },
+    {
+     "n": "Hospitalidad",
+     "pct": 3.4
+    },
+    {
+     "n": "Construcción",
+     "pct": 2.8
+    },
+    {
+     "n": "Medios",
+     "pct": 1.8
+    },
+    {
+     "n": "Apoyo a negocios y residuos",
+     "pct": 1.6
+    }
+   ],
+   "sectores_periodo": "Censos Económicos 2019",
+   "capital": "Zacatecas"
   }
+ }
 }
