@@ -116,6 +116,12 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 /* ── Mapa de puntos (señal territorial) ── */
 .dotmap-card{position:relative;height:480px;padding:0!important;overflow:hidden}
 .dotmap-grid{display:none}
+#map-viewport{position:absolute;inset:0;overflow:hidden;z-index:1}
+#map-zoom{position:absolute;inset:0;transform-origin:50% 50%}
+.map-zoom-ctrl{position:absolute;right:14px;bottom:14px;z-index:5;display:flex;flex-direction:column;border:1px solid var(--border-med);background:#fff;border-radius:6px;overflow:hidden}
+.map-zoom-ctrl button{width:30px;height:30px;border:none;background:none;cursor:pointer;font-size:16px;color:var(--text-sec);line-height:1;padding:0}
+.map-zoom-ctrl button:first-child{border-bottom:1px solid var(--border)}
+.map-zoom-ctrl button:hover{background:rgba(0,158,144,0.08);color:var(--text)}
 .dotmap-title{position:absolute;left:22px;top:18px;display:flex;flex-direction:column;gap:2px;z-index:3;pointer-events:none}
 .dotmap-mx{font-size:30px;font-weight:700;letter-spacing:0.02em;color:var(--white);line-height:1.1}
 #map{position:absolute;inset:0;z-index:2}
@@ -694,16 +700,23 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
     <!-- Main grid: mapa+feeds izquierda, noticias derecha -->
     <div class="dash-main">
       <div class="dash-left">
-        <!-- Mapa de señal territorial -->
+        <!-- Mapa político -->
         <div class="card dotmap-card">
-          <div class="dotmap-grid"></div>
           <div class="dotmap-title">
             <span class="card-label" style="margin-bottom:0">Mapa Político de México</span>
             <span style="font-size:12px;color:var(--text-muted);margin-top:4px">Selecciona un estado</span>
           </div>
-          <div id="map"></div>
-          <div id="dotmap-annot"></div>
+          <div id="map-viewport">
+            <div id="map-zoom">
+              <div id="dotmap-annot"></div>
+              <div id="map"></div>
+            </div>
+          </div>
           <div class="dotmap-legend" id="dotmap-legend"></div>
+          <div class="map-zoom-ctrl">
+            <button onclick="mapZoom(1)" title="Acercar">+</button>
+            <button onclick="mapZoom(-1)" title="Alejar">−</button>
+          </div>
         </div>
         <!-- Congreso Federal unificado -->
         <div class="card">
@@ -1237,6 +1250,38 @@ function _mapTT(ev,state){
   tt.style.top=(ev.clientY+14)+'px';
 }
 function _mapTTHide(){var tt=document.getElementById('tt');if(tt)tt.style.display='none';}
+// ── Zoom y paneo del mapa ──
+var _mapZoom=1,_mapPanX=0,_mapPanY=0;
+function _applyMapZoom(animate){
+  var el=document.getElementById('map-zoom');
+  var vp=document.getElementById('map-viewport');
+  if(!el||!vp)return;
+  var maxX=vp.clientWidth*(_mapZoom-1)/2,maxY=vp.clientHeight*(_mapZoom-1)/2;
+  _mapPanX=Math.max(-maxX,Math.min(maxX,_mapPanX));
+  _mapPanY=Math.max(-maxY,Math.min(maxY,_mapPanY));
+  el.style.transition=animate?'transform 0.25s ease':'none';
+  el.style.transform='translate('+_mapPanX+'px,'+_mapPanY+'px) scale('+_mapZoom+')';
+  vp.style.cursor=_mapZoom>1?'grab':'';
+}
+function mapZoom(delta){
+  var steps=[1,1.5,2,3];
+  var i=steps.indexOf(_mapZoom);if(i<0)i=0;
+  i=Math.max(0,Math.min(steps.length-1,i+delta));
+  _mapZoom=steps[i];
+  if(_mapZoom===1){_mapPanX=0;_mapPanY=0;}
+  _applyMapZoom(true);
+}
+document.addEventListener('mousedown',function(e){
+  var vp=document.getElementById('map-viewport');
+  if(!vp||_mapZoom===1||!vp.contains(e.target))return;
+  var sx=e.clientX,sy=e.clientY,ox=_mapPanX,oy=_mapPanY;
+  var vpEl=vp;
+  vpEl.style.cursor='grabbing';
+  function mv(ev){_mapPanX=ox+(ev.clientX-sx);_mapPanY=oy+(ev.clientY-sy);_applyMapZoom(false);}
+  function up(){vpEl.style.cursor='grab';document.removeEventListener('mousemove',mv);document.removeEventListener('mouseup',up);}
+  document.addEventListener('mousemove',mv);
+  document.addEventListener('mouseup',up);
+});
 // Siluetas de los estados: GeoJSON proyectado al mismo plano que los puntos
 var _geoOutline=null;
 function _loadGeoOutline(){
@@ -1266,7 +1311,7 @@ function _renderGeoOutline(){
   });
   host.innerHTML='<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">'
     +'<style>path{vector-effect:non-scaling-stroke}</style>'
-    +'<g fill="#F2F6F9" stroke="#C9D6E0" stroke-width="1">'+paths+'</g></svg>';
+    +'<g fill="none" stroke="#C2D0DB" stroke-width="1">'+paths+'</g></svg>';
 }
 function buildMap(){
   try{
@@ -2277,13 +2322,18 @@ function renderWidgetFederal(){
       if(el)el.textContent=(dip.length+sen.length)||'0';
     });
 }
+var _congPanel='ini',_congExpanded=false;
+function _toggleCongreso(){_congExpanded=!_congExpanded;_renderCongreso(_congPanel);}
 function _renderCongreso(panel){
   var el=document.getElementById('widget-congreso');
   if(!el)return;
+  if(panel!==_congPanel){_congExpanded=false;}
+  _congPanel=panel;
   var ini=_congItems.filter(function(it){return it.tipo!=='punto_acuerdo';});
   var pto=_congItems.filter(function(it){return it.tipo==='punto_acuerdo';});
   var list=panel==='ini'?ini:pto;
-  var rows=list.slice(0,14).map(function(it){
+  var shown=_congExpanded?list.slice(0,30):list.slice(0,4);
+  var rows=shown.map(function(it){
     var partido=_congPartido(it);
     var logo=PARTIDO_LOGO[partido];
     var pEl=logo
@@ -2299,11 +2349,17 @@ function _renderCongreso(panel){
       +'<span style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);flex-shrink:0">'+fecha+'</span>'
       +'</div>';
   }).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:12px 0;font-style:italic">Sin documentos registrados</div>';
+  var verMas='';
+  if(list.length>4){
+    verMas='<div onclick="_toggleCongreso()" style="font-size:11.5px;font-weight:600;color:var(--green);cursor:pointer;padding:10px 0 2px;user-select:none">'
+      +(_congExpanded?'▲ Ver menos':'▼ Ver más ('+(list.length-4)+')')+'</div>';
+  }
   el.innerHTML='<div class="fed-tabs">'
     +'<button class="fed-tab'+(panel==='ini'?' active':'')+'" onclick="_renderCongreso(\'ini\')">Iniciativas <span class="fed-tab-badge">'+ini.length+'</span></button>'
     +'<button class="fed-tab'+(panel==='pto'?' active':'')+'" onclick="_renderCongreso(\'pto\')">Puntos de Acuerdo <span class="fed-tab-badge">'+pto.length+'</span></button>'
     +'</div>'
-    +'<div style="max-height:300px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">'+rows+'</div>';
+    +'<div'+(_congExpanded?' style="max-height:420px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent"':'')+'>'+rows+'</div>'
+    +verMas;
 }
 var _gacetaEstatalData=null;
 function _toggleGacetaRow(sid){
