@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "fuente_poblacion": "INEGI · Censo de Población y Vivienda 2020",
+    "nota": "pea y unidades_economicas se completan con la API de INEGI (requiere token gratuito en https://www.inegi.org.mx/servicios/api_indicadores.html); campos en null hasta entonces",
+    "actualizado": "2026-07-22"
+  },
+  "estados": {
+    "Aguascalientes":      {"capital": "Aguascalientes",       "poblacion": 1425607,  "pea": null, "unidades_economicas": null},
+    "Baja California":     {"capital": "Mexicali",             "poblacion": 3769020,  "pea": null, "unidades_economicas": null},
+    "Baja California Sur": {"capital": "La Paz",               "poblacion": 798447,   "pea": null, "unidades_economicas": null},
+    "Campeche":            {"capital": "San Francisco de Campeche", "poblacion": 928363, "pea": null, "unidades_economicas": null},
+    "Chiapas":             {"capital": "Tuxtla Gutiérrez",     "poblacion": 5543828,  "pea": null, "unidades_economicas": null},
+    "Chihuahua":           {"capital": "Chihuahua",            "poblacion": 3741869,  "pea": null, "unidades_economicas": null},
+    "Ciudad de México":    {"capital": "Ciudad de México",     "poblacion": 9209944,  "pea": null, "unidades_economicas": null},
+    "Coahuila":            {"capital": "Saltillo",             "poblacion": 3146771,  "pea": null, "unidades_economicas": null},
+    "Colima":              {"capital": "Colima",               "poblacion": 731391,   "pea": null, "unidades_economicas": null},
+    "Durango":             {"capital": "Victoria de Durango",  "poblacion": 1832650,  "pea": null, "unidades_economicas": null},
+    "Guanajuato":          {"capital": "Guanajuato",           "poblacion": 6166934,  "pea": null, "unidades_economicas": null},
+    "Guerrero":            {"capital": "Chilpancingo",         "poblacion": 3540685,  "pea": null, "unidades_economicas": null},
+    "Hidalgo":             {"capital": "Pachuca",              "poblacion": 3082841,  "pea": null, "unidades_economicas": null},
+    "Jalisco":             {"capital": "Guadalajara",          "poblacion": 8348151,  "pea": null, "unidades_economicas": null},
+    "México":              {"capital": "Toluca",               "poblacion": 16992418, "pea": null, "unidades_economicas": null},
+    "Michoacán":           {"capital": "Morelia",              "poblacion": 4748846,  "pea": null, "unidades_economicas": null},
+    "Morelos":             {"capital": "Cuernavaca",           "poblacion": 1971520,  "pea": null, "unidades_economicas": null},
+    "Nayarit":             {"capital": "Tepic",                "poblacion": 1235456,  "pea": null, "unidades_economicas": null},
+    "Nuevo León":          {"capital": "Monterrey",            "poblacion": 5784442,  "pea": null, "unidades_economicas": null},
+    "Oaxaca":              {"capital": "Oaxaca de Juárez",     "poblacion": 4132148,  "pea": null, "unidades_economicas": null},
+    "Puebla":              {"capital": "Puebla de Zaragoza",   "poblacion": 6583278,  "pea": null, "unidades_economicas": null},
+    "Querétaro":           {"capital": "Santiago de Querétaro","poblacion": 2368467,  "pea": null, "unidades_economicas": null},
+    "Quintana Roo":        {"capital": "Chetumal",             "poblacion": 1857985,  "pea": null, "unidades_economicas": null},
+    "San Luis Potosí":     {"capital": "San Luis Potosí",      "poblacion": 2822255,  "pea": null, "unidades_economicas": null},
+    "Sinaloa":             {"capital": "Culiacán",             "poblacion": 3026943,  "pea": null, "unidades_economicas": null},
+    "Sonora":              {"capital": "Hermosillo",           "poblacion": 2944840,  "pea": null, "unidades_economicas": null},
+    "Tabasco":             {"capital": "Villahermosa",         "poblacion": 2402598,  "pea": null, "unidades_economicas": null},
+    "Tamaulipas":          {"capital": "Ciudad Victoria",      "poblacion": 3527735,  "pea": null, "unidades_economicas": null},
+    "Tlaxcala":            {"capital": "Tlaxcala de Xicohténcatl", "poblacion": 1342977, "pea": null, "unidades_economicas": null},
+    "Veracruz":            {"capital": "Xalapa",               "poblacion": 8062579,  "pea": null, "unidades_economicas": null},
+    "Yucatán":             {"capital": "Mérida",               "poblacion": 2320898,  "pea": null, "unidades_economicas": null},
+    "Zacatecas":           {"capital": "Zacatecas",            "poblacion": 1622138,  "pea": null, "unidades_economicas": null}
+  }
+}
