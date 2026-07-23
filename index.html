@@ -412,6 +412,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .nom-link{font-size:10px;font-weight:600;color:var(--green);text-decoration:none;margin-left:auto;flex-shrink:0;padding:4px 10px;border:1px solid rgba(0,158,144,0.3);border-radius:6px;transition:background 0.15s}
 .nom-link:hover{background:var(--green-tint)}
 .normas-section-hdr{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);padding:14px 0 8px;border-bottom:0.8px solid var(--border);margin-bottom:10px}
+/* La ficha del estado va completa en Helvetica (incluye fechas y números) */
+.state-modal,.state-modal *{font-family:var(--sans)}
 /* ═══════════ ETAPA 2: MINI MENÚS DEL NAV ═══════════ */
 .nav-drop-wrap{position:relative;display:flex;align-items:stretch}
 .nav-drop{display:none;position:absolute;top:100%;left:-8px;background:#fff;border:0.8px solid var(--border2);box-shadow:0 10px 36px rgba(0,0,0,0.13);min-width:250px;z-index:500;padding:6px 0}
@@ -679,17 +681,19 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <button class="sp-close" onclick="closeStatePanel()">Cerrar</button>
     </div>
     <div class="sp-tabs">
-      <button class="sp-tab active" onclick="showSPTab('actividad',this)">ACTIVIDAD</button>
-      <button class="sp-tab" onclick="showSPTab('sectorial',this)">SECTOR INDUSTRIAL</button>
+      <button class="sp-tab active" onclick="showSPTab('perfil',this)">PERFIL</button>
+      <button class="sp-tab" onclick="showSPTab('actividad',this)">ACTIVIDAD</button>
       <button class="sp-tab" onclick="showSPTab('legislacion',this)">LEGISLACIÓN</button>
       <button class="sp-tab" onclick="showSPTab('impuestos',this)">IMPUESTOS</button>
+      <button class="sp-tab" onclick="showSPTab('materiales',this)">MATERIALES PROHIBIDOS</button>
+      <button class="sp-tab" onclick="showSPTab('sectorial',this)">SECTOR INDUSTRIAL</button>
       <button class="sp-tab" onclick="showSPTab('gaceta',this)">GACETA</button>
-      <button class="sp-tab" onclick="showSPTab('perfil',this)">PERFIL</button>
     </div>
     <div id="sp-perfil" class="sp-content active"></div>
+    <div id="sp-actividad" class="sp-content"></div>
     <div id="sp-legislacion" class="sp-content"></div>
     <div id="sp-impuestos" class="sp-content"></div>
-    <div id="sp-actividad" class="sp-content"></div>
+    <div id="sp-materiales" class="sp-content"></div>
     <div id="sp-sectorial" class="sp-content"></div>
     <div id="sp-gaceta" class="sp-content"></div>
   </div>
@@ -1205,10 +1209,10 @@ function renderSemanaBanner(){
       '<span class="semana-luz'+(i===nv[2]?' on':'')+'" style="background:'+c+';--luz-halo:'+c+'33"></span>').join('');
     el.innerHTML='<div class="card semana-card" id="semana-banner-card" onclick="_toggleSemana()">'
       +'<div class="semana-toprow">'
-        +'<span class="semana-lbl">Lectura SCOPE</span>'
+        +'<span class="semana-lbl">Noticia de la Semana</span>'
         +'<div class="semana-semaforo">'+luces+'</div>'
       +'</div>'
-      +'<div class="semana-lbl" style="font-size:9.5px;letter-spacing:0.15em;margin-top:14px">'+rango+' · Noticia principal</div>'
+      +'<div class="semana-lbl" style="font-size:9.5px;letter-spacing:0.15em;margin-top:14px">'+rango+'</div>'
       +'<div class="semana-block" style="--sem-col:'+nv[1]+';margin-top:9px">'
         +'<span class="semana-nivel" style="color:'+nv[1]+'">'+nv[3]+' '+nv[0]+'</span>'
         +'<div class="semana-titulo">'+d.titulo+'</div>'
@@ -1622,9 +1626,10 @@ function openStatePanel(stateName){
   renderSPLegislacion(stateName,data);
   renderSPImpuestos(stateName);
   renderSPActividad(stateName);
+  renderSPMateriales(stateName);
   renderSPSectorial(stateName);
   renderSPGaceta(stateName,data);
-  showSPTab('actividad',document.querySelector('#state-modal-bg .sp-tab'));
+  showSPTab('perfil',document.querySelector('#state-modal-bg .sp-tab'));
   var bg=document.getElementById('state-modal-bg');
   bg.style.display='flex';
   document.body.style.overflow='hidden';
@@ -1963,23 +1968,27 @@ function renderSPPerfil(state,data,sc){
       <div class="sp-stat"><div class="sp-stat-label">Capital</div><div class="sp-stat-value" style="font-size:14px">${perfil.capital||data.capital||'\u2014'}</div></div>
       <div class="sp-stat"><div class="sp-stat-label">PEA</div><div class="sp-stat-value" style="font-size:14px">${perfil.pea?fmtNum(perfil.pea):'pr\u00f3ximamente'}</div></div>
     </div>`;
-  // Materiales prohibidos en el estado
-  const mat=((_materialesData&&_materialesData.estados)||{})[state];
-  const matBlock=mat
-    ?`<div style="margin-top:16px">
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px">Materiales prohibidos / restringidos</div>
-        <div style="font-size:12px;color:var(--text-sec);margin-bottom:6px">Desde <strong>${mat.desde}</strong> \u00b7 ${mat.instrumento}</div>
-        ${mat.materiales.map(m=>`<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12.5px;color:var(--text)"><span style="color:#DC2626;font-size:10px">\u2298</span>${m}</div>`).join('')}
-      </div>`
-    :`<div style="margin-top:16px;font-size:11px;color:var(--text-muted)">Sin restricciones de materiales documentadas en el dataset SCOPE (v1 \u00b7 10 entidades cubiertas).</div>`;
   document.getElementById('sp-perfil').innerHTML=`
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
       ${scoreBadge(sc.master||0)}
       <span style="font-size:12px;color:var(--text-muted)">Posici\u00f3n #${sc.rank||'\u2014'} de 32 \u00b7 Promedio nacional: ${avg}</span>
     </div>
     ${statGrid}
-    <div class="sp-law-block" style="font-size:13px;line-height:1.6;color:var(--text-sec)">${narrative}</div>
-    ${matBlock}`;
+    <div class="sp-law-block" style="font-size:13px;line-height:1.6;color:var(--text-sec)">${narrative}</div>`;
+}
+function renderSPMateriales(state){
+  const el=document.getElementById('sp-materiales');
+  if(!el)return;
+  const mat=((_materialesData&&_materialesData.estados)||{})[state];
+  if(!mat){
+    el.innerHTML=`<div class="sp-empty">Sin restricciones de materiales documentadas para ${state} en el dataset SCOPE (v1 \u00b7 10 entidades cubiertas, en expansi\u00f3n).</div>`;
+    return;
+  }
+  el.innerHTML=`
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px">Materiales prohibidos / restringidos</div>
+    <div style="font-size:12.5px;color:var(--text-sec);margin-bottom:12px">Desde <strong>${mat.desde}</strong> \u00b7 ${mat.instrumento}</div>
+    ${mat.materiales.map(m=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border);font-size:13px;color:var(--text)"><span style="color:#DC2626;font-size:12px">\u2298</span>${m}</div>`).join('')}
+    <div style="font-size:10px;color:var(--text-muted);margin-top:12px">Dataset SCOPE v1 \u00b7 verificar el instrumento estatal vigente antes de decisiones de cumplimiento.</div>`;
 }
 function renderSPActividad(state){
   const doRender=(d)=>{
