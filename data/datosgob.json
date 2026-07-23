@@ -1,0 +1,195 @@
+{
+ "_meta": {
+  "actualizado": "2026-07-22T21:04 CDMX",
+  "fuente": "datos.gob.mx · CKAN API"
+ },
+ "temas": {
+  "Agua": [
+   {
+    "titulo": "Aguas subterráneas",
+    "org": "Comisión Nacional del Agua (CONAGUA)",
+    "fecha": "2026-06-10",
+    "url": "https://datos.gob.mx/busca/dataset/aguas_subterraneas",
+    "recursos": 8
+   },
+   {
+    "titulo": "Programa Nacional Contra la Sequía (PRONACOSE)",
+    "org": "Comisión Nacional del Agua (CONAGUA)",
+    "fecha": "2026-03-26",
+    "url": "https://datos.gob.mx/busca/dataset/programa_nacional_contra_sequia_pronacose",
+    "recursos": 4
+   },
+   {
+    "titulo": "Certificados de sanidad acuícola",
+    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
+    "fecha": "2026-03-10",
+    "url": "https://datos.gob.mx/busca/dataset/certificados_sanidad_acuicola",
+    "recursos": 1
+   },
+   {
+    "titulo": "Plan de Apertura de Datos CONAGUA",
+    "org": "Comisión Nacional del Agua (CONAGUA)",
+    "fecha": "2026-02-03",
+    "url": "https://datos.gob.mx/busca/dataset/plan_apertura_datos_conagua",
+    "recursos": 1
+   },
+   {
+    "titulo": "Personas reconocidas por buenas prácticas acuícolas y de manufactura de productos acuícolas",
+    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
+    "fecha": "2025-11-13",
+    "url": "https://datos.gob.mx/busca/dataset/personas_reconocidas_buenas_practicas_acuicolas_manufactura_productos_acuicolas",
+    "recursos": 1
+   }
+  ],
+  "Residuos": [
+   {
+    "titulo": "Sitios contaminados por tipo de contaminante",
+    "org": "Agencia de Seguridad, Energía y Ambiente (ASEA)",
+    "fecha": "2026-03-19",
+    "url": "https://datos.gob.mx/busca/dataset/sitios_contaminados-por-tipo-de-contaminante",
+    "recursos": 1
+   },
+   {
+    "titulo": "Generación estimada de residuos peligrosos por tipo de residuo",
+    "org": "Agencia de Seguridad, Energía y Ambiente (ASEA)",
+    "fecha": "2026-03-19",
+    "url": "https://datos.gob.mx/busca/dataset/generacion_estimada_residuos_peligrosos_tipo_residuo",
+    "recursos": 1
+   },
+   {
+    "titulo": "Directorio de laboratorios de Constatación Autorizados",
+    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
+    "fecha": "2026-03-12",
+    "url": "https://datos.gob.mx/busca/dataset/directorio_laboratorios_constatacion_autorizados",
+    "recursos": 2
+   },
+   {
+    "titulo": "Directorio de Laboratorios de Constatación Aprobados",
+    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
+    "fecha": "2026-03-12",
+    "url": "https://datos.gob.mx/busca/dataset/directorio_laboratorios_constatacion_aprobados",
+    "recursos": 1
+   },
+   {
+    "titulo": "Laboratorios de análisis de plaguicidas en vegetales y/o laboratorios de detección de organismos patógenos",
+    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
+    "fecha": "2026-03-11",
+    "url": "https://datos.gob.mx/busca/dataset/laboratorios_analisis_plaguicidas_vegetales_laboratorios_deteccion_organismos_patogenos",
+    "recursos": 1
+   }
+  ],
+  "Emisiones / Aire": [
+   {
+    "titulo": "Concentraciones validadas de calidad del aire por entidad federativa",
+    "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
+    "fecha": "2026-03-07",
+    "url": "https://datos.gob.mx/busca/dataset/concentraciones_validadas_calidad_aire_entidad_federativa",
+    "recursos": 20
+   },
+   {
+    "titulo": "Inventario Nacional de Emisiones de Gases y Compuestos de Efecto Invernadero (INEGYCEI)",
+    "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
+    "fecha": "2026-03-06",
+    "url": "https://datos.gob.mx/busca/dataset/inventario_nacional_emisiones_gases_compuestos_efecto_invernadero_inegycei",
+    "recursos": 35
+   },
+   {
+    "titulo": "Calidad del aire - Equipos de medición",
+    "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
+    "fecha": "2025-07-09",
+    "url": "https://datos.gob.mx/busca/dataset/calidad_aire_equipos_medicion",
+    "recursos": 2
+   },
+   {
+    "titulo": "Calidad del aire - Emisiones de Contaminantes",
+    "org": "Secretaría de Medio Ambiente y Recursos Naturales (SEMARNAT)",
+    "fecha": "2025-06-03",
+    "url": "https://datos.gob.mx/busca/dataset/calidad_aire_emisiones_contaminantes",
+    "recursos": 1
+   }
+  ],
+  "Medio Ambiente": [
+   {
+    "titulo": "Alertamiento sobre fenómenos naturales (2026)",
+    "org": "Secretaría de Seguridad y Protección Ciudadana (SSPC)",
+    "fecha": "2026-07-14",
+    "url": "https://datos.gob.mx/busca/dataset/alertamiento_fenomenos_naturales_2026",
+    "recursos": 5
+   },
+   {
+    "titulo": "Comités ambientales",
+    "org": "Instituto Politécnico Nacional (IPN)",
+    "fecha": "2026-07-09",
+    "url": "https://datos.gob.mx/busca/dataset/comites_ambientales",
+    "recursos": 5
+   },
+   {
+    "titulo": "Áreas destinadas voluntariamente a la conservación",
+    "org": "Comisión Nacional de Áreas Naturales Protegidas (CONANP)",
+    "fecha": "2026-05-08",
+    "url": "https://datos.gob.mx/busca/dataset/areas_destinadas_voluntariamente_conservacion",
+    "recursos": 2
+   },
+   {
+    "titulo": "Escenarios de cambio climático",
+    "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
+    "fecha": "2026-05-07",
+    "url": "https://datos.gob.mx/busca/dataset/escenarios_cambio_climatico",
+    "recursos": 1
+   },
+   {
+    "titulo": "Economía sectorial, ambiental y de recursos naturales",
+    "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
+    "fecha": "2026-05-07",
+    "url": "https://datos.gob.mx/busca/dataset/economia_sectorial_ambiental_recursos_naturales",
+    "recursos": 5
+   }
+  ],
+  "Energía": [
+   {
+    "titulo": "Gas Natural",
+    "org": "Comisión Nacional de Energía (CNE)",
+    "fecha": "2026-04-17",
+    "url": "https://datos.gob.mx/busca/dataset/gas_natural",
+    "recursos": 3
+   }
+  ],
+  "Forestal": [
+   {
+    "titulo": "Inventario nacional forestal y de suelos (ciclo 2015-2020)",
+    "org": "Comisión Nacional Forestal (CONAFOR)",
+    "fecha": "2026-03-30",
+    "url": "https://datos.gob.mx/busca/dataset/inventario_nacional_forestal_suelos_ciclo_2015_2020",
+    "recursos": 10
+   },
+   {
+    "titulo": "Inventario nacional forestal y de suelos (ciclo 2009-2014)",
+    "org": "Comisión Nacional Forestal (CONAFOR)",
+    "fecha": "2026-03-27",
+    "url": "https://datos.gob.mx/busca/dataset/inventario_nacional_forestal_suelos_ciclo_2009_2014",
+    "recursos": 27
+   },
+   {
+    "titulo": "Inventario nacional forestal y de suelos (ciclo 2004-2007)",
+    "org": "Comisión Nacional Forestal (CONAFOR)",
+    "fecha": "2026-03-27",
+    "url": "https://datos.gob.mx/busca/dataset/inventario_nacional_forestal_suelos_2004_2007",
+    "recursos": 16
+   },
+   {
+    "titulo": "Zonificación forestal",
+    "org": "Comisión Nacional Forestal (CONAFOR)",
+    "fecha": "2026-03-26",
+    "url": "https://datos.gob.mx/busca/dataset/zonificacion_forestal",
+    "recursos": 1
+   },
+   {
+    "titulo": "Sanidad",
+    "org": "Comisión Nacional Forestal (CONAFOR)",
+    "fecha": "2026-03-25",
+    "url": "https://datos.gob.mx/busca/dataset/sanidad",
+    "recursos": 4
+   }
+  ]
+ }
+}
