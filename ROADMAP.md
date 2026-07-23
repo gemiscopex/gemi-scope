@@ -31,17 +31,13 @@ nomenclatura completa `[11]`, Radares como botón pulsante discreto `[19]`.
 
 ---
 
-## Etapa 2 — Nueva arquitectura de navegación (mini menús)
+## ✅ Etapa 2 — COMPLETADA (2026-07-22)
 
-Objetivo: navegación de plataforma seria — menús desplegables, jerarquía regulatoria clara.
-
-| # | Qué | Detalle | Esfuerzo |
-|---|-----|---------|----------|
-| 2.1 `[18]` | Patrón de mini menús | Componente único de dropdown para el nav: clic/hover arriba → despliega. Base para 2.2–2.5. | M |
-| 2.2 `[10]` | "Regulación" en vez de "Legislación" | Con submenú: Internacional · Nacional · Estatal · Acuerdos · NOMs. | M |
-| 2.3 `[9]` | Acuerdos internacionales | Alta de contenido: Acuerdo de París, Escazú, Kigali, Montreal, CBD… con estatus de México en cada uno. | M |
-| 2.4 `[17]` | Botón DOF con hover | En el nav: hover → publicaciones de HOY en el DOF filtradas por nuestros temas (dato ya existe en `dof.json`); clic → nota oficial. | M |
-| 2.5 `[14]` | "Actores" en vez de "Congreso Federal" | Además del Congreso: organigrama ambiental federal (SEMARNAT, SENER, Economía, CONAGUA, PROFEPA, ASEA, CONAFOR…) y titulares de medio ambiente de las 32 entidades. **Requiere levantar datos** (titulares + fotos oficiales) → scraper de directorios oficiales. | L |
+- 2.1 `[18]` Patrón de mini menús en el nav (hover → dropdown). ✔
+- 2.2 `[10]` "Regulación" reemplaza a Legislación+Normas, con submenú Nacional · Estatal · Internacional/Acuerdos · NOMs. ✔
+- 2.3 `[9]` 10 acuerdos internacionales con estatus de México (París, Escazú, Kigali, Montreal, CBD, Basilea, Estocolmo, Rotterdam, Ramsar, CITES). ✔
+- 2.4 `[17]` Botón DOF ▾ con hover: publicaciones de hoy/recientes filtradas por nuestros temas; clic abre la nota. ✔
+- 2.5 `[14]` "Actores" reemplaza a Congreso Federal: gabinete ambiental federal (9 titulares verificados: SEMARNAT, CONAGUA, PROFEPA, SENER, Economía, SADER, CONAFOR, CONANP, ASEA) + comisiones del Congreso. **Pendiente para Etapa 3:** titulares de medio ambiente de las 32 entidades (requiere scraper de directorios).
 
 ## Etapa 3 — Nuevas fuentes de datos
 
