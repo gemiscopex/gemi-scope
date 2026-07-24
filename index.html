@@ -446,10 +446,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .radar-fab-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:radarPing 2.2s ease-out infinite}
 @keyframes radarPing{0%{box-shadow:0 0 0 0 rgba(0,158,144,0.4)}70%{box-shadow:0 0 0 9px rgba(0,158,144,0)}100%{box-shadow:0 0 0 0 rgba(0,158,144,0)}}
 .semana-card{cursor:pointer}
-.reporte-btn{display:flex;align-items:center;gap:10px;text-decoration:none;padding:12px 14px;border:1px solid rgba(0,158,144,0.35);background:rgba(0,158,144,0.05);transition:background 0.15s,border-color 0.15s}
-.reporte-btn:hover{background:rgba(0,158,144,0.1);border-color:var(--green)}
-.reporte-ico{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
-.reporte-txt{font-size:12.5px;font-weight:600;color:var(--text);letter-spacing:0.01em}
+.reporte-link{display:block;text-align:right;font-size:12px;font-weight:600;color:var(--green);text-decoration:none;margin-top:-20px}
+.reporte-link:hover{text-decoration:underline}
 .semana-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;display:block}
 .semana-preview{font-size:12px;color:var(--text2);line-height:1.6;margin-top:8px}
 .semana-block{border-left:2.5px solid var(--sem-col,#D97706);padding-left:16px;margin-top:13px}
@@ -743,10 +741,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
         <!-- Noticia principal de la semana + semáforo (Lectura SCOPE) -->
         <div id="semana-banner"></div>
         <!-- Reporte semanal de inteligencia (newsletter GEMI en LinkedIn) -->
-        <a class="reporte-btn" href="https://www.linkedin.com/newsletters/inteligencia-gemi-7421596146348847104" target="_blank" rel="noopener">
-          <span class="reporte-ico">↗</span>
-          <span class="reporte-txt">Reporte semanal de inteligencia</span>
-        </a>
+        <a class="reporte-link" href="https://www.linkedin.com/newsletters/inteligencia-gemi-7421596146348847104" target="_blank" rel="noopener">Reporte semanal de inteligencia ↗</a>
         <div class="card" style="display:flex;flex-direction:column;overflow:visible">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
             <div class="card-label" style="margin-bottom:0">Últimas Noticias</div>
