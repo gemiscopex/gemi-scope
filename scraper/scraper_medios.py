@@ -64,11 +64,19 @@ def norm(s):
     s = "".join(c for c in s if unicodedata.category(c) != "Mn")
     return s.lower()
 
+# Matching con FRONTERA DE PALABRA (no subcadena): "empresa" NO debe activar
+# "presa", ni "Aguascalientes" activar "agua". Se admite plural (s/es).
+_KW_RX = {
+    cat: [re.compile(r"(?<![a-z0-9])" + re.escape(k.strip()) + r"(?:e?s)?(?![a-z0-9])")
+          for k in kws]
+    for cat, kws in KEYWORDS.items()
+}
+
 def clasifica(texto):
     t = norm(texto)
     mejor, hits_max = None, 0
-    for cat, kws in KEYWORDS.items():
-        hits = sum(1 for k in kws if k in t)
+    for cat, rxs in _KW_RX.items():
+        hits = sum(1 for rx in rxs if rx.search(t))
         if hits > hits_max:
             hits_max, mejor = hits, cat
     return mejor  # None si no hay señal ambiental
@@ -190,6 +198,12 @@ def main():
             continue
         if (n.get("fecha") or "") < corte:
             continue
+        # Reclasifica también lo heredado: purga falsos positivos de corridas
+        # previas (p. ej. clasificación por subcadena) y descarta lo que ya no aplica.
+        cat = clasifica((n.get("titulo") or "") + " " + (n.get("resumen") or ""))
+        if not cat:
+            continue
+        n["categoria"] = cat
         vistos.add(u)
         items.append(n)
     items.sort(key=lambda n: n.get("fecha", ""), reverse=True)
