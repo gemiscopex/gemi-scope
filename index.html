@@ -1024,10 +1024,22 @@ function qa(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'')}
 const _MX_KW=['mexico','mexicano','mexicana','mexicanos','mexicanas','cdmx','pemex','conagua','semarnat','conafor','conanp','inecc','profepa','cfe','sheinbaum','jalisco','oaxaca','chiapas','sonora','veracruz','yucatan','puebla','guerrero','hidalgo','morelos','tabasco','michoacan','chihuahua','durango','coahuila','aguascalientes','colima','tlaxcala','nayarit','zacatecas','sinaloa','tamaulipas','queretaro','guanajuato','campeche','quintana','guadalajara','monterrey','tijuana','merida','cancun'];
 const _FOREIGN_KW=['en argentina','argentina:','de argentina','venezuel','en colombia','colombia:','colombiano','colombiana','en chile','chile:','brasil','brazil','en peru','peru:','en ecuador','ecuador:','en bolivia','bolivia:','costa rica','el salvador','en guatemala','en honduras','en nicaragua','en uruguay','en paraguay','en cuba','cuba:'];
 function isMxRelevant(n){const t=qa((n.titulo||'').toLowerCase())+' '+qa((n.resumen||'').toLowerCase());if(_MX_KW.some(m=>t.includes(m)))return true;if(_FOREIGN_KW.some(f=>t.includes(f)))return false;return true;}
+// Match por PALABRA COMPLETA, no subcadena. Evita falsos positivos como
+// "mandatario"→"rio", "empresa"→"presa", "Aguascalientes"→"agua". Admite plural.
+var _kwRxCache={};
+function _kwHit(s,kw){
+  var rx=_kwRxCache[kw];
+  if(rx===undefined){
+    var k=qa(String(kw).toLowerCase()).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    try{rx=new RegExp('(?<![a-z0-9])'+k+'(?:e?s)?(?![a-z0-9])');}catch(e){rx=null;}
+    _kwRxCache[kw]=rx;
+  }
+  return rx?rx.test(s):false;
+}
 function catArt(t){
   const s=qa(t.toLowerCase());
-  for(const c of CATS){if(c.kw.some(k=>s.includes(qa(k))))return c.id}
-  if(s.includes('ambiental')||s.includes('semarnat')||s.includes('naturaleza')||s.includes('ecosistema')||s.includes('biodiversidad')||s.includes('bosque'))return 'circular';
+  for(const c of CATS){if(c.kw.some(k=>_kwHit(s,k)))return c.id}
+  if(['ambiental','naturaleza','ecosistema','bosque'].some(k=>_kwHit(s,k)))return 'ambiente';
   return null;
 }
 function processData(){
@@ -2928,7 +2940,7 @@ function consolaConfigurada(){
 function _consNk(n){return (n||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ').trim();}
 function _consMatch(text,kwList){
   var t=qa((text||'').toLowerCase());
-  return kwList.some(function(k){return t.includes(qa(k));});
+  return kwList.some(function(k){return _kwHit(t,k);});
 }
 function _consTemaKws(temaIds){
   var out=[];
@@ -3345,7 +3357,7 @@ function _consHighlight(text,kwList){
     var pat=qa(kw.toLowerCase()).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')
       .replace(/a/g,'[aá]').replace(/e/g,'[eé]').replace(/i/g,'[ií]')
       .replace(/o/g,'[oó]').replace(/u/g,'[uúü]').replace(/n/g,'[nñ]');
-    try{out=out.replace(new RegExp('(?![^<]*>)('+pat+')','gi'),'<b>$1</b>');}catch(e){}
+    try{out=out.replace(new RegExp('(?<![a-zA-Z0-9áéíóúñ])(?![^<]*>)('+pat+')(?![a-zA-Z0-9])','gi'),'<b>$1</b>');}catch(e){}
   });
   return out;
 }
