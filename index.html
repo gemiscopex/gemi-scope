@@ -912,12 +912,16 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   </div>
 </div>
 <script>
+// Filtros de clasificación por tema. Keywords estilo FIAT: mezclan términos
+// coloquiales ("apagón"), actores ("Semarnat","CFE") y nombres exactos de leyes.
 const CATS=[
-  {id:'circular',name:'Economía Circular',color:'#009E90',kw:['economia circular','circularidad','reciclaje economico','reutilizacion','ecodiseno','simbiosis industrial']},
-  {id:'agua',name:'Agua',color:'#38bdf8',kw:['agua','hidrico','sequia','inundacion','conagua','cuenca','acuifero','potable','rio','lago','presa']},
-  {id:'energia',name:'Energía',color:'#f59e0b',kw:['energia','solar','eolica','fotovoltaica','renovable','electricidad','cfe','hidroelectrica','combustible']},
-  {id:'impuestos',name:'Impuestos Ambientales',color:'#f87171',kw:['impuesto ambiental','impuesto verde','tasa ecologica','bono de carbono','mercado de carbono','precio del carbono']},
-  {id:'residuos',name:'Residuos',color:'#a78bfa',kw:['residuo','basura','desecho','plastico','reciclaje','vertedero','relleno sanitario','contaminacion','toxico','derrame']}
+  {id:'circular',name:'Economía Circular',color:'#009E90',kw:['economia circular','circularidad','reciclaje economico','reutilizacion','ecodiseno','simbiosis industrial','responsabilidad extendida del productor','ley general de economia circular']},
+  {id:'agua',name:'Agua',color:'#38bdf8',kw:['agua','hidrico','sequia','inundacion','conagua','cuenca','acuifero','potable','rio','lago','presa','saneamiento','potabilizadora','agua contaminada','rio contaminado','ley de aguas nacionales','ley general de aguas']},
+  {id:'energia',name:'Energía',color:'#f59e0b',kw:['energia','solar','eolica','fotovoltaica','renovable','electricidad','cfe','hidroelectrica','combustible','pemex','petroleo','hidrocarburos','gasolina','refineria','mezcla mexicana','huachicoleo','toma clandestina','fracking','tarifas electricas','apagon','corte de luz','falla electrica','generacion electrica','transicion energetica','energia limpia','geotermia','biocombustible','litio','concesion minera','gas natural','gas lp','gasoducto','soberania energetica','reforma energetica','ley del sector electrico','ley del sector hidrocarburos','ley de mineria','sener']},
+  {id:'impuestos',name:'Impuestos Ambientales',color:'#f87171',kw:['impuesto ambiental','impuesto verde','tasa ecologica','ecotasa','bono de carbono','mercado de carbono','precio del carbono','impuesto a emisiones']},
+  {id:'residuos',name:'Residuos',color:'#a78bfa',kw:['residuo','basura','desecho','plastico','reciclaje','vertedero','relleno sanitario','contaminacion','toxico','derrame','residuos peligrosos','contingencia ambiental','calidad del aire','smog','tiradero','gestion de residuos','residuos solidos','norma ambiental','impacto ambiental','unicel','popote','bolsas de plastico','ley general para la prevencion y gestion']},
+  {id:'ambiente',name:'Medio Ambiente y Biodiversidad',color:'#16a34a',kw:['cambio climatico','calentamiento global','emisiones de carbono','gases de efecto invernadero','acuerdo de paris','biodiversidad','area natural protegida','semarnat','profepa','deforestacion','especies en peligro','vida silvestre','equilibrio ecologico','ecosistema','jaguar','tortuga marina','manglar','arrecife','mineria a cielo abierto','ambientalista','greenpeace','conafor','reforestacion','tala ilegal','tala clandestina','silvicultura','incendio forestal','temporada de incendios','ola de calor','contingencia','lgeepa','ley general de vida silvestre','ley general de cambio climatico','desarrollo forestal sustentable','conanp','asea']},
+  {id:'agro',name:'Agro y Desarrollo Rural',color:'#b45309',kw:['agricultura','maiz','glifosato','transgenico','fertilizante','cosecha','soberania alimentaria','autosuficiencia alimentaria','sequia agricola','perdida de cosecha','sader','riego','distrito de riego','plaga','ganaderia','pesca','acuacultura','produccion pecuaria','sanidad animal','sanidad vegetal','campo mexicano','campesino','ejido','reforma agraria','sembrando vida','desarrollo rural','jornalero','ley agraria','ley de desarrollo rural sustentable','maiz nativo','productos organicos']}
 ];
 const SECTOR_PROFILE={
   "Aguascalientes":{alimentos:70,manufactura:85,envases:75,retail:60,energia:55,logistica:65,agro:50},
@@ -2189,25 +2193,39 @@ function setNewsMode(mode){
   document.getElementById('news-mode-int').classList.toggle('active',mode==='int');
   renderLatestNewsTicker();
 }
+var _noticiasEstatales=null;
 function renderLatestNewsTicker(){
   var el=document.getElementById('news-ticker');
   if(!el)return;
-  var items=[...noticias].sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);})
-    .filter(function(n){return catArt(n.titulo||'')!==null;})
-    .filter(function(n){return _newsMode==='int'?!isMxRelevant(n):isMxRelevant(n);})
-    .slice(0,20);
+  // Pool unificado: noticias nacionales + corpus de medios estatales
+  var pool=[];
+  noticias.forEach(function(n){
+    var catId=catArt(n.titulo||'');
+    if(catId===null)return;
+    var esMx=isMxRelevant(n);
+    if(_newsMode==='int'?esMx:!esMx)return;
+    pool.push({titulo:n.titulo,fecha:n.fecha_publicacion,url:n.url,estado:n.estado,fuente:n.fuente,catId:catId});
+  });
+  if(_newsMode==='mx'){
+    (((_noticiasEstatales||{}).items)||[]).forEach(function(n){
+      pool.push({titulo:n.titulo,fecha:n.fecha,url:n.url,estado:n.estado,fuente:n.medio,catId:n.categoria});
+    });
+  }
+  var vistos={};
+  pool=pool.filter(function(n){if(!n.url||vistos[n.url])return false;vistos[n.url]=1;return true;});
+  pool.sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
+  var items=pool.slice(0,26);
   if(!items.length){el.innerHTML='<div style="color:var(--text-muted);font-size:12px;padding:20px 0;text-align:center">'+(_newsMode==='int'?'Sin registros internacionales recientes':'Sin noticias disponibles')+'</div>';return;}
   var html='';
   for(var i=0;i<items.length;i++){
     var n=items[i];
-    var cat=null;
-    for(var j=0;j<CATS.length;j++){if(catArt(n.titulo||'')===CATS[j].id){cat=CATS[j];break;}}
+    var cat=CATS.find(function(c){return c.id===n.catId;});
     var metaParts=[];
     if(cat)metaParts.push(cat.name);
     if(_newsMode==='mx'&&n.estado)metaParts.push(n.estado);
     if(_newsMode==='int'&&n.fuente)metaParts.push((n.fuente||'').replace('Google News - ','').split(',')[0].slice(0,28));
     var badgeHtml=metaParts.length?'<span style="font-size:10px;color:var(--text-muted);letter-spacing:0.02em">'+metaParts.join(' · ')+'</span>':'<span></span>';
-    var fecha=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+    var fecha=n.fecha?new Date((n.fecha.length===10?n.fecha+'T12:00:00':n.fecha)).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     var url=(n.url||'#').replace(/'/g,'%27');
     html+='<div class="ticker-item" onclick="window.open(\''+url+'\',\'_blank\')">';
     html+='<div class="ticker-title">'+(n.titulo||'')+'</div>';
@@ -2390,15 +2408,18 @@ function _congAsunto(it){
   return t.length>190?t.slice(0,188).replace(/\s+\S*$/,'')+'…':t;
 }
 function _congAutor(it){
-  if(it.autor&&it.autor.trim())return it.autor.trim();
   var t=(it.titulo||'').replace(/\s+/g,' ');
-  var m=t.match(/(?:a cargo de|suscrita por|presentada por)\s+(?:la |el )?(?:diputada|diputado|senadora|senador|dip\.|sen\.)\s+([A-ZÁÉÍÓÚÑ][^,;(]{4,60}?)(?:,|\s+del?\s+Grupo|$)/i);
-  if(m)return m[1].trim();
-  m=t.match(/^\s*(?:De la|Del)\s+(?:Sen\.|Dip\.|senadora|senador|diputada|diputado)\s+([A-ZÁÉÍÓÚÑ][^,;(]{4,60}?)(?:,|\s+del?\s+Grupo|$)/i);
-  if(m)return m[1].trim();
-  m=t.match(/(?:De la|Del)\s+Comisión\s+de\s+([^,;(]{4,70}?)(?:,|$)/i);
-  if(m)return 'Comisión de '+m[1].trim();
-  return '';
+  var fromTitle='';
+  var m=t.match(/(?:a cargo de|suscrita por|presentada por)\s+(?:la |el )?(?:diputada|diputado|senadora|senador|dip\.|sen\.)\s+([A-ZÁÉÍÓÚÑ][^,;(]{4,60}?)(?:\s*,|\s+del?\s+Grupo|$)/i);
+  if(!m)m=t.match(/\b(?:De la|Del)\s+(?:Sen\.|Dip\.|senadora|senador|diputada|diputado)\s+([A-ZÁÉÍÓÚÑ][^,;(]{4,60}?)(?:\s*,|\s+del?\s+Grupo|$)/i);
+  if(m)fromTitle=m[1].trim();
+  if(!fromTitle){
+    m=t.match(/(?:De la|Del)\s+Comisión\s+de\s+([^,;(]{4,70}?)(?:,|$)/i);
+    if(m)fromTitle='Comisión de '+m[1].trim();
+  }
+  // El campo autor del scrape a veces viene truncado; gana el más completo
+  var field=(it.autor||'').trim();
+  return fromTitle.length>field.length?fromTitle:field;
 }
 var _congItems=[];
 function _fixMoji(s){
@@ -2595,6 +2616,7 @@ async function init(){
   fetch('data/perfil-estados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_perfilEstados=d;}).catch(()=>{});
   fetch('data/materiales-prohibidos.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_materialesData=d;}).catch(()=>{});
   fetch('data/datosgob.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_datosgobData=d;renderDatosGob();}).catch(()=>{});
+  fetch('data/noticias-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();}).catch(()=>{});
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
@@ -3239,20 +3261,64 @@ function _consComs(coms){
         +'</tr>';
     }).join('')+'</table>';
 }
+// Últimos instrumentos del legislador (de la gaceta oficial ya scrapeada).
+// Regla FIAT: el enlace va SIEMPRE a la fuente oficial; sin URL → sin link.
+function _consLegInstrumentos(leg){
+  var lw=_consNk(leg.n).split(' ').filter(function(w){return w.length>2;});
+  var out=[];
+  (_congItems||[]).forEach(function(it){
+    var a=_consNk(_congAutor(it));
+    if(!a)return;
+    var hits=lw.filter(function(w){return a.indexOf(w)>=0;}).length;
+    if(hits>=2)out.push(it);
+  });
+  out.sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
+  return out.slice(0,5);
+}
+function _toggleConsLeg(uid,ev){
+  if(ev)ev.stopPropagation();
+  var d=document.getElementById(uid);
+  if(!d)return;
+  var open=d.style.display!=='none';
+  d.style.display=open?'none':'block';
+  var arr=document.getElementById(uid+'-arr');
+  if(arr)arr.style.transform=open?'':'rotate(180deg)';
+}
 function _consLegs(legs){
   var el=document.getElementById('cons-legs');if(!el)return;
-  el.innerHTML=legs.map(function(l){
+  el.innerHTML=legs.map(function(l,idx){
     var foto=(_fotosMap.senado&&_fotosMap.senado[l.id])||(_fotosMap.diputados&&_fotosMap.diputados[l.id])||null;
     var color=PARTIDO_COLOR[(l.partido||'').toUpperCase()]||'#444';
     var av=foto?'<img src="'+foto+'" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="">'
       :'<span style="width:34px;height:34px;border-radius:50%;background:'+color+';display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0">'+initials(l.n)+'</span>';
     var logo=PARTIDO_LOGO[(l.partido||'').toUpperCase()];
     var silUrl='http://sil.gobernacion.gob.mx/Busquedas/Legisladores/busquedas_legisladores_buscar.php?SID=&Nombre='+encodeURIComponent(l.n);
-    return '<a class="cons-leg-card" href="'+silUrl+'" target="_blank" rel="noopener">'+av
+    var instr=_consLegInstrumentos(l);
+    var uid='cleg-'+idx;
+    var listado=instr.map(function(it){
+      var f=it.fecha?new Date(it.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+      var t=(it.titulo||'').replace(/\s+/g,' ').trim();
+      if(t.length>120)t=t.slice(0,118).replace(/\s+\S*$/,'')+'…';
+      var inner='<span style="color:var(--text-muted);flex-shrink:0">'+f+'</span>'
+        +'<span style="flex:1;min-width:0">'+t+'</span>'
+        +(it.url?'<span style="color:var(--green);flex-shrink:0">↗</span>':'');
+      var st='display:flex;gap:8px;align-items:baseline;padding:6px 0;border-top:0.8px solid rgba(0,0,0,0.05);font-size:11px;color:var(--text2);line-height:1.45;text-decoration:none';
+      return it.url
+        ?'<a href="'+(it.url||'').replace(/'/g,'%27')+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="'+st+'">'+inner+'</a>'
+        :'<div style="'+st+'">'+inner+'</div>';
+    }).join('');
+    return '<div class="cons-leg-card" style="flex-direction:column;align-items:stretch;cursor:'+(instr.length?'pointer':'default')+'" '+(instr.length?'onclick="_toggleConsLeg(\''+uid+'\')"':'')+'>'
+      +'<div style="display:flex;align-items:center;gap:10px">'+av
       +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
       +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(l.cargo||'Integrante')+' · '+l.coms[0]+'</div></div>'
       +(logo?'<img src="'+logo+'" style="height:16px;width:auto;max-width:40px;object-fit:contain;flex-shrink:0" alt="'+l.partido+'">':'')
-      +'</a>';
+      +'<a href="'+silUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Ficha en el SIL" style="font-size:10px;color:var(--green);text-decoration:none;flex-shrink:0">SIL ↗</a>'
+      +'</div>'
+      +(instr.length
+        ?'<div style="font-size:10px;color:var(--text-muted);margin-top:7px;user-select:none">Últimas propuestas ('+instr.length+') <span id="'+uid+'-arr" style="display:inline-block;transition:transform 0.2s;font-size:8px">▼</span></div>'
+         +'<div id="'+uid+'" style="display:none;margin-top:4px">'+listado+'</div>'
+        :'')
+      +'</div>';
   }).join('');
 }
 function _consEstados(estados){
