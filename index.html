@@ -446,6 +446,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .radar-fab-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:radarPing 2.2s ease-out infinite}
 @keyframes radarPing{0%{box-shadow:0 0 0 0 rgba(0,158,144,0.4)}70%{box-shadow:0 0 0 9px rgba(0,158,144,0)}100%{box-shadow:0 0 0 0 rgba(0,158,144,0)}}
 .semana-card{cursor:pointer}
+.reporte-btn{display:flex;align-items:center;gap:10px;text-decoration:none;padding:12px 14px;border:1px solid rgba(0,158,144,0.35);background:rgba(0,158,144,0.05);transition:background 0.15s,border-color 0.15s}
+.reporte-btn:hover{background:rgba(0,158,144,0.1);border-color:var(--green)}
+.reporte-ico{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.reporte-txt{font-size:12.5px;font-weight:600;color:var(--text);letter-spacing:0.01em}
 .semana-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;display:block}
 .semana-preview{font-size:12px;color:var(--text2);line-height:1.6;margin-top:8px}
 .semana-block{border-left:2.5px solid var(--sem-col,#D97706);padding-left:16px;margin-top:13px}
@@ -738,19 +742,17 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <div class="dash-right">
         <!-- Noticia principal de la semana + semáforo (Lectura SCOPE) -->
         <div id="semana-banner"></div>
+        <!-- Reporte semanal de inteligencia (newsletter GEMI en LinkedIn) -->
+        <a class="reporte-btn" href="https://www.linkedin.com/newsletters/inteligencia-gemi-7421596146348847104" target="_blank" rel="noopener">
+          <span class="reporte-ico">↗</span>
+          <span class="reporte-txt">Reporte semanal de inteligencia</span>
+        </a>
         <div class="card" style="display:flex;flex-direction:column;overflow:visible">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
             <div class="card-label" style="margin-bottom:0">Últimas Noticias</div>
             <div style="display:flex;align-items:center;gap:12px">
               <button class="normas-filter-link active" id="news-mode-mx" onclick="setNewsMode('mx')">México</button>
               <button class="normas-filter-link" id="news-mode-int" onclick="setNewsMode('int')">Internacional</button>
-            </div>
-            <div class="cat-popover-wrap">
-              <button class="cat-popover-btn" title="Actividad por categoría">···</button>
-              <div class="cat-popover" id="cat-popover">
-                <div class="cat-pop-title">Actividad por categoría</div>
-                <div id="cat-popover-rows"></div>
-              </div>
             </div>
           </div>
           <div class="news-ticker-wrap" id="news-ticker-wrap" style="height:360px">
@@ -1022,7 +1024,7 @@ const STATE_ABBR={'Aguascalientes':'AGS','Baja California':'BC','Baja California
 const STATE_COORDS={'Aguascalientes':[21.876,-102.296],'Baja California':[30.840,-115.285],'Baja California Sur':[26.011,-111.346],'Campeche':[19.830,-90.535],'Chiapas':[16.756,-93.129],'Chihuahua':[28.632,-106.068],'Ciudad de México':[19.432,-99.133],'Coahuila':[27.058,-101.706],'Colima':[19.245,-103.724],'Durango':[24.027,-104.653],'Guanajuato':[20.917,-101.162],'Guerrero':[17.549,-99.500],'Hidalgo':[20.091,-98.762],'Jalisco':[20.659,-103.349],'México':[19.359,-99.851],'Michoacán':[19.566,-101.707],'Morelos':[18.924,-99.233],'Nayarit':[21.751,-104.845],'Nuevo León':[25.592,-99.996],'Oaxaca':[17.073,-96.726],'Puebla':[19.041,-98.206],'Querétaro':[20.588,-100.389],'Quintana Roo':[19.181,-88.480],'San Luis Potosí':[22.150,-100.976],'Sinaloa':[25.022,-107.604],'Sonora':[29.291,-110.309],'Tabasco':[17.987,-92.948],'Tamaulipas':[24.266,-98.836],'Tlaxcala':[19.318,-98.238],'Veracruz':[19.173,-96.134],'Yucatán':[20.710,-89.073],'Zacatecas':[22.770,-102.583]};
 function qa(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'')}
 const _MX_KW=['mexico','mexicano','mexicana','mexicanos','mexicanas','cdmx','pemex','conagua','semarnat','conafor','conanp','inecc','profepa','cfe','sheinbaum','jalisco','oaxaca','chiapas','sonora','veracruz','yucatan','puebla','guerrero','hidalgo','morelos','tabasco','michoacan','chihuahua','durango','coahuila','aguascalientes','colima','tlaxcala','nayarit','zacatecas','sinaloa','tamaulipas','queretaro','guanajuato','campeche','quintana','guadalajara','monterrey','tijuana','merida','cancun'];
-const _FOREIGN_KW=['en argentina','argentina:','de argentina','venezuel','en colombia','colombia:','colombiano','colombiana','en chile','chile:','brasil','brazil','en peru','peru:','en ecuador','ecuador:','en bolivia','bolivia:','costa rica','el salvador','en guatemala','en honduras','en nicaragua','en uruguay','en paraguay','en cuba','cuba:'];
+const _FOREIGN_KW=['en argentina','argentina:','de argentina','venezuel','en colombia','colombia:','colombiano','colombiana','en chile','chile:','brasil','brazil','en peru','peru:','en ecuador','ecuador:','en bolivia','bolivia:','costa rica','el salvador','en guatemala','en honduras','en nicaragua','en uruguay','en paraguay','en cuba','cuba:','en espana','de espana','en europa','en francia','en alemania','en italia','en china','en la india','londres','en japon','en rusia','en ucrania','donana'];
 function isMxRelevant(n){const t=qa((n.titulo||'').toLowerCase())+' '+qa((n.resumen||'').toLowerCase());if(_MX_KW.some(m=>t.includes(m)))return true;if(_FOREIGN_KW.some(f=>t.includes(f)))return false;return true;}
 // Match por PALABRA COMPLETA, no subcadena. Evita falsos positivos como
 // "mandatario"→"rio", "empresa"→"presa", "Aguascalientes"→"agua". Admite plural.
@@ -2206,6 +2208,11 @@ function setNewsMode(mode){
   renderLatestNewsTicker();
 }
 var _noticiasEstatales=null;
+// Nombre limpio del medio: "Google News - El Universal" → "El Universal"
+function _medioNombre(f){
+  if(!f)return '';
+  return String(f).replace(/^Google News\s*[-–]\s*/i,'').split(/\s*[|,–]\s*/)[0].trim();
+}
 function renderLatestNewsTicker(){
   var el=document.getElementById('news-ticker');
   if(!el)return;
@@ -2231,12 +2238,8 @@ function renderLatestNewsTicker(){
   var html='';
   for(var i=0;i<items.length;i++){
     var n=items[i];
-    var cat=CATS.find(function(c){return c.id===n.catId;});
-    var metaParts=[];
-    if(cat)metaParts.push(cat.name);
-    if(_newsMode==='mx'&&n.estado)metaParts.push(n.estado);
-    if(_newsMode==='int'&&n.fuente)metaParts.push((n.fuente||'').replace('Google News - ','').split(',')[0].slice(0,28));
-    var badgeHtml=metaParts.length?'<span style="font-size:10px;color:var(--text-muted);letter-spacing:0.02em">'+metaParts.join(' · ')+'</span>':'<span></span>';
+    var medio=_medioNombre(n.fuente);
+    var badgeHtml=medio?'<span style="font-size:10px;color:var(--text-muted);letter-spacing:0.02em">'+medio+'</span>':'<span></span>';
     var fecha=n.fecha?new Date((n.fecha.length===10?n.fecha+'T12:00:00':n.fecha)).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     var url=(n.url||'#').replace(/'/g,'%27');
     html+='<div class="ticker-item" onclick="window.open(\''+url+'\',\'_blank\')">';
