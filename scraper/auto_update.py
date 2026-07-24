@@ -343,6 +343,15 @@ def main():
     except Exception as e:
         print(f"  ERROR datosgob: {str(e)[:120]}")
 
+    # Corpus de medios estatales (patrón FIAT: WP-API + RSS, filtro ambiental)
+    print("\n── Medios estatales ──")
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import scraper_medios
+        scraper_medios.main()
+    except Exception as e:
+        print(f"  ERROR medios: {str(e)[:120]}")
+
     # Perfil de estados (Data México: población, PEA, sectores)
     print("\n── Perfil de estados (Data México) ──")
     try:
