@@ -72,14 +72,47 @@ _KW_RX = {
     for cat, kws in KEYWORDS.items()
 }
 
+# Notas de ubicación extranjera: un medio estatal a veces republica cables
+# internacionales (p. ej. "Burros antiincendios en España"). Si el texto trae
+# una señal extranjera y NINGUNA señal mexicana, se descarta del corpus estatal.
+FOREIGN = ["espana", "europa", "francia", "aleman", "italia", "reino unido",
+           "londres", "madrid", "paris", "china", "india", "japon", "corea",
+           "rusia", "ucrania", "estados unidos", "eeuu", "washington",
+           "argentina", "brasil", "brazil", "chile", "colombia", "peru",
+           "ecuador", "bolivia", "venezuela", "guatemala", "honduras",
+           "nicaragua", "costa rica", "panama", "uruguay", "paraguay", "cuba",
+           "canada", "australia", "africa", "egipto", "israel", "gaza",
+           "palestina", "amazonas", "donana"]
+MX_SIGNAL = ["mexico", "mexicano", "mexicana", "cdmx", "semarnat", "conagua",
+             "profepa", "conafor", "sader", "sener", "pemex", "cfe", "inecc",
+             "sheinbaum", "morena", "diputad", "senad", "congreso",
+             "aguascalientes", "baja california", "campeche", "chiapas",
+             "chihuahua", "coahuila", "colima", "durango", "guanajuato",
+             "guerrero", "hidalgo", "jalisco", "michoacan", "morelos",
+             "nayarit", "nuevo leon", "oaxaca", "puebla", "queretaro",
+             "quintana roo", "san luis potosi", "sinaloa", "sonora", "tabasco",
+             "tamaulipas", "tlaxcala", "veracruz", "yucatan", "zacatecas",
+             "guadalajara", "monterrey", "tijuana", "merida", "cancun",
+             "toluca", "leon", "acapulco"]
+_FOREIGN_RX = [re.compile(r"(?<![a-z0-9])" + re.escape(f) + r"(?![a-z0-9])") for f in FOREIGN]
+_MX_RX = [re.compile(r"(?<![a-z0-9])" + re.escape(m) + r"(?![a-z0-9])") for m in MX_SIGNAL]
+
+def es_extranjera(texto):
+    t = norm(texto)
+    if any(rx.search(t) for rx in _FOREIGN_RX):
+        return not any(rx.search(t) for rx in _MX_RX)
+    return False
+
 def clasifica(texto):
+    if es_extranjera(texto):
+        return None
     t = norm(texto)
     mejor, hits_max = None, 0
     for cat, rxs in _KW_RX.items():
         hits = sum(1 for rx in rxs if rx.search(t))
         if hits > hits_max:
             hits_max, mejor = hits, cat
-    return mejor  # None si no hay señal ambiental
+    return mejor  # None si no hay señal ambiental (o si es extranjera)
 
 def limpia(s):
     s = html.unescape(re.sub(r"<[^>]+>", " ", s or ""))
