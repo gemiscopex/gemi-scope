@@ -49,12 +49,22 @@ nomenclatura completa `[11]`, Radares como botón pulsante discreto `[19]`.
 - 3.6 `[13]` Mini menú expandible por NOM: estatus PNIC, GEMI, documentos (DOF + Catálogo Nacional de Regulaciones). ✔
 - 3.7 `[20]` `data/materiales-prohibidos.json` v1 con 10 entidades documentadas, visible en el perfil de cada estado. ✔ v1
 
-**Deuda de datos (para cerrar la etapa al 100%):**
-1. PEA y unidades económicas por estado → requiere token gratuito de la API INEGI (registro en inegi.org.mx; el JSON ya tiene los campos en null).
-2. Estatus PNIC real por NOM → scraper de CONAMER (hoy se deriva de vigente/proyecto).
-3. Flags "GEMI activo" por NOM → **lo define el equipo GEMI** (llenar `NOM_EXTRA` en index.html o mover a JSON).
-4. Materiales prohibidos: 22 entidades restantes por documentar.
-5. Titulares ambientales de las 32 entidades (arrastrado de Etapa 2.5).
+## ✅ Extra — Integración FIAT + Data México (2026-07-23/24)
+
+- **Data México real** (`economia.gob.mx/apidatamexico`, scraper diario): población, **PEA real (ENOE 2026-Q1)** y **sectores reales (Censos Económicos 2019)** → heatmap de Sector Industrial y perfil de estado con datos duros. Cierra la deuda de PEA.
+- **Corpus de medios estatales** (`data/medios.csv` 96 medios, `scraper_medios.py`): 55 accesibles vía WP-API/RSS, filtro ambiental + exclusión de notas extranjeras → se mezclan en Últimas Noticias con su medio directo. 2 corridas diarias.
+- **Filtros de tema enriquecidos** (estilo FIAT) + 2 categorías nuevas (Medio Ambiente y Biodiversidad, Agro y Desarrollo Rural).
+- **Últimas propuestas por legislador** en Mi Consola con enlace a la fuente oficial.
+- Clasificador por palabra completa (sin falsos positivos tipo "mandatario"→Agua).
+
+**Deuda de datos (para cerrar al 100%):**
+1. ~~PEA por estado~~ ✅ hecho (Data México ENOE). Falta solo "unidades económicas" como stat visible (opcional).
+2. Estatus PNIC real por NOM → scraper de CONAMER (hoy se deriva de vigente/proyecto). — *lo construyo yo*
+3. Flags "GEMI activo" por NOM → **lo define el equipo GEMI** (dime en cuáles participan).
+4. Materiales prohibidos: 22 entidades restantes por documentar. — *lo construyo yo*
+5. Titulares ambientales de las 32 entidades (arrastrado de Etapa 2.5). — *lo construyo yo*
+6. Backfill histórico de medios (26 de sitemap) + sondeo para sumar medios. — *lo construyo yo*
+7. Contenido semanal de la "Noticia de la Semana" (`data/semana.json`) → **proceso editorial GEMI**.
 
 ## Etapa 4 — Consola avanzada y membresía
 
