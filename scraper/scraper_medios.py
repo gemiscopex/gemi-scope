@@ -183,6 +183,93 @@ def scrape_rss(url, desde):
         })
     return out
 
+HIST_OUT = ROOT / "data" / "noticias-estatales-historico.json"
+
+def scrape_wp_pages(url, desde, max_pages=6):
+    """Pagina el WP-API hacia atrás (per_page=100) hasta max_pages o hasta el corte."""
+    api = url.rstrip("/") + "/wp-json/wp/v2/posts"
+    out = []
+    for page in range(1, max_pages + 1):
+        try:
+            r = requests.get(api, params={"per_page": 100, "page": page,
+                             "after": desde.strftime("%Y-%m-%dT%H:%M:%S")},
+                             headers=UA, timeout=15, verify=False)
+        except Exception:
+            break
+        if r.status_code in (401, 403):
+            return None  # no accesible por WP
+        if r.status_code != 200:
+            break  # 400 = no hay más páginas
+        try:
+            posts = r.json()
+        except Exception:
+            break
+        if not isinstance(posts, list) or not posts:
+            break
+        for p in posts:
+            out.append({
+                "titulo": limpia((p.get("title") or {}).get("rendered", "")),
+                "resumen": limpia((p.get("excerpt") or {}).get("rendered", ""))[:280],
+                "url": p.get("link", ""),
+                "fecha": (p.get("date") or "")[:10],
+            })
+        if len(posts) < 100:
+            break
+    return out
+
+def backfill(dias=90):
+    """Recorre el histórico de los medios WP-API (los de RSS no dan histórico)."""
+    desde = datetime.now(CDMX) - timedelta(days=dias)
+    medios = []
+    with open(MEDIOS, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            if row["metodo"] == "wp_api":
+                medios.append(row)
+    print(f"  Backfill {dias} días · medios WP-API: {len(medios)}")
+
+    hist, fallidos = [], 0
+    for mrow in medios:
+        try:
+            notas = scrape_wp_pages(mrow["url"], desde)
+            if notas is None:  # WP bloqueado → intenta RSS (histórico limitado)
+                notas = scrape_rss(mrow["url"], desde)
+            cnt = 0
+            for n in notas or []:
+                if not n["titulo"] or not n["url"]:
+                    continue
+                if (n.get("fecha") or "") < desde.strftime("%Y-%m-%d"):
+                    continue
+                cat = clasifica(n["titulo"] + " " + n["resumen"])
+                if not cat:
+                    continue
+                n["estado"] = mrow["estado"]; n["medio"] = mrow["medio"]; n["categoria"] = cat
+                hist.append(n); cnt += 1
+            if cnt:
+                print(f"  {mrow['medio']} ({mrow['estado']}): {cnt} ambientales")
+        except Exception:
+            fallidos += 1
+
+    # Merge con el histórico previo, dedup por URL
+    try:
+        prev = json.loads(HIST_OUT.read_text(encoding="utf-8")).get("items", [])
+    except Exception:
+        prev = []
+    corte = desde.strftime("%Y-%m-%d")
+    vistos, items = set(), []
+    for n in hist + prev:
+        u = n.get("url", "")
+        if not u or u in vistos or (n.get("fecha") or "") < corte:
+            continue
+        vistos.add(u); items.append(n)
+    items.sort(key=lambda n: n.get("fecha", ""), reverse=True)
+
+    HIST_OUT.write_text(json.dumps({
+        "_meta": {"actualizado": datetime.now(CDMX).strftime("%Y-%m-%dT%H:%M CDMX"),
+                  "dias": dias, "medios_wp": len(medios)},
+        "items": items,
+    }, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"  Guardado {HIST_OUT.name}: {len(items)} notas · {fallidos} medios con error")
+
 def main():
     desde = datetime.now(CDMX) - timedelta(days=INCREMENTAL_DIAS)
     medios = []
@@ -250,4 +337,8 @@ def main():
     print(f"  Guardado {OUT.name}: {len(items)} notas en ventana de {VENTANA_DIAS} días")
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == "backfill":
+        dias = int(sys.argv[2]) if len(sys.argv) > 2 else 90
+        backfill(dias)
+    else:
+        main()
