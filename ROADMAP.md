@@ -63,7 +63,7 @@ nomenclatura completa `[11]`, Radares como botón pulsante discreto `[19]`.
 3. Flags "GEMI activo" por NOM → **lo define el equipo GEMI** (dime en cuáles participan).
 4. Materiales prohibidos: 22 entidades restantes por documentar. — *lo construyo yo*
 5. ~~Titulares ambientales de las 32 entidades~~ ✅ hecho (2026-07-24) — 32 estados, medio ambiente + **economía**, verificado con fuentes oficiales (`data/actores-estatales.json`, en pestaña Actores). Reverificar periódicamente: los gabinetes estatales cambian.
-6. ~~Backfill histórico de medios~~ ✅ hecho — `scraper_medios.py backfill [días]` pagina WP-API → `data/noticias-estatales-historico.json` (894 notas / 60 días). Falta sumar los 26 de sitemap y el sondeo automático de medios nuevos.
+6. ~~Backfill histórico de medios~~ ✅ hecho — `scraper_medios.py backfill [días]` (WP-API paginado **+ sitemap**) → `data/noticias-estatales-historico.json`. Workflow semanal `backfill.yml` (domingos). **Sondeo** `scraper_sondeo.py` re-detecta el método de acceso de los 96 medios (conservador: reintentos con UA de navegador, no degrada un medio que funcionaba sin `--force`) y acepta sondear medios nuevos por URL.
 7. Contenido semanal de la "Noticia de la Semana" (`data/semana.json`) → **proceso editorial GEMI**.
 
 **Búsquedas recientes** en el buscador ✅ (localStorage, últimas 6, con opción Limpiar).
