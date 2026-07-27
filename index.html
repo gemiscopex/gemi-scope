@@ -473,8 +473,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .csp-node-date{font-family:var(--mono);font-size:9.5px;color:var(--text-muted);text-align:right;padding-right:13px;padding-top:1px;white-space:nowrap}
 .csp-node-body{border-left:1.5px solid var(--border);padding:0 0 13px 16px;position:relative;min-width:0}
 .csp-node:last-child .csp-node-body{padding-bottom:2px}
-.csp-node-body::before{content:'';position:absolute;left:-5.5px;top:2px;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 2px var(--card)}
-.csp-latest .csp-node-body::before{background:#DC2626}
+.csp-node-body::before{content:'';position:absolute;left:-5.5px;top:2px;width:9px;height:9px;border-radius:50%;background:#DC2626;box-shadow:0 0 0 2px var(--card)}
 .csp-run-wrap{overflow:hidden}
 .csp-run{display:inline-flex;white-space:nowrap;will-change:transform;animation:chyronMove var(--d,60s) linear infinite}
 .csp-run-wrap:hover .csp-run{animation-play-state:paused}
@@ -1217,7 +1216,7 @@ function loadPresidencia(){
     // Timeline: cada conferencia (versión estenográfica) es un nodo con fecha;
     // más reciente arriba, sus frases corren en horizontal.
     const confs=presData.filter(a=>(a.fuente||'').toLowerCase().includes('stenogr')&&(a.fragmentos||[]).length)
-      .sort((a,b)=>new Date(b.fecha||0)-new Date(a.fecha||0)).slice(0,5);
+      .sort((a,b)=>new Date(b.fecha||0)-new Date(a.fecha||0)).slice(0,3);
     if(!confs.length){el.style.display='none';return;}
     let nodes='';
     confs.forEach((a,idx)=>{
