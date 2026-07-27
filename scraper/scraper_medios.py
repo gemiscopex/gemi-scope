@@ -185,6 +185,67 @@ def scrape_rss(url, desde):
 
 HIST_OUT = ROOT / "data" / "noticias-estatales-historico.json"
 
+# ── Sitemap (para los medios sin WP-API/RSS) ─────────────────────────────────
+def _slug_titulo(loc):
+    """Título aproximado desde el slug de la URL (la mayoría trae el titular)."""
+    seg = re.sub(r"[/#?].*$", "", loc.rstrip("/").split("/")[-1])
+    seg = re.sub(r"\.(html?|php|amp)$", "", seg)
+    seg = re.sub(r"[-_]+", " ", seg).strip()
+    seg = re.sub(r"\b\d{6,}\b", "", seg).strip()  # quita ids largos
+    return seg[:1].upper() + seg[1:] if seg else ""
+
+def _sitemap_docs(xml, desde):
+    """Extrae (loc, fecha, titulo) de un urlset. Usa <news:title> si existe."""
+    out = []
+    for m in re.finditer(r"<url>([\s\S]*?)</url>", xml):
+        blk = m.group(1)
+        loc = _tag(blk, "loc")
+        if not loc:
+            continue
+        fecha = (_tag(blk, "news:publication_date") or _tag(blk, "lastmod") or "")[:10]
+        if fecha and fecha < desde.strftime("%Y-%m-%d"):
+            continue
+        titulo = _tag(blk, "news:title") or _slug_titulo(loc)
+        out.append({"titulo": limpia(titulo), "resumen": "", "url": loc, "fecha": fecha})
+    return out
+
+def scrape_sitemap(url, desde, max_sub=4, max_urls=400):
+    """Lee sitemap(s) del medio. Sigue el índice a los sub-sitemaps más recientes."""
+    base = url.rstrip("/")
+    candidatos = ["/news-sitemap.xml", "/sitemap-news.xml", "/sitemap_index.xml", "/sitemap.xml"]
+    xml = None
+    for path in candidatos:
+        try:
+            r = requests.get(base + path, headers=UA, timeout=15, verify=False)
+            if r.status_code == 200 and ("<urlset" in r.text[:3000] or "<sitemapindex" in r.text[:3000]):
+                xml = r.text
+                break
+        except Exception:
+            continue
+    if not xml:
+        return []
+    out = []
+    if "<sitemapindex" in xml[:3000]:
+        # Índice: toma los sub-sitemaps más recientes
+        subs = []
+        for m in re.finditer(r"<sitemap>([\s\S]*?)</sitemap>", xml):
+            blk = m.group(1)
+            subs.append((_tag(blk, "loc"), (_tag(blk, "lastmod") or "")[:10]))
+        subs = [s for s in subs if s[0]]
+        subs.sort(key=lambda s: s[1], reverse=True)
+        for loc, _ in subs[:max_sub]:
+            try:
+                r = requests.get(loc, headers=UA, timeout=15, verify=False)
+                if r.status_code == 200:
+                    out += _sitemap_docs(r.text, desde)
+            except Exception:
+                pass
+            if len(out) >= max_urls:
+                break
+    else:
+        out = _sitemap_docs(xml, desde)
+    return out[:max_urls]
+
 def scrape_wp_pages(url, desde, max_pages=6):
     """Pagina el WP-API hacia atrás (per_page=100) hasta max_pages o hasta el corte."""
     api = url.rstrip("/") + "/wp-json/wp/v2/posts"
@@ -218,21 +279,25 @@ def scrape_wp_pages(url, desde, max_pages=6):
     return out
 
 def backfill(dias=90):
-    """Recorre el histórico de los medios WP-API (los de RSS no dan histórico)."""
+    """Histórico vía WP-API (paginado) + sitemap (los de sólo-RSS no dan histórico)."""
     desde = datetime.now(CDMX) - timedelta(days=dias)
     medios = []
     with open(MEDIOS, encoding="utf-8") as f:
         for row in csv.DictReader(f):
-            if row["metodo"] == "wp_api":
+            if row["metodo"] in ("wp_api", "sitemap"):
                 medios.append(row)
-    print(f"  Backfill {dias} días · medios WP-API: {len(medios)}")
+    nwp = sum(1 for m in medios if m["metodo"] == "wp_api")
+    print(f"  Backfill {dias} días · WP-API: {nwp} · sitemap: {len(medios)-nwp}")
 
     hist, fallidos = [], 0
     for mrow in medios:
         try:
-            notas = scrape_wp_pages(mrow["url"], desde)
-            if notas is None:  # WP bloqueado → intenta RSS (histórico limitado)
-                notas = scrape_rss(mrow["url"], desde)
+            if mrow["metodo"] == "sitemap":
+                notas = scrape_sitemap(mrow["url"], desde, max_urls=500)
+            else:
+                notas = scrape_wp_pages(mrow["url"], desde)
+                if notas is None:  # WP bloqueado → intenta RSS (histórico limitado)
+                    notas = scrape_rss(mrow["url"], desde)
             cnt = 0
             for n in notas or []:
                 if not n["titulo"] or not n["url"]:
@@ -265,7 +330,7 @@ def backfill(dias=90):
 
     HIST_OUT.write_text(json.dumps({
         "_meta": {"actualizado": datetime.now(CDMX).strftime("%Y-%m-%dT%H:%M CDMX"),
-                  "dias": dias, "medios_wp": len(medios)},
+                  "dias": dias, "medios": len(medios)},
         "items": items,
     }, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"  Guardado {HIST_OUT.name}: {len(items)} notas · {fallidos} medios con error")
@@ -275,7 +340,7 @@ def main():
     medios = []
     with open(MEDIOS, encoding="utf-8") as f:
         for row in csv.DictReader(f):
-            if row["metodo"] in ("wp_api", "rss"):
+            if row["metodo"] in ("wp_api", "rss", "sitemap"):
                 medios.append(row)
     print(f"  Medios accesibles: {len(medios)}")
 
@@ -285,6 +350,8 @@ def main():
             notas = None
             if mrow["metodo"] == "wp_api":
                 notas = scrape_wp(mrow["url"], desde)
+            elif mrow["metodo"] == "sitemap":
+                notas = scrape_sitemap(mrow["url"], desde, max_urls=120)
             if notas is None or mrow["metodo"] == "rss":
                 notas = scrape_rss(mrow["url"], desde)
             cnt = 0
