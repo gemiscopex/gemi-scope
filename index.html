@@ -730,10 +730,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
             <button onclick="mapZoom(-1)" title="Alejar">−</button>
           </div>
         </div>
-        <!-- Congreso de la Unión -->
-        <div class="card">
-          <div class="card-label" style="cursor:pointer" onclick="showRegulacion('congresomx')" title="Ver Congreso de México">Actividad del Congreso de la Unión <span style="color:var(--green)">↗</span></div>
-          <div id="widget-congreso"></div>
+        <!-- Congreso de la Unión: gráfica indicador (detalle en Regulación → Congreso de México) -->
+        <div class="card" style="cursor:pointer" onclick="showRegulacion('congresomx')" title="Ver detalle en Congreso de México">
+          <div class="card-label">Actividad Legislativa · Congreso de la Unión <span style="color:var(--green)">↗</span></div>
+          <div id="congreso-chart"></div>
         </div>
 
       </div>
@@ -801,11 +801,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
         <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Congreso de México</div>
       </div>
-      <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px">Seguimiento de la actividad legislativa federal · LXVI Legislatura</div>
-      <div style="border-top:0.8px solid var(--border);padding-top:20px;max-width:640px">
-        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px">En construcción</div>
-        <div style="font-size:12.5px;color:var(--text-sec);line-height:1.65">Aquí vivirá el seguimiento completo del Congreso de la Unión: iniciativas con su estatus y trayectoria, votaciones, actividad por legislador y por comisión. Mientras tanto, la actividad reciente está en el widget del dashboard y las comisiones en la pestaña Actores.</div>
-      </div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px" id="congresomx-periodo">Seguimiento de la actividad legislativa federal · LXVI Legislatura</div>
+      <div id="widget-congreso"></div>
     </div>
     <!-- Vista Internacional · Acuerdos -->
     <div id="leg-view-acuerdos" style="display:none">
@@ -2239,7 +2236,7 @@ function setNewsMode(mode){
   document.getElementById('news-mode-int').classList.toggle('active',mode==='int');
   renderLatestNewsTicker();
 }
-var _noticiasEstatales=null;
+var _noticiasEstatales=null,_historicoEstatal=null;
 // Nombre limpio del medio: "Google News - El Universal" → "El Universal"
 function _medioNombre(f){
   if(!f)return '';
@@ -2490,9 +2487,95 @@ function renderWidgetFederal(){
         return /ley|código|codigo|constituci|decreto|exhorta|acuerdo|reforma|adiciona|expide|dictamen/i.test(it.titulo||'');
       }).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
       _renderCongreso('ini');
+      renderCongresoChart();
       var el=document.getElementById('kpi-val-iniciativas');
       if(el)el.textContent=(dip.length+sen.length)||'0';
     });
+}
+// ── Gráfica indicador: instrumentos legislativos (Dip+Sen) vs cobertura de medios ──
+function _isoMonday(d){var x=new Date(d);var day=(x.getDay()+6)%7;x.setDate(x.getDate()-day);x.setHours(0,0,0,0);return x;}
+function _smoothPath(pts){
+  if(pts.length<2)return pts.length?('M'+pts[0][0]+' '+pts[0][1]):'';
+  var d='M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1);
+  for(var i=0;i<pts.length-1;i++){
+    var p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||p2;
+    var c1x=p1[0]+(p2[0]-p0[0])/6,c1y=p1[1]+(p2[1]-p0[1])/6;
+    var c2x=p2[0]-(p3[0]-p1[0])/6,c2y=p2[1]-(p3[1]-p1[1])/6;
+    d+='C'+c1x.toFixed(1)+' '+c1y.toFixed(1)+','+c2x.toFixed(1)+' '+c2y.toFixed(1)+','+p2[0].toFixed(1)+' '+p2[1].toFixed(1);
+  }
+  return d;
+}
+function _mediasEnvPorSemana(monday0,nSem){
+  // Cuenta notas ambientales por semana (nacional + estatal) alineadas a las mismas semanas
+  var buckets=new Array(nSem).fill(0);
+  function add(fecha){
+    if(!fecha)return;
+    var t=new Date((String(fecha).length===10?fecha+'T12:00:00':fecha));
+    if(isNaN(t))return;
+    var wi=Math.floor((_isoMonday(t)-monday0)/(7*86400000));
+    if(wi>=0&&wi<nSem)buckets[wi]++;
+  }
+  (noticias||[]).forEach(function(n){if(catArt(n.titulo||'')!==null&&isMxRelevant(n))add(n.fecha_publicacion);});
+  var estFuente=((_historicoEstatal||_noticiasEstatales||{}).items)||[];
+  estFuente.forEach(function(n){add(n.fecha);});
+  return buckets;
+}
+function renderCongresoChart(){
+  var host=document.getElementById('congreso-chart');
+  if(!host||!_congItems)return;
+  var NSEM=8;
+  var hoyMon=_isoMonday(new Date());
+  var monday0=new Date(hoyMon.getTime()-(NSEM-1)*7*86400000);
+  var instr=new Array(NSEM).fill(0),instrDip=0,instrSen=0;
+  _congItems.forEach(function(it){
+    var f=it.fecha; if(!f)return;
+    var t=new Date(String(f).substring(0,10)+'T12:00:00'); if(isNaN(t))return;
+    var wi=Math.floor((_isoMonday(t)-monday0)/(7*86400000));
+    if(wi>=0&&wi<NSEM){instr[wi]++; if(it.camara==='SEN')instrSen++; else instrDip++;}
+  });
+  var media=_mediasEnvPorSemana(monday0,NSEM);
+  var totalInstr=instr.reduce(function(a,b){return a+b;},0);
+  var maxI=Math.max(1,Math.max.apply(null,instr)),maxM=Math.max(1,Math.max.apply(null,media));
+  // Geometría SVG
+  var W=680,H=190,PL=34,PR=34,PT=14,PB=26,IW=W-PL-PR,IH=H-PT-PB;
+  function X(i){return PL+(NSEM<=1?IW/2:(i/(NSEM-1))*IW);}
+  function Yi(v){return PT+IH-(v/maxI)*IH;}
+  function Ym(v){return PT+IH-(v/maxM)*IH;}
+  var ptsI=instr.map(function(v,i){return [X(i),Yi(v)];});
+  var ptsM=media.map(function(v,i){return [X(i),Ym(v)];});
+  var pathI=_smoothPath(ptsI);
+  var areaI=pathI+'L'+X(NSEM-1).toFixed(1)+' '+(PT+IH)+'L'+X(0).toFixed(1)+' '+(PT+IH)+'Z';
+  var pathM=_smoothPath(ptsM);
+  // Marcador de pico legislativo (semana con más instrumentos, si hay actividad)
+  var pk=instr.indexOf(Math.max.apply(null,instr));
+  var peakDot=totalInstr>0?'<circle cx="'+X(pk).toFixed(1)+'" cy="'+Yi(instr[pk]).toFixed(1)+'" r="4" fill="#fff" stroke="var(--green)" stroke-width="2"/>':'';
+  // Etiquetas de eje X (cada 2 semanas)
+  var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  var xlab='';
+  for(var i=0;i<NSEM;i+=2){var wd=new Date(monday0.getTime()+i*7*86400000);
+    xlab+='<text x="'+X(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" font-size="8.5" fill="var(--text-muted)" font-family="var(--mono)">'+wd.getDate()+' '+MES[wd.getMonth()]+'</text>';}
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto" preserveAspectRatio="xMidYMid meet">'
+    +'<line x1="'+PL+'" y1="'+(PT+IH)+'" x2="'+(W-PR)+'" y2="'+(PT+IH)+'" stroke="var(--border)" stroke-width="1"/>'
+    +'<path d="'+areaI+'" fill="rgba(0,158,144,0.12)"/>'
+    +'<path d="'+pathI+'" fill="none" stroke="var(--green)" stroke-width="2"/>'
+    +'<path d="'+pathM+'" fill="none" stroke="#E8843D" stroke-width="1.6" stroke-dasharray="5 4"/>'
+    +peakDot
+    +'<text x="'+PL+'" y="'+(PT+6)+'" font-size="8" fill="var(--green)" font-family="var(--mono)">'+maxI+'</text>'
+    +'<text x="'+(W-PR+3)+'" y="'+(PT+6)+'" font-size="8" fill="#E8843D" font-family="var(--mono)">'+maxM+'</text>'
+    +xlab+'</svg>';
+  // Cabecera: número grande + split + leyenda + nota de receso
+  var enReceso=true; // Comisión Permanente hasta el 1 de septiembre
+  var head='<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:8px;flex-wrap:wrap">'
+    +'<div><span style="font-size:26px;font-weight:700;color:var(--text);line-height:1">'+totalInstr+'</span>'
+    +'<span style="font-size:11px;color:var(--text-muted);margin-left:6px">instrumentos · 8 semanas</span>'
+    +'<div style="font-size:10.5px;color:var(--text-sec);margin-top:2px">'+instrDip+' Diputados · '+instrSen+' Senado</div></div>'
+    +(enReceso?'<div style="font-family:var(--mono);font-size:9.5px;color:#E8843D;text-align:right;line-height:1.4">● EN RECESO<br><span style="color:var(--text-muted)">Comisión Permanente · ordinario 1 sep</span></div>':'')
+    +'</div>';
+  var leyenda='<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:10px;color:var(--text-sec)">'
+    +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:16px;height:2px;background:var(--green);display:inline-block"></span>Instrumentos legislativos</span>'
+    +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:16px;height:0;border-top:2px dashed #E8843D;display:inline-block"></span>Notas en medios</span>'
+    +'</div>';
+  host.innerHTML=head+svg+leyenda;
 }
 var _congPanel='ini',_congExpanded=false;
 function _toggleCongreso(){_congExpanded=!_congExpanded;_renderCongreso(_congPanel);}
@@ -2663,7 +2746,8 @@ async function init(){
   fetch('data/perfil-estados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_perfilEstados=d;}).catch(()=>{});
   fetch('data/materiales-prohibidos.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_materialesData=d;}).catch(()=>{});
   fetch('data/datosgob.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_datosgobData=d;renderDatosGob();}).catch(()=>{});
-  fetch('data/noticias-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();}).catch(()=>{});
+  fetch('data/noticias-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();if(typeof renderCongresoChart==='function')renderCongresoChart();}).catch(()=>{});
+  fetch('data/noticias-estatales-historico.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_historicoEstatal=d;if(typeof renderCongresoChart==='function')renderCongresoChart();}).catch(()=>{});
   fetch('data/actores-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_actoresEstatales=d;renderActoresEstatales();}).catch(()=>{});
   processData();
   computeScores();
