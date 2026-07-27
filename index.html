@@ -468,6 +468,19 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .chyron-it{font-size:12px;color:var(--text2);padding-right:30px;cursor:pointer;font-style:italic}
 .chyron-it:hover{color:var(--green)}
 .chyron-it .cim{font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-left:8px;font-style:normal}
+/* Timeline de Conferencias matutinas del Ejecutivo */
+.csp-node{display:grid;grid-template-columns:46px 1fr;align-items:start}
+.csp-node-date{font-family:var(--mono);font-size:9.5px;color:var(--text-muted);text-align:right;padding-right:13px;padding-top:1px;white-space:nowrap}
+.csp-node-body{border-left:1.5px solid var(--border);padding:0 0 13px 16px;position:relative;min-width:0}
+.csp-node:last-child .csp-node-body{padding-bottom:2px}
+.csp-node-body::before{content:'';position:absolute;left:-5.5px;top:2px;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 2px var(--card)}
+.csp-latest .csp-node-body::before{background:#DC2626}
+.csp-run-wrap{overflow:hidden}
+.csp-run{display:inline-flex;white-space:nowrap;will-change:transform;animation:chyronMove var(--d,60s) linear infinite}
+.csp-run-wrap:hover .csp-run{animation-play-state:paused}
+.csp-q{font-size:11.5px;color:var(--text2);font-style:italic;cursor:pointer}
+.csp-q:hover{color:var(--green)}
+.csp-sep{color:var(--text3);padding:0 26px;font-size:8px;vertical-align:middle}
 /* ═══════════ MI CONSOLA ═══════════ */
 .cons-hero{max-width:600px;margin:40px auto;text-align:center;padding:52px 44px}
 .cons-hero-t{font-family:var(--mono);font-size:11px;letter-spacing:0.25em;color:var(--green);margin-bottom:14px}
@@ -1201,34 +1214,26 @@ function loadPresidencia(){
     if(!d||!d.articulos||!d.articulos.length){if(el)el.style.display='none';return;}
     presData=d.articulos;
     if(!el)return;
-    // Citas de las conferencias (versión estenográfica), más recientes primero
-    const maneras=presData.filter(a=>(a.fuente||'').toLowerCase().includes('stenogr'))
-      .sort((a,b)=>new Date(b.fecha||0)-new Date(a.fecha||0));
-    const quotes=[];
-    maneras.slice(0,8).forEach(a=>{
+    // Timeline: cada conferencia (versión estenográfica) es un nodo con fecha;
+    // más reciente arriba, sus frases corren en horizontal.
+    const confs=presData.filter(a=>(a.fuente||'').toLowerCase().includes('stenogr')&&(a.fragmentos||[]).length)
+      .sort((a,b)=>new Date(b.fecha||0)-new Date(a.fecha||0)).slice(0,5);
+    if(!confs.length){el.style.display='none';return;}
+    let nodes='';
+    confs.forEach((a,idx)=>{
       const f=a.fecha?new Date(a.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
       const url=(a.url||'#').replace(/'/g,'%27');
-      (a.fragmentos||[]).slice(0,2).forEach(fr=>{
-        let s=fr.replace(/\s+/g,' ').trim();
-        if(s.length>150)s=s.substring(0,148)+'…';
-        quotes.push({t:s,f:f,url:url});
-      });
+      const qs=(a.fragmentos||[]).slice(0,6).map(fr=>{let s=fr.replace(/\s+/g,' ').trim();return s.length>150?s.slice(0,148)+'…':s;});
+      const run=qs.map(s=>'<span class="csp-q" onclick="window.open(\''+url+'\',\'_blank\')">“'+s+'”</span>').join('<span class="csp-sep">●</span>');
+      const seq=run+'<span class="csp-sep">●</span>';
+      nodes+='<div class="csp-node'+(idx===0?' csp-latest':'')+'"><div class="csp-node-date">'+f+'</div>'
+        +'<div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" id="cspr-'+idx+'">'+seq+seq+'</div></div></div></div>';
     });
-    if(!quotes.length){el.style.display='none';return;}
-    const mkSeq=arr=>arr.map(q=>'<span class="chyron-it" onclick="window.open(\''+q.url+'\',\'_blank\')">“'+q.t+'”<span class="cim">CSP · '+q.f+'</span></span>').join('<span style="color:var(--text3);padding-right:30px;font-size:8px;vertical-align:middle">●</span>');
-    const l1=quotes.filter((_,i)=>i%2===0),l2=quotes.filter((_,i)=>i%2===1);
-    const seq1=mkSeq(l1),seq2=mkSeq(l2.length?l2:l1);
-    el.innerHTML='<div class="chyron">'
-      +'<div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo</div>'
-      +'<div class="chyron-track"><div class="chyron-inner" id="chyron-inner1">'+seq1+seq1+'</div></div>'
-      +'<div class="chyron-track" style="margin-top:8px"><div class="chyron-inner" id="chyron-inner2">'+seq2+seq2+'</div></div>'
-      +'</div>';
-    // Mismo pace que Últimas Noticias (~12 px/s)
+    el.innerHTML='<div class="chyron-hdr" style="margin-bottom:12px"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo</div>'+nodes;
+    // Pace de las frases (~12 px/s), pausable al hover
     requestAnimationFrame(()=>{
-      ['chyron-inner1','chyron-inner2'].forEach(id=>{
-        const inner=document.getElementById(id);
-        if(inner)inner.style.setProperty('--chyron-dur',Math.max(60,Math.round(inner.scrollWidth/2/12))+'s');
-      });
+      confs.forEach((_,idx)=>{const inner=document.getElementById('cspr-'+idx);
+        if(inner)inner.style.setProperty('--d',Math.max(50,Math.round(inner.scrollWidth/2/12))+'s');});
     });
   }).catch(()=>{
     const el=document.getElementById('csp-chyron');
@@ -2505,78 +2510,79 @@ function _smoothPath(pts){
   }
   return d;
 }
-function _mediasEnvPorSemana(monday0,nSem){
-  // Cuenta notas ambientales por semana (nacional + estatal) alineadas a las mismas semanas
-  var buckets=new Array(nSem).fill(0);
-  function add(fecha){
-    if(!fecha)return;
-    var t=new Date((String(fecha).length===10?fecha+'T12:00:00':fecha));
-    if(isNaN(t))return;
-    var wi=Math.floor((_isoMonday(t)-monday0)/(7*86400000));
-    if(wi>=0&&wi<nSem)buckets[wi]++;
-  }
-  (noticias||[]).forEach(function(n){if(catArt(n.titulo||'')!==null&&isMxRelevant(n))add(n.fecha_publicacion);});
-  var estFuente=((_historicoEstatal||_noticiasEstatales||{}).items)||[];
-  estFuente.forEach(function(n){add(n.fecha);});
-  return buckets;
-}
+var _CONG_MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+var _congChart=null;
 function renderCongresoChart(){
   var host=document.getElementById('congreso-chart');
   if(!host||!_congItems)return;
   var NSEM=8;
-  var hoyMon=_isoMonday(new Date());
-  var monday0=new Date(hoyMon.getTime()-(NSEM-1)*7*86400000);
-  var instr=new Array(NSEM).fill(0),instrDip=0,instrSen=0;
+  var monday0=new Date(_isoMonday(new Date()).getTime()-(NSEM-1)*7*86400000);
+  var weeks=[]; for(var i=0;i<NSEM;i++)weeks.push({dip:0,sen:0,items:[]});
   _congItems.forEach(function(it){
     var f=it.fecha; if(!f)return;
     var t=new Date(String(f).substring(0,10)+'T12:00:00'); if(isNaN(t))return;
     var wi=Math.floor((_isoMonday(t)-monday0)/(7*86400000));
-    if(wi>=0&&wi<NSEM){instr[wi]++; if(it.camara==='SEN')instrSen++; else instrDip++;}
+    if(wi>=0&&wi<NSEM){ if(it.camara==='SEN')weeks[wi].sen++; else weeks[wi].dip++; weeks[wi].items.push(it); }
   });
-  var media=_mediasEnvPorSemana(monday0,NSEM);
-  var totalInstr=instr.reduce(function(a,b){return a+b;},0);
-  var maxI=Math.max(1,Math.max.apply(null,instr)),maxM=Math.max(1,Math.max.apply(null,media));
-  // Geometría SVG
-  var W=680,H=190,PL=34,PR=34,PT=14,PB=26,IW=W-PL-PR,IH=H-PT-PB;
-  function X(i){return PL+(NSEM<=1?IW/2:(i/(NSEM-1))*IW);}
-  function Yi(v){return PT+IH-(v/maxI)*IH;}
-  function Ym(v){return PT+IH-(v/maxM)*IH;}
-  var ptsI=instr.map(function(v,i){return [X(i),Yi(v)];});
-  var ptsM=media.map(function(v,i){return [X(i),Ym(v)];});
-  var pathI=_smoothPath(ptsI);
-  var areaI=pathI+'L'+X(NSEM-1).toFixed(1)+' '+(PT+IH)+'L'+X(0).toFixed(1)+' '+(PT+IH)+'Z';
-  var pathM=_smoothPath(ptsM);
-  // Marcador de pico legislativo (semana con más instrumentos, si hay actividad)
-  var pk=instr.indexOf(Math.max.apply(null,instr));
-  var peakDot=totalInstr>0?'<circle cx="'+X(pk).toFixed(1)+'" cy="'+Yi(instr[pk]).toFixed(1)+'" r="4" fill="#fff" stroke="var(--green)" stroke-width="2"/>':'';
-  // Etiquetas de eje X (cada 2 semanas)
-  var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  _congChart={monday0:monday0,weeks:weeks,nsem:NSEM};
+  var maxV=Math.max(1,weeks.reduce(function(m,w){return Math.max(m,w.dip,w.sen);},0));
+  var W=680,H=104,PL=14,PR=12,PT=8,PB=18,IW=W-PL-PR,IH=H-PT-PB;
+  function X(i){return PL+(i/(NSEM-1))*IW;}
+  function Y(v){return PT+IH-(v/maxV)*IH;}
+  var dip=weeks.map(function(w){return w.dip;}),sen=weeks.map(function(w){return w.sen;});
+  var pathD=_smoothPath(dip.map(function(v,i){return [X(i),Y(v)];}));
+  var pathS=_smoothPath(sen.map(function(v,i){return [X(i),Y(v)];}));
+  var dots='';
+  for(var i=0;i<NSEM;i++){
+    if(dip[i])dots+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(dip[i]).toFixed(1)+'" r="2.5" fill="var(--green)"/>';
+    if(sen[i])dots+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(sen[i]).toFixed(1)+'" r="2.5" fill="#E8843D"/>';
+  }
   var xlab='';
-  for(var i=0;i<NSEM;i+=2){var wd=new Date(monday0.getTime()+i*7*86400000);
-    xlab+='<text x="'+X(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" font-size="8.5" fill="var(--text-muted)" font-family="var(--mono)">'+wd.getDate()+' '+MES[wd.getMonth()]+'</text>';}
-  var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto" preserveAspectRatio="xMidYMid meet">'
+  for(var i2=0;i2<NSEM;i2+=2){var wd=new Date(monday0.getTime()+i2*7*86400000);
+    xlab+='<text x="'+X(i2).toFixed(1)+'" y="'+(H-6)+'" text-anchor="middle" font-size="8" fill="var(--text-muted)" font-family="var(--mono)">'+wd.getDate()+' '+_CONG_MES[wd.getMonth()]+'</text>';}
+  var band=IW/(NSEM-1),hov='';
+  for(var i3=0;i3<NSEM;i3++)
+    hov+='<rect x="'+(X(i3)-band/2).toFixed(1)+'" y="'+PT+'" width="'+band.toFixed(1)+'" height="'+IH+'" fill="transparent" style="cursor:pointer" onmousemove="_congHover(event,'+i3+')" onmouseleave="_congHoverHide()"/>';
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
     +'<line x1="'+PL+'" y1="'+(PT+IH)+'" x2="'+(W-PR)+'" y2="'+(PT+IH)+'" stroke="var(--border)" stroke-width="1"/>'
-    +'<path d="'+areaI+'" fill="rgba(0,158,144,0.12)"/>'
-    +'<path d="'+pathI+'" fill="none" stroke="var(--green)" stroke-width="2"/>'
-    +'<path d="'+pathM+'" fill="none" stroke="#E8843D" stroke-width="1.6" stroke-dasharray="5 4"/>'
-    +peakDot
-    +'<text x="'+PL+'" y="'+(PT+6)+'" font-size="8" fill="var(--green)" font-family="var(--mono)">'+maxI+'</text>'
-    +'<text x="'+(W-PR+3)+'" y="'+(PT+6)+'" font-size="8" fill="#E8843D" font-family="var(--mono)">'+maxM+'</text>'
-    +xlab+'</svg>';
-  // Cabecera: número grande + split + leyenda + nota de receso
-  var enReceso=true; // Comisión Permanente hasta el 1 de septiembre
-  var head='<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:8px;flex-wrap:wrap">'
-    +'<div><span style="font-size:26px;font-weight:700;color:var(--text);line-height:1">'+totalInstr+'</span>'
-    +'<span style="font-size:11px;color:var(--text-muted);margin-left:6px">instrumentos · 8 semanas</span>'
-    +'<div style="font-size:10.5px;color:var(--text-sec);margin-top:2px">'+instrDip+' Diputados · '+instrSen+' Senado</div></div>'
-    +(enReceso?'<div style="font-family:var(--mono);font-size:9.5px;color:#E8843D;text-align:right;line-height:1.4">● EN RECESO<br><span style="color:var(--text-muted)">Comisión Permanente · ordinario 1 sep</span></div>':'')
+    +'<path d="'+pathD+'" fill="none" stroke="var(--green)" stroke-width="1.6"/>'
+    +'<path d="'+pathS+'" fill="none" stroke="#E8843D" stroke-width="1.6"/>'
+    +dots+xlab+hov+'</svg>';
+  var leyenda='<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:10px;color:var(--text-sec)">'
+    +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:var(--green);display:inline-block"></span>Diputados</span>'
+    +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:#E8843D;display:inline-block"></span>Senado</span>'
+    +'<span style="margin-left:auto;font-family:var(--mono);font-size:9px;color:#E8843D">● Comisión Permanente · ordinario 1 sep</span>'
     +'</div>';
-  var leyenda='<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:10px;color:var(--text-sec)">'
-    +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:16px;height:2px;background:var(--green);display:inline-block"></span>Instrumentos legislativos</span>'
-    +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:16px;height:0;border-top:2px dashed #E8843D;display:inline-block"></span>Notas en medios</span>'
-    +'</div>';
-  host.innerHTML=head+svg+leyenda;
+  host.innerHTML=svg+leyenda;
 }
+function _congTT(){
+  var el=document.getElementById('cong-tt');
+  if(!el){el=document.createElement('div');el.id='cong-tt';
+    el.style.cssText='position:fixed;z-index:2000;background:#fff;border:1px solid rgba(0,0,0,0.14);padding:9px 11px;pointer-events:none;display:none;max-width:320px;box-shadow:0 8px 24px rgba(0,0,0,0.16)';
+    document.body.appendChild(el);}
+  return el;
+}
+function _congHover(ev,wi){
+  if(!_congChart)return;
+  var w=_congChart.weeks[wi];
+  var wd=new Date(_congChart.monday0.getTime()+wi*7*86400000);
+  var we=new Date(wd.getTime()+6*86400000);
+  var rango=wd.getDate()+'–'+we.getDate()+' '+_CONG_MES[we.getMonth()];
+  var lista=w.items.slice(0,4).map(function(it){
+    var tag=it.camara==='SEN'?'<span style="color:#E8843D;font-weight:700">S</span>':'<span style="color:var(--green);font-weight:700">D</span>';
+    var t=_congAsunto(it); if(t.length>72)t=t.slice(0,70)+'…';
+    return '<div style="padding:2px 0;font-size:10.5px;color:var(--text-sec);line-height:1.35">'+tag+' · '+t+'</div>';
+  }).join('');
+  var mas=w.items.length>4?'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px">+'+(w.items.length-4)+' más</div>':'';
+  var tt=_congTT();
+  tt.innerHTML='<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase">Semana '+rango+'</div>'
+    +'<div style="margin:4px 0;font-size:11.5px"><span style="color:var(--green);font-weight:600">'+w.dip+' Diputados</span> · <span style="color:#E8843D;font-weight:600">'+w.sen+' Senado</span></div>'
+    +(w.items.length?'<div style="border-top:0.8px solid var(--border);padding-top:4px">'+lista+mas+'</div>':'<div style="font-size:10.5px;color:var(--text-muted)">Sin instrumentos registrados</div>');
+  tt.style.display='block';
+  tt.style.left=Math.min(ev.clientX+14,window.innerWidth-330)+'px';
+  tt.style.top=Math.min(ev.clientY+14,window.innerHeight-160)+'px';
+}
+function _congHoverHide(){var el=document.getElementById('cong-tt');if(el)el.style.display='none';}
 var _congPanel='ini',_congExpanded=false;
 function _toggleCongreso(){_congExpanded=!_congExpanded;_renderCongreso(_congPanel);}
 function _renderCongreso(panel){
@@ -2746,8 +2752,7 @@ async function init(){
   fetch('data/perfil-estados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_perfilEstados=d;}).catch(()=>{});
   fetch('data/materiales-prohibidos.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_materialesData=d;}).catch(()=>{});
   fetch('data/datosgob.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_datosgobData=d;renderDatosGob();}).catch(()=>{});
-  fetch('data/noticias-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();if(typeof renderCongresoChart==='function')renderCongresoChart();}).catch(()=>{});
-  fetch('data/noticias-estatales-historico.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_historicoEstatal=d;if(typeof renderCongresoChart==='function')renderCongresoChart();}).catch(()=>{});
+  fetch('data/noticias-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();}).catch(()=>{});
   fetch('data/actores-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_actoresEstatales=d;renderActoresEstatales();}).catch(()=>{});
   processData();
   computeScores();
