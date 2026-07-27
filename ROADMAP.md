@@ -68,6 +68,12 @@ nomenclatura completa `[11]`, Radares como botón pulsante discreto `[19]`.
 
 **Búsquedas recientes** en el buscador ✅ (localStorage, últimas 6, con opción Limpiar).
 
+**Gráfica indicador del Congreso** ✅ (2026-07-27) — el widget de instrumentos se movió a Regulación → Congreso de México; en el dashboard hay una gráfica estilo FIAT (área verde de instrumentos Dip+Sen vs. línea naranja de cobertura de medios, 8 semanas, marcador de pico) con nota de receso (Comisión Permanente, ordinario reinicia 1 sep). Click → detalle.
+
+**Deuda del feed del Congreso (para enriquecer la gráfica):**
+- `scraper_gacetas.py` saca pocos instrumentos y su **parser del Senado está roto** (devuelve 0). No está en el pipeline diario.
+- Falta leer la **Comisión Permanente** (senado.gob.mx/66/gaceta_comision_permanente/) — donde está la actividad actual durante el receso. — *lo construyo yo*
+
 ## Etapa 4 — Consola avanzada y membresía
 
 Objetivo: convertir la personalización en el producto de pago.
