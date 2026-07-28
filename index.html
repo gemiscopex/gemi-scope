@@ -676,7 +676,14 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <button class="tab-btn" onclick="window.open('https://www.dof.gob.mx/','_blank')">DOF ▾</button>
       <div class="nav-drop dof-drop" id="dof-drop"><div class="nav-drop-lbl">Cargando…</div></div>
     </div>
-    <button class="tab-btn" onclick="showTab('congreso',this)">Actores</button>
+    <div class="nav-drop-wrap">
+      <button class="tab-btn" onclick="showActores('federal')">Actores ▾</button>
+      <div class="nav-drop">
+        <div class="nav-drop-it" onclick="showActores('federal')">Federal<span class="nd-sub">Gabinete ambiental</span></div>
+        <div class="nav-drop-it" onclick="showActores('estatal')">Estatal<span class="nd-sub">Titulares por estado</span></div>
+        <div class="nav-drop-it" onclick="showActores('legislativo')">Legislativo<span class="nd-sub">Comisiones del Congreso</span></div>
+      </div>
+    </div>
     <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos SCOPE" style="margin-left:auto;margin-right:2px"><span class="radar-fab-dot"></span></button>
   </div>
   <div class="nav-right">
@@ -1539,6 +1546,11 @@ function renderActoresFederal(){
       +'<span style="font-size:11px;color:var(--text-sec)">'+a.cargo+' · '+a.dep+'</span>'
       +'</a>';
   }).join('');
+}
+// Entrada desde el dropdown del nav: abre Actores y muestra la sub-vista
+function showActores(view){
+  showTab('congreso',null);
+  showActoresSub(view||'federal',null);
 }
 // Mini menú de Actores: Federal · Estatal · Legislativo
 function showActoresSub(view,btn){
