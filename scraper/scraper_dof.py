@@ -68,6 +68,21 @@ SCOPE_KW = re.compile(
     r"transporte.*peligros|residuo.*peligros|sustanci.*peligros"
 )
 
+# Exclusión dura: avisos que jamás son relevantes para SCOPE aunque el título
+# contenga por casualidad una palabra temática (p.ej. "Agua Viva" en el nombre
+# de una asociación religiosa). Se aplica ANTES de cualquier match positivo.
+NEG_KW = re.compile(
+    r"asociaci[oó]n religiosa|agrupaci[oó]n denominada|registro constitutivo|"
+    r"\biglesia\b|\btemplo\b|culto p[uú]blico|ministro de culto|"
+    r"asociaci[oó]n civil denominada|toma de nota|"
+    r"p[eé]rdida de|extrav[ií]o|c[eé]dula profesional|patente",
+    re.I,
+)
+
+# "agua" como palabra completa, evitando falsos positivos tipo "Agua Viva",
+# "Agua Prieta" (municipio), "Aguascalientes" (que ya matchea otra ruta).
+AGUA_RX = re.compile(r"\bagua\b(?!\s+(viva|prieta|dulce\s+de|del\s+valle))", re.I)
+
 # Tipo de instrumento basado en el titulo
 TIPOS_KEYWORDS = [
     ("NOM",        ["norma oficial mexicana", "nom-", "proy-nom"]),
@@ -154,6 +169,11 @@ def detect_categoria(dep: str, titulo: str) -> tuple[str, bool]:
     """Returns (categoria, es_relevante)."""
     t = titulo.lower()
 
+    # Exclusión dura: avisos administrativos/religiosos nunca son relevantes,
+    # aunque la dependencia sea core o el título tenga una palabra temática.
+    if NEG_KW.search(titulo):
+        return "general", False
+
     # Dependencias core: siempre relevantes
     if dep in CORE_DEPS:
         return CORE_DEPS[dep], True
@@ -168,8 +188,8 @@ def detect_categoria(dep: str, titulo: str) -> tuple[str, bool]:
     if dep in ("SEGOB", "BANXICO", "EJECUTIVO", "JUDICIAL", "LEGISLATIVO", "OTRO"):
         return "general", False
 
-    # Resto: inferir por palabras clave en el título
-    if re.search(r'agua|ambiental|ecol|residuo|forestal|biodiver', t):
+    # Resto: inferir por palabras clave en el título ("agua" como palabra completa)
+    if AGUA_RX.search(titulo) or re.search(r'ambiental|ecol|residuo|forestal|biodiver', t):
         return "agua_medioambiente", True
     if re.search(r'energ|petrole|gas natural|electric|hidrocarburo', t):
         return "energia", True
