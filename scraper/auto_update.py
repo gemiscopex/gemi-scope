@@ -343,14 +343,7 @@ def main():
     except Exception as e:
         print(f"  ERROR datosgob: {str(e)[:120]}")
 
-    # Gacetas del Congreso (Diputados + Senado + Comisión Permanente)
-    print("\n── Gacetas del Congreso ──")
-    try:
-        sys.path.insert(0, str(Path(__file__).resolve().parent))
-        import scraper_gacetas
-        scraper_gacetas.main()
-    except Exception as e:
-        print(f"  ERROR gacetas: {str(e)[:120]}")
+    # (Las gacetas del Congreso las corre scraper.yml, no aquí, para no duplicar.)
 
     # Corpus de medios estatales (patrón FIAT: WP-API + RSS, filtro ambiental)
     print("\n── Medios estatales ──")
