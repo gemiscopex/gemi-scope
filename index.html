@@ -662,28 +662,35 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   </div>
   <div class="nav-tabs">
     <div class="nav-drop-wrap">
-      <button class="tab-btn" id="nav-regulacion" onclick="showRegulacion('nacional')">Regulación ▾</button>
+      <button class="tab-btn" onclick="goObligaciones('federal')">Obligaciones ▾</button>
       <div class="nav-drop">
-        <div class="nav-drop-it" onclick="showRegulacion('nacional')">Nacional<span class="nd-sub">Leyes federales</span></div>
-        <div class="nav-drop-it" onclick="showRegulacion('estatal')">Estatal<span class="nd-sub">32 entidades</span></div>
-        <div class="nav-drop-it" onclick="showRegulacion('acuerdos')">Internacional<span class="nd-sub">Acuerdos y tratados</span></div>
-        <div class="nav-drop-it" onclick="showRegulacion('congresomx')">Congreso de México<span class="nd-sub">Actividad legislativa</span></div>
-        <div class="nav-drop-sep"></div>
-        <div class="nav-drop-it" onclick="showRegulacion('noms')">NOMs<span class="nd-sub">Normas oficiales</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('instrumentos')">Instrumentos<span class="nd-sub">Planes, REP, registros, distintivos</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('federal')">Normativa Federal<span class="nd-sub">Leyes federales</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('estatal')">Normativa Estatal<span class="nd-sub">32 entidades</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs<span class="nd-sub">Normas oficiales</span></div>
       </div>
     </div>
+    <button class="tab-btn" onclick="showTab('estados',null)">Estados</button>
     <div class="nav-drop-wrap">
-      <button class="tab-btn" onclick="window.open('https://www.dof.gob.mx/','_blank')">DOF ▾</button>
-      <div class="nav-drop dof-drop" id="dof-drop"><div class="nav-drop-lbl">Cargando…</div></div>
+      <button class="tab-btn" onclick="goAgenda('congreso')">Agenda ▾</button>
+      <div class="nav-drop">
+        <div class="nav-drop-it" onclick="goAgenda('congreso')">Congreso de la Unión<span class="nd-sub">Actividad federal</span></div>
+        <div class="nav-drop-it" onclick="goAgenda('locales')">Gacetas Locales<span class="nd-sub">Congresos estatales</span></div>
+        <div class="nav-drop-it" onclick="goAgenda('pendientes')">Reglamentaciones Pendientes<span class="nd-sub">Instrumentos por publicar</span></div>
+        <div class="nav-drop-it" onclick="goAgenda('dof')">DOF · hoy<span class="nd-sub">Diario Oficial</span></div>
+      </div>
     </div>
+    <button class="tab-btn" onclick="goInternacional()">Internacional</button>
     <div class="nav-drop-wrap">
-      <button class="tab-btn" onclick="showActores('federal')">Actores ▾</button>
+      <button class="tab-btn" onclick="showActores('federal')">Interlocutores ▾</button>
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="showActores('federal')">Federal<span class="nd-sub">Gabinete ambiental</span></div>
         <div class="nav-drop-it" onclick="showActores('estatal')">Estatal<span class="nd-sub">Titulares por estado</span></div>
         <div class="nav-drop-it" onclick="showActores('legislativo')">Legislativo<span class="nd-sub">Comisiones del Congreso</span></div>
       </div>
     </div>
+    <!-- dropdown DOF conservado (oculto) para no perder la data del hover; ahora vive en Agenda -->
+    <div class="nav-drop dof-drop" id="dof-drop" style="display:none"></div>
     <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos SCOPE" style="margin-left:auto;margin-right:2px"><span class="radar-fab-dot"></span></button>
   </div>
   <div class="nav-right">
@@ -921,6 +928,28 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <div id="datosgob-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px"></div>
     </div>
   </div>
+</div>
+
+<!-- ═══ ESTADOS · heatmap 32 entidades → expediente (openStatePanel) ═══ -->
+<div id="tab-estados" class="tab-content" style="padding:28px 0">
+  <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Estados</div>
+  <div style="font-size:12px;color:var(--text-muted);margin-bottom:22px">Expediente ambiental por entidad · impuestos verdes, materiales prohibidos, legislación y sector industrial · haz clic en un estado</div>
+  <div id="estados-heatmap"></div>
+  <div id="estados-leyenda" style="display:flex;align-items:center;gap:18px;margin-top:22px;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase"></div>
+</div>
+
+<!-- ═══ OBLIGACIONES · instrumentos que regulan los materiales ═══ -->
+<div id="tab-obligaciones" class="tab-content" style="padding:28px 0">
+  <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Obligaciones</div>
+  <div style="font-size:12px;color:var(--text-muted);margin-bottom:26px">Instrumentos que regulan los materiales de las empresas · cada uno enlaza a la normativa federal, estatal y las NOMs que lo sustentan</div>
+  <div id="obligaciones-body"></div>
+</div>
+
+<!-- ═══ AGENDA · reglamentaciones pendientes + DOF hoy ═══ -->
+<div id="tab-agenda" class="tab-content" style="padding:28px 0">
+  <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Agenda Regulatoria</div>
+  <div style="font-size:12px;color:var(--text-muted);margin-bottom:26px">Lo que está por venir · reglamentaciones pendientes, publicaciones del DOF de hoy y accesos al monitoreo legislativo</div>
+  <div id="agenda-body"></div>
 </div>
 
 <!-- TAB: ACERCA DE -->
@@ -1480,6 +1509,9 @@ function showTab(id,btn){
   if(id==='normas') renderNormas();
   if(id==='radares') buildRadarTrendChart();
   if(id==='consola') renderConsola();
+  if(id==='estados') renderEstadosHeatmap();
+  if(id==='obligaciones') renderObligaciones();
+  if(id==='agenda') renderAgenda();
 }
 function showLegSub(sub,btn){
   document.querySelectorAll('.leg-sub-btn').forEach(function(b){b.classList.remove('active');});
@@ -1493,11 +1525,31 @@ function showLegSub(sub,btn){
 }
 // ── Regulación: entrada desde el mini menú del nav ──
 function showRegulacion(view){
-  var btn=document.getElementById('nav-regulacion');
-  if(view==='noms'){showTab('normas',btn);return;}
-  showTab('legislacion',btn);
+  if(view==='noms'){showTab('normas',null);return;}
+  showTab('legislacion',null);
   showLegSub(['estatal','acuerdos','congresomx'].indexOf(view)>=0?view:'federal',null);
 }
+// ── Cirugía mayor (2026-07-28): 5 categorías nuevas del nav ──────────────
+// Ninguna borra contenido; sólo rerutean a las vistas existentes.
+// Obligaciones ▾ : Instrumentos (nuevo) · Normativa Federal · Normativa Estatal · NOMs
+function goObligaciones(sub){
+  if(sub==='noms'){showTab('normas',null);return;}
+  if(sub==='instrumentos'){showTab('obligaciones',null);return;}
+  showTab('legislacion',null);
+  showLegSub(sub==='estatal'?'estatal':'federal',null);
+}
+// Agenda ▾ : Congreso de la Unión · Gacetas Locales · Reglamentaciones Pendientes · DOF hoy
+function goAgenda(sub){
+  if(sub==='congreso'){showTab('legislacion',null);showLegSub('congresomx',null);return;}
+  if(sub==='locales'){
+    showTab('legislacion',null);showLegSub('estatal',null);
+    setTimeout(function(){var g=document.getElementById('widget-gacetas');if(g)g.scrollIntoView({behavior:'smooth',block:'start'});},150);
+    return;
+  }
+  showTab('agenda',null);renderAgenda(sub||'pendientes');
+}
+// Internacional : acuerdos y tratados (vista existente)
+function goInternacional(){showTab('legislacion',null);showLegSub('acuerdos',null);}
 // ── Acuerdos y tratados internacionales (estatus de México) ──
 var ACUERDOS=[
   {n:'Acuerdo de París',org:'CMNUCC',anio:2015,tema:'Clima',status:'Ratificado 2016',vig:'En vigor',implic:'Marco de las NDC de México; meta de reducción de emisiones actualizada en 2022',url:'https://unfccc.int/es/process-and-meetings/the-paris-agreement/el-acuerdo-de-paris'},
@@ -1636,6 +1688,101 @@ function renderDofMenu(){
     }).join('');
 }
 
+// ═══ CIRUGÍA MAYOR · render de las categorías nuevas ═══════════════════════
+// ── ESTADOS · heatmap de 32 entidades (reusa openStatePanel) ──
+function renderEstadosHeatmap(){
+  var host=document.getElementById('estados-heatmap');if(!host)return;
+  if(!Object.keys(stateScores).length){try{computeScores();}catch(e){}}
+  function edge(sc){if(sc>=70)return'#ef4444';if(sc>=45)return'#f97316';if(sc>=20)return'#10b981';return'#94a3b8';}
+  function tint(sc){if(sc>=70)return'rgba(239,68,68,0.13)';if(sc>=45)return'rgba(249,115,22,0.12)';if(sc>=20)return'rgba(16,185,129,0.11)';return'rgba(148,163,184,0.09)';}
+  var states=Object.keys(estadoData).sort(function(a,b){return a.localeCompare(b,'es');});
+  host.style.display='grid';
+  host.style.gridTemplateColumns='repeat(auto-fill,minmax(158px,1fr))';
+  host.style.gap='8px';
+  host.innerHTML=states.map(function(s){
+    var sc=(stateScores[s]||{}).master||0, rank=(stateScores[s]||{}).rank||'', d=estadoData[s]||{};
+    var nImp=(typeof impuestosDB!=='undefined'&&impuestosDB[s]?impuestosDB[s].length:0);
+    return '<div onclick="openStatePanel(\''+s.replace(/'/g,"\\'")+'\')" title="Abrir expediente de '+s+'" '
+      +'style="cursor:pointer;background:'+tint(sc)+';padding:12px 14px;transition:transform .12s ease" '
+      +'onmouseover="this.style.transform=\'translateX(3px)\'" onmouseout="this.style.transform=\'\'">'
+      +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">#'+rank+(d.region?' · '+d.region:'')+'</div>'
+      +'<div style="font-size:13.5px;font-weight:600;color:var(--text);line-height:1.15;margin-bottom:9px">'+s+'</div>'
+      +'<div style="display:flex;align-items:baseline;gap:6px"><span style="font-family:var(--mono);font-size:21px;font-weight:600;color:'+edge(sc)+'">'+sc+'</span>'
+      +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">índice</span></div>'
+      +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:7px">'+(d.pop?d.pop+' hab · ':'')+nImp+' impuesto'+(nImp===1?'':'s')+'</div>'
+      +'</div>';
+  }).join('');
+  var leg=document.getElementById('estados-leyenda');
+  if(leg)leg.innerHTML='<span>Índice de exposición regulatoria</span>'
+    +[['#94a3b8','Bajo'],['#10b981','Moderado'],['#f97316','Alto'],['#ef4444','Crítico']].map(function(p){
+      return '<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:'+p[0]+';display:inline-block"></span>'+p[1]+'</span>';}).join('');
+}
+// ── OBLIGACIONES · instrumentos que regulan los materiales ──
+var _OBLIGACIONES=[
+  {n:'Plan de Manejo de Residuos',d:'Obligatorio para grandes generadores y para productores de bienes que al desecharse se vuelven residuos de manejo especial. Define acopio, valorización y disposición.',s:'LGPGIR arts. 27–28 · NOM-161-SEMARNAT-2011',via:'federal'},
+  {n:'Responsabilidad Extendida del Productor (REP)',d:'Traslada al productor la responsabilidad sobre el ciclo de vida de sus envases y empaques. Eje de la reforma de economía circular.',s:'Reforma LGPGIR (economía circular) · en proceso',via:'agenda'},
+  {n:'Registro de Emisiones y Transferencia de Contaminantes (RETC)',d:'Inventario nacional de sustancias emitidas o transferidas. Base de datos de cumplimiento ambiental de la instalación.',s:'LGEEPA · Reglamento RETC',via:'federal'},
+  {n:'Cédula de Operación Anual (COA)',d:'Reporte anual multimedios (aire, agua, residuos, RETC) que rinde el establecimiento industrial ante SEMARNAT.',s:'LGEEPA · Reglamento en materia de Registro de Emisiones',via:'federal'},
+  {n:'Distintivos y Certificaciones',d:'Instrumentos voluntarios que acreditan desempeño ambiental: Industria Limpia (PROFEPA), Empresa Socialmente Responsable, certificaciones de economía circular.',s:'Programas PROFEPA · esquemas voluntarios',via:'noms'},
+  {n:'Registro como Generador de Residuos Peligrosos',d:'Alta ante SEMARNAT según volumen (micro, pequeño o gran generador). Condiciona el manifiesto y el transporte de residuos peligrosos.',s:'LGPGIR · NOM-052-SEMARNAT-2005',via:'noms'}
+];
+function renderObligaciones(){
+  var host=document.getElementById('obligaciones-body');if(!host)return;
+  host.innerHTML=_OBLIGACIONES.map(function(o,i){
+    var link=o.via==='agenda'
+      ? '<a onclick="goAgenda(\'pendientes\')" style="cursor:pointer;color:var(--green);text-decoration:none">Reglamentación pendiente →</a>'
+      : '<a onclick="goObligaciones(\''+o.via+'\')" style="cursor:pointer;color:var(--green);text-decoration:none">Ver sustento normativo →</a>';
+    return '<div style="padding:20px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
+      +'<div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px">'
+      +'<span style="font-family:var(--mono);font-size:11px;color:var(--text-muted)">'+String(i+1).padStart(2,'0')+'</span>'
+      +'<span style="font-size:16px;font-weight:600;color:var(--text)">'+o.n+'</span></div>'
+      +'<div style="font-size:13.5px;color:var(--text-sec);line-height:1.6;max-width:760px;margin-bottom:8px">'+o.d+'</div>'
+      +'<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;font-family:var(--mono);font-size:10.5px;color:var(--text-muted)">'
+      +'<span>Sustento · '+o.s+'</span>'+link+'</div>'
+      +'</div>';
+  }).join('');
+}
+// ── AGENDA · reglamentaciones pendientes + DOF hoy + accesos ──
+var _PENDIENTES=[
+  {t:'Reglamento de Economía Circular',e:'PENDIENTE',d:'Instrumento reglamentario de la política de economía circular; detonará obligaciones de REP para envases y empaques.',org:'SEMARNAT / Congreso'},
+  {t:'Reforma a la LGPGIR en materia de REP',e:'EN PROCESO',d:'Adecúa la Ley General para la Prevención y Gestión Integral de los Residuos al esquema de Responsabilidad Extendida del Productor.',org:'Congreso de la Unión'},
+  {t:'Actualización NOM-161-SEMARNAT (residuos de manejo especial)',e:'PROYECTO',d:'Amplía los listados y las obligaciones de plan de manejo para productores.',org:'SEMARNAT / CONAMER'}
+];
+function renderAgenda(view){
+  var host=document.getElementById('agenda-body');if(!host)return;
+  function badge(e){var c=e==='PENDIENTE'?'#ef4444':(e==='EN PROCESO'?'#f97316':'#009E90');
+    return '<span style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.08em;color:'+c+';border:0.8px solid '+c+';padding:2px 7px">'+e+'</span>';}
+  var pend='<div style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px">Reglamentaciones pendientes</div>'
+    +_PENDIENTES.map(function(p,i){
+      return '<div style="padding:16px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
+        +'<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px">'+badge(p.e)
+        +'<span style="font-size:15px;font-weight:600;color:var(--text)">'+p.t+'</span></div>'
+        +'<div style="font-size:13px;color:var(--text-sec);line-height:1.55;max-width:760px;margin-bottom:5px">'+p.d+'</div>'
+        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+p.org+'</div>'
+        +'</div>';
+    }).join('');
+  // DOF hoy (reusa _dofData)
+  var items=(_dofData||[]).slice().sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
+  var hoy=new Date().toLocaleDateString('es-MX',{timeZone:'America/Mexico_City'});
+  var deHoy=items.filter(function(d){return new Date(d.fecha).toLocaleDateString('es-MX',{timeZone:'America/Mexico_City'})===hoy;});
+  var lista=(deHoy.length?deHoy:items).slice(0,8);
+  var dof='<div id="agenda-dof" style="margin-top:40px"><div style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px">'
+    +(deHoy.length?'DOF · publicado hoy':'DOF · últimas publicaciones de nuestros temas')+'</div>'
+    +(lista.length?lista.map(function(d,i){
+      var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+      return '<div onclick="window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/\x27/g,'%27')+'\',\'_blank\')" style="cursor:pointer;padding:13px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
+        +'<div style="font-size:13.5px;color:var(--text);line-height:1.5;margin-bottom:4px">'+(d.titulo||'')+'</div>'
+        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+(d.dependencia||'DOF')+' · '+f+(d.relevante?' · <span style="color:var(--green)">RELEVANTE</span>':'')+'</div>'
+        +'</div>';
+    }).join(''):'<div style="font-size:13px;color:var(--text-muted)">Sin publicaciones recientes en nuestros temas.</div>')+'</div>';
+  // accesos al monitoreo legislativo
+  var acc='<div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:14px 32px">'
+    +'<a onclick="goAgenda(\'congreso\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-size:13.5px;font-weight:600">Congreso de la Unión →</a>'
+    +'<a onclick="goAgenda(\'locales\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-size:13.5px;font-weight:600">Gacetas de los congresos locales →</a>'
+    +'</div>';
+  host.innerHTML=pend+dof+acc;
+  if(view==='dof'){var el=document.getElementById('agenda-dof');if(el)setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},120);}
+}
 // ── NORMAS ────────────────────────────────────────────────────
 var NORMAS=[
   {id:'NOM-127-SSA1-2021',dep:'SSA',tema:'Agua',tipo:'NOM',objeto:'Calidad de agua para consumo humano',implic:'Base para discusión de agua regenerada y crisis hídrica',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=2063863'},
