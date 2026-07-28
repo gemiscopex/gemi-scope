@@ -298,7 +298,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .sp-sub{font-size:12px;color:var(--text-muted);margin-left:10px;vertical-align:middle}
 .sp-close{background:none;border:1px solid var(--border-med);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text-sec);font-family:var(--sans);transition:background 0.15s}
 .sp-close:hover{background:var(--green-tint)}
-.sp-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px;overflow-x:auto;gap:0}
+.sp-tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--border);margin-bottom:20px;gap:0 2px;row-gap:0}
 .sp-tab{background:none;border:none;border-bottom:2px solid transparent;padding:10px 14px;font-size:12.5px;font-weight:500;letter-spacing:0.01em;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color 0.15s;font-family:var(--sans)}
 .sp-tab.active{color:var(--green);border-bottom-color:var(--green)}
 .sp-content{display:none}
@@ -477,7 +477,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .csp-run-wrap{overflow:hidden}
 .csp-run{display:inline-flex;white-space:nowrap;will-change:transform;animation:chyronMove var(--d,60s) linear infinite}
 .csp-run-wrap:hover .csp-run{animation-play-state:paused}
-.csp-q{font-size:11.5px;color:var(--text2);font-style:italic;cursor:pointer}
+.csp-q{font-family:var(--mono);font-size:11px;color:var(--text2);font-style:normal;cursor:pointer}
+.csp-q strong{font-weight:600;color:var(--text)}
 .csp-q:hover{color:var(--green)}
 .csp-sep{color:var(--text3);padding:0 26px;font-size:8px;vertical-align:middle}
 /* ═══════════ MI CONSOLA ═══════════ */
@@ -655,10 +656,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   <div class="nav-left">
     <img src="assets/logo-gemi.jpeg" class="nav-logo-img" alt="GEMI">
     <div class="nav-logo-sep"></div>
-    <span class="nav-logo" style="cursor:pointer" onclick="showTab('dashboard',document.querySelector('.tab-btn[onclick*=dashboard]'))">SCOPE</span>
+    <span class="nav-logo" style="cursor:pointer" onclick="showTab('dashboard',null)" title="Inicio">SCOPE</span>
   </div>
   <div class="nav-tabs">
-    <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
     <div class="nav-drop-wrap">
       <button class="tab-btn" id="nav-regulacion" onclick="showRegulacion('nacional')">Regulación ▾</button>
       <div class="nav-drop">
@@ -675,6 +675,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <div class="nav-drop dof-drop" id="dof-drop"><div class="nav-drop-lbl">Cargando…</div></div>
     </div>
     <button class="tab-btn" onclick="showTab('congreso',this)">Actores</button>
+    <button class="tab-btn" onclick="showTab('consola',this)" style="color:var(--green)">◆ Mi Consola</button>
     <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos SCOPE"><span class="radar-fab-dot"></span></button>
   </div>
   <div class="nav-right">
@@ -829,16 +830,30 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   <!-- TAB: ACTORES -->
   <div id="tab-congreso" class="tab-content" style="padding:28px 0">
     <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Actores</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px">Quién decide en la agenda ambiental: gabinete federal, titulares estatales y comisiones del Congreso · LXVI Legislatura</div>
-    <div class="card-label">Gabinete Ambiental Federal</div>
-    <div id="actores-federal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px 24px;margin-bottom:36px"></div>
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-      <div class="card-label" style="margin-bottom:0">Titulares Estatales · Medio Ambiente y Economía</div>
-      <input id="actores-est-search" placeholder="Filtrar estado…" oninput="renderActoresEstatales()" style="font-size:11.5px;padding:5px 10px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);outline:none;width:150px;font-family:var(--sans)">
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Quién decide en la agenda ambiental · LXVI Legislatura</div>
+    <div class="leg-sub-bar">
+      <button class="leg-sub-btn active" id="act-sub-federal" onclick="showActoresSub('federal',this)">Federal</button>
+      <button class="leg-sub-btn" id="act-sub-estatal" onclick="showActoresSub('estatal',this)">Estatal</button>
+      <button class="leg-sub-btn" id="act-sub-legislativo" onclick="showActoresSub('legislativo',this)">Legislativo</button>
     </div>
-    <div id="actores-estatales" style="margin:10px 0 36px"></div>
-    <div class="card-label">Comisiones del Congreso</div>
-    <div id="comisiones-list" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
+    <!-- Federal: gabinete ambiental -->
+    <div id="actores-view-federal">
+      <div class="card-label">Gabinete Ambiental Federal</div>
+      <div id="actores-federal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px 24px"></div>
+    </div>
+    <!-- Estatal: titulares por estado -->
+    <div id="actores-view-estatal" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+        <div class="card-label" style="margin-bottom:0">Titulares Estatales · Medio Ambiente y Economía</div>
+        <input id="actores-est-search" placeholder="Filtrar estado…" oninput="renderActoresEstatales()" style="font-size:11.5px;padding:5px 10px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);outline:none;width:150px;font-family:var(--sans)">
+      </div>
+      <div id="actores-estatales" style="margin-top:10px"></div>
+    </div>
+    <!-- Legislativo: comisiones del Congreso -->
+    <div id="actores-view-legislativo" style="display:none">
+      <div class="card-label">Comisiones del Congreso</div>
+      <div id="comisiones-list" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
+    </div>
   </div>
 
 
@@ -1207,6 +1222,14 @@ function selectLeyesEstado(nombre){
 }
 /* ── Presidencia / Sheinbaum: cintillo tipo noticiero ── */
 let presData=[];
+var _CSP_KW=['medio ambiente','cambio climático','economía circular','economia circular','desarrollo sustentable','sostenibilidad','sustentabilidad','contaminación','contaminacion','deforestación','biodiversidad','reforestación','economía circular','energía','energia','renovable','residuos','reciclaje','sargazo','sequía','sequia','emisiones','carbono','plástico','plastico','forestal','ambiental','agua','clima','SEMARNAT','Semarnat','CONAGUA','Conagua','PROFEPA','Profepa','CONAFOR','Pemex','PEMEX','CFE'];
+function _escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function _cspBold(text){
+  var s=_escHtml(text);
+  var kws=_CSP_KW.slice().sort(function(a,b){return b.length-a.length;}).map(function(k){return k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');});
+  try{ s=s.replace(new RegExp('('+kws.join('|')+')','gi'),'<strong>$1</strong>'); }catch(e){}
+  return s;
+}
 function loadPresidencia(){
   fetch('data/presidencia.json').then(r=>r.ok?r.json():null).then(d=>{
     const el=document.getElementById('csp-chyron');
@@ -1223,7 +1246,7 @@ function loadPresidencia(){
       const f=a.fecha?new Date(a.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
       const url=(a.url||'#').replace(/'/g,'%27');
       const qs=(a.fragmentos||[]).slice(0,6).map(fr=>{let s=fr.replace(/\s+/g,' ').trim();return s.length>150?s.slice(0,148)+'…':s;});
-      const run=qs.map(s=>'<span class="csp-q" onclick="window.open(\''+url+'\',\'_blank\')">“'+s+'”</span>').join('<span class="csp-sep">●</span>');
+      const run=qs.map(s=>'<span class="csp-q" onclick="window.open(\''+url+'\',\'_blank\')">“'+_cspBold(s)+'”</span>').join('<span class="csp-sep">●</span>');
       const seq=run+'<span class="csp-sep">●</span>';
       nodes+='<div class="csp-node'+(idx===0?' csp-latest':'')+'"><div class="csp-node-date">'+f+'</div>'
         +'<div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" id="cspr-'+idx+'">'+seq+seq+'</div></div></div></div>';
@@ -1515,6 +1538,15 @@ function renderActoresFederal(){
       +'<span style="font-size:11px;color:var(--text-sec)">'+a.cargo+' · '+a.dep+'</span>'
       +'</a>';
   }).join('');
+}
+// Mini menú de Actores: Federal · Estatal · Legislativo
+function showActoresSub(view,btn){
+  document.querySelectorAll('#tab-congreso .leg-sub-btn').forEach(function(b){b.classList.remove('active');});
+  (btn||document.getElementById('act-sub-'+view)||{classList:{add:function(){}}}).classList.add('active');
+  document.getElementById('actores-view-federal').style.display=view==='federal'?'':'none';
+  document.getElementById('actores-view-estatal').style.display=view==='estatal'?'':'none';
+  document.getElementById('actores-view-legislativo').style.display=view==='legislativo'?'':'none';
+  if(view==='estatal')renderActoresEstatales();
 }
 // ── Titulares estatales (medio ambiente + economía) ──
 var _actoresEstatales=null;
