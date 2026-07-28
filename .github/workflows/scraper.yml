@@ -2,12 +2,13 @@ name: SCOPE - Scraper Legislativo Diario
 
 on:
   schedule:
-    # 8:00 AM hora Mexico (CDMX = UTC-6  =>  14:00 UTC)
-    - cron: "0 14 * * 1-5"
-    # 12:00 PM hora Mexico (CDMX = UTC-6  =>  18:00 UTC)
-    - cron: "0 18 * * 1-5"
-    # 2:30 PM hora Mexico (CDMX = UTC-6  =>  20:30 UTC)
-    - cron: "30 20 * * 1-5"
+    # TODOS los días. 04:30 CDMX (10:30 UTC) — listo antes de las 7 AM con buffer
+    # para los retrasos del cron de GitHub Actions + el runtime de los scrapers.
+    - cron: "30 10 * * *"
+    # 12:00 PM CDMX (18:00 UTC)
+    - cron: "0 18 * * *"
+    # 4:00 PM CDMX (22:00 UTC)
+    - cron: "0 22 * * *"
   workflow_dispatch:
 
 permissions:
