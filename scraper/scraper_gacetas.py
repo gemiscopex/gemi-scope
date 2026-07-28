@@ -518,7 +518,7 @@ def _parse_senado_gaceta(gaceta_url: str, fecha_str: str) -> list:
                 if doc_id in seen_ids or not is_relevant(titulo) or not es_instrumento(titulo):
                     continue
                 seen_ids.add(doc_id)
-                full_url = SENADO_BASE + link["href"]
+                _href = link["href"]; full_url = _href if _href.startswith("http") else SENADO_BASE + _href
                 items.append({
                     "titulo":    titulo[:400],
                     "tipo":      tipo,
@@ -540,7 +540,7 @@ def _parse_senado_gaceta(gaceta_url: str, fecha_str: str) -> list:
         if not is_relevant(titulo) or not es_instrumento(titulo):
             continue
         seen_ids.add(doc_id)
-        full_url = SENADO_BASE + link["href"]
+        _href = link["href"]; full_url = _href if _href.startswith("http") else SENADO_BASE + _href
         items.append({
             "titulo":    titulo[:400],
             "tipo":      detect_tipo(titulo),
