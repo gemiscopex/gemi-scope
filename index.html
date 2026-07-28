@@ -1761,8 +1761,8 @@ function renderAgenda(view){
         +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+p.org+'</div>'
         +'</div>';
     }).join('');
-  // DOF hoy (reusa _dofData)
-  var items=(_dofData||[]).slice().sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
+  // DOF hoy (reusa _dofData) — solo publicaciones relevantes a nuestros temas
+  var items=(_dofData||[]).filter(function(d){return d.relevante;}).slice().sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
   var hoy=new Date().toLocaleDateString('es-MX',{timeZone:'America/Mexico_City'});
   var deHoy=items.filter(function(d){return new Date(d.fecha).toLocaleDateString('es-MX',{timeZone:'America/Mexico_City'})===hoy;});
   var lista=(deHoy.length?deHoy:items).slice(0,8);
