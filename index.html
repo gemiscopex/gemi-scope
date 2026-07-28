@@ -481,6 +481,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .csp-q strong{font-weight:600;color:var(--text)}
 .csp-q:hover{color:var(--green)}
 .csp-sep{color:var(--text3);padding:0 26px;font-size:8px;vertical-align:middle}
+.cong-inst{padding:7px 2px;border-bottom:0.8px solid rgba(0,0,0,0.05)}
+.cong-inst:hover{background:rgba(0,158,144,0.05)}
 /* ═══════════ MI CONSOLA ═══════════ */
 .cons-hero{max-width:600px;margin:40px auto;text-align:center;padding:52px 44px}
 .cons-hero-t{font-family:var(--mono);font-size:11px;letter-spacing:0.25em;color:var(--green);margin-bottom:14px}
@@ -675,8 +677,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <div class="nav-drop dof-drop" id="dof-drop"><div class="nav-drop-lbl">Cargando…</div></div>
     </div>
     <button class="tab-btn" onclick="showTab('congreso',this)">Actores</button>
-    <button class="tab-btn" onclick="showTab('consola',this)" style="color:var(--green)">◆ Mi Consola</button>
-    <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos SCOPE"><span class="radar-fab-dot"></span></button>
+    <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos SCOPE" style="margin-left:auto;margin-right:2px"><span class="radar-fab-dot"></span></button>
   </div>
   <div class="nav-right">
     <div class="search-wrap">
@@ -743,9 +744,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
             <button onclick="mapZoom(-1)" title="Alejar">−</button>
           </div>
         </div>
-        <!-- Congreso de la Unión: gráfica indicador (detalle en Regulación → Congreso de México) -->
-        <div class="card" style="cursor:pointer" onclick="showRegulacion('congresomx')" title="Ver detalle en Congreso de México">
-          <div class="card-label">Actividad Legislativa · Congreso de la Unión <span style="color:var(--green)">↗</span></div>
+        <!-- Congreso de la Unión: gráfica indicador (clic en una semana → instrumentos) -->
+        <div class="card">
+          <div class="card-label">Actividad Legislativa · Congreso de la Unión</div>
           <div id="congreso-chart"></div>
         </div>
 
@@ -2573,7 +2574,7 @@ function renderCongresoChart(){
     xlab+='<text x="'+X(i2).toFixed(1)+'" y="'+(H-6)+'" text-anchor="middle" font-size="8" fill="var(--text-muted)" font-family="var(--mono)">'+wd.getDate()+' '+_CONG_MES[wd.getMonth()]+'</text>';}
   var band=IW/(NSEM-1),hov='';
   for(var i3=0;i3<NSEM;i3++)
-    hov+='<rect x="'+(X(i3)-band/2).toFixed(1)+'" y="'+PT+'" width="'+band.toFixed(1)+'" height="'+IH+'" fill="transparent" style="cursor:pointer" onmousemove="_congHover(event,'+i3+')" onmouseleave="_congHoverHide()"/>';
+    hov+='<rect x="'+(X(i3)-band/2).toFixed(1)+'" y="'+PT+'" width="'+band.toFixed(1)+'" height="'+IH+'" fill="transparent" style="cursor:pointer" onmousemove="_congHover(event,'+i3+')" onmouseleave="_congHoverHide()" onclick="_congOpen(event,'+i3+')"/>';
   var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
     +'<line x1="'+PL+'" y1="'+(PT+IH)+'" x2="'+(W-PR)+'" y2="'+(PT+IH)+'" stroke="var(--border)" stroke-width="1"/>'
     +'<path d="'+pathD+'" fill="none" stroke="var(--green)" stroke-width="1.6"/>'
@@ -2582,8 +2583,10 @@ function renderCongresoChart(){
   var leyenda='<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:10px;color:var(--text-sec)">'
     +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:var(--green);display:inline-block"></span>Diputados</span>'
     +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:#E8843D;display:inline-block"></span>Senado</span>'
-    +'<span style="margin-left:auto;font-family:var(--mono);font-size:9px;color:#E8843D">● Comisión Permanente · ordinario 1 sep</span>'
-    +'</div>';
+    +'<span style="font-family:var(--mono);font-size:9px;color:#E8843D">● Comisión Permanente</span>'
+    +'<span style="margin-left:auto;color:var(--green);cursor:pointer;font-weight:600" onclick="showRegulacion(\'congresomx\')">Ver todo →</span>'
+    +'</div>'
+    +'<div style="font-size:9.5px;color:var(--text-muted);margin-top:3px">Haz clic en una semana para ver y abrir los instrumentos</div>';
   host.innerHTML=svg+leyenda;
 }
 function _congTT(){
@@ -2614,6 +2617,57 @@ function _congHover(ev,wi){
   tt.style.top=Math.min(ev.clientY+14,window.innerHeight-160)+'px';
 }
 function _congHoverHide(){var el=document.getElementById('cong-tt');if(el)el.style.display='none';}
+// Panel fijo e interactivo: dos columnas (Diputados | Senado) con instrumentos clicables
+function _congPanelEl(){
+  var el=document.getElementById('cong-panel');
+  if(!el){el=document.createElement('div');el.id='cong-panel';
+    el.style.cssText='position:fixed;z-index:2100;background:#fff;border:1px solid rgba(0,0,0,0.16);box-shadow:0 12px 40px rgba(0,0,0,0.22);width:560px;max-width:calc(100vw - 24px);max-height:70vh;display:none;overflow:hidden';
+    document.body.appendChild(el);
+    document.addEventListener('mousedown',function(e){var p=document.getElementById('cong-panel');if(p&&p.style.display==='block'&&!p.contains(e.target)&&!(e.target.closest&&e.target.closest('#congreso-chart')))_congPanelClose();});
+  }
+  return el;
+}
+function _congPanelClose(){var el=document.getElementById('cong-panel');if(el)el.style.display='none';}
+function _congColHTML(items,color,label){
+  var rows=items.map(function(it){
+    var t=_congAsunto(it);
+    var autor=_congAutor(it);
+    var url=(it.url||'').replace(/'/g,'%27');
+    var open=url?'onclick="window.open(\''+url+'\',\'_blank\')" style="cursor:pointer"':'style="cursor:default"';
+    return '<div '+open+' class="cong-inst" title="'+(it.titulo||'').replace(/"/g,'&quot;')+'">'
+      +'<div style="font-size:11.5px;color:var(--text);line-height:1.4">'+t+(url?' <span style="color:'+color+'">↗</span>':'')+'</div>'
+      +(autor?'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px">'+autor+'</div>':'')
+      +'</div>';
+  }).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:10px 0">Sin instrumentos esta semana</div>';
+  return '<div style="flex:1;min-width:0">'
+    +'<div style="font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:'+color+';padding-bottom:6px;border-bottom:1.5px solid '+color+';margin-bottom:4px">'+label+' ('+items.length+')</div>'
+    +'<div style="max-height:calc(70vh - 90px);overflow-y:auto">'+rows+'</div>'
+    +'</div>';
+}
+function _congOpen(ev,wi){
+  if(!_congChart)return;
+  _congHoverHide();
+  var w=_congChart.weeks[wi];
+  var wd=new Date(_congChart.monday0.getTime()+wi*7*86400000);
+  var we=new Date(wd.getTime()+6*86400000);
+  var rango=wd.getDate()+'–'+we.getDate()+' '+_CONG_MES[we.getMonth()];
+  var dipItems=w.items.filter(function(it){return it.camara!=='SEN';});
+  var senItems=w.items.filter(function(it){return it.camara==='SEN';});
+  var el=_congPanelEl();
+  el.innerHTML='<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:0.8px solid var(--border)">'
+      +'<span style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">Semana '+rango+' · '+w.items.length+' instrumentos</span>'
+      +'<span onclick="_congPanelClose()" style="cursor:pointer;color:var(--text-muted);font-size:18px;line-height:1;padding:0 4px">×</span>'
+    +'</div>'
+    +'<div style="display:flex;gap:22px;padding:14px 16px;overflow:hidden">'
+      +_congColHTML(dipItems,'var(--green)','Diputados')
+      +_congColHTML(senItems,'#E8843D','Senado')
+    +'</div>';
+  el.style.display='block';
+  // Posiciona cerca del clic, dentro del viewport
+  var pw=Math.min(560,window.innerWidth-24),ph=el.offsetHeight||360;
+  el.style.left=Math.max(12,Math.min(ev.clientX-pw/2,window.innerWidth-pw-12))+'px';
+  el.style.top=Math.max(12,Math.min(ev.clientY+16,window.innerHeight-ph-12))+'px';
+}
 var _congPanel='ini',_congExpanded=false;
 function _toggleCongreso(){_congExpanded=!_congExpanded;_renderCongreso(_congPanel);}
 function _renderCongreso(panel){
