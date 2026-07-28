@@ -118,9 +118,39 @@ def make_id(text: str) -> str:
     return hashlib.md5(text.encode("utf-8", errors="replace")).hexdigest()[:12]
 
 
-def is_relevant(titulo: str) -> bool:
-    t = titulo.lower()
-    return any(k in t for k in ENV_KW)
+# (Se conserva la is_relevant estricta de arriba: STRONG_KW o 2+ WEAK_KW, con
+#  exclusiones. La versión laxa anterior sobre-capturaba oficios de finanzas, etc.)
+
+# Solo cuenta como INSTRUMENTO legislativo real (no oficios/actas/convocatorias)
+_INSTR_RX = re.compile(
+    r"iniciativa|punto de acuerdo|proposici[oó]n con punto|proyecto de decreto|"
+    r"que reforma|que adiciona|que expide|que abroga|que deroga|dictamen",
+    re.I,
+)
+_NO_INSTR_RX = re.compile(
+    r"convocatoria|orden del d[ií]a|acta de la sesi|minuto de silencio|"
+    r"ef[ei]m[eé]ride|intervenci[oó]n de|^\s*oficio\b|^\s*comunicaci|^\s*informe\b|"
+    r"^\s*nombramiento|^\s*licencia\b|^\s*ef[ei]m[eé]ride",
+    re.I,
+)
+
+def es_instrumento(titulo: str) -> bool:
+    """True solo para instrumentos legislativos (excluye oficios, actas, convocatorias)."""
+    t = " ".join((titulo or "").split())
+    if _NO_INSTR_RX.search(t):
+        return False
+    return bool(_INSTR_RX.search(t))
+
+_DIP_RX = re.compile(r"\b(dip\.|diputad[oa])", re.I)
+_SEN_RX = re.compile(r"\b(sen\.|senador[a]?)", re.I)
+
+def camara_de(titulo: str) -> str:
+    """DIP o SEN según la primera referencia al autor (la Permanente trae ambas)."""
+    md = _DIP_RX.search(titulo or "")
+    ms = _SEN_RX.search(titulo or "")
+    if md and (not ms or md.start() < ms.start()):
+        return "DIP"
+    return "SEN"
 
 
 def detect_cat(titulo: str) -> str:
@@ -420,19 +450,23 @@ def _gacetas_del_mes(anio: int, mes: int) -> list:
         print(f"  [Senado cal] ERR {anio}-{mes:02d}: {e}")
         return []
 
-    # Response contains hrefs like: gaceta_del_senado/2026_04_15/12345
+    # Captura AMBAS: gaceta ordinaria y Comisión Permanente (esta última es la
+    # que tiene actividad durante el receso). Ej:
+    #   gaceta_del_senado/2026_04_15/12345
+    #   gaceta_comision_permanente/2026_07_08/3867
     matches = re.findall(
-        r"gaceta_del_senado/(\d{4})_(\d{2})_(\d{2})/(\d+)",
+        r"(gaceta_del_senado|gaceta_comision_permanente)/(\d{4})_(\d{2})_(\d{2})/(\d+)",
         r.text,
     )
     results = []
     seen_ids: set = set()
-    for y, m, d, gid in matches:
-        if gid in seen_ids:
+    for tipo_g, y, m, d, gid in matches:
+        key = f"{tipo_g}:{gid}"
+        if key in seen_ids:
             continue
-        seen_ids.add(gid)
+        seen_ids.add(key)
         fecha = f"{y}-{m}-{d}"
-        url   = f"{SENADO_BASE}/66/gaceta_del_senado/{y}_{m}_{d}/{gid}"
+        url   = f"{SENADO_BASE}/66/{tipo_g}/{y}_{m}_{d}/{gid}"
         results.append((fecha, gid, url))
     return results
 
@@ -478,10 +512,10 @@ def _parse_senado_gaceta(gaceta_url: str, fecha_str: str) -> list:
                 continue
             chunk = BeautifulSoup(html_str[ini:fin], "html.parser")
             tipo  = detect_tipo(sec["tipo_raw"])
-            for link in chunk.find_all("a", href=re.compile(r"/gaceta_del_senado/documento/\d+")):
+            for link in chunk.find_all("a", href=re.compile(r"/(?:gaceta_del_senado|gaceta_comision_permanente)/documento/\d+")):
                 doc_id  = re.search(r"documento/(\d+)", link["href"]).group(1)
                 titulo  = link.get_text(" ", strip=True)
-                if doc_id in seen_ids or not is_relevant(titulo):
+                if doc_id in seen_ids or not is_relevant(titulo) or not es_instrumento(titulo):
                     continue
                 seen_ids.add(doc_id)
                 full_url = SENADO_BASE + link["href"]
@@ -498,12 +532,12 @@ def _parse_senado_gaceta(gaceta_url: str, fecha_str: str) -> list:
 
     # ── Strategy 2 (fallback / supplement): all documento links ───────────
     # Also catches pages without sumario div (most current gacetas)
-    for link in soup.find_all("a", href=re.compile(r"/gaceta_del_senado/documento/\d+")):
+    for link in soup.find_all("a", href=re.compile(r"/(?:gaceta_del_senado|gaceta_comision_permanente)/documento/\d+")):
         doc_id  = re.search(r"documento/(\d+)", link["href"]).group(1)
         titulo  = link.get_text(" ", strip=True)
         if doc_id in seen_ids:
             continue
-        if not is_relevant(titulo):
+        if not is_relevant(titulo) or not es_instrumento(titulo):
             continue
         seen_ids.add(doc_id)
         full_url = SENADO_BASE + link["href"]
@@ -518,6 +552,9 @@ def _parse_senado_gaceta(gaceta_url: str, fecha_str: str) -> list:
             "id":        make_id(full_url),
         })
 
+    # Etiqueta la cámara del autor (para repartir los items de la Permanente)
+    for it in items:
+        it["camara"] = camara_de(it["titulo"])
     return items
 
 
@@ -659,7 +696,14 @@ def main():
     print(f"[START] scraper_gacetas.py — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
     new_diputados = scrape_diputados(days=30, max_items=100)
-    new_senado    = scrape_senado(max_items=100)
+    new_senado    = scrape_senado(max_items=160)
+
+    # La Comisión Permanente trae iniciativas de diputados Y senadores;
+    # se reparten a la cámara correcta según el autor.
+    perm_dip   = [it for it in new_senado if it.get("camara") == "DIP"]
+    new_senado = [it for it in new_senado if it.get("camara") != "DIP"]
+    new_diputados = new_diputados + perm_dip
+    print(f"\n  Reparto Permanente → Diputados: +{len(perm_dip)} · Senado: {len(new_senado)}")
 
     merge_and_save(new_diputados, new_senado)
 
