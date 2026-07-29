@@ -138,6 +138,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .dot-state{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;z-index:2}
 .dot-state:hover .dot-abbr{color:var(--white)}
 .dot-abbr{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:0.03em;transition:color 0.15s}
+.ocean-lbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:#aec3d1;pointer-events:none;white-space:nowrap;z-index:1;font-style:italic}
 #dotmap-annot{position:absolute;inset:0;pointer-events:none;z-index:1}
 @keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(220,38,38,.4)}70%{box-shadow:0 0 0 14px rgba(220,38,38,0)}100%{box-shadow:0 0 0 0 rgba(220,38,38,0)}}
 @keyframes pulseRing{0%{transform:scale(0.5);opacity:0.65}100%{transform:scale(2.3);opacity:0}}
@@ -1382,7 +1383,7 @@ function _applyMapZoom(animate){
   vp.style.cursor=_mapZoom>1?'grab':'';
 }
 function mapZoom(delta){
-  var steps=[1,1.5,2,3];
+  var steps=[1,1.5,2,3,4,5];
   var i=steps.indexOf(_mapZoom);if(i<0)i=0;
   i=Math.max(0,Math.min(steps.length-1,i+delta));
   _mapZoom=steps[i];
@@ -1492,6 +1493,10 @@ function buildMap(){
       +' onmousemove="_mapTT(event,\''+nameEsc+'\')" onmouseleave="_mapTTHide()">'
       +'<div style="width:8px;height:8px;border-radius:50%;background:var(--green);border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)"></div>'
       +'<span class="dot-abbr">'+abbr+'</span></div>';
+  });
+  // Nombres de los océanos y mares que rodean a México
+  [{t:'Océano Pacífico',x:17,y:82},{t:'Golfo de México',x:70,y:26},{t:'Mar Caribe',x:86,y:64}].forEach(function(o){
+    html+='<div class="ocean-lbl" style="left:'+o.x+'%;top:'+o.y+'%">'+o.t+'</div>';
   });
   el.innerHTML=html;
   var lg=document.getElementById('dotmap-legend');
