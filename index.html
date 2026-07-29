@@ -1833,6 +1833,62 @@ function _toggleNomDetail(uid){
   var arr=document.getElementById(uid+'-arr');
   if(arr)arr.style.transform=open?'':'rotate(90deg)';
 }
+// ── Comentarios de NOMs · backend: Google Apps Script → Google Sheet ──────────
+// Cuando el Web App esté desplegado, pega aquí su URL /exec (termina en /exec):
+var SCOPE_COMMENTS_ENDPOINT = '';
+var _nomCommentCounts = {};
+function _esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function _cntTxt(id){var n=_nomCommentCounts[id]||0;return n===1?'1 comentario':n+' comentarios';}
+function loadNomCommentCounts(){
+  if(!SCOPE_COMMENTS_ENDPOINT)return;
+  fetch(SCOPE_COMMENTS_ENDPOINT+'?action=counts',{cache:'no-store'})
+    .then(function(r){return r.json();})
+    .then(function(d){_nomCommentCounts=d||{};document.querySelectorAll('[data-nomcnt]').forEach(function(el){el.textContent=_cntTxt(el.getAttribute('data-nomcnt'));});})
+    .catch(function(){});
+}
+function submitNomComment(nomId,uid){
+  var box=document.getElementById(uid+'-cform');if(!box)return;
+  var nombre=(box.querySelector('.cf-nom').value||'').trim();
+  var email=(box.querySelector('.cf-mail').value||'').trim();
+  var texto=(box.querySelector('.cf-txt').value||'').trim();
+  var msg=box.querySelector('.cf-msg');
+  if(texto.length<3){msg.style.color='#ef4444';msg.textContent='Escribe tu comentario.';return;}
+  // Sin backend configurado todavía: fallback a correo de SCOPE
+  if(!SCOPE_COMMENTS_ENDPOINT){
+    window.location.href='mailto:gemiscopex@gmail.com?subject='+encodeURIComponent('Comentario · '+nomId)
+      +'&body='+encodeURIComponent((nombre?'Nombre: '+nombre+'\n':'')+(email?'Correo: '+email+'\n':'')+'\n'+texto);
+    msg.style.color='var(--text-muted)';msg.textContent='Se abrió tu correo para enviarlo a SCOPE.';
+    return;
+  }
+  var btn=box.querySelector('.cf-send');btn.disabled=true;btn.textContent='Enviando…';
+  var body=new URLSearchParams({action:'add',nom:nomId,nombre:nombre,email:email,comentario:texto});
+  fetch(SCOPE_COMMENTS_ENDPOINT,{method:'POST',body:body})
+    .then(function(r){return r.json();})
+    .then(function(){
+      msg.style.color='var(--green)';msg.textContent='¡Gracias! Tu comentario se registró.';
+      box.querySelector('.cf-txt').value='';
+      _nomCommentCounts[nomId]=(_nomCommentCounts[nomId]||0)+1;
+      document.querySelectorAll('[data-nomcnt="'+nomId+'"]').forEach(function(el){el.textContent=_cntTxt(nomId);});
+    })
+    .catch(function(){msg.style.color='#ef4444';msg.textContent='No se pudo enviar. Intenta de nuevo.';})
+    .finally(function(){btn.disabled=false;btn.textContent='Enviar comentario';});
+}
+function _nomCommentsHTML(n,uid){
+  return '<div style="margin-top:16px;border-top:0.8px solid var(--border);padding-top:14px">'
+    +'<div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:9px">Comentarios · <span data-nomcnt="'+_esc(n.id)+'">'+_cntTxt(n.id)+'</span></div>'
+    +'<div id="'+uid+'-cform">'
+      +'<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:8px;max-width:760px">'
+        +'<input class="cf-nom" placeholder="Nombre (opcional)" style="flex:1;min-width:150px;border:none;border-bottom:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12.5px;padding:5px 0;color:var(--text)">'
+        +'<input class="cf-mail" placeholder="Correo (opcional)" style="flex:1;min-width:150px;border:none;border-bottom:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12.5px;padding:5px 0;color:var(--text)">'
+      +'</div>'
+      +'<textarea class="cf-txt" rows="3" placeholder="Escribe tu comentario sobre esta norma…" style="width:100%;max-width:760px;box-sizing:border-box;border:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12.5px;line-height:1.5;padding:8px 10px;color:var(--text);resize:vertical"></textarea>'
+      +'<div style="display:flex;align-items:center;gap:14px;margin-top:8px">'
+        +'<button class="cf-send" onclick="submitNomComment(\''+_esc(n.id)+'\',\''+uid+'\')" style="font-family:var(--sans);font-size:12px;font-weight:600;color:#fff;background:var(--green);border:none;padding:7px 16px;cursor:pointer;border-radius:2px">Enviar comentario</button>'
+        +'<span class="cf-msg" style="font-size:11.5px"></span>'
+      +'</div>'
+    +'</div>'
+  +'</div>';
+}
 function renderNormas(){
   var el=document.getElementById('normas-list');
   if(!el)return;
@@ -1869,6 +1925,7 @@ function renderNormas(){
           +'<div style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green)">'+n.id+(isProy?' <span style="font-size:8.5px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted)">· PROYECTO</span>':'')+'</div>'
           +'<div style="font-size:12.5px;color:var(--text);font-weight:500;margin-top:4px">'+n.objeto+'</div>'
           +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.4">'+n.implic+'</div>'
+          +'<div data-nomcnt="'+_esc(n.id)+'" style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:5px">'+_cntTxt(n.id)+'</div>'
         +'</div>'
         +'<span style="font-size:9px;color:var(--text-muted);flex-shrink:0;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px">'+n.dep+'</span>'
         +'<a href="'+n.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;font-weight:600;color:var(--green);flex-shrink:0;text-decoration:none;margin-top:2px">↗</a>'
@@ -1880,14 +1937,18 @@ function renderNormas(){
             +'<div><div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Participación GEMI</div>'
             +'<div style="margin-top:4px">'+gemiChip+'</div></div>'
           +'</div>'
+          +'<div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Contexto previo</div>'
+          +'<div style="font-size:12px;color:var(--text-sec);line-height:1.6;max-width:760px;margin-bottom:14px">'+(ex.contexto||'<span style="color:var(--text-muted)">El equipo GEMI cargará aquí el contexto de esta norma: antecedentes, discusión y estatus.</span>')+'</div>'
           +'<div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Documentos</div>'
           +docs.map(function(d){return '<a href="'+d.u+'" target="_blank" rel="noopener" style="display:block;font-size:11.5px;color:var(--green);padding:3px 0;text-decoration:none">'+d.t+' ↗</a>';}).join('')
+          +_nomCommentsHTML(n,uid)
         +'</div>'
       +'</div>';
     });
   });
   if(!html)html='<div style="text-align:center;padding:40px 20px;color:var(--text-muted);font-size:13px">Sin normas para los filtros seleccionados</div>';
   el.innerHTML=html;
+  loadNomCommentCounts();
 }
 function formatFecha(f){
   if(!f)return'';
