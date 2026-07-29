@@ -72,6 +72,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .dash-main{display:grid;grid-template-columns:2fr 1fr;gap:36px 48px;align-items:start}
 .dash-left{display:flex;flex-direction:column;gap:36px;min-width:0}
 .dash-right{display:flex;flex-direction:column;gap:32px;min-width:0}
+.est-layout{display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+@media(max-width:1000px){.est-layout{grid-template-columns:1fr}}
 .dash-feeds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .leg-sub-bar{display:flex;gap:0;border-bottom:1.5px solid var(--border);margin-bottom:24px}
 .leg-sub-btn{padding:8px 18px;border:none;background:none;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px;font-family:var(--sans);transition:color 0.15s}
@@ -932,9 +934,14 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   <!-- ═══ ESTADOS · heatmap 32 entidades → expediente (openStatePanel) ═══ -->
   <div id="tab-estados" class="tab-content">
     <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Estados</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:22px">Expediente ambiental por entidad · impuestos verdes, materiales prohibidos, legislación y sector industrial · haz clic en un estado</div>
-    <div id="estados-heatmap"></div>
-    <div id="estados-leyenda" style="display:flex;align-items:center;gap:18px;margin-top:22px;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase"></div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:22px">Expediente ambiental por entidad · haz clic en un estado para abrir su expediente, o compáralos en el panel de la derecha</div>
+    <div class="est-layout">
+      <div>
+        <div id="estados-heatmap"></div>
+        <div id="estados-leyenda" style="display:flex;align-items:center;gap:18px;margin-top:22px;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase"></div>
+      </div>
+      <div id="estados-compare" style="position:sticky;top:20px"></div>
+    </div>
   </div>
 
   <!-- ═══ OBLIGACIONES · instrumentos que regulan los materiales ═══ -->
@@ -1716,6 +1723,87 @@ function renderEstadosHeatmap(){
   if(leg)leg.innerHTML='<span>Índice de exposición regulatoria</span>'
     +[['#94a3b8','Bajo'],['#10b981','Moderado'],['#f97316','Alto'],['#ef4444','Crítico']].map(function(p){
       return '<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:'+p[0]+';display:inline-block"></span>'+p[1]+'</span>';}).join('');
+  renderEstadosCompare();
+}
+// ── ESTADOS · comparativa de hasta 3 entidades (panel derecho) ──
+var _cmpStates=[], _cmpView='indices';
+function estadosAddCmp(sel){
+  var v=sel.value; sel.value='';
+  if(!v||_cmpStates.indexOf(v)>=0||_cmpStates.length>=3)return;
+  _cmpStates.push(v); renderEstadosCompare();
+}
+function estadosRemoveCmp(name){ _cmpStates=_cmpStates.filter(function(s){return s!==name;}); renderEstadosCompare(); }
+function estadosCmpView(v){ _cmpView=v; renderEstadosCompare(); }
+function _cmpBody(){
+  if(_cmpView==='impuestos'){
+    return _cmpStates.map(function(s){
+      var tx=(impuestosDB[s]||[]);
+      return '<div style="margin-bottom:16px;padding-bottom:14px;border-bottom:0.8px solid var(--border)">'
+        +'<div style="font-size:13px;font-weight:600;color:var(--text)">'+s+'</div>'
+        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin:2px 0 7px">'+tx.length+' impuesto'+(tx.length===1?'':'s')+' ambiental'+(tx.length===1?'':'es')+'</div>'
+        +(tx.length?tx.map(function(t){
+          return '<div style="padding:3px 0">'
+            +'<div style="font-size:12px;color:var(--text)">'+(t.controversia?'<span style="color:#ef4444" title="Controversia constitucional">● </span>':'')+(t.tipo||'—')+'</div>'
+            +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+(t.precio||'')+(t.articulo?' · '+t.articulo:'')+'</div>'
+            +'</div>';
+        }).join(''):'<div style="font-size:12px;color:var(--text-muted)">Sin impuestos registrados</div>')
+        +'</div>';
+    }).join('');
+  }
+  if(_cmpView==='sector'){
+    return _cmpStates.map(function(s){
+      var sp=SECTOR_PROFILE[s]||{};
+      var top=Object.keys(sp).sort(function(a,b){return sp[b]-sp[a];}).slice(0,4);
+      return '<div style="margin-bottom:16px;padding-bottom:14px;border-bottom:0.8px solid var(--border)">'
+        +'<div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px">'+s+'</div>'
+        +(top.length?top.map(function(k){
+          return '<div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 0"><span style="color:var(--text-sec);text-transform:capitalize">'+k+'</span><span style="font-family:var(--mono);color:'+scoreColor(sp[k])+'">'+sp[k]+'</span></div>';
+        }).join(''):'<div style="font-size:12px;color:var(--text-muted)">Sin datos</div>')
+        +'</div>';
+    }).join('');
+  }
+  if(_cmpView==='perfil'){
+    var rows=[['Capital',function(d){return d.capital||'—';}],['Población',function(d){return d.pop||'—';}],['Región',function(d){return d.region||'—';}],['Superficie',function(d){return d.area||'—';}]];
+    return rows.map(function(r){
+      return '<div style="margin-bottom:13px">'
+        +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px">'+r[0]+'</div>'
+        +'<div style="display:flex;flex-wrap:wrap;gap:6px 16px">'
+        +_cmpStates.map(function(s){return '<span style="font-size:12px;color:var(--text-sec)">'+s+' <b style="color:var(--text)">'+r[1](estadoData[s]||{})+'</b></span>';}).join('')
+        +'</div></div>';
+    }).join('');
+  }
+  // índices (default) — ya son valores normalizados 0–100 (tasas comparables)
+  var metrics=[['master','Índice global'],['icr','Complejidad · ICR'],['ipr','Presión · IPR'],['irf','Riesgo fiscal · IRF'],['iis','Sector · IIS']];
+  return metrics.map(function(m){
+    return '<div style="margin-bottom:14px">'
+      +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px">'+m[1]+'</div>'
+      +'<div style="display:flex;flex-wrap:wrap;gap:6px 16px">'
+      +_cmpStates.map(function(s){var v=(stateScores[s]||{})[m[0]]||0;return '<span style="font-size:12px;color:var(--text-sec)">'+s+' <b style="font-family:var(--mono);color:'+scoreColor(v)+'">'+v+'</b></span>';}).join('')
+      +'</div></div>';
+  }).join('');
+}
+function renderEstadosCompare(){
+  var host=document.getElementById('estados-compare');if(!host)return;
+  if(!Object.keys(stateScores).length){try{computeScores();}catch(e){}}
+  var states=Object.keys(estadoData).sort(function(a,b){return a.localeCompare(b,'es');});
+  var opts='<option value="">+ Agregar estado…</option>'+states.filter(function(s){return _cmpStates.indexOf(s)<0;}).map(function(s){return '<option>'+s+'</option>';}).join('');
+  var full=_cmpStates.length>=3;
+  var html='<div style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px">Comparar entidades · máx. 3</div>'
+    +'<select onchange="estadosAddCmp(this)"'+(full?' disabled':'')+' style="width:100%;padding:7px 8px;border:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:13px;color:var(--text);margin-bottom:12px'+(full?';opacity:0.5':'')+'">'+opts+'</select>';
+  if(!_cmpStates.length){
+    host.innerHTML=html+'<div style="font-size:12px;color:var(--text-muted);line-height:1.55">Elige hasta 3 entidades para compararlas lado a lado por índices, impuestos, sector o perfil.</div>';
+    return;
+  }
+  html+='<div style="margin-bottom:14px">'+_cmpStates.map(function(s){
+    return '<div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0;font-size:13px;color:var(--text)"><span>'+s+'</span>'
+      +'<span onclick="estadosRemoveCmp(\''+s.replace(/'/g,"\\'")+'\')" title="Quitar" style="cursor:pointer;color:var(--text-muted);font-size:13px;padding:0 4px">✕</span></div>';
+  }).join('')+'</div>';
+  var views=[['indices','Índices'],['impuestos','Impuestos'],['sector','Sector'],['perfil','Perfil']];
+  html+='<div style="display:flex;flex-wrap:wrap;gap:8px 16px;border-top:0.8px solid var(--border);border-bottom:0.8px solid var(--border);padding:10px 0;margin-bottom:15px">'
+    +views.map(function(v){var on=v[0]===_cmpView;return '<span onclick="estadosCmpView(\''+v[0]+'\')" style="cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:0.05em;text-transform:uppercase;color:'+(on?'var(--green)':'var(--text-muted)')+';font-weight:'+(on?'700':'400')+'">'+v[1]+'</span>';}).join('')
+    +'</div>';
+  html+=_cmpBody();
+  host.innerHTML=html;
 }
 // ── OBLIGACIONES · instrumentos que regulan los materiales ──
 var _OBLIGACIONES=[
