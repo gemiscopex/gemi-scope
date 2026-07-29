@@ -1743,10 +1743,13 @@ function renderObligaciones(){
   }).join('');
 }
 // ── AGENDA · reglamentaciones pendientes + DOF hoy + accesos ──
+// docs: [{label, url}] — enlaces a documentos cuando estén disponibles (opcional)
 var _PENDIENTES=[
-  {t:'Reglamento de Economía Circular',e:'PENDIENTE',d:'Instrumento reglamentario de la política de economía circular; detonará obligaciones de REP para envases y empaques.',org:'SEMARNAT / Congreso'},
-  {t:'Reforma a la LGPGIR en materia de REP',e:'EN PROCESO',d:'Adecúa la Ley General para la Prevención y Gestión Integral de los Residuos al esquema de Responsabilidad Extendida del Productor.',org:'Congreso de la Unión'},
-  {t:'Actualización NOM-161-SEMARNAT (residuos de manejo especial)',e:'PROYECTO',d:'Amplía los listados y las obligaciones de plan de manejo para productores.',org:'SEMARNAT / CONAMER'}
+  {t:'Reglamento de Economía Circular',e:'PENDIENTE',d:'Instrumento reglamentario de la política de economía circular; detonará obligaciones de REP para envases y empaques.',org:'SEMARNAT / Congreso',docs:[]},
+  {t:'Reglamento de la Ley de Aguas',e:'PENDIENTE',d:'Reglamento derivado de la reforma en materia de aguas nacionales; definirá concesiones, usos y obligaciones de reporte para usuarios industriales.',org:'CONAGUA / SEMARNAT',docs:[]},
+  {t:'Reforma a la LGEEPA (anunciada)',e:'PENDIENTE',d:'Reforma anunciada a la Ley General del Equilibrio Ecológico y la Protección al Ambiente; ajustaría instrumentos de política ambiental y evaluación de impacto.',org:'Ejecutivo Federal / Congreso',docs:[]},
+  {t:'Reforma a la LGPGIR en materia de REP',e:'EN PROCESO',d:'Adecúa la Ley General para la Prevención y Gestión Integral de los Residuos al esquema de Responsabilidad Extendida del Productor.',org:'Congreso de la Unión',docs:[]},
+  {t:'Actualización NOM-161-SEMARNAT (residuos de manejo especial)',e:'PROYECTO',d:'Amplía los listados y las obligaciones de plan de manejo para productores.',org:'SEMARNAT / CONAMER',docs:[]}
 ];
 function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
@@ -1759,6 +1762,7 @@ function renderAgenda(view){
         +'<span style="font-size:15px;font-weight:600;color:var(--text)">'+p.t+'</span></div>'
         +'<div style="font-size:13px;color:var(--text-sec);line-height:1.55;max-width:760px;margin-bottom:5px">'+p.d+'</div>'
         +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+p.org+'</div>'
+        +((p.docs&&p.docs.length)?'<div style="margin-top:9px;display:flex;flex-wrap:wrap;gap:8px 18px">'+p.docs.map(function(dc){return '<a href="'+dc.url+'" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:11px;color:var(--green);text-decoration:none">↓ '+dc.label+'</a>';}).join('')+'</div>':'')
         +'</div>';
     }).join('');
   // DOF hoy (reusa _dofData) — solo publicaciones relevantes a nuestros temas
@@ -1772,7 +1776,7 @@ function renderAgenda(view){
       var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
       return '<div onclick="window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/\x27/g,'%27')+'\',\'_blank\')" style="cursor:pointer;padding:13px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
         +'<div style="font-size:13.5px;color:var(--text);line-height:1.5;margin-bottom:4px">'+(d.titulo||'')+'</div>'
-        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+(d.dependencia||'DOF')+' · '+f+(d.relevante?' · <span style="color:var(--green)">RELEVANTE</span>':'')+'</div>'
+        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)"><span style="font-weight:700;color:var(--text-sec)">'+(d.dependencia||'DOF')+'</span> · '+f+'</div>'
         +'</div>';
     }).join(''):'<div style="font-size:13px;color:var(--text-muted)">Sin publicaciones recientes en nuestros temas.</div>')+'</div>';
   // accesos al monitoreo legislativo
