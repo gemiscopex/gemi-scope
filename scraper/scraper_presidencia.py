@@ -96,6 +96,18 @@ KEYWORDS_AMBIENTAL = {
                          "minera","cianuro"],
     "transgenico":      ["transgénico","transgenico","glifosato","semilla nativa",
                          "soberania alimentaria","maíz nativo","maiz nativo","plaguicida"],
+    # ── SCOPE: temas económicos relevantes para los socios ──
+    "inversion":        ["inversion","nearshoring","relocalizacion","plan mexico",
+                         "polo de desarrollo","polos de desarrollo","polos del bienestar",
+                         "parque industrial","inversion extranjera","nueva planta",
+                         "planta armadora","armadora","ensambladora","empleos directos",
+                         "genera empleos","anuncio de inversion","millones de dolares",
+                         "mil millones","capital extranjero","kia","nissan","tesla",
+                         "planta de","complejo industrial"],
+    "comercio_tmec":    ["t-mec","tmec","t mec","usmca","tratado de libre comercio",
+                         "tratado comercial","aranceles","arancel","reglas de origen",
+                         "comercio exterior","exportaciones","revision del tratado",
+                         "socios comerciales","america del norte","barreras arancelarias"],
 }
 
 ALL_KW = [kw for kws in KEYWORDS_AMBIENTAL.values() for kw in kws]
