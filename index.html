@@ -2908,6 +2908,17 @@ function _smoothPath(pts){
   }
   return d;
 }
+// Línea de segmentos rectos (estilo Polymarket) + área para relleno
+function _linePath(pts){
+  if(!pts.length)return '';
+  return 'M'+pts.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1);}).join('L');
+}
+function _areaPath(pts,baseY){
+  if(!pts.length)return '';
+  return 'M'+pts[0][0].toFixed(1)+' '+baseY.toFixed(1)
+    +'L'+pts.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1);}).join('L')
+    +'L'+pts[pts.length-1][0].toFixed(1)+' '+baseY.toFixed(1)+'Z';
+}
 var _CONG_MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 var _congChart=null;
 function renderCongresoChart(){
@@ -2928,13 +2939,15 @@ function renderCongresoChart(){
   function X(i){return PL+(i/(NSEM-1))*IW;}
   function Y(v){return PT+IH-(v/maxV)*IH;}
   var dip=weeks.map(function(w){return w.dip;}),sen=weeks.map(function(w){return w.sen;});
-  var pathD=_smoothPath(dip.map(function(v,i){return [X(i),Y(v)];}));
-  var pathS=_smoothPath(sen.map(function(v,i){return [X(i),Y(v)];}));
-  var dots='';
-  for(var i=0;i<NSEM;i++){
-    if(dip[i])dots+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(dip[i]).toFixed(1)+'" r="2.5" fill="var(--green)"/>';
-    if(sen[i])dots+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(sen[i]).toFixed(1)+'" r="2.5" fill="#E8843D"/>';
-  }
+  var baseY=PT+IH;
+  var pDip=dip.map(function(v,i){return [X(i),Y(v)];});
+  var pSen=sen.map(function(v,i){return [X(i),Y(v)];});
+  var lineDip=_linePath(pDip),lineSen=_linePath(pSen);
+  var areaDip=_areaPath(pDip,baseY),areaSen=_areaPath(pSen,baseY);
+  // Marcador solo en el último punto de cada serie (valor actual)
+  var last=NSEM-1,dots='';
+  if(dip[last])dots+='<circle cx="'+X(last).toFixed(1)+'" cy="'+Y(dip[last]).toFixed(1)+'" r="3.2" fill="var(--green)" stroke="#fff" stroke-width="1.6"/>';
+  if(sen[last])dots+='<circle cx="'+X(last).toFixed(1)+'" cy="'+Y(sen[last]).toFixed(1)+'" r="3.2" fill="#E8843D" stroke="#fff" stroke-width="1.6"/>';
   var xlab='';
   for(var i2=0;i2<NSEM;i2+=2){var wd=new Date(monday0.getTime()+i2*7*86400000);
     xlab+='<text x="'+X(i2).toFixed(1)+'" y="'+(H-6)+'" text-anchor="middle" font-size="8" fill="var(--text-muted)" font-family="var(--mono)">'+wd.getDate()+' '+_CONG_MES[wd.getMonth()]+'</text>';}
@@ -2942,9 +2955,15 @@ function renderCongresoChart(){
   for(var i3=0;i3<NSEM;i3++)
     hov+='<rect x="'+(X(i3)-band/2).toFixed(1)+'" y="'+PT+'" width="'+band.toFixed(1)+'" height="'+IH+'" fill="transparent" style="cursor:pointer" onmousemove="_congHover(event,'+i3+')" onmouseleave="_congHoverHide()" onclick="_congOpen(event,'+i3+')"/>';
   var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
-    +'<line x1="'+PL+'" y1="'+(PT+IH)+'" x2="'+(W-PR)+'" y2="'+(PT+IH)+'" stroke="var(--border)" stroke-width="1"/>'
-    +'<path d="'+pathD+'" fill="none" stroke="var(--green)" stroke-width="1.6"/>'
-    +'<path d="'+pathS+'" fill="none" stroke="#E8843D" stroke-width="1.6"/>'
+    +'<defs>'
+    +'<linearGradient id="cgDip" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#009E90" stop-opacity="0.30"/><stop offset="100%" stop-color="#009E90" stop-opacity="0"/></linearGradient>'
+    +'<linearGradient id="cgSen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8843D" stop-opacity="0.22"/><stop offset="100%" stop-color="#E8843D" stop-opacity="0"/></linearGradient>'
+    +'</defs>'
+    +'<line x1="'+PL+'" y1="'+baseY+'" x2="'+(W-PR)+'" y2="'+baseY+'" stroke="var(--border)" stroke-width="1"/>'
+    +'<path d="'+areaDip+'" fill="url(#cgDip)" stroke="none"/>'
+    +'<path d="'+areaSen+'" fill="url(#cgSen)" stroke="none"/>'
+    +'<path d="'+lineDip+'" fill="none" stroke="var(--green)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>'
+    +'<path d="'+lineSen+'" fill="none" stroke="#E8843D" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>'
     +dots+xlab+hov+'</svg>';
   var leyenda='<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:10px;color:var(--text-sec)">'
     +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:var(--green);display:inline-block"></span>Diputados</span>'
