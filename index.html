@@ -783,7 +783,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
               <button class="normas-filter-link" id="news-mode-int" onclick="setNewsMode('int')">Internacional</button>
             </div>
           </div>
-          <div class="news-ticker-wrap" id="news-ticker-wrap" style="height:360px">
+          <div class="news-ticker-wrap" id="news-ticker-wrap" style="height:300px">
             <div class="news-ticker-inner" id="news-ticker"></div>
           </div>
         </div>
@@ -1463,21 +1463,13 @@ function _renderGeoOutline(){
     var dec=pts.filter(function(_,i){return i===0||i===pts.length-1||i%2===0;});
     return 'M'+dec.map(function(p){return _projX(p[0]).toFixed(2)+' '+_projY(p[1]).toFixed(2);}).join('L');
   }
-  var d='',seen={};
+  // Contorno COMPLETO de cada estado (fronteras interiores + costa + frontera
+  // nacional) cerrando el anillo con Z, para que todas las entidades queden
+  // cerradas y no aparezcan "abiertas" en la costa o la frontera.
+  var d='';
   rings.forEach(function(ring){
-    var run=[];
-    for(var i=0;i<ring.length-1;i++){
-      var key=segKey(ring[i],ring[i+1]);
-      if(segCount[key]>=2&&!seen[key]){
-        seen[key]=1;
-        if(!run.length)run.push(ring[i]);
-        run.push(ring[i+1]);
-      }else{
-        if(run.length>1)d+=runToPath(run);
-        run=[];
-      }
-    }
-    if(run.length>1)d+=runToPath(run);
+    if(ring.length<3)return;
+    d+=runToPath(ring)+'Z';
   });
   host.innerHTML='<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">'
     +'<style>path{vector-effect:non-scaling-stroke}</style>'
