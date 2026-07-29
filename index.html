@@ -2919,6 +2919,16 @@ function _areaPath(pts,baseY){
     +'L'+pts.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1);}).join('L')
     +'L'+pts[pts.length-1][0].toFixed(1)+' '+baseY.toFixed(1)+'Z';
 }
+// Línea escalonada (staircase, estilo Polymarket): mantiene el valor y salta
+function _stepPath(pts){
+  if(!pts.length)return '';
+  var d='M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1);
+  for(var i=1;i<pts.length;i++){
+    d+='L'+pts[i][0].toFixed(1)+' '+pts[i-1][1].toFixed(1)
+     +'L'+pts[i][0].toFixed(1)+' '+pts[i][1].toFixed(1);
+  }
+  return d;
+}
 var _CONG_MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 var _congChart=null;
 function renderCongresoChart(){
@@ -2942,8 +2952,7 @@ function renderCongresoChart(){
   var baseY=PT+IH;
   var pDip=dip.map(function(v,i){return [X(i),Y(v)];});
   var pSen=sen.map(function(v,i){return [X(i),Y(v)];});
-  var lineDip=_linePath(pDip),lineSen=_linePath(pSen);
-  var areaDip=_areaPath(pDip,baseY),areaSen=_areaPath(pSen,baseY);
+  var lineDip=_stepPath(pDip),lineSen=_stepPath(pSen);
   // Marcador solo en el último punto de cada serie (valor actual)
   var last=NSEM-1,dots='';
   if(dip[last])dots+='<circle cx="'+X(last).toFixed(1)+'" cy="'+Y(dip[last]).toFixed(1)+'" r="3.2" fill="var(--green)" stroke="#fff" stroke-width="1.6"/>';
@@ -2955,13 +2964,7 @@ function renderCongresoChart(){
   for(var i3=0;i3<NSEM;i3++)
     hov+='<rect x="'+(X(i3)-band/2).toFixed(1)+'" y="'+PT+'" width="'+band.toFixed(1)+'" height="'+IH+'" fill="transparent" style="cursor:pointer" onmousemove="_congHover(event,'+i3+')" onmouseleave="_congHoverHide()" onclick="_congOpen(event,'+i3+')"/>';
   var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
-    +'<defs>'
-    +'<linearGradient id="cgDip" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#009E90" stop-opacity="0.30"/><stop offset="100%" stop-color="#009E90" stop-opacity="0"/></linearGradient>'
-    +'<linearGradient id="cgSen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8843D" stop-opacity="0.22"/><stop offset="100%" stop-color="#E8843D" stop-opacity="0"/></linearGradient>'
-    +'</defs>'
     +'<line x1="'+PL+'" y1="'+baseY+'" x2="'+(W-PR)+'" y2="'+baseY+'" stroke="var(--border)" stroke-width="1"/>'
-    +'<path d="'+areaDip+'" fill="url(#cgDip)" stroke="none"/>'
-    +'<path d="'+areaSen+'" fill="url(#cgSen)" stroke="none"/>'
     +'<path d="'+lineDip+'" fill="none" stroke="var(--green)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>'
     +'<path d="'+lineSen+'" fill="none" stroke="#E8843D" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>'
     +dots+xlab+hov+'</svg>';
