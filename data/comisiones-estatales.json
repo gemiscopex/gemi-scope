@@ -2,7 +2,7 @@
 "_meta": {
 "fuente": "Sitios oficiales de los congresos locales",
 "actualizado": "2026-07-30",
-"cobertura": "En expansión — 26 de 32 entidades (verificadas)"
+"cobertura": "En expansión — 28 de 32 entidades (verificadas)"
 },
 "estados": [
 {
@@ -100,6 +100,98 @@
 "Adrian Humberto Valle Ballesteros (PRI)"
 ],
 "url": "https://www.congresobc.gob.mx/Enlace/Ecomision.aspx?id_comision=10",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Baja California Sur",
+"congreso_url": "https://www.cbcs.gob.mx/",
+"comisiones": [
+{
+"nombre": "Comisión de Ecología, Medio Ambiente y Recursos Naturales",
+"tema": "medio_ambiente",
+"presidente": "Erick Iván Agúndez Cervantes",
+"integrantes": [
+"Erick Iván Agúndez Cervantes",
+"Karina Olivas Parra",
+"Sergio Polanco Salaices"
+],
+"url": "https://www.cbcs.gob.mx/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión del Agua",
+"tema": "agua",
+"presidente": "Omar Torres Orozco",
+"integrantes": [
+"Omar Torres Orozco",
+"Alondra Torres García",
+"Sergio Ricardo Huerta Leggs"
+],
+"url": "https://www.cbcs.gob.mx/",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Campeche",
+"congreso_url": "https://www.congresocam.gob.mx/",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente y Desarrollo Sustentable",
+"tema": "medio_ambiente",
+"presidente": "María del Carmen Ávalos Trujillo",
+"integrantes": [
+"María del Carmen Ávalos Trujillo",
+"Ismael López Garcés",
+"Tania González Pérez",
+"Francisca Zárate López",
+"Jhosué Jesús Rodríguez Golib"
+],
+"url": "https://www.congresocam.gob.mx/ubicatudiputado/comision.php?comision=ecbopucsq",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Recursos Hidráulicos",
+"tema": "agua",
+"presidente": "Daher Antonio Puch Rivera",
+"integrantes": [
+"Daher Antonio Puch Rivera",
+"María del Carmen Ávalos Trujillo",
+"Aldo Román Contreras Uc",
+"Elías Noé Baeza Aké",
+"Miguel Ángel Pool Alpuche"
+],
+"url": "https://www.congresocam.gob.mx/ubicatudiputado/comision.php?comision=csqopuafr",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Energético Sustentable",
+"tema": "desarrollo_sostenible",
+"presidente": "Pedro Hernández Macdonald",
+"integrantes": [
+"Pedro Hernández Macdonald",
+"Jorge Pérez Falconi",
+"Andrés Fernández del Valle Laisequilla",
+"Daher Antonio Puch Rivera",
+"Gladys Sofía Rivera López"
+],
+"url": "https://www.congresocam.gob.mx/ubicatudiputado/comision.php?comision=gmcopugmc",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico",
+"tema": "economia",
+"presidente": "Tania González Pérez",
+"integrantes": [
+"Tania González Pérez",
+"Mayda Aracely Mas Tun",
+"Ismael López Garcés",
+"Abigail Gutiérrez Morales",
+"Elías Noé Baeza Aké"
+],
+"url": "https://www.congresocam.gob.mx/ubicatudiputado/comision.php?comision=opugmc",
 "confianza": "alta"
 }
 ]
