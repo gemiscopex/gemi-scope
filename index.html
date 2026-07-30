@@ -515,6 +515,26 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .cons-feed-it:hover .cft{color:var(--green)}
 .cft{font-size:11.5px;color:var(--text2);line-height:1.4;transition:color 0.12s}
 .cfm{font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:3px}
+/* consola · terminal (paneles delgados, sin sombra) */
+.cons-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:9px;margin-bottom:14px}
+.cons-kpi{border:0.8px solid var(--border);border-radius:9px;padding:11px 13px;min-width:0}
+.cons-kpi-lbl{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase}
+.cons-kpi-val{font-family:var(--mono);font-size:21px;font-weight:600;color:var(--text);line-height:1.05;margin-top:6px}
+.cons-kpi-sub{font-family:var(--mono);font-size:8.5px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cons-desk{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:start;margin-bottom:12px}
+@media(max-width:1000px){.cons-desk{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.cons-desk{grid-template-columns:1fr}}
+.cons-panel{border:0.8px solid var(--border);border-radius:11px;padding:13px 15px;min-width:0}
+.cons-panel+.cons-panel{margin-top:12px}
+.cons-panel-h{font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cons-panel-h .n{color:var(--dim)}
+.cons-scroll{max-height:280px;overflow-y:auto;margin:0 -3px;padding:0 3px;scrollbar-width:thin}
+.cons-scroll::-webkit-scrollbar{width:3px}.cons-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.cons-estcard{border:0.8px solid var(--border);border-radius:9px;padding:9px 11px;cursor:pointer;transition:border-color .12s,transform .12s;min-width:0}
+.cons-estcard:hover{border-color:var(--green);transform:translateX(2px)}
+.cons-refit{padding:8px 0;border-bottom:0.8px solid rgba(0,0,0,0.05)}
+.cons-refit:last-child{border-bottom:none}
+.cons-wide{border:0.8px solid var(--border);border-radius:11px;padding:14px 16px;margin-bottom:12px;min-width:0}
 /* wizard */
 .cw-bg{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1300;display:none;align-items:center;justify-content:center;padding:18px}
 .cw{background:var(--card);border:1px solid var(--border2);width:660px;max-width:calc(100vw - 24px);max-height:calc(100vh - 40px);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.2)}
@@ -3979,6 +3999,60 @@ function _wizNext(){
 }
 
 // ── Render de la consola ─────────────────────────────────────────────────────
+// Señal compartida (KPI + panel usan el mismo cálculo)
+function _consComputeSenal(temas,riesgos){
+  var RSG={alto:['ALTO','var(--red)'],medio:['MEDIO','var(--amber)'],bajo:['BAJO','var(--green)']};
+  var dias=[7,30,90].find(function(d){return temas.some(function(c){return _consHits(c.kw,d).length>0;});})||7;
+  var rows=temas.map(function(c){
+    var n=_consHits(c.kw,dias).length;
+    var nPrev=_consHits(c.kw,dias*2).length-n;
+    var arrow=n>nPrev?['↑','var(--amber)']:n<nPrev?['↓','var(--green)']:['→','var(--dim)'];
+    return {c:c,n7:n,arrow:arrow,r:RSG[(riesgos||{})[c.id]||'medio']};
+  }).sort(function(a,b){return b.n7-a.n7;});
+  var total=rows.reduce(function(s,r){return s+r.n7;},0);
+  var nivel=total>=12?['PRESIÓN ALTA','var(--amber)']:total>=5?['PRESIÓN MEDIA','var(--green)']:['SEÑAL BAJA','var(--dim)'];
+  return {rows:rows,total:total,dias:dias,lead:rows[0],nivel:nivel};
+}
+function _consImpInfo(tipo){
+  var states=[],prices=[],controv=false;
+  if(typeof impuestosDB!=='undefined')Object.keys(impuestosDB).forEach(function(st){var a=impuestosDB[st];if(!Array.isArray(a))return;a.forEach(function(t){if(t&&t.tipo===tipo){states.push(st);if(t.precio)prices.push(t.precio);if(t.controversia)controv=true;}});});
+  return {states:states,prices:prices,controv:controv};
+}
+function _consMatInfo(mat){
+  var states=[],est=(_materialesData&&_materialesData.estados)||{};
+  Object.keys(est).forEach(function(st){if((((est[st]||{}).materiales)||[]).indexOf(mat)>=0)states.push(st);});
+  return {states:states};
+}
+// Paneles de referencias enriquecidos (NOMs con descripción, impuestos/materiales con contexto)
+function _consRefPanels(cfg){
+  var out='',noms=(cfg.noms||[]),instr=(cfg.instrumentos||[]),imps=(cfg.impuestos||[]),mats=(cfg.materiales||[]);
+  if(noms.length)out+='<div class="cons-panel"><div class="cons-panel-h">NOMs de referencia <span class="n">'+noms.length+'</span></div><div class="cons-scroll">'
+    +noms.map(function(id){var n=(typeof NORMAS!=='undefined'?NORMAS:[]).find(function(x){return x.id===id;});
+      if(!n)return '<div class="cons-refit"><div style="font-family:var(--mono);font-size:11px;color:var(--text)">'+id+'</div></div>';
+      return '<a href="'+n.url+'" target="_blank" rel="noopener" class="cons-refit" style="display:block;text-decoration:none">'
+        +'<div style="font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--green)">'+n.id+' <span style="color:var(--text-muted);font-weight:400">↗</span></div>'
+        +'<div style="font-size:11.5px;color:var(--text);line-height:1.35;margin-top:2px">'+n.objeto+'</div>'
+        +(n.implic?'<div style="font-size:10px;color:var(--text-muted);margin-top:2px;line-height:1.35">'+n.implic+'</div>':'')+'</a>';
+    }).join('')+'</div></div>';
+  if(instr.length)out+='<div class="cons-panel"><div class="cons-panel-h">Instrumentos legales <span class="n">'+instr.length+'</span></div>'
+    +instr.map(function(nm){var o=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).find(function(x){return x.n===nm;});
+      return '<div class="cons-refit"><div style="font-size:12px;font-weight:600;color:var(--text)">'+nm+'</div>'
+        +(o?'<div style="font-size:10.5px;color:var(--text-muted);line-height:1.4;margin-top:2px">'+o.d+'</div><div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:3px">'+o.s+'</div>':'')+'</div>';
+    }).join('')+'</div>';
+  if(imps.length)out+='<div class="cons-panel"><div class="cons-panel-h">Impuestos ambientales <span class="n">'+imps.length+'</span></div>'
+    +imps.map(function(t){var inf=_consImpInfo(t);
+      return '<div class="cons-refit"><div style="font-size:12px;font-weight:600;color:var(--text)">'+(inf.controv?'<span style="color:var(--red)" title="Controversia constitucional">● </span>':'')+t+'</div>'
+        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:3px">En '+inf.states.length+' entidad'+(inf.states.length===1?'':'es')+(inf.prices.length?' · '+inf.prices.slice(0,2).join(' / '):'')+'</div>'
+        +(inf.states.length?'<div style="font-size:10px;color:var(--text-sec);margin-top:2px;line-height:1.35">'+inf.states.join(' · ')+'</div>':'')+'</div>';
+    }).join('')+'</div>';
+  if(mats.length)out+='<div class="cons-panel"><div class="cons-panel-h">Materiales prohibidos <span class="n">'+mats.length+'</span></div>'
+    +mats.map(function(m){var inf=_consMatInfo(m);
+      return '<div class="cons-refit"><div style="font-size:12px;font-weight:600;color:var(--text)"><span style="color:var(--red)">⊘</span> '+m+'</div>'
+        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:3px">Prohibido en '+inf.states.length+' entidad'+(inf.states.length===1?'':'es')+'</div>'
+        +(inf.states.length?'<div style="font-size:10px;color:var(--text-sec);margin-top:2px;line-height:1.35">'+inf.states.join(' · ')+'</div>':'')+'</div>';
+    }).join('')+'</div>';
+  return out;
+}
 function renderConsola(){
   var root=document.getElementById('consola-root');
   if(!root)return;
@@ -4002,28 +4076,38 @@ function renderConsola(){
   var temaKw=_consTemaKws(cfg.temas);
   var allKw=temaKw.concat(userKw);
 
+  var sen=_consComputeSenal(temas,cfg.riesgos||{});
+  var nRefs=(cfg.noms||[]).length+(cfg.instrumentos||[]).length+(cfg.impuestos||[]).length+(cfg.materiales||[]).length;
+  function kpi(lbl,val,sub,col){return '<div class="cons-kpi"><div class="cons-kpi-lbl">'+lbl+'</div><div class="cons-kpi-val">'+val+'</div><div class="cons-kpi-sub" style="color:'+(col||'var(--text-muted)')+'">'+sub+'</div></div>';}
+  var kpis='<div class="cons-kpis">'
+    +kpi('Presión temática',sen.total,sen.nivel[0]+' · '+sen.dias+'d',sen.nivel[1])
+    +kpi('Temas',temas.length,'monitoreados')
+    +kpi('Estados',estados.length,'seguidos')
+    +kpi('Comisiones',coms.length,'del Congreso')
+    +(legs.length?kpi('Legisladores',legs.length,'federales'):'')
+    +kpi('Referencias',nRefs,'a la mano')
+    +'</div>';
+  var refPanels=_consRefPanels(cfg);
+  var wire='<div class="cons-panel"><div class="cons-panel-h">DOF · normas de mis temas</div><div class="cons-scroll" id="cons-dof"></div></div>'
+    +'<div class="cons-panel"><div class="cons-panel-h">Ejecutivo · menciones</div><div class="cons-scroll" id="cons-pres"></div></div>'
+    +(userKw.length?'<div class="cons-panel"><div class="cons-panel-h">Feed de mis keywords</div><div class="cons-scroll" id="cons-kw"></div></div>':'');
   root.innerHTML='<div class="cons-hdr">'
     +'<div><span class="cons-title">◆ Mi Consola</span>'
-    +'<div class="cons-sub" style="margin-top:4px">'+temas.length+' temas · '+estados.length+' estados · '+coms.length+' comisiones'+(legs.length?' · '+legs.length+' legisladores':'')+(userKw.length?' · '+userKw.length+' keywords':'')+'</div></div>'
+    +'<div class="cons-sub" style="margin-top:4px">Actualizada a diario · con los mismos datos de la plataforma</div></div>'
     +'<button class="cons-edit" onclick="openConsolaWizard()">⚙ EDITAR CONSOLA</button>'
     +'</div>'
+    +kpis
     +_consChatCardHTML()
-    +'<div class="cons-grid">'
-      +'<div class="cons-col">'
-        +'<div class="card"><div class="card-label">Señal de mis temas</div><div id="cons-senal"></div></div>'
-        +'<div class="card"><div class="card-label">Mis comisiones</div><div id="cons-coms" style="overflow-x:auto"></div></div>'
-        +(legs.length?'<div class="card"><div class="card-label">Mis legisladores</div><div class="cons-leg-grid" id="cons-legs"></div></div>':'')
-      +'</div>'
-      +'<div class="cons-col">'
-        +'<div class="card"><div class="card-label">Mis estados</div><div id="cons-estados"></div></div>'
-        +_refCardHTML(cfg)
-        +'<div class="card"><div class="card-label">Ejecutivo · menciones de mis temas</div><div id="cons-pres"></div></div>'
-        +'<div class="card"><div class="card-label">DOF · normas de mis temas</div><div id="cons-dof"></div></div>'
-        +(userKw.length?'<div class="card"><div class="card-label">Feed de mis keywords</div><div id="cons-kw"></div></div>':'')
-      +'</div>'
-    +'</div>';
+    +'<div class="cons-desk">'
+      +'<div><div class="cons-panel"><div class="cons-panel-h">Señal de mis temas</div><div id="cons-senal"></div></div>'
+        +'<div class="cons-panel"><div class="cons-panel-h">Mis estados <span class="n">'+estados.length+'</span></div><div id="cons-estados"></div></div></div>'
+      +'<div>'+(refPanels||'<div class="cons-panel"><div class="cons-panel-h">Referencias</div><div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar consola → Referencias</b> para tenerlos aquí a la mano.</div></div>')+'</div>'
+      +'<div>'+wire+'</div>'
+    +'</div>'
+    +'<div class="cons-wide"><div class="cons-panel-h">Mis comisiones <span class="n">'+coms.length+'</span></div><div id="cons-coms" style="overflow-x:auto"></div></div>'
+    +(legs.length?'<div class="cons-wide"><div class="cons-panel-h">Mis legisladores <span class="n">'+legs.length+'</span></div><div class="cons-leg-grid" id="cons-legs"></div></div>':'');
 
-  _consSenal(temas,cfg.riesgos||{});
+  _consSenal(sen);
   _consComs(coms);
   if(legs.length)_consLegs(legs);
   _consEstados(estados);
@@ -4091,29 +4175,15 @@ function _consHits(kwList,days){
     return _consMatch((n.titulo||'')+' '+(n.resumen||''),kwList);
   });
 }
-function _consSenal(temas,riesgos){
+function _consSenal(sen){
   var el=document.getElementById('cons-senal');if(!el)return;
-  var RSG={alto:['ALTO','var(--red)'],medio:['MEDIO','var(--amber)'],bajo:['BAJO','var(--green)']};
-  // ventana adaptativa 7→30→90: la más corta con registros
-  var dias=[7,30,90].find(function(d){
-    return temas.some(function(c){return _consHits(c.kw,d).length>0;});
-  })||7;
-  var rows=temas.map(function(c){
-    var n=_consHits(c.kw,dias).length;
-    var nPrev=_consHits(c.kw,dias*2).length-n;
-    var arrow=n>nPrev?['↑','var(--amber)']:n<nPrev?['↓','var(--green)']:['→','var(--dim)'];
-    var r=RSG[riesgos[c.id]||'medio'];
-    return {c:c,n7:n,arrow:arrow,r:r};
-  }).sort(function(a,b){return b.n7-a.n7;});
-  var total=rows.reduce(function(s,r){return s+r.n7;},0);
-  var lead=rows[0];
-  var nivel=total>=12?['↑ PRESIÓN ALTA','var(--amber)']:total>=5?['→ PRESIÓN MEDIA','var(--green)']:['→ SEÑAL BAJA','var(--dim)'];
-  el.innerHTML='<div style="border-left:2px solid var(--amber);padding-left:14px;margin-bottom:14px">'
-    +'<span style="font-family:var(--mono);font-size:10.5px;color:'+nivel[1]+'">'+nivel[0]+'</span>'
-    +'<div style="font-size:15.5px;font-weight:600;line-height:1.4;color:var(--white);margin-top:5px">'
-    +(lead&&lead.n7?('<span style="color:var(--amber)">'+lead.c.name+'</span> concentra la señal con '+lead.n7+' registro'+(lead.n7===1?'':'s')+'.'):'Sin registros recientes en tus temas.')
+  var rows=sen.rows,dias=sen.dias,lead=sen.lead,nivel=sen.nivel,total=sen.total;
+  el.innerHTML='<div style="border-left:2px solid '+nivel[1]+';padding-left:12px;margin-bottom:12px">'
+    +'<span style="font-family:var(--mono);font-size:10px;color:'+nivel[1]+'">'+(total>=12?'↑ ':'→ ')+nivel[0]+'</span>'
+    +'<div style="font-size:14px;font-weight:600;line-height:1.4;color:var(--text);margin-top:5px">'
+    +(lead&&lead.n7?('<span style="color:'+nivel[1]+'">'+lead.c.name+'</span> concentra la señal con '+lead.n7+' registro'+(lead.n7===1?'':'s')+'.'):'Sin registros recientes en tus temas.')
     +'</div>'
-    +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--dim);margin-top:6px">'+total+' registros en '+dias+' días · '+temas.length+' temas seguidos</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px">'+total+' menciones en '+dias+' días · '+rows.length+' temas</div>'
     +'</div>'
     +rows.map(function(r){
       return '<div class="cons-tema-row">'
@@ -4123,7 +4193,8 @@ function _consSenal(temas,riesgos){
         +'<span style="font-family:var(--mono);font-size:12px;color:'+r.arrow[1]+'">'+r.arrow[0]+'</span>'
         +'<span class="cons-riesgo" style="color:'+r.r[1]+';border:1px solid '+r.r[1]+'44">'+r.r[0]+'</span>'
         +'</div>';
-    }).join('');
+    }).join('')
+    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:10px;line-height:1.55;border-top:0.8px solid var(--border);padding-top:8px">CÓMO SE CALCULA · noticias del feed diario que coinciden con las palabras clave de cada tema, en la ventana más corta con datos (7→30→90 d). La flecha compara vs. el periodo previo. Proxy de cobertura mediática.</div>';
 }
 function _consComs(coms){
   var el=document.getElementById('cons-coms');if(!el)return;
@@ -4206,14 +4277,19 @@ function _consEstados(estados){
   var el=document.getElementById('cons-estados');if(!el)return;
   if(!estados.length){el.innerHTML='<div style="color:var(--dim);font-size:11.5px;padding:8px 0">Sin estados seleccionados</div>';return;}
   var resumen=(_gacetaEstatalData&&_gacetaEstatalData.resumen)||[];
+  el.style.display='grid';el.style.gridTemplateColumns=(estados.length>1?'1fr 1fr':'1fr');el.style.gap='8px';
   el.innerHTML=estados.map(function(s){
+    var nl=(typeof _nLeyes==='function')?_nLeyes(s):0, ni=(typeof _nImpuestos==='function')?_nImpuestos(s):0, nm=(typeof _nMateriales==='function')?_nMateriales(s):0, nn=stateNews[s]||0;
     var g=resumen.find(function(r){return r.estado===s;});
-    var nNews=stateNews[s]||0;
-    return '<div class="cons-est-row" onclick="openStatePanel(\''+s.replace(/'/g,"\\'")+'\')">'
-      +'<span style="font-family:var(--mono);font-size:9.5px;color:var(--dim);width:38px;flex-shrink:0">'+(STATE_ABBR[s]||'')+'</span>'
-      +'<span class="cons-est-name" style="flex:1;font-size:12px;color:var(--text);transition:color 0.12s">'+s+'</span>'
-      +(g?'<span style="font-size:9.5px;color:var(--text-muted)" title="'+g.categoria_principal+'">'+g.total+' gaceta'+(g.total>1?'s':'')+'</span>':'')
-      +(nNews?'<span style="font-size:9.5px;color:var(--text-muted)">'+nNews+' noticias</span>':'')
+    return '<div class="cons-estcard" onclick="openStatePanel(\''+s.replace(/'/g,"\\'")+'\')">'
+      +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:6px"><span style="font-size:12.5px;font-weight:600;color:var(--text);line-height:1.15;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+s+'</span>'
+      +'<span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);flex-shrink:0">'+(STATE_ABBR[s]||'')+'</span></div>'
+      +'<div style="display:flex;gap:9px;margin-top:8px;font-family:var(--mono);font-size:10px">'
+        +'<span title="Leyes ambientales"><b style="color:var(--text)">'+nl+'</b> <span style="color:var(--text-muted)">leyes</span></span>'
+        +'<span title="Impuestos verdes"><b style="color:var(--text)">'+ni+'</b> <span style="color:var(--text-muted)">imp</span></span>'
+        +'<span title="Materiales prohibidos"><b style="color:var(--text)">'+nm+'</b> <span style="color:var(--text-muted)">mat</span></span>'
+      +'</div>'
+      +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px">'+nn+' noticia'+(nn===1?'':'s')+(g?' · '+g.total+' gaceta'+(g.total>1?'s':''):'')+' · expediente →</div>'
       +'</div>';
   }).join('');
 }
