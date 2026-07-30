@@ -2,7 +2,7 @@
 "_meta": {
 "fuente": "Sitios oficiales de los congresos locales",
 "actualizado": "2026-07-30",
-"cobertura": "En expansión — 31 de 32 entidades (verificadas)"
+"cobertura": "32 de 32 entidades — cobertura nacional completa"
 },
 "estados": [
 {
@@ -707,6 +707,42 @@
 ],
 "url": "https://congresogro.gob.mx/64/comisiones-comites/",
 "confianza": "alta"
+}
+]
+},
+{
+"estado": "Hidalgo",
+"congreso_url": "https://www.congreso-hidalgo.gob.mx/LXVI_LEGISLATURA/",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente, Recursos Naturales y Cambio Climático",
+"tema": "medio_ambiente",
+"presidente": "Avelino Tovar Iglesias",
+"integrantes": [
+"Avelino Tovar Iglesias",
+"Arturo Gómez Canales",
+"Tania Eréndira Meza Escorza",
+"Jorge Arguelles Salazar",
+"Johana Montcerrat Hernández Pérez"
+],
+"url": "https://www.congreso-hidalgo.gob.mx/LXVI_LEGISLATURA/comisiones/INTEGRACION%20COMISIONES%20LXVI%20LEGISLATURA.pdf",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Agropecuario y Recursos Hidráulicos",
+"tema": "agua",
+"presidente": "Leonel Perusquía Muédano",
+"integrantes": [],
+"url": "https://www.congreso-hidalgo.gob.mx/LXVI_LEGISLATURA/",
+"confianza": "media"
+},
+{
+"nombre": "Comisión de Desarrollo Económico",
+"tema": "economia",
+"presidente": "Carlos Alejandro Alcántara Carbajal",
+"integrantes": [],
+"url": "https://www.congreso-hidalgo.gob.mx/LXVI_LEGISLATURA/",
+"confianza": "media"
 }
 ]
 },
