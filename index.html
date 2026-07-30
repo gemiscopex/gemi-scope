@@ -667,9 +667,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <button class="tab-btn" onclick="goObligaciones('federal')">Obligaciones ▾</button>
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="goObligaciones('instrumentos')">Instrumentos<span class="nd-sub">Planes, REP, registros, distintivos</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('federal')">Normativa Federal<span class="nd-sub">Leyes federales</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('estatal')">Normativa Estatal<span class="nd-sub">32 entidades</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs<span class="nd-sub">Normas oficiales</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs<span class="nd-sub">Normas oficiales mexicanas</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('federal')">Leyes Federales<span class="nd-sub">Legislación federal ambiental</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('estatal')">Leyes Estatales<span class="nd-sub">32 entidades</span></div>
       </div>
     </div>
     <button class="tab-btn" onclick="showTab('estados',null)">Estados</button>
@@ -792,13 +792,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
     </div>
   </div>
   <div class="tab-content" id="tab-legislacion" style="padding:28px 0">
-    <!-- Sub-toggle: Federal / Por Estado -->
-    <div class="leg-sub-bar">
-      <button class="leg-sub-btn active" id="leg-sub-federal" onclick="showLegSub('federal',this)">Nacional</button>
-      <button class="leg-sub-btn" id="leg-sub-estatal" onclick="showLegSub('estatal',this)">Por Estado</button>
-      <button class="leg-sub-btn" id="leg-sub-acuerdos" onclick="showLegSub('acuerdos',this)">Internacional · Acuerdos</button>
-      <button class="leg-sub-btn" id="leg-sub-congresomx" onclick="showLegSub('congresomx',this)">Congreso de México</button>
-    </div>
+    <!-- La navegación entre vistas la maneja el nav (Obligaciones/Internacional/Agenda);
+         no se usa sub-barra para evitar opciones duplicadas. -->
     <!-- Vista Federal -->
     <div id="leg-view-federal">
       <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
@@ -825,12 +820,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
         <span id="leyes-est-meta" style="font-size:12px;color:var(--text-muted)"></span>
       </div>
       <div id="leyes-est-list"></div>
-      <!-- Gaceta parlamentaria estatal (actividad legislativa reciente por entidad) -->
-      <div style="border-top:0.8px solid var(--border);margin-top:36px;padding-top:24px">
-        <div style="font-size:16px;font-weight:700;font-family:var(--sans);margin-bottom:4px">Gaceta Parlamentaria Estatal</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Iniciativas y acuerdos ambientales recientes en los congresos locales · haz clic en un estado para ver los documentos</div>
-        <div id="widget-gacetas"></div>
-      </div>
     </div>
     <!-- Vista Congreso de México -->
     <div id="leg-view-congresomx" style="display:none">
