@@ -1707,25 +1707,46 @@ function _actorCell(o){
     +'<span style="display:block;font-size:10.5px;color:var(--text-sec);margin-top:1px;line-height:1.3">'+(o.dependencia||'')+' ↗</span>'
     +'</a>';
 }
+function toggleActorEst(id){
+  var b=document.getElementById(id+'-b'),h=document.getElementById(id+'-h');
+  if(!b)return;
+  var open=b.classList.contains('open');
+  b.classList.toggle('open',!open);
+  if(h)h.classList.toggle('open',!open);
+}
+function _actorEstRow(label,o){
+  var lbl='<div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">'+label+'</div>';
+  if(!o||!o.titular||/por confirmar/i.test(o.titular))
+    return '<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">'+lbl+'<div style="font-size:12px;color:var(--text-muted)">Por confirmar</div></div>';
+  return '<a href="'+(o.url||'#')+'" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:7px 0;border-bottom:0.8px solid var(--border)">'+lbl
+    +'<div style="font-size:12.5px;font-weight:600;color:var(--text)">'+o.titular+' <span style="color:var(--green);font-weight:400">↗</span></div>'
+    +'<div style="font-size:10.5px;color:var(--text-sec);margin-top:1px;line-height:1.3">'+(o.dependencia||'')+'</div></a>';
+}
+function _actorEstState(e,idx){
+  var d=(_actoresEstatales.estados||{})[e]||{}, id='aest-'+idx;
+  return '<div>'
+    +'<div class="com-row" id="'+id+'-h" onclick="toggleActorEst(\''+id+'\')">'
+      +'<span class="com-row-scope"></span>'
+      +'<span class="com-row-name">'+e+'</span>'
+      +'<span class="com-arrow">▶</span>'
+    +'</div>'
+    +'<div class="com-body" id="'+id+'-b"><div class="com-body-inner">'
+      +_actorEstRow('Medio Ambiente',d.medio_ambiente)
+      +_actorEstRow('Economía',d.economia)
+    +'</div></div>'
+  +'</div>';
+}
 function renderActoresEstatales(){
   var el=document.getElementById('actores-estatales');
   if(!el||!_actoresEstatales)return;
   var q=qa(((document.getElementById('actores-est-search')||{}).value||'').toLowerCase()).trim();
-  var estados=Object.keys(_actoresEstatales.estados||{}).filter(function(e){return !q||qa(e.toLowerCase()).indexOf(q)>=0;}).sort();
-  var head='<div style="display:grid;grid-template-columns:120px 1fr 1fr;gap:16px;padding:8px 0;border-bottom:1px solid var(--border)">'
-    +'<span style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase">Estado</span>'
-    +'<span style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase">Medio Ambiente</span>'
-    +'<span style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase">Economía</span>'
+  var estados=Object.keys(_actoresEstatales.estados||{}).filter(function(e){return !q||qa(e.toLowerCase()).indexOf(q)>=0;}).sort(function(a,b){return a.localeCompare(b,'es');});
+  if(!estados.length){el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Sin coincidencias</div>';return;}
+  var half=Math.ceil(estados.length/2), col1=estados.slice(0,half), col2=estados.slice(half);
+  el.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
+    +'<div>'+col1.map(function(e,i){return _actorEstState(e,i);}).join('')+'</div>'
+    +'<div>'+col2.map(function(e,i){return _actorEstState(e,half+i);}).join('')+'</div>'
     +'</div>';
-  var rows=estados.map(function(e){
-    var d=_actoresEstatales.estados[e];
-    return '<div style="display:grid;grid-template-columns:120px 1fr 1fr;gap:16px;padding:11px 0;border-bottom:0.8px solid var(--border);align-items:start">'
-      +'<span style="font-size:12.5px;font-weight:600;color:var(--text)">'+e+'</span>'
-      +'<div>'+_actorCell(d.medio_ambiente)+'</div>'
-      +'<div>'+_actorCell(d.economia)+'</div>'
-      +'</div>';
-  }).join('')||'<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Sin coincidencias</div>';
-  el.innerHTML=head+rows;
 }
 // ── Datos abiertos ambientales (datos.gob.mx, via scraper diario) ──
 function renderDatosGob(){
