@@ -863,8 +863,16 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
     </div>
     <!-- Legislativo: comisiones del Congreso -->
     <div id="actores-view-legislativo" style="display:none">
-      <div class="card-label">Comisiones del Congreso</div>
+      <div class="card-label">Comisiones del Congreso de la Unión</div>
       <div id="comisiones-list" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
+      <div style="border-top:0.8px solid var(--border);margin-top:34px;padding-top:24px">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <div class="card-label" style="margin-bottom:0">Comisiones de los Congresos Estatales</div>
+          <input id="comest-search" placeholder="Filtrar estado…" oninput="renderComisionesEstatales()" style="font-size:11.5px;padding:5px 10px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);outline:none;width:160px;font-family:var(--sans)">
+        </div>
+        <div style="font-size:11.5px;color:var(--text-muted);margin-top:4px">Medio ambiente · cambio climático · desarrollo sostenible · economía · agua — con sus integrantes, de fuentes oficiales</div>
+        <div id="comisiones-estatales" style="margin-top:14px"></div>
+      </div>
     </div>
   </div>
 
@@ -1557,21 +1565,33 @@ var ACUERDOS=[
   {n:'CITES',org:'ONU',anio:1973,tema:'Especies',status:'Adhesión 1991',vig:'En vigor',implic:'Comercio internacional de especies amenazadas (totoaba, tiburón, cactáceas)',url:'https://cites.org/esp'}
 ];
 var TEMA_ACUERDO_COLOR={'Clima':'#f59e0b','Derechos ambientales':'#009E90','Capa de ozono':'#38bdf8','HFC / Clima':'#f59e0b','Biodiversidad':'#16a34a','Residuos peligrosos':'#a78bfa','Contaminantes orgánicos':'#ef4444','Químicos peligrosos':'#8e44ad','Humedales':'#0ea5e9','Especies':'#d35400'};
+var _INTL=null;
+var _INTL_CATS=[['cadena_suministro','Cadenas de suministro · vinculante para exportadores'],['ley_extranjera','Leyes extranjeras · economía circular y REP'],['tratado_vinculante','Tratados y acuerdos vinculantes']];
 function renderAcuerdos(){
   var el=document.getElementById('acuerdos-list');
-  if(!el||el.dataset.done)return;
-  el.dataset.done='1';
-  el.innerHTML=ACUERDOS.map(function(a){
-    var col=TEMA_ACUERDO_COLOR[a.tema]||'#6b7280';
-    return '<div class="ley-row" onclick="window.open(\''+a.url+'\',\'_blank\')">'
-      +'<span class="ley-sigla" style="min-width:44px">'+a.anio+'</span>'
-      +'<div style="flex:1;min-width:0">'
-        +'<div class="ley-nombre">'+a.n+'</div>'
-        +'<div style="font-size:11px;color:var(--text-muted);margin-top:2px">'+a.implic+'</div>'
-      +'</div>'
-      +'<span style="font-size:9.5px;color:var(--text-muted);letter-spacing:0.04em;white-space:nowrap;flex-shrink:0">'+a.tema.toUpperCase()+'</span>'
-      +'<span style="font-size:10.5px;font-weight:600;color:var(--green);white-space:nowrap;flex-shrink:0">'+a.status+'</span>'
-      +'<span class="ley-link-icon">↗</span>'
+  if(!el)return;
+  if(!_INTL){
+    el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando…</div>';
+    fetch('data/internacional.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){_INTL=d||[];renderAcuerdos();}).catch(function(){_INTL=[];});
+    return;
+  }
+  el.innerHTML=_INTL_CATS.map(function(cat){
+    var items=_INTL.filter(function(a){return a.categoria===cat[0];});
+    if(!items.length)return '';
+    return '<div style="margin-bottom:28px">'
+      +'<div style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">'+cat[1]+' · '+items.length+'</div>'
+      +items.map(function(a){
+        return '<div class="ley-row" onclick="window.open(\''+(a.url||'#').replace(/'/g,'%27')+'\',\'_blank\')" style="align-items:flex-start">'
+          +'<span class="ley-sigla" style="min-width:52px">'+a.anio+'</span>'
+          +'<div style="flex:1;min-width:0">'
+            +'<div class="ley-nombre">'+a.nombre+'</div>'
+            +'<div style="font-size:11px;color:var(--text-sec);margin-top:2px;line-height:1.45">'+(a.relevancia_mexico||'')+'</div>'
+            +'<div style="font-size:10px;color:var(--text-muted);margin-top:3px">'+(a.estatus||'')+'</div>'
+          +'</div>'
+          +'<span style="font-size:9.5px;color:var(--text-muted);letter-spacing:0.04em;white-space:nowrap;flex-shrink:0;max-width:130px;text-align:right">'+a.jurisdiccion+'</span>'
+          +'<span class="ley-link-icon">↗</span>'
+          +'</div>';
+      }).join('')
       +'</div>';
   }).join('');
 }
@@ -1611,6 +1631,40 @@ function showActoresSub(view,btn){
   document.getElementById('actores-view-estatal').style.display=view==='estatal'?'':'none';
   document.getElementById('actores-view-legislativo').style.display=view==='legislativo'?'':'none';
   if(view==='estatal')renderActoresEstatales();
+  if(view==='legislativo')renderComisionesEstatales();
+}
+// ── Comisiones de los congresos estatales (temas ambientales/económicos) ──
+var _comisionesEstatales=null;
+var _TEMA_COM_COLOR={medio_ambiente:'#16a34a',cambio_climatico:'#f59e0b',desarrollo_sostenible:'#0ea5e9',economia:'#6366F1',agua:'#009E90'};
+var _TEMA_COM_LBL={medio_ambiente:'Medio Ambiente',cambio_climatico:'Cambio Climático',desarrollo_sostenible:'Desarrollo Sostenible',economia:'Economía',agua:'Agua'};
+function renderComisionesEstatales(){
+  var el=document.getElementById('comisiones-estatales');if(!el)return;
+  if(!_comisionesEstatales){
+    el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando comisiones estatales…</div>';
+    fetch('data/comisiones-estatales.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){_comisionesEstatales=d;renderComisionesEstatales();}).catch(function(){_comisionesEstatales={estados:[]};});
+    return;
+  }
+  var q=qa(((document.getElementById('comest-search')||{}).value||'').toLowerCase()).trim();
+  var estados=(_comisionesEstatales.estados||[]).filter(function(e){return !q||qa(e.estado.toLowerCase()).indexOf(q)>=0;});
+  var meta=_comisionesEstatales._meta||{};
+  var head=meta.cobertura?'<div style="font-size:10px;color:var(--text-muted);font-family:var(--mono);margin-bottom:14px">'+meta.cobertura+'</div>':'';
+  if(!estados.length){el.innerHTML=head+'<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Sin coincidencias</div>';return;}
+  el.innerHTML=head+estados.map(function(e){
+    return '<div style="margin-bottom:24px">'
+      +'<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:9px">'+e.estado+'</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 24px">'
+      +(e.comisiones||[]).map(function(c){
+        var col=_TEMA_COM_COLOR[c.tema]||'#6b7280';
+        var integr=(c.integrantes&&c.integrantes.length)?c.integrantes.join(' · '):'';
+        return '<div style="border-left:2px solid '+col+';padding:1px 0 1px 11px">'
+          +'<div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:'+col+';margin-bottom:3px">'+(_TEMA_COM_LBL[c.tema]||c.tema)+'</div>'
+          +'<a href="'+(c.url||e.congreso_url||'#')+'" target="_blank" rel="noopener" style="text-decoration:none"><div style="font-size:12.5px;font-weight:600;color:var(--text);line-height:1.3">'+c.nombre+' <span style="color:var(--green);font-weight:400">↗</span></div></a>'
+          +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px">Preside: <b style="font-weight:600">'+(c.presidente||'—')+'</b></div>'
+          +(integr?'<div style="font-size:10.5px;color:var(--text-muted);margin-top:2px;line-height:1.4">'+integr+'</div>':'')
+          +'</div>';
+      }).join('')
+      +'</div></div>';
+  }).join('');
 }
 // ── Titulares estatales (medio ambiente + economía) ──
 var _actoresEstatales=null;
