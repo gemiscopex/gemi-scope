@@ -17,7 +17,7 @@ import requests
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT  = ROOT / "data" / "datosgob.json"
-API  = "https://datos.gob.mx/api/3/action/package_search"
+API  = "https://www.datos.gob.mx/api/3/action/package_search"
 UA   = {"User-Agent": "Mozilla/5.0 (compatible; SCOPE-GEMI/1.0)"}
 
 TEMAS = {
@@ -62,8 +62,8 @@ def main():
                 "titulo": (p.get("title") or "").strip(),
                 "org": org,
                 "fecha": fecha,
-                "url": f"https://datos.gob.mx/busca/dataset/{p.get('name','')}" if p.get("name")
-                       else "https://datos.gob.mx/",
+                "url": f"https://www.datos.gob.mx/dataset/{p.get('name','')}" if p.get("name")
+                       else "https://www.datos.gob.mx/",
                 "recursos": len(p.get("resources") or []),
             })
             if len(items) >= 5:
