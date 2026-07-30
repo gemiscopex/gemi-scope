@@ -660,7 +660,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 <div class="tooltip" id="tt"></div>
 <nav class="nav">
   <div class="nav-left">
-    <img src="assets/scope-logo.png" alt="SCOPE" title="Inicio" onclick="showTab('dashboard',null)" style="height:26px;width:auto;display:block;cursor:pointer">
+    <img src="assets/scope-logo.png?v=2" alt="SCOPE" title="Inicio" onclick="showTab('dashboard',null)" style="height:30px;width:auto;display:block;cursor:pointer">
   </div>
   <div class="nav-tabs">
     <div class="nav-drop-wrap">
@@ -926,6 +926,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
     <div style="font-size:12px;color:var(--text-muted);margin-bottom:22px">Expediente ambiental por entidad · haz clic en un estado para abrir su expediente, o compáralos en el panel de la derecha</div>
     <div class="est-layout">
       <div>
+        <div id="estados-colorby" style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:18px"></div>
         <div id="estados-heatmap"></div>
         <div id="estados-leyenda" style="display:flex;align-items:center;gap:18px;margin-top:22px;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase"></div>
       </div>
@@ -1075,12 +1076,12 @@ const leyes=[
   {s:'LGEEPA',n:'Ley General del Equilibrio Ecológico y la Protección al Ambiente',t:'Medio Ambiente',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEEPA.pdf',r:'19 de enero de 2026'},
   {s:'LGPGIR',n:'Ley General para la Prevención y Gestión Integral de los Residuos',t:'Residuos',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGPGIR.pdf',r:'19 de enero de 2026'},
   {s:'LAN',n:'Ley de Aguas Nacionales',t:'Agua',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LAN.pdf',r:'11 de diciembre de 2025'},
-  {s:'LTE',n:'Ley de Transición Energética',t:'Energía',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LTE.pdf',r:'Abrogada · sustituida por LPTE · Sin reforma'},
+  {s:'LPTE',n:'Ley de Planeación y Transición Energética',t:'Energía',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LPTE.pdf',r:'18 de marzo de 2025'},
   {s:'LGCC',n:'Ley General de Cambio Climático',t:'Cambio Climático',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGCC.pdf',r:'1 de abril de 2024'},
   {s:'LFD',n:'Ley Federal de Derechos (Sección Ambiental)',t:'Impuestos Ambientales',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFD.pdf',r:'28 de diciembre de 2025'},
   {s:'LGDFS',n:'Ley General de Desarrollo Forestal Sustentable',t:'Bosques',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGDFS.pdf',r:'1 de abril de 2024'},
   {s:'LGVS',n:'Ley General de Vida Silvestre',t:'Biodiversidad',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGVS.pdf',r:'16 de julio de 2025'},
-  {s:'LIE',n:'Ley de la Industria Eléctrica',t:'Energía',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LIE.pdf',r:'Abrogada (03/2025)'},
+  {s:'LSE',n:'Ley del Sector Eléctrico',t:'Energía',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LSE.pdf',r:'18 de marzo de 2025'},
   {s:'LFRA',n:'Ley Federal de Responsabilidad Ambiental',t:'Responsabilidad',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFRA.pdf',r:'14 de noviembre de 2025'},
   {s:'LGEC',n:'Ley General de Economía Circular',t:'Economía Circular',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEC.pdf',r:'Sin reforma'}
 ];
@@ -1682,45 +1683,69 @@ function renderDofMenu(){
 
 // ═══ CIRUGÍA MAYOR · render de las categorías nuevas ═══════════════════════
 // ── ESTADOS · heatmap de 32 entidades (reusa openStatePanel) ──
+// ── Métricas REALES por estado (nada inventado) ──
+function _leyEntry(s){return (leyesAmbientales.estados||[]).find(function(e){return e.nombre===s||(s==='México'&&e.nombre==='Estado de México')||(s==='Estado de México'&&e.nombre==='México');});}
+function _nLeyes(s){var e=_leyEntry(s);if(!e)return 0;var L=e.leyes||{};return Object.keys(L).reduce(function(a,t){return a+((L[t]||[]).length);},0);}
+function _nImpuestos(s){return (typeof impuestosDB!=='undefined'&&impuestosDB[s])?impuestosDB[s].length:0;}
+function _nMateriales(s){var m=((_materialesData&&_materialesData.estados)||{})[s];return (m&&m.materiales)?m.materiales.length:0;}
+// Criterios de color del heatmap: TODOS con datos que sí tenemos.
+var _ESTADO_METRICS={
+  leyes:     {label:'N° de leyes ambientales', short:'leyes',      get:_nLeyes},
+  impuestos: {label:'N° de impuestos verdes',  short:'impuestos',  get:_nImpuestos},
+  materiales:{label:'Materiales prohibidos',   short:'materiales', get:_nMateriales},
+  pea:       {label:'PEA (activos, ENOE)',     short:'PEA',        get:_statePea}
+};
+var _estadoColorBy='leyes';
+function estadoSetColorBy(k){_estadoColorBy=k;renderEstadosHeatmap();}
 function renderEstadosHeatmap(){
   var host=document.getElementById('estados-heatmap');if(!host)return;
-  if(!Object.keys(stateScores).length){try{computeScores();}catch(e){}}
-  function edge(sc){if(sc>=70)return'#ef4444';if(sc>=45)return'#f97316';if(sc>=20)return'#10b981';return'#94a3b8';}
-  function tint(sc){if(sc>=70)return'rgba(239,68,68,0.13)';if(sc>=45)return'rgba(249,115,22,0.12)';if(sc>=20)return'rgba(16,185,129,0.11)';return'rgba(148,163,184,0.09)';}
+  var m=_ESTADO_METRICS[_estadoColorBy]||_ESTADO_METRICS.leyes;
   var states=Object.keys(estadoData).sort(function(a,b){return a.localeCompare(b,'es');});
+  var vals={},maxV=0;
+  states.forEach(function(s){var v=m.get(s)||0;vals[s]=v;if(v>maxV)maxV=v;});
+  var ranked=states.slice().sort(function(a,b){return vals[b]-vals[a];}),rankOf={};
+  ranked.forEach(function(s,i){rankOf[s]=i+1;});
+  function frac(v){return maxV>0?v/maxV:0;}
+  function edge(v){var f=frac(v);return f>=0.75?'#ef4444':f>=0.5?'#f97316':f>=0.25?'#10b981':'#94a3b8';}
+  function tint(v){var f=frac(v);return f>=0.75?'rgba(239,68,68,0.13)':f>=0.5?'rgba(249,115,22,0.12)':f>=0.25?'rgba(16,185,129,0.11)':'rgba(148,163,184,0.09)';}
+  // Selector "colorear por" (criterios reales)
+  var cb=document.getElementById('estados-colorby');
+  if(cb)cb.innerHTML='<span style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">Colorear por</span>'
+    +'<select onchange="estadoSetColorBy(this.value)" style="padding:6px 10px;border:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12.5px;color:var(--text)">'
+    +Object.keys(_ESTADO_METRICS).map(function(k){return '<option value="'+k+'"'+(k===_estadoColorBy?' selected':'')+'>'+_ESTADO_METRICS[k].label+'</option>';}).join('')+'</select>';
   host.style.display='grid';
   host.style.gridTemplateColumns='repeat(auto-fill,minmax(158px,1fr))';
   host.style.gap='8px';
   host.innerHTML=states.map(function(s){
-    var sc=(stateScores[s]||{}).master||0, rank=(stateScores[s]||{}).rank||'', d=estadoData[s]||{};
-    var nImp=(typeof impuestosDB!=='undefined'&&impuestosDB[s]?impuestosDB[s].length:0);
+    var v=vals[s],d=estadoData[s]||{};
+    var disp=(_estadoColorBy==='pea')?_fmtK(v):v;
     return '<div onclick="openStatePanel(\''+s.replace(/'/g,"\\'")+'\')" title="Abrir expediente de '+s+'" '
-      +'style="cursor:pointer;background:'+tint(sc)+';padding:12px 14px;transition:transform .12s ease" '
+      +'style="cursor:pointer;background:'+tint(v)+';padding:12px 14px;transition:transform .12s ease" '
       +'onmouseover="this.style.transform=\'translateX(3px)\'" onmouseout="this.style.transform=\'\'">'
-      +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">#'+rank+(d.region?' · '+d.region:'')+'</div>'
+      +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">#'+rankOf[s]+(d.region?' · '+d.region:'')+'</div>'
       +'<div style="font-size:13.5px;font-weight:600;color:var(--text);line-height:1.15;margin-bottom:9px">'+s+'</div>'
-      +'<div style="display:flex;align-items:baseline;gap:6px"><span style="font-family:var(--mono);font-size:21px;font-weight:600;color:'+edge(sc)+'">'+sc+'</span>'
-      +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">índice</span></div>'
-      +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:7px">'+(d.pop?d.pop+' hab · ':'')+nImp+' impuesto'+(nImp===1?'':'s')+'</div>'
+      +'<div style="display:flex;align-items:baseline;gap:6px"><span style="font-family:var(--mono);font-size:21px;font-weight:600;color:'+edge(v)+'">'+disp+'</span>'
+      +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+m.short+'</span></div>'
+      +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:7px">'+_nLeyes(s)+' leyes · '+_nImpuestos(s)+' imp · '+_nMateriales(s)+' mat</div>'
       +'</div>';
   }).join('');
   var leg=document.getElementById('estados-leyenda');
-  if(leg)leg.innerHTML='<span>Índice de exposición regulatoria</span>'
-    +[['#94a3b8','Bajo'],['#10b981','Moderado'],['#f97316','Alto'],['#ef4444','Crítico']].map(function(p){
+  if(leg)leg.innerHTML='<span>'+m.label+' · relativo al máximo nacional</span>'
+    +[['#94a3b8','Bajo'],['#10b981','Medio'],['#f97316','Alto'],['#ef4444','Máximo']].map(function(p){
       return '<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:'+p[0]+';display:inline-block"></span>'+p[1]+'</span>';}).join('');
   renderEstadosCompare();
 }
 // ── ESTADOS · comparativa de hasta 3 entidades (panel derecho) ──
-var _cmpStates=[], _cmpView='indices';
+var _cmpStates=[], _cmpView='resumen';
 function estadosAddCmp(sel){
   var v=sel.value; sel.value='';
-  if(!v||_cmpStates.indexOf(v)>=0||_cmpStates.length>=3)return;
+  if(!v||_cmpStates.indexOf(v)>=0||_cmpStates.length>=5)return;
   _cmpStates.push(v); renderEstadosCompare();
 }
 function estadosRemoveCmp(name){ _cmpStates=_cmpStates.filter(function(s){return s!==name;}); renderEstadosCompare(); }
 function estadosCmpView(v){ _cmpView=v; renderEstadosCompare(); }
-var _CMP_COLORS=['#009E90','#E8843D','#6366F1'];
-function _cmpColor(i){return _CMP_COLORS[i%3];}
+var _CMP_COLORS=['#009E90','#E8843D','#6366F1','#DC2626','#0EA5E9'];
+function _cmpColor(i){return _CMP_COLORS[i%_CMP_COLORS.length];}
 function _statePob(s){var p=(_perfilEstados&&_perfilEstados.estados&&_perfilEstados.estados[s])||{};return p.poblacion||0;}
 function _statePea(s){var p=(_perfilEstados&&_perfilEstados.estados&&_perfilEstados.estados[s])||{};return p.pea||0;}
 function _fmtK(v){v=Math.round(v||0);if(v>=1e6)return (v/1e6).toFixed(2).replace(/\.?0+$/,'')+'M';if(v>=1e3)return (v/1e3).toFixed(0)+'k';return ''+v;}
@@ -1742,42 +1767,48 @@ function _cmpBars(label,vals,opts){
     }).join('')
     +'</div>';
 }
-// Radar de los 4 subíndices, con las entidades superpuestas (generado al momento)
-function _cmpRadar(){
-  var axes=[['icr','ICR'],['ipr','IPR'],['irf','IRF'],['iis','IIS']];
-  var n=axes.length, cx=150, cy=120, R=84;
-  function pt(val,i){var a=(-90+i*360/n)*Math.PI/180,r=(val/100)*R;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
-  var svg='<svg viewBox="0 0 300 245" style="width:100%;height:auto;max-width:300px;display:block;margin:2px auto 10px">';
-  [25,50,75,100].forEach(function(lv){
-    var pts=axes.map(function(a,i){return pt(lv,i).map(function(x){return x.toFixed(1);}).join(',');}).join(' ');
-    svg+='<polygon points="'+pts+'" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="1"/>';
+// Dona (trader-desk): reparto de un total real entre las entidades comparadas.
+function _cmpDonut(vals,centerLabel){
+  var total=vals.reduce(function(a,b){return a+(b||0);},0);
+  var cx=70,cy=70,r=54,rin=33,a0=-Math.PI/2,segs='';
+  if(total>0)_cmpStates.forEach(function(s,i){
+    var f=(vals[i]||0)/total; if(f<=0)return;
+    var a1=a0+f*2*Math.PI;
+    var x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    var xi1=cx+rin*Math.cos(a1),yi1=cy+rin*Math.sin(a1),xi0=cx+rin*Math.cos(a0),yi0=cy+rin*Math.sin(a0);
+    var lg=f>0.5?1:0;
+    segs+='<path d="M'+x0.toFixed(1)+' '+y0.toFixed(1)+' A'+r+' '+r+' 0 '+lg+' 1 '+x1.toFixed(1)+' '+y1.toFixed(1)+' L'+xi1.toFixed(1)+' '+yi1.toFixed(1)+' A'+rin+' '+rin+' 0 '+lg+' 0 '+xi0.toFixed(1)+' '+yi0.toFixed(1)+' Z" fill="'+_cmpColor(i)+'" fill-opacity="0.9"/>';
+    a0=a1;
   });
-  axes.forEach(function(a,i){
-    var p=pt(100,i), lp=pt(120,i);
-    svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+p[0].toFixed(1)+'" y2="'+p[1].toFixed(1)+'" stroke="rgba(0,0,0,0.09)" stroke-width="1"/>';
-    var anchor=Math.abs(lp[0]-cx)<6?'middle':(lp[0]>cx?'start':'end');
-    svg+='<text x="'+lp[0].toFixed(1)+'" y="'+(lp[1]+3).toFixed(1)+'" text-anchor="'+anchor+'" style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;fill:var(--text-muted)">'+a[1]+'</text>';
+  else segs='<circle cx="70" cy="70" r="54" fill="none" stroke="var(--border)" stroke-width="2"/>';
+  return '<svg viewBox="0 0 140 140" style="width:150px;height:150px;display:block;margin:2px auto 6px">'+segs
+    +'<text x="70" y="66" text-anchor="middle" style="font-family:var(--mono);font-size:22px;font-weight:600;fill:var(--text)">'+total+'</text>'
+    +'<text x="70" y="82" text-anchor="middle" style="font-family:var(--mono);font-size:8px;letter-spacing:0.08em;fill:var(--text-muted)">'+centerLabel+'</text>'
+    +'</svg>';
+}
+// Exportar la comparación a CSV (abre en Excel; BOM UTF-8).
+function estadosExportCSV(){
+  if(!_cmpStates.length)return;
+  var rows=[['Entidad','Leyes ambientales','Impuestos verdes','Materiales prohibidos','Poblacion 2020','PEA 2026Q1','PEA/poblacion %']];
+  _cmpStates.forEach(function(s){
+    var pob=_statePob(s),pea=_statePea(s);
+    rows.push([s,_nLeyes(s),_nImpuestos(s),_nMateriales(s),pob||'',pea||'',pob?(pea/pob*100).toFixed(1):'']);
   });
-  _cmpStates.forEach(function(s,si){
-    var col=_cmpColor(si);
-    var pts=axes.map(function(a,i){return pt((stateScores[s]||{})[a[0]]||0,i);});
-    var poly=pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
-    svg+='<polygon points="'+poly+'" fill="'+col+'" fill-opacity="0.12" stroke="'+col+'" stroke-width="1.6"/>';
-    pts.forEach(function(p){svg+='<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="2.4" fill="'+col+'"/>';});
-  });
-  svg+='</svg>';
-  return svg;
+  var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\r\n');
+  var blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+  var url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='scope-comparacion-estados.csv';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(function(){URL.revokeObjectURL(url);},800);
 }
 function _cmpBody(){
   if(_cmpView==='impuestos'){
-    var counts=_cmpStates.map(function(s){return (impuestosDB[s]||[]).length;});
-    var rates=_cmpStates.map(function(s){var p=_statePob(s);return p?((impuestosDB[s]||[]).length/(p/1e6)):0;});
-    var out=_cmpBars('Impuestos ambientales',counts,{fmt:function(v){return v;}})
-      +_cmpBars('Por millón de hab. · tasa',rates,{fmt:function(v){return v.toFixed(2);}})
+    var counts=_cmpStates.map(_nImpuestos);
+    var out=_cmpDonut(counts,'impuestos')
+      +'<div style="font-size:10px;color:var(--text-muted);text-align:center;margin-bottom:16px">Reparto de impuestos verdes entre las entidades comparadas</div>'
       +'<div style="margin-top:4px">'+_cmpStates.map(function(s,i){
         var tx=(impuestosDB[s]||[]);
         return '<div style="margin-bottom:12px;padding-bottom:11px;border-bottom:0.8px solid var(--border)">'
-          +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><span style="width:9px;height:9px;background:'+_cmpColor(i)+';display:inline-block;flex-shrink:0"></span><span style="font-size:12.5px;font-weight:600;color:var(--text)">'+s+'</span></div>'
+          +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><span style="width:9px;height:9px;background:'+_cmpColor(i)+';display:inline-block;flex-shrink:0"></span><span style="font-size:12.5px;font-weight:600;color:var(--text)">'+s+'</span><span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-left:auto">'+tx.length+'</span></div>'
           +(tx.length?tx.map(function(t){
             return '<div style="padding:2px 0 2px 16px">'
               +'<div style="font-size:12px;color:var(--text)">'+(t.controversia?'<span style="color:#ef4444" title="Controversia constitucional">● </span>':'')+(t.tipo||'—')+'</div>'
@@ -1789,11 +1820,19 @@ function _cmpBody(){
     return out;
   }
   if(_cmpView==='sector'){
-    var secs=[['manufactura','Manufactura'],['alimentos','Alimentos'],['envases','Envases'],['energia','Energía'],['logistica','Logística'],['retail','Retail'],['agro','Agro']];
-    return secs.map(function(sec){
-      var vals=_cmpStates.map(function(s){return (SECTOR_PROFILE[s]||{})[sec[0]]||0;});
-      return _cmpBars(sec[1],vals,{max:100});
-    }).join('');
+    return _cmpStates.map(function(s,i){
+      var secs=((_perfilEstados&&_perfilEstados.estados&&_perfilEstados.estados[s])||{}).sectores||[];
+      var top=secs.slice(0,4), mx=top.length?top[0].pct:1;
+      return '<div style="margin-bottom:15px;padding-bottom:12px;border-bottom:0.8px solid var(--border)">'
+        +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><span style="width:9px;height:9px;background:'+_cmpColor(i)+';display:inline-block;flex-shrink:0"></span><span style="font-size:12.5px;font-weight:600;color:var(--text)">'+s+'</span></div>'
+        +(top.length?top.map(function(sec){var w=mx>0?(sec.pct/mx*100):0;
+          return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'
+            +'<div style="width:96px;font-size:10.5px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+sec.n+'</div>'
+            +'<div style="flex:1;min-width:0;height:11px;background:rgba(0,0,0,0.045)"><div class="cmp-bar" data-w="'+w.toFixed(1)+'" style="height:100%;width:0;background:'+_cmpColor(i)+'"></div></div>'
+            +'<div style="width:42px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--text)">'+sec.pct.toFixed(1)+'%</div></div>';
+        }).join(''):'<div style="font-size:11.5px;color:var(--text-muted)">Sin datos de sectores</div>')
+        +'</div>';
+    }).join('')+'<div style="font-size:9.5px;color:var(--text-muted)">Participación en unidades económicas · Censos Económicos (Data México)</div>';
   }
   if(_cmpView==='perfil'){
     var pobs=_cmpStates.map(_statePob), peas=_cmpStates.map(_statePea);
@@ -1806,37 +1845,39 @@ function _cmpBody(){
     }).join('')+'</div>';
     return out;
   }
-  // índices (default) — valores normalizados 0–100 (ya son tasas comparables)
-  var metrics=[['master','Índice global'],['icr','Complejidad · ICR'],['ipr','Presión · IPR'],['irf','Riesgo fiscal · IRF'],['iis','Sector · IIS']];
-  return _cmpRadar()+metrics.map(function(m){
-    var vals=_cmpStates.map(function(s){return (stateScores[s]||{})[m[0]]||0;});
-    return _cmpBars(m[1],vals,{max:100});
+  // Resumen (default) — conteos REALES, sin índices inventados
+  var metrics=[['Leyes ambientales',_nLeyes],['Impuestos verdes',_nImpuestos],['Materiales prohibidos',_nMateriales]];
+  var out=metrics.map(function(m){
+    var vals=_cmpStates.map(function(s){return m[1](s);});
+    return _cmpBars(m[0],vals,{fmt:function(v){return v;}});
   }).join('');
+  var peapct=_cmpStates.map(function(s){var p=_statePob(s);return p?(_statePea(s)/p*100):0;});
+  out+=_cmpBars('PEA / población · %',peapct,{max:100,fmt:function(v){return v.toFixed(1)+'%';}});
+  return out;
 }
 function renderEstadosCompare(){
   var host=document.getElementById('estados-compare');if(!host)return;
-  if(!Object.keys(stateScores).length){try{computeScores();}catch(e){}}
   var states=Object.keys(estadoData).sort(function(a,b){return a.localeCompare(b,'es');});
   var opts='<option value="">+ Agregar estado…</option>'+states.filter(function(s){return _cmpStates.indexOf(s)<0;}).map(function(s){return '<option>'+s+'</option>';}).join('');
-  var full=_cmpStates.length>=3;
-  var html='<div style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px">Comparar entidades · máx. 3</div>'
+  var full=_cmpStates.length>=5;
+  var html='<div style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px">Comparar entidades · máx. 5</div>'
     +'<select onchange="estadosAddCmp(this)"'+(full?' disabled':'')+' style="width:100%;padding:7px 8px;border:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:13px;color:var(--text);margin-bottom:12px'+(full?';opacity:0.5':'')+'">'+opts+'</select>';
   if(!_cmpStates.length){
-    host.innerHTML=html+'<div style="font-size:12px;color:var(--text-muted);line-height:1.55">Elige hasta 3 entidades para compararlas lado a lado. Las gráficas se generan al momento por índices, impuestos, sector o perfil.</div>';
+    host.innerHTML=html+'<div style="font-size:12px;color:var(--text-muted);line-height:1.55">Elige hasta 5 entidades para compararlas con datos reales: leyes, impuestos, sector y perfil. Podrás descargar la comparación en CSV/Excel.</div>';
     return;
   }
-  // Lista seleccionada = leyenda de color de las series
   html+='<div style="margin-bottom:14px">'+_cmpStates.map(function(s,i){
     return '<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:13px;color:var(--text)">'
       +'<span style="width:10px;height:10px;background:'+_cmpColor(i)+';display:inline-block;flex-shrink:0"></span>'
       +'<span style="flex:1;min-width:0">'+s+'</span>'
       +'<span onclick="estadosRemoveCmp(\''+s.replace(/'/g,"\\'")+'\')" title="Quitar" style="cursor:pointer;color:var(--text-muted);font-size:13px;padding:0 4px">✕</span></div>';
   }).join('')+'</div>';
-  var views=[['indices','Índices'],['impuestos','Impuestos'],['sector','Sector'],['perfil','Perfil']];
+  var views=[['resumen','Resumen'],['impuestos','Impuestos'],['sector','Sector'],['perfil','Perfil']];
   html+='<div style="display:flex;flex-wrap:wrap;gap:8px 16px;border-top:0.8px solid var(--border);border-bottom:0.8px solid var(--border);padding:10px 0;margin-bottom:15px">'
     +views.map(function(v){var on=v[0]===_cmpView;return '<span onclick="estadosCmpView(\''+v[0]+'\')" style="cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:0.05em;text-transform:uppercase;color:'+(on?'var(--green)':'var(--text-muted)')+';font-weight:'+(on?'700':'400')+'">'+v[1]+'</span>';}).join('')
     +'</div>';
   html+=_cmpBody();
+  html+='<div style="margin-top:16px;border-top:0.8px solid var(--border);padding-top:12px"><span onclick="estadosExportCSV()" title="Descargar en CSV (abre en Excel)" style="cursor:pointer;font-family:var(--mono);font-size:11px;color:var(--green);font-weight:600">↓ Descargar comparación (CSV / Excel)</span></div>';
   host.innerHTML=html;
   requestAnimationFrame(function(){host.querySelectorAll('.cmp-bar').forEach(function(b){b.style.width=b.getAttribute('data-w')+'%';});});
 }
