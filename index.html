@@ -660,9 +660,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 <div class="tooltip" id="tt"></div>
 <nav class="nav">
   <div class="nav-left">
-    <img src="assets/logo-gemi.jpeg" class="nav-logo-img" alt="GEMI">
-    <div class="nav-logo-sep"></div>
-    <span class="nav-logo" style="cursor:pointer" onclick="showTab('dashboard',null)" title="Inicio">SCOPE</span>
+    <img src="assets/scope-logo.png" alt="SCOPE" title="Inicio" onclick="showTab('dashboard',null)" style="height:26px;width:auto;display:block;cursor:pointer">
   </div>
   <div class="nav-tabs">
     <div class="nav-drop-wrap">
@@ -2945,29 +2943,33 @@ function renderCongresoChart(){
   });
   _congChart={monday0:monday0,weeks:weeks,nsem:NSEM};
   var maxV=Math.max(1,weeks.reduce(function(m,w){return Math.max(m,w.dip,w.sen);},0));
-  var W=680,H=104,PL=14,PR=12,PT=8,PB=18,IW=W-PL-PR,IH=H-PT-PB;
+  var W=680,H=96,PL=42,PR=16,PT=10,PB=18,IW=W-PL-PR,IH=H-PT-PB;
   function X(i){return PL+(i/(NSEM-1))*IW;}
-  function Y(v){return PT+IH-(v/maxV)*IH;}
   var dip=weeks.map(function(w){return w.dip;}),sen=weeks.map(function(w){return w.sen;});
-  var baseY=PT+IH;
-  var pDip=dip.map(function(v,i){return [X(i),Y(v)];});
-  var pSen=sen.map(function(v,i){return [X(i),Y(v)];});
-  var lineDip=_stepPath(pDip),lineSen=_stepPath(pSen);
-  // Marcador solo en el último punto de cada serie (valor actual)
-  var last=NSEM-1,dots='';
-  if(dip[last])dots+='<circle cx="'+X(last).toFixed(1)+'" cy="'+Y(dip[last]).toFixed(1)+'" r="3.2" fill="var(--green)" stroke="#fff" stroke-width="1.6"/>';
-  if(sen[last])dots+='<circle cx="'+X(last).toFixed(1)+'" cy="'+Y(sen[last]).toFixed(1)+'" r="3.2" fill="#E8843D" stroke="#fff" stroke-width="1.6"/>';
+  // Dot plot (ticks): dos carriles (Diputados / Senado), un punto por semana con
+  // radio proporcional a la actividad. Limpio y legible con datos escasos.
+  var laneDip=PT+IH*0.30, laneSen=PT+IH*0.74;
+  function rad(v){return v<=0?0:(2.6+Math.sqrt(v/maxV)*8.4);}
+  var ticks='';
+  for(var i=0;i<NSEM;i++){
+    var xi=X(i).toFixed(1),d=dip[i],s=sen[i];
+    ticks+= d>0
+      ? '<circle cx="'+xi+'" cy="'+laneDip.toFixed(1)+'" r="'+rad(d).toFixed(1)+'" fill="var(--green)" fill-opacity="0.9"/>'
+      : '<circle cx="'+xi+'" cy="'+laneDip.toFixed(1)+'" r="1.5" fill="var(--border)"/>';
+    ticks+= s>0
+      ? '<circle cx="'+xi+'" cy="'+laneSen.toFixed(1)+'" r="'+rad(s).toFixed(1)+'" fill="#E8843D" fill-opacity="0.92"/>'
+      : '<circle cx="'+xi+'" cy="'+laneSen.toFixed(1)+'" r="1.5" fill="var(--border)"/>';
+  }
+  var lanelab='<text x="'+(PL-12)+'" y="'+(laneDip+3).toFixed(1)+'" text-anchor="end" font-size="9" font-family="var(--mono)" fill="var(--green)">DIP</text>'
+    +'<text x="'+(PL-12)+'" y="'+(laneSen+3).toFixed(1)+'" text-anchor="end" font-size="9" font-family="var(--mono)" fill="#E8843D">SEN</text>';
   var xlab='';
   for(var i2=0;i2<NSEM;i2+=2){var wd=new Date(monday0.getTime()+i2*7*86400000);
-    xlab+='<text x="'+X(i2).toFixed(1)+'" y="'+(H-6)+'" text-anchor="middle" font-size="8" fill="var(--text-muted)" font-family="var(--mono)">'+wd.getDate()+' '+_CONG_MES[wd.getMonth()]+'</text>';}
+    xlab+='<text x="'+X(i2).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" font-size="8" fill="var(--text-muted)" font-family="var(--mono)">'+wd.getDate()+' '+_CONG_MES[wd.getMonth()]+'</text>';}
   var band=IW/(NSEM-1),hov='';
   for(var i3=0;i3<NSEM;i3++)
     hov+='<rect x="'+(X(i3)-band/2).toFixed(1)+'" y="'+PT+'" width="'+band.toFixed(1)+'" height="'+IH+'" fill="transparent" style="cursor:pointer" onmousemove="_congHover(event,'+i3+')" onmouseleave="_congHoverHide()" onclick="_congOpen(event,'+i3+')"/>';
   var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
-    +'<line x1="'+PL+'" y1="'+baseY+'" x2="'+(W-PR)+'" y2="'+baseY+'" stroke="var(--border)" stroke-width="1"/>'
-    +'<path d="'+lineDip+'" fill="none" stroke="var(--green)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>'
-    +'<path d="'+lineSen+'" fill="none" stroke="#E8843D" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>'
-    +dots+xlab+hov+'</svg>';
+    +lanelab+ticks+xlab+hov+'</svg>';
   var leyenda='<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:10px;color:var(--text-sec)">'
     +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:var(--green);display:inline-block"></span>Diputados</span>'
     +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:#E8843D;display:inline-block"></span>Senado</span>'
