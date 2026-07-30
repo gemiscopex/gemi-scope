@@ -2,7 +2,7 @@
 "_meta": {
 "fuente": "Sitios oficiales de los congresos locales",
 "actualizado": "2026-07-30",
-"cobertura": "En expansión — 18 de 32 entidades (verificadas)"
+"cobertura": "En expansión — 26 de 32 entidades (verificadas)"
 },
 "estados": [
 {
@@ -527,6 +527,380 @@
 "Pánfilo Sánchez Almazán"
 ],
 "url": "https://congresogro.gob.mx/64/comisiones-comites/",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Morelos",
+"congreso_url": "https://congresomorelos.gob.mx/",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente, Recursos Naturales y Agua",
+"tema": "medio_ambiente",
+"presidente": "Luis Eduardo Pedrero González (PVEM)",
+"integrantes": [],
+"url": "https://congresomorelos.gob.mx/category/comision-de-medio-ambiente-recursos-naturales-y-agua/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico",
+"tema": "economia",
+"presidente": "Gerardo Abarca Peña (PAN)",
+"integrantes": [],
+"url": "https://congresomorelos.gob.mx/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión Especial para el Seguimiento a la Agenda 2030",
+"tema": "desarrollo_sostenible",
+"presidente": "Gerardo Abarca Peña (PAN)",
+"integrantes": [],
+"url": "https://congresomorelos.gob.mx/",
+"confianza": "media"
+}
+]
+},
+{
+"estado": "Nayarit",
+"congreso_url": "https://congresonayarit.gob.mx/",
+"comisiones": [
+{
+"nombre": "Comisión de Ecología y Protección al Medio Ambiente",
+"tema": "medio_ambiente",
+"presidente": "Georgina Guadalupe López Arias (PVEM)",
+"integrantes": [
+"Georgina Guadalupe López Arias",
+"Luis Alberto Zamora Romero",
+"Aristeo Preciado Mayorga",
+"Juana Nataly Tizcareño Lara",
+"Luis Fernando Pardo González"
+],
+"url": "https://congresonayarit.gob.mx/comisiones-ordinarias/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico y Social",
+"tema": "economia",
+"presidente": "Nadia Edith Bernal Jiménez",
+"integrantes": [
+"Nadia Edith Bernal Jiménez",
+"José Alberto Rodríguez Gómez",
+"Lidia Elizabeth Zamora Ascencio",
+"Francisco Piña Herrera",
+"Juana Nataly Tizcareño Lara"
+],
+"url": "https://congresonayarit.gob.mx/comisiones-ordinarias/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Asuntos Pesqueros y Desarrollo Acuícola",
+"tema": "agua",
+"presidente": "Any Marilú Porras Baylón",
+"integrantes": [
+"Any Marilú Porras Baylón",
+"Juana Nataly Tizcareño Lara",
+"Myrna María Encinas García",
+"Natalia Carrillo Reza",
+"Francisco Piña Herrera"
+],
+"url": "https://congresonayarit.gob.mx/comisiones-ordinarias/",
+"confianza": "media"
+}
+]
+},
+{
+"estado": "Nuevo León",
+"congreso_url": "https://www.hcnl.gob.mx/organizacion/comisiones.php",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente y Desarrollo Sustentable",
+"tema": "medio_ambiente",
+"presidente": "Claudia Mayela Chapa Marmolejo (PVEM)",
+"integrantes": [
+"Itzel Soledad Castillo Almanza",
+"Greta Pamela Barra Hernández",
+"Mauro Guerra Villarreal",
+"Miguel Ángel García Lechuga",
+"Mario Alberto Salinas Treviño",
+"Gabriela Govea López",
+"Héctor Julián Morales Rivera",
+"Brenda Velázquez Valdez",
+"Reyna Reyes Molina",
+"Glen Alan Villarreal Zambrano"
+],
+"url": "https://www.hcnl.gob.mx/organizacion/comisiones/comision_de_medio_ambiente_y_desarrollo_sustentable/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Economía, Emprendimiento y Turismo",
+"tema": "economia",
+"presidente": "Rodrigo Othoniel Montemayor Romero",
+"integrantes": [
+"Ignacio Castellanos Amaya",
+"José Luis Garza Garza",
+"José Manuel Valdez Salazar",
+"Gabriela Govea López",
+"Miguel Ángel García Lechuga",
+"Aile Tamez de la Paz",
+"Javier Caballero Gaona",
+"Brenda Velázquez Valdez",
+"María Guadalupe Rodríguez Martínez",
+"Ana Melisa Peña Villagómez"
+],
+"url": "https://www.hcnl.gob.mx/organizacion/comisiones/comision_de_economia_emprendimiento_y_turismo/",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Oaxaca",
+"congreso_url": "https://www.congresooaxaca.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión Permanente de Medio Ambiente, Biodiversidad, Energías, Sostenibilidad y Cambio Climático",
+"tema": "medio_ambiente",
+"presidente": "Lizbeth Anaid Concha Ojeda",
+"integrantes": [
+"Lizbeth Anaid Concha Ojeda",
+"Melina Hérnandes Sosa",
+"Francisco Javier Niño Hernández",
+"Monserat Herrera Ruíz",
+"Mauro Cruz Sánchez"
+],
+"url": "https://www.congresooaxaca.gob.mx/comisiones-permanentes/XXII.html",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión Permanente de Agua y Saneamiento",
+"tema": "agua",
+"presidente": "Biaani Palomec Enríquez (PT)",
+"integrantes": [
+"Biaani Palomec Enríquez",
+"Haydee Irma Reyes Soto",
+"Elvia Gabriela Pérez López",
+"Dante Montaño Montero",
+"Sandra Daniela Taurino Jiménez"
+],
+"url": "https://www.congresooaxaca.gob.mx/comisiones-permanentes/III.html",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión Permanente de Desarrollo Económico",
+"tema": "economia",
+"presidente": "Haydeé Irma Reyes Soto (Morena)",
+"integrantes": [
+"Haydeé Irma Reyes Soto",
+"Adán José Maciel Sosa",
+"Iván Osael Quiroz Martínez",
+"Vanessa Rubí Ojeda Mejía",
+"César David Mateos Benítez"
+],
+"url": "https://www.congresooaxaca.gob.mx/comisiones-permanentes/XII.html",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Puebla",
+"congreso_url": "https://www.congresopuebla.gob.mx/",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente, Recursos Naturales y Cambio Climático",
+"tema": "medio_ambiente",
+"presidente": "Beatriz Manrique Guevara (PVEM)",
+"integrantes": [
+"Beatriz Manrique Guevara",
+"Esther Martínez Romano",
+"Elpidio Díaz Escobar",
+"Floricel González Méndez",
+"Kathya Sánchez Rodríguez",
+"Jaime Alejandro Aurioles Barroeta",
+"Ana Lilia Tepole Armenta"
+],
+"url": "https://www.congresopuebla.gob.mx/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de la Agenda 2030",
+"tema": "desarrollo_sostenible",
+"presidente": "Jaime Natale Uranga (PVEM)",
+"integrantes": [
+"Jaime Natale Uranga",
+"Delfina Pozos Vergara",
+"Laura Guadalupe Vargas Vargas",
+"Xel Arianna Hernández García",
+"Guadalupe Yamak Taja",
+"Luana Armida Amador Vallejo",
+"Nayeli Salvatori Bojalil"
+],
+"url": "https://www.congresopuebla.gob.mx/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico",
+"tema": "economia",
+"presidente": "Rosalío Zanatta Vidaurri",
+"integrantes": [
+"Rosalío Zanatta Vidaurri",
+"Miguel Márquez Ríos",
+"Óscar Mauricio Céspedes Peregrina",
+"Julio Miguel Huerta Gómez",
+"Ana Laura Gómez Ramírez",
+"Norma Estela Pimentel Méndez",
+"Delfina Pozos Vergara"
+],
+"url": "https://www.congresopuebla.gob.mx/",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Querétaro",
+"congreso_url": "http://legislaturaqueretaro.gob.mx/",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente y Cambio Climático",
+"tema": "medio_ambiente",
+"presidente": "Perla Patricia Flores Suárez",
+"integrantes": [
+"Perla Patricia Flores Suárez",
+"María Eugenia Margarito Vázquez",
+"Paul Ospital Carrera"
+],
+"url": "http://legislaturaqueretaro.gob.mx/comisiones/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico Sustentable, Emprendimiento y Comercio",
+"tema": "economia",
+"presidente": "Claudia Díaz Gayou",
+"integrantes": [
+"Claudia Díaz Gayou",
+"Homero Barrera Mcdonald",
+"Ulises Gómez de la Rosa"
+],
+"url": "http://legislaturaqueretaro.gob.mx/comisiones/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Seguimiento de la Agenda 2030",
+"tema": "desarrollo_sostenible",
+"presidente": "Eric Silva Hernández",
+"integrantes": [
+"Eric Silva Hernández",
+"Arturo Maximiliano García Pérez",
+"María Georgina Guzmán Álvarez"
+],
+"url": "http://legislaturaqueretaro.gob.mx/comisiones/",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Quintana Roo",
+"congreso_url": "https://www.congresoqroo.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente, Cambio Climático y de Protección y Bienestar Animal",
+"tema": "medio_ambiente",
+"presidente": "Andrea del Rosario González Loria",
+"integrantes": [
+"Andrea del Rosario González Loria",
+"Renán Eduardo Sánchez Tajonar",
+"Diana Frine Gutiérrez García",
+"Silvia Dzul Sánchez",
+"Euterpe Alicia Gutiérrez Valasis"
+],
+"url": "https://www.congresoqroo.gob.mx/comisiones/209",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Planeación y Desarrollo Económico",
+"tema": "economia",
+"presidente": "María José Osorio Rosas (PVEM)",
+"integrantes": [
+"María José Osorio Rosas",
+"Euterpe Alicia Gutiérrez Valasis",
+"Ángel Álvarez Cervera",
+"Hugo Alday Nieto",
+"Filiberto Martínez Méndez"
+],
+"url": "https://www.congresoqroo.gob.mx/comisiones/203",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Urbano Sustentable y Asuntos Metropolitanos",
+"tema": "desarrollo_sostenible",
+"presidente": "Hugo Alday Nieto (PT)",
+"integrantes": [
+"Hugo Alday Nieto",
+"Silvia Dzul Sánchez",
+"Ricardo Velazco Rodríguez",
+"Andrea del Rosario González Loria",
+"Jorge Armando Cabrera Tinajero"
+],
+"url": "https://www.congresoqroo.gob.mx/comisiones/202",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "San Luis Potosí",
+"congreso_url": "https://congresosanluis.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión de Ecología y Medio Ambiente",
+"tema": "medio_ambiente",
+"presidente": "Gabriela Guadalupe Martínez Vázquez",
+"integrantes": [
+"Luis Felipe Castro Barrón",
+"Tomas Zavala González",
+"Frinné Azuara Yarzábal",
+"Nancy Jeanine García Martínez",
+"Brisseire Sánchez López"
+],
+"url": "https://congresosanluis.gob.mx/conocenos/comisiones/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión del Agua",
+"tema": "agua",
+"presidente": "Nancy Jeanine García Martínez",
+"integrantes": [
+"Gabriela Guadalupe Martínez Vázquez",
+"Rubén Guajardo Barrera",
+"Marco Antonio Gama Basarte",
+"Ma. Sara Rocha Medina",
+"Luis Emilio Rosas Montiel",
+"María Antonia Castro Castañeda"
+],
+"url": "https://congresosanluis.gob.mx/conocenos/comisiones/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Territorial Sustentable",
+"tema": "desarrollo_sostenible",
+"presidente": "César Arturo Lara Rocha",
+"integrantes": [
+"María Leticia Vázquez Hernández",
+"Luis Felipe Castro Barrón",
+"María Antonia Castro Castañeda"
+],
+"url": "https://congresosanluis.gob.mx/conocenos/comisiones/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico y Social",
+"tema": "economia",
+"presidente": "Luis Emilio Rosas Montiel",
+"integrantes": [
+"María Dolores Robles Chairez",
+"César Arturo Lara Rocha",
+"Jacquelinn Jauregui Mendoza",
+"María Aranzazu Puente Bustindui"
+],
+"url": "https://congresosanluis.gob.mx/conocenos/comisiones/",
 "confianza": "alta"
 }
 ]
