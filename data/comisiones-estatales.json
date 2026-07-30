@@ -2,7 +2,7 @@
 "_meta": {
 "fuente": "Sitios oficiales de los congresos locales",
 "actualizado": "2026-07-30",
-"cobertura": "En expansión — 28 de 32 entidades (verificadas)"
+"cobertura": "En expansión — 31 de 32 entidades (verificadas)"
 },
 "estados": [
 {
@@ -542,6 +542,93 @@
 ]
 },
 {
+"estado": "Estado de México",
+"congreso_url": "https://www.legislativoedomex.gob.mx/",
+"comisiones": [
+{
+"nombre": "Comisión de Protección Ambiental y Cambio Climático",
+"tema": "medio_ambiente",
+"presidente": "Carlos Alberto López Imm (PVEM)",
+"integrantes": [
+"Carlos Alberto López Imm",
+"Sandra Patricia Santos Rodríguez",
+"María Mercedes Colín Guadarrama",
+"Susana Estrada Rojas",
+"Itzel Daniela Ballesteros Lule",
+"Zaira Cedillo Silva",
+"María del Carmen de la Rosa Mendoza",
+"Jennifer Nathalie González López",
+"Alejandra Figueroa Adame",
+"Krishna Karina Romero Velázquez",
+"Martín Zepeda Hernández",
+"Araceli Casasola Salazar"
+],
+"url": "https://legislacion.congresoedomex.gob.mx/asuntosparlamentarios/comision/TVRJPQ==",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Recursos Hidráulicos",
+"tema": "agua",
+"presidente": "Miriam Silva Mata (PVEM)",
+"integrantes": [
+"Miriam Silva Mata",
+"Gerardo Pliego Santana",
+"Gabriel Kalid Mohamed Báez",
+"Armando Navarrete López",
+"María José Pérez Domínguez",
+"Valentín Martínez Castillo",
+"Samuel Hernández Cruz",
+"Arleth Stephanie Grimaldo Osorio",
+"Sandra Patricia Santos Rodríguez",
+"Leticia Mejía García",
+"Anuar Roberto Azar Figueroa",
+"Ruth Salinas Reyes",
+"Omar Ortega Álvarez"
+],
+"url": "https://legislacion.congresoedomex.gob.mx/asuntosparlamentarios/comision/TXpJPQ==",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico, Industrial, Comercial y Minero",
+"tema": "economia",
+"presidente": "Alejandro Castro Hernández (PRI)",
+"integrantes": [
+"Alejandro Castro Hernández",
+"María José Pérez Domínguez",
+"Sara Alicia Ramírez de la O",
+"Octavio Martínez Vargas",
+"Susana Estrada Rojas",
+"Selina Trujillo Arizmendi",
+"María del Carmen de la Rosa Mendoza",
+"Rigoberto Vargas Cervantes",
+"Krishna Karina Romero Velázquez",
+"Ruth Salinas Reyes",
+"Omar Ortega Álvarez"
+],
+"url": "https://legislacion.congresoedomex.gob.mx/asuntosparlamentarios/comision/TVRNPQ==",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión Especial de Seguimiento de la Agenda 2030",
+"tema": "desarrollo_sostenible",
+"presidente": "María José Pérez Domínguez (Morena)",
+"integrantes": [
+"María José Pérez Domínguez",
+"Isaías Peláez Soria",
+"Krishna Karina Romero Velázquez",
+"Edmundo Luis Valdeña Bastida",
+"Alejandra Figueroa Adame",
+"Jennifer Nathalie González López",
+"Samuel Hernández Cruz",
+"Leticia Mejía García",
+"Martín Zepeda Hernández"
+],
+"url": "https://legislacion.congresoedomex.gob.mx/asuntosparlamentarios/comision/TnpjPQ==",
+"confianza": "alta"
+}
+]
+},
+{
 "estado": "Guanajuato",
 "congreso_url": "https://www.congresogto.gob.mx",
 "comisiones": [
@@ -619,6 +706,86 @@
 "Pánfilo Sánchez Almazán"
 ],
 "url": "https://congresogro.gob.mx/64/comisiones-comites/",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Jalisco",
+"congreso_url": "https://www.congresojal.gob.mx/",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente, Sostenibilidad, Protección Civil y Resiliencia",
+"tema": "medio_ambiente",
+"presidente": "Yussara Elizabeth Canales González",
+"integrantes": [
+"Yussara Elizabeth Canales González",
+"Leonardo Almaguer Castañeda",
+"José Guadalupe Buenrostro Martínez",
+"Tonantzin Elusay Cárdenas Méndez",
+"Alejandra Margarita Giadans Valenzuela"
+],
+"url": "https://www.congresojal.gob.mx/diputados/comisiones?clave=916",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Planeación, Ordenamiento Territorial y Gestión del Agua",
+"tema": "agua",
+"presidente": "Mariana Casillas Guerrero",
+"integrantes": [
+"Mariana Casillas Guerrero",
+"Valeria Guadalupe Ávila Gutiérrez",
+"Laura Gabriela Cárdenas Rodríguez",
+"Omar Enrique Cervantes Rivera",
+"Martín Franco Cuevas",
+"María Candelaria Ochoa Ávalos"
+],
+"url": "https://www.congresojal.gob.mx/diputados/comisiones?clave=919",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Competitividad, Desarrollo Económico, Innovación y Trabajo",
+"tema": "economia",
+"presidente": "Valeria Guadalupe Ávila Gutiérrez",
+"integrantes": [
+"Valeria Guadalupe Ávila Gutiérrez",
+"Marco Tulio Moya Díaz",
+"Leonardo Almaguer Castañeda",
+"Alejandro Barragán Sánchez",
+"Laura Gabriela Cárdenas Rodríguez",
+"Omar Enrique Cervantes Rivera"
+],
+"url": "https://www.congresojal.gob.mx/diputados/comisiones?clave=906",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Michoacán",
+"congreso_url": "http://congresomich.gob.mx/",
+"comisiones": [
+{
+"nombre": "Comisión de Desarrollo Sustentable y Medio Ambiente",
+"tema": "medio_ambiente",
+"presidente": "Sandra María Arreola Ruiz (PVEM)",
+"integrantes": [
+"Sandra María Arreola Ruiz",
+"Carlos Alejandro Bautista Tafolla",
+"Giulianna Bugarini Torres"
+],
+"url": "http://congresomich.gob.mx/comisiones/desarrollo-sustentable-y-medio-ambiente/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Industria, Comercio y Servicios",
+"tema": "economia",
+"presidente": "David Martínez Gowman (PVEM)",
+"integrantes": [
+"David Martínez Gowman",
+"Ana Vanessa Caratachea Sánchez",
+"Antonio Salvador Mendoza Torres"
+],
+"url": "http://congresomich.gob.mx/comisiones/industria-comercio-y-servicios/",
 "confianza": "alta"
 }
 ]
