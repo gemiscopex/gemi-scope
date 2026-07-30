@@ -1,48 +1,878 @@
 {
-"_meta":{"fuente":"Sitios oficiales de los congresos locales","actualizado":"2026-07-30","cobertura":"En expansión — 10 de 32 entidades (verificadas)"},
-"estados":[
-{"estado":"Aguascalientes","congreso_url":"https://congresoags.gob.mx/legislatura/comisiones_ordinarias","comisiones":[
-{"nombre":"Comisión de Medio Ambiente, Recursos Naturales y Cambio Climático","tema":"medio_ambiente","presidente":"Genny Janeth López Valenzuela","integrantes":["Genny Janeth López Valenzuela (Presidenta)","Mirna Rubiela Medina Ruvalcaba (Secretaria)","Irma Reza de la Cruz","Ma. Guadalupe Mendoza Medrano","Emanuelle Sánchez Nájera"],"url":"https://congresoags.gob.mx/legislatura/comisiones_ordinarias","confianza":"alta"},
-{"nombre":"Comisión de Recursos Hidráulicos","tema":"agua","presidente":"Jedsabel Sánchez Montes","integrantes":["Jedsabel Sánchez Montes (Presidenta)","Emanuelle Sánchez Nájera (Secretario)","Mirna Rubiela Medina Ruvalcaba","Genny Janeth López Valenzuela","Rodrigo Cervantes Medina"],"url":"https://congresoags.gob.mx/legislatura/comisiones_ordinarias","confianza":"alta"},
-{"nombre":"Comisión de Desarrollo Económico, Fomento Cooperativo y Turismo","tema":"economia","presidente":"Luis Salvador Alcalá Durán","integrantes":["Luis Salvador Alcalá Durán (Presidente)","Humberto Javier Montero de Alba (Secretario)","Laura Patricia Ponce Luna","Arlette Ivette Muñoz Cervantes","Daniela Miyuky López Muñoz"],"url":"https://congresoags.gob.mx/legislatura/comisiones_ordinarias","confianza":"alta"}]},
-{"estado":"Baja California","congreso_url":"https://www.congresobc.gob.mx","comisiones":[
-{"nombre":"Comisión de Medio Ambiente y Desarrollo Sustentable","tema":"medio_ambiente","presidente":"Juan Diego Echevarría Ibarra (PAN)","integrantes":["Juan Diego Echevarría Ibarra (PAN, Presidente)","Bryan Manuel Castillo Trinidad (PVEM, Secretario)","Jaime Eduardo Cantón Rocha (MORENA)","Daylin García Ruvalcaba (MC)","Norma Angélica Peñaloza Escobedo (MORENA)","Teresita Ruiz Mendoza (PES)","Michelle Alejandra Tejeda Medina (MORENA)"],"url":"https://www.congresobc.gob.mx/Enlace/Ecomision.aspx?id_comision=20","confianza":"alta"},
-{"nombre":"Comisión de Energía y Recursos Hidráulicos","tema":"agua","presidente":"Adriana Padilla Mendoza","integrantes":["Adriana Padilla Mendoza (Presidenta)","Juan Diego Echevarría Ibarra (PAN, Secretario)","Julia Andrea González Quiroz (MORENA)","Juan Manuel Molina García (MORENA)","Gabriela Ponce Velazquez (MORENA)"],"url":"https://www.congresobc.gob.mx/Enlace/Ecomision.aspx?id_comision=3","confianza":"alta"},
-{"nombre":"Comisión de Desarrollo Económico y Comercio Binacional","tema":"economia","presidente":"Daylin García Ruvalcaba (MC)","integrantes":["Daylin García Ruvalcaba (MC, Presidenta)","Teresita Ruiz Mendoza (PES, Secretaria)","Jaime Eduardo Cantón Rocha (MORENA)","Diego Alejandro Lara Arregui (FXM)","Evelyn Sánchez Sánchez (MORENA)","Adrian Humberto Valle Ballesteros (PRI)"],"url":"https://www.congresobc.gob.mx/Enlace/Ecomision.aspx?id_comision=10","confianza":"alta"}]},
-{"estado":"Chiapas","congreso_url":"https://web.congresochiapas.gob.mx/organizacion/comisiones","comisiones":[
-{"nombre":"Comisión de Medio Ambiente, Ecología y Cambio Climáticos","tema":"medio_ambiente","presidente":"Valeria Santiago Barrientos","integrantes":["Valeria Santiago Barrientos","Juan Salvador Camacho Velasco","Ervin Leonel Pérez Alfaro","Sahara Munira José Flores","Juan Manuel Utrilla Constantino","Héctor Leonel Paniagua Guzmán","Ana Karen Ruiz Coutiño"],"url":"https://web.congresochiapas.gob.mx/organizacion/comisiones","confianza":"alta"},
-{"nombre":"Comisión de Recursos Naturales, Bosques y Selvas","tema":"medio_ambiente","presidente":"Jovannie Maricela Ibarra Gallardo","integrantes":["Jovannie Maricela Ibarra Gallardo","Ana Karen Ruiz Coutiño","Alejandra Gómez Mendoza","Elvira Catalina Aguiar Álvarez","Bertha Flores Sánchez","José Ángel Del Valle Molina","Juan Salvador Camacho Velasco"],"url":"https://web.congresochiapas.gob.mx/organizacion/comisiones","confianza":"alta"},
-{"nombre":"Comisión de Energía y Recursos Hidráulicos","tema":"agua","presidente":"Elvira Catalina Aguiar Álvarez","integrantes":["Elvira Catalina Aguiar Álvarez","Selene Josefina Sánchez Cruz","José Uriel Estrada Martínez","Wendy Arlet Hernández Ichin","Juan Marcos Trinidad Palomares","Marcela Castillo Atristain","Javier Jiménez Jiménez"],"url":"https://web.congresochiapas.gob.mx/organizacion/comisiones","confianza":"alta"},
-{"nombre":"Comisión de Economía, Bienestar Social y Cooperación Internacional","tema":"economia","presidente":"José Ángel Del Valle Molina","integrantes":["José Ángel Del Valle Molina","Abundio Peregrino García","Elvira Catalina Aguiar Álvarez","Fermín Hidalgo González Ramírez","José Jesús Domínguez Castellanos","Ana Karen Ruiz Coutiño","Luis Eduardo Gordillo Gordillo"],"url":"https://web.congresochiapas.gob.mx/organizacion/comisiones","confianza":"alta"},
-{"nombre":"Comisión de Seguimiento a los Objetivos de Desarrollo Sostenible","tema":"desarrollo_sostenible","presidente":"Luis Eduardo Gordillo Gordillo","integrantes":[],"url":"https://web.congresochiapas.gob.mx/organizacion/comisiones","confianza":"media"}]},
-{"estado":"Chihuahua","congreso_url":"https://www.congresochihuahua.gob.mx/comisiones.php","comisiones":[
-{"nombre":"Comisión de Medio Ambiente, Ecología y Desarrollo Sustentable","tema":"medio_ambiente","presidente":"Octavio Javier Borunda Quevedo (PVEM)","integrantes":["Octavio Javier Borunda Quevedo","Rosana Díaz Reyes","Arturo Zubía Fernández","José Alfredo Chávez Madrid","Roberto Arturo Medina Aguirre"],"url":"https://www.congresochihuahua.gob.mx/comisiones.php","confianza":"alta"},
-{"nombre":"Comisión de Recursos Forestales","tema":"medio_ambiente","presidente":"Jaime Torres Amaya (PAN)","integrantes":["Jaime Torres Amaya","Octavio Javier Borunda Quevedo","Roberto Arturo Medina Aguirre","Leticia Ortega Máynez","Edith Palma Ontiveros"],"url":"https://www.congresochihuahua.gob.mx/comisiones.php","confianza":"alta"},
-{"nombre":"Comisión de Agua","tema":"agua","presidente":"Arturo Zubía Fernández (PAN)","integrantes":["Arturo Zubía Fernández","Ismael Pérez Pavía","Roberto Marcelino Carreón Huitrón","Guillermo Patricio Ramírez Gutiérrez","María Antonieta Pérez Reyes","Pedro Torres Estrada","Leticia Ortega Máynez"],"url":"https://www.congresochihuahua.gob.mx/comisiones.php","confianza":"alta"},
-{"nombre":"Comisión de Economía, Industria y Comercio","tema":"economia","presidente":"Carlos Alfredo Olson San Vicente (PAN)","integrantes":["Carlos Alfredo Olson San Vicente","Brenda Francisca Ríos Prieto","Jorge Carlos Soto Prieto","María Antonieta Pérez Reyes","José Luis Villalobos García"],"url":"https://www.congresochihuahua.gob.mx/comisiones.php","confianza":"alta"}]},
-{"estado":"Ciudad de México","congreso_url":"https://www.congresocdmx.gob.mx","comisiones":[
-{"nombre":"Comisión de Preservación del Medio Ambiente, Cambio Climático y Protección Ecológica","tema":"medio_ambiente","presidente":"Elvia Guadalupe Estrada Barba (MORENA)","integrantes":["Tania Nanette Larios Pérez","Andrés Sánchez Miranda","Luisa Fernanda Ledesma Alpízar","Juan Estuardo Rubio Gualito","Xóchitl Bravo Espinosa","Paulo Emilio García González"],"url":"https://www.congresocdmx.gob.mx/preservacion-medio-ambiente-cambio-climatico-y-proteccion-ecologica-1429-1.html","confianza":"alta"},
-{"nombre":"Comisión de Gestión Integral del Agua","tema":"agua","presidente":"Adriana Ma. Guadalupe Espinosa de los Monteros García (MORENA)","integrantes":["Paula Alejandra Pérez Córdova","Martha Soledad Ávila Ventura","Federico Chávez Semerena","Andrés Ataíde Rubiolo","Luisa Fernanda Ledesma Alpízar","Miriam Saldaña Cháirez","Miriam Valeria Cruz Flores","Leticia Haro Jiménez"],"url":"https://www.congresocdmx.gob.mx/gestion-integral-agua-1419-1.html","confianza":"alta"},
-{"nombre":"Comisión de Desarrollo Económico","tema":"economia","presidente":"América Alejandra Rangel Lorenzana (PAN)","integrantes":["Leonor Gómez Otegui","Diana Sánchez Barrios","Yolanda García Ortega","Juan Estuardo Rubio Gualito","Patricia Urriza Arellano","Raúl de Jesús Torres Guerrero"],"url":"https://www.congresocdmx.gob.mx/desarrollo-economico-1416-1.html","confianza":"alta"}]},
-{"estado":"Coahuila","congreso_url":"https://www.congresocoahuila.gob.mx/portal/comisiones-y-comites/","comisiones":[
-{"nombre":"Comisión de Medio Ambiente y Recursos Naturales","tema":"medio_ambiente","presidente":"Jorge Arturo Valdés Flores","integrantes":[],"url":"https://www.congresocoahuila.gob.mx/portal/comisiones-y-comites/","confianza":"media"},
-{"nombre":"Comisión de Agua, Asuntos Municipales, Metropolitanos e Interestatales","tema":"agua","presidente":"Guillermo Ruiz Guerra","integrantes":[],"url":"https://www.congresocoahuila.gob.mx/portal/comisiones-y-comites/","confianza":"media"},
-{"nombre":"Comisión de Desarrollo Económico, Competitividad y Turismo","tema":"economia","presidente":"Héctor Hugo Dávila Prado","integrantes":[],"url":"https://www.congresocoahuila.gob.mx/portal/comisiones-y-comites/","confianza":"media"}]},
-{"estado":"Colima","congreso_url":"https://congresocol.gob.mx/web/www/comisiones/index.php","comisiones":[
-{"nombre":"Comisión de Desarrollo Urbano, Medio Ambiente y Movilidad","tema":"medio_ambiente","presidente":"Jaime Enrique Sotelo García (Verde)","integrantes":["Juan Carlos Rendón García (Verde)","Álvaro Lozano González (MORENA)"],"url":"https://congresocol.gob.mx/web/www/comisiones/index.php","confianza":"alta"},
-{"nombre":"Comisión de Protección y Derecho al Agua","tema":"agua","presidente":"Álvaro Lozano González (MORENA)","integrantes":["Irma Mirella Martínez Silva (MORENA)","Karen Judith Jurado Escamilla (MORENA)","Alma Yesenia Ventura Ochoa (MORENA)","Evangelina Bustamante Morales (PT)"],"url":"https://congresocol.gob.mx/web/www/comisiones/index.php","confianza":"alta"},
-{"nombre":"Comisión de Desarrollo Rural Sustentable","tema":"desarrollo_sostenible","presidente":"Irma Mirella Martínez Silva (MORENA)","integrantes":["Alfredo Álvarez Ramírez (MORENA)","José Israel González Mendoza (Movimiento)"],"url":"https://congresocol.gob.mx/web/www/comisiones/index.php","confianza":"alta"},
-{"nombre":"Comisión de Desarrollo Económico, Innovación, Tecnología e IA","tema":"economia","presidente":"José Manuel Romero Coello (Verde)","integrantes":["Andrea Carolina Heredia Torres (PT)","Jaime Enrique Sotelo García (Verde)","Juan Carlos Rendón García (Verde)","Jesús Alberto Partida Valencia (PAN)"],"url":"https://congresocol.gob.mx/web/www/comisiones/index.php","confianza":"alta"}]},
-{"estado":"Durango","congreso_url":"https://congresodurango.gob.mx/comisiones-legislativa/","comisiones":[
-{"nombre":"Comisión de Ecología","tema":"medio_ambiente","presidente":"José Osbaldo Santillán Gómez","integrantes":["José Osbaldo Santillán Gómez","Noel Fernández Maturino","Otniel García Navarro","Gabriela Vázquez Chacón","Bernabé Aguilar Carrillo","Iván Soto Mendía"],"url":"https://congresodurango.gob.mx/comisiones-legislativa/","confianza":"alta"},
-{"nombre":"Comisión de Asuntos Forestales, Frutícolas y Pesca","tema":"medio_ambiente","presidente":"Héctor Herrera Núñez","integrantes":["Héctor Herrera Núñez","José Osbaldo Santillán Gómez","Julián César Rivas B Nevárez","Celia Daniela Soto Hernández","Iván Soto Mendía","Georgina Solorio García"],"url":"https://congresodurango.gob.mx/comisiones-legislativa/","confianza":"alta"},
-{"nombre":"Comisión de Administración y Cuidado del Agua","tema":"agua","presidente":"Cynthia Montserrat Hernández Quiñones","integrantes":["Cynthia Montserrat Hernández Quiñones","Ana María Durón Pérez","Flora Isela Leal Méndez","Gabriela Vázquez Chacón","Martín Vivanco Lira","Sughey Adriana Torres Rodríguez"],"url":"https://congresodurango.gob.mx/comisiones-legislativa/","confianza":"alta"},
-{"nombre":"Comisión de Desarrollo Económico","tema":"economia","presidente":"Martín Vivanco Lira","integrantes":["Martín Vivanco Lira","Alberto Alejandro Mata Valadez","Alejandro Mojica Narvaez","Octavio Ulises Adame De la Fuente","Ana María Durón Pérez","Celia Daniela Soto Hernández"],"url":"https://congresodurango.gob.mx/comisiones-legislativa/","confianza":"alta"}]},
-{"estado":"Guanajuato","congreso_url":"https://www.congresogto.gob.mx","comisiones":[
-{"nombre":"Comisión de Medio Ambiente","tema":"medio_ambiente","presidente":"María Isabel Ortiz Mantilla (PAN)","integrantes":["María Isabel Ortiz Mantilla","Luz Itzel Mendo González","Roberto Carlos Terán Ramos","David Martínez Mendizábal","Antonio Chaurand Sorzano"],"url":"https://www.congresogto.gob.mx/comisiones/comision-de-medio-ambiente-lxvi","confianza":"alta"},
-{"nombre":"Comisión de Desarrollo Económico y Social","tema":"economia","presidente":"Ana María Esquivel Arrona (PAN)","integrantes":["Ana María Esquivel Arrona","Maribel Aguilar González","Víctor Manuel Zanella Huerta","Carolina León Medina","Sergio Alejandro Contreras Guerrero"],"url":"https://www.congresogto.gob.mx/comisiones/comision-de-desarrollo-economico-y-social-lxvi","confianza":"alta"}]},
-{"estado":"Guerrero","congreso_url":"https://congresogro.gob.mx","comisiones":[
-{"nombre":"Comisión de Recursos Naturales, Desarrollo Sustentable y Cambio Climático","tema":"medio_ambiente","presidente":"Obdulia Naranjo Cabrera (PVEM)","integrantes":["Obdulia Naranjo Cabrera","Pablo Amílcar Sandoval Ballesteros","Rafael Martínez Ramírez","Alejandro Carabias Icaza","María Irene Montiel Servín"],"url":"https://congresogro.gob.mx/64/comisiones-comites/","confianza":"alta"},
-{"nombre":"Comisión del Agua, Infraestructura y Recursos Hidráulicos","tema":"agua","presidente":"Alejandro Carabias Icaza (PVEM)","integrantes":["Alejandro Carabias Icaza","Leticia Rodríguez Armenta","Rafael Martínez Ramírez","Rebeca Núñez Martín del Campo","Marisol Bazán Fernández"],"url":"https://congresogro.gob.mx/64/comisiones-comites/","confianza":"alta"},
-{"nombre":"Comisión de Desarrollo Económico y Trabajo","tema":"economia","presidente":"Marco Tulio Sánchez Alarcón (MORENA)","integrantes":["Marco Tulio Sánchez Alarcón","Beatriz Vélez Núñez","Araceli Ocampo Manzanares","Julián López Galeana","Pánfilo Sánchez Almazán"],"url":"https://congresogro.gob.mx/64/comisiones-comites/","confianza":"alta"}]}
-]}
+"_meta": {
+"fuente": "Sitios oficiales de los congresos locales",
+"actualizado": "2026-07-30",
+"cobertura": "En expansión — 18 de 32 entidades (verificadas)"
+},
+"estados": [
+{
+"estado": "Aguascalientes",
+"congreso_url": "https://congresoags.gob.mx/legislatura/comisiones_ordinarias",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente, Recursos Naturales y Cambio Climático",
+"tema": "medio_ambiente",
+"presidente": "Genny Janeth López Valenzuela",
+"integrantes": [
+"Genny Janeth López Valenzuela (Presidenta)",
+"Mirna Rubiela Medina Ruvalcaba (Secretaria)",
+"Irma Reza de la Cruz",
+"Ma. Guadalupe Mendoza Medrano",
+"Emanuelle Sánchez Nájera"
+],
+"url": "https://congresoags.gob.mx/legislatura/comisiones_ordinarias",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Recursos Hidráulicos",
+"tema": "agua",
+"presidente": "Jedsabel Sánchez Montes",
+"integrantes": [
+"Jedsabel Sánchez Montes (Presidenta)",
+"Emanuelle Sánchez Nájera (Secretario)",
+"Mirna Rubiela Medina Ruvalcaba",
+"Genny Janeth López Valenzuela",
+"Rodrigo Cervantes Medina"
+],
+"url": "https://congresoags.gob.mx/legislatura/comisiones_ordinarias",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico, Fomento Cooperativo y Turismo",
+"tema": "economia",
+"presidente": "Luis Salvador Alcalá Durán",
+"integrantes": [
+"Luis Salvador Alcalá Durán (Presidente)",
+"Humberto Javier Montero de Alba (Secretario)",
+"Laura Patricia Ponce Luna",
+"Arlette Ivette Muñoz Cervantes",
+"Daniela Miyuky López Muñoz"
+],
+"url": "https://congresoags.gob.mx/legislatura/comisiones_ordinarias",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Baja California",
+"congreso_url": "https://www.congresobc.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente y Desarrollo Sustentable",
+"tema": "medio_ambiente",
+"presidente": "Juan Diego Echevarría Ibarra (PAN)",
+"integrantes": [
+"Juan Diego Echevarría Ibarra (PAN, Presidente)",
+"Bryan Manuel Castillo Trinidad (PVEM, Secretario)",
+"Jaime Eduardo Cantón Rocha (MORENA)",
+"Daylin García Ruvalcaba (MC)",
+"Norma Angélica Peñaloza Escobedo (MORENA)",
+"Teresita Ruiz Mendoza (PES)",
+"Michelle Alejandra Tejeda Medina (MORENA)"
+],
+"url": "https://www.congresobc.gob.mx/Enlace/Ecomision.aspx?id_comision=20",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Energía y Recursos Hidráulicos",
+"tema": "agua",
+"presidente": "Adriana Padilla Mendoza",
+"integrantes": [
+"Adriana Padilla Mendoza (Presidenta)",
+"Juan Diego Echevarría Ibarra (PAN, Secretario)",
+"Julia Andrea González Quiroz (MORENA)",
+"Juan Manuel Molina García (MORENA)",
+"Gabriela Ponce Velazquez (MORENA)"
+],
+"url": "https://www.congresobc.gob.mx/Enlace/Ecomision.aspx?id_comision=3",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico y Comercio Binacional",
+"tema": "economia",
+"presidente": "Daylin García Ruvalcaba (MC)",
+"integrantes": [
+"Daylin García Ruvalcaba (MC, Presidenta)",
+"Teresita Ruiz Mendoza (PES, Secretaria)",
+"Jaime Eduardo Cantón Rocha (MORENA)",
+"Diego Alejandro Lara Arregui (FXM)",
+"Evelyn Sánchez Sánchez (MORENA)",
+"Adrian Humberto Valle Ballesteros (PRI)"
+],
+"url": "https://www.congresobc.gob.mx/Enlace/Ecomision.aspx?id_comision=10",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Chiapas",
+"congreso_url": "https://web.congresochiapas.gob.mx/organizacion/comisiones",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente, Ecología y Cambio Climáticos",
+"tema": "medio_ambiente",
+"presidente": "Valeria Santiago Barrientos",
+"integrantes": [
+"Valeria Santiago Barrientos",
+"Juan Salvador Camacho Velasco",
+"Ervin Leonel Pérez Alfaro",
+"Sahara Munira José Flores",
+"Juan Manuel Utrilla Constantino",
+"Héctor Leonel Paniagua Guzmán",
+"Ana Karen Ruiz Coutiño"
+],
+"url": "https://web.congresochiapas.gob.mx/organizacion/comisiones",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Recursos Naturales, Bosques y Selvas",
+"tema": "medio_ambiente",
+"presidente": "Jovannie Maricela Ibarra Gallardo",
+"integrantes": [
+"Jovannie Maricela Ibarra Gallardo",
+"Ana Karen Ruiz Coutiño",
+"Alejandra Gómez Mendoza",
+"Elvira Catalina Aguiar Álvarez",
+"Bertha Flores Sánchez",
+"José Ángel Del Valle Molina",
+"Juan Salvador Camacho Velasco"
+],
+"url": "https://web.congresochiapas.gob.mx/organizacion/comisiones",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Energía y Recursos Hidráulicos",
+"tema": "agua",
+"presidente": "Elvira Catalina Aguiar Álvarez",
+"integrantes": [
+"Elvira Catalina Aguiar Álvarez",
+"Selene Josefina Sánchez Cruz",
+"José Uriel Estrada Martínez",
+"Wendy Arlet Hernández Ichin",
+"Juan Marcos Trinidad Palomares",
+"Marcela Castillo Atristain",
+"Javier Jiménez Jiménez"
+],
+"url": "https://web.congresochiapas.gob.mx/organizacion/comisiones",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Economía, Bienestar Social y Cooperación Internacional",
+"tema": "economia",
+"presidente": "José Ángel Del Valle Molina",
+"integrantes": [
+"José Ángel Del Valle Molina",
+"Abundio Peregrino García",
+"Elvira Catalina Aguiar Álvarez",
+"Fermín Hidalgo González Ramírez",
+"José Jesús Domínguez Castellanos",
+"Ana Karen Ruiz Coutiño",
+"Luis Eduardo Gordillo Gordillo"
+],
+"url": "https://web.congresochiapas.gob.mx/organizacion/comisiones",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Seguimiento a los Objetivos de Desarrollo Sostenible",
+"tema": "desarrollo_sostenible",
+"presidente": "Luis Eduardo Gordillo Gordillo",
+"integrantes": [],
+"url": "https://web.congresochiapas.gob.mx/organizacion/comisiones",
+"confianza": "media"
+}
+]
+},
+{
+"estado": "Chihuahua",
+"congreso_url": "https://www.congresochihuahua.gob.mx/comisiones.php",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente, Ecología y Desarrollo Sustentable",
+"tema": "medio_ambiente",
+"presidente": "Octavio Javier Borunda Quevedo (PVEM)",
+"integrantes": [
+"Octavio Javier Borunda Quevedo",
+"Rosana Díaz Reyes",
+"Arturo Zubía Fernández",
+"José Alfredo Chávez Madrid",
+"Roberto Arturo Medina Aguirre"
+],
+"url": "https://www.congresochihuahua.gob.mx/comisiones.php",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Recursos Forestales",
+"tema": "medio_ambiente",
+"presidente": "Jaime Torres Amaya (PAN)",
+"integrantes": [
+"Jaime Torres Amaya",
+"Octavio Javier Borunda Quevedo",
+"Roberto Arturo Medina Aguirre",
+"Leticia Ortega Máynez",
+"Edith Palma Ontiveros"
+],
+"url": "https://www.congresochihuahua.gob.mx/comisiones.php",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Agua",
+"tema": "agua",
+"presidente": "Arturo Zubía Fernández (PAN)",
+"integrantes": [
+"Arturo Zubía Fernández",
+"Ismael Pérez Pavía",
+"Roberto Marcelino Carreón Huitrón",
+"Guillermo Patricio Ramírez Gutiérrez",
+"María Antonieta Pérez Reyes",
+"Pedro Torres Estrada",
+"Leticia Ortega Máynez"
+],
+"url": "https://www.congresochihuahua.gob.mx/comisiones.php",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Economía, Industria y Comercio",
+"tema": "economia",
+"presidente": "Carlos Alfredo Olson San Vicente (PAN)",
+"integrantes": [
+"Carlos Alfredo Olson San Vicente",
+"Brenda Francisca Ríos Prieto",
+"Jorge Carlos Soto Prieto",
+"María Antonieta Pérez Reyes",
+"José Luis Villalobos García"
+],
+"url": "https://www.congresochihuahua.gob.mx/comisiones.php",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Ciudad de México",
+"congreso_url": "https://www.congresocdmx.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión de Preservación del Medio Ambiente, Cambio Climático y Protección Ecológica",
+"tema": "medio_ambiente",
+"presidente": "Elvia Guadalupe Estrada Barba (MORENA)",
+"integrantes": [
+"Tania Nanette Larios Pérez",
+"Andrés Sánchez Miranda",
+"Luisa Fernanda Ledesma Alpízar",
+"Juan Estuardo Rubio Gualito",
+"Xóchitl Bravo Espinosa",
+"Paulo Emilio García González"
+],
+"url": "https://www.congresocdmx.gob.mx/preservacion-medio-ambiente-cambio-climatico-y-proteccion-ecologica-1429-1.html",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Gestión Integral del Agua",
+"tema": "agua",
+"presidente": "Adriana Ma. Guadalupe Espinosa de los Monteros García (MORENA)",
+"integrantes": [
+"Paula Alejandra Pérez Córdova",
+"Martha Soledad Ávila Ventura",
+"Federico Chávez Semerena",
+"Andrés Ataíde Rubiolo",
+"Luisa Fernanda Ledesma Alpízar",
+"Miriam Saldaña Cháirez",
+"Miriam Valeria Cruz Flores",
+"Leticia Haro Jiménez"
+],
+"url": "https://www.congresocdmx.gob.mx/gestion-integral-agua-1419-1.html",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico",
+"tema": "economia",
+"presidente": "América Alejandra Rangel Lorenzana (PAN)",
+"integrantes": [
+"Leonor Gómez Otegui",
+"Diana Sánchez Barrios",
+"Yolanda García Ortega",
+"Juan Estuardo Rubio Gualito",
+"Patricia Urriza Arellano",
+"Raúl de Jesús Torres Guerrero"
+],
+"url": "https://www.congresocdmx.gob.mx/desarrollo-economico-1416-1.html",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Coahuila",
+"congreso_url": "https://www.congresocoahuila.gob.mx/portal/comisiones-y-comites/",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente y Recursos Naturales",
+"tema": "medio_ambiente",
+"presidente": "Jorge Arturo Valdés Flores",
+"integrantes": [],
+"url": "https://www.congresocoahuila.gob.mx/portal/comisiones-y-comites/",
+"confianza": "media"
+},
+{
+"nombre": "Comisión de Agua, Asuntos Municipales, Metropolitanos e Interestatales",
+"tema": "agua",
+"presidente": "Guillermo Ruiz Guerra",
+"integrantes": [],
+"url": "https://www.congresocoahuila.gob.mx/portal/comisiones-y-comites/",
+"confianza": "media"
+},
+{
+"nombre": "Comisión de Desarrollo Económico, Competitividad y Turismo",
+"tema": "economia",
+"presidente": "Héctor Hugo Dávila Prado",
+"integrantes": [],
+"url": "https://www.congresocoahuila.gob.mx/portal/comisiones-y-comites/",
+"confianza": "media"
+}
+]
+},
+{
+"estado": "Colima",
+"congreso_url": "https://congresocol.gob.mx/web/www/comisiones/index.php",
+"comisiones": [
+{
+"nombre": "Comisión de Desarrollo Urbano, Medio Ambiente y Movilidad",
+"tema": "medio_ambiente",
+"presidente": "Jaime Enrique Sotelo García (Verde)",
+"integrantes": [
+"Juan Carlos Rendón García (Verde)",
+"Álvaro Lozano González (MORENA)"
+],
+"url": "https://congresocol.gob.mx/web/www/comisiones/index.php",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Protección y Derecho al Agua",
+"tema": "agua",
+"presidente": "Álvaro Lozano González (MORENA)",
+"integrantes": [
+"Irma Mirella Martínez Silva (MORENA)",
+"Karen Judith Jurado Escamilla (MORENA)",
+"Alma Yesenia Ventura Ochoa (MORENA)",
+"Evangelina Bustamante Morales (PT)"
+],
+"url": "https://congresocol.gob.mx/web/www/comisiones/index.php",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Rural Sustentable",
+"tema": "desarrollo_sostenible",
+"presidente": "Irma Mirella Martínez Silva (MORENA)",
+"integrantes": [
+"Alfredo Álvarez Ramírez (MORENA)",
+"José Israel González Mendoza (Movimiento)"
+],
+"url": "https://congresocol.gob.mx/web/www/comisiones/index.php",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico, Innovación, Tecnología e IA",
+"tema": "economia",
+"presidente": "José Manuel Romero Coello (Verde)",
+"integrantes": [
+"Andrea Carolina Heredia Torres (PT)",
+"Jaime Enrique Sotelo García (Verde)",
+"Juan Carlos Rendón García (Verde)",
+"Jesús Alberto Partida Valencia (PAN)"
+],
+"url": "https://congresocol.gob.mx/web/www/comisiones/index.php",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Durango",
+"congreso_url": "https://congresodurango.gob.mx/comisiones-legislativa/",
+"comisiones": [
+{
+"nombre": "Comisión de Ecología",
+"tema": "medio_ambiente",
+"presidente": "José Osbaldo Santillán Gómez",
+"integrantes": [
+"José Osbaldo Santillán Gómez",
+"Noel Fernández Maturino",
+"Otniel García Navarro",
+"Gabriela Vázquez Chacón",
+"Bernabé Aguilar Carrillo",
+"Iván Soto Mendía"
+],
+"url": "https://congresodurango.gob.mx/comisiones-legislativa/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Asuntos Forestales, Frutícolas y Pesca",
+"tema": "medio_ambiente",
+"presidente": "Héctor Herrera Núñez",
+"integrantes": [
+"Héctor Herrera Núñez",
+"José Osbaldo Santillán Gómez",
+"Julián César Rivas B Nevárez",
+"Celia Daniela Soto Hernández",
+"Iván Soto Mendía",
+"Georgina Solorio García"
+],
+"url": "https://congresodurango.gob.mx/comisiones-legislativa/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Administración y Cuidado del Agua",
+"tema": "agua",
+"presidente": "Cynthia Montserrat Hernández Quiñones",
+"integrantes": [
+"Cynthia Montserrat Hernández Quiñones",
+"Ana María Durón Pérez",
+"Flora Isela Leal Méndez",
+"Gabriela Vázquez Chacón",
+"Martín Vivanco Lira",
+"Sughey Adriana Torres Rodríguez"
+],
+"url": "https://congresodurango.gob.mx/comisiones-legislativa/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico",
+"tema": "economia",
+"presidente": "Martín Vivanco Lira",
+"integrantes": [
+"Martín Vivanco Lira",
+"Alberto Alejandro Mata Valadez",
+"Alejandro Mojica Narvaez",
+"Octavio Ulises Adame De la Fuente",
+"Ana María Durón Pérez",
+"Celia Daniela Soto Hernández"
+],
+"url": "https://congresodurango.gob.mx/comisiones-legislativa/",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Guanajuato",
+"congreso_url": "https://www.congresogto.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente",
+"tema": "medio_ambiente",
+"presidente": "María Isabel Ortiz Mantilla (PAN)",
+"integrantes": [
+"María Isabel Ortiz Mantilla",
+"Luz Itzel Mendo González",
+"Roberto Carlos Terán Ramos",
+"David Martínez Mendizábal",
+"Antonio Chaurand Sorzano"
+],
+"url": "https://www.congresogto.gob.mx/comisiones/comision-de-medio-ambiente-lxvi",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico y Social",
+"tema": "economia",
+"presidente": "Ana María Esquivel Arrona (PAN)",
+"integrantes": [
+"Ana María Esquivel Arrona",
+"Maribel Aguilar González",
+"Víctor Manuel Zanella Huerta",
+"Carolina León Medina",
+"Sergio Alejandro Contreras Guerrero"
+],
+"url": "https://www.congresogto.gob.mx/comisiones/comision-de-desarrollo-economico-y-social-lxvi",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Guerrero",
+"congreso_url": "https://congresogro.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión de Recursos Naturales, Desarrollo Sustentable y Cambio Climático",
+"tema": "medio_ambiente",
+"presidente": "Obdulia Naranjo Cabrera (PVEM)",
+"integrantes": [
+"Obdulia Naranjo Cabrera",
+"Pablo Amílcar Sandoval Ballesteros",
+"Rafael Martínez Ramírez",
+"Alejandro Carabias Icaza",
+"María Irene Montiel Servín"
+],
+"url": "https://congresogro.gob.mx/64/comisiones-comites/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión del Agua, Infraestructura y Recursos Hidráulicos",
+"tema": "agua",
+"presidente": "Alejandro Carabias Icaza (PVEM)",
+"integrantes": [
+"Alejandro Carabias Icaza",
+"Leticia Rodríguez Armenta",
+"Rafael Martínez Ramírez",
+"Rebeca Núñez Martín del Campo",
+"Marisol Bazán Fernández"
+],
+"url": "https://congresogro.gob.mx/64/comisiones-comites/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico y Trabajo",
+"tema": "economia",
+"presidente": "Marco Tulio Sánchez Alarcón (MORENA)",
+"integrantes": [
+"Marco Tulio Sánchez Alarcón",
+"Beatriz Vélez Núñez",
+"Araceli Ocampo Manzanares",
+"Julián López Galeana",
+"Pánfilo Sánchez Almazán"
+],
+"url": "https://congresogro.gob.mx/64/comisiones-comites/",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Sinaloa",
+"congreso_url": "https://www.congresosinaloa.gob.mx/",
+"comisiones": [
+{
+"nombre": "Comisión de Ecología y Desarrollo Sustentable",
+"tema": "medio_ambiente",
+"presidente": "Jorge Antonio González Flores",
+"integrantes": [
+"Jorge Antonio González Flores",
+"Juan Carlos Villa Romero",
+"Irma Guadalupe Moreno Ovalles",
+"Juana Minerva Vázquez González",
+"Rosario Guadalupe Sarabia Soto"
+],
+"url": "https://www.congresosinaloa.gob.mx/comisiones-permanentes/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión del Agua y Recursos Hidráulicos",
+"tema": "agua",
+"presidente": "Serapio Vargas Ramírez",
+"integrantes": [
+"Serapio Vargas Ramírez",
+"Juan Carlos Villa Romero",
+"Rosario Guadalupe Sarabia Soto",
+"Martha Yolanda Dagnino Camacho",
+"César Ismael Guerrero Alarcón"
+],
+"url": "https://www.congresosinaloa.gob.mx/comisiones-permanentes/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico",
+"tema": "economia",
+"presidente": "Paola Iveth Gárate Valenzuela",
+"integrantes": [
+"Paola Iveth Gárate Valenzuela",
+"César Ismael Guerrero Alarcón",
+"Carlos de Jesús Escobar Sánchez",
+"Jesús Angélica Díaz Quiñónez",
+"Serapio Vargas Ramírez"
+],
+"url": "https://www.congresosinaloa.gob.mx/comisiones-permanentes/",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Sonora",
+"congreso_url": "https://congresoson.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión de Energía, Medio Ambiente y Cambio Climático",
+"tema": "medio_ambiente",
+"presidente": "Azalia Guevara Espinoza",
+"integrantes": [
+"Norberto Barraza Almazán",
+"Omar Francisco del Valle Colosio",
+"Gabriela Danitza Félix Bojórquez",
+"Elia Sahara Sallard Hernández",
+"Marcela Valenzuela Nevárez",
+"Rubén Refugio González Aguayo"
+],
+"url": "https://congresoson.gob.mx/comision?id=806ba985-f718-4139-9d0a-358886caaa16",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión del Agua",
+"tema": "agua",
+"presidente": "Omar Francisco del Valle Colosio (PVEM)",
+"integrantes": [
+"Héctor Raúl Castelo Montaño",
+"Jesús Tadeo Mendívil Valenzuela",
+"Jesús Manuel Scott Sánchez",
+"Jazmín Guadalupe Gómez Lizárraga",
+"Rosangela Amairany Peña Escalante",
+"Eduardo Quiroga Jiménez"
+],
+"url": "https://congresoson.gob.mx/comision?id=03dc3696-b460-4aab-a6aa-f4657421c8b4",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Fomento Económico y Turismo",
+"tema": "economia",
+"presidente": "Rubén Refugio González Aguayo (PT)",
+"integrantes": [
+"Marcela Valenzuela Nevárez",
+"Claudia Zulema Bours Corral",
+"María Alicia Gaytán Sánchez",
+"Eduardo Quiroga Jiménez"
+],
+"url": "https://congresoson.gob.mx/comision?id=5107f91e-cedc-4947-840e-60c4c9495eb5",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Tabasco",
+"congreso_url": "https://congresotabasco.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión Ordinaria de Recursos Hidráulicos, Energía y Protección Ambiental",
+"tema": "medio_ambiente",
+"presidente": "Francisco Donaldo López Chaires",
+"integrantes": [
+"Francisco Donaldo López Chaires",
+"Elías Othoniel Abtanaim Madera Cordero",
+"Isabel Cristina García Jiménez",
+"Fabián Granier Calles",
+"María de los Ángeles Hernández Reyes"
+],
+"url": "https://congresotabasco.gob.mx",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión Ordinaria de Fomento y Desarrollo Industrial, Económico, Comercial y Turístico",
+"tema": "economia",
+"presidente": "Claudia Gómez Gómez",
+"integrantes": [
+"Claudia Gómez Gómez",
+"Pedro Palomeque Calzada",
+"Angela Avalos Jiménez",
+"Diana Eugenia Hernández Gordillo",
+"Martín Palacios Calderón",
+"Salomé Izquierdo Mena",
+"Manuel Gurría Reséndez"
+],
+"url": "https://congresotabasco.gob.mx",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Tamaulipas",
+"congreso_url": "https://www.congresotamaulipas.gob.mx/AsambleaLegislativa/ComisionesComites/Comisiones.asp",
+"comisiones": [
+{
+"nombre": "Comisión de Desarrollo Sustentable",
+"tema": "desarrollo_sostenible",
+"presidente": "José Abdo Schekaiban Ongay (PAN)",
+"integrantes": [
+"José Abdo Schekaiban Ongay",
+"Yuriria Iturbe Vázquez",
+"Armando Javier Zertuche Zuani",
+"Gabriela Regalado Fuentes",
+"Elvia Eguía Castillo",
+"Ma. del Rosario González Flores",
+"Mayra Benavides Villafranca"
+],
+"url": "https://www.congresotamaulipas.gob.mx/AsambleaLegislativa/ComisionesComites/Comisiones.asp",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Recurso Hidráulico",
+"tema": "agua",
+"presidente": "Elvia Eguía Castillo (MORENA)",
+"integrantes": [
+"Elvia Eguía Castillo",
+"Marco Antonio Gallegos Galván",
+"Eva Araceli Reyes González",
+"Claudio Alberto de Leija Hinojosa",
+"Silvia Isabel Chávez Garay",
+"Juan Carlos Zertuche Romero",
+"José Abdo Schekaiban Ongay"
+],
+"url": "https://www.congresotamaulipas.gob.mx/AsambleaLegislativa/ComisionesComites/Comisiones.asp",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Energía y Cambio Climático",
+"tema": "cambio_climatico",
+"presidente": "Francisco Adrián Cruz Martínez (MORENA)",
+"integrantes": [
+"Francisco Adrián Cruz Martínez",
+"Armando Javier Zertuche Zuani",
+"Sergio Arturo Ojeda Castillo",
+"Gabriela Regalado Fuentes",
+"Ana Laura Huerta Valdovinos",
+"José Abdo Schekaiban Ongay",
+"Patricia Mireya Saldívar Cano"
+],
+"url": "https://www.congresotamaulipas.gob.mx/AsambleaLegislativa/ComisionesComites/Comisiones.asp",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Economía, Industria y Comercio",
+"tema": "economia",
+"presidente": "Armando Javier Zertuche Zuani (MORENA)",
+"integrantes": [
+"Armando Javier Zertuche Zuani",
+"Ismael García Cabeza de Vaca",
+"Silvia Isabel Chávez Garay",
+"Marcelo Abundiz Ramírez",
+"Úrsula Patricia Salazar Mojica",
+"Víctor Manuel García Fuentes",
+"Gerardo Peña Flores"
+],
+"url": "https://www.congresotamaulipas.gob.mx/AsambleaLegislativa/ComisionesComites/Comisiones.asp",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Tlaxcala",
+"congreso_url": "https://congresodetlaxcala.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente y Recursos Naturales",
+"tema": "medio_ambiente",
+"presidente": "Ever Alejandro Campech Avelar",
+"integrantes": [
+"Ever Alejandro Campech Avelar",
+"Héctor Israel Ortiz Ortiz",
+"María Aurora Villeda Temoltzin"
+],
+"url": "https://congresodetlaxcala.gob.mx/com-21/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Recursos Hidráulicos",
+"tema": "agua",
+"presidente": "Gabriela Hernández Islas",
+"integrantes": [
+"Gabriela Hernández Islas",
+"María Ana Bertha Mastranzo Corona",
+"Maribel Cervantes Hernández"
+],
+"url": "https://congresodetlaxcala.gob.mx/comision-ordinaria-recursos-hidraulicos/",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico",
+"tema": "economia",
+"presidente": "Gabriela Hernández Islas",
+"integrantes": [
+"Gabriela Hernández Islas",
+"María Aurora Villeda Temoltzin",
+"Silvano Garay Loredo"
+],
+"url": "https://congresodetlaxcala.gob.mx/comision-desarrollo-economico/",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Veracruz",
+"congreso_url": "https://www.legisver.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente, Recursos Naturales, Cambio Climático y Bienestar Animal",
+"tema": "medio_ambiente",
+"presidente": "Imelda Garrido Alvarado (MORENA)",
+"integrantes": [],
+"url": "http://www.legisver.gob.mx/Inicio.php?p=parlamentoCom&idCom=53",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Agua Potable y Saneamiento",
+"tema": "agua",
+"presidente": "Felipe Pineda Barradas (MORENA)",
+"integrantes": [],
+"url": "http://www.legisver.gob.mx/Inicio.php?p=parlamentoCom&idCom=94",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Corredor Interoceánico, Zonas Portuarias, Mejora Regulatoria y Desarrollo Económico",
+"tema": "economia",
+"presidente": "Ingrid Jeny Calderón Domínguez (MORENA)",
+"integrantes": [],
+"url": "http://www.legisver.gob.mx/Inicio.php?p=parlamentoCom&idCom=25",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Yucatán",
+"congreso_url": "https://www.congresoyucatan.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente",
+"tema": "medio_ambiente",
+"presidente": "Harry Gerardo Rodríguez Botello Fierro (PVEM)",
+"integrantes": [
+"Harry Gerardo Rodríguez Botello Fierro",
+"Sayda Melina Rodríguez Gómez",
+"Ana Cristina Polanco Bautista",
+"Rosana de Jesús Couoh Chán",
+"Eric Edgardo Quijano González",
+"Maribel del Rosario Chuc Ayala",
+"Manuela de Jesús Cocom Bolio"
+],
+"url": "https://www.congresoyucatan.gob.mx/comisiones/8",
+"confianza": "alta"
+},
+{
+"nombre": "Comisión de Desarrollo Económico y Fomento al Empleo",
+"tema": "economia",
+"presidente": "Naomi Raquel Peniche López (MORENA)",
+"integrantes": [
+"Naomi Raquel Peniche López",
+"Álvaro Cetina Puerto",
+"Alba Cristina Cob Cortés",
+"Rosana de Jesús Couoh Chán",
+"Samuel de Jesús Lizama Gasca",
+"Eric Edgardo Quijano González",
+"Ángel David Valdez Jiménez"
+],
+"url": "https://www.congresoyucatan.gob.mx/comisiones/6",
+"confianza": "alta"
+}
+]
+},
+{
+"estado": "Zacatecas",
+"congreso_url": "https://www.congresozac.gob.mx",
+"comisiones": [
+{
+"nombre": "Comisión de Medio Ambiente y Cambio Climático",
+"tema": "medio_ambiente",
+"presidente": "Alfredo Femat Bañuelos",
+"integrantes": [],
+"url": "https://www.congresozac.gob.mx/65/comision&cual=21",
+"confianza": "media"
+},
+{
+"nombre": "Comisión de Agua, Desertificación y Degradación de Tierras",
+"tema": "agua",
+"presidente": "José David González Hernández",
+"integrantes": [],
+"url": "https://www.congresozac.gob.mx/65/comision&cual=2",
+"confianza": "media"
+},
+{
+"nombre": "Comisión de Desarrollo Económico, Industria y Minería",
+"tema": "economia",
+"presidente": "Oscar Rafael Novella Macías",
+"integrantes": [],
+"url": "https://www.congresozac.gob.mx/65/comision&cual=8",
+"confianza": "media"
+}
+]
+}
+]
+}
