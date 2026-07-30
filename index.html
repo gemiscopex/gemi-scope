@@ -3680,7 +3680,7 @@ function consolaKey(){
   var uid=null; // cuando exista login: id de usuario → 'scope_consola_v1::'+uid
   return uid?_CONSOLA_KEY_BASE+'::'+uid:_CONSOLA_KEY_BASE;
 }
-var _CONSOLA_DEFAULTS={temas:[],estados:[],comisiones:[],legisladores:[],keywords:[],riesgos:{}};
+var _CONSOLA_DEFAULTS={temas:[],estados:[],comisiones:[],legisladores:[],keywords:[],riesgos:{},noms:[],instrumentos:[],impuestos:[],materiales:[]};
 var _LEGACY_TEMA_MAP={'energia':'energia','agua':'agua','residuos':'residuos','economia circular':'circular','impuestos ambientales':'impuestos'};
 function loadConsola(){
   try{
@@ -3731,11 +3731,25 @@ function consolaLegisladores(){
   });
   return out.sort(function(a,b){return a.n.localeCompare(b.n,'es');});
 }
+// Universo de referencias (NOMs/instrumentos ya son listas fijas; impuestos y materiales se derivan de los datos)
+function _consImpuestoTipos(){
+  var s={};
+  if(typeof impuestosDB!=='undefined')Object.keys(impuestosDB).forEach(function(st){
+    var arr=impuestosDB[st]; if(!Array.isArray(arr))return;
+    arr.forEach(function(t){if(t&&t.tipo)s[t.tipo]=1;});
+  });
+  return Object.keys(s).sort(function(a,b){return a.localeCompare(b,'es');});
+}
+function _consMaterialesTipos(){
+  var s={},est=(_materialesData&&_materialesData.estados)||{};
+  Object.keys(est).forEach(function(st){((est[st]||{}).materiales||[]).forEach(function(m){if(m)s[m]=1;});});
+  return Object.keys(s).sort(function(a,b){return a.localeCompare(b,'es');});
+}
 
 // ── Wizard de configuración ──────────────────────────────────────────────────
-var _WIZ_PASOS=['temas','estados','comisiones','legisladores','afinar'];
-var _WIZ_LABEL={temas:'Temas',estados:'Estados',comisiones:'Comisiones',legisladores:'Legisladores',afinar:'Afinar'};
-var _WIZ_REQ={temas:true,estados:true,comisiones:true,legisladores:false,afinar:false};
+var _WIZ_PASOS=['temas','estados','comisiones','legisladores','referencias','afinar'];
+var _WIZ_LABEL={temas:'Temas',estados:'Estados',comisiones:'Comisiones',legisladores:'Legisladores',referencias:'Referencias',afinar:'Afinar'};
+var _WIZ_REQ={temas:true,estados:true,comisiones:true,legisladores:false,referencias:false,afinar:false};
 var _WIZ_MAX_LEG=20,_WIZ_MAX_KW=15;
 var _wiz=null;
 function openConsolaWizard(){
@@ -3744,6 +3758,8 @@ function openConsolaWizard(){
     _wiz={paso:0,search:'',sel:{
       temas:new Set(c.temas||[]),estados:new Set(c.estados||[]),
       comisiones:new Set(c.comisiones||[]),legisladores:new Set(c.legisladores||[]),
+      noms:new Set(c.noms||[]),instrumentos:new Set(c.instrumentos||[]),
+      impuestos:new Set(c.impuestos||[]),materiales:new Set(c.materiales||[]),
       keywords:(c.keywords||[]).slice(),riesgos:Object.assign({},c.riesgos||{})
     }};
     document.getElementById('consola-wiz-bg').style.display='flex';
@@ -3758,6 +3774,7 @@ function _comId(c){return c.id||(_consNk(c.nombre)+'-'+(c.camara||'').toLowerCas
 function _wizCount(){
   var p=_WIZ_PASOS[_wiz.paso];
   if(p==='afinar')return _wiz.sel.keywords.length+' palabras clave';
+  if(p==='referencias'){var n=_wiz.sel.noms.size+_wiz.sel.instrumentos.size+_wiz.sel.impuestos.size+_wiz.sel.materiales.size;return n+' referencia'+(n===1?'':'s');}
   var n=_wiz.sel[p]?_wiz.sel[p].size:0;
   return n+' seleccionado'+(n===1?'':'s')+(p==='legisladores'?' · máx '+_WIZ_MAX_LEG:'');
 }
@@ -3776,7 +3793,8 @@ function _wizPaint(){
     temas:'Elige los temas que quieres monitorear. Alimentan tu señal, el feed del Ejecutivo y las normas DOF de tu consola.',
     estados:'¿En qué entidades opera tu organización? Verás su señal, gacetas y noticias.',
     comisiones:'Comisiones del Congreso a seguir: fechas de sesión, integrantes y asuntos turnados.',
-    legisladores:'Opcional: legisladores clave para tu agenda (máximo '+_WIZ_MAX_LEG+').',
+    legisladores:'Opcional: legisladores clave para tu agenda (máximo '+_WIZ_MAX_LEG+'). Por ahora solo se puede dar seguimiento a legisladores federales (Cámara de Diputados y Senado).',
+    referencias:'Opcional: NOMs, impuestos ambientales, instrumentos legales y materiales prohibidos que quieres tener siempre a la mano en tu consola como referencia.',
     afinar:'Opcional: palabras clave propias (empresa, cuenca, trámite…) y nivel de riesgo por tema.'
   };
   document.getElementById('consola-wiz-bg').innerHTML=
@@ -3841,9 +3859,34 @@ function _wizPaintBody(){
     }).join('')+'</div>';
   }
   else if(p==='legisladores'){
-    b.innerHTML='<input class="cw-search" id="cw-leg-search" placeholder="Buscar por nombre, partido o comisión…" value="'+_wiz.search.replace(/"/g,'&quot;')+'" oninput="_wiz.search=this.value;_wizPaintLegList()">'
-      +'<div id="cw-leg-list" style="max-height:340px;overflow-y:auto"></div>';
+    b.innerHTML='<div style="font-size:11px;color:var(--text-sec);background:rgba(0,158,144,0.06);border-left:2px solid var(--green);padding:7px 10px;margin-bottom:10px;line-height:1.45">Por ahora solo se puede dar seguimiento a legisladores <b>federales</b> (Cámara de Diputados y Senado). Los congresos locales llegarán en una próxima etapa.</div>'
+      +'<input class="cw-search" id="cw-leg-search" placeholder="Buscar por nombre, partido o comisión…" value="'+_wiz.search.replace(/"/g,'&quot;')+'" oninput="_wiz.search=this.value;_wizPaintLegList()">'
+      +'<div id="cw-leg-list" style="max-height:320px;overflow-y:auto"></div>';
     _wizPaintLegList();
+  }
+  else if(p==='referencias'){
+    function _refGrp(title,items,setKey){
+      if(!items.length)return '';
+      return '<div style="margin-bottom:16px">'
+        +'<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">'+title+' <span style="color:var(--dim)">· '+items.length+'</span></div>'
+        +'<div class="cw-grid2">'+items.map(function(it){
+            var on=_wiz.sel[setKey].has(it.id);
+            return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\''+setKey+'\',\''+String(it.id).replace(/\\/g,"\\\\").replace(/'/g,"\\'")+'\')">'
+              +'<span class="mark">'+(on?'◆':'◇')+'</span>'
+              +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);line-height:1.3">'+it.label+'</div>'
+              +(it.sub?'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+it.sub+'</div>':'')+'</div>'
+              +'</div>';
+          }).join('')+'</div></div>';
+    }
+    var noms=(typeof NORMAS!=='undefined'?NORMAS:[]).map(function(n){return {id:n.id,label:n.id,sub:n.objeto};});
+    var instr=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).map(function(o){return {id:o.n,label:o.n};});
+    var imps=_consImpuestoTipos().map(function(t){return {id:t,label:t};});
+    var mats=_consMaterialesTipos().map(function(m){return {id:m,label:m};});
+    b.innerHTML=_refGrp('NOMs',noms,'noms')
+      +_refGrp('Instrumentos legales',instr,'instrumentos')
+      +_refGrp('Impuestos ambientales',imps,'impuestos')
+      +_refGrp('Materiales prohibidos',mats,'materiales')
+      +(mats.length?'':'<div style="font-size:11px;color:var(--dim);margin-top:6px">Materiales prohibidos: dataset en expansión.</div>');
   }
   else if(p==='afinar'){
     b.innerHTML=
@@ -3927,6 +3970,8 @@ function _wizNext(){
   saveConsola({
     temas:[..._wiz.sel.temas],estados:[..._wiz.sel.estados],
     comisiones:[..._wiz.sel.comisiones],legisladores:[..._wiz.sel.legisladores],
+    noms:[..._wiz.sel.noms],instrumentos:[..._wiz.sel.instrumentos],
+    impuestos:[..._wiz.sel.impuestos],materiales:[..._wiz.sel.materiales],
     keywords:_wiz.sel.keywords.slice(),riesgos:_wiz.sel.riesgos
   });
   closeConsolaWizard();
@@ -3962,6 +4007,7 @@ function renderConsola(){
     +'<div class="cons-sub" style="margin-top:4px">'+temas.length+' temas · '+estados.length+' estados · '+coms.length+' comisiones'+(legs.length?' · '+legs.length+' legisladores':'')+(userKw.length?' · '+userKw.length+' keywords':'')+'</div></div>'
     +'<button class="cons-edit" onclick="openConsolaWizard()">⚙ EDITAR CONSOLA</button>'
     +'</div>'
+    +_consChatCardHTML()
     +'<div class="cons-grid">'
       +'<div class="cons-col">'
         +'<div class="card"><div class="card-label">Señal de mis temas</div><div id="cons-senal"></div></div>'
@@ -3970,6 +4016,7 @@ function renderConsola(){
       +'</div>'
       +'<div class="cons-col">'
         +'<div class="card"><div class="card-label">Mis estados</div><div id="cons-estados"></div></div>'
+        +_refCardHTML(cfg)
         +'<div class="card"><div class="card-label">Ejecutivo · menciones de mis temas</div><div id="cons-pres"></div></div>'
         +'<div class="card"><div class="card-label">DOF · normas de mis temas</div><div id="cons-dof"></div></div>'
         +(userKw.length?'<div class="card"><div class="card-label">Feed de mis keywords</div><div id="cons-kw"></div></div>':'')
@@ -3983,6 +4030,59 @@ function renderConsola(){
   _consPres(allKw);
   _consDof(allKw);
   if(userKw.length)_consKwFeed(userKw);
+}
+// ── Panel tipo chat de IA (placeholder interactivo — bot real llega después) ──
+function _consChatCardHTML(){
+  return '<div class="card" style="margin-bottom:20px;border:0.8px solid var(--border);border-radius:14px;padding:18px 20px;background:linear-gradient(180deg,rgba(0,158,144,0.04),transparent)">'
+    +'<div style="display:flex;align-items:center;gap:11px;margin-bottom:12px">'
+      +'<div style="width:32px;height:32px;border-radius:9px;background:var(--green);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex-shrink:0">◆</div>'
+      +'<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:var(--text)">Asistente SCOPE</div>'
+      +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:0.08em">INTELIGENCIA REGULATORIA · CONVERSACIONAL</div></div>'
+      +'<span style="font-family:var(--mono);font-size:9px;color:var(--amber);border:0.8px solid var(--amber);padding:2px 8px;border-radius:10px;letter-spacing:0.06em">PRÓXIMAMENTE</span>'
+    +'</div>'
+    +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;background:rgba(0,0,0,0.02);border-radius:10px;padding:12px;min-height:80px;max-height:240px;overflow-y:auto">'
+      +_consChatBubble('Hola 👋 Soy el asistente de SCOPE. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé con los datos de tu consola en tiempo real.',false)
+    +'</div>'
+    +'<div style="display:flex;gap:8px;margin-top:11px">'
+      +'<input id="cons-chat-input" placeholder="Pregúntale al asistente…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;padding:10px 13px;border:1px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12.5px;color:var(--text);border-radius:9px;outline:none">'
+      +'<button onclick="_consChatSend()" style="background:var(--green);color:#fff;border:none;border-radius:9px;padding:0 18px;font-size:12.5px;font-weight:600;cursor:pointer">Enviar</button>'
+    +'</div>'
+  +'</div>';
+}
+function _consChatBubble(text,isUser){
+  return '<div style="align-self:'+(isUser?'flex-end':'flex-start')+';max-width:82%;background:'+(isUser?'var(--green)':'var(--card)')+';color:'+(isUser?'#fff':'var(--text)')+';border:'+(isUser?'none':'0.8px solid var(--border)')+';padding:8px 12px;border-radius:'+(isUser?'12px 12px 3px 12px':'12px 12px 12px 3px')+';font-size:12.5px;line-height:1.5">'+_escHtml(text)+'</div>';
+}
+function _consChatSend(){
+  var inp=document.getElementById('cons-chat-input'),msgs=document.getElementById('cons-chat-msgs');
+  if(!inp||!msgs)return;
+  var v=(inp.value||'').trim();if(!v)return;
+  msgs.insertAdjacentHTML('beforeend',_consChatBubble(v,true));
+  inp.value='';msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(function(){
+    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. El asistente conversacional de SCOPE está en construcción 🛠️ — muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
+    msgs.scrollTop=msgs.scrollHeight;
+  },550);
+}
+// ── Panel de referencias (NOMs, instrumentos, impuestos, materiales elegidos) ──
+function _refCardHTML(cfg){
+  var noms=(cfg.noms||[]),instr=(cfg.instrumentos||[]),imps=(cfg.impuestos||[]),mats=(cfg.materiales||[]);
+  if(!(noms.length+instr.length+imps.length+mats.length))return '';
+  function nomUrl(id){var n=(typeof NORMAS!=='undefined'?NORMAS:[]).find(function(x){return x.id===id;});return n?n.url:null;}
+  function grp(title,items,linkFn){
+    if(!items.length)return '';
+    return '<div style="margin-bottom:13px"><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">'+title+'</div>'
+      +'<div style="display:flex;flex-wrap:wrap;gap:6px">'+items.map(function(it){
+        var url=linkFn?linkFn(it):null;
+        if(url)return '<a href="'+url+'" target="_blank" rel="noopener" style="text-decoration:none;border:0.8px solid var(--border);border-radius:6px;padding:4px 9px;font-size:11px;color:var(--text)">'+it+' <span style="color:var(--green)">↗</span></a>';
+        return '<span style="border:0.8px solid var(--border);border-radius:6px;padding:4px 9px;font-size:11px;color:var(--text-sec)">'+it+'</span>';
+      }).join('')+'</div></div>';
+  }
+  return '<div class="card"><div class="card-label">Mis referencias</div>'
+    +grp('NOMs',noms,nomUrl)
+    +grp('Instrumentos legales',instr,null)
+    +grp('Impuestos ambientales',imps,null)
+    +grp('Materiales prohibidos',mats,null)
+  +'</div>';
 }
 function _consHits(kwList,days){
   var cutoff=Date.now()-days*86400000;
