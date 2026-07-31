@@ -1625,7 +1625,9 @@ var ACTORES_FED=[
   {sig:'SADER',dep:'Secretaría de Agricultura y Desarrollo Rural',titular:'Julio Berdegué Sacristán',cargo:'Secretario',url:'https://www.gob.mx/agricultura'},
   {sig:'CONAFOR',dep:'Comisión Nacional Forestal',titular:'Sergio Graf Montero',cargo:'Director General',url:'https://www.gob.mx/conafor'},
   {sig:'CONANP',dep:'Comisión Nacional de Áreas Naturales Protegidas',titular:'Pedro Álvarez-Icaza Longoria',cargo:'Comisionado Nacional',url:'https://www.gob.mx/conanp'},
-  {sig:'ASEA',dep:'Agencia de Seguridad, Energía y Ambiente',titular:'Armando Ocampo Zambrano',cargo:'Director Ejecutivo',url:'https://www.gob.mx/asea'}
+  {sig:'ASEA',dep:'Agencia de Seguridad, Energía y Ambiente',titular:'Armando Ocampo Zambrano',cargo:'Director Ejecutivo',url:'https://www.gob.mx/asea'},
+  {sig:'COFEPRIS',dep:'Comisión Federal para la Protección contra Riesgos Sanitarios',titular:'Víctor Hugo Borja Aburto',cargo:'Comisionado Federal',url:'https://www.gob.mx/cofepris'},
+  {sig:'SENASICA',dep:'Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria',titular:'Francisco Javier Calderón Elizalde',cargo:'Director en Jefe',url:'https://www.gob.mx/senasica'}
 ];
 function renderActoresFederal(){
   var el=document.getElementById('actores-federal');
@@ -2042,6 +2044,47 @@ function _jurisprudenciaHTML(){
     }).join('')
   +'</div>';
 }
+// Sustancias bajo restricción/escrutinio (capa factual con base internacional)
+var _SUSTANCIAS=[
+  {n:'Aditivos oxodegradables (prooxidantes, tipo D2W)',estatus:'Restringidos / prohibidos',base:'Prohibidos en la UE (Directiva SUP 2019/904); excluidos como biodegradables por las normas ISO 17088 y EN 13432; cuestionados por PNUMA y ECHA porque fragmentan en microplásticos. En México, varios estados avanzan en restringirlos.',url:'https://eur-lex.europa.eu/eli/dir/2019/904/oj'},
+  {n:'PFAS / PFOS (per- y polifluoroalquiladas)',estatus:'En restricción acelerada',base:'Tendencia global (UE/EE.UU.) de restricción en empaque y materiales en contacto con alimentos; sustitución voluntaria ya en marcha en la cadena de tintas y empaque.',url:''},
+  {n:'BPA (bisfenol A)',estatus:'Restringido en contacto con alimentos',base:'Restringido en materiales en contacto con alimentos bajo el marco FCM de la UE (1935/2004 y 10/2011); sustitución en curso en recubrimientos y tintas.',url:'https://eur-lex.europa.eu/eli/reg/2011/10/oj'},
+  {n:'Benzofenonas',estatus:'Bajo restricción',base:'Fotoiniciadores cuestionados por migración a alimentos; sustituidos en líneas de tintas alineadas a estándares europeos (ECHA).',url:''},
+  {n:'Microplásticos añadidos intencionalmente',estatus:'Restringidos (UE)',base:'Restringidos por el Reglamento (UE) 2023/2055 en cosméticos, detergentes y otros productos; posible adopción en México.',url:'https://eur-lex.europa.eu/eli/reg/2023/2055/oj'},
+  {n:'SAP (poliacrilato de sodio) en absorbentes',estatus:'Bajo escrutinio',base:'Superabsorbentes bajo escrutinio creciente por microplásticos y origen fósil; sin restricción formal, con tendencia de sustitución.',url:''}
+];
+function _sustanciasHTML(){
+  return '<div style="border-top:1.5px solid var(--text);margin-top:42px;padding-top:20px">'
+    +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Sustancias bajo restricción</div>'
+    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Químicos y aditivos con restricción o escrutinio creciente, con su base internacional — anticipan regulación en México.</div>'
+    +_SUSTANCIAS.map(function(s,i){
+      return '<div style="padding:14px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
+        +'<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:5px">'
+        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--red);border:0.8px solid var(--red);padding:2px 7px">'+s.estatus.toUpperCase()+'</span>'
+        +'<span style="font-size:15px;font-weight:600;color:var(--text)">'+s.n+'</span></div>'
+        +'<div style="font-size:12.5px;color:var(--text-sec);line-height:1.55;max-width:760px">'+s.base+'</div>'
+        +(s.url?'<a href="'+s.url+'" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:10px;color:var(--green);text-decoration:none;margin-top:5px;display:inline-block">Fuente →</a>':'')
+        +'</div>';
+    }).join('')+'</div>';
+}
+// Economía circular · casos de referencia (generalizados, sin nombrar empresas)
+var _ECOCIRCULAR=[
+  {n:'Reciclaje de multilaminados por hidropulpeo',d:'Recuperación de la fibra de cartón de envases multilaminado (cartón-aluminio-PE) y separación del poli-aluminio para usos secundarios; requiere recicladores especializados, no infraestructura municipal.'},
+  {n:'Tintas deinkables (separables en reciclaje)',d:'Tintas diseñadas para desprenderse en el hidropulpeo, habilitando la reciclabilidad real del empaque impreso.'},
+  {n:'Pooling de tarimas y activos retornables',d:'Modelo de economía circular literal: tarimas y contenedores que circulan y se reparan en vez de venderse; base para la regulación de empaque reutilizable.'},
+  {n:'Contenido reciclado post-consumo (PCR ≥55%)',d:'Resina reciclada en empaque industrial y secundario; el PCR food-grade aún enfrenta restricciones técnicas para contacto directo con alimentos.'},
+  {n:'Reciclaje inclusivo con recicladores de base',d:'Integración de pepenadores, centros de acopio y cooperativas a la cadena de material post-consumo — dimensión social de la circularidad.'}
+];
+function _ecocircularHTML(){
+  return '<div style="border-top:1.5px solid var(--text);margin-top:42px;padding-top:20px">'
+    +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Economía circular · casos de referencia</div>'
+    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Mecanismos de circularidad real en la industria — útiles como benchmark operativo.</div>'
+    +'<div class="est-layout" style="grid-template-columns:1fr 1fr;gap:14px 28px">'
+    +_ECOCIRCULAR.map(function(e){
+      return '<div><div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px">'+e.n+'</div>'
+        +'<div style="font-size:12px;color:var(--text-sec);line-height:1.5">'+e.d+'</div></div>';
+    }).join('')+'</div></div>';
+}
 function renderObligaciones(){
   var host=document.getElementById('obligaciones-body');if(!host)return;
   host.innerHTML=_OBLIGACIONES.map(function(o,i){
@@ -2056,7 +2099,7 @@ function renderObligaciones(){
       +'<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;font-family:var(--mono);font-size:10.5px;color:var(--text-muted)">'
       +'<span>Sustento · '+o.s+'</span>'+link+'</div>'
       +'</div>';
-  }).join('')+_jurisprudenciaHTML();
+  }).join('')+_jurisprudenciaHTML()+_sustanciasHTML()+_ecocircularHTML();
 }
 // ── AGENDA · reglamentaciones pendientes + DOF hoy + accesos ──
 // docs: [{label, url}] — enlaces a documentos cuando estén disponibles (opcional)
@@ -2068,7 +2111,14 @@ var _PENDIENTES=[
   {t:'Actualización NOM-161-SEMARNAT (residuos de manejo especial)',e:'PROYECTO',d:'Amplía los listados y las obligaciones de plan de manejo para productores.',org:'SEMARNAT / CONAMER',docs:[]},
   {t:'Contenido mínimo reciclado (PCR) en envases',e:'PENDIENTE',d:'Discusión sobre obligar un porcentaje mínimo de resina reciclada post-consumo en envases; tema crítico por la brecha técnica del PCR food-grade y de los multilaminados.',org:'SEMARNAT / Congreso',docs:[]},
   {t:'Restricción a aditivos oxodegradables',e:'PENDIENTE',d:'Varios estados avanzan en restringir o prohibir aditivos prooxidantes (oxodegradables); alineado con la Directiva SUP de la UE y el consenso científico (fragmentan en microplásticos).',org:'Congresos estatales',docs:[]},
-  {t:'Descarbonización del transporte / electromovilidad',e:'EN PROCESO',d:'Política pública de electromovilidad y descarbonización del transporte; impacto estructural de mediano-largo plazo para estaciones de servicio y logística.',org:'SENER / SEMARNAT',docs:[]}
+  {t:'Descarbonización del transporte / electromovilidad',e:'EN PROCESO',d:'Política pública de electromovilidad y descarbonización del transporte; impacto estructural de mediano-largo plazo para estaciones de servicio y logística.',org:'SENER / SEMARNAT',docs:[]},
+  {t:'Gestión de residuos sanitarios',e:'PENDIENTE',d:'Manejo especial de pañales, productos de incontinencia y toallas femeninas usadas; categoría sin infraestructura de circularidad real en México.',org:'SEMARNAT / SSA',docs:[]},
+  {t:'Regulación de productos menstruales y de higiene íntima',e:'PENDIENTE',d:'Tendencia internacional (EE.UU., UE, Reino Unido) sobre composición, transparencia, fragancias y alérgenos; posible adopción vía COFEPRIS.',org:'COFEPRIS',docs:[]},
+  {t:'Etiquetado de toallas húmedas no-flushable',e:'PENDIENTE',d:'Tendencia europea de etiquetado obligatorio "no tirar al inodoro" por bloqueos en redes sanitarias; posible adopción en México.',org:'COFEPRIS / CONAGUA',docs:[]},
+  {t:'NOM de contaminación lumínica',e:'PENDIENTE',d:'Regulación ambiental de iluminación exterior; genera concurrencia con NOM-005-ASEA (estaciones) y NOM-025-STPS (mínimos laborales).',org:'SEMARNAT',docs:[]},
+  {t:'Restricción a PFAS y PFOS',e:'PENDIENTE',d:'Tendencia global (UE/EE.UU.) de restricción acelerada de sustancias per- y polifluoroalquiladas en empaque y productos; posible adopción en México.',org:'SEMARNAT / COFEPRIS',docs:[]},
+  {t:'Microplásticos en cosmética',e:'PENDIENTE',d:'La UE ya restringió microplásticos añadidos intencionalmente (Reg. 2023/2055); México podría seguir la tendencia.',org:'COFEPRIS / SEMARNAT',docs:[]},
+  {t:'Biodegradabilidad de tensoactivos',e:'PENDIENTE',d:'Regulación de biodegradabilidad para tensoactivos en productos de cuidado personal y limpieza.',org:'SEMARNAT',docs:[]}
 ];
 function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
