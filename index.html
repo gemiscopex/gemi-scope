@@ -2015,6 +2015,30 @@ var _OBLIGACIONES=[
   {n:'Distintivos y Certificaciones',d:'Instrumentos voluntarios que acreditan desempeño ambiental: Industria Limpia (PROFEPA), Empresa Socialmente Responsable, certificaciones de economía circular.',s:'Programas PROFEPA · esquemas voluntarios',via:'noms'},
   {n:'Registro como Generador de Residuos Peligrosos',d:'Alta ante SEMARNAT según volumen (micro, pequeño o gran generador). Condiciona el manifiesto y el transporte de residuos peligrosos.',s:'LGPGIR · NOM-052-SEMARNAT-2005',via:'noms'}
 ];
+// Precedentes judiciales (SCJN) sobre regulación ambiental estatal — capa factual pública
+var _JURISPRUDENCIA=[
+  {t:'Amparo · prohibiciones absolutas de PET y unicel (Oaxaca)',org:'SCJN · Segunda Sala',anio:2022,criterio:'Invasión de competencias',resumen:'Amparó a Propimex y Oxxo (Coca-Cola FEMSA) contra la Ley de Residuos Sólidos de Oaxaca y declaró inconstitucionales las prohibiciones absolutas de PET y unicel: los estados no pueden prohibir de forma absoluta materiales que la Ley General federal solo prevé regular como residuos de manejo especial.',url:'https://www.scjn.gob.mx/'},
+  {t:'Declaratoria General de Inconstitucionalidad 8/2022',org:'SCJN · Pleno',anio:2023,criterio:'Efectos generales',resumen:'Eliminó con efectos generales las fracciones XI y XII del artículo 98 de la Ley de Residuos de Oaxaca (prohibiciones absolutas de materiales), extendiendo el criterio a todos los casos comparables.',url:'https://www.dof.gob.mx/'},
+  {t:'Amparo · decreto de popotes (Culiacán)',org:'SCJN',anio:2023,criterio:'Invasión de competencias',resumen:'Aplicó el mismo criterio a un decreto municipal de Culiacán que prohibía popotes de un solo uso: la prohibición absoluta de un material invade la competencia federal en materia de residuos de manejo especial.',url:'https://www.scjn.gob.mx/'}
+];
+function _jurisprudenciaHTML(){
+  return '<div style="border-top:1.5px solid var(--text);margin-top:42px;padding-top:20px">'
+    +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Precedentes judiciales</div>'
+    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px">Criterios de la SCJN sobre regulación ambiental estatal — para leer qué prohibiciones locales son constitucionales y cuáles no.</div>'
+    +'<div style="font-size:11.5px;color:var(--text-sec);background:rgba(0,158,144,0.05);border-left:2px solid var(--green);padding:8px 12px;margin-bottom:16px;line-height:1.5;max-width:760px">El criterio aplica a <b>prohibiciones absolutas de materiales</b> (invasión de competencia federal), <b>no</b> a la regulación estatal de gestión, recolección, plan de manejo o infraestructura post-consumo — competencia propia de los estados.</div>'
+    +_JURISPRUDENCIA.map(function(j,i){
+      return '<div style="padding:16px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
+        +'<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:5px">'
+        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--green);border:0.8px solid var(--green);padding:2px 7px">'+j.criterio.toUpperCase()+'</span>'
+        +'<span style="font-size:15px;font-weight:600;color:var(--text)">'+j.t+'</span></div>'
+        +'<div style="font-size:13px;color:var(--text-sec);line-height:1.55;max-width:760px;margin-bottom:6px">'+j.resumen+'</div>'
+        +'<div style="display:flex;gap:14px;align-items:center;font-family:var(--mono);font-size:10px;color:var(--text-muted)">'
+        +'<span>'+j.org+' · '+j.anio+'</span>'
+        +'<a href="'+j.url+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Consultar fuente →</a></div>'
+        +'</div>';
+    }).join('')
+  +'</div>';
+}
 function renderObligaciones(){
   var host=document.getElementById('obligaciones-body');if(!host)return;
   host.innerHTML=_OBLIGACIONES.map(function(o,i){
@@ -2029,7 +2053,7 @@ function renderObligaciones(){
       +'<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;font-family:var(--mono);font-size:10.5px;color:var(--text-muted)">'
       +'<span>Sustento · '+o.s+'</span>'+link+'</div>'
       +'</div>';
-  }).join('');
+  }).join('')+_jurisprudenciaHTML();
 }
 // ── AGENDA · reglamentaciones pendientes + DOF hoy + accesos ──
 // docs: [{label, url}] — enlaces a documentos cuando estén disponibles (opcional)
@@ -2038,7 +2062,10 @@ var _PENDIENTES=[
   {t:'Reglamento de la Ley de Aguas',e:'PENDIENTE',d:'Reglamento derivado de la reforma en materia de aguas nacionales; definirá concesiones, usos y obligaciones de reporte para usuarios industriales.',org:'CONAGUA / SEMARNAT',docs:[]},
   {t:'Reforma a la LGEEPA (anunciada)',e:'PENDIENTE',d:'Reforma anunciada a la Ley General del Equilibrio Ecológico y la Protección al Ambiente; ajustaría instrumentos de política ambiental y evaluación de impacto.',org:'Ejecutivo Federal / Congreso',docs:[]},
   {t:'Reforma a la LGPGIR en materia de REP',e:'EN PROCESO',d:'Adecúa la Ley General para la Prevención y Gestión Integral de los Residuos al esquema de Responsabilidad Extendida del Productor.',org:'Congreso de la Unión',docs:[]},
-  {t:'Actualización NOM-161-SEMARNAT (residuos de manejo especial)',e:'PROYECTO',d:'Amplía los listados y las obligaciones de plan de manejo para productores.',org:'SEMARNAT / CONAMER',docs:[]}
+  {t:'Actualización NOM-161-SEMARNAT (residuos de manejo especial)',e:'PROYECTO',d:'Amplía los listados y las obligaciones de plan de manejo para productores.',org:'SEMARNAT / CONAMER',docs:[]},
+  {t:'Contenido mínimo reciclado (PCR) en envases',e:'PENDIENTE',d:'Discusión sobre obligar un porcentaje mínimo de resina reciclada post-consumo en envases; tema crítico por la brecha técnica del PCR food-grade y de los multilaminados.',org:'SEMARNAT / Congreso',docs:[]},
+  {t:'Restricción a aditivos oxodegradables',e:'PENDIENTE',d:'Varios estados avanzan en restringir o prohibir aditivos prooxidantes (oxodegradables); alineado con la Directiva SUP de la UE y el consenso científico (fragmentan en microplásticos).',org:'Congresos estatales',docs:[]},
+  {t:'Descarbonización del transporte / electromovilidad',e:'EN PROCESO',d:'Política pública de electromovilidad y descarbonización del transporte; impacto estructural de mediano-largo plazo para estaciones de servicio y logística.',org:'SENER / SEMARNAT',docs:[]}
 ];
 function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
@@ -2078,18 +2105,18 @@ function renderAgenda(view){
 }
 // ── NORMAS ────────────────────────────────────────────────────
 var NORMAS=[
-  {id:'NOM-127-SSA1-2021',dep:'SSA',tema:'Agua',tipo:'NOM',objeto:'Calidad de agua para consumo humano',implic:'Base para discusión de agua regenerada y crisis hídrica',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=2063863'},
-  {id:'NOM-003-SEMARNAT-1997',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Calidad de aguas tratadas para reúso',implic:'Limita expansión de reúso potable',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=4863829'},
-  {id:'NOM-001-SEMARNAT-2021',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Límites de descarga a cuerpos receptores',implic:'Alto impacto en inversión en tratamiento',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5657958'},
-  {id:'NOM-002-SEMARNAT-1996',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Descargas a alcantarillado',implic:'En proceso de ajuste técnico',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5199671'},
-  {id:'NOM-043-SEMARNAT-1993',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Emisiones de partículas en fuentes fijas',implic:'Riesgo de endurecimiento regulatorio',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=4788035'},
-  {id:'NOM-085-SEMARNAT-2011',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Emisiones de equipos de combustión',implic:'Impacto en costos industriales',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5220972'},
-  {id:'PROY-NOM-160-SEMARNAT-2011',dep:'SEMARNAT',tema:'Residuos',tipo:'PROY',objeto:'Planes de manejo de residuos peligrosos',implic:'Instrumento clave en economía circular',url:'https://www.conamer.gob.mx'},
-  {id:'PROY-NOM-161-SEMARNAT-2021',dep:'SEMARNAT',tema:'Residuos',tipo:'PROY',objeto:'Actualización de residuos de manejo especial',implic:'Amplía obligaciones empresariales',url:'https://www.conamer.gob.mx'},
-  {id:'NOM-161-SEMARNAT-2011',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Clasificación de residuos de manejo especial',implic:'Base operativa para REP',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5202411'},
-  {id:'NOM-052-SEMARNAT-2005',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Identificación de residuos peligrosos',implic:'Norma estructural de cumplimiento',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=4920605'},
-  {id:'NOM-002-1-SCT-SEMAR-ARTF/2023',dep:'SCT / SEMAR / ARTF',tema:'Logística',tipo:'NOM',objeto:'Transporte de materiales peligrosos',implic:'Impacto en cadena de suministro',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5682459'},
-  {id:'NOM-144-SEMARNAT-2017',dep:'SEMARNAT',tema:'Comercio',tipo:'NOM',objeto:'Embalaje de madera para exportación',implic:'Incide en comercio internacional',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5484957'}
+  {id:'NOM-127-SSA1-2021',dep:'SSA',tema:'Agua',tipo:'NOM',objeto:'Calidad de agua para consumo humano',implic:'Base para discusión de agua regenerada y crisis hídrica',afecta:'Organismos operadores de agua · agua potable',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=2063863'},
+  {id:'NOM-003-SEMARNAT-1997',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Calidad de aguas tratadas para reúso',implic:'Limita expansión de reúso potable',afecta:'Industria con reúso de agua',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=4863829'},
+  {id:'NOM-001-SEMARNAT-2021',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Límites de descarga a cuerpos receptores',implic:'Alto impacto en inversión en tratamiento',afecta:'Papel · alimentos · bebidas · higiene · química',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5657958'},
+  {id:'NOM-002-SEMARNAT-1996',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Descargas a alcantarillado',implic:'En proceso de ajuste técnico (color verdadero, toxicidad)',afecta:'Alimentos · bebidas · papel · higiene',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5199671'},
+  {id:'NOM-043-SEMARNAT-1993',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Emisiones de partículas en fuentes fijas',implic:'Riesgo de endurecimiento regulatorio',afecta:'Papel · tintas · alimentos · conversión de empaque',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=4788035'},
+  {id:'NOM-085-SEMARNAT-2011',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Emisiones de equipos de combustión',implic:'Impacto en costos industriales',afecta:'Papel · alimentos · bebidas · higiene · logística (fitosanitario)',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5220972'},
+  {id:'PROY-NOM-160-SEMARNAT-2011',dep:'SEMARNAT',tema:'Residuos',tipo:'PROY',objeto:'Planes de manejo de residuos peligrosos',implic:'Instrumento clave en economía circular',afecta:'Manufactura · química',url:'https://www.conamer.gob.mx'},
+  {id:'PROY-NOM-161-SEMARNAT-2021',dep:'SEMARNAT',tema:'Residuos',tipo:'PROY',objeto:'Actualización de residuos de manejo especial',implic:'Amplía obligaciones empresariales',afecta:'Empaque · marcas de consumo',url:'https://www.conamer.gob.mx'},
+  {id:'NOM-161-SEMARNAT-2011',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Clasificación de residuos de manejo especial',implic:'Base operativa para REP',afecta:'Empaque · multilaminados · marcas de consumo',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5202411'},
+  {id:'NOM-052-SEMARNAT-2005',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Identificación de residuos peligrosos',implic:'Norma estructural de cumplimiento',afecta:'Manufactura industrial',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=4920605'},
+  {id:'NOM-002-1-SCT-SEMAR-ARTF/2023',dep:'SCT / SEMAR / ARTF',tema:'Logística',tipo:'NOM',objeto:'Transporte de materiales peligrosos',implic:'Impacto en cadena de suministro',afecta:'Logística · transporte',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5682459'},
+  {id:'NOM-144-SEMARNAT-2017',dep:'SEMARNAT',tema:'Comercio',tipo:'NOM',objeto:'Embalaje de madera para exportación',implic:'Incide en comercio internacional',afecta:'Logística · tarimas · exportadores',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5484957'}
 ];
 var NORMAS_TEMA_COLOR={'Agua':'#2563eb','Aire':'#0ea5e9','Residuos':'#d97706','Logística':'#7c3aed','Comercio':'#16a34a'};
 var _normasTema='todos', _normasType='todos', _normasRendered=false;
@@ -2225,6 +2252,8 @@ function renderNormas(){
             +'<div style="font-size:11.5px;color:var(--text);font-weight:600;margin-top:3px">'+_nomPnic(n)+'</div></div>'
             +'<div><div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Participación GEMI</div>'
             +'<div style="margin-top:4px">'+gemiChip+'</div></div>'
+            +(n.afecta?'<div style="min-width:180px"><div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Sectores afectados</div>'
+              +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.4">'+n.afecta+'</div></div>':'')
           +'</div>'
           +'<div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Contexto previo</div>'
           +'<div style="font-size:12px;color:var(--text-sec);line-height:1.6;max-width:760px;margin-bottom:14px">'+(ex.contexto||'<span style="color:var(--text-muted)">El equipo GEMI cargará aquí el contexto de esta norma: antecedentes, discusión y estatus.</span>')+'</div>'
