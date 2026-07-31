@@ -1,6 +1,23 @@
 {
   "articulos": [
     {
+      "id": "9c777056f3",
+      "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 31 de julio de 2026",
+      "fecha": "2026-07-31",
+      "url": "https://www.gob.mx/presidencia/es/articulos/version-estenografica-conferencia-de-prensa-de-la-presidenta-claudia-sheinbaum-pardo-del-31-de-julio-de-2026",
+      "fuente": "Presidencia de México — Estenográfica",
+      "categorias": [
+        "agua",
+        "hidrocarburos",
+        "inversion"
+      ],
+      "fragmentos": [
+        "Fue una reunión de… plática sobre los proyectos que ellos tienen y sobre el Plan México, esencialmente. Nada en particular.",
+        "En el caso de inundaciones también estuvo personal del estado de Coahuila, en el caso de Texas.",
+        "Les comento, porque no son refinerías, son algunos centros de procesamiento. Es muy distinto a una refinería que lleva procesos bastante complejos."
+      ]
+    },
+    {
       "id": "bf7463521e",
       "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 30 de julio de 2026",
       "fecha": "2026-07-30",
@@ -8941,8 +8958,8 @@
   ],
   "_meta": {
     "fuente": "Presidencia de México — Estenográficas mañanera",
-    "total": 458,
-    "nuevos_hoy": 0,
-    "actualizado": "2026-07-31T19:11:32Z"
+    "total": 459,
+    "nuevos_hoy": 1,
+    "actualizado": "2026-07-31T22:55:35Z"
   }
 }
