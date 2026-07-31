@@ -76,9 +76,11 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 @media(max-width:1000px){.est-layout{grid-template-columns:1fr}}
 .cmp-bar{transition:width .55s cubic-bezier(.22,1,.36,1)}
 .dash-feeds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.leg-sub-bar{display:flex;gap:0;border-bottom:1.5px solid var(--border);margin-bottom:24px}
-.leg-sub-btn{padding:8px 18px;border:none;background:none;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px;font-family:var(--sans);transition:color 0.15s}
-.leg-sub-btn.active{color:var(--text);border-bottom-color:var(--green)}
+/* Sub-navegación única de SCOPE (Helvetica + subrayado verde) */
+.stab-bar,.leg-sub-bar{display:flex;flex-wrap:wrap;gap:4px 22px;border-bottom:0.8px solid var(--border);margin-bottom:22px;align-items:flex-end}
+.stab,.leg-sub-btn{background:none;border:none;border-bottom:2px solid transparent;padding:0 0 11px;margin-bottom:-1px;font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:0.01em;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color .12s,border-color .12s}
+.stab:hover,.leg-sub-btn:hover{color:var(--text-sec)}
+.stab.on,.stab.active,.leg-sub-btn.active{color:var(--text);font-weight:600;border-bottom-color:var(--green)}
 .normas-filter-link{padding:0;border:none;background:none;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:var(--sans);transition:color 0.15s;letter-spacing:0.02em}
 .normas-filter-link.active{color:var(--text);font-weight:700}
 /* ── Badge component ── */
@@ -302,9 +304,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .sp-sub{font-size:12px;color:var(--text-muted);margin-left:10px;vertical-align:middle}
 .sp-close{background:none;border:1px solid var(--border-med);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text-sec);font-family:var(--sans);transition:background 0.15s}
 .sp-close:hover{background:var(--green-tint)}
-.sp-tabs{display:flex;flex-wrap:wrap;justify-content:center;border-bottom:1px solid var(--border);margin-bottom:20px;gap:2px 4px}
-.sp-tab{background:none;border:none;border-bottom:2px solid transparent;padding:10px 14px;font-size:12.5px;font-weight:500;letter-spacing:0.01em;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color 0.15s;font-family:var(--sans)}
-.sp-tab.active{color:var(--green);border-bottom-color:var(--green)}
+.sp-tabs{display:flex;flex-wrap:wrap;justify-content:center;border-bottom:0.8px solid var(--border);margin-bottom:20px;gap:4px 22px}
+.sp-tab{background:none;border:none;border-bottom:2px solid transparent;padding:0 0 11px;margin-bottom:-1px;font-size:13px;font-weight:500;letter-spacing:0.01em;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color 0.12s;font-family:var(--sans)}
+.sp-tab:hover{color:var(--text-sec)}
+.sp-tab.active{color:var(--text);font-weight:600;border-bottom-color:var(--green)}
 .sp-content{display:none}
 .sp-content.active{display:block}
 .sp-stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:16px}
@@ -627,7 +630,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   .news-ticker-wrap{height:140px}
 
   /* ── SP TABS (dentro del modal) ── */
-  .sp-tab{font-size:10px;padding:8px 10px}
+  .sp-tabs{gap:2px 14px}
+  .sp-tab{font-size:11px;padding:0 0 9px}
 
   /* ── ALERTAS ── */
   .alerta-filter-btn{font-size:11px;padding:4px 10px}
@@ -2003,9 +2007,8 @@ function renderEstadosCompare(){
       +'<span onclick="estadosRemoveCmp(\''+s.replace(/'/g,"\\'")+'\')" title="Quitar" style="cursor:pointer;color:var(--text-muted);font-size:13px;padding:0 4px">✕</span></div>';
   }).join('')+'</div>';
   var views=[['resumen','Resumen'],['impuestos','Impuestos'],['sector','Sector'],['perfil','Perfil']];
-  html+='<div style="display:flex;flex-wrap:wrap;gap:8px 16px;border-top:0.8px solid var(--border);border-bottom:0.8px solid var(--border);padding:10px 0;margin-bottom:15px">'
-    +views.map(function(v){var on=v[0]===_cmpView;return '<span onclick="estadosCmpView(\''+v[0]+'\')" style="cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:0.05em;text-transform:uppercase;color:'+(on?'var(--green)':'var(--text-muted)')+';font-weight:'+(on?'700':'400')+'">'+v[1]+'</span>';}).join('')
-    +'</div>';
+  html+='<div class="stab-bar" style="margin-bottom:15px">'
+    +views.map(function(v){return '<span class="stab'+(v[0]===_cmpView?' on':'')+'" onclick="estadosCmpView(\''+v[0]+'\')">'+v[1]+'</span>';}).join('')+'</div>';
   html+=_cmpBody();
   html+='<div style="margin-top:16px;border-top:0.8px solid var(--border);padding-top:12px"><span onclick="estadosExportCSV()" title="Descargar en CSV (abre en Excel)" style="cursor:pointer;font-family:var(--mono);font-size:11px;color:var(--green);font-weight:600">↓ Descargar comparación (CSV / Excel)</span></div>';
   host.innerHTML=html;
@@ -2103,10 +2106,8 @@ function oblSetView(v){_oblView=v;renderObligaciones();}
 function renderObligaciones(){
   var host=document.getElementById('obligaciones-body');if(!host)return;
   var views=[['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
-  var nav='<div style="display:flex;flex-wrap:wrap;gap:8px 26px;border-bottom:0.8px solid var(--border);margin-bottom:22px">'
-    +views.map(function(v){var on=v[0]===_oblView;
-      return '<span onclick="oblSetView(\''+v[0]+'\')" style="cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:'+(on?'var(--text)':'var(--text-muted)')+';font-weight:'+(on?'700':'400')+';border-bottom:2px solid '+(on?'var(--green)':'transparent')+';padding:0 0 11px">'+v[1]+'</span>';
-    }).join('')+'</div>';
+  var nav='<div class="stab-bar">'
+    +views.map(function(v){return '<span class="stab'+(v[0]===_oblView?' on':'')+'" onclick="oblSetView(\''+v[0]+'\')">'+v[1]+'</span>';}).join('')+'</div>';
   var body= _oblView==='precedentes'?_jurisprudenciaHTML()
     : _oblView==='sustancias'?_sustanciasHTML()
     : _oblView==='ecocircular'?_ecocircularHTML()
