@@ -1,22 +1,227 @@
 [
-{"nombre":"Reglamento (UE) 2023/1115 — Productos libres de deforestación (EUDR)","jurisdiccion":"Unión Europea","categoria":"cadena_suministro","anio":2023,"estatus":"Aplicación desde el 30-dic-2026 (grandes operadores; 30-jun-2027 micro y pequeñas)","relevancia_mexico":"Exportadores de ganado, café, cacao, soya, madera, caucho y aceite de palma deben acreditar con geolocalización que su producto no proviene de tierra deforestada después de 2020.","url":"https://eur-lex.europa.eu/eli/reg/2023/1115/oj"},
-{"nombre":"Reglamento (UE) 2023/956 — Ajuste en Frontera por Carbono (CBAM)","jurisdiccion":"Unión Europea","categoria":"cadena_suministro","anio":2023,"estatus":"Periodo definitivo desde el 1-ene-2026 (compra de certificados y verificación de emisiones)","relevancia_mexico":"Exportadores de acero, aluminio, cemento, fertilizantes, hidrógeno y electricidad deben declarar y pagar por el carbono incorporado; encarece el acceso europeo si la producción es intensiva en emisiones.","url":"https://eur-lex.europa.eu/eli/reg/2023/956/oj"},
-{"nombre":"Directiva (UE) 2024/1760 — Diligencia Debida en Sostenibilidad (CSDDD)","jurisdiccion":"Unión Europea","categoria":"cadena_suministro","anio":2024,"estatus":"En transición (Omnibus I): aplicación desde el 26-jul-2029 con umbrales elevados","relevancia_mexico":"Las grandes empresas europeas deben prevenir impactos en derechos humanos y ambiente en su cadena de valor, trasladando auditoría y remediación a proveedores mexicanos.","url":"https://commission.europa.eu/topics/business-and-industry/doing-business-eu/sustainability-due-diligence-responsible-business/corporate-sustainability-due-diligence_en"},
-{"nombre":"Reglamento (UE) 2024/1781 — Ecodiseño para Productos Sostenibles (ESPR)","jurisdiccion":"Unión Europea","categoria":"cadena_suministro","anio":2024,"estatus":"Vigente desde 18-jul-2024; requisitos y pasaporte digital por producto entre 2026 y 2030","relevancia_mexico":"Fija durabilidad, reparabilidad, contenido reciclado y pasaporte digital para casi cualquier producto vendido en la UE; obliga a rediseñar y documentar la huella.","url":"https://commission.europa.eu/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/ecodesign-sustainable-products-regulation_en"},
-{"nombre":"Reglamento (UE) 2025/40 — Envases y Residuos de Envases (PPWR)","jurisdiccion":"Unión Europea","categoria":"cadena_suministro","anio":2025,"estatus":"En vigor desde 11-feb-2025; la mayoría de obligaciones desde 12-ago-2026","relevancia_mexico":"Exige que los envases sean reciclables, minimizados y con contenido reciclado mínimo; afecta a exportadores de alimentos, bebidas, cosméticos y bienes de consumo.","url":"https://eur-lex.europa.eu/eli/reg/2025/40/oj"},
-{"nombre":"Directiva (UE) 2022/2464 — Reporte de Sostenibilidad Corporativa (CSRD)","jurisdiccion":"Unión Europea","categoria":"cadena_suministro","anio":2022,"estatus":"Vigente; Omnibus I elevó umbrales (>1,000 empleados y >450 M€)","relevancia_mexico":"Las empresas europeas reportantes exigen datos de emisiones e impactos a su cadena de valor; los proveedores mexicanos deben medirlos para seguir siendo elegibles.","url":"https://finance.ec.europa.eu/capital-markets-union-and-financial-markets/company-reporting-and-auditing/company-reporting/corporate-sustainability-reporting_en"},
-{"nombre":"Ley de Diligencia Debida en Cadenas de Suministro (LkSG)","jurisdiccion":"Alemania","categoria":"cadena_suministro","anio":2023,"estatus":"Vigente desde 1-ene-2023; en transición hacia la CSDDD","relevancia_mexico":"Obliga a grandes empresas alemanas a vigilar riesgos de derechos humanos y ambientales en proveedores directos e indirectos, trasladando auditorías y cláusulas a exportadores mexicanos.","url":"https://www.csr-in-deutschland.de/EN/Legislation/German-Supply-Chain-Act/german-supply-chain-act.html"},
-{"nombre":"Ley 2017-399 — Deber de Vigilancia (Loi de Vigilance)","jurisdiccion":"Francia","categoria":"cadena_suministro","anio":2017,"estatus":"Vigente","relevancia_mexico":"Las matrices francesas deben publicar y ejecutar un plan de vigilancia sobre riesgos ambientales y de derechos humanos de filiales y proveedores, incluidos socios mexicanos.","url":"https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034290626/"},
-{"nombre":"Ley 2020-105 Antidesperdicio y Economía Circular (Loi AGEC)","jurisdiccion":"Francia","categoria":"cadena_suministro","anio":2020,"estatus":"Vigente (obligaciones escalonadas)","relevancia_mexico":"Impone información al consumidor, REP, reducción de plásticos de un solo uso y prohibición de destruir invendidos; afecta a exportadores de consumo, textil y electrónica.","url":"https://www.ecologie.gouv.fr/politiques-publiques/loi-anti-gaspillage-economie-circulaire-agec"},
-{"nombre":"Uyghur Forced Labor Prevention Act (UFLPA)","jurisdiccion":"Estados Unidos","categoria":"cadena_suministro","anio":2021,"estatus":"Vigente; presunción refutable desde 21-jun-2022","relevancia_mexico":"Presume trabajo forzoso en bienes con insumos de Xinjiang y los prohíbe de importar a EE.UU.; exige mapear la cadena (algodón, polisilicio, autopartes) para evitar detenciones en aduana.","url":"https://www.cbp.gov/trade/forced-labor/UFLPA"},
-{"nombre":"T-MEC — Capítulo 24 (Medio Ambiente)","jurisdiccion":"América del Norte","categoria":"cadena_suministro","anio":2020,"estatus":"Vigente desde 1-jul-2020","relevancia_mexico":"Obliga a México a cumplir sus leyes ambientales y acuerdos multilaterales como condición del comercio; su incumplimiento puede activar paneles que afectan el acceso preferencial.","url":"https://www.gob.mx/t-mec"},
-{"nombre":"Estrategia Nacional de Economía Circular (ENEC)","jurisdiccion":"Colombia","categoria":"ley_extranjera","anio":2019,"estatus":"Vigente","relevancia_mexico":"Marco latinoamericano de economía circular (envases, biomasa, construcción, RAEE); benchmark regulatorio para empresas mexicanas que exportan o invierten en Colombia.","url":"https://www.minambiente.gov.co/asuntos-ambientales-sectorial-y-urbana/estrategia-nacional-de-economia-circular/"},
-{"nombre":"Ley 7/2022 — Residuos y suelos contaminados para una economía circular","jurisdiccion":"España","categoria":"ley_extranjera","anio":2022,"estatus":"Vigente desde 10-abr-2022 (impuesto al plástico no reutilizable desde 1-ene-2023)","relevancia_mexico":"Transpone las directivas europeas e introduce impuestos y REP; relevante para exportadores que colocan envases y plásticos en el mercado español.","url":"https://www.boe.es/buscar/act.php?id=BOE-A-2022-5809"},
-{"nombre":"Ley 20.920 — Gestión de Residuos y REP (Ley REP)","jurisdiccion":"Chile","categoria":"ley_extranjera","anio":2016,"estatus":"Vigente","relevancia_mexico":"Modelo consolidado de responsabilidad extendida del productor en la región (neumáticos, envases, aceites, RAEE, pilas); referencia y obligación directa para quienes comercializan en Chile.","url":"https://economiacircular.mma.gob.cl/ley-rep/"},
-{"nombre":"Hoja de Ruta hacia una Economía Circular en la Industria","jurisdiccion":"Perú","categoria":"ley_extranjera","anio":2020,"estatus":"Vigente","relevancia_mexico":"Política que orienta la transición circular de la industria peruana; marco de referencia para empresas mexicanas con operaciones o cadenas en Perú.","url":"https://www.gob.pe/produce"},
-{"nombre":"Plan de Acción de Economía Circular de la UE (CEAP)","jurisdiccion":"Unión Europea","categoria":"ley_extranjera","anio":2020,"estatus":"Vigente (Pacto Verde Europeo)","relevancia_mexico":"Paraguas del que derivan reglamentos vinculantes (ESPR, PPWR, EUDR); anticipa a los exportadores las futuras exigencias de circularidad para el mercado europeo.","url":"https://environment.ec.europa.eu/strategy/circular-economy-action-plan_en"},
-{"nombre":"Acuerdo de París","jurisdiccion":"Internacional (CMNUCC)","categoria":"tratado_vinculante","anio":2015,"estatus":"Vigente (2016); ratificado por México","relevancia_mexico":"Compromete a México a metas de emisiones (NDC) que se traducen en regulación climática y presión de clientes sobre la huella de carbono de sus proveedores.","url":"https://unfccc.int/process-and-meetings/the-paris-agreement"},
-{"nombre":"Acuerdo de Escazú","jurisdiccion":"América Latina y el Caribe","categoria":"tratado_vinculante","anio":2018,"estatus":"Vigente (2021); ratificado por México","relevancia_mexico":"Garantiza acceso a información, participación y justicia ambiental; eleva los estándares de transparencia y consulta en proyectos con impacto ambiental.","url":"https://www.cepal.org/es/acuerdodeescazu"},
-{"nombre":"Convenio de Basilea","jurisdiccion":"Internacional (PNUMA)","categoria":"tratado_vinculante","anio":1989,"estatus":"Vigente (1992); México es Parte","relevancia_mexico":"Regula movimientos transfronterizos de residuos peligrosos y la enmienda de plásticos; obliga a controlar y notificar esos movimientos.","url":"https://www.basel.int"},
-{"nombre":"Convenio de Estocolmo (COP)","jurisdiccion":"Internacional (PNUMA)","categoria":"tratado_vinculante","anio":2001,"estatus":"Vigente (2004); ratificado por México","relevancia_mexico":"Prohíbe o restringe contaminantes orgánicos persistentes en productos y procesos; obliga a eliminar sustancias listadas para acceder a mercados internacionales.","url":"https://www.pops.int"}
+  {
+    "nombre": "Reglamento (UE) 2023/1115 — Productos libres de deforestación (EUDR)",
+    "jurisdiccion": "Unión Europea",
+    "categoria": "cadena_suministro",
+    "anio": 2023,
+    "estatus": "Aplicación desde el 30-dic-2026 (grandes operadores; 30-jun-2027 micro y pequeñas)",
+    "relevancia_mexico": "Exportadores de ganado, café, cacao, soya, madera, caucho y aceite de palma deben acreditar con geolocalización que su producto no proviene de tierra deforestada después de 2020.",
+    "url": "https://eur-lex.europa.eu/eli/reg/2023/1115/oj"
+  },
+  {
+    "nombre": "Reglamento (UE) 2023/956 — Ajuste en Frontera por Carbono (CBAM)",
+    "jurisdiccion": "Unión Europea",
+    "categoria": "cadena_suministro",
+    "anio": 2023,
+    "estatus": "Periodo definitivo desde el 1-ene-2026 (compra de certificados y verificación de emisiones)",
+    "relevancia_mexico": "Exportadores de acero, aluminio, cemento, fertilizantes, hidrógeno y electricidad deben declarar y pagar por el carbono incorporado; encarece el acceso europeo si la producción es intensiva en emisiones.",
+    "url": "https://eur-lex.europa.eu/eli/reg/2023/956/oj"
+  },
+  {
+    "nombre": "Directiva (UE) 2024/1760 — Diligencia Debida en Sostenibilidad (CSDDD)",
+    "jurisdiccion": "Unión Europea",
+    "categoria": "cadena_suministro",
+    "anio": 2024,
+    "estatus": "En transición (Omnibus I): aplicación desde el 26-jul-2029 con umbrales elevados",
+    "relevancia_mexico": "Las grandes empresas europeas deben prevenir impactos en derechos humanos y ambiente en su cadena de valor, trasladando auditoría y remediación a proveedores mexicanos.",
+    "url": "https://commission.europa.eu/topics/business-and-industry/doing-business-eu/sustainability-due-diligence-responsible-business/corporate-sustainability-due-diligence_en"
+  },
+  {
+    "nombre": "Reglamento (UE) 2024/1781 — Ecodiseño para Productos Sostenibles (ESPR)",
+    "jurisdiccion": "Unión Europea",
+    "categoria": "cadena_suministro",
+    "anio": 2024,
+    "estatus": "Vigente desde 18-jul-2024; requisitos y pasaporte digital por producto entre 2026 y 2030",
+    "relevancia_mexico": "Fija durabilidad, reparabilidad, contenido reciclado y pasaporte digital para casi cualquier producto vendido en la UE; obliga a rediseñar y documentar la huella.",
+    "url": "https://commission.europa.eu/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/ecodesign-sustainable-products-regulation_en"
+  },
+  {
+    "nombre": "Reglamento (UE) 2025/40 — Envases y Residuos de Envases (PPWR)",
+    "jurisdiccion": "Unión Europea",
+    "categoria": "cadena_suministro",
+    "anio": 2025,
+    "estatus": "En vigor desde 11-feb-2025; la mayoría de obligaciones desde 12-ago-2026",
+    "relevancia_mexico": "Exige que los envases sean reciclables, minimizados y con contenido reciclado mínimo; afecta a exportadores de alimentos, bebidas, cosméticos y bienes de consumo.",
+    "url": "https://eur-lex.europa.eu/eli/reg/2025/40/oj"
+  },
+  {
+    "nombre": "Directiva (UE) 2022/2464 — Reporte de Sostenibilidad Corporativa (CSRD)",
+    "jurisdiccion": "Unión Europea",
+    "categoria": "cadena_suministro",
+    "anio": 2022,
+    "estatus": "Vigente; Omnibus I elevó umbrales (>1,000 empleados y >450 M€)",
+    "relevancia_mexico": "Las empresas europeas reportantes exigen datos de emisiones e impactos a su cadena de valor; los proveedores mexicanos deben medirlos para seguir siendo elegibles.",
+    "url": "https://finance.ec.europa.eu/capital-markets-union-and-financial-markets/company-reporting-and-auditing/company-reporting/corporate-sustainability-reporting_en"
+  },
+  {
+    "nombre": "Ley de Diligencia Debida en Cadenas de Suministro (LkSG)",
+    "jurisdiccion": "Alemania",
+    "categoria": "cadena_suministro",
+    "anio": 2023,
+    "estatus": "Vigente desde 1-ene-2023; en transición hacia la CSDDD",
+    "relevancia_mexico": "Obliga a grandes empresas alemanas a vigilar riesgos de derechos humanos y ambientales en proveedores directos e indirectos, trasladando auditorías y cláusulas a exportadores mexicanos.",
+    "url": "https://www.csr-in-deutschland.de/EN/Legislation/German-Supply-Chain-Act/german-supply-chain-act.html"
+  },
+  {
+    "nombre": "Ley 2017-399 — Deber de Vigilancia (Loi de Vigilance)",
+    "jurisdiccion": "Francia",
+    "categoria": "cadena_suministro",
+    "anio": 2017,
+    "estatus": "Vigente",
+    "relevancia_mexico": "Las matrices francesas deben publicar y ejecutar un plan de vigilancia sobre riesgos ambientales y de derechos humanos de filiales y proveedores, incluidos socios mexicanos.",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034290626/"
+  },
+  {
+    "nombre": "Ley 2020-105 Antidesperdicio y Economía Circular (Loi AGEC)",
+    "jurisdiccion": "Francia",
+    "categoria": "cadena_suministro",
+    "anio": 2020,
+    "estatus": "Vigente (obligaciones escalonadas)",
+    "relevancia_mexico": "Impone información al consumidor, REP, reducción de plásticos de un solo uso y prohibición de destruir invendidos; afecta a exportadores de consumo, textil y electrónica.",
+    "url": "https://www.ecologie.gouv.fr/politiques-publiques/loi-anti-gaspillage-economie-circulaire-agec"
+  },
+  {
+    "nombre": "Uyghur Forced Labor Prevention Act (UFLPA)",
+    "jurisdiccion": "Estados Unidos",
+    "categoria": "cadena_suministro",
+    "anio": 2021,
+    "estatus": "Vigente; presunción refutable desde 21-jun-2022",
+    "relevancia_mexico": "Presume trabajo forzoso en bienes con insumos de Xinjiang y los prohíbe de importar a EE.UU.; exige mapear la cadena (algodón, polisilicio, autopartes) para evitar detenciones en aduana.",
+    "url": "https://www.cbp.gov/trade/forced-labor/UFLPA"
+  },
+  {
+    "nombre": "T-MEC — Capítulo 24 (Medio Ambiente)",
+    "jurisdiccion": "América del Norte",
+    "categoria": "cadena_suministro",
+    "anio": 2020,
+    "estatus": "Vigente desde 1-jul-2020",
+    "relevancia_mexico": "Obliga a México a cumplir sus leyes ambientales y acuerdos multilaterales como condición del comercio; su incumplimiento puede activar paneles que afectan el acceso preferencial.",
+    "url": "https://www.gob.mx/t-mec"
+  },
+  {
+    "nombre": "Estrategia Nacional de Economía Circular (ENEC)",
+    "jurisdiccion": "Colombia",
+    "categoria": "ley_extranjera",
+    "anio": 2019,
+    "estatus": "Vigente",
+    "relevancia_mexico": "Marco latinoamericano de economía circular (envases, biomasa, construcción, RAEE); benchmark regulatorio para empresas mexicanas que exportan o invierten en Colombia.",
+    "url": "https://www.minambiente.gov.co/asuntos-ambientales-sectorial-y-urbana/estrategia-nacional-de-economia-circular/"
+  },
+  {
+    "nombre": "Ley 7/2022 — Residuos y suelos contaminados para una economía circular",
+    "jurisdiccion": "España",
+    "categoria": "ley_extranjera",
+    "anio": 2022,
+    "estatus": "Vigente desde 10-abr-2022 (impuesto al plástico no reutilizable desde 1-ene-2023)",
+    "relevancia_mexico": "Transpone las directivas europeas e introduce impuestos y REP; relevante para exportadores que colocan envases y plásticos en el mercado español.",
+    "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-5809"
+  },
+  {
+    "nombre": "Ley 20.920 — Gestión de Residuos y REP (Ley REP)",
+    "jurisdiccion": "Chile",
+    "categoria": "ley_extranjera",
+    "anio": 2016,
+    "estatus": "Vigente",
+    "relevancia_mexico": "Modelo consolidado de responsabilidad extendida del productor en la región (neumáticos, envases, aceites, RAEE, pilas); referencia y obligación directa para quienes comercializan en Chile.",
+    "url": "https://economiacircular.mma.gob.cl/ley-rep/"
+  },
+  {
+    "nombre": "Hoja de Ruta hacia una Economía Circular en la Industria",
+    "jurisdiccion": "Perú",
+    "categoria": "ley_extranjera",
+    "anio": 2020,
+    "estatus": "Vigente",
+    "relevancia_mexico": "Política que orienta la transición circular de la industria peruana; marco de referencia para empresas mexicanas con operaciones o cadenas en Perú.",
+    "url": "https://www.gob.pe/produce"
+  },
+  {
+    "nombre": "Plan de Acción de Economía Circular de la UE (CEAP)",
+    "jurisdiccion": "Unión Europea",
+    "categoria": "ley_extranjera",
+    "anio": 2020,
+    "estatus": "Vigente (Pacto Verde Europeo)",
+    "relevancia_mexico": "Paraguas del que derivan reglamentos vinculantes (ESPR, PPWR, EUDR); anticipa a los exportadores las futuras exigencias de circularidad para el mercado europeo.",
+    "url": "https://environment.ec.europa.eu/strategy/circular-economy-action-plan_en"
+  },
+  {
+    "nombre": "Acuerdo de París",
+    "jurisdiccion": "Internacional (CMNUCC)",
+    "categoria": "tratado_vinculante",
+    "anio": 2015,
+    "estatus": "Vigente (2016); ratificado por México",
+    "relevancia_mexico": "Compromete a México a metas de emisiones (NDC) que se traducen en regulación climática y presión de clientes sobre la huella de carbono de sus proveedores.",
+    "url": "https://unfccc.int/process-and-meetings/the-paris-agreement"
+  },
+  {
+    "nombre": "Acuerdo de Escazú",
+    "jurisdiccion": "América Latina y el Caribe",
+    "categoria": "tratado_vinculante",
+    "anio": 2018,
+    "estatus": "Vigente (2021); ratificado por México",
+    "relevancia_mexico": "Garantiza acceso a información, participación y justicia ambiental; eleva los estándares de transparencia y consulta en proyectos con impacto ambiental.",
+    "url": "https://www.cepal.org/es/acuerdodeescazu"
+  },
+  {
+    "nombre": "Convenio de Basilea",
+    "jurisdiccion": "Internacional (PNUMA)",
+    "categoria": "tratado_vinculante",
+    "anio": 1989,
+    "estatus": "Vigente (1992); México es Parte",
+    "relevancia_mexico": "Regula movimientos transfronterizos de residuos peligrosos y la enmienda de plásticos; obliga a controlar y notificar esos movimientos.",
+    "url": "https://www.basel.int"
+  },
+  {
+    "nombre": "Convenio de Estocolmo (COP)",
+    "jurisdiccion": "Internacional (PNUMA)",
+    "categoria": "tratado_vinculante",
+    "anio": 2001,
+    "estatus": "Vigente (2004); ratificado por México",
+    "relevancia_mexico": "Prohíbe o restringe contaminantes orgánicos persistentes en productos y procesos; obliga a eliminar sustancias listadas para acceder a mercados internacionales.",
+    "url": "https://www.pops.int"
+  },
+  {
+    "nombre": "Directiva (UE) 2019/904 — Plásticos de un solo uso (SUP)",
+    "jurisdiccion": "Unión Europea",
+    "categoria": "cadena_suministro",
+    "anio": 2019,
+    "estatus": "Vigente (transposición 2021)",
+    "relevancia_mexico": "Prohíbe/restringe plásticos de un solo uso y aditivos oxodegradables en la UE; referencia técnica para las prohibiciones estatales en México y para exportadores de empaque desechable.",
+    "url": "https://eur-lex.europa.eu/eli/dir/2019/904/oj"
+  },
+  {
+    "nombre": "Reglamento (UE) 2023/2055 — Microplásticos añadidos intencionalmente",
+    "jurisdiccion": "Unión Europea",
+    "categoria": "cadena_suministro",
+    "anio": 2023,
+    "estatus": "Vigente (restricción escalonada desde oct-2023)",
+    "relevancia_mexico": "Restringe microplásticos en cosméticos, detergentes y otros productos; afecta a exportadores de cuidado personal y limpieza al mercado europeo.",
+    "url": "https://eur-lex.europa.eu/eli/reg/2023/2055/oj"
+  },
+  {
+    "nombre": "Reglamento (CE) 1935/2004 — Materiales en contacto con alimentos (FCM)",
+    "jurisdiccion": "Unión Europea",
+    "categoria": "cadena_suministro",
+    "anio": 2004,
+    "estatus": "Vigente",
+    "relevancia_mexico": "Marco de la UE para materiales, tintas y envases en contacto con alimentos; estándar de referencia para empaque y tintas exportadas o alineadas al mercado europeo.",
+    "url": "https://eur-lex.europa.eu/eli/reg/2004/1935/oj"
+  },
+  {
+    "nombre": "NIMF-15 (ISPM-15) — Embalaje de madera en el comercio internacional",
+    "jurisdiccion": "Internacional (CIPF/FAO)",
+    "categoria": "cadena_suministro",
+    "anio": 2002,
+    "estatus": "Vigente (norma internacional)",
+    "relevancia_mexico": "Exige tratamiento fitosanitario y marcado de tarimas y embalaje de madera para exportación; incumplir implica rechazo en aduana.",
+    "url": "https://www.ippc.int/en/core-activities/standards-setting/ispms/"
+  },
+  {
+    "nombre": "Protocolo de Nagoya — Acceso a recursos genéticos y reparto de beneficios",
+    "jurisdiccion": "Internacional (CDB)",
+    "categoria": "tratado_vinculante",
+    "anio": 2010,
+    "estatus": "Vigente (2014); ratificado por México",
+    "relevancia_mexico": "Regula el uso de recursos genéticos/biológicos y el reparto justo de beneficios; relevante para productos con ingredientes de biodiversidad.",
+    "url": "https://www.cbd.int/abs/"
+  }
 ]
