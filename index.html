@@ -723,7 +723,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       </div>
       <div id="search-drop" class="search-drop"></div>
     </div>
-    <button class="nav-btn-consola" onclick="showTab('consola',null)">◆ Mi Consola</button>
+    <button class="nav-btn-consola" onclick="showTab('consola',null)">Mi Consola</button>
     <button class="nav-btn-login">Inicia sesión</button>
   </div>
 </nav>
@@ -965,7 +965,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   <!-- ═══ OBLIGACIONES · instrumentos que regulan los materiales ═══ -->
   <div id="tab-obligaciones" class="tab-content">
     <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Obligaciones</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:26px">Instrumentos que regulan los materiales de las empresas · cada uno enlaza a la normativa federal, estatal y las NOMs que lo sustentan</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:22px">Instrumentos, precedentes judiciales, sustancias restringidas y economía circular que regulan y enmarcan los materiales de las empresas</div>
     <div id="obligaciones-body"></div>
   </div>
 
@@ -1555,7 +1555,7 @@ function showRegulacion(view){
 // Obligaciones ▾ : Instrumentos (nuevo) · Normativa Federal · Normativa Estatal · NOMs
 function goObligaciones(sub){
   if(sub==='noms'){showTab('normas',null);return;}
-  if(sub==='instrumentos'){showTab('obligaciones',null);return;}
+  if(sub==='instrumentos'){_oblView='instrumentos';showTab('obligaciones',null);return;}
   showTab('legislacion',null);
   showLegSub(sub==='estatal'?'estatal':'federal',null);
 }
@@ -2027,7 +2027,7 @@ var _JURISPRUDENCIA=[
   {t:'Amparo · decreto de popotes (Culiacán)',org:'SCJN',anio:2023,criterio:'Invasión de competencias',resumen:'Aplicó el mismo criterio a un decreto municipal de Culiacán que prohibía popotes de un solo uso: la prohibición absoluta de un material invade la competencia federal en materia de residuos de manejo especial.',url:'https://www.scjn.gob.mx/'}
 ];
 function _jurisprudenciaHTML(){
-  return '<div style="border-top:1.5px solid var(--text);margin-top:42px;padding-top:20px">'
+  return '<div>'
     +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Precedentes judiciales</div>'
     +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px">Criterios de la SCJN sobre regulación ambiental estatal — para leer qué prohibiciones locales son constitucionales y cuáles no.</div>'
     +'<div style="font-size:11.5px;color:var(--text-sec);background:rgba(0,158,144,0.05);border-left:2px solid var(--green);padding:8px 12px;margin-bottom:16px;line-height:1.5;max-width:760px">El criterio aplica a <b>prohibiciones absolutas de materiales</b> (invasión de competencia federal), <b>no</b> a la regulación estatal de gestión, recolección, plan de manejo o infraestructura post-consumo — competencia propia de los estados.</div>'
@@ -2054,7 +2054,7 @@ var _SUSTANCIAS=[
   {n:'SAP (poliacrilato de sodio) en absorbentes',estatus:'Bajo escrutinio',base:'Superabsorbentes bajo escrutinio creciente por microplásticos y origen fósil; sin restricción formal, con tendencia de sustitución.',url:''}
 ];
 function _sustanciasHTML(){
-  return '<div style="border-top:1.5px solid var(--text);margin-top:42px;padding-top:20px">'
+  return '<div>'
     +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Sustancias bajo restricción</div>'
     +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Químicos y aditivos con restricción o escrutinio creciente, con su base internacional — anticipan regulación en México.</div>'
     +_SUSTANCIAS.map(function(s,i){
@@ -2076,7 +2076,7 @@ var _ECOCIRCULAR=[
   {n:'Reciclaje inclusivo con recicladores de base',d:'Integración de pepenadores, centros de acopio y cooperativas a la cadena de material post-consumo — dimensión social de la circularidad.'}
 ];
 function _ecocircularHTML(){
-  return '<div style="border-top:1.5px solid var(--text);margin-top:42px;padding-top:20px">'
+  return '<div>'
     +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Economía circular · casos de referencia</div>'
     +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Mecanismos de circularidad real en la industria — útiles como benchmark operativo.</div>'
     +'<div class="est-layout" style="grid-template-columns:1fr 1fr;gap:14px 28px">'
@@ -2085,21 +2085,33 @@ function _ecocircularHTML(){
         +'<div style="font-size:12px;color:var(--text-sec);line-height:1.5">'+e.d+'</div></div>';
     }).join('')+'</div></div>';
 }
+function _instrumentosHTML(){
+  return '<div class="est-layout" style="grid-template-columns:1fr 1fr;gap:14px 24px">'
+    +_OBLIGACIONES.map(function(o){
+      var link=o.via==='agenda'
+        ? '<a onclick="goAgenda(\'pendientes\')" style="cursor:pointer;color:var(--green);text-decoration:none">Reglamentación pendiente →</a>'
+        : '<a onclick="goObligaciones(\''+o.via+'\')" style="cursor:pointer;color:var(--green);text-decoration:none">Ver sustento →</a>';
+      return '<div style="border:0.8px solid var(--border);border-radius:11px;padding:15px 17px;min-width:0">'
+        +'<div style="font-size:15px;font-weight:600;color:var(--text);line-height:1.25;margin-bottom:7px">'+o.n+'</div>'
+        +'<div style="font-size:12.5px;color:var(--text-sec);line-height:1.55;margin-bottom:10px">'+o.d+'</div>'
+        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-bottom:6px">Sustento · '+o.s+'</div>'+link
+        +'</div>';
+    }).join('')+'</div>';
+}
+var _oblView='instrumentos';
+function oblSetView(v){_oblView=v;renderObligaciones();}
 function renderObligaciones(){
   var host=document.getElementById('obligaciones-body');if(!host)return;
-  host.innerHTML=_OBLIGACIONES.map(function(o,i){
-    var link=o.via==='agenda'
-      ? '<a onclick="goAgenda(\'pendientes\')" style="cursor:pointer;color:var(--green);text-decoration:none">Reglamentación pendiente →</a>'
-      : '<a onclick="goObligaciones(\''+o.via+'\')" style="cursor:pointer;color:var(--green);text-decoration:none">Ver sustento normativo →</a>';
-    return '<div style="padding:20px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
-      +'<div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px">'
-      +'<span style="font-family:var(--mono);font-size:11px;color:var(--text-muted)">'+String(i+1).padStart(2,'0')+'</span>'
-      +'<span style="font-size:16px;font-weight:600;color:var(--text)">'+o.n+'</span></div>'
-      +'<div style="font-size:13.5px;color:var(--text-sec);line-height:1.6;max-width:760px;margin-bottom:8px">'+o.d+'</div>'
-      +'<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;font-family:var(--mono);font-size:10.5px;color:var(--text-muted)">'
-      +'<span>Sustento · '+o.s+'</span>'+link+'</div>'
-      +'</div>';
-  }).join('')+_jurisprudenciaHTML()+_sustanciasHTML()+_ecocircularHTML();
+  var views=[['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
+  var nav='<div style="display:flex;flex-wrap:wrap;gap:8px 26px;border-bottom:0.8px solid var(--border);margin-bottom:22px">'
+    +views.map(function(v){var on=v[0]===_oblView;
+      return '<span onclick="oblSetView(\''+v[0]+'\')" style="cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:'+(on?'var(--text)':'var(--text-muted)')+';font-weight:'+(on?'700':'400')+';border-bottom:2px solid '+(on?'var(--green)':'transparent')+';padding:0 0 11px">'+v[1]+'</span>';
+    }).join('')+'</div>';
+  var body= _oblView==='precedentes'?_jurisprudenciaHTML()
+    : _oblView==='sustancias'?_sustanciasHTML()
+    : _oblView==='ecocircular'?_ecocircularHTML()
+    : _instrumentosHTML();
+  host.innerHTML=nav+body;
 }
 // ── AGENDA · reglamentaciones pendientes + DOF hoy + accesos ──
 // docs: [{label, url}] — enlaces a documentos cuando estén disponibles (opcional)
@@ -3937,7 +3949,7 @@ function _wizPaintBody(){
     b.innerHTML=CATS.map(function(c){
       var on=_wiz.sel.temas.has(c.id);
       return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'temas\',\''+c.id+'\')">'
-        +'<span class="mark">'+(on?'◆':'◇')+'</span>'
+        +'<span class="mark">'+(on?'●':'○')+'</span>'
         +'<span style="width:8px;height:8px;border-radius:50%;background:'+c.color+';flex-shrink:0"></span>'
         +'<span style="flex:1;font-size:12.5px;color:var(--text)">'+c.name+'</span>'
         +'<span style="font-family:var(--mono);font-size:9px;color:var(--dim)">'+c.kw.slice(0,3).join(' · ')+'…</span>'
@@ -3958,7 +3970,7 @@ function _wizPaintBody(){
     b.innerHTML='<div class="cw-grid2">'+coms.map(function(c){
       var id=_comId(c),on=_wiz.sel.comisiones.has(id);
       return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'comisiones\',\''+id+'\')">'
-        +'<span class="mark">'+(on?'◆':'◇')+'</span>'
+        +'<span class="mark">'+(on?'●':'○')+'</span>'
         +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);line-height:1.3">'+c.nombre+'</div>'
         +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:2px">'+(c.camara||'').toUpperCase()+' · '+((c.integrantes||[]).length)+' integrantes</div></div>'
         +'</div>';
@@ -3978,7 +3990,7 @@ function _wizPaintBody(){
         +'<div class="cw-grid2">'+items.map(function(it){
             var on=_wiz.sel[setKey].has(it.id);
             return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\''+setKey+'\',\''+String(it.id).replace(/\\/g,"\\\\").replace(/'/g,"\\'")+'\')">'
-              +'<span class="mark">'+(on?'◆':'◇')+'</span>'
+              +'<span class="mark">'+(on?'●':'○')+'</span>'
               +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);line-height:1.3">'+it.label+'</div>'
               +(it.sub?'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+it.sub+'</div>':'')+'</div>'
               +'</div>';
@@ -4019,7 +4031,7 @@ function _wizPaintLegList(){
     var av=foto?'<img src="'+foto+'" style="width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="">'
       :'<span style="width:26px;height:26px;border-radius:50%;background:'+(PARTIDO_COLOR[(l.partido||'').toUpperCase()]||'#444')+';display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0">'+initials(l.n)+'</span>';
     return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'legisladores\',\''+l.id.replace(/'/g,"\\'")+'\')" style="margin-bottom:5px">'
-      +'<span class="mark">'+(on?'◆':'◇')+'</span>'+av
+      +'<span class="mark">'+(on?'●':'○')+'</span>'+av
       +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
       +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim)">'+(l.partido||'')+' · '+l.coms[0]+'</div></div>'
       +'</div>';
@@ -4144,7 +4156,7 @@ function renderConsola(){
   if(!root)return;
   if(!consolaConfigurada()){
     root.innerHTML='<div class="card cons-hero">'
-      +'<div class="cons-hero-t">◆ MI CONSOLA</div>'
+      +'<div class="cons-hero-t">MI CONSOLA</div>'
       +'<div style="font-size:24px;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.3">Tu monitoreo, a tu medida</div>'
       +'<div style="font-size:13px;color:var(--text-sec);line-height:1.65;margin-bottom:26px">Elige tus temas, estados, comisiones y legisladores. SCOPE arma una consola con la señal, sesiones, normas y menciones que le importan a tu organización — con los mismos datos que ves en el resto de la plataforma, actualizados a diario.</div>'
       +'<button class="cw-btn primary" style="font-size:12px;padding:11px 26px" onclick="openConsolaWizard()">Configurar mi consola →</button>'
@@ -4178,7 +4190,7 @@ function renderConsola(){
     +'<div class="cons-panel"><div class="cons-panel-h">Ejecutivo · menciones</div><div class="cons-scroll" id="cons-pres"></div></div>'
     +(userKw.length?'<div class="cons-panel"><div class="cons-panel-h">Feed de mis keywords</div><div class="cons-scroll" id="cons-kw"></div></div>':'');
   root.innerHTML='<div class="cons-hdr">'
-    +'<div><span class="cons-title">◆ Mi Consola</span>'
+    +'<div><span class="cons-title">Mi Consola</span>'
     +'<div class="cons-sub" style="margin-top:4px">Actualizada a diario · con los mismos datos de la plataforma</div></div>'
     +'<button class="cons-edit" onclick="openConsolaWizard()">⚙ EDITAR CONSOLA</button>'
     +'</div>'
@@ -4205,7 +4217,7 @@ function renderConsola(){
 function _consChatCardHTML(){
   return '<div class="card" style="margin-bottom:20px;border:0.8px solid var(--border);border-radius:14px;padding:18px 20px;background:linear-gradient(180deg,rgba(0,158,144,0.04),transparent)">'
     +'<div style="display:flex;align-items:center;gap:11px;margin-bottom:12px">'
-      +'<div style="width:32px;height:32px;border-radius:9px;background:var(--green);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex-shrink:0">◆</div>'
+      +'<div style="width:32px;height:32px;border-radius:9px;background:var(--green);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;font-family:var(--sans);flex-shrink:0">S</div>'
       +'<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:var(--text)">Asistente SCOPE</div>'
       +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:0.08em">INTELIGENCIA REGULATORIA · CONVERSACIONAL</div></div>'
       +'<span style="font-family:var(--mono);font-size:9px;color:var(--amber);border:0.8px solid var(--amber);padding:2px 8px;border-radius:10px;letter-spacing:0.06em">PRÓXIMAMENTE</span>'
