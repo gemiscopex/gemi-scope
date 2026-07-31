@@ -900,7 +900,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Normas Oficiales Mexicanas</div>
       <div style="font-size:11px;color:var(--text-muted)">Relevancia ambiental · LXVI Legislatura</div>
     </div>
-    <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">NOMs vigentes y proyectos (PROY-NOMs) con implicación estratégica para agua, aire, residuos, logística y comercio.</div>
+    <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">NOMs vigentes y proyectos (PROY-NOMs) con implicación estratégica para agua, aire, residuos, logística, comercio, energía y alimentos.</div>
     <div class="normas-filters" id="normas-filters">
       <button class="normas-filter-link active" data-tema="todos" onclick="filterNormas('todos',this)">Todos</button>
       <button class="normas-filter-link" data-tema="Agua" onclick="filterNormas('Agua',this)">Agua</button>
@@ -908,6 +908,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <button class="normas-filter-link" data-tema="Residuos" onclick="filterNormas('Residuos',this)">Residuos</button>
       <button class="normas-filter-link" data-tema="Logística" onclick="filterNormas('Logística',this)">Logística</button>
       <button class="normas-filter-link" data-tema="Comercio" onclick="filterNormas('Comercio',this)">Comercio</button>
+      <button class="normas-filter-link" data-tema="Energía" onclick="filterNormas('Energía',this)">Energía</button>
+      <button class="normas-filter-link" data-tema="Alimentos" onclick="filterNormas('Alimentos',this)">Alimentos</button>
     </div>
     <div id="normas-list"></div>
   </div>
@@ -2116,9 +2118,12 @@ var NORMAS=[
   {id:'NOM-161-SEMARNAT-2011',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Clasificación de residuos de manejo especial',implic:'Base operativa para REP',afecta:'Empaque · multilaminados · marcas de consumo',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5202411'},
   {id:'NOM-052-SEMARNAT-2005',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Identificación de residuos peligrosos',implic:'Norma estructural de cumplimiento',afecta:'Manufactura industrial',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=4920605'},
   {id:'NOM-002-1-SCT-SEMAR-ARTF/2023',dep:'SCT / SEMAR / ARTF',tema:'Logística',tipo:'NOM',objeto:'Transporte de materiales peligrosos',implic:'Impacto en cadena de suministro',afecta:'Logística · transporte',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5682459'},
-  {id:'NOM-144-SEMARNAT-2017',dep:'SEMARNAT',tema:'Comercio',tipo:'NOM',objeto:'Embalaje de madera para exportación',implic:'Incide en comercio internacional',afecta:'Logística · tarimas · exportadores',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5484957'}
+  {id:'NOM-144-SEMARNAT-2017',dep:'SEMARNAT',tema:'Comercio',tipo:'NOM',objeto:'Embalaje de madera para exportación',implic:'Incide en comercio internacional',afecta:'Logística · tarimas · exportadores',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5484957'},
+  {id:'NOM-005-ASEA-2016',dep:'ASEA',tema:'Energía',tipo:'NOM',objeto:'Diseño, construcción y operación de estaciones de servicio (diésel y gasolinas)',implic:'Hermeticidad de tanques, recuperación de vapores y protección ambiental en gasolineras',afecta:'Estaciones de servicio · hidrocarburos · retail',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5459927&fecha=07/11/2016'},
+  {id:'NOM-016-CRE-2016',dep:'CRE',tema:'Energía',tipo:'NOM',objeto:'Especificaciones de calidad de los petrolíferos',implic:'Calidad de combustibles en toda la cadena de producción y suministro',afecta:'Combustibles · estaciones de servicio',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5450011&fecha=29/08/2016'},
+  {id:'NOM-251-SSA1-2009',dep:'SSA',tema:'Alimentos',tipo:'NOM',objeto:'Prácticas de higiene para el proceso de alimentos, bebidas o suplementos',implic:'Base sanitaria para procesamiento y empaque en contacto con alimentos',afecta:'Alimentos · bebidas · empaque en contacto con alimentos',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5133449&fecha=01/03/2010'}
 ];
-var NORMAS_TEMA_COLOR={'Agua':'#2563eb','Aire':'#0ea5e9','Residuos':'#d97706','Logística':'#7c3aed','Comercio':'#16a34a'};
+var NORMAS_TEMA_COLOR={'Agua':'#2563eb','Aire':'#0ea5e9','Residuos':'#d97706','Logística':'#7c3aed','Comercio':'#16a34a','Energía':'#f59e0b','Alimentos':'#db2777'};
 var _normasTema='todos', _normasType='todos', _normasRendered=false;
 function filterNormas(tema,btn){
   _normasTema=tema;
@@ -2211,7 +2216,7 @@ function renderNormas(){
   var list=NORMAS.filter(function(n){return _normasTema==='todos'||n.tema===_normasTema;});
   var grouped={};
   list.forEach(function(n){if(!grouped[n.tema])grouped[n.tema]=[];grouped[n.tema].push(n);});
-  var temaOrder=['Agua','Aire','Residuos','Logística','Comercio'];
+  var temaOrder=['Agua','Aire','Residuos','Logística','Comercio','Energía','Alimentos'];
   var html='';
   temaOrder.forEach(function(tema){
     if(!grouped[tema])return;
