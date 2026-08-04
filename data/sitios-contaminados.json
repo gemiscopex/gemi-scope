@@ -1,0 +1,1836 @@
+{
+ "_meta": {
+  "actualizado": "2026-08-04T15:04 CDMX",
+  "fuente": "SEMARNAT · Inventario Nacional de Sitios Contaminados y Remediados (datos.gob.mx)",
+  "url": "https://www.datos.gob.mx/dataset/inventario_sitios_contaminados_remediados"
+ },
+ "nacional": {
+  "contaminados": 1142,
+  "remediados": 1051,
+  "por_contaminante": {
+   "Hidrocarburos": 1044,
+   "Metales y metaloides": 39,
+   "Mezcla de contaminantes": 26,
+   "Ácidos y bases": 18,
+   "Otros contaminantes no normados": 7,
+   "N.E.I.": 3,
+   "Bifenilos policlorados": 2,
+   "Solventes orgánicos": 2,
+   "Plaguicidas": 1
+  },
+  "por_modalidad": {
+   "Pasivo ambiental": 572,
+   "Emergencia ambiental": 570
+  }
+ },
+ "estados": {
+  "Chiapas": {
+   "contaminados": 13,
+   "remediados": 20,
+   "pct_remediado": 61,
+   "por_contaminante": {
+    "Hidrocarburos": 13
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 10,
+    "Pasivo ambiental": 3
+   },
+   "top_municipios": {
+    "Arriaga": 3,
+    "Pichucalco": 2,
+    "Tapachula": 1,
+    "Pijijiapan": 1,
+    "Tonalá": 1
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Pichucalco",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Fuga"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Arriaga",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Ocozocoautla de Espinosa",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2019",
+     "municipio": "Pichucalco",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2016",
+     "municipio": "Tecpatán",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Oaxaca": {
+   "contaminados": 23,
+   "remediados": 57,
+   "pct_remediado": 71,
+   "por_contaminante": {
+    "Hidrocarburos": 23
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 16,
+    "Pasivo ambiental": 7
+   },
+   "top_municipios": {
+    "Salina Cruz": 3,
+    "Santa María Ecatepec": 3,
+    "Heroica Ciudad de Juchitán de Zaragoza": 3,
+    "Matías Romero Avendaño": 3,
+    "San Pedro Huamelula": 2
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Matías Romero Avendaño",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Ciudad Ixtepec",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Santa María Ecatepec",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2020",
+     "municipio": "Santa María Ecatepec",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2020",
+     "municipio": "Santa María Ecatepec",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Guerrero": {
+   "contaminados": 5,
+   "remediados": 29,
+   "pct_remediado": 85,
+   "por_contaminante": {
+    "Hidrocarburos": 5
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 4,
+    "Pasivo ambiental": 1
+   },
+   "top_municipios": {
+    "Petatlán": 2,
+    "San Marcos": 1,
+    "Acapulco de Juárez": 1,
+    "Iguala de la Independencia": 1
+   },
+   "recientes": [
+    {
+     "anio": "2014",
+     "municipio": "San Marcos",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2013",
+     "municipio": "Iguala de la Independencia",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2011",
+     "municipio": "Petatlán",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2009",
+     "municipio": "Petatlán",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2008",
+     "municipio": "Acapulco de Juárez",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    }
+   ]
+  },
+  "Tabasco": {
+   "contaminados": 70,
+   "remediados": 16,
+   "pct_remediado": 19,
+   "por_contaminante": {
+    "Hidrocarburos": 70
+   },
+   "por_modalidad": {
+    "Pasivo ambiental": 45,
+    "Emergencia ambiental": 25
+   },
+   "top_municipios": {
+    "Cunduacán": 17,
+    "Cárdenas": 13,
+    "Huimanguillo": 13,
+    "Centro": 7,
+    "Centla": 5
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Centro",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Depósitos de residuos peligrosos"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Cunduacán",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Fuga"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Cunduacán",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Depósitos de residuos peligrosos"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Cunduacán",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Depósitos de residuos peligrosos"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Cunduacán",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Depósitos de residuos peligrosos"
+    }
+   ]
+  },
+  "Veracruz": {
+   "contaminados": 329,
+   "remediados": 99,
+   "pct_remediado": 23,
+   "por_contaminante": {
+    "Hidrocarburos": 323,
+    "Otros contaminantes no normados": 2,
+    "Mezcla de contaminantes": 1,
+    "Ácidos y bases": 1,
+    "Metales y metaloides": 1,
+    "N.E.I.": 1
+   },
+   "por_modalidad": {
+    "Pasivo ambiental": 212,
+    "Emergencia ambiental": 117
+   },
+   "top_municipios": {
+    "Pánuco": 144,
+    "Papantla": 66,
+    "Coatzintla": 15,
+    "Tihuatlán": 11,
+    "Castillo de Teayo": 8
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Las Vigas de Ramírez",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Papantla",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Fuga"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Tuxpan",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Pánuco",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "N.E.I."
+    },
+    {
+     "anio": "2022",
+     "municipio": "Agua Dulce",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Michoacán": {
+   "contaminados": 13,
+   "remediados": 50,
+   "pct_remediado": 79,
+   "por_contaminante": {
+    "Hidrocarburos": 12,
+    "Ácidos y bases": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 12,
+    "Pasivo ambiental": 1
+   },
+   "top_municipios": {
+    "Charo": 2,
+    "Lázaro Cárdenas": 1,
+    "Arteaga": 1,
+    "Aquila": 1,
+    "La Huacana": 1
+   },
+   "recientes": [
+    {
+     "anio": "2022",
+     "municipio": "Charo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Tacámbaro",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2020",
+     "municipio": "La Piedad",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2019",
+     "municipio": "Morelia",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2019",
+     "municipio": "Charo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrames y/o fugas"
+    }
+   ]
+  },
+  "Campeche": {
+   "contaminados": 8,
+   "remediados": 15,
+   "pct_remediado": 65,
+   "por_contaminante": {
+    "Hidrocarburos": 7,
+    "Metales y metaloides": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 6,
+    "Pasivo ambiental": 2
+   },
+   "top_municipios": {
+    "Carmen": 2,
+    "Campeche": 2,
+    "Tenabo": 2,
+    "Palizada": 1,
+    "Escárcega": 1
+   },
+   "recientes": [
+    {
+     "anio": "2019",
+     "municipio": "Campeche",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2017",
+     "municipio": "Escárcega",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2012",
+     "municipio": "Palizada",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2011",
+     "municipio": "Carmen",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2011",
+     "municipio": "Tenabo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Morelos": {
+   "contaminados": 8,
+   "remediados": 5,
+   "pct_remediado": 38,
+   "por_contaminante": {
+    "Hidrocarburos": 5,
+    "Mezcla de contaminantes": 2,
+    "Bifenilos policlorados": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 5,
+    "Pasivo ambiental": 3
+   },
+   "top_municipios": {
+    "Huitzilac": 3,
+    "Xochitepec": 1,
+    "Temoac": 1,
+    "Ayala": 1,
+    "Jiutepec": 1
+   },
+   "recientes": [
+    {
+     "anio": "2022",
+     "municipio": "Xochitepec",
+     "contaminante": "Bifenilos policlorados",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Depósitos de residuos peligrosos"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Cuernavaca",
+     "contaminante": "Mezcla de contaminantes",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2020",
+     "municipio": "Jiutepec",
+     "contaminante": "Mezcla de contaminantes",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Fuga"
+    },
+    {
+     "anio": "2019",
+     "municipio": "Temoac",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2012",
+     "municipio": "Ayala",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Puebla": {
+   "contaminados": 38,
+   "remediados": 41,
+   "pct_remediado": 52,
+   "por_contaminante": {
+    "Hidrocarburos": 36,
+    "Otros contaminantes no normados": 1,
+    "Ácidos y bases": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 34,
+    "Pasivo ambiental": 4
+   },
+   "top_municipios": {
+    "Venustiano Carranza": 15,
+    "Francisco Z. Mena": 6,
+    "Huauchinango": 4,
+    "Puebla": 3,
+    "Esperanza": 2
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Venustiano Carranza",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Fuga"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Esperanza",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "San Salvador el Verde",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Puebla",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Huauchinango",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Colima": {
+   "contaminados": 4,
+   "remediados": 16,
+   "pct_remediado": 80,
+   "por_contaminante": {
+    "Hidrocarburos": 4
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 3,
+    "Pasivo ambiental": 1
+   },
+   "top_municipios": {
+    "Manzanillo": 3,
+    "Colima": 1
+   },
+   "recientes": [
+    {
+     "anio": "2021",
+     "municipio": "Colima",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2017",
+     "municipio": "Manzanillo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2015",
+     "municipio": "Manzanillo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2014",
+     "municipio": "Manzanillo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "México": {
+   "contaminados": 33,
+   "remediados": 51,
+   "pct_remediado": 61,
+   "por_contaminante": {
+    "Hidrocarburos": 26,
+    "Mezcla de contaminantes": 5,
+    "Metales y metaloides": 2
+   },
+   "por_modalidad": {
+    "Pasivo ambiental": 20,
+    "Emergencia ambiental": 13
+   },
+   "top_municipios": {
+    "Tlalnepantla de Baz": 6,
+    "Ecatepec de Morelos": 5,
+    "Toluca": 2,
+    "Huehuetoca": 2,
+    "Zacazonapan": 1
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Ecatepec de Morelos",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Ecatepec de Morelos",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Ecatepec de Morelos",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Huehuetoca",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Acambay de Ruíz Castañeda",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Ciudad de México": {
+   "contaminados": 35,
+   "remediados": 33,
+   "pct_remediado": 49,
+   "por_contaminante": {
+    "Hidrocarburos": 25,
+    "Mezcla de contaminantes": 6,
+    "Metales y metaloides": 3,
+    "Bifenilos policlorados": 1
+   },
+   "por_modalidad": {
+    "Pasivo ambiental": 34,
+    "Emergencia ambiental": 1
+   },
+   "top_municipios": {
+    "Azcapotzalco": 7,
+    "Cuauhtémoc": 6,
+    "Coyoacán": 4,
+    "Álvaro Obregón": 4,
+    "Venustiano Carranza": 3
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Álvaro Obregón",
+     "contaminante": "Mezcla de contaminantes",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Álvaro Obregón",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Álvaro Obregón",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Álvaro Obregón",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Venustiano Carranza",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    }
+   ]
+  },
+  "Tlaxcala": {
+   "contaminados": 5,
+   "remediados": 4,
+   "pct_remediado": 44,
+   "por_contaminante": {
+    "Hidrocarburos": 4,
+    "Mezcla de contaminantes": 1
+   },
+   "por_modalidad": {
+    "Pasivo ambiental": 3,
+    "Emergencia ambiental": 2
+   },
+   "top_municipios": {
+    "Apizaco": 2,
+    "Cuapiaxtla": 1,
+    "Muñoz de Domingo Arenas": 1,
+    "Calpulalpan": 1
+   },
+   "recientes": [
+    {
+     "anio": "2020",
+     "municipio": "Cuapiaxtla",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2019",
+     "municipio": "Apizaco",
+     "contaminante": "Mezcla de contaminantes",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2013",
+     "municipio": "Muñoz de Domingo Arenas",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2011",
+     "municipio": "Apizaco",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2010",
+     "municipio": "Calpulalpan",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Jalisco": {
+   "contaminados": 32,
+   "remediados": 40,
+   "pct_remediado": 56,
+   "por_contaminante": {
+    "Hidrocarburos": 29,
+    "Mezcla de contaminantes": 2,
+    "Ácidos y bases": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 24,
+    "Pasivo ambiental": 8
+   },
+   "top_municipios": {
+    "Guadalajara": 3,
+    "Lagos de Moreno": 3,
+    "La Huerta": 2,
+    "Teocuitatlán de Corona": 2,
+    "Zacoalco de Torres": 2
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "La Huerta",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "La Huerta",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Atoyac",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Talpa de Allende",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Juanacatlán",
+     "contaminante": "Ácidos y bases",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Quintana Roo": {
+   "contaminados": 5,
+   "remediados": 11,
+   "pct_remediado": 69,
+   "por_contaminante": {
+    "Hidrocarburos": 5
+   },
+   "por_modalidad": {
+    "Pasivo ambiental": 3,
+    "Emergencia ambiental": 2
+   },
+   "top_municipios": {
+    "José María Morelos": 2,
+    "Solidaridad": 1,
+    "Benito Juárez": 1,
+    "Othón P. Blanco": 1
+   },
+   "recientes": [
+    {
+     "anio": "2022",
+     "municipio": "José María Morelos",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2019",
+     "municipio": "Benito Juárez",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2018",
+     "municipio": "José María Morelos",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2009",
+     "municipio": "Solidaridad",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2009",
+     "municipio": "Othón P. Blanco",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    }
+   ]
+  },
+  "Hidalgo": {
+   "contaminados": 25,
+   "remediados": 23,
+   "pct_remediado": 48,
+   "por_contaminante": {
+    "Hidrocarburos": 23,
+    "Metales y metaloides": 1,
+    "Ácidos y bases": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 21,
+    "Pasivo ambiental": 4
+   },
+   "top_municipios": {
+    "Acaxochitlán": 4,
+    "San Agustín Tlaxiaca": 3,
+    "Tepeapulco": 2,
+    "Cuautepec de Hinojosa": 2,
+    "Tulancingo de Bravo": 2
+   },
+   "recientes": [
+    {
+     "anio": "2022",
+     "municipio": "Tepeapulco",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Tula de Allende",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Tulancingo de Bravo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Acaxochitlán",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Acaxochitlán",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Querétaro": {
+   "contaminados": 23,
+   "remediados": 26,
+   "pct_remediado": 53,
+   "por_contaminante": {
+    "Hidrocarburos": 11,
+    "Metales y metaloides": 9,
+    "Solventes orgánicos": 2,
+    "Ácidos y bases": 1
+   },
+   "por_modalidad": {
+    "Pasivo ambiental": 13,
+    "Emergencia ambiental": 10
+   },
+   "top_municipios": {
+    "San Juan del Río": 6,
+    "Querétaro": 5,
+    "Pinal de Amoles": 3,
+    "Peñamiller": 3,
+    "El Marqués": 2
+   },
+   "recientes": [
+    {
+     "anio": "2022",
+     "municipio": "San Juan del Río",
+     "contaminante": "Solventes orgánicos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Depósitos de residuos peligrosos"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Querétaro",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Cadereyta de Montes",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "San Joaquín",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Depósitos de residuos peligrosos"
+    },
+    {
+     "anio": "2021",
+     "municipio": "San Joaquín",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Depósitos de residuos peligrosos"
+    }
+   ]
+  },
+  "Guanajuato": {
+   "contaminados": 20,
+   "remediados": 51,
+   "pct_remediado": 72,
+   "por_contaminante": {
+    "Hidrocarburos": 17,
+    "Metales y metaloides": 2,
+    "Ácidos y bases": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 15,
+    "Pasivo ambiental": 5
+   },
+   "top_municipios": {
+    "Celaya": 4,
+    "Salamanca": 2,
+    "Irapuato": 2,
+    "León": 2,
+    "San Luis de la Paz": 2
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Silao de la Victoria",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Abasolo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Irapuato",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "San Luis de la Paz",
+     "contaminante": "Ácidos y bases",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "San Felipe",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Yucatán": {
+   "contaminados": 12,
+   "remediados": 25,
+   "pct_remediado": 68,
+   "por_contaminante": {
+    "Hidrocarburos": 12
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 11,
+    "Pasivo ambiental": 1
+   },
+   "top_municipios": {
+    "Kantunil": 4,
+    "Valladolid": 2,
+    "Yaxcabá": 1,
+    "Hoctún": 1,
+    "Chemax": 1
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Kantunil",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Hoctún",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Chemax",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2019",
+     "municipio": "Mérida",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2018",
+     "municipio": "Valladolid",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Tamaulipas": {
+   "contaminados": 142,
+   "remediados": 61,
+   "pct_remediado": 30,
+   "por_contaminante": {
+    "Hidrocarburos": 139,
+    "Ácidos y bases": 2,
+    "Otros contaminantes no normados": 1
+   },
+   "por_modalidad": {
+    "Pasivo ambiental": 108,
+    "Emergencia ambiental": 34
+   },
+   "top_municipios": {
+    "Altamira": 111,
+    "Victoria": 6,
+    "Reynosa": 4,
+    "Matamoros": 4,
+    "Ciudad Madero": 3
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Altamira",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Casas",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Hidalgo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Reynosa",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Victoria",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Nayarit": {
+   "contaminados": 6,
+   "remediados": 14,
+   "pct_remediado": 70,
+   "por_contaminante": {
+    "Hidrocarburos": 6
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 6
+   },
+   "top_municipios": {
+    "Compostela": 3,
+    "Jala": 1,
+    "Tepic": 1,
+    "Acaponeta": 1
+   },
+   "recientes": [
+    {
+     "anio": "2018",
+     "municipio": "Jala",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2016",
+     "municipio": "Acaponeta",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2014",
+     "municipio": "Compostela",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2012",
+     "municipio": "Compostela",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2012",
+     "municipio": "Tepic",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "San Luis Potosí": {
+   "contaminados": 58,
+   "remediados": 55,
+   "pct_remediado": 49,
+   "por_contaminante": {
+    "Hidrocarburos": 45,
+    "Metales y metaloides": 6,
+    "Mezcla de contaminantes": 4,
+    "Ácidos y bases": 2,
+    "N.E.I.": 1
+   },
+   "por_modalidad": {
+    "Pasivo ambiental": 40,
+    "Emergencia ambiental": 18
+   },
+   "top_municipios": {
+    "Ebano": 25,
+    "San Luis Potosí": 11,
+    "Matehuala": 3,
+    "Santa María del Río": 2,
+    "Villa de Reyes": 2
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "San Luis Potosí",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Fuga"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Villa Hidalgo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Santa María del Río",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Rayón",
+     "contaminante": "Ácidos y bases",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Villa de Arriaga",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Aguascalientes": {
+   "contaminados": 3,
+   "remediados": 4,
+   "pct_remediado": 57,
+   "por_contaminante": {
+    "Metales y metaloides": 1,
+    "Mezcla de contaminantes": 1,
+    "Hidrocarburos": 1
+   },
+   "por_modalidad": {
+    "Pasivo ambiental": 3
+   },
+   "top_municipios": {
+    "San Francisco de Los Romo": 2,
+    "Aguascalientes": 1
+   },
+   "recientes": [
+    {
+     "anio": "2014",
+     "municipio": "Aguascalientes",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "N.E.I."
+    },
+    {
+     "anio": "2013",
+     "municipio": "San Francisco de Los Romo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2012",
+     "municipio": "San Francisco de Los Romo",
+     "contaminante": "Mezcla de contaminantes",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Zacatecas": {
+   "contaminados": 18,
+   "remediados": 26,
+   "pct_remediado": 59,
+   "por_contaminante": {
+    "Hidrocarburos": 12,
+    "Metales y metaloides": 5,
+    "Mezcla de contaminantes": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 13,
+    "Pasivo ambiental": 5
+   },
+   "top_municipios": {
+    "Concepción del Oro": 6,
+    "Zacatecas": 2,
+    "Villa de Cos": 2,
+    "Noria de Ángeles": 1,
+    "Vetagrande": 1
+   },
+   "recientes": [
+    {
+     "anio": "2022",
+     "municipio": "Morelos",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Fresnillo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Vetagrande",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Sain Alto",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Villa de Cos",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Sinaloa": {
+   "contaminados": 34,
+   "remediados": 17,
+   "pct_remediado": 33,
+   "por_contaminante": {
+    "Hidrocarburos": 33,
+    "Otros contaminantes no normados": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 32,
+    "Pasivo ambiental": 2
+   },
+   "top_municipios": {
+    "Ahome": 8,
+    "Culiacán": 6,
+    "Mocorito": 6,
+    "Mazatlán": 5,
+    "Elota": 3
+   },
+   "recientes": [
+    {
+     "anio": "2022",
+     "municipio": "Mazatlán",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Concordia",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Elota",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Elota",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Navolato",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Baja California Sur": {
+   "contaminados": 6,
+   "remediados": 29,
+   "pct_remediado": 83,
+   "por_contaminante": {
+    "Hidrocarburos": 6
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 5,
+    "Pasivo ambiental": 1
+   },
+   "top_municipios": {
+    "La Paz": 2,
+    "Comondú": 2,
+    "Loreto": 1,
+    "Mulegé": 1
+   },
+   "recientes": [
+    {
+     "anio": "2022",
+     "municipio": "Comondú",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2019",
+     "municipio": "Comondú",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2018",
+     "municipio": "Mulegé",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Incendio"
+    },
+    {
+     "anio": "2014",
+     "municipio": "Loreto",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2013",
+     "municipio": "La Paz",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrames y/o fugas"
+    }
+   ]
+  },
+  "Durango": {
+   "contaminados": 8,
+   "remediados": 15,
+   "pct_remediado": 65,
+   "por_contaminante": {
+    "Hidrocarburos": 8
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 5,
+    "Pasivo ambiental": 3
+   },
+   "top_municipios": {
+    "Mapimí": 4,
+    "Durango": 1,
+    "Guadalupe Victoria": 1,
+    "Santiago Papasquiaro": 1,
+    "Gómez Palacio": 1
+   },
+   "recientes": [
+    {
+     "anio": "2021",
+     "municipio": "Durango",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2021",
+     "municipio": "Guadalupe Victoria",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2012",
+     "municipio": "Mapimí",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2012",
+     "municipio": "Mapimí",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2012",
+     "municipio": "Mapimí",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    }
+   ]
+  },
+  "Nuevo León": {
+   "contaminados": 32,
+   "remediados": 60,
+   "pct_remediado": 65,
+   "por_contaminante": {
+    "Hidrocarburos": 23,
+    "Metales y metaloides": 5,
+    "Ácidos y bases": 2,
+    "Plaguicidas": 1,
+    "Otros contaminantes no normados": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 21,
+    "Pasivo ambiental": 11
+   },
+   "top_municipios": {
+    "Monterrey": 5,
+    "Apodaca": 4,
+    "Mina": 4,
+    "General Bravo": 3,
+    "Galeana": 2
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Monterrey",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Monterrey",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Monterrey",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Los Ramones",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Apodaca",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Coahuila": {
+   "contaminados": 40,
+   "remediados": 41,
+   "pct_remediado": 51,
+   "por_contaminante": {
+    "Hidrocarburos": 39,
+    "Ácidos y bases": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 25,
+    "Pasivo ambiental": 15
+   },
+   "top_municipios": {
+    "Saltillo": 8,
+    "Ramos Arizpe": 5,
+    "Ocampo": 5,
+    "Lamadrid": 3,
+    "General Cepeda": 2
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "General Cepeda",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Ramos Arizpe",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Escobedo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Saltillo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Saltillo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Chihuahua": {
+   "contaminados": 30,
+   "remediados": 59,
+   "pct_remediado": 66,
+   "por_contaminante": {
+    "Hidrocarburos": 25,
+    "Mezcla de contaminantes": 2,
+    "N.E.I.": 1,
+    "Otros contaminantes no normados": 1,
+    "Ácidos y bases": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 24,
+    "Pasivo ambiental": 6
+   },
+   "top_municipios": {
+    "Jiménez": 7,
+    "Guerrero": 5,
+    "Chihuahua": 5,
+    "Janos": 3,
+    "Camargo": 2
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Camargo",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Santa Isabel",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Meoqui",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Chihuahua",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Jiménez",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Sonora": {
+   "contaminados": 33,
+   "remediados": 49,
+   "pct_remediado": 60,
+   "por_contaminante": {
+    "Hidrocarburos": 27,
+    "Ácidos y bases": 3,
+    "Metales y metaloides": 2,
+    "Mezcla de contaminantes": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 29,
+    "Pasivo ambiental": 4
+   },
+   "top_municipios": {
+    "Hermosillo": 12,
+    "Cananea": 5,
+    "Guaymas": 4,
+    "Yécora": 3,
+    "Moctezuma": 2
+   },
+   "recientes": [
+    {
+     "anio": "2023",
+     "municipio": "Rosario",
+     "contaminante": "Ácidos y bases",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Hermosillo",
+     "contaminante": "Metales y metaloides",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Cananea",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2023",
+     "municipio": "Cananea",
+     "contaminante": "Ácidos y bases",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2022",
+     "municipio": "Yécora",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  },
+  "Baja California": {
+   "contaminados": 31,
+   "remediados": 9,
+   "pct_remediado": 22,
+   "por_contaminante": {
+    "Hidrocarburos": 30,
+    "Metales y metaloides": 1
+   },
+   "por_modalidad": {
+    "Emergencia ambiental": 27,
+    "Pasivo ambiental": 4
+   },
+   "top_municipios": {
+    "Tecate": 15,
+    "Tijuana": 9,
+    "Playas de Rosarito": 3,
+    "Mexicali": 3,
+    "Ensenada": 1
+   },
+   "recientes": [
+    {
+     "anio": "2019",
+     "municipio": "Tijuana",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Fuga"
+    },
+    {
+     "anio": "2018",
+     "municipio": "Mexicali",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Pasivo ambiental",
+     "evento": "Derrames y/o fugas"
+    },
+    {
+     "anio": "2017",
+     "municipio": "Tijuana",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Incendio"
+    },
+    {
+     "anio": "2016",
+     "municipio": "Tijuana",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    },
+    {
+     "anio": "2016",
+     "municipio": "Playas de Rosarito",
+     "contaminante": "Hidrocarburos",
+     "modalidad": "Emergencia ambiental",
+     "evento": "Derrame"
+    }
+   ]
+  }
+ }
+}
