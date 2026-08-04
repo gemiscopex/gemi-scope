@@ -97,9 +97,17 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .tab-btn{padding:0 2px;margin-right:18px;font-size:12.5px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.01em;transition:color 0.15s;font-family:var(--sans);white-space:nowrap}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
 .main{max-width:1200px;margin:0 auto;padding:24px 28px 32px}
-.scope-footer{border-top:1px solid rgba(0,0,0,0.05);padding:26px 28px 30px;text-align:center;font-size:10.5px;color:var(--text3);line-height:1.7;margin-top:56px}
-.scope-footer a{color:var(--text-muted);text-decoration:underline;text-underline-offset:3px}
+.scope-footer{max-width:1200px;margin:44px auto 0;padding:18px 28px 26px;border-top:0.8px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap}
+.scope-footer-brand{font-family:var(--mono);font-size:9.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--text-muted)}
+.scope-footer-links{display:flex;gap:24px;font-size:11px}
+.scope-footer a{color:var(--text-muted);text-decoration:none;transition:color .15s}
 .scope-footer a:hover{color:var(--text)}
+body.dash-fixed{overflow:hidden}
+body.dash-fixed .scope-footer{display:none}
+body.dash-fixed .main{height:calc(100vh - 46px);box-sizing:border-box;padding-top:20px;padding-bottom:10px;overflow:hidden}
+body.dash-fixed #tab-dashboard{height:100%}
+body.dash-fixed .dash-main{height:100%;gap:24px 44px}
+body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .card{background:none;border:none;border-radius:0;padding:0;box-shadow:none}
 .card-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px}
 /* ── Dashboard layout ── */
@@ -1643,6 +1651,9 @@ function showTab(id,btn){
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   if(btn)btn.classList.add('active');
+  // El dashboard es "app fija" (no scroll de página); las demás vistas sí exploran hacia abajo
+  document.body.classList.toggle('dash-fixed',id==='dashboard');
+  window.scrollTo(0,0);
   if(id==='normas') renderNormas();
   if(id==='radares') buildRadarTrendChart();
   if(id==='consola') renderConsola();
@@ -4871,10 +4882,15 @@ function _consKwFeed(userKw){
 init();
 initSearch();
 loadComisiones();
+document.body.classList.add('dash-fixed');
 </script>
 <footer class="scope-footer">
-  SCOPE opera a través de Iniciativa GEMI. Versión 1.2 &copy; 2026. Todos los derechos reservados.<br>
-  <a href="#" onclick="showTab('acerca',null);return false">Acerca de SCOPE</a> · Consulta nuestros <a href="#">Términos y condiciones</a> y nuestra <a href="#">Política de privacidad</a>.
+  <div class="scope-footer-brand">SCOPE · Iniciativa GEMI · v1.2 &copy; 2026</div>
+  <nav class="scope-footer-links">
+    <a href="#" onclick="showTab('acerca',null);return false">Acerca de SCOPE</a>
+    <a href="#">Términos</a>
+    <a href="#">Privacidad</a>
+  </nav>
 </footer>
 <!-- MODAL REGISTRO -->
 <div id="reg-modal-bg" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.48);z-index:1200;display:none;align-items:center;justify-content:center;padding:20px" onclick="closeRegModal(event)">
