@@ -103,8 +103,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .scope-footer a{color:var(--text-muted);text-decoration:none;transition:color .15s}
 .scope-footer a:hover{color:var(--text)}
 body.dash-fixed{overflow:hidden}
-body.dash-fixed .scope-footer{display:none}
-body.dash-fixed .main{height:calc(100vh - 46px);box-sizing:border-box;padding-top:20px;padding-bottom:10px;overflow:hidden}
+body.dash-fixed .scope-footer{margin-top:0;padding-top:12px;padding-bottom:12px}
+body.dash-fixed .main{height:calc(100vh - 46px - 52px);box-sizing:border-box;padding-top:20px;padding-bottom:10px;overflow:hidden}
 body.dash-fixed #tab-dashboard{height:100%}
 body.dash-fixed .dash-main{height:100%;gap:24px 44px}
 body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
@@ -1008,11 +1008,6 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
   </div>
   <div id="tab-radares" class="tab-content" style="padding:28px 0">
     <div id="radar-terminal"></div>
-    <!-- Datos abiertos ambientales (datos.gob.mx) -->
-    <div style="margin-top:40px">
-      <div class="card-label">Datos Abiertos Ambientales · datos.gob.mx</div>
-      <div id="datosgob-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px"></div>
-    </div>
   </div>
 
   <!-- ═══ ESTADOS · heatmap 32 entidades → expediente (openStatePanel) ═══ -->
@@ -2921,7 +2916,7 @@ function _radarDetail(temaId){
   if(!tema||!host)return;
   document.querySelectorAll('.radar-brow[data-tid]').forEach(function(el){el.classList.toggle('sel',el.getAttribute('data-tid')===temaId);});
   if(!_RD_NEWS)_RD_NEWS=_radarNewsNow();
-  var kw=tema.kw,c90=_RD_NEWS-90*864e5;
+  var kw=tema.kw,c90=_RD_NEWS-90*864e5,c14=_RD_NEWS-14*864e5;
   var esc=function(u){return (u||'#').replace(/'/g,'%27');};
   function block(title,color,items){
     return '<div style="margin-bottom:20px">'
@@ -2934,13 +2929,13 @@ function _radarDetail(temaId){
       +(meta?'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+meta+'</span>':'')+'</div>';
   }
   // Streams
-  var news=(noticias||[]).filter(function(n){return isMxRelevant(n)&&new Date(n.fecha_publicacion).getTime()>c90&&_radarKwMatch(kw,n.titulo);})
+  var news=(noticias||[]).filter(function(n){return isMxRelevant(n)&&new Date(n.fecha_publicacion).getTime()>c14&&_radarKwMatch(kw,n.titulo);})
     .sort(function(a,b){return new Date(b.fecha_publicacion)-new Date(a.fecha_publicacion);}).slice(0,6)
     .map(function(n){return row(n.titulo,formatFecha(n.fecha_publicacion),n.url);});
   var est=((_noticiasEstatales&&_noticiasEstatales.items)||[]).filter(function(it){return _radarKwMatch(kw,(it.titulo||'')+' '+(it.resumen||''));}).slice(0,5)
     .map(function(it){return row(it.titulo||'',(it.estado||'')+' · '+_rdDate(it.fecha),it.url);});
-  var dof=(_dofData||[]).filter(function(d){return _radarKwMatch(kw,d.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);}).slice(0,5)
-    .map(function(d){return row((d.dependencia?'<b>'+d.dependencia+'</b> — ':'')+(d.titulo||''),_rdDate(d.fecha),d.url||'https://www.dof.gob.mx/');});
+  var dofAll=(_dofData||[]).filter(function(d){return _radarKwMatch(kw,d.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
+  var dof=dofAll.slice(0,3).map(function(d){var t=(d.titulo||'');if(t.length>60)t=t.slice(0,58)+'…';return row('<b>'+(d.dependencia||'DOF')+'</b> · '+t,_rdDate(d.fecha),d.url||'https://www.dof.gob.mx/');});
   var cong=(_congItems||[]).filter(function(c){return _radarKwMatch(kw,c.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);}).slice(0,6)
     .map(function(c){var tit=(typeof _congTituloLimpio==='function')?_congTituloLimpio(c):(c.titulo||'');return row(tit,(c.camara==='SEN'?'Senado':'Diputados')+' · '+_rdDate(c.fecha),c.url);});
   var noms=(typeof NORMAS!=='undefined'?NORMAS:[]).filter(function(nm){return _radarKwMatch(kw,(nm.id||'')+' '+(nm.objeto||'')+' '+(nm.afecta||'')+' '+(nm.tema||''));}).slice(0,6)
@@ -2965,8 +2960,8 @@ function _radarDetail(temaId){
       +'<span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:0.04em">VISTA 360° · TODOS LOS STREAMS</span></div>'
     +_emisBlock(tema)
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
-      +'<div>'+block('Señal en medios · 90d','var(--green)',news)+block('Prensa estatal',tema.color,est)+estBlock+'</div>'
-      +'<div>'+block('DOF · publicaciones',tema.color,dof)+block('Congreso',tema.color,cong)+block('NOMs',tema.color,noms)+block('Internacional',tema.color,intl)+'</div>'
+      +'<div>'+block('Señal en medios · 2 sem','var(--green)',news)+block('Prensa estatal',tema.color,est)+estBlock+'</div>'
+      +'<div>'+block('DOF · publicaciones'+(dofAll.length>3?' · +'+(dofAll.length-3)+' más':''),tema.color,dof)+block('Congreso',tema.color,cong)+block('NOMs',tema.color,noms)+block('Internacional',tema.color,intl)+'</div>'
     +'</div>';
 }
 // ── Emisiones GEI (INEGYCEI · INECC) por tema: cada tema muestra su sector ──
