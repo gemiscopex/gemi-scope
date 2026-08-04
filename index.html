@@ -607,6 +607,19 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-panel+.cons-panel{margin-top:12px}
 .cons-panel-h{font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .cons-panel-h .n{color:var(--dim)}
+/* Widgets reordenables (drag-and-drop v1) */
+.cons-widgets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:start;margin-bottom:12px}
+@media(max-width:1000px){.cons-widgets{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.cons-widgets{grid-template-columns:1fr}}
+.cons-widget{border:0.8px solid var(--border);border-radius:11px;padding:13px 15px;min-width:0;background:var(--card);transition:box-shadow .12s,opacity .12s}
+.cons-widget.wide{grid-column:1/-1}
+.cons-widget.dragging{opacity:0.4}
+.cons-widget.drop-target{box-shadow:0 0 0 2px var(--green) inset;border-color:transparent}
+.cons-wh{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.cons-dh{font-size:12px;color:var(--text-muted);cursor:grab;flex-shrink:0;line-height:1;user-select:none}
+.cons-widget:hover .cons-dh{color:var(--text-sec)}
+.cons-wt{font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cons-wn{font-family:var(--mono);font-size:9px;color:var(--dim);flex-shrink:0}
 .cons-scroll{max-height:280px;overflow-y:auto;margin:0 -3px;padding:0 3px;scrollbar-width:thin}
 .cons-scroll::-webkit-scrollbar{width:3px}.cons-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .cons-estcard{border:0.8px solid var(--border);border-radius:9px;padding:9px 11px;cursor:pointer;transition:border-color .12s,transform .12s;min-width:0}
@@ -788,7 +801,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
     </div>
     <button class="tab-btn" onclick="goInternacional()">Internacional</button>
     <div class="nav-drop-wrap">
-      <button class="tab-btn" onclick="showActores('federal')">Interlocutores ▾</button>
+      <button class="tab-btn" onclick="showActores('federal')">Actores ▾</button>
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="showActores('federal')">Federal<span class="nd-sub">Gabinete ambiental</span></div>
         <div class="nav-drop-it" onclick="showActores('estatal')">Estatal<span class="nd-sub">Titulares por estado</span></div>
@@ -2501,6 +2514,24 @@ function _nomCommentsHTML(n,uid){
     +'</div>'
   +'</div>';
 }
+// ── NOMs ↔ Mi Terminal: agregar/quitar una NOM como referencia ──
+function nomInTerminal(id){try{return (loadConsola().noms||[]).indexOf(id)>=0;}catch(e){return false;}}
+function _nomBtnPaint(btn,on){
+  btn.innerHTML=on?'✓ En mi terminal':'+ Mi terminal';
+  btn.style.color=on?'var(--green)':'var(--text-muted)';
+  btn.style.borderColor=on?'var(--green)':'var(--border)';
+  btn.style.background=on?'rgba(0,158,144,0.07)':'none';
+}
+function toggleNomTerminal(id,btn){
+  var c=loadConsola(); c.noms=c.noms||[];
+  var i=c.noms.indexOf(id);
+  if(i>=0)c.noms.splice(i,1); else c.noms.push(id);
+  saveConsola(c);
+  var on=c.noms.indexOf(id)>=0;
+  if(btn)_nomBtnPaint(btn,on);
+  var tab=document.getElementById('tab-consola');
+  if(tab&&tab.classList.contains('active')&&typeof renderConsola==='function')renderConsola();
+}
 function renderNormas(){
   var el=document.getElementById('normas-list');
   if(!el)return;
@@ -2540,6 +2571,7 @@ function renderNormas(){
           +'<div data-nomcnt="'+_esc(n.id)+'" style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:5px">'+_cntTxt(n.id)+'</div>'
         +'</div>'
         +'<span style="font-size:9px;color:var(--text-muted);flex-shrink:0;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px">'+n.dep+'</span>'
+        +'<button onclick="event.stopPropagation();toggleNomTerminal(\''+n.id.replace(/'/g,"\\'")+'\',this)" title="Agregar o quitar de Mi Terminal" style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.03em;padding:3px 8px;border:0.8px solid '+(nomInTerminal(n.id)?'var(--green)':'var(--border)')+';background:'+(nomInTerminal(n.id)?'rgba(0,158,144,0.07)':'none')+';color:'+(nomInTerminal(n.id)?'var(--green)':'var(--text-muted)')+';cursor:pointer;white-space:nowrap;flex-shrink:0;margin-top:1px">'+(nomInTerminal(n.id)?'✓ En mi terminal':'+ Mi terminal')+'</button>'
         +'<a href="'+n.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;font-weight:600;color:var(--green);flex-shrink:0;text-decoration:none;margin-top:2px">↗</a>'
         +'</div>'
         +'<div id="'+uid+'" style="display:none;padding:10px 0 14px 34px;border-bottom:0.8px solid rgba(0,0,0,0.06)">'
@@ -4158,7 +4190,7 @@ function consolaKey(){
   var uid=null; // cuando exista login: id de usuario → 'scope_consola_v1::'+uid
   return uid?_CONSOLA_KEY_BASE+'::'+uid:_CONSOLA_KEY_BASE;
 }
-var _CONSOLA_DEFAULTS={temas:[],estados:[],comisiones:[],legisladores:[],keywords:[],riesgos:{},noms:[],instrumentos:[],impuestos:[],materiales:[]};
+var _CONSOLA_DEFAULTS={temas:[],estados:[],comisiones:[],legisladores:[],keywords:[],riesgos:{},noms:[],instrumentos:[],impuestos:[],materiales:[],layout:[]};
 var _LEGACY_TEMA_MAP={'energia':'energia','agua':'agua','residuos':'residuos','economia circular':'circular','impuestos ambientales':'impuestos'};
 function loadConsola(){
   try{
@@ -4182,7 +4214,8 @@ function saveConsola(c){
 }
 function consolaConfigurada(){
   var c=loadConsola();
-  return ((c.temas||[]).length+(c.estados||[]).length+(c.comisiones||[]).length+(c.legisladores||[]).length)>0;
+  return ((c.temas||[]).length+(c.estados||[]).length+(c.comisiones||[]).length+(c.legisladores||[]).length
+    +(c.noms||[]).length+(c.instrumentos||[]).length+(c.impuestos||[]).length+(c.materiales||[]).length)>0;
 }
 function _consNk(n){return (n||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ').trim();}
 function _consMatch(text,kwList){
@@ -4625,7 +4658,8 @@ function _wizNext(){
     comisiones:[..._wiz.sel.comisiones],legisladores:[..._wiz.sel.legisladores],
     noms:[..._wiz.sel.noms],instrumentos:[..._wiz.sel.instrumentos],
     impuestos:[..._wiz.sel.impuestos],materiales:[..._wiz.sel.materiales],
-    keywords:_wiz.sel.keywords.slice(),riesgos:_wiz.sel.riesgos
+    keywords:_wiz.sel.keywords.slice(),riesgos:_wiz.sel.riesgos,
+    layout:(loadConsola().layout||[])
   });
   closeConsolaWizard();
   renderConsola();
@@ -4656,35 +4690,66 @@ function _consMatInfo(mat){
   Object.keys(est).forEach(function(st){if((((est[st]||{}).materiales)||[]).indexOf(mat)>=0)states.push(st);});
   return {states:states};
 }
-// Paneles de referencias enriquecidos (NOMs con descripción, impuestos/materiales con contexto)
-function _consRefPanels(cfg){
-  var out='',noms=(cfg.noms||[]),instr=(cfg.instrumentos||[]),imps=(cfg.impuestos||[]),mats=(cfg.materiales||[]);
-  if(noms.length)out+='<div class="cons-panel"><div class="cons-panel-h">NOMs de referencia <span class="n">'+noms.length+'</span></div><div class="cons-scroll">'
+// Referencias como widgets individuales (cada tipo, reordenable)
+function _consRefWidgets(cfg){
+  var out=[],noms=(cfg.noms||[]),instr=(cfg.instrumentos||[]),imps=(cfg.impuestos||[]),mats=(cfg.materiales||[]);
+  if(noms.length)out.push({id:'ref-noms',title:'NOMs de referencia',count:noms.length,body:'<div class="cons-scroll">'
     +noms.map(function(id){var n=(typeof NORMAS!=='undefined'?NORMAS:[]).find(function(x){return x.id===id;});
       if(!n)return '<div class="cons-refit"><div style="font-family:var(--mono);font-size:11px;color:var(--text)">'+id+'</div></div>';
       return '<a href="'+n.url+'" target="_blank" rel="noopener" class="cons-refit" style="display:block;text-decoration:none">'
         +'<div style="font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--green)">'+n.id+' <span style="color:var(--text-muted);font-weight:400">↗</span></div>'
         +'<div style="font-size:11.5px;color:var(--text);line-height:1.35;margin-top:2px">'+n.objeto+'</div>'
         +(n.implic?'<div style="font-size:10px;color:var(--text-muted);margin-top:2px;line-height:1.35">'+n.implic+'</div>':'')+'</a>';
-    }).join('')+'</div></div>';
-  if(instr.length)out+='<div class="cons-panel"><div class="cons-panel-h">Instrumentos legales <span class="n">'+instr.length+'</span></div>'
-    +instr.map(function(nm){var o=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).find(function(x){return x.n===nm;});
+    }).join('')+'</div>'});
+  if(instr.length)out.push({id:'ref-instr',title:'Instrumentos legales',count:instr.length,body:
+    instr.map(function(nm){var o=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).find(function(x){return x.n===nm;});
       return '<div class="cons-refit"><div style="font-size:12px;font-weight:600;color:var(--text)">'+nm+'</div>'
         +(o?'<div style="font-size:10.5px;color:var(--text-muted);line-height:1.4;margin-top:2px">'+o.d+'</div><div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:3px">'+o.s+'</div>':'')+'</div>';
-    }).join('')+'</div>';
-  if(imps.length)out+='<div class="cons-panel"><div class="cons-panel-h">Impuestos ambientales <span class="n">'+imps.length+'</span></div>'
-    +imps.map(function(t){var inf=_consImpInfo(t);
+    }).join('')});
+  if(imps.length)out.push({id:'ref-imps',title:'Impuestos ambientales',count:imps.length,body:
+    imps.map(function(t){var inf=_consImpInfo(t);
       return '<div class="cons-refit"><div style="font-size:12px;font-weight:600;color:var(--text)">'+(inf.controv?'<span style="color:var(--red)" title="Controversia constitucional">● </span>':'')+t+'</div>'
         +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:3px">En '+inf.states.length+' entidad'+(inf.states.length===1?'':'es')+(inf.prices.length?' · '+inf.prices.slice(0,2).join(' / '):'')+'</div>'
         +(inf.states.length?'<div style="font-size:10px;color:var(--text-sec);margin-top:2px;line-height:1.35">'+inf.states.join(' · ')+'</div>':'')+'</div>';
-    }).join('')+'</div>';
-  if(mats.length)out+='<div class="cons-panel"><div class="cons-panel-h">Materiales prohibidos <span class="n">'+mats.length+'</span></div>'
-    +mats.map(function(m){var inf=_consMatInfo(m);
+    }).join('')});
+  if(mats.length)out.push({id:'ref-mats',title:'Materiales prohibidos',count:mats.length,body:
+    mats.map(function(m){var inf=_consMatInfo(m);
       return '<div class="cons-refit"><div style="font-size:12px;font-weight:600;color:var(--text)"><span style="color:var(--red)">⊘</span> '+m+'</div>'
         +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:3px">Prohibido en '+inf.states.length+' entidad'+(inf.states.length===1?'':'es')+'</div>'
         +(inf.states.length?'<div style="font-size:10px;color:var(--text-sec);margin-top:2px;line-height:1.35">'+inf.states.join(' · ')+'</div>':'')+'</div>';
-    }).join('')+'</div>';
+    }).join('')});
   return out;
+}
+// Layout personalizable (drag-and-drop): orden guardado en cfg.layout
+var _consDragId=null;
+function _consWidgetHTML(w){
+  return '<div class="cons-widget'+(w.wide?' wide':'')+'" draggable="true" data-wid="'+w.id+'"'
+    +' ondragstart="_consDragStart(event,\''+w.id+'\')" ondragover="_consDragOver(event)" ondragleave="_consDragLeave(event)" ondrop="_consDrop(event,\''+w.id+'\')" ondragend="_consDragEnd()">'
+    +'<div class="cons-wh"><span class="cons-dh" title="Arrastra para reacomodar">⠿</span>'
+    +'<span class="cons-wt">'+w.title+'</span>'+(w.count!=null?'<span class="cons-wn">'+w.count+'</span>':'')+'</div>'
+    +'<div>'+w.body+'</div></div>';
+}
+function _consApplyOrder(widgets,layout){
+  if(!layout||!layout.length)return widgets;
+  var map={};widgets.forEach(function(w){map[w.id]=w;});
+  var out=[];layout.forEach(function(id){if(map[id]){out.push(map[id]);delete map[id];}});
+  widgets.forEach(function(w){if(map[w.id])out.push(w);});
+  return out;
+}
+function _consDragStart(ev,id){_consDragId=id;ev.currentTarget.classList.add('dragging');ev.dataTransfer.effectAllowed='move';try{ev.dataTransfer.setData('text/plain',id);}catch(e){}}
+function _consDragOver(ev){ev.preventDefault();ev.dataTransfer.dropEffect='move';var t=ev.currentTarget;if(_consDragId&&t.getAttribute('data-wid')!==_consDragId)t.classList.add('drop-target');}
+function _consDragLeave(ev){ev.currentTarget.classList.remove('drop-target');}
+function _consDragEnd(){document.querySelectorAll('.cons-widget').forEach(function(el){el.classList.remove('dragging','drop-target');});_consDragId=null;}
+function _consDrop(ev,targetId){
+  ev.preventDefault();
+  var from=_consDragId;_consDragEnd();
+  if(!from||from===targetId)return;
+  var order=[].map.call(document.querySelectorAll('#cons-widgets .cons-widget'),function(el){return el.getAttribute('data-wid');});
+  order=order.filter(function(x){return x!==from;});
+  var ti=order.indexOf(targetId);if(ti<0)ti=order.length;
+  order.splice(ti,0,from);
+  var c=loadConsola();c.layout=order;saveConsola(c);
+  renderConsola();
 }
 function renderConsola(){
   var root=document.getElementById('consola-root');
@@ -4720,33 +4785,36 @@ function renderConsola(){
     +(legs.length?kpi('Legisladores',legs.length,'federales'):'')
     +kpi('Referencias',nRefs,'a la mano')
     +'</div>';
-  var refPanels=_consRefPanels(cfg);
-  var wire='<div class="cons-panel"><div class="cons-panel-h">DOF · normas de mis temas</div><div class="cons-scroll" id="cons-dof"></div></div>'
-    +'<div class="cons-panel"><div class="cons-panel-h">Ejecutivo · menciones</div><div class="cons-scroll" id="cons-pres"></div></div>'
-    +(userKw.length?'<div class="cons-panel"><div class="cons-panel-h">Feed de mis keywords</div><div class="cons-scroll" id="cons-kw"></div></div>':'');
+  // ── Widgets reordenables (drag-and-drop) ──
+  var widgets=[];
+  widgets.push({id:'senal',title:'Señal de mis temas',count:null,body:'<div id="cons-senal"></div>'});
+  widgets.push({id:'estados',title:'Mis estados',count:estados.length,body:'<div id="cons-estados"></div>'});
+  _consRefWidgets(cfg).forEach(function(w){widgets.push(w);});
+  if(!(cfg.noms||[]).length&&!(cfg.instrumentos||[]).length&&!(cfg.impuestos||[]).length&&!(cfg.materiales||[]).length)
+    widgets.push({id:'ref-vacio',title:'Referencias',count:null,body:'<div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> en la sección de NOMs) para tenerlos aquí a la mano.</div>'});
+  widgets.push({id:'dof',title:'DOF · normas de mis temas',count:null,body:'<div class="cons-scroll" id="cons-dof"></div>'});
+  widgets.push({id:'ejecutivo',title:'Ejecutivo · menciones',count:null,body:'<div class="cons-scroll" id="cons-pres"></div>'});
+  if(userKw.length)widgets.push({id:'keywords',title:'Feed de mis keywords',count:null,body:'<div class="cons-scroll" id="cons-kw"></div>'});
+  widgets.push({id:'comisiones',title:'Mis comisiones',count:coms.length,wide:true,body:'<div id="cons-coms" style="overflow-x:auto"></div>'});
+  if(legs.length)widgets.push({id:'legisladores',title:'Mis legisladores',count:legs.length,wide:true,body:'<div class="cons-leg-grid" id="cons-legs"></div>'});
+  widgets=_consApplyOrder(widgets,cfg.layout);
+
   root.innerHTML='<div class="cons-hdr">'
     +'<div><span class="cons-title">Mi Terminal</span>'
-    +'<div class="cons-sub" style="margin-top:4px">Actualizada a diario · con los mismos datos de la plataforma</div></div>'
+    +'<div class="cons-sub" style="margin-top:4px">Actualizada a diario · arrastra <span style="font-family:var(--mono)">⠿</span> para acomodarla a tu gusto</div></div>'
     +'<button class="cons-edit" onclick="openConsolaWizard()">⚙ EDITAR TERMINAL</button>'
     +'</div>'
     +kpis
     +_consChatCardHTML()
-    +'<div class="cons-desk">'
-      +'<div><div class="cons-panel"><div class="cons-panel-h">Señal de mis temas</div><div id="cons-senal"></div></div>'
-        +'<div class="cons-panel"><div class="cons-panel-h">Mis estados <span class="n">'+estados.length+'</span></div><div id="cons-estados"></div></div></div>'
-      +'<div>'+(refPanels||'<div class="cons-panel"><div class="cons-panel-h">Referencias</div><div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> para tenerlos aquí a la mano.</div></div>')+'</div>'
-      +'<div>'+wire+'</div>'
-    +'</div>'
-    +'<div class="cons-wide"><div class="cons-panel-h">Mis comisiones <span class="n">'+coms.length+'</span></div><div id="cons-coms" style="overflow-x:auto"></div></div>'
-    +(legs.length?'<div class="cons-wide"><div class="cons-panel-h">Mis legisladores <span class="n">'+legs.length+'</span></div><div class="cons-leg-grid" id="cons-legs"></div></div>':'');
+    +'<div class="cons-widgets" id="cons-widgets">'+widgets.map(_consWidgetHTML).join('')+'</div>';
 
-  _consSenal(sen);
-  _consComs(coms);
-  if(legs.length)_consLegs(legs);
-  _consEstados(estados);
-  _consPres(allKw);
-  _consDof(allKw);
-  if(userKw.length)_consKwFeed(userKw);
+  if(document.getElementById('cons-senal'))_consSenal(sen);
+  if(document.getElementById('cons-estados'))_consEstados(estados);
+  if(document.getElementById('cons-coms'))_consComs(coms);
+  if(legs.length&&document.getElementById('cons-legs'))_consLegs(legs);
+  if(document.getElementById('cons-pres'))_consPres(allKw);
+  if(document.getElementById('cons-dof'))_consDof(allKw);
+  if(userKw.length&&document.getElementById('cons-kw'))_consKwFeed(userKw);
 }
 // ── Panel tipo chat de IA (placeholder interactivo — bot real llega después) ──
 function _consChatCardHTML(){
