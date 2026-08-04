@@ -35,7 +35,7 @@
   --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 12px rgba(0,0,0,0.04);
   --shadow-md:0 4px 16px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.05);
   --surface:#F8FAFC;
-  --dot-pasivo:#1c1c1c;
+  --dot-pasivo:#9aa7b4;
   --scale-ink:rgba(20,20,20,0.5);
   --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
   --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -98,7 +98,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
 .main{max-width:1200px;margin:0 auto;padding:24px 28px 32px}
 .scope-footer{max-width:1200px;margin:44px auto 0;padding:18px 28px 26px;border-top:0.8px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap}
-.scope-footer-brand{font-family:var(--mono);font-size:9.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--text-muted)}
+.scope-footer-brand{font-family:var(--mono);font-size:10px;letter-spacing:0.02em;color:var(--text-muted)}
 .scope-footer-links{display:flex;gap:24px;font-size:11px}
 .scope-footer a{color:var(--text-muted);text-decoration:none;transition:color .15s}
 .scope-footer a:hover{color:var(--text)}
@@ -2936,8 +2936,19 @@ function _radarDetail(temaId){
     .map(function(it){return row(it.titulo||'',(it.estado||'')+' · '+_rdDate(it.fecha),it.url);});
   var dofAll=(_dofData||[]).filter(function(d){return _radarKwMatch(kw,d.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
   var dof=dofAll.slice(0,3).map(function(d){var t=(d.titulo||'');if(t.length>60)t=t.slice(0,58)+'…';return row('<b>'+(d.dependencia||'DOF')+'</b> · '+t,_rdDate(d.fecha),d.url||'https://www.dof.gob.mx/');});
-  var cong=(_congItems||[]).filter(function(c){return _radarKwMatch(kw,c.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);}).slice(0,6)
-    .map(function(c){var tit=(typeof _congTituloLimpio==='function')?_congTituloLimpio(c):(c.titulo||'');return row(tit,(c.camara==='SEN'?'Senado':'Diputados')+' · '+_rdDate(c.fecha),c.url);});
+  var congAll=(_congItems||[]).filter(function(c){return _radarKwMatch(kw,c.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
+  var cong=congAll.slice(0,3).map(function(c){
+    var tit=(typeof _congTituloLimpio==='function')?_congTituloLimpio(c):(c.titulo||'');
+    if(tit.length>58)tit=tit.slice(0,56)+'…';
+    var cam=c.camara==='SEN'?'Senado':'Diputados';
+    var part=(typeof _congPartido==='function')?_congPartido(c):'';
+    var tipo=c.tipo==='punto_acuerdo'?'Proposición':'Iniciativa';
+    var meta=cam+(part?' · '+part:'')+' · '+tipo;
+    return '<div onclick="window.open(\''+esc(c.url)+'\',\'_blank\')" style="cursor:pointer;display:flex;align-items:baseline;gap:12px;padding:9px 0;border-top:0.8px solid var(--border)">'
+      +'<div style="flex:1;min-width:0"><div style="font-size:12.5px;color:var(--text);line-height:1.4">'+tit+'</div>'
+      +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px">'+meta+'</div></div>'
+      +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+_rdDate(c.fecha)+'</span></div>';
+  });
   var noms=(typeof NORMAS!=='undefined'?NORMAS:[]).filter(function(nm){return _radarKwMatch(kw,(nm.id||'')+' '+(nm.objeto||'')+' '+(nm.afecta||'')+' '+(nm.tema||''));}).slice(0,6)
     .map(function(nm){return row('<span style="font-family:var(--mono);font-size:11px;color:var(--green);font-weight:600">'+nm.id+'</span> — '+(nm.objeto||''),nm.dep,nm.url);});
   var intl=(typeof _INTL!=='undefined'&&_INTL||[]).filter(function(a){return _radarKwMatch(kw,(a.nombre||'')+' '+(a.relevancia_mexico||''));}).slice(0,5)
@@ -2961,7 +2972,7 @@ function _radarDetail(temaId){
     +_emisBlock(tema)
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
       +'<div>'+block('Señal en medios · 2 sem','var(--green)',news)+block('Prensa estatal',tema.color,est)+estBlock+'</div>'
-      +'<div>'+block('DOF · publicaciones'+(dofAll.length>3?' · +'+(dofAll.length-3)+' más':''),tema.color,dof)+block('Congreso',tema.color,cong)+block('NOMs',tema.color,noms)+block('Internacional',tema.color,intl)+'</div>'
+      +'<div>'+block('DOF · publicaciones'+(dofAll.length>3?' · +'+(dofAll.length-3)+' más':''),tema.color,dof)+block('Congreso'+(congAll.length>3?' · +'+(congAll.length-3)+' más':''),tema.color,cong)+block('NOMs',tema.color,noms)+block('Internacional',tema.color,intl)+'</div>'
     +'</div>';
 }
 // ── Emisiones GEI (INEGYCEI · INECC) por tema: cada tema muestra su sector ──
@@ -4965,7 +4976,7 @@ loadComisiones();
 document.body.classList.add('dash-fixed');
 </script>
 <footer class="scope-footer">
-  <div class="scope-footer-brand">SCOPE · Iniciativa GEMI · v1.2 &copy; 2026</div>
+  <div class="scope-footer-brand">Scope es una plataforma de Iniciativa GEMI · v1.2 &copy; 2026</div>
   <nav class="scope-footer-links">
     <a href="#" onclick="showTab('acerca',null);return false">Acerca de SCOPE</a>
     <a href="#">Términos</a>
