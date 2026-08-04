@@ -733,7 +733,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 <div class="tooltip" id="tt"></div>
 <nav class="nav">
   <div class="nav-left">
-    <img src="assets/scope-logo.png?v=2" alt="SCOPE" title="Inicio" onclick="showTab('dashboard',null)" style="height:30px;width:auto;display:block;cursor:pointer;position:relative;top:2px">
+    <img id="nav-logo" src="assets/scope-logo.png?v=2" alt="SCOPE" title="Inicio" onclick="showTab('dashboard',null)" style="height:30px;width:auto;display:block;cursor:pointer;position:relative;top:2px">
   </div>
   <div class="nav-tabs">
     <div class="nav-drop-wrap">
@@ -1559,6 +1559,8 @@ function _applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
   var b=document.getElementById('theme-toggle');
   if(b){b.innerHTML=_themeIcon(t);b.title=(t==='dark'?'Cambiar a modo claro':'Cambiar a modo oscuro');}
+  var lg=document.getElementById('nav-logo');
+  if(lg)lg.src=(t==='dark'?'assets/scope-logo-dark.png?v=2':'assets/scope-logo.png?v=2');
 }
 function toggleTheme(){
   var cur=document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light';
