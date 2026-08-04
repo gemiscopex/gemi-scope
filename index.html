@@ -1445,8 +1445,10 @@ function _mapTT(ev,state){
   var tt=document.getElementById('tt');
   if(!tt)return;
   tt.className='dotmap-tt';
+  var sc=(_sitiosData&&_sitiosData.estados&&_sitiosData.estados[state]);
+  var sitiosLine=sc?'<br><span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+sc.contaminados+' sitios contaminados · '+sc.pct_remediado+'% remediado</span>':'';
   tt.innerHTML='<span style="color:var(--white);font-weight:600">'+state+'</span>'
-    +'<span style="color:var(--dim)"> · click para ver panel</span>';
+    +'<span style="color:var(--dim)"> · click para ver panel</span>'+sitiosLine;
   tt.style.display='block';
   tt.style.left=Math.min(ev.clientX+14,window.innerWidth-260)+'px';
   tt.style.top=(ev.clientY+14)+'px';
@@ -3003,7 +3005,32 @@ function renderSPPerfil(state,data,sc){
     +statRow('Capital',perfil.capital||data.capital||'\u2014',null,'')
     +statRow('Poblaci\u00f3n econ\u00f3micamente activa',perfil.pea?fmtNum(perfil.pea):'\u2014',perfil.pea&&peaMax?(perfil.pea/peaMax)*100:null,perfil.pea?'ENOE '+(perfil.pea_periodo||''):'Integraci\u00f3n en curso');
   document.getElementById('sp-perfil').innerHTML=rows
-    +`<div style="margin-top:16px;padding-top:14px;font-size:12.5px;line-height:1.65;color:var(--text-sec)">${narrative}</div>`;
+    +`<div style="margin-top:16px;padding-top:14px;font-size:12.5px;line-height:1.65;color:var(--text-sec)">${narrative}</div>`
+    +_sitiosBlock(state);
+}
+// Sitios contaminados/remediados por entidad (SEMARNAT · datos.gob.mx, ingesta real)
+function _sitiosBlock(state){
+  var d=(_sitiosData&&_sitiosData.estados&&_sitiosData.estados[state]);
+  if(!d)return '';
+  var stat=function(v,l,c){return '<div style="flex:1"><div style="font-size:22px;font-weight:700;color:'+(c||'var(--text)')+';font-variant-numeric:tabular-nums;line-height:1">'+v+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">'+l+'</div></div>';};
+  var cont=Object.keys(d.por_contaminante||{}).map(function(k){return [k,d.por_contaminante[k]];});
+  var mxc=Math.max.apply(null,cont.map(function(e){return e[1];}).concat([1]));
+  var bars=cont.slice(0,5).map(function(e){
+    return '<div style="display:flex;align-items:center;gap:10px;padding:5px 0"><span style="flex:1;font-size:11.5px;color:var(--text)">'+e[0]+'</span>'
+      +'<span style="width:80px;height:4px;background:rgba(0,0,0,0.06);flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(e[1]/mxc*100)+'%;background:#d97706"></span></span>'
+      +'<span style="font-family:var(--mono);font-size:11px;color:var(--text-sec);min-width:26px;text-align:right">'+e[1]+'</span></div>';
+  }).join('');
+  var rec=(d.recientes||[]).slice(0,4).map(function(r){
+    return '<div style="display:flex;align-items:baseline;gap:12px;padding:7px 0;border-top:0.8px solid var(--border)"><span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);flex-shrink:0">'+(r.anio||'—')+'</span>'
+      +'<div style="flex:1;min-width:0;font-size:11.5px;color:var(--text);line-height:1.4">'+(r.municipio||'—')+' <span style="color:var(--text-muted)">· '+(r.contaminante||'')+(r.modalidad?' · '+r.modalidad:'')+'</span></div></div>';
+  }).join('');
+  return '<div style="margin-top:26px;padding-top:16px;border-top:0.8px solid var(--border)">'
+    +'<div style="font-size:9.5px;font-weight:600;letter-spacing:0.09em;color:var(--text-muted);text-transform:uppercase;margin-bottom:13px">Sitios contaminados · SEMARNAT</div>'
+    +'<div style="display:flex;gap:18px;margin-bottom:16px">'+stat(d.contaminados,'Contaminados','#d97706')+stat(d.remediados,'Remediados','var(--green)')+stat(d.pct_remediado+'%','Remediado',null)+'</div>'
+    +(bars?'<div style="margin-bottom:6px">'+bars+'</div>':'')
+    +(rec?'<div style="margin-top:10px">'+rec+'</div>':'')
+    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:12px">Fuente: SEMARNAT · Inventario Nacional de Sitios Contaminados y Remediados (datos.gob.mx)</div>'
+    +'</div>';
 }
 function renderSPMateriales(state){
   const el=document.getElementById('sp-materiales');
@@ -3731,7 +3758,7 @@ function renderDOF(){
   el.innerHTML=html;
 }
 // ─────────────────────────────────────────────────────────────────────────────
-var _perfilEstados=null,_materialesData=null,_datosgobData=null;
+var _perfilEstados=null,_materialesData=null,_datosgobData=null,_sitiosData=null;
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
@@ -3741,6 +3768,7 @@ async function init(){
   fetch('data/datosgob.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_datosgobData=d;renderDatosGob();}).catch(()=>{});
   fetch('data/noticias-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();buildMap();}).catch(()=>{});
   fetch('data/actores-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_actoresEstatales=d;renderActoresEstatales();}).catch(()=>{});
+  fetch('data/sitios-contaminados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_sitiosData=d;buildMap();}).catch(()=>{});
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
