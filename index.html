@@ -1008,8 +1008,6 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
   </div>
   <div id="tab-radares" class="tab-content" style="padding:28px 0">
     <div id="radar-terminal"></div>
-    <!-- Emisiones nacionales GEI (INEGYCEI · INECC) -->
-    <div id="radar-emisiones" style="margin-top:44px"></div>
     <!-- Datos abiertos ambientales (datos.gob.mx) -->
     <div style="margin-top:40px">
       <div class="card-label">Datos Abiertos Ambientales · datos.gob.mx</div>
@@ -1124,15 +1122,18 @@ const SECTOR_PROFILE={
 };
 const RADAR_TEMAS=[
   {id:'agua',name:'Agua',icon:'',color:'#38bdf8',kw:['agua','hidrico','sequia','conagua','cuenca','acuifero'],leyKey:'agua'},
-  {id:'residuos',name:'Residuos',icon:'',color:'#a78bfa',kw:['residuo','basura','reciclaje','plastico','vertedero'],leyKey:'residuos'},
+  {id:'residuos',name:'Residuos',icon:'',color:'#a78bfa',kw:['residuo','basura','reciclaje','plastico','vertedero'],leyKey:'residuos',emis:'Residuos'},
   {id:'circular',name:'Econom\u00eda Circular',icon:'',color:'#009E90',kw:['economia circular','circularidad','ecodiseno','REP'],leyKey:'economia_circular'},
-  {id:'cc',name:'Cambio Clim\u00e1tico',icon:'',color:'#6366f1',kw:['cambio climatico','GEI','carbono','emisiones','ndc'],leyKey:'cambio_climatico'},
+  {id:'cc',name:'Cambio Clim\u00e1tico',icon:'',color:'#6366f1',kw:['cambio climatico','GEI','carbono','emisiones','ndc'],leyKey:'cambio_climatico',emisNacional:true},
   {id:'fiscal',name:'Impuestos Ambientales',icon:'',color:'#f87171',kw:['impuesto ambiental','tasa ecologica','bono carbono'],leyKey:null},
   {id:'plasticos',name:'Pl\u00e1sticos',icon:'',color:'#ec4899',kw:['plastico','unicel','poliestireno','monouso','bolsa'],leyKey:'plasticos'},
-  {id:'energia',name:'Energ\u00eda',icon:'',color:'#f59e0b',kw:['energia solar','renovable','fotovoltaica','eolica','cfe'],leyKey:null},
+  {id:'energia',name:'Energ\u00eda',icon:'',color:'#f59e0b',kw:['energia solar','renovable','fotovoltaica','eolica','cfe'],leyKey:null,emis:'Energ\u00eda'},
   {id:'sanciones',name:'Cumplimiento',icon:'',color:'#ef4444',kw:['sancion','multa','clausura','infraccion','profepa'],leyKey:null},
   {id:'biodiv',name:'Biodiversidad',icon:'',color:'#22c55e',kw:['biodiversidad','restauracion','forestal','silvestre'],leyKey:'forestal_biodiversidad'},
-  {id:'infra',name:'Infraestructura',icon:'',color:'#64748b',kw:['infraestructura','tratamiento','alcantarillado','planta'],leyKey:'agua'}
+  {id:'infra',name:'Infraestructura',icon:'',color:'#64748b',kw:['infraestructura','tratamiento','alcantarillado','planta'],leyKey:'agua'},
+  {id:'agricultura',name:'Agricultura',icon:'',color:'#65a30d',kw:['agricultura','agropecuario','ganaderia','ganado','fertilizante','cultivo','pecuario'],leyKey:null,emis:'Agricultura'},
+  {id:'procesos',name:'Procesos Industriales',icon:'',color:'#0891b2',kw:['proceso industrial','cemento','clinker','siderurgia','acero','industria quimica','refrigerante'],leyKey:null,emis:'Procesos industriales'},
+  {id:'uso_suelo',name:'Uso de Suelo (UTCUTS)',icon:'',color:'#15803d',kw:['uso de suelo','deforestacion','silvicultura','reforestacion','bosque','utcuts'],leyKey:'forestal_biodiversidad',emis:'Uso de la tierra'}
 ];
 const estadoData={
   "Aguascalientes":{l:"Ley Ambiental del Estado",capital:"Aguascalientes",pop:"1.4M",area:"5,618 km²",region:"Norte-Centro",congreso:"https://www.congresoags.gob.mx/"},
@@ -2912,7 +2913,6 @@ function renderRadares(){
   }).join('');
   host.innerHTML=head+'<div class="radar-board">'+bhead+body+'</div><div id="radar-detail" style="margin-top:24px"></div>';
   _radarDetail(_radarSel);
-  if(typeof renderEmisiones==='function')renderEmisiones();
 }
 function _radarDetail(temaId){
   _radarSel=temaId;
@@ -2963,65 +2963,65 @@ function _radarDetail(temaId){
       +'<span style="width:10px;height:10px;border-radius:50%;background:'+tema.color+';flex-shrink:0"></span>'
       +'<span style="font-size:18px;font-weight:700;color:var(--text)">'+tema.name+'</span>'
       +'<span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:0.04em">VISTA 360° · TODOS LOS STREAMS</span></div>'
+    +_emisBlock(tema)
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
       +'<div>'+block('Señal en medios · 90d','var(--green)',news)+block('Prensa estatal',tema.color,est)+estBlock+'</div>'
       +'<div>'+block('DOF · publicaciones',tema.color,dof)+block('Congreso',tema.color,cong)+block('NOMs',tema.color,noms)+block('Internacional',tema.color,intl)+'</div>'
     +'</div>';
 }
-// ── Emisiones nacionales GEI (INEGYCEI · INECC): headline + tendencia + sectores ──
-function renderEmisiones(){
-  var host=document.getElementById('radar-emisiones');if(!host)return;
-  var d=_emisionesData;if(!d){host.innerHTML='';return;}
-  var mt=function(v){return v==null?'—':(Math.round(v/1e5)/10).toLocaleString('es-MX',{minimumFractionDigits:1,maximumFractionDigits:1});};
-  var serie=(d.serie||[]).filter(function(s){return s.bruto_tco2e!=null;});
-  var first=serie[0],last=serie[serie.length-1];
-  var growth=(first&&last&&first.bruto_tco2e)?Math.round((last.bruto_tco2e/first.bruto_tco2e-1)*100):null;
-  // Curva de tendencia (bruto sin UTCUTS)
-  var chart='';
-  if(serie.length>1){
-    var W=680,H=118,PL=6,PR=6,PT=12,PB=18,IW=W-PL-PR,IH=H-PT-PB;
-    var vals=serie.map(function(s){return s.bruto_tco2e;});
-    var mx=Math.max.apply(null,vals),n=vals.length;
-    var X=function(i){return PL+(i/(n-1))*IW;},Y=function(v){return PT+IH-(v/mx)*IH;};
-    function smooth(pts){var dd='M'+pts[0][0].toFixed(1)+','+pts[0][1].toFixed(1);
-      for(var i=0;i<pts.length-1;i++){var p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||pts[i+1];
-        var c1x=p1[0]+(p2[0]-p0[0])/6,c1y=p1[1]+(p2[1]-p0[1])/6,c2x=p2[0]-(p3[0]-p1[0])/6,c2y=p2[1]-(p3[1]-p1[1])/6;
-        dd+=' C'+c1x.toFixed(1)+','+c1y.toFixed(1)+' '+c2x.toFixed(1)+','+c2y.toFixed(1)+' '+p2[0].toFixed(1)+','+p2[1].toFixed(1);}return dd;}
-    var pts=vals.map(function(v,i){return [X(i),Y(v)];}),baseY=Y(0).toFixed(1),line=smooth(pts);
-    var area=line+' L'+X(n-1).toFixed(1)+','+baseY+' L'+X(0).toFixed(1)+','+baseY+' Z';
-    var xl='';[0,Math.floor((n-1)/2),n-1].forEach(function(i){xl+='<text x="'+X(i).toFixed(1)+'" y="'+(H-5)+'" text-anchor="'+(i===0?'start':i===n-1?'end':'middle')+'" font-size="8" font-family="var(--mono)" fill="var(--text-muted)">'+serie[i].anio+'</text>';});
-    chart='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
-      +'<path d="'+area+'" fill="var(--green)" fill-opacity="0.09"/>'
-      +'<path d="'+line+'" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
-      +'<circle cx="'+X(n-1).toFixed(1)+'" cy="'+Y(vals[n-1]).toFixed(1)+'" r="3" fill="var(--green)" stroke="var(--card)" stroke-width="1.5"/>'
-      +xl+'</svg>';
-  }
-  // Barras por sector (último año)
-  var secs=(d.sectores||[]);
-  var mxAbs=Math.max.apply(null,secs.map(function(s){return Math.abs(s.tco2e);}).concat([1]));
-  var bars=secs.map(function(s){
-    var neg=s.tco2e<0,col=neg?'var(--green)':'#d97706';
-    return '<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-top:0.8px solid var(--border)">'
-      +'<span style="flex:1;min-width:0;font-size:12.5px;color:var(--text)">'+s.nombre+(neg?' <span style="font-size:10px;color:var(--text-muted)">· absorción</span>':'')+'</span>'
-      +'<span style="width:120px;height:5px;background:rgba(0,0,0,0.05);flex-shrink:0;position:relative"><span style="position:absolute;top:0;'+(neg?'right:50%':'left:50%')+';height:100%;width:'+Math.round(Math.abs(s.tco2e)/mxAbs*50)+'%;background:'+col+'"></span></span>'
-      +'<span style="font-family:var(--mono);font-size:11px;color:var(--text-sec);min-width:60px;text-align:right;font-variant-numeric:tabular-nums">'+mt(s.tco2e)+' Mt</span>'
-      +'<span style="font-family:var(--mono);font-size:11px;font-weight:700;color:'+col+';min-width:52px;text-align:right">'+(s.pct>0?'':'')+s.pct+'%</span>'
-      +'</div>';
-  }).join('');
-  host.innerHTML='<div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px">'
-      +'<div><div class="card-label" style="margin-bottom:3px">Emisiones nacionales GEI · INECC</div>'
-        +'<div style="font-size:12px;color:var(--text-muted)">Inventario Nacional (INEGYCEI) · toneladas de CO2 equivalente</div></div></div>'
-    +'<div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:18px">'
-      +'<div><span style="font-size:34px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.02em">'+mt(d.total_bruto)+'</span><span style="font-size:15px;color:var(--text-sec);font-weight:600"> MtCO2e</span>'
-        +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-top:4px">Brutas '+d.ultimo_anio+' · sin absorción</div></div>'
-      +'<div style="font-size:11.5px;color:var(--text-muted);line-height:1.6">'+mt(d.total_netas)+' Mt netas<br>con absorción forestal</div>'
-      +(growth!=null?'<div style="margin-left:auto;text-align:right"><div style="font-family:var(--mono);font-size:18px;font-weight:700;color:'+(growth>=0?'var(--red)':'var(--green)')+'">'+(growth>=0?'+':'')+growth+'%</div><div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em">desde '+first.anio+'</div></div>':'')
-    +'</div>'
-    +chart
-    +'<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin:20px 0 2px">Por sector · '+d.ultimo_anio+'</div>'
-    +bars
-    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:12px">Fuente: INECC · INEGYCEI (datos.gob.mx) · serie '+(first?first.anio:'')+'–'+d.ultimo_anio+'</div>';
+// ── Emisiones GEI (INEGYCEI · INECC) por tema: cada tema muestra su sector ──
+function _emisMt(v){return v==null?'—':(Math.round(v/1e5)/10).toLocaleString('es-MX',{minimumFractionDigits:1,maximumFractionDigits:1});}
+function _emisSector(tema){
+  if(!_emisionesData||!tema.emis)return null;
+  var q=qa(String(tema.emis).toLowerCase());
+  return (_emisionesData.sectores||[]).find(function(s){var n=qa(String(s.nombre).toLowerCase());return n.indexOf(q)>=0||q.indexOf(n)>=0;})||null;
 }
+function _emisCurve(serie,valField,color){
+  var vals=(serie||[]).map(function(p){return p[valField];}),n=vals.length;
+  if(n<2)return '';
+  var W=560,H=86,PL=4,PR=4,PT=10,PB=16,IW=W-PL-PR,IH=H-PT-PB;
+  var mn=Math.min.apply(null,vals.concat([0])),mx=Math.max.apply(null,vals.concat([0])),rng=(mx-mn)||1;
+  var X=function(i){return PL+(i/(n-1))*IW;},Y=function(v){return PT+IH-((v-mn)/rng)*IH;};
+  function smooth(pts){var d='M'+pts[0][0].toFixed(1)+','+pts[0][1].toFixed(1);
+    for(var i=0;i<pts.length-1;i++){var p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||pts[i+1];
+      var c1x=p1[0]+(p2[0]-p0[0])/6,c1y=p1[1]+(p2[1]-p0[1])/6,c2x=p2[0]-(p3[0]-p1[0])/6,c2y=p2[1]-(p3[1]-p1[1])/6;
+      d+=' C'+c1x.toFixed(1)+','+c1y.toFixed(1)+' '+c2x.toFixed(1)+','+c2y.toFixed(1)+' '+p2[0].toFixed(1)+','+p2[1].toFixed(1);}return d;}
+  var pts=vals.map(function(v,i){return [X(i),Y(v)];}),baseY=Y(mn<0?0:mn).toFixed(1),line=smooth(pts);
+  var area=line+' L'+X(n-1).toFixed(1)+','+baseY+' L'+X(0).toFixed(1)+','+baseY+' Z';
+  var lab='';[0,n-1].forEach(function(i){lab+='<text x="'+X(i).toFixed(1)+'" y="'+(H-4)+'" text-anchor="'+(i===0?'start':'end')+'" font-size="8" font-family="var(--mono)" fill="var(--text-muted)">'+serie[i].anio+'</text>';});
+  return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block;max-width:440px" preserveAspectRatio="xMidYMid meet">'
+    +'<path d="'+area+'" fill="'+color+'" fill-opacity="0.09"/>'
+    +'<path d="'+line+'" fill="none" stroke="'+color+'" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>'
+    +'<circle cx="'+X(n-1).toFixed(1)+'" cy="'+Y(vals[n-1]).toFixed(1)+'" r="2.6" fill="'+color+'"/>'+lab+'</svg>';
+}
+function _emisBlock(tema){
+  if(!_emisionesData)return '';
+  var d=_emisionesData;
+  if(tema.emisNacional){
+    var serie=(d.serie||[]).filter(function(s){return s.bruto_tco2e!=null;});
+    var first=serie[0],last=serie[serie.length-1];
+    var growth=(first&&last&&first.bruto_tco2e)?Math.round((last.bruto_tco2e/first.bruto_tco2e-1)*100):null;
+    return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
+      +'<div style="font-size:12px;font-weight:700;color:'+tema.color+';margin-bottom:9px">Emisiones nacionales GEI · INECC</div>'
+      +'<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px">'
+        +'<div><span style="font-size:28px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">'+_emisMt(d.total_bruto)+'</span><span style="font-size:14px;color:var(--text-sec);font-weight:600"> MtCO2e</span> <span style="font-size:10.5px;color:var(--text-muted)">brutas '+d.ultimo_anio+'</span></div>'
+        +(growth!=null?'<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:'+(growth>=0?'var(--red)':'var(--green)')+'">'+(growth>=0?'+':'')+growth+'% desde '+first.anio+'</div>':'')
+      +'</div>'+_emisCurve(serie,'bruto_tco2e',tema.color)
+      +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:8px">'+_emisMt(d.total_netas)+' Mt netas con absorción · Fuente: INECC · INEGYCEI (datos.gob.mx)</div></div>';
+  }
+  var sec=_emisSector(tema);
+  if(!sec)return '';
+  var neg=sec.tco2e<0;
+  return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
+    +'<div style="font-size:12px;font-weight:700;color:'+tema.color+';margin-bottom:9px">Emisiones GEI del sector · INECC</div>'
+    +'<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px">'
+      +'<div><span style="font-size:28px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">'+_emisMt(sec.tco2e)+'</span><span style="font-size:14px;color:var(--text-sec);font-weight:600"> MtCO2e</span> <span style="font-size:10.5px;color:var(--text-muted)">'+d.ultimo_anio+'</span></div>'
+      +'<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:'+tema.color+'">'+sec.pct+'% del total nacional</div>'
+    +'</div>'+_emisCurve(sec.serie,'tco2e',tema.color)
+    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:8px">'+(neg?'Valor negativo = absorción (sumidero forestal). ':'')+'Fuente: INECC · INEGYCEI (datos.gob.mx)</div></div>';
+}
+// Refresca el detalle si las emisiones cargan después de abrir el Radar
+function renderEmisiones(){if(_radarSel&&document.getElementById('radar-detail'))_radarDetail(_radarSel);}
 // Compatibilidad con llamadas previas
 function buildRadarTrendChart(){renderRadares();}
 function _buildRadarSelector(){}
