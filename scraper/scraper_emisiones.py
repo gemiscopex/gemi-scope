@@ -67,7 +67,8 @@ def main():
 
     serie = []
     ultimo = max(years)
-    sectores = []
+    sec_series = {}   # nombre de sector -> {anio: tco2e}
+    sec_order = []
     for y in sorted(years):
         try:
             rows = fetch_csv(years[y])
@@ -75,33 +76,42 @@ def main():
             print(f"  {y}: ERROR {str(e)[:60]}"); continue
         bruto = netas = brutas_utcuts = None
         for row in rows:
-            cat = (row.get("categoria_fuente_subfuente_emision") or "").strip().lower()
+            cat = (row.get("categoria_fuente_subfuente_emision") or "").strip()
+            catl = cat.lower()
             v = _num(row.get("emisiones_tCO2e"))
-            if cat.startswith(ROW_SINU):
+            if catl.startswith(ROW_SINU):
                 bruto = v
-            elif cat.startswith(ROW_NETAS):
+            elif catl.startswith(ROW_NETAS):
                 netas = v
-            elif cat.startswith(ROW_BRUTAS):
+            elif catl.startswith(ROW_BRUTAS):
                 brutas_utcuts = v
+            # Sector IPCC de nivel superior: [1] Energía, [2] Procesos…, [3] Agricultura, etc.
+            m = re.match(r"^\[(\d)\]\s*(.+)$", cat)
+            if m and v is not None:
+                name = m.group(2).strip()
+                if name not in sec_series:
+                    sec_series[name] = {}; sec_order.append(name)
+                sec_series[name][y] = v
         if bruto is None:
             bruto = brutas_utcuts
         serie.append({"anio": y, "bruto_tco2e": bruto, "netas_tco2e": netas})
-        # Desglose por sector IPCC top-level ([1]..[9]) del último año
-        if y == ultimo:
-            for row in rows:
-                cat = (row.get("categoria_fuente_subfuente_emision") or "").strip()
-                m = re.match(r"^\[(\d)\]\s*(.+)$", cat)
-                if m:
-                    v = _num(row.get("emisiones_tCO2e"))
-                    if v is not None:
-                        sectores.append({"nombre": m.group(2).strip(), "tco2e": v})
         print(f"  {y}: bruto {bruto}  netas {netas}")
 
-    sectores.sort(key=lambda s: s["tco2e"], reverse=True)
     ult = next((s for s in serie if s["anio"] == ultimo), {})
     base = ult.get("bruto_tco2e") or 0
-    for s in sectores:
-        s["pct"] = round(s["tco2e"] / base * 100, 1) if base else 0
+    sectores = []
+    for name in sec_order:
+        yr = sec_series[name]
+        val = yr.get(ultimo)
+        if val is None:
+            continue
+        sectores.append({
+            "nombre": name,
+            "tco2e": val,
+            "pct": round(val / base * 100, 1) if base else 0,
+            "serie": [{"anio": yy, "tco2e": yr[yy]} for yy in sorted(yr)],
+        })
+    sectores.sort(key=lambda s: s["tco2e"], reverse=True)
 
     out = {
         "_meta": {
