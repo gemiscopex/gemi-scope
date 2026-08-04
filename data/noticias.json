@@ -1,5 +1,248 @@
 [
   {
+    "id": "7bad961f427b",
+    "titulo": "Cae ingreso fiscal  por petróleo y gas",
+    "url": "https://www.reforma.com/cae-ingreso-fiscal-por-petroleo-y-gas/ar3251836",
+    "fuente": "Reforma",
+    "resumen": "La importancia de los ingresos fiscales por petróleo y gas natural para las finanzas públicas de México han caído durante la última década.",
+    "fecha_publicacion": "2026-08-04T11:00:55Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.647973+00:00"
+  },
+  {
+    "id": "3e1a80f73689",
+    "titulo": "Y sigue Pemex 'chupando'  recursos federales",
+    "url": "https://www.reforma.com/y-sigue-pemex-chupando-recursos-federales/ar3251897",
+    "fuente": "Reforma",
+    "resumen": "Pemex ya suma ayudas por más de $3 billones durante las Administraciones de la 4T, entre aportaciones financieras y 'salvavidas' fiscales.",
+    "fecha_publicacion": "2026-08-04T11:00:55Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.648343+00:00"
+  },
+  {
+    "id": "4e93a58b64d2",
+    "titulo": "Economía global continúa creciendo, pero con mayores riesgos afectando a México",
+    "url": "https://www.elfinanciero.com.mx/opinion/benito-solis/2026/08/04/economia-global-continua-creciendo-pero-con-mayores-riesgos-afectando-a-mexico/",
+    "fuente": "El Financiero",
+    "resumen": "El Fondo Monetario Internacional dio a conocer sus últimos pronósticos económicos para los distintos países en días pasados, donde confirma que a pesar del actual entorno bélico en Ucrania y en Irán, así como el posible impacto del cambio climático, las distintas economías continuarán con crecimiento económico.",
+    "fecha_publicacion": "2026-08-04T08:57:42Z",
+    "categoria": "cambio_climatico",
+    "categoria_nombre": "Cambio Climático",
+    "categorias": [
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.654160+00:00"
+  },
+  {
+    "id": "4321296e50b2",
+    "titulo": "Prevé la OIT pérdida de empleos e ingresos en América Latina por El Niño",
+    "url": "https://www.jornada.com.mx/2026/08/04/politica/010n2pol?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "El fenómeno climático de El Niño, que se prevé cobre fuerza durante la segunda mitad de este año y a lo largo de 2027, no sólo intensificará las sequías, lluvias, inundaciones y ciclones en América Latina y el Caribe, sino que también amenaza con reducir el empleo, los ingresos de los trabajadores y agravar de las condiciones laborales en la región, de acuerdo con un estudio de la Organización Internacional del Trabajo (OIT).",
+    "fecha_publicacion": "2026-08-04T08:39:16Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.591330+00:00"
+  },
+  {
+    "id": "b6f931611c0c",
+    "titulo": "Suben las bolsas en EU mientras en México cae 0.36%",
+    "url": "https://www.jornada.com.mx/2026/08/04/economia/019n3eco?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "Las bolsas estadunidenses mantuvieron un tono positivo ante los sólidos resultados de las grandes empresas tecnológicas, particularmente Amazon, que ganó esta jornada 4.59 por ciento, mientras disminuye la presión sobre el petróleo al bajar la tensión geopolítica en Medio Oriente.",
+    "fecha_publicacion": "2026-08-04T08:39:16Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.598294+00:00"
+  },
+  {
+    "id": "bc92890b378e",
+    "titulo": "México refuerza apoyo a Canadá para combatir los incendios forestales",
+    "url": "https://www.jornada.com.mx/2026/08/04/politica/014n2pol?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "Ante los incendios que no dan tregua en Canadá, el gobierno de México envió otro contingente, ahora de 103 personas, para apoyar a la población, informó la Comisión Nacional Forestal (Conafor).",
+    "fecha_publicacion": "2026-08-04T08:39:16Z",
+    "categoria": "deforestacion",
+    "categoria_nombre": "Forestal",
+    "categorias": [
+      "deforestacion"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.599528+00:00"
+  },
+  {
+    "id": "1ab2ea044032",
+    "titulo": "Fuerte lluvia con granizo en Pátzcuaro causa desborde  de arroyo e inundaciones",
+    "url": "https://www.jornada.com.mx/2026/08/04/estados/027n2est?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "Una tormenta con granizo y fuertes ráfagas de viento azotó ayer en la tarde a Pátzcuaro, Michoacán, y provocó el desborde del arroyo del Libramiento, inundaciones en colonias y arrastre de vehículos y motocicletas.",
+    "fecha_publicacion": "2026-08-04T08:39:16Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Michoacan",
+    "scrapeado_en": "2026-08-04T12:27:20.602083+00:00"
+  },
+  {
+    "id": "4c833a1982ef",
+    "titulo": "Amenazan a presa Endhó aguas residuales y desechos industriales",
+    "url": "https://www.jornada.com.mx/2026/08/04/politica/010n1pol?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "La proliferación del lirio acuático y del mosquito culex en la presa Endhó, ubicada en Hidalgo, es apenas la manifestación visible de un problema ambiental mucho más profundo: detrás de este deterioro ambiental se encuentra la descarga masiva de aguas residuales y desechos industriales provenientes principalmente del río Tula, así como la falta de plantas de tratamiento en los municipios aledaños, señaló Mayela Godínez Alarcón, gerente de Planeación Hídrica de la Comisión Nacional del Agua (Cona",
+    "fecha_publicacion": "2026-08-04T08:39:16Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Hidalgo",
+    "scrapeado_en": "2026-08-04T12:27:20.602615+00:00"
+  },
+  {
+    "id": "78678555e563",
+    "titulo": "Récord en el valor de la extracción minera en 2025",
+    "url": "https://www.jornada.com.mx/2026/08/04/economia/019n1eco?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "En 2025 el valor de la producción minera en México alcanzó su nivel más alto en al menos una década; sin embargo, la aportación del sector al producto interno bruto (PIB) del país cayó 3.2 por ciento, resultado ligado al estancamiento del volumen de producción ante la falta de licitaciones para exploración y otras medidas gubernamentales que siguen pendientes desde hace varios años.",
+    "fecha_publicacion": "2026-08-04T08:39:16Z",
+    "categoria": "mineria",
+    "categoria_nombre": "Minería",
+    "categorias": [
+      "mineria"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.604779+00:00"
+  },
+  {
+    "id": "8135a8f31619",
+    "titulo": "Precios del petróleo aceleran sus caídas",
+    "url": "https://www.jornada.com.mx/2026/08/04/mundo/022n3mun?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "La nueva puerta al diálogo en Medio Oriente aceleró la caída en los precios del petróleo.",
+    "fecha_publicacion": "2026-08-04T08:39:16Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.608354+00:00"
+  },
+  {
+    "id": "f32bac582358",
+    "titulo": "Franco deterioro de calles, aceras y mobiliario urbano en el Centro Histórico por la falta de mantenimiento",
+    "url": "https://www.jornada.com.mx/2026/08/04/capital/029n2cap?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "Por las calles del Centro Histórico, en la alcaldía Cuauhtémoc, transitan todos los días habitantes, trabajadores, comerciantes y turistas que a diario sortean banquetas resquebrajadas –algunas incluso se ladean y en algunos tramos salpican agua sucia al ser pisadas–. A su alrededor, las coladeras y camellones son utilizados como depósitos de basura, mientras el abandono de mobiliario urbano persiste en plazas e inmuebles antiguos desocupados.",
+    "fecha_publicacion": "2026-08-04T08:39:16Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua",
+      "residuos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.608992+00:00"
+  },
+  {
+    "id": "e14ee23f4bd3",
+    "titulo": "Un riesgo para la salud, los 889 tiraderos que hay en la CDMX: académicos",
+    "url": "https://www.jornada.com.mx/2026/08/04/capital/029n3cap?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "Los 889 basureros clandestinos contabilizados en la Ciudad de México representan un riesgo para la salud, ya que la acumulación de residuos puede provocar a corto plazo problemas respiratorios, dermatológicos e intestinales, advirtió Pablo Francisco Oliva Sánchez, profesor investigador en Epidemiología y Salud Pública de la Universidad Autónoma Metropolitana (UAM) Xochimilco.",
+    "fecha_publicacion": "2026-08-04T08:39:16Z",
+    "categoria": "residuos",
+    "categoria_nombre": "Residuos",
+    "categorias": [
+      "residuos"
+    ],
+    "estado": "Ciudad de Mexico",
+    "scrapeado_en": "2026-08-04T12:27:20.611939+00:00"
+  },
+  {
+    "id": "a74b30872ba8",
+    "titulo": "Exhalación de Don Goyo",
+    "url": "https://www.jornada.com.mx/2026/08/04/capital/030n3cap?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "Tras la emisión de ceniza por el volcán Popocatépetl, la Secretaría de Gestión Integral de Riesgos y Protección Civil llamó a los residentes de las alcaldías Milpa Alta, Tláhuac, Tlalpan y Xochimilco a tapar depósitos de agua, cerrar puertas y ventanas, proteger nariz y boca, evitar realizar actividades físicas al aire libre, cubrir coladeras de drenaje y mantenerse informados.",
+    "fecha_publicacion": "2026-08-04T08:39:16Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua",
+      "calidad_aire"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.618788+00:00"
+  },
+  {
+    "id": "ae72390501f0",
+    "titulo": "Pueblos potosinos piden a Sheinbaum vetar fracking y minería a cielo abierto",
+    "url": "https://www.jornada.com.mx/2026/08/04/estados/025n2est?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "Representantes de los pueblos náhuatl y tének de la Huasteca potosina pidieron a la presidenta Claudia Sheinbaum cancelar los proyectos de exploración llevados a cabo mediante fracking (fracturación hidráulica) y la minería a cielo abierto en esa región.",
+    "fecha_publicacion": "2026-08-04T08:39:16Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos",
+      "mineria"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.623117+00:00"
+  },
+  {
+    "id": "4d1faef163ad",
+    "titulo": "Tomasa, Bentham y el tamaño de nuestra democracia",
+    "url": "https://www.elfinanciero.com.mx/opinion/pedro-kumamoto/2026/08/04/tomasa-bentham-y-el-tamano-de-nuestra-democracia/",
+    "fuente": "El Financiero",
+    "resumen": "En 2024, cientos de especialistas en neurociencia, comportamiento animal y ciencias cognitivas firmaron la Declaración de Nueva York sobre la Conciencia Animal, sosteniendo que existe un sólido respaldo para afirmar que muchas especies poseen experiencias conscientes y que el sufrimiento probablemente está mucho más extendido en el reino animal de lo que pensamos.",
+    "fecha_publicacion": "2026-08-04T08:28:17Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-04T12:27:20.655023+00:00"
+  },
+  {
+    "id": "19447a590d8f",
+    "titulo": "Sonora lidera el crecimiento del campo en el norte del país: Durazo",
+    "url": "https://www.elfinanciero.com.mx/estados/2026/08/03/sonora-lidera-el-crecimiento-del-campo-en-el-norte-del-pais-durazo/",
+    "fuente": "El Financiero",
+    "resumen": "Se prevé que el sector registre mayor crecimiento en los próximos meses con la apertura de las exportaciones ganaderas por la frontera de Agua Prieta, gracias a las gestiones del gobernador Alfonso Durazo, anunciada para el próximo 24 de agosto.",
+    "fecha_publicacion": "2026-08-04T02:22:50Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Sonora",
+    "scrapeado_en": "2026-08-04T12:27:20.661995+00:00"
+  },
+  {
     "id": "e90d05c32c4a",
     "titulo": "Exportaciones de Pemex se ‘disparan’ a 565 mil barriles en junio; es su mayor salto en 8 años",
     "url": "https://www.elfinanciero.com.mx/economia/2026/08/03/ventas-por-exportaciones-de-pemex-se-disparan-en-junio-de-cuanto-fueron/",
@@ -8832,250 +9075,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-04-27T16:43:28.499022+00:00"
-  },
-  {
-    "id": "27d5ff828332",
-    "titulo": "Semarnat, Ecoce y Tetra Pak impulsan “Playas con valor”",
-    "url": "https://www.gob.mx/semarnat/prensa/semarnat-ecoce-y-tetra-pak-impulsan-playas-con-valor",
-    "fuente": "Semarnat",
-    "resumen": "",
-    "fecha_publicacion": "2026-04-14T09:23:00Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-12T20:55:02.619988+00:00"
-  },
-  {
-    "id": "f459834f5fd9",
-    "titulo": "Semarnat mantiene diálogo con comunidades sobre la restauración ecológica de la Presa Endhó",
-    "url": "https://www.gob.mx/semarnat/prensa/semarnat-mantiene-dialogo-con-comunidades-sobre-la-restauracion-ecologica-de-la-presa-endho",
-    "fuente": "Semarnat",
-    "resumen": "",
-    "fecha_publicacion": "2026-04-13T13:42:00Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua",
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-05-12T20:55:02.620230+00:00"
-  },
-  {
-    "id": "4b12052859da",
-    "titulo": "Ante exigencias ciudadana y acciones legales, ayuntamiento de La Paz emite programa para mejorar la calidad del aire",
-    "url": "https://cemda.org.mx/ante-exigencias-ciudadana-y-acciones-legales-ayuntamiento-de-la-paz-emite-programa-para-mejorar-la-calidad-del-aire/",
-    "fuente": "CEMDA",
-    "resumen": "Tras un intenso proceso de incidencia jurídica y técnica iniciado en el 2021, las organizaciones el Centro Mexicano de Derecho Ambiental y El Observatorio Ciudadano “Cómo Vamos La Paz” celebran...",
-    "fecha_publicacion": "2026-04-12T22:55:46Z",
-    "categoria": "calidad_aire",
-    "categoria_nombre": "Calidad del Aire",
-    "categorias": [
-      "calidad_aire"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.499589+00:00"
-  },
-  {
-    "id": "b73f91e6543a",
-    "titulo": "México reintroduce con éxito a familia de lobos mexicanos en Durango",
-    "url": "https://www.gob.mx/semarnat/prensa/mexico-reintroduce-con-exito-a-familia-de-lobos-mexicanos-en-durango",
-    "fuente": "Semarnat",
-    "resumen": "",
-    "fecha_publicacion": "2026-04-11T18:04:00Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": "Durango",
-    "scrapeado_en": "2026-05-12T20:55:02.620438+00:00"
-  },
-  {
-    "id": "8e8801b05177",
-    "titulo": "Vidas bajo el agua: la supervivencia marina ante un derrame de petróleo.",
-    "url": "https://www.greenpeace.org/mexico/blog/62809/vidas-bajo-el-agua-ante-un-derrame-de-petroleo/",
-    "fuente": "Greenpeace MX",
-    "resumen": "El Golfo de México es mucho más que un cuerpo de agua. Es hogar de una enorme diversidad de vida. Seres que no vemos a simple vista como organismos microscópicos,…",
-    "fecha_publicacion": "2026-04-11T15:00:00Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua",
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.399284+00:00"
-  },
-  {
-    "id": "0ebb17b48ca4",
-    "titulo": "Presidenta, no a la ceguera ante lo evidente.",
-    "url": "https://www.greenpeace.org/mexico/informacion-prensa/62816/presidenta-no-a-la-ceguera-ante-lo-evidente/",
-    "fuente": "Greenpeace MX",
-    "resumen": "Ciudad de México, 10 de abril de 2026.- A pesar del historial de desastres vinculados a laindustria fósil, el gobierno de México reafirmó esta misma semana su apuesta por el…",
-    "fecha_publicacion": "2026-04-11T03:03:47Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": "Ciudad de Mexico",
-    "scrapeado_en": "2026-04-27T16:43:28.399610+00:00"
-  },
-  {
-    "id": "4f0ddad3c5f2",
-    "titulo": "José Luis Lucas Quirino",
-    "url": "https://cemda.org.mx/jose-luis-lucas-quirino/",
-    "fuente": "CEMDA",
-    "resumen": "José Luis fue un líder ejidal perteneciente a la comunidad de Acuaco, municipio de Zaragoza, Puebla, donde formaba parte de la mesa directiva. Era reconocido por su defensa de los derechos de los campesinos, condenando también el uso desmedido del agua por las grandes industrias del sector agrícola. En un contexto generalizado de violencia en la región, también trabajaba por la preservación de los bosques de la Sierra Nororiental de Puebla y el cuidado del medio ambiente. El 6 de febrero, a poco",
-    "fecha_publicacion": "2026-04-10T22:46:46Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua",
-      "biodiversidad"
-    ],
-    "estado": "Puebla",
-    "scrapeado_en": "2026-04-27T16:43:28.500079+00:00"
-  },
-  {
-    "id": "65ef30f5743c",
-    "titulo": "Marcos Aguilar Rojas",
-    "url": "https://cemda.org.mx/marcos-aguilar-rojas/",
-    "fuente": "CEMDA",
-    "resumen": "Marcos era el representante agrario de la comunidad indígena tepehuana–wixárika, quienes habitan el territorio desde hace tiempo. Defendía la tierra, el agua y la memoria de su comunidad al ser uno de los pocos pueblos indígenas de esta comunidad. Desde hace tiempo la comunidad de Azqueltán reclama la restitución de 45 mil hectáreas con base a un título virreinal de 1733. Durante más de dos siglos, la comunidad ha sufrido invasión de tierras, desplazamientos por parte de ganaderos, amenazas y vi",
-    "fecha_publicacion": "2026-04-10T22:45:21Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.500612+00:00"
-  },
-  {
-    "id": "817a4df25e88",
-    "titulo": "Silvia Hernández Meza",
-    "url": "https://cemda.org.mx/silvia-hernandez-meza/",
-    "fuente": "CEMDA",
-    "resumen": "Silvia Hernández era conocida como defensora del medio ambiente desde antes de ser candidata de la Planilla Morada que contendía por la presidencia del Comisariado de Bienes Comunales de Huitzilac, Morelos. Fue reconocida por la propia Comisión Nacional Forestal (CONAFOR) por los esfuerzos de reforestación y denuncia ante la tala ilegal que amenaza con acabar con el Parque Nacional Lagunas de Zempoala de Huitzilac, en Morelos, y de Ocuilan en el Estado de México. También participaba dando plátic",
-    "fecha_publicacion": "2026-04-10T22:43:44Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad",
-      "deforestacion"
-    ],
-    "estado": "Mexico",
-    "scrapeado_en": "2026-04-27T16:43:28.501129+00:00"
-  },
-  {
-    "id": "90e8d79edf5b",
-    "titulo": "Cándido Esaú Román Pérez",
-    "url": "https://cemda.org.mx/candido-esau-roman-perez/",
-    "fuente": "CEMDA",
-    "resumen": "Esaú Román fue un abogado y ejidatario originario de Cihuatlán, Jalisco. Era conocido por liderar la defensoría de las tierras ejidales en la zona. También lo conocían en la comunidad por su participación en los torneos regionales de fútbol, primero lo hizo como jugador y después como entrenador. En enero del 2025, Esaú gestionó un amparo con el que se logró detener las obras de un proyecto de supuesto desarrollo turístico que buscaba instalarse en un predio de la comunidad. En esta zona se ubic",
-    "fecha_publicacion": "2026-04-10T22:42:31Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": "Jalisco",
-    "scrapeado_en": "2026-04-27T16:43:28.501647+00:00"
-  },
-  {
-    "id": "8ec42b427b30",
-    "titulo": "La soberanía energética no será sacrificando con fracking la vida de las comunidades y sus territorios.",
-    "url": "https://www.greenpeace.org/mexico/informacion-prensa/62804/la-soberania-energetica-no-sera-con-fracking/",
-    "fuente": "Greenpeace MX",
-    "resumen": "La Presidenta Claudia Sheinbaum olvida su compromiso de campaña de no permitir el desarrollo del fracking en México.● Tras dos décadas de aplicación masiva del fracking en EE.UU., existe amplia…",
-    "fecha_publicacion": "2026-04-09T21:36:33Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.400081+00:00"
-  },
-  {
-    "id": "6fab0d9d5a4f",
-    "titulo": "No a la Guerra: Greenpeace Estados Unidos",
-    "url": "https://www.greenpeace.org/mexico/informacion-prensa/62796/no-a-la-guerra-greenpeace-estados-unidos/",
-    "fuente": "Greenpeace MX",
-    "resumen": "Greenpeace Estados Unidos llama a favor de la paz y exige un alto a la guerra contra Irán. Sigue leyendo para saber más.",
-    "fecha_publicacion": "2026-04-08T19:08:28Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.400421+00:00"
-  },
-  {
-    "id": "6f8391154315",
-    "titulo": "La esperanza navega.",
-    "url": "https://www.greenpeace.org/mexico/blog/62788/la-esperanza-navega/",
-    "fuente": "Greenpeace MX",
-    "resumen": "Con más de 70 embarcaciones y más de 1000 participantes, el 12 de abril la Global Sumud Flotilla zarpará de Barcelona en respuesta a un llamado de los palestinos de…",
-    "fecha_publicacion": "2026-04-07T22:55:27Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.400794+00:00"
-  },
-  {
-    "id": "828adcecb476",
-    "titulo": "Persisten irregularidades y vacíos de información entorno a Perfect Day: Greenpeace México.",
-    "url": "https://www.greenpeace.org/mexico/informacion-prensa/62777/persisten-irregularidades-y-vacios-perfect-day/",
-    "fuente": "Greenpeace MX",
-    "resumen": "Greenpeace México presentó observaciones técnicas  ante la SEMARNAT y reitera la necesidad de que la autoridad ambiental evalúe con rigor los posibles impactos del proyecto sobre los ecosistemas costeros de la región, particularmente los manglares.",
-    "fecha_publicacion": "2026-04-01T20:40:38Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad",
-      "deforestacion"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.401204+00:00"
-  },
-  {
-    "id": "10add21c321f",
-    "titulo": "Crisis socioambiental en el Golfo de México: derrame petrolero afecta 933 km de costa de Tabasco hasta Tamaulipas y comunidades enfrentan impactos.",
-    "url": "https://www.greenpeace.org/mexico/informacion-prensa/62769/crisis-socioambiental-en-el-golfo-de-mexico/",
-    "fuente": "Greenpeace MX",
-    "resumen": "La Red Corredor Arrecifal del Golfo de México hace un llamado enérgico a implementar acciones integrales para atender este derrame petrolero, subrayando que las medidas adoptadas hasta ahora, centradas principalmente en la limpieza de playas, han sido insuficientes.",
-    "fecha_publicacion": "2026-03-31T23:01:46Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": "Tabasco",
-    "scrapeado_en": "2026-04-27T16:43:28.401666+00:00"
-  },
-  {
-    "id": "2d7ea6b8ca80",
-    "titulo": "De la evaluación a la acción: testimonios de éxito de la metodología GAGE",
-    "url": "https://causanaturacenter.org/articulos/de-la-evaluacion-a-la-accion-testimonios-de-exito-de-la-metodologia-gage/",
-    "fuente": "Causa Natura",
-    "resumen": "La metodología GAGE (Gobierno Abierto, Equidad de Género y Acuerdo de Escazú) fue concebida como una herramienta práctica para fortalecer la gobernanza ambiental en los Consejos Asesores de las Áreas Naturales Protegidas. GAGE pone el foco en cómo se toman las decisiones, quiénes participan en ellas y en qué medida esas decisiones se traducen en […] La entrada De la evaluación a la acción: testimonios de éxito de la metodología GAGE se publicó primero en Causa Natura Center .",
-    "fecha_publicacion": "2026-02-17T19:24:52Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-04-27T16:43:28.486044+00:00"
   }
 ]
