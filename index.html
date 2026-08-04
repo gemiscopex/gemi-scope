@@ -138,10 +138,11 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 #map{position:absolute;inset:0;z-index:2}
 .dotmap-legend{position:absolute;left:22px;top:16px;display:flex;gap:16px;font-family:var(--mono);font-size:8.5px;letter-spacing:0.03em;color:var(--text-muted);z-index:3;pointer-events:none}
 .dotmap-legend i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle}
-.dot-state{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;z-index:2}
+.dot-state{position:absolute;transform:translate(-50%,-50%) scale(var(--dz,1));display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;z-index:2;transition:transform 0.2s ease}
 .dot-state:hover .dot-abbr{color:var(--white)}
-.dot-abbr{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:0.03em;transition:color 0.15s}
-.ocean-lbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:#aec3d1;pointer-events:none;white-space:nowrap;z-index:1;font-style:italic}
+.dot-state:hover{z-index:6}
+.dot-abbr{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:0.03em;transition:color 0.15s;white-space:nowrap}
+.ocean-lbl{position:absolute;transform:translate(-50%,-50%) scale(var(--dz,1));font-family:var(--mono);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:#aec3d1;pointer-events:none;white-space:nowrap;z-index:1;font-style:italic;transition:transform 0.2s ease}
 #dotmap-annot{position:absolute;inset:0;pointer-events:none;z-index:1}
 /* Alertas de actividad por entidad (relativas al máximo de notas estatales) */
 .dot-wrap{position:relative;width:9px;height:9px}
@@ -868,7 +869,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
         <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Regulación Internacional</div>
       </div>
-      <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Acuerdos y tratados ambientales multilaterales con el estatus de México en cada uno</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Base de datos de regulación ambiental internacional que impacta a México. Filtra por categoría o jurisdicción, o busca por sector, país o instrumento.</div>
       <div id="acuerdos-list"></div>
     </div>
   </div>
@@ -1411,6 +1412,10 @@ function _applyMapZoom(animate){
   el.style.transition=animate?'transform 0.25s ease':'none';
   el.style.transform='translate('+_mapPanX+'px,'+_mapPanY+'px) scale('+_mapZoom+')';
   vp.style.cursor=_mapZoom>1?'grab':'';
+  // Contra-escala: los marcadores y nombres mantienen su tamaño en pantalla;
+  // el zoom separa los estados para acceder mejor, no agranda las etiquetas.
+  var mp=document.getElementById('map');
+  if(mp)mp.style.setProperty('--dz',(1/_mapZoom).toFixed(4));
   if(typeof _updateMapScale==='function')_updateMapScale();
 }
 function mapZoom(delta){
@@ -1559,8 +1564,8 @@ function buildMap(){
       +'<div class="dot-wrap">'+(t.k==='alto'?'<span class="dot-ring"></span>':'')+'<span class="dot-core" style="background:'+t.c+'"></span></div>'
       +'<span class="dot-abbr">'+abbr+'</span></div>';
   });
-  // Nombres de los océanos y mares que rodean a México
-  [{t:'Océano Pacífico',x:17,y:82},{t:'Golfo de México',x:70,y:26},{t:'Mar Caribe',x:86,y:64}].forEach(function(o){
+  // Nombres de los mares que rodean a México (solo los que caben limpios)
+  [{t:'Océano Pacífico',x:17,y:82},{t:'Golfo de México',x:68,y:24}].forEach(function(o){
     html+='<div class="ocean-lbl" style="left:'+o.x+'%;top:'+o.y+'%">'+o.t+'</div>';
   });
   el.innerHTML=html;
@@ -1638,7 +1643,17 @@ var ACUERDOS=[
 ];
 var TEMA_ACUERDO_COLOR={'Clima':'#f59e0b','Derechos ambientales':'#009E90','Capa de ozono':'#38bdf8','HFC / Clima':'#f59e0b','Biodiversidad':'#16a34a','Residuos peligrosos':'#a78bfa','Contaminantes orgánicos':'#ef4444','Químicos peligrosos':'#8e44ad','Humedales':'#0ea5e9','Especies':'#d35400'};
 var _INTL=null;
-var _INTL_CATS=[['cadena_suministro','Cadenas de suministro · vinculante para exportadores'],['ley_extranjera','Leyes extranjeras · economía circular y REP'],['tratado_vinculante','Tratados y acuerdos vinculantes']];
+var _intlF={q:'',cat:'todas',juris:'todas',sort:'anio_desc'};
+var _INTL_CATMETA={
+  cadena_suministro:{lbl:'Cadena de suministro',col:'#7c3aed'},
+  ley_extranjera:{lbl:'Ley extranjera',col:'#0ea5e9'},
+  tratado_vinculante:{lbl:'Tratado vinculante',col:'#16a34a'}
+};
+function _intlCatLbl(c){return (_INTL_CATMETA[c]&&_INTL_CATMETA[c].lbl)||(c||'—');}
+function _intlCatCol(c){return (_INTL_CATMETA[c]&&_INTL_CATMETA[c].col)||'#6b7280';}
+function _intlNk(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+function _intlSet(k,v){_intlF[k]=v;renderAcuerdos();}
+function _intlSearch(v){_intlF.q=v;_intlRenderRows();}
 function renderAcuerdos(){
   var el=document.getElementById('acuerdos-list');
   if(!el)return;
@@ -1647,25 +1662,63 @@ function renderAcuerdos(){
     fetch('data/internacional.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){_INTL=d||[];renderAcuerdos();}).catch(function(){_INTL=[];});
     return;
   }
-  el.innerHTML=_INTL_CATS.map(function(cat){
-    var items=_INTL.filter(function(a){return a.categoria===cat[0];});
-    if(!items.length)return '';
-    return '<div style="margin-bottom:28px">'
-      +'<div style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">'+cat[1]+' · '+items.length+'</div>'
-      +items.map(function(a){
-        return '<div class="ley-row" onclick="window.open(\''+(a.url||'#').replace(/'/g,'%27')+'\',\'_blank\')" style="align-items:flex-start">'
-          +'<span class="ley-sigla" style="min-width:52px">'+a.anio+'</span>'
-          +'<div style="flex:1;min-width:0">'
-            +'<div class="ley-nombre">'+a.nombre+'</div>'
-            +'<div style="font-size:11px;color:var(--text-sec);margin-top:2px;line-height:1.45">'+(a.relevancia_mexico||'')+'</div>'
-            +'<div style="font-size:10px;color:var(--text-muted);margin-top:3px">'+(a.estatus||'')+'</div>'
-          +'</div>'
-          +'<span style="font-size:9.5px;color:var(--text-muted);letter-spacing:0.04em;white-space:nowrap;flex-shrink:0;max-width:130px;text-align:right">'+a.jurisdiccion+'</span>'
-          +'<span class="ley-link-icon">↗</span>'
-          +'</div>';
-      }).join('')
+  var jurs=Array.from(new Set(_INTL.map(function(a){return a.jurisdiccion;}).filter(Boolean))).sort(function(a,b){return a.localeCompare(b,'es');});
+  var cats=[];_INTL.forEach(function(a){if(a.categoria&&cats.indexOf(a.categoria)<0)cats.push(a.categoria);});
+  var sel='padding:9px 30px 9px 12px;font-size:12px;color:var(--text);background:var(--card);border:0.8px solid var(--border);cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;font-family:var(--sans)';
+  var catTabs='<button class="stab'+(_intlF.cat==='todas'?' on':'')+'" onclick="_intlSet(\'cat\',\'todas\')">Todas</button>'
+    +cats.map(function(c){return '<button class="stab'+(_intlF.cat===c?' on':'')+'" onclick="_intlSet(\'cat\',\''+c+'\')">'+_intlCatLbl(c)+'</button>';}).join('');
+  var jurOpts='<option value="todas">Todas las jurisdicciones</option>'+jurs.map(function(j){return '<option value="'+j.replace(/"/g,'&quot;')+'"'+(_intlF.juris===j?' selected':'')+'>'+j+'</option>';}).join('');
+  var sorts=[['anio_desc','Más reciente'],['anio_asc','Más antiguo'],['juris','Por jurisdicción']];
+  var sortOpts=sorts.map(function(s){return '<option value="'+s[0]+'"'+(_intlF.sort===s[0]?' selected':'')+'>'+s[1]+'</option>';}).join('');
+  var toolbar='<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px">'
+     +'<div style="position:relative;flex:1;min-width:220px">'
+       +'<span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:13px;pointer-events:none">⌕</span>'
+       +'<input id="intl-search" value="'+_intlF.q.replace(/"/g,'&quot;')+'" oninput="_intlSearch(this.value)" placeholder="Buscar instrumento, país o sector…" style="width:100%;box-sizing:border-box;padding:9px 12px 9px 32px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12.5px;font-family:var(--sans);outline:none">'
+     +'</div>'
+     +'<div style="position:relative"><select onchange="_intlSet(\'juris\',this.value)" style="'+sel+'">'+jurOpts+'</select><span style="position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);font-size:9px">▾</span></div>'
+     +'<div style="position:relative"><select onchange="_intlSet(\'sort\',this.value)" style="'+sel+'">'+sortOpts+'</select><span style="position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);font-size:9px">▾</span></div>'
+    +'</div>'
+    +'<div class="stab-bar" style="margin-bottom:12px">'+catTabs+'</div>';
+  el.innerHTML=toolbar
+    +'<div id="intl-stats" style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px"></div>'
+    +'<div id="intl-table"></div>';
+  _intlRenderRows();
+}
+function _intlRenderRows(){
+  var host=document.getElementById('intl-table');if(!host||!_INTL)return;
+  var q=_intlNk(_intlF.q);
+  var rows=_INTL.filter(function(a){
+    if(_intlF.cat!=='todas'&&a.categoria!==_intlF.cat)return false;
+    if(_intlF.juris!=='todas'&&a.jurisdiccion!==_intlF.juris)return false;
+    if(q){var hay=_intlNk((a.nombre||'')+' '+(a.jurisdiccion||'')+' '+(a.relevancia_mexico||'')+' '+(a.estatus||'')+' '+(a.anio||''));if(hay.indexOf(q)<0)return false;}
+    return true;
+  });
+  rows.sort(function(a,b){
+    if(_intlF.sort==='anio_asc')return (a.anio-b.anio)||(a.jurisdiccion||'').localeCompare(b.jurisdiccion||'','es');
+    if(_intlF.sort==='juris')return (a.jurisdiccion||'').localeCompare(b.jurisdiccion||'','es')||(b.anio-a.anio);
+    return (b.anio-a.anio)||(a.jurisdiccion||'').localeCompare(b.jurisdiccion||'','es');
+  });
+  var st=document.getElementById('intl-stats');
+  if(st)st.textContent=rows.length+' de '+_INTL.length+' instrumentos'
+    +(_intlF.cat!=='todas'?' · '+_intlCatLbl(_intlF.cat):'')
+    +(_intlF.juris!=='todas'?' · '+_intlF.juris:'');
+  if(!rows.length){host.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:28px 0;text-align:center">Sin coincidencias. Ajusta los filtros o la búsqueda.</div>';return;}
+  var GRID='display:grid;grid-template-columns:50px 1fr 130px;gap:14px';
+  var head='<div style="'+GRID+';padding:0 0 8px;border-bottom:0.8px solid var(--border);font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">'
+    +'<span>Año</span><span>Instrumento</span><span style="text-align:right">Jurisdicción</span></div>';
+  var body=rows.map(function(a){
+    var col=_intlCatCol(a.categoria);
+    return '<div onclick="window.open(\''+(a.url||'#').replace(/'/g,'%27')+'\',\'_blank\')" style="'+GRID+';padding:12px 0;border-bottom:0.8px solid var(--border);cursor:pointer;align-items:start;transition:background .12s" onmouseover="this.style.background=\'rgba(0,158,144,0.03)\'" onmouseout="this.style.background=\'\'">'
+      +'<span style="font-family:var(--mono);font-size:12px;font-weight:600;color:var(--text)">'+(a.anio||'—')+'</span>'
+      +'<div style="min-width:0">'
+        +'<div style="display:flex;align-items:baseline;gap:7px"><span style="width:6px;height:6px;border-radius:50%;background:'+col+';flex-shrink:0;position:relative;top:1px"></span><span style="font-size:13px;font-weight:600;color:var(--text);line-height:1.3">'+a.nombre+'</span></div>'
+        +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.45">'+(a.relevancia_mexico||'')+'</div>'
+        +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:5px;letter-spacing:0.03em">'+_intlCatLbl(a.categoria).toUpperCase()+(a.estatus?'  ·  '+a.estatus:'')+'</div>'
+      +'</div>'
+      +'<div style="text-align:right;min-width:0"><div style="font-size:11px;color:var(--text-sec);font-weight:500;line-height:1.3">'+a.jurisdiccion+'</div><div style="font-size:13px;color:var(--green);margin-top:3px">↗</div></div>'
       +'</div>';
   }).join('');
+  host.innerHTML=head+body;
 }
 // ── Gabinete ambiental federal (Actores) ──
 var ACTORES_FED=[
@@ -2181,41 +2234,64 @@ var _PENDIENTES=[
   {t:'Microplásticos en cosmética',e:'PENDIENTE',d:'La UE ya restringió microplásticos añadidos intencionalmente (Reg. 2023/2055); México podría seguir la tendencia.',org:'COFEPRIS / SEMARNAT',docs:[]},
   {t:'Biodegradabilidad de tensoactivos',e:'PENDIENTE',d:'Regulación de biodegradabilidad para tensoactivos en productos de cuidado personal y limpieza.',org:'SEMARNAT',docs:[]}
 ];
+var _agendaView='pendientes',_agendaEst='todos';
+var _AG_ESTCOL={'PENDIENTE':'#ef4444','EN PROCESO':'#f97316','PROYECTO':'#009E90'};
+var _AG_ESTORD={'PENDIENTE':0,'EN PROCESO':1,'PROYECTO':2};
+function agendaSetView(v){_agendaView=v;_agendaEst='todos';renderAgenda();}
+function agendaSetEst(e){_agendaEst=e;_agendaPend();}
 function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
-  function badge(e){var c=e==='PENDIENTE'?'#ef4444':(e==='EN PROCESO'?'#f97316':'#009E90');
-    return '<span style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.08em;color:'+c+';border:0.8px solid '+c+';padding:2px 7px">'+e+'</span>';}
-  var pend='<div style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px">Reglamentaciones pendientes</div>'
-    +_PENDIENTES.map(function(p,i){
-      return '<div style="padding:16px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
-        +'<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px">'+badge(p.e)
+  if(view==='dof')_agendaView='dof';else if(view==='pendientes')_agendaView='pendientes';
+  var tabs=[['pendientes','Reglamentaciones pendientes'],['dof','DOF · publicaciones']];
+  var nav='<div class="stab-bar" style="margin-bottom:20px">'+tabs.map(function(t){
+      return '<button class="stab'+(_agendaView===t[0]?' on':'')+'" onclick="agendaSetView(\''+t[0]+'\')">'+t[1]+'</button>';
+    }).join('')+'</div>';
+  host.innerHTML=nav+'<div id="agenda-view"></div>';
+  if(_agendaView==='dof')_agendaDof();else _agendaPend();
+}
+function _agendaPend(){
+  var host=document.getElementById('agenda-view');if(!host)return;
+  var col=function(e){return _AG_ESTCOL[e]||'#009E90';};
+  var counts={};_PENDIENTES.forEach(function(p){counts[p.e]=(counts[p.e]||0)+1;});
+  var ESTADOS=[['todos','Todas'],['PENDIENTE','Pendiente'],['EN PROCESO','En proceso'],['PROYECTO','Proyecto']];
+  var filt='<div style="display:flex;flex-wrap:wrap;gap:4px 22px;margin-bottom:18px">'+ESTADOS.map(function(s){
+      var on=_agendaEst===s[0];var n=s[0]==='todos'?_PENDIENTES.length:(counts[s[0]]||0);
+      var under=on?(s[0]==='todos'?'var(--green)':col(s[0])):'transparent';
+      return '<button onclick="agendaSetEst(\''+s[0]+'\')" style="background:none;border:none;border-bottom:1.5px solid '+under+';cursor:pointer;font-family:var(--sans);font-size:12.5px;font-weight:'+(on?'600':'500')+';color:'+(on?'var(--text)':'var(--text-muted)')+';padding:0 0 6px">'+s[1]+' <span style="font-family:var(--mono);font-size:9px;opacity:.55">'+n+'</span></button>';
+    }).join('')+'</div>';
+  var ord=function(e){return _AG_ESTORD.hasOwnProperty(e)?_AG_ESTORD[e]:9;};
+  var list=_PENDIENTES.filter(function(p){return _agendaEst==='todos'||p.e===_agendaEst;})
+    .slice().sort(function(a,b){return ord(a.e)-ord(b.e);});
+  var rows=list.map(function(p,i){
+    return '<div style="padding:15px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
+      +'<div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:5px">'
+        +'<span style="width:7px;height:7px;border-radius:50%;background:'+col(p.e)+';flex-shrink:0"></span>'
+        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;color:'+col(p.e)+'">'+p.e+'</span>'
         +'<span style="font-size:15px;font-weight:600;color:var(--text)">'+p.t+'</span></div>'
-        +'<div style="font-size:13px;color:var(--text-sec);line-height:1.55;max-width:760px;margin-bottom:5px">'+p.d+'</div>'
-        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+p.org+'</div>'
-        +((p.docs&&p.docs.length)?'<div style="margin-top:9px;display:flex;flex-wrap:wrap;gap:8px 18px">'+p.docs.map(function(dc){return '<a href="'+dc.url+'" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:11px;color:var(--green);text-decoration:none">↓ '+dc.label+'</a>';}).join('')+'</div>':'')
-        +'</div>';
-    }).join('');
-  // DOF hoy (reusa _dofData) — solo publicaciones relevantes a nuestros temas
+      +'<div style="font-size:13px;color:var(--text-sec);line-height:1.55;max-width:760px;margin:0 0 5px 16px">'+p.d+'</div>'
+      +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-left:16px">'+p.org
+        +((p.docs&&p.docs.length)?'  ·  '+p.docs.map(function(dc){return '<a href="'+dc.url+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">↓ '+dc.label+'</a>';}).join('  '):'')
+      +'</div></div>';
+  }).join('');
+  host.innerHTML=filt
+    +'<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px">'+list.length+' instrumento'+(list.length===1?'':'s')+'</div>'
+    +rows;
+}
+function _agendaDof(){
+  var host=document.getElementById('agenda-view');if(!host)return;
   var items=(_dofData||[]).filter(function(d){return d.relevante;}).slice().sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
   var hoy=new Date().toLocaleDateString('es-MX',{timeZone:'America/Mexico_City'});
   var deHoy=items.filter(function(d){return new Date(d.fecha).toLocaleDateString('es-MX',{timeZone:'America/Mexico_City'})===hoy;});
-  var lista=(deHoy.length?deHoy:items).slice(0,8);
-  var dof='<div id="agenda-dof" style="margin-top:40px"><div style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px">'
-    +(deHoy.length?'DOF · publicado hoy':'DOF · últimas publicaciones de nuestros temas')+'</div>'
+  var lista=(deHoy.length?deHoy:items).slice(0,12);
+  host.innerHTML='<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">'
+      +(deHoy.length?'Publicado hoy · '+deHoy.length:'Últimas publicaciones de nuestros temas')+'</div>'
     +(lista.length?lista.map(function(d,i){
       var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
       return '<div onclick="window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/\x27/g,'%27')+'\',\'_blank\')" style="cursor:pointer;padding:13px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
         +'<div style="font-size:13.5px;color:var(--text);line-height:1.5;margin-bottom:4px">'+(d.titulo||'')+'</div>'
         +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)"><span style="font-weight:700;color:var(--text-sec)">'+(d.dependencia||'DOF')+'</span> · '+f+'</div>'
         +'</div>';
-    }).join(''):'<div style="font-size:13px;color:var(--text-muted)">Sin publicaciones recientes en nuestros temas.</div>')+'</div>';
-  // accesos al monitoreo legislativo
-  var acc='<div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:14px 32px">'
-    +'<a onclick="goAgenda(\'congreso\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-size:13.5px;font-weight:600">Congreso de la Unión →</a>'
-    +'<a onclick="goAgenda(\'locales\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-size:13.5px;font-weight:600">Gacetas de los congresos locales →</a>'
-    +'</div>';
-  host.innerHTML=pend+dof+acc;
-  if(view==='dof'){var el=document.getElementById('agenda-dof');if(el)setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},120);}
+    }).join(''):'<div style="font-size:13px;color:var(--text-muted);padding:20px 0">Sin publicaciones recientes en nuestros temas.</div>');
 }
 // ── NORMAS ────────────────────────────────────────────────────
 var NORMAS=[
