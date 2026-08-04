@@ -1969,8 +1969,11 @@ function renderDofMenu(){
     +list.map(function(d){
       var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
       return '<div class="dof-it" onclick="window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/'/g,'%27')+'\',\'_blank\')">'
-        +'<div class="dof-it-t">'+(d.titulo||'')+'</div>'
-        +'<div class="dof-it-m">'+(d.dependencia||'DOF')+' · '+f+(d.relevante?' · <span style="color:var(--amber)">RELEVANTE</span>':'')+'</div>'
+        +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">'
+          +'<span style="font-size:10.5px;font-weight:700;color:var(--text);letter-spacing:0.02em">'+(d.dependencia||'DOF')+'</span>'
+          +'<span style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+f+(d.relevante?' · <span style="color:var(--amber)">REL</span>':'')+'</span>'
+        +'</div>'
+        +'<div class="dof-it-t" style="color:var(--text-sec);margin-top:3px">'+(d.titulo||'')+'</div>'
         +'</div>';
     }).join('')
     +'<div class="nav-drop-sep"></div>'
@@ -2344,13 +2347,28 @@ function _agendaDof(){
   var items=(_dofData||[]).filter(function(d){return d.relevante;}).slice().sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
   var hoy=new Date().toLocaleDateString('es-MX',{timeZone:'America/Mexico_City'});
   var deHoy=items.filter(function(d){return new Date(d.fecha).toLocaleDateString('es-MX',{timeZone:'America/Mexico_City'})===hoy;});
-  var lista=(deHoy.length?deHoy:items).slice(0,12);
-  host.innerHTML='<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">'
-      +(deHoy.length?'Publicado hoy · '+deHoy.length:'Últimas publicaciones de nuestros temas')+'</div>'
-    +(lista.length?lista.map(function(d){
+  var lista=(deHoy.length?deHoy:items).slice(0,30);
+  if(!lista.length){host.innerHTML='<div style="font-size:13px;color:var(--text-muted);padding:20px 0">Sin publicaciones recientes en nuestros temas.</div>';return;}
+  // Estructura del DOF oficial: primero la Secretaría que publica, luego sus acuerdos.
+  var groups={},order=[];
+  lista.forEach(function(d){var dep=(d.dependencia||'DOF').trim();if(!groups[dep]){groups[dep]=[];order.push(dep);}groups[dep].push(d);});
+  order.sort(function(a,b){return groups[b].length-groups[a].length||a.localeCompare(b,'es');});
+  var head='<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:16px">'
+    +(deHoy.length?'Publicado hoy en el DOF · '+deHoy.length:'Últimas publicaciones de nuestros temas · '+lista.length)+'</div>';
+  var body=order.map(function(dep){
+    var rows=groups[dep].map(function(d){
       var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
-      return _oblRow({title:(d.titulo||''),meta:(d.dependencia||'DOF'),right:_oblStatus('DOF','var(--green)'),rightSub:f,onclick:'window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/\x27/g,'%27')+'\',\'_blank\')'});
-    }).join(''):'<div style="font-size:13px;color:var(--text-muted);padding:20px 0">Sin publicaciones recientes en nuestros temas.</div>');
+      return '<div onclick="window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/\x27/g,'%27')+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:16px;padding:11px 0;border-top:0.8px solid var(--border);cursor:pointer">'
+        +'<div style="flex:1;min-width:0;font-size:13px;color:var(--text);line-height:1.5">'+(d.titulo||'')+'</div>'
+        +'<span style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+f+'</span>'
+        +'</div>';
+    }).join('');
+    return '<div style="margin-bottom:24px">'
+      +'<div style="font-size:12.5px;font-weight:700;color:var(--text);letter-spacing:0.03em">'+dep
+        +' <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted);letter-spacing:0">'+groups[dep].length+'</span></div>'
+      +rows+'</div>';
+  }).join('');
+  host.innerHTML=head+body;
 }
 // ── NORMAS ────────────────────────────────────────────────────
 var NORMAS=[
