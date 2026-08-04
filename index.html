@@ -2092,8 +2092,8 @@ function _instrumentosHTML(){
   return '<div class="est-layout" style="grid-template-columns:1fr 1fr;gap:14px 24px">'
     +_OBLIGACIONES.map(function(o){
       var link=o.via==='agenda'
-        ? '<a onclick="goAgenda(\'pendientes\')" style="cursor:pointer;color:var(--green);text-decoration:none">Reglamentación pendiente →</a>'
-        : '<a onclick="goObligaciones(\''+o.via+'\')" style="cursor:pointer;color:var(--green);text-decoration:none">Ver sustento →</a>';
+        ? '<a onclick="goAgenda(\'pendientes\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11.5px;font-weight:600">Reglamentación pendiente →</a>'
+        : '<a onclick="goObligaciones(\''+o.via+'\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11.5px;font-weight:600">Ver sustento →</a>';
       return '<div style="border:0.8px solid var(--border);border-radius:11px;padding:15px 17px;min-width:0">'
         +'<div style="font-size:15px;font-weight:600;color:var(--text);line-height:1.25;margin-bottom:7px">'+o.n+'</div>'
         +'<div style="font-size:12.5px;color:var(--text-sec);line-height:1.55;margin-bottom:10px">'+o.d+'</div>'
@@ -3874,7 +3874,7 @@ var _wiz=null;
 function openConsolaWizard(){
   function go(){
     var c=loadConsola();
-    _wiz={paso:0,search:'',sel:{
+    _wiz={paso:0,search:'',refTab:'noms',refTema:'todos',legCam:'todas',legPart:'todas',sel:{
       temas:new Set(c.temas||[]),estados:new Set(c.estados||[]),
       comisiones:new Set(c.comisiones||[]),legisladores:new Set(c.legisladores||[]),
       noms:new Set(c.noms||[]),instrumentos:new Set(c.instrumentos||[]),
@@ -3968,81 +3968,253 @@ function _wizPaintBody(){
   else if(p==='comisiones'){
     var coms=(_comisionesData&&_comisionesData.comisiones)||[];
     if(!coms.length){b.innerHTML='<div style="color:var(--dim);font-size:12px;padding:20px 0">Cargando comisiones…</div>';return;}
-    b.innerHTML='<div class="cw-grid2">'+coms.map(function(c){
+    function _comCell(c){
       var id=_comId(c),on=_wiz.sel.comisiones.has(id);
       return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'comisiones\',\''+id+'\')">'
         +'<span class="mark">'+(on?'●':'○')+'</span>'
         +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);line-height:1.3">'+c.nombre+'</div>'
-        +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:2px">'+(c.camara||'').toUpperCase()+' · '+((c.integrantes||[]).length)+' integrantes</div></div>'
+        +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:2px">'+((c.integrantes||[]).length)+' integrantes</div></div>'
         +'</div>';
-    }).join('')+'</div>';
+    }
+    function _comSec(label,list){
+      if(!list.length)return '';
+      var ids=list.map(_comId),allOn=ids.every(function(id){return _wiz.sel.comisiones.has(id);});
+      return '<div style="margin-bottom:18px">'
+        +'<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px">'
+          +'<span style="font-size:12px;font-weight:700;color:var(--green);letter-spacing:0.01em">'+label+' <span style="color:var(--dim);font-weight:500;font-size:10px">· '+list.length+'</span></span>'
+          +'<span onclick="_wizComAll('+JSON.stringify(ids).replace(/"/g,'&quot;')+','+(allOn?'false':'true')+')" style="cursor:pointer;font-size:10px;color:var(--text-muted);white-space:nowrap">'+(allOn?'Quitar todas':'Seleccionar todas')+'</span>'
+        +'</div>'
+        +'<div class="cw-grid2">'+list.map(_comCell).join('')+'</div></div>';
+    }
+    var dip=coms.filter(function(c){return (c.camara||'')==='Diputados';});
+    var sen=coms.filter(function(c){return (c.camara||'')==='Senado';});
+    var otras=coms.filter(function(c){return (c.camara||'')!=='Diputados'&&(c.camara||'')!=='Senado';});
+    b.innerHTML=_comSec('Cámara de Diputados',dip)+_comSec('Senado de la República',sen)+_comSec('Otras',otras);
   }
   else if(p==='legisladores'){
-    b.innerHTML='<div style="font-size:11px;color:var(--text-sec);background:rgba(0,158,144,0.06);border-left:2px solid var(--green);padding:7px 10px;margin-bottom:10px;line-height:1.45">Por ahora solo se puede dar seguimiento a legisladores <b>federales</b> (Cámara de Diputados y Senado). Los congresos locales llegarán en una próxima etapa.</div>'
-      +'<input class="cw-search" id="cw-leg-search" placeholder="Buscar por nombre, partido o comisión…" value="'+_wiz.search.replace(/"/g,'&quot;')+'" oninput="_wiz.search=this.value;_wizPaintLegList()">'
-      +'<div id="cw-leg-list" style="max-height:320px;overflow-y:auto"></div>';
-    _wizPaintLegList();
+    b.innerHTML='<div style="font-size:11px;color:var(--text-sec);background:rgba(0,158,144,0.06);border-left:2px solid var(--green);padding:7px 10px;margin-bottom:12px;line-height:1.45">Por ahora solo se puede dar seguimiento a legisladores <b>federales</b> (Cámara de Diputados y Senado). Los congresos locales llegarán en una próxima etapa.</div>'
+      +'<div id="cw-leg-filters"></div>'
+      +'<input class="cw-search" id="cw-leg-search" placeholder="Buscar por nombre…" value="'+_wiz.search.replace(/"/g,'&quot;')+'" oninput="_wiz.search=this.value;_wizPaintLegList()">'
+      +'<div id="cw-leg-list" style="max-height:300px;overflow-y:auto"></div>';
+    _wizPaintLegFilters();_wizPaintLegList();
   }
   else if(p==='referencias'){
-    function _refGrp(title,items,setKey){
-      if(!items.length)return '';
-      return '<div style="margin-bottom:16px">'
-        +'<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">'+title+' <span style="color:var(--dim)">· '+items.length+'</span></div>'
-        +'<div class="cw-grid2">'+items.map(function(it){
-            var on=_wiz.sel[setKey].has(it.id);
-            return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\''+setKey+'\',\''+String(it.id).replace(/\\/g,"\\\\").replace(/'/g,"\\'")+'\')">'
-              +'<span class="mark">'+(on?'●':'○')+'</span>'
-              +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);line-height:1.3">'+it.label+'</div>'
-              +(it.sub?'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+it.sub+'</div>':'')+'</div>'
-              +'</div>';
-          }).join('')+'</div></div>';
-    }
-    var noms=(typeof NORMAS!=='undefined'?NORMAS:[]).map(function(n){return {id:n.id,label:n.id,sub:n.objeto};});
-    var instr=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).map(function(o){return {id:o.n,label:o.n};});
-    var imps=_consImpuestoTipos().map(function(t){return {id:t,label:t};});
-    var mats=_consMaterialesTipos().map(function(m){return {id:m,label:m};});
-    b.innerHTML=_refGrp('NOMs',noms,'noms')
-      +_refGrp('Instrumentos legales',instr,'instrumentos')
-      +_refGrp('Impuestos ambientales',imps,'impuestos')
-      +_refGrp('Materiales prohibidos',mats,'materiales')
-      +(mats.length?'':'<div style="font-size:11px;color:var(--dim);margin-top:6px">Materiales prohibidos: dataset en expansión.</div>');
+    var tabs=[['noms','NOMs'],['monitoreo','Impuestos · Instrumentos · Materiales']];
+    b.innerHTML='<div class="stab-bar" style="margin-bottom:14px">'+tabs.map(function(t){
+        return '<button class="stab'+(_wiz.refTab===t[0]?' on':'')+'" onclick="_wizSetRefTab(\''+t[0]+'\')">'+t[1]+'</button>';
+      }).join('')+'</div><div id="cw-ref-body"></div>';
+    _wizPaintRef();
   }
   else if(p==='afinar'){
     b.innerHTML=
-      '<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px">Palabras clave (Enter o coma para agregar · máx '+_WIZ_MAX_KW+')</div>'
-      +'<input class="cw-search" id="cw-kw-input" placeholder="ej. mi empresa, cuenca Lerma, NOM-001…" onkeydown="_wizKwKey(event)">'
+      '<div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:4px">Palabras clave</div>'
+      +'<div style="font-size:11.5px;color:var(--text-sec);line-height:1.5;margin-bottom:12px">Son los términos con los que tu consola te alerta <b>primero</b>. Cada palabra se cruza contra el DOF, el feed del Ejecutivo, las gacetas estatales y las noticias: cuando aparece, ese asunto sube en tu señal. Agrega lo que solo tú conoces — el nombre de tu empresa, tus plantas, tu cuenca, un trámite o una NOM puntual.</div>'
+      +'<input class="cw-search" id="cw-kw-input" placeholder="Escribe y presiona Enter · ej. mi empresa, cuenca Lerma, NOM-001…" onkeydown="_wizKwKey(event)" style="margin-bottom:8px">'
       +'<div class="cw-chips" id="cw-chips"></div>'
-      +'<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin:20px 0 4px">Nivel de riesgo por tema</div>'
-      +'<div id="cw-riesgos"></div>';
-    _wizPaintChips();_wizPaintRiesgos();
+      +'<div id="cw-kw-sug"></div>'
+      +'<div style="font-size:12px;font-weight:700;color:var(--green);margin:22px 0 3px">Nivel de riesgo por tema</div>'
+      +'<div style="font-size:11.5px;color:var(--text-sec);line-height:1.5;margin-bottom:10px">Le dice al algoritmo cuánto peso dar a cada tema. Un tema en <b>alto</b> pesa más en tu señal y encabeza tu feed aunque tenga pocos registros.</div>'
+      +'<div id="cw-riesgos"></div>'
+      +'<div style="margin-top:22px;padding-top:14px;border-top:0.8px solid var(--border);font-size:11px;color:var(--text-muted);line-height:1.55">'
+        +'<b style="color:var(--text-sec)">Cómo se afina tu consola.</b> Todo lo que elegiste — temas, estados, comisiones, legisladores, referencias, palabras clave y niveles de riesgo — forma tu <b>perfil de relevancia</b>. Con él, la consola ordena y prioriza lo que ves. Hoy se guarda en este equipo; al iniciar sesión viajará contigo y se volverá el insumo con el que afinamos tu algoritmo.'
+      +'</div>';
+    _wizPaintChips();_wizPaintKwSug();_wizPaintRiesgos();
   }
   _wizPaintFoot();
+}
+function _wizComAll(ids,on){
+  ids.forEach(function(id){if(on)_wiz.sel.comisiones.add(id);else _wiz.sel.comisiones.delete(id);});
+  _wizPaintBody();_wizPaintFoot();
+}
+// ── Legisladores: filtros por cámara y partido (con logos) ──
+function _wizPartyLogoEl(partido,size){
+  var key=(partido||'').toUpperCase();
+  var url=(typeof PARTIDO_LOGO!=='undefined')?PARTIDO_LOGO[key]:null;
+  var color=(typeof PARTIDO_COLOR!=='undefined'&&(PARTIDO_COLOR[partido]||PARTIDO_COLOR[key]))||'#6b7280';
+  var s=size||16;
+  if(url)return '<img src="'+url+'" alt="'+key+'" title="'+key+'" style="width:'+s+'px;height:'+s+'px;object-fit:contain;flex-shrink:0" onerror="this.replaceWith(document.createTextNode(\''+key+'\'))">';
+  return '<span style="font-family:var(--mono);font-size:8px;font-weight:700;color:'+color+';flex-shrink:0">'+key+'</span>';
+}
+function _wizLegPartidos(){
+  var counts={};
+  consolaLegisladores().forEach(function(l){var k=(l.partido||'').toUpperCase()||'N/D';counts[k]=(counts[k]||0)+1;});
+  return Object.keys(counts).filter(function(k){return k!=='N/D';}).map(function(k){return [k,counts[k]];}).sort(function(a,b){return b[1]-a[1];});
+}
+function _wizSetLegFilter(type,val){
+  if(type==='cam')_wiz.legCam=val;else _wiz.legPart=val;
+  _wizPaintLegFilters();_wizPaintLegList();
+}
+function _wizPaintLegFilters(){
+  var el=document.getElementById('cw-leg-filters');if(!el)return;
+  var segBtn=function(active,label,onclick){
+    return '<button onclick="'+onclick+'" style="padding:5px 12px;border:0.8px solid '+(active?'var(--green)':'var(--border)')+';background:'+(active?'rgba(0,158,144,0.08)':'none')+';color:'+(active?'var(--green)':'var(--text-muted)')+';font-family:var(--sans);font-size:11px;font-weight:'+(active?'600':'500')+';cursor:pointer;white-space:nowrap">'+label+'</button>';
+  };
+  var cams=[['todas','Todas'],['Diputados','Diputados'],['Senado','Senado']];
+  var camRow='<div style="display:flex;gap:6px;margin-bottom:8px">'+cams.map(function(c){
+    return segBtn(_wiz.legCam===c[0],c[1],'_wizSetLegFilter(\'cam\',\''+c[0]+'\')');
+  }).join('')+'</div>';
+  var parts=_wizLegPartidos();
+  var partAll=segBtn(_wiz.legPart==='todas','Todos','_wizSetLegFilter(\'part\',\'todas\')');
+  var partBtns=parts.map(function(e){
+    var active=_wiz.legPart===e[0];
+    return '<button onclick="_wizSetLegFilter(\'part\',\''+e[0]+'\')" title="'+e[0]+'" style="display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border:0.8px solid '+(active?'var(--green)':'var(--border)')+';background:'+(active?'rgba(0,158,144,0.08)':'none')+';cursor:pointer;white-space:nowrap">'
+      +_wizPartyLogoEl(e[0],15)
+      +'<span style="font-family:var(--mono);font-size:9px;font-weight:600;color:'+(active?'var(--green)':'var(--text-muted)')+'">'+e[0]+' <span style="opacity:.6">'+e[1]+'</span></span>'
+      +'</button>';
+  }).join('');
+  el.innerHTML=camRow+'<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">'+partAll+partBtns+'</div>';
+}
+function _wizLegRow(l){
+  var on=_wiz.sel.legisladores.has(l.id);
+  var foto=(_fotosMap.senado&&_fotosMap.senado[l.id])||(_fotosMap.diputados&&_fotosMap.diputados[l.id])||null;
+  var color=(PARTIDO_COLOR[(l.partido||'').toUpperCase()]||PARTIDO_COLOR[l.partido]||'#444');
+  var av=foto?'<img src="'+foto+'" style="width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="">'
+    :'<span style="width:26px;height:26px;border-radius:50%;background:'+color+';display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0">'+initials(l.n)+'</span>';
+  return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'legisladores\',\''+l.id.replace(/'/g,"\\'")+'\')" style="margin-bottom:5px">'
+    +'<span class="mark">'+(on?'●':'○')+'</span>'+av
+    +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
+    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.coms[0]+'</div></div>'
+    +_wizPartyLogoEl(l.partido,18)
+    +'</div>';
 }
 function _wizPaintLegList(){
   var el=document.getElementById('cw-leg-list');
   if(!el)return;
   var q=qa(_wiz.search.toLowerCase());
   var legs=consolaLegisladores().filter(function(l){
-    if(!q)return true;
-    return qa((l.n+' '+l.partido+' '+l.coms.join(' ')).toLowerCase()).includes(q);
+    if(_wiz.legCam!=='todas'&&l.camara!==_wiz.legCam)return false;
+    if(_wiz.legPart!=='todas'&&(l.partido||'').toUpperCase()!==_wiz.legPart)return false;
+    if(q&&!qa((l.n+' '+l.partido+' '+l.coms.join(' ')).toLowerCase()).includes(q))return false;
+    return true;
   });
-  el.innerHTML=legs.slice(0,60).map(function(l){
-    var on=_wiz.sel.legisladores.has(l.id);
-    var foto=(_fotosMap.senado&&_fotosMap.senado[l.id])||(_fotosMap.diputados&&_fotosMap.diputados[l.id])||null;
-    var av=foto?'<img src="'+foto+'" style="width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="">'
-      :'<span style="width:26px;height:26px;border-radius:50%;background:'+(PARTIDO_COLOR[(l.partido||'').toUpperCase()]||'#444')+';display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0">'+initials(l.n)+'</span>';
-    return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'legisladores\',\''+l.id.replace(/'/g,"\\'")+'\')" style="margin-bottom:5px">'
-      +'<span class="mark">'+(on?'●':'○')+'</span>'+av
-      +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
-      +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim)">'+(l.partido||'')+' · '+l.coms[0]+'</div></div>'
-      +'</div>';
-  }).join('')||'<div style="color:var(--dim);font-size:12px;padding:16px 0">Sin resultados</div>';
+  if(!legs.length){el.innerHTML='<div style="color:var(--dim);font-size:12px;padding:16px 0">Sin resultados</div>';return;}
+  var html='';
+  if(_wiz.legCam==='todas'){
+    [['Diputados','Cámara de Diputados'],['Senado','Senado de la República']].forEach(function(cm){
+      var g=legs.filter(function(l){return l.camara===cm[0];});
+      if(!g.length)return;
+      html+='<div style="font-size:11px;font-weight:700;color:var(--green);margin:8px 0 6px">'+cm[1]+' <span style="color:var(--dim);font-weight:500;font-size:10px">· '+g.length+'</span></div>'
+        +g.slice(0,60).map(_wizLegRow).join('');
+    });
+  }else{
+    html=legs.slice(0,80).map(_wizLegRow).join('');
+  }
+  el.innerHTML=html;
+}
+// ── Referencias: sub-tabs (NOMs con filtros de tema · Monitoreo interactivo) ──
+function _wizSetRefTab(t){_wiz.refTab=t;_wizPaintBody();_wizPaintFoot();}
+function _wizSetRefTema(t){_wiz.refTema=t;_wizPaintRef();}
+function _wizPaintRef(){
+  var el=document.getElementById('cw-ref-body');if(!el)return;
+  el.innerHTML=_wiz.refTab==='noms'?_wizRefNomsHTML():_wizRefMonitoreoHTML();
+}
+function _wizRefNomsHTML(){
+  var norms=(typeof NORMAS!=='undefined'?NORMAS:[]);
+  var order=['Agua','Aire','Residuos','Logística','Comercio','Energía','Alimentos','Laboral'];
+  var present=order.filter(function(t){return norms.some(function(n){return n.tema===t;});});
+  var bar='<div class="stab-bar" style="gap:2px 16px;margin-bottom:12px">'
+    +'<button class="stab'+(_wiz.refTema==='todos'?' on':'')+'" onclick="_wizSetRefTema(\'todos\')">Todos</button>'
+    +present.map(function(t){return '<button class="stab'+(_wiz.refTema===t?' on':'')+'" onclick="_wizSetRefTema(\''+t+'\')">'+t+'</button>';}).join('')
+    +'</div>';
+  var list=norms.filter(function(n){return _wiz.refTema==='todos'||n.tema===_wiz.refTema;});
+  var grouped={};list.forEach(function(n){(grouped[n.tema]=grouped[n.tema]||[]).push(n);});
+  var body='';
+  order.forEach(function(tema){
+    if(!grouped[tema])return;
+    if(_wiz.refTema==='todos')body+='<div style="font-size:12px;font-weight:700;color:var(--green);margin:12px 0 7px">'+tema+' <span style="color:var(--dim);font-weight:500;font-size:10px">· '+grouped[tema].length+'</span></div>';
+    body+=grouped[tema].map(function(n){
+      var on=_wiz.sel.noms.has(n.id);
+      return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'noms\',\''+n.id.replace(/'/g,"\\'")+'\')" style="align-items:flex-start;margin-bottom:5px">'
+        +'<span class="mark" style="margin-top:2px">'+(on?'●':'○')+'</span>'
+        +'<div style="flex:1;min-width:0">'
+          +'<div style="font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--green)">'+n.id+'</div>'
+          +'<div style="font-size:11.5px;color:var(--text);margin-top:2px;line-height:1.35">'+n.objeto+'</div>'
+          +(n.afecta?'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px;line-height:1.3">'+n.afecta+'</div>':'')
+        +'</div></div>';
+    }).join('');
+  });
+  return bar+body;
+}
+function _wizStatesForImpuesto(tipo){
+  var out=[];if(typeof impuestosDB==='undefined')return out;
+  _wiz.sel.estados.forEach(function(st){var a=impuestosDB[st];if(Array.isArray(a)&&a.some(function(t){return t&&t.tipo===tipo;}))out.push(st);});
+  return out;
+}
+function _impNationwide(tipo){var n=0;if(typeof impuestosDB==='undefined')return 0;for(var k in impuestosDB){if(k==='_meta')continue;var a=impuestosDB[k];if(Array.isArray(a)&&a.some(function(t){return t&&t.tipo===tipo;}))n++;}return n;}
+function _wizStatesForMaterial(mat){
+  var out=[],est=(_materialesData&&_materialesData.estados)||{};
+  _wiz.sel.estados.forEach(function(st){var e=est[st];if(e&&(e.materiales||[]).indexOf(mat)>=0)out.push(st);});
+  return out;
+}
+function _matNationwide(mat){var est=(_materialesData&&_materialesData.estados)||{},n=0;for(var k in est){if(((est[k]||{}).materiales||[]).indexOf(mat)>=0)n++;}return n;}
+function _wizMonRow(setKey,id,title,sub,badge,on){
+  var idEsc=String(id).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\''+setKey+'\',\''+idEsc+'\')" style="align-items:flex-start;margin-bottom:6px">'
+    +'<span class="mark" style="margin-top:1px">'+(on?'●':'○')+'</span>'
+    +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);font-weight:500;line-height:1.3">'+title+'</div>'
+    +(sub?'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px;line-height:1.35">'+sub+'</div>':'')+'</div>'
+    +(badge?'<div style="flex-shrink:0;margin-left:8px;text-align:right">'+badge+'</div>':'')
+    +'</div>';
+}
+function _wizRefMonitoreoHTML(){
+  var selCount=_wiz.sel.estados.size;
+  var stHint=selCount?('Cruzado con tus <b>'+selCount+'</b> estado'+(selCount===1?'':'s')+' seleccionados.'):'Selecciona estados en el paso «Estados» para ver dónde aplica cada uno.';
+  var head='<div style="font-size:11.5px;color:var(--text-sec);line-height:1.5;margin-bottom:16px">Elige qué quieres <b>monitorear</b> y te decimos si aplica donde operas. '+stHint+'</div>';
+  var imps=_consImpuestoTipos();
+  var impHTML='<div style="font-size:12px;font-weight:700;color:var(--green);margin:0 0 3px">¿Quieres monitorear un impuesto ambiental?</div>'
+    +'<div style="font-size:10.5px;color:var(--text-muted);margin-bottom:9px">Impuestos verdes estatales — extracción, emisiones, depósito de residuos…</div>'
+    +imps.map(function(t){
+      var on=_wiz.sel.impuestos.has(t),mine=_wizStatesForImpuesto(t),nat=_impNationwide(t);
+      var badge=mine.length
+        ?'<span style="font-size:9.5px;font-weight:700;color:var(--green);white-space:nowrap">✓ '+mine.length+' de tus estados</span>'
+        :(selCount?'<span style="font-size:9.5px;color:var(--text-muted);white-space:nowrap">— no en los tuyos</span>':'');
+      var sub=mine.length?mine.map(function(s){return STATE_ABBR[s]||s;}).join(' · '):(nat+' entidad'+(nat===1?'':'es')+' en el país');
+      return _wizMonRow('impuestos',t,t,sub,badge,on);
+    }).join('');
+  var mats=_consMaterialesTipos();
+  var matHTML='<div style="font-size:12px;font-weight:700;color:var(--green);margin:22px 0 3px">¿Quieres monitorear un material prohibido?</div>'
+    +'<div style="font-size:10.5px;color:var(--text-muted);margin-bottom:9px">Plásticos de un solo uso y otros materiales vetados por entidad.</div>'
+    +(mats.length?mats.map(function(m){
+      var on=_wiz.sel.materiales.has(m),mine=_wizStatesForMaterial(m),nat=_matNationwide(m);
+      var badge=mine.length
+        ?'<span style="font-size:9.5px;font-weight:700;color:var(--green);white-space:nowrap">✓ prohibido en '+mine.length+'</span>'
+        :(selCount?'<span style="font-size:9.5px;color:var(--text-muted);white-space:nowrap">— no en los tuyos</span>':'');
+      var sub=mine.length?mine.map(function(s){return STATE_ABBR[s]||s;}).join(' · '):(nat+' entidad'+(nat===1?'':'es')+' lo prohíben');
+      return _wizMonRow('materiales',m,m,sub,badge,on);
+    }).join(''):'<div style="font-size:11px;color:var(--dim)">Dataset en expansión.</div>');
+  var instr=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]);
+  var instrHTML='<div style="font-size:12px;font-weight:700;color:var(--green);margin:22px 0 3px">Instrumentos legales a la mano</div>'
+    +'<div style="font-size:10.5px;color:var(--text-muted);margin-bottom:9px">Leyes y reglamentos que quieres tener siempre visibles en tu consola.</div>'
+    +instr.map(function(o){
+      var on=_wiz.sel.instrumentos.has(o.n);
+      var sub=(o.d||'').length>90?(o.d.slice(0,90)+'…'):(o.d||'');
+      return _wizMonRow('instrumentos',o.n,o.n,sub,'',on);
+    }).join('');
+  return head+impHTML+matHTML+instrHTML;
+}
+// ── Afinar: sugerencias de palabras clave ──
+function _wizAddKw(v){
+  if(v&&_wiz.sel.keywords.length<_WIZ_MAX_KW&&_wiz.sel.keywords.indexOf(v)<0)_wiz.sel.keywords.push(v);
+  _wizPaintChips();_wizPaintKwSug();_wizPaintFoot();
+}
+function _wizPaintKwSug(){
+  var el=document.getElementById('cw-kw-sug');if(!el)return;
+  var sug=[];
+  [..._wiz.sel.temas].forEach(function(id){var c=CATS.find(function(x){return x.id===id;});if(c)sug.push(c.name);});
+  [..._wiz.sel.estados].slice(0,4).forEach(function(s){sug.push(s);});
+  [..._wiz.sel.noms].slice(0,4).forEach(function(n){sug.push(n);});
+  sug=sug.filter(function(s,i){return sug.indexOf(s)===i&&_wiz.sel.keywords.indexOf(s)<0;}).slice(0,8);
+  if(!sug.length){el.innerHTML='';return;}
+  el.innerHTML='<div style="font-size:10px;color:var(--text-muted);margin:12px 0 6px">Sugeridas por tu selección — clic para agregar:</div>'
+    +'<div style="display:flex;flex-wrap:wrap;gap:6px">'+sug.map(function(s){
+      return '<span onclick="_wizAddKw(\''+String(s).replace(/'/g,"\\'")+'\')" style="cursor:pointer;font-size:10.5px;color:var(--text-sec);border:0.8px dashed var(--border2);padding:3px 8px">+ '+s+'</span>';
+    }).join('')+'</div>';
 }
 function _wizPaintChips(){
   var el=document.getElementById('cw-chips');
   if(!el)return;
   el.innerHTML=_wiz.sel.keywords.map(function(k,i){
-    return '<span class="cw-chip">'+k+'<span onclick="_wiz.sel.keywords.splice('+i+',1);_wizPaintChips();_wizPaintFoot()">×</span></span>';
+    return '<span class="cw-chip">'+k+'<span onclick="_wiz.sel.keywords.splice('+i+',1);_wizPaintChips();_wizPaintKwSug&&_wizPaintKwSug();_wizPaintFoot()">×</span></span>';
   }).join('');
 }
 function _wizKwKey(ev){
@@ -4051,9 +4223,9 @@ function _wizKwKey(ev){
     ev.preventDefault();
     var v=inp.value.replace(/,/g,'').trim();
     if(v&&_wiz.sel.keywords.length<_WIZ_MAX_KW&&_wiz.sel.keywords.indexOf(v)<0){_wiz.sel.keywords.push(v);}
-    inp.value='';_wizPaintChips();_wizPaintFoot();
+    inp.value='';_wizPaintChips();_wizPaintKwSug();_wizPaintFoot();
   }else if(ev.key==='Backspace'&&!inp.value){
-    _wiz.sel.keywords.pop();_wizPaintChips();_wizPaintFoot();
+    _wiz.sel.keywords.pop();_wizPaintChips();_wizPaintKwSug();_wizPaintFoot();
   }
 }
 function _wizPaintRiesgos(){
@@ -4079,7 +4251,10 @@ function _wizToggle(paso,id){
     if(paso==='legisladores'&&set.size>=_WIZ_MAX_LEG){_wizPaintFoot();return;}
     set.add(id);
   }
-  if(paso==='legisladores')_wizPaintLegList();else _wizPaintBody();
+  var REF_KEYS={noms:1,instrumentos:1,impuestos:1,materiales:1};
+  if(paso==='legisladores')_wizPaintLegList();
+  else if(REF_KEYS[paso])_wizPaintRef();
+  else _wizPaintBody();
   _wizPaintFoot();
 }
 function _wizBack(){if(_wiz.paso>0){_wiz.paso--;_wiz.search='';_wizPaint();}}
