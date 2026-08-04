@@ -88,8 +88,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .nav-btn-consola:hover{background:rgba(0,158,144,0.07)}
 .nav-btn-login{height:32px;padding:0 14px;border:1px solid var(--border-med);border-radius:8px;background:none;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;font-family:var(--sans);transition:background 0.15s,color 0.15s;white-space:nowrap}
 .nav-btn-login:hover{background:var(--border);color:var(--text)}
-.nav-btn-theme{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border-med);border-radius:8px;background:none;color:var(--text-sec);cursor:pointer;transition:background 0.15s,color 0.15s;flex-shrink:0;padding:0}
-.nav-btn-theme:hover{background:var(--border);color:var(--text)}
+.nav-btn-theme{width:30px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:none;background:none;color:var(--text-sec);cursor:pointer;transition:color 0.15s;flex-shrink:0;padding:0}
+.nav-btn-theme:hover{color:var(--text)}
 .nav-btn-theme svg{display:block}
 .nav-btn-register{height:32px;padding:0 14px;border:none;border-radius:8px;background:var(--green);font-size:12px;font-weight:600;color:#fff;cursor:pointer;font-family:var(--sans);transition:background 0.15s;white-space:nowrap}
 .nav-btn-register:hover{background:#00b3a3}
@@ -2186,21 +2186,38 @@ var _JURISPRUDENCIA=[
   {t:'Declaratoria General de Inconstitucionalidad 8/2022',org:'SCJN · Pleno',anio:2023,criterio:'Efectos generales',resumen:'Eliminó con efectos generales las fracciones XI y XII del artículo 98 de la Ley de Residuos de Oaxaca (prohibiciones absolutas de materiales), extendiendo el criterio a todos los casos comparables.',url:'https://www.dof.gob.mx/'},
   {t:'Amparo · decreto de popotes (Culiacán)',org:'SCJN',anio:2023,criterio:'Invasión de competencias',resumen:'Aplicó el mismo criterio a un decreto municipal de Culiacán que prohibía popotes de un solo uso: la prohibición absoluta de un material invade la competencia federal en materia de residuos de manejo especial.',url:'https://www.scjn.gob.mx/'}
 ];
+// ── Gramática de fila canónica de SCOPE (plana, sin cajas; estatus a la derecha) ──
+function _oblStatus(text,color){
+  return '<span style="display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:0.07em;color:'+color+';white-space:nowrap">'
+    +'<span style="width:6px;height:6px;border-radius:50%;background:'+color+';flex-shrink:0"></span>'+String(text).toUpperCase()+'</span>';
+}
+function _oblRow(o){
+  var right='';
+  if(o.right||o.rightSub||o.url){
+    right='<div style="text-align:right;flex-shrink:0;white-space:nowrap;padding-top:1px">'
+      +(o.right||'')
+      +(o.rightSub?'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:4px">'+o.rightSub+'</div>':'')
+      +(o.url?'<div style="margin-top:'+((o.right||o.rightSub)?'6px':'0')+'"><a href="'+o.url+'" target="_blank" rel="noopener" style="font-size:13px;color:var(--green);text-decoration:none">↗</a></div>':'')
+      +'</div>';
+  }
+  var base='display:flex;align-items:flex-start;gap:20px;padding:14px 0;border-top:0.8px solid var(--border)';
+  var attrs=o.onclick?(' onclick="'+o.onclick+'" style="'+base+';cursor:pointer"'):(' style="'+base+'"');
+  return '<div'+attrs+'>'
+    +'<div style="flex:1;min-width:0">'
+      +'<div style="font-size:14px;font-weight:600;color:var(--text);line-height:1.35">'+o.title+'</div>'
+      +(o.desc?'<div style="font-size:12.5px;color:var(--text-sec);line-height:1.55;margin-top:4px;max-width:720px">'+o.desc+'</div>':'')
+      +(o.meta?'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:6px;letter-spacing:0.02em">'+o.meta+'</div>':'')
+    +'</div>'
+    +right
+    +'</div>';
+}
 function _jurisprudenciaHTML(){
   return '<div>'
     +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Precedentes judiciales</div>'
-    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px">Criterios de la SCJN sobre regulación ambiental estatal — para leer qué prohibiciones locales son constitucionales y cuáles no.</div>'
-    +'<div style="font-size:11.5px;color:var(--text-sec);background:rgba(0,158,144,0.05);border-left:2px solid var(--green);padding:8px 12px;margin-bottom:16px;line-height:1.5;max-width:760px">El criterio aplica a <b>prohibiciones absolutas de materiales</b> (invasión de competencia federal), <b>no</b> a la regulación estatal de gestión, recolección, plan de manejo o infraestructura post-consumo — competencia propia de los estados.</div>'
-    +_JURISPRUDENCIA.map(function(j,i){
-      return '<div style="padding:16px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
-        +'<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:5px">'
-        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--green);border:0.8px solid var(--green);padding:2px 7px">'+j.criterio.toUpperCase()+'</span>'
-        +'<span style="font-size:15px;font-weight:600;color:var(--text)">'+j.t+'</span></div>'
-        +'<div style="font-size:13px;color:var(--text-sec);line-height:1.55;max-width:760px;margin-bottom:6px">'+j.resumen+'</div>'
-        +'<div style="display:flex;gap:14px;align-items:center;font-family:var(--mono);font-size:10px;color:var(--text-muted)">'
-        +'<span>'+j.org+' · '+j.anio+'</span>'
-        +'<a href="'+j.url+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Consultar fuente →</a></div>'
-        +'</div>';
+    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:12px">Criterios de la SCJN sobre regulación ambiental estatal — para leer qué prohibiciones locales son constitucionales y cuáles no.</div>'
+    +'<div style="font-size:11.5px;color:var(--text-sec);background:rgba(0,158,144,0.05);border-left:2px solid var(--green);padding:8px 12px;margin-bottom:8px;line-height:1.5;max-width:760px">El criterio aplica a <b>prohibiciones absolutas de materiales</b> (invasión de competencia federal), <b>no</b> a la regulación estatal de gestión, recolección, plan de manejo o infraestructura post-consumo — competencia propia de los estados.</div>'
+    +_JURISPRUDENCIA.map(function(j){
+      return _oblRow({title:j.t,desc:j.resumen,meta:j.org+' · '+j.anio,right:_oblStatus(j.criterio,'var(--green)'),url:j.url});
     }).join('')
   +'</div>';
 }
@@ -2217,14 +2234,9 @@ function _sustanciasHTML(){
   return '<div>'
     +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Sustancias bajo restricción</div>'
     +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Químicos y aditivos con restricción o escrutinio creciente, con su base internacional — anticipan regulación en México.</div>'
-    +_SUSTANCIAS.map(function(s,i){
-      return '<div style="padding:14px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
-        +'<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:5px">'
-        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--red);border:0.8px solid var(--red);padding:2px 7px">'+s.estatus.toUpperCase()+'</span>'
-        +'<span style="font-size:15px;font-weight:600;color:var(--text)">'+s.n+'</span></div>'
-        +'<div style="font-size:12.5px;color:var(--text-sec);line-height:1.55;max-width:760px">'+s.base+'</div>'
-        +(s.url?'<a href="'+s.url+'" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:10px;color:var(--green);text-decoration:none;margin-top:5px;display:inline-block">Fuente →</a>':'')
-        +'</div>';
+    +_SUSTANCIAS.map(function(s){
+      var color=/escrutinio/i.test(s.estatus)?'var(--amber)':'var(--red)';
+      return _oblRow({title:s.n,desc:s.base,right:_oblStatus(s.estatus,color),url:s.url});
     }).join('')+'</div>';
 }
 // Economía circular · casos de referencia (generalizados, sin nombrar empresas)
@@ -2239,23 +2251,19 @@ function _ecocircularHTML(){
   return '<div>'
     +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Economía circular · casos de referencia</div>'
     +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Mecanismos de circularidad real en la industria — útiles como benchmark operativo.</div>'
-    +'<div class="est-layout" style="grid-template-columns:1fr 1fr;gap:14px 28px">'
     +_ECOCIRCULAR.map(function(e){
-      return '<div><div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px">'+e.n+'</div>'
-        +'<div style="font-size:12px;color:var(--text-sec);line-height:1.5">'+e.d+'</div></div>';
-    }).join('')+'</div></div>';
+      return _oblRow({title:e.n,desc:e.d});
+    }).join('')+'</div>';
 }
 function _instrumentosHTML(){
-  return '<div class="est-layout" style="grid-template-columns:1fr 1fr;gap:14px 24px">'
+  return '<div>'
+    +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Instrumentos legales</div>'
+    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Obligaciones y figuras regulatorias vigentes, con su sustento normativo.</div>'
     +_OBLIGACIONES.map(function(o){
       var link=o.via==='agenda'
-        ? '<a onclick="goAgenda(\'pendientes\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11.5px;font-weight:600">Reglamentación pendiente →</a>'
-        : '<a onclick="goObligaciones(\''+o.via+'\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11.5px;font-weight:600">Ver sustento →</a>';
-      return '<div style="border:0.8px solid var(--border);border-radius:11px;padding:15px 17px;min-width:0">'
-        +'<div style="font-size:15px;font-weight:600;color:var(--text);line-height:1.25;margin-bottom:7px">'+o.n+'</div>'
-        +'<div style="font-size:12.5px;color:var(--text-sec);line-height:1.55;margin-bottom:10px">'+o.d+'</div>'
-        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-bottom:6px">Sustento · '+o.s+'</div>'+link
-        +'</div>';
+        ? '<a onclick="goAgenda(\'pendientes\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11.5px;font-weight:600;white-space:nowrap">Reglamentación pendiente →</a>'
+        : '<a onclick="goObligaciones(\''+o.via+'\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11.5px;font-weight:600;white-space:nowrap">Ver sustento →</a>';
+      return _oblRow({title:o.n,desc:o.d,meta:'Sustento · '+o.s,right:link});
     }).join('')+'</div>';
 }
 var _oblView='instrumentos';
@@ -2318,16 +2326,9 @@ function _agendaPend(){
   var ord=function(e){return _AG_ESTORD.hasOwnProperty(e)?_AG_ESTORD[e]:9;};
   var list=_PENDIENTES.filter(function(p){return _agendaEst==='todos'||p.e===_agendaEst;})
     .slice().sort(function(a,b){return ord(a.e)-ord(b.e);});
-  var rows=list.map(function(p,i){
-    return '<div style="padding:15px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
-      +'<div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:5px">'
-        +'<span style="width:7px;height:7px;border-radius:50%;background:'+col(p.e)+';flex-shrink:0"></span>'
-        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;color:'+col(p.e)+'">'+p.e+'</span>'
-        +'<span style="font-size:15px;font-weight:600;color:var(--text)">'+p.t+'</span></div>'
-      +'<div style="font-size:13px;color:var(--text-sec);line-height:1.55;max-width:760px;margin:0 0 5px 16px">'+p.d+'</div>'
-      +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-left:16px">'+p.org
-        +((p.docs&&p.docs.length)?'  ·  '+p.docs.map(function(dc){return '<a href="'+dc.url+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">↓ '+dc.label+'</a>';}).join('  '):'')
-      +'</div></div>';
+  var rows=list.map(function(p){
+    var meta=p.org+((p.docs&&p.docs.length)?'  ·  '+p.docs.map(function(dc){return '<a href="'+dc.url+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">↓ '+dc.label+'</a>';}).join('  '):'');
+    return _oblRow({title:p.t,desc:p.d,meta:meta,right:_oblStatus(p.e,col(p.e))});
   }).join('');
   host.innerHTML=filt
     +'<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px">'+list.length+' instrumento'+(list.length===1?'':'s')+'</div>'
@@ -2341,12 +2342,9 @@ function _agendaDof(){
   var lista=(deHoy.length?deHoy:items).slice(0,12);
   host.innerHTML='<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">'
       +(deHoy.length?'Publicado hoy · '+deHoy.length:'Últimas publicaciones de nuestros temas')+'</div>'
-    +(lista.length?lista.map(function(d,i){
+    +(lista.length?lista.map(function(d){
       var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
-      return '<div onclick="window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/\x27/g,'%27')+'\',\'_blank\')" style="cursor:pointer;padding:13px 0'+(i?';border-top:0.8px solid var(--border)':'')+'">'
-        +'<div style="font-size:13.5px;color:var(--text);line-height:1.5;margin-bottom:4px">'+(d.titulo||'')+'</div>'
-        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)"><span style="font-weight:700;color:var(--text-sec)">'+(d.dependencia||'DOF')+'</span> · '+f+'</div>'
-        +'</div>';
+      return _oblRow({title:(d.titulo||''),meta:(d.dependencia||'DOF'),right:_oblStatus('DOF','var(--green)'),rightSub:f,onclick:'window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/\x27/g,'%27')+'\',\'_blank\')'});
     }).join(''):'<div style="font-size:13px;color:var(--text-muted);padding:20px 0">Sin publicaciones recientes en nuestros temas.</div>');
 }
 // ── NORMAS ────────────────────────────────────────────────────
