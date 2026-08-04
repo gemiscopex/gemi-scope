@@ -824,7 +824,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       <button class="sp-tab" onclick="showSPTab('impuestos',this)">Impuestos</button>
       <button class="sp-tab" onclick="showSPTab('materiales',this)">Materiales Prohibidos</button>
       <button class="sp-tab" onclick="showSPTab('sectorial',this)">Sector Industrial</button>
-      <button class="sp-tab" onclick="showSPTab('gaceta',this)">Gaceta</button>
+      <button class="sp-tab" onclick="showSPTab('sitios',this)">Sitios contaminados</button>
     </div>
     <div id="sp-perfil" class="sp-content active"></div>
     <div id="sp-actividad" class="sp-content"></div>
@@ -832,7 +832,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
     <div id="sp-impuestos" class="sp-content"></div>
     <div id="sp-materiales" class="sp-content"></div>
     <div id="sp-sectorial" class="sp-content"></div>
-    <div id="sp-gaceta" class="sp-content"></div>
+    <div id="sp-sitios" class="sp-content"></div>
   </div>
 </div>
 <div class="main">
@@ -2639,14 +2639,14 @@ function renderSPImpuestos(state){
   const footer=hasUMA?`<div style="margin-top:12px;font-size:10px;color:var(--text-muted)">UMA 2026 (INEGI): <b>$117.31 MXN/día</b></div>`:'';
   document.getElementById('sp-impuestos').innerHTML=cards+footer;
 }
-function renderSPGaceta(state,data){
-  const url=data.congreso||'#';
-  document.getElementById('sp-gaceta').innerHTML=`
-    <a href="${url}" target="_blank" class="sp-gaceta-link">
-      <span style="font-size:22px"></span>
-      <div><div>Portal del Congreso · ${state}</div><div style="font-size:11px;font-weight:400;color:var(--text-sec);margin-top:2px">${url}</div></div>
-      <span style="margin-left:auto;font-size:18px;color:var(--green)">↗</span>
-    </a>`;
+function renderSPSitios(state){
+  var el=document.getElementById('sp-sitios');
+  if(!el)return;
+  var d=(_sitiosData&&_sitiosData.estados&&_sitiosData.estados[state]);
+  if(!_sitiosData){el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando inventario…</div>';return;}
+  if(!d){el.innerHTML='<div style="font-size:12.5px;color:var(--text-sec);line-height:1.6;padding:8px 0">Sin sitios contaminados registrados para '+state+' en el Inventario Nacional de la SEMARNAT.</div>'
+    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:12px">Fuente: SEMARNAT · Inventario Nacional de Sitios Contaminados y Remediados (datos.gob.mx)</div>';return;}
+  el.innerHTML=_sitiosBlock(state,true);
 }
 function openStatePanel(stateName){
   var data=estadoData[stateName]||{};
@@ -2659,7 +2659,7 @@ function openStatePanel(stateName){
   renderSPActividad(stateName);
   renderSPMateriales(stateName);
   renderSPSectorial(stateName);
-  renderSPGaceta(stateName,data);
+  renderSPSitios(stateName);
   showSPTab('perfil',document.querySelector('#state-modal-bg .sp-tab'));
   var bg=document.getElementById('state-modal-bg');
   bg.style.display='flex';
@@ -3006,10 +3006,10 @@ function renderSPPerfil(state,data,sc){
     +statRow('Poblaci\u00f3n econ\u00f3micamente activa',perfil.pea?fmtNum(perfil.pea):'\u2014',perfil.pea&&peaMax?(perfil.pea/peaMax)*100:null,perfil.pea?'ENOE '+(perfil.pea_periodo||''):'Integraci\u00f3n en curso');
   document.getElementById('sp-perfil').innerHTML=rows
     +`<div style="margin-top:16px;padding-top:14px;font-size:12.5px;line-height:1.65;color:var(--text-sec)">${narrative}</div>`
-    +_sitiosBlock(state);
+    +(data.congreso?`<div style="margin-top:18px;padding-top:14px;border-top:0.8px solid var(--border)"><a href="${data.congreso}" target="_blank" rel="noopener" style="font-size:12.5px;font-weight:600;color:var(--green);text-decoration:none">Portal del Congreso de ${state} ↗</a><div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px;word-break:break-all">${data.congreso}</div></div>`:'');
 }
 // Sitios contaminados/remediados por entidad (SEMARNAT · datos.gob.mx, ingesta real)
-function _sitiosBlock(state){
+function _sitiosBlock(state,bare){
   var d=(_sitiosData&&_sitiosData.estados&&_sitiosData.estados[state]);
   if(!d)return '';
   var stat=function(v,l,c){return '<div style="flex:1"><div style="font-size:22px;font-weight:700;color:'+(c||'var(--text)')+';font-variant-numeric:tabular-nums;line-height:1">'+v+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">'+l+'</div></div>';};
@@ -3024,7 +3024,7 @@ function _sitiosBlock(state){
     return '<div style="display:flex;align-items:baseline;gap:12px;padding:7px 0;border-top:0.8px solid var(--border)"><span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);flex-shrink:0">'+(r.anio||'—')+'</span>'
       +'<div style="flex:1;min-width:0;font-size:11.5px;color:var(--text);line-height:1.4">'+(r.municipio||'—')+' <span style="color:var(--text-muted)">· '+(r.contaminante||'')+(r.modalidad?' · '+r.modalidad:'')+'</span></div></div>';
   }).join('');
-  return '<div style="margin-top:26px;padding-top:16px;border-top:0.8px solid var(--border)">'
+  return (bare?'<div>':'<div style="margin-top:26px;padding-top:16px;border-top:0.8px solid var(--border)">')
     +'<div style="font-size:9.5px;font-weight:600;letter-spacing:0.09em;color:var(--text-muted);text-transform:uppercase;margin-bottom:13px">Sitios contaminados · SEMARNAT</div>'
     +'<div style="display:flex;gap:18px;margin-bottom:16px">'+stat(d.contaminados,'Contaminados','#d97706')+stat(d.remediados,'Remediados','var(--green)')+stat(d.pct_remediado+'%','Remediado',null)+'</div>'
     +(bars?'<div style="margin-bottom:6px">'+bars+'</div>':'')
