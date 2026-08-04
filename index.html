@@ -752,8 +752,11 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
         <div class="nav-drop-it" onclick="goAgenda('congreso')">Congreso de la Unión<span class="nd-sub">Actividad federal</span></div>
         <div class="nav-drop-it" onclick="goAgenda('locales')">Gacetas Locales<span class="nd-sub">Congresos estatales</span></div>
         <div class="nav-drop-it" onclick="goAgenda('pendientes')">Reglamentaciones Pendientes<span class="nd-sub">Instrumentos por publicar</span></div>
-        <div class="nav-drop-it" onclick="goAgenda('dof')">DOF · hoy<span class="nd-sub">Diario Oficial</span></div>
       </div>
+    </div>
+    <div class="nav-drop-wrap">
+      <button class="tab-btn" onclick="goAgenda('dof')">DOF ▾</button>
+      <div class="nav-drop dof-drop" id="dof-drop"></div>
     </div>
     <button class="tab-btn" onclick="goInternacional()">Internacional</button>
     <div class="nav-drop-wrap">
@@ -764,8 +767,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
         <div class="nav-drop-it" onclick="showActores('legislativo')">Legislativo<span class="nd-sub">Comisiones del Congreso</span></div>
       </div>
     </div>
-    <!-- dropdown DOF conservado (oculto) para no perder la data del hover; ahora vive en Agenda -->
-    <div class="nav-drop dof-drop" id="dof-drop" style="display:none"></div>
     <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos SCOPE" style="margin-left:auto;margin-right:2px"><span class="radar-fab-dot"></span></button>
   </div>
   <div class="nav-right">
@@ -1971,7 +1972,9 @@ function renderDofMenu(){
         +'<div class="dof-it-t">'+(d.titulo||'')+'</div>'
         +'<div class="dof-it-m">'+(d.dependencia||'DOF')+' · '+f+(d.relevante?' · <span style="color:var(--amber)">RELEVANTE</span>':'')+'</div>'
         +'</div>';
-    }).join('');
+    }).join('')
+    +'<div class="nav-drop-sep"></div>'
+    +'<div class="nav-drop-it" onclick="goAgenda(\'dof\')" style="color:var(--green);font-weight:600">Ver todo en Agenda →</div>';
 }
 
 // ═══ CIRUGÍA MAYOR · render de las categorías nuevas ═══════════════════════
