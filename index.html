@@ -859,7 +859,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
         </div>
         <!-- Congreso de la Unión: gráfica indicador (clic en una semana → instrumentos) -->
         <div class="card">
-          <div class="card-label">Actividad Legislativa · Congreso de la Unión</div>
+          <div class="card-label">Monitor del Congreso Federal</div>
           <div id="congreso-chart"></div>
         </div>
 
@@ -3534,8 +3534,6 @@ function renderCongresoChart(){
     hov+='<rect x="'+(X(i3)-band/2).toFixed(1)+'" y="'+PT+'" width="'+band.toFixed(1)+'" height="'+IH+'" fill="transparent" style="cursor:pointer" onmousemove="_congHover(event,'+i3+')" onmouseleave="_congHoverHide()" onclick="_congOpen(event,'+i3+')"/>';
   var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
     +grid
-    +'<path d="'+area(senPts)+'" fill="#E8843D" fill-opacity="0.07"/>'
-    +'<path d="'+area(dipPts)+'" fill="var(--green)" fill-opacity="0.09"/>'
     +'<path d="'+smooth(senPts)+'" fill="none" stroke="#E8843D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
     +'<path d="'+smooth(dipPts)+'" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
     +ptsS+ptsD+xlab+hov+'</svg>';
