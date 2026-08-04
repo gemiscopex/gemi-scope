@@ -136,12 +136,25 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .dotmap-title{position:absolute;left:22px;top:18px;display:flex;flex-direction:column;gap:2px;z-index:3;pointer-events:none}
 .dotmap-mx{font-size:30px;font-weight:700;letter-spacing:0.02em;color:var(--white);line-height:1.1}
 #map{position:absolute;inset:0;z-index:2}
-.dotmap-legend{position:absolute;left:22px;bottom:14px;display:flex;gap:18px;font-family:var(--mono);font-size:10px;color:var(--text-muted);z-index:3}
+.dotmap-legend{position:absolute;left:22px;top:16px;display:flex;gap:16px;font-family:var(--mono);font-size:8.5px;letter-spacing:0.03em;color:var(--text-muted);z-index:3;pointer-events:none}
+.dotmap-legend i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle}
 .dot-state{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;z-index:2}
 .dot-state:hover .dot-abbr{color:var(--white)}
 .dot-abbr{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:0.03em;transition:color 0.15s}
 .ocean-lbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:#aec3d1;pointer-events:none;white-space:nowrap;z-index:1;font-style:italic}
 #dotmap-annot{position:absolute;inset:0;pointer-events:none;z-index:1}
+/* Alertas de actividad por entidad (relativas al máximo de notas estatales) */
+.dot-wrap{position:relative;width:9px;height:9px}
+.dot-core{position:absolute;left:0;top:0;width:9px;height:9px;border-radius:50%;border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.28);z-index:2}
+.dot-ring{position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--green);z-index:1;animation:pulseRing 1.9s ease-out infinite}
+.dot-medio .dot-core{animation:blinkSoft 2.8s ease-in-out infinite}
+@keyframes blinkSoft{0%,100%{opacity:1}50%{opacity:0.46}}
+/* Escala tipo mapa (km, cambia con el zoom) */
+.map-scale{position:absolute;left:22px;bottom:16px;z-index:4;pointer-events:none;font-family:var(--mono);font-size:8.5px;letter-spacing:0.03em;color:var(--text-muted)}
+.map-scale-lab{display:flex;justify-content:space-between;margin-bottom:3px;line-height:1}
+.map-scale-bar{display:flex;height:5px;border:1px solid rgba(20,20,20,0.5)}
+.map-scale-bar .seg{flex:1}
+.map-scale-bar .seg.alt{background:rgba(20,20,20,0.5)}
 @keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(220,38,38,.4)}70%{box-shadow:0 0 0 14px rgba(220,38,38,0)}100%{box-shadow:0 0 0 0 rgba(220,38,38,0)}}
 @keyframes pulseRing{0%{transform:scale(0.5);opacity:0.65}100%{transform:scale(2.3);opacity:0}}
 @keyframes pulseAlt{0%,100%{opacity:0.85}50%{opacity:0.32}}
@@ -768,10 +781,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
         <!-- Mapa político -->
         <div class="card dotmap-card">
           <div class="dotmap-grid"></div>
-          <div class="dotmap-title">
-            <span class="card-label" style="margin-bottom:0">Mapa Político de México</span>
-            <span style="font-size:12px;color:var(--text-muted);margin-top:4px">Selecciona un estado</span>
-          </div>
           <div id="map-viewport">
             <div id="map-zoom">
               <div id="dotmap-annot"></div>
@@ -779,6 +788,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
             </div>
           </div>
           <div class="dotmap-legend" id="dotmap-legend"></div>
+          <div class="map-scale" id="map-scale"></div>
           <div class="map-zoom-ctrl">
             <button onclick="mapZoom(1)" title="Acercar">+</button>
             <button onclick="mapZoom(-1)" title="Alejar">−</button>
@@ -1401,6 +1411,7 @@ function _applyMapZoom(animate){
   el.style.transition=animate?'transform 0.25s ease':'none';
   el.style.transform='translate('+_mapPanX+'px,'+_mapPanY+'px) scale('+_mapZoom+')';
   vp.style.cursor=_mapZoom>1?'grab':'';
+  if(typeof _updateMapScale==='function')_updateMapScale();
 }
 function mapZoom(delta){
   var steps=[1,1.5,2,3,4,5];
@@ -1496,11 +1507,44 @@ function _renderGeoOutline(){
     +'<style>path{vector-effect:non-scaling-stroke}</style>'
     +'<path d="'+d+'" fill="none" stroke="#C8D5DF" stroke-width="1"/></svg>';
 }
+// Conteo de notas por entidad (prioriza el scraping de noticias estatales)
+function _mapAlertCounts(){
+  var counts={};
+  var items=(typeof _noticiasEstatales!=='undefined'&&_noticiasEstatales&&_noticiasEstatales.items)||[];
+  if(items.length){items.forEach(function(it){var e=it&&it.estado;if(e)counts[e]=(counts[e]||0)+1;});return counts;}
+  return (typeof stateNews!=='undefined'&&stateNews)||{};
+}
+// Nivel de alerta relativo al máximo: alto (verde, parpadea) · medio (verde claro, parpadeo suave) · pasivo (negro)
+function _dotTier(c,mx){
+  if(mx>0&&c>0){var r=c/mx;if(r>=0.6)return{k:'alto',c:'var(--green)'};if(r>=0.3)return{k:'medio',c:'#5FC7BA'};}
+  return {k:'pasivo',c:'#1c1c1c'};
+}
+function _updateMapScale(){
+  var vp=document.getElementById('map-viewport'),host=document.getElementById('map-scale');
+  if(!vp||!host)return;
+  var wpx=vp.clientWidth||520;
+  var totalKm=3600; // ancho aproximado del contenedor a zoom 1 (proyección de México)
+  var kmPerPx=(totalKm/wpx)/(_mapZoom||1);
+  var target=110*kmPerPx; // barra objetivo ~110px
+  var nices=[10,20,50,100,200,250,500,1000,2000,3000];
+  var full=nices[0];
+  for(var i=0;i<nices.length;i++){if(nices[i]<=target)full=nices[i];}
+  var barPx=Math.round(full/kmPerPx);
+  if(barPx<44){var ni=nices.indexOf(full);full=nices[Math.min(ni+1,nices.length-1)];barPx=Math.round(full/kmPerPx);}
+  var half=full/2;
+  var fmt=function(v){return v>=1000?(v/1000+' mil'):(''+v);};
+  host.style.width=barPx+'px';
+  host.innerHTML='<div class="map-scale-lab"><span>0</span><span>'+fmt(half)+'</span><span>'+fmt(full)+' km</span></div>'
+    +'<div class="map-scale-bar"><span class="seg"></span><span class="seg alt"></span></div>';
+}
 function buildMap(){
   try{
   var el=document.getElementById('map');
   if(!el)return;
-  // Todos los estados iguales, en verde — sin niveles de señal
+  // Alertas por entidad, escaladas al estado con más notas
+  var AC=_mapAlertCounts(),mx=0;
+  Object.keys(STATE_COORDS).forEach(function(s){var c=AC[s]||0;if(c>mx)mx=c;});
+  window._mapAlertMax=mx;
   var html='';
   Object.keys(STATE_COORDS).forEach(function(state){
     var coords=STATE_COORDS[state];
@@ -1508,10 +1552,11 @@ function buildMap(){
     var abbr=STATE_ABBR[state]||state.substring(0,3).toUpperCase();
     var x=_projX(coords[1]).toFixed(2),y=_projY(coords[0]).toFixed(2);
     var nameEsc=state.replace(/'/g,"\\'");
-    html+='<div class="dot-state" style="left:'+x+'%;top:'+y+'%"'
+    var t=_dotTier(AC[state]||0,mx);
+    html+='<div class="dot-state dot-'+t.k+'" style="left:'+x+'%;top:'+y+'%"'
       +' onclick="openStatePanel(\''+nameEsc+'\')"'
       +' onmousemove="_mapTT(event,\''+nameEsc+'\')" onmouseleave="_mapTTHide()">'
-      +'<div style="width:8px;height:8px;border-radius:50%;background:var(--green);border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)"></div>'
+      +'<div class="dot-wrap">'+(t.k==='alto'?'<span class="dot-ring"></span>':'')+'<span class="dot-core" style="background:'+t.c+'"></span></div>'
       +'<span class="dot-abbr">'+abbr+'</span></div>';
   });
   // Nombres de los océanos y mares que rodean a México
@@ -1520,7 +1565,10 @@ function buildMap(){
   });
   el.innerHTML=html;
   var lg=document.getElementById('dotmap-legend');
-  if(lg)lg.innerHTML='';
+  if(lg)lg.innerHTML='<span><i style="background:var(--green)"></i>Actividad alta</span>'
+    +'<span><i style="background:#5FC7BA"></i>Media</span>'
+    +'<span><i style="background:#1c1c1c"></i>Pasiva</span>';
+  _updateMapScale();
   _loadGeoOutline();
   _renderGeoOutline();
   }catch(e){console.error('Map error:',e);}
@@ -3197,33 +3245,47 @@ function renderCongresoChart(){
   });
   _congChart={monday0:monday0,weeks:weeks,nsem:NSEM};
   var maxV=Math.max(1,weeks.reduce(function(m,w){return Math.max(m,w.dip,w.sen);},0));
-  var W=680,H=96,PL=42,PR=16,PT=10,PB=18,IW=W-PL-PR,IH=H-PT-PB;
+  var W=680,H=120,PL=34,PR=14,PT=12,PB=22,IW=W-PL-PR,IH=H-PT-PB;
   function X(i){return PL+(i/(NSEM-1))*IW;}
+  function Y(v){return PT+IH-(maxV?(v/maxV):0)*IH;}
   var dip=weeks.map(function(w){return w.dip;}),sen=weeks.map(function(w){return w.sen;});
-  // Dot plot (ticks): dos carriles (Diputados / Senado), un punto por semana con
-  // radio proporcional a la actividad. Limpio y legible con datos escasos.
-  var laneDip=PT+IH*0.30, laneSen=PT+IH*0.74;
-  function rad(v){return v<=0?0:(2.6+Math.sqrt(v/maxV)*8.4);}
-  var ticks='';
-  for(var i=0;i<NSEM;i++){
-    var xi=X(i).toFixed(1),d=dip[i],s=sen[i];
-    ticks+= d>0
-      ? '<circle cx="'+xi+'" cy="'+laneDip.toFixed(1)+'" r="'+rad(d).toFixed(1)+'" fill="var(--green)" fill-opacity="0.9"/>'
-      : '<circle cx="'+xi+'" cy="'+laneDip.toFixed(1)+'" r="1.5" fill="var(--border)"/>';
-    ticks+= s>0
-      ? '<circle cx="'+xi+'" cy="'+laneSen.toFixed(1)+'" r="'+rad(s).toFixed(1)+'" fill="#E8843D" fill-opacity="0.92"/>'
-      : '<circle cx="'+xi+'" cy="'+laneSen.toFixed(1)+'" r="1.5" fill="var(--border)"/>';
+  // Curva suave por cámara (timeline). Catmull-Rom → Bézier.
+  function smooth(pts){
+    if(pts.length<2)return pts.length?('M'+pts[0][0].toFixed(1)+','+pts[0][1].toFixed(1)):'';
+    var d='M'+pts[0][0].toFixed(1)+','+pts[0][1].toFixed(1);
+    for(var i=0;i<pts.length-1;i++){
+      var p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||pts[i+1];
+      var c1x=p1[0]+(p2[0]-p0[0])/6,c1y=p1[1]+(p2[1]-p0[1])/6;
+      var c2x=p2[0]-(p3[0]-p1[0])/6,c2y=p2[1]-(p3[1]-p1[1])/6;
+      d+=' C'+c1x.toFixed(1)+','+c1y.toFixed(1)+' '+c2x.toFixed(1)+','+c2y.toFixed(1)+' '+p2[0].toFixed(1)+','+p2[1].toFixed(1);
+    }
+    return d;
   }
-  var lanelab='<text x="'+(PL-12)+'" y="'+(laneDip+3).toFixed(1)+'" text-anchor="end" font-size="9" font-family="var(--mono)" fill="var(--green)">DIP</text>'
-    +'<text x="'+(PL-12)+'" y="'+(laneSen+3).toFixed(1)+'" text-anchor="end" font-size="9" font-family="var(--mono)" fill="#E8843D">SEN</text>';
+  var dipPts=dip.map(function(v,i){return [X(i),Y(v)];}),senPts=sen.map(function(v,i){return [X(i),Y(v)];});
+  var baseY=Y(0).toFixed(1);
+  function area(pts){return smooth(pts)+' L'+X(NSEM-1).toFixed(1)+','+baseY+' L'+X(0).toFixed(1)+','+baseY+' Z';}
+  // Cuadrícula y eje Y (0, medio, máx)
+  var grid='';[0,Math.round(maxV/2),maxV].forEach(function(v){var yy=Y(v).toFixed(1);
+    grid+='<line x1="'+PL+'" y1="'+yy+'" x2="'+(W-PR)+'" y2="'+yy+'" stroke="var(--border)" stroke-width="0.6" stroke-opacity="0.7"/>'
+      +'<text x="'+(PL-6)+'" y="'+(Y(v)+3).toFixed(1)+'" text-anchor="end" font-size="8" font-family="var(--mono)" fill="var(--text-muted)">'+v+'</text>';});
+  var ptsD='',ptsS='';
+  for(var i=0;i<NSEM;i++){
+    ptsD+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(dip[i]).toFixed(1)+'" r="'+(dip[i]>0?2.7:1.5)+'" fill="'+(dip[i]>0?'var(--green)':'var(--border)')+'"'+(dip[i]>0?' stroke="#fff" stroke-width="1"':'')+'/>';
+    ptsS+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(sen[i]).toFixed(1)+'" r="'+(sen[i]>0?2.7:1.5)+'" fill="'+(sen[i]>0?'#E8843D':'var(--border)')+'"'+(sen[i]>0?' stroke="#fff" stroke-width="1"':'')+'/>';
+  }
   var xlab='';
   for(var i2=0;i2<NSEM;i2+=2){var wd=new Date(monday0.getTime()+i2*7*86400000);
-    xlab+='<text x="'+X(i2).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" font-size="8" fill="var(--text-muted)" font-family="var(--mono)">'+wd.getDate()+' '+_CONG_MES[wd.getMonth()]+'</text>';}
+    xlab+='<text x="'+X(i2).toFixed(1)+'" y="'+(H-6)+'" text-anchor="middle" font-size="8" fill="var(--text-muted)" font-family="var(--mono)">'+wd.getDate()+' '+_CONG_MES[wd.getMonth()]+'</text>';}
   var band=IW/(NSEM-1),hov='';
   for(var i3=0;i3<NSEM;i3++)
     hov+='<rect x="'+(X(i3)-band/2).toFixed(1)+'" y="'+PT+'" width="'+band.toFixed(1)+'" height="'+IH+'" fill="transparent" style="cursor:pointer" onmousemove="_congHover(event,'+i3+')" onmouseleave="_congHoverHide()" onclick="_congOpen(event,'+i3+')"/>';
   var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
-    +lanelab+ticks+xlab+hov+'</svg>';
+    +grid
+    +'<path d="'+area(senPts)+'" fill="#E8843D" fill-opacity="0.07"/>'
+    +'<path d="'+area(dipPts)+'" fill="var(--green)" fill-opacity="0.09"/>'
+    +'<path d="'+smooth(senPts)+'" fill="none" stroke="#E8843D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
+    +'<path d="'+smooth(dipPts)+'" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
+    +ptsS+ptsD+xlab+hov+'</svg>';
   var leyenda='<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:10px;color:var(--text-sec)">'
     +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:var(--green);display:inline-block"></span>Diputados</span>'
     +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:#E8843D;display:inline-block"></span>Senado</span>'
@@ -3481,7 +3543,7 @@ async function init(){
   fetch('data/perfil-estados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_perfilEstados=d;}).catch(()=>{});
   fetch('data/materiales-prohibidos.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_materialesData=d;}).catch(()=>{});
   fetch('data/datosgob.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_datosgobData=d;renderDatosGob();}).catch(()=>{});
-  fetch('data/noticias-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();}).catch(()=>{});
+  fetch('data/noticias-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();buildMap();}).catch(()=>{});
   fetch('data/actores-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_actoresEstatales=d;renderActoresEstatales();}).catch(()=>{});
   processData();
   computeScores();
