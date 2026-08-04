@@ -2221,10 +2221,16 @@ function renderEstadosCompare(){
 var _OBLIGACIONES=[
   {n:'Plan de Manejo de Residuos',d:'Obligatorio para grandes generadores y para productores de bienes que al desecharse se vuelven residuos de manejo especial. Define acopio, valorización y disposición.',s:'LGPGIR arts. 27–28 · NOM-161-SEMARNAT-2011',via:'federal'},
   {n:'Responsabilidad Extendida del Productor (REP)',d:'Traslada al productor la responsabilidad sobre el ciclo de vida de sus envases y empaques. Eje de la reforma de economía circular.',s:'Reforma LGPGIR (economía circular) · en proceso',via:'agenda'},
-  {n:'Registro de Emisiones y Transferencia de Contaminantes (RETC)',d:'Inventario nacional de sustancias emitidas o transferidas. Base de datos de cumplimiento ambiental de la instalación.',s:'LGEEPA · Reglamento RETC',via:'federal'},
-  {n:'Cédula de Operación Anual (COA)',d:'Reporte anual multimedios (aire, agua, residuos, RETC) que rinde el establecimiento industrial ante SEMARNAT.',s:'LGEEPA · Reglamento en materia de Registro de Emisiones',via:'federal'},
-  {n:'Distintivos y Certificaciones',d:'Instrumentos voluntarios que acreditan desempeño ambiental: Industria Limpia (PROFEPA), Empresa Socialmente Responsable, certificaciones de economía circular.',s:'Programas PROFEPA · esquemas voluntarios',via:'noms'},
-  {n:'Registro como Generador de Residuos Peligrosos',d:'Alta ante SEMARNAT según volumen (micro, pequeño o gran generador). Condiciona el manifiesto y el transporte de residuos peligrosos.',s:'LGPGIR · NOM-052-SEMARNAT-2005',via:'noms'}
+  {n:'Registro de Emisiones y Transferencia de Contaminantes (RETC)',d:'Inventario nacional de sustancias emitidas o transferidas. Base de datos de cumplimiento ambiental de la instalación.',s:'LGEEPA · Reglamento RETC',via:'federal',url:'https://www.gob.mx/semarnat/acciones-y-programas/registro-de-emisiones-y-transferencia-de-contaminantes-retc',urlTxt:'Ir al RETC (SEMARNAT) →'},
+  {n:'Cédula de Operación Anual (COA)',d:'Reporte anual multimedios (aire, agua, residuos, RETC) que rinde el establecimiento industrial ante SEMARNAT.',s:'LGEEPA · Reglamento en materia de Registro de Emisiones',via:'federal',url:'https://www.gob.mx/tramites/ficha/cedula-de-operacion-anual-coa/SEMARNAT909',urlTxt:'Ir al trámite (gob.mx) →'},
+  {n:'Distintivos y Certificaciones',d:'Instrumentos voluntarios que acreditan desempeño ambiental. Despliega para ver los principales y su portal oficial.',s:'Esquemas voluntarios',via:'noms',certs:[
+    {n:'Industria Limpia',dep:'PROFEPA · Programa Nacional de Auditoría Ambiental (PNAA)',url:'https://www.gob.mx/profepa/acciones-y-programas/programa-nacional-de-auditoria-ambiental-pnaa'},
+    {n:'Calidad Ambiental · Calidad Ambiental Turística',dep:'PROFEPA · PNAA',url:'https://www.gob.mx/profepa/acciones-y-programas/programa-nacional-de-auditoria-ambiental-pnaa'},
+    {n:'Cumplimiento Ambiental Voluntario',dep:'PROFEPA',url:'https://www.gob.mx/profepa'},
+    {n:'Empresa Socialmente Responsable (ESR)',dep:'CEMEFI',url:'https://www.cemefi.org/'},
+    {n:'ISO 14001 · Sistema de Gestión Ambiental',dep:'Certificación internacional · organismos acreditados por la EMA',url:'https://www.ema.org.mx/'}
+  ]},
+  {n:'Registro como Generador de Residuos Peligrosos',d:'Alta ante SEMARNAT según volumen (micro, pequeño o gran generador). Condiciona el manifiesto y el transporte de residuos peligrosos.',s:'LGPGIR · NOM-052-SEMARNAT-2005',via:'noms',url:'https://www.gob.mx/tramites/ficha/registro-como-generador-de-residuos-peligrosos/SEMARNAT169',urlTxt:'Ir al trámite (gob.mx) →'}
 ];
 // Precedentes judiciales (SCJN) sobre regulación ambiental estatal — capa factual pública
 var _JURISPRUDENCIA=[
@@ -2301,15 +2307,29 @@ function _ecocircularHTML(){
       return _oblRow({title:e.n,desc:e.d});
     }).join('')+'</div>';
 }
+function _oblToggleCerts(i){var el=document.getElementById('obl-certs-'+i);var a=document.getElementById('obl-certs-arr-'+i);if(el){var open=el.style.display!=='none';el.style.display=open?'none':'block';if(a)a.textContent=open?'▾':'▴';}}
 function _instrumentosHTML(){
+  var lnk='cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11.5px;font-weight:600;white-space:nowrap';
   return '<div>'
     +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Instrumentos legales</div>'
-    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Obligaciones y figuras regulatorias vigentes, con su sustento normativo.</div>'
-    +_OBLIGACIONES.map(function(o){
-      var link=o.via==='agenda'
-        ? '<a onclick="goAgenda(\'pendientes\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11.5px;font-weight:600;white-space:nowrap">Reglamentación pendiente →</a>'
-        : '<a onclick="goObligaciones(\''+o.via+'\')" style="cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11.5px;font-weight:600;white-space:nowrap">Ver sustento →</a>';
-      return _oblRow({title:o.n,desc:o.d,meta:'Sustento · '+o.s,right:link});
+    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Obligaciones y figuras regulatorias vigentes. Los registros y reportes enlazan a su portal oficial; los distintivos se despliegan.</div>'
+    +_OBLIGACIONES.map(function(o,i){
+      var right;
+      if(o.certs)right='<a onclick="_oblToggleCerts('+i+')" style="'+lnk+'">Ver certificaciones <span id="obl-certs-arr-'+i+'">▾</span></a>';
+      else if(o.url)right='<a href="'+o.url+'" target="_blank" rel="noopener" style="'+lnk+'">'+(o.urlTxt||'Portal oficial →')+'</a>';
+      else if(o.via==='agenda')right='<a onclick="goAgenda(\'pendientes\')" style="'+lnk+'">Reglamentación pendiente →</a>';
+      else right='<a onclick="goObligaciones(\''+o.via+'\')" style="'+lnk+'">Ver sustento →</a>';
+      var row=_oblRow({title:o.n,desc:o.d,meta:'Sustento · '+o.s,right:right});
+      if(o.certs){
+        row+='<div id="obl-certs-'+i+'" style="display:none;padding:0 0 14px 0">'
+          +o.certs.map(function(c){
+            return '<div onclick="window.open(\''+(c.url||'#').replace(/'/g,'%27')+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:14px;padding:9px 0 9px 20px;border-top:0.8px solid var(--border);cursor:pointer">'
+              +'<div style="flex:1;min-width:0"><div style="font-size:12.5px;font-weight:600;color:var(--text)">'+c.n+'</div>'
+              +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:2px">'+c.dep+'</div></div>'
+              +'<span style="font-size:13px;color:var(--green);flex-shrink:0">↗</span></div>';
+          }).join('')+'</div>';
+      }
+      return row;
     }).join('')+'</div>';
 }
 var _oblView='instrumentos';
