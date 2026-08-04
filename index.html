@@ -245,6 +245,23 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .radar-mkt-count{font-size:11px;font-weight:700;color:var(--text-muted);font-variant-numeric:tabular-nums;min-width:30px;text-align:right}
 .radar-mkt-bar{width:60px;height:3px;border-radius:2px;overflow:hidden;background:rgba(0,0,0,0.06)}
 .radar-mkt-fill{height:100%;border-radius:2px}
+/* ── Terminal integral (tablero tipo Bloomberg) ── */
+.radar-live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);animation:radarPing 1.6s ease-out infinite;flex-shrink:0}
+.radar-board{border-top:0.8px solid var(--border);margin-top:2px}
+.radar-brow{display:grid;grid-template-columns:180px 92px repeat(6,minmax(0,1fr)) 66px 66px;align-items:center;gap:12px;padding:11px 8px;border-bottom:0.8px solid var(--border);cursor:pointer;transition:background .12s}
+.radar-brow:hover{background:rgba(0,158,144,0.045)}
+.radar-brow.sel{background:rgba(0,158,144,0.07);box-shadow:inset 3px 0 0 var(--green)}
+.radar-bhead{cursor:default;font-family:var(--mono);font-size:8.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted)}
+.radar-bhead:hover{background:none}
+.radar-bc-name{display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.radar-bhead .radar-bc-name{font-family:var(--mono);font-size:8.5px;font-weight:400;color:var(--text-muted)}
+.radar-bc-spark{display:flex;align-items:center;min-width:0}
+.radar-bc-n{text-align:right;font-family:var(--mono);font-size:12px;color:var(--text-sec);font-variant-numeric:tabular-nums}
+.radar-bc-sig{text-align:right;font-family:var(--mono);font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+.radar-bhead .radar-bc-sig{font-size:8.5px;font-weight:400}
+.radar-bc-d{text-align:right;font-family:var(--mono);font-size:11px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.radar-bhead .radar-bc-d{font-size:8.5px;font-weight:400}
+@media(max-width:900px){.radar-brow{grid-template-columns:130px 60px repeat(6,minmax(0,1fr)) 52px 52px;gap:7px}.radar-bc-spark{display:none}}
 /* ── Radar panel Kalshi-style ── */
 .radar-panel-wrap{background:var(--card);border:0.8px solid var(--border);border-radius:12px;overflow:hidden}
 .radar-panel-header{padding:20px 24px 16px;border-bottom:0.8px solid var(--border)}
@@ -785,7 +802,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       </div>
       <div id="search-drop" class="search-drop"></div>
     </div>
-    <button class="nav-btn-consola" onclick="showTab('consola',null)">Mi Consola</button>
+    <button class="nav-btn-consola" onclick="showTab('consola',null)">Mi Terminal</button>
     <button class="nav-btn-login">Inicia sesión</button>
     <button class="nav-btn-theme" id="theme-toggle" onclick="toggleTheme()" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro"></button>
   </div>
@@ -990,19 +1007,9 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
     <div id="alertas-list"></div>
   </div>
   <div id="tab-radares" class="tab-content" style="padding:28px 0">
-    <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Radares Temáticos</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Monitoreo de señales regulatorias y de presi&#xF3;n ambiental por tema · últimos 90 d&#xED;as</div>
-    <div style="margin-bottom:20px;background:var(--card);border:0.8px solid var(--border);border-radius:12px;padding:16px 18px">
-      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px">Trayectoria tem&#xe1;tica &middot; &#xFA;ltimas 10 semanas</div>
-      <div id="radar-trend-chart" style="width:100%"></div>
-      <div id="radar-trend-legend" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:0.8px solid var(--border)"></div>
-    </div>
-    <div style="display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start">
-      <div class="radar-market-grid" id="radar-selector"></div>
-      <div class="radar-panel-wrap" id="radar-panel"><div style="padding:40px 24px;text-align:center;color:var(--text-muted);font-size:12px">Selecciona un tema</div></div>
-    </div>
+    <div id="radar-terminal"></div>
     <!-- Datos abiertos ambientales (datos.gob.mx) -->
-    <div style="margin-top:36px">
+    <div style="margin-top:40px">
       <div class="card-label">Datos Abiertos Ambientales · datos.gob.mx</div>
       <div id="datosgob-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px"></div>
     </div>
@@ -2813,162 +2820,154 @@ function renderScoreNacional(){
 }
 const TEMA_FED_LAWS={agua:['LAN','LGEEPA','LFRA'],agua_inf:['LAN','LGEEPA'],residuos:['LGPGIR','LGEEPA','LFRA'],circular:['LGEC','LGPGIR'],cc:['LGCC','LGEEPA'],fiscal:['LFD','LGEEPA'],plasticos:['LGPGIR'],energia:['LTE','LIE'],sanciones:['LGEEPA','LGPGIR','LAN','LFRA'],biodiv:['LGEEPA','LGDFS','LGVS','LFRA']};
 function toggleInstr(id){const el=document.getElementById(id);const arr=document.getElementById('arr-'+id);const open=el.style.maxHeight&&el.style.maxHeight!=='0px';el.style.maxHeight=open?'0px':(el.scrollHeight+200)+'px';if(arr)arr.style.transform=open?'':'rotate(90deg)';}
-function buildRadarTrendChart(){
-  const el=document.getElementById('radar-trend-chart');
-  if(!el||!RADAR_TEMAS||!noticias||!noticias.length)return;
-  const WEEKS=10;
-  const now=new Date();
-  const weeks=[];
-  for(let i=WEEKS-1;i>=0;i--){
-    const end=new Date(now.getTime()-i*7*86400000);
-    const start=new Date(end.getTime()-7*86400000);
-    const lbl=end.toLocaleDateString('es-MX',{month:'short',day:'numeric'});
-    weeks.push({start,end,lbl});
-  }
-  const mfn=(tema,n)=>{if(!isMxRelevant(n))return false;const txt=qa((n.titulo||'').toLowerCase());return tema.kw.some(k=>{const qk=qa(k);return qk.includes(' ')?txt.includes(qk):new RegExp('\\b'+qk+'\\b').test(txt);});};
-  const series=RADAR_TEMAS.map(t=>({id:t.id,name:t.name,color:t.color,data:weeks.map(w=>noticias.filter(n=>{const d=new Date(n.fecha_publicacion);return d>=w.start&&d<w.end&&mfn(t,n);}).length)}));
-  const W=el.offsetWidth||560;
-  const H=130,PL=6,PR=6,PT=10,PB=22;
-  const PW=W-PL-PR,PH=H-PT-PB;
-  const maxY=Math.max(...series.flatMap(s=>s.data),1);
-  const toX=i=>PL+(i/(WEEKS-1))*PW;
-  const toY=v=>PT+PH-(v/maxY)*PH;
-  let svg=`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible">`;
-  [0,0.33,0.67,1].forEach(g=>{const y=(PT+PH*g).toFixed(1);svg+=`<line x1="${PL}" y1="${y}" x2="${(PL+PW).toFixed(1)}" y2="${y}" stroke="#e5e7eb" stroke-width="0.5"/>`;});
-  weeks.forEach((w,i)=>{if(i===0||i===WEEKS-1||i===Math.floor(WEEKS/2)){svg+=`<text x="${toX(i).toFixed(1)}" y="${H-4}" text-anchor="middle" font-size="8" fill="#9ca3af">${w.lbl}</text>`;}});
-  series.forEach(s=>{
-    const pts=s.data.map((v,i)=>`${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(' ');
-    svg+=`<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>`;
-    const lv=s.data[WEEKS-1];
-    svg+=`<circle cx="${toX(WEEKS-1).toFixed(1)}" cy="${toY(lv).toFixed(1)}" r="3" fill="${s.color}" stroke="#fff" stroke-width="1"/>`;
-  });
-  svg+='</svg>';
-  el.innerHTML=svg;
-  const leg=document.getElementById('radar-trend-legend');
-  if(leg){
-    const sorted=[...series].sort((a,b)=>b.data[WEEKS-1]-a.data[WEEKS-1]);
-    leg.innerHTML=sorted.map(s=>{
-      const cur=s.data[WEEKS-1],prv=s.data[WEEKS-2]||0;
-      const arr=cur>prv?'↑':cur<prv?'↓':'→';
-      const ac=cur>prv?'#009E90':cur<prv?'#f87171':'#9ca3af';
-      return `<div style="display:flex;align-items:center;gap:4px;white-space:nowrap"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${s.color};flex-shrink:0"></span><span style="font-size:10px;color:var(--text)">${s.name}</span><span style="font-size:10px;color:${ac};font-weight:700">${arr}${cur}</span></div>`;
-    }).join('');
-  }
+// ═══ RADAR SCOPE · integral (cruza todos los streams) ════════════════════════
+var _radarSel=null,_RD_NOW=Date.now(),_RD_NEWS=Date.now();
+// Ancla la ventana al dato más reciente disponible: robusto ante snapshots viejos
+// y equivalente a "hoy" cuando el scraper corre al día. Cada stream usa su propio
+// dato más reciente para que "últimos 90 días" siempre tenga contenido real.
+function _radarRefNow(){
+  var mx=0,lim=Date.now()+864e5;
+  (noticias||[]).forEach(function(n){var d=new Date(n.fecha_publicacion).getTime();if(!isNaN(d)&&d>mx&&d<=lim)mx=d;});
+  ((_noticiasEstatales&&_noticiasEstatales.items)||[]).forEach(function(it){var d=new Date(String(it.fecha||'').substring(0,10)).getTime();if(!isNaN(d)&&d>mx&&d<=lim)mx=d;});
+  return mx||Date.now();
 }
-function _buildRadarSelector(){
-  const rsel=document.getElementById('radar-selector');
-  if(!rsel)return;
-  const cutoff=new Date(Date.now()-90*86400000);
-  const recentNoticias=noticias.filter(n=>new Date(n.fecha_publicacion)>cutoff);
-  const sorted=RADAR_TEMAS.map(t=>({...t,cnt:recentNoticias.filter(n=>isMxRelevant(n)&&t.kw.some(k=>{const qk=qa(k);const tt=qa((n.titulo||'').toLowerCase());return qk.includes(' ')?tt.includes(qk):new RegExp('\\b'+qk+'\\b').test(tt);})).length})).sort((a,b)=>b.cnt-a.cnt);
-  const maxCount=Math.max(...sorted.map(t=>t.cnt),1);
-  rsel.innerHTML=sorted.map((t,i)=>{
-    const barW=Math.round((t.cnt/maxCount)*100);
-    return `<div class="radar-market-card${i===0?' active':''}" id="radar-card-${t.id}" onclick="_selectRadar('${t.id}')">
-      <span class="radar-mkt-icon"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${t.color}"></span></span>
-      <span class="radar-mkt-name">${t.name}</span>
-      <div class="radar-mkt-bar"><div class="radar-mkt-fill" style="width:${barW}%;background:${t.color}"></div></div>
-      <span class="radar-mkt-count" style="color:${t.color}">${t.cnt}</span>
-    </div>`;
+function _radarNewsNow(){
+  var mx=0,lim=Date.now()+864e5;
+  (noticias||[]).forEach(function(n){var d=new Date(n.fecha_publicacion).getTime();if(!isNaN(d)&&d>mx&&d<=lim)mx=d;});
+  return mx||Date.now();
+}
+function _radarKwMatch(kws,text){
+  var t=qa((text||'').toLowerCase());
+  return (kws||[]).some(function(k){var qk=qa(k);
+    return qk.indexOf(' ')>=0 ? t.indexOf(qk)>=0 : new RegExp('\\b'+qk.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b').test(t);});
+}
+function _rdDate(f){if(!f)return '';var d=new Date(String(f).substring(0,10)+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('es-MX',{day:'2-digit',month:'short'});}
+function _radarWeekly(tema){
+  var WEEKS=10,now=_RD_NEWS,out=[];
+  for(var i=WEEKS-1;i>=0;i--){var end=now-i*7*864e5,start=end-7*864e5;
+    out.push((noticias||[]).filter(function(n){var d=new Date(n.fecha_publicacion).getTime();return d>=start&&d<end&&isMxRelevant(n)&&_radarKwMatch(tema.kw,n.titulo);}).length);}
+  return out;
+}
+function _radarStreams(tema){
+  var kw=tema.kw,now=_RD_NEWS,c90=now-90*864e5,c30=now-30*864e5,c60=now-60*864e5;
+  function dt(x){var d=new Date(x);return isNaN(d)?0:d.getTime();}
+  var nAll=(noticias||[]).filter(function(n){return isMxRelevant(n)&&_radarKwMatch(kw,n.titulo);});
+  var news90=nAll.filter(function(n){return dt(n.fecha_publicacion)>c90;}).length;
+  var news30=nAll.filter(function(n){return dt(n.fecha_publicacion)>c30;}).length;
+  var newsPrev=nAll.filter(function(n){var d=dt(n.fecha_publicacion);return d>c60&&d<=c30;}).length;
+  var est=((_noticiasEstatales&&_noticiasEstatales.items)||[]).filter(function(it){return _radarKwMatch(kw,(it.titulo||'')+' '+(it.resumen||''));}).length;
+  var dof=((_dofData||[]).filter(function(d){return _radarKwMatch(kw,d.titulo);})).length;
+  var cong=((_congItems||[]).filter(function(c){return _radarKwMatch(kw,c.titulo);})).length;
+  var noms=((typeof NORMAS!=='undefined'?NORMAS:[]).filter(function(nm){return _radarKwMatch(kw,(nm.id||'')+' '+(nm.objeto||'')+' '+(nm.afecta||'')+' '+(nm.tema||''));})).length;
+  var intl=((typeof _INTL!=='undefined'&&_INTL||[]).filter(function(a){return _radarKwMatch(kw,(a.nombre||'')+' '+(a.relevancia_mexico||''));})).length;
+  var senal=Math.round(news90*1 + est*1 + dof*3 + cong*2 + noms*1.5 + intl*1);
+  return {news90:news90,news30:news30,delta:news30-newsPrev,est:est,dof:dof,cong:cong,noms:noms,intl:intl,senal:senal,weekly:_radarWeekly(tema)};
+}
+function _radarSpark(data,color){
+  var W=88,H=22,n=data.length,mx=Math.max.apply(null,data.concat([1]));
+  if(n<2)return '<svg width="'+W+'" height="'+H+'"></svg>';
+  var pts=data.map(function(v,i){var x=(i/(n-1))*W,y=H-2-(v/mx)*(H-4);return x.toFixed(1)+','+y.toFixed(1);}).join(' ');
+  var lx=W,ly=H-2-(data[n-1]/mx)*(H-4);
+  return '<svg width="'+W+'" height="'+H+'" style="display:block;overflow:visible">'
+    +'<polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>'
+    +'<circle cx="'+lx+'" cy="'+ly.toFixed(1)+'" r="2" fill="'+color+'"/></svg>';
+}
+function renderRadares(){
+  var host=document.getElementById('radar-terminal');if(!host)return;
+  _RD_NOW=_radarRefNow();_RD_NEWS=_radarNewsNow();
+  var rows=RADAR_TEMAS.map(function(t){return {t:t,s:_radarStreams(t)};});
+  rows.sort(function(a,b){return b.s.senal-a.s.senal;});
+  if(!_radarSel||!rows.find(function(r){return r.t.id===_radarSel;}))_radarSel=rows[0]?rows[0].t.id:null;
+  var sum=function(k){return rows.reduce(function(a,r){return a+r.s[k];},0);};
+  var ts=new Date().toLocaleString('es-MX',{timeZone:'America/Mexico_City',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+  var stat=function(v,l,c){return '<div style="padding:0 20px;border-left:0.8px solid var(--border)"><div style="font-family:var(--mono);font-size:21px;font-weight:700;color:'+(c||'var(--text)')+';line-height:1;font-variant-numeric:tabular-nums">'+v+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">'+l+'</div></div>';};
+  var head='<div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px">'
+    +'<div><div style="display:flex;align-items:center;gap:9px"><span class="radar-live-dot"></span>'
+      +'<span style="font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);font-weight:700">Radar SCOPE · en vivo</span></div>'
+      +'<div style="font-size:12px;color:var(--text-muted);margin-top:5px;max-width:620px">Señal regulatoria integral por tema — cruza noticias nacionales y estatales, DOF, Congreso, NOMs e instrumentos internacionales.</div></div>'
+    +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);letter-spacing:0.04em">CDMX · '+ts+'</div></div>'
+    +'<div style="display:flex;align-items:stretch;margin:18px 0 22px">'
+      +'<div style="padding-right:20px"><div style="font-family:var(--mono);font-size:21px;font-weight:700;color:var(--green);line-height:1;font-variant-numeric:tabular-nums">'+sum('senal')+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">Señal total</div></div>'
+      +stat(sum('news90'),'Noticias 90d')+stat(sum('est'),'Prensa edo.')+stat(sum('dof'),'DOF')+stat(sum('cong'),'Congreso')+stat(sum('noms'),'NOMs')+stat(sum('intl'),'Internac.')
+    +'</div>';
+  var bhead='<div class="radar-brow radar-bhead">'
+    +'<span class="radar-bc-name">Tema</span><span class="radar-bc-spark">10 sem</span>'
+    +'<span class="radar-bc-n">Not</span><span class="radar-bc-n">Edo</span><span class="radar-bc-n">DOF</span>'
+    +'<span class="radar-bc-n">Cong</span><span class="radar-bc-n">NOM</span><span class="radar-bc-n">Int</span>'
+    +'<span class="radar-bc-sig">Señal</span><span class="radar-bc-d">Δ30d</span></div>';
+  var body=rows.map(function(r){
+    var t=r.t,s=r.s,d=s.delta;
+    var dcol=d>0?'var(--green)':d<0?'var(--red)':'var(--text-muted)',darr=d>0?'▲':d<0?'▼':'—';
+    var num=function(v){return '<span class="radar-bc-n"'+(v?'':' style="opacity:.3"')+'>'+v+'</span>';};
+    return '<div class="radar-brow'+(t.id===_radarSel?' sel':'')+'" data-tid="'+t.id+'" onclick="_radarDetail(\''+t.id+'\')">'
+      +'<span class="radar-bc-name"><span style="width:7px;height:7px;border-radius:50%;background:'+t.color+';flex-shrink:0"></span>'+t.name+'</span>'
+      +'<span class="radar-bc-spark">'+_radarSpark(s.weekly,t.color)+'</span>'
+      +num(s.news90)+num(s.est)+num(s.dof)+num(s.cong)+num(s.noms)+num(s.intl)
+      +'<span class="radar-bc-sig" style="color:'+t.color+'">'+s.senal+'</span>'
+      +'<span class="radar-bc-d" style="color:'+dcol+'">'+darr+' '+Math.abs(d)+'</span></div>';
   }).join('');
-  if(sorted.length)_selectRadar(sorted[0].id);
+  host.innerHTML=head+'<div class="radar-board">'+bhead+body+'</div><div id="radar-detail" style="margin-top:24px"></div>';
+  _radarDetail(_radarSel);
 }
-function _selectRadar(temaId){
-  document.querySelectorAll('.radar-market-card').forEach(c=>c.classList.remove('active'));
-  const card=document.getElementById('radar-card-'+temaId);
-  if(card)card.classList.add('active');
-  showRadarTema(temaId);
-}
-function showRadarTema(temaId){
-  const tema=RADAR_TEMAS.find(t=>t.id===temaId);
-  if(!tema)return;
-  const cutoff=new Date(Date.now()-90*86400000);
-  const recentNoticias=noticias.filter(n=>new Date(n.fecha_publicacion)>cutoff);
-  const matchFn=n=>{if(!isMxRelevant(n))return false;const txt=qa((n.titulo||'').toLowerCase());return tema.kw.some(k=>{const qk=qa(k);return qk.includes(' ')?txt.includes(qk):new RegExp('\\b'+qk+'\\b').test(txt);});};
-  // Top estados
-  const stateActivity={};
-  Object.keys(estadoData).forEach(s=>{
-    const arts=recentNoticias.filter(n=>{
-      const t=qa((n.titulo||'').toLowerCase());
-      const st=qa(s.toLowerCase());
-      return (t.includes(st)||t.includes(qa((STATE_ABBR[s]||'').toLowerCase())))&&tema.kw.some(k=>t.includes(qa(k)));
-    });
-    stateActivity[s]=arts.length;
-  });
-  const top5=Object.entries(stateActivity).sort((a,b)=>b[1]-a[1]).slice(0,5).filter(([,c])=>c>0);
-  const maxVal=Math.max(...top5.map(e=>e[1]),1);
-  // Instrumentos estatales
-  const instruments=[];
-  if(tema.leyKey){
-    leyesAmbientales.estados.forEach(entry=>{
-      (entry.leyes[tema.leyKey]||[]).forEach(ley=>{
-        if(!instruments.find(i=>i.n===ley.nombre))instruments.push({n:ley.nombre,e:entry.nombre});
-      });
-    });
+function _radarDetail(temaId){
+  _radarSel=temaId;
+  var tema=RADAR_TEMAS.find(function(t){return t.id===temaId;});
+  var host=document.getElementById('radar-detail');
+  if(!tema||!host)return;
+  document.querySelectorAll('.radar-brow[data-tid]').forEach(function(el){el.classList.toggle('sel',el.getAttribute('data-tid')===temaId);});
+  if(!_RD_NEWS)_RD_NEWS=_radarNewsNow();
+  var kw=tema.kw,c90=_RD_NEWS-90*864e5;
+  var esc=function(u){return (u||'#').replace(/'/g,'%27');};
+  function block(title,color,items){
+    return '<div style="margin-bottom:20px">'
+      +'<div style="font-size:12px;font-weight:700;color:'+(color||'var(--green)')+';margin-bottom:2px">'+title+' <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+items.length+'</span></div>'
+      +(items.length?items.join(''):'<div style="font-size:11.5px;color:var(--text-muted);padding:8px 0">Sin registros que crucen con este tema.</div>')+'</div>';
   }
-  const recentArts=recentNoticias.filter(matchFn).sort((a,b)=>new Date(b.fecha_publicacion)-new Date(a.fecha_publicacion)).slice(0,8);
-  const totalArts=recentNoticias.filter(matchFn).length;
-  const totalAll=noticias.filter(matchFn).length;
-  const trend30=noticias.filter(n=>new Date(n.fecha_publicacion)>new Date(Date.now()-30*86400000)&&matchFn(n)).length;
-  const el=document.getElementById('radar-panel');
-  if(!el)return;
-  el.innerHTML=`
-  <div class="radar-panel-header">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
-      <div>
-        <div style="font-size:13px;color:var(--text-muted);margin-bottom:4px;font-weight:500">Radar · ${tema.name}</div>
-        <div class="radar-panel-title">${tema.name}</div>
-        <div class="radar-panel-meta">
-          <span>${totalArts} menciones en 90 d&#xED;as</span>
-          <span style="opacity:0.4">·</span>
-          <span>${totalAll} hist&#xF3;rico</span>
-          <span style="opacity:0.4">·</span>
-          <span style="color:${tema.color};font-weight:600">${trend30} &#xFA;ltimos 30 d</span>
-        </div>
-      </div>
-      <div style="display:flex;gap:0;border:0.8px solid var(--border);border-radius:10px;overflow:hidden;flex-shrink:0">
-        <div class="radar-panel-stat">
-          <div class="radar-stat-val" style="color:${tema.color}">${totalArts}</div>
-          <div class="radar-stat-lbl">90 d&#xED;as</div>
-        </div>
-        <div class="radar-panel-stat">
-          <div class="radar-stat-val" style="color:${trend30>0?tema.color:'var(--text-muted)'}">${trend30}</div>
-          <div class="radar-stat-lbl">30 d&#xED;as</div>
-        </div>
-        <div class="radar-panel-stat">
-          <div class="radar-stat-val">${top5.length}</div>
-          <div class="radar-stat-lbl">Estados</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="radar-panel-body">
-    <div class="radar-panel-col">
-      <div class="radar-col-lbl">Top Estados · 90 d&#xED;as</div>
-      ${top5.length?top5.map(([s,cnt],i)=>`
-        <div class="radar-state-row" style="cursor:pointer" onclick="openStatePanel('${s}')">
-          <span class="radar-state-rank">${i+1}</span>
-          <span class="radar-state-name">${s}</span>
-          <div class="radar-state-bar-wrap"><div class="radar-state-bar" style="width:${Math.round((cnt/maxVal)*100)}%;background:${tema.color}"></div></div>
-          <span class="radar-state-cnt" style="color:${tema.color}">${cnt}</span>
-        </div>`).join(''):'<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Sin actividad estatal reciente</div>'}
-      <div style="margin-top:16px">
-        <div class="radar-col-lbl">Marco Legal Federal</div>
-        ${(TEMA_FED_LAWS[temaId]||[]).map(s=>leyes.find(l=>l.s===s)).filter(Boolean).map(l=>`
-          <div class="instr-row"><a href="${l.u}" target="_blank" style="font-size:11px"><strong>${l.s}</strong> &mdash; ${l.n}</a><span class="instr-row-date">${l.r||''}</span></div>
-        `).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:8px 0">Sin instrumentos federales mapeados</div>'}
-      </div>
-    </div>
-    <div class="radar-panel-col" style="border-right:none">
-      <div class="radar-col-lbl">Noticias Recientes</div>
-      ${recentArts.length?recentArts.map(n=>`
-        <div class="radar-news-item">
-          <div class="radar-news-title"><a href="${n.url}" target="_blank">${n.titulo}</a></div>
-          <div class="radar-news-date">${formatFecha(n.fecha_publicacion)}${n.fuente?' · '+(n.fuente||'').replace('Google News - ','').split(',')[0]:''}</div>
-        </div>`).join(''):'<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Sin noticias en los &#xFA;ltimos 90 d&#xED;as</div>'}
-    </div>
-  </div>`;
+  function row(title,meta,url){
+    return '<div'+(url?' onclick="window.open(\''+esc(url)+'\',\'_blank\')" style="cursor:pointer;':' style="')+'display:flex;align-items:baseline;gap:14px;padding:9px 0;border-top:0.8px solid var(--border)">'
+      +'<div style="flex:1;min-width:0;font-size:12.5px;color:var(--text);line-height:1.45">'+title+'</div>'
+      +(meta?'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+meta+'</span>':'')+'</div>';
+  }
+  // Streams
+  var news=(noticias||[]).filter(function(n){return isMxRelevant(n)&&new Date(n.fecha_publicacion).getTime()>c90&&_radarKwMatch(kw,n.titulo);})
+    .sort(function(a,b){return new Date(b.fecha_publicacion)-new Date(a.fecha_publicacion);}).slice(0,6)
+    .map(function(n){return row(n.titulo,formatFecha(n.fecha_publicacion),n.url);});
+  var est=((_noticiasEstatales&&_noticiasEstatales.items)||[]).filter(function(it){return _radarKwMatch(kw,(it.titulo||'')+' '+(it.resumen||''));}).slice(0,5)
+    .map(function(it){return row(it.titulo||'',(it.estado||'')+' · '+_rdDate(it.fecha),it.url);});
+  var dof=(_dofData||[]).filter(function(d){return _radarKwMatch(kw,d.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);}).slice(0,5)
+    .map(function(d){return row((d.dependencia?'<b>'+d.dependencia+'</b> — ':'')+(d.titulo||''),_rdDate(d.fecha),d.url||'https://www.dof.gob.mx/');});
+  var cong=(_congItems||[]).filter(function(c){return _radarKwMatch(kw,c.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);}).slice(0,6)
+    .map(function(c){var tit=(typeof _congTituloLimpio==='function')?_congTituloLimpio(c):(c.titulo||'');return row(tit,(c.camara==='SEN'?'Senado':'Diputados')+' · '+_rdDate(c.fecha),c.url);});
+  var noms=(typeof NORMAS!=='undefined'?NORMAS:[]).filter(function(nm){return _radarKwMatch(kw,(nm.id||'')+' '+(nm.objeto||'')+' '+(nm.afecta||'')+' '+(nm.tema||''));}).slice(0,6)
+    .map(function(nm){return row('<span style="font-family:var(--mono);font-size:11px;color:var(--green);font-weight:600">'+nm.id+'</span> — '+(nm.objeto||''),nm.dep,nm.url);});
+  var intl=(typeof _INTL!=='undefined'&&_INTL||[]).filter(function(a){return _radarKwMatch(kw,(a.nombre||'')+' '+(a.relevancia_mexico||''));}).slice(0,5)
+    .map(function(a){return row(a.nombre||'',(a.jurisdiccion||'')+' · '+(a.anio||''),a.url);});
+  // Top estados por menciones
+  var sa={};Object.keys(estadoData).forEach(function(s){
+    sa[s]=(noticias||[]).filter(function(n){var t=qa((n.titulo||'').toLowerCase());return new Date(n.fecha_publicacion).getTime()>c90&&(t.indexOf(qa(s.toLowerCase()))>=0)&&_radarKwMatch(kw,n.titulo);}).length;});
+  var topE=Object.keys(sa).map(function(s){return [s,sa[s]];}).filter(function(e){return e[1]>0;}).sort(function(a,b){return b[1]-a[1];}).slice(0,6);
+  var mxE=Math.max.apply(null,topE.map(function(e){return e[1];}).concat([1]));
+  var estBars=topE.length?topE.map(function(e){
+    return '<div onclick="openStatePanel(\''+e[0].replace(/'/g,"\\'")+'\')" style="display:flex;align-items:center;gap:10px;padding:7px 0;border-top:0.8px solid var(--border);cursor:pointer">'
+      +'<span style="flex:1;font-size:12px;color:var(--text)">'+e[0]+'</span>'
+      +'<span style="width:70px;height:4px;background:rgba(0,0,0,0.06);flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(e[1]/mxE*100)+'%;background:'+tema.color+'"></span></span>'
+      +'<span style="font-family:var(--mono);font-size:11px;color:'+tema.color+';min-width:20px;text-align:right">'+e[1]+'</span></div>';
+  }).join(''):'<div style="font-size:11.5px;color:var(--text-muted);padding:8px 0">Sin actividad estatal reciente</div>';
+  var estBlock='<div style="margin-bottom:20px"><div style="font-size:12px;font-weight:700;color:'+tema.color+';margin-bottom:2px">Estados más activos <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+topE.length+'</span></div>'+estBars+'</div>';
+  host.innerHTML='<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:0.8px solid var(--border)">'
+      +'<span style="width:10px;height:10px;border-radius:50%;background:'+tema.color+';flex-shrink:0"></span>'
+      +'<span style="font-size:18px;font-weight:700;color:var(--text)">'+tema.name+'</span>'
+      +'<span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:0.04em">VISTA 360° · TODOS LOS STREAMS</span></div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
+      +'<div>'+block('Señal en medios · 90d','var(--green)',news)+block('Prensa estatal',tema.color,est)+estBlock+'</div>'
+      +'<div>'+block('DOF · publicaciones',tema.color,dof)+block('Congreso',tema.color,cong)+block('NOMs',tema.color,noms)+block('Internacional',tema.color,intl)+'</div>'
+    +'</div>';
 }
+// Compatibilidad con llamadas previas
+function buildRadarTrendChart(){renderRadares();}
+function _buildRadarSelector(){}
+function _selectRadar(id){_radarDetail(id);}
+function showRadarTema(id){_radarDetail(id);}
 /* ── SCOPE 3 STATE PANEL NEW TABS ── */
 function renderSPPerfil(state,data,sc){
   const scList=Object.values(stateScores);
@@ -4168,18 +4167,18 @@ function _wizPaint(){
     return '<span class="'+cls+'">'+(i<_wiz.paso?'✓ ':'')+_WIZ_LABEL[s]+'</span>';
   }).join('');
   var DESC={
-    temas:'Elige los temas que quieres monitorear. Alimentan tu señal, el feed del Ejecutivo y las normas DOF de tu consola.',
+    temas:'Elige los temas que quieres monitorear. Alimentan tu señal, el feed del Ejecutivo y las normas DOF de tu terminal.',
     estados:'¿En qué entidades opera tu organización? Verás su señal, gacetas y noticias.',
     comisiones:'Comisiones del Congreso a seguir: fechas de sesión, integrantes y asuntos turnados.',
     legisladores:'Opcional: legisladores clave para tu agenda (máximo '+_WIZ_MAX_LEG+'). Por ahora solo se puede dar seguimiento a legisladores federales (Cámara de Diputados y Senado).',
-    referencias:'Opcional: NOMs, impuestos ambientales, instrumentos legales y materiales prohibidos que quieres tener siempre a la mano en tu consola como referencia.',
+    referencias:'Opcional: NOMs, impuestos ambientales, instrumentos legales y materiales prohibidos que quieres tener siempre a la mano en tu terminal como referencia.',
     afinar:'Opcional: palabras clave propias (empresa, cuenca, trámite…) y nivel de riesgo por tema.'
   };
   document.getElementById('consola-wiz-bg').innerHTML=
     '<div class="cw" onclick="event.stopPropagation()">'
     +'<div class="cw-head">'
       +'<div style="display:flex;justify-content:space-between;align-items:center">'
-        +'<span class="cw-title">Configura tu consola</span>'
+        +'<span class="cw-title">Configura tu terminal</span>'
         +'<span style="cursor:pointer;color:var(--dim);font-size:18px;line-height:1" onclick="closeConsolaWizard()">×</span>'
       +'</div>'
       +'<div class="cw-desc">'+DESC[p]+'</div>'
@@ -4267,7 +4266,7 @@ function _wizPaintBody(){
   else if(p==='afinar'){
     b.innerHTML=
       '<div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:4px">Palabras clave</div>'
-      +'<div style="font-size:11.5px;color:var(--text-sec);line-height:1.5;margin-bottom:12px">Son los términos con los que tu consola te alerta <b>primero</b>. Cada palabra se cruza contra el DOF, el feed del Ejecutivo, las gacetas estatales y las noticias: cuando aparece, ese asunto sube en tu señal. Agrega lo que solo tú conoces — el nombre de tu empresa, tus plantas, tu cuenca, un trámite o una NOM puntual.</div>'
+      +'<div style="font-size:11.5px;color:var(--text-sec);line-height:1.5;margin-bottom:12px">Son los términos con los que tu terminal te alerta <b>primero</b>. Cada palabra se cruza contra el DOF, el feed del Ejecutivo, las gacetas estatales y las noticias: cuando aparece, ese asunto sube en tu señal. Agrega lo que solo tú conoces — el nombre de tu empresa, tus plantas, tu cuenca, un trámite o una NOM puntual.</div>'
       +'<input class="cw-search" id="cw-kw-input" placeholder="Escribe y presiona Enter · ej. mi empresa, cuenca Lerma, NOM-001…" onkeydown="_wizKwKey(event)" style="margin-bottom:8px">'
       +'<div class="cw-chips" id="cw-chips"></div>'
       +'<div id="cw-kw-sug"></div>'
@@ -4275,7 +4274,7 @@ function _wizPaintBody(){
       +'<div style="font-size:11.5px;color:var(--text-sec);line-height:1.5;margin-bottom:10px">Le dice al algoritmo cuánto peso dar a cada tema. Un tema en <b>alto</b> pesa más en tu señal y encabeza tu feed aunque tenga pocos registros.</div>'
       +'<div id="cw-riesgos"></div>'
       +'<div style="margin-top:22px;padding-top:14px;border-top:0.8px solid var(--border);font-size:11px;color:var(--text-muted);line-height:1.55">'
-        +'<b style="color:var(--text-sec)">Cómo se afina tu consola.</b> Todo lo que elegiste — temas, estados, comisiones, legisladores, referencias, palabras clave y niveles de riesgo — forma tu <b>perfil de relevancia</b>. Con él, la consola ordena y prioriza lo que ves. Hoy se guarda en este equipo; al iniciar sesión viajará contigo y se volverá el insumo con el que afinamos tu algoritmo.'
+        +'<b style="color:var(--text-sec)">Cómo se afina tu terminal.</b> Todo lo que elegiste — temas, estados, comisiones, legisladores, referencias, palabras clave y niveles de riesgo — forma tu <b>perfil de relevancia</b>. Con él, la terminal ordena y prioriza lo que ves. Hoy se guarda en este equipo; al iniciar sesión viajará contigo y se volverá el insumo con el que afinamos tu algoritmo.'
       +'</div>';
     _wizPaintChips();_wizPaintKwSug();_wizPaintRiesgos();
   }
@@ -4443,7 +4442,7 @@ function _wizRefMonitoreoHTML(){
     }).join(''):'<div style="font-size:11px;color:var(--dim)">Dataset en expansión.</div>');
   var instr=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]);
   var instrHTML='<div style="font-size:12px;font-weight:700;color:var(--green);margin:22px 0 3px">Instrumentos legales a la mano</div>'
-    +'<div style="font-size:10.5px;color:var(--text-muted);margin-bottom:9px">Leyes y reglamentos que quieres tener siempre visibles en tu consola.</div>'
+    +'<div style="font-size:10.5px;color:var(--text-muted);margin-bottom:9px">Leyes y reglamentos que quieres tener siempre visibles en tu terminal.</div>'
     +instr.map(function(o){
       var on=_wiz.sel.instrumentos.has(o.n);
       var sub=(o.d||'').length>90?(o.d.slice(0,90)+'…'):(o.d||'');
@@ -4591,10 +4590,10 @@ function renderConsola(){
   if(!root)return;
   if(!consolaConfigurada()){
     root.innerHTML='<div class="card cons-hero">'
-      +'<div class="cons-hero-t">MI CONSOLA</div>'
+      +'<div class="cons-hero-t">MI TERMINAL</div>'
       +'<div style="font-size:24px;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.3">Tu monitoreo, a tu medida</div>'
-      +'<div style="font-size:13px;color:var(--text-sec);line-height:1.65;margin-bottom:26px">Elige tus temas, estados, comisiones y legisladores. SCOPE arma una consola con la señal, sesiones, normas y menciones que le importan a tu organización — con los mismos datos que ves en el resto de la plataforma, actualizados a diario.</div>'
-      +'<button class="cw-btn primary" style="font-size:12px;padding:11px 26px" onclick="openConsolaWizard()">Configurar mi consola →</button>'
+      +'<div style="font-size:13px;color:var(--text-sec);line-height:1.65;margin-bottom:26px">Elige tus temas, estados, comisiones y legisladores. SCOPE arma una terminal con la señal, sesiones, normas y menciones que le importan a tu organización — con los mismos datos que ves en el resto de la plataforma, actualizados a diario.</div>'
+      +'<button class="cw-btn primary" style="font-size:12px;padding:11px 26px" onclick="openConsolaWizard()">Configurar mi terminal →</button>'
       +'</div>';
     return;
   }
@@ -4625,16 +4624,16 @@ function renderConsola(){
     +'<div class="cons-panel"><div class="cons-panel-h">Ejecutivo · menciones</div><div class="cons-scroll" id="cons-pres"></div></div>'
     +(userKw.length?'<div class="cons-panel"><div class="cons-panel-h">Feed de mis keywords</div><div class="cons-scroll" id="cons-kw"></div></div>':'');
   root.innerHTML='<div class="cons-hdr">'
-    +'<div><span class="cons-title">Mi Consola</span>'
+    +'<div><span class="cons-title">Mi Terminal</span>'
     +'<div class="cons-sub" style="margin-top:4px">Actualizada a diario · con los mismos datos de la plataforma</div></div>'
-    +'<button class="cons-edit" onclick="openConsolaWizard()">⚙ EDITAR CONSOLA</button>'
+    +'<button class="cons-edit" onclick="openConsolaWizard()">⚙ EDITAR TERMINAL</button>'
     +'</div>'
     +kpis
     +_consChatCardHTML()
     +'<div class="cons-desk">'
       +'<div><div class="cons-panel"><div class="cons-panel-h">Señal de mis temas</div><div id="cons-senal"></div></div>'
         +'<div class="cons-panel"><div class="cons-panel-h">Mis estados <span class="n">'+estados.length+'</span></div><div id="cons-estados"></div></div></div>'
-      +'<div>'+(refPanels||'<div class="cons-panel"><div class="cons-panel-h">Referencias</div><div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar consola → Referencias</b> para tenerlos aquí a la mano.</div></div>')+'</div>'
+      +'<div>'+(refPanels||'<div class="cons-panel"><div class="cons-panel-h">Referencias</div><div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> para tenerlos aquí a la mano.</div></div>')+'</div>'
       +'<div>'+wire+'</div>'
     +'</div>'
     +'<div class="cons-wide"><div class="cons-panel-h">Mis comisiones <span class="n">'+coms.length+'</span></div><div id="cons-coms" style="overflow-x:auto"></div></div>'
@@ -4658,7 +4657,7 @@ function _consChatCardHTML(){
       +'<span style="font-family:var(--mono);font-size:9px;color:var(--amber);border:0.8px solid var(--amber);padding:2px 8px;border-radius:10px;letter-spacing:0.06em">PRÓXIMAMENTE</span>'
     +'</div>'
     +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;background:rgba(0,0,0,0.02);border-radius:10px;padding:12px;min-height:80px;max-height:240px;overflow-y:auto">'
-      +_consChatBubble('Hola 👋 Soy el asistente de SCOPE. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé con los datos de tu consola en tiempo real.',false)
+      +_consChatBubble('Hola 👋 Soy el asistente de SCOPE. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé con los datos de tu terminal en tiempo real.',false)
     +'</div>'
     +'<div style="display:flex;gap:8px;margin-top:11px">'
       +'<input id="cons-chat-input" placeholder="Pregúntale al asistente…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;padding:10px 13px;border:1px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12.5px;color:var(--text);border-radius:9px;outline:none">'
