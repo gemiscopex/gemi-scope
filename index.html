@@ -1008,6 +1008,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
   </div>
   <div id="tab-radares" class="tab-content" style="padding:28px 0">
     <div id="radar-terminal"></div>
+    <!-- Emisiones nacionales GEI (INEGYCEI · INECC) -->
+    <div id="radar-emisiones" style="margin-top:44px"></div>
     <!-- Datos abiertos ambientales (datos.gob.mx) -->
     <div style="margin-top:40px">
       <div class="card-label">Datos Abiertos Ambientales · datos.gob.mx</div>
@@ -2910,6 +2912,7 @@ function renderRadares(){
   }).join('');
   host.innerHTML=head+'<div class="radar-board">'+bhead+body+'</div><div id="radar-detail" style="margin-top:24px"></div>';
   _radarDetail(_radarSel);
+  if(typeof renderEmisiones==='function')renderEmisiones();
 }
 function _radarDetail(temaId){
   _radarSel=temaId;
@@ -2964,6 +2967,60 @@ function _radarDetail(temaId){
       +'<div>'+block('Señal en medios · 90d','var(--green)',news)+block('Prensa estatal',tema.color,est)+estBlock+'</div>'
       +'<div>'+block('DOF · publicaciones',tema.color,dof)+block('Congreso',tema.color,cong)+block('NOMs',tema.color,noms)+block('Internacional',tema.color,intl)+'</div>'
     +'</div>';
+}
+// ── Emisiones nacionales GEI (INEGYCEI · INECC): headline + tendencia + sectores ──
+function renderEmisiones(){
+  var host=document.getElementById('radar-emisiones');if(!host)return;
+  var d=_emisionesData;if(!d){host.innerHTML='';return;}
+  var mt=function(v){return v==null?'—':(Math.round(v/1e5)/10).toLocaleString('es-MX',{minimumFractionDigits:1,maximumFractionDigits:1});};
+  var serie=(d.serie||[]).filter(function(s){return s.bruto_tco2e!=null;});
+  var first=serie[0],last=serie[serie.length-1];
+  var growth=(first&&last&&first.bruto_tco2e)?Math.round((last.bruto_tco2e/first.bruto_tco2e-1)*100):null;
+  // Curva de tendencia (bruto sin UTCUTS)
+  var chart='';
+  if(serie.length>1){
+    var W=680,H=118,PL=6,PR=6,PT=12,PB=18,IW=W-PL-PR,IH=H-PT-PB;
+    var vals=serie.map(function(s){return s.bruto_tco2e;});
+    var mx=Math.max.apply(null,vals),n=vals.length;
+    var X=function(i){return PL+(i/(n-1))*IW;},Y=function(v){return PT+IH-(v/mx)*IH;};
+    function smooth(pts){var dd='M'+pts[0][0].toFixed(1)+','+pts[0][1].toFixed(1);
+      for(var i=0;i<pts.length-1;i++){var p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||pts[i+1];
+        var c1x=p1[0]+(p2[0]-p0[0])/6,c1y=p1[1]+(p2[1]-p0[1])/6,c2x=p2[0]-(p3[0]-p1[0])/6,c2y=p2[1]-(p3[1]-p1[1])/6;
+        dd+=' C'+c1x.toFixed(1)+','+c1y.toFixed(1)+' '+c2x.toFixed(1)+','+c2y.toFixed(1)+' '+p2[0].toFixed(1)+','+p2[1].toFixed(1);}return dd;}
+    var pts=vals.map(function(v,i){return [X(i),Y(v)];}),baseY=Y(0).toFixed(1),line=smooth(pts);
+    var area=line+' L'+X(n-1).toFixed(1)+','+baseY+' L'+X(0).toFixed(1)+','+baseY+' Z';
+    var xl='';[0,Math.floor((n-1)/2),n-1].forEach(function(i){xl+='<text x="'+X(i).toFixed(1)+'" y="'+(H-5)+'" text-anchor="'+(i===0?'start':i===n-1?'end':'middle')+'" font-size="8" font-family="var(--mono)" fill="var(--text-muted)">'+serie[i].anio+'</text>';});
+    chart='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
+      +'<path d="'+area+'" fill="var(--green)" fill-opacity="0.09"/>'
+      +'<path d="'+line+'" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
+      +'<circle cx="'+X(n-1).toFixed(1)+'" cy="'+Y(vals[n-1]).toFixed(1)+'" r="3" fill="var(--green)" stroke="var(--card)" stroke-width="1.5"/>'
+      +xl+'</svg>';
+  }
+  // Barras por sector (último año)
+  var secs=(d.sectores||[]);
+  var mxAbs=Math.max.apply(null,secs.map(function(s){return Math.abs(s.tco2e);}).concat([1]));
+  var bars=secs.map(function(s){
+    var neg=s.tco2e<0,col=neg?'var(--green)':'#d97706';
+    return '<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-top:0.8px solid var(--border)">'
+      +'<span style="flex:1;min-width:0;font-size:12.5px;color:var(--text)">'+s.nombre+(neg?' <span style="font-size:10px;color:var(--text-muted)">· absorción</span>':'')+'</span>'
+      +'<span style="width:120px;height:5px;background:rgba(0,0,0,0.05);flex-shrink:0;position:relative"><span style="position:absolute;top:0;'+(neg?'right:50%':'left:50%')+';height:100%;width:'+Math.round(Math.abs(s.tco2e)/mxAbs*50)+'%;background:'+col+'"></span></span>'
+      +'<span style="font-family:var(--mono);font-size:11px;color:var(--text-sec);min-width:60px;text-align:right;font-variant-numeric:tabular-nums">'+mt(s.tco2e)+' Mt</span>'
+      +'<span style="font-family:var(--mono);font-size:11px;font-weight:700;color:'+col+';min-width:52px;text-align:right">'+(s.pct>0?'':'')+s.pct+'%</span>'
+      +'</div>';
+  }).join('');
+  host.innerHTML='<div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px">'
+      +'<div><div class="card-label" style="margin-bottom:3px">Emisiones nacionales GEI · INECC</div>'
+        +'<div style="font-size:12px;color:var(--text-muted)">Inventario Nacional (INEGYCEI) · toneladas de CO2 equivalente</div></div></div>'
+    +'<div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:18px">'
+      +'<div><span style="font-size:34px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.02em">'+mt(d.total_bruto)+'</span><span style="font-size:15px;color:var(--text-sec);font-weight:600"> MtCO2e</span>'
+        +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-top:4px">Brutas '+d.ultimo_anio+' · sin absorción</div></div>'
+      +'<div style="font-size:11.5px;color:var(--text-muted);line-height:1.6">'+mt(d.total_netas)+' Mt netas<br>con absorción forestal</div>'
+      +(growth!=null?'<div style="margin-left:auto;text-align:right"><div style="font-family:var(--mono);font-size:18px;font-weight:700;color:'+(growth>=0?'var(--red)':'var(--green)')+'">'+(growth>=0?'+':'')+growth+'%</div><div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em">desde '+first.anio+'</div></div>':'')
+    +'</div>'
+    +chart
+    +'<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin:20px 0 2px">Por sector · '+d.ultimo_anio+'</div>'
+    +bars
+    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:12px">Fuente: INECC · INEGYCEI (datos.gob.mx) · serie '+(first?first.anio:'')+'–'+d.ultimo_anio+'</div>';
 }
 // Compatibilidad con llamadas previas
 function buildRadarTrendChart(){renderRadares();}
@@ -3758,7 +3815,7 @@ function renderDOF(){
   el.innerHTML=html;
 }
 // ─────────────────────────────────────────────────────────────────────────────
-var _perfilEstados=null,_materialesData=null,_datosgobData=null,_sitiosData=null;
+var _perfilEstados=null,_materialesData=null,_datosgobData=null,_sitiosData=null,_emisionesData=null;
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
@@ -3769,6 +3826,7 @@ async function init(){
   fetch('data/noticias-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();buildMap();}).catch(()=>{});
   fetch('data/actores-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_actoresEstatales=d;renderActoresEstatales();}).catch(()=>{});
   fetch('data/sitios-contaminados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_sitiosData=d;buildMap();}).catch(()=>{});
+  fetch('data/emisiones-gei.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_emisionesData=d;if(typeof renderEmisiones==='function')renderEmisiones();}).catch(()=>{});
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
