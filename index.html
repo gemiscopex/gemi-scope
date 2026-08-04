@@ -758,7 +758,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 <div class="tooltip" id="tt"></div>
 <nav class="nav">
   <div class="nav-left">
-    <img id="nav-logo" src="assets/scope-logo.png?v=2" alt="SCOPE" title="Inicio" onclick="showTab('dashboard',null)" style="height:30px;width:auto;display:block;cursor:pointer;position:relative;top:2px">
+    <img id="nav-logo" src="assets/scope-logo.png?v=2" alt="Scope" title="Inicio" onclick="showTab('dashboard',null)" style="height:30px;width:auto;display:block;cursor:pointer;position:relative;top:2px">
   </div>
   <div class="nav-tabs">
     <div class="nav-drop-wrap">
@@ -792,7 +792,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
         <div class="nav-drop-it" onclick="showActores('legislativo')">Legislativo<span class="nd-sub">Comisiones del Congreso</span></div>
       </div>
     </div>
-    <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos SCOPE" style="margin-left:auto;margin-right:2px"><span class="radar-fab-dot"></span></button>
+    <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos de Scope" style="margin-left:auto;margin-right:2px"><span class="radar-fab-dot"></span></button>
   </div>
   <div class="nav-right">
     <div class="search-wrap">
@@ -1050,14 +1050,18 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 <div id="tab-acerca" class="tab-content">
   <div class="main" style="max-width:780px">
     <div class="card" style="padding:36px 40px;line-height:1.75">
-      <div style="font-size:26px;font-weight:700;font-family:var(--sans);letter-spacing:0.04em;margin-bottom:24px;color:var(--text)">Acerca de SCOPE</div>
+      <div style="font-size:26px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:24px;color:var(--text)">Sobre Scope</div>
 
       <p style="font-size:15px;color:var(--text);margin-bottom:20px">
-        SCOPE es una plataforma de Iniciativa GEMI creada para monitorear la actividad pública medioambiental en México. GEMI (<em>Global Environment Management Initiative</em>) es una organización que agrupa empresas de clase mundial, dedicada al fomento de políticas sostenibles y la promoción de responsabilidades ambientales en el país.
+        Scope es la plataforma de inteligencia regulatoria ambiental de Iniciativa GEMI. Reúne en un solo lugar, y actualizada a diario, la actividad pública que puede convertirse en obligación para las organizaciones en México: lo que se legisla, lo que se publica en el Diario Oficial, lo que se discute en el Congreso y lo que se decide en cada estado. GEMI (<em>Global Environment Management Initiative</em>) agrupa a empresas de clase mundial comprometidas con la sostenibilidad y la responsabilidad ambiental en el país.
       </p>
 
       <p style="font-size:14px;color:var(--text-sec);margin-bottom:20px">
-        SCOPE integra en tiempo real información legislativa federal y estatal, impuestos ambientales, alertas regulatorias y radares temáticos, permitiendo a las organizaciones anticiparse a cambios normativos con relevancia ambiental.
+        Scope conecta fuentes que normalmente viven dispersas y las vuelve legibles: un mapa nacional con la actividad de cada entidad, el Monitor del Congreso Federal, un Radar temático que cruza noticias, publicaciones del DOF, iniciativas y proposiciones, NOMs, impuestos verdes y regulación internacional, y datos abiertos oficiales integrados de verdad —como el inventario de sitios contaminados o las emisiones nacionales de gases de efecto invernadero—, además de un expediente por estado.
+      </p>
+
+      <p style="font-size:14px;color:var(--text-sec);margin-bottom:20px">
+        Con Mi Terminal, cada organización arma su propia vista con los temas, estados, comisiones y referencias que le importan, para anticiparse a los cambios regulatorios en lugar de reaccionar a ellos.
       </p>
 
       <div style="border-top:0.8px solid var(--border);margin:28px 0"></div>
@@ -2462,7 +2466,7 @@ function submitNomComment(nomId,uid){
   if(!SCOPE_COMMENTS_ENDPOINT){
     window.location.href='mailto:gemiscopex@gmail.com?subject='+encodeURIComponent('Comentario · '+nomId)
       +'&body='+encodeURIComponent((nombre?'Nombre: '+nombre+'\n':'')+(email?'Correo: '+email+'\n':'')+'\n'+texto);
-    msg.style.color='var(--text-muted)';msg.textContent='Se abrió tu correo para enviarlo a SCOPE.';
+    msg.style.color='var(--text-muted)';msg.textContent='Se abrió tu correo para enviarlo a Scope.';
     return;
   }
   var btn=box.querySelector('.cf-send');btn.disabled=true;btn.textContent='Enviando…';
@@ -2883,7 +2887,7 @@ function renderRadares(){
   var stat=function(v,l,c){return '<div style="padding:0 20px;border-left:0.8px solid var(--border)"><div style="font-family:var(--mono);font-size:21px;font-weight:700;color:'+(c||'var(--text)')+';line-height:1;font-variant-numeric:tabular-nums">'+v+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">'+l+'</div></div>';};
   var head='<div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px">'
     +'<div><div style="display:flex;align-items:center;gap:9px"><span class="radar-live-dot"></span>'
-      +'<span style="font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);font-weight:700">Radar SCOPE · en vivo</span></div>'
+      +'<span style="font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);font-weight:700">Radar · en vivo</span></div>'
       +'<div style="font-size:12px;color:var(--text-muted);margin-top:5px;max-width:620px">Señal regulatoria integral por tema — cruza noticias nacionales y estatales, DOF, Congreso, NOMs e instrumentos internacionales.</div></div>'
     +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);letter-spacing:0.04em">CDMX · '+ts+'</div></div>'
     +'<div style="display:flex;align-items:stretch;margin:18px 0 22px">'
@@ -3100,14 +3104,14 @@ function renderSPMateriales(state){
   if(!el)return;
   const mat=((_materialesData&&_materialesData.estados)||{})[state];
   if(!mat){
-    el.innerHTML=`<div class="sp-empty">Sin restricciones de materiales documentadas para ${state} en el dataset SCOPE (v1 \u00b7 10 entidades cubiertas, en expansi\u00f3n).</div>`;
+    el.innerHTML=`<div class="sp-empty">Sin restricciones de materiales documentadas para ${state} en el dataset de Scope (v1 \u00b7 10 entidades cubiertas, en expansi\u00f3n).</div>`;
     return;
   }
   el.innerHTML=`
     <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px">Materiales prohibidos / restringidos</div>
     <div style="font-size:12.5px;color:var(--text-sec);margin-bottom:12px">Desde <strong>${mat.desde}</strong> \u00b7 ${mat.instrumento}</div>
     ${mat.materiales.map(m=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border);font-size:13px;color:var(--text)"><span style="color:#DC2626;font-size:12px">\u2298</span>${m}</div>`).join('')}
-    <div style="font-size:10px;color:var(--text-muted);margin-top:12px">Dataset SCOPE v1 \u00b7 verificar el instrumento estatal vigente antes de decisiones de cumplimiento.</div>`;
+    <div style="font-size:10px;color:var(--text-muted);margin-top:12px">Dataset de Scope v1 \u00b7 verificar el instrumento estatal vigente antes de decisiones de cumplimiento.</div>`;
 }
 function renderSPActividad(state){
   const doRender=(d)=>{
@@ -3183,7 +3187,7 @@ function renderSPSectorial(state){
       <div style="flex:0 0 120px;height:6px;background:linear-gradient(90deg,rgba(0,158,144,0.05),rgba(0,158,144,0.9))"></div>
       <span style="font-size:9.5px;color:var(--text-muted)">Mayor peso</span>
     </div>
-    <div style="font-size:10px;color:var(--text-muted);margin-top:10px">Perfil econ\u00f3mico-industrial estimado por SCOPE (0\u2013100). Sustituci\u00f3n por Censos Econ\u00f3micos INEGI en curso.</div>`;
+    <div style="font-size:10px;color:var(--text-muted);margin-top:10px">Perfil econ\u00f3mico-industrial estimado por Scope (0\u2013100). Sustituci\u00f3n por Censos Econ\u00f3micos INEGI en curso.</div>`;
 }
 var _newsMode='mx';
 function setNewsMode(mode){
@@ -3773,7 +3777,7 @@ function renderWidgetGacetas(){
         });
         html+='</div>';
       } else {
-        html+='<div class="sp-empty">Sin actividad SCOPE detectada en congresos estatales este mes.</div>';
+        html+='<div class="sp-empty">Sin actividad de Scope detectada en congresos estatales este mes.</div>';
       }
       el.innerHTML=html;
     });
@@ -4686,7 +4690,7 @@ function renderConsola(){
     root.innerHTML='<div class="card cons-hero">'
       +'<div class="cons-hero-t">MI TERMINAL</div>'
       +'<div style="font-size:24px;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.3">Tu monitoreo, a tu medida</div>'
-      +'<div style="font-size:13px;color:var(--text-sec);line-height:1.65;margin-bottom:26px">Elige tus temas, estados, comisiones y legisladores. SCOPE arma una terminal con la señal, sesiones, normas y menciones que le importan a tu organización — con los mismos datos que ves en el resto de la plataforma, actualizados a diario.</div>'
+      +'<div style="font-size:13px;color:var(--text-sec);line-height:1.65;margin-bottom:26px">Elige tus temas, estados, comisiones y legisladores. Scope arma una terminal con la señal, sesiones, normas y menciones que le importan a tu organización — con los mismos datos que ves en el resto de la plataforma, actualizados a diario.</div>'
       +'<button class="cw-btn primary" style="font-size:12px;padding:11px 26px" onclick="openConsolaWizard()">Configurar mi terminal →</button>'
       +'</div>';
     return;
@@ -4746,12 +4750,12 @@ function _consChatCardHTML(){
   return '<div class="card" style="margin-bottom:20px;border:0.8px solid var(--border);border-radius:14px;padding:18px 20px;background:linear-gradient(180deg,rgba(0,158,144,0.04),transparent)">'
     +'<div style="display:flex;align-items:center;gap:11px;margin-bottom:12px">'
       +'<div style="width:32px;height:32px;border-radius:9px;background:var(--green);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;font-family:var(--sans);flex-shrink:0">S</div>'
-      +'<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:var(--text)">Asistente SCOPE</div>'
+      +'<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:var(--text)">Asistente Scope</div>'
       +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:0.08em">INTELIGENCIA REGULATORIA · CONVERSACIONAL</div></div>'
       +'<span style="font-family:var(--mono);font-size:9px;color:var(--amber);border:0.8px solid var(--amber);padding:2px 8px;border-radius:10px;letter-spacing:0.06em">PRÓXIMAMENTE</span>'
     +'</div>'
     +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;background:rgba(0,0,0,0.02);border-radius:10px;padding:12px;min-height:80px;max-height:240px;overflow-y:auto">'
-      +_consChatBubble('Hola 👋 Soy el asistente de SCOPE. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé con los datos de tu terminal en tiempo real.',false)
+      +_consChatBubble('Hola 👋 Soy el asistente de Scope. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé con los datos de tu terminal en tiempo real.',false)
     +'</div>'
     +'<div style="display:flex;gap:8px;margin-top:11px">'
       +'<input id="cons-chat-input" placeholder="Pregúntale al asistente…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;padding:10px 13px;border:1px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12.5px;color:var(--text);border-radius:9px;outline:none">'
@@ -4769,7 +4773,7 @@ function _consChatSend(){
   msgs.insertAdjacentHTML('beforeend',_consChatBubble(v,true));
   inp.value='';msgs.scrollTop=msgs.scrollHeight;
   setTimeout(function(){
-    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. El asistente conversacional de SCOPE está en construcción 🛠️ — muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
+    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. El asistente conversacional de Scope está en construcción 🛠️ — muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
     msgs.scrollTop=msgs.scrollHeight;
   },550);
 }
@@ -4980,7 +4984,7 @@ document.body.classList.add('dash-fixed');
 <footer class="scope-footer">
   <div class="scope-footer-brand">Scope es una plataforma de Iniciativa GEMI · v1.2 &copy; 2026</div>
   <nav class="scope-footer-links">
-    <a href="#" onclick="showTab('acerca',null);return false">Acerca de SCOPE</a>
+    <a href="#" onclick="showTab('acerca',null);return false">Sobre Scope</a>
     <a href="#">Términos</a>
     <a href="#">Privacidad</a>
   </nav>
@@ -4992,9 +4996,9 @@ document.body.classList.add('dash-fixed');
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
       <img src="thumbnail_LOGO GEMI_COLOR_HORIZONTAL.jpeg" alt="GEMI" style="height:18px;width:auto">
       <span style="width:1px;height:16px;background:var(--border-med);display:inline-block"></span>
-      <span style="font-family:var(--sans);font-size:20px;font-weight:700;letter-spacing:0.08em;color:var(--green)">SCOPE</span>
+      <span style="font-family:var(--sans);font-size:20px;font-weight:700;letter-spacing:0.08em;color:var(--green)">Scope</span>
     </div>
-    <div style="font-family:var(--sans);font-size:26px;font-weight:700;letter-spacing:0.02em;color:var(--text);margin-bottom:8px;margin-top:16px;line-height:1.2">SCOPE está terminando<br>su desarrollo</div>
+    <div style="font-family:var(--sans);font-size:26px;font-weight:700;letter-spacing:0.02em;color:var(--text);margin-bottom:8px;margin-top:16px;line-height:1.2">Scope está terminando<br>su desarrollo</div>
     <div style="font-size:13px;color:var(--text-sec);margin-bottom:28px;line-height:1.6">Si quieres enterarte del lanzamiento, déjanos tus datos y serás de los primeros en acceder.</div>
     <form id="reg-form" onsubmit="submitReg(event)" style="display:flex;flex-direction:column;gap:14px">
       <div>
@@ -5024,7 +5028,7 @@ document.body.classList.add('dash-fixed');
     <div id="reg-success" style="display:none;text-align:center;padding:20px 0">
       <div style="font-size:36px;margin-bottom:12px"></div>
       <div style="font-family:var(--sans);font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px">¡Listo!</div>
-      <div style="font-size:13px;color:var(--text-sec);line-height:1.6">Te avisaremos cuando SCOPE esté disponible.<br>¡Gracias por tu interés!</div>
+      <div style="font-size:13px;color:var(--text-sec);line-height:1.6">Te avisaremos cuando Scope esté disponible.<br>¡Gracias por tu interés!</div>
     </div>
   </div>
 </div>
