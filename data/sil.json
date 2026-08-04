@@ -109,6 +109,29 @@
       "scrapeado_en": "2026-08-03T19:22:14.573660+00:00"
     },
     {
+      "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-07-15",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "titulo": "Que reforma el artículo 418 del Código Penal Federal.",
+      "presentador": "Dip. Cindy Winkler Trujillo (PVEM)",
+      "aspectos": "La iniciativa tiene por objeto aumentar las penas por el delito de deforestación. Para ello propone: 1) señalar que se impondrá pena de tres a nueve años de prisión y multa de dos mil a tres mil veces el valor diario de la UMA vigente, siempre que dichas actividades no se realicen en zonas urbanas, al que sin contar con la autorización previa de la autoridad competente: a) desmonte o destruya la vegetación forestal; b) corte, arranque, derribe o tale algún o algunos árboles; y, c) cambie el uso de suelo en terrenos forestales sin la autorización expedida por la autoridad competente; 2) determinar que la pena de prisión deberá aumentarse hasta en cinco años más y la multa hasta en cinco mil veces el valor diario de la UMA vigente para el caso en el que, las conductas referidas afecten un área natural protegida; y, 3) agregar que cuando las conductas referidas se realicen empleando armas de fuego o por cualquier otro medio violento en contra de las personas o para obtener un lucro o beneficio económico, se le impondrá pena de cinco a doce años de prisión y multa de quinientos a cinco mil veces el valor diario de la UMA vigente.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Justicia  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 15 de julio de 2026, por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 15/07/2026",
+      "asunto_id": "5109722",
+      "seguimiento": "5113603",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5113603&Asunto=5109722",
+      "categorias": [
+        "biodiversidad",
+        "deforestacion"
+      ],
+      "categoria": "biodiversidad",
+      "categoria_nombre": "Biodiversidad",
+      "id": "cbe6a120afa1",
+      "scrapeado_en": "2026-08-04T19:26:04.577985+00:00"
+    },
+    {
       "camara_origen": "Comisión Permanente",
       "fecha_presentacion": "2026-07-15",
       "legislatura": "LXVI",
@@ -10832,33 +10855,13 @@
       "categoria_nombre": "Residuos",
       "id": "b00a709ace26",
       "scrapeado_en": "2026-04-29T21:23:14.713329+00:00"
-    },
-    {
-      "camara_origen": "Comisión Permanente",
-      "fecha_presentacion": "2025-12-02",
-      "legislatura": "LXVI",
-      "periodo": "1er Ordinario",
-      "presentador": "Secretaría de Medio Ambiente y Recursos Naturales",
-      "aspectos": "La dependencia informa que, a través de los  Programas de Manejo de las Áreas Naturales Protegidas en ecosistemas costero-marinos, donde se captura el carbono azul, se efectúan actividades y acciones específicas orientadas a la protección, restauración y seguimiento ecológico de esos ecosistemas. Destaca que se ha fortalecido el trabajo técnico y de colaboración interinstitucional para la identificación, cuantificación y certificación de los servicios ambientales asociados al carbono azul, como lo es el Taller Especializado sobre Certificación de Proyectos de Carbono Azul y su Alineación con las NDCs, llevado a cabo el 10 de octubre de 2025.",
-      "ultimo_tramite": "Instrucciones de la Mesa Directiva: Se publicará en la Gaceta y se remitirá a las personas senadoras promoventes.",
-      "ultimo_estatus": "Resuelto / Aprobado Aprobado 02/12/2025",
-      "asunto_id": "4988184",
-      "seguimiento": "4919953",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=4919953&Asunto=4988184",
-      "categorias": [
-        "cambio_climatico"
-      ],
-      "categoria": "cambio_climatico",
-      "categoria_nombre": "Cambio Climático",
-      "id": "3e6da244ca8e",
-      "scrapeado_en": "2026-04-29T21:23:46.533785+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 147,
-    "actualizado": "2026-08-04T12:34:17Z"
+    "nuevas": 387,
+    "actualizado": "2026-08-04T19:31:02Z"
   }
 }
