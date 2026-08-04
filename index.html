@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* Sans de Scope: clon libre de Helvetica (TeX Gyre Heros) self-hosted, igual en todo dispositivo */
+@font-face{font-family:'Scope Sans';src:url('assets/fonts/heros-regular.woff2') format('woff2');font-weight:1 550;font-style:normal;font-display:swap}
+@font-face{font-family:'Scope Sans';src:url('assets/fonts/heros-bold.woff2') format('woff2');font-weight:551 1000;font-style:normal;font-display:swap}
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#FFFFFF;
@@ -38,7 +41,7 @@
   --dot-pasivo:#9aa7b4;
   --scale-ink:rgba(20,20,20,0.5);
   --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
-  --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --sans:'Scope Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 /* ── Tema oscuro (opt-in; el default es blanco) ─────────────────────────── */
 :root[data-theme="dark"]{
