@@ -3488,7 +3488,11 @@ function renderCongresoChart(){
   var host=document.getElementById('congreso-chart');
   if(!host||!_congItems)return;
   var NSEM=8;
-  var monday0=new Date(_isoMonday(new Date()).getTime()-(NSEM-1)*7*86400000);
+  // Anclar la última semana al dato más reciente: no adelantarse a semanas vacías (ceros)
+  var nowMon=_isoMonday(new Date()).getTime(),latestMon=0;
+  _congItems.forEach(function(it){var f=it.fecha;if(!f)return;var t=new Date(String(f).substring(0,10)+'T12:00:00');if(!isNaN(t)){var m=_isoMonday(t).getTime();if(m>latestMon&&m<=nowMon)latestMon=m;}});
+  var lastMon=latestMon||nowMon;
+  var monday0=new Date(lastMon-(NSEM-1)*7*86400000);
   var weeks=[]; for(var i=0;i<NSEM;i++)weeks.push({dip:0,sen:0,items:[]});
   _congItems.forEach(function(it){
     var f=it.fecha; if(!f)return;
