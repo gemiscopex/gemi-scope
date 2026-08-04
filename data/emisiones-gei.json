@@ -1,0 +1,215 @@
+{
+ "_meta": {
+  "actualizado": "2026-08-04T15:24 CDMX",
+  "fuente": "INECC · Inventario Nacional de Emisiones de Gases y Compuestos de Efecto Invernadero (INEGYCEI · datos.gob.mx)",
+  "url": "https://www.datos.gob.mx/dataset/inventario_nacional_emisiones_gases_compuestos_efecto_invernadero_inegycei",
+  "unidad": "toneladas de CO2 equivalente (tCO2e)"
+ },
+ "ultimo_anio": 2024,
+ "total_bruto": 756692623.92,
+ "total_netas": 573693339.37,
+ "serie": [
+  {
+   "anio": 1990,
+   "bruto_tco2e": 455911281.8,
+   "netas_tco2e": 257087126.17
+  },
+  {
+   "anio": 1991,
+   "bruto_tco2e": 463021926.75,
+   "netas_tco2e": 264779220.66
+  },
+  {
+   "anio": 1992,
+   "bruto_tco2e": 466956778.56,
+   "netas_tco2e": 268915554.62
+  },
+  {
+   "anio": 1993,
+   "bruto_tco2e": 468539883.28,
+   "netas_tco2e": 271425140.17
+  },
+  {
+   "anio": 1994,
+   "bruto_tco2e": 494278267.1,
+   "netas_tco2e": 297217192.19
+  },
+  {
+   "anio": 1995,
+   "bruto_tco2e": 483043035.94,
+   "netas_tco2e": 287767713.15
+  },
+  {
+   "anio": 1996,
+   "bruto_tco2e": 504607333.5,
+   "netas_tco2e": 309613134.76
+  },
+  {
+   "anio": 1997,
+   "bruto_tco2e": 536517789.1,
+   "netas_tco2e": 340260866.49
+  },
+  {
+   "anio": 1998,
+   "bruto_tco2e": 560665498.18,
+   "netas_tco2e": 366404889.8
+  },
+  {
+   "anio": 1999,
+   "bruto_tco2e": 554402969.27,
+   "netas_tco2e": 358198708.82
+  },
+  {
+   "anio": 2000,
+   "bruto_tco2e": 573787917.3,
+   "netas_tco2e": 372062705.92
+  },
+  {
+   "anio": 2001,
+   "bruto_tco2e": 571196691.85,
+   "netas_tco2e": 370713171.16
+  },
+  {
+   "anio": 2002,
+   "bruto_tco2e": 574990083.8,
+   "netas_tco2e": 380594080.53
+  },
+  {
+   "anio": 2003,
+   "bruto_tco2e": 592820235.53,
+   "netas_tco2e": 398319980.93
+  },
+  {
+   "anio": 2004,
+   "bruto_tco2e": 615065771.96,
+   "netas_tco2e": 419319925.89
+  },
+  {
+   "anio": 2005,
+   "bruto_tco2e": 622135453.89,
+   "netas_tco2e": 427179716.64
+  },
+  {
+   "anio": 2006,
+   "bruto_tco2e": 639980332.347,
+   "netas_tco2e": 443009026.855
+  },
+  {
+   "anio": 2007,
+   "bruto_tco2e": 672833426.04,
+   "netas_tco2e": 480016210.11
+  },
+  {
+   "anio": 2008,
+   "bruto_tco2e": 722276737.11,
+   "netas_tco2e": 529546364.22
+  },
+  {
+   "anio": 2009,
+   "bruto_tco2e": 703866765.04,
+   "netas_tco2e": 526693785.36
+  },
+  {
+   "anio": 2010,
+   "bruto_tco2e": 698512682.61,
+   "netas_tco2e": 511749553.0
+  },
+  {
+   "anio": 2011,
+   "bruto_tco2e": 713772957.99,
+   "netas_tco2e": 535718576.63
+  },
+  {
+   "anio": 2012,
+   "bruto_tco2e": 698768895.01,
+   "netas_tco2e": 510952131.09
+  },
+  {
+   "anio": 2013,
+   "bruto_tco2e": 707757579.15,
+   "netas_tco2e": 527130671.1
+  },
+  {
+   "anio": 2014,
+   "bruto_tco2e": 699253547.38,
+   "netas_tco2e": 515456414.64
+  },
+  {
+   "anio": 2015,
+   "bruto_tco2e": 741616907.54,
+   "netas_tco2e": 553214656.98
+  },
+  {
+   "anio": 2016,
+   "bruto_tco2e": 769021066.78,
+   "netas_tco2e": 585735414.19
+  },
+  {
+   "anio": 2017,
+   "bruto_tco2e": 750975051.81,
+   "netas_tco2e": 562187930.67
+  },
+  {
+   "anio": 2018,
+   "bruto_tco2e": 764257536.75,
+   "netas_tco2e": 582954715.55
+  },
+  {
+   "anio": 2019,
+   "bruto_tco2e": 760439452.07,
+   "netas_tco2e": 578505896.9
+  },
+  {
+   "anio": 2020,
+   "bruto_tco2e": 692824550.33,
+   "netas_tco2e": 511429310.93
+  },
+  {
+   "anio": 2021,
+   "bruto_tco2e": 743023475.75,
+   "netas_tco2e": 556899034.93
+  },
+  {
+   "anio": 2022,
+   "bruto_tco2e": 745934692.62,
+   "netas_tco2e": 556408821.6
+  },
+  {
+   "anio": 2023,
+   "bruto_tco2e": 735141139.21,
+   "netas_tco2e": 547789423.72
+  },
+  {
+   "anio": 2024,
+   "bruto_tco2e": 756692623.92,
+   "netas_tco2e": 573693339.37
+  }
+ ],
+ "sectores": [
+  {
+   "nombre": "Energía",
+   "tco2e": 476930001.86,
+   "pct": 63.0
+  },
+  {
+   "nombre": "Agricultura",
+   "tco2e": 133251906.73,
+   "pct": 17.6
+  },
+  {
+   "nombre": "Procesos industriales y uso de productos",
+   "tco2e": 77492673.21,
+   "pct": 10.2
+  },
+  {
+   "nombre": "Residuos",
+   "tco2e": 69018042.12,
+   "pct": 9.1
+  },
+  {
+   "nombre": "Uso de la tierra, cambios de uso de la tierra y silvicultura (UTCUTS)",
+   "tco2e": -182999284.55,
+   "pct": -24.2
+  }
+ ]
+}
