@@ -3869,8 +3869,8 @@ function _congHover(ev,wi){
   var rango=wd.getDate()+'–'+we.getDate()+' '+_CONG_MES[we.getMonth()];
   var lista=w.items.slice(0,4).map(function(it){
     var tag=it.camara==='SEN'?'<span style="color:#066750;font-weight:700">S</span>':'<span style="color:var(--green);font-weight:700">D</span>';
-    var t=_congAsunto(it); if(t.length>72)t=t.slice(0,70)+'…';
-    return '<div style="padding:2px 0;font-size:10.5px;color:var(--text-sec);line-height:1.35">'+tag+' · '+t+'</div>';
+    var p=_congParse(it);var t=p.titulo; if(t.length>62)t=t.slice(0,60)+'…';
+    return '<div style="padding:2px 0;font-size:10.5px;color:var(--text-sec);line-height:1.35">'+tag+' <span style="color:var(--text-muted);font-size:8.5px">'+p.accion+'</span> · '+t+'</div>';
   }).join('');
   var mas=w.items.length>4?'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px">+'+(w.items.length-4)+' más</div>':'';
   var tt=_congTT();
@@ -3895,14 +3895,18 @@ function _congPanelEl(){
 function _congPanelClose(){var el=document.getElementById('cong-panel');if(el)el.style.display='none';}
 function _congColHTML(items,color,label){
   var rows=items.map(function(it){
-    var t=_congAsunto(it);
-    var autor=_congAutor(it);
+    var p=_congParse(it),partido=_congPartido(it);
     var url=(it.url||'').replace(/'/g,'%27');
     var open=url?'onclick="window.open(\''+url+'\',\'_blank\')" style="cursor:pointer"':'style="cursor:default"';
-    return '<div '+open+' class="cong-inst" title="'+(it.titulo||'').replace(/"/g,'&quot;')+'">'
-      +'<div style="font-size:11.5px;color:var(--text);line-height:1.4">'+t+(url?' <span style="color:'+color+'">↗</span>':'')+'</div>'
-      +(autor?'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px">'+autor+'</div>':'')
-      +'</div>';
+    var accion='<span style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:'+color+'">'+p.accion+'</span>';
+    var nom=(p.noms&&p.noms.length)?'<span style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted)"> · '+p.noms[0]+'</span>':'';
+    return '<div '+open+' class="cong-inst" title="'+(it.titulo||'').replace(/"/g,'&quot;')+'" style="display:flex;align-items:flex-start;gap:8px">'
+      +_congPartidoEl(partido,16)
+      +'<div style="flex:1;min-width:0">'
+        +'<div style="margin-bottom:1px">'+accion+nom+'</div>'
+        +'<div style="font-size:11.5px;color:var(--text);line-height:1.35;font-weight:600">'+p.titulo+(url?' <span style="color:'+color+';font-weight:400">↗</span>':'')+'</div>'
+        +(p.detalle?'<div style="font-size:10px;color:var(--text-sec);line-height:1.35;margin-top:1px">'+p.detalle+'</div>':'')
+      +'</div></div>';
   }).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:10px 0">Sin instrumentos esta semana</div>';
   return '<div style="flex:1;min-width:0">'
     +'<div style="font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:'+color+';padding-bottom:6px;border-bottom:1.5px solid '+color+';margin-bottom:4px">'+label+' ('+items.length+')</div>'
@@ -3951,41 +3955,108 @@ function _congTituloLimpio(it){
   if(!t)t=(it.titulo||'').replace(/\s+/g,' ').trim();
   return t.length>160?t.slice(0,158).replace(/\s+\S*$/,'')+'…':t;
 }
+// ── Parser: convierte el título oficial larguísimo en algo que un no-experto entiende:
+//    qué LEY se toca (o a quién se exhorta) + el propósito en materia llana. ──
+function _congParse(it){
+  var raw=(it.titulo||'').replace(/\s+/g,' ').trim();
+  var t=raw.replace(/^\d+[\.\)]?\s*/,'').trim();
+  var esPunto=(it.tipo==='punto_acuerdo')||/punto de acuerdo/i.test(t);
+  var noms=(t.match(/NOM-[0-9A-Za-zÀ-ſ\-]+/g)||[]);
+  var cap=function(s){s=(s||'').trim();return s?s.charAt(0).toUpperCase()+s.slice(1):s;};
+  var clip=function(s,n){s=(s||'').replace(/[;,.\s]+$/,'').trim();return s.length>n?s.slice(0,n-1).replace(/\s+\S*$/,'')+'…':s;};
+  var mm=t.match(/en materia de\s+([\s\S]*?)(?:,\s*(?:recibida|suscrita|presentada|a cargo|en la sesi)|$)/i);
+  var materia=mm?mm[1].trim():'';
+  if(esPunto){
+    var ex=t.match(/se exhorta a\s+([\s\S]*?)(?:\s+a que\s+|\s+a\s+|\s+para que\s+|,)/i);
+    var aut=ex?ex[1].replace(/^(la|el|los|las)\s+/i,'').trim():'';
+    var ac=t.match(/se exhorta a[\s\S]*?(?:\s+a que\s+|\s+a\s+|\s+para que\s+)([\s\S]*?)(?:,\s*(?:suscrit|present|a cargo|recibid)|$)/i);
+    return {tipo:'punto_acuerdo',accion:'Exhorto',titulo:aut?('Exhorto a '+aut):'Punto de acuerdo',detalle:clip(cap(ac?ac[1]:materia),150),noms:noms};
+  }
+  var seg=t.split(/,\s*en materia de|,\s*recibida|,\s*suscrita|,\s*a cargo|,\s*presentada/i)[0];
+  var VMAP={reforma:'Reforma',reforman:'Reforma',adiciona:'Adiciona',adicionan:'Adiciona',deroga:'Deroga',derogan:'Deroga',expide:'Expide',expiden:'Expide',abroga:'Abroga'};
+  // Nombre de ley/código anclado a "Ley"/"Código" hasta el siguiente separador de ley
+  // (permite comas internas, p. ej. "Ley General para Prevenir, Investigar y Sancionar…").
+  var leyes=[],lr=/(Ley\b[^;]*?|Código\b[^;]*?|Constituci[oó]n Pol[ií]tica[^;]*?)(?=\s+y\s+de\s+la\s+|\s+y\s+del\s+|\s+en\s+materia|;|$)/g,lm;
+  while((lm=lr.exec(seg))){var nm=lm[1].replace(/\s+/g,' ').replace(/[.,;\s]+$/,'').trim();if(nm.length>6&&leyes.indexOf(nm)<0)leyes.push(nm);}
+  var av=t.match(/^Que\s+(?:se\s+)?([a-zà-ſ]+)/i);
+  var accion=(av&&VMAP[av[1].toLowerCase()])||'Iniciativa';
+  var titulo=leyes.length?leyes[0]:clip(_congTituloLimpio(it),80);
+  titulo=titulo.replace(/[.,;\s]+$/,'');
+  var detalle=materia?cap(materia):(leyes.length>1?('También reforma: '+leyes.slice(1).join(' · ')):'');
+  return {tipo:'iniciativa',accion:accion,titulo:titulo,detalle:clip(detalle,150),noms:noms,leyes:leyes};
+}
+// Palabras clave del terminal del usuario (para resaltar lo relevante)
+var _congKwsCache=[];
+function _congUserKws(){
+  try{
+    var cfg=(typeof loadConsola==='function')?loadConsola():null;if(!cfg)return [];
+    var uk=(cfg.keywords||[]),tk=(typeof _consTemaKws==='function')?(_consTemaKws(cfg.temas)||[]):[];
+    return uk.concat(tk).filter(Boolean);
+  }catch(e){return [];}
+}
+function _congMatchKw(it,kws){
+  if(!kws||!kws.length)return null;
+  var hay=_norm((it.titulo||''));
+  for(var i=0;i<kws.length;i++){var k=_norm(kws[i]);if(k&&k.length>2&&hay.indexOf(k)>=0)return kws[i];}
+  return null;
+}
+function _congPartidoEl(partido,sz){
+  var logo=PARTIDO_LOGO[partido];sz=sz||22;
+  if(logo)return '<img src="'+logo+'" alt="'+partido+'" title="'+partido+'" style="height:'+sz+'px;width:auto;max-width:'+(sz+12)+'px;object-fit:contain;flex-shrink:0" onerror="this.style.display=\'none\'">';
+  return partido?'<span style="font-family:var(--mono);font-size:8px;font-weight:700;color:'+(PARTIDO_COLOR[partido]||'var(--text-muted)')+';flex-shrink:0;width:'+(sz+8)+'px;text-align:center">'+partido+'</span>':'<span style="width:'+(sz+8)+'px;flex-shrink:0"></span>';
+}
 function _congRow(it){
-  var partido=_congPartido(it);
-  var logo=PARTIDO_LOGO[partido];
-  var pEl=logo
-    ?'<img src="'+logo+'" alt="'+partido+'" title="'+partido+'" style="height:20px;width:auto;max-width:30px;object-fit:contain;flex-shrink:0" onerror="this.style.display=\'none\'">'
-    :(partido?'<span style="font-family:var(--mono);font-size:8px;font-weight:700;color:'+(PARTIDO_COLOR[partido]||'var(--text-muted)')+';flex-shrink:0;width:30px;text-align:center">'+partido+'</span>'
-      :'<span style="width:30px;flex-shrink:0"></span>');
+  var p=_congParse(it),partido=_congPartido(it);
+  var pEl=_congPartidoEl(partido,22);
   var fecha=it.fecha?new Date(it.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
   var url=(it.url||'#').replace(/'/g,'%27');
-  var autor=_congAutor(it),cam=it.camara==='SEN'?'Senado':'Diputados';
-  var meta=cam+(autor?' · '+autor:'')+(partido&&!logo?'':(partido?' · '+partido:''));
-  return '<div onclick="window.open(\''+url+'\',\'_blank\')" style="display:flex;align-items:flex-start;gap:11px;padding:12px 0;border-top:0.8px solid var(--border);cursor:pointer" title="'+(it.titulo||'').replace(/"/g,'&quot;')+'">'
+  var cam=it.camara==='SEN'?'Senado':'Diputados';
+  var mk=_congMatchKw(it,_congKwsCache);
+  var accionTag='<span style="font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#066750">'+p.accion+'</span>';
+  var nomTag=(p.noms&&p.noms.length)?'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)"> · '+p.noms[0]+'</span>':'';
+  var badge=mk?'<span title="Coincide con tu terminal" style="font-family:var(--mono);font-size:8.5px;color:#066750;white-space:nowrap"> · ● tu terminal</span>':'';
+  return '<div onclick="window.open(\''+url+'\',\'_blank\')" style="display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-top:0.8px solid var(--border);cursor:pointer" title="'+(it.titulo||'').replace(/"/g,'&quot;')+'">'
     +pEl
     +'<div style="flex:1;min-width:0">'
-      +'<div style="font-size:12.5px;color:var(--text);line-height:1.4;font-weight:500">'+_congTituloLimpio(it)+'</div>'
-      +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+meta+'</div>'
+      +'<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">'+accionTag+nomTag+'</div>'
+      +'<div style="font-size:13px;color:var(--text);line-height:1.35;font-weight:600">'+p.titulo+'</div>'
+      +(p.detalle?'<div style="font-size:11.5px;color:var(--text-sec);line-height:1.4;margin-top:3px">'+p.detalle+'</div>':'')
+      +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+cam+(partido?' · '+partido:'')+badge+'</div>'
     +'</div>'
     +'<span style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+fecha+'</span>'
     +'</div>';
 }
 function _congRenderList(){
   var host=document.getElementById('cong-list');if(!host)return;
+  _congKwsCache=_congUserKws();
+  var tieneKw=_congKwsCache.length>0;
   var base=_congItems.filter(function(it){return _congPanel==='pto'?it.tipo==='punto_acuerdo':it.tipo!=='punto_acuerdo';});
   var q=_norm(_congQ);
   var list=base.filter(function(it){
     if(_congCam!=='todas'&&it.camara!==_congCam)return false;
-    if(q){var hay=_norm((it.titulo||'')+' '+(it.autor||'')+' '+_congPartido(it));if(hay.indexOf(q)<0)return false;}
+    if(_congSoloMis&&!_congMatchKw(it,_congKwsCache))return false;
+    if(q){var p=_congParse(it);var hay=_norm((it.titulo||'')+' '+p.titulo+' '+p.detalle+' '+_congPartido(it));if(hay.indexOf(q)<0)return false;}
     return true;
-  }).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
-  var shown=_congExpanded?list.slice(0,40):list.slice(0,6);
+  });
+  var nMatch=tieneKw?base.filter(function(it){return _congMatchKw(it,_congKwsCache);}).length:0;
+  // Relevantes primero (los que tocan tu terminal), luego por fecha
+  list.sort(function(a,b){
+    var ma=_congMatchKw(a,_congKwsCache)?1:0,mb=_congMatchKw(b,_congKwsCache)?1:0;
+    if(ma!==mb)return mb-ma;
+    return new Date(b.fecha||0)-new Date(a.fecha||0);
+  });
+  var shown=_congExpanded?list.slice(0,50):list.slice(0,6);
   var rows=shown.map(_congRow).join('')||'<div style="font-size:11.5px;color:var(--text-muted);padding:16px 0;font-style:italic">Sin documentos que coincidan con el filtro.</div>';
   var verMas=list.length>6?'<div onclick="_toggleCongreso()" style="font-size:11.5px;font-weight:600;color:var(--green);cursor:pointer;padding:12px 0 2px;user-select:none">'+(_congExpanded?'▲ Ver menos':'▼ Ver más ('+(list.length-6)+')')+'</div>':'';
-  host.innerHTML='<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:2px">'+list.length+' documento'+(list.length===1?'':'s')+(_congCam!=='todas'?' · '+(_congCam==='DIP'?'Diputados':'Senado'):'')+'</div>'
-    +'<div'+(_congExpanded?' style="max-height:440px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent"':'')+'>'+rows+'</div>'+verMas;
+  var tipoLbl=_congPanel==='pto'?'exhortos y proposiciones':'iniciativas de ley';
+  var head='<div style="font-size:11.5px;color:var(--text-sec);margin-bottom:3px;line-height:1.45">'+list.length+' '+tipoLbl+' ambientales en revisión'
+    +(tieneKw&&nMatch?' · <span style="color:#066750;font-weight:600">'+nMatch+' tocan tus temas</span> (arriba)':'')+'</div>';
+  var toggle=tieneKw?'<label style="display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:var(--text-muted);cursor:pointer;margin-bottom:8px;user-select:none"><input type="checkbox" '+(_congSoloMis?'checked':'')+' onchange="_congToggleMis(this.checked)" style="accent-color:#066750;cursor:pointer"> Solo mis temas</label>':'';
+  host.innerHTML=head+toggle
+    +'<div'+(_congExpanded?' style="max-height:480px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent"':'')+'>'+rows+'</div>'+verMas;
 }
+var _congSoloMis=false;
+function _congToggleMis(v){_congSoloMis=!!v;_congExpanded=true;_congRenderList();}
 function _renderCongreso(panel){
   var el=document.getElementById('widget-congreso');
   if(!el)return;
