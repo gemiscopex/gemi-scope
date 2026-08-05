@@ -265,27 +265,21 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .radar-bc-d{text-align:right;font-family:var(--mono);font-size:11px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
 .radar-bhead .radar-bc-d{font-size:8.5px;font-weight:400}
 @media(max-width:900px){.radar-brow{grid-template-columns:130px 60px repeat(6,minmax(0,1fr)) 52px 52px;gap:7px}.radar-bc-spark{display:none}}
-/* ── Radar · tarjetas por tema (estilo Polymarket / score-cards fiatmx) ── */
-.rdc-grid{margin-top:6px}
-.rdc{border:0.8px solid var(--border);border-radius:12px;margin-bottom:10px;background:var(--card);overflow:hidden;transition:border-color .15s}
-.rdc:hover{border-color:var(--border-med)}
-.rdc.open{border-color:var(--green)}
-.rdc-head{display:grid;grid-template-columns:minmax(0,1fr) 96px auto 22px;align-items:center;gap:20px;padding:14px 16px;cursor:pointer}
-.rdc-title{min-width:0}
-.rdc-nrow{display:flex;align-items:center;gap:9px;min-width:0}
-.rdc-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.rdc-name{font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rdc-sub{font-family:var(--mono);font-size:9px;letter-spacing:.02em;color:var(--text-muted);margin-top:4px}
-.rdc-spark{display:flex;align-items:center;justify-content:flex-end}
-.rdc-stats{display:flex;align-items:center;gap:22px}
-.rdc-stat{text-align:right;min-width:30px}
-.rdc-stat-v{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--text);line-height:1;font-variant-numeric:tabular-nums}
-.rdc-stat-l{font-family:var(--mono);font-size:8px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted);margin-top:5px}
-.rdc-chev{font-size:17px;color:var(--text-muted);transition:transform .22s;justify-self:center;line-height:1}
-.rdc.open .rdc-chev{transform:rotate(90deg);color:var(--green)}
-.rdc-body{max-height:0;overflow:hidden;transition:max-height .38s ease;padding:0 16px;border-top:0.8px solid transparent}
-.rdc.open .rdc-body{max-height:2200px;padding:14px 16px 18px;border-top-color:var(--border)}
-@media(max-width:760px){.rdc-head{grid-template-columns:minmax(0,1fr) auto 20px;gap:12px}.rdc-spark{display:none}.rdc-stats{gap:15px}.rdc-stat-v{font-size:14px}}
+/* ── Radar · grid de temas (sin cajas; separación por hairline gris; estilo Polymarket) ── */
+.rdc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--border);border-left:1px solid var(--border);margin-top:10px}
+.rdc-tile{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:15px 16px 13px;cursor:pointer;transition:background .12s;min-width:0}
+.rdc-tile:hover{background:rgba(6,103,80,0.035)}
+.rdc-tile.sel{background:rgba(6,103,80,0.06)}
+.rdc-tname{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rdc-tsub{font-family:var(--mono);font-size:8.5px;letter-spacing:.02em;color:var(--text-muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rdc-tspark{margin:11px 0 9px;height:26px}
+.rdc-tstats{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
+.rdc-tstat-v{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1}
+.rdc-tstat-l{font-family:var(--mono);font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);margin-top:4px}
+.rdc-detail{grid-column:1/-1;max-height:0;overflow:hidden;transition:max-height .4s ease;border-bottom:1px solid var(--border);background:rgba(6,103,80,0.022)}
+.rdc-detail.open{max-height:3000px;padding:18px 18px 22px}
+@media(max-width:1080px){.rdc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.rdc-grid{grid-template-columns:1fr}}
 /* ── Radar panel Kalshi-style ── */
 .radar-panel-wrap{background:var(--card);border:0.8px solid var(--border);border-radius:12px;overflow:hidden}
 .radar-panel-header{padding:20px 24px 16px;border-bottom:0.8px solid var(--border)}
@@ -3017,6 +3011,7 @@ const TEMA_FED_LAWS={agua:['LAN','LGEEPA','LFRA'],agua_inf:['LAN','LGEEPA'],resi
 function toggleInstr(id){const el=document.getElementById(id);const arr=document.getElementById('arr-'+id);const open=el.style.maxHeight&&el.style.maxHeight!=='0px';el.style.maxHeight=open?'0px':(el.scrollHeight+200)+'px';if(arr)arr.style.transform=open?'':'rotate(90deg)';}
 // ═══ RADAR SCOPE · integral (cruza todos los streams) ════════════════════════
 var _radarSel=null,_RD_NOW=Date.now(),_RD_NEWS=Date.now();
+var RD_GREEN='#066750';  // verde del logo GEMI — único color permitido en las gráficas del Radar
 // Ancla la ventana al dato más reciente disponible: robusto ante snapshots viejos
 // y equivalente a "hoy" cuando el scraper corre al día. Cada stream usa su propio
 // dato más reciente para que "últimos 90 días" siempre tenga contenido real.
@@ -3085,41 +3080,57 @@ function renderRadares(){
   var stat=function(v,l,c){return '<div style="padding:0 20px;border-left:0.8px solid var(--border)"><div style="font-family:var(--mono);font-size:21px;font-weight:700;color:'+(c||'var(--text)')+';line-height:1;font-variant-numeric:tabular-nums">'+v+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">'+l+'</div></div>';};
   var head='<div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px">'
     +'<div><div style="display:flex;align-items:center;gap:9px"><span class="radar-live-dot"></span>'
-      +'<span style="font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);font-weight:700">Radar · en vivo</span></div>'
+      +'<span style="font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text);font-weight:700">Radar · en vivo</span></div>'
       +'<div style="font-size:12px;color:var(--text-muted);margin-top:5px;max-width:620px">Señal regulatoria integral por tema — cruza noticias nacionales y estatales, DOF, Congreso, NOMs e instrumentos internacionales.</div></div>'
     +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);letter-spacing:0.04em">CDMX · '+ts+'</div></div>'
     +'<div style="display:flex;align-items:stretch;margin:18px 0 22px">'
-      +'<div style="padding-right:20px"><div style="font-family:var(--mono);font-size:21px;font-weight:700;color:var(--green);line-height:1;font-variant-numeric:tabular-nums">'+sum('senal')+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">Señal total</div></div>'
+      +'<div style="padding-right:20px"><div style="font-family:var(--mono);font-size:21px;font-weight:700;color:var(--text);line-height:1;font-variant-numeric:tabular-nums">'+sum('senal')+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">Señal total</div></div>'
       +stat(sum('news90'),'Noticias 90d')+stat(sum('est'),'Prensa edo.')+stat(sum('dof'),'DOF')+stat(sum('cong'),'Congreso')+stat(sum('noms'),'NOMs')+stat(sum('intl'),'Internac.')
     +'</div>';
   var body=rows.map(function(r){
     var t=r.t,s=r.s,d=s.delta;
-    var dcol=d>0?'var(--green)':d<0?'var(--red)':'var(--text-muted)',darr=d>0?'▲':d<0?'▼':'—';
-    var niv=s.senal>=18?'Alta':s.senal>=8?'Media':'Baja';
-    var stat=function(v,l,c){return '<div class="rdc-stat"><div class="rdc-stat-v"'+(c?' style="color:'+c+'"':(v?'':' style="opacity:.35"'))+'>'+v+'</div><div class="rdc-stat-l">'+l+'</div></div>';};
-    var open=(t.id===_radarSel);
-    return '<div class="rdc'+(open?' open':'')+'" data-tid="'+t.id+'">'
-      +'<div class="rdc-head" onclick="_radarToggle(\''+t.id+'\')">'
-        +'<div class="rdc-title"><div class="rdc-nrow"><span class="rdc-dot" style="background:'+t.color+'"></span><span class="rdc-name">'+t.name+'</span></div>'
-          +'<div class="rdc-sub">'+(s.news90+s.est)+' menciones en medios · señal '+niv.toLowerCase()+'</div></div>'
-        +'<div class="rdc-spark">'+_radarSpark(_radarDaily(t,21),t.color)+'</div>'
-        +'<div class="rdc-stats">'+stat(s.dof,'DOF')+stat(s.est,'Estados')+stat(darr+Math.abs(d),'Δ 30d',dcol)+'</div>'
-        +'<span class="rdc-chev">›</span></div>'
-      +'<div class="rdc-body" id="rdc-body-'+t.id+'">'+(open?_radarDetailHTML(t.id):'')+'</div>'
+    var darr=d>0?'▲ ':d<0?'▼ ':'';
+    var mini=function(v,l,al){return '<div'+(al?' style="text-align:'+al+'"':'')+'><div class="rdc-tstat-v">'+v+'</div><div class="rdc-tstat-l">'+l+'</div></div>';};
+    return '<div class="rdc-tile" data-tid="'+t.id+'" onclick="_radarToggle(\''+t.id+'\')">'
+      +'<div class="rdc-tname">'+t.name+'</div>'
+      +'<div class="rdc-tsub">'+(s.news90+s.est)+' menciones · 90d</div>'
+      +'<div class="rdc-tspark">'+_radarSparkFluid(_radarDaily(t,21),RD_GREEN)+'</div>'
+      +'<div class="rdc-tstats">'+mini(s.dof,'DOF')+mini(s.est,'Estados')+mini(darr+Math.abs(d),'Δ 30d','right')+'</div>'
     +'</div>';
   }).join('');
-  host.innerHTML=head+'<div class="rdc-grid">'+body+'</div>';
+  host.innerHTML=head+'<div class="rdc-grid" id="rdc-grid">'+body+'</div>';
 }
-// Abre/cierra una tarjeta (acordeón: solo una abierta a la vez)
+// Expande el detalle de un tema como banda full-width justo debajo de su fila (una a la vez)
 function _radarToggle(id){
-  var card=document.querySelector('.rdc[data-tid="'+id+'"]');if(!card)return;
-  var isOpen=card.classList.contains('open');
-  document.querySelectorAll('.rdc.open').forEach(function(c){if(c!==card)c.classList.remove('open');});
-  if(isOpen){card.classList.remove('open');return;}
-  var body=document.getElementById('rdc-body-'+id);
-  if(body&&!body.getAttribute('data-loaded')){body.innerHTML=_radarDetailHTML(id);body.setAttribute('data-loaded','1');}
-  card.classList.add('open');_radarSel=id;
-  setTimeout(function(){card.scrollIntoView({behavior:'smooth',block:'nearest'});},60);
+  var grid=document.getElementById('rdc-grid');if(!grid)return;
+  var tile=grid.querySelector('.rdc-tile[data-tid="'+id+'"]');if(!tile)return;
+  var existing=document.getElementById('rdc-detail');
+  var wasThis=existing&&existing.getAttribute('data-tid')===id;
+  if(existing)existing.remove();
+  grid.querySelectorAll('.rdc-tile.sel').forEach(function(x){x.classList.remove('sel');});
+  if(wasThis){_radarSel=null;return;}
+  var cols=(getComputedStyle(grid).gridTemplateColumns.split(' ').filter(function(s){return s.trim();}).length)||1;
+  var tiles=[].slice.call(grid.querySelectorAll('.rdc-tile'));
+  var idx=tiles.indexOf(tile);
+  var rowEnd=Math.min(Math.floor(idx/cols)*cols+cols-1,tiles.length-1);
+  var anchor=tiles[rowEnd];
+  var det=document.createElement('div');
+  det.id='rdc-detail';det.className='rdc-detail';det.setAttribute('data-tid',id);
+  det.innerHTML=_radarDetailHTML(id);
+  anchor.parentNode.insertBefore(det,anchor.nextSibling);
+  tile.classList.add('sel');_radarSel=id;
+  requestAnimationFrame(function(){det.classList.add('open');});
+  setTimeout(function(){tile.scrollIntoView({behavior:'smooth',block:'nearest'});},80);
+}
+// Sparkline fluido (ancho 100%) para las tiles del Radar — verde GEMI
+function _radarSparkFluid(data,color){
+  var W=180,H=26,n=(data||[]).length,mx=Math.max.apply(null,(data||[]).concat([1]));
+  if(n<2)return '';
+  var pts=data.map(function(v,i){var x=(i/(n-1))*W,y=H-2-(v/mx)*(H-4);return x.toFixed(1)+','+y.toFixed(1);}).join(' ');
+  var lx=W,ly=H-2-(data[n-1]/mx)*(H-4);
+  return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" style="width:100%;height:26px;display:block;overflow:visible">'
+    +'<polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/>'
+    +'<circle cx="'+lx+'" cy="'+ly.toFixed(1)+'" r="2" fill="'+color+'"/></svg>';
 }
 // Serie diaria (últimos N días) por tema: nacional (título+resumen) + prensa estatal
 function _radarDaily(tema,days){
@@ -3186,15 +3197,15 @@ function _radarDetailHTML(temaId){
   var estBars=topE.length?topE.map(function(e){
     return '<div onclick="openStatePanel(\''+e[0].replace(/'/g,"\\'")+'\')" style="display:flex;align-items:center;gap:10px;padding:7px 0;border-top:0.8px solid var(--border);cursor:pointer">'
       +'<span style="flex:1;font-size:12px;color:var(--text)">'+e[0]+'</span>'
-      +'<span style="width:70px;height:4px;background:rgba(0,0,0,0.06);flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(e[1]/mxE*100)+'%;background:'+tema.color+'"></span></span>'
-      +'<span style="font-family:var(--mono);font-size:11px;color:'+tema.color+';min-width:20px;text-align:right">'+e[1]+'</span></div>';
+      +'<span style="width:70px;height:4px;background:rgba(0,0,0,0.06);flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(e[1]/mxE*100)+'%;background:'+RD_GREEN+'"></span></span>'
+      +'<span style="font-family:var(--mono);font-size:11px;color:var(--text);min-width:20px;text-align:right">'+e[1]+'</span></div>';
   }).join(''):'<div style="font-size:11.5px;color:var(--text-muted);padding:8px 0">Sin actividad estatal reciente</div>';
-  var estBlock='<div style="margin-bottom:20px"><div style="font-size:12px;font-weight:700;color:'+tema.color+';margin-bottom:2px">Estados más activos <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+topE.length+'</span></div>'+estBars+'</div>';
+  var estBlock='<div style="margin-bottom:20px"><div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px">Estados más activos <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+topE.length+'</span></div>'+estBars+'</div>';
   return '<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px">Vista 360° · todos los streams del tema</div>'
     +_emisBlock(tema)
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
-      +'<div>'+block('Señal en medios · 2 sem','var(--green)',news)+block('Prensa estatal',tema.color,est)+estBlock+'</div>'
-      +'<div>'+block('DOF · publicaciones'+(dofAll.length>3?' · +'+(dofAll.length-3)+' más':''),tema.color,dof)+block('Congreso'+(congAll.length>3?' · +'+(congAll.length-3)+' más':''),tema.color,cong)+block('NOMs',tema.color,noms)+block('Internacional',tema.color,intl)+'</div>'
+      +'<div>'+block('Señal en medios · 2 sem','var(--text)',news)+block('Prensa estatal','var(--text)',est)+estBlock+'</div>'
+      +'<div>'+block('DOF · publicaciones'+(dofAll.length>3?' · +'+(dofAll.length-3)+' más':''),'var(--text)',dof)+block('Congreso'+(congAll.length>3?' · +'+(congAll.length-3)+' más':''),'var(--text)',cong)+block('NOMs','var(--text)',noms)+block('Internacional','var(--text)',intl)+'</div>'
     +'</div>';
 }
 // ── Emisiones GEI (INEGYCEI · INECC) por tema: cada tema muestra su sector ──
@@ -3230,26 +3241,26 @@ function _emisBlock(tema){
     var first=serie[0],last=serie[serie.length-1];
     var growth=(first&&last&&first.bruto_tco2e)?Math.round((last.bruto_tco2e/first.bruto_tco2e-1)*100):null;
     return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
-      +'<div style="font-size:12px;font-weight:700;color:'+tema.color+';margin-bottom:9px">Emisiones nacionales GEI · INECC</div>'
+      +'<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:9px">Emisiones nacionales GEI · INECC</div>'
       +'<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px">'
         +'<div><span style="font-size:28px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">'+_emisMt(d.total_bruto)+'</span><span style="font-size:14px;color:var(--text-sec);font-weight:600"> MtCO2e</span> <span style="font-size:10.5px;color:var(--text-muted)">brutas '+d.ultimo_anio+'</span></div>'
-        +(growth!=null?'<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:'+(growth>=0?'var(--red)':'var(--green)')+'">'+(growth>=0?'+':'')+growth+'% desde '+first.anio+'</div>':'')
-      +'</div>'+_emisCurve(serie,'bruto_tco2e',tema.color)
+        +(growth!=null?'<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text-sec)">'+(growth>=0?'+':'')+growth+'% desde '+first.anio+'</div>':'')
+      +'</div>'+_emisCurve(serie,'bruto_tco2e',RD_GREEN)
       +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:8px">'+_emisMt(d.total_netas)+' Mt netas con absorción · Fuente: INECC · INEGYCEI (datos.gob.mx)</div></div>';
   }
   var sec=_emisSector(tema);
   if(!sec)return '';
   var neg=sec.tco2e<0;
   return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
-    +'<div style="font-size:12px;font-weight:700;color:'+tema.color+';margin-bottom:9px">Emisiones GEI del sector · INECC</div>'
+    +'<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:9px">Emisiones GEI del sector · INECC</div>'
     +'<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px">'
       +'<div><span style="font-size:28px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">'+_emisMt(sec.tco2e)+'</span><span style="font-size:14px;color:var(--text-sec);font-weight:600"> MtCO2e</span> <span style="font-size:10.5px;color:var(--text-muted)">'+d.ultimo_anio+'</span></div>'
-      +'<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:'+tema.color+'">'+sec.pct+'% del total nacional</div>'
-    +'</div>'+_emisCurve(sec.serie,'tco2e',tema.color)
+      +'<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text-sec)">'+sec.pct+'% del total nacional</div>'
+    +'</div>'+_emisCurve(sec.serie,'tco2e',RD_GREEN)
     +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:8px">'+(neg?'Valor negativo = absorción (sumidero forestal). ':'')+'Fuente: INECC · INEGYCEI (datos.gob.mx)</div></div>';
 }
 // Refresca el detalle si las emisiones cargan después de abrir el Radar
-function renderEmisiones(){var b=_radarSel&&document.getElementById('rdc-body-'+_radarSel);if(b&&b.getAttribute('data-loaded')){b.innerHTML=_radarDetailHTML(_radarSel);}}
+function renderEmisiones(){var d=document.getElementById('rdc-detail');if(d&&_radarSel){d.innerHTML=_radarDetailHTML(_radarSel);}}
 // Compatibilidad con llamadas previas
 function buildRadarTrendChart(){renderRadares();}
 function _buildRadarSelector(){}
