@@ -2371,13 +2371,43 @@ function agendaSetView(v){_agendaView=v;_agendaEst='todos';renderAgenda();}
 function agendaSetEst(e){_agendaEst=e;_agendaPend();}
 function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
-  if(view==='dof')_agendaView='dof';else if(view==='pendientes')_agendaView='pendientes';
-  var tabs=[['pendientes','Reglamentaciones pendientes'],['dof','DOF · publicaciones']];
+  if(view==='dof')_agendaView='dof';else if(view==='pendientes')_agendaView='pendientes';else if(view==='conamer')_agendaView='conamer';
+  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta · CONAMER'],['dof','DOF · publicaciones']];
   var nav='<div class="stab-bar" style="margin-bottom:20px">'+tabs.map(function(t){
       return '<button class="stab'+(_agendaView===t[0]?' on':'')+'" onclick="agendaSetView(\''+t[0]+'\')">'+t[1]+'</button>';
     }).join('')+'</div>';
   host.innerHTML=nav+'<div id="agenda-view"></div>';
-  if(_agendaView==='dof')_agendaDof();else _agendaPend();
+  if(_agendaView==='dof')_agendaDof();else if(_agendaView==='conamer')_agendaConamer();else _agendaPend();
+}
+// Propuestas regulatorias en consulta (CONAMER) que impactan nuestros sectores
+function _conamerNomMatch(titulo){
+  var out=[];var re=/NOM-\d+-[A-ZÁÉÍÓÚ]+/gi,m;var base={};
+  while((m=re.exec(titulo||''))){base[m[0].toUpperCase().replace(/^PROY-/,'')]=1;}
+  var norms=(typeof NORMAS!=='undefined'?NORMAS:[]);
+  Object.keys(base).forEach(function(b){
+    norms.forEach(function(n){var nb=(n.id||'').toUpperCase().replace(/^PROY-/,'').replace(/-\d{4}.*$/,'');
+      if(nb&&b.indexOf(nb.split('-').slice(0,3).join('-'))===0)out.push(n.id);});
+  });
+  return out;
+}
+function _agendaConamer(){
+  var host=document.getElementById('agenda-view');if(!host)return;
+  var d=_conamerData;
+  if(!d){host.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando…</div>';return;}
+  var items=(d.items||[]);
+  var head='<div style="font-size:11.5px;color:var(--text-sec);line-height:1.55;margin-bottom:6px">Propuestas regulatorias <b>en consulta pública</b> ante CONAMER que impactan a nuestros sectores — antes de publicarse en el DOF. '
+    +'<a href="'+((d._meta&&d._meta.url)||'https://www.herramientasregulatorias.gob.mx/')+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Portal CONAMER ↗</a></div>'
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:14px">'+((d._meta&&d._meta.actualizado)||'')+' · '+items.length+' propuesta'+(items.length===1?'':'s')+'</div>';
+  if(!items.length){host.innerHTML=head+'<div style="font-size:12.5px;color:var(--text-muted);padding:12px 0">Sin propuestas de nuestros sectores en consulta ahora mismo.</div>';return;}
+  var body=items.map(function(it){
+    var dia=(it.fecha||'').split(' ')[0];
+    var match=_conamerNomMatch(it.titulo);
+    var tag=(it.subtipo||'')+(it.tipo?' · '+it.tipo:'');
+    var meta='<b>'+(it.siglas||'')+'</b> · '+(it.dependencia||'')+(tag?'  ·  '+tag:'')
+      +(match.length?'  ·  <span style="color:var(--amber)">Actualiza '+match.join(', ')+' que monitoreas</span>':'');
+    return _oblRow({title:it.titulo,meta:meta,right:_oblStatus('En consulta','var(--green)'),rightSub:dia,onclick:'window.open(\''+(it.url||'#').replace(/\x27/g,'%27')+'\',\'_blank\')'});
+  }).join('');
+  host.innerHTML=head+body;
 }
 function _agendaPend(){
   var host=document.getElementById('agenda-view');if(!host)return;
@@ -3882,7 +3912,7 @@ function renderDOF(){
   el.innerHTML=html;
 }
 // ─────────────────────────────────────────────────────────────────────────────
-var _perfilEstados=null,_materialesData=null,_datosgobData=null,_sitiosData=null,_emisionesData=null;
+var _perfilEstados=null,_materialesData=null,_datosgobData=null,_sitiosData=null,_emisionesData=null,_conamerData=null;
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
@@ -3894,6 +3924,7 @@ async function init(){
   fetch('data/actores-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_actoresEstatales=d;renderActoresEstatales();}).catch(()=>{});
   fetch('data/sitios-contaminados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_sitiosData=d;buildMap();}).catch(()=>{});
   fetch('data/emisiones-gei.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_emisionesData=d;if(typeof renderEmisiones==='function')renderEmisiones();}).catch(()=>{});
+  fetch('data/conamer-propuestas.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_conamerData=d;}).catch(()=>{});
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
