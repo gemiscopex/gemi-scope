@@ -3158,7 +3158,6 @@ function renderSPPerfil(state,data,sc){
   const peaMax=Object.values(perfiles).reduce((s,e)=>Math.max(s,e.pea||0),0);
   const rows=
      statRow('Poblaci\u00f3n',fmtNum(perfil.poblacion),perfil.poblacion&&pobMax?(perfil.poblacion/pobMax)*100:null,'INEGI '+(perfil.poblacion_periodo||'2020'))
-    +statRow('% de la poblaci\u00f3n nacional',pct!=null?pct.toFixed(1)+'%':'\u2014',pct!=null?(pct/pctMax)*100:null,'')
     +statRow('Capital',perfil.capital||data.capital||'\u2014',null,'')
     +statRow('Poblaci\u00f3n econ\u00f3micamente activa',perfil.pea?fmtNum(perfil.pea):'\u2014',perfil.pea&&peaMax?(perfil.pea/peaMax)*100:null,perfil.pea?'ENOE '+(perfil.pea_periodo||''):'Integraci\u00f3n en curso');
   document.getElementById('sp-perfil').innerHTML=rows
@@ -3204,22 +3203,23 @@ function renderSPMateriales(state){
     <div style="font-size:10px;color:var(--text-muted);margin-top:12px">Dataset de Scope v1 \u00b7 verificar el instrumento estatal vigente antes de decisiones de cumplimiento.</div>`;
 }
 function renderSPActividad(state){
-  const doRender=(d)=>{
-    const cutoff=new Date(Date.now()-d*86400000);
-    const arts=filterNoticiasEstado(state,[]).filter(n=>new Date(n.fecha_publicacion)>cutoff).slice(0,10);
-    const listEl=document.getElementById('sp-actividad-list');
-    if(!listEl)return;
-    listEl.innerHTML=arts.length?arts.map(n=>`<div class="sp-news-item"><div class="sp-news-title"><a href="${n.url}" target="_blank">${n.titulo}</a></div><div class="sp-news-meta">${formatFecha(n.fecha_publicacion)} \u00b7 ${(n.fuente||'').replace('Google News - ','')}</div></div>`).join(''):`<div class="sp-empty">Sin actividad registrada en los \u00faltimos ${d} d\u00edas</div>`;
-  };
-  window._spActState=state;window._spActRender=doRender;
-  document.getElementById('sp-actividad').innerHTML=`
-    <div style="display:flex;gap:6px;margin-bottom:14px">
-      <button class="act-btn active" onclick="document.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');window._spActRender(30)">30 d\u00edas</button>
-      <button class="act-btn" onclick="document.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');window._spActRender(60)">60 d\u00edas</button>
-      <button class="act-btn" onclick="document.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');window._spActRender(90)">90 d\u00edas</button>
-    </div>
-    <div id="sp-actividad-list"></div>`;
-  doRender(30);
+  var el=document.getElementById('sp-actividad');if(!el)return;
+  var DAYS=14, cut=Date.now()-DAYS*86400000;
+  var parse=function(f){var d=new Date(String(f||'').substring(0,10)+'T12:00:00');return isNaN(d)?0:d.getTime();};
+  // Nacional (feed diario) + regional (medios estatales, cubre todas las entidades)
+  var nat=filterNoticiasEstado(state,[]).map(function(n){return {titulo:n.titulo,url:n.url,fecha:n.fecha_publicacion,fuente:(n.fuente||'').replace('Google News - ','').split(',')[0]};});
+  var reg=((typeof _noticiasEstatales!=='undefined'&&_noticiasEstatales&&_noticiasEstatales.items)||[])
+    .filter(function(it){return it.estado===state;})
+    .map(function(it){return {titulo:it.titulo,url:it.url,fecha:it.fecha,fuente:it.medio||''};});
+  var seen={},all=[];
+  nat.concat(reg).forEach(function(a){var k=qa((a.titulo||'').toLowerCase()).slice(0,60);if(k&&!seen[k]){seen[k]=1;all.push(a);}});
+  var recent=all.filter(function(a){return parse(a.fecha)>cut;}).sort(function(a,b){return parse(b.fecha)-parse(a.fecha);});
+  el.innerHTML='<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">Menciones en medios \u00b7 \u00faltimas 2 semanas <span style="color:var(--dim)">\u00b7 '+recent.length+'</span></div>'
+    +(recent.length?recent.slice(0,25).map(function(n){
+        var f=n.fecha?new Date(String(n.fecha).substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+        return '<div class="sp-news-item"><div class="sp-news-title"><a href="'+(n.url||'#')+'" target="_blank" rel="noopener">'+(n.titulo||'')+'</a></div><div class="sp-news-meta">'+f+(n.fuente?' \u00b7 '+n.fuente:'')+'</div></div>';
+      }).join('')
+      :'<div class="sp-empty">Sin menciones en medios en las \u00faltimas 2 semanas para '+state+'.</div>');
 }
 function renderSPSectorial(state){
   // Datos reales: Censos Económicos (Data México) — % de producción bruta por sector
