@@ -276,6 +276,12 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .rdc-tname{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rdc-tsub{font-family:var(--mono);font-size:8.5px;letter-spacing:.02em;color:var(--text-muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rdc-tspark{margin:11px 0 9px;height:26px}
+/* Animación en bucle de las sparklines: se redibujan cada 15s, desfasadas 2s por tile */
+.rdc-spk{stroke-dasharray:1;animation:rdSpkDraw 15s linear infinite}
+.rdc-spk-dot{animation:rdSpkPulse 15s linear infinite}
+@keyframes rdSpkDraw{0%{stroke-dashoffset:1}9%{stroke-dashoffset:0}100%{stroke-dashoffset:0}}
+@keyframes rdSpkPulse{0%,7%{opacity:0}9%{opacity:1}100%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.rdc-spk{animation:none;stroke-dashoffset:0}.rdc-spk-dot{animation:none;opacity:1}}
 .rdc-tstats{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
 .rdc-tstat-v{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1}
 .rdc-tstat-l{font-family:var(--mono);font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);margin-top:4px}
@@ -3015,6 +3021,8 @@ function toggleInstr(id){const el=document.getElementById(id);const arr=document
 // ═══ RADAR SCOPE · integral (cruza todos los streams) ════════════════════════
 var _radarSel=null,_RD_NOW=Date.now(),_RD_NEWS=Date.now();
 var RD_GREEN='#066750';  // verde del logo GEMI — único color permitido en las gráficas del Radar
+var _radarSort='senal';
+function _radarSetSort(k){_radarSort=k;renderRadares();}
 // Ancla la ventana al dato más reciente disponible: robusto ante snapshots viejos
 // y equivalente a "hoy" cuando el scraper corre al día. Cada stream usa su propio
 // dato más reciente para que "últimos 90 días" siempre tenga contenido real.
@@ -3076,7 +3084,9 @@ function renderRadares(){
   var host=document.getElementById('radar-terminal');if(!host)return;
   _RD_NOW=_radarRefNow();_RD_NEWS=_radarNewsNow();
   var rows=RADAR_TEMAS.map(function(t){return {t:t,s:_radarStreams(t)};});
-  rows.sort(function(a,b){return b.s.senal-a.s.senal;});
+  var SK={senal:function(x){return x.s.senal;},dof:function(x){return x.s.dof;},est:function(x){return x.s.est;},delta:function(x){return x.s.delta;}};
+  var sk=SK[_radarSort]||SK.senal;
+  rows.sort(function(a,b){return sk(b)-sk(a);});
   if(!_radarSel||!rows.find(function(r){return r.t.id===_radarSel;}))_radarSel=rows[0]?rows[0].t.id:null;
   var sum=function(k){return rows.reduce(function(a,r){return a+r.s[k];},0);};
   var ts=new Date().toLocaleString('es-MX',{timeZone:'America/Mexico_City',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
@@ -3090,18 +3100,27 @@ function renderRadares(){
       +'<div style="padding-right:20px"><div style="font-family:var(--mono);font-size:21px;font-weight:700;color:var(--text);line-height:1;font-variant-numeric:tabular-nums">'+sum('senal')+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">Señal total</div></div>'
       +stat(sum('news90'),'Noticias 90d')+stat(sum('est'),'Prensa edo.')+stat(sum('dof'),'DOF')+stat(sum('cong'),'Congreso')+stat(sum('noms'),'NOMs')+stat(sum('intl'),'Internac.')
     +'</div>';
-  var body=rows.map(function(r){
+  var _pin='<svg width="8" height="8" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" style="vertical-align:-1px"><path d="M10 18s6-5.5 6-10a6 6 0 0 0-12 0c0 4.5 6 10 6 10Z"/><circle cx="10" cy="7.5" r="2"/></svg>';
+  var _dofMark='<span style="font-family:Georgia,\'Times New Roman\',serif;font-weight:700;letter-spacing:.6px;font-size:10px;text-transform:none">DOF</span>';
+  var _estMark='<span style="display:inline-flex;align-items:center;gap:3px">'+_pin+'Estados</span>';
+  var body=rows.map(function(r,i){
     var t=r.t,s=r.s,d=s.delta;
     var darr=d>0?'▲ ':d<0?'▼ ':'';
     var mini=function(v,l,al){return '<div'+(al?' style="text-align:'+al+'"':'')+'><div class="rdc-tstat-v">'+v+'</div><div class="rdc-tstat-l">'+l+'</div></div>';};
     return '<div class="rdc-tile" data-tid="'+t.id+'" onclick="_radarToggle(\''+t.id+'\')">'
       +'<div class="rdc-thead"><span class="rdc-ticon">'+_radarIcon(t.id)+'</span><span class="rdc-tname">'+t.name+'</span></div>'
       +'<div class="rdc-tsub">'+(s.news90+s.est)+' menciones · 90d</div>'
-      +'<div class="rdc-tspark">'+_radarSparkFluid(_radarDaily(t,21),RD_GREEN)+'</div>'
-      +'<div class="rdc-tstats">'+mini(s.dof,'DOF')+mini(s.est,'Estados')+mini(darr+Math.abs(d),'Δ 30d','right')+'</div>'
+      +'<div class="rdc-tspark">'+_radarSparkFluid(_radarDaily(t,21),RD_GREEN,i)+'</div>'
+      +'<div class="rdc-tstats">'+mini(s.dof,_dofMark)+mini(s.est,_estMark)+mini(darr+Math.abs(d),'Δ 30d','right')+'</div>'
     +'</div>';
   }).join('');
-  host.innerHTML=head+'<div class="rdc-grid" id="rdc-grid">'+body+'</div>';
+  var sortOpts=[['senal','Señal'],['dof','DOF'],['est','Estados'],['delta','Δ 30d']];
+  var sortBar='<div style="display:flex;align-items:center;gap:18px;margin:0 0 2px;flex-wrap:wrap">'
+    +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)">Ordenar por</span>'
+    +sortOpts.map(function(o){var on=_radarSort===o[0];
+      return '<button onclick="_radarSetSort(\''+o[0]+'\')" style="background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:12px;font-weight:'+(on?'700':'500')+';color:'+(on?'var(--text)':'var(--text-muted)')+';border-bottom:1.5px solid '+(on?'#066750':'transparent')+';padding:0 0 4px;transition:color .12s">'+o[1]+'</button>';}).join('')
+    +'</div>';
+  host.innerHTML=head+sortBar+'<div class="rdc-grid" id="rdc-grid">'+body+'</div>';
   _radarStripeBorders();
   if(!_radarResizeBound){_radarResizeBound=true;window.addEventListener('resize',function(){clearTimeout(_radarResizeT);_radarResizeT=setTimeout(_radarStripeBorders,120);});}
 }
@@ -3156,15 +3175,17 @@ function _radarIcon(id){
   var p=P[id]||'<circle cx="10" cy="10" r="6.5"/>';
   return '<svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';
 }
-// Sparkline fluido (ancho 100%) para las tiles del Radar — verde GEMI
-function _radarSparkFluid(data,color){
+// Sparkline fluido (ancho 100%) para las tiles del Radar — verde GEMI.
+// idx = posición en el grid: desfasa la animación 2s por tile (movimiento continuo).
+function _radarSparkFluid(data,color,idx){
   var W=180,H=26,n=(data||[]).length,mx=Math.max.apply(null,(data||[]).concat([1]));
   if(n<2)return '';
   var pts=data.map(function(v,i){var x=(i/(n-1))*W,y=H-2-(v/mx)*(H-4);return x.toFixed(1)+','+y.toFixed(1);}).join(' ');
   var lx=W,ly=H-2-(data[n-1]/mx)*(H-4);
+  var delay=-(( idx||0)*2);
   return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" style="width:100%;height:26px;display:block;overflow:visible">'
-    +'<polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/>'
-    +'<circle cx="'+lx+'" cy="'+ly.toFixed(1)+'" r="2" fill="'+color+'"/></svg>';
+    +'<polyline class="rdc-spk" pathLength="1" points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" style="animation-delay:'+delay+'s"/>'
+    +'<circle class="rdc-spk-dot" cx="'+lx+'" cy="'+ly.toFixed(1)+'" r="2" fill="'+color+'" style="animation-delay:'+delay+'s"/></svg>';
 }
 // Serie diaria (últimos N días) por tema: nacional (título+resumen) + prensa estatal
 function _radarDaily(tema,days){
