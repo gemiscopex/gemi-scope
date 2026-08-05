@@ -271,6 +271,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .rdc-tile.firstcol{border-left:none;padding-left:0}
 .rdc-tile:hover{opacity:.72}
 .rdc-tile.sel .rdc-tname{color:var(--text);font-weight:700}
+.rdc-thead{display:flex;align-items:center;gap:8px;min-width:0}
+.rdc-ticon{color:#066750;display:flex;align-items:center;flex-shrink:0}
 .rdc-tname{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rdc-tsub{font-family:var(--mono);font-size:8.5px;letter-spacing:.02em;color:var(--text-muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rdc-tspark{margin:11px 0 9px;height:26px}
@@ -3093,7 +3095,7 @@ function renderRadares(){
     var darr=d>0?'▲ ':d<0?'▼ ':'';
     var mini=function(v,l,al){return '<div'+(al?' style="text-align:'+al+'"':'')+'><div class="rdc-tstat-v">'+v+'</div><div class="rdc-tstat-l">'+l+'</div></div>';};
     return '<div class="rdc-tile" data-tid="'+t.id+'" onclick="_radarToggle(\''+t.id+'\')">'
-      +'<div class="rdc-tname">'+t.name+'</div>'
+      +'<div class="rdc-thead"><span class="rdc-ticon">'+_radarIcon(t.id)+'</span><span class="rdc-tname">'+t.name+'</span></div>'
       +'<div class="rdc-tsub">'+(s.news90+s.est)+' menciones · 90d</div>'
       +'<div class="rdc-tspark">'+_radarSparkFluid(_radarDaily(t,21),RD_GREEN)+'</div>'
       +'<div class="rdc-tstats">'+mini(s.dof,'DOF')+mini(s.est,'Estados')+mini(darr+Math.abs(d),'Δ 30d','right')+'</div>'
@@ -3133,6 +3135,26 @@ function _radarToggle(id){
   tile.classList.add('sel');_radarSel=id;
   requestAnimationFrame(function(){det.classList.add('open');});
   setTimeout(function(){tile.scrollIntoView({behavior:'smooth',block:'nearest'});},80);
+}
+// Ícono de línea por tema (verde GEMI, hereda color por currentColor)
+function _radarIcon(id){
+  var P={
+    agua:'<path d="M10 2S4 9 4 13a6 6 0 0 0 12 0C16 9 10 2 10 2Z"/>',
+    residuos:'<path d="M3 6h14"/><path d="M8 6V4h4v2"/><path d="M5 6l1 11h8l1-11"/>',
+    circular:'<path d="M5 7a6 6 0 0 1 10-1"/><path d="M15 13a6 6 0 0 1-10 1"/><path d="M15 3v3h-3"/><path d="M5 17v-3h3"/>',
+    cc:'<path d="M6 14a3.5 3.5 0 0 1-.5-7 4.5 4.5 0 0 1 8.6-1A3.2 3.2 0 0 1 14.5 14Z"/>',
+    fiscal:'<circle cx="10" cy="10" r="7.5"/><path d="M7 12s.7 1.3 3 1.3 3-1 3-2-1-1.6-3-2-3-1-3-2 1.3-1.6 3-1.6 2.8 1.3 2.8 1.3"/><path d="M10 4.5v11"/>',
+    plasticos:'<path d="M8 3.5h4V6l1 1.5V16a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 7 16V7.5L8 6Z"/><path d="M8.3 10h3.4"/>',
+    energia:'<path d="M11 2 4 11h4.5L8 18l7-9h-4.5Z"/>',
+    sanciones:'<path d="M10 2.5 3.5 5v4.5c0 4 2.8 6.8 6.5 8 3.7-1.2 6.5-4 6.5-8V5Z"/><path d="M7.5 10l1.8 1.8L13 8"/>',
+    biodiv:'<path d="M4.5 16.5c0-7 5.5-12 12-12 0 7-5.5 12-12 12Z"/><path d="M4.5 16.5c3.5-4 7-6.5 11-8"/>',
+    infra:'<path d="M3 17V8l7-4.5 7 4.5v9"/><path d="M8 17v-5h4v5"/>',
+    agricultura:'<path d="M10 17V6"/><path d="M10 8c0-2.2 1.2-3.5 3.3-3.5C13.3 6.7 12.1 8 10 8Z"/><path d="M10 11C10 8.8 8.8 7.5 6.7 7.5 6.7 9.7 7.9 11 10 11Z"/>',
+    procesos:'<path d="M3 17V9.5l4 2V9.5l4 2V6l6 3.2V17Z"/><path d="M6.5 14h1M10 14h1M13.5 14h1"/>',
+    uso_suelo:'<path d="M10 18v-6"/><path d="M10 12 6 9.5 10 8.5 14 9.5 10 12Z"/><path d="M10 9 7 7l3-1 3 1-3 2Z"/>'
+  };
+  var p=P[id]||'<circle cx="10" cy="10" r="6.5"/>';
+  return '<svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';
 }
 // Sparkline fluido (ancho 100%) para las tiles del Radar — verde GEMI
 function _radarSparkFluid(data,color){
