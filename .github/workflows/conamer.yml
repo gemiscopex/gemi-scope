@@ -1,0 +1,42 @@
+name: CONAMER - Propuestas regulatorias (quincenal)
+
+on:
+  schedule:
+    # Días 1 y 15 de cada mes, 13:00 UTC = 07:00 CDMX (≈ cada 2 semanas)
+    - cron: "0 13 1,15 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  conamer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar Playwright + Chromium
+        run: |
+          pip install playwright
+          playwright install chromium --with-deps
+
+      - name: Scraper CONAMER
+        run: python scraper/scraper_conamer.py
+
+      - name: Commit y push si hay cambios
+        run: |
+          git config user.name "scope-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/conamer-propuestas.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+          else
+            git commit -m "auto: CONAMER propuestas $(TZ=America/Mexico_City date +'%Y-%m-%d %H:%M CDMX')"
+            git pull --rebase origin main || true
+            git push
+          fi
