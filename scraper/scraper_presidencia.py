@@ -70,36 +70,57 @@ RE_OTHER_SPEAKER = re.compile(
 # ---------------------------------------------------------------------------
 # Environmental keywords (FIAT + SCOPE extensions)
 # ---------------------------------------------------------------------------
+    # ── Alineado a los 13 temas del Radar de Scope (superconjunto: cubre todos)
+    #    + granularidad extra útil (hidrocarburos, minería, calidad de aire, transgénicos)
+    #    + temas económicos de los socios. ──
 KEYWORDS_AMBIENTAL = {
-    "agua":             ["agua","cuenca","río","rio","lago","acuífero","acuifero",
-                         "hídric","hidric","conagua","sequía","sequia","inundación","inundacion",
-                         "presa","tratamiento de aguas","agua potable","escasez de agua"],
-    "energia_renovable":["solar","eólica","eolica","fotovoltaic","hidroelectric",
-                         "renovable","cfe","sener","geotermia","parque eólico","parque eolico",
-                         "energia limpia","transicion energetica"],
-    "hidrocarburos":    ["pemex","refinería","refineria","ducto","oleoducto","gasoducto",
-                         "fracking","hidrocarburos","petróleo","petroleo","combustibles fosiles"],
-    "biodiversidad":    ["semarnat","conanp","área natural protegida","area natural protegida",
-                         "reserva natural","reserva de la biosfera","especie en peligro",
-                         "extinción","extincion","jaguar","ballena","manatí","manati",
-                         "vida silvestre","corredor biológico","corredor biologico",
-                         "parque nacional"],
-    "deforestacion":    ["bosque","selva","tala ilegal","deforestacion","incendio forestal",
-                         "conafor","manglar","reforest","cambio de uso de suelo"],
+    "agua":             ["agua","hidric","cuenca","acuifero","sequia","conagua","presa",
+                         "potable","saneamiento","drenaje","desabasto","rio","lago","laguna",
+                         "inundacion","escasez de agua","agua potable","tratamiento de aguas"],
+    "residuos":         ["residuo","basura","reciclaj","relleno sanitario","tiradero",
+                         "vertedero","desecho","recolec","organico","incinerador",
+                         "residuo peligroso"],
+    "circular":         ["economia circular","circularidad","ecodiseno","valorizac","reutiliz",
+                         "envase","empaque","simbiosis industrial","parque industrial",
+                         "desarrollo circular","podecibi","basura cero","acopio",
+                         "aprovechamiento de residuos","responsabilidad extendida","chatarra",
+                         "compost","reincorpora"],
+    "cambio_climatico": ["cambio climatic","carbono","gases de efecto","gei","co2",
+                         "calentamiento global","inecc","mitigacion","descarboniz",
+                         "neutralidad de carbono","huella de carbono","transicion energetica",
+                         "metano","acuerdo de paris","lgcc"],
+    "fiscal":           ["impuesto ambiental","impuesto verde","impuesto ecologic",
+                         "tasa ecologic","bono de carbono","bono carbono","impuesto al carbono",
+                         "impuesto a emisiones"],
+    "plasticos":        ["plastic","unicel","poliestireno","monouso","un solo uso","popote",
+                         "desechable","bolsa de plastico","poliet"],
+    "energia":          ["energia solar","energia renovable","energia limpia","renovable",
+                         "fotovoltaic","eolic","cfe","sener","hidrogeno","panel solar",
+                         "parque eolico","geotermia","biogas","hidroelectric","litio"],
+    "hidrocarburos":    ["pemex","refineria","ducto","oleoducto","gasoducto","fracking",
+                         "hidrocarburo","petroleo","combustible fosil","gas natural"],
+    "sanciones":        ["profepa","sancion","multa","clausura","infraccion","inspeccion",
+                         "verificacion ambiental","denuncia ambiental","delito ambiental",
+                         "procedimiento administrativo"],
+    "biodiversidad":    ["semarnat","conanp","area natural protegida","reserva natural",
+                         "reserva de la biosfera","especie en peligro","extincion","biodivers",
+                         "vida silvestre","corredor biologic","parque nacional","manglar",
+                         "arrecife","jaguar","ballena","manati"],
+    "infra":            ["planta de tratamiento","alcantarillado","acueducto","colector",
+                         "obra hidraulica","infraestructura hidrica"],
+    "agricultura":      ["agricultura","agropecuari","ganaderi","ganader","fertilizante",
+                         "cultivo","pecuari","riego","agroindustria","agroquimic","plaguicida"],
+    "procesos":         ["proceso industrial","cemento","clinker","siderurgi","acero",
+                         "industria quimica","petroquimica","cementera","fundidora",
+                         "metalurgi","refrigerante"],
+    "uso_suelo":        ["uso de suelo","deforestac","reforestac","silvicultura","bosque",
+                         "selva","cambio de uso de suelo","incendio forestal","conafor",
+                         "tala ilegal"],
     "calidad_aire":     ["ozono","pm2.5","pm10","emisiones de gases","calidad del aire",
-                         "contaminación atmosférica","contaminacion atmosferica","smog",
-                         "contingencia ambiental"],
-    "residuos":         ["residuo peligroso","relleno sanitario","reciclaj",
-                         "plástico","plastico","incinerador","economía circular",
-                         "economia circular","desecho toxico"],
-    "cambio_climatico": ["cambio climático","cambio climatico","carbono","gases de efecto",
-                         "gei","co2","calentamiento global","inecc","mitigación","mitigacion",
-                         "lgcc","cumbre climatica","acuerdo de paris","descarbonizacion",
-                         "neutralidad de carbono","huella de carbono"],
-    "mineria":          ["minería","mineria","concesion minera","litio","extraccion minera",
-                         "minera","cianuro"],
-    "transgenico":      ["transgénico","transgenico","glifosato","semilla nativa",
-                         "soberania alimentaria","maíz nativo","maiz nativo","plaguicida"],
+                         "contaminacion atmosferica","smog","contingencia ambiental"],
+    "mineria":          ["mineria","concesion minera","extraccion minera","minera","cianuro"],
+    "transgenico":      ["transgenico","glifosato","semilla nativa","soberania alimentaria",
+                         "maiz nativo"],
     # ── SCOPE: temas económicos relevantes para los socios ──
     "inversion":        ["inversion","nearshoring","relocalizacion","plan mexico",
                          "polo de desarrollo","polos de desarrollo","polos del bienestar",
@@ -152,10 +173,11 @@ def normalize(text: str) -> str:
     return "".join(c for c in t if unicodedata.category(c) != "Mn")
 
 def _kw_match(kw_norm: str, text_norm: str) -> bool:
-    """Word-boundary match para keywords cortos (≤6 chars), substring para largos."""
-    if len(kw_norm) <= 6:
-        return bool(re.search(r"\b" + re.escape(kw_norm) + r"\b", text_norm))
-    return kw_norm in text_norm
+    """Frase (con espacio) → substring; palabra suelta → prefijo anclado a inicio de
+    palabra (\\bstem), igual que el Radar de Scope: 'residuo' casa 'residuo/residuos'."""
+    if " " in kw_norm:
+        return kw_norm in text_norm
+    return bool(re.search(r"\b" + re.escape(kw_norm), text_norm))
 
 def is_relevant(text: str) -> bool:
     """True si el texto contiene al menos un keyword ambiental (con límite de palabra)."""
