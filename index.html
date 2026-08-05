@@ -577,6 +577,20 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-grid{display:grid;grid-template-columns:2fr 1fr;gap:10px;align-items:start}
 .cons-col{display:flex;flex-direction:column;gap:10px}
 .cons-tema-row{display:grid;grid-template-columns:14px 1fr auto auto auto;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border)}
+.cons-mat-row{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-bottom:0.8px solid var(--border);transition:background .12s}
+.cons-mat-row[onclick]{cursor:pointer}
+.cons-mat-row[onclick]:hover{background:rgba(0,158,144,0.05)}
+/* Monitor Congreso: animación de dibujado (una sola vez) */
+.cong-anim-line{stroke-dasharray:1;stroke-dashoffset:1}
+.cong-anim-fade{opacity:0}
+.cong-svg.played .cong-anim-line{stroke-dashoffset:0}
+.cong-svg.played .cong-anim-fade{opacity:1}
+.cong-svg.play .cong-anim-line{animation:congDraw 1.2s cubic-bezier(.4,0,.2,1) forwards}
+.cong-svg.play .cong-anim-line.l2{animation-delay:.16s}
+.cong-svg.play .cong-anim-fade{animation:congFade .55s ease forwards;animation-delay:.95s}
+@keyframes congDraw{to{stroke-dashoffset:0}}
+@keyframes congFade{to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.cong-anim-line{stroke-dashoffset:0}.cong-anim-fade{opacity:1}.cong-svg.play .cong-anim-line,.cong-svg.play .cong-anim-fade{animation:none}}
 .cons-tema-row:last-child{border-bottom:none}
 .cons-riesgo{font-family:var(--mono);font-size:8.5px;letter-spacing:0.06em;padding:2px 6px;text-transform:uppercase}
 .cons-table{width:100%;border-collapse:collapse}
@@ -791,7 +805,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       <button class="tab-btn" onclick="goAgenda('congreso')">Agenda ▾</button>
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="goAgenda('congreso')">Congreso de la Unión<span class="nd-sub">Actividad federal</span></div>
-        <div class="nav-drop-it" onclick="goAgenda('locales')">Gacetas Locales<span class="nd-sub">Congresos estatales</span></div>
+        <div class="nav-drop-it" onclick="goAgenda('locales')">Gacetas Locales<span class="nd-sub">Publicación oficial por entidad</span></div>
         <div class="nav-drop-it" onclick="goAgenda('pendientes')">Reglamentaciones Pendientes<span class="nd-sub">Instrumentos por publicar</span></div>
       </div>
     </div>
@@ -799,7 +813,6 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       <button class="tab-btn" onclick="goAgenda('dof')">DOF ▾</button>
       <div class="nav-drop dof-drop" id="dof-drop"></div>
     </div>
-    <button class="tab-btn" onclick="goInternacional()">Internacional</button>
     <div class="nav-drop-wrap">
       <button class="tab-btn" onclick="showActores('federal')">Actores ▾</button>
       <div class="nav-drop">
@@ -809,6 +822,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
         <div class="nav-drop-it" onclick="showActores('legest')">Legislativo Estatal<span class="nd-sub">Comisiones de congresos locales</span></div>
       </div>
     </div>
+    <button class="tab-btn" onclick="goInternacional()">Internacional</button>
     <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos de Scope" style="margin-left:auto;margin-right:2px"><span class="radar-fab-dot"></span></button>
   </div>
   <div class="nav-right">
@@ -922,18 +936,23 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
         <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Legislación Ambiental Estatal</div>
       </div>
-      <div style="font-size:12px;color:var(--text-muted);margin-bottom:24px">Leyes, códigos y reglamentos ambientales vigentes por entidad federativa · ordenjuridico.gob.mx</div>
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap">
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Leyes, códigos y reglamentos ambientales vigentes por entidad federativa. Elige un estado, o filtra por tema para ver todas las entidades.</div>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap">
         <div style="position:relative">
-          <select id="leyes-est-selector" onchange="selectLeyesEstado(this.value)"
-            style="appearance:none;-webkit-appearance:none;padding:9px 36px 9px 14px;font-size:13px;font-weight:500;color:var(--text);background:var(--card);border:0.8px solid var(--border);border-radius:10px;cursor:pointer;outline:none;min-width:240px">
+          <select id="leyes-est-selector" onchange="leyEstSetEstado(this.value)"
+            style="appearance:none;-webkit-appearance:none;padding:9px 36px 9px 14px;font-size:13px;font-weight:500;color:var(--text);background:var(--card);border:0.8px solid var(--border);border-radius:10px;cursor:pointer;outline:none;min-width:220px">
             <option value="">Selecciona un estado…</option>
           </select>
           <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);font-size:10px">▾</span>
         </div>
-        <span id="leyes-est-meta" style="font-size:12px;color:var(--text-muted)"></span>
+        <div style="position:relative;flex:1;min-width:200px">
+          <span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none">⌕</span>
+          <input id="leyes-est-search" oninput="leyEstSetQ(this.value)" placeholder="Buscar ley, código o reglamento…" style="width:100%;box-sizing:border-box;padding:9px 12px 9px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12.5px;font-family:var(--sans);outline:none;border-radius:10px">
+        </div>
       </div>
-      <div id="leyes-est-list"></div>
+      <div id="leyes-est-temabar" class="stab-bar" style="margin-bottom:14px"></div>
+      <span id="leyes-est-meta" style="font-size:12px;color:var(--text-muted)"></span>
+      <div id="leyes-est-list" style="margin-top:10px"></div>
     </div>
     <!-- Vista Congreso de México -->
     <div id="leg-view-congresomx" style="display:none">
@@ -1333,48 +1352,57 @@ var LEYES_EST_TEMA_LABEL={
   'residuos':'Residuos','cambio_climatico':'Clima','energia_renovable':'Energía',
   'mineria':'Minería','hidrocarburos':'Hidrocarburos','pesca':'Pesca','ambiental_general':'Ambiental'
 };
+var _leyEst={estado:'',tema:'todos',q:''};
+var LEYES_TEMAS=[['todos','Todos'],['ambiental_general','Ambiental general'],['agua','Agua'],['forestal','Forestal'],['biodiversidad','Biodiversidad'],['cambio_climatico','Cambio climático'],['residuos','Residuos / Economía circular'],['energia_renovable','Energía renovable'],['hidrocarburos','Hidrocarburos'],['mineria','Minería']];
 function loadLeyesEstatales(){
-  if(leyesEstatalesData)return;
+  if(leyesEstatalesData){renderLeyesEstTemaBar();renderLeyesEst();return;}
   fetch('data/leyes-estatales.json').then(function(r){return r.ok?r.json():null;}).then(function(d){
     if(!d)return;
     leyesEstatalesData=d;
     var sel=document.getElementById('leyes-est-selector');
-    if(!sel)return;
-    var estados=Object.entries(d.estados)
-      .filter(function(e){return e[1]&&e[1].length>0;})
-      .sort(function(a,b){return a[0].localeCompare(b[0],'es');});
-    estados.forEach(function(pair){
-      var opt=document.createElement('option');
-      opt.value=pair[0];
-      opt.textContent=pair[0]+' ('+pair[1].length+')';
-      sel.appendChild(opt);
-    });
+    if(sel){Object.entries(d.estados).filter(function(e){return e[1]&&e[1].length>0;}).sort(function(a,b){return a[0].localeCompare(b[0],'es');}).forEach(function(pair){
+      var opt=document.createElement('option');opt.value=pair[0];opt.textContent=pair[0]+' ('+pair[1].length+')';sel.appendChild(opt);});}
+    renderLeyesEstTemaBar();renderLeyesEst();
   }).catch(function(){});
 }
-function selectLeyesEstado(nombre){
-  var list=document.getElementById('leyes-est-list');
-  var meta=document.getElementById('leyes-est-meta');
-  if(!list)return;
-  if(!nombre||!leyesEstatalesData){list.innerHTML='';if(meta)meta.textContent='';return;}
-  var leyes=leyesEstatalesData.estados[nombre]||[];
-  if(meta)meta.textContent=leyes.length+' ordenamiento'+(leyes.length!==1?'s':'')+' ambientales vigentes';
-  if(!leyes.length){
-    list.innerHTML='<div style="padding:32px 0;font-size:13px;color:var(--text-muted)">Sin datos disponibles para este estado.</div>';
+function renderLeyesEstTemaBar(){
+  var bar=document.getElementById('leyes-est-temabar');if(!bar)return;
+  bar.innerHTML=LEYES_TEMAS.map(function(t){return '<button class="stab'+(_leyEst.tema===t[0]?' on':'')+'" onclick="leyEstSetTema(\''+t[0]+'\')">'+t[1]+'</button>';}).join('');
+}
+function leyEstSetEstado(v){_leyEst.estado=v;_leyEst.tema='todos';renderLeyesEstTemaBar();renderLeyesEst();}
+function leyEstSetTema(t){_leyEst.tema=t;if(t!=='todos'){_leyEst.estado='';var s=document.getElementById('leyes-est-selector');if(s)s.value='';}renderLeyesEstTemaBar();renderLeyesEst();}
+function leyEstSetQ(v){_leyEst.q=v;renderLeyesEst();}
+function _leyRow(l,stateLabel){
+  var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
+  var tipoAbr=l.tipo==='Ley'?'LEY':l.tipo==='Código'?'CÓD':l.tipo==='Reglamento'?'REG':'NOR';
+  var u=(l.ficha_url||l.url||'').replace(/"/g,'%22');
+  var year='';if(l.fecha_publicacion){var m=l.fecha_publicacion.match(/[0-9]{4}/);if(m)year='<span class="ley-reforma-date">'+m[0]+'</span>';}
+  return '<div class="ley-row" onclick="window.open(&quot;'+u+'&quot;,&quot;_blank&quot;)">'
+    +'<span class="ley-sigla" style="color:'+tipoColor+'">'+tipoAbr+'</span>'
+    +'<span class="ley-nombre">'+l.nombre+(stateLabel?' <span style="color:var(--text-muted);font-weight:400">· '+stateLabel+'</span>':'')+'</span>'
+    +year+'<span class="ley-link-icon">↗</span></div>';
+}
+function renderLeyesEst(){
+  var list=document.getElementById('leyes-est-list'),meta=document.getElementById('leyes-est-meta');
+  if(!list||!leyesEstatalesData)return;
+  var q=qa((_leyEst.q||'').toLowerCase());
+  var tk=_leyEst.tema!=='todos'?_leyEst.tema:null;
+  var match=function(l){var n=qa((l.nombre||'').toLowerCase());
+    if(tk&&(l.temas||[]).indexOf(tk)<0)return false;
+    if(q&&n.indexOf(q)<0)return false;return true;};
+  if(tk||q){
+    var estados=Object.keys(leyesEstatalesData.estados).sort(function(a,b){return a.localeCompare(b,'es');});
+    var total=0,html='';
+    estados.forEach(function(st){var ls=(leyesEstatalesData.estados[st]||[]).filter(match);if(!ls.length)return;total+=ls.length;
+      html+='<div style="font-size:12px;font-weight:700;color:var(--green);margin:14px 0 6px">'+st+' <span style="color:var(--dim);font-weight:500;font-size:10px">· '+ls.length+'</span></div>'+ls.map(function(l){return _leyRow(l,null);}).join('');});
+    if(meta)meta.textContent=total+' ordenamiento'+(total!==1?'s':'')+(tk?' · '+((LEYES_TEMAS.find(function(t){return t[0]===_leyEst.tema;})||[])[1]||''):'')+' · '+estados.filter(function(st){return (leyesEstatalesData.estados[st]||[]).some(match);}).length+' entidades';
+    list.innerHTML=total?html:'<div style="padding:24px 0;font-size:13px;color:var(--text-muted)">Sin ordenamientos que coincidan con el filtro.</div>';
     return;
   }
-  var html=leyes.map(function(l){
-    var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
-    var tipoAbr=l.tipo==='Ley'?'LEY':l.tipo==='Código'?'CÓD':l.tipo==='Reglamento'?'REG':'NOR';
-    var u=(l.ficha_url||l.url||'').replace(/"/g,'%22');
-    var year='';
-    if(l.fecha_publicacion){var m=l.fecha_publicacion.match(/[0-9]{4}/);if(m)year='<span class="ley-reforma-date">'+m[0]+'</span>';}
-    var row='<div class="ley-row" onclick="window.open(&quot;'+u+'&quot;,&quot;_blank&quot;)">';
-    row+='<span class="ley-sigla" style="color:'+tipoColor+'">'+tipoAbr+'</span>';
-    row+='<span class="ley-nombre">'+l.nombre+'</span>';
-    row+=year+'<span class="ley-link-icon">↗</span></div>';
-    return row;
-  }).join('');
-  list.innerHTML=html;
+  if(!_leyEst.estado){if(meta)meta.textContent='';list.innerHTML='<div style="padding:24px 0;font-size:13px;color:var(--text-muted)">Selecciona un estado, o filtra por tema para ver todas las entidades.</div>';return;}
+  var leyes=(leyesEstatalesData.estados[_leyEst.estado]||[]);
+  if(meta)meta.textContent=leyes.length+' ordenamiento'+(leyes.length!==1?'s':'')+' ambientales vigentes';
+  list.innerHTML=leyes.length?leyes.map(function(l){return _leyRow(l,null);}).join(''):'<div style="padding:32px 0;font-size:13px;color:var(--text-muted)">Sin datos disponibles para este estado.</div>';
 }
 /* ── Presidencia / Sheinbaum: cintillo tipo noticiero ── */
 let presData=[];
@@ -1719,11 +1747,7 @@ function goObligaciones(sub){
 // Agenda ▾ : Congreso de la Unión · Gacetas Locales · Reglamentaciones Pendientes · DOF hoy
 function goAgenda(sub){
   if(sub==='congreso'){showTab('legislacion',null);showLegSub('congresomx',null);return;}
-  if(sub==='locales'){
-    showTab('legislacion',null);showLegSub('estatal',null);
-    setTimeout(function(){var g=document.getElementById('widget-gacetas');if(g)g.scrollIntoView({behavior:'smooth',block:'start'});},150);
-    return;
-  }
+  if(sub==='locales'){showTab('agenda',null);renderAgenda('gacetas');return;}
   showTab('agenda',null);renderAgenda(sub||'pendientes');
 }
 // Internacional : acuerdos y tratados (vista existente)
@@ -2376,13 +2400,69 @@ function agendaSetView(v){_agendaView=v;_agendaEst='todos';renderAgenda();}
 function agendaSetEst(e){_agendaEst=e;_agendaPend();}
 function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
-  if(view==='dof')_agendaView='dof';else if(view==='pendientes')_agendaView='pendientes';else if(view==='conamer')_agendaView='conamer';
-  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta · CONAMER'],['dof','DOF · publicaciones']];
+  if(['dof','pendientes','conamer','gacetas'].indexOf(view)>=0)_agendaView=view;
+  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta · CONAMER'],['dof','DOF · publicaciones'],['gacetas','Gacetas locales']];
   var nav='<div class="stab-bar" style="margin-bottom:20px">'+tabs.map(function(t){
       return '<button class="stab'+(_agendaView===t[0]?' on':'')+'" onclick="agendaSetView(\''+t[0]+'\')">'+t[1]+'</button>';
     }).join('')+'</div>';
   host.innerHTML=nav+'<div id="agenda-view"></div>';
-  if(_agendaView==='dof')_agendaDof();else if(_agendaView==='conamer')_agendaConamer();else _agendaPend();
+  if(_agendaView==='dof')_agendaDof();else if(_agendaView==='conamer')_agendaConamer();else if(_agendaView==='gacetas')_agendaGacetas();else _agendaPend();
+}
+// Directorio de gacetas / periódicos oficiales por entidad (publicación oficial estatal)
+var GACETAS_OFICIALES={
+"Aguascalientes":["Periódico Oficial del Estado","https://eservicios2.aguascalientes.gob.mx/periodicooficial/web/"],
+"Baja California":["Periódico Oficial del Estado","https://www.bajacalifornia.gob.mx/Gobierno/Periodico_Oficial"],
+"Baja California Sur":["Boletín Oficial del Gobierno del Estado","https://finanzas.bcs.gob.mx/boletines-oficiales/"],
+"Campeche":["Periódico Oficial del Estado","https://periodicooficial.campeche.gob.mx/"],
+"Chiapas":["Periódico Oficial del Estado","https://www.sgg.chiapas.gob.mx/periodico/"],
+"Chihuahua":["Periódico Oficial del Estado","http://www.chihuahua.gob.mx/atach2/periodicos/"],
+"Coahuila":["Periódico Oficial del Gobierno del Estado","http://periodico.sfpcoahuila.gob.mx/"],
+"Colima":["Periódico Oficial “El Estado de Colima”","https://www.periodicooficial.col.gob.mx/"],
+"Ciudad de México":["Gaceta Oficial de la Ciudad de México","https://data.consejeria.cdmx.gob.mx/index.php/gaceta"],
+"Durango":["Periódico Oficial del Gobierno del Estado","https://periodicooficial.durango.gob.mx/"],
+"Guanajuato":["Periódico Oficial del Gobierno del Estado","https://periodico.guanajuato.gob.mx/"],
+"Guerrero":["Periódico Oficial del Gobierno del Estado","http://periodicooficial.guerrero.gob.mx/"],
+"Hidalgo":["Periódico Oficial del Estado","http://periodico.hidalgo.gob.mx/"],
+"Jalisco":["Periódico Oficial “El Estado de Jalisco”","https://periodicooficial.jalisco.gob.mx/"],
+"México":["Gaceta del Gobierno del Estado de México","https://legislacion.edomex.gob.mx/"],
+"Michoacán":["Periódico Oficial del Gobierno del Estado","https://periodicooficial.segob.michoacan.gob.mx/periodico/portal/"],
+"Morelos":["Periódico Oficial “Tierra y Libertad”","http://periodico.morelos.gob.mx/"],
+"Nayarit":["Periódico Oficial del Estado","https://periodicooficial.nayarit.gob.mx/"],
+"Nuevo León":["Periódico Oficial del Estado","https://www.nl.gob.mx/es/taxonomy/term/631"],
+"Oaxaca":["Periódico Oficial del Gobierno del Estado","https://periodicooficial.oaxaca.gob.mx/"],
+"Puebla":["Periódico Oficial del Estado","https://periodicooficial.puebla.gob.mx/"],
+"Querétaro":["Periódico Oficial “La Sombra de Arteaga”","https://lasombradearteaga.segobqueretaro.gob.mx/"],
+"Quintana Roo":["Periódico Oficial del Estado","http://po.segob.qroo.gob.mx/"],
+"San Luis Potosí":["Periódico Oficial “Plan de San Luis”","https://periodicooficial.slp.gob.mx/"],
+"Sinaloa":["Periódico Oficial “El Estado de Sinaloa”","https://strc.transparenciasinaloa.gob.mx/poes/"],
+"Sonora":["Boletín Oficial del Gobierno del Estado","https://boletinoficial.sonora.gob.mx/"],
+"Tabasco":["Periódico Oficial del Estado","https://tabasco.gob.mx/periodicooficial"],
+"Tamaulipas":["Periódico Oficial del Estado","https://www.tamaulipas.gob.mx/periodicooficial/"],
+"Tlaxcala":["Periódico Oficial del Gobierno del Estado","https://periodico.tlaxcala.gob.mx/"],
+"Veracruz":["Gaceta Oficial del Estado","http://www.editoraveracruz.gob.mx/"],
+"Yucatán":["Diario Oficial del Gobierno del Estado","http://www.yucatan.gob.mx/gobierno/diario_oficial.php"],
+"Zacatecas":["Periódico Oficial del Gobierno del Estado","https://periodico.zacatecas.gob.mx/"]
+};
+var _gacQ='';
+function gacSetQ(v){_gacQ=v;_agendaGacetas(true);}
+function _agendaGacetas(keepFocus){
+  var host=document.getElementById('agenda-view');if(!host)return;
+  var q=qa((_gacQ||'').toLowerCase());
+  var estados=Object.keys(GACETAS_OFICIALES).sort(function(a,b){return a.localeCompare(b,'es');})
+    .filter(function(s){return !q||qa(s.toLowerCase()).indexOf(q)>=0||qa(GACETAS_OFICIALES[s][0].toLowerCase()).indexOf(q)>=0;});
+  var head='<div style="font-size:11.5px;color:var(--text-sec);line-height:1.55;margin-bottom:14px">Directorio de la <b>publicación oficial</b> de cada entidad — donde se publican con validez legal leyes, decretos, reglamentos y acuerdos estatales. Da clic para abrir el portal oficial.</div>'
+    +'<div style="position:relative;max-width:340px;margin-bottom:6px"><span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none">⌕</span>'
+    +'<input id="gac-search" oninput="gacSetQ(this.value)" value="'+(_gacQ||'').replace(/"/g,'&quot;')+'" placeholder="Buscar entidad…" style="width:100%;box-sizing:border-box;padding:8px 12px 8px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12.5px;font-family:var(--sans);outline:none;border-radius:10px"></div>'
+    +'<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin:10px 0 2px">'+estados.length+' entidad'+(estados.length===1?'':'es')+'</div>';
+  var rows=estados.map(function(s){
+    var g=GACETAS_OFICIALES[s];var u=g[1].replace(/'/g,'%27');
+    return '<div class="gac-row" onclick="window.open(\''+u+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:0.8px solid var(--border);cursor:pointer">'
+      +'<span style="flex:0 0 168px;font-size:13.5px;font-weight:600;color:var(--text)">'+s+'</span>'
+      +'<span style="flex:1;font-size:12px;color:var(--text-sec)">'+g[0]+'</span>'
+      +'<span style="font-size:11px;color:var(--green);white-space:nowrap">Abrir ↗</span></div>';
+  }).join('');
+  host.innerHTML=head+(estados.length?rows:'<div style="padding:20px 0;font-size:13px;color:var(--text-muted)">Sin coincidencias.</div>');
+  if(keepFocus){var i=document.getElementById('gac-search');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}}
 }
 // Propuestas regulatorias en consulta (CONAMER) que impactan nuestros sectores
 function _conamerNomMatch(titulo){
@@ -3630,11 +3710,12 @@ function renderCongresoChart(){
   var band=IW/(NSEM-1),hov='';
   for(var i3=0;i3<NSEM;i3++)
     hov+='<rect x="'+(X(i3)-band/2).toFixed(1)+'" y="'+PT+'" width="'+band.toFixed(1)+'" height="'+IH+'" fill="transparent" style="cursor:pointer" onmousemove="_congHover(event,'+i3+')" onmouseleave="_congHoverHide()" onclick="_congOpen(event,'+i3+')"/>';
-  var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
+  var svgCls='cong-svg'+(_congAnimated?' played':'');
+  var svg='<svg id="cong-svg" class="'+svgCls+'" viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
     +grid
-    +'<path d="'+smooth(senPts)+'" fill="none" stroke="#E8843D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
-    +'<path d="'+smooth(dipPts)+'" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
-    +ptsS+ptsD+xlab+hov+'</svg>';
+    +'<path class="cong-anim-line" pathLength="1" d="'+smooth(senPts)+'" fill="none" stroke="#E8843D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
+    +'<path class="cong-anim-line l2" pathLength="1" d="'+smooth(dipPts)+'" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
+    +'<g class="cong-anim-fade">'+ptsS+ptsD+xlab+'</g>'+hov+'</svg>';
   var leyenda='<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:10px;color:var(--text-sec)">'
     +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:var(--green);display:inline-block"></span>Diputados</span>'
     +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:#E8843D;display:inline-block"></span>Senado</span>'
@@ -3643,6 +3724,19 @@ function renderCongresoChart(){
     +'</div>'
     +'<div style="font-size:9.5px;color:var(--text-muted);margin-top:3px">Haz clic en una semana para ver y abrir los instrumentos</div>';
   host.innerHTML=svg+leyenda;
+  if(!_congAnimated){
+    var svgEl=document.getElementById('cong-svg');
+    if(svgEl){
+      var play=function(){if(_congAnimated)return;_congAnimated=true;svgEl.classList.add('play');};
+      if('IntersectionObserver' in window){
+        var io=new IntersectionObserver(function(ents){ents.forEach(function(e){if(e.isIntersecting){play();io.disconnect();}});},{threshold:0.35});
+        io.observe(svgEl);
+        // Si ya está visible al montar, dispara igual
+        var r=svgEl.getBoundingClientRect();
+        if(r.top<(window.innerHeight||800)&&r.bottom>0&&r.width>0){play();io.disconnect();}
+      } else {play();}
+    }
+  }
 }
 function _congTT(){
   var el=document.getElementById('cong-tt');
@@ -4743,7 +4837,8 @@ function _consImpInfo(tipo){
 }
 function _consMatInfo(mat){
   var states=[],est=(_materialesData&&_materialesData.estados)||{};
-  Object.keys(est).forEach(function(st){if((((est[st]||{}).materiales)||[]).indexOf(mat)>=0)states.push(st);});
+  Object.keys(est).forEach(function(st){var e=est[st]||{};if((e.materiales||[]).indexOf(mat)>=0)states.push({estado:st,url:e.url||'',instrumento:e.instrumento||'',desde:e.desde||''});});
+  states.sort(function(a,b){return a.estado.localeCompare(b.estado,'es');});
   return {states:states};
 }
 // Referencias como widgets individuales (cada tipo, reordenable)
@@ -4770,9 +4865,17 @@ function _consRefWidgets(cfg){
     }).join('')});
   if(mats.length)out.push({id:'ref-mats',title:'Materiales prohibidos',count:mats.length,body:
     mats.map(function(m){var inf=_consMatInfo(m);
-      return '<div class="cons-refit"><div style="font-size:12px;font-weight:600;color:var(--text)"><span style="color:var(--red)">⊘</span> '+m+'</div>'
-        +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:3px">Prohibido en '+inf.states.length+' entidad'+(inf.states.length===1?'':'es')+'</div>'
-        +(inf.states.length?'<div style="font-size:10px;color:var(--text-sec);margin-top:2px;line-height:1.35">'+inf.states.join(' · ')+'</div>':'')+'</div>';
+      var head='<div style="display:flex;align-items:baseline;gap:8px;margin:2px 0 8px"><span style="font-size:12.5px;font-weight:600;color:var(--text)"><span style="color:var(--red)">⊘</span> '+m+'</span>'
+        +'<span style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-left:auto">'+inf.states.length+' entidad'+(inf.states.length===1?'':'es')+'</span></div>';
+      var rows=inf.states.map(function(s){
+        var u=(s.url||'').replace(/'/g,'%27');
+        var right=s.url?'<span style="font-size:10px;color:var(--green);white-space:nowrap">Ver norma ↗</span>':'<span style="font-size:9.5px;color:var(--dim);white-space:nowrap">s/liga</span>';
+        return '<div class="cons-mat-row"'+(s.url?' onclick="window.open(\''+u+'\',\'_blank\')"':'')+'>'
+          +'<span style="flex:0 0 150px;font-size:11.5px;color:var(--text)">'+s.estado+'</span>'
+          +'<span style="flex:1;font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+(s.desde?('desde '+s.desde):'')+'</span>'
+          +right+'</div>';
+      }).join('');
+      return '<div style="margin-bottom:16px">'+head+rows+'</div>';
     }).join('')});
   return out;
 }
@@ -4834,7 +4937,7 @@ function renderConsola(){
   var nRefs=(cfg.noms||[]).length+(cfg.instrumentos||[]).length+(cfg.impuestos||[]).length+(cfg.materiales||[]).length;
   function kpi(lbl,val,sub,col){return '<div class="cons-kpi"><div class="cons-kpi-lbl">'+lbl+'</div><div class="cons-kpi-val">'+val+'</div><div class="cons-kpi-sub" style="color:'+(col||'var(--text-muted)')+'">'+sub+'</div></div>';}
   var kpis='<div class="cons-kpis">'
-    +kpi('Presión temática',sen.total,sen.nivel[0]+' · '+sen.dias+'d',sen.nivel[1])
+    +kpi('Menciones en medios',sen.total,sen.nivel[0]+' · últimos '+sen.dias+' d',sen.nivel[1])
     +kpi('Temas',temas.length,'monitoreados')
     +kpi('Estados',estados.length,'seguidos')
     +kpi('Comisiones',coms.length,'del Congreso')
@@ -4938,10 +5041,11 @@ function _consSenal(sen){
   el.innerHTML='<div style="border-left:2px solid '+nivel[1]+';padding-left:12px;margin-bottom:12px">'
     +'<span style="font-family:var(--mono);font-size:10px;color:'+nivel[1]+'">'+(total>=12?'↑ ':'→ ')+nivel[0]+'</span>'
     +'<div style="font-size:14px;font-weight:600;line-height:1.4;color:var(--text);margin-top:5px">'
-    +(lead&&lead.n7?('<span style="color:'+nivel[1]+'">'+lead.c.name+'</span> concentra la señal con '+lead.n7+' registro'+(lead.n7===1?'':'s')+'.'):'Sin registros recientes en tus temas.')
+    +(lead&&lead.n7?('<span style="color:'+nivel[1]+'">'+lead.c.name+'</span> es tu tema más activo: '+lead.n7+' mención'+(lead.n7===1?'':'es')+' en medios en los últimos '+dias+' días.'):'Sin menciones en medios en tus temas por ahora.')
     +'</div>'
-    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px">'+total+' menciones en '+dias+' días · '+rows.length+' temas</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px">'+total+' menciones en medios · '+dias+' días · '+rows.length+' temas</div>'
     +'</div>'
+    +'<div class="cons-tema-row" style="border:none;opacity:.6"><span style="width:8px"></span><span style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Tema</span><span style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Menciones</span><span style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);text-transform:uppercase">Tend.</span><span style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Prioridad</span></div>'
     +rows.map(function(r){
       return '<div class="cons-tema-row">'
         +'<span style="width:8px;height:8px;border-radius:50%;background:'+r.c.color+'"></span>'
@@ -4951,7 +5055,7 @@ function _consSenal(sen){
         +'<span class="cons-riesgo" style="color:'+r.r[1]+';border:1px solid '+r.r[1]+'44">'+r.r[0]+'</span>'
         +'</div>';
     }).join('')
-    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:10px;line-height:1.55;border-top:0.8px solid var(--border);padding-top:8px">CÓMO SE CALCULA · noticias del feed diario que coinciden con las palabras clave de cada tema, en la ventana más corta con datos (7→30→90 d). La flecha compara vs. el periodo previo. Proxy de cobertura mediática.</div>';
+    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:10px;line-height:1.55;border-top:0.8px solid var(--border);padding-top:8px">CÓMO SE LEE · «Menciones» = veces que ese tema apareció en <b>noticias de medios</b> (el feed diario de Scope) al cruzar sus palabras clave, en la ventana más corta con datos (7→30→90 días). La flecha compara contra el periodo anterior. «Prioridad» es el peso que tú le diste en Editar terminal, no el volumen.</div>';
 }
 function _consComs(coms){
   var el=document.getElementById('cons-coms');if(!el)return;
