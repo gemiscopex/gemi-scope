@@ -266,7 +266,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .radar-bhead .radar-bc-d{font-size:8.5px;font-weight:400}
 @media(max-width:900px){.radar-brow{grid-template-columns:130px 60px repeat(6,minmax(0,1fr)) 52px 52px;gap:7px}.radar-bc-spark{display:none}}
 /* ── Radar · grid de temas (SIN cajas; solo divisor vertical fino entre columnas) ── */
-.rdc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:0;row-gap:26px;margin-top:14px}
+.rdc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:0;row-gap:28px;margin-top:14px}
 .rdc-tile{border-left:1px solid var(--border);padding:2px 22px;cursor:pointer;min-width:0;transition:opacity .12s}
 .rdc-tile.firstcol{border-left:none;padding-left:0}
 .rdc-tile:hover{opacity:.72}
@@ -279,8 +279,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .rdc-tstat-l{font-family:var(--mono);font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);margin-top:4px}
 .rdc-detail{grid-column:1/-1;max-height:0;overflow:hidden;transition:max-height .4s ease;border-top:1px solid var(--border)}
 .rdc-detail.open{max-height:3000px;padding:16px 0 8px;margin-top:2px}
-@media(max-width:1080px){.rdc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.rdc-grid{grid-template-columns:1fr;row-gap:22px}.rdc-tile{border-left:none;padding:0}}
+@media(max-width:900px){.rdc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.rdc-grid{grid-template-columns:1fr;row-gap:22px}.rdc-tile{border-left:none;padding:0}}
 /* ── Radar panel Kalshi-style ── */
 .radar-panel-wrap{background:var(--card);border:0.8px solid var(--border);border-radius:12px;overflow:hidden}
 .radar-panel-header{padding:20px 24px 16px;border-bottom:0.8px solid var(--border)}
