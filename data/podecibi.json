@@ -1,0 +1,57 @@
+{
+ "_meta": {
+  "actualizado": "2026-08-05",
+  "fuente": "Declaratorias DOF · SEMARNAT (Subsecretaría de Desarrollo Sostenible y Economía Circular)",
+  "nota": "Polos de Desarrollo de Economía Circular para el Bienestar (PODECIBI). Seguimiento de declaratorias, estatus y conflicto social."
+ },
+ "polos": [
+  {
+   "id": "qroo",
+   "estado": "Quintana Roo",
+   "municipio": "Puerto Morelos",
+   "sitio": "Corredor Cancún–Puerto Morelos–Playa del Carmen",
+   "superficie_ha": 39.9,
+   "declaratoria": "2026-07-27",
+   "estatus": "vigente",
+   "enfoque": "Valorización de sargazo, plásticos y residuos de construcción",
+   "nota": "Firmada por SEMARNAT (Bárcena). Consulta ejidal 55–0 a favor; vínculo con CICY. Único vigente sin conflicto activo.",
+   "url": "https://www.dof.gob.mx/"
+  },
+  {
+   "id": "tlaxcala",
+   "estado": "Tlaxcala",
+   "municipio": "Atlangatepec",
+   "sitio": "Ex Hacienda de San Pedro Ecatepec",
+   "superficie_ha": 20.0,
+   "declaratoria": "2026-06-08",
+   "estatus": "conflicto",
+   "enfoque": "Gestión integral de residuos del estado",
+   "nota": "160 mdp de urbanización; vínculo con la U. Politécnica de Tlaxcala. Enfrentamientos con pobladores de San Pedro Ecatepec (jun-2026).",
+   "url": "https://normatecambiental.org/2026/06/08/declaratoria-de-polo-de-desarrollo-de-economia-circular-en-tlaxcala/"
+  },
+  {
+   "id": "puebla",
+   "estado": "Puebla",
+   "municipio": "San José Chiapa",
+   "sitio": "Antigua Hacienda de San Miguel del Salado",
+   "superficie_ha": 40.4,
+   "declaratoria": "2026-03-02",
+   "estatus": "conflicto",
+   "enfoque": "Llantas, plásticos, textiles, aceites y residuos de construcción",
+   "nota": "500 empleos directos previstos. Oposición de pobladores, Movimiento Ciudadano y Greenpeace; denuncia ante PROFEPA. MIA aún no ingresada.",
+   "url": "https://sidof.segob.gob.mx/notas/docFuente/5781224"
+  },
+  {
+   "id": "hidalgo",
+   "estado": "Hidalgo",
+   "municipio": "Tlaxcoapan y Atitalaquia",
+   "sitio": "",
+   "superficie_ha": null,
+   "declaratoria": "2025",
+   "estatus": "cancelado",
+   "enfoque": "",
+   "nota": "Primer PODECIBI declarado. Cancelado en jul-2026 por rechazo en votación.",
+   "url": ""
+  }
+ ]
+}
