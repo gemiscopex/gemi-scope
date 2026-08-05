@@ -805,7 +805,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="showActores('federal')">Federal<span class="nd-sub">Gabinete ambiental</span></div>
         <div class="nav-drop-it" onclick="showActores('estatal')">Estatal<span class="nd-sub">Titulares por estado</span></div>
-        <div class="nav-drop-it" onclick="showActores('legislativo')">Legislativo<span class="nd-sub">Comisiones del Congreso</span></div>
+        <div class="nav-drop-it" onclick="showActores('legfed')">Legislativo Federal<span class="nd-sub">Comisiones del Congreso de la Unión</span></div>
+        <div class="nav-drop-it" onclick="showActores('legest')">Legislativo Estatal<span class="nd-sub">Comisiones de congresos locales</span></div>
       </div>
     </div>
     <button class="radar-fab" onclick="showTab('radares',null)" title="Radares temáticos de Scope" style="margin-left:auto;margin-right:2px"><span class="radar-fab-dot"></span></button>
@@ -959,7 +960,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
     <div class="leg-sub-bar">
       <button class="leg-sub-btn active" id="act-sub-federal" onclick="showActoresSub('federal',this)">Federal</button>
       <button class="leg-sub-btn" id="act-sub-estatal" onclick="showActoresSub('estatal',this)">Estatal</button>
-      <button class="leg-sub-btn" id="act-sub-legislativo" onclick="showActoresSub('legislativo',this)">Legislativo</button>
+      <button class="leg-sub-btn" id="act-sub-legfed" onclick="showActoresSub('legfed',this)">Legislativo Federal</button>
+      <button class="leg-sub-btn" id="act-sub-legest" onclick="showActoresSub('legest',this)">Legislativo Estatal</button>
     </div>
     <!-- Federal: gabinete ambiental -->
     <div id="actores-view-federal">
@@ -974,15 +976,16 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       </div>
       <div id="actores-estatales" style="margin-top:10px"></div>
     </div>
-    <!-- Legislativo: comisiones del Congreso -->
-    <div id="actores-view-legislativo" style="display:none">
+    <!-- Legislativo Federal: comisiones del Congreso de la Unión -->
+    <div id="actores-view-legfed" style="display:none">
       <div class="card-label">Comisiones del Congreso de la Unión</div>
       <div id="comisiones-list" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
-      <div style="border-top:0.8px solid var(--border);margin-top:34px;padding-top:24px">
-        <div class="card-label" style="margin-bottom:2px">Comisiones de los Congresos Estatales</div>
-        <div style="font-size:11.5px;color:var(--text-muted);margin-bottom:14px">Medio ambiente · cambio climático · desarrollo sostenible · economía · agua — con sus integrantes, de fuentes oficiales</div>
-        <div id="comisiones-estatales"></div>
-      </div>
+    </div>
+    <!-- Legislativo Estatal: comisiones de los congresos estatales -->
+    <div id="actores-view-legest" style="display:none">
+      <div class="card-label" style="margin-bottom:2px">Comisiones de los Congresos Estatales</div>
+      <div style="font-size:11.5px;color:var(--text-muted);margin-bottom:14px">Medio ambiente · cambio climático · desarrollo sostenible · economía · agua — con sus integrantes, de fuentes oficiales</div>
+      <div id="comisiones-estatales"></div>
     </div>
   </div>
 
@@ -1853,9 +1856,10 @@ function showActoresSub(view,btn){
   (btn||document.getElementById('act-sub-'+view)||{classList:{add:function(){}}}).classList.add('active');
   document.getElementById('actores-view-federal').style.display=view==='federal'?'':'none';
   document.getElementById('actores-view-estatal').style.display=view==='estatal'?'':'none';
-  document.getElementById('actores-view-legislativo').style.display=view==='legislativo'?'':'none';
+  document.getElementById('actores-view-legfed').style.display=view==='legfed'?'':'none';
+  document.getElementById('actores-view-legest').style.display=view==='legest'?'':'none';
   if(view==='estatal')renderActoresEstatales();
-  if(view==='legislativo')renderComisionesEstatales();
+  if(view==='legest')renderComisionesEstatales();
 }
 // ── Comisiones de los congresos estatales (temas ambientales/económicos) ──
 var _comisionesEstatales=null;
@@ -2043,8 +2047,9 @@ function renderEstadosHeatmap(){
   var ranked=states.slice().sort(function(a,b){return vals[b]-vals[a];}),rankOf={};
   ranked.forEach(function(s,i){rankOf[s]=i+1;});
   function frac(v){return maxV>0?v/maxV:0;}
-  function edge(v){var f=frac(v);return f>=0.75?'#ef4444':f>=0.5?'#f97316':f>=0.25?'#10b981':'#94a3b8';}
-  function tint(v){var f=frac(v);return f>=0.75?'rgba(239,68,68,0.13)':f>=0.5?'rgba(249,115,22,0.12)':f>=0.25?'rgba(16,185,129,0.11)':'rgba(148,163,184,0.09)';}
+  // Semáforo: bajo/nada = blanco (sin delinear) · medio = gris muy suave · alto = verde suave · máximo = verde GEMI (#066750)
+  function edge(v){var f=frac(v);return f>=0.75?'#066750':f>=0.5?'#10b981':f>=0.25?'var(--text-sec)':'var(--text-muted)';}
+  function tint(v){var f=frac(v);return f>=0.75?'rgba(6,103,80,0.20)':f>=0.5?'rgba(16,185,129,0.13)':f>=0.25?'rgba(120,130,140,0.10)':'transparent';}
   // Selector "colorear por" (criterios reales)
   var cb=document.getElementById('estados-colorby');
   if(cb)cb.innerHTML='<span style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">Colorear por</span>'
@@ -2068,8 +2073,8 @@ function renderEstadosHeatmap(){
   }).join('');
   var leg=document.getElementById('estados-leyenda');
   if(leg)leg.innerHTML='<span>'+m.label+' · relativo al máximo nacional</span>'
-    +[['#94a3b8','Bajo'],['#10b981','Medio'],['#f97316','Alto'],['#ef4444','Máximo']].map(function(p){
-      return '<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:'+p[0]+';display:inline-block"></span>'+p[1]+'</span>';}).join('');
+    +[['transparent','Bajo'],['rgba(120,130,140,0.28)','Medio'],['rgba(16,185,129,0.30)','Alto'],['#066750','Máximo']].map(function(p){
+      return '<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:'+p[0]+';display:inline-block;border:0.8px solid var(--border)"></span>'+p[1]+'</span>';}).join('');
   renderEstadosCompare();
 }
 // ── ESTADOS · comparativa de hasta 3 entidades (panel derecho) ──
@@ -3131,7 +3136,7 @@ function renderSPPerfil(state,data,sc){
   const complexity=sc.icr>=60?'alta':sc.icr>=30?'moderada':'baja';
   const pressure=sc.ipr>=60?'elevada':sc.ipr>=30?'moderada':'baja';
   const fiscal=sc.irf>=40?'activo con posibles controversias':sc.irf>=20?'en desarrollo':'incipiente';
-  const narrative=`${state} presenta una complejidad regulatoria ambiental <strong>${complexity}</strong>, con cobertura en ${numThemes} materias ambientales. La presi\u00f3n regulatoria es <strong>${pressure}</strong> en el per\u00edodo reciente, con ${stateNews[state]||0} menciones en medios especializados. Su r\u00e9gimen de impuestos ambientales es <strong>${fiscal}</strong>. La capital ${data.capital||'\u2014'} concentra la actividad legislativa del congreso estatal.`;
+  const narrative=`${state} presenta una complejidad regulatoria ambiental <strong>${complexity}</strong>, con cobertura en ${numThemes} materias ambientales. Su r\u00e9gimen de impuestos ambientales es <strong>${fiscal}</strong>. La capital ${data.capital||'\u2014'} concentra la actividad legislativa del congreso estatal.`;
   // Datos INEGI en filas t\u00e9cnicas: cifra + barra comparativa vs m\u00e1ximo nacional
   const perfiles=(_perfilEstados&&_perfilEstados.estados)||{};
   const perfil=perfiles[state]||{};
