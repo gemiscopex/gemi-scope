@@ -313,6 +313,10 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .pgemi-hot>*{position:relative;z-index:1}
 .pgemi-msg{border-left:2px solid #066750;padding:7px 0 7px 12px}
 .pgemi-msg+.pgemi-msg{border-top:0.8px solid var(--border)}
+.pgemi-bubble{flex:1;min-width:0;background:rgba(6,103,80,0.05);border:0.8px solid var(--border);border-radius:4px 12px 12px 12px;padding:11px 13px}
+.pgemi-bubble-meta{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+.pgemi-bubble-title{font-size:13px;font-weight:700;color:var(--text);line-height:1.3}
+.pgemi-bubble-text{font-size:11.5px;color:var(--text-sec);line-height:1.5;margin-top:4px}
 /* ── Radar panel Kalshi-style ── */
 .radar-panel-wrap{background:var(--card);border:0.8px solid var(--border);border-radius:12px;overflow:hidden}
 .radar-panel-header{padding:20px 24px 16px;border-bottom:0.8px solid var(--border)}
@@ -663,7 +667,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-kpi-val{font-family:var(--mono);font-size:21px;font-weight:600;color:var(--text);line-height:1.05;margin-top:6px}
 .cons-kpi-sub{font-family:var(--mono);font-size:8.5px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* Resumen inteligente (reemplaza los KPIs tipo informe) */
-.cons-hero{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:center;padding:2px 0 18px;margin-bottom:16px;border-bottom:0.8px solid var(--border)}
+.cons-hero{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:center;padding:2px 0 18px;margin-bottom:16px;border-bottom:0.8px solid var(--border);text-align:left}
+.cons-hero>div{text-align:left}
 .cons-hero-kick{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)}
 .cons-hero-head{font-family:var(--sans);font-size:20px;font-weight:700;line-height:1.25;color:var(--text);margin-top:8px;letter-spacing:-0.01em}
 .cons-hero-sub{font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:7px}
@@ -1224,18 +1229,20 @@ const SECTOR_PROFILE={
 };
 const RADAR_TEMAS=[
   {id:'agua',name:'Agua',icon:'',color:'#38bdf8',kw:['agua','hidric','sequia','conagua','cuenca','acuifero','presa','potable','saneamiento','drenaje','desabasto','tandeo','rio','laguna','desalac'],leyKey:'agua'},
-  {id:'residuos',name:'Residuos',icon:'',color:'#a78bfa',kw:['residu','basura','reciclaj','plastic','vertedero','relleno sanitario','tiradero','desecho','compost','recolec','organico'],leyKey:'residuos',emis:'Residuos'},
-  {id:'circular',name:'Econom\u00eda Circular',icon:'',color:'#009E90',kw:['economia circular','circularidad','ecodiseno','reciclaj','valorizac','reutiliz','envase','empaque','simbiosis industrial','parque industrial','desarrollo circular','podecibi','basura cero','acopio','economia verde','aprovechamiento de residuos','responsabilidad extendida','chatarra','compost','reincorpora'],leyKey:'economia_circular'},
+  {id:'residuos',name:'Residuos',icon:'',color:'#a78bfa',kw:['residu','basura','reciclaj','plastic','vertedero','relleno sanitario','tiradero','desecho','compost','recolec','organico','sargazo','manejo especial','estacion de transferencia','llantas','residuos solidos urbanos'],leyKey:'residuos',emis:'Residuos'},
+  {id:'circular',name:'Econom\u00eda Circular',icon:'',color:'#009E90',kw:['economia circular','circularidad','ecodiseno','reciclaj','valorizac','reutiliz','envase','empaque','simbiosis industrial','parque industrial','desarrollo circular','podecibi','polo de desarrollo','sargazo','estacion de transferencia','centro de valorizacion','basura cero','acopio','economia verde','aprovechamiento de residuos','responsabilidad extendida','llantas','textiles','aceites usados','residuos de construccion','chatarra','compost','reincorpora'],leyKey:'economia_circular'},
   {id:'cc',name:'Cambio Clim\u00e1tico',icon:'',color:'#6366f1',kw:['cambio climatic','descarboniz','gases de efecto invernadero','gei','carbono','emision','ndc','metano','transicion energetica','ola de calor','clima'],leyKey:'cambio_climatico',emisNacional:true},
   {id:'fiscal',name:'Impuestos Ambientales',icon:'',color:'#f87171',kw:['impuesto ambiental','impuesto verde','impuesto ecologic','tasa ecologic','bono de carbono','bono carbono','impuesto a emisiones','recaudacion ambiental','impuesto al carbono'],leyKey:null},
   {id:'plasticos',name:'Pl\u00e1sticos',icon:'',color:'#ec4899',kw:['plastic','unicel','poliestireno','monouso','un solo uso','popote','desechable','bolsa de plastico','poliet'],leyKey:'plasticos'},
   {id:'energia',name:'Energ\u00eda',icon:'',color:'#f59e0b',kw:['energia solar','energia renovable','energia limpia','renovable','fotovoltaic','eolic','cfe','hidrogeno','panel solar','parque eolico','geotermia','biogas','transicion energetica','litio'],leyKey:null,emis:'Energ\u00eda'},
   {id:'sanciones',name:'Cumplimiento',icon:'',color:'#ef4444',kw:['sancion','multa','clausura','infraccion','profepa','inspeccion','verificacion ambiental','denuncia ambiental','delito ambiental','procedimiento administrativo'],leyKey:null},
-  {id:'biodiv',name:'Biodiversidad',icon:'',color:'#22c55e',kw:['biodivers','restauracion','forestal','silvestre','area natural','anp','manglar','arrecife','deforestac','reforestac','conservacion','fauna','especie'],leyKey:'forestal_biodiversidad'},
+  {id:'biodiv',name:'Biodiversidad',icon:'',color:'#22c55e',kw:['biodivers','restauracion','forestal','silvestre','area natural','anp','manglar','arrecife','deforestac','reforestac','conservacion','fauna','especie','sargazo'],leyKey:'forestal_biodiversidad'},
   {id:'infra',name:'Infraestructura',icon:'',color:'#64748b',kw:['infraestructura','planta de tratamiento','alcantarillado','acueducto','colector','obra hidraulica','saneamiento'],leyKey:'agua'},
   {id:'agricultura',name:'Agricultura',icon:'',color:'#65a30d',kw:['agricultura','agropecuari','ganaderi','ganader','fertilizante','cultivo','pecuari','riego','agroindustria','agroquimic','plaguicida'],leyKey:null,emis:'Agricultura'},
   {id:'procesos',name:'Procesos Industriales',icon:'',color:'#0891b2',kw:['proceso industrial','cemento','clinker','siderurgi','acero','industria quimica','refrigerante','cementera','fundidora','metalurgi','petroquimica'],leyKey:null,emis:'Procesos industriales'},
-  {id:'uso_suelo',name:'Uso de Suelo (UTCUTS)',icon:'',color:'#15803d',kw:['uso de suelo','deforestac','silvicultura','reforestac','bosque','utcuts','cambio de uso de suelo','incendio forestal','selva'],leyKey:'forestal_biodiversidad',emis:'Uso de la tierra'}
+  {id:'uso_suelo',name:'Uso de Suelo (UTCUTS)',icon:'',color:'#15803d',kw:['uso de suelo','deforestac','silvicultura','reforestac','bosque','utcuts','cambio de uso de suelo','incendio forestal','selva'],leyKey:'forestal_biodiversidad',emis:'Uso de la tierra'},
+  {id:'finanzas',name:'Finanzas Sostenibles',icon:'',color:'#0891b2',kw:['taxonomia sostenible','bono verde','bono sostenible','financiamiento sostenible','inversion sostenible','criterios asg','criterio esg',' asg',' esg','cnbv','banca de desarrollo','credito verde','sostenibilidad corporativa'],leyKey:null},
+  {id:'comercio',name:'Comercio Ambiental',icon:'',color:'#65a30d',kw:['t-mec','tmec','capitulo 24','acuerdo global','seccion 301','seccion 232','reglas de origen','barrera no arancelaria','arancel ambiental','deforestacion importada','comercio exterior','frontera de carbono','mecanismo de ajuste'],leyKey:null}
 ];
 const estadoData={
   "Aguascalientes":{l:"Ley Ambiental del Estado",capital:"Aguascalientes",pop:"1.4M",area:"5,618 km²",region:"Norte-Centro",congreso:"https://www.congresoags.gob.mx/"},
@@ -3220,7 +3227,9 @@ function _radarIcon(id){
     infra:'<path d="M3 17V8l7-4.5 7 4.5v9"/><path d="M8 17v-5h4v5"/>',
     agricultura:'<path d="M10 17V6"/><path d="M10 8c0-2.2 1.2-3.5 3.3-3.5C13.3 6.7 12.1 8 10 8Z"/><path d="M10 11C10 8.8 8.8 7.5 6.7 7.5 6.7 9.7 7.9 11 10 11Z"/>',
     procesos:'<path d="M3 17V9.5l4 2V9.5l4 2V6l6 3.2V17Z"/><path d="M6.5 14h1M10 14h1M13.5 14h1"/>',
-    uso_suelo:'<path d="M10 18v-6"/><path d="M10 12 6 9.5 10 8.5 14 9.5 10 12Z"/><path d="M10 9 7 7l3-1 3 1-3 2Z"/>'
+    uso_suelo:'<path d="M10 18v-6"/><path d="M10 12 6 9.5 10 8.5 14 9.5 10 12Z"/><path d="M10 9 7 7l3-1 3 1-3 2Z"/>',
+    finanzas:'<path d="M3 15l4.5-4.5 3 2.5L16 6"/><path d="M12 6h4v4"/>',
+    comercio:'<circle cx="10" cy="10" r="7.2"/><path d="M2.8 10h14.4"/><path d="M10 2.8c2.2 2.6 2.2 11.8 0 14.4M10 2.8c-2.2 2.6-2.2 11.8 0 14.4"/>'
   };
   var p=P[id]||'<circle cx="10" cy="10" r="6.5"/>';
   return '<svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';
@@ -3314,6 +3323,7 @@ function _radarDetailHTML(temaId){
   var estBlock='<div style="margin-bottom:20px"><div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px">Estados más activos <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+topE.length+'</span></div>'+estBars+'</div>';
   return '<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px">Vista 360° · todos los streams del tema</div>'
     +_emisBlock(tema)
+    +(tema.id==='circular'?_podecibiBlock():'')
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
       +'<div>'+block('Señal en medios · 2 sem','var(--text)',news)+block('Prensa estatal','var(--text)',est)+estBlock+'</div>'
       +'<div>'+block('DOF · publicaciones'+(dofAll.length>3?' · +'+(dofAll.length-3)+' más':''),'var(--text)',dof)+block('Congreso'+(congAll.length>3?' · +'+(congAll.length-3)+' más':''),'var(--text)',cong)+block('NOMs','var(--text)',noms)+block('Internacional','var(--text)',intl)+'</div>'
@@ -3343,6 +3353,37 @@ function _emisCurve(serie,valField,color){
     +'<path d="'+area+'" fill="'+color+'" fill-opacity="0.09"/>'
     +'<path d="'+line+'" fill="none" stroke="'+color+'" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>'
     +'<circle cx="'+X(n-1).toFixed(1)+'" cy="'+Y(vals[n-1]).toFixed(1)+'" r="2.6" fill="'+color+'"/>'+lab+'</svg>';
+}
+// PODECIBIs — Polos de Desarrollo de Economía Circular para el Bienestar (panel del tema EC)
+function _podecibiBlock(){
+  var d=_podecibiData;if(!d||!d.polos||!d.polos.length)return '';
+  var COL={vigente:'#066750',conflicto:'#B7791F',cancelado:'var(--text-muted)'};
+  var LBL={vigente:'Vigente',conflicto:'En conflicto',cancelado:'Cancelado'};
+  var esc=function(u){return (u||'').replace(/'/g,'%27');};
+  var fmt=function(f){if(!f)return '';if(/^\d{4}$/.test(f))return f;var x=new Date(String(f).substring(0,10)+'T12:00:00');return isNaN(x)?f:x.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});};
+  var rows=(d.polos||[]).map(function(p){
+    var c=COL[p.estatus]||'var(--text-muted)';
+    var meta=[p.sitio,(p.superficie_ha?p.superficie_ha+' ha':'')].filter(Boolean).join(' · ');
+    var canc=p.estatus==='cancelado';
+    return '<div'+(p.url?' onclick="window.open(\''+esc(p.url)+'\',\'_blank\')" style="cursor:pointer;':' style="')
+      +'display:flex;align-items:flex-start;gap:11px;padding:10px 0;border-top:0.8px solid var(--border)"'+(p.url?' title="Abrir declaratoria DOF"':'')+'>'
+      +'<span style="width:8px;height:8px;border-radius:50%;background:'+c+';flex-shrink:0;margin-top:4px'+(canc?';opacity:.6':'')+'"></span>'
+      +'<div style="flex:1;min-width:0">'
+        +'<div style="font-size:12.5px;font-weight:600;color:'+(canc?'var(--text-muted)':'var(--text)')+';'+(canc?'text-decoration:line-through':'')+'">'+p.municipio+', '+p.estado+'</div>'
+        +(meta?'<div style="font-size:10.5px;color:var(--text-muted);margin-top:1px">'+meta+'</div>':'')
+        +(p.enfoque?'<div style="font-size:11px;color:var(--text-sec);line-height:1.4;margin-top:3px">'+p.enfoque+'</div>':'')
+        +(p.nota?'<div style="font-size:10px;color:var(--text-muted);line-height:1.4;margin-top:3px">'+p.nota+'</div>':'')
+      +'</div>'
+      +'<div style="text-align:right;flex-shrink:0"><div style="font-family:var(--mono);font-size:9px;font-weight:700;color:'+c+';text-transform:uppercase;letter-spacing:.04em">'+(LBL[p.estatus]||'')+'</div>'
+        +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:3px">'+fmt(p.declaratoria)+'</div></div>'
+    +'</div>';
+  }).join('');
+  var vig=(d.polos||[]).filter(function(p){return p.estatus==='vigente';}).length;
+  return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
+    +'<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px">Polos de Economía Circular (PODECIBI) <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+d.polos.length+' · '+vig+' vigente'+(vig===1?'':'s')+'</span></div>'
+    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-bottom:4px">Declaratorias SEMARNAT · DOF</div>'
+    +rows
+  +'</div>';
 }
 function _emisBlock(tema){
   if(!_emisionesData)return '';
@@ -4253,7 +4294,7 @@ function renderDOF(){
   el.innerHTML=html;
 }
 // ─────────────────────────────────────────────────────────────────────────────
-var _perfilEstados=null,_materialesData=null,_datosgobData=null,_sitiosData=null,_emisionesData=null,_conamerData=null;
+var _perfilEstados=null,_materialesData=null,_datosgobData=null,_sitiosData=null,_emisionesData=null,_conamerData=null,_podecibiData=null;
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
@@ -4266,6 +4307,7 @@ async function init(){
   fetch('data/sitios-contaminados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_sitiosData=d;buildMap();}).catch(()=>{});
   fetch('data/emisiones-gei.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_emisionesData=d;if(typeof renderEmisiones==='function')renderEmisiones();}).catch(()=>{});
   fetch('data/conamer-propuestas.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_conamerData=d;}).catch(()=>{});
+  fetch('data/podecibi.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_podecibiData=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel==='circular')det.innerHTML=_radarDetailHTML('circular');}).catch(()=>{});
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
@@ -5288,29 +5330,20 @@ function _panelGemiHTML(){
 }
 function _renderPanelGemi(d){
   var el=document.getElementById('panel-gemi-body');if(!el)return;
-  d=d||{};var dst=d.destacado||null,msgs=(d.mensajes||[]);
-  var fmt=function(f){if(!f)return '';var x=new Date(String(f).substring(0,10)+'T12:00:00');return isNaN(x)?'':x.toLocaleDateString('es-MX',{day:'2-digit',month:'short'});};
-  var html='';
-  if(dst){
-    var link=dst.url?'<a href="'+dst.url.replace(/"/g,'%22')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10px;color:#7ff0d4;text-decoration:none;letter-spacing:0.04em">ABRIR ↗</a>':'';
-    html+='<div class="pgemi-hot">'
-      +'<div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.14em;color:#22e0b8;text-transform:uppercase;margin-bottom:7px">▮ '+_escHtml(dst.kicker||'En agenda')+(dst.fecha?' · '+fmt(dst.fecha):'')+'</div>'
-      +'<div style="font-size:15px;font-weight:700;line-height:1.3;color:#eafff7">'+_escHtml(dst.titulo||'')+'</div>'
-      +(dst.texto?'<div style="font-size:11.5px;line-height:1.5;color:rgba(234,255,247,0.82);margin-top:5px">'+_escHtml(dst.texto)+'</div>':'')
-      +link
-    +'</div>';
-  }
-  if(msgs.length){
-    html+='<div style="display:flex;flex-direction:column;margin-top:2px">'+msgs.map(function(m){
-      return '<div class="pgemi-msg">'
-        +'<div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:3px">'+(m.fecha?fmt(m.fecha)+' · ':'')+_escHtml(m.autor||'Equipo GEMI')+'</div>'
-        +(m.titulo?'<div style="font-size:12.5px;font-weight:600;color:var(--text);line-height:1.35">'+_escHtml(m.titulo)+'</div>':'')
-        +(m.texto?'<div style="font-size:11.5px;color:var(--text-sec);line-height:1.45;margin-top:2px">'+_escHtml(m.texto)+'</div>':'')
-      +'</div>';
-    }).join('')+'</div>';
-  }
-  if(!html)html='<div style="font-size:11.5px;color:var(--text-muted);padding:12px 0">Sin mensajes por ahora.</div>';
-  el.innerHTML=html;
+  d=d||{};var msgs=(d.mensajes||[]);
+  var fmt=function(f){if(!f)return '';var x=new Date(String(f).substring(0,10)+'T12:00:00');return isNaN(x)?'':x.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});};
+  if(!msgs.length){el.innerHTML='<div style="font-size:11.5px;color:var(--text-muted);padding:12px 0">Sin mensajes por ahora.</div>';return;}
+  el.innerHTML='<div style="display:flex;flex-direction:column;gap:12px">'+msgs.map(function(m){
+    var link=m.url?'<a href="'+(m.url||'').replace(/"/g,'%22')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-family:var(--mono);font-size:9.5px;color:#066750;text-decoration:none;letter-spacing:0.03em">ABRIR ↗</a>':'';
+    return '<div style="display:flex;gap:9px;align-items:flex-start">'
+      +'<img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:24px;height:24px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">'
+      +'<div class="pgemi-bubble">'
+        +'<div class="pgemi-bubble-meta">'+_escHtml(m.autor||'Equipo GEMI')+(m.fecha?' · '+fmt(m.fecha):'')+'</div>'
+        +(m.titulo?'<div class="pgemi-bubble-title">'+_escHtml(m.titulo)+'</div>':'')
+        +(m.texto?'<div class="pgemi-bubble-text">'+_escHtml(m.texto)+'</div>':'')
+        +link
+      +'</div></div>';
+  }).join('')+'</div>';
 }
 function _loadPanelGemi(){
   if(_panelGemiData){_renderPanelGemi(_panelGemiData);return;}
