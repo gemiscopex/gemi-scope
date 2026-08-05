@@ -928,7 +928,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
         <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.01em">Legislación Ambiental Federal</div>
         <div style="font-size:11px;color:var(--text-muted)">México · LXVI Legislatura</div>
       </div>
-      <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial en diputados.gob.mx</div>
+      <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial.</div>
       <div class="leyes-grid" id="leyes-grid"></div>
     </div>
     <!-- Vista Estatal -->
@@ -3671,6 +3671,7 @@ function _stepPath(pts){
 }
 var _CONG_MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 var _congChart=null;
+var _congAnimated=false;
 function renderCongresoChart(){
   var host=document.getElementById('congreso-chart');
   if(!host||!_congItems)return;
