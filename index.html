@@ -278,8 +278,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .rdc-tspark{margin:11px 0 9px;height:26px}
 /* Animación en bucle de las sparklines: se redibujan cada 22s, desfasadas 2s por tile,
    con fade de entrada y de salida para una transición suave (pro). */
-.rdc-spk{stroke-dasharray:1;animation:rdSpkDraw 22s ease-in-out infinite}
-.rdc-spk-dot{animation:rdSpkPulse 22s ease-in-out infinite}
+.rdc-spk{stroke-dasharray:1;animation:rdSpkDraw 28s ease-in-out infinite}
+.rdc-spk-dot{animation:rdSpkPulse 28s ease-in-out infinite}
 @keyframes rdSpkDraw{0%{stroke-dashoffset:1;opacity:0}14%{stroke-dashoffset:0;opacity:1}88%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}
 @keyframes rdSpkPulse{0%{opacity:0}14%{opacity:1}88%{opacity:1}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.rdc-spk{animation:none;stroke-dashoffset:0;opacity:1}.rdc-spk-dot{animation:none;opacity:1}}
@@ -3021,7 +3021,11 @@ const TEMA_FED_LAWS={agua:['LAN','LGEEPA','LFRA'],agua_inf:['LAN','LGEEPA'],resi
 function toggleInstr(id){const el=document.getElementById(id);const arr=document.getElementById('arr-'+id);const open=el.style.maxHeight&&el.style.maxHeight!=='0px';el.style.maxHeight=open?'0px':(el.scrollHeight+200)+'px';if(arr)arr.style.transform=open?'':'rotate(90deg)';}
 // ═══ RADAR SCOPE · integral (cruza todos los streams) ════════════════════════
 var _radarSel=null,_RD_NOW=Date.now(),_RD_NEWS=Date.now();
-var RD_GREEN='#066750';  // verde del logo GEMI — único color permitido en las gráficas del Radar
+var RD_GREEN='#066750';  // verde del logo GEMI — base de las gráficas del Radar
+// Paleta GEMI (verdes/teales del logo + variaciones) — cada tema toma un tono distinto
+var GEMI_PAL=['#066750','#0E8C74','#12A594','#2C6552','#3FA07E','#0A7C63','#149E8C','#57B894','#1B5E4F','#08A88F','#2E8B74','#6CBE98','#0F7A62'];
+var _RD_COLOR={};(typeof RADAR_TEMAS!=='undefined'?RADAR_TEMAS:[]).forEach(function(t,i){_RD_COLOR[t.id]=GEMI_PAL[i%GEMI_PAL.length];});
+function _radarColor(id){return _RD_COLOR[id]||RD_GREEN;}
 var _radarSort='senal';
 function _radarSetSort(k){_radarSort=k;renderRadares();}
 // Ancla la ventana al dato más reciente disponible: robusto ante snapshots viejos
@@ -3105,13 +3109,13 @@ function renderRadares(){
   var _dofMark='<span style="font-family:Georgia,\'Times New Roman\',serif;font-weight:500;letter-spacing:.6px;font-size:10px;text-transform:none">DOF</span>';
   var _estMark='<span style="display:inline-flex;align-items:center;gap:3px">'+_pin+'Estados</span>';
   var body=rows.map(function(r,i){
-    var t=r.t,s=r.s,d=s.delta;
+    var t=r.t,s=r.s,d=s.delta,col=_radarColor(t.id);
     var darr=d>0?'▲ ':d<0?'▼ ':'';
     var mini=function(v,l,al){return '<div'+(al?' style="text-align:'+al+'"':'')+'><div class="rdc-tstat-v">'+v+'</div><div class="rdc-tstat-l">'+l+'</div></div>';};
     return '<div class="rdc-tile" data-tid="'+t.id+'" onclick="_radarToggle(\''+t.id+'\')">'
-      +'<div class="rdc-thead"><span class="rdc-ticon">'+_radarIcon(t.id)+'</span><span class="rdc-tname">'+t.name+'</span></div>'
+      +'<div class="rdc-thead"><span class="rdc-ticon" style="color:'+col+'">'+_radarIcon(t.id)+'</span><span class="rdc-tname">'+t.name+'</span></div>'
       +'<div class="rdc-tsub">'+(s.news90+s.est)+' menciones · 90d</div>'
-      +'<div class="rdc-tspark">'+_radarSparkFluid(_radarDaily(t,21),RD_GREEN,i)+'</div>'
+      +'<div class="rdc-tspark">'+_radarSparkFluid(_radarDaily(t,21),col,i)+'</div>'
       +'<div class="rdc-tstats">'+mini(s.dof,_dofMark)+mini(s.est,_estMark)+mini(darr+Math.abs(d),'Δ 30d','right')+'</div>'
     +'</div>';
   }).join('');
@@ -3181,10 +3185,15 @@ function _radarIcon(id){
 function _radarSparkFluid(data,color,idx){
   var W=180,H=26,n=(data||[]).length,mx=Math.max.apply(null,(data||[]).concat([1]));
   if(n<2)return '';
-  var pts=data.map(function(v,i){var x=(i/(n-1))*W,y=H-2-(v/mx)*(H-4);return x.toFixed(1)+','+y.toFixed(1);}).join(' ');
+  var xy=data.map(function(v,i){return [(i/(n-1))*W,H-2-(v/mx)*(H-4)];});
+  var pts=xy.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
+  var area=pts+' '+W.toFixed(1)+','+H+' 0,'+H;
   var lx=W,ly=H-2-(data[n-1]/mx)*(H-4);
-  var delay=-(( idx||0)*2);
+  var delay=-((idx||0)*2);
+  var gid='rdg'+(idx||0);
   return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" style="width:100%;height:26px;display:block;overflow:visible">'
+    +'<defs><linearGradient id="'+gid+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+color+'" stop-opacity="0.30"/><stop offset="1" stop-color="'+color+'" stop-opacity="0"/></linearGradient></defs>'
+    +'<polygon class="rdc-spk-dot" points="'+area+'" fill="url(#'+gid+')" stroke="none" style="animation-delay:'+delay+'s"/>'
     +'<polyline class="rdc-spk" pathLength="1" points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" style="animation-delay:'+delay+'s"/>'
     +'<circle class="rdc-spk-dot" cx="'+lx+'" cy="'+ly.toFixed(1)+'" r="2" fill="'+color+'" style="animation-delay:'+delay+'s"/></svg>';
 }
