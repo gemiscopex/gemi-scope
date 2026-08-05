@@ -653,6 +653,21 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-kpi-lbl{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase}
 .cons-kpi-val{font-family:var(--mono);font-size:21px;font-weight:600;color:var(--text);line-height:1.05;margin-top:6px}
 .cons-kpi-sub{font-family:var(--mono);font-size:8.5px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Resumen inteligente (reemplaza los KPIs tipo informe) */
+.cons-hero{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:center;padding:2px 0 18px;margin-bottom:16px;border-bottom:0.8px solid var(--border)}
+.cons-hero-kick{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)}
+.cons-hero-head{font-family:var(--sans);font-size:20px;font-weight:700;line-height:1.25;color:var(--text);margin-top:8px;letter-spacing:-0.01em}
+.cons-hero-sub{font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:7px}
+.cons-hero-chips{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:13px}
+.cons-hero-chip{font-size:12px;color:var(--text-sec)}
+.cons-hero-chip b{font-family:var(--mono);font-size:14px;color:var(--text);font-weight:700}
+.cons-hero-bars{display:flex;flex-direction:column;gap:8px}
+.cons-hero-barrow{display:grid;grid-template-columns:84px 1fr 24px;align-items:center;gap:9px}
+.cons-hero-barname{font-size:11px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cons-hero-bartrack{height:6px;background:rgba(0,0,0,0.05);border-radius:3px;overflow:hidden}
+.cons-hero-barfill{height:100%;border-radius:3px;min-width:2px}
+.cons-hero-barval{font-family:var(--mono);font-size:11px;color:var(--text);text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:720px){.cons-hero{grid-template-columns:1fr;gap:16px;align-items:start}.cons-hero-head{font-size:17px}}
 .cons-desk{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:start;margin-bottom:12px}
 @media(max-width:1000px){.cons-desk{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.cons-desk{grid-template-columns:1fr}}
@@ -5146,15 +5161,7 @@ function renderConsola(){
 
   var sen=_consComputeSenal(temas,cfg.riesgos||{});
   var nRefs=(cfg.noms||[]).length+(cfg.instrumentos||[]).length+(cfg.impuestos||[]).length+(cfg.materiales||[]).length;
-  function kpi(lbl,val,sub,col){return '<div class="cons-kpi"><div class="cons-kpi-lbl">'+lbl+'</div><div class="cons-kpi-val">'+val+'</div><div class="cons-kpi-sub" style="color:'+(col||'var(--text-muted)')+'">'+sub+'</div></div>';}
-  var kpis='<div class="cons-kpis">'
-    +kpi('Menciones en medios',sen.total,sen.nivel[0]+' · últimos '+sen.dias+' d',sen.nivel[1])
-    +kpi('Temas',temas.length,'monitoreados')
-    +kpi('Estados',estados.length,'seguidos')
-    +kpi('Comisiones',coms.length,'del Congreso')
-    +(legs.length?kpi('Legisladores',legs.length,'federales'):'')
-    +kpi('Referencias',nRefs,'a la mano')
-    +'</div>';
+  var kpis=_consHeroHTML(sen,temas,estados,coms,legs,nRefs);
   // ── Widgets reordenables (drag-and-drop) ──
   var widgets=[];
   widgets.push({id:'senal',title:'Señal de mis temas',count:null,body:'<div id="cons-senal"></div>'});
@@ -5219,7 +5226,35 @@ function _consChatSend(){
     msgs.scrollTop=msgs.scrollHeight;
   },550);
 }
-// ── Panel GEMI: canal oficial del equipo (tema caliente + avisos de administradores) ──
+// ── Resumen inteligente de Mi Terminal (reemplaza los KPIs tipo informe) ──
+function _consHeroHTML(sen,temas,estados,coms,legs,nRefs){
+  var rows=(sen&&sen.rows)||[],lead=sen&&sen.lead,second=rows[1];
+  var nivel=sen.total>=12?'Actividad alta':sen.total>=5?'Actividad media':'Actividad baja';
+  var head;
+  if(lead&&lead.n7){var names=lead.c.name+(second&&second.n7?' y '+second.c.name:'');head=names+' concentra'+(second&&second.n7?'n':'')+' tu señal esta semana';}
+  else head='Aún sin menciones en tus temas esta semana';
+  var mx=Math.max.apply(null,rows.map(function(r){return r.n7;}).concat([1]));
+  var bars=rows.filter(function(r){return r.n7>0;}).slice(0,4).map(function(r){
+    var col=(typeof _radarColor==='function')?_radarColor(r.c.id):'#066750';
+    return '<div class="cons-hero-barrow"><span class="cons-hero-barname">'+r.c.name+'</span>'
+      +'<span class="cons-hero-bartrack"><span class="cons-hero-barfill" style="width:'+Math.round(r.n7/mx*100)+'%;background:'+col+'"></span></span>'
+      +'<span class="cons-hero-barval">'+r.n7+'</span></div>';
+  }).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:6px 0">Sin señal en medios esta semana.</div>';
+  var chip=function(n,l){return '<span class="cons-hero-chip"><b>'+n+'</b> '+l+'</span>';};
+  return '<div class="cons-hero">'
+    +'<div>'
+      +'<div class="cons-hero-kick">Tu terminal · <span style="color:#066750;font-weight:700">'+nivel+'</span></div>'
+      +'<div class="cons-hero-head">'+head+'</div>'
+      +'<div class="cons-hero-sub">'+sen.total+' menciones en medios · últimos '+sen.dias+' días</div>'
+      +'<div class="cons-hero-chips">'+chip(temas.length,'temas')+chip(estados.length,'estados')+chip(coms.length,'comisiones')+(legs.length?chip(legs.length,'legisladores'):'')+chip(nRefs,'referencias')+'</div>'
+    +'</div>'
+    +'<div>'
+      +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Dónde está tu señal · 7d</div>'
+      +'<div class="cons-hero-bars">'+bars+'</div>'
+    +'</div>'
+  +'</div>';
+}
+// ── Panel GEMI: canal oficial del equipo (tema en agenda + avisos de administradores) ──
 var _panelGemiData=null;
 function _panelGemiHTML(){
   return '<div class="card pgemi" style="border:0.8px solid var(--border);border-radius:14px;padding:0;background:var(--card)">'
@@ -5243,7 +5278,7 @@ function _renderPanelGemi(d){
   if(dst){
     var link=dst.url?'<a href="'+dst.url.replace(/"/g,'%22')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10px;color:#7ff0d4;text-decoration:none;letter-spacing:0.04em">ABRIR ↗</a>':'';
     html+='<div class="pgemi-hot">'
-      +'<div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.14em;color:#22e0b8;text-transform:uppercase;margin-bottom:7px">▮ '+_escHtml(dst.kicker||'Tema caliente')+(dst.fecha?' · '+fmt(dst.fecha):'')+'</div>'
+      +'<div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.14em;color:#22e0b8;text-transform:uppercase;margin-bottom:7px">▮ '+_escHtml(dst.kicker||'En agenda')+(dst.fecha?' · '+fmt(dst.fecha):'')+'</div>'
       +'<div style="font-size:15px;font-weight:700;line-height:1.3;color:#eafff7">'+_escHtml(dst.titulo||'')+'</div>'
       +(dst.texto?'<div style="font-size:11.5px;line-height:1.5;color:rgba(234,255,247,0.82);margin-top:5px">'+_escHtml(dst.texto)+'</div>':'')
       +link
