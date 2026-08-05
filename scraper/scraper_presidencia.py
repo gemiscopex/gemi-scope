@@ -39,11 +39,15 @@ URL_BASE = "https://www.gob.mx/presidencia/es/articulos/"
 MESES    = ["enero","febrero","marzo","abril","mayo","junio",
             "julio","agosto","septiembre","octubre","noviembre","diciembre"]
 
-def build_url(d: date) -> str:
+def build_url(d: date, pad: bool = True) -> str:
+    # gob.mx pasó a día con cero a la izquierda (…-del-04-de-agosto-…).
+    # Se prueba primero el formato con cero (canónico actual) y luego sin cero
+    # como respaldo para meses/URLs históricas.
+    dd = f"{d.day:02d}" if pad else str(d.day)
     return (
         f"{URL_BASE}version-estenografica-conferencia-de-prensa-"
         f"de-la-presidenta-claudia-sheinbaum-pardo-del-"
-        f"{d.day}-de-{MESES[d.month-1]}-de-{d.year}"
+        f"{dd}-de-{MESES[d.month-1]}-de-{d.year}"
     )
 
 # ---------------------------------------------------------------------------
@@ -265,8 +269,14 @@ def extract_env_fragments(html: str, max_frags: int = 6) -> list:
 
 # ---------------------------------------------------------------------------
 def scrape_date(d: date) -> dict | None:
-    url  = build_url(d)
-    html = fetch_html(url)
+    # Prueba día con cero (formato actual) y sin cero (respaldo histórico)
+    url = html = None
+    for pad in (True, False):
+        u = build_url(d, pad)
+        html = fetch_html(u)
+        if html is not None:
+            url = u
+            break
     if html is None:
         return None
 
@@ -329,15 +339,16 @@ def main():
     existing_ids = {a["id"] for a in existing}
     print(f"Artículos existentes: {len(existing)}")
 
-    # Try today and yesterday (transcript sometimes published with delay)
+    # Ventana de 8 días para recuperar mañaneras que se hayan quedado atrás
+    # (p. ej. tras un cambio de formato de URL). Se salta fines de semana y las
+    # que ya existan (probando ambos formatos de id: con y sin cero).
     added = 0
-    for delta in [0, 1]:
+    for delta in range(0, 8):
         d = today - timedelta(days=delta)
         if d.weekday() >= 5:  # skip weekends
             continue
-        url    = build_url(d)
-        art_id = make_id(url)
-        if art_id in existing_ids:
+        ids_try = {make_id(build_url(d, True)), make_id(build_url(d, False))}
+        if ids_try & existing_ids:
             print(f"  {d}: ya existe")
             continue
         print(f"  Scrapeando {d}...", end=" ", flush=True)
