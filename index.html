@@ -265,21 +265,22 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .radar-bc-d{text-align:right;font-family:var(--mono);font-size:11px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
 .radar-bhead .radar-bc-d{font-size:8.5px;font-weight:400}
 @media(max-width:900px){.radar-brow{grid-template-columns:130px 60px repeat(6,minmax(0,1fr)) 52px 52px;gap:7px}.radar-bc-spark{display:none}}
-/* ── Radar · grid de temas (sin cajas; separación por hairline gris; estilo Polymarket) ── */
-.rdc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--border);border-left:1px solid var(--border);margin-top:10px}
-.rdc-tile{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:15px 16px 13px;cursor:pointer;transition:background .12s;min-width:0}
-.rdc-tile:hover{background:rgba(6,103,80,0.035)}
-.rdc-tile.sel{background:rgba(6,103,80,0.06)}
+/* ── Radar · grid de temas (SIN cajas; solo divisor vertical fino entre columnas) ── */
+.rdc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:0;row-gap:26px;margin-top:14px}
+.rdc-tile{border-left:1px solid var(--border);padding:2px 22px;cursor:pointer;min-width:0;transition:opacity .12s}
+.rdc-tile.firstcol{border-left:none;padding-left:0}
+.rdc-tile:hover{opacity:.72}
+.rdc-tile.sel .rdc-tname{color:var(--text);font-weight:700}
 .rdc-tname{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rdc-tsub{font-family:var(--mono);font-size:8.5px;letter-spacing:.02em;color:var(--text-muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rdc-tspark{margin:11px 0 9px;height:26px}
 .rdc-tstats{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
 .rdc-tstat-v{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1}
 .rdc-tstat-l{font-family:var(--mono);font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);margin-top:4px}
-.rdc-detail{grid-column:1/-1;max-height:0;overflow:hidden;transition:max-height .4s ease;border-bottom:1px solid var(--border);background:rgba(6,103,80,0.022)}
-.rdc-detail.open{max-height:3000px;padding:18px 18px 22px}
+.rdc-detail{grid-column:1/-1;max-height:0;overflow:hidden;transition:max-height .4s ease;border-top:1px solid var(--border)}
+.rdc-detail.open{max-height:3000px;padding:16px 0 8px;margin-top:2px}
 @media(max-width:1080px){.rdc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.rdc-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.rdc-grid{grid-template-columns:1fr;row-gap:22px}.rdc-tile{border-left:none;padding:0}}
 /* ── Radar panel Kalshi-style ── */
 .radar-panel-wrap{background:var(--card);border:0.8px solid var(--border);border-radius:12px;overflow:hidden}
 .radar-panel-header{padding:20px 24px 16px;border-bottom:0.8px solid var(--border)}
@@ -3099,6 +3100,17 @@ function renderRadares(){
     +'</div>';
   }).join('');
   host.innerHTML=head+'<div class="rdc-grid" id="rdc-grid">'+body+'</div>';
+  _radarStripeBorders();
+  if(!_radarResizeBound){_radarResizeBound=true;window.addEventListener('resize',function(){clearTimeout(_radarResizeT);_radarResizeT=setTimeout(_radarStripeBorders,120);});}
+}
+var _radarResizeBound=false,_radarResizeT=null;
+// Marca la primera tile de cada fila (por posición real) para quitarle el divisor izquierdo.
+// Robusto ante la banda de detalle insertada y ante cambios de ancho.
+function _radarStripeBorders(){
+  var grid=document.getElementById('rdc-grid');if(!grid)return;
+  var tiles=[].slice.call(grid.querySelectorAll('.rdc-tile'));if(!tiles.length)return;
+  var minLeft=Math.min.apply(null,tiles.map(function(t){return t.offsetLeft;}));
+  tiles.forEach(function(t){t.classList.toggle('firstcol',Math.abs(t.offsetLeft-minLeft)<2);});
 }
 // Expande el detalle de un tema como banda full-width justo debajo de su fila (una a la vez)
 function _radarToggle(id){
@@ -3762,7 +3774,7 @@ function renderCongresoChart(){
   var ptsD='',ptsS='';
   for(var i=0;i<NSEM;i++){
     ptsD+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(dip[i]).toFixed(1)+'" r="'+(dip[i]>0?2.7:1.5)+'" fill="'+(dip[i]>0?'var(--green)':'var(--border)')+'"'+(dip[i]>0?' stroke="#fff" stroke-width="1"':'')+'/>';
-    ptsS+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(sen[i]).toFixed(1)+'" r="'+(sen[i]>0?2.7:1.5)+'" fill="'+(sen[i]>0?'#E8843D':'var(--border)')+'"'+(sen[i]>0?' stroke="#fff" stroke-width="1"':'')+'/>';
+    ptsS+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(sen[i]).toFixed(1)+'" r="'+(sen[i]>0?2.7:1.5)+'" fill="'+(sen[i]>0?'#066750':'var(--border)')+'"'+(sen[i]>0?' stroke="#fff" stroke-width="1"':'')+'/>';
   }
   var xlab='';
   for(var i2=0;i2<NSEM;i2+=2){var wd=new Date(monday0.getTime()+i2*7*86400000);
@@ -3773,13 +3785,13 @@ function renderCongresoChart(){
   var svgCls='cong-svg'+(_congAnimated?' played':'');
   var svg='<svg id="cong-svg" class="'+svgCls+'" viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" preserveAspectRatio="xMidYMid meet">'
     +grid
-    +'<path class="cong-anim-line" pathLength="1" d="'+smooth(senPts)+'" fill="none" stroke="#E8843D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
+    +'<path class="cong-anim-line" pathLength="1" d="'+smooth(senPts)+'" fill="none" stroke="#066750" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
     +'<path class="cong-anim-line l2" pathLength="1" d="'+smooth(dipPts)+'" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
     +'<g class="cong-anim-fade">'+ptsS+ptsD+xlab+'</g>'+hov+'</svg>';
   var leyenda='<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:10px;color:var(--text-sec)">'
     +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:var(--green);display:inline-block"></span>Diputados</span>'
-    +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:#E8843D;display:inline-block"></span>Senado</span>'
-    +'<span style="font-family:var(--mono);font-size:9px;color:#E8843D">● Comisión Permanente</span>'
+    +'<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:#066750;display:inline-block"></span>Senado</span>'
+    +'<span style="font-family:var(--mono);font-size:9px;color:#066750">● Comisión Permanente</span>'
     +'<span style="margin-left:auto;color:var(--green);cursor:pointer;font-weight:600" onclick="showRegulacion(\'congresomx\')">Ver todo →</span>'
     +'</div>'
     +'<div style="font-size:9.5px;color:var(--text-muted);margin-top:3px">Haz clic en una semana para ver y abrir los instrumentos</div>';
@@ -3812,14 +3824,14 @@ function _congHover(ev,wi){
   var we=new Date(wd.getTime()+6*86400000);
   var rango=wd.getDate()+'–'+we.getDate()+' '+_CONG_MES[we.getMonth()];
   var lista=w.items.slice(0,4).map(function(it){
-    var tag=it.camara==='SEN'?'<span style="color:#E8843D;font-weight:700">S</span>':'<span style="color:var(--green);font-weight:700">D</span>';
+    var tag=it.camara==='SEN'?'<span style="color:#066750;font-weight:700">S</span>':'<span style="color:var(--green);font-weight:700">D</span>';
     var t=_congAsunto(it); if(t.length>72)t=t.slice(0,70)+'…';
     return '<div style="padding:2px 0;font-size:10.5px;color:var(--text-sec);line-height:1.35">'+tag+' · '+t+'</div>';
   }).join('');
   var mas=w.items.length>4?'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px">+'+(w.items.length-4)+' más</div>':'';
   var tt=_congTT();
   tt.innerHTML='<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase">Semana '+rango+'</div>'
-    +'<div style="margin:4px 0;font-size:11.5px"><span style="color:var(--green);font-weight:600">'+w.dip+' Diputados</span> · <span style="color:#E8843D;font-weight:600">'+w.sen+' Senado</span></div>'
+    +'<div style="margin:4px 0;font-size:11.5px"><span style="color:var(--green);font-weight:600">'+w.dip+' Diputados</span> · <span style="color:#066750;font-weight:600">'+w.sen+' Senado</span></div>'
     +(w.items.length?'<div style="border-top:0.8px solid var(--border);padding-top:4px">'+lista+mas+'</div>':'<div style="font-size:10.5px;color:var(--text-muted)">Sin instrumentos registrados</div>');
   tt.style.display='block';
   tt.style.left=Math.min(ev.clientX+14,window.innerWidth-330)+'px';
@@ -3869,7 +3881,7 @@ function _congOpen(ev,wi){
     +'</div>'
     +'<div style="display:flex;gap:22px;padding:14px 16px;overflow:hidden">'
       +_congColHTML(dipItems,'var(--green)','Diputados')
-      +_congColHTML(senItems,'#E8843D','Senado')
+      +_congColHTML(senItems,'#066750','Senado')
     +'</div>';
   el.style.display='block';
   // Posiciona cerca del clic, dentro del viewport
