@@ -2583,20 +2583,25 @@ function _agendaDof(){
   var head='<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:16px">'
     +(deHoy.length?'Publicado hoy en el DOF · '+deHoy.length:'Últimas publicaciones de nuestros temas · '+lista.length)+'</div>';
   var body=order.map(function(dep){
-    var rows=groups[dep].map(function(d){
+    var full=groups[dep],exp=!!_dofExpanded[dep],vis=exp?full:full.slice(0,3);
+    var rows=vis.map(function(d){
       var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
       return '<div onclick="window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/\x27/g,'%27')+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:16px;padding:11px 0;border-top:0.8px solid var(--border);cursor:pointer">'
         +'<div style="flex:1;min-width:0;font-size:13px;color:var(--text);line-height:1.5">'+(d.titulo||'')+'</div>'
         +'<span style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+f+'</span>'
         +'</div>';
     }).join('');
+    var depKey=dep.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    var more=full.length>3?'<div onclick="_dofToggleDep(\''+depKey+'\')" style="font-size:11px;font-weight:600;color:var(--green);cursor:pointer;padding:10px 0 2px;user-select:none">'+(exp?'▲ Ver menos':'▼ Ver más ('+(full.length-3)+')')+'</div>':'';
     return '<div style="margin-bottom:24px">'
       +'<div style="font-size:12.5px;font-weight:700;color:var(--text);letter-spacing:0.03em">'+dep
-        +' <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted);letter-spacing:0">'+groups[dep].length+'</span></div>'
-      +rows+'</div>';
+        +' <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted);letter-spacing:0">'+full.length+'</span></div>'
+      +rows+more+'</div>';
   }).join('');
   host.innerHTML=head+body;
 }
+var _dofExpanded={};
+function _dofToggleDep(dep){_dofExpanded[dep]=!_dofExpanded[dep];_agendaDof();}
 // ── NORMAS ────────────────────────────────────────────────────
 var NORMAS=[
   {id:'NOM-127-SSA1-2021',dep:'SSA',tema:'Agua',tipo:'NOM',objeto:'Calidad de agua para consumo humano',implic:'Base para discusión de agua regenerada y crisis hídrica',afecta:'Organismos operadores de agua · agua potable',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=2063863'},
