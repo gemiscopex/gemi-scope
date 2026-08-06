@@ -1,0 +1,207 @@
+{
+ "_meta": {
+  "actualizado": "2026-08",
+  "fuente": "Reglamento Interior SEMARNAT (DOF 14-mar-2025) · Manual General de Organización SEMARNAT · Directorio Diagnóstico GIR 2026",
+  "nota": "Estructura orgánica de dependencias federales ambientales. Nombres de unidad oficiales; titulares indicados solo donde están verificados. En expansión (subdirecciones y jefaturas por dependencia)."
+ },
+ "dependencias": {
+  "SEMARNAT": {
+   "titular": "Alicia Bárcena Ibarra",
+   "cargo": "Secretaria",
+   "url": "https://www.gob.mx/semarnat",
+   "nota": "Estructura conforme al Reglamento Interior (DOF 14-mar-2025) y al Manual General de Organización. Titulares indicados donde están verificados (Directorio SEMARNAT 2026).",
+   "unidades": [
+    {
+     "nombre": "Subsecretaría de Desarrollo Sostenible y Economía Circular",
+     "cargo": "Subsecretario",
+     "titular": "José Luis Samaniego Leyva",
+     "unidades": [
+      {
+       "nombre": "Dirección General de Políticas para la Acción Climática"
+      },
+      {
+       "nombre": "Dirección General de Fomento y Desempeño Urbano Ambiental Sostenible",
+       "cargo": "Director General",
+       "titular": "Germán Ruiz Méndez"
+      },
+      {
+       "nombre": "Dirección General de Planeación, Evaluación y Estadística Ambiental"
+      },
+      {
+       "nombre": "Dirección General de Agroecología y Patrimonio Biocultural"
+      }
+     ]
+    },
+    {
+     "nombre": "Subsecretaría de Regulación Ambiental",
+     "cargo": "Subsecretaria",
+     "titular": "Ileana Villalobos Estrada",
+     "unidades": [
+      {
+       "nombre": "Dirección General de Impacto y Riesgo Ambiental (DGIRA)"
+      },
+      {
+       "nombre": "Dirección General de Industria, Energías Limpias y Gestión de Residuos"
+      },
+      {
+       "nombre": "Dirección General de Gestión de la Calidad del Aire y RETC"
+      }
+     ]
+    },
+    {
+     "nombre": "Subsecretaría de Biodiversidad y Restauración Ambiental",
+     "cargo": "Subsecretaria",
+     "titular": "Marina Robles García",
+     "unidades": [
+      {
+       "nombre": "Dirección General de Vida Silvestre (DGVS)"
+      },
+      {
+       "nombre": "Dirección General de Gestión Forestal, Suelos y Ordenamiento Ecológico"
+      },
+      {
+       "nombre": "Dirección General de Zona Federal Marítimo Terrestre y Ambientes Costeros (ZOFEMAT)"
+      },
+      {
+       "nombre": "Dirección General de Restauración y Conservación de Suelos"
+      }
+     ]
+    },
+    {
+     "nombre": "Unidad de Administración y Finanzas",
+     "unidades": [
+      {
+       "nombre": "Dirección General de Recursos Humanos y Organización"
+      },
+      {
+       "nombre": "Dirección General de Recursos Materiales, Inmuebles y Servicios"
+      },
+      {
+       "nombre": "Dirección General de Programación y Presupuesto"
+      },
+      {
+       "nombre": "Dirección General de Informática y Telecomunicaciones"
+      }
+     ]
+    },
+    {
+     "nombre": "Coordinación General Jurídica",
+     "unidades": [
+      {
+       "nombre": "Dirección General de Asuntos Jurídicos"
+      }
+     ]
+    },
+    {
+     "nombre": "Coordinación General de Comunicación Social"
+    },
+    {
+     "nombre": "Órganos desconcentrados",
+     "unidades": [
+      {
+       "nombre": "Agencia de Seguridad, Energía y Ambiente (ASEA)"
+      },
+      {
+       "nombre": "Comisión Nacional del Agua (CONAGUA)"
+      },
+      {
+       "nombre": "Procuraduría Federal de Protección al Ambiente (PROFEPA)"
+      },
+      {
+       "nombre": "Comisión Nacional Forestal (CONAFOR)"
+      },
+      {
+       "nombre": "Comisión Nacional de Áreas Naturales Protegidas (CONANP)"
+      },
+      {
+       "nombre": "Instituto Mexicano de Tecnología del Agua (IMTA)"
+      },
+      {
+       "nombre": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
+       "cargo": "Director General",
+       "titular": "José Abraham Ortínez Álvarez"
+      }
+     ]
+    }
+   ]
+  },
+  "CONAGUA": {
+   "titular": "Efraín Morales López",
+   "cargo": "Director General",
+   "url": "https://www.gob.mx/conagua",
+   "nota": "Órgano administrativo desconcentrado de SEMARNAT. Estructura conforme a su Reglamento Interior.",
+   "unidades": [
+    {
+     "nombre": "Subdirección General Técnica"
+    },
+    {
+     "nombre": "Subdirección General de Administración del Agua"
+    },
+    {
+     "nombre": "Subdirección General de Agua Potable, Drenaje y Saneamiento"
+    },
+    {
+     "nombre": "Subdirección General de Infraestructura Hidroagrícola"
+    },
+    {
+     "nombre": "Subdirección General de Administración"
+    },
+    {
+     "nombre": "Subdirección General Jurídica"
+    },
+    {
+     "nombre": "Coordinación General del Servicio Meteorológico Nacional"
+    },
+    {
+     "nombre": "Organismos de Cuenca (13 regiones hidrológico-administrativas)"
+    }
+   ]
+  },
+  "PROFEPA": {
+   "titular": "Mariana Boy Tamborrell",
+   "cargo": "Procuradora Federal",
+   "url": "https://www.gob.mx/profepa",
+   "nota": "Órgano administrativo desconcentrado de SEMARNAT. Estructura conforme a su Reglamento Interior.",
+   "unidades": [
+    {
+     "nombre": "Subprocuraduría de Inspección Industrial"
+    },
+    {
+     "nombre": "Subprocuraduría de Recursos Naturales"
+    },
+    {
+     "nombre": "Subprocuraduría de Auditoría Ambiental"
+    },
+    {
+     "nombre": "Subprocuraduría Jurídica"
+    },
+    {
+     "nombre": "Delegaciones en las 32 entidades federativas"
+    }
+   ]
+  },
+  "ASEA": {
+   "titular": "Armando Ocampo Zambrano",
+   "cargo": "Director Ejecutivo",
+   "url": "https://www.gob.mx/asea",
+   "nota": "Agencia de Seguridad, Energía y Ambiente. Órgano desconcentrado de SEMARNAT con autonomía técnica y de gestión sobre el sector hidrocarburos.",
+   "unidades": [
+    {
+     "nombre": "Unidad de Gestión Industrial"
+    },
+    {
+     "nombre": "Unidad de Supervisión, Inspección y Vigilancia Industrial"
+    },
+    {
+     "nombre": "Unidad de Normatividad, Regulación y Consulta"
+    },
+    {
+     "nombre": "Unidad de Administración y Finanzas"
+    },
+    {
+     "nombre": "Unidad de Asuntos Jurídicos"
+    }
+   ]
+  }
+ }
+}
