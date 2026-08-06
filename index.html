@@ -621,7 +621,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .csp-run-wrap{overflow:hidden}
 .csp-run{display:inline-flex;white-space:nowrap;will-change:transform;animation:chyronMove var(--d,60s) linear infinite}
 .csp-run-wrap:hover .csp-run{animation-play-state:paused}
-.csp-q{font-family:var(--mono);font-size:11px;color:var(--text2);font-style:normal;cursor:pointer}
+.csp-q{font-family:var(--sans);font-size:12px;color:var(--text-sec);font-style:normal;cursor:pointer;line-height:1.4}
 .csp-q strong{font-weight:600;color:var(--text)}
 .csp-q:hover{color:var(--green)}
 .csp-sep{color:var(--text3);padding:0 13px;font-size:8px;vertical-align:middle}
@@ -722,12 +722,14 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cw-bg{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1300;display:none;align-items:center;justify-content:center;padding:18px}
 .cw{background:var(--card);border:1px solid var(--border2);width:660px;max-width:calc(100vw - 24px);max-height:calc(100vh - 40px);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.2)}
 .cw-head{padding:20px 24px 0}
-.cw-title{font-family:var(--mono);font-size:12px;letter-spacing:0.2em;color:var(--white);text-transform:uppercase}
+.cw-title{font-family:var(--sans);font-size:15px;font-weight:700;letter-spacing:0.01em;color:var(--text)}
 .cw-desc{font-size:12px;color:var(--text-sec);margin-top:6px;line-height:1.5}
 .cw-steps{display:flex;gap:2px;margin-top:16px;border-bottom:1px solid var(--border);overflow-x:auto}
-.cw-step{font-family:var(--mono);font-size:9px;letter-spacing:0.08em;color:var(--dim);padding:8px 11px;border-bottom:2px solid transparent;text-transform:uppercase;white-space:nowrap}
-.cw-step.on{color:var(--white);border-bottom-color:var(--amber)}
+.cw-step{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:0.01em;color:var(--text-muted);padding:8px 11px;border-bottom:2px solid transparent;white-space:nowrap}
+.cw-step.on{color:var(--text);font-weight:600;border-bottom-color:var(--green)}
 .cw-step.done{color:var(--green)}
+.cw-step-nav{cursor:pointer;transition:color .12s}
+.cw-step-nav:hover{color:var(--text)}
 .cw-body{padding:16px 24px;overflow-y:auto;flex:1;min-height:280px}
 .cw-foot{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-top:1px solid var(--border)}
 .cw-count{font-family:var(--mono);font-size:10px;color:var(--dim)}
@@ -4457,6 +4459,7 @@ async function init(){
   fetch('data/podecibi.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_podecibiData=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel==='circular')det.innerHTML=_radarDetailHTML('circular');}).catch(()=>{});
   fetch('data/tramites-rme.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_tramitesRME=d;var h=document.getElementById('rme-dir');if(h)h.innerHTML=_rmeDirHTML();}).catch(()=>{});
   fetch('data/residuos-estatal.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_residuosData=d;}).catch(()=>{});
+  fetch('data/internacional.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(d){_INTL=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel)det.innerHTML=_radarDetailHTML(_radarSel);}}).catch(()=>{});
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
@@ -4879,9 +4882,11 @@ function _wizOk(){
 }
 function _wizPaint(){
   var p=_WIZ_PASOS[_wiz.paso];
+  var _wizFree=(typeof consolaConfigurada==='function'&&consolaConfigurada());
   var steps=_WIZ_PASOS.map(function(s,i){
     var cls=i===_wiz.paso?'cw-step on':(i<_wiz.paso?'cw-step done':'cw-step');
-    return '<span class="'+cls+'">'+(i<_wiz.paso?'✓ ':'')+_WIZ_LABEL[s]+'</span>';
+    var nav=_wizFree||i<=_wiz.paso;
+    return '<span class="'+cls+(nav?' cw-step-nav':'')+'"'+(nav?' onclick="_wizGoStep('+i+')"':'')+'>'+(i<_wiz.paso?'✓ ':'')+_WIZ_LABEL[s]+'</span>';
   }).join('');
   var DESC={
     temas:'Elige los temas que quieres monitorear. Alimentan tu señal, el feed del Ejecutivo y las normas DOF de tu terminal.',
@@ -4926,7 +4931,7 @@ function _wizPaintBody(){
       var on=_wiz.sel.temas.has(c.id);
       return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'temas\',\''+c.id+'\')">'
         +'<span class="mark">'+(on?'●':'○')+'</span>'
-        +'<span style="width:8px;height:8px;border-radius:50%;background:'+c.color+';flex-shrink:0"></span>'
+        +'<span style="color:#0E8C74;display:inline-flex;align-items:center;flex-shrink:0">'+_radarIcon(c.id)+'</span>'
         +'<span style="flex:1;font-size:12px;color:var(--text)">'+c.name+'</span>'
         +'<span style="font-family:var(--mono);font-size:9px;color:var(--dim)">'+c.kw.slice(0,3).join(' · ')+'…</span>'
         +'</div>';
@@ -5233,6 +5238,8 @@ function _wizToggle(paso,id){
   _wizPaintFoot();
 }
 function _wizBack(){if(_wiz.paso>0){_wiz.paso--;_wiz.search='';_wizPaint();}}
+// Navegación libre entre pasos: siempre a pasos ya vistos; a cualquiera si la terminal ya fue configurada una vez
+function _wizGoStep(i){if(!_wiz||i===_wiz.paso)return;if(!(typeof consolaConfigurada==='function'&&consolaConfigurada())&&i>_wiz.paso)return;_wiz.paso=i;_wiz.search='';_wizPaint();}
 function _wizNext(){
   if(!_wizOk())return;
   if(_wiz.paso<_WIZ_PASOS.length-1){_wiz.paso++;_wiz.search='';_wizPaint();return;}
