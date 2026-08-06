@@ -759,6 +759,16 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 @media (max-width:1150px){
   .nav-tagline{display:none}
 }
+/* ── NAV EN TABLET (681–1050px): las pestañas bajan a una 2ª fila para que
+     búsqueda + Mi Terminal + Inicia sesión quepan en la primera ── */
+@media (max-width:1050px) and (min-width:681px){
+  .nav{flex-wrap:wrap;height:auto;align-items:center;row-gap:0}
+  .nav-left{order:1;border-right:none;padding-right:0}
+  .nav-right{order:2;border-left:none;padding-left:0}
+  .nav-tabs{order:3;flex-basis:100%;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;height:40px;border-top:1px solid var(--border)}
+  .nav-tabs::-webkit-scrollbar{display:none}
+  .nav-search input{width:120px}
+}
 /* ═══════════ RESPONSIVE MÓVIL ═══════════ */
 @media (max-width: 680px){
   /* ── NAV ── */
