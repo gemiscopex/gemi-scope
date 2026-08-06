@@ -595,7 +595,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 #csp-chyron{min-width:0;max-width:100%;overflow:hidden}
 .chyron{display:block;overflow:hidden;max-width:100%}
 .chyron-hdr{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px}
-.chyron-live{width:6px;height:6px;border-radius:50%;background:#DC2626;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0}
+.chyron-live{width:6px;height:6px;border-radius:50%;background:#066750;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0}
 .chyron-track{overflow:hidden;display:flex;align-items:center}
 .chyron-inner{display:inline-flex;white-space:nowrap;will-change:transform;animation:chyronMove var(--chyron-dur,60s) linear infinite}
 .chyron-track:hover .chyron-inner{animation-play-state:paused}
@@ -606,16 +606,16 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 /* Timeline de Conferencias matutinas del Ejecutivo */
 .csp-node{display:grid;grid-template-columns:46px 1fr;align-items:start}
 .csp-node-date{font-family:var(--mono);font-size:9.5px;color:var(--text-muted);text-align:right;padding-right:13px;padding-top:1px;white-space:nowrap}
-.csp-node-body{border-left:1.5px solid var(--border);padding:0 0 13px 16px;position:relative;min-width:0}
+.csp-node-body{border-left:1.5px solid var(--border);padding:0 0 10px 14px;position:relative;min-width:0}
 .csp-node:last-child .csp-node-body{padding-bottom:2px}
-.csp-node-body::before{content:'';position:absolute;left:-5.5px;top:2px;width:9px;height:9px;border-radius:50%;background:#DC2626;box-shadow:0 0 0 2px var(--card)}
+.csp-node-body::before{content:'';position:absolute;left:-5px;top:2px;width:8px;height:8px;border-radius:50%;background:#066750;box-shadow:0 0 0 2px var(--card)}
 .csp-run-wrap{overflow:hidden}
 .csp-run{display:inline-flex;white-space:nowrap;will-change:transform;animation:chyronMove var(--d,60s) linear infinite}
 .csp-run-wrap:hover .csp-run{animation-play-state:paused}
 .csp-q{font-family:var(--mono);font-size:11px;color:var(--text2);font-style:normal;cursor:pointer}
 .csp-q strong{font-weight:600;color:var(--text)}
 .csp-q:hover{color:var(--green)}
-.csp-sep{color:var(--text3);padding:0 26px;font-size:8px;vertical-align:middle}
+.csp-sep{color:var(--text3);padding:0 13px;font-size:8px;vertical-align:middle}
 .cong-inst{padding:7px 2px;border-bottom:0.8px solid rgba(0,0,0,0.05)}
 .cong-inst:hover{background:rgba(0,158,144,0.05)}
 /* ═══════════ MI CONSOLA ═══════════ */
@@ -3270,10 +3270,14 @@ function _radarDetailHTML(temaId){
   if(!tema)return '';
   if(!_RD_NEWS)_RD_NEWS=_radarNewsNow();
   var kw=tema.kw,c90=_RD_NEWS-90*864e5,c14=_RD_NEWS-14*864e5;
+  var col=(typeof _radarColor==='function')?_radarColor(temaId):'#066750';
   var esc=function(u){return (u||'#').replace(/'/g,'%27');};
   function block(title,color,items){
     return '<div style="margin-bottom:20px">'
-      +'<div style="font-size:12px;font-weight:700;color:'+(color||'var(--green)')+';margin-bottom:2px">'+title+' <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+items.length+'</span></div>'
+      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid '+col+'33">'
+        +'<span style="width:7px;height:7px;border-radius:50%;background:'+col+';flex-shrink:0"></span>'
+        +'<span style="font-size:12px;font-weight:700;color:'+col+';letter-spacing:.01em">'+title+'</span>'
+        +'<span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+items.length+'</span></div>'
       +(items.length?items.join(''):'<div style="font-size:11.5px;color:var(--text-muted);padding:8px 0">Sin registros que crucen con este tema.</div>')+'</div>';
   }
   function row(title,meta,url){
@@ -3292,14 +3296,14 @@ function _radarDetailHTML(temaId){
   var dof=dofAll.slice(0,3).map(function(d){var t=(d.titulo||'');if(t.length>60)t=t.slice(0,58)+'…';return row('<b>'+(d.dependencia||'DOF')+'</b> · '+t,_rdDate(d.fecha),d.url||'https://www.dof.gob.mx/');});
   var congAll=(_congItems||[]).filter(function(c){return _radarKwMatch(kw,c.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
   var cong=congAll.slice(0,3).map(function(c){
-    var tit=(typeof _congTituloLimpio==='function')?_congTituloLimpio(c):(c.titulo||'');
-    if(tit.length>58)tit=tit.slice(0,56)+'…';
+    var pp=(typeof _congParse==='function')?_congParse(c):{accion:'',titulo:(c.titulo||'')};
+    var tit=pp.titulo;if(tit.length>60)tit=tit.slice(0,58)+'…';
     var cam=c.camara==='SEN'?'Senado':'Diputados';
     var part=(typeof _congPartido==='function')?_congPartido(c):'';
-    var tipo=c.tipo==='punto_acuerdo'?'Proposición':'Iniciativa';
-    var meta=cam+(part?' · '+part:'')+' · '+tipo;
+    var meta=(pp.accion?pp.accion+' · ':'')+cam+(part?' · '+part:'');
     return '<div onclick="window.open(\''+esc(c.url)+'\',\'_blank\')" style="cursor:pointer;display:flex;align-items:baseline;gap:12px;padding:9px 0;border-top:0.8px solid var(--border)">'
-      +'<div style="flex:1;min-width:0"><div style="font-size:12.5px;color:var(--text);line-height:1.4">'+tit+'</div>'
+      +'<div style="flex:1;min-width:0"><div style="font-size:12.5px;color:var(--text);line-height:1.4;font-weight:600">'+tit+'</div>'
+      +(pp.detalle?'<div style="font-size:11px;color:var(--text-sec);line-height:1.35;margin-top:1px">'+pp.detalle+'</div>':'')
       +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px">'+meta+'</div></div>'
       +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+_rdDate(c.fecha)+'</span></div>';
   });
@@ -3323,8 +3327,8 @@ function _radarDetailHTML(temaId){
       +'<span style="width:70px;height:4px;background:rgba(0,0,0,0.06);flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(e[1]/mxE*100)+'%;background:'+RD_GREEN+'"></span></span>'
       +'<span style="font-family:var(--mono);font-size:11px;color:var(--text);min-width:20px;text-align:right">'+e[1]+'</span></div>';
   }).join(''):'<div style="font-size:11.5px;color:var(--text-muted);padding:8px 0">Sin actividad estatal reciente</div>';
-  var estBlock='<div style="margin-bottom:20px"><div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px">Estados más activos <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+topE.length+'</span></div>'+estBars+'</div>';
-  return '<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px">Vista 360° · todos los streams del tema</div>'
+  var estBlock='<div style="margin-bottom:20px"><div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid '+col+'33"><span style="width:7px;height:7px;border-radius:50%;background:'+col+'"></span><span style="font-size:12px;font-weight:700;color:'+col+'">Estados más activos</span> <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+topE.length+'</span></div>'+estBars+'</div>';
+  return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:9px;height:9px;border-radius:50%;background:'+col+'"></span><span style="font-family:var(--mono);font-size:9.5px;color:'+col+';letter-spacing:0.1em;text-transform:uppercase;font-weight:700">'+tema.name+' · Vista 360°</span></div>'
     +_emisBlock(tema)
     +(tema.id==='circular'?_podecibiBlock():'')
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
@@ -3383,7 +3387,7 @@ function _podecibiBlock(){
   }).join('');
   var vig=(d.polos||[]).filter(function(p){return p.estatus==='vigente';}).length;
   return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
-    +'<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px">Polos de Economía Circular (PODECIBI) <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+d.polos.length+' · '+vig+' vigente'+(vig===1?'':'s')+'</span></div>'
+    +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid rgba(0,158,144,0.25)"><span style="width:7px;height:7px;border-radius:50%;background:#009E90"></span><span style="font-size:12px;font-weight:700;color:#009E90">Polos de Economía Circular (PODECIBI)</span> <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+d.polos.length+' · '+vig+' vigente'+(vig===1?'':'s')+'</span></div>'
     +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-bottom:4px">Declaratorias SEMARNAT · DOF</div>'
     +rows
   +'</div>';
@@ -3391,12 +3395,13 @@ function _podecibiBlock(){
 function _emisBlock(tema){
   if(!_emisionesData)return '';
   var d=_emisionesData;
+  var ecol=(typeof _radarColor==='function')?_radarColor(tema.id):'#066750';
   if(tema.emisNacional){
     var serie=(d.serie||[]).filter(function(s){return s.bruto_tco2e!=null;});
     var first=serie[0],last=serie[serie.length-1];
     var growth=(first&&last&&first.bruto_tco2e)?Math.round((last.bruto_tco2e/first.bruto_tco2e-1)*100):null;
     return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
-      +'<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:9px">Emisiones nacionales GEI · INECC</div>'
+      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:9px"><span style="width:7px;height:7px;border-radius:50%;background:'+ecol+'"></span><span style="font-size:12px;font-weight:700;color:'+ecol+'">Emisiones nacionales GEI · INECC</span></div>'
       +'<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px">'
         +'<div><span style="font-size:28px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">'+_emisMt(d.total_bruto)+'</span><span style="font-size:14px;color:var(--text-sec);font-weight:600"> MtCO2e</span> <span style="font-size:10.5px;color:var(--text-muted)">brutas '+d.ultimo_anio+'</span></div>'
         +(growth!=null?'<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text-sec)">'+(growth>=0?'+':'')+growth+'% desde '+first.anio+'</div>':'')
@@ -3407,7 +3412,7 @@ function _emisBlock(tema){
   if(!sec)return '';
   var neg=sec.tco2e<0;
   return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
-    +'<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:9px">Emisiones GEI del sector · INECC</div>'
+    +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:9px"><span style="width:7px;height:7px;border-radius:50%;background:'+ecol+'"></span><span style="font-size:12px;font-weight:700;color:'+ecol+'">Emisiones GEI del sector · INECC</span></div>'
     +'<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px">'
       +'<div><span style="font-size:28px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">'+_emisMt(sec.tco2e)+'</span><span style="font-size:14px;color:var(--text-sec);font-weight:600"> MtCO2e</span> <span style="font-size:10.5px;color:var(--text-muted)">'+d.ultimo_anio+'</span></div>'
       +'<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text-sec)">'+sec.pct+'% del total nacional</div>'
@@ -4106,7 +4111,17 @@ function _congPartidoEl(partido,sz){
 }
 function _congRow(it){
   var p=_congParse(it),partido=_congPartido(it);
-  var pEl=_congPartidoEl(partido,22);
+  var autor=(typeof _congAutor==='function')?_congAutor(it):'';
+  var nk=(autor&&typeof _consNk==='function')?_consNk(autor):'';
+  var foto=nk?((it.camara==='SEN'?(_fotosMap.senado&&_fotosMap.senado[nk]):(_fotosMap.diputados&&_fotosMap.diputados[nk]))||null):null;
+  var plogo=PARTIDO_LOGO[partido];
+  var avatar;
+  if(foto){
+    avatar='<span style="position:relative;flex-shrink:0;width:30px;height:30px;display:inline-block">'
+      +'<img src="'+foto+'" alt="'+autor.replace(/"/g,'&quot;')+'" style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:0.8px solid var(--border)" onerror="this.style.display=\'none\'">'
+      +(plogo?'<img src="'+plogo+'" alt="'+partido+'" style="position:absolute;right:-3px;bottom:-3px;width:15px;height:15px;border-radius:50%;background:#fff;object-fit:contain;border:0.8px solid var(--border)">':'')
+      +'</span>';
+  } else avatar=_congPartidoEl(partido,26);
   var fecha=it.fecha?new Date(it.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
   var url=(it.url||'#').replace(/'/g,'%27');
   var cam=it.camara==='SEN'?'Senado':'Diputados';
@@ -4114,13 +4129,14 @@ function _congRow(it){
   var accionTag='<span style="font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#066750">'+p.accion+'</span>';
   var nomTag=(p.noms&&p.noms.length)?'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)"> · '+p.noms[0]+'</span>':'';
   var badge=mk?'<span title="Coincide con tu terminal" style="font-family:var(--mono);font-size:8.5px;color:#066750;white-space:nowrap"> · ● tu terminal</span>':'';
+  var quien=autor?('<span style="color:var(--text-sec);font-weight:600">'+autor+'</span> · '):'';
   return '<div onclick="window.open(\''+url+'\',\'_blank\')" style="display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-top:0.8px solid var(--border);cursor:pointer" title="'+(it.titulo||'').replace(/"/g,'&quot;')+'">'
-    +pEl
+    +avatar
     +'<div style="flex:1;min-width:0">'
       +'<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">'+accionTag+nomTag+'</div>'
       +'<div style="font-size:13px;color:var(--text);line-height:1.35;font-weight:600">'+p.titulo+'</div>'
       +(p.detalle?'<div style="font-size:11.5px;color:var(--text-sec);line-height:1.4;margin-top:3px">'+p.detalle+'</div>':'')
-      +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+cam+(partido?' · '+partido:'')+badge+'</div>'
+      +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+quien+cam+(partido?' · '+partido:'')+badge+'</div>'
     +'</div>'
     +'<span style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+fecha+'</span>'
     +'</div>';
