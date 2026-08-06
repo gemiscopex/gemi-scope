@@ -5264,6 +5264,8 @@ function renderConsola(){
   widgets.push({id:'senal',title:'Señal de mis temas',count:null,body:'<div id="cons-senal"></div>'});
   widgets.push({id:'estados',title:'Mis estados',count:estados.length,body:'<div id="cons-estados"></div>'});
   _consRefWidgets(cfg).forEach(function(w){widgets.push(w);});
+  if((cfg.noms||[]).length||(cfg.instrumentos||[]).length)
+    widgets.push({id:'cumplimiento',title:'¿Cumplo? · Autoevaluación',count:null,body:'<div id="cumpl-body"></div>'});
   if(!(cfg.noms||[]).length&&!(cfg.instrumentos||[]).length&&!(cfg.impuestos||[]).length&&!(cfg.materiales||[]).length)
     widgets.push({id:'ref-vacio',title:'Referencias',count:null,body:'<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> en la sección de NOMs) para tenerlos aquí a la mano.</div>'});
   widgets.push({id:'dof',title:'DOF · normas de mis temas',count:null,body:'<div class="cons-scroll" id="cons-dof"></div>'});
@@ -5283,6 +5285,7 @@ function renderConsola(){
     +'<div class="cons-widgets" id="cons-widgets">'+widgets.map(_consWidgetHTML).join('')+'</div>';
 
   _loadPanelGemi();
+  if(document.getElementById('cumpl-body'))_cumplRender();
   if(document.getElementById('cons-senal'))_consSenal(sen);
   if(document.getElementById('cons-estados'))_consEstados(estados);
   if(document.getElementById('cons-coms'))_consComs(coms);
@@ -5290,6 +5293,44 @@ function renderConsola(){
   if(document.getElementById('cons-pres'))_consPres(allKw);
   if(document.getElementById('cons-dof'))_consDof(allKw);
   if(userKw.length&&document.getElementById('cons-kw'))_consKwFeed(userKw);
+}
+// ── Autoevaluación de cumplimiento: el usuario marca ¿cumplo? sobre los
+//    instrumentos legales (NOMs + instrumentos) que ya eligió en Referencias ──
+function _consCumplGet(){try{return JSON.parse(localStorage.getItem('scope_cumplimiento_v1'))||{};}catch(e){return {};}}
+function _consCumplSet(key,st){var m=_consCumplGet();if(m[key]===st)delete m[key];else m[key]=st;try{localStorage.setItem('scope_cumplimiento_v1',JSON.stringify(m));}catch(e){}_cumplRender();}
+function _cumplItems(cfg){
+  var items=[];
+  (cfg.noms||[]).forEach(function(id){var n=(typeof NORMAS!=='undefined'?NORMAS:[]).find(function(x){return x.id===id;});items.push({key:'nom:'+id,titulo:id,sub:n?n.objeto:'',url:n?n.url:'',mono:true});});
+  (cfg.instrumentos||[]).forEach(function(nm){var o=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).find(function(x){return x.n===nm;});items.push({key:'ins:'+nm,titulo:nm,sub:o?o.d:'',url:'',mono:false});});
+  return items;
+}
+function _cumplRender(){
+  var el=document.getElementById('cumpl-body');if(!el)return;
+  var cfg=(typeof loadConsola==='function')?loadConsola():{};
+  var items=_cumplItems(cfg),m=_consCumplGet();
+  if(!items.length){el.innerHTML='<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs o instrumentos legales en <b>Editar terminal → Referencias</b> para autoevaluar tu cumplimiento aquí.</div>';return;}
+  var nOk=items.filter(function(it){return m[it.key]==='cumplo';}).length;
+  var nProc=items.filter(function(it){return m[it.key]==='proceso';}).length;
+  var opts=[['cumplo','Cumplo','#066750','rgba(6,103,80,.08)'],['proceso','En proceso','#B7791F','rgba(183,121,31,.08)'],['na','No aplica','var(--text-muted)','rgba(0,0,0,.03)']];
+  var rows=items.map(function(it){
+    var cur=m[it.key]||'';var k=it.key.replace(/'/g,"\\'");
+    var ctrl=opts.map(function(o){var on=cur===o[0];
+      return '<button onclick="_consCumplSet(\''+k+'\',\''+o[0]+'\')" style="font-family:var(--mono);font-size:9px;letter-spacing:.03em;padding:3px 8px;border:0.8px solid '+(on?o[2]:'var(--border)')+';background:'+(on?o[3]:'none')+';color:'+(on?o[2]:'var(--text-muted)')+';cursor:pointer;border-radius:6px">'+o[1]+'</button>';
+    }).join('');
+    return '<div style="padding:9px 0;border-top:0.8px solid var(--border)">'
+      +'<div style="display:flex;align-items:baseline;gap:8px;justify-content:space-between">'
+        +'<span style="'+(it.mono?'font-family:var(--mono);':'')+'font-size:'+(it.mono?'11':'12')+'px;font-weight:600;color:'+(it.mono?'var(--green)':'var(--text)')+';min-width:0;overflow:hidden;text-overflow:ellipsis">'+it.titulo+'</span>'
+        +(it.url?'<a href="'+it.url+'" target="_blank" rel="noopener" style="font-size:9px;color:var(--text-muted);text-decoration:none;flex-shrink:0">ver ↗</a>':'')+'</div>'
+      +(it.sub?'<div style="font-size:11px;color:var(--text-sec);line-height:1.35;margin:2px 0 6px">'+it.sub+'</div>':'<div style="height:5px"></div>')
+      +'<div style="display:flex;gap:6px;flex-wrap:wrap">'+ctrl+'</div>'
+    +'</div>';
+  }).join('');
+  var pct=Math.round(nOk/items.length*100);
+  var summary='<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">'
+    +'<span style="font-family:var(--mono);font-size:18px;font-weight:700;color:#066750;line-height:1">'+pct+'%</span>'
+    +'<span style="font-size:11px;color:var(--text-sec);line-height:1.4">'+nOk+' de '+items.length+' cumplidos'+(nProc?' · '+nProc+' en proceso':'')+'</span></div>'
+    +'<div style="height:5px;background:rgba(0,0,0,.06);border-radius:3px;overflow:hidden;margin-bottom:8px"><span style="display:block;height:100%;width:'+pct+'%;background:#066750"></span></div>';
+  el.innerHTML=summary+rows;
 }
 // ── Panel tipo chat de IA (placeholder interactivo — bot real llega después) ──
 function _consChatCardHTML(){
