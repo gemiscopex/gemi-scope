@@ -125,6 +125,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .dash-main{display:grid;grid-template-columns:2fr 1fr;gap:36px 48px;align-items:start}
 .dash-left{display:flex;flex-direction:column;gap:36px;min-width:0}
 .dash-right{display:flex;flex-direction:column;gap:32px;min-width:0}
+.dash-sep{border-top:0.8px solid var(--border);height:0;margin:-6px 0}
 .est-layout{display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:start}
 @media(max-width:1000px){.est-layout{grid-template-columns:1fr}}
 /* ── Móvil/tablet: el dashboard deja de ser "app fija" y pasa a scroll vertical de 1 columna ── */
@@ -630,8 +631,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-hero{max-width:600px;margin:40px auto;text-align:center;padding:52px 44px}
 .cons-hero-t{font-family:var(--mono);font-size:11px;letter-spacing:0.25em;color:var(--green);margin-bottom:14px}
 .cons-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:12px;flex-wrap:wrap}
-.cons-title{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:0.2em;color:var(--white);text-transform:uppercase}
-.cons-sub{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:0.04em}
+.cons-title{font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:0.02em;color:var(--text)}
+.cons-sub{font-family:var(--sans);font-size:12px;color:var(--text-muted)}
 .cons-edit{font-family:var(--mono);font-size:10px;color:var(--text-muted);cursor:pointer;letter-spacing:0.08em;border:1px solid var(--border);padding:5px 12px;background:none}
 .cons-edit:hover{color:var(--green);border-color:var(--green)}
 .cons-grid{display:grid;grid-template-columns:2fr 1fr;gap:10px;align-items:start}
@@ -993,6 +994,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
         <div id="semana-banner"></div>
         <!-- Reporte semanal de inteligencia (newsletter GEMI en LinkedIn) -->
         <a class="reporte-link" href="https://www.linkedin.com/newsletters/inteligencia-gemi-7421596146348847104" target="_blank" rel="noopener">Reporte semanal de inteligencia ↗</a>
+        <div class="dash-sep"></div>
         <div class="card" style="display:flex;flex-direction:column;overflow:visible">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
             <div class="card-label" style="margin-bottom:0">Últimas Noticias</div>
@@ -1005,6 +1007,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
             <div class="news-ticker-inner" id="news-ticker"></div>
           </div>
         </div>
+        <div class="dash-sep"></div>
         <!-- Cintillo del Ejecutivo (CSP) -->
         <div id="csp-chyron"></div>
       </div>
@@ -5892,6 +5895,52 @@ function submitReg(e){
 }
 // Cerrar con Escape
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.getElementById('reg-modal-bg').style.display='none';document.body.style.overflow='';}});
+</script>
+
+<!-- ═══ Signal · botón flotante global (asistente GEMI, accesible desde cualquier vista) ═══ -->
+<div id="signal-pop" style="display:none;position:fixed;bottom:92px;right:24px;width:340px;max-width:calc(100vw - 32px);background:var(--card);border:0.8px solid var(--border);border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,0.16);z-index:1150;overflow:hidden;animation:modalIn 0.18s ease">
+  <div style="display:flex;align-items:center;gap:11px;padding:15px 16px;border-bottom:0.8px solid var(--border);background:linear-gradient(180deg,rgba(0,158,144,0.05),transparent)">
+    <img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">
+    <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700;color:var(--text)">Signal</div>
+    <div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:1px">Asistente inteligente · GEMI</div></div>
+    <span style="font-family:var(--mono);font-size:9px;color:var(--amber);border:0.8px solid var(--amber);padding:2px 8px;border-radius:10px;letter-spacing:0.06em">PRÓXIMAMENTE</span>
+    <button onclick="signalToggle()" title="Cerrar" style="background:none;border:none;cursor:pointer;font-size:18px;color:var(--text-muted);line-height:1;padding:2px 2px 2px 6px">×</button>
+  </div>
+  <div id="sig-chat-msgs" style="display:flex;flex-direction:column;gap:8px;padding:14px;min-height:120px;max-height:320px;overflow-y:auto"></div>
+  <div style="display:flex;gap:8px;padding:0 14px 14px">
+    <input id="sig-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key==='Enter')_signalSend()" style="flex:1;padding:10px 13px;border:1px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12px;color:var(--text);border-radius:9px;outline:none">
+    <button onclick="_signalSend()" style="background:var(--green);color:#fff;border:none;border-radius:9px;padding:0 16px;font-size:12px;font-weight:600;cursor:pointer">Enviar</button>
+  </div>
+</div>
+<button id="signal-fab" onclick="signalToggle()" aria-label="Abrir Signal" title="Signal · asistente GEMI" style="position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--card);border:0.8px solid var(--border);box-shadow:0 4px 16px rgba(0,0,0,0.16);cursor:pointer;padding:0;overflow:hidden;z-index:1150;transition:transform 0.15s,box-shadow 0.15s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 22px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.16)'">
+  <img src="assets/logo-gemi.jpeg" alt="Signal" style="width:100%;height:100%;object-fit:cover;display:block">
+</button>
+<script>
+var _signalInit=false;
+function signalToggle(){
+  var pop=document.getElementById('signal-pop');if(!pop)return;
+  var open=pop.style.display==='none'||!pop.style.display;
+  pop.style.display=open?'block':'none';
+  if(open){
+    if(!_signalInit){
+      document.getElementById('sig-chat-msgs').innerHTML=_consChatBubble('Hola 👋 Soy Signal, tu asistente inteligente. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé con los datos de tu terminal en tiempo real.',false);
+      _signalInit=true;
+    }
+    setTimeout(function(){var i=document.getElementById('sig-chat-input');if(i)i.focus();},60);
+  }
+}
+function _signalSend(){
+  var inp=document.getElementById('sig-chat-input'),msgs=document.getElementById('sig-chat-msgs');
+  if(!inp||!msgs)return;
+  var v=(inp.value||'').trim();if(!v)return;
+  msgs.insertAdjacentHTML('beforeend',_consChatBubble(v,true));
+  inp.value='';msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(function(){
+    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. Signal está en construcción 🛠️ — muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
+    msgs.scrollTop=msgs.scrollHeight;
+  },550);
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var p=document.getElementById('signal-pop');if(p&&p.style.display==='block')p.style.display='none';}});
 </script>
 </body>
 </html>
