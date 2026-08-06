@@ -5264,7 +5264,7 @@ function renderConsola(){
   widgets.push({id:'senal',title:'Señal de mis temas',count:null,body:'<div id="cons-senal"></div>'});
   widgets.push({id:'estados',title:'Mis estados',count:estados.length,body:'<div id="cons-estados"></div>'});
   _consRefWidgets(cfg).forEach(function(w){widgets.push(w);});
-  if((cfg.noms||[]).length||(cfg.instrumentos||[]).length)
+  if((cfg.noms||[]).length||(cfg.instrumentos||[]).length||(cfg.impuestos||[]).length||(cfg.materiales||[]).length)
     widgets.push({id:'cumplimiento',title:'¿Cumplo? · Autoevaluación',count:null,body:'<div id="cumpl-body"></div>'});
   if(!(cfg.noms||[]).length&&!(cfg.instrumentos||[]).length&&!(cfg.impuestos||[]).length&&!(cfg.materiales||[]).length)
     widgets.push({id:'ref-vacio',title:'Referencias',count:null,body:'<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> en la sección de NOMs) para tenerlos aquí a la mano.</div>'});
@@ -5302,6 +5302,8 @@ function _cumplItems(cfg){
   var items=[];
   (cfg.noms||[]).forEach(function(id){var n=(typeof NORMAS!=='undefined'?NORMAS:[]).find(function(x){return x.id===id;});items.push({key:'nom:'+id,titulo:id,sub:n?n.objeto:'',url:n?n.url:'',mono:true});});
   (cfg.instrumentos||[]).forEach(function(nm){var o=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).find(function(x){return x.n===nm;});items.push({key:'ins:'+nm,titulo:nm,sub:o?o.d:'',url:'',mono:false});});
+  (cfg.impuestos||[]).forEach(function(t){var inf=(typeof _consImpInfo==='function')?_consImpInfo(t):{states:[]};items.push({key:'imp:'+t,titulo:t,sub:'Impuesto ambiental · en '+inf.states.length+' entidad'+(inf.states.length===1?'':'es'),url:'',mono:false});});
+  (cfg.materiales||[]).forEach(function(mm){var inf=(typeof _consMatInfo==='function')?_consMatInfo(mm):{states:[]};items.push({key:'mat:'+mm,titulo:mm,sub:'Material restringido · prohibido en '+inf.states.length+' entidad'+(inf.states.length===1?'':'es'),url:'',mono:false});});
   return items;
 }
 function _cumplRender(){
