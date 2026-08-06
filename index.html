@@ -944,6 +944,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       <button class="sp-tab" onclick="showSPTab('impuestos',this)">Impuestos</button>
       <button class="sp-tab" onclick="showSPTab('materiales',this)">Materiales Prohibidos</button>
       <button class="sp-tab" onclick="showSPTab('sectorial',this)">Sector Industrial</button>
+      <button class="sp-tab" onclick="showSPTab('residuos',this)">Residuos</button>
       <button class="sp-tab" onclick="showSPTab('rme',this)">Trámites RME</button>
     </div>
     <div id="sp-perfil" class="sp-content active"></div>
@@ -952,6 +953,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
     <div id="sp-impuestos" class="sp-content"></div>
     <div id="sp-materiales" class="sp-content"></div>
     <div id="sp-sectorial" class="sp-content"></div>
+    <div id="sp-residuos" class="sp-content"></div>
     <div id="sp-rme" class="sp-content"></div>
   </div>
 </div>
@@ -2600,6 +2602,74 @@ function _rmeStateHTML(state){
   return h;
 }
 function renderSPTramites(state){var el=document.getElementById('sp-rme');if(el)el.innerHTML=_rmeStateHTML(state);}
+// ── Residuos sólidos urbanos por entidad (Diagnóstico Básico SEMARNAT 2026) ──
+function _resNum(n){return (n||0).toLocaleString('es-MX');}
+function renderSPResiduos(state){
+  var el=document.getElementById('sp-residuos');if(!el)return;
+  if(!_residuosData){el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando datos de residuos…</div>';return;}
+  var e=_residuosData.estados&&_residuosData.estados[state];var nac=_residuosData.nacional||{};
+  if(!e){el.innerHTML='<div style="font-size:12px;color:var(--text-sec);line-height:1.6;padding:8px 0">Sin datos de residuos para '+state+'.</div>';return;}
+  var GRN='#0E8C74',TEA='#2AA88B',GRY='#9AA3A0',AMB='#B45309';
+  var lab='font-family:var(--mono);font-size:9px;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted)';
+  var h='';
+  h+='<div style="'+lab+';margin-bottom:14px">Residuos sólidos urbanos · SEMARNAT 2026</div>';
+  // stat row: generación + per cápita
+  var gpcDelta=e.gpc-nac.gpc;
+  h+='<div style="display:flex;gap:26px;margin-bottom:20px">'
+    +'<div style="flex:0 0 auto"><div style="font-size:26px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">'+_resNum(e.gen_tdia)+'</div><div style="'+lab+';margin-top:5px">Toneladas al día</div></div>'
+    +'<div style="flex:0 0 auto"><div style="font-size:26px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">'+e.gpc.toFixed(3)+'</div><div style="'+lab+';margin-top:5px">kg / hab / día '
+    +'<span style="color:'+(gpcDelta>=0?AMB:GRN)+'">('+(gpcDelta>=0?'+':'')+gpcDelta.toFixed(3)+' vs nac.)</span></div></div>'
+    +'</div>';
+  // composición estimada (3 categorías)
+  if(e.comp){
+    var seg=function(pct,c){return '<span style="display:block;height:100%;width:'+pct+'%;background:'+c+'"></span>';};
+    h+='<div style="'+lab+';margin-bottom:8px">Composición estimada</div>'
+      +'<div style="display:flex;height:10px;border-radius:3px;overflow:hidden;margin-bottom:9px">'+seg(e.comp.organicos,GRN)+seg(e.comp.aprovechables,TEA)+seg(e.comp.otros,GRY)+'</div>'
+      +'<div style="display:flex;gap:18px;font-size:11px;color:var(--text-sec);margin-bottom:22px">'
+      +'<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;background:'+GRN+';display:inline-block"></span>Orgánicos '+e.comp.organicos.toFixed(1)+'%</span>'
+      +'<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;background:'+TEA+';display:inline-block"></span>Aprovechables '+e.comp.aprovechables.toFixed(1)+'%</span>'
+      +'<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;background:'+GRY+';display:inline-block"></span>Otros '+e.comp.otros.toFixed(1)+'%</span>'
+      +'</div>';
+  }
+  // disposición final + cumplimiento NOM-083
+  if(e.disp){
+    var dp=e.disp,rel=e.rellenos_nom083||{total:0,tdia:0};
+    var cumpleCol=rel.total>0?GRN:AMB;
+    h+='<div style="'+lab+';margin-bottom:10px;border-top:0.8px solid var(--border);padding-top:16px">Disposición final</div>'
+      +'<div style="display:flex;gap:26px;margin-bottom:10px">'
+      +'<div><div style="font-size:22px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">'+_resNum(dp.total)+'</div><div style="'+lab+';margin-top:5px">Sitios de disposición</div></div>'
+      +'<div><div style="font-size:22px;font-weight:700;color:'+cumpleCol+';font-variant-numeric:tabular-nums;line-height:1">'+rel.total+'</div><div style="'+lab+';margin-top:5px">Cumplen NOM-083</div></div>'
+      +'<div><div style="font-size:22px;font-weight:700;color:'+(dp.D>0?AMB:'var(--text)')+';font-variant-numeric:tabular-nums;line-height:1">'+dp.D+'</div><div style="'+lab+';margin-top:5px">Tiraderos (clase D)</div></div>'
+      +'</div>'
+      +'<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-bottom:22px">'
+      +(rel.total>0
+        ? 'De '+dp.total+' sitios, <b>'+rel.total+'</b> operan como relleno sanitario conforme a la NOM-083-SEMARNAT-2003.'
+        : '<b style="color:'+AMB+'">Ningún sitio de disposición cumple la NOM-083-SEMARNAT-2003</b> en la entidad; predominan sitios no controlados.')
+      +'</div>';
+  }
+  // costo de recolección
+  if(e.recoleccion){
+    var rc=e.recoleccion;
+    h+='<div style="'+lab+';margin-bottom:10px;border-top:0.8px solid var(--border);padding-top:16px">Recolección</div>'
+      +'<div style="display:flex;gap:26px;margin-bottom:22px">'
+      +'<div><div style="font-size:22px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">$'+_resNum(rc.costo_ton)+'</div><div style="'+lab+';margin-top:5px">MXN / tonelada</div></div>'
+      +'<div><div style="font-size:22px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">'+_resNum(rc.vehiculos)+'</div><div style="'+lab+';margin-top:5px">Vehículos</div></div>'
+      +'</div>';
+  }
+  // panorama nacional de RME (contexto)
+  if(nac.rme_corrientes&&nac.rme_corrientes.length){
+    h+='<div style="'+lab+';margin-bottom:4px;border-top:0.8px solid var(--border);padding-top:16px">Panorama nacional · RME por corriente</div>'
+      +'<div style="font-size:10px;color:var(--text-muted);margin-bottom:10px">Generación estimada nacional (NOM-161). Contexto para el manejo especial de la entidad.</div>';
+    var mx=Math.max.apply(null,nac.rme_corrientes.map(function(c){return c.tanio;}));
+    nac.rme_corrientes.slice().sort(function(a,b){return b.tanio-a.tanio;}).forEach(function(c){
+      h+='<div style="display:flex;align-items:center;gap:12px;padding:5px 0"><span style="flex:1;font-size:11px;color:var(--text)">'+c.nombre+'</span>'
+        +'<span style="width:90px;height:4px;background:rgba(0,0,0,0.06);flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(c.tanio/mx*100)+'%;background:'+GRN+'"></span></span>'
+        +'<span style="font-family:var(--mono);font-size:10px;color:var(--text-sec);min-width:78px;text-align:right">'+_resNum(c.tanio)+' t/a</span></div>';
+    });
+  }
+  h+='<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:16px;line-height:1.5">Fuente: '+(_residuosData._meta&&_residuosData._meta.fuente||'SEMARNAT 2026')+'</div>';
+  el.innerHTML=h;
+}
 var _rmeQ='',_rmeOpen='';
 function rmeSetQ(v){_rmeQ=v;var h=document.getElementById('rme-dir');if(h)h.innerHTML=_rmeDirHTML(true);var i=document.getElementById('rme-search');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}}
 function rmeToggle(s){_rmeOpen=(_rmeOpen===s?'':s);var h=document.getElementById('rme-dir');if(h)h.innerHTML=_rmeDirHTML(true);}
@@ -2997,6 +3067,7 @@ function openStatePanel(stateName){
   renderSPActividad(stateName);
   renderSPMateriales(stateName);
   renderSPSectorial(stateName);
+  renderSPResiduos(stateName);
   renderSPTramites(stateName);
   showSPTab('perfil',document.querySelector('#state-modal-bg .sp-tab'));
   var bg=document.getElementById('state-modal-bg');
@@ -4368,7 +4439,7 @@ function renderDOF(){
   el.innerHTML=html;
 }
 // ─────────────────────────────────────────────────────────────────────────────
-var _perfilEstados=null,_materialesData=null,_datosgobData=null,_emisionesData=null,_conamerData=null,_podecibiData=null,_tramitesRME=null;
+var _perfilEstados=null,_materialesData=null,_datosgobData=null,_emisionesData=null,_conamerData=null,_podecibiData=null,_tramitesRME=null,_residuosData=null;
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
@@ -4382,6 +4453,7 @@ async function init(){
   fetch('data/conamer-propuestas.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_conamerData=d;}).catch(()=>{});
   fetch('data/podecibi.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_podecibiData=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel==='circular')det.innerHTML=_radarDetailHTML('circular');}).catch(()=>{});
   fetch('data/tramites-rme.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_tramitesRME=d;var h=document.getElementById('rme-dir');if(h)h.innerHTML=_rmeDirHTML();}).catch(()=>{});
+  fetch('data/residuos-estatal.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_residuosData=d;}).catch(()=>{});
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
