@@ -3195,7 +3195,7 @@ function renderRadares(){
     var darr=d>0?'▲ ':d<0?'▼ ':'';
     var mini=function(v,l,al){return '<div'+(al?' style="text-align:'+al+'"':'')+'><div class="rdc-tstat-v">'+v+'</div><div class="rdc-tstat-l">'+l+'</div></div>';};
     return '<div class="rdc-tile" data-tid="'+t.id+'" onclick="_radarToggle(\''+t.id+'\')">'
-      +'<div class="rdc-thead"><span class="rdc-ticon" style="color:'+col+'">'+_radarIcon(t.id)+'</span><span class="rdc-tname">'+t.name+'</span></div>'
+      +'<div class="rdc-thead"><span class="rdc-ticon" style="color:'+_radarColor('residuos')+'">'+_radarIcon(t.id)+'</span><span class="rdc-tname">'+t.name+'</span></div>'
       +'<div class="rdc-tsub">'+(s.news90+s.est)+' menciones · 90d</div>'
       +'<div class="rdc-tspark">'+_radarSparkFluid(_radarDaily(t,21),col,i)+'</div>'
       +'<div class="rdc-tstats">'+mini(s.dof,_dofMark)+mini(s.est,_estMark)+mini(darr+Math.abs(d),'Δ 30d','right')+'</div>'
