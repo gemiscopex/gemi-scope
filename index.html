@@ -595,7 +595,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 #csp-chyron{min-width:0;max-width:100%;overflow:hidden}
 .chyron{display:block;overflow:hidden;max-width:100%}
 .chyron-hdr{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px}
-.chyron-live{width:6px;height:6px;border-radius:50%;background:#066750;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0}
+.chyron-live{width:6px;height:6px;border-radius:50%;background:#DC2626;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0}
 .chyron-track{overflow:hidden;display:flex;align-items:center}
 .chyron-inner{display:inline-flex;white-space:nowrap;will-change:transform;animation:chyronMove var(--chyron-dur,60s) linear infinite}
 .chyron-track:hover .chyron-inner{animation-play-state:paused}
@@ -608,7 +608,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .csp-node-date{font-family:var(--mono);font-size:9.5px;color:var(--text-muted);text-align:right;padding-right:13px;padding-top:1px;white-space:nowrap}
 .csp-node-body{border-left:1.5px solid var(--border);padding:0 0 10px 14px;position:relative;min-width:0}
 .csp-node:last-child .csp-node-body{padding-bottom:2px}
-.csp-node-body::before{content:'';position:absolute;left:-5px;top:2px;width:8px;height:8px;border-radius:50%;background:#066750;box-shadow:0 0 0 2px var(--card)}
+.csp-node-body::before{content:'';position:absolute;left:-5px;top:2px;width:8px;height:8px;border-radius:50%;background:#DC2626;box-shadow:0 0 0 2px var(--card)}
 .csp-run-wrap{overflow:hidden}
 .csp-run{display:inline-flex;white-space:nowrap;will-change:transform;animation:chyronMove var(--d,60s) linear infinite}
 .csp-run-wrap:hover .csp-run{animation-play-state:paused}
@@ -868,6 +868,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
         <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs<span class="nd-sub">Normas oficiales mexicanas</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('federal')">Leyes Federales<span class="nd-sub">Legislación federal ambiental</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('estatal')">Leyes Estatales<span class="nd-sub">32 entidades</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('gacetas')">Gacetas Oficiales<span class="nd-sub">Publicación oficial por entidad</span></div>
       </div>
     </div>
     <button class="tab-btn" onclick="showTab('estados',null)">Estados</button>
@@ -875,7 +876,6 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       <button class="tab-btn" onclick="goAgenda('congreso')">Agenda ▾</button>
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="goAgenda('congreso')">Congreso de la Unión<span class="nd-sub">Actividad federal</span></div>
-        <div class="nav-drop-it" onclick="goAgenda('locales')">Gacetas Locales<span class="nd-sub">Publicación oficial por entidad</span></div>
         <div class="nav-drop-it" onclick="goAgenda('pendientes')">Reglamentaciones Pendientes<span class="nd-sub">Instrumentos por publicar</span></div>
       </div>
     </div>
@@ -1039,6 +1039,13 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       </div>
       <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Base de datos de regulación ambiental internacional que impacta a México. Filtra por categoría o jurisdicción, o busca por sector, país o instrumento.</div>
       <div id="acuerdos-list"></div>
+    </div>
+    <!-- Vista Gacetas Oficiales (directorio por entidad) -->
+    <div id="leg-view-gacetas" style="display:none">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
+        <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Gacetas Oficiales</div>
+      </div>
+      <div id="gacetas-dir" style="margin-top:6px"></div>
     </div>
   </div>
 
@@ -1798,8 +1805,10 @@ function showLegSub(sub,btn){
   document.getElementById('leg-view-estatal').style.display=sub==='estatal'?'':'none';
   document.getElementById('leg-view-acuerdos').style.display=sub==='acuerdos'?'':'none';
   document.getElementById('leg-view-congresomx').style.display=sub==='congresomx'?'':'none';
+  var gv=document.getElementById('leg-view-gacetas');if(gv)gv.style.display=sub==='gacetas'?'':'none';
   if(sub==='estatal')loadLeyesEstatales();
   if(sub==='acuerdos')renderAcuerdos();
+  if(sub==='gacetas'&&typeof _agendaGacetas==='function')_agendaGacetas();
 }
 // ── Regulación: entrada desde el mini menú del nav ──
 function showRegulacion(view){
@@ -1814,12 +1823,12 @@ function goObligaciones(sub){
   if(sub==='noms'){showTab('normas',null);return;}
   if(sub==='instrumentos'){_oblView='instrumentos';showTab('obligaciones',null);return;}
   showTab('legislacion',null);
-  showLegSub(sub==='estatal'?'estatal':'federal',null);
+  showLegSub(['estatal','gacetas'].indexOf(sub)>=0?sub:'federal',null);
 }
 // Agenda ▾ : Congreso de la Unión · Gacetas Locales · Reglamentaciones Pendientes · DOF hoy
 function goAgenda(sub){
   if(sub==='congreso'){showTab('legislacion',null);showLegSub('congresomx',null);return;}
-  if(sub==='locales'){showTab('agenda',null);renderAgenda('gacetas');return;}
+  if(sub==='locales'){goObligaciones('gacetas');return;}
   showTab('agenda',null);renderAgenda(sub||'pendientes');
 }
 // Internacional : acuerdos y tratados (vista existente)
@@ -2476,12 +2485,12 @@ function agendaSetEst(e){_agendaEst=e;_agendaPend();}
 function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
   if(['dof','pendientes','conamer','gacetas'].indexOf(view)>=0)_agendaView=view;
-  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta · CONAMER'],['dof','DOF · publicaciones'],['gacetas','Gacetas locales']];
+  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta · CONAMER'],['dof','DOF · publicaciones']];
   var nav='<div class="stab-bar" style="margin-bottom:20px">'+tabs.map(function(t){
       return '<button class="stab'+(_agendaView===t[0]?' on':'')+'" onclick="agendaSetView(\''+t[0]+'\')">'+t[1]+'</button>';
     }).join('')+'</div>';
   host.innerHTML=nav+'<div id="agenda-view"></div>';
-  if(_agendaView==='dof')_agendaDof();else if(_agendaView==='conamer')_agendaConamer();else if(_agendaView==='gacetas')_agendaGacetas();else _agendaPend();
+  if(_agendaView==='dof')_agendaDof();else if(_agendaView==='conamer')_agendaConamer();else _agendaPend();
 }
 // Directorio de gacetas / periódicos oficiales por entidad (publicación oficial estatal)
 var GACETAS_OFICIALES={
@@ -2521,7 +2530,7 @@ var GACETAS_OFICIALES={
 var _gacQ='';
 function gacSetQ(v){_gacQ=v;_agendaGacetas(true);}
 function _agendaGacetas(keepFocus){
-  var host=document.getElementById('agenda-view');if(!host)return;
+  var host=document.getElementById('gacetas-dir')||document.getElementById('agenda-view');if(!host)return;
   var q=qa((_gacQ||'').toLowerCase());
   var estados=Object.keys(GACETAS_OFICIALES).sort(function(a,b){return a.localeCompare(b,'es');})
     .filter(function(s){return !q||qa(s.toLowerCase()).indexOf(q)>=0||qa(GACETAS_OFICIALES[s][0].toLowerCase()).indexOf(q)>=0;});
@@ -5331,21 +5340,81 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs){
     +'</div>'
   +'</div>';
 }
-// ── Panel GEMI: canal oficial del equipo (tema en agenda + avisos de administradores) ──
-var _panelGemiData=null;
+// ── Panel GEMI: canal oficial del equipo (mensajes de administradores + agenda de fechas) ──
+var _panelGemiData=null,_agendaGemiData=null,_pgemiTab='mensajes';
 function _panelGemiHTML(){
   return '<div class="card pgemi" style="border:0.8px solid var(--border);border-radius:14px;padding:0;background:var(--card)">'
     +'<div class="pgemi-bar"></div>'
-    +'<div style="padding:18px 20px;display:flex;flex-direction:column;gap:13px;height:100%;box-sizing:border-box">'
+    +'<div style="padding:18px 20px;display:flex;flex-direction:column;gap:12px;height:100%;box-sizing:border-box">'
       +'<div style="display:flex;align-items:center;gap:11px">'
         +'<img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">'
         +'<div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px">Panel GEMI</div>'
         +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-top:2px">Canal oficial del equipo</div></div>'
         +'<span style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;letter-spacing:0.08em;color:#12A594"><span class="pgemi-live"></span>EN VIVO</span>'
       +'</div>'
+      +'<div class="stab-bar" style="margin-bottom:0;gap:4px 18px">'
+        +'<button class="stab'+(_pgemiTab!=='agenda'?' on':'')+'" id="pgemi-tab-mensajes" onclick="_pgemiSetTab(\'mensajes\')">Mensajes</button>'
+        +'<button class="stab'+(_pgemiTab==='agenda'?' on':'')+'" id="pgemi-tab-agenda" onclick="_pgemiSetTab(\'agenda\')">Agenda</button>'
+      +'</div>'
       +'<div id="panel-gemi-body"><div style="font-size:11.5px;color:var(--text-muted);padding:12px 0">Cargando…</div></div>'
     +'</div>'
   +'</div>';
+}
+function _pgemiSetTab(t){_pgemiTab=t;_pgemiRender();}
+function _pgemiRender(){
+  var body=document.getElementById('panel-gemi-body');if(!body)return;
+  var mb=document.getElementById('pgemi-tab-mensajes'),ab=document.getElementById('pgemi-tab-agenda');
+  if(mb)mb.classList.toggle('on',_pgemiTab!=='agenda');
+  if(ab)ab.classList.toggle('on',_pgemiTab==='agenda');
+  if(_pgemiTab==='agenda')_renderPanelAgenda(body);else _renderPanelGemi(_panelGemiData);
+}
+function _pgemiUserEvents(){try{return JSON.parse(localStorage.getItem('scope_agenda_user_v1'))||[];}catch(e){return [];}}
+function _pgemiAddUser(){
+  var f=document.getElementById('pgemi-ev-date'),t=document.getElementById('pgemi-ev-title');
+  if(!f||!t||!f.value||!(t.value||'').trim())return;
+  var arr=_pgemiUserEvents();arr.push({fecha:f.value,titulo:t.value.trim()});
+  try{localStorage.setItem('scope_agenda_user_v1',JSON.stringify(arr));}catch(e){}
+  _pgemiRender();
+}
+function _pgemiDelUser(i){var arr=_pgemiUserEvents();arr.splice(i,1);try{localStorage.setItem('scope_agenda_user_v1',JSON.stringify(arr));}catch(e){}_pgemiRender();}
+function _icsHref(ev){
+  var d=String(ev.fecha).replace(/-/g,'');
+  var nd=new Date(ev.fecha+'T12:00:00');nd.setDate(nd.getDate()+1);
+  var de=nd.getFullYear()+String(nd.getMonth()+1).padStart(2,'0')+String(nd.getDate()).padStart(2,'0');
+  var esc=function(s){return String(s||'').replace(/([,;\\])/g,'\\$1').replace(/\n/g,' ');};
+  var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Scope GEMI//ES','BEGIN:VEVENT','UID:'+d+'-scope@gemi','DTSTART;VALUE=DATE:'+d,'DTEND;VALUE=DATE:'+de,'SUMMARY:'+esc(ev.titulo),'DESCRIPTION:'+esc((ev.nota||'')+' · Scope GEMI'),'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  return 'data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);
+}
+function _renderPanelAgenda(el){
+  var MES=['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+  var admin=((_agendaGemiData&&_agendaGemiData.eventos)||[]).map(function(e){return {fecha:e.fecha,titulo:e.titulo,nota:e.nota||e.lugar||'',src:'GEMI'};});
+  var user=_pgemiUserEvents().map(function(e,i){return {fecha:e.fecha,titulo:e.titulo,nota:'',src:'Tú',ui:i};});
+  var all=admin.concat(user).filter(function(e){return e.fecha;}).sort(function(a,b){return String(a.fecha).localeCompare(String(b.fecha));});
+  var hoy=new Date(new Date().toDateString());
+  var rows=all.map(function(e){
+    var dd=new Date(e.fecha+'T12:00:00');var day=isNaN(dd)?'':dd.getDate();var mon=isNaN(dd)?'':MES[dd.getMonth()];
+    var past=!isNaN(dd)&&dd<hoy;
+    var ymd=String(e.fecha).replace(/-/g,'');
+    var gcal='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(e.titulo||'')+'&dates='+ymd+'/'+ymd+'&details='+encodeURIComponent((e.nota||'')+' · Scope GEMI');
+    return '<div style="display:flex;gap:11px;padding:9px 0;border-top:0.8px solid var(--border);opacity:'+(past?'.5':'1')+'">'
+      +'<div style="text-align:center;flex-shrink:0;width:34px"><div style="font-family:var(--mono);font-size:17px;font-weight:700;color:#066750;line-height:1">'+day+'</div><div style="font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--text-muted)">'+mon+'</div></div>'
+      +'<div style="flex:1;min-width:0"><div style="font-size:12.5px;font-weight:600;color:var(--text);line-height:1.3">'+_escHtml(e.titulo||'')+' <span style="font-family:var(--mono);font-size:8px;color:var(--text-muted)">'+e.src+'</span></div>'
+        +(e.nota?'<div style="font-size:10.5px;color:var(--text-sec);line-height:1.4;margin-top:2px">'+_escHtml(e.nota)+'</div>':'')
+        +'<div style="display:flex;gap:12px;margin-top:4px;font-family:var(--mono);font-size:9px">'
+          +'<a href="'+gcal+'" target="_blank" rel="noopener" style="color:#066750;text-decoration:none">＋ Google</a>'
+          +'<a href="'+_icsHref(e)+'" download="evento-scope.ics" style="color:#066750;text-decoration:none">＋ Outlook/.ics</a>'
+          +(e.src==='Tú'?'<span onclick="_pgemiDelUser('+e.ui+')" style="color:var(--text-muted);cursor:pointer">Quitar</span>':'')
+        +'</div>'
+      +'</div></div>';
+  }).join('')||'<div style="font-size:11.5px;color:var(--text-muted);padding:10px 0">Sin fechas por ahora.</div>';
+  var form='<div style="margin-top:12px;padding-top:10px;border-top:0.8px solid var(--border)">'
+    +'<div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">Anotar mi fecha</div>'
+    +'<div style="display:flex;gap:6px;flex-wrap:wrap">'
+      +'<input id="pgemi-ev-date" type="date" style="padding:6px 8px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--sans);font-size:11.5px;border-radius:8px">'
+      +'<input id="pgemi-ev-title" placeholder="Título de tu fecha" style="flex:1;min-width:110px;padding:6px 10px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--sans);font-size:11.5px;border-radius:8px">'
+      +'<button onclick="_pgemiAddUser()" style="background:#066750;color:#fff;border:none;border-radius:8px;padding:0 14px;font-size:11.5px;font-weight:600;cursor:pointer">Guardar</button>'
+    +'</div></div>';
+  el.innerHTML='<div>'+rows+'</div>'+form;
 }
 function _renderPanelGemi(d){
   var el=document.getElementById('panel-gemi-body');if(!el)return;
@@ -5365,9 +5434,12 @@ function _renderPanelGemi(d){
   }).join('')+'</div>';
 }
 function _loadPanelGemi(){
-  if(_panelGemiData){_renderPanelGemi(_panelGemiData);return;}
-  fetch('data/panel-gemi.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;})
-    .then(function(d){_panelGemiData=d;_renderPanelGemi(d);}).catch(function(){_renderPanelGemi(null);});
+  if(_panelGemiData&&_agendaGemiData){_pgemiRender();return;}
+  var gp=function(u){return fetch(u,{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});};
+  Promise.all([
+    _panelGemiData?Promise.resolve(_panelGemiData):gp('data/panel-gemi.json'),
+    _agendaGemiData?Promise.resolve(_agendaGemiData):gp('data/agenda-gemi.json')
+  ]).then(function(res){_panelGemiData=res[0];_agendaGemiData=res[1];_pgemiRender();});
 }
 // ── Panel de referencias (NOMs, instrumentos, impuestos, materiales elegidos) ──
 function _refCardHTML(cfg){
