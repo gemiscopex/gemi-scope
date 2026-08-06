@@ -4638,15 +4638,17 @@ function renderComisiones(data){
       members.forEach(function(m){var p=m.partido||'N/D';partyCounts[p]=(partyCounts[p]||0)+1;});
       var partyEntries=Object.keys(partyCounts).map(function(k){return[k,partyCounts[k]];}).sort(function(a,b){return b[1]-a[1];});
       var partyChips=partyEntries.map(function(e){
-        var color=PARTIDO_COLOR[e[0]]||PARTIDO_COLOR[(e[0]||'').toUpperCase()]||'#6b7280';
-        return '<span style="display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:10px;background:'+color+'18;font-size:10px;font-weight:600;color:'+color+';white-space:nowrap">'
-          +'<span style="width:6px;height:6px;border-radius:50%;background:'+color+';flex-shrink:0"></span>'
-          +e[0]+' <span style="opacity:0.65">'+e[1]+'</span></span>';
+        var logo=PARTIDO_LOGO[e[0]]||PARTIDO_LOGO[(e[0]||'').toUpperCase()];
+        var mark=logo
+          ?'<img src="'+logo+'" alt="'+e[0]+'" title="'+e[0]+'" style="height:15px;width:auto;max-width:30px;object-fit:contain;flex-shrink:0" onerror="this.replaceWith(document.createTextNode(\''+e[0]+'\'))">'
+          :'<span style="font-size:11px;font-weight:600;color:var(--text-sec)">'+e[0]+'</span>';
+        return '<span style="display:inline-flex;align-items:center;gap:5px;white-space:nowrap" title="'+e[0]+' · '+e[1]+'">'
+          +mark+'<span style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums">'+e[1]+'</span></span>';
       }).join('');
       var fichaBlock='<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:0.8px solid var(--border)">'
         +'<div style="flex:1;min-width:0">'
-          +'<div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px">'+members.length+' integrantes</div>'
-          +'<div style="display:flex;flex-wrap:wrap;gap:4px">'+partyChips+'</div>'
+          +'<div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:7px">'+members.length+' integrantes</div>'
+          +'<div style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center">'+partyChips+'</div>'
         +'</div>'
         +(c.at?'<a href="'+c.at+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="flex-shrink:0;padding:5px 12px;background:var(--green);color:#fff;border-radius:8px;font-size:10px;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:0.02em;margin-top:2px">Asuntos Turnados →</a>':'')
         +'</div>';
