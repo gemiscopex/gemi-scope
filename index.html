@@ -42,6 +42,14 @@
   --scale-ink:rgba(20,20,20,0.5);
   --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
   --sans:'Scope Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  /* ── ESCALA TIPOGRÁFICA ÚNICA DE SCOPE (usar estos tokens, no valores sueltos) ──
+     Regla: números enteros, sin medios-pasos. Roles:
+       micro/label mono = --fs-micro (8) · meta/mono = --fs-xs (9) · caption = --fs-sm (10)
+       secundario = --fs-11 (11) · cuerpo = --fs-body (12) · cuerpo+ = --fs-md (13)
+       subtítulo/tarjeta = --fs-lg (14) · sección chica = --fs-16 (16) · título = --fs-title (22) */
+  --fs-micro:8px; --fs-xs:9px; --fs-sm:10px; --fs-11:11px; --fs-body:12px;
+  --fs-md:13px; --fs-lg:14px; --fs-16:16px; --fs-18:18px; --fs-title:22px;
+  --fw-med:500; --fw-semi:600; --fw-bold:700;
 }
 /* ── Tema oscuro (opt-in; el default es blanco) ─────────────────────────── */
 :root[data-theme="dark"]{
@@ -97,7 +105,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .nav-btn-register{height:32px;padding:0 14px;border:none;border-radius:8px;background:var(--green);font-size:12px;font-weight:600;color:#fff;cursor:pointer;font-family:var(--sans);transition:background 0.15s;white-space:nowrap}
 .nav-btn-register:hover{background:#00b3a3}
 .nav-tabs{display:flex;align-items:stretch;flex:1;padding:0 4px 0 20px}
-.tab-btn{padding:0 2px;margin-right:18px;font-size:12.5px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.01em;transition:color 0.15s;font-family:var(--sans);white-space:nowrap}
+.tab-btn{padding:0 2px;margin-right:18px;font-size:12px;font-weight:500;color:var(--text-sec);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;letter-spacing:0.01em;transition:color 0.15s;font-family:var(--sans);white-space:nowrap}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--green)}
 .main{max-width:1200px;margin:0 auto;padding:24px 28px 32px}
 .scope-footer{max-width:1200px;margin:44px auto 0;padding:18px 28px 26px;border-top:0.8px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap}
@@ -190,13 +198,13 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .dotmap-title{position:absolute;left:22px;top:18px;display:flex;flex-direction:column;gap:2px;z-index:3;pointer-events:none}
 .dotmap-mx{font-size:30px;font-weight:700;letter-spacing:0.02em;color:var(--white);line-height:1.1}
 #map{position:absolute;inset:0;z-index:2}
-.dotmap-legend{position:absolute;left:22px;top:16px;display:flex;gap:16px;font-family:var(--mono);font-size:8.5px;letter-spacing:0.03em;color:var(--text-muted);z-index:3;pointer-events:none}
+.dotmap-legend{position:absolute;left:22px;top:16px;display:flex;gap:16px;font-family:var(--mono);font-size:8px;letter-spacing:0.03em;color:var(--text-muted);z-index:3;pointer-events:none}
 .dotmap-legend i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle}
 .dot-state{position:absolute;transform:translate(-50%,-50%) scale(var(--dz,1));display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;z-index:2;transition:transform 0.2s ease}
 .dot-state:hover .dot-abbr{color:var(--white)}
 .dot-state:hover{z-index:6}
 .dot-abbr{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:0.03em;transition:color 0.15s;white-space:nowrap}
-.ocean-lbl{position:absolute;transform:translate(-50%,-50%) scale(var(--dz,1));font-family:var(--mono);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:#aec3d1;pointer-events:none;white-space:nowrap;z-index:1;font-style:italic;transition:transform 0.2s ease}
+.ocean-lbl{position:absolute;transform:translate(-50%,-50%) scale(var(--dz,1));font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#aec3d1;pointer-events:none;white-space:nowrap;z-index:1;font-style:italic;transition:transform 0.2s ease}
 #dotmap-annot{position:absolute;inset:0;pointer-events:none;z-index:1}
 /* Alertas de actividad por entidad (relativas al máximo de notas estatales) */
 .dot-wrap{position:relative;width:9px;height:9px}
@@ -205,7 +213,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .dot-medio .dot-core{animation:blinkSoft 2.8s ease-in-out infinite}
 @keyframes blinkSoft{0%,100%{opacity:1}50%{opacity:0.46}}
 /* Escala tipo mapa (km, cambia con el zoom) */
-.map-scale{position:absolute;left:22px;bottom:16px;z-index:4;pointer-events:none;font-family:var(--mono);font-size:8.5px;letter-spacing:0.03em;color:var(--text-muted)}
+.map-scale{position:absolute;left:22px;bottom:16px;z-index:4;pointer-events:none;font-family:var(--mono);font-size:8px;letter-spacing:0.03em;color:var(--text-muted)}
 .map-scale-lab{display:flex;justify-content:space-between;margin-bottom:3px;line-height:1}
 .map-scale-bar{display:flex;height:5px;border:1px solid var(--scale-ink)}
 .map-scale-bar .seg{flex:1}
@@ -230,15 +238,15 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .sdrop-item{display:flex;flex-direction:column;gap:2px;padding:9px 16px;cursor:pointer;transition:background 0.12s;border-bottom:0.8px solid rgba(0,0,0,0.04)}
 .sdrop-item:hover{background:rgba(0,158,144,0.06)}
 .sdrop-item:last-of-type{border-bottom:none}
-.sdrop-title{font-size:12.5px;font-weight:500;color:var(--text);line-height:1.35}
-.sdrop-meta{font-size:10.5px;color:var(--text-muted);margin-top:1px}
+.sdrop-title{font-size:12px;font-weight:500;color:var(--text);line-height:1.35}
+.sdrop-meta{font-size:10px;color:var(--text-muted);margin-top:1px}
 .sdrop-empty{padding:20px 16px;text-align:center;font-size:12px;color:var(--text-muted)}
 .fed-ley-pill.active{background:var(--green)!important;color:#fff!important;border-color:var(--green)!important}
 .fed-tabs{display:flex;gap:18px;margin-bottom:10px}
 .fed-tab{background:none;border:none;border-radius:0;padding:0;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:var(--sans);transition:color 0.15s;display:flex;align-items:baseline;gap:5px}
 .fed-tab:hover{color:var(--text)}
 .fed-tab.active{color:var(--text);font-weight:700}
-.fed-tab-badge{background:none;border-radius:0;padding:0;font-size:10.5px;font-weight:400;color:var(--text-muted)}
+.fed-tab-badge{background:none;border-radius:0;padding:0;font-size:10px;font-weight:400;color:var(--text-muted)}
 .fed-tab:not(.active) .fed-tab-badge{background:none;color:var(--text-muted)}
 /* ── Legislative mini-search ── */
 .leg-search-wrap{position:relative;margin-bottom:10px}
@@ -263,16 +271,16 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .radar-brow{display:grid;grid-template-columns:180px 92px repeat(6,minmax(0,1fr)) 66px 66px;align-items:center;gap:12px;padding:11px 8px;border-bottom:0.8px solid var(--border);cursor:pointer;transition:background .12s}
 .radar-brow:hover{background:rgba(0,158,144,0.045)}
 .radar-brow.sel{background:rgba(0,158,144,0.07);box-shadow:inset 3px 0 0 var(--green)}
-.radar-bhead{cursor:default;font-family:var(--mono);font-size:8.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted)}
+.radar-bhead{cursor:default;font-family:var(--mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted)}
 .radar-bhead:hover{background:none}
-.radar-bc-name{display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.radar-bhead .radar-bc-name{font-family:var(--mono);font-size:8.5px;font-weight:400;color:var(--text-muted)}
+.radar-bc-name{display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.radar-bhead .radar-bc-name{font-family:var(--mono);font-size:8px;font-weight:400;color:var(--text-muted)}
 .radar-bc-spark{display:flex;align-items:center;min-width:0}
 .radar-bc-n{text-align:right;font-family:var(--mono);font-size:12px;color:var(--text-sec);font-variant-numeric:tabular-nums}
 .radar-bc-sig{text-align:right;font-family:var(--mono);font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
-.radar-bhead .radar-bc-sig{font-size:8.5px;font-weight:400}
+.radar-bhead .radar-bc-sig{font-size:8px;font-weight:400}
 .radar-bc-d{text-align:right;font-family:var(--mono);font-size:11px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
-.radar-bhead .radar-bc-d{font-size:8.5px;font-weight:400}
+.radar-bhead .radar-bc-d{font-size:8px;font-weight:400}
 @media(max-width:900px){.radar-brow{grid-template-columns:130px 60px repeat(6,minmax(0,1fr)) 52px 52px;gap:7px}.radar-bc-spark{display:none}}
 /* ── Radar · grid de temas (SIN cajas; solo divisor vertical fino entre columnas) ── */
 .rdc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:0;row-gap:28px;margin-top:14px}
@@ -282,8 +290,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .rdc-tile.sel .rdc-tname{color:var(--text);font-weight:700}
 .rdc-thead{display:flex;align-items:center;gap:8px;min-width:0}
 .rdc-ticon{color:#066750;display:flex;align-items:center;flex-shrink:0}
-.rdc-tname{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rdc-tsub{font-family:var(--mono);font-size:8.5px;letter-spacing:.02em;color:var(--text-muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rdc-tname{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rdc-tsub{font-family:var(--mono);font-size:8px;letter-spacing:.02em;color:var(--text-muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rdc-tspark{margin:11px 0 9px;height:26px}
 /* Animación en bucle de las sparklines: se redibujan cada 22s, desfasadas 2s por tile,
    con fade de entrada y de salida para una transición suave (pro). */
@@ -294,7 +302,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 @media (prefers-reduced-motion:reduce){.rdc-spk{animation:none;stroke-dashoffset:0;opacity:1}.rdc-spk-dot{animation:none;opacity:1}}
 .rdc-tstats{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
 .rdc-tstat-v{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1}
-.rdc-tstat-l{font-family:var(--mono);font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);margin-top:4px}
+.rdc-tstat-l{font-family:var(--mono);font-size:8px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);margin-top:4px}
 .rdc-detail{grid-column:1/-1;max-height:0;overflow:hidden;transition:max-height .4s ease;border-top:1px solid var(--border)}
 .rdc-detail.open{max-height:3000px;padding:16px 0 8px;margin-top:2px}
 @media(max-width:900px){.rdc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -314,9 +322,9 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .pgemi-msg{border-left:2px solid #066750;padding:7px 0 7px 12px}
 .pgemi-msg+.pgemi-msg{border-top:0.8px solid var(--border)}
 .pgemi-bubble{flex:1;min-width:0;background:rgba(6,103,80,0.05);border:0.8px solid var(--border);border-radius:4px 12px 12px 12px;padding:11px 13px}
-.pgemi-bubble-meta{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+.pgemi-bubble-meta{font-family:var(--mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
 .pgemi-bubble-title{font-size:13px;font-weight:700;color:var(--text);line-height:1.3}
-.pgemi-bubble-text{font-size:12.5px;color:var(--text-sec);line-height:1.5;margin-top:4px}
+.pgemi-bubble-text{font-size:12px;color:var(--text-sec);line-height:1.5;margin-top:4px}
 /* ── Radar panel Kalshi-style ── */
 .radar-panel-wrap{background:var(--card);border:0.8px solid var(--border);border-radius:12px;overflow:hidden}
 .radar-panel-header{padding:20px 24px 16px;border-bottom:0.8px solid var(--border)}
@@ -325,11 +333,11 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .radar-panel-stat{display:flex;flex-direction:column;align-items:center;padding:0 18px;border-right:0.8px solid var(--border)}
 .radar-panel-stat:last-child{border-right:none}
 .radar-stat-val{font-size:28px;font-weight:700;font-family:var(--sans);line-height:1}
-.radar-stat-lbl{font-size:9.5px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:3px}
+.radar-stat-lbl{font-size:9px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:3px}
 .radar-panel-body{display:grid;grid-template-columns:1fr 1.2fr;gap:0}
 .radar-panel-col{padding:20px 24px;border-right:0.8px solid var(--border)}
 .radar-panel-col:last-child{border-right:none}
-.radar-col-lbl{font-size:9.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;padding-bottom:8px;border-bottom:0.8px solid var(--border)}
+.radar-col-lbl{font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;padding-bottom:8px;border-bottom:0.8px solid var(--border)}
 .radar-state-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:0.8px solid rgba(0,0,0,0.04)}
 .radar-state-row:last-child{border-bottom:none}
 .radar-state-rank{font-size:11px;font-weight:700;color:var(--text-muted);min-width:16px}
@@ -353,7 +361,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cat-popover-btn:hover,.cat-popover-wrap:hover .cat-popover-btn{background:rgba(0,158,144,0.1);color:var(--green)}
 .cat-popover{display:none;position:absolute;right:0;top:calc(100% + 8px);background:var(--card);border:0.8px solid var(--border);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,0.14);padding:14px 16px;width:270px;z-index:300}
 .cat-popover-wrap:hover .cat-popover{display:block}
-.cat-pop-title{font-size:9.5px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:0.8px solid var(--border)}
+.cat-pop-title{font-size:9px;font-weight:600;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:0.8px solid var(--border)}
 .cat-pop-row{display:flex;align-items:center;gap:8px;padding:5px 0}
 .cat-pop-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .cat-pop-name{font-size:12px;font-weight:500;color:var(--text);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -382,7 +390,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 /* Legacy ley-item — not used anymore */
 .ley-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:0.8px solid var(--border-med);border-radius:10px;text-decoration:none;transition:border-color 0.15s,background 0.15s;background:var(--card)}
 .ley-item:hover{border-color:var(--green);background:var(--green-tint)}
-.ley-nombre-old{font-size:11.5px;font-weight:500;color:var(--text);line-height:1.35}
+.ley-nombre-old{font-size:11px;font-weight:500;color:var(--text);line-height:1.35}
 .ley-tema{font-size:10px;color:var(--text-muted);margin-top:2px}
 .ley-reforma{font-size:10px;color:var(--text-muted);margin-top:4px;line-height:1.3}
 /* ── COMISIONES ── */
@@ -565,15 +573,15 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .nav-drop-wrap{position:relative;display:flex;align-items:stretch}
 .nav-drop{display:none;position:absolute;top:100%;left:-8px;background:var(--card);border:0.8px solid var(--border2);box-shadow:0 10px 36px rgba(0,0,0,0.13);min-width:250px;z-index:500;padding:6px 0}
 .nav-drop-wrap:hover .nav-drop{display:block}
-.nav-drop-it{display:flex;align-items:baseline;gap:8px;padding:9px 16px;font-size:12.5px;color:var(--text);cursor:pointer}
+.nav-drop-it{display:flex;align-items:baseline;gap:8px;padding:9px 16px;font-size:12px;color:var(--text);cursor:pointer}
 .nav-drop-it:hover{background:rgba(0,158,144,0.06)}
-.nav-drop-it .nd-sub{font-size:10.5px;color:var(--text-muted);margin-left:auto;padding-left:14px;white-space:nowrap}
+.nav-drop-it .nd-sub{font-size:10px;color:var(--text-muted);margin-left:auto;padding-left:14px;white-space:nowrap}
 .nav-drop-sep{height:1px;background:var(--border);margin:5px 0}
-.nav-drop-lbl{font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.15em;color:var(--text-muted);text-transform:uppercase;padding:7px 16px 4px}
+.nav-drop-lbl{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.15em;color:var(--text-muted);text-transform:uppercase;padding:7px 16px 4px}
 .dof-drop{min-width:330px;max-width:380px}
 .dof-it{display:block;padding:8px 16px;cursor:pointer}
 .dof-it:hover{background:rgba(0,158,144,0.06)}
-.dof-it-t{font-size:11.5px;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dof-it-t{font-size:11px;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .dof-it-m{font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px}
 /* ═══════════ ETAPA 1: BANNER SEMANAL + CINTILLO + RADAR FAB ═══════════ */
 .radar-fab{width:26px;height:26px;border-radius:50%;border:1px solid var(--border-med);background:var(--card);cursor:pointer;position:relative;flex-shrink:0;align-self:center;margin-left:6px;display:flex;align-items:center;justify-content:center;padding:0}
@@ -586,8 +594,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .semana-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;display:block}
 .semana-preview{font-size:12px;color:var(--text2);line-height:1.6;margin-top:8px}
 .semana-block{border-left:2.5px solid var(--sem-col,#D97706);padding-left:16px;margin-top:13px}
-.semana-nivel{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:0.08em}
-.semana-titulo{font-size:15.5px;font-weight:700;color:var(--text);line-height:1.45;margin-top:6px;text-wrap:pretty}
+.semana-nivel{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.08em}
+.semana-titulo{font-size:15px;font-weight:700;color:var(--text);line-height:1.45;margin-top:6px;text-wrap:pretty}
 .semana-sub{font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:9px}
 .semana-card:hover .semana-sub{color:var(--green)}
 .semana-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease}
@@ -602,10 +610,10 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 @keyframes chyronMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .chyron-it{font-size:12px;color:var(--text2);padding-right:30px;cursor:pointer;font-style:italic}
 .chyron-it:hover{color:var(--green)}
-.chyron-it .cim{font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-left:8px;font-style:normal}
+.chyron-it .cim{font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-left:8px;font-style:normal}
 /* Timeline de Conferencias matutinas del Ejecutivo */
 .csp-node{display:grid;grid-template-columns:46px 1fr;align-items:start}
-.csp-node-date{font-family:var(--mono);font-size:9.5px;color:var(--text-muted);text-align:right;padding-right:13px;padding-top:1px;white-space:nowrap}
+.csp-node-date{font-family:var(--mono);font-size:9px;color:var(--text-muted);text-align:right;padding-right:13px;padding-top:1px;white-space:nowrap}
 .csp-node-body{border-left:1.5px solid var(--border);padding:0 0 10px 14px;position:relative;min-width:0}
 .csp-node:last-child .csp-node-body{padding-bottom:2px}
 .csp-node-body::before{content:'';position:absolute;left:-5px;top:2px;width:8px;height:8px;border-radius:50%;background:#DC2626;box-shadow:0 0 0 2px var(--card)}
@@ -644,10 +652,10 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 @keyframes congFade{to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.cong-anim-line{stroke-dashoffset:0}.cong-anim-fade{opacity:1}.cong-svg.play .cong-anim-line,.cong-svg.play .cong-anim-fade{animation:none}}
 .cons-tema-row:last-child{border-bottom:none}
-.cons-riesgo{font-family:var(--mono);font-size:8.5px;letter-spacing:0.06em;padding:2px 6px;text-transform:uppercase}
+.cons-riesgo{font-family:var(--mono);font-size:8px;letter-spacing:0.06em;padding:2px 6px;text-transform:uppercase}
 .cons-table{width:100%;border-collapse:collapse}
 .cons-table th{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.1em;color:var(--dim);text-transform:uppercase;text-align:left;padding:6px 8px;border-bottom:1px solid var(--border)}
-.cons-table td{font-size:11.5px;color:var(--text2);padding:8px;border-bottom:0.8px solid rgba(0,0,0,0.04);vertical-align:middle}
+.cons-table td{font-size:11px;color:var(--text2);padding:8px;border-bottom:0.8px solid rgba(0,0,0,0.04);vertical-align:middle}
 .cons-table tr:hover td{background:rgba(0,0,0,0.018)}
 .cons-leg-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .cons-leg-card{display:flex;align-items:center;gap:10px;padding:9px 11px;border:0.8px solid var(--border);text-decoration:none;color:inherit;transition:border-color 0.15s}
@@ -658,14 +666,14 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-feed-it{padding:8px 0;border-bottom:0.8px solid rgba(0,0,0,0.04);cursor:pointer}
 .cons-feed-it:last-child{border-bottom:none}
 .cons-feed-it:hover .cft{color:var(--green)}
-.cft{font-size:11.5px;color:var(--text2);line-height:1.4;transition:color 0.12s}
+.cft{font-size:11px;color:var(--text2);line-height:1.4;transition:color 0.12s}
 .cfm{font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:3px}
 /* consola · terminal (paneles delgados, sin sombra) */
 .cons-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:9px;margin-bottom:14px}
 .cons-kpi{border:0.8px solid var(--border);border-radius:9px;padding:11px 13px;min-width:0}
 .cons-kpi-lbl{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase}
 .cons-kpi-val{font-family:var(--mono);font-size:21px;font-weight:600;color:var(--text);line-height:1.05;margin-top:6px}
-.cons-kpi-sub{font-family:var(--mono);font-size:8.5px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cons-kpi-sub{font-family:var(--mono);font-size:8px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* Resumen inteligente (reemplaza los KPIs tipo informe) */
 .cons-hero{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:center;padding:2px 0 18px;margin:0 0 16px 0;max-width:none;border-bottom:0.8px solid var(--border);text-align:left}
 .cons-hero>div{text-align:left}
@@ -687,7 +695,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 @media(max-width:680px){.cons-desk{grid-template-columns:1fr}}
 .cons-panel{border:0.8px solid var(--border);border-radius:11px;padding:13px 15px;min-width:0}
 .cons-panel+.cons-panel{margin-top:12px}
-.cons-panel-h{font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cons-panel-h{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .cons-panel-h .n{color:var(--dim)}
 /* Widgets reordenables (drag-and-drop v1) */
 .cons-widgets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:start;margin-bottom:12px}
@@ -700,7 +708,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-wh{display:flex;align-items:center;gap:8px;margin-bottom:11px}
 .cons-dh{font-size:12px;color:var(--text-muted);cursor:grab;flex-shrink:0;line-height:1;user-select:none}
 .cons-widget:hover .cons-dh{color:var(--text-sec)}
-.cons-wt{font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cons-wt{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cons-wn{font-family:var(--mono);font-size:9px;color:var(--dim);flex-shrink:0}
 .cons-scroll{max-height:280px;overflow-y:auto;margin:0 -3px;padding:0 3px;scrollbar-width:thin}
 .cons-scroll::-webkit-scrollbar{width:3px}.cons-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
@@ -716,7 +724,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cw-title{font-family:var(--mono);font-size:12px;letter-spacing:0.2em;color:var(--white);text-transform:uppercase}
 .cw-desc{font-size:12px;color:var(--text-sec);margin-top:6px;line-height:1.5}
 .cw-steps{display:flex;gap:2px;margin-top:16px;border-bottom:1px solid var(--border);overflow-x:auto}
-.cw-step{font-family:var(--mono);font-size:9.5px;letter-spacing:0.08em;color:var(--dim);padding:8px 11px;border-bottom:2px solid transparent;text-transform:uppercase;white-space:nowrap}
+.cw-step{font-family:var(--mono);font-size:9px;letter-spacing:0.08em;color:var(--dim);padding:8px 11px;border-bottom:2px solid transparent;text-transform:uppercase;white-space:nowrap}
 .cw-step.on{color:var(--white);border-bottom-color:var(--amber)}
 .cw-step.done{color:var(--green)}
 .cw-body{padding:16px 24px;overflow-y:auto;flex:1;min-height:280px}
@@ -737,7 +745,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cw-search{width:100%;box-sizing:border-box;padding:8px 12px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none;margin-bottom:10px}
 .cw-search:focus{border-color:var(--green)}
 .cw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.cw-chip{font-family:var(--mono);font-size:10.5px;color:var(--text);background:rgba(0,158,144,0.1);border:1px solid rgba(0,158,144,0.3);padding:3px 8px;display:inline-flex;align-items:center;gap:6px}
+.cw-chip{font-family:var(--mono);font-size:10px;color:var(--text);background:rgba(0,158,144,0.1);border:1px solid rgba(0,158,144,0.3);padding:3px 8px;display:inline-flex;align-items:center;gap:6px}
 .cw-chip span{cursor:pointer;color:var(--dim)}
 .cw-chip span:hover{color:var(--red)}
 .cw-rsg{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border)}
@@ -814,7 +822,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
   #tab-acerca .card[style]{padding:22px 18px !important}
 
   /* ── FOOTER ── */
-  .scope-footer{padding:16px 14px;font-size:10.5px}
+  .scope-footer{padding:16px 14px;font-size:10px}
 
   /* ── TICKER NOTICIAS ── */
   .news-item{gap:8px;padding:9px 12px}
@@ -842,14 +850,14 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 /* ── Presidencia widget ── */
 .pres-widget{margin-top:14px;padding-top:12px;border-top:0.8px solid var(--border);flex-shrink:0}
 .pres-widget-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.pres-widget-label{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)}
-.pres-widget-src{font-size:9.5px;color:var(--text-muted);opacity:0.7}
+.pres-widget-label{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)}
+.pres-widget-src{font-size:9px;color:var(--text-muted);opacity:0.7}
 .pres-items{display:flex;flex-direction:column;gap:0}
 .pres-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:0.8px solid rgba(0,0,0,0.04);cursor:pointer;transition:background 0.1s}
 .pres-item:last-child{border-bottom:none}
 .pres-item:hover .pres-item-title{color:var(--green)}
-.pres-item-title{font-size:11.5px;color:var(--text);line-height:1.38;flex:1;transition:color 0.15s}
-.pres-item-meta{font-size:9.5px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:var(--mono)}
+.pres-item-title{font-size:11px;color:var(--text);line-height:1.38;flex:1;transition:color 0.15s}
+.pres-item-meta{font-size:9px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:var(--mono)}
 .pres-empty{font-size:11px;color:var(--text-muted);padding:8px 0;text-align:center}
 </style>
 </head>
@@ -1017,7 +1025,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
         </div>
         <div style="position:relative;flex:1;min-width:200px">
           <span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none">⌕</span>
-          <input id="leyes-est-search" oninput="leyEstSetQ(this.value)" placeholder="Buscar ley, código o reglamento…" style="width:100%;box-sizing:border-box;padding:9px 12px 9px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12.5px;font-family:var(--sans);outline:none;border-radius:10px">
+          <input id="leyes-est-search" oninput="leyEstSetQ(this.value)" placeholder="Buscar ley, código o reglamento…" style="width:100%;box-sizing:border-box;padding:9px 12px 9px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none;border-radius:10px">
         </div>
       </div>
       <div id="leyes-est-temabar" class="stab-bar" style="margin-bottom:14px"></div>
@@ -1068,7 +1076,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
     <div id="actores-view-estatal" style="display:none">
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
         <div class="card-label" style="margin-bottom:0">Titulares Estatales · Medio Ambiente y Economía</div>
-        <input id="actores-est-search" placeholder="Filtrar estado…" oninput="renderActoresEstatales()" style="font-size:11.5px;padding:5px 10px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);outline:none;width:150px;font-family:var(--sans)">
+        <input id="actores-est-search" placeholder="Filtrar estado…" oninput="renderActoresEstatales()" style="font-size:11px;padding:5px 10px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);outline:none;width:150px;font-family:var(--sans)">
       </div>
       <div id="actores-estatales" style="margin-top:10px"></div>
     </div>
@@ -1080,7 +1088,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
     <!-- Legislativo Estatal: comisiones de los congresos estatales -->
     <div id="actores-view-legest" style="display:none">
       <div class="card-label" style="margin-bottom:2px">Comisiones de los Congresos Estatales</div>
-      <div style="font-size:11.5px;color:var(--text-muted);margin-bottom:14px">Medio ambiente · cambio climático · desarrollo sostenible · economía · agua — con sus integrantes, de fuentes oficiales</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px">Medio ambiente · cambio climático · desarrollo sostenible · economía · agua — con sus integrantes, de fuentes oficiales</div>
       <div id="comisiones-estatales"></div>
     </div>
   </div>
@@ -1878,14 +1886,14 @@ function renderAcuerdos(){
   var toolbar='<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px">'
      +'<div style="position:relative;flex:1;min-width:220px">'
        +'<span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:13px;pointer-events:none">⌕</span>'
-       +'<input id="intl-search" value="'+_intlF.q.replace(/"/g,'&quot;')+'" oninput="_intlSearch(this.value)" placeholder="Buscar instrumento, país o sector…" style="width:100%;box-sizing:border-box;padding:9px 12px 9px 32px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12.5px;font-family:var(--sans);outline:none">'
+       +'<input id="intl-search" value="'+_intlF.q.replace(/"/g,'&quot;')+'" oninput="_intlSearch(this.value)" placeholder="Buscar instrumento, país o sector…" style="width:100%;box-sizing:border-box;padding:9px 12px 9px 32px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none">'
      +'</div>'
      +'<div style="position:relative"><select onchange="_intlSet(\'juris\',this.value)" style="'+sel+'">'+jurOpts+'</select><span style="position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);font-size:9px">▾</span></div>'
      +'<div style="position:relative"><select onchange="_intlSet(\'sort\',this.value)" style="'+sel+'">'+sortOpts+'</select><span style="position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);font-size:9px">▾</span></div>'
     +'</div>'
     +'<div class="stab-bar" style="margin-bottom:12px">'+catTabs+'</div>';
   el.innerHTML=toolbar
-    +'<div id="intl-stats" style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px"></div>'
+    +'<div id="intl-stats" style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px"></div>'
     +'<div id="intl-table"></div>';
   _intlRenderRows();
 }
@@ -1909,7 +1917,7 @@ function _intlRenderRows(){
     +(_intlF.juris!=='todas'?' · '+_intlF.juris:'');
   if(!rows.length){host.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:28px 0;text-align:center">Sin coincidencias. Ajusta los filtros o la búsqueda.</div>';return;}
   var GRID='display:grid;grid-template-columns:50px 1fr 130px;gap:14px';
-  var head='<div style="'+GRID+';padding:0 0 8px;border-bottom:0.8px solid var(--border);font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">'
+  var head='<div style="'+GRID+';padding:0 0 8px;border-bottom:0.8px solid var(--border);font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">'
     +'<span>Año</span><span>Instrumento</span><span style="text-align:right">Jurisdicción</span></div>';
   var body=rows.map(function(a){
     var col=_intlCatCol(a.categoria);
@@ -1945,7 +1953,7 @@ function renderActoresFederal(){
   el.innerHTML=ACTORES_FED.map(function(a){
     return '<a href="'+a.url+'" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:2px;padding:12px 0;border-bottom:0.8px solid var(--border);text-decoration:none;color:inherit">'
       +'<span style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.12em;color:var(--green)">'+a.sig+'</span>'
-      +'<span style="font-size:13.5px;font-weight:600;color:var(--text)">'+a.titular+'</span>'
+      +'<span style="font-size:13px;font-weight:600;color:var(--text)">'+a.titular+'</span>'
       +'<span style="font-size:11px;color:var(--text-sec)">'+a.cargo+' · '+a.dep+'</span>'
       +'</a>';
   }).join('');
@@ -1998,7 +2006,7 @@ function renderComisionesEstatales(){
     +'<span style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">Entidad</span>'
     +'<select onchange="estComSel(this.value)" style="padding:6px 10px;border:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:13px;color:var(--text);min-width:210px">'
     +estados.map(function(e){return '<option'+(e.estado===_comEstSel?' selected':'')+'>'+e.estado+'</option>';}).join('')+'</select>'
-    +(meta.cobertura?'<span style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted)">'+meta.cobertura+'</span>':'')
+    +(meta.cobertura?'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+meta.cobertura+'</span>':'')
     +'</div>';
   var e=estados.filter(function(x){return x.estado===_comEstSel;})[0];
   var rows=(e.comisiones||[]).map(function(c,i){
@@ -2012,7 +2020,7 @@ function renderComisionesEstatales(){
       :'<div style="font-size:11px;color:var(--text-muted);font-style:italic;padding:4px 0 8px">Integración pendiente de publicación oficial</div>';
     var ficha='<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:2px;padding-bottom:10px;border-bottom:0.8px solid var(--border)">'
       +'<div><div style="font-size:11px;font-weight:700;color:var(--text)">'+members.length+' integrante'+(members.length===1?'':'s')+'</div>'
-      +'<div style="font-size:10.5px;color:var(--text-sec);margin-top:3px">Preside: <b>'+(c.presidente||'—')+'</b></div></div>'
+      +'<div style="font-size:10px;color:var(--text-sec);margin-top:3px">Preside: <b>'+(c.presidente||'—')+'</b></div></div>'
       +'<span class="com-scope-tag" style="color:'+col+';background:'+col+'18">'+(_TEMA_COM_LBL[c.tema]||c.tema).toUpperCase()+'</span>'
       +'</div>';
     var footer='<div style="display:flex;margin-top:10px;padding-top:10px;border-top:0.8px solid var(--border)"><a href="'+(c.url||e.congreso_url||'#')+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:10px;color:var(--green);text-decoration:none;font-weight:600;margin-left:auto">Ficha oficial de la comisión →</a></div>';
@@ -2039,8 +2047,8 @@ function _actorCell(o){
   var t=o.titular||'Por confirmar';
   var porConf=/por confirmar/i.test(t);
   return '<a href="'+(o.url||'#')+'" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block">'
-    +'<span style="font-size:12.5px;font-weight:600;color:'+(porConf?'var(--text-muted)':'var(--text)')+'">'+t+'</span>'
-    +'<span style="display:block;font-size:10.5px;color:var(--text-sec);margin-top:1px;line-height:1.3">'+(o.dependencia||'')+' ↗</span>'
+    +'<span style="font-size:12px;font-weight:600;color:'+(porConf?'var(--text-muted)':'var(--text)')+'">'+t+'</span>'
+    +'<span style="display:block;font-size:10px;color:var(--text-sec);margin-top:1px;line-height:1.3">'+(o.dependencia||'')+' ↗</span>'
     +'</a>';
 }
 function toggleActorEst(id){
@@ -2051,12 +2059,12 @@ function toggleActorEst(id){
   if(h)h.classList.toggle('open',!open);
 }
 function _actorEstRow(label,o){
-  var lbl='<div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">'+label+'</div>';
+  var lbl='<div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">'+label+'</div>';
   if(!o||!o.titular||/por confirmar/i.test(o.titular))
     return '<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">'+lbl+'<div style="font-size:12px;color:var(--text-muted)">Por confirmar</div></div>';
   return '<a href="'+(o.url||'#')+'" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:7px 0;border-bottom:0.8px solid var(--border)">'+lbl
-    +'<div style="font-size:12.5px;font-weight:600;color:var(--text)">'+o.titular+' <span style="color:var(--green);font-weight:400">↗</span></div>'
-    +'<div style="font-size:10.5px;color:var(--text-sec);margin-top:1px;line-height:1.3">'+(o.dependencia||'')+'</div></a>';
+    +'<div style="font-size:12px;font-weight:600;color:var(--text)">'+o.titular+' <span style="color:var(--green);font-weight:400">↗</span></div>'
+    +'<div style="font-size:10px;color:var(--text-sec);margin-top:1px;line-height:1.3">'+(o.dependencia||'')+'</div></a>';
 }
 function _actorEstState(e,idx){
   var d=(_actoresEstatales.estados||{})[e]||{}, id='aest-'+idx;
@@ -2096,8 +2104,8 @@ function renderDatosGob(){
       +'<div style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;border-bottom:0.8px solid var(--border);padding-bottom:6px;margin-bottom:4px">'+tema+'</div>'
       +items.slice(0,4).map(function(d){
         return '<a href="'+d.url+'" target="_blank" rel="noopener" style="display:block;padding:6px 0;text-decoration:none;border-bottom:0.8px solid rgba(0,0,0,0.04)">'
-          +'<div style="font-size:11.5px;color:var(--text);line-height:1.4">'+d.titulo+'</div>'
-          +'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px">'+(d.org||'')+(d.fecha?' · '+d.fecha:'')+'</div>'
+          +'<div style="font-size:11px;color:var(--text);line-height:1.4">'+d.titulo+'</div>'
+          +'<div style="font-size:9px;color:var(--text-muted);margin-top:2px">'+(d.org||'')+(d.fecha?' · '+d.fecha:'')+'</div>'
           +'</a>';
       }).join('')
       +'</div>';
@@ -2117,8 +2125,8 @@ function renderDofMenu(){
       var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
       return '<div class="dof-it" onclick="window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/'/g,'%27')+'\',\'_blank\')">'
         +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">'
-          +'<span style="font-size:10.5px;font-weight:700;color:var(--text);letter-spacing:0.02em">'+(d.dependencia||'DOF')+'</span>'
-          +'<span style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+f+(d.relevante?' · <span style="color:var(--amber)">REL</span>':'')+'</span>'
+          +'<span style="font-size:10px;font-weight:700;color:var(--text);letter-spacing:0.02em">'+(d.dependencia||'DOF')+'</span>'
+          +'<span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+f+(d.relevante?' · <span style="color:var(--amber)">REL</span>':'')+'</span>'
         +'</div>'
         +'<div class="dof-it-t" style="color:var(--text-sec);margin-top:3px">'+(d.titulo||'')+'</div>'
         +'</div>';
@@ -2158,7 +2166,7 @@ function renderEstadosHeatmap(){
   // Selector "colorear por" (criterios reales)
   var cb=document.getElementById('estados-colorby');
   if(cb)cb.innerHTML='<span style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">Colorear por</span>'
-    +'<select onchange="estadoSetColorBy(this.value)" style="padding:6px 10px;border:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12.5px;color:var(--text)">'
+    +'<select onchange="estadoSetColorBy(this.value)" style="padding:6px 10px;border:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12px;color:var(--text)">'
     +Object.keys(_ESTADO_METRICS).map(function(k){return '<option value="'+k+'"'+(k===_estadoColorBy?' selected':'')+'>'+_ESTADO_METRICS[k].label+'</option>';}).join('')+'</select>';
   host.style.display='grid';
   host.style.gridTemplateColumns='repeat(auto-fill,minmax(158px,1fr))';
@@ -2170,10 +2178,10 @@ function renderEstadosHeatmap(){
       +'style="cursor:pointer;background:'+tint(v)+';padding:12px 14px;transition:transform .12s ease" '
       +'onmouseover="this.style.transform=\'translateX(3px)\'" onmouseout="this.style.transform=\'\'">'
       +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">#'+rankOf[s]+(d.region?' · '+d.region:'')+'</div>'
-      +'<div style="font-size:13.5px;font-weight:600;color:var(--text);line-height:1.15;margin-bottom:9px">'+s+'</div>'
+      +'<div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.15;margin-bottom:9px">'+s+'</div>'
       +'<div style="display:flex;align-items:baseline;gap:6px"><span style="font-family:var(--mono);font-size:21px;font-weight:600;color:'+edge(v)+'">'+disp+'</span>'
       +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+m.short+'</span></div>'
-      +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:7px">'+_nLeyes(s)+' leyes · '+_nImpuestos(s)+' imp · '+_nMateriales(s)+' mat</div>'
+      +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:7px">'+_nLeyes(s)+' leyes · '+_nImpuestos(s)+' imp · '+_nMateriales(s)+' mat</div>'
       +'</div>';
   }).join('');
   var leg=document.getElementById('estados-leyenda');
@@ -2209,7 +2217,7 @@ function _cmpBars(label,vals,opts){
         +'<div style="flex:1;min-width:0;height:15px;background:rgba(0,0,0,0.045)">'
           +'<div class="cmp-bar" data-w="'+w.toFixed(1)+'" style="height:100%;width:0;background:'+_cmpColor(i)+'"></div>'
         +'</div>'
-        +'<div style="width:66px;text-align:right;font-family:var(--mono);font-size:10.5px;color:var(--text);flex-shrink:0">'+fmt(v)+'</div>'
+        +'<div style="width:66px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--text);flex-shrink:0">'+fmt(v)+'</div>'
       +'</div>';
     }).join('')
     +'</div>';
@@ -2255,13 +2263,13 @@ function _cmpBody(){
       +'<div style="margin-top:4px">'+_cmpStates.map(function(s,i){
         var tx=(impuestosDB[s]||[]);
         return '<div style="margin-bottom:12px;padding-bottom:11px;border-bottom:0.8px solid var(--border)">'
-          +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><span style="width:9px;height:9px;background:'+_cmpColor(i)+';display:inline-block;flex-shrink:0"></span><span style="font-size:12.5px;font-weight:600;color:var(--text)">'+s+'</span><span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-left:auto">'+tx.length+'</span></div>'
+          +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><span style="width:9px;height:9px;background:'+_cmpColor(i)+';display:inline-block;flex-shrink:0"></span><span style="font-size:12px;font-weight:600;color:var(--text)">'+s+'</span><span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-left:auto">'+tx.length+'</span></div>'
           +(tx.length?tx.map(function(t){
             return '<div style="padding:2px 0 2px 16px">'
               +'<div style="font-size:12px;color:var(--text)">'+(t.controversia?'<span style="color:#ef4444" title="Controversia constitucional">● </span>':'')+(t.tipo||'—')+'</div>'
               +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+(t.precio||'')+(t.articulo?' · '+t.articulo:'')+'</div>'
               +'</div>';
-          }).join(''):'<div style="font-size:11.5px;color:var(--text-muted);padding-left:16px">Sin impuestos registrados</div>')
+          }).join(''):'<div style="font-size:11px;color:var(--text-muted);padding-left:16px">Sin impuestos registrados</div>')
           +'</div>';
       }).join('')+'</div>';
     return out;
@@ -2271,15 +2279,15 @@ function _cmpBody(){
       var secs=((_perfilEstados&&_perfilEstados.estados&&_perfilEstados.estados[s])||{}).sectores||[];
       var top=secs.slice(0,4), mx=top.length?top[0].pct:1;
       return '<div style="margin-bottom:15px;padding-bottom:12px;border-bottom:0.8px solid var(--border)">'
-        +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><span style="width:9px;height:9px;background:'+_cmpColor(i)+';display:inline-block;flex-shrink:0"></span><span style="font-size:12.5px;font-weight:600;color:var(--text)">'+s+'</span></div>'
+        +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><span style="width:9px;height:9px;background:'+_cmpColor(i)+';display:inline-block;flex-shrink:0"></span><span style="font-size:12px;font-weight:600;color:var(--text)">'+s+'</span></div>'
         +(top.length?top.map(function(sec){var w=mx>0?(sec.pct/mx*100):0;
           return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'
-            +'<div style="width:96px;font-size:10.5px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+sec.n+'</div>'
+            +'<div style="width:96px;font-size:10px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+sec.n+'</div>'
             +'<div style="flex:1;min-width:0;height:11px;background:rgba(0,0,0,0.045)"><div class="cmp-bar" data-w="'+w.toFixed(1)+'" style="height:100%;width:0;background:'+_cmpColor(i)+'"></div></div>'
             +'<div style="width:42px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--text)">'+sec.pct.toFixed(1)+'%</div></div>';
-        }).join(''):'<div style="font-size:11.5px;color:var(--text-muted)">Sin datos de sectores</div>')
+        }).join(''):'<div style="font-size:11px;color:var(--text-muted)">Sin datos de sectores</div>')
         +'</div>';
-    }).join('')+'<div style="font-size:9.5px;color:var(--text-muted)">Participación en unidades económicas · Censos Económicos (Data México)</div>';
+    }).join('')+'<div style="font-size:9px;color:var(--text-muted)">Participación en unidades económicas · Censos Económicos (Data México)</div>';
   }
   if(_cmpView==='perfil'){
     var pobs=_cmpStates.map(_statePob), peas=_cmpStates.map(_statePea);
@@ -2367,8 +2375,8 @@ function _oblRow(o){
   return '<div'+attrs+'>'
     +'<div style="flex:1;min-width:0">'
       +'<div style="font-size:14px;font-weight:600;color:var(--text);line-height:1.35">'+o.title+'</div>'
-      +(o.desc?'<div style="font-size:12.5px;color:var(--text-sec);line-height:1.55;margin-top:4px;max-width:720px">'+o.desc+'</div>':'')
-      +(o.meta?'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:6px;letter-spacing:0.02em">'+o.meta+'</div>':'')
+      +(o.desc?'<div style="font-size:12px;color:var(--text-sec);line-height:1.55;margin-top:4px;max-width:720px">'+o.desc+'</div>':'')
+      +(o.meta?'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px;letter-spacing:0.02em">'+o.meta+'</div>':'')
     +'</div>'
     +right
     +'</div>';
@@ -2377,7 +2385,7 @@ function _jurisprudenciaHTML(){
   return '<div>'
     +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Precedentes judiciales</div>'
     +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:12px">Criterios de la SCJN sobre regulación ambiental estatal — para leer qué prohibiciones locales son constitucionales y cuáles no.</div>'
-    +'<div style="font-size:11.5px;color:var(--text-sec);background:rgba(0,158,144,0.05);border-left:2px solid var(--green);padding:8px 12px;margin-bottom:8px;line-height:1.5;max-width:760px">El criterio aplica a <b>prohibiciones absolutas de materiales</b> (invasión de competencia federal), <b>no</b> a la regulación estatal de gestión, recolección, plan de manejo o infraestructura post-consumo — competencia propia de los estados.</div>'
+    +'<div style="font-size:11px;color:var(--text-sec);background:rgba(0,158,144,0.05);border-left:2px solid var(--green);padding:8px 12px;margin-bottom:8px;line-height:1.5;max-width:760px">El criterio aplica a <b>prohibiciones absolutas de materiales</b> (invasión de competencia federal), <b>no</b> a la regulación estatal de gestión, recolección, plan de manejo o infraestructura post-consumo — competencia propia de los estados.</div>'
     +_JURISPRUDENCIA.map(function(j){
       return _oblRow({title:j.t,desc:j.resumen,meta:j.org+' · '+j.anio,right:_oblStatus(j.criterio,'var(--green)'),url:j.url});
     }).join('')
@@ -2419,7 +2427,7 @@ function _ecocircularHTML(){
 }
 function _oblToggleCerts(i){var el=document.getElementById('obl-certs-'+i);var a=document.getElementById('obl-certs-arr-'+i);if(el){var open=el.style.display!=='none';el.style.display=open?'none':'block';if(a)a.textContent=open?'▾':'▴';}}
 function _instrumentosHTML(){
-  var lnk='cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11.5px;font-weight:600;white-space:nowrap';
+  var lnk='cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11px;font-weight:600;white-space:nowrap';
   return '<div>'
     +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Instrumentos legales</div>'
     +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Obligaciones y figuras regulatorias vigentes. Los registros y reportes enlazan a su portal oficial; los distintivos se despliegan.</div>'
@@ -2434,8 +2442,8 @@ function _instrumentosHTML(){
         row+='<div id="obl-certs-'+i+'" style="display:none;padding:0 0 14px 0">'
           +o.certs.map(function(c){
             return '<div onclick="window.open(\''+(c.url||'#').replace(/'/g,'%27')+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:14px;padding:9px 0 9px 20px;border-top:0.8px solid var(--border);cursor:pointer">'
-              +'<div style="flex:1;min-width:0"><div style="font-size:12.5px;font-weight:600;color:var(--text)">'+c.n+'</div>'
-              +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:2px">'+c.dep+'</div></div>'
+              +'<div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:var(--text)">'+c.n+'</div>'
+              +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:2px">'+c.dep+'</div></div>'
               +'<span style="font-size:13px;color:var(--green);flex-shrink:0">↗</span></div>';
           }).join('')+'</div>';
       }
@@ -2534,14 +2542,14 @@ function _agendaGacetas(keepFocus){
   var q=qa((_gacQ||'').toLowerCase());
   var estados=Object.keys(GACETAS_OFICIALES).sort(function(a,b){return a.localeCompare(b,'es');})
     .filter(function(s){return !q||qa(s.toLowerCase()).indexOf(q)>=0||qa(GACETAS_OFICIALES[s][0].toLowerCase()).indexOf(q)>=0;});
-  var head='<div style="font-size:11.5px;color:var(--text-sec);line-height:1.55;margin-bottom:14px">Directorio de la <b>publicación oficial</b> de cada entidad — donde se publican con validez legal leyes, decretos, reglamentos y acuerdos estatales. Da clic para abrir el portal oficial.</div>'
+  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:14px">Directorio de la <b>publicación oficial</b> de cada entidad — donde se publican con validez legal leyes, decretos, reglamentos y acuerdos estatales. Da clic para abrir el portal oficial.</div>'
     +'<div style="position:relative;max-width:340px;margin-bottom:6px"><span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none">⌕</span>'
-    +'<input id="gac-search" oninput="gacSetQ(this.value)" value="'+(_gacQ||'').replace(/"/g,'&quot;')+'" placeholder="Buscar entidad…" style="width:100%;box-sizing:border-box;padding:8px 12px 8px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12.5px;font-family:var(--sans);outline:none;border-radius:10px"></div>'
-    +'<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin:10px 0 2px">'+estados.length+' entidad'+(estados.length===1?'':'es')+'</div>';
+    +'<input id="gac-search" oninput="gacSetQ(this.value)" value="'+(_gacQ||'').replace(/"/g,'&quot;')+'" placeholder="Buscar entidad…" style="width:100%;box-sizing:border-box;padding:8px 12px 8px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none;border-radius:10px"></div>'
+    +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin:10px 0 2px">'+estados.length+' entidad'+(estados.length===1?'':'es')+'</div>';
   var rows=estados.map(function(s){
     var g=GACETAS_OFICIALES[s];var u=g[1].replace(/'/g,'%27');
     return '<div class="gac-row" onclick="window.open(\''+u+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:0.8px solid var(--border);cursor:pointer">'
-      +'<span style="flex:0 0 168px;font-size:13.5px;font-weight:600;color:var(--text)">'+s+'</span>'
+      +'<span style="flex:0 0 168px;font-size:13px;font-weight:600;color:var(--text)">'+s+'</span>'
       +'<span style="flex:1;font-size:12px;color:var(--text-sec)">'+g[0]+'</span>'
       +'<span style="font-size:11px;color:var(--green);white-space:nowrap">Abrir ↗</span></div>';
   }).join('');
@@ -2564,10 +2572,10 @@ function _agendaConamer(){
   var d=_conamerData;
   if(!d){host.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando…</div>';return;}
   var items=(d.items||[]);
-  var head='<div style="font-size:11.5px;color:var(--text-sec);line-height:1.55;margin-bottom:6px">Propuestas regulatorias <b>en consulta pública</b> ante CONAMER que impactan a nuestros sectores — antes de publicarse en el DOF. '
+  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:6px">Propuestas regulatorias <b>en consulta pública</b> ante CONAMER que impactan a nuestros sectores — antes de publicarse en el DOF. '
     +'<a href="'+((d._meta&&d._meta.url)||'https://www.herramientasregulatorias.gob.mx/')+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Portal CONAMER ↗</a></div>'
     +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:14px">'+((d._meta&&d._meta.actualizado)||'')+' · '+items.length+' propuesta'+(items.length===1?'':'s')+'</div>';
-  if(!items.length){host.innerHTML=head+'<div style="font-size:12.5px;color:var(--text-muted);padding:12px 0">Sin propuestas de nuestros sectores en consulta ahora mismo.</div>';return;}
+  if(!items.length){host.innerHTML=head+'<div style="font-size:12px;color:var(--text-muted);padding:12px 0">Sin propuestas de nuestros sectores en consulta ahora mismo.</div>';return;}
   var body=items.map(function(it){
     var dia=(it.fecha||'').split(' ')[0];
     var match=_conamerNomMatch(it.titulo);
@@ -2586,7 +2594,7 @@ function _agendaPend(){
   var filt='<div style="display:flex;flex-wrap:wrap;gap:4px 22px;margin-bottom:18px">'+ESTADOS.map(function(s){
       var on=_agendaEst===s[0];var n=s[0]==='todos'?_PENDIENTES.length:(counts[s[0]]||0);
       var under=on?(s[0]==='todos'?'var(--green)':col(s[0])):'transparent';
-      return '<button onclick="agendaSetEst(\''+s[0]+'\')" style="background:none;border:none;border-bottom:1.5px solid '+under+';cursor:pointer;font-family:var(--sans);font-size:12.5px;font-weight:'+(on?'600':'500')+';color:'+(on?'var(--text)':'var(--text-muted)')+';padding:0 0 6px">'+s[1]+' <span style="font-family:var(--mono);font-size:9px;opacity:.55">'+n+'</span></button>';
+      return '<button onclick="agendaSetEst(\''+s[0]+'\')" style="background:none;border:none;border-bottom:1.5px solid '+under+';cursor:pointer;font-family:var(--sans);font-size:12px;font-weight:'+(on?'600':'500')+';color:'+(on?'var(--text)':'var(--text-muted)')+';padding:0 0 6px">'+s[1]+' <span style="font-family:var(--mono);font-size:9px;opacity:.55">'+n+'</span></button>';
     }).join('')+'</div>';
   var ord=function(e){return _AG_ESTORD.hasOwnProperty(e)?_AG_ESTORD[e]:9;};
   var list=_PENDIENTES.filter(function(p){return _agendaEst==='todos'||p.e===_agendaEst;})
@@ -2596,7 +2604,7 @@ function _agendaPend(){
     return _oblRow({title:p.t,desc:p.d,meta:meta,right:_oblStatus(p.e,col(p.e))});
   }).join('');
   host.innerHTML=filt
-    +'<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px">'+list.length+' instrumento'+(list.length===1?'':'s')+'</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px">'+list.length+' instrumento'+(list.length===1?'':'s')+'</div>'
     +rows;
 }
 function _agendaDof(){
@@ -2610,7 +2618,7 @@ function _agendaDof(){
   var groups={},order=[];
   lista.forEach(function(d){var dep=(d.dependencia||'DOF').trim();if(!groups[dep]){groups[dep]=[];order.push(dep);}groups[dep].push(d);});
   order.sort(function(a,b){return groups[b].length-groups[a].length||a.localeCompare(b,'es');});
-  var head='<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:16px">'
+  var head='<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:16px">'
     +(deHoy.length?'Publicado hoy en el DOF · '+deHoy.length:'Últimas publicaciones de nuestros temas · '+lista.length)+'</div>';
   var body=order.map(function(dep){
     var full=groups[dep],exp=!!_dofExpanded[dep],vis=exp?full:full.slice(0,3);
@@ -2618,13 +2626,13 @@ function _agendaDof(){
       var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
       return '<div onclick="window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/\x27/g,'%27')+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:16px;padding:11px 0;border-top:0.8px solid var(--border);cursor:pointer">'
         +'<div style="flex:1;min-width:0;font-size:13px;color:var(--text);line-height:1.5">'+(d.titulo||'')+'</div>'
-        +'<span style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+f+'</span>'
+        +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+f+'</span>'
         +'</div>';
     }).join('');
     var depKey=dep.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
     var more=full.length>3?'<div onclick="_dofToggleDep(\''+depKey+'\')" style="font-size:11px;font-weight:600;color:var(--green);cursor:pointer;padding:10px 0 2px;user-select:none">'+(exp?'▲ Ver menos':'▼ Ver más ('+(full.length-3)+')')+'</div>':'';
     return '<div style="margin-bottom:24px">'
-      +'<div style="font-size:12.5px;font-weight:700;color:var(--text);letter-spacing:0.03em">'+dep
+      +'<div style="font-size:12px;font-weight:700;color:var(--text);letter-spacing:0.03em">'+dep
         +' <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted);letter-spacing:0">'+full.length+'</span></div>'
       +rows+more+'</div>';
   }).join('');
@@ -2724,16 +2732,16 @@ function submitNomComment(nomId,uid){
 }
 function _nomCommentsHTML(n,uid){
   return '<div style="margin-top:16px;border-top:0.8px solid var(--border);padding-top:14px">'
-    +'<div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:9px">Comentarios · <span data-nomcnt="'+_esc(n.id)+'">'+_cntTxt(n.id)+'</span></div>'
+    +'<div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:9px">Comentarios · <span data-nomcnt="'+_esc(n.id)+'">'+_cntTxt(n.id)+'</span></div>'
     +'<div id="'+uid+'-cform">'
       +'<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:8px;max-width:760px">'
-        +'<input class="cf-nom" placeholder="Nombre (opcional)" style="flex:1;min-width:150px;border:none;border-bottom:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12.5px;padding:5px 0;color:var(--text)">'
-        +'<input class="cf-mail" placeholder="Correo (opcional)" style="flex:1;min-width:150px;border:none;border-bottom:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12.5px;padding:5px 0;color:var(--text)">'
+        +'<input class="cf-nom" placeholder="Nombre (opcional)" style="flex:1;min-width:150px;border:none;border-bottom:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12px;padding:5px 0;color:var(--text)">'
+        +'<input class="cf-mail" placeholder="Correo (opcional)" style="flex:1;min-width:150px;border:none;border-bottom:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12px;padding:5px 0;color:var(--text)">'
       +'</div>'
-      +'<textarea class="cf-txt" rows="3" placeholder="Escribe tu comentario sobre esta norma…" style="width:100%;max-width:760px;box-sizing:border-box;border:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12.5px;line-height:1.5;padding:8px 10px;color:var(--text);resize:vertical"></textarea>'
+      +'<textarea class="cf-txt" rows="3" placeholder="Escribe tu comentario sobre esta norma…" style="width:100%;max-width:760px;box-sizing:border-box;border:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12px;line-height:1.5;padding:8px 10px;color:var(--text);resize:vertical"></textarea>'
       +'<div style="display:flex;align-items:center;gap:14px;margin-top:8px">'
         +'<button class="cf-send" onclick="submitNomComment(\''+_esc(n.id)+'\',\''+uid+'\')" style="font-family:var(--sans);font-size:12px;font-weight:600;color:#fff;background:var(--green);border:none;padding:7px 16px;cursor:pointer;border-radius:2px">Enviar comentario</button>'
-        +'<span class="cf-msg" style="font-size:11.5px"></span>'
+        +'<span class="cf-msg" style="font-size:11px"></span>'
       +'</div>'
     +'</div>'
   +'</div>';
@@ -2789,10 +2797,10 @@ function renderNormas(){
         +'<div class="nom-row" style="cursor:pointer;align-items:flex-start" onclick="_toggleNomDetail(\''+uid+'\')">'
         +'<span id="'+uid+'-arr" style="font-size:9px;color:var(--text-muted);transition:transform 0.2s;flex-shrink:0;display:inline-block;margin-top:3px">▶</span>'
         +'<div style="flex:1;min-width:0">'
-          +'<div style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green)">'+n.id+(isProy?' <span style="font-size:8.5px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted)">· PROYECTO</span>':'')+'</div>'
-          +'<div style="font-size:12.5px;color:var(--text);font-weight:500;margin-top:4px">'+n.objeto+'</div>'
+          +'<div style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green)">'+n.id+(isProy?' <span style="font-size:8px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted)">· PROYECTO</span>':'')+'</div>'
+          +'<div style="font-size:12px;color:var(--text);font-weight:500;margin-top:4px">'+n.objeto+'</div>'
           +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.4">'+n.implic+'</div>'
-          +'<div data-nomcnt="'+_esc(n.id)+'" style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:5px">'+_cntTxt(n.id)+'</div>'
+          +'<div data-nomcnt="'+_esc(n.id)+'" style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:5px">'+_cntTxt(n.id)+'</div>'
         +'</div>'
         +'<span style="font-size:9px;color:var(--text-muted);flex-shrink:0;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px">'+n.dep+'</span>'
         +'<button onclick="event.stopPropagation();toggleNomTerminal(\''+n.id.replace(/'/g,"\\'")+'\',this)" title="Agregar o quitar de Mi Terminal" style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.03em;padding:3px 8px;border:0.8px solid '+(nomInTerminal(n.id)?'var(--green)':'var(--border)')+';background:'+(nomInTerminal(n.id)?'rgba(0,158,144,0.07)':'none')+';color:'+(nomInTerminal(n.id)?'var(--green)':'var(--text-muted)')+';cursor:pointer;white-space:nowrap;flex-shrink:0;margin-top:1px">'+(nomInTerminal(n.id)?'✓ En mi terminal':'+ Mi terminal')+'</button>'
@@ -2800,17 +2808,17 @@ function renderNormas(){
         +'</div>'
         +'<div id="'+uid+'" style="display:none;padding:10px 0 14px 34px;border-bottom:0.8px solid rgba(0,0,0,0.06)">'
           +'<div style="display:flex;gap:22px;flex-wrap:wrap;margin-bottom:10px">'
-            +'<div><div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Estatus PNIC</div>'
-            +'<div style="font-size:11.5px;color:var(--text);font-weight:600;margin-top:3px">'+_nomPnic(n)+'</div></div>'
-            +'<div><div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Participación GEMI</div>'
+            +'<div><div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Estatus PNIC</div>'
+            +'<div style="font-size:11px;color:var(--text);font-weight:600;margin-top:3px">'+_nomPnic(n)+'</div></div>'
+            +'<div><div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Participación GEMI</div>'
             +'<div style="margin-top:4px">'+gemiChip+'</div></div>'
-            +(n.afecta?'<div style="min-width:180px"><div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Sectores afectados</div>'
+            +(n.afecta?'<div style="min-width:180px"><div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Sectores afectados</div>'
               +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.4">'+n.afecta+'</div></div>':'')
           +'</div>'
-          +'<div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Contexto previo</div>'
+          +'<div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Contexto previo</div>'
           +'<div style="font-size:12px;color:var(--text-sec);line-height:1.6;max-width:760px;margin-bottom:14px">'+(ex.contexto||'<span style="color:var(--text-muted)">El equipo GEMI cargará aquí el contexto de esta norma: antecedentes, discusión y estatus.</span>')+'</div>'
-          +'<div style="font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Documentos</div>'
-          +docs.map(function(d){return '<a href="'+d.u+'" target="_blank" rel="noopener" style="display:block;font-size:11.5px;color:var(--green);padding:3px 0;text-decoration:none">'+d.t+' ↗</a>';}).join('')
+          +'<div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Documentos</div>'
+          +docs.map(function(d){return '<a href="'+d.u+'" target="_blank" rel="noopener" style="display:block;font-size:11px;color:var(--green);padding:3px 0;text-decoration:none">'+d.t+' ↗</a>';}).join('')
           +_nomCommentsHTML(n,uid)
         +'</div>'
       +'</div>';
@@ -2864,8 +2872,8 @@ function renderSPLegislacion(state,data){
       const badge=`<span style="flex-shrink:0;font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px;border:1px solid;${pend?'color:#92400e;border-color:rgba(251,191,36,0.4)':'color:var(--green);border-color:rgba(0,158,144,0.3)'}">${pend?'PEND':'VIG'}</span>`;
       const reforma=law.ultima_reforma?`<span style="font-size:10px;color:var(--text-muted);white-space:nowrap;flex-shrink:0">DOF ${law.ultima_reforma}</span>`:'';
       const nombre=law.url
-        ?`<a href="${law.url}" target="_blank" style="font-size:11.5px;color:var(--text);text-decoration:none;flex:1;min-width:0;line-height:1.3">${law.nombre}</a>`
-        :`<span style="font-size:11.5px;color:var(--text);flex:1;min-width:0;line-height:1.3">${law.nombre}</span>`;
+        ?`<a href="${law.url}" target="_blank" style="font-size:11px;color:var(--text);text-decoration:none;flex:1;min-width:0;line-height:1.3">${law.nombre}</a>`
+        :`<span style="font-size:11px;color:var(--text);flex:1;min-width:0;line-height:1.3">${law.nombre}</span>`;
       html+=`<div style="display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:0.8px solid var(--border)">${badge}${nombre}${reforma}</div>`;
     });
     html+='</div>';
@@ -2889,7 +2897,7 @@ function renderSPImpuestos(state){
   const hasUMA=taxes.some(t=>t.unidad==='UMA');
   const cards=taxes.map(t=>{
     const tipoLbl=(TC[t.tipo]||{label:t.tipo}).label||t.tipo;
-    const badge=`<span style="font-size:9.5px;font-weight:600;color:var(--text-muted);letter-spacing:0.08em">${tipoLbl}</span>`;
+    const badge=`<span style="font-size:9px;font-weight:600;color:var(--text-muted);letter-spacing:0.08em">${tipoLbl}</span>`;
     const contro=t.controversia?`<span style="font-size:9px;font-weight:700;color:#D97706;letter-spacing:0.06em">CONTROVERSIA</span>`:'';
     const precio=t.precio&&t.precio!=='—'?`<div style="font-size:16px;font-weight:700;color:var(--text);margin:6px 0 4px;font-variant-numeric:tabular-nums">${t.precio} <span style="font-size:10px;font-weight:500;color:var(--text-muted)">${t.unidad}</span></div>`:'';
     const specs=t.especificaciones?`<div style="font-size:12px;color:var(--text);line-height:1.5;margin-bottom:6px">${t.especificaciones}</div>`:'';
@@ -2905,8 +2913,8 @@ function renderSPSitios(state){
   if(!el)return;
   var d=(_sitiosData&&_sitiosData.estados&&_sitiosData.estados[state]);
   if(!_sitiosData){el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando inventario…</div>';return;}
-  if(!d){el.innerHTML='<div style="font-size:12.5px;color:var(--text-sec);line-height:1.6;padding:8px 0">Sin sitios contaminados registrados para '+state+' en el Inventario Nacional de la SEMARNAT.</div>'
-    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:12px">Fuente: SEMARNAT · Inventario Nacional de Sitios Contaminados y Remediados (datos.gob.mx)</div>';return;}
+  if(!d){el.innerHTML='<div style="font-size:12px;color:var(--text-sec);line-height:1.6;padding:8px 0">Sin sitios contaminados registrados para '+state+' en el Inventario Nacional de la SEMARNAT.</div>'
+    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:12px">Fuente: SEMARNAT · Inventario Nacional de Sitios Contaminados y Remediados (datos.gob.mx)</div>';return;}
   el.innerHTML=_sitiosBlock(state,true);
 }
 function openStatePanel(stateName){
@@ -3159,14 +3167,14 @@ function renderRadares(){
   if(!_radarSel||!rows.find(function(r){return r.t.id===_radarSel;}))_radarSel=rows[0]?rows[0].t.id:null;
   var sum=function(k){return rows.reduce(function(a,r){return a+r.s[k];},0);};
   var ts=new Date().toLocaleString('es-MX',{timeZone:'America/Mexico_City',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
-  var stat=function(v,l,c){return '<div style="padding:0 20px;border-left:0.8px solid var(--border)"><div style="font-family:var(--mono);font-size:21px;font-weight:700;color:'+(c||'var(--text)')+';line-height:1;font-variant-numeric:tabular-nums">'+v+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">'+l+'</div></div>';};
+  var stat=function(v,l,c){return '<div style="padding:0 20px;border-left:0.8px solid var(--border)"><div style="font-family:var(--mono);font-size:21px;font-weight:700;color:'+(c||'var(--text)')+';line-height:1;font-variant-numeric:tabular-nums">'+v+'</div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">'+l+'</div></div>';};
   var head='<div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px">'
     +'<div><div style="display:flex;align-items:center;gap:9px"><span class="radar-live-dot"></span>'
       +'<span style="font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text);font-weight:700">Radar · en vivo</span></div>'
       +'<div style="font-size:12px;color:var(--text-muted);margin-top:5px;max-width:620px">Señal regulatoria integral por tema — cruza noticias nacionales y estatales, DOF, Congreso, NOMs e instrumentos internacionales.</div></div>'
-    +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);letter-spacing:0.04em">CDMX · '+ts+'</div></div>'
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:0.04em">CDMX · '+ts+'</div></div>'
     +'<div style="display:flex;align-items:stretch;margin:18px 0 22px">'
-      +'<div style="padding-right:20px"><div style="font-family:var(--mono);font-size:21px;font-weight:700;color:var(--text);line-height:1;font-variant-numeric:tabular-nums">'+sum('senal')+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">Señal total</div></div>'
+      +'<div style="padding-right:20px"><div style="font-family:var(--mono);font-size:21px;font-weight:700;color:var(--text);line-height:1;font-variant-numeric:tabular-nums">'+sum('senal')+'</div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">Señal total</div></div>'
       +stat(sum('news90'),'Noticias 90d')+stat(sum('est'),'Prensa edo.')+stat(sum('dof'),'DOF')+stat(sum('cong'),'Congreso')+stat(sum('noms'),'NOMs')+stat(sum('intl'),'Internac.')
     +'</div>';
   var _pin='<svg width="8" height="8" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" style="vertical-align:-1px"><path d="M10 18s6-5.5 6-10a6 6 0 0 0-12 0c0 4.5 6 10 6 10Z"/><circle cx="10" cy="7.5" r="2"/></svg>';
@@ -3287,11 +3295,11 @@ function _radarDetailHTML(temaId){
         +'<span style="width:7px;height:7px;border-radius:50%;background:'+col+';flex-shrink:0"></span>'
         +'<span style="font-size:12px;font-weight:700;color:'+col+';letter-spacing:.01em">'+title+'</span>'
         +'<span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+items.length+'</span></div>'
-      +(items.length?items.join(''):'<div style="font-size:11.5px;color:var(--text-muted);padding:8px 0">Sin registros que crucen con este tema.</div>')+'</div>';
+      +(items.length?items.join(''):'<div style="font-size:11px;color:var(--text-muted);padding:8px 0">Sin registros que crucen con este tema.</div>')+'</div>';
   }
   function row(title,meta,url){
     return '<div'+(url?' onclick="window.open(\''+esc(url)+'\',\'_blank\')" style="cursor:pointer;':' style="')+'display:flex;align-items:baseline;gap:14px;padding:9px 0;border-top:0.8px solid var(--border)">'
-      +'<div style="flex:1;min-width:0;font-size:12.5px;color:var(--text);line-height:1.45">'+title+'</div>'
+      +'<div style="flex:1;min-width:0;font-size:12px;color:var(--text);line-height:1.45">'+title+'</div>'
       +(meta?'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+meta+'</span>':'')+'</div>';
   }
   // Streams
@@ -3311,7 +3319,7 @@ function _radarDetailHTML(temaId){
     var part=(typeof _congPartido==='function')?_congPartido(c):'';
     var meta=(pp.accion?pp.accion+' · ':'')+cam+(part?' · '+part:'');
     return '<div onclick="window.open(\''+esc(c.url)+'\',\'_blank\')" style="cursor:pointer;display:flex;align-items:baseline;gap:12px;padding:9px 0;border-top:0.8px solid var(--border)">'
-      +'<div style="flex:1;min-width:0"><div style="font-size:12.5px;color:var(--text);line-height:1.4;font-weight:600">'+tit+'</div>'
+      +'<div style="flex:1;min-width:0"><div style="font-size:12px;color:var(--text);line-height:1.4;font-weight:600">'+tit+'</div>'
       +(pp.detalle?'<div style="font-size:11px;color:var(--text-sec);line-height:1.35;margin-top:1px">'+pp.detalle+'</div>':'')
       +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px">'+meta+'</div></div>'
       +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+_rdDate(c.fecha)+'</span></div>';
@@ -3335,9 +3343,9 @@ function _radarDetailHTML(temaId){
       +'<span style="flex:1;font-size:12px;color:var(--text)">'+e[0]+'</span>'
       +'<span style="width:70px;height:4px;background:rgba(0,0,0,0.06);flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(e[1]/mxE*100)+'%;background:'+RD_GREEN+'"></span></span>'
       +'<span style="font-family:var(--mono);font-size:11px;color:var(--text);min-width:20px;text-align:right">'+e[1]+'</span></div>';
-  }).join(''):'<div style="font-size:11.5px;color:var(--text-muted);padding:8px 0">Sin actividad estatal reciente</div>';
+  }).join(''):'<div style="font-size:11px;color:var(--text-muted);padding:8px 0">Sin actividad estatal reciente</div>';
   var estBlock='<div style="margin-bottom:20px"><div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid '+col+'33"><span style="width:7px;height:7px;border-radius:50%;background:'+col+'"></span><span style="font-size:12px;font-weight:700;color:'+col+'">Estados más activos</span> <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+topE.length+'</span></div>'+estBars+'</div>';
-  return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:9px;height:9px;border-radius:50%;background:'+col+'"></span><span style="font-family:var(--mono);font-size:9.5px;color:'+col+';letter-spacing:0.1em;text-transform:uppercase;font-weight:700">'+tema.name+' · Vista 360°</span></div>'
+  return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:9px;height:9px;border-radius:50%;background:'+col+'"></span><span style="font-family:var(--mono);font-size:9px;color:'+col+';letter-spacing:0.1em;text-transform:uppercase;font-weight:700">'+tema.name+' · Vista 360°</span></div>'
     +_emisBlock(tema)
     +(tema.id==='circular'?_podecibiBlock():'')
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
@@ -3385,19 +3393,19 @@ function _podecibiBlock(){
       +'display:flex;align-items:flex-start;gap:11px;padding:10px 0;border-top:0.8px solid var(--border)"'+(p.url?' title="Abrir declaratoria DOF"':'')+'>'
       +'<span style="width:8px;height:8px;border-radius:50%;background:'+c+';flex-shrink:0;margin-top:4px'+(canc?';opacity:.6':'')+'"></span>'
       +'<div style="flex:1;min-width:0">'
-        +'<div style="font-size:12.5px;font-weight:600;color:'+(canc?'var(--text-muted)':'var(--text)')+';'+(canc?'text-decoration:line-through':'')+'">'+p.municipio+', '+p.estado+'</div>'
-        +(meta?'<div style="font-size:10.5px;color:var(--text-muted);margin-top:1px">'+meta+'</div>':'')
+        +'<div style="font-size:12px;font-weight:600;color:'+(canc?'var(--text-muted)':'var(--text)')+';'+(canc?'text-decoration:line-through':'')+'">'+p.municipio+', '+p.estado+'</div>'
+        +(meta?'<div style="font-size:10px;color:var(--text-muted);margin-top:1px">'+meta+'</div>':'')
         +(p.enfoque?'<div style="font-size:11px;color:var(--text-sec);line-height:1.4;margin-top:3px">'+p.enfoque+'</div>':'')
         +(p.nota?'<div style="font-size:10px;color:var(--text-muted);line-height:1.4;margin-top:3px">'+p.nota+'</div>':'')
       +'</div>'
       +'<div style="text-align:right;flex-shrink:0"><div style="font-family:var(--mono);font-size:9px;font-weight:700;color:'+c+';text-transform:uppercase;letter-spacing:.04em">'+(LBL[p.estatus]||'')+'</div>'
-        +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:3px">'+fmt(p.declaratoria)+'</div></div>'
+        +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:3px">'+fmt(p.declaratoria)+'</div></div>'
     +'</div>';
   }).join('');
   var vig=(d.polos||[]).filter(function(p){return p.estatus==='vigente';}).length;
   return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
     +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid rgba(0,158,144,0.25)"><span style="width:7px;height:7px;border-radius:50%;background:#009E90"></span><span style="font-size:12px;font-weight:700;color:#009E90">Polos de Economía Circular (PODECIBI)</span> <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+d.polos.length+' · '+vig+' vigente'+(vig===1?'':'s')+'</span></div>'
-    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-bottom:4px">Declaratorias SEMARNAT · DOF</div>'
+    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-bottom:4px">Declaratorias SEMARNAT · DOF</div>'
     +rows
   +'</div>';
 }
@@ -3412,10 +3420,10 @@ function _emisBlock(tema){
     return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
       +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:9px"><span style="width:7px;height:7px;border-radius:50%;background:'+ecol+'"></span><span style="font-size:12px;font-weight:700;color:'+ecol+'">Emisiones nacionales GEI · INECC</span></div>'
       +'<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px">'
-        +'<div><span style="font-size:28px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">'+_emisMt(d.total_bruto)+'</span><span style="font-size:14px;color:var(--text-sec);font-weight:600"> MtCO2e</span> <span style="font-size:10.5px;color:var(--text-muted)">brutas '+d.ultimo_anio+'</span></div>'
+        +'<div><span style="font-size:28px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">'+_emisMt(d.total_bruto)+'</span><span style="font-size:14px;color:var(--text-sec);font-weight:600"> MtCO2e</span> <span style="font-size:10px;color:var(--text-muted)">brutas '+d.ultimo_anio+'</span></div>'
         +(growth!=null?'<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text-sec)">'+(growth>=0?'+':'')+growth+'% desde '+first.anio+'</div>':'')
       +'</div>'+_emisCurve(serie,'bruto_tco2e',RD_GREEN)
-      +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:8px">'+_emisMt(d.total_netas)+' Mt netas con absorción · Fuente: INECC · INEGYCEI (datos.gob.mx)</div></div>';
+      +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:8px">'+_emisMt(d.total_netas)+' Mt netas con absorción · Fuente: INECC · INEGYCEI (datos.gob.mx)</div></div>';
   }
   var sec=_emisSector(tema);
   if(!sec)return '';
@@ -3423,10 +3431,10 @@ function _emisBlock(tema){
   return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
     +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:9px"><span style="width:7px;height:7px;border-radius:50%;background:'+ecol+'"></span><span style="font-size:12px;font-weight:700;color:'+ecol+'">Emisiones GEI del sector · INECC</span></div>'
     +'<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px">'
-      +'<div><span style="font-size:28px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">'+_emisMt(sec.tco2e)+'</span><span style="font-size:14px;color:var(--text-sec);font-weight:600"> MtCO2e</span> <span style="font-size:10.5px;color:var(--text-muted)">'+d.ultimo_anio+'</span></div>'
+      +'<div><span style="font-size:28px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">'+_emisMt(sec.tco2e)+'</span><span style="font-size:14px;color:var(--text-sec);font-weight:600"> MtCO2e</span> <span style="font-size:10px;color:var(--text-muted)">'+d.ultimo_anio+'</span></div>'
       +'<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text-sec)">'+sec.pct+'% del total nacional</div>'
     +'</div>'+_emisCurve(sec.serie,'tco2e',RD_GREEN)
-    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:8px">'+(neg?'Valor negativo = absorción (sumidero forestal). ':'')+'Fuente: INECC · INEGYCEI (datos.gob.mx)</div></div>';
+    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:8px">'+(neg?'Valor negativo = absorción (sumidero forestal). ':'')+'Fuente: INECC · INEGYCEI (datos.gob.mx)</div></div>';
 }
 // Refresca el detalle si las emisiones cargan después de abrir el Radar
 function renderEmisiones(){var d=document.getElementById('rdc-detail');if(d&&_radarSel){d.innerHTML=_radarDetailHTML(_radarSel);}}
@@ -3455,10 +3463,10 @@ function renderSPPerfil(state,data,sc){
   const pctMax=pobMax&&pobTotal?(pobMax/pobTotal)*100:1;
   function statRow(label,value,barPct,note){
     return `<div style="display:grid;grid-template-columns:172px 1fr;gap:4px 18px;align-items:baseline;padding:11px 0;border-bottom:0.8px solid var(--border)">
-      <div style="font-size:9.5px;font-weight:600;letter-spacing:0.09em;color:var(--text-muted);text-transform:uppercase">${label}</div>
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.09em;color:var(--text-muted);text-transform:uppercase">${label}</div>
       <div>
         <span style="font-size:17px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">${value}</span>
-        ${note?`<span style="font-size:10.5px;color:var(--text-muted);margin-left:8px">${note}</span>`:''}
+        ${note?`<span style="font-size:10px;color:var(--text-muted);margin-left:8px">${note}</span>`:''}
         ${barPct!=null?`<div style="height:3px;background:rgba(0,0,0,0.06);margin-top:7px;max-width:340px"><div style="width:${Math.max(1.5,barPct)}%;height:100%;background:var(--green)"></div></div>`:''}
       </div>
     </div>`;
@@ -3469,31 +3477,31 @@ function renderSPPerfil(state,data,sc){
     +statRow('Capital',perfil.capital||data.capital||'\u2014',null,'')
     +statRow('Poblaci\u00f3n econ\u00f3micamente activa',perfil.pea?fmtNum(perfil.pea):'\u2014',perfil.pea&&peaMax?(perfil.pea/peaMax)*100:null,perfil.pea?'ENOE '+(perfil.pea_periodo||''):'Integraci\u00f3n en curso');
   document.getElementById('sp-perfil').innerHTML=rows
-    +`<div style="margin-top:16px;padding-top:14px;font-size:12.5px;line-height:1.65;color:var(--text-sec)">${narrative}</div>`
-    +(data.congreso?`<div style="margin-top:18px;padding-top:14px;border-top:0.8px solid var(--border)"><a href="${data.congreso}" target="_blank" rel="noopener" style="font-size:12.5px;font-weight:600;color:var(--green);text-decoration:none">Portal del Congreso de ${state} ↗</a><div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px;word-break:break-all">${data.congreso}</div></div>`:'');
+    +`<div style="margin-top:16px;padding-top:14px;font-size:12px;line-height:1.65;color:var(--text-sec)">${narrative}</div>`
+    +(data.congreso?`<div style="margin-top:18px;padding-top:14px;border-top:0.8px solid var(--border)"><a href="${data.congreso}" target="_blank" rel="noopener" style="font-size:12px;font-weight:600;color:var(--green);text-decoration:none">Portal del Congreso de ${state} ↗</a><div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px;word-break:break-all">${data.congreso}</div></div>`:'');
 }
 // Sitios contaminados/remediados por entidad (SEMARNAT · datos.gob.mx, ingesta real)
 function _sitiosBlock(state,bare){
   var d=(_sitiosData&&_sitiosData.estados&&_sitiosData.estados[state]);
   if(!d)return '';
-  var stat=function(v,l,c){return '<div style="flex:1"><div style="font-size:22px;font-weight:700;color:'+(c||'var(--text)')+';font-variant-numeric:tabular-nums;line-height:1">'+v+'</div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">'+l+'</div></div>';};
+  var stat=function(v,l,c){return '<div style="flex:1"><div style="font-size:22px;font-weight:700;color:'+(c||'var(--text)')+';font-variant-numeric:tabular-nums;line-height:1">'+v+'</div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">'+l+'</div></div>';};
   var cont=Object.keys(d.por_contaminante||{}).map(function(k){return [k,d.por_contaminante[k]];});
   var mxc=Math.max.apply(null,cont.map(function(e){return e[1];}).concat([1]));
   var bars=cont.slice(0,5).map(function(e){
-    return '<div style="display:flex;align-items:center;gap:10px;padding:5px 0"><span style="flex:1;font-size:11.5px;color:var(--text)">'+e[0]+'</span>'
+    return '<div style="display:flex;align-items:center;gap:10px;padding:5px 0"><span style="flex:1;font-size:11px;color:var(--text)">'+e[0]+'</span>'
       +'<span style="width:80px;height:4px;background:rgba(0,0,0,0.06);flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(e[1]/mxc*100)+'%;background:#d97706"></span></span>'
       +'<span style="font-family:var(--mono);font-size:11px;color:var(--text-sec);min-width:26px;text-align:right">'+e[1]+'</span></div>';
   }).join('');
   var rec=(d.recientes||[]).slice(0,4).map(function(r){
     return '<div style="display:flex;align-items:baseline;gap:12px;padding:7px 0;border-top:0.8px solid var(--border)"><span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);flex-shrink:0">'+(r.anio||'—')+'</span>'
-      +'<div style="flex:1;min-width:0;font-size:11.5px;color:var(--text);line-height:1.4">'+(r.municipio||'—')+' <span style="color:var(--text-muted)">· '+(r.contaminante||'')+(r.modalidad?' · '+r.modalidad:'')+'</span></div></div>';
+      +'<div style="flex:1;min-width:0;font-size:11px;color:var(--text);line-height:1.4">'+(r.municipio||'—')+' <span style="color:var(--text-muted)">· '+(r.contaminante||'')+(r.modalidad?' · '+r.modalidad:'')+'</span></div></div>';
   }).join('');
   return (bare?'<div>':'<div style="margin-top:26px;padding-top:16px;border-top:0.8px solid var(--border)">')
-    +'<div style="font-size:9.5px;font-weight:600;letter-spacing:0.09em;color:var(--text-muted);text-transform:uppercase;margin-bottom:13px">Sitios contaminados · SEMARNAT</div>'
+    +'<div style="font-size:9px;font-weight:600;letter-spacing:0.09em;color:var(--text-muted);text-transform:uppercase;margin-bottom:13px">Sitios contaminados · SEMARNAT</div>'
     +'<div style="display:flex;gap:18px;margin-bottom:16px">'+stat(d.contaminados,'Contaminados','#d97706')+stat(d.remediados,'Remediados','var(--green)')+stat(d.pct_remediado+'%','Remediado',null)+'</div>'
     +(bars?'<div style="margin-bottom:6px">'+bars+'</div>':'')
     +(rec?'<div style="margin-top:10px">'+rec+'</div>':'')
-    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:12px">Fuente: SEMARNAT · Inventario Nacional de Sitios Contaminados y Remediados (datos.gob.mx)</div>'
+    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:12px">Fuente: SEMARNAT · Inventario Nacional de Sitios Contaminados y Remediados (datos.gob.mx)</div>'
     +'</div>';
 }
 function renderSPMateriales(state){
@@ -3506,7 +3514,7 @@ function renderSPMateriales(state){
   }
   el.innerHTML=`
     <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px">Materiales prohibidos / restringidos</div>
-    <div style="font-size:12.5px;color:var(--text-sec);margin-bottom:12px">Desde <strong>${mat.desde}</strong> \u00b7 ${mat.instrumento}</div>
+    <div style="font-size:12px;color:var(--text-sec);margin-bottom:12px">Desde <strong>${mat.desde}</strong> \u00b7 ${mat.instrumento}</div>
     ${mat.materiales.map(m=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border);font-size:13px;color:var(--text)"><span style="color:#DC2626;font-size:12px">\u2298</span>${m}</div>`).join('')}
     <div style="font-size:10px;color:var(--text-muted);margin-top:12px">Dataset de Scope v1 \u00b7 verificar el instrumento estatal vigente antes de decisiones de cumplimiento.</div>`;
 }
@@ -3522,7 +3530,7 @@ function renderSPActividad(state){
   var seen={},all=[];
   nat.concat(reg).forEach(function(a){var k=qa((a.titulo||'').toLowerCase()).slice(0,60);if(k&&!seen[k]){seen[k]=1;all.push(a);}});
   var recent=all.filter(function(a){return parse(a.fecha)>cut;}).sort(function(a,b){return parse(b.fecha)-parse(a.fecha);});
-  el.innerHTML='<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">Menciones en medios \u00b7 \u00faltimas 2 semanas <span style="color:var(--dim)">\u00b7 '+recent.length+'</span></div>'
+  el.innerHTML='<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">Menciones en medios \u00b7 \u00faltimas 2 semanas <span style="color:var(--dim)">\u00b7 '+recent.length+'</span></div>'
     +(recent.length?recent.slice(0,25).map(function(n){
         var f=n.fecha?new Date(String(n.fecha).substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
         return '<div class="sp-news-item"><div class="sp-news-title"><a href="'+(n.url||'#')+'" target="_blank" rel="noopener">'+(n.titulo||'')+'</a></div><div class="sp-news-meta">'+f+(n.fuente?' \u00b7 '+n.fuente:'')+'</div></div>';
@@ -3539,18 +3547,18 @@ function renderSPSectorial(state){
       const a=0.06+(s.pct/maxPct)*0.84;
       const dark=a>0.5;
       return`<div style="background:rgba(0,158,144,${a.toFixed(2)});padding:14px 12px;display:flex;flex-direction:column;gap:4px;min-height:74px;justify-content:space-between">
-        <span style="font-size:10.5px;line-height:1.3;color:${dark?'rgba(255,255,255,0.9)':'var(--text-sec)'}">${s.n}</span>
+        <span style="font-size:10px;line-height:1.3;color:${dark?'rgba(255,255,255,0.9)':'var(--text-sec)'}">${s.n}</span>
         <span style="font-size:19px;font-weight:700;font-variant-numeric:tabular-nums;color:${dark?'#fff':'var(--text)'}">${s.pct}%</span>
       </div>`;
     }).join('');
     document.getElementById('sp-sectorial').innerHTML=`
       <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">Vocación industrial del estado</div>
-      <div style="font-size:12.5px;color:var(--text-sec);margin-bottom:14px">${state} concentra su producción en <strong>${lead}</strong>.</div>
+      <div style="font-size:12px;color:var(--text-sec);margin-bottom:14px">${state} concentra su producción en <strong>${lead}</strong>.</div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px">${tiles}</div>
       <div style="display:flex;align-items:center;gap:8px;margin-top:12px">
-        <span style="font-size:9.5px;color:var(--text-muted)">Menor peso</span>
+        <span style="font-size:9px;color:var(--text-muted)">Menor peso</span>
         <div style="flex:0 0 120px;height:6px;background:linear-gradient(90deg,rgba(0,158,144,0.06),rgba(0,158,144,0.9))"></div>
-        <span style="font-size:9.5px;color:var(--text-muted)">Mayor peso</span>
+        <span style="font-size:9px;color:var(--text-muted)">Mayor peso</span>
       </div>
       <div style="font-size:10px;color:var(--text-muted);margin-top:10px">% de la producción bruta total del estado · ${perfil.sectores_periodo||'Censos Económicos'} · INEGI vía Data México</div>`;
     return;
@@ -3572,18 +3580,18 @@ function renderSPSectorial(state){
     const a=0.05+(s.val/100)*0.85;
     const dark=a>0.5;
     return`<div style="background:rgba(0,158,144,${a.toFixed(2)});padding:14px 12px;display:flex;flex-direction:column;gap:4px;min-height:74px;justify-content:space-between">
-      <span style="font-size:10.5px;line-height:1.3;color:${dark?'rgba(255,255,255,0.9)':'var(--text-sec)'}">${s.n}</span>
+      <span style="font-size:10px;line-height:1.3;color:${dark?'rgba(255,255,255,0.9)':'var(--text-sec)'}">${s.n}</span>
       <span style="font-size:19px;font-weight:700;font-variant-numeric:tabular-nums;color:${dark?'#fff':'var(--text)'}">${s.val}</span>
     </div>`;
   }).join('');
   document.getElementById('sp-sectorial').innerHTML=`
     <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">Vocaci\u00f3n industrial del estado</div>
-    <div style="font-size:12.5px;color:var(--text-sec);margin-bottom:14px">${state} concentra su actividad en <strong>${lead}</strong>.</div>
+    <div style="font-size:12px;color:var(--text-sec);margin-bottom:14px">${state} concentra su actividad en <strong>${lead}</strong>.</div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px">${tiles}</div>
     <div style="display:flex;align-items:center;gap:8px;margin-top:12px">
-      <span style="font-size:9.5px;color:var(--text-muted)">Menor peso</span>
+      <span style="font-size:9px;color:var(--text-muted)">Menor peso</span>
       <div style="flex:0 0 120px;height:6px;background:linear-gradient(90deg,rgba(0,158,144,0.05),rgba(0,158,144,0.9))"></div>
-      <span style="font-size:9.5px;color:var(--text-muted)">Mayor peso</span>
+      <span style="font-size:9px;color:var(--text-muted)">Mayor peso</span>
     </div>
     <div style="font-size:10px;color:var(--text-muted);margin-top:10px">Perfil econ\u00f3mico-industrial estimado por Scope (0\u2013100). Sustituci\u00f3n por Censos Econ\u00f3micos INEGI en curso.</div>`;
 }
@@ -3706,10 +3714,10 @@ function _listHTML(arr,fallbackUrl,limit){
     var autor=it.autor?'<span style="font-size:9px;color:var(--text-muted);display:block;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+it.autor+'</span>':'';
     h+='<div style="padding:8px 0;border-bottom:0.8px solid rgba(0,0,0,0.05)">';
     h+='<div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">';
-    if(cat) h+='<span style="font-size:8.5px;font-weight:700;padding:1px 6px;border-radius:3px;background:'+cc+'18;color:'+cc+';letter-spacing:0.04em">'+cat.toUpperCase()+'</span>';
-    h+='<span style="font-size:9.5px;color:var(--text-muted);margin-left:auto">'+fecha+'</span>';
+    if(cat) h+='<span style="font-size:8px;font-weight:700;padding:1px 6px;border-radius:3px;background:'+cc+'18;color:'+cc+';letter-spacing:0.04em">'+cat.toUpperCase()+'</span>';
+    h+='<span style="font-size:9px;color:var(--text-muted);margin-left:auto">'+fecha+'</span>';
     h+='</div>';
-    h+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" rel="noopener" style="font-size:11.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block" title="'+titulo.replace(/"/g,'&quot;')+'" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text)\'">'+tCorto+'</a>';
+    h+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" rel="noopener" style="font-size:11px;color:var(--text);text-decoration:none;line-height:1.4;display:block" title="'+titulo.replace(/"/g,'&quot;')+'" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text)\'">'+tCorto+'</a>';
     h+=autor;
     h+='</div>';
   });
@@ -3951,7 +3959,7 @@ function renderCongresoChart(){
     +'<span style="font-family:var(--mono);font-size:9px;color:#066750">● Comisión Permanente</span>'
     +'<span style="margin-left:auto;color:var(--green);cursor:pointer;font-weight:600" onclick="showRegulacion(\'congresomx\')">Ver todo →</span>'
     +'</div>'
-    +'<div style="font-size:9.5px;color:var(--text-muted);margin-top:3px">Haz clic en una semana para ver y abrir los instrumentos</div>';
+    +'<div style="font-size:9px;color:var(--text-muted);margin-top:3px">Haz clic en una semana para ver y abrir los instrumentos</div>';
   host.innerHTML=svg+leyenda;
   if(!_congAnimated){
     var svgEl=document.getElementById('cong-svg');
@@ -3983,13 +3991,13 @@ function _congHover(ev,wi){
   var lista=w.items.slice(0,4).map(function(it){
     var tag=it.camara==='SEN'?'<span style="color:#066750;font-weight:700">S</span>':'<span style="color:var(--green);font-weight:700">D</span>';
     var p=_congParse(it);var t=p.titulo; if(t.length>62)t=t.slice(0,60)+'…';
-    return '<div style="padding:2px 0;font-size:10.5px;color:var(--text-sec);line-height:1.35">'+tag+' <span style="color:var(--text-muted);font-size:8.5px">'+p.accion+'</span> · '+t+'</div>';
+    return '<div style="padding:2px 0;font-size:10px;color:var(--text-sec);line-height:1.35">'+tag+' <span style="color:var(--text-muted);font-size:8px">'+p.accion+'</span> · '+t+'</div>';
   }).join('');
-  var mas=w.items.length>4?'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px">+'+(w.items.length-4)+' más</div>':'';
+  var mas=w.items.length>4?'<div style="font-size:9px;color:var(--text-muted);margin-top:2px">+'+(w.items.length-4)+' más</div>':'';
   var tt=_congTT();
   tt.innerHTML='<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase">Semana '+rango+'</div>'
-    +'<div style="margin:4px 0;font-size:11.5px"><span style="color:var(--green);font-weight:600">'+w.dip+' Diputados</span> · <span style="color:#066750;font-weight:600">'+w.sen+' Senado</span></div>'
-    +(w.items.length?'<div style="border-top:0.8px solid var(--border);padding-top:4px">'+lista+mas+'</div>':'<div style="font-size:10.5px;color:var(--text-muted)">Sin instrumentos registrados</div>');
+    +'<div style="margin:4px 0;font-size:11px"><span style="color:var(--green);font-weight:600">'+w.dip+' Diputados</span> · <span style="color:#066750;font-weight:600">'+w.sen+' Senado</span></div>'
+    +(w.items.length?'<div style="border-top:0.8px solid var(--border);padding-top:4px">'+lista+mas+'</div>':'<div style="font-size:10px;color:var(--text-muted)">Sin instrumentos registrados</div>');
   tt.style.display='block';
   tt.style.left=Math.min(ev.clientX+14,window.innerWidth-330)+'px';
   tt.style.top=Math.min(ev.clientY+14,window.innerHeight-160)+'px';
@@ -4012,17 +4020,17 @@ function _congColHTML(items,color,label){
     var url=(it.url||'').replace(/'/g,'%27');
     var open=url?'onclick="window.open(\''+url+'\',\'_blank\')" style="cursor:pointer"':'style="cursor:default"';
     var accion='<span style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:'+color+'">'+p.accion+'</span>';
-    var nom=(p.noms&&p.noms.length)?'<span style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted)"> · '+p.noms[0]+'</span>':'';
+    var nom=(p.noms&&p.noms.length)?'<span style="font-family:var(--mono);font-size:8px;color:var(--text-muted)"> · '+p.noms[0]+'</span>':'';
     return '<div '+open+' class="cong-inst" title="'+(it.titulo||'').replace(/"/g,'&quot;')+'" style="display:flex;align-items:flex-start;gap:8px">'
       +_congPartidoEl(partido,16)
       +'<div style="flex:1;min-width:0">'
         +'<div style="margin-bottom:1px">'+accion+nom+'</div>'
-        +'<div style="font-size:11.5px;color:var(--text);line-height:1.35;font-weight:600">'+p.titulo+(url?' <span style="color:'+color+';font-weight:400">↗</span>':'')+'</div>'
+        +'<div style="font-size:11px;color:var(--text);line-height:1.35;font-weight:600">'+p.titulo+(url?' <span style="color:'+color+';font-weight:400">↗</span>':'')+'</div>'
         +(p.detalle?'<div style="font-size:10px;color:var(--text-sec);line-height:1.35;margin-top:1px">'+p.detalle+'</div>':'')
       +'</div></div>';
   }).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:10px 0">Sin instrumentos esta semana</div>';
   return '<div style="flex:1;min-width:0">'
-    +'<div style="font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:'+color+';padding-bottom:6px;border-bottom:1.5px solid '+color+';margin-bottom:4px">'+label+' ('+items.length+')</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:'+color+';padding-bottom:6px;border-bottom:1.5px solid '+color+';margin-bottom:4px">'+label+' ('+items.length+')</div>'
     +'<div style="max-height:calc(70vh - 90px);overflow-y:auto">'+rows+'</div>'
     +'</div>';
 }
@@ -4135,19 +4143,19 @@ function _congRow(it){
   var url=(it.url||'#').replace(/'/g,'%27');
   var cam=it.camara==='SEN'?'Senado':'Diputados';
   var mk=_congMatchKw(it,_congKwsCache);
-  var accionTag='<span style="font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#066750">'+p.accion+'</span>';
+  var accionTag='<span style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#066750">'+p.accion+'</span>';
   var nomTag=(p.noms&&p.noms.length)?'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)"> · '+p.noms[0]+'</span>':'';
-  var badge=mk?'<span title="Coincide con tu terminal" style="font-family:var(--mono);font-size:8.5px;color:#066750;white-space:nowrap"> · ● tu terminal</span>':'';
+  var badge=mk?'<span title="Coincide con tu terminal" style="font-family:var(--mono);font-size:8px;color:#066750;white-space:nowrap"> · ● tu terminal</span>':'';
   var quien=autor?('<span style="color:var(--text-sec);font-weight:600">'+autor+'</span> · '):'';
   return '<div onclick="window.open(\''+url+'\',\'_blank\')" style="display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-top:0.8px solid var(--border);cursor:pointer" title="'+(it.titulo||'').replace(/"/g,'&quot;')+'">'
     +avatar
     +'<div style="flex:1;min-width:0">'
       +'<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">'+accionTag+nomTag+'</div>'
       +'<div style="font-size:13px;color:var(--text);line-height:1.35;font-weight:600">'+p.titulo+'</div>'
-      +(p.detalle?'<div style="font-size:11.5px;color:var(--text-sec);line-height:1.4;margin-top:3px">'+p.detalle+'</div>':'')
-      +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+quien+cam+(partido?' · '+partido:'')+badge+'</div>'
+      +(p.detalle?'<div style="font-size:11px;color:var(--text-sec);line-height:1.4;margin-top:3px">'+p.detalle+'</div>':'')
+      +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+quien+cam+(partido?' · '+partido:'')+badge+'</div>'
     +'</div>'
-    +'<span style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+fecha+'</span>'
+    +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+fecha+'</span>'
     +'</div>';
 }
 function _congRenderList(){
@@ -4170,12 +4178,12 @@ function _congRenderList(){
     return new Date(b.fecha||0)-new Date(a.fecha||0);
   });
   var shown=_congExpanded?list.slice(0,50):list.slice(0,6);
-  var rows=shown.map(_congRow).join('')||'<div style="font-size:11.5px;color:var(--text-muted);padding:16px 0;font-style:italic">Sin documentos que coincidan con el filtro.</div>';
-  var verMas=list.length>6?'<div onclick="_toggleCongreso()" style="font-size:11.5px;font-weight:600;color:var(--green);cursor:pointer;padding:12px 0 2px;user-select:none">'+(_congExpanded?'▲ Ver menos':'▼ Ver más ('+(list.length-6)+')')+'</div>':'';
+  var rows=shown.map(_congRow).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:16px 0;font-style:italic">Sin documentos que coincidan con el filtro.</div>';
+  var verMas=list.length>6?'<div onclick="_toggleCongreso()" style="font-size:11px;font-weight:600;color:var(--green);cursor:pointer;padding:12px 0 2px;user-select:none">'+(_congExpanded?'▲ Ver menos':'▼ Ver más ('+(list.length-6)+')')+'</div>':'';
   var tipoLbl=_congPanel==='pto'?'exhortos y proposiciones':'iniciativas de ley';
-  var head='<div style="font-size:11.5px;color:var(--text-sec);margin-bottom:3px;line-height:1.45">'+list.length+' '+tipoLbl+' ambientales en revisión'
+  var head='<div style="font-size:11px;color:var(--text-sec);margin-bottom:3px;line-height:1.45">'+list.length+' '+tipoLbl+' ambientales en revisión'
     +(tieneKw&&nMatch?' · <span style="color:#066750;font-weight:600">'+nMatch+' tocan tus temas</span> (arriba)':'')+'</div>';
-  var toggle=tieneKw?'<label style="display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:var(--text-muted);cursor:pointer;margin-bottom:8px;user-select:none"><input type="checkbox" '+(_congSoloMis?'checked':'')+' onchange="_congToggleMis(this.checked)" style="accent-color:#066750;cursor:pointer"> Solo mis temas</label>':'';
+  var toggle=tieneKw?'<label style="display:inline-flex;align-items:center;gap:6px;font-size:10px;color:var(--text-muted);cursor:pointer;margin-bottom:8px;user-select:none"><input type="checkbox" '+(_congSoloMis?'checked':'')+' onchange="_congToggleMis(this.checked)" style="accent-color:#066750;cursor:pointer"> Solo mis temas</label>':'';
   host.innerHTML=head+toggle
     +'<div'+(_congExpanded?' style="max-height:480px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent"':'')+'>'+rows+'</div>'+verMas;
 }
@@ -4247,8 +4255,8 @@ function renderWidgetGacetas(){
           html+='<div style="border-bottom:0.8px solid var(--border)">';
           html+='<div class="gaceta-state-row" onclick="'+(hasItems?'_toggleGacetaRow(\''+sid+'\')':'openStatePanel(\''+s+'\')')+'">';
           html+='<span style="font-size:9px;font-weight:700;color:var(--text-muted);min-width:28px">'+abbr+'</span>';
-          html+='<span style="font-size:11.5px;flex:1;color:var(--text)">'+s+'</span>';
-          html+='<span style="font-size:9.5px;color:var(--text-muted);white-space:nowrap">'+r.categoria_principal+'</span>';
+          html+='<span style="font-size:11px;flex:1;color:var(--text)">'+s+'</span>';
+          html+='<span style="font-size:9px;color:var(--text-muted);white-space:nowrap">'+r.categoria_principal+'</span>';
           html+='<span style="font-size:10px;color:var(--text-muted);min-width:18px;text-align:right;margin-left:6px">'+r.total+'</span>';
           if(hasItems) html+='<span id="gaceta-arr-'+sid+'" style="font-size:10px;color:var(--text-muted);margin-left:4px;transition:transform 0.2s;display:inline-block">›</span>';
           html+='</div>';
@@ -4259,10 +4267,10 @@ function renderWidgetGacetas(){
               var fecha=it.fecha?new Date(it.fecha+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
               html+='<div style="padding:5px 0;border-bottom:0.8px solid rgba(0,0,0,0.04)">';
               html+='<div style="display:flex;align-items:center;gap:5px;margin-bottom:2px">';
-              html+='<span style="font-size:8.5px;color:var(--text-muted);letter-spacing:0.03em">'+((it.categoria||'').toUpperCase())+'</span>';
+              html+='<span style="font-size:8px;color:var(--text-muted);letter-spacing:0.03em">'+((it.categoria||'').toUpperCase())+'</span>';
               html+='<span style="font-size:9px;color:var(--text-muted);margin-left:auto">'+fecha+'</span>';
               html+='</div>';
-              html+='<a href="'+(it.url||'#')+'" target="_blank" rel="noopener" style="font-size:10.5px;color:var(--text);text-decoration:none;line-height:1.4;display:block" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text)\'">'+(it.titulo||'').substring(0,100)+((it.titulo||'').length>100?'…':'')+'</a>';
+              html+='<a href="'+(it.url||'#')+'" target="_blank" rel="noopener" style="font-size:10px;color:var(--text);text-decoration:none;line-height:1.4;display:block" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text)\'">'+(it.titulo||'').substring(0,100)+((it.titulo||'').length>100?'…':'')+'</a>';
               html+='</div>';
             });
             if(stateItems.length>8) html+='<div style="font-size:10px;color:var(--text-muted);padding:4px 0">+ '+(stateItems.length-8)+' documentos más → <span style="cursor:pointer;color:var(--green)" onclick="openStatePanel(\''+s+'\')">ver ficha</span></div>';
@@ -4806,7 +4814,7 @@ function _wizPaintBody(){
       return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'temas\',\''+c.id+'\')">'
         +'<span class="mark">'+(on?'●':'○')+'</span>'
         +'<span style="width:8px;height:8px;border-radius:50%;background:'+c.color+';flex-shrink:0"></span>'
-        +'<span style="flex:1;font-size:12.5px;color:var(--text)">'+c.name+'</span>'
+        +'<span style="flex:1;font-size:12px;color:var(--text)">'+c.name+'</span>'
         +'<span style="font-family:var(--mono);font-size:9px;color:var(--dim)">'+c.kw.slice(0,3).join(' · ')+'…</span>'
         +'</div>';
     }).join('');
@@ -4826,8 +4834,8 @@ function _wizPaintBody(){
       var id=_comId(c),on=_wiz.sel.comisiones.has(id);
       return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'comisiones\',\''+id+'\')">'
         +'<span class="mark">'+(on?'●':'○')+'</span>'
-        +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);line-height:1.3">'+c.nombre+'</div>'
-        +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:2px">'+((c.integrantes||[]).length)+' integrantes</div></div>'
+        +'<div style="flex:1;min-width:0"><div style="font-size:11px;color:var(--text);line-height:1.3">'+c.nombre+'</div>'
+        +'<div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-top:2px">'+((c.integrantes||[]).length)+' integrantes</div></div>'
         +'</div>';
     }
     function _comSec(label,list){
@@ -4862,12 +4870,12 @@ function _wizPaintBody(){
   else if(p==='afinar'){
     b.innerHTML=
       '<div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:4px">Palabras clave</div>'
-      +'<div style="font-size:11.5px;color:var(--text-sec);line-height:1.5;margin-bottom:12px">Son los términos con los que tu terminal te alerta <b>primero</b>. Cada palabra se cruza contra el DOF, el feed del Ejecutivo, las gacetas estatales y las noticias: cuando aparece, ese asunto sube en tu señal. Agrega lo que solo tú conoces — el nombre de tu empresa, tus plantas, tu cuenca, un trámite o una NOM puntual.</div>'
+      +'<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-bottom:12px">Son los términos con los que tu terminal te alerta <b>primero</b>. Cada palabra se cruza contra el DOF, el feed del Ejecutivo, las gacetas estatales y las noticias: cuando aparece, ese asunto sube en tu señal. Agrega lo que solo tú conoces — el nombre de tu empresa, tus plantas, tu cuenca, un trámite o una NOM puntual.</div>'
       +'<input class="cw-search" id="cw-kw-input" placeholder="Escribe y presiona Enter · ej. mi empresa, cuenca Lerma, NOM-001…" onkeydown="_wizKwKey(event)" style="margin-bottom:8px">'
       +'<div class="cw-chips" id="cw-chips"></div>'
       +'<div id="cw-kw-sug"></div>'
       +'<div style="font-size:12px;font-weight:700;color:var(--green);margin:22px 0 3px">Nivel de riesgo por tema</div>'
-      +'<div style="font-size:11.5px;color:var(--text-sec);line-height:1.5;margin-bottom:10px">Le dice al algoritmo cuánto peso dar a cada tema. Un tema en <b>alto</b> pesa más en tu señal y encabeza tu feed aunque tenga pocos registros.</div>'
+      +'<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-bottom:10px">Le dice al algoritmo cuánto peso dar a cada tema. Un tema en <b>alto</b> pesa más en tu señal y encabeza tu feed aunque tenga pocos registros.</div>'
       +'<div id="cw-riesgos"></div>'
       +'<div style="margin-top:22px;padding-top:14px;border-top:0.8px solid var(--border);font-size:11px;color:var(--text-muted);line-height:1.55">'
         +'<b style="color:var(--text-sec)">Cómo se afina tu terminal.</b> Todo lo que elegiste — temas, estados, comisiones, legisladores, referencias, palabras clave y niveles de riesgo — forma tu <b>perfil de relevancia</b>. Con él, la terminal ordena y prioriza lo que ves. Hoy se guarda en este equipo; al iniciar sesión viajará contigo y se volverá el insumo con el que afinamos tu algoritmo.'
@@ -4926,8 +4934,8 @@ function _wizLegRow(l){
     :'<span style="width:26px;height:26px;border-radius:50%;background:'+color+';display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0">'+initials(l.n)+'</span>';
   return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'legisladores\',\''+l.id.replace(/'/g,"\\'")+'\')" style="margin-bottom:5px">'
     +'<span class="mark">'+(on?'●':'○')+'</span>'+av
-    +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
-    +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.coms[0]+'</div></div>'
+    +'<div style="flex:1;min-width:0"><div style="font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
+    +'<div style="font-family:var(--mono);font-size:8px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.coms[0]+'</div></div>'
     +_wizPartyLogoEl(l.partido,18)
     +'</div>';
 }
@@ -4981,9 +4989,9 @@ function _wizRefNomsHTML(){
       return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'noms\',\''+n.id.replace(/'/g,"\\'")+'\')" style="align-items:flex-start;margin-bottom:5px">'
         +'<span class="mark" style="margin-top:2px">'+(on?'●':'○')+'</span>'
         +'<div style="flex:1;min-width:0">'
-          +'<div style="font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--green)">'+n.id+'</div>'
-          +'<div style="font-size:11.5px;color:var(--text);margin-top:2px;line-height:1.35">'+n.objeto+'</div>'
-          +(n.afecta?'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px;line-height:1.3">'+n.afecta+'</div>':'')
+          +'<div style="font-family:var(--mono);font-size:10px;font-weight:600;color:var(--green)">'+n.id+'</div>'
+          +'<div style="font-size:11px;color:var(--text);margin-top:2px;line-height:1.35">'+n.objeto+'</div>'
+          +(n.afecta?'<div style="font-size:9px;color:var(--text-muted);margin-top:2px;line-height:1.3">'+n.afecta+'</div>':'')
         +'</div></div>';
     }).join('');
   });
@@ -5005,40 +5013,40 @@ function _wizMonRow(setKey,id,title,sub,badge,on){
   var idEsc=String(id).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\''+setKey+'\',\''+idEsc+'\')" style="align-items:flex-start;margin-bottom:6px">'
     +'<span class="mark" style="margin-top:1px">'+(on?'●':'○')+'</span>'
-    +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);font-weight:500;line-height:1.3">'+title+'</div>'
-    +(sub?'<div style="font-size:9.5px;color:var(--text-muted);margin-top:2px;line-height:1.35">'+sub+'</div>':'')+'</div>'
+    +'<div style="flex:1;min-width:0"><div style="font-size:11px;color:var(--text);font-weight:500;line-height:1.3">'+title+'</div>'
+    +(sub?'<div style="font-size:9px;color:var(--text-muted);margin-top:2px;line-height:1.35">'+sub+'</div>':'')+'</div>'
     +(badge?'<div style="flex-shrink:0;margin-left:8px;text-align:right">'+badge+'</div>':'')
     +'</div>';
 }
 function _wizRefMonitoreoHTML(){
   var selCount=_wiz.sel.estados.size;
   var stHint=selCount?('Cruzado con tus <b>'+selCount+'</b> estado'+(selCount===1?'':'s')+' seleccionados.'):'Selecciona estados en el paso «Estados» para ver dónde aplica cada uno.';
-  var head='<div style="font-size:11.5px;color:var(--text-sec);line-height:1.5;margin-bottom:16px">Elige qué quieres <b>monitorear</b> y te decimos si aplica donde operas. '+stHint+'</div>';
+  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-bottom:16px">Elige qué quieres <b>monitorear</b> y te decimos si aplica donde operas. '+stHint+'</div>';
   var imps=_consImpuestoTipos();
   var impHTML='<div style="font-size:12px;font-weight:700;color:var(--green);margin:0 0 3px">¿Quieres monitorear un impuesto ambiental?</div>'
-    +'<div style="font-size:10.5px;color:var(--text-muted);margin-bottom:9px">Impuestos verdes estatales — extracción, emisiones, depósito de residuos…</div>'
+    +'<div style="font-size:10px;color:var(--text-muted);margin-bottom:9px">Impuestos verdes estatales — extracción, emisiones, depósito de residuos…</div>'
     +imps.map(function(t){
       var on=_wiz.sel.impuestos.has(t),mine=_wizStatesForImpuesto(t),nat=_impNationwide(t);
       var badge=mine.length
-        ?'<span style="font-size:9.5px;font-weight:700;color:var(--green);white-space:nowrap">✓ '+mine.length+' de tus estados</span>'
-        :(selCount?'<span style="font-size:9.5px;color:var(--text-muted);white-space:nowrap">— no en los tuyos</span>':'');
+        ?'<span style="font-size:9px;font-weight:700;color:var(--green);white-space:nowrap">✓ '+mine.length+' de tus estados</span>'
+        :(selCount?'<span style="font-size:9px;color:var(--text-muted);white-space:nowrap">— no en los tuyos</span>':'');
       var sub=mine.length?mine.map(function(s){return STATE_ABBR[s]||s;}).join(' · '):(nat+' entidad'+(nat===1?'':'es')+' en el país');
       return _wizMonRow('impuestos',t,t,sub,badge,on);
     }).join('');
   var mats=_consMaterialesTipos();
   var matHTML='<div style="font-size:12px;font-weight:700;color:var(--green);margin:22px 0 3px">¿Quieres monitorear un material prohibido?</div>'
-    +'<div style="font-size:10.5px;color:var(--text-muted);margin-bottom:9px">Plásticos de un solo uso y otros materiales vetados por entidad.</div>'
+    +'<div style="font-size:10px;color:var(--text-muted);margin-bottom:9px">Plásticos de un solo uso y otros materiales vetados por entidad.</div>'
     +(mats.length?mats.map(function(m){
       var on=_wiz.sel.materiales.has(m),mine=_wizStatesForMaterial(m),nat=_matNationwide(m);
       var badge=mine.length
-        ?'<span style="font-size:9.5px;font-weight:700;color:var(--green);white-space:nowrap">✓ prohibido en '+mine.length+'</span>'
-        :(selCount?'<span style="font-size:9.5px;color:var(--text-muted);white-space:nowrap">— no en los tuyos</span>':'');
+        ?'<span style="font-size:9px;font-weight:700;color:var(--green);white-space:nowrap">✓ prohibido en '+mine.length+'</span>'
+        :(selCount?'<span style="font-size:9px;color:var(--text-muted);white-space:nowrap">— no en los tuyos</span>':'');
       var sub=mine.length?mine.map(function(s){return STATE_ABBR[s]||s;}).join(' · '):(nat+' entidad'+(nat===1?'':'es')+' lo prohíben');
       return _wizMonRow('materiales',m,m,sub,badge,on);
     }).join(''):'<div style="font-size:11px;color:var(--dim)">Dataset en expansión.</div>');
   var instr=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]);
   var instrHTML='<div style="font-size:12px;font-weight:700;color:var(--green);margin:22px 0 3px">Instrumentos legales a la mano</div>'
-    +'<div style="font-size:10.5px;color:var(--text-muted);margin-bottom:9px">Leyes y reglamentos que quieres tener siempre visibles en tu terminal.</div>'
+    +'<div style="font-size:10px;color:var(--text-muted);margin-bottom:9px">Leyes y reglamentos que quieres tener siempre visibles en tu terminal.</div>'
     +instr.map(function(o){
       var on=_wiz.sel.instrumentos.has(o.n);
       var sub=(o.d||'').length>90?(o.d.slice(0,90)+'…'):(o.d||'');
@@ -5061,7 +5069,7 @@ function _wizPaintKwSug(){
   if(!sug.length){el.innerHTML='';return;}
   el.innerHTML='<div style="font-size:10px;color:var(--text-muted);margin:12px 0 6px">Sugeridas por tu selección — clic para agregar:</div>'
     +'<div style="display:flex;flex-wrap:wrap;gap:6px">'+sug.map(function(s){
-      return '<span onclick="_wizAddKw(\''+String(s).replace(/'/g,"\\'")+'\')" style="cursor:pointer;font-size:10.5px;color:var(--text-sec);border:0.8px dashed var(--border2);padding:3px 8px">+ '+s+'</span>';
+      return '<span onclick="_wizAddKw(\''+String(s).replace(/'/g,"\\'")+'\')" style="cursor:pointer;font-size:10px;color:var(--text-sec);border:0.8px dashed var(--border2);padding:3px 8px">+ '+s+'</span>';
     }).join('')+'</div>';
 }
 function _wizPaintChips(){
@@ -5086,7 +5094,7 @@ function _wizPaintRiesgos(){
   var el=document.getElementById('cw-riesgos');
   if(!el)return;
   var temas=[..._wiz.sel.temas].map(function(id){return CATS.find(function(c){return c.id===id;});}).filter(Boolean);
-  if(!temas.length){el.innerHTML='<div style="color:var(--dim);font-size:11.5px;padding:10px 0">Primero elige temas en el paso 1.</div>';return;}
+  if(!temas.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:10px 0">Primero elige temas en el paso 1.</div>';return;}
   var NIVELES=[['alto','var(--red)'],['medio','var(--amber)'],['bajo','var(--green)']];
   el.innerHTML=temas.map(function(c){
     var cur=_wiz.sel.riesgos[c.id]||'medio';
@@ -5160,14 +5168,14 @@ function _consRefWidgets(cfg){
     +noms.map(function(id){var n=(typeof NORMAS!=='undefined'?NORMAS:[]).find(function(x){return x.id===id;});
       if(!n)return '<div class="cons-refit"><div style="font-family:var(--mono);font-size:11px;color:var(--text)">'+id+'</div></div>';
       return '<a href="'+n.url+'" target="_blank" rel="noopener" class="cons-refit" style="display:block;text-decoration:none">'
-        +'<div style="font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--green)">'+n.id+' <span style="color:var(--text-muted);font-weight:400">↗</span></div>'
-        +'<div style="font-size:11.5px;color:var(--text);line-height:1.35;margin-top:2px">'+n.objeto+'</div>'
+        +'<div style="font-family:var(--mono);font-size:10px;font-weight:600;color:var(--green)">'+n.id+' <span style="color:var(--text-muted);font-weight:400">↗</span></div>'
+        +'<div style="font-size:11px;color:var(--text);line-height:1.35;margin-top:2px">'+n.objeto+'</div>'
         +(n.implic?'<div style="font-size:10px;color:var(--text-muted);margin-top:2px;line-height:1.35">'+n.implic+'</div>':'')+'</a>';
     }).join('')+'</div>'});
   if(instr.length)out.push({id:'ref-instr',title:'Instrumentos legales',count:instr.length,body:
     instr.map(function(nm){var o=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).find(function(x){return x.n===nm;});
       return '<div class="cons-refit"><div style="font-size:12px;font-weight:600;color:var(--text)">'+nm+'</div>'
-        +(o?'<div style="font-size:10.5px;color:var(--text-muted);line-height:1.4;margin-top:2px">'+o.d+'</div><div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:3px">'+o.s+'</div>':'')+'</div>';
+        +(o?'<div style="font-size:10px;color:var(--text-muted);line-height:1.4;margin-top:2px">'+o.d+'</div><div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:3px">'+o.s+'</div>':'')+'</div>';
     }).join('')});
   if(imps.length)out.push({id:'ref-imps',title:'Impuestos ambientales',count:imps.length,body:
     imps.map(function(t){var inf=_consImpInfo(t);
@@ -5177,13 +5185,13 @@ function _consRefWidgets(cfg){
     }).join('')});
   if(mats.length)out.push({id:'ref-mats',title:'Materiales prohibidos',count:mats.length,body:
     mats.map(function(m){var inf=_consMatInfo(m);
-      var head='<div style="display:flex;align-items:baseline;gap:8px;margin:2px 0 8px"><span style="font-size:12.5px;font-weight:600;color:var(--text)"><span style="color:var(--red)">⊘</span> '+m+'</span>'
-        +'<span style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-left:auto">'+inf.states.length+' entidad'+(inf.states.length===1?'':'es')+'</span></div>';
+      var head='<div style="display:flex;align-items:baseline;gap:8px;margin:2px 0 8px"><span style="font-size:12px;font-weight:600;color:var(--text)"><span style="color:var(--red)">⊘</span> '+m+'</span>'
+        +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-left:auto">'+inf.states.length+' entidad'+(inf.states.length===1?'':'es')+'</span></div>';
       var rows=inf.states.map(function(s){
         var u=(s.url||'').replace(/'/g,'%27');
-        var right=s.url?'<span style="font-size:10px;color:var(--green);white-space:nowrap">Ver norma ↗</span>':'<span style="font-size:9.5px;color:var(--dim);white-space:nowrap">s/liga</span>';
+        var right=s.url?'<span style="font-size:10px;color:var(--green);white-space:nowrap">Ver norma ↗</span>':'<span style="font-size:9px;color:var(--dim);white-space:nowrap">s/liga</span>';
         return '<div class="cons-mat-row"'+(s.url?' onclick="window.open(\''+u+'\',\'_blank\')"':'')+'>'
-          +'<span style="flex:0 0 150px;font-size:11.5px;color:var(--text)">'+s.estado+'</span>'
+          +'<span style="flex:0 0 150px;font-size:11px;color:var(--text)">'+s.estado+'</span>'
           +'<span style="flex:1;font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+(s.desde?('desde '+s.desde):'')+'</span>'
           +right+'</div>';
       }).join('');
@@ -5254,7 +5262,7 @@ function renderConsola(){
   widgets.push({id:'estados',title:'Mis estados',count:estados.length,body:'<div id="cons-estados"></div>'});
   _consRefWidgets(cfg).forEach(function(w){widgets.push(w);});
   if(!(cfg.noms||[]).length&&!(cfg.instrumentos||[]).length&&!(cfg.impuestos||[]).length&&!(cfg.materiales||[]).length)
-    widgets.push({id:'ref-vacio',title:'Referencias',count:null,body:'<div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> en la sección de NOMs) para tenerlos aquí a la mano.</div>'});
+    widgets.push({id:'ref-vacio',title:'Referencias',count:null,body:'<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> en la sección de NOMs) para tenerlos aquí a la mano.</div>'});
   widgets.push({id:'dof',title:'DOF · normas de mis temas',count:null,body:'<div class="cons-scroll" id="cons-dof"></div>'});
   widgets.push({id:'ejecutivo',title:'Ejecutivo · menciones',count:null,body:'<div class="cons-scroll" id="cons-pres"></div>'});
   if(userKw.length)widgets.push({id:'keywords',title:'Feed de mis keywords',count:null,body:'<div class="cons-scroll" id="cons-kw"></div>'});
@@ -5286,20 +5294,20 @@ function _consChatCardHTML(){
     +'<div style="display:flex;align-items:center;gap:11px;margin-bottom:12px">'
       +'<img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">'
       +'<div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700;color:var(--text)">Signal</div>'
-      +'<div style="font-size:10.5px;color:var(--text-muted);line-height:1.3;margin-top:1px">Asistente inteligente para mejorar tu experiencia</div></div>'
+      +'<div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:1px">Asistente inteligente para mejorar tu experiencia</div></div>'
       +'<span style="font-family:var(--mono);font-size:9px;color:var(--amber);border:0.8px solid var(--amber);padding:2px 8px;border-radius:10px;letter-spacing:0.06em">PRÓXIMAMENTE</span>'
     +'</div>'
     +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;background:rgba(0,0,0,0.02);border-radius:10px;padding:12px;min-height:80px;max-height:240px;overflow-y:auto">'
       +_consChatBubble('Hola 👋 Soy Signal, tu asistente inteligente. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé con los datos de tu terminal en tiempo real.',false)
     +'</div>'
     +'<div style="display:flex;gap:8px;margin-top:11px">'
-      +'<input id="cons-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;padding:10px 13px;border:1px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12.5px;color:var(--text);border-radius:9px;outline:none">'
-      +'<button onclick="_consChatSend()" style="background:var(--green);color:#fff;border:none;border-radius:9px;padding:0 18px;font-size:12.5px;font-weight:600;cursor:pointer">Enviar</button>'
+      +'<input id="cons-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;padding:10px 13px;border:1px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12px;color:var(--text);border-radius:9px;outline:none">'
+      +'<button onclick="_consChatSend()" style="background:var(--green);color:#fff;border:none;border-radius:9px;padding:0 18px;font-size:12px;font-weight:600;cursor:pointer">Enviar</button>'
     +'</div>'
   +'</div>';
 }
 function _consChatBubble(text,isUser){
-  return '<div style="align-self:'+(isUser?'flex-end':'flex-start')+';max-width:82%;background:'+(isUser?'var(--green)':'var(--card)')+';color:'+(isUser?'#fff':'var(--text)')+';border:'+(isUser?'none':'0.8px solid var(--border)')+';padding:8px 12px;border-radius:'+(isUser?'12px 12px 3px 12px':'12px 12px 12px 3px')+';font-size:12.5px;line-height:1.5">'+_escHtml(text)+'</div>';
+  return '<div style="align-self:'+(isUser?'flex-end':'flex-start')+';max-width:82%;background:'+(isUser?'var(--green)':'var(--card)')+';color:'+(isUser?'#fff':'var(--text)')+';border:'+(isUser?'none':'0.8px solid var(--border)')+';padding:8px 12px;border-radius:'+(isUser?'12px 12px 3px 12px':'12px 12px 12px 3px')+';font-size:12px;line-height:1.5">'+_escHtml(text)+'</div>';
 }
 function _consChatSend(){
   var inp=document.getElementById('cons-chat-input'),msgs=document.getElementById('cons-chat-msgs');
@@ -5348,14 +5356,14 @@ function _panelGemiHTML(){
       +'<div style="display:flex;align-items:center;gap:11px">'
         +'<img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">'
         +'<div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px">Panel GEMI</div>'
-        +'<div style="font-size:10.5px;color:var(--text-muted);line-height:1.3;margin-top:2px">Canal oficial del equipo</div></div>'
+        +'<div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px">Canal oficial del equipo</div></div>'
         +'<span style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;letter-spacing:0.08em;color:#12A594"><span class="pgemi-live"></span>EN VIVO</span>'
       +'</div>'
       +'<div class="stab-bar" style="margin-bottom:0;gap:4px 18px">'
         +'<button class="stab'+(_pgemiTab!=='agenda'?' on':'')+'" id="pgemi-tab-mensajes" onclick="_pgemiSetTab(\'mensajes\')">Mensajes</button>'
         +'<button class="stab'+(_pgemiTab==='agenda'?' on':'')+'" id="pgemi-tab-agenda" onclick="_pgemiSetTab(\'agenda\')">Agenda</button>'
       +'</div>'
-      +'<div id="panel-gemi-body"><div style="font-size:11.5px;color:var(--text-muted);padding:12px 0">Cargando…</div></div>'
+      +'<div id="panel-gemi-body"><div style="font-size:11px;color:var(--text-muted);padding:12px 0">Cargando…</div></div>'
     +'</div>'
   +'</div>';
 }
@@ -5397,21 +5405,21 @@ function _renderPanelAgenda(el){
     var gcal='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(e.titulo||'')+'&dates='+ymd+'/'+ymd+'&details='+encodeURIComponent((e.nota||'')+' · Scope GEMI');
     return '<div style="display:flex;gap:11px;padding:9px 0;border-top:0.8px solid var(--border);opacity:'+(past?'.5':'1')+'">'
       +'<div style="text-align:center;flex-shrink:0;width:34px"><div style="font-family:var(--mono);font-size:17px;font-weight:700;color:#066750;line-height:1">'+day+'</div><div style="font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--text-muted)">'+mon+'</div></div>'
-      +'<div style="flex:1;min-width:0"><div style="font-size:12.5px;font-weight:600;color:var(--text);line-height:1.3">'+_escHtml(e.titulo||'')+' <span style="font-family:var(--mono);font-size:8px;color:var(--text-muted)">'+e.src+'</span></div>'
-        +(e.nota?'<div style="font-size:10.5px;color:var(--text-sec);line-height:1.4;margin-top:2px">'+_escHtml(e.nota)+'</div>':'')
+      +'<div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:var(--text);line-height:1.3">'+_escHtml(e.titulo||'')+' <span style="font-family:var(--mono);font-size:8px;color:var(--text-muted)">'+e.src+'</span></div>'
+        +(e.nota?'<div style="font-size:10px;color:var(--text-sec);line-height:1.4;margin-top:2px">'+_escHtml(e.nota)+'</div>':'')
         +'<div style="display:flex;gap:12px;margin-top:4px;font-family:var(--mono);font-size:9px">'
           +'<a href="'+gcal+'" target="_blank" rel="noopener" style="color:#066750;text-decoration:none">＋ Google</a>'
           +'<a href="'+_icsHref(e)+'" download="evento-scope.ics" style="color:#066750;text-decoration:none">＋ Outlook/.ics</a>'
           +(e.src==='Tú'?'<span onclick="_pgemiDelUser('+e.ui+')" style="color:var(--text-muted);cursor:pointer">Quitar</span>':'')
         +'</div>'
       +'</div></div>';
-  }).join('')||'<div style="font-size:11.5px;color:var(--text-muted);padding:10px 0">Sin fechas por ahora.</div>';
+  }).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:10px 0">Sin fechas por ahora.</div>';
   var form='<div style="margin-top:12px;padding-top:10px;border-top:0.8px solid var(--border)">'
-    +'<div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">Anotar mi fecha</div>'
+    +'<div style="font-family:var(--mono);font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">Anotar mi fecha</div>'
     +'<div style="display:flex;gap:6px;flex-wrap:wrap">'
-      +'<input id="pgemi-ev-date" type="date" style="padding:6px 8px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--sans);font-size:11.5px;border-radius:8px">'
-      +'<input id="pgemi-ev-title" placeholder="Título de tu fecha" style="flex:1;min-width:110px;padding:6px 10px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--sans);font-size:11.5px;border-radius:8px">'
-      +'<button onclick="_pgemiAddUser()" style="background:#066750;color:#fff;border:none;border-radius:8px;padding:0 14px;font-size:11.5px;font-weight:600;cursor:pointer">Guardar</button>'
+      +'<input id="pgemi-ev-date" type="date" style="padding:6px 8px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--sans);font-size:11px;border-radius:8px">'
+      +'<input id="pgemi-ev-title" placeholder="Título de tu fecha" style="flex:1;min-width:110px;padding:6px 10px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--sans);font-size:11px;border-radius:8px">'
+      +'<button onclick="_pgemiAddUser()" style="background:#066750;color:#fff;border:none;border-radius:8px;padding:0 14px;font-size:11px;font-weight:600;cursor:pointer">Guardar</button>'
     +'</div></div>';
   el.innerHTML='<div>'+rows+'</div>'+form;
 }
@@ -5419,9 +5427,9 @@ function _renderPanelGemi(d){
   var el=document.getElementById('panel-gemi-body');if(!el)return;
   d=d||{};var msgs=(d.mensajes||[]);
   var fmt=function(f){if(!f)return '';var x=new Date(String(f).substring(0,10)+'T12:00:00');return isNaN(x)?'':x.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});};
-  if(!msgs.length){el.innerHTML='<div style="font-size:11.5px;color:var(--text-muted);padding:12px 0">Sin mensajes por ahora.</div>';return;}
+  if(!msgs.length){el.innerHTML='<div style="font-size:11px;color:var(--text-muted);padding:12px 0">Sin mensajes por ahora.</div>';return;}
   el.innerHTML='<div style="display:flex;flex-direction:column;gap:12px">'+msgs.map(function(m){
-    var link=m.url?'<a href="'+(m.url||'').replace(/"/g,'%22')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-family:var(--mono);font-size:9.5px;color:#066750;text-decoration:none;letter-spacing:0.03em">ABRIR ↗</a>':'';
+    var link=m.url?'<a href="'+(m.url||'').replace(/"/g,'%22')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-family:var(--mono);font-size:9px;color:#066750;text-decoration:none;letter-spacing:0.03em">ABRIR ↗</a>':'';
     return '<div style="display:flex;gap:9px;align-items:flex-start">'
       +'<img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:24px;height:24px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">'
       +'<div class="pgemi-bubble">'
@@ -5447,7 +5455,7 @@ function _refCardHTML(cfg){
   function nomUrl(id){var n=(typeof NORMAS!=='undefined'?NORMAS:[]).find(function(x){return x.id===id;});return n?n.url:null;}
   function grp(title,items,linkFn){
     if(!items.length)return '';
-    return '<div style="margin-bottom:13px"><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">'+title+'</div>'
+    return '<div style="margin-bottom:13px"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">'+title+'</div>'
       +'<div style="display:flex;flex-wrap:wrap;gap:6px">'+items.map(function(it){
         var url=linkFn?linkFn(it):null;
         if(url)return '<a href="'+url+'" target="_blank" rel="noopener" style="text-decoration:none;border:0.8px solid var(--border);border-radius:6px;padding:4px 9px;font-size:11px;color:var(--text)">'+it+' <span style="color:var(--green)">↗</span></a>';
@@ -5478,7 +5486,7 @@ function _consSenal(sen){
     +'</div>'
     +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px">'+total+' menciones en medios · '+dias+' días · '+rows.length+' temas</div>'
     +'</div>'
-    +'<div class="cons-tema-row" style="border:none;opacity:.6"><span style="width:8px"></span><span style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Tema</span><span style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Menciones</span><span style="font-family:var(--mono);font-size:8.5px;color:var(--text-muted);text-transform:uppercase">Tend.</span><span style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Prioridad</span></div>'
+    +'<div class="cons-tema-row" style="border:none;opacity:.6"><span style="width:8px"></span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Tema</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Menciones</span><span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);text-transform:uppercase">Tend.</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Prioridad</span></div>'
     +rows.map(function(r){
       return '<div class="cons-tema-row">'
         +'<span style="width:8px;height:8px;border-radius:50%;background:'+r.c.color+'"></span>'
@@ -5492,17 +5500,17 @@ function _consSenal(sen){
 }
 function _consComs(coms){
   var el=document.getElementById('cons-coms');if(!el)return;
-  if(!coms.length){el.innerHTML='<div style="color:var(--dim);font-size:11.5px;padding:8px 0">Sin comisiones seleccionadas</div>';return;}
+  if(!coms.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Sin comisiones seleccionadas</div>';return;}
   function pDate(s){if(!s||!/^\d{2}\/\d{2}\/\d{4}$/.test(s))return 0;var p=s.split('/');return new Date(p[2]+'-'+p[1]+'-'+p[0]).getTime();}
   coms=coms.slice().sort(function(a,b){return pDate(b.ur)-pDate(a.ur);});
   el.innerHTML='<table class="cons-table"><tr><th>Comisión</th><th>Cámara</th><th>Int.</th><th>Última sesión</th><th>Próxima</th><th></th></tr>'
     +coms.map(function(c){
       return '<tr>'
         +'<td style="color:var(--text);max-width:220px">'+c.nombre+'</td>'
-        +'<td style="font-family:var(--mono);font-size:9.5px;color:var(--dim)">'+(c.camara||'').toUpperCase()+'</td>'
+        +'<td style="font-family:var(--mono);font-size:9px;color:var(--dim)">'+(c.camara||'').toUpperCase()+'</td>'
         +'<td style="font-family:var(--mono)">'+((c.integrantes||[]).length)+'</td>'
-        +'<td style="font-family:var(--mono);font-size:10.5px">'+(c.ur?fmtReunion(c.ur):'—')+'</td>'
-        +'<td style="font-family:var(--mono);font-size:10.5px;color:'+(c.pr?'var(--green)':'var(--dim)')+'">'+(c.pr?fmtReunion(c.pr):'—')+'</td>'
+        +'<td style="font-family:var(--mono);font-size:10px">'+(c.ur?fmtReunion(c.ur):'—')+'</td>'
+        +'<td style="font-family:var(--mono);font-size:10px;color:'+(c.pr?'var(--green)':'var(--dim)')+'">'+(c.pr?fmtReunion(c.pr):'—')+'</td>'
         +'<td>'+(c.at?'<a href="'+c.at+'" target="_blank" rel="noopener" style="font-size:10px;font-weight:600">Asuntos ↗</a>':'')+'</td>'
         +'</tr>';
     }).join('')+'</table>';
@@ -5555,8 +5563,8 @@ function _consLegs(legs){
     }).join('');
     return '<div class="cons-leg-card" style="flex-direction:column;align-items:stretch;cursor:'+(instr.length?'pointer':'default')+'" '+(instr.length?'onclick="_toggleConsLeg(\''+uid+'\')"':'')+'>'
       +'<div style="display:flex;align-items:center;gap:10px">'+av
-      +'<div style="flex:1;min-width:0"><div style="font-size:11.5px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
-      +'<div style="font-family:var(--mono);font-size:8.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(l.cargo||'Integrante')+' · '+l.coms[0]+'</div></div>'
+      +'<div style="flex:1;min-width:0"><div style="font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
+      +'<div style="font-family:var(--mono);font-size:8px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(l.cargo||'Integrante')+' · '+l.coms[0]+'</div></div>'
       +(logo?'<img src="'+logo+'" style="height:16px;width:auto;max-width:40px;object-fit:contain;flex-shrink:0" alt="'+l.partido+'">':'')
       +'<a href="'+silUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Ficha en el SIL" style="font-size:10px;color:var(--green);text-decoration:none;flex-shrink:0">SIL ↗</a>'
       +'</div>'
@@ -5569,14 +5577,14 @@ function _consLegs(legs){
 }
 function _consEstados(estados){
   var el=document.getElementById('cons-estados');if(!el)return;
-  if(!estados.length){el.innerHTML='<div style="color:var(--dim);font-size:11.5px;padding:8px 0">Sin estados seleccionados</div>';return;}
+  if(!estados.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Sin estados seleccionados</div>';return;}
   var resumen=(_gacetaEstatalData&&_gacetaEstatalData.resumen)||[];
   el.style.display='grid';el.style.gridTemplateColumns=(estados.length>1?'1fr 1fr':'1fr');el.style.gap='8px';
   el.innerHTML=estados.map(function(s){
     var nl=(typeof _nLeyes==='function')?_nLeyes(s):0, ni=(typeof _nImpuestos==='function')?_nImpuestos(s):0, nm=(typeof _nMateriales==='function')?_nMateriales(s):0, nn=stateNews[s]||0;
     var g=resumen.find(function(r){return r.estado===s;});
     return '<div class="cons-estcard" onclick="openStatePanel(\''+s.replace(/'/g,"\\'")+'\')">'
-      +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:6px"><span style="font-size:12.5px;font-weight:600;color:var(--text);line-height:1.15;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+s+'</span>'
+      +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:6px"><span style="font-size:12px;font-weight:600;color:var(--text);line-height:1.15;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+s+'</span>'
       +'<span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);flex-shrink:0">'+(STATE_ABBR[s]||'')+'</span></div>'
       +'<div style="display:flex;gap:9px;margin-top:8px;font-family:var(--mono);font-size:10px">'
         +'<span title="Leyes ambientales"><b style="color:var(--text)">'+nl+'</b> <span style="color:var(--text-muted)">leyes</span></span>'
@@ -5605,7 +5613,7 @@ function _consPres(kwList){
   var arts=(presData||[]).filter(function(a){
     return _consMatch((a.titulo||'')+' '+((a.fragmentos||[]).join(' ')),kwList);
   }).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);}).slice(0,5);
-  if(!arts.length){el.innerHTML='<div style="color:var(--dim);font-size:11.5px;padding:8px 0">Sin menciones recientes en tus temas</div>';return;}
+  if(!arts.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Sin menciones recientes en tus temas</div>';return;}
   el.innerHTML=arts.map(function(a){
     var f=a.fecha?new Date(a.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     // Preferir el fragmento que hace match con los filtros
@@ -5621,7 +5629,7 @@ function _consDof(kwList){
   var items=(_dofData||[]).filter(function(d){
     return d.relevante&&_consMatch((d.titulo||'')+' '+(d.categoria||''),kwList);
   }).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);}).slice(0,5);
-  if(!items.length){el.innerHTML='<div style="color:var(--dim);font-size:11.5px;padding:8px 0">Sin publicaciones DOF relevantes en tus temas</div>';return;}
+  if(!items.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Sin publicaciones DOF relevantes en tus temas</div>';return;}
   el.innerHTML=items.map(function(d){
     var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     return '<div class="cons-feed-it" onclick="window.open(\''+(d.url||'#').replace(/'/g,'%27')+'\',\'_blank\')">'
@@ -5632,7 +5640,7 @@ function _consKwFeed(userKw){
   var el=document.getElementById('cons-kw');if(!el)return;
   var arts=noticias.filter(function(n){return _consMatch((n.titulo||'')+' '+(n.resumen||''),userKw);})
     .sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);}).slice(0,6);
-  if(!arts.length){el.innerHTML='<div style="color:var(--dim);font-size:11.5px;padding:8px 0">Nada aún para: '+userKw.join(', ')+'</div>';return;}
+  if(!arts.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Nada aún para: '+userKw.join(', ')+'</div>';return;}
   el.innerHTML=arts.map(function(n){
     var f=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     return '<div class="cons-feed-it" onclick="window.open(\''+(n.url||'#').replace(/'/g,'%27')+'\',\'_blank\')">'
