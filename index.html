@@ -1884,10 +1884,12 @@ var TEMA_ACUERDO_COLOR={'Clima':'#f59e0b','Derechos ambientales':'#009E90','Capa
 var _INTL=null;
 var _intlF={q:'',cat:'todas',juris:'todas',sort:'anio_desc'};
 var _INTL_CATMETA={
-  cadena_suministro:{lbl:'Cadena de suministro',col:'#7c3aed'},
-  ley_extranjera:{lbl:'Ley extranjera',col:'#0ea5e9'},
-  tratado_vinculante:{lbl:'Tratado vinculante',col:'#16a34a'}
+  cadena_suministro:{lbl:'Cadena de suministro',col:'#066750'},
+  ley_extranjera:{lbl:'Ley extranjera',col:'#2AA88B'},
+  tratado_vinculante:{lbl:'Tratado vinculante',col:'#0E8C74'}
 };
+var _intlView='instrumentos';
+function intlSetView(v){_intlView=v;renderAcuerdos();}
 function _intlCatLbl(c){return (_INTL_CATMETA[c]&&_INTL_CATMETA[c].lbl)||(c||'—');}
 function _intlCatCol(c){return (_INTL_CATMETA[c]&&_INTL_CATMETA[c].col)||'#6b7280';}
 function _intlNk(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
@@ -1901,6 +1903,11 @@ function renderAcuerdos(){
     fetch('data/internacional.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){_INTL=d||[];renderAcuerdos();}).catch(function(){_INTL=[];});
     return;
   }
+  var subbar='<div class="stab-bar" style="margin-bottom:18px">'
+    +'<button class="stab'+(_intlView==='instrumentos'?' on':'')+'" onclick="intlSetView(\'instrumentos\')">Instrumentos</button>'
+    +'<button class="stab'+(_intlView==='agenda2030'?' on':'')+'" onclick="intlSetView(\'agenda2030\')">Agenda 2030 · ODS</button>'
+    +'</div>';
+  if(_intlView==='agenda2030'){el.innerHTML=subbar+_agenda2030HTML();return;}
   var jurs=Array.from(new Set(_INTL.map(function(a){return a.jurisdiccion;}).filter(Boolean))).sort(function(a,b){return a.localeCompare(b,'es');});
   var cats=[];_INTL.forEach(function(a){if(a.categoria&&cats.indexOf(a.categoria)<0)cats.push(a.categoria);});
   var sel='padding:9px 30px 9px 12px;font-size:12px;color:var(--text);background:var(--card);border:0.8px solid var(--border);cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;font-family:var(--sans)';
@@ -1918,10 +1925,36 @@ function renderAcuerdos(){
      +'<div style="position:relative"><select onchange="_intlSet(\'sort\',this.value)" style="'+sel+'">'+sortOpts+'</select><span style="position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);font-size:9px">▾</span></div>'
     +'</div>'
     +'<div class="stab-bar" style="margin-bottom:12px">'+catTabs+'</div>';
-  el.innerHTML=toolbar
+  el.innerHTML=subbar+toolbar
     +'<div id="intl-stats" style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px"></div>'
     +'<div id="intl-table"></div>';
   _intlRenderRows();
+}
+// ── Agenda 2030 · 17 Objetivos de Desarrollo Sostenible (ONU) ──
+var _ODS=[
+  [1,'Fin de la pobreza',0],[2,'Hambre cero',0],[3,'Salud y bienestar',0],[4,'Educación de calidad',0],
+  [5,'Igualdad de género',0],[6,'Agua limpia y saneamiento',1],[7,'Energía asequible y no contaminante',1],
+  [8,'Trabajo decente y crecimiento económico',0],[9,'Industria, innovación e infraestructura',0],
+  [10,'Reducción de las desigualdades',0],[11,'Ciudades y comunidades sostenibles',1],
+  [12,'Producción y consumo responsables',1],[13,'Acción por el clima',1],[14,'Vida submarina',1],
+  [15,'Vida de ecosistemas terrestres',1],[16,'Paz, justicia e instituciones sólidas',0],
+  [17,'Alianzas para lograr los objetivos',0]
+];
+function _agenda2030HTML(){
+  var GRN='#0E8C74',DEEP='#066750';
+  var head='<div style="font-size:12px;color:var(--text-sec);line-height:1.55;margin-bottom:16px">Los <b>17 Objetivos de Desarrollo Sostenible</b> de la Agenda 2030 (ONU). México los incorpora a su planeación nacional; los resaltados en verde son los de mayor incidencia <b>ambiental</b>. Da clic para ver las metas oficiales de cada objetivo.</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">17 objetivos · 7 de incidencia ambiental</div>';
+  var grid='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0 26px">'
+    +_ODS.map(function(o){
+      var amb=o[2]===1;
+      return '<a href="https://www.un.org/sustainabledevelopment/es/'+ '" data-goal="'+o[0]+'" onclick="event.preventDefault();window.open(\'https://sdgs.un.org/goals/goal'+o[0]+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:12px;padding:11px 0;border-bottom:0.8px solid var(--border);text-decoration:none;cursor:pointer">'
+        +'<span style="flex:0 0 26px;font-family:var(--mono);font-size:16px;font-weight:700;color:'+(amb?DEEP:'var(--text-muted)')+';font-variant-numeric:tabular-nums;text-align:right">'+o[0]+'</span>'
+        +'<span style="flex:1;font-size:12px;color:var(--text);line-height:1.35">'+o[1]+(amb?' <span style="font-size:8px;font-family:var(--mono);color:'+GRN+';letter-spacing:0.06em">· AMBIENTAL</span>':'')+'</span>'
+        +'<span style="font-size:12px;color:var(--green);flex-shrink:0">↗</span>'
+        +'</a>';
+    }).join('')+'</div>';
+  var foot='<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:14px">Fuente: Naciones Unidas · sdgs.un.org — Objetivos de Desarrollo Sostenible</div>';
+  return head+grid+foot;
 }
 function _intlRenderRows(){
   var host=document.getElementById('intl-table');if(!host||!_INTL)return;
@@ -1954,7 +1987,7 @@ function _intlRenderRows(){
         +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.45">'+(a.relevancia_mexico||'')+'</div>'
         +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:5px;letter-spacing:0.03em">'+_intlCatLbl(a.categoria).toUpperCase()+(a.estatus?'  ·  '+a.estatus:'')+'</div>'
       +'</div>'
-      +'<div style="text-align:right;min-width:0"><div style="font-size:11px;color:var(--text-sec);font-weight:500;line-height:1.3">'+a.jurisdiccion+'</div><div style="font-size:13px;color:var(--green);margin-top:3px">↗</div></div>'
+      +'<div style="text-align:right;min-width:0"><div style="font-size:11px;color:var(--text-sec);font-weight:500;line-height:1.3">'+a.jurisdiccion+(a.organismo?'<br><span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+a.organismo+'</span>':'')+'</div><div style="font-size:13px;color:var(--green);margin-top:3px">↗</div></div>'
       +'</div>';
   }).join('');
   host.innerHTML=head+body;
