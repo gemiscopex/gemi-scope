@@ -1,0 +1,449 @@
+{
+ "_meta": {
+  "actualizado": "2026-08-06",
+  "fuente": "Inventario nacional de trámites estatales de RME (GEMI)",
+  "nota": "Registros y autorizaciones estatales de Residuos de Manejo Especial: generador, plan de manejo, transporte e instalaciones."
+ },
+ "niveles": {
+  "integral": "Sistema integral digital",
+  "portal": "Portal especializado de RME",
+  "fichas": "Fichas digitales separadas",
+  "catalogo": "Gestión por catálogo o ventanilla"
+ },
+ "estados": {
+  "Aguascalientes": {
+   "autoridad": "Secretaría de Sustentabilidad, Medio Ambiente y Agua",
+   "sistema": "",
+   "instrumentos": [
+    "Registro como generador y autorización del plan de manejo",
+    "Modalidades para pequeño y gran generador",
+    "Renovación del registro y plan de manejo",
+    "Autorización para prestadores de transporte"
+   ],
+   "nivel": "fichas",
+   "nota": "El trámite integra en un mismo procedimiento el registro del generador y la autorización del plan de manejo.",
+   "portal": "https://eservicios2.aguascalientes.gob.mx/"
+  },
+  "Baja California": {
+   "autoridad": "Secretaría de Medio Ambiente y Desarrollo Sustentable",
+   "sistema": "RETYS",
+   "instrumentos": [
+    "Registro de generadores de RME",
+    "Registro de plan de manejo",
+    "Reporte anual de RME",
+    "Registro/revalidación de prestadores",
+    "Licencia para manejo integral",
+    "Manifiesto de entrega, transporte y recepción"
+   ],
+   "nivel": "portal",
+   "nota": "Uno de los catálogos más completos: distingue generadores, planes, reportes anuales y prestadores.",
+   "portal": "https://www.bajacalifornia.gob.mx/"
+  },
+  "Baja California Sur": {
+   "autoridad": "Dirección General de Medio Ambiente y Recursos Naturales",
+   "sistema": "",
+   "instrumentos": [
+    "Registro del Plan de Manejo de RME",
+    "Evaluación y emisión del registro",
+    "Reportes de cumplimiento",
+    "Autorizaciones vinculadas a instalaciones de manejo"
+   ],
+   "nivel": "fichas",
+   "nota": "La figura principal es el Registro del Plan de Manejo; la guía oficial de 2024 mantiene vigente el procedimiento.",
+   "portal": "https://www.bcs.gob.mx/"
+  },
+  "Campeche": {
+   "autoridad": "Secretaría de Medio Ambiente, Biodiversidad, Cambio Climático y Energía",
+   "sistema": "",
+   "instrumentos": [
+    "Registro como generador",
+    "Registro para etapas de manejo",
+    "Registro como recolector y transportista",
+    "Plan de manejo",
+    "Manifiestos y bitácoras por modalidad"
+   ],
+   "nivel": "portal",
+   "nota": "Arquitectura granular: cada actor de la cadena tiene formato, bitácora y manifiesto propio.",
+   "portal": "https://semabicce.campeche.gob.mx/"
+  },
+  "Chiapas": {
+   "autoridad": "Secretaría de Medio Ambiente e Historia Natural",
+   "sistema": "",
+   "instrumentos": [
+    "Autorización para generadores",
+    "Refrendo anual para generadores",
+    "Autorización para recolección y transporte",
+    "Refrendo para prestadores y transportistas",
+    "Manifiestos"
+   ],
+   "nivel": "fichas",
+   "nota": "Autorizaciones iniciales y refrendos anuales para grandes generadores y prestadores.",
+   "portal": "https://www.semahn.chiapas.gob.mx/"
+  },
+  "Chihuahua": {
+   "autoridad": "Secretaría de Desarrollo Urbano y Ecología",
+   "sistema": "",
+   "instrumentos": [
+    "Registro/actualización como generador",
+    "Registro/actualización del plan de manejo",
+    "Autorización para manejadores",
+    "Recolección, transporte, almacenamiento",
+    "Recuperación, reciclaje, tratamiento y disposición",
+    "Registro público de empresas autorizadas"
+   ],
+   "nivel": "portal",
+   "nota": "Concentra en una misma unidad las tres capas: generador, plan y manejo integral.",
+   "portal": "http://www.chihuahua.gob.mx/"
+  },
+  "Ciudad de México": {
+   "autoridad": "Secretaría del Medio Ambiente",
+   "sistema": "RAMIR",
+   "instrumentos": [
+    "Registro y Autorización para el Manejo Integral de Residuos (RAMIR)",
+    "Generadores; recolección y transporte",
+    "Acopio, reciclaje, tratamiento y aprovechamiento",
+    "Vehículos y establecimientos",
+    "Planes de manejo, manifiestos y reportes"
+   ],
+   "nivel": "integral",
+   "nota": "Sistema integral: RAMIR concentra generadores, prestadores, autorizaciones y trazabilidad.",
+   "portal": "https://www.sedema.cdmx.gob.mx/"
+  },
+  "Coahuila": {
+   "autoridad": "Secretaría de Medio Ambiente",
+   "sistema": "",
+   "instrumentos": [
+    "Autorizaciones para actividades de manejo",
+    "Registro de generadores",
+    "Planes de manejo",
+    "Autorizaciones para infraestructura y prestadores"
+   ],
+   "nivel": "catalogo",
+   "nota": "Opera por ventanilla ambiental y autorizaciones individualizadas; sin una página única tipo RAMIR.",
+   "portal": "https://www.sema.gob.mx/"
+  },
+  "Colima": {
+   "autoridad": "Instituto para el Medio Ambiente y Desarrollo Sustentable",
+   "sistema": "",
+   "instrumentos": [
+    "Registro de generadores",
+    "Plan de manejo de RME",
+    "Autorización de prestadores y actividades de manejo"
+   ],
+   "nivel": "catalogo",
+   "nota": "Las fichas se localizan bajo la dependencia ambiental; sin landing page específica de RME.",
+   "portal": "https://imades.col.gob.mx/"
+  },
+  "Durango": {
+   "autoridad": "Secretaría de Recursos Naturales y Medio Ambiente",
+   "sistema": "",
+   "instrumentos": [
+    "Registro de generadores",
+    "Planes de manejo",
+    "Autorización para recolección y transporte",
+    "Autorizaciones para instalaciones de manejo"
+   ],
+   "nivel": "catalogo",
+   "nota": "",
+   "portal": "https://www.durango.gob.mx/"
+  },
+  "México": {
+   "autoridad": "Secretaría del Medio Ambiente y Desarrollo Sostenible",
+   "sistema": "SIREM",
+   "instrumentos": [
+    "Registro como generador",
+    "Registro de prestadores de recolección y traslado",
+    "Autorización de centros de acopio",
+    "Autorización de reutilización, reciclaje y tratamiento",
+    "Planes de manejo, manifiestos y refrendos"
+   ],
+   "nivel": "integral",
+   "nota": "Sistema integral: SIREM y RETYS formalizan generadores y prestadores por medios electrónicos.",
+   "portal": "https://sma.edomex.gob.mx/"
+  },
+  "Guanajuato": {
+   "autoridad": "Secretaría de Medio Ambiente y Ordenamiento Territorial",
+   "sistema": "",
+   "instrumentos": [
+    "Registro y autorización como generador",
+    "Plan de manejo",
+    "Autorización para manejo de RME",
+    "Recolección, transporte, acopio y reciclaje",
+    "Registro de empresas autorizadas"
+   ],
+   "nivel": "fichas",
+   "nota": "Publica fichas de autorización y el registro de empresas autorizadas para manejar RME.",
+   "portal": "https://smaot.guanajuato.gob.mx/"
+  },
+  "Guerrero": {
+   "autoridad": "Secretaría de Medio Ambiente y Recursos Naturales",
+   "sistema": "",
+   "instrumentos": [
+    "Registro de generadores",
+    "Planes de manejo",
+    "Autorizaciones para manejo integral",
+    "Autorización de transporte y disposición"
+   ],
+   "nivel": "catalogo",
+   "nota": "",
+   "portal": "https://semaren.guerrero.gob.mx/"
+  },
+  "Hidalgo": {
+   "autoridad": "Secretaría de Medio Ambiente y Recursos Naturales",
+   "sistema": "RUTS",
+   "instrumentos": [
+    "Registro como generador",
+    "Registro de plan de manejo",
+    "Autorización de prestadores",
+    "Recolección, transporte, acopio, reciclaje y disposición"
+   ],
+   "nivel": "catalogo",
+   "nota": "",
+   "portal": "https://ruts.hidalgo.gob.mx/"
+  },
+  "Jalisco": {
+   "autoridad": "Secretaría de Medio Ambiente y Desarrollo Territorial",
+   "sistema": "",
+   "instrumentos": [
+    "Registro de generador de RME",
+    "Plan de manejo",
+    "Cédula de Operación Anual de Residuos",
+    "Autorización de prestadores",
+    "Recolección, transporte y centros de acopio"
+   ],
+   "nivel": "fichas",
+   "nota": "El registro electrónico categoriza al establecimiento como micro, pequeño o gran generador.",
+   "portal": "https://semadet.jalisco.gob.mx/"
+  },
+  "Michoacán": {
+   "autoridad": "Secretaría del Medio Ambiente",
+   "sistema": "",
+   "instrumentos": [
+    "Registro como generador",
+    "Plan de manejo",
+    "Autorización para prestadores de servicios",
+    "Recolección, transporte, acopio, valorización y disposición"
+   ],
+   "nivel": "catalogo",
+   "nota": "El Registro como Generador de RME se mantiene en el catálogo de trámites.",
+   "portal": "https://medioambiente.michoacan.gob.mx/"
+  },
+  "Morelos": {
+   "autoridad": "Secretaría de Desarrollo Sustentable",
+   "sistema": "",
+   "instrumentos": [
+    "Registro de generadores",
+    "Planes de manejo",
+    "Autorizaciones para transporte",
+    "Autorización de centros e instalaciones"
+   ],
+   "nivel": "catalogo",
+   "nota": "",
+   "portal": "https://www.morelos.gob.mx/"
+  },
+  "Nayarit": {
+   "autoridad": "Secretaría de Desarrollo Sustentable",
+   "sistema": "",
+   "instrumentos": [
+    "Instrumentos de prevención y gestión (marco estatal)",
+    "Fichas de generador, plan y prestador con baja trazabilidad pública"
+   ],
+   "nivel": "catalogo",
+   "nota": "El marco de residuos estuvo sujeto a revisión legislativa durante 2025.",
+   "portal": "https://tramites.nayarit.gob.mx/"
+  },
+  "Nuevo León": {
+   "autoridad": "Secretaría de Medio Ambiente",
+   "sistema": "",
+   "instrumentos": [
+    "Registro como generador de RME",
+    "Plan de manejo",
+    "Autorización de prestadores",
+    "Recolección y transporte",
+    "Centros de acopio",
+    "Tratamiento, reciclaje y disposición"
+   ],
+   "nivel": "fichas",
+   "nota": "La ficha oficial confirma solicitudes para el resolutivo de registro como generador.",
+   "portal": "https://www.nl.gob.mx/medioambiente"
+  },
+  "Oaxaca": {
+   "autoridad": "Secretaría de Medio Ambiente, Biodiversidad, Energías y Sostenibilidad",
+   "sistema": "",
+   "instrumentos": [
+    "Registro de generadores",
+    "Planes de manejo",
+    "Autorizaciones para prestadores",
+    "Transporte, acopio, tratamiento y disposición"
+   ],
+   "nivel": "catalogo",
+   "nota": "",
+   "portal": "https://www.oaxaca.gob.mx/medioambiente/"
+  },
+  "Puebla": {
+   "autoridad": "Secretaría de Medio Ambiente, Desarrollo Sustentable y Ordenamiento Territorial",
+   "sistema": "",
+   "instrumentos": [
+    "Resolución del plan de manejo",
+    "Autorización de recolección y transporte",
+    "Registro de generadores",
+    "Autorización de centros de acopio",
+    "Tratamiento, reciclaje y disposición",
+    "Trámites de residuos de construcción"
+   ],
+   "nivel": "fichas",
+   "nota": "Fichas actualizadas en mayo de 2026, con trámites diferenciados para plan de manejo y transporte.",
+   "portal": "https://smadsot.puebla.gob.mx/"
+  },
+  "Querétaro": {
+   "autoridad": "Secretaría de Desarrollo Sustentable",
+   "sistema": "",
+   "instrumentos": [
+    "Registro como generador",
+    "Registro de plan de manejo",
+    "Autorización de prestadores",
+    "Autorizaciones de recolección, transporte, acopio, tratamiento y disposición"
+   ],
+   "nivel": "catalogo",
+   "nota": "",
+   "portal": "https://www.queretaro.gob.mx/"
+  },
+  "Quintana Roo": {
+   "autoridad": "Secretaría de Ecología y Medio Ambiente",
+   "sistema": "",
+   "instrumentos": [
+    "Registro de generadores",
+    "Plan de manejo",
+    "Autorizaciones para prestadores",
+    "Recolección, transporte, acopio, reciclaje y disposición",
+    "Residuos de construcción y corrientes especiales"
+   ],
+   "nivel": "catalogo",
+   "nota": "",
+   "portal": "https://sema.qroo.gob.mx/"
+  },
+  "San Luis Potosí": {
+   "autoridad": "Secretaría de Ecología y Gestión Ambiental",
+   "sistema": "SEGAM",
+   "instrumentos": [
+    "Registro de generadores",
+    "Plan de manejo",
+    "Autorización de prestadores",
+    "Transporte, acopio, reciclaje, tratamiento y disposición"
+   ],
+   "nivel": "catalogo",
+   "nota": "",
+   "portal": "https://segam.slp.gob.mx/"
+  },
+  "Sinaloa": {
+   "autoridad": "Secretaría de Bienestar y Desarrollo Sustentable",
+   "sistema": "",
+   "instrumentos": [
+    "Registro de generadores",
+    "Plan de manejo",
+    "Autorización de recolección y transporte",
+    "Autorización de infraestructura de manejo"
+   ],
+   "nivel": "catalogo",
+   "nota": "",
+   "portal": "https://www.sinaloa.gob.mx/"
+  },
+  "Sonora": {
+   "autoridad": "Comisión de Ecología y Desarrollo Sustentable",
+   "sistema": "Permiso y Registro para Manejo de RME",
+   "instrumentos": [
+    "Registro como generador",
+    "Registro como prestador",
+    "Recolección y transporte",
+    "Acopio y almacenamiento",
+    "Tratamiento y disposición"
+   ],
+   "nivel": "portal",
+   "nota": "Agrupa sus modalidades bajo una denominación paraguas cercana al concepto de RAMIR.",
+   "portal": "https://cedes.gob.mx/"
+  },
+  "Tabasco": {
+   "autoridad": "Secretaría de Medio Ambiente y Desarrollo Sostenible",
+   "sistema": "",
+   "instrumentos": [
+    "Registro como generador y modificación",
+    "Registro y modificación del plan de manejo",
+    "Autorizaciones para empresas de servicios",
+    "Padrón público de generadores",
+    "Informes anuales"
+   ],
+   "nivel": "portal",
+   "nota": "Publicación ordenada, con fichas individuales actualizadas en 2025 y padrón público.",
+   "portal": "https://tabasco.gob.mx/"
+  },
+  "Tamaulipas": {
+   "autoridad": "Secretaría de Desarrollo Urbano y Medio Ambiente",
+   "sistema": "",
+   "instrumentos": [
+    "Registro como generador",
+    "Plan de manejo",
+    "Sistema de manifiestos",
+    "Autorización de recolección y transporte",
+    "Acopio, almacenamiento, reutilización, reciclaje y tratamiento",
+    "Padrón público de prestadores"
+   ],
+   "nivel": "portal",
+   "nota": "Padrón público actualizado el 13-abr-2026; separa transporte, acopio, reutilización, reciclaje y almacenamiento.",
+   "portal": "https://www.tamaulipas.gob.mx/seduma/"
+  },
+  "Tlaxcala": {
+   "autoridad": "Secretaría de Medio Ambiente",
+   "sistema": "",
+   "instrumentos": [
+    "Registro de generadores",
+    "Plan de manejo",
+    "Autorizaciones de prestadores",
+    "Transporte, acopio y tratamiento",
+    "Instrumentos vinculados al Sistema Estatal de Economía Circular"
+   ],
+   "nivel": "catalogo",
+   "nota": "Vinculado con el nuevo Sistema Estatal de Economía Circular.",
+   "portal": "http://sma.tlaxcala.gob.mx/"
+  },
+  "Veracruz": {
+   "autoridad": "Secretaría de Medio Ambiente",
+   "sistema": "",
+   "instrumentos": [
+    "Registro como generador de RME",
+    "Autorización para recolección y transporte",
+    "Autorización de acopio, almacenamiento y manejo",
+    "Planes de manejo",
+    "Autorizaciones para instalaciones y disposición"
+   ],
+   "nivel": "fichas",
+   "nota": "La publicación oficial confirma registro de generadores y autorización de transporte como trámites separados.",
+   "portal": "https://www.veracruz.gob.mx/medioambiente/"
+  },
+  "Yucatán": {
+   "autoridad": "Secretaría de Desarrollo Sustentable",
+   "sistema": "",
+   "instrumentos": [
+    "Registro como generador",
+    "Plan de manejo",
+    "Autorizaciones para prestadores",
+    "Recolección, transporte, acopio, valorización y disposición"
+   ],
+   "nivel": "catalogo",
+   "nota": "",
+   "portal": "https://www.yucatan.gob.mx/"
+  },
+  "Zacatecas": {
+   "autoridad": "Secretaría del Agua y Medio Ambiente",
+   "sistema": "",
+   "instrumentos": [
+    "Registro de generadores",
+    "Planes de manejo",
+    "Autorización para prestadores",
+    "Transporte, acopio, tratamiento y disposición"
+   ],
+   "nivel": "catalogo",
+   "nota": "",
+   "portal": "https://sama.zacatecas.gob.mx/"
+  }
+ }
+}
