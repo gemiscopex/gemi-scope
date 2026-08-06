@@ -886,6 +886,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
         <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs<span class="nd-sub">Normas oficiales mexicanas</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('federal')">Leyes Federales<span class="nd-sub">Legislación federal ambiental</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('estatal')">Leyes Estatales<span class="nd-sub">32 entidades</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('rme')">Trámites RME<span class="nd-sub">Residuos de manejo especial · 32 entidades</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('gacetas')">Gacetas Oficiales<span class="nd-sub">Publicación oficial por entidad</span></div>
       </div>
     </div>
@@ -943,6 +944,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       <button class="sp-tab" onclick="showSPTab('impuestos',this)">Impuestos</button>
       <button class="sp-tab" onclick="showSPTab('materiales',this)">Materiales Prohibidos</button>
       <button class="sp-tab" onclick="showSPTab('sectorial',this)">Sector Industrial</button>
+      <button class="sp-tab" onclick="showSPTab('rme',this)">Trámites RME</button>
       <button class="sp-tab" onclick="showSPTab('sitios',this)">Sitios contaminados</button>
     </div>
     <div id="sp-perfil" class="sp-content active"></div>
@@ -951,6 +953,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
     <div id="sp-impuestos" class="sp-content"></div>
     <div id="sp-materiales" class="sp-content"></div>
     <div id="sp-sectorial" class="sp-content"></div>
+    <div id="sp-rme" class="sp-content"></div>
     <div id="sp-sitios" class="sp-content"></div>
   </div>
 </div>
@@ -1057,6 +1060,14 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       </div>
       <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Base de datos de regulación ambiental internacional que impacta a México. Filtra por categoría o jurisdicción, o busca por sector, país o instrumento.</div>
       <div id="acuerdos-list"></div>
+    </div>
+    <!-- Vista Trámites RME (directorio por entidad) -->
+    <div id="leg-view-rme" style="display:none">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
+        <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Trámites de Residuos de Manejo Especial</div>
+      </div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px">Registros y autorizaciones estatales de RME (generador, plan de manejo, transporte e instalaciones) en las 32 entidades. Elige un estado para ver la autoridad, los trámites y el portal oficial.</div>
+      <div id="rme-dir" style="margin-top:6px"></div>
     </div>
     <!-- Vista Gacetas Oficiales (directorio por entidad) -->
     <div id="leg-view-gacetas" style="display:none">
@@ -1824,9 +1835,11 @@ function showLegSub(sub,btn){
   document.getElementById('leg-view-acuerdos').style.display=sub==='acuerdos'?'':'none';
   document.getElementById('leg-view-congresomx').style.display=sub==='congresomx'?'':'none';
   var gv=document.getElementById('leg-view-gacetas');if(gv)gv.style.display=sub==='gacetas'?'':'none';
+  var rv=document.getElementById('leg-view-rme');if(rv)rv.style.display=sub==='rme'?'':'none';
   if(sub==='estatal')loadLeyesEstatales();
   if(sub==='acuerdos')renderAcuerdos();
   if(sub==='gacetas'&&typeof _agendaGacetas==='function')_agendaGacetas();
+  if(sub==='rme'){var rh=document.getElementById('rme-dir');if(rh)rh.innerHTML=_rmeDirHTML();}
 }
 // ── Regulación: entrada desde el mini menú del nav ──
 function showRegulacion(view){
@@ -1841,7 +1854,7 @@ function goObligaciones(sub){
   if(sub==='noms'){showTab('normas',null);return;}
   if(sub==='instrumentos'){_oblView='instrumentos';showTab('obligaciones',null);return;}
   showTab('legislacion',null);
-  showLegSub(['estatal','gacetas'].indexOf(sub)>=0?sub:'federal',null);
+  showLegSub(['estatal','gacetas','rme'].indexOf(sub)>=0?sub:'federal',null);
 }
 // Agenda ▾ : Congreso de la Unión · Gacetas Locales · Reglamentaciones Pendientes · DOF hoy
 function goAgenda(sub){
@@ -2566,6 +2579,65 @@ function _agendaGacetas(keepFocus){
   host.innerHTML=head+(estados.length?rows:'<div style="padding:20px 0;font-size:13px;color:var(--text-muted)">Sin coincidencias.</div>');
   if(keepFocus){var i=document.getElementById('gac-search');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}}
 }
+// ── Trámites de Residuos de Manejo Especial (RME) por entidad ────────────
+var _RME_COL={integral:'#0E8C74',portal:'#2AA88B',fichas:'#7A9B8E',catalogo:'#9AA3A0'};
+function _rmeStateHTML(state){
+  if(!_tramitesRME)return '<div style="font-size:12px;color:var(--text-muted);padding:18px 0">Cargando inventario de trámites…</div>';
+  var d=_tramitesRME.estados&&_tramitesRME.estados[state];
+  if(!d)return '<div style="font-size:12px;color:var(--text-sec);line-height:1.6;padding:8px 0">Sin registro de trámites de RME para '+state+' en el inventario GEMI.</div>';
+  var niv=_tramitesRME.niveles||{};var c=_RME_COL[d.nivel]||'#9AA3A0';
+  var h='';
+  h+='<div style="padding:2px 0 12px 0;border-bottom:0.8px solid var(--border)">'
+    +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px">Autoridad responsable</div>'
+    +'<div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4">'+d.autoridad+'</div>';
+  if(d.sistema)h+='<div style="font-size:11px;color:var(--text-sec);margin-top:4px">Sistema estatal · <span style="font-family:var(--mono);color:'+c+';font-weight:600">'+d.sistema+'</span></div>';
+  h+='<div style="display:flex;align-items:center;gap:7px;margin-top:9px"><span style="width:8px;height:8px;background:'+c+';display:inline-block"></span><span style="font-size:10px;color:var(--text-sec)">'+(niv[d.nivel]||d.nivel)+'</span></div>'
+    +'</div>';
+  h+='<div style="padding:12px 0 2px 0"><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">Trámites e instrumentos</div>';
+  (d.instrumentos||[]).forEach(function(it){
+    h+='<div style="display:flex;gap:9px;padding:5px 0;font-size:12px;color:var(--text);line-height:1.45"><span style="color:'+c+';flex:0 0 auto">›</span><span>'+it+'</span></div>';
+  });
+  h+='</div>';
+  if(d.nota)h+='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;padding:11px 0 4px;border-top:0.8px solid var(--border);margin-top:8px">'+d.nota+'</div>';
+  if(d.portal)h+='<a href="'+d.portal.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:600;color:var(--green);text-decoration:none">Portal oficial del estado ↗</a>';
+  h+='<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:14px">Fuente: Inventario nacional de trámites estatales de RME · GEMI'+((_tramitesRME._meta&&_tramitesRME._meta.actualizado)?' · act. '+_tramitesRME._meta.actualizado:'')+'</div>';
+  return h;
+}
+function renderSPTramites(state){var el=document.getElementById('sp-rme');if(el)el.innerHTML=_rmeStateHTML(state);}
+var _rmeQ='',_rmeOpen='';
+function rmeSetQ(v){_rmeQ=v;var h=document.getElementById('rme-dir');if(h)h.innerHTML=_rmeDirHTML(true);var i=document.getElementById('rme-search');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}}
+function rmeToggle(s){_rmeOpen=(_rmeOpen===s?'':s);var h=document.getElementById('rme-dir');if(h)h.innerHTML=_rmeDirHTML(true);}
+function _rmeDirHTML(){
+  if(!_tramitesRME)return '<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando inventario de trámites…</div>';
+  var q=(typeof qa==='function'?qa((_rmeQ||'').toLowerCase()):(_rmeQ||'').toLowerCase());
+  var niv=_tramitesRME.niveles||{};
+  var estados=Object.keys(_tramitesRME.estados||{}).sort(function(a,b){return a.localeCompare(b,'es');})
+    .filter(function(s){if(!q)return true;var d=_tramitesRME.estados[s];var hay=(s+' '+(d.autoridad||'')+' '+(d.sistema||'')).toLowerCase();return (typeof qa==='function'?qa(hay):hay).indexOf(q)>=0;});
+  var head='<div style="display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;margin-bottom:12px">'
+    +'<div style="position:relative;max-width:320px;flex:1;min-width:220px"><span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none">⌕</span>'
+    +'<input id="rme-search" oninput="rmeSetQ(this.value)" value="'+(_rmeQ||'').replace(/"/g,'&quot;')+'" placeholder="Buscar entidad o autoridad…" style="width:100%;box-sizing:border-box;padding:8px 12px 8px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none;border-radius:10px"></div>'
+    +'<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:10px;color:var(--text-sec)">'
+    +['integral','portal','fichas','catalogo'].map(function(k){return '<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:7px;height:7px;background:'+_RME_COL[k]+';display:inline-block"></span>'+(niv[k]||k)+'</span>';}).join('')
+    +'</div></div>'
+    +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin:4px 0 2px">'+estados.length+' entidad'+(estados.length===1?'':'es')+'</div>';
+  if(!estados.length)return head+'<div style="padding:20px 0;font-size:13px;color:var(--text-muted)">Sin coincidencias.</div>';
+  var rows=estados.map(function(s){
+    var d=_tramitesRME.estados[s];var c=_RME_COL[d.nivel]||'#9AA3A0';var open=_rmeOpen===s;
+    var n=(d.instrumentos||[]).length;
+    var r='<div style="border-bottom:0.8px solid var(--border)">'
+      +'<div onclick="rmeToggle(\''+s.replace(/'/g,'\\\'')+'\')" style="display:flex;align-items:baseline;gap:14px;padding:12px 0;cursor:pointer">'
+      +'<span style="flex:0 0 8px;align-self:center;width:8px;height:8px;background:'+c+';display:inline-block"></span>'
+      +'<span style="flex:0 0 168px;font-size:13px;font-weight:600;color:var(--text)">'+s+'</span>'
+      +'<span style="flex:1;font-size:12px;color:var(--text-sec)">'+d.autoridad+(d.sistema?' · <span style="font-family:var(--mono);color:'+c+'">'+d.sistema+'</span>':'')+'</span>'
+      +'<span style="font-size:10px;color:var(--text-muted);white-space:nowrap">'+n+' trámite'+(n===1?'':'s')+'</span>'
+      +'<span style="font-size:11px;color:var(--green);white-space:nowrap">'+(open?'Cerrar ▴':'Ver ▾')+'</span>'
+      +'</div>';
+    if(open)r+='<div style="padding:2px 0 18px 22px">'+_rmeStateHTML(s)+'</div>';
+    r+='</div>';
+    return r;
+  }).join('');
+  return head+rows;
+}
 // Propuestas regulatorias en consulta (CONAMER) que impactan nuestros sectores
 function _conamerNomMatch(titulo){
   var out=[];var re=/NOM-\d+-[A-ZÁÉÍÓÚ]+/gi,m;var base={};
@@ -2938,6 +3010,7 @@ function openStatePanel(stateName){
   renderSPActividad(stateName);
   renderSPMateriales(stateName);
   renderSPSectorial(stateName);
+  renderSPTramites(stateName);
   renderSPSitios(stateName);
   showSPTab('perfil',document.querySelector('#state-modal-bg .sp-tab'));
   var bg=document.getElementById('state-modal-bg');
@@ -4333,7 +4406,7 @@ function renderDOF(){
   el.innerHTML=html;
 }
 // ─────────────────────────────────────────────────────────────────────────────
-var _perfilEstados=null,_materialesData=null,_datosgobData=null,_sitiosData=null,_emisionesData=null,_conamerData=null,_podecibiData=null;
+var _perfilEstados=null,_materialesData=null,_datosgobData=null,_sitiosData=null,_emisionesData=null,_conamerData=null,_podecibiData=null,_tramitesRME=null;
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
@@ -4347,6 +4420,7 @@ async function init(){
   fetch('data/emisiones-gei.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_emisionesData=d;if(typeof renderEmisiones==='function')renderEmisiones();}).catch(()=>{});
   fetch('data/conamer-propuestas.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_conamerData=d;}).catch(()=>{});
   fetch('data/podecibi.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_podecibiData=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel==='circular')det.innerHTML=_radarDetailHTML('circular');}).catch(()=>{});
+  fetch('data/tramites-rme.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_tramitesRME=d;var h=document.getElementById('rme-dir');if(h)h.innerHTML=_rmeDirHTML();}).catch(()=>{});
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
