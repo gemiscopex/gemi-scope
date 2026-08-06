@@ -1,0 +1,1014 @@
+{
+ "_meta": {
+  "actualizado": "2026-04",
+  "fuente": "Diagnóstico Básico para la Gestión Integral de los Residuos · SEMARNAT / INECC · abril 2026",
+  "nota": "Estimaciones oficiales a partir de CNGMD 2019/2021/2023 (INEGI), PPGIR y diagnósticos Banobras. Disposición final clasificada por NOM-083-SEMARNAT-2003; RME por NOM-161-SEMARNAT-2011."
+ },
+ "nacional": {
+  "gpc": 1.076,
+  "gen_tdia": 139902,
+  "comp": {
+   "organicos": 40.15,
+   "aprovechables": 36.26,
+   "otros": 23.59
+  },
+  "comp_detalle": [
+   {
+    "sub": "Residuos alimenticios",
+    "pct": 29.189
+   },
+   {
+    "sub": "Residuos de jardinería",
+    "pct": 8.344
+   },
+   {
+    "sub": "Fibra dura vegetal",
+    "pct": 1.062
+   },
+   {
+    "sub": "Madera",
+    "pct": 0.835
+   },
+   {
+    "sub": "Hueso",
+    "pct": 0.406
+   },
+   {
+    "sub": "Cuero",
+    "pct": 0.311
+   },
+   {
+    "sub": "Plástico rígido y de película",
+    "pct": 7.691
+   },
+   {
+    "sub": "Cartón",
+    "pct": 6.698
+   },
+   {
+    "sub": "Papel",
+    "pct": 5.364
+   },
+   {
+    "sub": "Vidrio transparente",
+    "pct": 3.972
+   },
+   {
+    "sub": "Envase cartón encerado",
+    "pct": 1.879
+   },
+   {
+    "sub": "Poliuretano",
+    "pct": 1.819
+   },
+   {
+    "sub": "Vidrio de color",
+    "pct": 1.717
+   },
+   {
+    "sub": "Lata",
+    "pct": 1.654
+   },
+   {
+    "sub": "Material ferroso",
+    "pct": 1.518
+   },
+   {
+    "sub": "Fibras sintéticas",
+    "pct": 1.428
+   },
+   {
+    "sub": "Hule",
+    "pct": 0.954
+   },
+   {
+    "sub": "Poliestireno expandido",
+    "pct": 0.941
+   },
+   {
+    "sub": "Material no ferroso",
+    "pct": 0.624
+   },
+   {
+    "sub": "Otros",
+    "pct": 12.518
+   },
+   {
+    "sub": "Pañal desechable",
+    "pct": 5.488
+   },
+   {
+    "sub": "Residuo fino",
+    "pct": 1.705
+   },
+   {
+    "sub": "Material construcción",
+    "pct": 0.759
+   },
+   {
+    "sub": "Algodón",
+    "pct": 0.557
+   },
+   {
+    "sub": "Loza cerámica",
+    "pct": 0.465
+   }
+  ],
+  "disp_sitios_total": 2250,
+  "disp_tdia_total": 98047,
+  "rellenos_nom083_total": 52,
+  "rellenos_pct_cumple": 2.31,
+  "rme_corrientes": [
+   {
+    "nombre": "Construcción, mantenimiento y demolición",
+    "tanio": 9740082
+   },
+   {
+    "nombre": "Tecnológicos (informática y vehículos / RAEE)",
+    "tanio": 11159230
+   },
+   {
+    "nombre": "Lodos de tratamiento de aguas residuales",
+    "tanio": 14564727
+   },
+   {
+    "nombre": "Tiendas departamentales y centros comerciales",
+    "tanio": 1519388
+   },
+   {
+    "nombre": "Transporte (puertos, aeropuertos, aduanas)",
+    "tanio": 540472
+   },
+   {
+    "nombre": "Servicios de salud",
+    "tanio": 70435
+   }
+  ]
+ },
+ "estados": {
+  "Aguascalientes": {
+   "gpc": 1.111,
+   "gen_tdia": 1656,
+   "comp": {
+    "organicos": 40.99,
+    "aprovechables": 36.037,
+    "otros": 22.971
+   },
+   "disp": {
+    "A1": 1,
+    "A2": 0,
+    "B": 1,
+    "C": 0,
+    "D": 0,
+    "total": 2,
+    "tdia": 1284
+   },
+   "rellenos_nom083": {
+    "total": 2,
+    "tdia": 1284
+   },
+   "recoleccion": {
+    "vehiculos": 186,
+    "tdia": 1317,
+    "costo_ton": 236
+   }
+  },
+  "Baja California": {
+   "gpc": 1.142,
+   "gen_tdia": 4508,
+   "comp": {
+    "organicos": 38.795,
+    "aprovechables": 36.79,
+    "otros": 24.414
+   },
+   "disp": {
+    "A1": 1,
+    "A2": 5,
+    "B": 0,
+    "C": 3,
+    "D": 11,
+    "total": 20,
+    "tdia": 3366
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 529,
+    "tdia": 3518,
+    "costo_ton": 251
+   }
+  },
+  "Baja California Sur": {
+   "gpc": 1.099,
+   "gen_tdia": 933,
+   "comp": {
+    "organicos": 37.418,
+    "aprovechables": 37.427,
+    "otros": 25.154
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 3,
+    "B": 1,
+    "C": 5,
+    "D": 23,
+    "total": 32,
+    "tdia": 921
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 186,
+    "tdia": 978,
+    "costo_ton": 318
+   }
+  },
+  "Campeche": {
+   "gpc": 1.016,
+   "gen_tdia": 960,
+   "comp": {
+    "organicos": 39.068,
+    "aprovechables": 36.459,
+    "otros": 24.47
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 2,
+    "B": 2,
+    "C": 4,
+    "D": 4,
+    "total": 12,
+    "tdia": 740
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 55,
+    "tdia": 750,
+    "costo_ton": 123
+   }
+  },
+  "Chiapas": {
+   "gpc": 0.993,
+   "gen_tdia": 5822,
+   "comp": {
+    "organicos": 40.968,
+    "aprovechables": 35.742,
+    "otros": 23.29
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 6,
+    "B": 7,
+    "C": 36,
+    "D": 76,
+    "total": 125,
+    "tdia": 3195
+   },
+   "rellenos_nom083": {
+    "total": 5,
+    "tdia": 538
+   },
+   "recoleccion": {
+    "vehiculos": 430,
+    "tdia": 3398,
+    "costo_ton": 212
+   }
+  },
+  "Chihuahua": {
+   "gpc": 1.092,
+   "gen_tdia": 4256,
+   "comp": {
+    "organicos": 38.597,
+    "aprovechables": 36.885,
+    "otros": 24.518
+   },
+   "disp": {
+    "A1": 2,
+    "A2": 3,
+    "B": 3,
+    "C": 12,
+    "D": 144,
+    "total": 164,
+    "tdia": 3352
+   },
+   "rellenos_nom083": {
+    "total": 3,
+    "tdia": 1455
+   },
+   "recoleccion": {
+    "vehiculos": 457,
+    "tdia": 3476,
+    "costo_ton": 220
+   }
+  },
+  "Ciudad de México": {
+   "gpc": 1.158,
+   "gen_tdia": 10699,
+   "comp": {
+    "organicos": 40.589,
+    "aprovechables": 36.165,
+    "otros": 23.246
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 0,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "total": 0,
+    "tdia": 0
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 2740,
+    "tdia": 15460,
+    "costo_ton": 296
+   }
+  },
+  "Coahuila": {
+   "gpc": 1.117,
+   "gen_tdia": 3658,
+   "comp": {
+    "organicos": 40.148,
+    "aprovechables": 36.187,
+    "otros": 23.667
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 6,
+    "B": 4,
+    "C": 11,
+    "D": 20,
+    "total": 41,
+    "tdia": 2612
+   },
+   "rellenos_nom083": {
+    "total": 3,
+    "tdia": 883
+   },
+   "recoleccion": {
+    "vehiculos": 303,
+    "tdia": 2711,
+    "costo_ton": 187
+   }
+  },
+  "Colima": {
+   "gpc": 1.08,
+   "gen_tdia": 812,
+   "comp": {
+    "organicos": 37.75,
+    "aprovechables": 36.504,
+    "otros": 25.747
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 3,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "total": 3,
+    "tdia": 824
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 84,
+    "tdia": 840,
+    "costo_ton": 167
+   }
+  },
+  "Durango": {
+   "gpc": 1.065,
+   "gen_tdia": 2007,
+   "comp": {
+    "organicos": 39.573,
+    "aprovechables": 36.614,
+    "otros": 23.814
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 2,
+    "B": 1,
+    "C": 15,
+    "D": 43,
+    "total": 61,
+    "tdia": 1357
+   },
+   "rellenos_nom083": {
+    "total": 3,
+    "tdia": 13
+   },
+   "recoleccion": {
+    "vehiculos": 182,
+    "tdia": 1432,
+    "costo_ton": 213
+   }
+  },
+  "México": {
+   "gpc": 1.127,
+   "gen_tdia": 19593,
+   "comp": {
+    "organicos": 40.479,
+    "aprovechables": 36.133,
+    "otros": 23.387
+   },
+   "disp": {
+    "A1": 7,
+    "A2": 11,
+    "B": 3,
+    "C": 28,
+    "D": 14,
+    "total": 63,
+    "tdia": 17547
+   },
+   "rellenos_nom083": {
+    "total": 2,
+    "tdia": 1006
+   },
+   "recoleccion": {
+    "vehiculos": 2257,
+    "tdia": 11441,
+    "costo_ton": 330
+   }
+  },
+  "Guanajuato": {
+   "gpc": 1.084,
+   "gen_tdia": 6898,
+   "comp": {
+    "organicos": 39.009,
+    "aprovechables": 36.417,
+    "otros": 24.573
+   },
+   "disp": {
+    "A1": 1,
+    "A2": 11,
+    "B": 11,
+    "C": 15,
+    "D": 5,
+    "total": 43,
+    "tdia": 4537
+   },
+   "rellenos_nom083": {
+    "total": 2,
+    "tdia": 1167
+   },
+   "recoleccion": {
+    "vehiculos": 557,
+    "tdia": 4672,
+    "costo_ton": 199
+   }
+  },
+  "Guerrero": {
+   "gpc": 1.002,
+   "gen_tdia": 3606,
+   "comp": {
+    "organicos": 40.1,
+    "aprovechables": 36.087,
+    "otros": 23.809
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 4,
+    "B": 7,
+    "C": 31,
+    "D": 91,
+    "total": 133,
+    "tdia": 2729
+   },
+   "rellenos_nom083": {
+    "total": 2,
+    "tdia": 11
+   },
+   "recoleccion": {
+    "vehiculos": 361,
+    "tdia": 2744,
+    "costo_ton": 220
+   }
+  },
+  "Hidalgo": {
+   "gpc": 1.015,
+   "gen_tdia": 3237,
+   "comp": {
+    "organicos": 41.164,
+    "aprovechables": 35.772,
+    "otros": 23.061
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 6,
+    "B": 1,
+    "C": 17,
+    "D": 28,
+    "total": 52,
+    "tdia": 1672
+   },
+   "rellenos_nom083": {
+    "total": 4,
+    "tdia": 669
+   },
+   "recoleccion": {
+    "vehiculos": 361,
+    "tdia": 1877,
+    "costo_ton": 322
+   }
+  },
+  "Jalisco": {
+   "gpc": 1.079,
+   "gen_tdia": 9335,
+   "comp": {
+    "organicos": 40.732,
+    "aprovechables": 36.044,
+    "otros": 23.222
+   },
+   "disp": {
+    "A1": 2,
+    "A2": 9,
+    "B": 11,
+    "C": 43,
+    "D": 58,
+    "total": 123,
+    "tdia": 8437
+   },
+   "rellenos_nom083": {
+    "total": 6,
+    "tdia": 100
+   },
+   "recoleccion": {
+    "vehiculos": 1287,
+    "tdia": 9068,
+    "costo_ton": 237
+   }
+  },
+  "Michoacán": {
+   "gpc": 1.02,
+   "gen_tdia": 4999,
+   "comp": {
+    "organicos": 40.085,
+    "aprovechables": 36.054,
+    "otros": 23.859
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 11,
+    "B": 6,
+    "C": 43,
+    "D": 52,
+    "total": 112,
+    "tdia": 3818
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 867,
+    "tdia": 3959,
+    "costo_ton": 366
+   }
+  },
+  "Morelos": {
+   "gpc": 1.096,
+   "gen_tdia": 2210,
+   "comp": {
+    "organicos": 41.148,
+    "aprovechables": 35.946,
+    "otros": 22.904
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 2,
+    "B": 3,
+    "C": 9,
+    "D": 1,
+    "total": 15,
+    "tdia": 1775
+   },
+   "rellenos_nom083": {
+    "total": 2,
+    "tdia": 677
+   },
+   "recoleccion": {
+    "vehiculos": 262,
+    "tdia": 1475,
+    "costo_ton": 297
+   }
+  },
+  "Nayarit": {
+   "gpc": 1.049,
+   "gen_tdia": 1342,
+   "comp": {
+    "organicos": 41.583,
+    "aprovechables": 35.815,
+    "otros": 22.6
+   },
+   "disp": {
+    "A1": 1,
+    "A2": 4,
+    "B": 4,
+    "C": 9,
+    "D": 11,
+    "total": 29,
+    "tdia": 1824
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 131,
+    "tdia": 1894,
+    "costo_ton": 116
+   }
+  },
+  "Nuevo León": {
+   "gpc": 1.138,
+   "gen_tdia": 6939,
+   "comp": {
+    "organicos": 40.713,
+    "aprovechables": 36.147,
+    "otros": 23.14
+   },
+   "disp": {
+    "A1": 1,
+    "A2": 4,
+    "B": 1,
+    "C": 6,
+    "D": 30,
+    "total": 42,
+    "tdia": 4872
+   },
+   "rellenos_nom083": {
+    "total": 4,
+    "tdia": 4372
+   },
+   "recoleccion": {
+    "vehiculos": 456,
+    "tdia": 5145,
+    "costo_ton": 148
+   }
+  },
+  "Oaxaca": {
+   "gpc": 0.955,
+   "gen_tdia": 4052,
+   "comp": {
+    "organicos": 39.699,
+    "aprovechables": 37.478,
+    "otros": 22.82
+   },
+   "disp": {
+    "A1": 1,
+    "A2": 3,
+    "B": 4,
+    "C": 13,
+    "D": 411,
+    "total": 432,
+    "tdia": 2254
+   },
+   "rellenos_nom083": {
+    "total": 4,
+    "tdia": 16
+   },
+   "recoleccion": {
+    "vehiculos": 1038,
+    "tdia": 2397,
+    "costo_ton": 724
+   }
+  },
+  "Puebla": {
+   "gpc": 1.032,
+   "gen_tdia": 7045,
+   "comp": {
+    "organicos": 41.035,
+    "aprovechables": 35.972,
+    "otros": 22.994
+   },
+   "disp": {
+    "A1": 1,
+    "A2": 8,
+    "B": 4,
+    "C": 14,
+    "D": 68,
+    "total": 95,
+    "tdia": 3816
+   },
+   "rellenos_nom083": {
+    "total": 2,
+    "tdia": 638
+   },
+   "recoleccion": {
+    "vehiculos": 560,
+    "tdia": 4066,
+    "costo_ton": 230
+   }
+  },
+  "Querétaro": {
+   "gpc": 1.088,
+   "gen_tdia": 2730,
+   "comp": {
+    "organicos": 40.635,
+    "aprovechables": 36.031,
+    "otros": 23.334
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 4,
+    "B": 2,
+    "C": 4,
+    "D": 2,
+    "total": 12,
+    "tdia": 1545
+   },
+   "rellenos_nom083": {
+    "total": 4,
+    "tdia": 850
+   },
+   "recoleccion": {
+    "vehiculos": 237,
+    "tdia": 1752,
+    "costo_ton": 226
+   }
+  },
+  "Quintana Roo": {
+   "gpc": 1.108,
+   "gen_tdia": 2191,
+   "comp": {
+    "organicos": 39.615,
+    "aprovechables": 36.577,
+    "otros": 23.808
+   },
+   "disp": {
+    "A1": 1,
+    "A2": 3,
+    "B": 1,
+    "C": 7,
+    "D": 16,
+    "total": 28,
+    "tdia": 3007
+   },
+   "rellenos_nom083": {
+    "total": 2,
+    "tdia": 597
+   },
+   "recoleccion": {
+    "vehiculos": 199,
+    "tdia": 3197,
+    "costo_ton": 104
+   }
+  },
+  "San Luis Potosí": {
+   "gpc": 1.04,
+   "gen_tdia": 3022,
+   "comp": {
+    "organicos": 40.24,
+    "aprovechables": 36.03,
+    "otros": 23.729
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 4,
+    "B": 3,
+    "C": 19,
+    "D": 33,
+    "total": 59,
+    "tdia": 2026
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 806,
+    "tdia": 2075,
+    "costo_ton": 650
+   }
+  },
+  "Sinaloa": {
+   "gpc": 1.079,
+   "gen_tdia": 3364,
+   "comp": {
+    "organicos": 37.617,
+    "aprovechables": 37.182,
+    "otros": 25.203
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 8,
+    "B": 2,
+    "C": 15,
+    "D": 23,
+    "total": 48,
+    "tdia": 3439
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 291,
+    "tdia": 3512,
+    "costo_ton": 139
+   }
+  },
+  "Sonora": {
+   "gpc": 1.073,
+   "gen_tdia": 3274,
+   "comp": {
+    "organicos": 37.608,
+    "aprovechables": 37.224,
+    "otros": 25.165
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 5,
+    "B": 4,
+    "C": 15,
+    "D": 92,
+    "total": 116,
+    "tdia": 2393
+   },
+   "rellenos_nom083": {
+    "total": 1,
+    "tdia": 410
+   },
+   "recoleccion": {
+    "vehiculos": 346,
+    "tdia": 2462,
+    "costo_ton": 235
+   }
+  },
+  "Tabasco": {
+   "gpc": 1.048,
+   "gen_tdia": 2566,
+   "comp": {
+    "organicos": 39.517,
+    "aprovechables": 36.078,
+    "otros": 24.403
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 6,
+    "B": 5,
+    "C": 6,
+    "D": 0,
+    "total": 17,
+    "tdia": 1798
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 324,
+    "tdia": 1812,
+    "costo_ton": 299
+   }
+  },
+  "Tamaulipas": {
+   "gpc": 1.112,
+   "gen_tdia": 4061,
+   "comp": {
+    "organicos": 39.125,
+    "aprovechables": 36.739,
+    "otros": 24.137
+   },
+   "disp": {
+    "A1": 1,
+    "A2": 6,
+    "B": 0,
+    "C": 8,
+    "D": 26,
+    "total": 41,
+    "tdia": 3247
+   },
+   "rellenos_nom083": {
+    "total": 1,
+    "tdia": 570
+   },
+   "recoleccion": {
+    "vehiculos": 448,
+    "tdia": 3332,
+    "costo_ton": 225
+   }
+  },
+  "Tlaxcala": {
+   "gpc": 1.099,
+   "gen_tdia": 1533,
+   "comp": {
+    "organicos": 40.108,
+    "aprovechables": 36.211,
+    "otros": 23.682
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 4,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "total": 4,
+    "tdia": 1100
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 176,
+    "tdia": 1144,
+    "costo_ton": 257
+   }
+  },
+  "Veracruz": {
+   "gpc": 1.033,
+   "gen_tdia": 8400,
+   "comp": {
+    "organicos": 41.145,
+    "aprovechables": 35.834,
+    "otros": 23.018
+   },
+   "disp": {
+    "A1": 1,
+    "A2": 10,
+    "B": 3,
+    "C": 41,
+    "D": 53,
+    "total": 108,
+    "tdia": 5350
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 917,
+    "tdia": 5477,
+    "costo_ton": 280
+   }
+  },
+  "Yucatán": {
+   "gpc": 1.053,
+   "gen_tdia": 2548,
+   "comp": {
+    "organicos": 40.563,
+    "aprovechables": 36.398,
+    "otros": 23.04
+   },
+   "disp": {
+    "A1": 1,
+    "A2": 1,
+    "B": 3,
+    "C": 8,
+    "D": 113,
+    "total": 126,
+    "tdia": 1884
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 314,
+    "tdia": 1957,
+    "costo_ton": 268
+   }
+  },
+  "Zacatecas": {
+   "gpc": 0.987,
+   "gen_tdia": 1647,
+   "comp": {
+    "organicos": 41.29,
+    "aprovechables": 35.872,
+    "otros": 22.837
+   },
+   "disp": {
+    "A1": 0,
+    "A2": 2,
+    "B": 3,
+    "C": 21,
+    "D": 66,
+    "total": 92,
+    "tdia": 1325
+   },
+   "rellenos_nom083": {
+    "total": 0,
+    "tdia": 0
+   },
+   "recoleccion": {
+    "vehiculos": 246,
+    "tdia": 1376,
+    "costo_ton": 299
+   }
+  }
+ }
+}
