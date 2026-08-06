@@ -2006,16 +2006,51 @@ var ACTORES_FED=[
   {sig:'COFEPRIS',dep:'Comisión Federal para la Protección contra Riesgos Sanitarios',titular:'Víctor Hugo Borja Aburto',cargo:'Comisionado Federal',url:'https://www.gob.mx/cofepris'},
   {sig:'SENASICA',dep:'Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria',titular:'Francisco Javier Calderón Elizalde',cargo:'Director en Jefe',url:'https://www.gob.mx/senasica'}
 ];
+var _depsFed=null,_depOpen={};
+function _depGet(sig){return (_depsFed&&_depsFed.dependencias&&_depsFed.dependencias[sig])||null;}
+function _depTreeHTML(units,depth){
+  return (units||[]).map(function(u){
+    var pad=12+depth*20;
+    var hasKids=u.unidades&&u.unidades.length;
+    var col=depth===0?'#066750':'var(--text)';
+    var w=depth===0?'700':'600';
+    var line='<div style="padding:6px 0 6px '+pad+'px;border-bottom:0.8px solid var(--border);line-height:1.4">'
+      +'<span style="display:inline-flex;align-items:baseline;gap:8px;flex-wrap:wrap">'
+      +'<span style="width:5px;height:5px;border-radius:50%;background:'+(depth===0?'#066750':'var(--text-muted)')+';display:inline-block;flex-shrink:0;position:relative;top:-2px"></span>'
+      +'<span style="font-size:'+(depth===0?'12':'12')+'px;font-weight:'+w+';color:'+col+'">'+u.nombre+'</span>'
+      +(u.titular?'<span style="font-size:11px;color:var(--text-sec)">· '+u.titular+(u.cargo?' <span style="color:var(--text-muted)">('+u.cargo+')</span>':'')+'</span>':'')
+      +'</span></div>';
+    return line+(hasKids?_depTreeHTML(u.unidades,depth+1):'');
+  }).join('');
+}
+function _depToggle(sig){_depOpen[sig]=!_depOpen[sig];renderActoresFederal();}
 function renderActoresFederal(){
   var el=document.getElementById('actores-federal');
   if(!el)return;
+  el.style.display='block';
   el.innerHTML=ACTORES_FED.map(function(a){
-    return '<a href="'+a.url+'" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:2px;padding:12px 0;border-bottom:0.8px solid var(--border);text-decoration:none;color:inherit">'
-      +'<span style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.12em;color:var(--green)">'+a.sig+'</span>'
-      +'<span style="font-size:13px;font-weight:600;color:var(--text)">'+a.titular+'</span>'
-      +'<span style="font-size:11px;color:var(--text-sec)">'+a.cargo+' · '+a.dep+'</span>'
-      +'</a>';
-  }).join('');
+    var dep=_depGet(a.sig);
+    var open=!!_depOpen[a.sig];
+    var head='<div'+(dep?' onclick="_depToggle(\''+a.sig+'\')" style="cursor:pointer;':' style="')
+      +'display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:0.8px solid var(--border)">'
+      +'<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">'
+        +'<span style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.12em;color:var(--green)">'+a.sig+'</span>'
+        +'<span style="font-size:13px;font-weight:600;color:var(--text)">'+a.titular+'</span>'
+        +'<span style="font-size:11px;color:var(--text-sec)">'+a.cargo+' · '+a.dep+'</span>'
+      +'</div>'
+      +'<a href="'+a.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="flex-shrink:0;font-size:11px;color:var(--green);text-decoration:none">gob.mx ↗</a>'
+      +(dep?'<span style="flex-shrink:0;font-size:10px;color:var(--text-muted);width:14px;text-align:center;transition:transform .2s;transform:rotate('+(open?90:0)+'deg)">▶</span>':'')
+      +'</div>';
+    var tree='';
+    if(dep&&open){
+      tree='<div style="padding:6px 0 14px 0;background:rgba(6,103,80,0.02)">'
+        +_depTreeHTML(dep.unidades,0)
+        +(dep.nota?'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:10px;padding-left:12px;line-height:1.5">'+dep.nota+'</div>':'')
+        +'</div>';
+    }
+    return head+tree;
+  }).join('')
+  +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:14px;line-height:1.5">Estructura de SEMARNAT, CONAGUA, PROFEPA y ASEA conforme al Reglamento Interior (DOF mar-2025) y Manual de Organización. En expansión al resto de dependencias y niveles.</div>';
 }
 // Entrada desde el dropdown del nav: abre Actores y muestra la sub-vista
 function showActores(view){
@@ -4555,6 +4590,7 @@ async function init(){
   fetch('data/podecibi.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_podecibiData=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel==='circular')det.innerHTML=_radarDetailHTML('circular');}).catch(()=>{});
   fetch('data/tramites-rme.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_tramitesRME=d;var h=document.getElementById('rme-dir');if(h)h.innerHTML=_rmeDirHTML();}).catch(()=>{});
   fetch('data/residuos-estatal.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_residuosData=d;}).catch(()=>{});
+  fetch('data/dependencias-federales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_depsFed=d;if(document.getElementById('actores-federal'))renderActoresFederal();}).catch(()=>{});
   fetch('data/internacional.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(d){_INTL=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel)det.innerHTML=_radarDetailHTML(_radarSel);}}).catch(()=>{});
   processData();
   computeScores();
