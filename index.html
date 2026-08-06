@@ -945,7 +945,6 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       <button class="sp-tab" onclick="showSPTab('materiales',this)">Materiales Prohibidos</button>
       <button class="sp-tab" onclick="showSPTab('sectorial',this)">Sector Industrial</button>
       <button class="sp-tab" onclick="showSPTab('rme',this)">Trámites RME</button>
-      <button class="sp-tab" onclick="showSPTab('sitios',this)">Sitios contaminados</button>
     </div>
     <div id="sp-perfil" class="sp-content active"></div>
     <div id="sp-actividad" class="sp-content"></div>
@@ -954,7 +953,6 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
     <div id="sp-materiales" class="sp-content"></div>
     <div id="sp-sectorial" class="sp-content"></div>
     <div id="sp-rme" class="sp-content"></div>
-    <div id="sp-sitios" class="sp-content"></div>
   </div>
 </div>
 <div class="main">
@@ -1201,7 +1199,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       </p>
 
       <p style="font-size:14px;color:var(--text-sec);margin-bottom:20px">
-        Scope conecta fuentes que normalmente viven dispersas y las vuelve legibles: un mapa nacional con la actividad de cada entidad, el Monitor del Congreso Federal, un Radar temático que cruza noticias, publicaciones del DOF, iniciativas y proposiciones, NOMs, impuestos verdes y regulación internacional, y datos abiertos oficiales integrados de verdad —como el inventario de sitios contaminados o las emisiones nacionales de gases de efecto invernadero—, además de un expediente por estado.
+        Scope conecta fuentes que normalmente viven dispersas y las vuelve legibles: un mapa nacional con la actividad de cada entidad, el Monitor del Congreso Federal, un Radar temático que cruza noticias, publicaciones del DOF, iniciativas y proposiciones, NOMs, impuestos verdes y regulación internacional, y datos abiertos oficiales integrados de verdad —como las emisiones nacionales de gases de efecto invernadero o el inventario de trámites estatales de residuos—, además de un expediente por estado.
       </p>
 
       <p style="font-size:14px;color:var(--text-sec);margin-bottom:20px">
@@ -1602,10 +1600,8 @@ function _mapTT(ev,state){
   var tt=document.getElementById('tt');
   if(!tt)return;
   tt.className='dotmap-tt';
-  var sc=(_sitiosData&&_sitiosData.estados&&_sitiosData.estados[state]);
-  var sitiosLine=sc?'<br><span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+sc.contaminados+' sitios contaminados · '+sc.pct_remediado+'% remediado</span>':'';
   tt.innerHTML='<span style="color:var(--white);font-weight:600">'+state+'</span>'
-    +'<span style="color:var(--dim)"> · click para ver panel</span>'+sitiosLine;
+    +'<span style="color:var(--dim)"> · click para ver panel</span>';
   tt.style.display='block';
   tt.style.left=Math.min(ev.clientX+14,window.innerWidth-260)+'px';
   tt.style.top=(ev.clientY+14)+'px';
@@ -2990,15 +2986,6 @@ function renderSPImpuestos(state){
   const footer=hasUMA?`<div style="margin-top:12px;font-size:10px;color:var(--text-muted)">UMA 2026 (INEGI): <b>$117.31 MXN/día</b></div>`:'';
   document.getElementById('sp-impuestos').innerHTML=cards+footer;
 }
-function renderSPSitios(state){
-  var el=document.getElementById('sp-sitios');
-  if(!el)return;
-  var d=(_sitiosData&&_sitiosData.estados&&_sitiosData.estados[state]);
-  if(!_sitiosData){el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando inventario…</div>';return;}
-  if(!d){el.innerHTML='<div style="font-size:12px;color:var(--text-sec);line-height:1.6;padding:8px 0">Sin sitios contaminados registrados para '+state+' en el Inventario Nacional de la SEMARNAT.</div>'
-    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:12px">Fuente: SEMARNAT · Inventario Nacional de Sitios Contaminados y Remediados (datos.gob.mx)</div>';return;}
-  el.innerHTML=_sitiosBlock(state,true);
-}
 function openStatePanel(stateName){
   var data=estadoData[stateName]||{};
   var sc=stateScores[stateName]||{icr:0,ipr:0,irf:0,iis:0,master:0,rank:32};
@@ -3011,7 +2998,6 @@ function openStatePanel(stateName){
   renderSPMateriales(stateName);
   renderSPSectorial(stateName);
   renderSPTramites(stateName);
-  renderSPSitios(stateName);
   showSPTab('perfil',document.querySelector('#state-modal-bg .sp-tab'));
   var bg=document.getElementById('state-modal-bg');
   bg.style.display='flex';
@@ -3555,30 +3541,6 @@ function renderSPPerfil(state,data,sc){
   document.getElementById('sp-perfil').innerHTML=rows
     +`<div style="margin-top:16px;padding-top:14px;font-size:12px;line-height:1.65;color:var(--text-sec)">${narrative}</div>`
     +(data.congreso?`<div style="margin-top:18px;padding-top:14px;border-top:0.8px solid var(--border)"><a href="${data.congreso}" target="_blank" rel="noopener" style="font-size:12px;font-weight:600;color:var(--green);text-decoration:none">Portal del Congreso de ${state} ↗</a><div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px;word-break:break-all">${data.congreso}</div></div>`:'');
-}
-// Sitios contaminados/remediados por entidad (SEMARNAT · datos.gob.mx, ingesta real)
-function _sitiosBlock(state,bare){
-  var d=(_sitiosData&&_sitiosData.estados&&_sitiosData.estados[state]);
-  if(!d)return '';
-  var stat=function(v,l,c){return '<div style="flex:1"><div style="font-size:22px;font-weight:700;color:'+(c||'var(--text)')+';font-variant-numeric:tabular-nums;line-height:1">'+v+'</div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-top:5px">'+l+'</div></div>';};
-  var cont=Object.keys(d.por_contaminante||{}).map(function(k){return [k,d.por_contaminante[k]];});
-  var mxc=Math.max.apply(null,cont.map(function(e){return e[1];}).concat([1]));
-  var bars=cont.slice(0,5).map(function(e){
-    return '<div style="display:flex;align-items:center;gap:10px;padding:5px 0"><span style="flex:1;font-size:11px;color:var(--text)">'+e[0]+'</span>'
-      +'<span style="width:80px;height:4px;background:rgba(0,0,0,0.06);flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(e[1]/mxc*100)+'%;background:#d97706"></span></span>'
-      +'<span style="font-family:var(--mono);font-size:11px;color:var(--text-sec);min-width:26px;text-align:right">'+e[1]+'</span></div>';
-  }).join('');
-  var rec=(d.recientes||[]).slice(0,4).map(function(r){
-    return '<div style="display:flex;align-items:baseline;gap:12px;padding:7px 0;border-top:0.8px solid var(--border)"><span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);flex-shrink:0">'+(r.anio||'—')+'</span>'
-      +'<div style="flex:1;min-width:0;font-size:11px;color:var(--text);line-height:1.4">'+(r.municipio||'—')+' <span style="color:var(--text-muted)">· '+(r.contaminante||'')+(r.modalidad?' · '+r.modalidad:'')+'</span></div></div>';
-  }).join('');
-  return (bare?'<div>':'<div style="margin-top:26px;padding-top:16px;border-top:0.8px solid var(--border)">')
-    +'<div style="font-size:9px;font-weight:600;letter-spacing:0.09em;color:var(--text-muted);text-transform:uppercase;margin-bottom:13px">Sitios contaminados · SEMARNAT</div>'
-    +'<div style="display:flex;gap:18px;margin-bottom:16px">'+stat(d.contaminados,'Contaminados','#d97706')+stat(d.remediados,'Remediados','var(--green)')+stat(d.pct_remediado+'%','Remediado',null)+'</div>'
-    +(bars?'<div style="margin-bottom:6px">'+bars+'</div>':'')
-    +(rec?'<div style="margin-top:10px">'+rec+'</div>':'')
-    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:12px">Fuente: SEMARNAT · Inventario Nacional de Sitios Contaminados y Remediados (datos.gob.mx)</div>'
-    +'</div>';
 }
 function renderSPMateriales(state){
   const el=document.getElementById('sp-materiales');
@@ -4406,7 +4368,7 @@ function renderDOF(){
   el.innerHTML=html;
 }
 // ─────────────────────────────────────────────────────────────────────────────
-var _perfilEstados=null,_materialesData=null,_datosgobData=null,_sitiosData=null,_emisionesData=null,_conamerData=null,_podecibiData=null,_tramitesRME=null;
+var _perfilEstados=null,_materialesData=null,_datosgobData=null,_emisionesData=null,_conamerData=null,_podecibiData=null,_tramitesRME=null;
 async function init(){
   try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
   try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
@@ -4416,7 +4378,6 @@ async function init(){
   fetch('data/datosgob.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_datosgobData=d;renderDatosGob();}).catch(()=>{});
   fetch('data/noticias-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();buildMap();}).catch(()=>{});
   fetch('data/actores-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_actoresEstatales=d;renderActoresEstatales();}).catch(()=>{});
-  fetch('data/sitios-contaminados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_sitiosData=d;buildMap();}).catch(()=>{});
   fetch('data/emisiones-gei.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_emisionesData=d;if(typeof renderEmisiones==='function')renderEmisiones();}).catch(()=>{});
   fetch('data/conamer-propuestas.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_conamerData=d;}).catch(()=>{});
   fetch('data/podecibi.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_podecibiData=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel==='circular')det.innerHTML=_radarDetailHTML('circular');}).catch(()=>{});
