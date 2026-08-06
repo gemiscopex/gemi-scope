@@ -1,14 +1,80 @@
 {
  "_meta": {
-  "actualizado": "2026-08-04T17:30 CDMX",
+  "actualizado": "2026-08-06T15:53 CDMX",
   "fuente": "CONAMER · Plataforma Integral de Gobernanza Regulatoria (herramientasregulatorias.gob.mx)",
   "url": "https://www.herramientasregulatorias.gob.mx/",
-  "nota": "Espejo de propuestas regulatorias en consulta que impactan sectores ambiental, energía, agua y residuos. Se actualiza cada 2 semanas."
+  "nota": "Propuestas regulatorias en consulta que impactan sectores ambiental, energía, agua y residuos. Incluye Anteproyectos con Análisis de Impacto Regulatorio (AIR) y Exenciones."
  },
  "items": [
-  {"id": "1553", "siglas": "ASEA", "fecha": "04/08/2026 16:38:37", "titulo": "AVISO de consulta pública del Proyecto de Norma Oficial Mexicana PROY-NOM-030-ASEA-2026, Distribución de Gas Licuado de Petróleo por medio de Auto-tanque y Vehículo de Reparto.", "dependencia": "Agencia de Seguridad, Energía y Ambiente", "tipo": "Exención de Análisis de Impacto Regulatorio", "subtipo": "Aviso", "url": "https://www.herramientasregulatorias.gob.mx/AirConstancia?IdAir=1553&tab=tab1"},
-  {"id": "1555", "siglas": "SENER", "fecha": "04/08/2026 14:59:45", "titulo": "Acuerdo por el que se establecen los requisitos para la adquisición de Certificados de Energías Limpias para los años 2025 y 2026", "dependencia": "Secretaría de Energía", "tipo": "Exención de Análisis de Impacto Regulatorio", "subtipo": "Acuerdo", "url": "https://www.herramientasregulatorias.gob.mx/AirConstancia?IdAir=1555&tab=tab1"},
-  {"id": "1536", "siglas": "CONUEE", "fecha": "04/08/2026 12:20:46", "titulo": "AVISO GENERAL POR EL QUE SE DA A CONOCER EL CAMBIO DE DOMICILIO OFICIAL DE LA COMISIÓN NACIONAL PARA EL USO EFICIENTE DE LA ENERGÍA.", "dependencia": "Comisión Nacional para el Uso Eficiente de la Energía", "tipo": "Exención de Análisis de Impacto Regulatorio", "subtipo": "Aviso", "url": "https://www.herramientasregulatorias.gob.mx/AirConstancia?IdAir=1536&tab=tab1"},
-  {"id": "1508", "siglas": "ISSSTE", "fecha": "04/08/2026 17:06:09", "titulo": "Manual de Integración y Funcionamiento del Comité Interno de Eficiencia Energética del ISSSTE", "dependencia": "Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado", "tipo": "Exención de Análisis de Impacto Regulatorio", "subtipo": "Manual", "url": "https://www.herramientasregulatorias.gob.mx/AirConstancia?IdAir=1508&tab=tab1"}
+  {
+   "id": "g480a44",
+   "siglas": "SEMARNAT",
+   "fecha": "09/04/2026",
+   "titulo": "Norma Oficial Mexicana NOM-174-SEMARNAT-2026, Límites máximos permisibles de emisión de contaminantes provenientes del escape de los motores nuevos incorporados o a ser instalados en maquinaria móvil nueva no de carretera, que usan diésel como combustible.",
+   "dependencia": "Secretaría del Medio Ambiente y Recursos Naturales",
+   "tipo": "Análisis de Impacto Regulatorio",
+   "subtipo": "Norma Oficial Mexicana",
+   "url": "https://www.herramientasregulatorias.gob.mx/AirConstancia/AirConvencional?IdAirgeneral=480&air=44&tab=tab1"
+  },
+  {
+   "id": "g108a18",
+   "siglas": "SEMARNAT",
+   "fecha": "18/02/2026",
+   "titulo": "Norma Oficial Mexicana NOM-021-ASEA-2026, Prospecciones Sísmicas marinas para el Reconocimiento y Exploración Superficial.",
+   "dependencia": "Agencia de Seguridad, Energía y Ambiente (ASEA)",
+   "tipo": "Análisis de Impacto Regulatorio",
+   "subtipo": "Norma Oficial Mexicana",
+   "url": "https://www.herramientasregulatorias.gob.mx/AirConstancia/AirConvencional?IdAirgeneral=108&air=18&tab=tab1"
+  },
+  {
+   "id": "g105a17",
+   "siglas": "SEMARNAT",
+   "fecha": "06/03/2026",
+   "titulo": "Norma Oficial Mexicana NOM-022-ASEA-2026, Instalaciones de Compresión de Gas Natural para la carga de Módulos de Almacenamiento Transportables y Estaciones de Servicio para Expendio al Público de Gas Natural Comprimido para vehículos automotores (cancela la NOM-010-ASEA-2016).",
+   "dependencia": "Agencia de Seguridad, Energía y Ambiente (ASEA)",
+   "tipo": "Análisis de Impacto Regulatorio",
+   "subtipo": "Norma Oficial Mexicana",
+   "url": "https://www.herramientasregulatorias.gob.mx/AirConstancia/AirConvencional?IdAirgeneral=105&air=17&tab=tab1"
+  },
+  {
+   "id": "g1033a62",
+   "siglas": "SENER",
+   "fecha": "08/06/2026",
+   "titulo": "Norma Oficial Mexicana NOM-022-ENER/SE-2025, Eficiencia energética y requisitos de seguridad al usuario para aparatos de refrigeración comercial autocontenidos. Límites, métodos de prueba y etiquetado.",
+   "dependencia": "Secretaría de Energía",
+   "tipo": "Análisis de Impacto Regulatorio",
+   "subtipo": "Norma Oficial Mexicana",
+   "url": "https://www.herramientasregulatorias.gob.mx/AirConstancia/AirConvencional?IdAirgeneral=1033&air=62&tab=tab1"
+  },
+  {
+   "id": "1562",
+   "siglas": "SEMARNAT",
+   "fecha": "06/08/2026 12:09:34",
+   "titulo": "Acuerdo por el que se eliminan diversos trámites en materia de uso de la marca de certificación “Café de Sombra Natural CSN”",
+   "dependencia": "Secretaría del Medio Ambiente y Recursos Naturales",
+   "tipo": "Exención de Análisis de Impacto Regulatorio",
+   "subtipo": "Acuerdo",
+   "url": "https://www.herramientasregulatorias.gob.mx/AirConstancia?IdAir=1562&tab=tab1"
+  },
+  {
+   "id": "1583",
+   "siglas": "SEMARNAT",
+   "fecha": "06/08/2026 12:08:12",
+   "titulo": "Decreto por el que se declara el segundo domingo de agosto de cada año como “Día Nacional de la Reforestación”",
+   "dependencia": "Secretaría del Medio Ambiente y Recursos Naturales",
+   "tipo": "Exención de Análisis de Impacto Regulatorio",
+   "subtipo": "Decreto",
+   "url": "https://www.herramientasregulatorias.gob.mx/AirConstancia?IdAir=1583&tab=tab1"
+  },
+  {
+   "id": "1577",
+   "siglas": "SENER",
+   "fecha": "06/08/2026 08:00:00",
+   "titulo": "Acuerdo por el que se establecen los requisitos para la adquisición de Certificados de Energías Limpias para los años 2025 y 2026",
+   "dependencia": "Secretaría de Energía",
+   "tipo": "Exención de Análisis de Impacto Regulatorio",
+   "subtipo": "Acuerdo",
+   "url": "https://www.herramientasregulatorias.gob.mx/AirConstancia?IdAir=1577&tab=tab1"
+  }
  ]
 }
