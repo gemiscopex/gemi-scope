@@ -41,12 +41,25 @@ RSS_FEEDS = {
     "Pie de Pagina":    "https://piedepagina.mx/feed/",
     "CEMDA":            "https://www.cemda.org.mx/feed/",
     "Greenpeace MX":    "https://www.greenpeace.org/mexico/feed/",
+    # ── Energía ──────────────────────────────────────────────────────────────
+    "Energy21":         "https://energy21.com.mx/feed/",
     # ── Medios generales de calidad ──────────────────────────────────────────
     "La Jornada":       "https://www.jornada.com.mx/rss/edicion.xml",
     "El Financiero":    "https://www.elfinanciero.com.mx/rss/feed.xml",
     "Expansion":        "https://expansion.mx/rss",
     "Reforma":          "https://www.reforma.com/rss/portada.xml",
     "Gaceta UNAM":      "https://www.gaceta.unam.mx/feed/",
+    # ── Legales y regulatorias (guía GEMI) ───────────────────────────────────
+    "Normateca Ambiental": "https://normatecambiental.org/feed/",
+    "VTZ Abogados":        "https://vtz.mx/alertas-legales/feed/",
+    "Basham":              "https://basham.com.mx/feed/",
+    "Tirant Mexico":       "https://prime.tirant.com/mx/feed/",
+    "Fundacion Cortinas":  "https://www.fundacionccortinas.org/feed/",
+    # ── Sectoriales (energía, residuos, plásticos) ───────────────────────────
+    "Energia Hoy":       "https://energiahoy.com/feed/",
+    "PV Magazine MX":    "https://www.pv-magazine-mexico.com/feed/",
+    "Residuos Expo":     "https://residuosexpo.com/?feed=rss2",
+    "Ambiente Plastico": "https://ambienteplastico.com/feed/",
 }
 
 UA  = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
@@ -92,7 +105,12 @@ KEYWORDS_AMBIENTAL = {
 
 # Fuentes especializadas: todos sus artículos pasan aunque no tengan keyword explícito
 FUENTES_ESPECIALIZADAS = {"Mongabay Latam", "Causa Natura", "Pie de Pagina",
-                           "CEMDA", "Greenpeace MX"}
+                           "CEMDA", "Greenpeace MX",
+                           # Fuentes cuyo foco es ambiental/regulatorio (todo pasa):
+                           "Normateca Ambiental", "Ambiente Plastico", "Residuos Expo",
+                           "Fundacion Cortinas"}
+# Nota: los bufetes (VTZ, Basham, Tirant) e IMCO cubren muchos temas, por eso NO son
+# especializadas: solo pasan sus artículos que cruzan una keyword ambiental.
 
 ALL_KW = [kw for kws in KEYWORDS_AMBIENTAL.values() for kw in kws]
 
@@ -163,6 +181,40 @@ def _kw_match(kw_norm: str, text_norm: str) -> bool:
     if len(kw_norm) <= 6:
         return bool(re.search(r"\b" + re.escape(kw_norm) + r"\b", text_norm))
     return kw_norm in text_norm
+
+_MX_MARKERS = [
+    "mexico", "mexicano", "mexicana", "mexicanos", "mexicanas",
+    "cdmx", "pemex", "conagua", "semarnat", "conafor", "conanp",
+    "inecc", "profepa", "cfe", "sheinbaum",
+    "jalisco", "oaxaca", "chiapas", "sonora", "veracruz", "yucatan",
+    "puebla", "guerrero", "hidalgo", "morelos", "tabasco", "michoacan",
+    "chihuahua", "durango", "coahuila", "aguascalientes", "colima",
+    "tlaxcala", "nayarit", "zacatecas", "sinaloa", "tamaulipas",
+    "queretaro", "guanajuato", "campeche", "quintana",
+    "guadalajara", "monterrey", "tijuana", "merida", "cancun",
+]
+_FOREIGN_MARKERS = [
+    "en argentina", "argentina:", "de argentina",
+    "venezuel",
+    "en colombia", "colombia:", "colombiano", "colombiana",
+    "en chile", "chile:",
+    "brasil", "brazil",
+    "en peru", "peru:",
+    "en ecuador", "ecuador:",
+    "en bolivia", "bolivia:",
+    "costa rica", "el salvador",
+    "en guatemala", "en honduras", "en nicaragua",
+    "en uruguay", "en paraguay",
+    "en cuba", "cuba:",
+]
+
+def is_mexico_relevant(titulo: str, resumen: str = "") -> bool:
+    t = normalize(f"{titulo} {resumen}")
+    if any(m in t for m in _MX_MARKERS):
+        return True
+    if any(f in t for f in _FOREIGN_MARKERS):
+        return False
+    return True  # ambiguous / global → allow
 
 def detect_categories(titulo: str, resumen: str = "") -> list:
     t = normalize(f"{titulo} {resumen}")
@@ -313,6 +365,9 @@ def main():
 
         # Las fuentes especializadas pasan siempre; las generales necesitan keyword
         if not cats and not especializada:
+            continue
+        # Descartar artículos claramente sobre otros países sin mención de México
+        if not is_mexico_relevant(titulo, resumen):
             continue
         if not cats and especializada:
             # Fuente especializada sin keyword → categoría genérica
