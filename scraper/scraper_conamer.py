@@ -32,33 +32,46 @@ KW = ["ambient","residuo","reciclaje","plastic","agua","hidric","energ","hidroca
       "fertilizante","plaguicida","mineria","minero","vida silvestre","impacto ambiental",
       "uso eficiente de la energia"]
 
-# JS que corre DENTRO de la página (mismo origen → pasa Akamai) y devuelve las tarjetas
+# JS que corre DENTRO de la página (mismo origen → pasa Akamai). El buscador tiene
+# botones de categoría (Todos / Exención / Análisis de Impacto Regulatorio). Los AIR
+# (anteproyectos sustantivos: NOMs SEMARNAT/ASEA/ENER, resoluciones) NO aparecen en la
+# vista por defecto (Exención). Hay que hacer CLIC en cada categoría y recolectar las
+# tarjetas que renderiza (AJAX). Cada tarjeta enlaza a /AirConstancia?IdAir=NN (exención)
+# o /AirConstancia/AirConvencional?IdAirgeneral=NN&air=NN (AIR).
 JS_SCRAPE = r"""
 async () => {
+  const wait = ms => new Promise(r => setTimeout(r, ms));
   const seen = {}, all = [];
-  for (let p = 1; p <= 8; p++) {
-    const t = await fetch('/Buscador/SearchRegulacionResult?propuesta=propuesta-todos&tab=tab1&p='+p+'&s=9',
-      {headers:{'X-Requested-With':'XMLHttpRequest'}}).then(r=>r.text()).catch(()=>'' );
-    const d = document.createElement('div'); d.innerHTML = t;
-    const cards = [].filter.call(d.querySelectorAll('.card'), c => c.querySelector('a[href*="IdAir"]'));
-    if (!cards.length) break;
-    let fresh = false;
+  const collect = (cat) => {
+    const cards = [].filter.call(document.querySelectorAll('.card'), c => c.querySelector('a[href*="IdAir"]'));
     cards.forEach(c => {
-      const id = (c.querySelector('a[href*="IdAir"]').getAttribute('href').match(/IdAir=(\d+)/)||[])[1];
-      if (!id || seen[id]) return; seen[id] = 1; fresh = true;
+      const a = c.querySelector('a[href*="IdAir"]');
+      const href = a ? a.getAttribute('href') : '';
+      const key = href || (a && a.textContent);
+      if (!href || seen[href]) return; seen[href] = 1;
       const title = c.querySelector('.card-title'); const tt = title ? title.textContent.replace(/\s+/g,' ').trim() : '';
       const txts = [].map.call(c.querySelectorAll('.text'), e => e.textContent.replace(/\s+/g,' ').trim());
       const tags = [].map.call(c.querySelectorAll('.tag'), e => e.textContent.replace(/\s+/g,' ').trim());
       const depEl = c.querySelector('.pt-3'); const dep = depEl ? depEl.textContent.replace(/\s+/g,' ').trim() : (tags[1]||'');
       all.push({
-        id: id,
+        href: href, categoria: cat,
         siglas: (txts.find(x=>/Siglas:/.test(x))||'').replace('Siglas:','').trim(),
         fecha: (txts.find(x=>/Actualizaci/.test(x))||'').replace(/Actualizaci[^:]*:/,'').trim(),
         titulo: tt, dependencia: dep, tipo: tags[0]||'', subtipo: tags[2]||''
       });
     });
-    if (!fresh) break;
+  };
+  // Recorre cada botón de categoría; si no existe, hace fallback a lo que ya esté en pantalla
+  const cats = [['btnExencion','exencion'], ['btnAirConvencional','air'], ['btnairexpost','airexpost']];
+  let clicked = false;
+  for (const [bid, cat] of cats) {
+    const b = document.getElementById(bid);
+    if (!b) continue;
+    clicked = true;
+    b.click(); await wait(2800);
+    collect(cat);
   }
+  if (!clicked) collect('todos');   // fallback: vista por defecto
   return all;
 }
 """
@@ -102,16 +115,19 @@ def main():
 
     seen, items = set(), []
     for r in raw:
-        rid = r.get("id")
-        if not rid or rid in seen or not es_sector(r):
+        href = r.get("href") or ""
+        if not href or href in seen or not es_sector(r):
             continue
-        seen.add(rid)
+        seen.add(href)
+        url = href if href.startswith("http") else BASE + ("" if href.startswith("/") else "/") + href
         items.append({
-            "id": rid, "siglas": r.get("siglas",""), "fecha": r.get("fecha",""),
+            "id": href, "siglas": r.get("siglas",""), "fecha": r.get("fecha",""),
             "titulo": r.get("titulo",""), "dependencia": r.get("dependencia",""),
             "tipo": r.get("tipo",""), "subtipo": r.get("subtipo",""),
-            "url": f"{BASE}/AirConstancia?IdAir={rid}&tab=tab1",
+            "categoria": r.get("categoria",""), "url": url,
         })
+    # AIR (anteproyectos sustantivos) primero, luego exenciones
+    items.sort(key=lambda x: 0 if str(x.get("tipo","")).startswith("Análisis") else 1)
 
     out = {
         "_meta": {
