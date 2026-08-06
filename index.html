@@ -2225,7 +2225,7 @@ function estadosAddCmp(sel){
 }
 function estadosRemoveCmp(name){ _cmpStates=_cmpStates.filter(function(s){return s!==name;}); renderEstadosCompare(); }
 function estadosCmpView(v){ _cmpView=v; renderEstadosCompare(); }
-var _CMP_COLORS=['#009E90','#E8843D','#6366F1','#DC2626','#0EA5E9'];
+var _CMP_COLORS=['#066750','#0E8C74','#2AA88B','#66B79E','#A7D8C8'];
 function _cmpColor(i){return _CMP_COLORS[i%_CMP_COLORS.length];}
 function _statePob(s){var p=(_perfilEstados&&_perfilEstados.estados&&_perfilEstados.estados[s])||{};return p.poblacion||0;}
 function _statePea(s){var p=(_perfilEstados&&_perfilEstados.estados&&_perfilEstados.estados[s])||{};return p.pea||0;}
@@ -2283,21 +2283,42 @@ function estadosExportCSV(){
 }
 function _cmpBody(){
   if(_cmpView==='impuestos'){
-    var counts=_cmpStates.map(_nImpuestos);
-    var out=_cmpDonut(counts,'impuestos')
-      +'<div style="font-size:10px;color:var(--text-muted);text-align:center;margin-bottom:16px">Reparto de impuestos verdes entre las entidades comparadas</div>'
-      +'<div style="margin-top:4px">'+_cmpStates.map(function(s,i){
-        var tx=(impuestosDB[s]||[]);
-        return '<div style="margin-bottom:12px;padding-bottom:11px;border-bottom:0.8px solid var(--border)">'
-          +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><span style="width:9px;height:9px;background:'+_cmpColor(i)+';display:inline-block;flex-shrink:0"></span><span style="font-size:12px;font-weight:600;color:var(--text)">'+s+'</span><span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-left:auto">'+tx.length+'</span></div>'
-          +(tx.length?tx.map(function(t){
-            return '<div style="padding:2px 0 2px 16px">'
-              +'<div style="font-size:12px;color:var(--text)">'+(t.controversia?'<span style="color:#ef4444" title="Controversia constitucional">● </span>':'')+(t.tipo||'—')+'</div>'
-              +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+(t.precio||'')+(t.articulo?' · '+t.articulo:'')+'</div>'
-              +'</div>';
-          }).join(''):'<div style="font-size:11px;color:var(--text-muted);padding-left:16px">Sin impuestos registrados</div>')
-          +'</div>';
-      }).join('')+'</div>';
+    var byType={};
+    _cmpStates.forEach(function(s){
+      (impuestosDB[s]||[]).forEach(function(t){
+        var p=_impParse(t); if(!p)return;
+        byType[t.tipo]=byType[t.tipo]||{basis:p.basis};
+        byType[t.tipo][s]={p:p,contro:t.controversia};
+      });
+    });
+    var types=Object.keys(byType).sort(function(a,b){var ia=_IMP_ORDER.indexOf(a),ib=_IMP_ORDER.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib);});
+    if(!types.length)return '<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Ninguna de las entidades comparadas tiene impuestos verdes registrados.</div>';
+    var out='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:16px">Precio por tipo de impuesto, normalizado a <b>MXN</b> (las tarifas en UMA se convierten con la UMA 2026 = $117.31). La barra más larga y marcada <span style="color:#066750;font-weight:700">▲</span> es la entidad <b>más cara</b> en cada impuesto.</div>';
+    out+=types.map(function(tp){
+      var basis=byType[tp].basis||'';
+      var rows=_cmpStates.map(function(s,i){var e=byType[tp][s];return e?{s:s,i:i,mxn:e.p.mxnMax,p:e.p,contro:e.contro}:{s:s,i:i,mxn:null};});
+      var withTax=rows.filter(function(r){return r.mxn!=null;});
+      var mx=Math.max.apply(null,withTax.map(function(r){return r.mxn;}).concat([0.0001]));
+      var top=withTax.slice().sort(function(a,b){return b.mxn-a.mxn;})[0];
+      var disp=withTax.slice().sort(function(a,b){return b.mxn-a.mxn;}).concat(rows.filter(function(r){return r.mxn==null;}));
+      return '<div style="margin-bottom:18px">'
+        +'<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:9px;padding-bottom:5px;border-bottom:0.8px solid var(--border)">'
+          +'<span style="font-size:13px;font-weight:700;color:var(--text)">'+(_IMP_LABEL[tp]||tp)+'</span>'
+          +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">MXN'+(basis?' / '+basis:'')+'</span></div>'
+        +disp.map(function(r){
+          if(r.mxn==null)return '<div style="display:flex;align-items:center;gap:9px;padding:4px 0"><span style="width:82px;font-size:11px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+r.s+'</span><span style="flex:1;font-size:10px;color:var(--text-muted)">— sin este impuesto</span></div>';
+          var isTop=top&&r.s===top.s&&withTax.length>1;
+          var w=Math.max(4,Math.round(r.mxn/mx*100));
+          var col=isTop?'#066750':_cmpColor(r.i);
+          return '<div style="display:flex;align-items:center;gap:9px;padding:4px 0">'
+            +'<span style="width:82px;font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(r.contro?'<span title="Controversia" style="color:#B45309">● </span>':'')+r.s+'</span>'
+            +'<span style="flex:1;height:12px;background:rgba(0,0,0,0.05)"><span style="display:block;height:100%;width:'+w+'%;background:'+col+'"></span></span>'
+            +'<span style="min-width:92px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--text);font-variant-numeric:tabular-nums">'+_impMoneyRange(r.p)+(isTop?' <span style="color:#066750;font-weight:700">▲</span>':'')+'</span>'
+            +'</div>';
+        }).join('')
+        +'</div>';
+    }).join('');
+    out+='<div style="font-size:9px;font-family:var(--mono);color:var(--text-muted);margin-top:2px">Se muestra rango cuando la tarifa es variable; el orden usa el tope. UMA 2026 = $117.31 (DOF, INEGI).</div>';
     return out;
   }
   if(_cmpView==='sector'){
@@ -3034,31 +3055,73 @@ function renderSPLegislacion(state,data){
   if(!html)html='<div class="sp-empty">Sin datos de legislación local disponibles</div>';
   document.getElementById('sp-legislacion').innerHTML=html;
 }
+// ── Impuestos ambientales: normalización a MXN para comparar (UMA 2026 = $117.31) ──
+var UMA_MXN_2026=117.31;
+var _IMP_ORDER=['GEI','Agua','Residuos','Suelo y/o Subsuelo','Extracción de Materiales'];
+var _IMP_LABEL={'GEI':'GEI','Agua':'Agua','Residuos':'Residuos','Suelo y/o Subsuelo':'Suelo/Subsuelo','Extracción de Materiales':'Extracción'};
+function _impParse(t){
+  if(!t||!t.precio||t.precio==='—')return null;
+  var parts=String(t.precio).split('/');
+  var valPart=(parts[0]||'').replace(/\$/g,'').replace(/\s/g,'');
+  var basis=(parts.slice(1).join('/')||'').trim();
+  var nums=(valPart.match(/[\d.]+/g)||[]).map(parseFloat).filter(function(n){return !isNaN(n);});
+  if(!nums.length)return null;
+  var f=(t.unidad==='UMA')?UMA_MXN_2026:1;
+  return {mxnMin:Math.min.apply(null,nums)*f, mxnMax:Math.max.apply(null,nums)*f,
+    isRange:nums.length>1||/[–-]/.test(valPart), basis:basis, uma:t.unidad==='UMA', orig:String(t.precio)+' '+(t.unidad||'')};
+}
+function _impMoney(v){return '$'+Math.round(v).toLocaleString('es-MX');}
+function _impMoneyRange(p){return p.isRange?(_impMoney(p.mxnMin)+'–'+_impMoney(p.mxnMax)):_impMoney(p.mxnMax);}
+var _impNatCache=null;
+function _impNationalByType(){
+  if(_impNatCache)return _impNatCache;
+  var by={};
+  Object.keys(impuestosDB).forEach(function(st){
+    if(st==='_meta')return; var arr=impuestosDB[st]; if(!Array.isArray(arr))return;
+    arr.forEach(function(t){var p=_impParse(t); if(!p)return; (by[t.tipo]=by[t.tipo]||[]).push({estado:st,mxn:p.mxnMax});});
+  });
+  Object.keys(by).forEach(function(k){by[k].sort(function(a,b){return b.mxn-a.mxn;});});
+  _impNatCache=by; return by;
+}
+function _impRank(tipo,state){ // posición nacional (1=más caro) del estado en ese tipo
+  var arr=_impNationalByType()[tipo]||[];
+  var i=arr.findIndex(function(e){return e.estado===state;});
+  return i<0?null:{pos:i+1,total:arr.length,topMxn:arr.length?arr[0].mxn:0};
+}
 function renderSPImpuestos(state){
-  const TC={
-    'GEI':{c:'#009E90',b:'rgba(0,158,144,0.1)',label:'GEI'},
-    'Extracción de Materiales':{c:'#f59e0b',b:'rgba(245,158,11,0.1)',label:'EXTRACCIÓN'},
-    'Agua':{c:'#3b82f6',b:'rgba(59,130,246,0.1)',label:'AGUA'},
-    'Suelo y/o Subsuelo':{c:'#8b5cf6',b:'rgba(139,92,246,0.1)',label:'SUELO'},
-    'Residuos':{c:'#ef4444',b:'rgba(239,68,68,0.1)',label:'RESIDUOS'}
-  };
+  const GRN='#0E8C74', DEEP='#066750';
   const taxes=impuestosDB[state]||impuestosDB[state==='México'?'México':state]||[];
   if(!taxes.length){
     document.getElementById('sp-impuestos').innerHTML=`<div class="sp-empty">Sin impuestos ambientales estatales registrados para este estado<br><span style="font-size:11px">Aplica únicamente el marco federal (LGEEPA, LAN, LGPGIR)</span></div>`;
     return;
   }
   const hasUMA=taxes.some(t=>t.unidad==='UMA');
-  const cards=taxes.map(t=>{
-    const tipoLbl=(TC[t.tipo]||{label:t.tipo}).label||t.tipo;
-    const badge=`<span style="font-size:9px;font-weight:600;color:var(--text-muted);letter-spacing:0.08em">${tipoLbl}</span>`;
-    const contro=t.controversia?`<span style="font-size:9px;font-weight:700;color:#D97706;letter-spacing:0.06em">CONTROVERSIA</span>`:'';
-    const precio=t.precio&&t.precio!=='—'?`<div style="font-size:16px;font-weight:700;color:var(--text);margin:6px 0 4px;font-variant-numeric:tabular-nums">${t.precio} <span style="font-size:10px;font-weight:500;color:var(--text-muted)">${t.unidad}</span></div>`:'';
-    const specs=t.especificaciones?`<div style="font-size:12px;color:var(--text);line-height:1.5;margin-bottom:6px">${t.especificaciones}</div>`:'';
-    const oblig=t.obligados?`<div style="font-size:11px;color:var(--text-sec);margin-bottom:5px"><span style="font-weight:600">Obligados:</span> ${t.obligados}</div>`:'';
+  const sorted=taxes.slice().sort((a,b)=>(_IMP_ORDER.indexOf(a.tipo)+99*(_IMP_ORDER.indexOf(a.tipo)<0))-(_IMP_ORDER.indexOf(b.tipo)+99*(_IMP_ORDER.indexOf(b.tipo)<0)));
+  const cards=sorted.map(t=>{
+    const p=_impParse(t);
+    const lab=`<span style="font-family:var(--mono);font-size:9px;font-weight:600;color:var(--text-muted);letter-spacing:0.09em;text-transform:uppercase">${_IMP_LABEL[t.tipo]||t.tipo}</span>`;
+    const contro=t.controversia?`<span style="font-family:var(--mono);font-size:8px;font-weight:700;color:#B45309;letter-spacing:0.06em;border:0.8px solid #B45309;padding:1px 5px">CONTROVERSIA</span>`:'';
+    let money='', posbar='';
+    if(p){
+      const rk=_impRank(t.tipo,state);
+      money=`<div style="display:flex;align-items:baseline;gap:9px;margin:7px 0 3px">`
+        +`<span style="font-size:20px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums">${_impMoneyRange(p)}</span>`
+        +`<span style="font-size:11px;color:var(--text-sec)">MXN${p.basis?' / '+p.basis:''}</span></div>`
+        +`<div style="font-size:10px;color:var(--text-muted)">Tarifa oficial: <b>${p.orig}</b>${p.uma?' · convertido con UMA 2026':''}</div>`;
+      if(rk){
+        const w=rk.topMxn>0?Math.max(4,Math.round(p.mxnMax/rk.topMxn*100)):0;
+        const first=rk.pos===1;
+        posbar=`<div style="display:flex;align-items:center;gap:9px;margin:9px 0 3px">`
+          +`<span style="flex:1;height:5px;background:rgba(0,0,0,0.06)"><span style="display:block;height:100%;width:${w}%;background:${first?DEEP:GRN}"></span></span>`
+          +`<span style="font-size:10px;color:${first?DEEP:'var(--text-sec)'};font-weight:${first?'700':'500'};white-space:nowrap">${first?'El más caro':rk.pos+'° más caro'} de ${rk.total}</span></div>`;
+      }
+    }
+    const specs=t.especificaciones?`<div style="font-size:12px;color:var(--text);line-height:1.5;margin:7px 0 5px">${t.especificaciones}</div>`:'';
+    const oblig=t.obligados?`<div style="font-size:11px;color:var(--text-sec);margin-bottom:4px"><span style="font-weight:600">Obligados:</span> ${t.obligados}</div>`:'';
     const fechas=(t.fechaPublicado&&t.fechaPublicado!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted)">Publicado: <b>${t.fechaPublicado}</b></span>`:'')+(t.vigencia&&t.vigencia!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted);margin-left:14px">Vigencia: <b>${t.vigencia}</b></span>`:'');
-    return `<div style="padding:13px 0;border-bottom:0.8px solid var(--border)"><div style="display:flex;align-items:center;gap:12px;margin-bottom:2px">${badge}${contro}</div>${precio}${specs}${oblig}${fechas?`<div style="margin-top:4px">${fechas}</div>`:''}</div>`;
+    return `<div style="padding:14px 0;border-bottom:0.8px solid var(--border)"><div style="display:flex;align-items:center;gap:12px">${lab}${contro}</div>${money}${posbar}${specs}${oblig}${fechas?`<div style="margin-top:4px">${fechas}</div>`:''}</div>`;
   }).join('');
-  const footer=hasUMA?`<div style="margin-top:12px;font-size:10px;color:var(--text-muted)">UMA 2026 (INEGI): <b>$117.31 MXN/día</b></div>`:'';
+  const footer=hasUMA?`<div style="margin-top:12px;font-size:9px;font-family:var(--mono);color:var(--text-muted)">Precios en UMA convertidos a MXN · UMA 2026 (INEGI/DOF): $117.31 / día · comparación entre estados con el mismo impuesto</div>`:'';
   document.getElementById('sp-impuestos').innerHTML=cards+footer;
 }
 function openStatePanel(stateName){
