@@ -316,7 +316,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .pgemi-bubble{flex:1;min-width:0;background:rgba(6,103,80,0.05);border:0.8px solid var(--border);border-radius:4px 12px 12px 12px;padding:11px 13px}
 .pgemi-bubble-meta{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
 .pgemi-bubble-title{font-size:13px;font-weight:700;color:var(--text);line-height:1.3}
-.pgemi-bubble-text{font-size:11.5px;color:var(--text-sec);line-height:1.5;margin-top:4px}
+.pgemi-bubble-text{font-size:12.5px;color:var(--text-sec);line-height:1.5;margin-top:4px}
 /* ── Radar panel Kalshi-style ── */
 .radar-panel-wrap{background:var(--card);border:0.8px solid var(--border);border-radius:12px;overflow:hidden}
 .radar-panel-header{padding:20px 24px 16px;border-bottom:0.8px solid var(--border)}
@@ -667,7 +667,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-kpi-val{font-family:var(--mono);font-size:21px;font-weight:600;color:var(--text);line-height:1.05;margin-top:6px}
 .cons-kpi-sub{font-family:var(--mono);font-size:8.5px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* Resumen inteligente (reemplaza los KPIs tipo informe) */
-.cons-hero{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:center;padding:2px 0 18px;margin-bottom:16px;border-bottom:0.8px solid var(--border);text-align:left}
+.cons-hero{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:center;padding:2px 0 18px;margin:0 0 16px 0;max-width:none;border-bottom:0.8px solid var(--border);text-align:left}
 .cons-hero>div{text-align:left}
 .cons-hero-kick{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)}
 .cons-hero-head{font-family:var(--sans);font-size:20px;font-weight:700;line-height:1.25;color:var(--text);margin-top:8px;letter-spacing:-0.01em}
@@ -5344,12 +5344,11 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs){
 var _panelGemiData=null,_agendaGemiData=null,_pgemiTab='mensajes';
 function _panelGemiHTML(){
   return '<div class="card pgemi" style="border:0.8px solid var(--border);border-radius:14px;padding:0;background:var(--card)">'
-    +'<div class="pgemi-bar"></div>'
     +'<div style="padding:18px 20px;display:flex;flex-direction:column;gap:12px;height:100%;box-sizing:border-box">'
       +'<div style="display:flex;align-items:center;gap:11px">'
         +'<img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">'
         +'<div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px">Panel GEMI</div>'
-        +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-top:2px">Canal oficial del equipo</div></div>'
+        +'<div style="font-size:10.5px;color:var(--text-muted);line-height:1.3;margin-top:2px">Canal oficial del equipo</div></div>'
         +'<span style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;letter-spacing:0.08em;color:#12A594"><span class="pgemi-live"></span>EN VIVO</span>'
       +'</div>'
       +'<div class="stab-bar" style="margin-bottom:0;gap:4px 18px">'
