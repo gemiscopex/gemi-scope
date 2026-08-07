@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Scope · Pitch Consejo GEMI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   @font-face{font-family:'Scope Sans';src:url('assets/fonts/heros-regular.woff2') format('woff2');font-weight:1 550;font-style:normal;font-display:swap}
   @font-face{font-family:'Scope Sans';src:url('assets/fonts/heros-bold.woff2') format('woff2');font-weight:551 1000;font-style:normal;font-display:swap}
@@ -25,7 +28,8 @@
   section.in .r{opacity:1;transform:none}
   .r.d1{transition-delay:.09s}.r.d2{transition-delay:.19s}.r.d3{transition-delay:.31s}.r.d4{transition-delay:.43s}.r.d5{transition-delay:.55s}
 
-  .kick{font-size:14px;font-weight:600;color:var(--mint);margin-bottom:20px;letter-spacing:.005em}
+  .kick{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--mint);margin-bottom:20px;letter-spacing:.04em}
+  .cap{font-family:var(--mono);letter-spacing:.03em}
   h1{font-size:clamp(36px,6.6vw,88px);font-weight:800;letter-spacing:-.025em;line-height:1.01}
   h2{font-size:clamp(28px,4.8vw,60px);font-weight:800;letter-spacing:-.022em;line-height:1.05}
   .lead{font-size:clamp(15px,1.8vw,21px);color:var(--mut);line-height:1.55;max-width:640px;margin-top:20px;font-weight:400}
@@ -113,27 +117,29 @@
   .rstat-v{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink)}
   .rstat-l{font-family:var(--mono);font-size:8px;letter-spacing:.04em;color:var(--dim);margin-top:4px}
 
-  /* expediente (auto-scroll, técnico) */
-  .exp{max-width:360px;margin:0 auto;background:#fbfefc;color:#0b1a15;border-radius:16px;box-shadow:0 26px 70px rgba(0,0,0,.5);overflow:hidden}
-  .exp-hd{display:flex;align-items:center;gap:12px;padding:16px 18px 12px}
-  .esil svg{height:36px;width:auto;max-width:42px;display:block}
-  .esil svg path{fill:#d3e8df;stroke:#6fa192;stroke-width:1;vector-effect:non-scaling-stroke}
-  .exp-hd .en{font-size:16px;font-weight:800;line-height:1.1}
-  .exp-hd .es{font-size:9.5px;font-weight:700;color:#8aa39a;letter-spacing:.04em;margin-top:2px}
-  .exp-tabs{display:flex;gap:15px;padding:0 18px;border-bottom:1px solid #e7efea}
-  .exp-tab{font-size:11px;font-weight:700;color:#9bb0a8;padding-bottom:9px;white-space:nowrap}
-  .exp-tab.on{color:#066750;box-shadow:inset 0 -2px 0 #066750}
-  .exp-view{height:206px;overflow:hidden;position:relative}
-  .exp-view:after{content:'';position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(transparent,#fbfefc);pointer-events:none}
-  .exp-scroll{padding:6px 18px 20px}
-  section.in .exp-scroll{animation:expscroll 15s ease-in-out 1s infinite alternate}
-  @keyframes expscroll{from{transform:translateY(0)}to{transform:translateY(var(--sc,-170px))}}
-  .exp-sec{font-size:9px;font-weight:700;color:#066750;letter-spacing:.05em;margin:14px 0 4px}
-  .exp-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid #eef4f1;font-size:12px}
-  .exp-row .rt2{color:#26332e;flex:1;line-height:1.3}
-  .exp-row .rd2{font-family:var(--mono);font-size:9px;color:#9bb0a8;white-space:nowrap}
-  .exp-chip{font-family:var(--mono);font-size:8.5px;font-weight:700;padding:2px 7px;border-radius:5px;background:#e7f3ee;color:#0e8c74;white-space:nowrap}
-  .exp-chip.no{background:#fbeee2;color:#c98a3c}
+  /* expediente (réplica fiel del panel real de estado) */
+  .exp{max-width:440px;margin:0 auto;background:#fff;color:#0D1B2A;border-radius:16px;box-shadow:0 26px 70px rgba(0,0,0,.5);padding:22px 24px;overflow:hidden}
+  .exp-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:15px}
+  .exp-name{font-size:24px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:12px;line-height:1}
+  .exp-sil svg{height:30px;width:auto;max-width:52px;opacity:.55;display:block}
+  .exp-sil svg path{fill:none;stroke:#5A7A98;stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+  .exp-close{font-size:12px;color:#5A7A98;border:0.8px solid rgba(0,0,0,0.13);border-radius:8px;padding:5px 12px;flex-shrink:0;white-space:nowrap}
+  .exp-tabs2{display:flex;flex-wrap:wrap;gap:9px 15px;padding-bottom:10px;border-bottom:0.8px solid rgba(0,0,0,0.07)}
+  .et{font-size:12.5px;font-weight:600;color:#5A7A98;letter-spacing:.01em;padding-bottom:8px}
+  .et.on{color:#0D1B2A;box-shadow:inset 0 -1.6px 0 #009E90}
+  .exp-body{padding-top:6px}
+  .ep-row{display:grid;grid-template-columns:150px 1fr;gap:4px 16px;align-items:baseline;padding:11px 0;border-bottom:0.8px solid rgba(0,0,0,0.07)}
+  .ep-lb{font-size:9px;font-weight:600;letter-spacing:.09em;color:#8A9CB0;text-transform:uppercase}
+  .ep-v{font-size:17px;font-weight:700;color:#0D1B2A;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .ep-src{font-size:10px;color:#8A9CB0;margin-left:8px}
+  .ep-bar{height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden;margin-top:7px;max-width:340px}
+  .ep-bar span{display:block;height:100%;background:#009E90;border-radius:6px;width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1) .35s}
+  section.in .ep-bar span{width:var(--w)}
+  .ep-desc{margin-top:16px;font-size:12px;line-height:1.65;color:#5A7A98}
+  .ep-desc strong{color:#0D1B2A;font-weight:700}
+  .ep-link{margin-top:18px;padding-top:14px;border-top:0.8px solid rgba(0,0,0,0.07)}
+  .ep-link a{font-size:12px;font-weight:600;color:#009E90;text-decoration:none}
+  .ep-link .u{font-family:var(--mono);font-size:9px;color:#8A9CB0;margin-top:3px;word-break:break-all}
 
   /* Senado / actores */
   .senp{max-width:420px;margin:0 auto}
@@ -160,7 +166,12 @@
   .intl-view{max-width:540px;height:320px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(180deg,transparent,#000 8%,#000 88%,transparent);mask-image:linear-gradient(180deg,transparent,#000 8%,#000 88%,transparent)}
   .intl-scroll{transform:translateY(0);transition:transform 7s linear .4s}
   section.in .intl-scroll{transform:translateY(var(--isc,-180px))}
-  .irow{display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .intl-pin{display:flex;align-items:flex-start;gap:13px;max-width:560px;border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 12px 12px 0;background:rgba(18,185,138,.05);padding:13px 17px}
+  .intl-pin .pd{width:8px;height:8px;border-radius:50%;background:var(--mint);flex-shrink:0;margin-top:4px;box-shadow:0 0 0 4px rgba(63,224,173,.12)}
+  .intl-pin .pt{font-size:13.5px;font-weight:700}
+  .intl-pin .ps{font-size:11.5px;color:var(--mut);margin-top:3px;line-height:1.45}
+  .irow{display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:opacity .2s}
+  .irow:hover{opacity:.72}
   .irow .jz{width:40px;flex-shrink:0;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--mut);text-align:center}
   .irow .it{flex:1;min-width:0}
   .irow .it .a{font-size:13.5px;font-weight:700;line-height:1.25}
@@ -191,7 +202,8 @@
   /* monitor (escritorio) */
   .monitor{max-width:480px;margin:0 auto}
   .screen{background:#0e1c17;border:1px solid var(--line);border-radius:16px;padding:9px;box-shadow:0 34px 80px rgba(0,0,0,.55)}
-  .screen-inner{background:#f7faf8;border-radius:9px;height:272px;overflow:hidden;position:relative}
+  .screen-inner{background:#0b1016;border-radius:9px;height:272px;overflow:hidden;position:relative}
+  .screen-inner img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
   .mini-nav{display:flex;align-items:center;gap:8px;padding:11px 13px;border-bottom:1px solid #e6ece9}
   .mini-logo{font-size:12px;font-weight:800;color:#066750;letter-spacing:-.01em}
   .mini-nd{width:24px;height:6px;border-radius:4px;background:#dde7e2}
@@ -429,26 +441,17 @@
       <div class="viz r d3">
         <div class="exp">
           <div class="exp-hd">
-            <div class="esil"><svg id="expsil" viewBox="0 0 0.47 0.50" preserveAspectRatio="xMidYMid meet"></svg></div>
-            <div><div class="en">Ciudad de México</div><div class="es">CDMX · EXPEDIENTE</div></div>
+            <div class="exp-name">Ciudad de México <span class="exp-sil"><svg viewBox="0 0 0.472 0.501" preserveAspectRatio="xMidYMid meet"><path d="M0.460 0.458L0.329 0.485L0.267 0.460L0.162 0.456L0.089 0.443L0.030 0.339L0.000 0.262L0.071 0.200L0.127 0.158L0.200 0.031L0.251 0.003L0.283 0.070L0.331 0.175L0.401 0.228L0.420 0.284L0.458 0.303L0.470 0.399L0.460 0.458Z"/></svg></span></div>
+            <span class="exp-close">Cerrar</span>
           </div>
-          <div class="exp-tabs"><span class="exp-tab on">Resumen</span><span class="exp-tab">Leyes</span><span class="exp-tab">Impuestos</span><span class="exp-tab">Materiales</span></div>
-          <div class="exp-view"><div class="exp-scroll" id="expscroll">
-            <div class="exp-sec">LEGISLACIÓN AMBIENTAL</div>
-            <div class="exp-row"><span class="rt2">Ley de Economía Circular de la CDMX</span><span class="rd2">2021</span><span class="exp-chip">Vigente</span></div>
-            <div class="exp-row"><span class="rt2">Ley de Mitigación y Adaptación al Cambio Climático</span><span class="exp-chip">Vigente</span></div>
-            <div class="exp-row"><span class="rt2">Ley de Residuos Sólidos del D.F.</span><span class="exp-chip">Vigente</span></div>
-            <div class="exp-row"><span class="rt2">Ley Ambiental de Protección a la Tierra</span><span class="exp-chip">Vigente</span></div>
-            <div class="exp-row"><span class="rt2">Ley del Derecho al Acceso a un Medio Ambiente Sano</span><span class="exp-chip">Vigente</span></div>
-            <div class="exp-sec">IMPUESTOS VERDES</div>
-            <div class="exp-row"><span class="rt2">Impuesto a emisiones de GEI</span><span class="rd2">$58 / tonCO₂e</span></div>
-            <div class="exp-sec">MATERIALES REGULADOS</div>
-            <div class="exp-row"><span class="rt2">Bolsas de plástico de un solo uso</span><span class="exp-chip no">Prohibido</span></div>
-            <div class="exp-row"><span class="rt2">Unicel (poliestireno expandido)</span><span class="exp-chip no">Prohibido</span></div>
-            <div class="exp-sec">PRENSA · 7 DÍAS</div>
-            <div class="exp-row"><span class="rt2">CDMX refuerza el programa de separación de residuos</span><span class="rd2">03 ago</span></div>
-            <div class="exp-row"><span class="rt2">Nueva norma de economía circular en consulta</span><span class="rd2">01 ago</span></div>
-          </div></div>
+          <div class="exp-tabs2"><span class="et on">Perfil</span><span class="et">Actividad</span><span class="et">Legislación</span><span class="et">Impuestos</span><span class="et">Materiales Prohibidos</span><span class="et">Sector Industrial</span><span class="et">Residuos</span><span class="et">Trámites RME</span></div>
+          <div class="exp-body">
+            <div class="ep-row"><div class="ep-lb">Población</div><div><span class="ep-v">9,209,944</span><span class="ep-src">INEGI 2020</span><div class="ep-bar"><span style="--w:54.2%"></span></div></div></div>
+            <div class="ep-row"><div class="ep-lb">Capital</div><div><span class="ep-v">Ciudad de México</span></div></div>
+            <div class="ep-row"><div class="ep-lb">Población económicamente activa</div><div><span class="ep-v">5,107,533</span><span class="ep-src">ENOE 2026-Q1</span><div class="ep-bar"><span style="--w:60.85%"></span></div></div></div>
+            <div class="ep-desc">Ciudad de México presenta una complejidad regulatoria ambiental <strong>alta</strong>, con cobertura en 5 materias ambientales. Su régimen de impuestos ambientales es <strong>en desarrollo</strong>. La capital Ciudad de México concentra la actividad legislativa del congreso estatal.</div>
+            <div class="ep-link"><a href="https://www.congresocdmx.gob.mx/" target="_blank" rel="noopener">Portal del Congreso de Ciudad de México ↗</a><div class="u">https://www.congresocdmx.gob.mx/</div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -487,10 +490,10 @@
 
   <!-- 12 · INTERNACIONAL -->
   <section data-t="Internacional">
-    <div class="kick r">Regulación internacional</div>
     <h2 class="r d1" style="max-width:16ch">Lo que se decide afuera, también te alcanza.</h2>
-    <p class="lead r d2" style="max-width:640px">Los instrumentos que impactan al exportador mexicano, con su jurisdicción y nivel de relevancia. La base que Scope ya monitorea.</p>
-    <div class="intl-view r d3" style="margin-top:20px"><div class="intl-scroll" id="intlscroll"></div></div>
+    <p class="lead r d2" style="max-width:680px">Los instrumentos internacionales que impactan al exportador mexicano, con su jurisdicción y relevancia. Y la agenda de las conferencias matutinas de la Presidencia, donde la política marca el pulso regulatorio del país.</p>
+    <div class="intl-pin r d2" style="margin-top:18px"><span class="pd"></span><div><div class="pt">Conferencias matutinas de la Presidencia</div><div class="ps">Seguimiento diario de la agenda de Claudia Sheinbaum. Un tema de rentabilidad política que marca lo ambiental en México.</div></div></div>
+    <div class="intl-view r d3" style="margin-top:14px"><div class="intl-scroll" id="intlscroll"></div></div>
   </section>
 
   <!-- 13 · MI TERMINAL (se arma paso a paso) -->
@@ -535,10 +538,7 @@
       </div>
       <div class="viz r d3">
         <div class="monitor">
-          <div class="screen"><div class="screen-inner">
-            <div class="mini-nav"><span class="mini-logo">Scope</span><span class="mini-nd"></span><span class="mini-nd"></span><span class="mini-nd"></span><span class="mini-nd"></span></div>
-            <div class="mini-map" id="minimap"></div>
-          </div></div>
+          <div class="screen"><div class="screen-inner"><img src="assets/pitch/dashboard-dark.png" alt="Scope · dashboard en modo noche"></div></div>
           <div class="stand"></div><div class="stand-base"></div>
         </div>
       </div>
@@ -801,8 +801,8 @@
   // costos bars
   (function(){
     var host=document.getElementById('costbars'); if(!host)return;
-    var data=[{n:'Inteligencia artificial',v:11000},{n:'Bases de datos',v:2800},{n:'Cómputo e ingesta',v:2600},{n:'Almacenamiento',v:2000},{n:'Hosting, CDN y correo',v:1600}];
-    host.innerHTML=data.map(function(d){return '<div class="crow"><span class="cn">'+d.n+'</span><span class="ct"><span class="cf" data-w="'+(d.v/11000*100).toFixed(1)+'%"></span></span><span class="cv"><span style="color:var(--mut);font-weight:600">$</span><span data-count="'+d.v+'">0</span></span></div>';}).join('');
+    var data=[{n:'Inteligencia artificial',v:8000},{n:'Bases de datos',v:3500},{n:'Cómputo e ingesta',v:3500},{n:'Almacenamiento',v:2500},{n:'Hosting, CDN y correo',v:2500}];
+    host.innerHTML=data.map(function(d){return '<div class="crow"><span class="cn">'+d.n+'</span><span class="ct"><span class="cf" data-w="'+(d.v/8000*100).toFixed(1)+'%"></span></span><span class="cv"><span style="color:var(--mut);font-weight:600">$</span><span data-count="'+d.v+'">0</span></span></div>';}).join('');
   })();
 
   // ingresos bars
@@ -810,14 +810,6 @@
     var host=document.getElementById('revbars'); if(!host)return;
     var data=[{n:'5 usuarios',v:101940},{n:'10 usuarios',v:203880},{n:'20 usuarios',v:407760,top:true},{n:'50 usuarios',v:1019400}];
     host.innerHTML=data.map(function(d){return '<div class="crow"><span class="cn">'+d.n+'</span><span class="ct"><span class="cf'+(d.top?' hi':'')+'" data-w="'+(d.v/1019400*100).toFixed(1)+'%"></span></span><span class="cv"><span style="color:var(--mut);font-weight:600">$</span><span data-count="'+d.v+'">0</span></span></div>';}).join('');
-  })();
-
-  // expediente: silueta CDMX + altura de auto-scroll
-  (function(){
-    var sil=document.getElementById('expsil');
-    if(sil)sil.innerHTML='<path d="M0.46 0.46L0.29 0.45L0.16 0.46L0.04 0.37L0.00 0.26L0.10 0.19L0.20 0.03L0.25 0.04L0.33 0.17L0.42 0.24L0.46 0.30L0.45 0.43L0.46 0.46Z"/>';
-    var sc=document.getElementById('expscroll');
-    if(sc){setTimeout(function(){var view=sc.parentElement;var over=sc.scrollHeight-view.clientHeight;if(over>10)sc.style.setProperty('--sc','-'+over+'px');},60);}
   })();
 
   // internacional: lista real + altura de scroll
