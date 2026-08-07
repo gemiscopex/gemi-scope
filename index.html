@@ -2386,15 +2386,15 @@ function _cmpBars(label,vals,opts){
   opts=opts||{};
   var max=opts.max||Math.max.apply(null,vals.concat([0.0001]));
   var fmt=opts.fmt||function(v){return v;};
-  return '<div style="margin-bottom:15px">'
-    +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px">'+label+'</div>'
+  return '<div style="margin-bottom:20px">'
+    +'<div style="font-family:var(--sans);font-size:11px;font-weight:600;color:var(--text-sec);margin-bottom:11px">'+label+'</div>'
     +_cmpStates.map(function(s,i){
-      var v=vals[i]||0, w=max>0?Math.max(1.5,(v/max)*100):0;
-      return '<div style="display:flex;align-items:center;gap:9px;margin-bottom:5px">'
-        +'<div style="flex:1;min-width:0;height:15px;background:rgba(0,0,0,0.045)">'
-          +'<div class="cmp-bar" data-w="'+w.toFixed(1)+'" style="height:100%;width:0;background:'+_cmpColor(i)+'"></div>'
+      var v=vals[i]||0, w=max>0?Math.max(2,(v/max)*100):0;
+      return '<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">'
+        +'<div style="flex:1;min-width:0;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden">'
+          +'<div class="cmp-bar" data-w="'+w.toFixed(1)+'" style="height:100%;width:0;background:'+_cmpColor(i)+';border-radius:6px"></div>'
         +'</div>'
-        +'<div style="width:66px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--text);flex-shrink:0">'+fmt(v)+'</div>'
+        +'<div style="width:58px;text-align:right;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;flex-shrink:0">'+fmt(v)+'</div>'
       +'</div>';
     }).join('')
     +'</div>';
@@ -2461,8 +2461,8 @@ function _cmpBody(){
           var col=isTop?'#066750':_cmpColor(r.i);
           return '<div style="display:flex;align-items:center;gap:9px;margin-bottom:5px">'
             +'<span style="width:82px;font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(r.contro?'<span title="Controversia" style="color:#B45309">● </span>':'')+r.s+'</span>'
-            +'<span style="flex:1;height:15px;background:rgba(0,0,0,0.045)"><span style="display:block;height:100%;width:'+w+'%;background:'+col+'"></span></span>'
-            +'<span style="min-width:92px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--text);font-variant-numeric:tabular-nums">'+_impMoneyRange(r.p)+(isTop?' <span style="color:#066750;font-weight:700">▲</span>':'')+'</span>'
+            +'<span style="flex:1;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden"><span style="display:block;height:100%;width:'+w+'%;background:'+col+';border-radius:6px"></span></span>'
+            +'<span style="min-width:92px;text-align:right;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums">'+_impMoneyRange(r.p)+(isTop?' <span style="color:#066750;font-weight:700">▲</span>':'')+'</span>'
             +'</div>';
         }).join('')
         +'</div>';
@@ -2479,8 +2479,8 @@ function _cmpBody(){
         +(top.length?top.map(function(sec){var w=mx>0?(sec.pct/mx*100):0;
           return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'
             +'<div style="width:96px;font-size:10px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+sec.n+'</div>'
-            +'<div style="flex:1;min-width:0;height:15px;background:rgba(0,0,0,0.045)"><div class="cmp-bar" data-w="'+w.toFixed(1)+'" style="height:100%;width:0;background:'+_cmpColor(i)+'"></div></div>'
-            +'<div style="width:42px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--text)">'+sec.pct.toFixed(1)+'%</div></div>';
+            +'<div style="flex:1;min-width:0;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden"><div class="cmp-bar" data-w="'+w.toFixed(1)+'" style="height:100%;width:0;background:'+_cmpColor(i)+';border-radius:6px"></div></div>'
+            +'<div style="width:44px;text-align:right;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums">'+sec.pct.toFixed(1)+'%</div></div>';
         }).join(''):'<div style="font-size:11px;color:var(--text-muted)">Sin datos de sectores</div>')
         +'</div>';
     }).join('')+'<div style="font-size:9px;color:var(--text-muted)">Participación en unidades económicas · Censos Económicos (Data México)</div>';
