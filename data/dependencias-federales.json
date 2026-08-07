@@ -1,8 +1,8 @@
 {
  "_meta": {
   "actualizado": "2026-08",
-  "fuente": "Reglamento Interior SEMARNAT (DOF 14-mar-2025) · Manual General de Organización SEMARNAT · Directorio Diagnóstico GIR 2026",
-  "nota": "Estructura orgánica de dependencias federales ambientales. Nombres de unidad oficiales; titulares indicados solo donde están verificados. En expansión (subdirecciones y jefaturas por dependencia)."
+  "fuente": "Directorio gob.mx (/api/v1/levels) · Reglamentos Interiores · Manual de Organización SEMARNAT",
+  "nota": "Directorio de dependencias federales ambientales. Personas verificadas del directorio oficial de gob.mx (SEMARNAT: directorio ampliado completo con correos). Para el directorio completo y vigente de cada dependencia se enlaza a su directorio en gob.mx. Estructura de unidades conforme a Reglamentos Interiores."
  },
  "dependencias": {
   "SEMARNAT": {
@@ -123,6 +123,84 @@
       }
      ]
     }
+   ],
+   "dir_url": "https://www.gob.mx/semarnat/api/v1/levels",
+   "personas": [
+    {
+     "nombre": "Alicia Bárcena Ibarra",
+     "cargo": "Secretaria",
+     "email": "alicia.barcena@semarnat.gob.mx"
+    },
+    {
+     "nombre": "José Luis Samaniego Leyva",
+     "cargo": "Subsecretario de Desarrollo Sostenible y Economía Circular",
+     "email": "joseluis.samaniego@semarnat.gob.mx"
+    },
+    {
+     "nombre": "Ileana Villalobos Estrada",
+     "cargo": "Subsecretaria de Regulación Ambiental",
+     "email": "ileana.villalobos@semarnat.gob.mx"
+    },
+    {
+     "nombre": "Marina Robles García",
+     "cargo": "Subsecretaria de Biodiversidad y Restauración Ambiental",
+     "email": "marina.robles@semarnat.gob.mx"
+    },
+    {
+     "nombre": "Julieta González Méndez",
+     "cargo": "Titular de la Unidad de Administración y Finanzas",
+     "email": "julieta.gonzalezm@semarnat.gob.mx"
+    },
+    {
+     "nombre": "René Sánchez Galindo",
+     "cargo": "Director Jurídico",
+     "email": "rene.sanchez@semarnat.gob.mx"
+    },
+    {
+     "nombre": "José Manuel Gutiérrez Minera",
+     "cargo": "Coordinador General de Comunicación Social",
+     "email": "manuel.gutierrez@semarnat.gob.mx"
+    },
+    {
+     "nombre": "César Rodríguez Ortega",
+     "cargo": "Director General de Planeación, Evaluación y Estadística Ambiental",
+     "email": "cesar.rodriguez@semarnat.gob.mx"
+    },
+    {
+     "nombre": "Gloria Sandoval Salas",
+     "cargo": "Titular de la Unidad Coordinadora de Oficinas de Representación y Gestión Territorial",
+     "email": "gloria.sandoval@semarnat.gob.mx"
+    },
+    {
+     "nombre": "Josefina Elizabeth Bravo Rangel",
+     "cargo": "Titular de la Unidad Coordinadora de Proyectos Prioritarios, Vinculación Social y Derechos Humanos",
+     "email": "josefina.bravo@semarnat.gob.mx"
+    },
+    {
+     "nombre": "Camila Zepeda Lizama",
+     "cargo": "Titular de la Unidad Coordinadora de Asuntos Internacionales",
+     "email": "camila.zepeda@semarnat.gob.mx"
+    },
+    {
+     "nombre": "Víctor Hugo Páramo Figueroa",
+     "cargo": "Coordinador ejecutivo de la Comisión Ambiental de la Megalópolis (CAMe)",
+     "email": "victor.paramo@semarnat.gob.mx"
+    },
+    {
+     "nombre": "José Abraham Ortínez Álvarez",
+     "cargo": "Encargado de Despacho del INECC",
+     "email": "direccion.inecc@semarnat.gob.mx"
+    },
+    {
+     "nombre": "Publio Rivera Rivas",
+     "cargo": "Enlace con el Congreso",
+     "email": "publio.rivera@semarnat.gob.mx"
+    },
+    {
+     "nombre": "Rodrigo Morales Castillo",
+     "cargo": "Jefatura de Oficina de la C. Secretaria",
+     "email": "rodrigo.morales@semarnat.gob.mx"
+    }
    ]
   },
   "CONAGUA": {
@@ -155,6 +233,13 @@
     {
      "nombre": "Organismos de Cuenca (13 regiones hidrológico-administrativas)"
     }
+   ],
+   "dir_url": "https://www.gob.mx/conagua/api/v1/levels",
+   "personas": [
+    {
+     "nombre": "Efraín Morales López",
+     "cargo": "Director General"
+    }
    ]
   },
   "PROFEPA": {
@@ -178,6 +263,13 @@
     {
      "nombre": "Delegaciones en las 32 entidades federativas"
     }
+   ],
+   "dir_url": "https://www.gob.mx/profepa/api/v1/levels",
+   "personas": [
+    {
+     "nombre": "Mariana Boy Tamborrell",
+     "cargo": "Procuradora Federal"
+    }
    ]
   },
   "ASEA": {
@@ -200,6 +292,13 @@
     },
     {
      "nombre": "Unidad de Asuntos Jurídicos"
+    }
+   ],
+   "dir_url": "https://www.gob.mx/asea/api/v1/levels",
+   "personas": [
+    {
+     "nombre": "Armando Ocampo Zambrano",
+     "cargo": "Director Ejecutivo"
     }
    ]
   },
@@ -252,6 +351,25 @@
        "nombre": "Instituto Nacional de Investigaciones Nucleares (ININ)"
       }
      ]
+    }
+   ],
+   "dir_url": "https://www.gob.mx/sener/api/v1/levels",
+   "personas": [
+    {
+     "nombre": "Luz Elena González Escobar",
+     "cargo": "Secretaria de Energía"
+    },
+    {
+     "nombre": "Juan José Vidal Amaro",
+     "cargo": "Subsecretario de Hidrocarburos"
+    },
+    {
+     "nombre": "José Antonio Rojas Nieto",
+     "cargo": "Subsecretario de Electricidad"
+    },
+    {
+     "nombre": "Jorge Marcial Islas Samperio",
+     "cargo": "Subsecretario de Planeación y Transición Energética"
     }
    ]
   },
@@ -309,6 +427,13 @@
       }
      ]
     }
+   ],
+   "dir_url": "https://www.gob.mx/se/api/v1/levels",
+   "personas": [
+    {
+     "nombre": "Marcelo Ebrard Casaubón",
+     "cargo": "Secretario"
+    }
    ]
   },
   "SADER": {
@@ -349,6 +474,13 @@
       }
      ]
     }
+   ],
+   "dir_url": "https://www.gob.mx/agricultura/api/v1/levels",
+   "personas": [
+    {
+     "nombre": "Julio Berdegué Sacristán",
+     "cargo": "Secretario"
+    }
    ]
   },
   "CONAFOR": {
@@ -375,6 +507,13 @@
     {
      "nombre": "Unidad de Asuntos Jurídicos"
     }
+   ],
+   "dir_url": "https://www.gob.mx/conafor/api/v1/levels",
+   "personas": [
+    {
+     "nombre": "Sergio Graf Montero",
+     "cargo": "Director General"
+    }
    ]
   },
   "CONANP": {
@@ -397,6 +536,13 @@
     },
     {
      "nombre": "Direcciones Regionales (11 regiones)"
+    }
+   ],
+   "dir_url": "https://www.gob.mx/conanp/api/v1/levels",
+   "personas": [
+    {
+     "nombre": "Pedro Álvarez-Icaza Longoria",
+     "cargo": "Comisionado Nacional"
     }
    ]
   },
@@ -424,6 +570,13 @@
     {
      "nombre": "Coordinación General Jurídica y Consultiva"
     }
+   ],
+   "dir_url": "https://www.gob.mx/cofepris/api/v1/levels",
+   "personas": [
+    {
+     "nombre": "Víctor Hugo Borja Aburto",
+     "cargo": "Comisionado Federal"
+    }
    ]
   },
   "SENASICA": {
@@ -449,6 +602,13 @@
     },
     {
      "nombre": "Dirección General de Administración e Informática"
+    }
+   ],
+   "dir_url": "https://www.gob.mx/senasica/api/v1/levels",
+   "personas": [
+    {
+     "nombre": "Francisco Javier Calderón Elizalde",
+     "cargo": "Director en Jefe"
     }
    ]
   }
