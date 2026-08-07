@@ -2,7 +2,7 @@
  "_meta": {
   "actualizado": "2026-08",
   "fuente": "Directorio gob.mx (/api/v1/levels) · Reglamentos Interiores · Manual de Organización SEMARNAT",
-  "nota": "Directorio de dependencias federales ambientales. Personas verificadas del directorio oficial de gob.mx (SEMARNAT: directorio ampliado completo con correos). Para el directorio completo y vigente de cada dependencia se enlaza a su directorio en gob.mx. Estructura de unidades conforme a Reglamentos Interiores."
+  "nota": "Directorio de dependencias federales ambientales con nombres, cargos y (SEMARNAT) correos, extraídos del directorio oficial de gob.mx. Para el directorio completo y vigente se enlaza a gob.mx en cada dependencia. Estructura de unidades conforme a Reglamentos Interiores."
  },
  "dependencias": {
   "SEMARNAT": {
@@ -268,13 +268,73 @@
    "personas": [
     {
      "nombre": "Mariana Boy Tamborrell",
-     "cargo": "Procuradora Federal"
+     "cargo": "Procuradora Federal de Protección al Ambiente"
+    },
+    {
+     "nombre": "Alberto Rojas Rueda",
+     "cargo": "Subprocurador de Prevención Ambiental"
+    },
+    {
+     "nombre": "Gabriela Ortiz Merino",
+     "cargo": "Subprocuradora de Inspección y Vigilancia Industrial"
+    },
+    {
+     "nombre": "Leticia Quiñones Valadez",
+     "cargo": "Subprocuradora de Recursos Naturales"
+    },
+    {
+     "nombre": "Marco Antonio Esquivel López",
+     "cargo": "Subprocurador de Litigio Estratégico y Justicia Ambiental"
+    },
+    {
+     "nombre": "Aurora Anzures Artime",
+     "cargo": "Directora General de Operación de Auditorías y Prevención Ambiental"
+    },
+    {
+     "nombre": "María Elena Mesta Fernández",
+     "cargo": "Directora General de Planeación y Promoción"
+    },
+    {
+     "nombre": "Beatriz Martínez Mora",
+     "cargo": "Directora General de Asistencia Técnica Industrial"
+    },
+    {
+     "nombre": "Ricardo Ortiz Conde",
+     "cargo": "Director General de Inspección y Vigilancia de Fuentes de Contaminación"
+    },
+    {
+     "nombre": "José Francisco Bernal Stoopen",
+     "cargo": "Director General de Verificación e Inspección Ambiental en Puertos, Aeropuertos y Fronteras"
+    },
+    {
+     "nombre": "Arlette Camacho Hernández",
+     "cargo": "Directora General de Impacto Ambiental y Zona Federal Marítimo Terrestre"
+    },
+    {
+     "nombre": "Alma Itzel De Lira Castillo",
+     "cargo": "Directora General de Litigio Estratégico, Delitos Federales y Responsabilidad Ambiental"
+    },
+    {
+     "nombre": "Brenda Daniela Araujo Castillo",
+     "cargo": "Directora General de Atención de Denuncias, Quejas y Protección de Víctimas"
+    },
+    {
+     "nombre": "Gustavo Ampugnani",
+     "cargo": "Director General de Inspección y Vigilancia de Vida Silvestre, Recursos Marinos y Ecosistemas Costeros"
+    },
+    {
+     "nombre": "Manuel Montoya Bencomo",
+     "cargo": "Titular de la Unidad de Administración y Finanzas"
+    },
+    {
+     "nombre": "Jorge Enrique Zapata Nieto",
+     "cargo": "Coordinador de las Oficinas de Representación de Protección Ambiental y Gestión Territorial"
     }
    ]
   },
   "ASEA": {
-   "titular": "Armando Ocampo Zambrano",
-   "cargo": "Director Ejecutivo",
+   "titular": "Andrea González Hernández",
+   "cargo": "Directora Ejecutiva",
    "url": "https://www.gob.mx/asea",
    "nota": "Agencia de Seguridad, Energía y Ambiente. Órgano desconcentrado de SEMARNAT con autonomía técnica y de gestión sobre el sector hidrocarburos.",
    "unidades": [
@@ -297,8 +357,36 @@
    "dir_url": "https://www.gob.mx/asea/api/v1/levels",
    "personas": [
     {
-     "nombre": "Armando Ocampo Zambrano",
-     "cargo": "Director Ejecutivo"
+     "nombre": "Andrea González Hernández",
+     "cargo": "Directora Ejecutiva de la Agencia de Seguridad, Energía y Ambiente"
+    },
+    {
+     "nombre": "Gerardo Merino López",
+     "cargo": "Titular de la Unidad de Gestión Industrial"
+    },
+    {
+     "nombre": "Rodulfo De La Fuente Pérez",
+     "cargo": "Titular de la Unidad de Supervisión, Inspección y Vigilancia Industrial"
+    },
+    {
+     "nombre": "Guadalupe Resendiz Becerril",
+     "cargo": "Titular de la Unidad de Normatividad y Regulación"
+    },
+    {
+     "nombre": "José Alejandro Hernández Patiño",
+     "cargo": "Titular de la Unidad de Planeación, Vinculación Estratégica y Procesos"
+    },
+    {
+     "nombre": "Karla Irais Martínez Camacho",
+     "cargo": "Titular de la Unidad de Administración y Finanzas"
+    },
+    {
+     "nombre": "Laura Josefina Chong Gutiérrez",
+     "cargo": "Titular de la Unidad de Asuntos Jurídicos"
+    },
+    {
+     "nombre": "Emilia Falfán Reyes",
+     "cargo": "Directora General de Cooperación Internacional"
     }
    ]
   },
@@ -360,16 +448,36 @@
      "cargo": "Secretaria de Energía"
     },
     {
-     "nombre": "Juan José Vidal Amaro",
-     "cargo": "Subsecretario de Hidrocarburos"
+     "nombre": "Jorge Marcial Islas Samperio",
+     "cargo": "Subsecretario de Planeación y Transición Energética"
     },
     {
      "nombre": "José Antonio Rojas Nieto",
      "cargo": "Subsecretario de Electricidad"
     },
     {
-     "nombre": "Jorge Marcial Islas Samperio",
-     "cargo": "Subsecretario de Planeación y Transición Energética"
+     "nombre": "Juan José Vidal Amaro",
+     "cargo": "Subsecretario de Hidrocarburos"
+    },
+    {
+     "nombre": "José María Castañeda Lozano",
+     "cargo": "Titular de la Unidad de Administración y Finanzas"
+    },
+    {
+     "nombre": "Juan José Graham Nieto",
+     "cargo": "Titular de la Unidad de Enlace Legislativo"
+    },
+    {
+     "nombre": "Liliana Rosales Contreras",
+     "cargo": "Titular de la Unidad de Estrategia, Vinculación Interinstitucional y Seguimiento de Proyectos e Inversiones"
+    },
+    {
+     "nombre": "Laila Porras Musalem",
+     "cargo": "Directora General de Asuntos Internacionales"
+    },
+    {
+     "nombre": "Rafael Enrique Fonseca Chávez",
+     "cargo": "Director General de Impacto Social, Consulta Previa y Ocupación Superficial"
     }
    ]
   },
@@ -431,14 +539,74 @@
    "dir_url": "https://www.gob.mx/se/api/v1/levels",
    "personas": [
     {
-     "nombre": "Marcelo Ebrard Casaubón",
-     "cargo": "Secretario"
+     "nombre": "Marcelo Ebrard Casaubon",
+     "cargo": "Secretario de Economía"
+    },
+    {
+     "nombre": "Ximena Escobedo Juárez",
+     "cargo": "Subsecretaria de Industria y Comercio"
+    },
+    {
+     "nombre": "Luis Rosendo Gutiérrez Romano",
+     "cargo": "Subsecretario de Comercio Exterior"
+    },
+    {
+     "nombre": "Andrea Genoveva Solano Rendón",
+     "cargo": "Titular de la Unidad de Normatividad, Competitividad y Competencia"
+    },
+    {
+     "nombre": "Fernando José Aboitiz Saro",
+     "cargo": "Titular de la Unidad de Coordinación de Actividades Extractivas"
+    },
+    {
+     "nombre": "Carlos Javier Castillo Pérez",
+     "cargo": "Titular de la Unidad de Desarrollo Productivo"
+    },
+    {
+     "nombre": "Sergio Silva Castañeda",
+     "cargo": "Titular de la Unidad de Fomento y Crecimiento Económico"
+    },
+    {
+     "nombre": "Deborah Alcocer Délano",
+     "cargo": "Titular de la Unidad de Negociaciones Comerciales Internacionales"
+    },
+    {
+     "nombre": "Rafael Roberto Flores Díaz",
+     "cargo": "Titular de la Unidad de Prácticas Comerciales Internacionales"
+    },
+    {
+     "nombre": "Ismael Ortiz Fernández",
+     "cargo": "Titular de la Unidad de Inteligencia Económica Global"
+    },
+    {
+     "nombre": "Carlos Alfonso Candelaria López",
+     "cargo": "Titular de la Unidad de Atención a Corredores del Bienestar"
+    },
+    {
+     "nombre": "Soledad Guadalupe López Acosta",
+     "cargo": "Titular de la Unidad de Administración y Finanzas"
+    },
+    {
+     "nombre": "César García Mondragón",
+     "cargo": "Titular de la Unidad de Asuntos Jurídicos"
+    },
+    {
+     "nombre": "Astrid Natividad González Degollado",
+     "cargo": "Directora General de Recursos Humanos"
+    },
+    {
+     "nombre": "Laura González Stanford",
+     "cargo": "Directora General de Programación, Presupuesto y Contabilidad"
+    },
+    {
+     "nombre": "Daniel Millán Valencia",
+     "cargo": "Director General de Comunicación y Narrativa"
     }
    ]
   },
   "SADER": {
-   "titular": "Julio Berdegué Sacristán",
-   "cargo": "Secretario",
+   "titular": "Columba Jazmín López Gutiérrez",
+   "cargo": "Secretaria",
    "url": "https://www.gob.mx/agricultura",
    "nota": "Estructura conforme a su Reglamento Interior. Titulares indicados solo donde están verificados.",
    "unidades": [
@@ -478,8 +646,12 @@
    "dir_url": "https://www.gob.mx/agricultura/api/v1/levels",
    "personas": [
     {
-     "nombre": "Julio Berdegué Sacristán",
-     "cargo": "Secretario"
+     "nombre": "Columba Jazmín López Gutiérrez",
+     "cargo": "Secretaria de Agricultura y Desarrollo Rural"
+    },
+    {
+     "nombre": "Leonel Cota Montaño",
+     "cargo": "Subsecretario de Agricultura y Desarrollo Rural"
     }
    ]
   },
@@ -511,8 +683,44 @@
    "dir_url": "https://www.gob.mx/conafor/api/v1/levels",
    "personas": [
     {
-     "nombre": "Sergio Graf Montero",
+     "nombre": "Sergio Humberto Graf Montero",
      "cargo": "Director General"
+    },
+    {
+     "nombre": "María Teresa Flores Cabral",
+     "cargo": "Coordinadora General de Conservación y Restauración"
+    },
+    {
+     "nombre": "Silvia Murillo Cardoza",
+     "cargo": "Coordinadora General de Producción y Productividad"
+    },
+    {
+     "nombre": "Jorge David Fernández Medina",
+     "cargo": "Coordinador General de Planeación e Información"
+    },
+    {
+     "nombre": "David Cabrera Hermosillo",
+     "cargo": "Coordinador General de Desarrollo Institucional y Proyectos Especiales"
+    },
+    {
+     "nombre": "José de Jesús Manzanares Fernández",
+     "cargo": "Coordinador General Jurídico"
+    },
+    {
+     "nombre": "Alma Guadalupe Godoy Ramos",
+     "cargo": "Titular de la Unidad de Administración y Finanzas"
+    },
+    {
+     "nombre": "Silvia Llamas Prado",
+     "cargo": "Titular de la Unidad de Asuntos Internacionales y Fomento Financiero"
+    },
+    {
+     "nombre": "Salvador Anta Fonseca",
+     "cargo": "Titular de la Unidad de Vinculación Interinstitucional"
+    },
+    {
+     "nombre": "Carmen Gómez Lozano",
+     "cargo": "Titular de la Unidad de Género e Inclusión"
     }
    ]
   },
@@ -541,8 +749,68 @@
    "dir_url": "https://www.gob.mx/conanp/api/v1/levels",
    "personas": [
     {
-     "nombre": "Pedro Álvarez-Icaza Longoria",
-     "cargo": "Comisionado Nacional"
+     "nombre": "Pedro Álvarez Icaza Longoria",
+     "cargo": "Comisionado Nacional de Áreas Naturales Protegidas"
+    },
+    {
+     "nombre": "María del Carmen García Rivas",
+     "cargo": "Directora General de Conservación"
+    },
+    {
+     "nombre": "Yadira Gómez Hernández",
+     "cargo": "Directora General de Operación Regional"
+    },
+    {
+     "nombre": "José Feliciano González Jiménez",
+     "cargo": "Director General de Fortalecimiento Institucional y Temas Internacionales"
+    },
+    {
+     "nombre": "José Antonio González Azuara",
+     "cargo": "Director de Concertación y Coordinación"
+    },
+    {
+     "nombre": "Mario Fermin Castañeda Rojas",
+     "cargo": "Director de Evaluación y Seguimiento"
+    },
+    {
+     "nombre": "Blanca Fabiola Maldonado Pulido",
+     "cargo": "Directora de Administración y Finanzas"
+    },
+    {
+     "nombre": "Juan Carlos Amezola Pérez",
+     "cargo": "Director de Asuntos Jurídicos"
+    },
+    {
+     "nombre": "Carlos Alberto Sifuentes Lugo",
+     "cargo": "Director Regional Noreste y Sierra Madre Oriental"
+    },
+    {
+     "nombre": "Benito Rafael Bermúdez Almada",
+     "cargo": "Director Regional Península de Baja California y Pacífico Norte"
+    },
+    {
+     "nombre": "Cecilia García Chavelas",
+     "cargo": "Directora Regional Noroeste y Alto Golfo de California"
+    },
+    {
+     "nombre": "Cristopher González Baca",
+     "cargo": "Director Regional Planicie Costera y Golfo de México"
+    },
+    {
+     "nombre": "Juan Carlos Romero Gil",
+     "cargo": "Director Regional Península de Yucatán y Caribe Mexicano"
+    },
+    {
+     "nombre": "Marco Antonio Castro Martínez",
+     "cargo": "Director Regional Centro y Eje Neovolcánico"
+    },
+    {
+     "nombre": "María Elena Rodarte García",
+     "cargo": "Directora Regional Norte y Sierra Madre Occidental"
+    },
+    {
+     "nombre": "Pável Palacios Chávez",
+     "cargo": "Director Regional Frontera Sur, Istmo y Pacífico Sur"
     }
    ]
   },
@@ -575,7 +843,35 @@
    "personas": [
     {
      "nombre": "Víctor Hugo Borja Aburto",
-     "cargo": "Comisionado Federal"
+     "cargo": "Comisionado Federal para la Protección contra Riesgos Sanitarios"
+    },
+    {
+     "nombre": "Carlos Alberto Aguilar Acosta",
+     "cargo": "Comisionado de Operación Sanitaria"
+    },
+    {
+     "nombre": "Rodrigo Bazúa Lobato",
+     "cargo": "Comisionado de Autorización Sanitaria"
+    },
+    {
+     "nombre": "María Esther Díaz Carrillo",
+     "cargo": "Comisionada de Evidencia y Manejo de Riesgos"
+    },
+    {
+     "nombre": "Imelda Rocío Guzmán Cervantes",
+     "cargo": "Comisionada de Control Analítico y Ampliación de Cobertura"
+    },
+    {
+     "nombre": "Giota Panopoulou",
+     "cargo": "Comisionada de Fomento Sanitario"
+    },
+    {
+     "nombre": "Rosa Aurora Azamar Arizmendi",
+     "cargo": "Coordinadora General del Sistema Federal Sanitario"
+    },
+    {
+     "nombre": "Javier Muñiz Marmolejo",
+     "cargo": "Coordinador General Jurídico y Consultivo"
     }
    ]
   },
@@ -583,7 +879,7 @@
    "titular": "Francisco Javier Calderón Elizalde",
    "cargo": "Director en Jefe",
    "url": "https://www.gob.mx/senasica",
-   "nota": "Órgano desconcentrado de SADER. Estructura conforme a su Reglamento Interior. Titulares indicados solo donde están verificados.",
+   "nota": "Órgano desconcentrado de SADER. Consulta el directorio oficial vigente en gob.mx (el directorio ampliado no expone la lista aquí).",
    "unidades": [
     {
      "nombre": "Dirección General de Salud Animal"
@@ -605,12 +901,7 @@
     }
    ],
    "dir_url": "https://www.gob.mx/senasica/api/v1/levels",
-   "personas": [
-    {
-     "nombre": "Francisco Javier Calderón Elizalde",
-     "cargo": "Director en Jefe"
-    }
-   ]
+   "personas": []
   }
  }
 }
