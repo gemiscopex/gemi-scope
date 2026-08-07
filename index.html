@@ -95,8 +95,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .nav-search svg{opacity:0.35;flex-shrink:0}
 .nav-linkedin{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:1px solid var(--border);color:#0a66c2;transition:background 0.15s;text-decoration:none;flex-shrink:0}
 .nav-linkedin:hover{background:rgba(94,160,255,0.12)}
-.nav-btn-consola{height:32px;padding:0 14px;border:1px solid rgba(0,158,144,0.4);border-radius:8px;background:none;font-size:12px;font-weight:600;color:var(--green);cursor:pointer;font-family:var(--sans);transition:background 0.15s;white-space:nowrap}
-.nav-btn-consola:hover{background:rgba(0,158,144,0.07)}
+.nav-btn-consola{height:32px;padding:0 14px;border:1px solid #066750;border-radius:8px;background:#066750;font-size:12px;font-weight:600;color:#fff;cursor:pointer;font-family:var(--sans);transition:background 0.15s;white-space:nowrap}
+.nav-btn-consola:hover{background:#0a5540;border-color:#0a5540}
 .nav-btn-login{height:32px;padding:0 14px;border:1px solid var(--border-med);border-radius:8px;background:none;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;font-family:var(--sans);transition:background 0.15s,color 0.15s;white-space:nowrap}
 .nav-btn-login:hover{background:var(--border);color:var(--text)}
 .nav-btn-theme{width:30px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:none;background:none;color:var(--text-sec);cursor:pointer;transition:color 0.15s;flex-shrink:0;padding:0}
@@ -1444,13 +1444,16 @@ const TEMA_COLORS={
 };
 function updateLeyes(){
   document.getElementById('leyes-grid').innerHTML=leyes.map(l=>{
-    const year=l.r?l.r.match(/\d{4}/)?.[0]:null;
-    let h='<div class="ley-row" onclick="window.open(\''+l.u+'\',\'_blank\')">'
+    var doc=(l.u||'').replace(/'/g,'%27').replace(/"/g,'%22');
+    var nombre=(typeof _leyName==='function')?_leyName(l.n):l.n;
+    return '<div class="ley-row" style="align-items:center;cursor:pointer"'+(doc?' onclick="window.open(\''+doc+'\',\'_blank\')"':'')+'>'
       +'<span class="ley-sigla">'+l.s+'</span>'
-      +'<span class="ley-nombre">'+l.n+'</span>'
-      +(year?'<span class="ley-reforma-date">'+year+'</span>':'')
-      +'<span class="ley-link-icon">&#8599;</span></div>';
-    return h;
+      +'<div style="flex:1;min-width:0">'
+        +'<div class="ley-nombre" style="color:var(--text);font-weight:400;line-height:1.4">'+nombre+'</div>'
+        +(l.r?'<div style="font-size:10px;color:var(--text-muted);margin-top:3px">Última reforma '+l.r+'</div>':'')
+      +'</div>'
+      +(doc?'<span style="font-size:18px;font-weight:300;color:var(--text-muted);opacity:0.45;flex-shrink:0;line-height:1">›</span>':'')
+      +'</div>';
   }).join('');
 }
 /* ── Legislación Estatal ── */
