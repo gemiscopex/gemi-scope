@@ -31,6 +31,14 @@
   .kick{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--mint);margin-bottom:20px;letter-spacing:.04em}
   .cap{font-family:var(--mono);letter-spacing:.03em}
   .psub,.cl,.cest,.devnote,.price .p,.stat .n .u,.legend{font-family:var(--mono)}
+  /* portada: "cambiando" typewriter + símbolo GEMI girando */
+  .tw{color:var(--mint);border-right:2px solid var(--mint);padding-right:2px;animation:caret 1s step-end infinite}
+  @keyframes caret{50%{border-color:transparent}}
+  .cover-logo{position:relative;display:inline-block;line-height:0}
+  .cover-logo .logo{display:block;height:44px}
+  .o-pos{position:absolute;left:46.4%;top:39%;width:0;height:0}
+  .o-spin{position:absolute;height:26px;width:auto;left:0;top:0;transform:translate(-50%,-50%);animation:oSpin 9s linear infinite}
+  @keyframes oSpin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
   h1{font-size:clamp(36px,6.6vw,88px);font-weight:800;letter-spacing:-.025em;line-height:1.01}
   h2{font-size:clamp(28px,4.8vw,60px);font-weight:800;letter-spacing:-.022em;line-height:1.05}
   .lead{font-size:clamp(15px,1.8vw,21px);color:var(--mut);line-height:1.55;max-width:640px;margin-top:20px;font-weight:400}
@@ -149,14 +157,16 @@
   .ep-link .u{font-family:var(--mono);font-size:9px;color:#8A9CB0;margin-top:3px;word-break:break-all}
   .expdeck{position:relative;max-width:440px;margin:0 auto;padding-top:42px}
   .expdeck .exp{position:relative;z-index:3;margin:0}
-  .expback{position:absolute;left:0;right:0;top:42px;background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,.42);padding:18px 24px;color:#0D1B2A}
-  .expback .expb-name{font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px;line-height:1}
-  .expback .expb-name svg{height:26px;width:auto;max-width:46px;opacity:.5;display:block}
+  .expback{position:absolute;left:0;right:0;top:42px;height:calc(100% - 42px);background:#fff;border-radius:16px;box-shadow:0 20px 55px rgba(0,0,0,.45);padding:22px 24px;color:#0D1B2A;overflow:hidden}
+  .expback .exp-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:15px}
+  .expback .expb-name{font-size:24px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:12px;line-height:1}
+  .expback .expb-name svg{height:30px;width:auto;max-width:52px;opacity:.5;display:block}
   .expback .expb-name svg path{fill:none;stroke:#5A7A98;stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round}
-  .expback .expb-tabs{font-family:var(--mono);font-size:10px;color:#9bb0a8;margin-top:13px;letter-spacing:.02em}
-  .expback.bk1{z-index:1;transform:translate(-44px,-32px) rotate(-5deg) scale(.95)}
-  .expback.bk2{z-index:2;transform:translate(34px,-17px) rotate(4deg) scale(.975)}
-  @media(max-width:520px){.expback.bk1{transform:translate(-24px,-30px) rotate(-4deg) scale(.94)}.expback.bk2{transform:translate(20px,-16px) rotate(3deg) scale(.97)}}
+  .expback .exp-close{font-size:12px;color:#5A7A98;border:0.8px solid rgba(0,0,0,0.13);border-radius:8px;padding:5px 12px;flex-shrink:0;white-space:nowrap}
+  .expback .expb-tabs{font-family:var(--mono);font-size:11px;color:#9bb0a8;letter-spacing:.02em;border-top:0.8px solid rgba(0,0,0,0.07);padding-top:14px}
+  .expback.bk1{z-index:1;transform:translate(-52px,-30px) rotate(-6deg) scale(.955)}
+  .expback.bk2{z-index:2;transform:translate(40px,-16px) rotate(5deg) scale(.978)}
+  @media(max-width:520px){.expback.bk1{transform:translate(-26px,-28px) rotate(-5deg) scale(.94)}.expback.bk2{transform:translate(22px,-15px) rotate(4deg) scale(.97)}}
 
   /* Senado / actores */
   .senp{max-width:420px;margin:0 auto}
@@ -284,7 +294,7 @@
 
   /* dot map */
   .mapwrap{position:relative;width:100%;max-width:520px;aspect-ratio:5/4;margin:0 auto}
-  .mdot{position:absolute;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.14);transform:scale(0);transition:transform .5s cubic-bezier(.2,.9,.3,1.4),background .5s}
+  .mdot{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.16);transform:scale(0);transition:transform .5s cubic-bezier(.2,.9,.3,1.4),background .5s}
   section.in .mdot{transform:scale(1)}
   .mdot.hot{background:var(--g);box-shadow:0 0 0 0 rgba(18,185,138,.55);animation:ping 2.6s ease-out infinite}
   .mdot.hot.h2{background:var(--mint)}
@@ -369,8 +379,11 @@
   <section data-t="Inicio" style="justify-content:center;text-align:center;align-items:center">
     <div class="glow" style="width:640px;height:640px;background:var(--g3);top:-8%;left:-8%"></div>
     <div class="glow" style="width:520px;height:520px;background:var(--g);bottom:-14%;right:-8%;opacity:.32"></div>
-    <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:44px;margin-bottom:34px">
-    <h1 class="r d1" style="max-width:15ch">Estamos cambiando el ambiente.</h1>
+    <div class="cover-logo r" style="margin-bottom:34px">
+      <img class="logo" src="assets/scope-logo-dark.png" alt="Scope">
+      <span class="o-pos"><img class="o-spin" src="assets/logo-gemi-icon.png" alt=""></span>
+    </div>
+    <h1 class="r d1" style="max-width:15ch">Estamos<br><span class="tw" id="tw">cambiando</span><br>el ambiente.</h1>
     <div class="lead r d2" style="margin-left:auto;margin-right:auto">La inteligencia regulatoria ambiental de México, en un solo lugar.</div>
     <div class="cap r d3">Preview para el Consejo de GEMI · 2026</div>
     <div class="scrollhint">Desliza para comenzar &nbsp;&darr;</div>
@@ -476,8 +489,8 @@
       </div>
       <div class="viz r d3">
         <div class="expdeck">
-          <div class="expback bk1"><div class="expb-name">Jalisco <svg viewBox="0 0 4.15 3.71" preserveAspectRatio="xMidYMid meet"><path d="M2.92 0.98L3.05 0.95L3.20 0.96L3.33 1.04L3.50 1.00L3.61 0.87L3.77 0.80L3.72 0.70L3.72 0.62L3.95 0.69L4.13 0.83L4.09 0.93L4.02 1.18L4.03 1.27L4.02 1.35L3.94 1.39L3.90 1.51L3.80 1.58L3.69 1.76L3.60 1.87L3.59 1.94L3.72 2.07L3.64 2.19L3.57 2.30L3.43 2.34L3.28 2.35L3.17 2.37L3.08 2.42L2.99 2.51L2.87 2.55L2.82 2.55L2.69 2.53L2.64 2.56L2.60 2.71L2.66 2.72L2.81 2.75L2.92 2.84L2.88 2.92L2.94 3.05L2.93 3.19L3.09 3.21L3.06 3.30L2.96 3.45L2.87 3.43L2.69 3.56L2.57 3.64L2.46 3.68L2.33 3.70L2.24 3.69L2.20 3.63L2.19 3.53L2.19 3.41L2.16 3.32L2.12 3.26L2.08 3.11L1.85 3.26L1.67 3.26L1.58 3.31L1.45 3.34L1.29 3.38L1.22 3.41L1.15 3.40L1.06 3.47L0.97 3.45L0.92 3.43L0.91 3.39L0.86 3.38L0.72 3.32L0.66 3.22L0.61 3.16L0.50 3.04L0.36 2.90L0.22 2.71L0.15 2.56L0.14 2.44L0.04 2.35L0.04 2.24L0.21 2.18L0.33 2.16L0.44 2.11L0.41 1.99L0.46 1.89L0.56 1.78L0.68 1.76L0.79 1.71L0.95 1.69L1.08 1.77L1.20 1.86L1.31 1.95L1.41 2.08L1.39 1.98L1.35 1.88L1.42 1.80L1.45 1.67L1.55 1.52L1.67 1.51L1.84 1.43L1.88 1.31L1.86 1.14L1.78 0.99L1.66 0.94L1.56 0.91L1.52 0.76L1.38 0.73L1.34 0.62L1.39 0.44L1.43 0.37L1.49 0.36L1.50 0.27L1.62 0.23L1.60 0.36L1.72 0.30L1.65 0.10L1.74 0.02L1.90 0.02L1.87 0.10L1.74 0.33L1.76 0.49L1.83 0.52L1.85 0.29L1.95 0.18L2.12 0.24L2.15 0.36L2.00 0.59L2.09 0.63L2.20 0.63L2.29 0.53L2.36 0.46L2.33 0.37L2.49 0.35L2.48 0.43L2.60 0.47L2.56 0.64L2.45 0.74L2.25 0.87L2.13 0.94L2.13 1.10L2.06 1.17L1.99 1.23L2.10 1.29L2.14 1.35L1.94 1.45L2.04 1.50L2.13 1.62L2.26 1.62L2.38 1.65L2.48 1.62L2.55 1.62L2.62 1.53L2.76 1.51L2.90 1.40L3.06 1.22L2.92 1.06L2.92 0.98Z"/></svg></div><div class="expb-tabs">Perfil · Actividad · Legislación · Impuestos</div></div>
-          <div class="expback bk2"><div class="expb-name">Nuevo León <svg viewBox="0 0 2.85 4.60" preserveAspectRatio="xMidYMid meet"><path d="M1.53 0.10L1.46 0.18L1.35 0.21L1.32 0.30L1.49 0.31L1.46 0.40L1.50 0.52L1.55 0.66L1.54 0.74L1.47 0.86L1.54 0.90L1.59 1.00L1.58 1.11L1.67 1.14L1.74 1.21L1.81 1.31L1.96 1.45L2.03 1.55L2.10 1.55L2.11 1.62L2.12 1.67L2.28 1.71L2.40 1.81L2.55 1.75L2.68 1.81L2.70 1.97L2.71 2.10L2.71 2.21L2.85 2.27L2.79 2.35L2.66 2.47L2.54 2.53L2.37 2.59L2.25 2.66L2.19 2.61L2.08 2.70L2.09 2.79L2.07 2.87L1.97 2.97L1.92 2.96L1.81 3.04L1.73 3.07L1.59 3.15L1.50 3.22L1.57 3.29L1.62 3.42L1.58 3.60L1.63 3.68L1.70 3.81L1.77 3.87L1.71 3.94L1.68 4.00L1.48 4.01L1.39 4.06L1.30 4.23L1.30 4.37L1.23 4.43L1.14 4.44L1.03 4.51L0.91 4.59L0.80 4.54L0.76 4.39L0.73 4.26L0.77 4.10L0.74 3.97L0.74 3.81L0.61 3.61L0.54 3.49L0.55 3.39L0.52 3.31L0.41 3.23L0.47 3.10L0.44 3.00L0.40 2.90L0.49 2.86L0.49 2.76L0.49 2.61L0.58 2.49L0.72 2.53L0.85 2.56L0.97 2.57L0.99 2.46L0.92 2.41L0.81 2.36L0.65 2.26L0.61 2.12L0.45 2.09L0.43 1.86L0.40 1.80L0.31 1.67L0.11 1.49L0.03 1.33L0.15 1.17L0.32 1.13L0.55 1.07L0.60 0.99L0.67 0.88L0.66 0.77L0.61 0.67L0.54 0.67L0.39 0.68L0.42 0.50L0.54 0.43L0.72 0.41L0.74 0.31L0.83 0.14L0.96 0.08L1.16 0.09L1.33 0.06L1.42 0.01L1.49 0.04L1.53 0.10Z"/></svg></div><div class="expb-tabs">Perfil · Actividad · Legislación · Impuestos</div></div>
+          <div class="expback bk1"><div class="exp-hd"><div class="expb-name">Jalisco<svg viewBox="0 0 4.15 3.71" preserveAspectRatio="xMidYMid meet"><path d="M2.92 0.98L3.05 0.95L3.20 0.96L3.33 1.04L3.50 1.00L3.61 0.87L3.77 0.80L3.72 0.70L3.72 0.62L3.95 0.69L4.13 0.83L4.09 0.93L4.02 1.18L4.03 1.27L4.02 1.35L3.94 1.39L3.90 1.51L3.80 1.58L3.69 1.76L3.60 1.87L3.59 1.94L3.72 2.07L3.64 2.19L3.57 2.30L3.43 2.34L3.28 2.35L3.17 2.37L3.08 2.42L2.99 2.51L2.87 2.55L2.82 2.55L2.69 2.53L2.64 2.56L2.60 2.71L2.66 2.72L2.81 2.75L2.92 2.84L2.88 2.92L2.94 3.05L2.93 3.19L3.09 3.21L3.06 3.30L2.96 3.45L2.87 3.43L2.69 3.56L2.57 3.64L2.46 3.68L2.33 3.70L2.24 3.69L2.20 3.63L2.19 3.53L2.19 3.41L2.16 3.32L2.12 3.26L2.08 3.11L1.85 3.26L1.67 3.26L1.58 3.31L1.45 3.34L1.29 3.38L1.22 3.41L1.15 3.40L1.06 3.47L0.97 3.45L0.92 3.43L0.91 3.39L0.86 3.38L0.72 3.32L0.66 3.22L0.61 3.16L0.50 3.04L0.36 2.90L0.22 2.71L0.15 2.56L0.14 2.44L0.04 2.35L0.04 2.24L0.21 2.18L0.33 2.16L0.44 2.11L0.41 1.99L0.46 1.89L0.56 1.78L0.68 1.76L0.79 1.71L0.95 1.69L1.08 1.77L1.20 1.86L1.31 1.95L1.41 2.08L1.39 1.98L1.35 1.88L1.42 1.80L1.45 1.67L1.55 1.52L1.67 1.51L1.84 1.43L1.88 1.31L1.86 1.14L1.78 0.99L1.66 0.94L1.56 0.91L1.52 0.76L1.38 0.73L1.34 0.62L1.39 0.44L1.43 0.37L1.49 0.36L1.50 0.27L1.62 0.23L1.60 0.36L1.72 0.30L1.65 0.10L1.74 0.02L1.90 0.02L1.87 0.10L1.74 0.33L1.76 0.49L1.83 0.52L1.85 0.29L1.95 0.18L2.12 0.24L2.15 0.36L2.00 0.59L2.09 0.63L2.20 0.63L2.29 0.53L2.36 0.46L2.33 0.37L2.49 0.35L2.48 0.43L2.60 0.47L2.56 0.64L2.45 0.74L2.25 0.87L2.13 0.94L2.13 1.10L2.06 1.17L1.99 1.23L2.10 1.29L2.14 1.35L1.94 1.45L2.04 1.50L2.13 1.62L2.26 1.62L2.38 1.65L2.48 1.62L2.55 1.62L2.62 1.53L2.76 1.51L2.90 1.40L3.06 1.22L2.92 1.06L2.92 0.98Z"/></svg></div><span class="exp-close">Cerrar</span></div><div class="expb-tabs">Perfil · Actividad · Legislación · Impuestos</div></div>
+          <div class="expback bk2"><div class="exp-hd"><div class="expb-name">Nuevo León<svg viewBox="0 0 2.85 4.60" preserveAspectRatio="xMidYMid meet"><path d="M1.53 0.10L1.46 0.18L1.35 0.21L1.32 0.30L1.49 0.31L1.46 0.40L1.50 0.52L1.55 0.66L1.54 0.74L1.47 0.86L1.54 0.90L1.59 1.00L1.58 1.11L1.67 1.14L1.74 1.21L1.81 1.31L1.96 1.45L2.03 1.55L2.10 1.55L2.11 1.62L2.12 1.67L2.28 1.71L2.40 1.81L2.55 1.75L2.68 1.81L2.70 1.97L2.71 2.10L2.71 2.21L2.85 2.27L2.79 2.35L2.66 2.47L2.54 2.53L2.37 2.59L2.25 2.66L2.19 2.61L2.08 2.70L2.09 2.79L2.07 2.87L1.97 2.97L1.92 2.96L1.81 3.04L1.73 3.07L1.59 3.15L1.50 3.22L1.57 3.29L1.62 3.42L1.58 3.60L1.63 3.68L1.70 3.81L1.77 3.87L1.71 3.94L1.68 4.00L1.48 4.01L1.39 4.06L1.30 4.23L1.30 4.37L1.23 4.43L1.14 4.44L1.03 4.51L0.91 4.59L0.80 4.54L0.76 4.39L0.73 4.26L0.77 4.10L0.74 3.97L0.74 3.81L0.61 3.61L0.54 3.49L0.55 3.39L0.52 3.31L0.41 3.23L0.47 3.10L0.44 3.00L0.40 2.90L0.49 2.86L0.49 2.76L0.49 2.61L0.58 2.49L0.72 2.53L0.85 2.56L0.97 2.57L0.99 2.46L0.92 2.41L0.81 2.36L0.65 2.26L0.61 2.12L0.45 2.09L0.43 1.86L0.40 1.80L0.31 1.67L0.11 1.49L0.03 1.33L0.15 1.17L0.32 1.13L0.55 1.07L0.60 0.99L0.67 0.88L0.66 0.77L0.61 0.67L0.54 0.67L0.39 0.68L0.42 0.50L0.54 0.43L0.72 0.41L0.74 0.31L0.83 0.14L0.96 0.08L1.16 0.09L1.33 0.06L1.42 0.01L1.49 0.04L1.53 0.10Z"/></svg></div><span class="exp-close">Cerrar</span></div><div class="expb-tabs">Perfil · Actividad · Legislación · Impuestos</div></div>
           <div class="exp">
           <div class="exp-hd">
             <div class="exp-name">Ciudad de México <span class="exp-sil"><svg viewBox="0 0 0.472 0.501" preserveAspectRatio="xMidYMid meet"><path d="M0.460 0.458L0.329 0.485L0.267 0.460L0.162 0.456L0.089 0.443L0.030 0.339L0.000 0.262L0.071 0.200L0.127 0.158L0.200 0.031L0.251 0.003L0.283 0.070L0.331 0.175L0.401 0.228L0.420 0.284L0.458 0.303L0.470 0.399L0.460 0.458Z"/></svg></span></div>
@@ -630,7 +643,7 @@
     <div class="techbg"></div>
     <div class="glow" style="width:560px;height:560px;background:var(--g3);bottom:-16%;right:-10%;opacity:.24"></div>
     <div class="kick r">Cómo se nutre</div>
-    <h2 class="r d1" style="max-width:16ch">No es una foto. Es una señal que respira.</h2>
+    <h2 class="r d1" style="max-width:16ch">Una señal que respira.</h2>
     <p class="lead r d2" style="max-width:780px">Detrás corre maquinaria todos los días: lectores automáticos de prensa nacional y estatal, del DOF, del Congreso, de CONAMER y de la conferencia matutina; e ingesta de datos abiertos oficiales de SEMARNAT e INECC, más bases legales curadas por GEMI. Todo con fuente. Todo fechado.</p>
     <div class="stats">
       <div class="stat r d2"><div class="n"><span data-count="180">0</span>+<span class="u"> fuentes</span></div><div class="l">Prensa, DOF, Congreso, CONAMER, gacetas y datos oficiales</div></div>
@@ -748,14 +761,25 @@
   var dotsWrap=document.getElementById('dots'), prog=document.getElementById('prog');
   var ease=function(t){return 1-Math.pow(1-t,3);};
 
-  // dot map
+  // portada: "cambiando" se escribe en loop
+  (function(){
+    var el=document.getElementById('tw'); if(!el)return;
+    var word='cambiando',i=word.length,dir=-1;
+    function tick(){
+      if(dir<0){i--;if(i<=0){i=0;dir=1;setTimeout(tick,650);return;}}
+      else{i++;if(i>=word.length){i=word.length;dir=-1;setTimeout(tick,2400);return;}}
+      el.textContent=word.slice(0,i);
+      setTimeout(tick,dir>0?115:65);
+    }
+    el.textContent=word; setTimeout(tick,2400);
+  })();
+
+  // dot map · silueta real de México
   (function(){
     var w=document.getElementById('mapwrap'); if(!w)return;
-    var pts=[],N=44;
-    for(var i=0;i<N;i++){var t=i/(N-1);var cx=12+t*72+Math.sin(i*1.7)*10;var cy=18+t*58+Math.cos(i*2.1)*13;pts.push([Math.max(4,Math.min(92,cx)),Math.max(6,Math.min(90,cy))]);}
-    pts.push([86,40],[90,34],[83,46]);
-    var hot={5:1,12:2,19:1,27:2,33:1,40:2,45:1};
-    pts.forEach(function(p,i){var d=document.createElement('div');d.className='mdot'+(hot[i]?(' hot'+(hot[i]===2?' h2':'')):'');d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.style.transitionDelay=(i*22)+'ms';if(hot[i])d.style.animationDelay=(i*120)+'ms';w.appendChild(d);});
+    var pts=[[11.5,22],[14.7,22],[17.9,22],[21.2,22],[34.1,22],[37.3,22],[14.7,26.1],[21.2,26.1],[24.4,26.1],[27.6,26.1],[30.9,26.1],[34.1,26.1],[37.3,26.1],[40.6,26.1],[17.9,30.1],[24.4,30.1],[27.6,30.1],[30.9,30.1],[34.1,30.1],[37.3,30.1],[40.6,30.1],[43.8,30.1],[50.3,30.1],[53.5,30.1],[17.9,34.2],[27.6,34.2],[30.9,34.2],[34.1,34.2],[37.3,34.2],[40.6,34.2],[43.8,34.2],[47,34.2],[50.3,34.2],[53.5,34.2],[17.9,38.2],[21.2,38.2],[30.9,38.2],[34.1,38.2],[37.3,38.2],[40.6,38.2],[43.8,38.2],[47,38.2],[50.3,38.2],[53.5,38.2],[56.8,38.2],[24.4,42.3],[30.9,42.3],[34.1,42.3],[37.3,42.3],[40.6,42.3],[43.8,42.3],[47,42.3],[50.3,42.3],[53.5,42.3],[56.8,42.3],[60,42.3],[63.2,42.3],[24.4,46.3],[37.3,46.3],[40.6,46.3],[43.8,46.3],[47,46.3],[50.3,46.3],[53.5,46.3],[56.8,46.3],[60,46.3],[63.2,46.3],[40.6,50.3],[43.8,50.3],[47,50.3],[50.3,50.3],[53.5,50.3],[56.8,50.3],[60,50.3],[63.2,50.3],[43.8,54.4],[47,54.4],[50.3,54.4],[53.5,54.4],[56.8,54.4],[60,54.4],[43.8,58.4],[47,58.4],[50.3,58.4],[53.5,58.4],[56.8,58.4],[60,58.4],[63.2,58.4],[89.1,58.4],[92.3,58.4],[43.8,62.5],[47,62.5],[50.3,62.5],[53.5,62.5],[56.8,62.5],[60,62.5],[63.2,62.5],[85.9,62.5],[89.1,62.5],[47,66.5],[50.3,66.5],[53.5,66.5],[56.8,66.5],[60,66.5],[63.2,66.5],[66.5,66.5],[82.6,66.5],[85.9,66.5],[89.1,66.5],[53.5,70.6],[56.8,70.6],[60,70.6],[63.2,70.6],[66.5,70.6],[69.7,70.6],[72.9,70.6],[76.2,70.6],[79.4,70.6],[82.6,70.6],[85.9,70.6],[60,74.6],[63.2,74.6],[66.5,74.6],[69.7,74.6],[72.9,74.6],[76.2,74.6],[79.4,74.6],[82.6,74.6],[76.2,78.6],[79.4,78.6]];
+    var hotArr=[0,54,67,88,91,103,104,105],hot={};hotArr.forEach(function(h,k){hot[h]=(k%2)+1;});
+    pts.forEach(function(p,i){var d=document.createElement('div');d.className='mdot'+(hot[i]?(' hot'+(hot[i]===2?' h2':'')):'');d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.style.transitionDelay=(i*7)+'ms';if(hot[i])d.style.animationDelay=(i*40)+'ms';w.appendChild(d);});
   })();
 
   // mini dot map (monitor)
