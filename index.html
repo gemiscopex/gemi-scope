@@ -1467,14 +1467,50 @@ var LEYES_EST_TEMA_LABEL={
 };
 var _leyEst={estado:'',tema:'todos',q:''};
 var LEYES_TEMAS=[['todos','Todos'],['ambiental_general','Ambiental general'],['agua','Agua'],['forestal','Forestal'],['biodiversidad','Biodiversidad'],['cambio_climatico','Cambio climático'],['residuos','Residuos / Economía circular'],['energia_renovable','Energía renovable'],['hidrocarburos','Hidrocarburos'],['mineria','Minería']];
+// Normaliza nombres TODO-MAYÚSCULAS a Capitalización tipo título (respeta siglas y preposiciones)
+var _LEY_KEEPUP={NOM:1,NMX:1,LGEEPA:1,LGPGIR:1,LGEC:1,LAN:1,DOF:1,REP:1,CDMX:1,GEI:1,RME:1,RSU:1,ISSSTE:1,IMSS:1,PEMEX:1,CFE:1};
+var _LEY_LOW={de:1,la:1,el:1,los:1,las:1,y:1,e:1,o:1,u:1,del:1,al:1,en:1,para:1,por:1,con:1,a:1,que:1,su:1,sobre:1};
+function _titleCase(s){
+  if(!s)return s;
+  var letters=(s.match(/[A-Za-zÁÉÍÓÚÑáéíóúñ]/g)||[]).length, ups=(s.match(/[A-ZÁÉÍÓÚÑ]/g)||[]).length;
+  if(!letters||ups/letters<0.6)return s; // ya escrito normal → no tocar
+  var wi=0;
+  return s.toLowerCase().split(/(\s+)/).map(function(w){
+    if(/^\s*$/.test(w))return w;
+    var bare=w.replace(/[^a-záéíóúñ0-9]/gi,''),up=bare.toUpperCase(),first=wi===0;wi++;
+    if(_LEY_KEEPUP[up])return w.toUpperCase();
+    if(!first&&_LEY_LOW[bare])return w;
+    return w.charAt(0).toUpperCase()+w.slice(1);
+  }).join('');
+}
+var _LEY_ACCENT={'Ciudad de Mexico':'Ciudad de México','Mexico':'México','Michoacan':'Michoacán','Nuevo Leon':'Nuevo León','Queretaro':'Querétaro','San Luis Potosi':'San Luis Potosí','Yucatan':'Yucatán'};
+function _leyStateLabel(k){return _LEY_ACCENT[k]||k;}
+// Fusiona las leyes curadas de leyesAmbientales que el scrape de ordenjuridico no capturó
+var _LEY_CAT_TEMA={equilibrio_ecologico:'ambiental_general',residuos:'residuos',economia_circular:'residuos',plasticos:'residuos',agua:'agua',forestal_biodiversidad:'biodiversidad',cambio_climatico:'cambio_climatico'};
+function _mergeCuratedLeyes(){
+  if(!leyesEstatalesData||typeof leyesAmbientales==='undefined'||!leyesAmbientales.estados)return;
+  var keyByNorm={};Object.keys(leyesEstatalesData.estados).forEach(function(k){keyByNorm[qa(k.toLowerCase())]=k;});
+  leyesAmbientales.estados.forEach(function(se){
+    var nm=se.nombre==='Estado de México'?'México':se.nombre;
+    var vk=keyByNorm[qa(nm.toLowerCase())];if(!vk)return;
+    var arr=leyesEstatalesData.estados[vk],seen={};arr.forEach(function(l){seen[qa((l.nombre||'').toLowerCase())]=1;});
+    var L=se.leyes||{};
+    Object.keys(L).forEach(function(cat){(L[cat]||[]).forEach(function(law){
+      var key=qa((law.nombre||'').toLowerCase());if(!law.nombre||seen[key])return;seen[key]=1;
+      var tipo=/reglamento/i.test(law.nombre)?'Reglamento':/c[oó]digo/i.test(law.nombre)?'Código':'Ley';
+      arr.push({nombre:law.nombre,tipo:tipo,temas:[_LEY_CAT_TEMA[cat]||'ambiental_general'],estatus:law.estado_vigencia||'Vigente',url:law.url||'',ficha_url:law.url||'',fecha_publicacion:law.ultima_reforma||'',_curada:true});
+    });});
+  });
+}
 function loadLeyesEstatales(){
   if(leyesEstatalesData){renderLeyesEstTemaBar();renderLeyesEst();return;}
   fetch('data/leyes-estatales.json').then(function(r){return r.ok?r.json():null;}).then(function(d){
     if(!d)return;
     leyesEstatalesData=d;
+    _mergeCuratedLeyes();
     var sel=document.getElementById('leyes-est-selector');
-    if(sel){Object.entries(d.estados).filter(function(e){return e[1]&&e[1].length>0;}).sort(function(a,b){return a[0].localeCompare(b[0],'es');}).forEach(function(pair){
-      var opt=document.createElement('option');opt.value=pair[0];opt.textContent=pair[0]+' ('+pair[1].length+')';sel.appendChild(opt);});}
+    if(sel){Object.entries(d.estados).filter(function(e){return e[1]&&e[1].length>0;}).sort(function(a,b){return _leyStateLabel(a[0]).localeCompare(_leyStateLabel(b[0]),'es');}).forEach(function(pair){
+      var opt=document.createElement('option');opt.value=pair[0];opt.textContent=_leyStateLabel(pair[0])+' ('+pair[1].length+')';sel.appendChild(opt);});}
     renderLeyesEstTemaBar();renderLeyesEst();
   }).catch(function(){});
 }
@@ -1488,12 +1524,20 @@ function leyEstSetQ(v){_leyEst.q=v;renderLeyesEst();}
 function _leyRow(l,stateLabel){
   var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
   var tipoAbr=l.tipo==='Ley'?'LEY':l.tipo==='Código'?'CÓD':l.tipo==='Reglamento'?'REG':'NOR';
-  var u=(l.ficha_url||l.url||'').replace(/"/g,'%22');
-  var year='';if(l.fecha_publicacion){var m=l.fecha_publicacion.match(/[0-9]{4}/);if(m)year='<span class="ley-reforma-date">'+m[0]+'</span>';}
-  return '<div class="ley-row" onclick="window.open(&quot;'+u+'&quot;,&quot;_blank&quot;)">'
-    +'<span class="ley-sigla" style="color:'+tipoColor+'">'+tipoAbr+'</span>'
-    +'<span class="ley-nombre">'+l.nombre+(stateLabel?' <span style="color:var(--text-muted);font-weight:400">· '+stateLabel+'</span>':'')+'</span>'
-    +year+'<span class="ley-link-icon">↗</span></div>';
+  var doc=(l.url||l.ficha_url||'').replace(/'/g,'%27').replace(/"/g,'%22');
+  var nombre=_titleCase(l.nombre||'');
+  var estatusCol=/vigente/i.test(l.estatus||'')?'var(--green)':/abrogad|derogad|no vigente/i.test(l.estatus||'')?'#B45309':'var(--text-muted)';
+  var meta=[];
+  if(l.fecha_publicacion)meta.push('Publicación: <b style="font-weight:600;color:var(--text-sec)">'+l.fecha_publicacion+'</b>');
+  if(l.estatus)meta.push('<span style="color:'+estatusCol+';font-weight:600">'+l.estatus+'</span>');
+  return '<div class="ley-row" style="align-items:flex-start;cursor:default">'
+    +'<span class="ley-sigla" style="color:'+tipoColor+';padding-top:1px">'+tipoAbr+'</span>'
+    +'<div style="flex:1;min-width:0">'
+      +'<div class="ley-nombre" style="color:var(--text);font-weight:600;line-height:1.4">'+nombre+(stateLabel?' <span style="color:var(--text-muted);font-weight:400">· '+stateLabel+'</span>':'')+'</div>'
+      +(meta.length?'<div style="font-size:10px;color:var(--text-muted);margin-top:3px;line-height:1.4">'+meta.join('  ·  ')+'</div>':'')
+    +'</div>'
+    +(doc?'<a href="'+doc+'" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;color:var(--green);text-decoration:none;white-space:nowrap;flex-shrink:0;align-self:center">Consultar documento ↗</a>':'')
+    +'</div>';
 }
 function renderLeyesEst(){
   var list=document.getElementById('leyes-est-list'),meta=document.getElementById('leyes-est-meta');
@@ -1507,7 +1551,7 @@ function renderLeyesEst(){
     var estados=Object.keys(leyesEstatalesData.estados).sort(function(a,b){return a.localeCompare(b,'es');});
     var total=0,html='';
     estados.forEach(function(st){var ls=(leyesEstatalesData.estados[st]||[]).filter(match);if(!ls.length)return;total+=ls.length;
-      html+='<div style="font-size:12px;font-weight:700;color:var(--green);margin:14px 0 6px">'+st+' <span style="color:var(--dim);font-weight:500;font-size:10px">· '+ls.length+'</span></div>'+ls.map(function(l){return _leyRow(l,null);}).join('');});
+      html+='<div style="font-size:12px;font-weight:700;color:var(--green);margin:14px 0 6px">'+_leyStateLabel(st)+' <span style="color:var(--dim);font-weight:500;font-size:10px">· '+ls.length+'</span></div>'+ls.map(function(l){return _leyRow(l,null);}).join('');});
     if(meta)meta.textContent=total+' ordenamiento'+(total!==1?'s':'')+(tk?' · '+((LEYES_TEMAS.find(function(t){return t[0]===_leyEst.tema;})||[])[1]||''):'')+' · '+estados.filter(function(st){return (leyesEstatalesData.estados[st]||[]).some(match);}).length+' entidades';
     list.innerHTML=total?html:'<div style="padding:24px 0;font-size:13px;color:var(--text-muted)">Sin ordenamientos que coincidan con el filtro.</div>';
     return;
