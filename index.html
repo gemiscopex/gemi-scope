@@ -1528,15 +1528,15 @@ function _leyRow(l,stateLabel){
   var nombre=_titleCase(l.nombre||'');
   var estatusCol=/vigente/i.test(l.estatus||'')?'var(--green)':/abrogad|derogad|no vigente/i.test(l.estatus||'')?'#B45309':'var(--text-muted)';
   var meta=[];
-  if(l.fecha_publicacion)meta.push('Publicación: <b style="font-weight:600;color:var(--text-sec)">'+l.fecha_publicacion+'</b>');
-  if(l.estatus)meta.push('<span style="color:'+estatusCol+';font-weight:600">'+l.estatus+'</span>');
-  return '<div class="ley-row" style="align-items:flex-start;cursor:default">'
-    +'<span class="ley-sigla" style="color:'+tipoColor+';padding-top:1px">'+tipoAbr+'</span>'
+  if(l.fecha_publicacion)meta.push('Publicación <span style="color:var(--text-sec)">'+l.fecha_publicacion+'</span>');
+  if(l.estatus)meta.push('<span style="color:'+estatusCol+'">'+l.estatus+'</span>');
+  return '<div class="ley-row" style="align-items:center;cursor:pointer"'+(doc?' onclick="window.open(\''+doc+'\',\'_blank\')"':'')+'>'
+    +'<span class="ley-sigla" style="color:'+tipoColor+'">'+tipoAbr+'</span>'
     +'<div style="flex:1;min-width:0">'
-      +'<div class="ley-nombre" style="color:var(--text);font-weight:600;line-height:1.4">'+nombre+(stateLabel?' <span style="color:var(--text-muted);font-weight:400">· '+stateLabel+'</span>':'')+'</div>'
+      +'<div class="ley-nombre" style="color:var(--text);font-weight:400;line-height:1.4">'+nombre+(stateLabel?' <span style="color:var(--text-muted)">· '+stateLabel+'</span>':'')+'</div>'
       +(meta.length?'<div style="font-size:10px;color:var(--text-muted);margin-top:3px;line-height:1.4">'+meta.join('  ·  ')+'</div>':'')
     +'</div>'
-    +(doc?'<a href="'+doc+'" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;color:var(--green);text-decoration:none;white-space:nowrap;flex-shrink:0;align-self:center">Consultar documento ↗</a>':'')
+    +(doc?'<span style="font-size:18px;font-weight:300;color:var(--text-muted);opacity:0.45;flex-shrink:0;line-height:1">›</span>':'')
     +'</div>';
 }
 function renderLeyesEst(){
