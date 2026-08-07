@@ -2043,8 +2043,18 @@ function renderActoresFederal(){
       +'</div>';
     var tree='';
     if(dep&&open){
+      var per=(dep.personas||[]);
+      var personasHTML=per.length?('<div style="padding:2px 0 4px">'+per.map(function(p){
+        return '<div style="padding:8px 0 8px 12px;border-bottom:0.8px solid var(--border)">'
+          +'<div style="font-size:13px;font-weight:600;color:var(--text)">'+p.nombre+'</div>'
+          +'<div style="font-size:11px;color:var(--text-sec);margin-top:1px">'+p.cargo+'</div>'
+          +(p.email?'<a href="mailto:'+p.email+'" onclick="event.stopPropagation()" style="font-family:var(--mono);font-size:10px;color:var(--green);text-decoration:none">'+p.email+'</a>':'')
+          +'</div>';
+      }).join('')+'</div>'):'';
+      var dirLink=dep.dir_url?'<a href="'+dep.dir_url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-block;margin:11px 0 2px 12px;font-size:11px;font-weight:700;color:var(--green);text-decoration:none">Directorio completo y vigente en gob.mx ↗</a>':'';
+      var uni=(dep.unidades&&dep.unidades.length)?('<div style="margin-top:14px;padding-top:10px;border-top:0.8px solid var(--border)"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);padding-left:12px;margin-bottom:2px">Estructura orgánica · unidades (Reglamento Interior)</div>'+_depTreeHTML(dep.unidades,0)+'</div>'):'';
       tree='<div style="padding:6px 0 14px 0;background:rgba(6,103,80,0.02)">'
-        +_depTreeHTML(dep.unidades,0)
+        +personasHTML+dirLink+uni
         +(dep.nota?'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:10px;padding-left:12px;line-height:1.5">'+dep.nota+'</div>':'')
         +'</div>';
     }
