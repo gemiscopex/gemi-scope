@@ -30,6 +30,7 @@
 
   .kick{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--mint);margin-bottom:20px;letter-spacing:.04em}
   .cap{font-family:var(--mono);letter-spacing:.03em}
+  .psub,.cl,.cest,.devnote,.price .p,.stat .n .u,.legend{font-family:var(--mono)}
   h1{font-size:clamp(36px,6.6vw,88px);font-weight:800;letter-spacing:-.025em;line-height:1.01}
   h2{font-size:clamp(28px,4.8vw,60px);font-weight:800;letter-spacing:-.022em;line-height:1.05}
   .lead{font-size:clamp(15px,1.8vw,21px);color:var(--mut);line-height:1.55;max-width:640px;margin-top:20px;font-weight:400}
@@ -59,21 +60,27 @@
 
   /* evolución (origen) */
   .evo{display:flex;align-items:center;margin-top:46px;max-width:720px}
-  .evo-pt{display:flex;flex-direction:column;align-items:center;gap:13px;flex-shrink:0;opacity:0;transform:translateY(10px);transition:opacity .7s,transform .7s}
+  .evo-pt{display:flex;flex-direction:column;align-items:center;gap:13px;flex-shrink:0;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
   section.in .evo-pt{opacity:1;transform:none}
-  section.in .evo-pt:nth-child(3){transition-delay:.28s}
-  section.in .evo-pt:nth-child(5){transition-delay:.56s}
-  section.in .evo-pt:nth-child(7){transition-delay:.84s}
-  .evo-pt .dot{width:12px;height:12px;border-radius:50%;background:var(--dim)}
+  section.in .evo-pt:nth-child(3){transition-delay:.55s}
+  section.in .evo-pt:nth-child(5){transition-delay:1.1s}
+  section.in .evo-pt:nth-child(7){transition-delay:1.6s}
+  .evo-pt .dot{width:12px;height:12px;border-radius:50%;background:var(--dim);transition:background .5s ease,box-shadow .5s ease}
+  section.in .evo-pt .dot{background:var(--g)}
+  section.in .evo-pt:nth-child(1) .dot{transition-delay:.2s}
+  section.in .evo-pt:nth-child(3) .dot{transition-delay:.75s}
+  section.in .evo-pt:nth-child(5) .dot{transition-delay:1.3s}
+  section.in .evo-pt:nth-child(7) .dot{transition-delay:1.8s}
   .evo-pt.hl .dot{background:var(--mint);box-shadow:0 0 0 5px rgba(63,224,173,.14)}
+  section.in .evo-pt.hl .dot{background:var(--mint);box-shadow:0 0 0 6px rgba(63,224,173,.18)}
   .evo-pt .lb{font-size:14px;font-weight:700;color:var(--mut);white-space:nowrap;text-align:center}
   .evo-pt.hl .lb{color:var(--ink);font-size:15px}
   .evo-pt .sub{font-size:11px;color:var(--dim);font-weight:500;margin-top:-6px}
-  .evo-seg{flex:1;min-width:26px;height:2px;background:linear-gradient(90deg,var(--line),rgba(255,255,255,.2));transform:scaleX(0);transform-origin:left;transition:transform .6s ease}
+  .evo-seg{flex:1;min-width:26px;height:2px;background:linear-gradient(90deg,var(--g3),var(--g));transform:scaleX(0);transform-origin:left;transition:transform .55s ease}
   section.in .evo-seg{transform:scaleX(1)}
-  section.in .evo-seg:nth-child(2){transition-delay:.14s}
-  section.in .evo-seg:nth-child(4){transition-delay:.42s}
-  section.in .evo-seg:nth-child(6){transition-delay:.7s}
+  section.in .evo-seg:nth-child(2){transition-delay:.35s}
+  section.in .evo-seg:nth-child(4){transition-delay:.9s}
+  section.in .evo-seg:nth-child(6){transition-delay:1.45s}
   @media(max-width:640px){.evo{flex-direction:column;align-items:flex-start;gap:16px;margin-top:32px}
     .evo-pt{flex-direction:row;gap:12px}.evo-pt .lb{text-align:left}.evo-seg{display:none}.evo-pt .lb{font-size:15px}}
 
@@ -140,6 +147,16 @@
   .ep-link{margin-top:18px;padding-top:14px;border-top:0.8px solid rgba(0,0,0,0.07)}
   .ep-link a{font-size:12px;font-weight:600;color:#009E90;text-decoration:none}
   .ep-link .u{font-family:var(--mono);font-size:9px;color:#8A9CB0;margin-top:3px;word-break:break-all}
+  .expdeck{position:relative;max-width:440px;margin:0 auto;padding-top:42px}
+  .expdeck .exp{position:relative;z-index:3;margin:0}
+  .expback{position:absolute;left:0;right:0;top:42px;background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,.42);padding:18px 24px;color:#0D1B2A}
+  .expback .expb-name{font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px;line-height:1}
+  .expback .expb-name svg{height:26px;width:auto;max-width:46px;opacity:.5;display:block}
+  .expback .expb-name svg path{fill:none;stroke:#5A7A98;stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+  .expback .expb-tabs{font-family:var(--mono);font-size:10px;color:#9bb0a8;margin-top:13px;letter-spacing:.02em}
+  .expback.bk1{z-index:1;transform:translate(-44px,-32px) rotate(-5deg) scale(.95)}
+  .expback.bk2{z-index:2;transform:translate(34px,-17px) rotate(4deg) scale(.975)}
+  @media(max-width:520px){.expback.bk1{transform:translate(-24px,-30px) rotate(-4deg) scale(.94)}.expback.bk2{transform:translate(20px,-16px) rotate(3deg) scale(.97)}}
 
   /* Senado / actores */
   .senp{max-width:420px;margin:0 auto}
@@ -170,12 +187,12 @@
   .intl-pin .pd{width:8px;height:8px;border-radius:50%;background:var(--mint);flex-shrink:0;margin-top:4px;box-shadow:0 0 0 4px rgba(63,224,173,.12)}
   /* Conferencias matutinas (réplica exacta del widget real) */
   .csp{max-width:430px}
-  .chyron-hdr{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.01em;color:var(--ink);margin-bottom:12px}
+  .chyron-hdr{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;letter-spacing:.01em;color:var(--ink);margin-bottom:20px}
   .chyron-live{width:6px;height:6px;border-radius:50%;background:#DC2626;animation:cspPulse 1.6s ease-in-out infinite;flex-shrink:0}
   @keyframes cspPulse{0%,100%{opacity:1}50%{opacity:.3}}
   .csp-node{display:grid;grid-template-columns:46px 1fr;align-items:start}
   .csp-node-date{font-family:var(--mono);font-size:9px;color:var(--dim);text-align:right;padding-right:13px;padding-top:1px;white-space:nowrap}
-  .csp-node-body{border-left:1.5px solid var(--line);padding:0 0 13px 14px;position:relative;min-width:0}
+  .csp-node-body{border-left:1.5px solid var(--line);padding:0 0 24px 16px;position:relative;min-width:0}
   .csp-node:last-child .csp-node-body{padding-bottom:2px}
   .csp-node-body::before{content:'';position:absolute;left:-5px;top:2px;width:8px;height:8px;border-radius:50%;background:#DC2626;box-shadow:0 0 0 2px var(--bg)}
   .csp-run-wrap{overflow:hidden}
@@ -200,23 +217,31 @@
   .chip.tra{color:#8fd6bf;background:rgba(14,140,116,.16)}
   .chip.ley{color:var(--mut);background:rgba(255,255,255,.06)}
 
-  /* terminal (se arma paso a paso) */
-  .tcfg{position:relative;max-width:400px;margin:0 auto;background:#fbfefc;color:#0b1a15;border-radius:16px;padding:19px 21px;box-shadow:0 26px 70px rgba(0,0,0,.5)}
-  .tcfg .tct{font-size:15px;font-weight:800}
-  .tcfg .tcs{font-size:11px;color:#7a8f87;margin:3px 0 14px}
-  .tcg{margin:13px 0}
-  .tcl{font-size:9px;font-weight:700;color:#8aa39a;letter-spacing:.05em;margin-bottom:8px}
-  .tchips{display:flex;flex-wrap:wrap;gap:7px}
-  .tchip{font-size:12px;font-weight:600;padding:6px 12px;border-radius:20px;border:1px solid #dbe6e0;color:#54685f;transition:background .35s,color .35s,border-color .35s,transform .2s}
-  .tchip.sel{background:#066750;border-color:#066750;color:#fff}
-  .tchip.sel:after{content:' ✓';font-size:10px;opacity:.85}
-  .tchip.pop{transform:scale(1.08)}
+  /* terminal · wizard "Configura tu terminal" (réplica del real) */
+  .tcfg{position:relative;max-width:410px;margin:0 auto;background:#fff;color:#0D1B2A;border-radius:16px;padding:19px 21px;box-shadow:0 26px 70px rgba(0,0,0,.5);min-height:320px;display:flex;flex-direction:column}
+  .cw-top{display:flex;justify-content:space-between;align-items:center}
+  .cw-title{font-size:15px;font-weight:800}
+  .cw-x{color:#9bb0a8;font-size:18px;line-height:1}
+  .cw-steps{display:flex;flex-wrap:wrap;gap:6px 12px;margin:13px 0 11px}
+  .cw-step{font-family:var(--mono);font-size:9.5px;font-weight:600;color:#b4c6bd;letter-spacing:.02em;transition:color .3s}
+  .cw-step.on{color:#009E90}
+  .cw-step.done{color:#0D1B2A}
+  .cw-desc{font-size:11.5px;color:#5A7A98;line-height:1.5;min-height:36px}
+  .cw-body{flex:1;padding:13px 0 6px}
+  .tchips{display:flex;flex-wrap:wrap;gap:8px}
+  .tchip{font-size:12px;font-weight:600;padding:7px 13px;border-radius:20px;border:1px solid #dbe6e0;color:#54685f;transition:background .35s,color .35s,border-color .35s,transform .2s}
+  .tchip.sel{background:#009E90;border-color:#009E90;color:#fff}
+  .tchip.sel:after{content:' ✓';font-size:10px;opacity:.9}
+  .tchip.pop{transform:scale(1.09)}
+  .cw-foot{display:flex;justify-content:space-between;align-items:center;border-top:0.8px solid rgba(0,0,0,0.07);padding-top:12px;margin-top:4px}
+  .cw-count{font-family:var(--mono);font-size:10px;color:#9bb0a8}
+  .cw-next{font-size:12px;font-weight:700;color:#fff;background:#009E90;border-radius:20px;padding:6px 16px}
   .tcursor{position:absolute;top:0;left:0;pointer-events:none;opacity:0;transition:transform .5s cubic-bezier(.4,.05,.2,1),opacity .25s;z-index:6;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3))}
-  .term-result{margin-top:14px;border-top:1px solid #e7efea;padding-top:13px;opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s}
+  .term-result{padding-top:2px;opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s}
   .term-result.show{opacity:1;transform:none}
-  .term-result .trh{font-size:9px;font-weight:700;color:#066750;letter-spacing:.05em}
-  .term-result .trv{font-size:15px;font-weight:800;margin-top:5px}
-  .term-result .trs{font-size:11px;color:#7a8f87;margin-top:2px}
+  .term-result .trh{font-family:var(--mono);font-size:9px;font-weight:700;color:#009E90;letter-spacing:.05em}
+  .term-result .trv{font-size:16px;font-weight:800;margin-top:6px}
+  .term-result .trs{font-size:11px;color:#7a8f87;margin-top:3px}
 
   /* monitor (escritorio) */
   .monitor{max-width:480px;margin:0 auto}
@@ -245,9 +270,9 @@
   .soon{font-size:10px;font-weight:700;color:var(--mint);background:rgba(63,224,173,.12);border-radius:20px;padding:2px 9px}
   .soonbig{display:inline-block;font-size:11px;font-weight:700;color:#04120d;background:var(--mint);border-radius:20px;padding:3px 11px;margin-bottom:14px}
   .chat{max-width:400px}
-  .bubble{border-radius:16px;padding:13px 16px;font-size:14px;line-height:1.5;margin:10px 0;opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
-  section.in .bubble{opacity:1;transform:none}
-  section.in .bubble.b2{transition-delay:.55s}section.in .bubble.b3{transition-delay:1.9s}
+  .bubble{border-radius:16px;padding:13px 16px;font-size:14px;line-height:1.5;margin:10px 0;opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
+  .bubble.show{opacity:1;transform:none}
+  .bubble.gone{display:none}
   .bubble.me{background:linear-gradient(180deg,var(--g2),var(--g3));color:#eafff8;margin-left:auto;max-width:82%;border-bottom-right-radius:5px}
   .bubble.sg{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--ink);max-width:92%;border-bottom-left-radius:5px}
   .sgtag{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--mint);margin-bottom:4px}
@@ -313,7 +338,7 @@
   .crow{display:flex;align-items:center;gap:12px;margin:11px 0}
   .crow .cn{width:150px;flex-shrink:0;font-size:13px;font-weight:600}
   .crow .ct{flex:1;height:11px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden}
-  .crow .cf{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--g3),var(--g));transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+  .crow .cf{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--g3),var(--g));transition:width 2.4s cubic-bezier(.16,1,.3,1)}
   .crow .cv{width:86px;text-align:right;font-size:13px;font-weight:700;flex-shrink:0}
   .crow .cf.hi{background:linear-gradient(90deg,var(--g2),var(--mint))}
   .ctotal{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
@@ -358,9 +383,9 @@
     <h2 class="r d1" style="max-width:13ch">Primero fue nuestro trabajo.</h2>
     <p class="lead r d2" style="max-width:720px">Durante años, GEMI ha producido reportes de inteligencia y seguimiento regulatorio. Tras meses de reflexión, lo llevamos a la incubadora y lo construimos en nuestro <b>laboratorio de datos</b>: ampliar esa base y compartirla con socios y nuevos actores, en un sistema fácil de usar.</p>
     <div class="evo r d3">
-      <div class="evo-pt"><span class="dot"></span><div class="lb">Reportes de inteligencia</div></div>
-      <div class="evo-seg"></div>
       <div class="evo-pt"><span class="dot"></span><div class="lb">Seguimiento regulatorio</div></div>
+      <div class="evo-seg"></div>
+      <div class="evo-pt"><span class="dot"></span><div class="lb">Reportes de inteligencia</div></div>
       <div class="evo-seg"></div>
       <div class="evo-pt hl"><span class="dot"></span><div class="lb">Scope</div></div>
     </div>
@@ -371,14 +396,14 @@
     <div class="glow" style="width:500px;height:500px;background:#7a2020;top:22%;right:-12%;opacity:.18"></div>
     <div class="kick r">El reto</div>
     <h2 class="r d1" style="max-width:18ch">La agenda ambiental no vive en un solo lugar.</h2>
-    <p class="lead r d2" style="max-width:760px">Vive en <b>32 congresos estatales</b>, en el <b>Diario Oficial</b> de cada mañana, en cientos de <b>Normas Oficiales Mexicanas</b>, en los tribunales, en la conferencia matutina y en la prensa. Cambia todos los días. Ninguna empresa alcanza a leerla completa.</p>
+    <p class="lead r d2" style="max-width:760px">Vive al interior de los <b>32 estados del país</b>, en las acciones diarias del sector público, en cientos de revisiones de <b>Normas Oficiales Mexicanas</b>, en los congresos, en la <b>conferencia matutina de Presidencia</b> y en la prensa. Cambia todos los días y nadie alcanza a procesarla completa.</p>
   </section>
 
   <!-- 5 · TURN -->
   <section data-t="Scope" style="justify-content:center;text-align:center;align-items:center">
     <div class="glow" style="width:640px;height:640px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.32"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:clamp(40px,8vw,78px)">
-    <p class="lead r d2" style="margin:26px auto 0;font-size:clamp(18px,2.4vw,28px);color:var(--ink)">La reunimos toda. La volvimos legible. La pusimos <span class="grn">viva</span>.</p>
+    <p class="lead r d2" style="margin:26px auto 0;font-size:clamp(18px,2.4vw,28px);color:var(--ink)">La trituramos y le damos <span class="grn">vida</span>.</p>
   </section>
 
   <!-- 6 · MAPA -->
@@ -386,8 +411,8 @@
     <div class="kick r">Panorama nacional</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:12ch">32 entidades. Una sola pantalla.</h2>
-        <p class="lead r d2">Un panorama que se ilumina donde sube la actividad regulatoria y la presencia en medios. Un toque y entras al expediente completo de cada estado.</p>
+        <h2 class="r d1" style="max-width:12ch">32 entidades en un solo lugar.</h2>
+        <p class="lead r d2">Un mapa que se ilumina en donde hay actividad y más presencia de medios. Un click y estás dentro del universo de cada estado.</p>
       </div>
       <div class="viz r d3"><div class="mapwrap" id="mapwrap"></div></div>
     </div>
@@ -450,7 +475,10 @@
         <p class="lead r d2">Leyes vigentes con fecha y estatus, impuestos verdes, materiales regulados y la prensa de cada entidad, con el documento oficial. El expediente que un despacho tardaría semanas en armar.</p>
       </div>
       <div class="viz r d3">
-        <div class="exp">
+        <div class="expdeck">
+          <div class="expback bk1"><div class="expb-name">Jalisco <svg viewBox="0 0 4.15 3.71" preserveAspectRatio="xMidYMid meet"><path d="M2.92 0.98L3.05 0.95L3.20 0.96L3.33 1.04L3.50 1.00L3.61 0.87L3.77 0.80L3.72 0.70L3.72 0.62L3.95 0.69L4.13 0.83L4.09 0.93L4.02 1.18L4.03 1.27L4.02 1.35L3.94 1.39L3.90 1.51L3.80 1.58L3.69 1.76L3.60 1.87L3.59 1.94L3.72 2.07L3.64 2.19L3.57 2.30L3.43 2.34L3.28 2.35L3.17 2.37L3.08 2.42L2.99 2.51L2.87 2.55L2.82 2.55L2.69 2.53L2.64 2.56L2.60 2.71L2.66 2.72L2.81 2.75L2.92 2.84L2.88 2.92L2.94 3.05L2.93 3.19L3.09 3.21L3.06 3.30L2.96 3.45L2.87 3.43L2.69 3.56L2.57 3.64L2.46 3.68L2.33 3.70L2.24 3.69L2.20 3.63L2.19 3.53L2.19 3.41L2.16 3.32L2.12 3.26L2.08 3.11L1.85 3.26L1.67 3.26L1.58 3.31L1.45 3.34L1.29 3.38L1.22 3.41L1.15 3.40L1.06 3.47L0.97 3.45L0.92 3.43L0.91 3.39L0.86 3.38L0.72 3.32L0.66 3.22L0.61 3.16L0.50 3.04L0.36 2.90L0.22 2.71L0.15 2.56L0.14 2.44L0.04 2.35L0.04 2.24L0.21 2.18L0.33 2.16L0.44 2.11L0.41 1.99L0.46 1.89L0.56 1.78L0.68 1.76L0.79 1.71L0.95 1.69L1.08 1.77L1.20 1.86L1.31 1.95L1.41 2.08L1.39 1.98L1.35 1.88L1.42 1.80L1.45 1.67L1.55 1.52L1.67 1.51L1.84 1.43L1.88 1.31L1.86 1.14L1.78 0.99L1.66 0.94L1.56 0.91L1.52 0.76L1.38 0.73L1.34 0.62L1.39 0.44L1.43 0.37L1.49 0.36L1.50 0.27L1.62 0.23L1.60 0.36L1.72 0.30L1.65 0.10L1.74 0.02L1.90 0.02L1.87 0.10L1.74 0.33L1.76 0.49L1.83 0.52L1.85 0.29L1.95 0.18L2.12 0.24L2.15 0.36L2.00 0.59L2.09 0.63L2.20 0.63L2.29 0.53L2.36 0.46L2.33 0.37L2.49 0.35L2.48 0.43L2.60 0.47L2.56 0.64L2.45 0.74L2.25 0.87L2.13 0.94L2.13 1.10L2.06 1.17L1.99 1.23L2.10 1.29L2.14 1.35L1.94 1.45L2.04 1.50L2.13 1.62L2.26 1.62L2.38 1.65L2.48 1.62L2.55 1.62L2.62 1.53L2.76 1.51L2.90 1.40L3.06 1.22L2.92 1.06L2.92 0.98Z"/></svg></div><div class="expb-tabs">Perfil · Actividad · Legislación · Impuestos</div></div>
+          <div class="expback bk2"><div class="expb-name">Nuevo León <svg viewBox="0 0 2.85 4.60" preserveAspectRatio="xMidYMid meet"><path d="M1.53 0.10L1.46 0.18L1.35 0.21L1.32 0.30L1.49 0.31L1.46 0.40L1.50 0.52L1.55 0.66L1.54 0.74L1.47 0.86L1.54 0.90L1.59 1.00L1.58 1.11L1.67 1.14L1.74 1.21L1.81 1.31L1.96 1.45L2.03 1.55L2.10 1.55L2.11 1.62L2.12 1.67L2.28 1.71L2.40 1.81L2.55 1.75L2.68 1.81L2.70 1.97L2.71 2.10L2.71 2.21L2.85 2.27L2.79 2.35L2.66 2.47L2.54 2.53L2.37 2.59L2.25 2.66L2.19 2.61L2.08 2.70L2.09 2.79L2.07 2.87L1.97 2.97L1.92 2.96L1.81 3.04L1.73 3.07L1.59 3.15L1.50 3.22L1.57 3.29L1.62 3.42L1.58 3.60L1.63 3.68L1.70 3.81L1.77 3.87L1.71 3.94L1.68 4.00L1.48 4.01L1.39 4.06L1.30 4.23L1.30 4.37L1.23 4.43L1.14 4.44L1.03 4.51L0.91 4.59L0.80 4.54L0.76 4.39L0.73 4.26L0.77 4.10L0.74 3.97L0.74 3.81L0.61 3.61L0.54 3.49L0.55 3.39L0.52 3.31L0.41 3.23L0.47 3.10L0.44 3.00L0.40 2.90L0.49 2.86L0.49 2.76L0.49 2.61L0.58 2.49L0.72 2.53L0.85 2.56L0.97 2.57L0.99 2.46L0.92 2.41L0.81 2.36L0.65 2.26L0.61 2.12L0.45 2.09L0.43 1.86L0.40 1.80L0.31 1.67L0.11 1.49L0.03 1.33L0.15 1.17L0.32 1.13L0.55 1.07L0.60 0.99L0.67 0.88L0.66 0.77L0.61 0.67L0.54 0.67L0.39 0.68L0.42 0.50L0.54 0.43L0.72 0.41L0.74 0.31L0.83 0.14L0.96 0.08L1.16 0.09L1.33 0.06L1.42 0.01L1.49 0.04L1.53 0.10Z"/></svg></div><div class="expb-tabs">Perfil · Actividad · Legislación · Impuestos</div></div>
+          <div class="exp">
           <div class="exp-hd">
             <div class="exp-name">Ciudad de México <span class="exp-sil"><svg viewBox="0 0 0.472 0.501" preserveAspectRatio="xMidYMid meet"><path d="M0.460 0.458L0.329 0.485L0.267 0.460L0.162 0.456L0.089 0.443L0.030 0.339L0.000 0.262L0.071 0.200L0.127 0.158L0.200 0.031L0.251 0.003L0.283 0.070L0.331 0.175L0.401 0.228L0.420 0.284L0.458 0.303L0.470 0.399L0.460 0.458Z"/></svg></span></div>
             <span class="exp-close">Cerrar</span>
@@ -463,6 +491,7 @@
             <div class="ep-desc">Ciudad de México presenta una complejidad regulatoria ambiental <strong>alta</strong>, con cobertura en 5 materias ambientales. Su régimen de impuestos ambientales es <strong>en desarrollo</strong>. La capital Ciudad de México concentra la actividad legislativa del congreso estatal.</div>
             <div class="ep-link"><a href="https://www.congresocdmx.gob.mx/" target="_blank" rel="noopener">Portal del Congreso de Ciudad de México ↗</a><div class="u">https://www.congresocdmx.gob.mx/</div></div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -483,13 +512,19 @@
           <div class="sen-search"><svg viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg><span class="q" id="senq"></span><span class="car"></span></div>
           <div class="sen-res">
             <div class="sen-card s1">
+              <div class="cn">Cambio Climático y Sostenibilidad</div>
+              <div class="cm">Cámara de Diputados</div>
+              <div class="sen-status ok"><span class="sd"></span>Sesionó · 06 ago 2026</div>
+              <div class="sen-meta">2 iniciativas en agenda</div>
+            </div>
+            <div class="sen-card s2">
               <div class="cn">Medio Ambiente, Recursos Naturales y Cambio Climático</div>
               <div class="cm">Senado de la República</div>
               <div class="sen-status ok"><span class="sd"></span>Sesionó · 12 ago 2026</div>
               <div class="sen-meta">3 iniciativas · 2 dictámenes en agenda</div>
             </div>
-            <div class="sen-card s2">
-              <div class="cn">Recursos Hídricos e Infraestructura Hidráulica</div>
+            <div class="sen-card s3">
+              <div class="cn">Economía</div>
               <div class="cm">Senado de la República</div>
               <div class="sen-status no"><span class="sd"></span>Sin sesión esta semana</div>
             </div>
@@ -532,19 +567,11 @@
       <div class="viz r d3">
         <div class="tcfg" id="tcfg">
           <div class="tcursor"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M4 2l15 8-6.5 1.8L11 19 4 2z" fill="#0b1a15" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
-          <div class="tct">Arma tu terminal</div>
-          <div class="tcs">Selecciona lo que te importa</div>
-          <div class="tcg"><div class="tcl">TEMAS</div><div class="tchips">
-            <span class="tchip" data-pick>Residuos</span><span class="tchip" data-pick>Agua</span><span class="tchip" data-pick>Economía circular</span><span class="tchip">Cambio climático</span></div></div>
-          <div class="tcg"><div class="tcl">ESTADOS</div><div class="tchips">
-            <span class="tchip" data-pick>Ciudad de México</span><span class="tchip" data-pick>Jalisco</span><span class="tchip" data-pick>Nuevo León</span><span class="tchip">Puebla</span></div></div>
-          <div class="tcg"><div class="tcl">REFERENCIAS</div><div class="tchips">
-            <span class="tchip" data-pick>NOM-161</span><span class="tchip" data-pick>NOM-083</span></div></div>
-          <div class="term-result">
-            <div class="trh">TU SEÑAL · LISTA</div>
-            <div class="trv">Agua y Residuos concentran tu señal</div>
-            <div class="trs">38 menciones en medios · últimos 7 días</div>
-          </div>
+          <div class="cw-top"><span class="cw-title">Configura tu terminal</span><span class="cw-x">×</span></div>
+          <div class="cw-steps" id="cwSteps"></div>
+          <div class="cw-desc" id="cwDesc"></div>
+          <div class="cw-body" id="cwBody"></div>
+          <div class="cw-foot"><span class="cw-count" id="cwCount"></span><span class="cw-next">Siguiente</span></div>
         </div>
       </div>
     </div>
@@ -570,7 +597,7 @@
   </section>
 
   <!-- 15 · SIGUIENTE FASE -->
-  <section data-t="Siguiente fase">
+  <section data-t="Siguiente fase" data-anim="chat">
     <div class="glow" style="width:480px;height:480px;background:var(--g2);top:12%;right:-8%;opacity:.2"></div>
     <div class="kick r">Lo que viene</div>
     <div class="split">
@@ -587,10 +614,12 @@
         </div>
       </div>
       <div class="viz r d3">
-        <div class="chat">
-          <div class="bubble me b1">¿Qué estado cobra más por tonelada de CO₂e?</div>
-          <div class="bubble sg b2"><div class="sgtag"><img src="assets/logo-gemi-icon.png" alt="">Signal <span class="soon">Próximamente</span></div>Coahuila, con <b>$528 por tonelada</b>: el impuesto al carbono más alto del país, seguido de Nuevo León ($327). ¿Te preparo el comparativo completo?</div>
-          <div class="bubble sg b3"><div class="typing"><span></span><span></span><span></span></div></div>
+        <div class="chat" id="sigchat">
+          <div class="bubble me">¿Qué estado cobra más por tonelada de CO₂e?</div>
+          <div class="bubble sg"><div class="typing"><span></span><span></span><span></span></div></div>
+          <div class="bubble sg"><div class="sgtag"><img src="assets/logo-gemi-icon.png" alt="">Signal <span class="soon">Próximamente</span></div>Coahuila, con <b>$528 por tonelada</b>: el impuesto al carbono más alto del país, seguido de Nuevo León ($327). ¿Te preparo el comparativo completo?</div>
+          <div class="bubble me">Sí, y añade el impuesto al agua.</div>
+          <div class="bubble sg"><div class="typing"><span></span><span></span><span></span></div></div>
         </div>
       </div>
     </div>
@@ -610,35 +639,16 @@
     </div>
   </section>
 
-  <!-- 17 · CONSTRUCCIÓN -->
-  <section data-t="Construcción" style="justify-content:center">
-    <div class="kick r">Lo que hay debajo</div>
-    <h2 class="r d1" style="max-width:18ch">32 años de experiencia detrás de 6 meses de construcción.</h2>
-    <div class="stats">
-      <div class="stat r d2"><div class="n">32<span class="u"> años</span></div><div class="l">De experiencia de GEMI con el sector y las autoridades</div></div>
-      <div class="stat r d3"><div class="n">~6<span class="u"> meses</span></div><div class="l">En el laboratorio de datos, de la idea al producto vivo</div></div>
-      <div class="stat r d4"><div class="n">1<span class="u"> plataforma</span></div><div class="l">Donde ese conocimiento se vuelve producto</div></div>
-    </div>
-  </section>
-
-  <!-- 18 · IMPACTO -->
-  <section data-t="Impacto" style="justify-content:center">
-    <div class="kick r">Para quién</div>
-    <h2 class="r d1" style="max-width:18ch">Para quien vive de anticiparse.</h2>
-    <div class="verbs r d2"><span>Anticipar.</span><span>Comparar.</span><span>Cuantificar.</span><span>Cumplir.</span></div>
-    <p class="lead r d3">Direcciones de sostenibilidad, asuntos regulatorios y jurídicos: lo que antes eran semanas de despacho, aquí es una pantalla.</p>
-  </section>
-
-  <!-- 19 · FUTURO -->
-  <section data-t="Futuro">
-    <div class="glow" style="width:600px;height:600px;background:var(--g);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.12"></div>
+  <!-- 17 · GEMI · motor + para quién + futuro -->
+  <section data-t="GEMI">
+    <div class="glow" style="width:600px;height:600px;background:var(--g);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.1"></div>
     <div class="kick r">El motor y el futuro</div>
-    <h2 class="r d1" style="max-width:16ch">Detrás de Scope está GEMI.</h2>
-    <p class="lead r d2" style="max-width:700px">La jurisprudencia, el monitoreo internacional y el conocimiento de sus asociados. Scope es donde ese trabajo, que antes vivía en reportes, se vuelve producto vivo, listo para compartirse con socios y nuevos actores.</p>
-    <div class="feats" style="margin-top:30px">
-      <div class="feat r d3"><div class="t">Un GEMI 24/7</div><div class="d">El conocimiento del equipo, ahora encendido de día y de noche, sin pausas.</div></div>
-      <div class="feat r d3"><div class="t">Una consola por asociado</div><div class="d">Cada empresa de GEMI, su propio radar y su expediente sectorial.</div></div>
-      <div class="feat r d4"><div class="t">Inteligencia, no listas</div><div class="d">Del dato oficial a la lectura que un director usa el mismo día.</div></div>
+    <h2 class="r d1" style="max-width:15ch">Detrás de Scope, 32 años de GEMI.</h2>
+    <p class="lead r d2" style="max-width:740px">Tres décadas de inteligencia regulatoria y seis meses en el laboratorio de datos, hoy en un producto vivo para quien vive de anticiparse.</p>
+    <div class="verbs r d3"><span>Anticipar.</span><span>Comparar.</span><span>Cuantificar.</span><span>Cumplir.</span></div>
+    <div class="feats" style="margin-top:34px">
+      <div class="feat r d3"><div class="t">Un GEMI 24/7</div><div class="d">El conocimiento del equipo, encendido de día y de noche, sin pausas.</div></div>
+      <div class="feat r d4"><div class="t">Una consola por asociado</div><div class="d">Cada empresa de GEMI, su propio radar y su expediente sectorial.</div></div>
       <div class="feat r d5"><div class="t">El estándar del sector</div><div class="d">El lugar donde México lee su propia regulación ambiental.</div></div>
     </div>
   </section>
@@ -812,7 +822,7 @@
   }
 
   // count-up
-  function countUp(el){var target=parseFloat(el.getAttribute('data-count')),start=null,dur=1100;
+  function countUp(el,dur){var target=parseFloat(el.getAttribute('data-count')),start=null;dur=dur||1100;
     function step(ts){if(!start)start=ts;var t=Math.min(1,(ts-start)/dur);el.textContent=Math.round(ease(t)*target).toLocaleString('en-US');if(t<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
   function runCounts(sec){[].forEach.call(sec.querySelectorAll('[data-count]'),function(el){el.textContent='0';countUp(el);});}
 
@@ -870,32 +880,62 @@
     (function tp(){if(i<=txt.length){el.textContent=txt.slice(0,i);i++;setTimeout(tp,70);}})();
   }
 
-  // Terminal: se arma paso a paso (loop)
+  // Terminal: wizard real "Configura tu terminal", paso a paso y animado
   var termStarted=false;
   function startTerm(sec){
     if(termStarted)return; termStarted=true;
     var host=document.getElementById('tcfg'); if(!host)return;
-    var picks=[].slice.call(host.querySelectorAll('.tchip[data-pick]'));
-    var cursor=host.querySelector('.tcursor');
-    var result=host.querySelector('.term-result');
+    var stepsEl=host.querySelector('#cwSteps'),descEl=host.querySelector('#cwDesc'),bodyEl=host.querySelector('#cwBody'),countEl=host.querySelector('#cwCount'),cursor=host.querySelector('.tcursor');
+    var LABELS=['Temas','Estados','Comisiones','Referencias','Afinar'];
+    var STEPS=[
+      {desc:'Elige los temas que quieres monitorear. Alimentan tu señal y las normas del DOF en tu terminal.',chips:['Residuos','Agua','Economía circular','Cambio climático'],pick:[0,1,2]},
+      {desc:'¿En qué entidades opera tu organización? Verás su señal, gacetas y noticias.',chips:['Ciudad de México','Jalisco','Nuevo León','Puebla'],pick:[0,1,2]},
+      {desc:'Comisiones del Congreso a seguir: fechas de sesión, integrantes y asuntos turnados.',chips:['Medio Ambiente · Dip.','Cambio Climático · Dip.','Economía · Sen.'],pick:[0,1]},
+      {desc:'NOMs, impuestos e instrumentos que quieres tener siempre a la mano en tu terminal.',chips:['NOM-161','NOM-083','Impuesto GEI'],pick:[0,1]}
+    ];
     var timers=[];
-    function clearAll(){timers.forEach(clearTimeout);timers=[];}
-    function reset(){picks.forEach(function(c){c.classList.remove('sel','pop');});result.classList.remove('show');cursor.style.opacity='0';}
-    function run(){
-      clearAll();reset();
-      var t=500;
-      picks.forEach(function(chip){
-        timers.push(setTimeout(function(){
-          cursor.style.opacity='1';
-          cursor.style.transform='translate('+(chip.offsetLeft+chip.offsetWidth-16)+'px,'+(chip.offsetTop+chip.offsetHeight/2-4)+'px)';
-        },t));
-        timers.push(setTimeout(function(){chip.classList.add('sel','pop');setTimeout(function(){chip.classList.remove('pop');},200);},t+430));
-        t+=560;
+    function clr(){timers.forEach(clearTimeout);timers=[];}
+    function at(ms,fn){timers.push(setTimeout(fn,ms));}
+    function paintSteps(cur){stepsEl.innerHTML=LABELS.map(function(l,i){var cls='cw-step'+(i<cur?' done':(i===cur?' on':''));return '<span class="'+cls+'">'+(i<cur?'✓ ':'')+l+'</span>';}).join('');}
+    function runStep(si){
+      if(si>=STEPS.length){finish();return;}
+      var step=STEPS[si];
+      paintSteps(si); descEl.textContent=step.desc;
+      bodyEl.innerHTML='<div class="tchips">'+step.chips.map(function(ch){return '<span class="tchip">'+ch+'</span>';}).join('')+'</div>';
+      countEl.textContent='0 seleccionados';
+      var chips=[].slice.call(bodyEl.querySelectorAll('.tchip'));
+      var t=450,sel=0;
+      step.pick.forEach(function(pi){
+        var chip=chips[pi];
+        at(t,function(){cursor.style.opacity='1';cursor.style.transform='translate('+(chip.offsetLeft+chip.offsetWidth-15)+'px,'+(chip.offsetTop+chip.offsetHeight/2-4)+'px)';});
+        at(t+440,function(){chip.classList.add('sel','pop');setTimeout(function(){chip.classList.remove('pop');},200);sel++;countEl.textContent=sel+' seleccionado'+(sel===1?'':'s');});
+        t+=650;
       });
-      timers.push(setTimeout(function(){cursor.style.opacity='0';result.classList.add('show');},t+250));
-      timers.push(setTimeout(run,t+3200));
+      at(t+150,function(){cursor.style.opacity='0';});
+      at(t+950,function(){runStep(si+1);});
     }
-    run();
+    function finish(){
+      paintSteps(LABELS.length); descEl.textContent='Tu terminal está lista.';
+      bodyEl.innerHTML='<div class="term-result show"><div class="trh">TU SEÑAL · LISTA</div><div class="trv">Agua y Residuos concentran tu señal</div><div class="trs">38 menciones en medios · últimos 7 días</div></div>';
+      countEl.textContent='Terminal lista';
+      at(4200,function(){clr();cursor.style.opacity='0';runStep(0);});
+    }
+    cursor.style.opacity='0'; runStep(0);
+  }
+
+  // Signal: recrear toda la conversación desde el inicio al entrar
+  var chatTimers=[];
+  function startChat(sec){
+    var chat=document.getElementById('sigchat'); if(!chat)return;
+    chatTimers.forEach(clearTimeout); chatTimers=[];
+    var b=[].slice.call(chat.querySelectorAll('.bubble'));
+    b.forEach(function(x){x.classList.remove('show','gone');});
+    function at(ms,fn){chatTimers.push(setTimeout(fn,ms));}
+    at(350,function(){b[0]&&b[0].classList.add('show');});
+    at(1300,function(){b[1]&&b[1].classList.add('show');});
+    at(3000,function(){if(b[1])b[1].classList.add('gone'); b[2]&&b[2].classList.add('show');});
+    at(4400,function(){b[3]&&b[3].classList.add('show');});
+    at(5400,function(){b[4]&&b[4].classList.add('show');});
   }
 
   function runAnim(sec){
@@ -903,8 +943,14 @@
     if(a==='cong')drawCong();
     if(a==='count')runCounts(sec);
     if(a==='imp'){sec.querySelectorAll('.bfill').forEach(function(f){var w=f.getAttribute('data-w');f.style.width='0';f.getBoundingClientRect();setTimeout(function(){f.style.width=w;},40);});runCounts(sec);}
-    if(a==='cost'||a==='rev'){sec.querySelectorAll('.crow .cf').forEach(function(f){var w=f.getAttribute('data-w');f.style.width='0';f.getBoundingClientRect();setTimeout(function(){f.style.width=w;},40);});runCounts(sec);}
+    if(a==='cost'||a==='rev'){
+      var rows=[].slice.call(sec.querySelectorAll('.crow'));
+      rows.forEach(function(row){var f=row.querySelector('.cf');if(f){f.style.width='0';f.getBoundingClientRect();}var n=row.querySelector('[data-count]');if(n)n.textContent='0';});
+      rows.forEach(function(row,idx){setTimeout(function(){var f=row.querySelector('.cf');if(f)f.style.width=f.getAttribute('data-w');var n=row.querySelector('[data-count]');if(n)countUp(n,2000);},350+idx*360);});
+      var tot=sec.querySelector('.ctotal [data-count]');if(tot){tot.textContent='0';setTimeout(function(){countUp(tot,2400);},350+rows.length*360);}
+    }
     if(a==='termcfg')startTerm(sec);
+    if(a==='chat')startChat(sec);
   }
 
   // Senado typewriter cuando entra Actores
