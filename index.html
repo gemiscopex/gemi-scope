@@ -120,7 +120,7 @@ body.dash-fixed #tab-dashboard{height:100%}
 body.dash-fixed .dash-main{height:100%;gap:24px 44px}
 body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .card{background:none;border:none;border-radius:0;padding:0;box-shadow:none}
-.card-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px}
+.card-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px}
 /* ── Dashboard layout ── */
 .dash-main{display:grid;grid-template-columns:2fr 1fr;gap:36px 48px;align-items:start}
 .dash-left{display:flex;flex-direction:column;gap:36px;min-width:0}
@@ -603,7 +603,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .semana-body p{font-size:12px;color:var(--text2);line-height:1.6;margin:10px 0 0}
 #csp-chyron{min-width:0;max-width:100%;overflow:hidden}
 .chyron{display:block;overflow:hidden;max-width:100%}
-.chyron-hdr{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px}
+.chyron-hdr{display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px}
 .chyron-live{width:6px;height:6px;border-radius:50%;background:#DC2626;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0}
 .chyron-track{overflow:hidden;display:flex;align-items:center}
 .chyron-inner{display:inline-flex;white-space:nowrap;will-change:transform;animation:chyronMove var(--chyron-dur,60s) linear infinite}
@@ -1483,6 +1483,18 @@ function _titleCase(s){
     return w.charAt(0).toUpperCase()+w.slice(1);
   }).join('');
 }
+// Diccionario de acentos: restaura tildes perdidas en el scrape de ordenjuridico (palabra por palabra)
+var _ACC={atmosfera:'atmósfera',climatico:'climático',contaminacion:'contaminación',coordinacion:'coordinación',ecologico:'ecológico',ecologica:'ecológica',evaluacion:'evaluación',informacion:'información',mexico:'méxico',prevencion:'prevención',proteccion:'protección',revolucion:'revolución',hidraulicos:'hidráulicos',hidraulica:'hidráulica',tecnico:'técnico',tecnica:'técnica',vehiculos:'vehículos',vehiculo:'vehículo',publica:'pública',publico:'público',publicos:'públicos',publicas:'públicas',secretaria:'secretaría',gestion:'gestión',regulacion:'regulación',legislacion:'legislación',accion:'acción',emision:'emisión',region:'región',administracion:'administración',educacion:'educación',adaptacion:'adaptación',mitigacion:'mitigación',verificacion:'verificación',explotacion:'explotación',conservacion:'conservación',restauracion:'restauración',remediacion:'remediación',organizacion:'organización',aplicacion:'aplicación',disposicion:'disposición',composicion:'composición',energetico:'energético',energetica:'energética',organico:'orgánico',biologico:'biológico',ecologia:'ecología',energia:'energía',agricola:'agrícola',hidrico:'hídrico',hidricos:'hídricos',politica:'política',camara:'cámara',area:'área',areas:'áreas',geologico:'geológico',quimico:'químico',quimica:'química',economica:'económica',economico:'económico',electrico:'eléctrico',electrica:'eléctrica',plastico:'plástico',plasticos:'plásticos',oceano:'océano',maritimo:'marítimo',fisico:'físico',genetico:'genético',silvicola:'silvícola',geografico:'geográfico',demografico:'demográfico',estadistica:'estadística',analisis:'análisis',hectareas:'hectáreas',reglamentacion:'reglamentación',recoleccion:'recolección',recuperacion:'recuperación',valorizacion:'valorización',fiscalizacion:'fiscalización',autorizacion:'autorización',certificacion:'certificación',clasificacion:'clasificación',planeacion:'planeación',operacion:'operación',produccion:'producción',construccion:'construcción',proteger:'proteger',reduccion:'reducción'};
+function _restoreAcc(s){
+  if(!s)return s;
+  return s.replace(/[A-Za-zÁÉÍÓÚÑáéíóúñ]+/g,function(w){
+    var a=_ACC[w.toLowerCase()];if(!a)return w;
+    if(w===w.toUpperCase())return a.toUpperCase();
+    if(w.charAt(0)===w.charAt(0).toUpperCase())return a.charAt(0).toUpperCase()+a.slice(1);
+    return a;
+  });
+}
+function _leyName(s){return _titleCase(_restoreAcc(s||''));}
 var _LEY_ACCENT={'Ciudad de Mexico':'Ciudad de México','Mexico':'México','Michoacan':'Michoacán','Nuevo Leon':'Nuevo León','Queretaro':'Querétaro','San Luis Potosi':'San Luis Potosí','Yucatan':'Yucatán'};
 function _leyStateLabel(k){return _LEY_ACCENT[k]||k;}
 // Fusiona las leyes curadas de leyesAmbientales que el scrape de ordenjuridico no capturó
@@ -1524,8 +1536,10 @@ function leyEstSetQ(v){_leyEst.q=v;renderLeyesEst();}
 function _leyRow(l,stateLabel){
   var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
   var tipoAbr=l.tipo==='Ley'?'LEY':l.tipo==='Código'?'CÓD':l.tipo==='Reglamento'?'REG':'NOR';
-  var doc=(l.url||l.ficha_url||'').replace(/'/g,'%27').replace(/"/g,'%22');
-  var nombre=_titleCase(l.nombre||'');
+  var doc=(l.url||l.ficha_url||'');
+  if(!doc)doc='https://www.google.com/search?q='+encodeURIComponent(l.nombre+' pdf');
+  doc=doc.replace(/'/g,'%27').replace(/"/g,'%22');
+  var nombre=_leyName(l.nombre||'');
   var estatusCol=/vigente/i.test(l.estatus||'')?'var(--green)':/abrogad|derogad|no vigente/i.test(l.estatus||'')?'#B45309':'var(--text-muted)';
   var meta=[];
   if(l.fecha_publicacion)meta.push('Publicación <span style="color:var(--text-sec)">'+l.fecha_publicacion+'</span>');
