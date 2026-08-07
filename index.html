@@ -2100,7 +2100,7 @@ function _depTreeHTML(units,depth){
     return line+(hasKids?_depTreeHTML(u.unidades,depth+1):'');
   }).join('');
 }
-function _depToggle(sig){_depOpen[sig]=!_depOpen[sig];renderActoresFederal();}
+function _depToggle(sig){var was=_depOpen[sig];_depOpen={};if(!was)_depOpen[sig]=true;renderActoresFederal();}
 // Agrupación por Secretaría rectora (SEMARNAT y sus órganos desconcentrados, etc.)
 var _SEC_GROUPS=[
   {sec:'Medio Ambiente y Recursos Naturales',sub:'SEMARNAT y sus órganos desconcentrados',sigs:['SEMARNAT','CONAGUA','PROFEPA','CONAFOR','CONANP','ASEA']},
@@ -2111,10 +2111,10 @@ var _SEC_GROUPS=[
 ];
 function _depDetailHTML(a,dep){
   var per=(dep.personas||[]);
-  var personasHTML=per.length?('<div>'+per.map(function(p){
-    return '<div style="padding:9px 0 9px 14px;border-bottom:0.8px solid var(--border)">'
-      +'<div style="font-size:13px;font-weight:600;color:var(--text)">'+p.nombre+'</div>'
-      +'<div style="font-size:11px;color:var(--text-sec);margin-top:1px">'+p.cargo+'</div>'
+  var personasHTML=per.length?('<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0 26px;padding:0 14px">'+per.map(function(p){
+    return '<div style="padding:9px 0;border-bottom:0.8px solid var(--border)">'
+      +'<div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.3">'+p.nombre+'</div>'
+      +'<div style="font-size:11px;color:var(--text-sec);margin-top:1px;line-height:1.35">'+p.cargo+'</div>'
       +(p.email?'<a href="mailto:'+p.email+'" onclick="event.stopPropagation()" style="font-family:var(--mono);font-size:10px;color:var(--green);text-decoration:none">'+p.email+'</a>':'')
       +'</div>';
   }).join('')+'</div>'):'';
@@ -2136,8 +2136,7 @@ function renderActoresFederal(){
   el.style.display='block';
   var byNsig={};ACTORES_FED.forEach(function(a){byNsig[a.sig]=a;});
   var html=_SEC_GROUPS.map(function(g){
-    var head='<div style="display:flex;align-items:baseline;gap:9px;margin:18px 0 11px;padding-bottom:7px;border-bottom:1.5px solid rgba(6,103,80,0.22)">'
-      +'<span style="width:9px;height:9px;background:#066750;display:inline-block;align-self:center"></span>'
+    var head='<div style="display:flex;align-items:baseline;gap:10px;margin:20px 0 11px;padding-bottom:7px;border-bottom:1.5px solid rgba(6,103,80,0.22)">'
       +'<span style="font-size:14px;font-weight:700;font-family:var(--sans);color:var(--text)">'+g.sec+'</span>'
       +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.05em;color:var(--text-muted)">'+g.sub+'</span></div>';
     var tiles=g.sigs.map(function(sig){
