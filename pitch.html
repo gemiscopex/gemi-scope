@@ -9,9 +9,10 @@
   @font-face{font-family:'Scope Sans';src:url('assets/fonts/heros-bold.woff2') format('woff2');font-weight:551 1000;font-style:normal;font-display:swap}
   :root{
     --bg:#06100d; --ink:#f3f8f5; --mut:#a5bab2; --dim:#63776f;
-    --g:#12b98a; --g2:#0e8c74; --g3:#066750; --mint:#3fe0ad; --sky:#5ec8e0; --lav:#9d8cf0; --amber:#e6b45e;
-    --line:rgba(255,255,255,0.09); --card:#0b1a15;
+    --g:#12b98a; --g2:#0e8c74; --g3:#066750; --mint:#3fe0ad; --amber:#e6b45e;
+    --line:rgba(255,255,255,0.09);
     --sans:'Scope Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -28,8 +29,7 @@
   h1{font-size:clamp(36px,6.6vw,88px);font-weight:800;letter-spacing:-.025em;line-height:1.01}
   h2{font-size:clamp(28px,4.8vw,60px);font-weight:800;letter-spacing:-.022em;line-height:1.05}
   .lead{font-size:clamp(15px,1.8vw,21px);color:var(--mut);line-height:1.55;max-width:640px;margin-top:20px;font-weight:400}
-  .grn{color:var(--mint)}
-  b,strong{font-weight:700;color:var(--ink)}
+  .grn{color:var(--mint)} b,strong{font-weight:700;color:var(--ink)}
 
   .split{display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,60px);align-items:center;justify-content:space-between}
   .split .col{flex:1;min-width:290px}
@@ -53,22 +53,35 @@
   .glow{position:absolute;border-radius:50%;filter:blur(96px);opacity:.5;pointer-events:none;z-index:0}
   section>*{position:relative;z-index:1}
 
-  /* ---- narrative steps (origen) ---- */
-  .steps{margin-top:34px;max-width:560px}
-  .step{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line)}
-  .step .num{font-size:12px;font-weight:800;color:var(--mint);width:24px;flex-shrink:0;padding-top:2px}
-  .step .st{font-size:16px;font-weight:700}
-  .step .sd{font-size:13.5px;color:var(--mut);margin-top:3px;line-height:1.5}
+  /* evolución (origen) */
+  .evo{display:flex;align-items:center;margin-top:46px;max-width:720px}
+  .evo-pt{display:flex;flex-direction:column;align-items:center;gap:13px;flex-shrink:0;opacity:0;transform:translateY(10px);transition:opacity .7s,transform .7s}
+  section.in .evo-pt{opacity:1;transform:none}
+  section.in .evo-pt:nth-child(3){transition-delay:.28s}
+  section.in .evo-pt:nth-child(5){transition-delay:.56s}
+  section.in .evo-pt:nth-child(7){transition-delay:.84s}
+  .evo-pt .dot{width:12px;height:12px;border-radius:50%;background:var(--dim)}
+  .evo-pt.hl .dot{background:var(--mint);box-shadow:0 0 0 5px rgba(63,224,173,.14)}
+  .evo-pt .lb{font-size:14px;font-weight:700;color:var(--mut);white-space:nowrap;text-align:center}
+  .evo-pt.hl .lb{color:var(--ink);font-size:15px}
+  .evo-pt .sub{font-size:11px;color:var(--dim);font-weight:500;margin-top:-6px}
+  .evo-seg{flex:1;min-width:26px;height:2px;background:linear-gradient(90deg,var(--line),rgba(255,255,255,.2));transform:scaleX(0);transform-origin:left;transition:transform .6s ease}
+  section.in .evo-seg{transform:scaleX(1)}
+  section.in .evo-seg:nth-child(2){transition-delay:.14s}
+  section.in .evo-seg:nth-child(4){transition-delay:.42s}
+  section.in .evo-seg:nth-child(6){transition-delay:.7s}
+  @media(max-width:640px){.evo{flex-direction:column;align-items:flex-start;gap:16px;margin-top:32px}
+    .evo-pt{flex-direction:row;gap:12px}.evo-pt .lb{text-align:left}.evo-seg{display:none}.evo-pt .lb{font-size:15px}}
 
-  /* ---- native panel (iOS widget) ---- */
+  /* panel base */
   .panel{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:20px;padding:22px 24px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
-  .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px}
   .ptitle{font-size:13px;font-weight:700;color:var(--ink)}
   .psub{font-size:11px;color:var(--dim)}
-  .legend{display:flex;gap:16px;font-size:11px;color:var(--mut)}
+  .legend{display:flex;gap:14px;font-size:11px;color:var(--mut)}
   .legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;vertical-align:-1px}
 
-  /* ---- bars (impuestos) ---- */
+  /* impuestos bars */
   .brow{display:flex;align-items:center;gap:14px;margin:15px 0}
   .brow .nm{width:120px;flex-shrink:0;font-size:14px;font-weight:600}
   .brow .nm .ab{font-size:10px;color:var(--dim);margin-left:6px;font-weight:600}
@@ -79,68 +92,133 @@
   .brow .val .c{font-size:.68em;color:var(--mut);font-weight:600}
   .topflag{font-size:11px;font-weight:700;color:var(--mint);margin-top:2px}
 
-  /* ---- fan cards (fichas por entidad) ---- */
-  .fan{position:relative;height:340px;max-width:420px;margin:0 auto}
-  .fcard{position:absolute;top:0;left:50%;width:200px;background:#fbfefc;color:#0b1a15;border-radius:16px;padding:15px 17px;box-shadow:0 18px 50px rgba(0,0,0,.5);
-    transform:translate(-50%,40px) scale(.9);opacity:0;transition:transform .85s cubic-bezier(.2,.85,.25,1),opacity .7s;transform-origin:center}
-  section.in .fcard{opacity:1}
-  section.in .fcard.f0{transform:translate(-192px,6px) rotate(-5deg);z-index:2}
-  section.in .fcard.f1{transform:translate(-10px,22px) rotate(5deg);z-index:1}
-  section.in .fcard.f2{transform:translate(-180px,162px) rotate(4deg);z-index:1}
-  section.in .fcard.f3{transform:translate(2px,178px) rotate(-4deg);z-index:2}
-  .fcard .fh{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;border-bottom:1px solid #e7efea;padding-bottom:9px;margin-bottom:10px}
-  .fcard .fn{font-size:15px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
-  .fcard .fa{font-size:9.5px;font-weight:700;color:#8aa39a;letter-spacing:.03em;margin-top:2px}
-  .fsil{flex-shrink:0}
-  .fsil svg{height:34px;width:auto;max-width:40px;display:block}
-  .fsil svg path{fill:#d3e8df;stroke:#6fa192;stroke-width:1;vector-effect:non-scaling-stroke}
-  .fmet{display:flex;gap:15px;margin:2px 0 10px}
-  .fmet .fm{display:flex;flex-direction:column}
-  .fmet .fmn{font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1;color:#0b1a15}
-  .fmet .fmn.z{color:#b4c6bd}
-  .fmet .fml{font-size:9.5px;color:#7a8f87;margin-top:4px;font-weight:600}
-  .fspark{width:100%;height:26px;display:block}
-  .fspark .ln{fill:none;stroke:#0e8c74;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--L);stroke-dashoffset:var(--L);transition:stroke-dashoffset 1.3s ease .3s}
-  section.in .fspark .ln{stroke-dashoffset:0}
-  .fspark .ar{fill:rgba(14,140,116,.10);stroke:none;opacity:0;transition:opacity .8s .6s}
-  section.in .fspark .ar{opacity:1}
-  .fcard .fnews{font-size:10.5px;color:var(--g2);font-weight:700;margin-top:5px}
-  @media(max-width:520px){.fan{transform:scale(.82)}}
+  /* radar (idéntico al real: tiles planos, verdes GEMI, sparkline difuminada) */
+  .rgrid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:22px;max-width:900px}
+  @media(max-width:820px){.rgrid{grid-template-columns:repeat(2,1fr);row-gap:26px}}
+  @media(max-width:460px){.rgrid{grid-template-columns:1fr;row-gap:20px}}
+  .rtile{border-left:1px solid var(--line);padding:2px 20px;min-width:0}
+  .rtile:first-child{border-left:none;padding-left:0}
+  @media(max-width:820px){.rtile:nth-child(2n+1){border-left:none;padding-left:0}}
+  @media(max-width:460px){.rtile{border-left:none;padding-left:0}}
+  .rhead{display:flex;align-items:center;gap:8px;min-width:0}
+  .ricon{display:flex;flex-shrink:0}
+  .rname{font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rsub{font-family:var(--mono);font-size:9px;letter-spacing:.02em;color:var(--dim);margin-top:4px}
+  .rspk{margin:11px 0 9px;height:26px}
+  .rdc-spk{stroke-dasharray:1;animation:rdSpkDraw 28s ease-in-out infinite}
+  .rdc-spk-dot{animation:rdSpkPulse 28s ease-in-out infinite}
+  @keyframes rdSpkDraw{0%{stroke-dashoffset:1;opacity:0}14%{stroke-dashoffset:0;opacity:1}88%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+  @keyframes rdSpkPulse{0%{opacity:0}14%{opacity:1}88%{opacity:1}100%{opacity:0}}
+  .rstats{display:flex;align-items:flex-end;justify-content:space-between;gap:6px}
+  .rstat-v{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink)}
+  .rstat-l{font-family:var(--mono);font-size:8px;letter-spacing:.04em;color:var(--dim);margin-top:4px}
 
-  /* ---- data-science tech background ---- */
-  .techbg{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
-    background-image:radial-gradient(circle,rgba(255,255,255,.055) 1px,transparent 1.5px);
-    background-size:26px 26px;
-    -webkit-mask-image:radial-gradient(ellipse 75% 70% at 60% 45%,#000 30%,transparent 80%);
-    mask-image:radial-gradient(ellipse 75% 70% at 60% 45%,#000 30%,transparent 80%)}
-  .technet{position:absolute;z-index:0;pointer-events:none;opacity:.5}
-  .technet path{stroke:rgba(18,185,138,.30);stroke-width:1;fill:none}
-  .technet circle{fill:rgba(63,224,173,.6);animation:npulse 3.4s ease-in-out infinite}
-  .technet circle.o{fill:none;stroke:rgba(18,185,138,.4);stroke-width:1}
-  @keyframes npulse{0%,100%{opacity:.3}50%{opacity:1}}
+  /* expediente (auto-scroll, técnico) */
+  .exp{max-width:360px;margin:0 auto;background:#fbfefc;color:#0b1a15;border-radius:16px;box-shadow:0 26px 70px rgba(0,0,0,.5);overflow:hidden}
+  .exp-hd{display:flex;align-items:center;gap:12px;padding:16px 18px 12px}
+  .esil svg{height:36px;width:auto;max-width:42px;display:block}
+  .esil svg path{fill:#d3e8df;stroke:#6fa192;stroke-width:1;vector-effect:non-scaling-stroke}
+  .exp-hd .en{font-size:16px;font-weight:800;line-height:1.1}
+  .exp-hd .es{font-size:9.5px;font-weight:700;color:#8aa39a;letter-spacing:.04em;margin-top:2px}
+  .exp-tabs{display:flex;gap:15px;padding:0 18px;border-bottom:1px solid #e7efea}
+  .exp-tab{font-size:11px;font-weight:700;color:#9bb0a8;padding-bottom:9px;white-space:nowrap}
+  .exp-tab.on{color:#066750;box-shadow:inset 0 -2px 0 #066750}
+  .exp-view{height:206px;overflow:hidden;position:relative}
+  .exp-view:after{content:'';position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(transparent,#fbfefc);pointer-events:none}
+  .exp-scroll{padding:6px 18px 20px}
+  section.in .exp-scroll{animation:expscroll 15s ease-in-out 1s infinite alternate}
+  @keyframes expscroll{from{transform:translateY(0)}to{transform:translateY(var(--sc,-170px))}}
+  .exp-sec{font-size:9px;font-weight:700;color:#066750;letter-spacing:.05em;margin:14px 0 4px}
+  .exp-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid #eef4f1;font-size:12px}
+  .exp-row .rt2{color:#26332e;flex:1;line-height:1.3}
+  .exp-row .rd2{font-family:var(--mono);font-size:9px;color:#9bb0a8;white-space:nowrap}
+  .exp-chip{font-family:var(--mono);font-size:8.5px;font-weight:700;padding:2px 7px;border-radius:5px;background:#e7f3ee;color:#0e8c74;white-space:nowrap}
+  .exp-chip.no{background:#fbeee2;color:#c98a3c}
 
-  /* ---- radar mini cards ---- */
-  .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:6px}
-  .rcard{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:15px 16px}
-  .rcard .rt{font-size:13px;font-weight:700;display:flex;align-items:center;gap:7px}
-  .rcard .rt i{width:8px;height:8px;border-radius:50%}
-  .rcard .rv{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-top:8px}
-  .rcard .rv .u{font-size:.44em;color:var(--mut);font-weight:600}
-  .rcard .rtr{font-size:11px;font-weight:700;margin-top:2px}
-  .rcard svg{display:block;width:100%;height:36px;margin-top:8px;overflow:hidden}
-  @keyframes flow{from{transform:translateX(0)}to{transform:translateX(-168px)}}
-  .rcard svg .stream{animation:flow var(--sp,5s) linear infinite}
-  .rcard svg .strk{fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-  .rcard svg .fillw{stroke:none;opacity:.12}
+  /* Senado / actores */
+  .senp{max-width:420px;margin:0 auto}
+  .sen-modes{display:flex;gap:8px;margin-bottom:14px}
+  .sen-mode{font-size:11.5px;font-weight:700;padding:6px 13px;border-radius:20px;border:1px solid var(--line);color:var(--mut)}
+  .sen-mode.on{background:#066750;border-color:#066750;color:#fff}
+  .sen-search{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:13.5px;color:var(--mut)}
+  .sen-search svg{width:16px;height:16px;flex-shrink:0;stroke:var(--dim);fill:none;stroke-width:1.8}
+  .sen-search .q{color:var(--ink);font-weight:600}
+  .sen-search .car{display:inline-block;width:2px;height:15px;background:var(--mint);margin-left:1px;vertical-align:-2px;animation:blink2 1s steps(1) infinite}
+  @keyframes blink2{50%{opacity:0}}
+  .sen-card{border-top:1px solid var(--line);padding:14px 0 4px;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
+  section.in .sen-card.s1{transition-delay:1.2s;opacity:1;transform:none}
+  section.in .sen-card.s2{transition-delay:1.6s;opacity:1;transform:none}
+  .sen-card .cn{font-size:14px;font-weight:700;line-height:1.25}
+  .sen-card .cm{font-size:11px;color:var(--mut);margin-top:3px}
+  .sen-status{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;margin-top:9px}
+  .sen-status .sd{width:7px;height:7px;border-radius:50%}
+  .sen-status.ok{color:var(--mint)} .sen-status.ok .sd{background:var(--mint)}
+  .sen-status.no{color:var(--amber)} .sen-status.no .sd{background:var(--amber)}
+  .sen-meta{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:7px}
 
-  /* ---- chat (signal) ---- */
-  .chat{max-width:420px}
+  /* internacional (lista real, auto-scroll una vez) */
+  .intl-view{max-width:540px;height:320px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(180deg,transparent,#000 8%,#000 88%,transparent);mask-image:linear-gradient(180deg,transparent,#000 8%,#000 88%,transparent)}
+  .intl-scroll{transform:translateY(0);transition:transform 7s linear .4s}
+  section.in .intl-scroll{transform:translateY(var(--isc,-180px))}
+  .irow{display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .irow .jz{width:40px;flex-shrink:0;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--mut);text-align:center}
+  .irow .it{flex:1;min-width:0}
+  .irow .it .a{font-size:13.5px;font-weight:700;line-height:1.25}
+  .irow .it .b{font-size:11px;color:var(--mut);margin-top:2px}
+  .irow .chip{font-size:9.5px;font-weight:700;padding:3px 9px;border-radius:20px;flex-shrink:0;white-space:nowrap}
+  .chip.cad{color:var(--mint);background:rgba(63,224,173,.12)}
+  .chip.tra{color:#8fd6bf;background:rgba(14,140,116,.16)}
+  .chip.ley{color:var(--mut);background:rgba(255,255,255,.06)}
+
+  /* terminal (se arma paso a paso) */
+  .tcfg{position:relative;max-width:400px;margin:0 auto;background:#fbfefc;color:#0b1a15;border-radius:16px;padding:19px 21px;box-shadow:0 26px 70px rgba(0,0,0,.5)}
+  .tcfg .tct{font-size:15px;font-weight:800}
+  .tcfg .tcs{font-size:11px;color:#7a8f87;margin:3px 0 14px}
+  .tcg{margin:13px 0}
+  .tcl{font-size:9px;font-weight:700;color:#8aa39a;letter-spacing:.05em;margin-bottom:8px}
+  .tchips{display:flex;flex-wrap:wrap;gap:7px}
+  .tchip{font-size:12px;font-weight:600;padding:6px 12px;border-radius:20px;border:1px solid #dbe6e0;color:#54685f;transition:background .35s,color .35s,border-color .35s,transform .2s}
+  .tchip.sel{background:#066750;border-color:#066750;color:#fff}
+  .tchip.sel:after{content:' ✓';font-size:10px;opacity:.85}
+  .tchip.pop{transform:scale(1.08)}
+  .tcursor{position:absolute;top:0;left:0;pointer-events:none;opacity:0;transition:transform .5s cubic-bezier(.4,.05,.2,1),opacity .25s;z-index:6;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3))}
+  .term-result{margin-top:14px;border-top:1px solid #e7efea;padding-top:13px;opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s}
+  .term-result.show{opacity:1;transform:none}
+  .term-result .trh{font-size:9px;font-weight:700;color:#066750;letter-spacing:.05em}
+  .term-result .trv{font-size:15px;font-weight:800;margin-top:5px}
+  .term-result .trs{font-size:11px;color:#7a8f87;margin-top:2px}
+
+  /* monitor (escritorio) */
+  .monitor{max-width:480px;margin:0 auto}
+  .screen{background:#0e1c17;border:1px solid var(--line);border-radius:16px;padding:9px;box-shadow:0 34px 80px rgba(0,0,0,.55)}
+  .screen-inner{background:#f7faf8;border-radius:9px;height:272px;overflow:hidden;position:relative}
+  .mini-nav{display:flex;align-items:center;gap:8px;padding:11px 13px;border-bottom:1px solid #e6ece9}
+  .mini-logo{font-size:12px;font-weight:800;color:#066750;letter-spacing:-.01em}
+  .mini-nd{width:24px;height:6px;border-radius:4px;background:#dde7e2}
+  .mini-nd:first-of-type{background:#bfe0d4}
+  .mini-map{position:absolute;inset:44px 10px 10px 10px}
+  .mini-map .md{position:absolute;width:7px;height:7px;border-radius:50%;background:#cfdad4;transform:scale(0);transition:transform .5s cubic-bezier(.2,.9,.3,1.4)}
+  section.in .mini-map .md{transform:scale(1)}
+  .mini-map .md.on{background:#12b98a}.mini-map .md.on2{background:#3fe0ad}
+  .stand{width:78px;height:14px;background:linear-gradient(#12312a,#0b1a15);margin:0 auto;border-radius:0 0 7px 7px}
+  .stand-base{width:150px;height:8px;background:#0b1a15;border:1px solid var(--line);border-top:none;margin:5px auto 0;border-radius:9px}
+  .devnote{display:inline-block;margin-top:16px;font-size:12px;font-weight:600;color:var(--mint);background:rgba(63,224,173,.1);border-radius:20px;padding:6px 14px}
+
+  /* roadmap (siguiente fase) + chat */
+  .road{margin-top:6px}
+  .roaditem{display:flex;align-items:flex-start;gap:14px;padding:15px 0;border-top:1px solid var(--line)}
+  .roaditem .ri{width:34px;height:34px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(18,185,138,.1);color:var(--mint)}
+  .roaditem .ri svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .roaditem .rn{font-size:15px;font-weight:700;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .roaditem .rd{font-size:13px;color:var(--mut);margin-top:3px;line-height:1.5}
+  .soon{font-size:10px;font-weight:700;color:var(--mint);background:rgba(63,224,173,.12);border-radius:20px;padding:2px 9px}
+  .soonbig{display:inline-block;font-size:11px;font-weight:700;color:#04120d;background:var(--mint);border-radius:20px;padding:3px 11px;margin-bottom:14px}
+  .chat{max-width:400px}
   .bubble{border-radius:16px;padding:13px 16px;font-size:14px;line-height:1.5;margin:10px 0;opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
   section.in .bubble{opacity:1;transform:none}
-  section.in .bubble.b2{transition-delay:.55s}
-  section.in .bubble.b3{transition-delay:2.0s}
-  .bubble.me{background:linear-gradient(180deg,var(--g2),var(--g3));color:#eafff8;margin-left:auto;max-width:80%;border-bottom-right-radius:5px}
-  .bubble.sg{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--ink);max-width:90%;border-bottom-left-radius:5px}
+  section.in .bubble.b2{transition-delay:.55s}section.in .bubble.b3{transition-delay:1.9s}
+  .bubble.me{background:linear-gradient(180deg,var(--g2),var(--g3));color:#eafff8;margin-left:auto;max-width:82%;border-bottom-right-radius:5px}
+  .bubble.sg{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--ink);max-width:92%;border-bottom-left-radius:5px}
   .sgtag{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--mint);margin-bottom:4px}
   .sgtag img{width:20px;height:20px;border-radius:6px}
   .typing{display:inline-flex;gap:4px;padding:2px 0}
@@ -148,60 +226,7 @@
   .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
   @keyframes blink{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
 
-  /* ---- terminal widget stack ---- */
-  .tstack{position:relative;max-width:460px;margin:0 auto;height:320px}
-  .tw{position:absolute;background:#fbfefc;color:#0b1a15;border-radius:16px;box-shadow:0 20px 55px rgba(0,0,0,.5);opacity:0;transform:translateY(24px) scale(.96);transition:opacity .7s,transform .8s cubic-bezier(.2,.85,.25,1)}
-  section.in .tw{opacity:1;transform:none}
-  section.in .tw.tw2{transition-delay:.3s}section.in .tw.tw3{transition-delay:.55s}
-  .tw-main{top:0;left:0;width:300px;padding:18px 20px}
-  .tw-main .thk{font-size:10px;font-weight:700;color:var(--g2);letter-spacing:.02em}
-  .tw-main .thd{font-size:17px;font-weight:800;letter-spacing:-.015em;margin:6px 0 4px;line-height:1.15}
-  .tw-main .tsb{font-size:11px;color:#6a827a}
-  .twkpi{display:flex;gap:16px;margin-top:14px;border-top:1px solid #e7efea;padding-top:12px}
-  .twkpi .n{font-size:20px;font-weight:800;letter-spacing:-.02em}
-  .twkpi .l{font-size:10px;color:#6a827a}
-  .tw-sig{bottom:8px;right:0;width:250px;padding:13px 15px}
-  .tw-sig .sh{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800}
-  .tw-sig .sh img{width:20px;height:20px;border-radius:6px}
-  .tw-sig .sm{font-size:12px;color:#3a4f47;line-height:1.45;margin-top:8px}
-  .tw-chip{top:174px;left:8px;width:174px;padding:11px 14px}
-  .tw-chip .cl{font-size:9px;font-weight:700;color:#8aa39a;letter-spacing:.06em}
-  .tw-chip .cbar{display:flex;align-items:center;gap:9px;margin-top:8px}
-  .tw-chip .cbar .ct{flex:1;height:7px;background:#eaf1ed;border-radius:5px;overflow:hidden}
-  .tw-chip .cbar .cf{height:100%;width:0;background:linear-gradient(90deg,var(--g3),var(--g));border-radius:5px;transition:width 1.2s cubic-bezier(.22,1,.36,1) .6s}
-  section.in .tw-chip .cbar .cf{width:var(--w)}
-  .tw-chip .cbar .cn{font-size:12px;font-weight:800}
-  @media(max-width:520px){.tstack{transform:scale(.82);transform-origin:top center}}
-
-  /* ---- org (actores) ---- */
-  .org{max-width:460px;margin-top:4px}
-  .orgtop{display:inline-block;background:linear-gradient(180deg,var(--g2),var(--g3));color:#eafff8;font-weight:800;font-size:15px;padding:11px 20px;border-radius:14px;box-shadow:0 14px 40px rgba(18,185,138,.25)}
-  .orgline{width:2px;height:26px;background:var(--line);margin:0 0 0 40px}
-  .orgkids{display:flex;flex-wrap:wrap;gap:10px}
-  .orgkid{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:9px 15px;font-size:13px;font-weight:700;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
-  section.in .orgkid{opacity:1;transform:none}
-  section.in .orgkid:nth-child(2){transition-delay:.12s}section.in .orgkid:nth-child(3){transition-delay:.24s}
-  section.in .orgkid:nth-child(4){transition-delay:.36s}section.in .orgkid:nth-child(5){transition-delay:.48s}
-  .dircard{margin-top:20px;background:#fbfefc;color:#0b1a15;border-radius:14px;padding:14px 16px;max-width:360px;box-shadow:0 16px 44px rgba(0,0,0,.45)}
-  .dircard .dn{font-size:14px;font-weight:800}
-  .dircard .dc{font-size:12px;color:#5a726a;margin-top:2px}
-  .dircard .de{font-size:12px;color:var(--g2);font-weight:700;margin-top:8px}
-
-  /* ---- instrument list (internacional) ---- */
-  .ilist{max-width:560px}
-  .irow{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);opacity:0;transform:translateX(18px);transition:opacity .6s,transform .6s}
-  section.in .irow{opacity:1;transform:none}
-  section.in .irow:nth-child(2){transition-delay:.12s}section.in .irow:nth-child(3){transition-delay:.24s}
-  section.in .irow:nth-child(4){transition-delay:.36s}section.in .irow:nth-child(5){transition-delay:.48s}
-  .irow .flag{width:34px;height:34px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
-  .irow .it{flex:1;min-width:0}
-  .irow .it .a{font-size:14px;font-weight:700}
-  .irow .it .b{font-size:12px;color:var(--mut);margin-top:1px}
-  .irow .chip{font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;flex-shrink:0}
-  .chip.hi{color:var(--mint);background:rgba(63,224,173,.12)}
-  .chip.md{color:var(--amber);background:rgba(230,180,94,.12)}
-
-  /* ---- dot map ---- */
+  /* dot map */
   .mapwrap{position:relative;width:100%;max-width:520px;aspect-ratio:5/4;margin:0 auto}
   .mdot{position:absolute;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.14);transform:scale(0);transition:transform .5s cubic-bezier(.2,.9,.3,1.4),background .5s}
   section.in .mdot{transform:scale(1)}
@@ -209,13 +234,18 @@
   .mdot.hot.h2{background:var(--mint)}
   @keyframes ping{0%{box-shadow:0 0 0 0 rgba(18,185,138,.5)}70%{box-shadow:0 0 0 12px rgba(18,185,138,0)}100%{box-shadow:0 0 0 0 rgba(18,185,138,0)}}
 
-  /* ---- generic ---- */
+  /* data-science bg (solo malla sutil, sin red/ADN) */
+  .techbg{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1.5px);background-size:26px 26px;
+    -webkit-mask-image:radial-gradient(ellipse 75% 70% at 60% 45%,#000 30%,transparent 80%);
+    mask-image:radial-gradient(ellipse 75% 70% at 60% 45%,#000 30%,transparent 80%)}
+
+  /* generic */
   .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px 34px;margin-top:34px;max-width:1000px}
   .feat{border-top:1px solid var(--line);padding-top:13px}
-  .feat .t{font-size:15px;font-weight:700}
-  .feat .d{font-size:13px;color:var(--mut);margin-top:5px;line-height:1.5}
+  .feat .t{font-size:15px;font-weight:700}.feat .d{font-size:13px;color:var(--mut);margin-top:5px;line-height:1.5}
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:28px 40px;margin-top:36px;max-width:920px}
-  .stat .n{font-size:clamp(36px,5vw,58px);font-weight:800;letter-spacing:-.025em;line-height:1}
+  .stat .n{font-size:clamp(34px,5vw,56px);font-weight:800;letter-spacing:-.025em;line-height:1}
   .stat .n .u{font-size:.36em;color:var(--mut);font-weight:600}
   .stat .l{font-size:13px;color:var(--mut);margin-top:8px;line-height:1.45}
   .verbs{display:flex;flex-wrap:wrap;gap:14px 36px;margin-top:30px}
@@ -225,19 +255,45 @@
   section.in .verbs span:nth-child(3){transition-delay:.5s;color:var(--ink)}
   section.in .verbs span:nth-child(4){transition-delay:.7s;color:var(--ink)}
 
-  .prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-top:32px;max-width:900px;width:100%}
-  .price{border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:rgba(255,255,255,.02);transition:transform .3s,border-color .3s}
+  /* precios (limpio, alineado) */
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;max-width:860px;width:100%}
+  @media(max-width:720px){.prices{grid-template-columns:1fr;max-width:400px}}
+  .price{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:rgba(255,255,255,.02);transition:transform .3s,border-color .3s}
   .price.best{border-color:var(--g);background:linear-gradient(180deg,rgba(18,185,138,.10),rgba(18,185,138,.02))}
   .price:hover{transform:translateY(-4px);border-color:var(--g)}
+  .ptag{height:22px;margin-bottom:14px}
+  .ptag span{font-size:10.5px;font-weight:700;color:#04120d;background:var(--mint);border-radius:20px;padding:3px 10px}
   .price .p{font-size:13px;font-weight:600;color:var(--mut)}
-  .price .amt{font-size:36px;font-weight:800;letter-spacing:-.025em;margin:12px 0 2px}
-  .price .amt .c{font-size:.5em;color:var(--mut);font-weight:600;vertical-align:top}
+  .price .amt{font-size:38px;font-weight:800;letter-spacing:-.025em;margin:8px 0 4px;line-height:1}
+  .price .amt .c{font-size:.42em;color:var(--mut);font-weight:600;vertical-align:top;margin-right:1px}
   .price .per{font-size:12.5px;color:var(--mut)}
-  .price .note{font-size:12.5px;color:var(--mint);margin-top:12px;font-weight:600}
-  .tag{display:inline-block;font-size:11px;font-weight:700;color:#04120d;background:var(--mint);border-radius:20px;padding:3px 11px;margin-bottom:12px}
-  .socios{margin-top:22px;max-width:920px;border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 14px 14px 0;background:rgba(18,185,138,.05);padding:20px 24px}
-  .socios .t{font-size:16px;font-weight:700}
-  .socios .d{font-size:14px;color:var(--mut);margin-top:8px;line-height:1.6}
+  .price .note{font-size:12.5px;color:var(--mint);margin-top:14px;font-weight:600;min-height:18px}
+  .socios{margin-top:22px;max-width:860px;border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 14px 14px 0;background:rgba(18,185,138,.05);padding:18px 22px}
+  .socios .t{font-size:16px;font-weight:700}.socios .d{font-size:14px;color:var(--mut);margin-top:8px;line-height:1.6}
+
+  /* costos + lanzamiento */
+  .costwrap{display:flex;flex-wrap:wrap;gap:34px 54px;margin-top:28px;align-items:flex-start}
+  .costnow{flex:1;min-width:250px;max-width:320px}
+  .costnow .cl{font-size:13px;font-weight:700;color:var(--mint);margin-bottom:10px}
+  .costnow .cbig{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:-.025em;line-height:1.05}
+  .costnow .cp{font-size:13.5px;color:var(--mut);margin-top:12px;line-height:1.55}
+  .costscale{flex:1.3;min-width:320px}
+  .costscale .cl{font-size:13px;font-weight:700;color:var(--mut);margin-bottom:14px}
+  .crow{display:flex;align-items:center;gap:12px;margin:11px 0}
+  .crow .cn{width:150px;flex-shrink:0;font-size:13px;font-weight:600}
+  .crow .ct{flex:1;height:9px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden}
+  .crow .cf{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--g3),var(--g));transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+  .crow .cv{width:86px;text-align:right;font-size:13px;font-weight:700;flex-shrink:0}
+  .crow .cf.hi{background:linear-gradient(90deg,var(--g2),var(--mint))}
+  .ctotal{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  .ctotal .tl{font-size:14px;font-weight:700}.ctotal .tv{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .cperuser{margin-top:14px;background:rgba(18,185,138,.06);border-left:3px solid var(--mint);border-radius:0 12px 12px 0;padding:12px 15px;font-size:13px;color:var(--mut);line-height:1.55}
+  .cperuser b{color:var(--ink)}
+  .cest{font-size:11px;color:var(--dim);margin-top:14px;max-width:640px}
+  .goalband{margin-top:26px;max-width:820px;border:1px solid var(--g);border-radius:14px;background:linear-gradient(180deg,rgba(18,185,138,.12),rgba(18,185,138,.03));padding:18px 22px}
+  .goalband .gt{font-size:16px;font-weight:800}
+  .goalband .gd{font-size:13.5px;color:var(--mut);margin-top:6px;line-height:1.55}
+
   .cta{display:inline-flex;align-items:center;gap:10px;margin-top:36px;font-size:16px;font-weight:700;color:#04120d;background:var(--mint);border-radius:30px;padding:14px 26px;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 12px 40px rgba(18,185,138,.35)}
   .cta:hover{transform:translateY(-2px);box-shadow:0 16px 50px rgba(18,185,138,.5)}
   .cap{font-size:13px;color:var(--dim);margin-top:14px}
@@ -264,28 +320,30 @@
     <div class="scrollhint">Desliza para comenzar &nbsp;&darr;</div>
   </section>
 
-  <!-- 2 · ORIGEN / evolución -->
+  <!-- 2 · ORIGEN -->
   <section data-t="De dónde venimos">
     <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-10%;left:-8%;opacity:.24"></div>
     <div class="kick r">De dónde venimos</div>
-    <h2 class="r d1" style="max-width:17ch">No empezó como una plataforma. Empezó como nuestro trabajo.</h2>
-    <p class="lead r d2" style="max-width:760px">Durante años, GEMI ha producido <b>reportes de inteligencia</b> y <b>seguimiento regulatorio</b> para el sector. Scope nace de una inquietud natural: <b>ampliar esa base de datos</b> y ponerla al alcance de nuestros socios y de nuevos actores.</p>
-    <div class="steps">
-      <div class="step r d3"><div class="num">01</div><div><div class="st">Reportes de inteligencia</div><div class="sd">El conocimiento que GEMI ya generaba, entregado documento por documento.</div></div></div>
-      <div class="step r d4"><div class="num">02</div><div><div class="st">Seguimiento regulatorio</div><div class="sd">El pulso diario de la norma ambiental, leído a mano por el equipo.</div></div></div>
-      <div class="step r d5"><div class="num">03</div><div><div class="st">Scope</div><div class="sd">Ese mismo trabajo, vuelto un sistema vivo que se comparte.</div></div></div>
+    <h2 class="r d1" style="max-width:13ch">Primero fue nuestro trabajo.</h2>
+    <p class="lead r d2" style="max-width:640px">Durante años, GEMI ha producido reportes de inteligencia y seguimiento regulatorio. Scope es el siguiente paso: <b>ampliar esa base de datos</b> y compartirla con socios y nuevos actores.</p>
+    <div class="evo r d3">
+      <div class="evo-pt"><span class="dot"></span><div class="lb">Reportes de inteligencia</div></div>
+      <div class="evo-seg"></div>
+      <div class="evo-pt"><span class="dot"></span><div class="lb">Seguimiento regulatorio</div></div>
+      <div class="evo-seg"></div>
+      <div class="evo-pt hl"><span class="dot"></span><div class="lb">Scope</div></div>
     </div>
   </section>
 
-  <!-- 3 · REFLEXIÓN / incubadora / laboratorio -->
+  <!-- 3 · REFLEXIÓN -->
   <section data-t="La reflexión" style="justify-content:center">
     <div class="glow" style="width:560px;height:560px;background:var(--g3);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.24"></div>
     <div class="kick r">La reflexión</div>
-    <h2 class="r d1" style="max-width:20ch">Los últimos meses fueron de entender de dónde venimos y qué queremos lograr.</h2>
+    <h2 class="r d1" style="max-width:20ch">Meses de entender de dónde venimos y qué queremos lograr.</h2>
     <p class="lead r d2" style="max-width:780px">Pusimos este proyecto en la <b>incubadora</b>: un espacio para definir la esencia de GEMI y llevarla a una nueva experiencia. Scope se desarrolló en nuestro <b>laboratorio de datos</b>, pensada a partir de las <b>tareas diarias</b> del equipo, para sostener el trabajo cotidiano en un sistema fácil de usar y accesible.</p>
   </section>
 
-  <!-- 4 · TENSIÓN -->
+  <!-- 4 · RETO -->
   <section data-t="El reto">
     <div class="glow" style="width:500px;height:500px;background:#7a2020;top:22%;right:-12%;opacity:.18"></div>
     <div class="kick r">El reto</div>
@@ -300,8 +358,8 @@
     <p class="lead r d2" style="margin:26px auto 0;font-size:clamp(18px,2.4vw,28px);color:var(--ink)">La reunimos toda. La volvimos legible. La pusimos <span class="grn">viva</span>.</p>
   </section>
 
-  <!-- 6 · MAPA (native dot map) -->
-  <section data-t="El país" data-anim="map">
+  <!-- 6 · MAPA -->
+  <section data-t="El país">
     <div class="kick r">Panorama nacional</div>
     <div class="split">
       <div class="col">
@@ -312,18 +370,19 @@
     </div>
   </section>
 
-  <!-- 7 · RADAR (native sparklines) -->
+  <!-- 7 · RADAR -->
   <section data-t="Radar">
     <div class="techbg"></div>
-    <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-12%;left:-8%;opacity:.22"></div>
+    <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-12%;left:-8%;opacity:.2"></div>
     <div class="kick r">Radar temático</div>
     <h2 class="r d1" style="max-width:15ch">Cada sector tiene su señal.</h2>
     <p class="lead r d2" style="max-width:640px">El Radar cruza prensa, DOF, Congreso y NOMs por tema, y te dice dónde sube la presión, con los datos duros del sector detrás.</p>
-    <div class="rgrid r d3" style="max-width:760px" id="rgrid"></div>
+    <div class="rgrid r d3" id="rgrid"></div>
   </section>
 
-  <!-- 8 · CONGRESO (native animated chart) -->
+  <!-- 8 · CONGRESO -->
   <section data-t="Congreso" data-anim="cong">
+    <div class="techbg"></div>
     <div class="kick r">Poder Legislativo federal</div>
     <div class="split">
       <div class="col">
@@ -340,9 +399,10 @@
     </div>
   </section>
 
-  <!-- 9 · IMPUESTOS (native animated bars, real data) -->
+  <!-- 9 · IMPUESTOS -->
   <section data-t="Impuestos" data-anim="imp">
-    <div class="glow" style="width:460px;height:460px;background:var(--g3);top:-10%;right:-6%;opacity:.22"></div>
+    <div class="techbg"></div>
+    <div class="glow" style="width:460px;height:460px;background:var(--g3);top:-10%;right:-6%;opacity:.2"></div>
     <div class="kick r">Comparar entidades</div>
     <div class="split">
       <div class="col">
@@ -358,107 +418,164 @@
     </div>
   </section>
 
-  <!-- 10 · FICHAS POR ENTIDAD (fanned cards) -->
+  <!-- 10 · EXPEDIENTES -->
   <section data-t="Expedientes">
     <div class="kick r">Cada estado, un expediente</div>
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:13ch">No es un directorio. Es profundidad.</h2>
-        <p class="lead r d2">Leyes vigentes, impuestos verdes, materiales regulados y la prensa de cada entidad, con fecha, estatus y el documento oficial. El expediente que un despacho tardaría semanas en armar.</p>
+        <p class="lead r d2">Leyes vigentes con fecha y estatus, impuestos verdes, materiales regulados y la prensa de cada entidad, con el documento oficial. El expediente que un despacho tardaría semanas en armar.</p>
       </div>
       <div class="viz r d3">
-        <div class="fan" id="fanwrap"></div>
+        <div class="exp">
+          <div class="exp-hd">
+            <div class="esil"><svg id="expsil" viewBox="0 0 0.47 0.50" preserveAspectRatio="xMidYMid meet"></svg></div>
+            <div><div class="en">Ciudad de México</div><div class="es">CDMX · EXPEDIENTE</div></div>
+          </div>
+          <div class="exp-tabs"><span class="exp-tab on">Resumen</span><span class="exp-tab">Leyes</span><span class="exp-tab">Impuestos</span><span class="exp-tab">Materiales</span></div>
+          <div class="exp-view"><div class="exp-scroll" id="expscroll">
+            <div class="exp-sec">LEGISLACIÓN AMBIENTAL</div>
+            <div class="exp-row"><span class="rt2">Ley de Economía Circular de la CDMX</span><span class="rd2">2021</span><span class="exp-chip">Vigente</span></div>
+            <div class="exp-row"><span class="rt2">Ley de Mitigación y Adaptación al Cambio Climático</span><span class="exp-chip">Vigente</span></div>
+            <div class="exp-row"><span class="rt2">Ley de Residuos Sólidos del D.F.</span><span class="exp-chip">Vigente</span></div>
+            <div class="exp-row"><span class="rt2">Ley Ambiental de Protección a la Tierra</span><span class="exp-chip">Vigente</span></div>
+            <div class="exp-row"><span class="rt2">Ley del Derecho al Acceso a un Medio Ambiente Sano</span><span class="exp-chip">Vigente</span></div>
+            <div class="exp-sec">IMPUESTOS VERDES</div>
+            <div class="exp-row"><span class="rt2">Impuesto a emisiones de GEI</span><span class="rd2">$58 / tonCO₂e</span></div>
+            <div class="exp-sec">MATERIALES REGULADOS</div>
+            <div class="exp-row"><span class="rt2">Bolsas de plástico de un solo uso</span><span class="exp-chip no">Prohibido</span></div>
+            <div class="exp-row"><span class="rt2">Unicel (poliestireno expandido)</span><span class="exp-chip no">Prohibido</span></div>
+            <div class="exp-sec">PRENSA · 7 DÍAS</div>
+            <div class="exp-row"><span class="rt2">CDMX refuerza el programa de separación de residuos</span><span class="rd2">03 ago</span></div>
+            <div class="exp-row"><span class="rt2">Nueva norma de economía circular en consulta</span><span class="rd2">01 ago</span></div>
+          </div></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 11 · ACTORES (native org) -->
+  <!-- 11 · ACTORES (Senado triturado) -->
   <section data-t="Actores">
     <div class="glow" style="width:420px;height:420px;background:var(--g2);bottom:-12%;right:-8%;opacity:.2"></div>
     <div class="kick r">Quién decide</div>
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:13ch">Sabes con quién hablar.</h2>
-        <p class="lead r d2">El gabinete ambiental federal, por Secretaría, con su directorio real: nombre, cargo y correo de cada funcionario, del directorio oficial de gob.mx.</p>
+        <p class="lead r d2">El gabinete federal con su directorio real (nombre, cargo y correo). Y el Congreso, triturado: buscas por <b>comisión</b> o por <b>legislador</b> y Scope te dice si la comisión ya sesionó y qué trae en agenda.</p>
       </div>
       <div class="viz r d3">
-        <div class="org">
-          <div class="orgtop">SEMARNAT</div>
-          <div class="orgline"></div>
-          <div class="orgkids"><span class="orgkid">PROFEPA</span><span class="orgkid">CONAGUA</span><span class="orgkid">ASEA</span><span class="orgkid">CONANP</span><span class="orgkid">CONAFOR</span></div>
-          <div class="dircard"><div class="dn">Dirección General · Gestión de Calidad del Aire</div><div class="dc">Subsecretaría de Gestión para la Protección Ambiental</div><div class="de">✉ nombre · cargo · correo · directorio verificado</div></div>
+        <div class="senp panel">
+          <div class="sen-modes"><span class="sen-mode on">Por comisión</span><span class="sen-mode">Por legislador</span></div>
+          <div class="sen-search"><svg viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg><span class="q" id="senq"></span><span class="car"></span></div>
+          <div class="sen-res">
+            <div class="sen-card s1">
+              <div class="cn">Medio Ambiente, Recursos Naturales y Cambio Climático</div>
+              <div class="cm">Senado de la República</div>
+              <div class="sen-status ok"><span class="sd"></span>Sesionó · 12 ago 2026</div>
+              <div class="sen-meta">3 iniciativas · 2 dictámenes en agenda</div>
+            </div>
+            <div class="sen-card s2">
+              <div class="cn">Recursos Hídricos e Infraestructura Hidráulica</div>
+              <div class="cm">Senado de la República</div>
+              <div class="sen-status no"><span class="sd"></span>Sin sesión esta semana</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 12 · INTERNACIONAL (native list) -->
+  <!-- 12 · INTERNACIONAL -->
   <section data-t="Internacional">
     <div class="kick r">Regulación internacional</div>
     <h2 class="r d1" style="max-width:16ch">Lo que se decide afuera, también te alcanza.</h2>
-    <p class="lead r d2" style="max-width:640px">Reglamentos, tratados y leyes de otros mercados que impactan al exportador mexicano, con su nivel de relevancia y la Agenda 2030 detrás.</p>
-    <div class="ilist r d3" style="margin-top:22px">
-      <div class="irow"><div class="flag">🇪🇺</div><div class="it"><div class="a">Reglamento (UE) 2023/1115 · Deforestación</div><div class="b">Exige trazabilidad libre de deforestación para importar</div></div><span class="chip hi">Alto impacto</span></div>
-      <div class="irow"><div class="flag">🇪🇺</div><div class="it"><div class="a">CBAM · Ajuste en frontera por carbono</div><div class="b">Costo por emisiones a productos que entran a la UE</div></div><span class="chip hi">Alto impacto</span></div>
-      <div class="irow"><div class="flag">🌎</div><div class="it"><div class="a">Acuerdo de Escazú</div><div class="b">Acceso a la información y a la justicia ambiental</div></div><span class="chip md">Relevante</span></div>
-      <div class="irow"><div class="flag">🌐</div><div class="it"><div class="a">Tratado global de plásticos · ONU</div><div class="b">En negociación · redefine empaques y residuos</div></div><span class="chip md">En seguimiento</span></div>
-    </div>
+    <p class="lead r d2" style="max-width:640px">Los instrumentos que impactan al exportador mexicano, con su jurisdicción y nivel de relevancia. La base que Scope ya monitorea.</p>
+    <div class="intl-view r d3" style="margin-top:20px"><div class="intl-scroll" id="intlscroll"></div></div>
   </section>
 
-  <!-- 13 · MI TERMINAL (native widget stack) -->
-  <section data-t="Mi Terminal" data-anim="term">
+  <!-- 13 · MI TERMINAL (se arma paso a paso) -->
+  <section data-t="Mi Terminal" data-anim="termcfg">
     <div class="glow" style="width:440px;height:440px;background:var(--g2);top:8%;left:-8%;opacity:.2"></div>
     <div class="kick r">Mi Terminal</div>
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:12ch">Y luego, la haces tuya.</h2>
-        <p class="lead r d2">Cada usuario arma <b>su propia terminal</b>: elige temas, estados, comisiones y NOMs; Scope calcula su señal del día, su autoevaluación de cumplimiento y su reporte técnico, que se lleva en PDF con la foto del día.</p>
+        <p class="lead r d2">Elige temas, estados y NOMs; Scope calcula tu señal del día, tu autoevaluación de cumplimiento y tu reporte técnico en PDF. Míralo construirse.</p>
       </div>
       <div class="viz r d3">
-        <div class="tstack">
-          <div class="tw tw-main">
-            <div class="thk">Tu terminal · actividad alta</div>
-            <div class="thd">Agua y Residuos concentran tu señal</div>
-            <div class="tsb">38 menciones en medios · últimos 7 días</div>
-            <div class="twkpi"><div><div class="n" data-count="3">0</div><div class="l">temas</div></div><div><div class="n" data-count="4">0</div><div class="l">estados</div></div><div><div class="n" data-count="3">0</div><div class="l">referencias</div></div></div>
-          </div>
-          <div class="tw tw-chip tw2">
-            <div class="cl">SEÑAL · AGUA</div>
-            <div class="cbar"><span class="ct"><span class="cf" style="--w:82%"></span></span><span class="cn" data-count="27">0</span></div>
-            <div class="cl" style="margin-top:9px">SEÑAL · RESIDUOS</div>
-            <div class="cbar"><span class="ct"><span class="cf" style="--w:46%"></span></span><span class="cn" data-count="11">0</span></div>
-          </div>
-          <div class="tw tw-sig tw3">
-            <div class="sh"><img src="assets/logo-gemi-icon.png" alt="">Signal</div>
-            <div class="sm">«Agua es tu tema más activo: 27 menciones en 7 días.»</div>
+        <div class="tcfg" id="tcfg">
+          <div class="tcursor"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M4 2l15 8-6.5 1.8L11 19 4 2z" fill="#0b1a15" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+          <div class="tct">Arma tu terminal</div>
+          <div class="tcs">Selecciona lo que te importa</div>
+          <div class="tcg"><div class="tcl">TEMAS</div><div class="tchips">
+            <span class="tchip" data-pick>Residuos</span><span class="tchip" data-pick>Agua</span><span class="tchip" data-pick>Economía circular</span><span class="tchip">Cambio climático</span></div></div>
+          <div class="tcg"><div class="tcl">ESTADOS</div><div class="tchips">
+            <span class="tchip" data-pick>Ciudad de México</span><span class="tchip" data-pick>Jalisco</span><span class="tchip" data-pick>Nuevo León</span><span class="tchip">Puebla</span></div></div>
+          <div class="tcg"><div class="tcl">REFERENCIAS</div><div class="tchips">
+            <span class="tchip" data-pick>NOM-161</span><span class="tchip" data-pick>NOM-083</span></div></div>
+          <div class="term-result">
+            <div class="trh">TU SEÑAL · LISTA</div>
+            <div class="trv">Agua y Residuos concentran tu señal</div>
+            <div class="trs">38 menciones en medios · últimos 7 días</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 14 · SIGNAL (native chat) -->
-  <section data-t="Signal">
-    <div class="glow" style="width:480px;height:480px;background:var(--g2);top:12%;right:-8%;opacity:.2"></div>
-    <div class="kick r">Asistente inteligente</div>
+  <!-- 14 · ESCRITORIO -->
+  <section data-t="Escritorio">
+    <div class="glow" style="width:440px;height:440px;background:var(--g3);bottom:-14%;right:-8%;opacity:.2"></div>
+    <div class="kick r">Diseñada para tu terminal de trabajo</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:13ch">Y un asistente que la entiende.</h2>
-        <p class="lead r d2"><b>Signal</b> es la capa conversacional de Scope: pregúntale por tus NOMs, impuestos, comisiones o normativa y responde con los datos de tu terminal. Toda esta información, vuelta una respuesta.</p>
+        <h2 class="r d1" style="max-width:13ch">Pensada para la pantalla grande.</h2>
+        <p class="lead r d2">Scope vive donde se toman las decisiones: en la terminal de trabajo. Cada expediente, cada radar y cada comparación aprovechan el monitor completo, sin recortes.</p>
+        <span class="devnote r d3">La versión para smartphone llega en la siguiente fase</span>
+      </div>
+      <div class="viz r d3">
+        <div class="monitor">
+          <div class="screen"><div class="screen-inner">
+            <div class="mini-nav"><span class="mini-logo">Scope</span><span class="mini-nd"></span><span class="mini-nd"></span><span class="mini-nd"></span><span class="mini-nd"></span></div>
+            <div class="mini-map" id="minimap"></div>
+          </div></div>
+          <div class="stand"></div><div class="stand-base"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 · SIGUIENTE FASE -->
+  <section data-t="Siguiente fase">
+    <div class="glow" style="width:480px;height:480px;background:var(--g2);top:12%;right:-8%;opacity:.2"></div>
+    <div class="kick r">Lo que viene</div>
+    <div class="split">
+      <div class="col">
+        <div class="soonbig r">Siguiente fase</div>
+        <h2 class="r d1" style="max-width:13ch">Esto apenas empieza.</h2>
+        <div class="road">
+          <div class="roaditem r d2"><div class="ri"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9c0 1.6.4 3 1.1 4.3L3 21l4.9-1.1A9 9 0 1 0 12 3Z"/><circle cx="8.5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="15.5" cy="12" r="1"/></svg></div>
+            <div class="rc"><div class="rn">Asistente Signal <span class="soon">Próximamente</span></div><div class="rd">Pregúntale por tus NOMs, impuestos o normativa y responde con los datos de tu terminal.</div></div></div>
+          <div class="roaditem r d3"><div class="ri"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l5-4 5 4v13"/><path d="M9 21v-5h2v5"/><path d="M17 21V11l3-2v12"/></svg></div>
+            <div class="rc"><div class="rn">Lectura municipal <span class="soon">Próximamente</span></div><div class="rd">Ampliación de fuentes al nivel municipal, para bajar la señal a donde opera cada planta.</div></div></div>
+          <div class="roaditem r d4"><div class="ri"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></div>
+            <div class="rc"><div class="rn">App para smartphone <span class="soon">Próximamente</span></div><div class="rd">La experiencia de Scope, también en el teléfono, para consultarla fuera de la terminal.</div></div></div>
+        </div>
       </div>
       <div class="viz r d3">
         <div class="chat">
           <div class="bubble me b1">¿Qué estado cobra más por tonelada de CO₂e?</div>
-          <div class="bubble sg b2"><div class="sgtag"><img src="assets/logo-gemi-icon.png" alt="">Signal</div>Coahuila, con <b>$528 por tonelada</b>: el impuesto al carbono más alto del país, seguido de Nuevo León ($327). ¿Te preparo el comparativo completo?</div>
+          <div class="bubble sg b2"><div class="sgtag"><img src="assets/logo-gemi-icon.png" alt="">Signal <span class="soon">Próximamente</span></div>Coahuila, con <b>$528 por tonelada</b>: el impuesto al carbono más alto del país, seguido de Nuevo León ($327). ¿Te preparo el comparativo completo?</div>
           <div class="bubble sg b3"><div class="typing"><span></span><span></span><span></span></div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 15 · CÓMO SE NUTRE -->
+  <!-- 16 · CÓMO SE NUTRE -->
   <section data-t="La señal" data-anim="count">
-    <div class="glow" style="width:560px;height:560px;background:var(--g3);bottom:-16%;right:-10%;opacity:.26"></div>
+    <div class="techbg"></div>
+    <div class="glow" style="width:560px;height:560px;background:var(--g3);bottom:-16%;right:-10%;opacity:.24"></div>
     <div class="kick r">Cómo se nutre</div>
     <h2 class="r d1" style="max-width:16ch">No es una foto. Es una señal que respira.</h2>
     <p class="lead r d2" style="max-width:780px">Detrás corre maquinaria todos los días: lectores automáticos de prensa nacional y estatal, del DOF, del Congreso, de CONAMER y de la conferencia matutina; e ingesta de datos abiertos oficiales de SEMARNAT e INECC, más bases legales curadas por GEMI. Todo con fuente. Todo fechado.</p>
@@ -469,18 +586,18 @@
     </div>
   </section>
 
-  <!-- 16 · EL TRABAJO DETRÁS -->
+  <!-- 17 · CONSTRUCCIÓN -->
   <section data-t="Construcción" style="justify-content:center">
     <div class="kick r">Lo que hay debajo</div>
-    <h2 class="r d1" style="max-width:18ch">Seis meses de construcción sobre años de experiencia.</h2>
+    <h2 class="r d1" style="max-width:18ch">32 años de experiencia detrás de 6 meses de construcción.</h2>
     <div class="stats">
-      <div class="stat r d2"><div class="n">~6<span class="u"> meses</span></div><div class="l">En el laboratorio de datos, de la idea al producto vivo</div></div>
-      <div class="stat r d3"><div class="n">Años</div><div class="l">De experiencia de GEMI con el sector y las autoridades</div></div>
+      <div class="stat r d2"><div class="n">32<span class="u"> años</span></div><div class="l">De experiencia de GEMI con el sector y las autoridades</div></div>
+      <div class="stat r d3"><div class="n">~6<span class="u"> meses</span></div><div class="l">En el laboratorio de datos, de la idea al producto vivo</div></div>
       <div class="stat r d4"><div class="n">1<span class="u"> plataforma</span></div><div class="l">Donde ese conocimiento se vuelve producto</div></div>
     </div>
   </section>
 
-  <!-- 17 · IMPACTO -->
+  <!-- 18 · IMPACTO -->
   <section data-t="Impacto" style="justify-content:center">
     <div class="kick r">Para quién</div>
     <h2 class="r d1" style="max-width:18ch">Para quien vive de anticiparse.</h2>
@@ -488,7 +605,7 @@
     <p class="lead r d3">Direcciones de sostenibilidad, asuntos regulatorios y jurídicos: lo que antes eran semanas de despacho, aquí es una pantalla.</p>
   </section>
 
-  <!-- 18 · GEMI / FUTURO -->
+  <!-- 19 · FUTURO -->
   <section data-t="Futuro">
     <div class="glow" style="width:600px;height:600px;background:var(--g);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.12"></div>
     <div class="kick r">El motor y el futuro</div>
@@ -501,15 +618,15 @@
     </div>
   </section>
 
-  <!-- 19 · PRECIOS -->
+  <!-- 20 · PRECIOS -->
   <section data-t="Acceso">
     <div class="glow" style="width:520px;height:520px;background:var(--g3);top:-12%;right:-8%;opacity:.22"></div>
     <div class="kick r">Acceso</div>
     <h2 class="r d1" style="max-width:14ch">Un precio para cada ritmo.</h2>
     <div class="prices">
-      <div class="price r d2"><div class="p">Mensual</div><div class="amt"><span class="c">$</span>1,699</div><div class="per">por usuario · al mes</div></div>
-      <div class="price r d3"><div class="p">Trimestral</div><div class="amt"><span class="c">$</span>4,099</div><div class="per">por usuario · cada 3 meses</div></div>
-      <div class="price best r d4"><div class="tag">Mejor valor</div><div class="p">Anual</div><div class="amt"><span class="c">$</span>17,999</div><div class="per">por usuario · al año</div><div class="note">Equivale a dos meses sin costo.</div></div>
+      <div class="price r d2"><div class="ptag"></div><div class="p">Mensual</div><div class="amt"><span class="c">$</span>1,699</div><div class="per">por usuario · al mes</div><div class="note"></div></div>
+      <div class="price r d3"><div class="ptag"></div><div class="p">Trimestral</div><div class="amt"><span class="c">$</span>4,099</div><div class="per">por usuario · cada 3 meses</div><div class="note"></div></div>
+      <div class="price best r d4"><div class="ptag"><span>Mejor valor</span></div><div class="p">Anual</div><div class="amt"><span class="c">$</span>17,999</div><div class="per">por usuario · al año</div><div class="note">Dos meses sin costo</div></div>
     </div>
     <div class="socios r d5">
       <div class="t">Los socios de GEMI ya están dentro.</div>
@@ -517,7 +634,68 @@
     </div>
   </section>
 
-  <!-- 20 · CIERRE -->
+  <!-- 20b · INGRESOS -->
+  <section data-t="Ingresos" data-anim="rev">
+    <div class="techbg"></div>
+    <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-12%;left:-8%;opacity:.2"></div>
+    <div class="kick r">El retorno para GEMI</div>
+    <h2 class="r d1" style="max-width:16ch">Veinte usuarios sostienen una cuota.</h2>
+    <p class="lead r d2" style="max-width:700px">Con la suscripción mensual ($1,699 por usuario), esto es lo que Scope aporta a GEMI en un año, según cuántos usuarios sostenga.</p>
+    <div class="costscale r d3" style="max-width:720px;margin-top:24px">
+      <div class="cl">Ingreso anual estimado · plan mensual</div>
+      <div id="revbars"></div>
+      <div class="cperuser">Con <b>~20 usuarios</b> sostenidos durante un año, Scope aporta <b>$407,760</b>: la cuota anual de una empresa (~$400,000 MXN).</div>
+    </div>
+  </section>
+
+  <!-- 21 · OPERACIÓN -->
+  <section data-t="Operación" data-anim="cost">
+    <div class="techbg"></div>
+    <div class="glow" style="width:480px;height:480px;background:var(--g3);bottom:-14%;left:-8%;opacity:.2"></div>
+    <div class="kick r">La operación</div>
+    <h2 class="r d1" style="max-width:15ch">Lo que cuesta sostenerlo.</h2>
+    <div class="costwrap">
+      <div class="costnow r d2">
+        <div class="cl">Hoy</div>
+        <div class="cbig">Costo marginal</div>
+        <div class="cp">Scope corre sobre infraestructura de bajo costo: hosting estático y automatización que se actualiza sola. Por debajo de <b>$1,000 MXN al mes</b>.</div>
+      </div>
+      <div class="costscale r d3">
+        <div class="cl">Con 1,000 usuarios activos · estimación mensual</div>
+        <div id="costbars"></div>
+        <div class="ctotal"><span class="tl">Total estimado</span><span class="tv"><span style="font-size:.6em;color:var(--mut)">$</span><span data-count="20000">0</span> MXN</span></div>
+        <div class="cperuser">Alrededor de <b>$20 por usuario al mes</b> para operar, frente a un precio desde <b>$1,699</b>. El margen es lo que sostiene la reinversión en más datos e inteligencia.</div>
+      </div>
+    </div>
+    <div class="cest r d3">Estimación de operación. Incluye bases de datos, almacenamiento, servicios de IA, ingesta y hosting. Los servicios de IA escalan con el uso del asistente.</div>
+  </section>
+
+  <!-- 22 · LANZAMIENTO -->
+  <section data-t="Lanzamiento">
+    <div class="glow" style="width:520px;height:520px;background:var(--g2);top:-12%;right:-8%;opacity:.2"></div>
+    <div class="kick r">El lanzamiento</div>
+    <h2 class="r d1" style="max-width:14ch">Listos para octubre.</h2>
+    <div class="stats" style="max-width:820px">
+      <div class="stat r d2"><div class="n"><span style="font-size:.5em;color:var(--mut)">$</span>20,000</div><div class="l">Lanzamiento · inversión única</div></div>
+      <div class="stat r d3"><div class="n"><span style="font-size:.5em;color:var(--mut)">$</span>30,000</div><div class="l">Marketing, ya requerido hasta fin de año</div></div>
+      <div class="stat r d4"><div class="n"><span style="font-size:.5em;color:var(--mut)">$</span>5,000<span class="u"> /mes</span></div><div class="l">Mantenimiento hasta diciembre</div></div>
+    </div>
+    <div class="evo r d4" style="margin-top:38px;max-width:640px">
+      <div class="evo-pt"><span class="dot"></span><div class="lb">Agosto</div><div class="sub">construcción</div></div>
+      <div class="evo-seg"></div>
+      <div class="evo-pt"><span class="dot"></span><div class="lb">Septiembre</div><div class="sub">preparación</div></div>
+      <div class="evo-seg"></div>
+      <div class="evo-pt hl"><span class="dot"></span><div class="lb">Octubre</div><div class="sub">primeros clientes</div></div>
+      <div class="evo-seg"></div>
+      <div class="evo-pt"><span class="dot"></span><div class="lb">Diciembre</div><div class="sub">evaluación</div></div>
+    </div>
+    <div class="goalband r d5">
+      <div class="gt">Los primeros clientes pagados en octubre.</div>
+      <div class="gd">En el marco de la Semana por el Clima, el momento donde el sector mira hacia lo ambiental.</div>
+    </div>
+  </section>
+
+  <!-- 23 · CIERRE -->
   <section data-t="Cierre" style="justify-content:center;text-align:center;align-items:center">
     <div class="glow" style="width:680px;height:680px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.3"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:38px;margin-bottom:30px">
@@ -535,177 +713,198 @@
   var dotsWrap=document.getElementById('dots'), prog=document.getElementById('prog');
   var ease=function(t){return 1-Math.pow(1-t,3);};
 
-  // ---- dot map build ----
+  // dot map
   (function(){
     var w=document.getElementById('mapwrap'); if(!w)return;
-    var pts=[], N=44;
-    for(var i=0;i<N;i++){
-      var t=i/(N-1);
-      var cx=12+t*72+(Math.sin(i*1.7)*10);
-      var cy=18+t*58+(Math.cos(i*2.1)*13);
-      pts.push([Math.max(4,Math.min(92,cx)),Math.max(6,Math.min(90,cy))]);
-    }
+    var pts=[],N=44;
+    for(var i=0;i<N;i++){var t=i/(N-1);var cx=12+t*72+Math.sin(i*1.7)*10;var cy=18+t*58+Math.cos(i*2.1)*13;pts.push([Math.max(4,Math.min(92,cx)),Math.max(6,Math.min(90,cy))]);}
     pts.push([86,40],[90,34],[83,46]);
     var hot={5:1,12:2,19:1,27:2,33:1,40:2,45:1};
-    pts.forEach(function(p,i){
-      var d=document.createElement('div'); d.className='mdot'+(hot[i]?(' hot'+(hot[i]===2?' h2':'')):'');
-      d.style.left=p[0]+'%'; d.style.top=p[1]+'%'; d.style.transitionDelay=(i*22)+'ms';
-      if(hot[i])d.style.animationDelay=(i*120)+'ms';
-      w.appendChild(d);
-    });
+    pts.forEach(function(p,i){var d=document.createElement('div');d.className='mdot'+(hot[i]?(' hot'+(hot[i]===2?' h2':'')):'');d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.style.transitionDelay=(i*22)+'ms';if(hot[i])d.style.animationDelay=(i*120)+'ms';w.appendChild(d);});
   })();
 
-  // ---- radar cards (sparklines en movimiento continuo, como el Radar real) ----
+  // mini dot map (monitor)
+  (function(){
+    var w=document.getElementById('minimap'); if(!w)return;
+    var pts=[],N=34;
+    for(var i=0;i<N;i++){var t=i/(N-1);var cx=10+t*76+Math.sin(i*1.7)*9;var cy=14+t*66+Math.cos(i*2.1)*12;pts.push([Math.max(3,Math.min(94,cx)),Math.max(4,Math.min(92,cy))]);}
+    pts.push([88,42],[92,34]);
+    var hot={4:1,11:2,18:1,25:2,31:1};
+    pts.forEach(function(p,i){var d=document.createElement('div');d.className='md'+(hot[i]?(' on'+(hot[i]===2?'2':'')):'');d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.style.transitionDelay=(i*20)+'ms';w.appendChild(d);});
+  })();
+
+  // radar (idéntico al real)
   (function(){
     var host=document.getElementById('rgrid'); if(!host)return;
-    var cards=[
-      {t:'Residuos',c:'#3fe0ad',v:'Alta',tr:'↑ presión',tc:'#e6b45e',sp:4.2,a1:7,a2:3,ph:0.4},
-      {t:'Agua',c:'#5ec8e0',v:'27',u:' menc.',tr:'↑ subiendo',tc:'#3fe0ad',sp:5.4,a1:6,a2:4,ph:1.3},
-      {t:'Economía circular',c:'#12b98a',v:'Media',tr:'→ estable',tc:'#a5bab2',sp:6.6,a1:4,a2:2,ph:2.1},
-      {t:'Cambio climático',c:'#9d8cf0',v:'Media',tr:'↑ leve',tc:'#3fe0ad',sp:5.9,a1:5,a2:3,ph:0.8}
+    var ICON={
+      residuos:'<path d="M3 6h14"/><path d="M8 6V4h4v2"/><path d="M5 6l1 11h8l1-11"/>',
+      agua:'<path d="M10 2S4 9 4 13a6 6 0 0 0 12 0C16 9 10 2 10 2Z"/>',
+      circular:'<path d="M5 7a6 6 0 0 1 10-1"/><path d="M15 13a6 6 0 0 1-10 1"/><path d="M15 3v3h-3"/><path d="M5 17v-3h3"/>',
+      cc:'<path d="M6 14a3.5 3.5 0 0 1-.5-7 4.5 4.5 0 0 1 8.6-1A3.2 3.2 0 0 1 14.5 14Z"/>'
+    };
+    var T=[
+      {id:'residuos',name:'Residuos',col:'#066750',men:47,dof:3,med:44,d:6,s:[22,20,24,23,26,25,28,27,30,29,33,31,35,34,38,37,41,40,44,43,47]},
+      {id:'agua',name:'Agua',col:'#0E8C74',men:39,dof:2,med:37,d:4,s:[18,19,17,20,22,21,24,23,26,25,27,26,29,28,31,30,33,34,36,37,39]},
+      {id:'circular',name:'Economía circular',col:'#12A594',men:21,dof:1,med:20,d:2,s:[8,9,8,10,9,11,10,12,11,13,12,14,13,15,14,16,15,17,18,20,21]},
+      {id:'cc',name:'Cambio climático',col:'#0A7C63',men:28,dof:2,med:26,d:3,s:[12,13,12,14,15,14,16,15,17,18,17,19,20,19,22,21,24,23,25,27,28]}
     ];
-    var W=168,H=36,mid=H/2,step=6;
-    function wave(c){
-      var d='',ar='';
-      for(var x=0;x<=2*W;x+=step){
-        var t=x/W;
-        var y=mid-(c.a1*Math.sin(2*Math.PI*t+c.ph)+c.a2*Math.sin(4*Math.PI*t+c.ph*1.7))*0.9;
-        y=Math.max(4,Math.min(H-4,y));
-        d+=(x?'L':'M')+x+' '+y.toFixed(1);
-      }
-      ar=d+'L'+(2*W)+' '+H+'L0 '+H+'Z';
-      return '<g class="stream" style="--sp:'+c.sp+'s"><path class="fillw" d="'+ar+'" fill="'+c.c+'"/><path class="strk" d="'+d+'" stroke="'+c.c+'"/></g>';
+    function spark(data,color,idx){
+      var W=180,H=26,n=data.length,mx=Math.max.apply(null,data.concat([1]));
+      var pts=data.map(function(v,i){return ((i/(n-1))*W).toFixed(1)+','+(H-2-(v/mx)*(H-4)).toFixed(1);}).join(' ');
+      var lx=W,ly=(H-2-(data[n-1]/mx)*(H-4)).toFixed(1),gid='rdg'+idx,delay=-(idx*2);
+      return '<svg viewBox="0 0 180 26" preserveAspectRatio="none" style="width:100%;height:26px;display:block;overflow:visible">'
+        +'<defs><linearGradient id="'+gid+'" x1="0" y1="0" x2="1" y2="0">'
+        +'<stop offset="0" stop-color="'+color+'" stop-opacity="0"/><stop offset="0.45" stop-color="'+color+'" stop-opacity="0.35"/><stop offset="1" stop-color="'+color+'" stop-opacity="1"/></linearGradient></defs>'
+        +'<polyline class="rdc-spk" pathLength="1" points="'+pts+'" fill="none" stroke="url(#'+gid+')" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" style="animation-delay:'+delay+'s"/>'
+        +'<circle class="rdc-spk-dot" cx="'+lx+'" cy="'+ly+'" r="2" fill="'+color+'" style="animation-delay:'+delay+'s"/></svg>';
     }
-    host.innerHTML=cards.map(function(c){
-      return '<div class="rcard"><div class="rt"><i style="background:'+c.c+'"></i>'+c.t+'</div>'
-        +'<div class="rv">'+c.v+(c.u?'<span class="u">'+c.u+'</span>':'')+'</div>'
-        +'<div class="rtr" style="color:'+c.tc+'">'+c.tr+'</div>'
-        +'<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'+wave(c)+'</svg></div>';
+    function stat(v,l,al){return '<div'+(al?' style="text-align:'+al+'"':'')+'><div class="rstat-v">'+v+'</div><div class="rstat-l">'+l+'</div></div>';}
+    host.innerHTML=T.map(function(t,i){
+      return '<div class="rtile"><div class="rhead"><span class="ricon" style="color:'+t.col+'"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON[t.id]+'</svg></span><span class="rname">'+t.name+'</span></div>'
+        +'<div class="rsub">'+t.men+' menciones · 90d</div>'
+        +'<div class="rspk">'+spark(t.s,t.col,i)+'</div>'
+        +'<div class="rstats">'+stat(t.dof,'DOF')+stat(t.med,'medios')+stat((t.d>=0?'+':'')+t.d,'Δ 30d','right')+'</div></div>';
     }).join('');
   })();
 
-  // ---- congreso chart ----
+  // congreso chart
   function drawCong(){
     var svg=document.getElementById('congsvg'); if(!svg)return;
     var dip=[4,6,9,7,11,8,13,10], sen=[3,4,5,8,6,9,7,11], n=dip.length;
-    var W=620,H=200,PL=30,PR=16,PT=16,PB=30,IW=W-PL-PR,IH=H-PT-PB;
-    var mx=Math.max.apply(null,dip.concat(sen));
+    var W=620,H=200,PL=30,PR=16,PT=16,PB=30,IW=W-PL-PR,IH=H-PT-PB, mx=Math.max.apply(null,dip.concat(sen));
     function X(i){return PL+i/(n-1)*IW;} function Y(v){return PT+IH-(v/mx)*IH;}
     function smooth(a){var p=a.map(function(v,i){return[X(i),Y(v)];});var d='M'+p[0][0].toFixed(1)+','+p[0][1].toFixed(1);
       for(var i=0;i<p.length-1;i++){var p0=p[i-1]||p[i],p1=p[i],p2=p[i+1],p3=p[i+2]||p[i+1];
         d+=' C'+(p1[0]+(p2[0]-p0[0])/6).toFixed(1)+','+(p1[1]+(p2[1]-p0[1])/6).toFixed(1)+' '+(p2[0]-(p3[0]-p1[0])/6).toFixed(1)+','+(p2[1]-(p3[1]-p1[1])/6).toFixed(1)+' '+p2[0].toFixed(1)+','+p2[1].toFixed(1);}
       return d;}
     var grid='';[0,Math.round(mx/2),mx].forEach(function(v){var y=Y(v).toFixed(1);
-      grid+='<line x1="'+PL+'" y1="'+y+'" x2="'+(W-PR)+'" y2="'+y+'" stroke="rgba(255,255,255,.08)"/>'
-        +'<text x="'+(PL-6)+'" y="'+(Y(v)+3).toFixed(1)+'" text-anchor="end" font-size="9" fill="#63776f">'+v+'</text>';});
+      grid+='<line x1="'+PL+'" y1="'+y+'" x2="'+(W-PR)+'" y2="'+y+'" stroke="rgba(255,255,255,.08)"/><text x="'+(PL-6)+'" y="'+(Y(v)+3).toFixed(1)+'" text-anchor="end" font-size="9" fill="#63776f">'+v+'</text>';});
     var xl='';for(var i=0;i<n;i+=2){xl+='<text x="'+X(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" font-size="9" fill="#63776f">s'+(i+1)+'</text>';}
-    var ptsD='',ptsS='';for(var j=0;j<n;j++){
-      ptsD+='<circle cx="'+X(j).toFixed(1)+'" cy="'+Y(dip[j]).toFixed(1)+'" r="3" fill="#3fe0ad" opacity="0" class="cpt"/>';
-      ptsS+='<circle cx="'+X(j).toFixed(1)+'" cy="'+Y(sen[j]).toFixed(1)+'" r="3" fill="#066750" opacity="0" class="cpt"/>';}
-    svg.innerHTML=grid+xl
-      +'<path id="cpD" d="'+smooth(dip)+'" fill="none" stroke="#3fe0ad" stroke-width="2.6" stroke-linecap="round"/>'
-      +'<path id="cpS" d="'+smooth(sen)+'" fill="none" stroke="#066750" stroke-width="2.6" stroke-linecap="round"/>'
-      +ptsD+ptsS;
-    ['cpD','cpS'].forEach(function(id,k){var p=svg.querySelector('#'+id);var L=p.getTotalLength();
-      p.style.strokeDasharray=L;p.style.strokeDashoffset=L;p.getBoundingClientRect();
-      p.style.transition='stroke-dashoffset 1.5s ease '+(k*0.25)+'s';p.style.strokeDashoffset='0';});
-    var cpts=svg.querySelectorAll('.cpt');
-    cpts.forEach(function(c,i){setTimeout(function(){c.style.transition='opacity .4s';c.style.opacity='1';},1500+i*40);});
+    var pd='',ps='';for(var j=0;j<n;j++){pd+='<circle cx="'+X(j).toFixed(1)+'" cy="'+Y(dip[j]).toFixed(1)+'" r="3" fill="#3fe0ad" opacity="0" class="cpt"/>';ps+='<circle cx="'+X(j).toFixed(1)+'" cy="'+Y(sen[j]).toFixed(1)+'" r="3" fill="#066750" opacity="0" class="cpt"/>';}
+    svg.innerHTML=grid+xl+'<path id="cpD" d="'+smooth(dip)+'" fill="none" stroke="#3fe0ad" stroke-width="2.6" stroke-linecap="round"/><path id="cpS" d="'+smooth(sen)+'" fill="none" stroke="#066750" stroke-width="2.6" stroke-linecap="round"/>'+pd+ps;
+    ['cpD','cpS'].forEach(function(id,k){var p=svg.querySelector('#'+id);var L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;p.getBoundingClientRect();p.style.transition='stroke-dashoffset 1.5s ease '+(k*0.25)+'s';p.style.strokeDashoffset='0';});
+    svg.querySelectorAll('.cpt').forEach(function(c,i){setTimeout(function(){c.style.transition='opacity .4s';c.style.opacity='1';},1500+i*40);});
   }
 
-  // ---- count-up ----
-  function countUp(el){
-    var target=parseFloat(el.getAttribute('data-count')),start=null,dur=1100;
-    function step(ts){if(!start)start=ts;var t=Math.min(1,(ts-start)/dur);
-      el.textContent=Math.round(ease(t)*target);if(t<1)requestAnimationFrame(step);}
-    requestAnimationFrame(step);
-  }
+  // count-up
+  function countUp(el){var target=parseFloat(el.getAttribute('data-count')),start=null,dur=1100;
+    function step(ts){if(!start)start=ts;var t=Math.min(1,(ts-start)/dur);el.textContent=Math.round(ease(t)*target).toLocaleString('en-US');if(t<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
   function runCounts(sec){[].forEach.call(sec.querySelectorAll('[data-count]'),function(el){el.textContent='0';countUp(el);});}
+
+  // impuestos bars
+  (function(){
+    var host=document.getElementById('impbars'); if(!host)return;
+    var data=[{st:'Coahuila',ab:'COAH',v:528,top:true},{st:'Nuevo León',ab:'NL',v:327},{st:'Zacatecas',ab:'ZAC',v:250},{st:'Estado de México',ab:'MÉX',v:58}];
+    host.innerHTML=data.map(function(d){return '<div class="brow'+(d.top?' top':'')+'"><div class="nm">'+d.st+'<span class="ab">'+d.ab+'</span></div><div class="btrack"><div class="bfill" data-w="'+(d.v/528*100).toFixed(1)+'%"></div></div><div class="val"><span class="c">$</span><span data-count="'+d.v+'">0</span>'+(d.top?'<div class="topflag">▲ más caro</div>':'')+'</div></div>';}).join('');
+  })();
+
+  // costos bars
+  (function(){
+    var host=document.getElementById('costbars'); if(!host)return;
+    var data=[{n:'Inteligencia artificial',v:11000},{n:'Bases de datos',v:2800},{n:'Cómputo e ingesta',v:2600},{n:'Almacenamiento',v:2000},{n:'Hosting, CDN y correo',v:1600}];
+    host.innerHTML=data.map(function(d){return '<div class="crow"><span class="cn">'+d.n+'</span><span class="ct"><span class="cf" data-w="'+(d.v/11000*100).toFixed(1)+'%"></span></span><span class="cv"><span style="color:var(--mut);font-weight:600">$</span><span data-count="'+d.v+'">0</span></span></div>';}).join('');
+  })();
+
+  // ingresos bars
+  (function(){
+    var host=document.getElementById('revbars'); if(!host)return;
+    var data=[{n:'5 usuarios',v:101940},{n:'10 usuarios',v:203880},{n:'20 usuarios',v:407760,top:true},{n:'50 usuarios',v:1019400}];
+    host.innerHTML=data.map(function(d){return '<div class="crow"><span class="cn">'+d.n+'</span><span class="ct"><span class="cf'+(d.top?' hi':'')+'" data-w="'+(d.v/1019400*100).toFixed(1)+'%"></span></span><span class="cv"><span style="color:var(--mut);font-weight:600">$</span><span data-count="'+d.v+'">0</span></span></div>';}).join('');
+  })();
+
+  // expediente: silueta CDMX + altura de auto-scroll
+  (function(){
+    var sil=document.getElementById('expsil');
+    if(sil)sil.innerHTML='<path d="M0.46 0.46L0.29 0.45L0.16 0.46L0.04 0.37L0.00 0.26L0.10 0.19L0.20 0.03L0.25 0.04L0.33 0.17L0.42 0.24L0.46 0.30L0.45 0.43L0.46 0.46Z"/>';
+    var sc=document.getElementById('expscroll');
+    if(sc){setTimeout(function(){var view=sc.parentElement;var over=sc.scrollHeight-view.clientHeight;if(over>10)sc.style.setProperty('--sc','-'+over+'px');},60);}
+  })();
+
+  // internacional: lista real + altura de scroll
+  (function(){
+    var host=document.getElementById('intlscroll'); if(!host)return;
+    var D=[
+      ['UE','EUDR · Productos libres de deforestación','Reglamento (UE) 2023/1115','cad'],
+      ['UE','CBAM · Ajuste en frontera por carbono','Reglamento (UE) 2023/956','cad'],
+      ['UE','CSDDD · Diligencia debida en sostenibilidad','Directiva (UE) 2024/1760','cad'],
+      ['UE','ESPR · Ecodiseño para productos sostenibles','Reglamento (UE) 2024/1781','cad'],
+      ['UE','PPWR · Envases y residuos de envases','Reglamento (UE) 2025/40','cad'],
+      ['UE','CSRD · Reporte de sostenibilidad corporativa','Directiva (UE) 2022/2464','cad'],
+      ['DE','LkSG · Diligencia en cadenas de suministro','Alemania','cad'],
+      ['FR','Loi de Vigilance · Deber de vigilancia','Francia · Ley 2017-399','cad'],
+      ['US','UFLPA · Prevención de trabajo forzoso','Estados Unidos','cad'],
+      ['T-MEC','Capítulo 24 · Medio Ambiente','América del Norte','tra'],
+      ['ONU','Acuerdo de París','Tratado vinculante','tra'],
+      ['ALC','Acuerdo de Escazú','Tratado vinculante','tra'],
+      ['ONU','Convenio de Basilea','Movimientos de residuos peligrosos','tra'],
+      ['CL','Ley REP 20.920 · Gestión de residuos','Chile','ley']
+    ];
+    var CH={cad:['chip cad','cadena de suministro'],tra:['chip tra','tratado'],ley:['chip ley','ley extranjera']};
+    host.innerHTML=D.map(function(r){var c=CH[r[3]];return '<div class="irow"><div class="jz">'+r[0]+'</div><div class="it"><div class="a">'+r[1]+'</div><div class="b">'+r[2]+'</div></div><span class="'+c[0]+'">'+c[1]+'</span></div>';}).join('');
+    setTimeout(function(){var view=host.parentElement;var over=host.scrollHeight-view.clientHeight;if(over>10)host.style.setProperty('--isc','-'+over+'px');},60);
+  })();
+
+  // Senado: typewriter de la búsqueda
+  var senDone=false;
+  function startSen(sec){
+    if(senDone)return; senDone=true;
+    var el=document.getElementById('senq'); if(!el)return;
+    var txt='Medio Ambiente',i=0;
+    (function tp(){if(i<=txt.length){el.textContent=txt.slice(0,i);i++;setTimeout(tp,70);}})();
+  }
+
+  // Terminal: se arma paso a paso (loop)
+  var termStarted=false;
+  function startTerm(sec){
+    if(termStarted)return; termStarted=true;
+    var host=document.getElementById('tcfg'); if(!host)return;
+    var picks=[].slice.call(host.querySelectorAll('.tchip[data-pick]'));
+    var cursor=host.querySelector('.tcursor');
+    var result=host.querySelector('.term-result');
+    var timers=[];
+    function clearAll(){timers.forEach(clearTimeout);timers=[];}
+    function reset(){picks.forEach(function(c){c.classList.remove('sel','pop');});result.classList.remove('show');cursor.style.opacity='0';}
+    function run(){
+      clearAll();reset();
+      var t=500;
+      picks.forEach(function(chip){
+        timers.push(setTimeout(function(){
+          cursor.style.opacity='1';
+          cursor.style.transform='translate('+(chip.offsetLeft+chip.offsetWidth-16)+'px,'+(chip.offsetTop+chip.offsetHeight/2-4)+'px)';
+        },t));
+        timers.push(setTimeout(function(){chip.classList.add('sel','pop');setTimeout(function(){chip.classList.remove('pop');},200);},t+430));
+        t+=560;
+      });
+      timers.push(setTimeout(function(){cursor.style.opacity='0';result.classList.add('show');},t+250));
+      timers.push(setTimeout(run,t+3200));
+    }
+    run();
+  }
 
   function runAnim(sec){
     var a=sec.getAttribute('data-anim');
-    if(a==='cong'){drawCong();}
-    if(a==='count'||a==='term'){runCounts(sec);}
-    if(a==='imp'){
-      var rows=sec.querySelectorAll('.bfill');
-      rows.forEach(function(f){var w=f.getAttribute('data-w');f.style.width='0';f.getBoundingClientRect();setTimeout(function(){f.style.width=w;},40);});
-      runCounts(sec);
-    }
+    if(a==='cong')drawCong();
+    if(a==='count')runCounts(sec);
+    if(a==='imp'){sec.querySelectorAll('.bfill').forEach(function(f){var w=f.getAttribute('data-w');f.style.width='0';f.getBoundingClientRect();setTimeout(function(){f.style.width=w;},40);});runCounts(sec);}
+    if(a==='cost'||a==='rev'){sec.querySelectorAll('.crow .cf').forEach(function(f){var w=f.getAttribute('data-w');f.style.width='0';f.getBoundingClientRect();setTimeout(function(){f.style.width=w;},40);});runCounts(sec);}
+    if(a==='termcfg')startTerm(sec);
   }
 
-  // ---- fichas por entidad (real state outlines + mini spark) ----
-  (function(){
-    var host=document.getElementById('fanwrap'); if(!host)return;
-    var OUT={
-      Puebla:{vb:'0 0 2.33 2.94',d:'M2.33 2.42L2.25 2.52L2.12 2.61L1.90 2.69L1.75 2.70L1.60 2.89L1.55 2.80L1.47 2.65L1.46 2.57L1.44 2.50L1.29 2.57L1.25 2.73L1.35 2.80L1.20 2.86L1.11 2.80L0.98 2.83L0.82 2.86L0.66 2.91L0.53 2.84L0.42 2.88L0.38 2.83L0.25 2.77L0.26 2.69L0.14 2.65L0.02 2.57L0.01 2.49L0.18 2.37L0.35 2.42L0.33 2.20L0.34 2.05L0.43 1.82L0.39 1.55L0.40 1.45L0.42 1.37L0.51 1.43L0.64 1.53L0.76 1.66L0.90 1.71L1.05 1.61L1.19 1.61L1.28 1.53L1.42 1.49L1.36 1.42L1.30 1.33L1.22 1.33L1.19 1.26L1.03 1.13L0.92 1.16L0.81 1.15L0.78 0.97L0.86 0.76L0.86 0.63L0.80 0.61L0.75 0.55L0.93 0.44L1.03 0.26L1.06 0.13L1.14 0.04L1.26 0.00L1.28 0.07L1.27 0.10L1.30 0.19L1.44 0.31L1.38 0.40L1.27 0.39L1.29 0.63L1.40 0.65L1.48 0.71L1.60 0.57L1.71 0.61L1.88 0.68L1.76 0.89L1.74 1.03L1.66 1.19L1.66 1.30L1.66 1.40L1.80 1.47L1.92 1.50L2.01 1.60L1.79 1.62L1.81 1.87L1.73 2.00L1.78 2.18L1.93 2.23L1.97 2.35L2.05 2.38L2.19 2.31L2.32 2.41L2.33 2.42Z'},
-      Jalisco:{vb:'0 0 4.15 3.71',d:'M2.92 0.98L3.05 0.95L3.20 0.96L3.33 1.04L3.50 1.00L3.61 0.87L3.77 0.80L3.72 0.70L3.72 0.62L3.95 0.69L4.13 0.83L4.09 0.93L4.02 1.18L4.03 1.27L4.02 1.35L3.94 1.39L3.90 1.51L3.80 1.58L3.69 1.76L3.60 1.87L3.59 1.94L3.72 2.07L3.64 2.19L3.57 2.30L3.43 2.34L3.28 2.35L3.17 2.37L3.08 2.42L2.99 2.51L2.87 2.55L2.82 2.55L2.69 2.53L2.64 2.56L2.60 2.71L2.66 2.72L2.81 2.75L2.92 2.84L2.88 2.92L2.94 3.05L2.93 3.19L3.09 3.21L3.06 3.30L2.96 3.45L2.87 3.43L2.69 3.56L2.57 3.64L2.46 3.68L2.33 3.70L2.24 3.69L2.20 3.63L2.19 3.53L2.19 3.41L2.16 3.32L2.12 3.26L2.08 3.11L1.85 3.26L1.67 3.26L1.58 3.31L1.45 3.34L1.29 3.38L1.22 3.41L1.15 3.40L1.06 3.47L0.97 3.45L0.92 3.43L0.91 3.39L0.86 3.38L0.72 3.32L0.66 3.22L0.61 3.16L0.50 3.04L0.36 2.90L0.22 2.71L0.15 2.56L0.14 2.44L0.04 2.35L0.04 2.24L0.21 2.18L0.33 2.16L0.44 2.11L0.41 1.99L0.46 1.89L0.56 1.78L0.68 1.76L0.79 1.71L0.95 1.69L1.08 1.77L1.20 1.86L1.31 1.95L1.41 2.08L1.39 1.98L1.35 1.88L1.42 1.80L1.45 1.67L1.55 1.52L1.67 1.51L1.84 1.43L1.88 1.31L1.86 1.14L1.78 0.99L1.66 0.94L1.56 0.91L1.52 0.76L1.38 0.73L1.34 0.62L1.39 0.44L1.43 0.37L1.49 0.36L1.50 0.27L1.62 0.23L1.60 0.36L1.72 0.30L1.65 0.10L1.74 0.02L1.90 0.02L1.87 0.10L1.74 0.33L1.76 0.49L1.83 0.52L1.85 0.29L1.95 0.18L2.12 0.24L2.15 0.36L2.00 0.59L2.09 0.63L2.20 0.63L2.29 0.53L2.36 0.46L2.33 0.37L2.49 0.35L2.48 0.43L2.60 0.47L2.56 0.64L2.45 0.74L2.25 0.87L2.13 0.94L2.13 1.10L2.06 1.17L1.99 1.23L2.10 1.29L2.14 1.35L1.94 1.45L2.04 1.50L2.13 1.62L2.26 1.62L2.38 1.65L2.48 1.62L2.55 1.62L2.62 1.53L2.76 1.51L2.90 1.40L3.06 1.22L2.92 1.06L2.92 0.98Z'},
-      NL:{vb:'0 0 2.85 4.60',d:'M1.53 0.10L1.46 0.18L1.35 0.21L1.32 0.30L1.49 0.31L1.46 0.40L1.50 0.52L1.55 0.66L1.54 0.74L1.47 0.86L1.54 0.90L1.59 1.00L1.58 1.11L1.67 1.14L1.74 1.21L1.81 1.31L1.96 1.45L2.03 1.55L2.10 1.55L2.11 1.62L2.12 1.67L2.28 1.71L2.40 1.81L2.55 1.75L2.68 1.81L2.70 1.97L2.71 2.10L2.71 2.21L2.85 2.27L2.79 2.35L2.66 2.47L2.54 2.53L2.37 2.59L2.25 2.66L2.19 2.61L2.08 2.70L2.09 2.79L2.07 2.87L1.97 2.97L1.92 2.96L1.81 3.04L1.73 3.07L1.59 3.15L1.50 3.22L1.57 3.29L1.62 3.42L1.58 3.60L1.63 3.68L1.70 3.81L1.77 3.87L1.71 3.94L1.68 4.00L1.48 4.01L1.39 4.06L1.30 4.23L1.30 4.37L1.23 4.43L1.14 4.44L1.03 4.51L0.91 4.59L0.80 4.54L0.76 4.39L0.73 4.26L0.77 4.10L0.74 3.97L0.74 3.81L0.61 3.61L0.54 3.49L0.55 3.39L0.52 3.31L0.41 3.23L0.47 3.10L0.44 3.00L0.40 2.90L0.49 2.86L0.49 2.76L0.49 2.61L0.58 2.49L0.72 2.53L0.85 2.56L0.97 2.57L0.99 2.46L0.92 2.41L0.81 2.36L0.65 2.26L0.61 2.12L0.45 2.09L0.43 1.86L0.40 1.80L0.31 1.67L0.11 1.49L0.03 1.33L0.15 1.17L0.32 1.13L0.55 1.07L0.60 0.99L0.67 0.88L0.66 0.77L0.61 0.67L0.54 0.67L0.39 0.68L0.42 0.50L0.54 0.43L0.72 0.41L0.74 0.31L0.83 0.14L0.96 0.08L1.16 0.09L1.33 0.06L1.42 0.01L1.49 0.04L1.53 0.10Z'},
-      CDMX:{vb:'0 0 0.47 0.50',d:'M0.46 0.46L0.29 0.45L0.16 0.46L0.04 0.37L0.00 0.26L0.10 0.19L0.20 0.03L0.25 0.04L0.33 0.17L0.42 0.24L0.46 0.30L0.45 0.43L0.46 0.46Z'}
-    };
-    var C=[
-      {n:'Puebla',ab:'PUE',cls:'f0',o:'Puebla',m:[['3','leyes',0],['0','impuestos',1],['0','materiales',1]],sp:[1,0,2,1,2,3,2,4],nw:'4 noticias · 7 días'},
-      {n:'Jalisco',ab:'JAL',cls:'f1',o:'Jalisco',m:[['4','leyes',0],['0','impuestos',1],['3','materiales',0]],sp:[3,5,4,6,8,7,9,11],nw:'11 noticias · 7 días'},
-      {n:'Nuevo León',ab:'NL',cls:'f2',o:'NL',m:[['3','leyes',0],['4','impuestos',0],['0','materiales',1]],sp:[1,2,1,0,2,1,2,3],nw:'3 noticias · 7 días'},
-      {n:'Ciudad de México',ab:'CDMX',cls:'f3',o:'CDMX',m:[['5','leyes',0],['1','impuestos',0],['2','materiales',0]],sp:[2,1,3,2,1,2,3,4],nw:'4 noticias · 7 días'}
-    ];
-    function spark(pts){
-      var W=168,H=26,mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts),rg=(mx-mn)||1,st=W/(pts.length-1);
-      var xy=pts.map(function(v,i){return[i*st,H-3-((v-mn)/rg)*(H-8)];});
-      var ln=xy.map(function(p,i){return(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1);}).join(' ');
-      var ar=ln+'L'+W+' '+H+'L0 '+H+'Z';
-      return '<svg class="fspark" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none"><path class="ar" d="'+ar+'"/><path class="ln" d="'+ln+'" style="--L:200"/></svg>';
-    }
-    host.innerHTML=C.map(function(c){
-      var o=OUT[c.o],sil=o?'<div class="fsil"><svg viewBox="'+o.vb+'" preserveAspectRatio="xMidYMid meet"><path d="'+o.d+'"/></svg></div>':'';
-      var met=c.m.map(function(x){return '<div class="fm"><span class="fmn'+(x[2]?' z':'')+'">'+x[0]+'</span><span class="fml">'+x[1]+'</span></div>';}).join('');
-      return '<div class="fcard '+c.cls+'"><div class="fh"><div><div class="fn">'+c.n+'</div><div class="fa">'+c.ab+' · expediente</div></div>'+sil+'</div>'
-        +'<div class="fmet">'+met+'</div>'+spark(c.sp)+'<div class="fnews">'+c.nw+'</div></div>';
-    }).join('');
-    setTimeout(function(){[].forEach.call(host.querySelectorAll('.fspark .ln'),function(p){p.style.setProperty('--L',p.getTotalLength());});},30);
-  })();
+  // Senado typewriter cuando entra Actores
+  var actSec=secs.filter(function(s){return s.getAttribute('data-t')==='Actores';})[0];
 
-  // ---- impuestos bars (real data) ----
-  (function(){
-    var host=document.getElementById('impbars'); if(!host)return;
-    var data=[
-      {st:'Coahuila',ab:'COAH',v:528,top:true},
-      {st:'Nuevo León',ab:'NL',v:327},
-      {st:'Zacatecas',ab:'ZAC',v:250},
-      {st:'Estado de México',ab:'MÉX',v:58}
-    ];
-    var mx=528;
-    host.innerHTML=data.map(function(d){
-      return '<div class="brow'+(d.top?' top':'')+'"><div class="nm">'+d.st+'<span class="ab">'+d.ab+'</span></div>'
-        +'<div class="btrack"><div class="bfill" data-w="'+(d.v/mx*100).toFixed(1)+'%"></div></div>'
-        +'<div class="val"><span class="c">$</span><span data-count="'+d.v+'">0</span>'+(d.top?'<div class="topflag">▲ más caro</div>':'')+'</div></div>';
-    }).join('');
-  })();
-
-  // ---- tech backgrounds + node networks (data-science feel) ----
-  function buildNet(){
-    var nodes=[[40,60],[120,30],[90,140],[200,90],[260,180],[180,220],[300,80],[340,200],[60,240],[150,320],[280,300],[360,340]];
-    var edges=[[0,1],[0,2],[1,3],[2,3],[3,4],[3,6],[4,5],[2,5],[5,9],[8,9],[9,10],[4,10],[10,11],[6,7],[7,11],[8,2]];
-    var e=edges.map(function(p){return '<path d="M'+nodes[p[0]][0]+' '+nodes[p[0]][1]+'L'+nodes[p[1]][0]+' '+nodes[p[1]][1]+'"/>';}).join('');
-    var c=nodes.map(function(n,i){return '<circle cx="'+n[0]+'" cy="'+n[1]+'" r="'+(i%3?2.5:3.6)+'"'+(i%4===0?' class="o"':'')+' style="animation-delay:'+(i*0.28)+'s"/>';}).join('');
-    return '<svg class="technet" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">'+e+c+'</svg>';
-  }
-  function findSec(t){return secs.filter(function(x){return x.getAttribute('data-t')===t;})[0];}
-  ['Congreso','Impuestos','La señal','Construcción'].forEach(function(t){
-    var sec=findSec(t); if(sec&&!sec.querySelector('.techbg')){var d=document.createElement('div');d.className='techbg';sec.insertBefore(d,sec.firstChild);}
-  });
-  [['Radar','left:-50px;bottom:-30px'],['La señal','right:-40px;top:60px'],['Construcción','right:-20px;bottom:-20px']].forEach(function(pr){
-    var sec=findSec(pr[0]); if(!sec)return;
-    var tmp=document.createElement('div'); tmp.innerHTML=buildNet(); var svg=tmp.firstChild;
-    svg.setAttribute('style',pr[1]+';width:390px;height:390px');
-    sec.insertBefore(svg,sec.firstChild);
+  // techbg
+  ['Congreso','Impuestos','La señal','Operación'].forEach(function(t){
+    var sec=secs.filter(function(x){return x.getAttribute('data-t')===t;})[0];
+    if(sec&&!sec.querySelector('.techbg')){var d=document.createElement('div');d.className='techbg';sec.insertBefore(d,sec.firstChild);}
   });
 
-  // ---- nav / observer ----
-  secs.forEach(function(s,i){var a=document.createElement('a');a.title=s.getAttribute('data-t')||('Slide '+(i+1));
-    a.addEventListener('click',function(){secs[i].scrollIntoView({behavior:'smooth'});});dotsWrap.appendChild(a);});
+  // nav / observer
+  secs.forEach(function(s,i){var a=document.createElement('a');a.title=s.getAttribute('data-t')||('Slide '+(i+1));a.addEventListener('click',function(){secs[i].scrollIntoView({behavior:'smooth'});});dotsWrap.appendChild(a);});
   var dots=[].slice.call(dotsWrap.children);
   var io=new IntersectionObserver(function(es){es.forEach(function(e){
     if(e.isIntersecting){e.target.classList.add('in');runAnim(e.target);
+      if(e.target===actSec)startSen(e.target);
       var i=secs.indexOf(e.target);dots.forEach(function(d,j){d.classList.toggle('on',j===i);});}
   });},{threshold:.45});
   secs.forEach(function(s){io.observe(s);});
