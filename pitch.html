@@ -88,13 +88,36 @@
   section.in .fcard.f1{transform:translate(-10px,22px) rotate(5deg);z-index:1}
   section.in .fcard.f2{transform:translate(-180px,162px) rotate(4deg);z-index:1}
   section.in .fcard.f3{transform:translate(2px,178px) rotate(-4deg);z-index:2}
-  .fcard .fh{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #e7efea;padding-bottom:9px;margin-bottom:11px}
-  .fcard .fn{font-size:15px;font-weight:800;letter-spacing:-.01em}
-  .fcard .fa{font-size:10px;font-weight:700;color:#8aa39a}
-  .fcard .frow{display:flex;justify-content:space-between;font-size:12.5px;margin:6px 0;color:#3a4f47}
-  .fcard .frow b{font-weight:800;color:#0b1a15}
-  .fcard .fnews{margin-top:11px;font-size:11px;color:var(--g2);font-weight:700}
+  .fcard .fh{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;border-bottom:1px solid #e7efea;padding-bottom:9px;margin-bottom:10px}
+  .fcard .fn{font-size:15px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
+  .fcard .fa{font-size:9.5px;font-weight:700;color:#8aa39a;letter-spacing:.03em;margin-top:2px}
+  .fsil{flex-shrink:0}
+  .fsil svg{height:34px;width:auto;max-width:40px;display:block}
+  .fsil svg path{fill:#d3e8df;stroke:#6fa192;stroke-width:1;vector-effect:non-scaling-stroke}
+  .fmet{display:flex;gap:15px;margin:2px 0 10px}
+  .fmet .fm{display:flex;flex-direction:column}
+  .fmet .fmn{font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1;color:#0b1a15}
+  .fmet .fmn.z{color:#b4c6bd}
+  .fmet .fml{font-size:9.5px;color:#7a8f87;margin-top:4px;font-weight:600}
+  .fspark{width:100%;height:26px;display:block}
+  .fspark .ln{fill:none;stroke:#0e8c74;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--L);stroke-dashoffset:var(--L);transition:stroke-dashoffset 1.3s ease .3s}
+  section.in .fspark .ln{stroke-dashoffset:0}
+  .fspark .ar{fill:rgba(14,140,116,.10);stroke:none;opacity:0;transition:opacity .8s .6s}
+  section.in .fspark .ar{opacity:1}
+  .fcard .fnews{font-size:10.5px;color:var(--g2);font-weight:700;margin-top:5px}
   @media(max-width:520px){.fan{transform:scale(.82)}}
+
+  /* ---- data-science tech background ---- */
+  .techbg{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:radial-gradient(circle,rgba(255,255,255,.055) 1px,transparent 1.5px);
+    background-size:26px 26px;
+    -webkit-mask-image:radial-gradient(ellipse 75% 70% at 60% 45%,#000 30%,transparent 80%);
+    mask-image:radial-gradient(ellipse 75% 70% at 60% 45%,#000 30%,transparent 80%)}
+  .technet{position:absolute;z-index:0;pointer-events:none;opacity:.5}
+  .technet path{stroke:rgba(18,185,138,.30);stroke-width:1;fill:none}
+  .technet circle{fill:rgba(63,224,173,.6);animation:npulse 3.4s ease-in-out infinite}
+  .technet circle.o{fill:none;stroke:rgba(18,185,138,.4);stroke-width:1}
+  @keyframes npulse{0%,100%{opacity:.3}50%{opacity:1}}
 
   /* ---- radar mini cards ---- */
   .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:6px}
@@ -104,9 +127,11 @@
   .rcard .rv{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-top:8px}
   .rcard .rv .u{font-size:.44em;color:var(--mut);font-weight:600}
   .rcard .rtr{font-size:11px;font-weight:700;margin-top:2px}
-  .rcard svg{display:block;width:100%;height:34px;margin-top:8px}
-  .spark{fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--L);stroke-dashoffset:var(--L);transition:stroke-dashoffset 1.5s ease .1s}
-  section.in .spark{stroke-dashoffset:0}
+  .rcard svg{display:block;width:100%;height:36px;margin-top:8px;overflow:hidden}
+  @keyframes flow{from{transform:translateX(0)}to{transform:translateX(-168px)}}
+  .rcard svg .stream{animation:flow var(--sp,5s) linear infinite}
+  .rcard svg .strk{fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .rcard svg .fillw{stroke:none;opacity:.12}
 
   /* ---- chat (signal) ---- */
   .chat{max-width:420px}
@@ -257,7 +282,7 @@
     <div class="glow" style="width:560px;height:560px;background:var(--g3);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.24"></div>
     <div class="kick r">La reflexión</div>
     <h2 class="r d1" style="max-width:20ch">Los últimos meses fueron de entender de dónde venimos y qué queremos lograr.</h2>
-    <p class="lead r d2" style="max-width:780px">Pusimos este proyecto en la <b>incubadora</b>: un espacio para definir la esencia de GEMI y llevarla a una nueva experiencia. Scope se desarrolló en nuestro <b>laboratorio de datos</b>, pensada a partir de las <b>tareas diarias</b> del equipo — para sostener el trabajo cotidiano en un sistema fácil de usar y accesible.</p>
+    <p class="lead r d2" style="max-width:780px">Pusimos este proyecto en la <b>incubadora</b>: un espacio para definir la esencia de GEMI y llevarla a una nueva experiencia. Scope se desarrolló en nuestro <b>laboratorio de datos</b>, pensada a partir de las <b>tareas diarias</b> del equipo, para sostener el trabajo cotidiano en un sistema fácil de usar y accesible.</p>
   </section>
 
   <!-- 4 · TENSIÓN -->
@@ -289,10 +314,11 @@
 
   <!-- 7 · RADAR (native sparklines) -->
   <section data-t="Radar">
+    <div class="techbg"></div>
     <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-12%;left:-8%;opacity:.22"></div>
     <div class="kick r">Radar temático</div>
     <h2 class="r d1" style="max-width:15ch">Cada sector tiene su señal.</h2>
-    <p class="lead r d2" style="max-width:640px">El Radar cruza prensa, DOF, Congreso y NOMs por tema, y te dice dónde sube la presión — con los datos duros del sector detrás.</p>
+    <p class="lead r d2" style="max-width:640px">El Radar cruza prensa, DOF, Congreso y NOMs por tema, y te dice dónde sube la presión, con los datos duros del sector detrás.</p>
     <div class="rgrid r d3" style="max-width:760px" id="rgrid"></div>
   </section>
 
@@ -302,7 +328,7 @@
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:14ch">Seguimos la Cámara y el Senado.</h2>
-        <p class="lead r d2">Iniciativas, puntos de acuerdo y exhortos ambientales — con la ley que se reforma, quién la propone y el cruce con tus NOMs. Semana a semana.</p>
+        <p class="lead r d2">Iniciativas, puntos de acuerdo y exhortos ambientales, con la ley que se reforma, quién la propone y el cruce con tus NOMs. Semana a semana.</p>
       </div>
       <div class="viz r d3">
         <div class="panel">
@@ -321,7 +347,7 @@
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:12ch">¿Qué estado te cuesta más?</h2>
-        <p class="lead r d2">Cada ley expresa su impuesto en unidades distintas — unas en UMA, otras en pesos. Scope las <b>normaliza a pesos</b> y las compara lado a lado. Una decisión de operación, resuelta en segundos.</p>
+        <p class="lead r d2">Cada ley expresa su impuesto en unidades distintas: unas en UMA, otras en pesos. Scope las <b>normaliza a pesos</b> y las compara lado a lado. Una decisión de operación, resuelta en segundos.</p>
       </div>
       <div class="viz r d3">
         <div class="panel">
@@ -338,19 +364,10 @@
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:13ch">No es un directorio. Es profundidad.</h2>
-        <p class="lead r d2">Leyes vigentes, impuestos verdes, materiales regulados y la prensa de cada entidad — con fecha, estatus y el documento oficial. El expediente que un despacho tardaría semanas en armar.</p>
+        <p class="lead r d2">Leyes vigentes, impuestos verdes, materiales regulados y la prensa de cada entidad, con fecha, estatus y el documento oficial. El expediente que un despacho tardaría semanas en armar.</p>
       </div>
       <div class="viz r d3">
-        <div class="fan">
-          <div class="fcard f0"><div class="fh"><span class="fn">Puebla</span><span class="fa">PUE</span></div>
-            <div class="frow"><span>Leyes</span><b>3</b></div><div class="frow"><span>Impuestos</span><b>—</b></div><div class="frow"><span>Materiales</span><b>—</b></div><div class="fnews">4 noticias esta semana</div></div>
-          <div class="fcard f1"><div class="fh"><span class="fn">Jalisco</span><span class="fa">JAL</span></div>
-            <div class="frow"><span>Leyes</span><b>4</b></div><div class="frow"><span>Impuestos</span><b>—</b></div><div class="frow"><span>Materiales</span><b>3</b></div><div class="fnews">11 noticias esta semana</div></div>
-          <div class="fcard f2"><div class="fh"><span class="fn">Nuevo León</span><span class="fa">NL</span></div>
-            <div class="frow"><span>Leyes</span><b>3</b></div><div class="frow"><span>Impuestos</span><b>4</b></div><div class="frow"><span>Materiales</span><b>—</b></div><div class="fnews">3 noticias esta semana</div></div>
-          <div class="fcard f3"><div class="fh"><span class="fn">Ciudad de México</span><span class="fa">CDMX</span></div>
-            <div class="frow"><span>Leyes</span><b>5</b></div><div class="frow"><span>Impuestos</span><b>1</b></div><div class="frow"><span>Materiales</span><b>2</b></div><div class="fnews">4 noticias esta semana</div></div>
-        </div>
+        <div class="fan" id="fanwrap"></div>
       </div>
     </div>
   </section>
@@ -369,7 +386,7 @@
           <div class="orgtop">SEMARNAT</div>
           <div class="orgline"></div>
           <div class="orgkids"><span class="orgkid">PROFEPA</span><span class="orgkid">CONAGUA</span><span class="orgkid">ASEA</span><span class="orgkid">CONANP</span><span class="orgkid">CONAFOR</span></div>
-          <div class="dircard"><div class="dn">Dirección General · Gestión de Calidad del Aire</div><div class="dc">Subsecretaría de Gestión para la Protección Ambiental</div><div class="de">✉ nombre · cargo · correo — directorio verificado</div></div>
+          <div class="dircard"><div class="dn">Dirección General · Gestión de Calidad del Aire</div><div class="dc">Subsecretaría de Gestión para la Protección Ambiental</div><div class="de">✉ nombre · cargo · correo · directorio verificado</div></div>
         </div>
       </div>
     </div>
@@ -379,7 +396,7 @@
   <section data-t="Internacional">
     <div class="kick r">Regulación internacional</div>
     <h2 class="r d1" style="max-width:16ch">Lo que se decide afuera, también te alcanza.</h2>
-    <p class="lead r d2" style="max-width:640px">Reglamentos, tratados y leyes de otros mercados que impactan al exportador mexicano — con su nivel de relevancia y la Agenda 2030 detrás.</p>
+    <p class="lead r d2" style="max-width:640px">Reglamentos, tratados y leyes de otros mercados que impactan al exportador mexicano, con su nivel de relevancia y la Agenda 2030 detrás.</p>
     <div class="ilist r d3" style="margin-top:22px">
       <div class="irow"><div class="flag">🇪🇺</div><div class="it"><div class="a">Reglamento (UE) 2023/1115 · Deforestación</div><div class="b">Exige trazabilidad libre de deforestación para importar</div></div><span class="chip hi">Alto impacto</span></div>
       <div class="irow"><div class="flag">🇪🇺</div><div class="it"><div class="a">CBAM · Ajuste en frontera por carbono</div><div class="b">Costo por emisiones a productos que entran a la UE</div></div><span class="chip hi">Alto impacto</span></div>
@@ -395,7 +412,7 @@
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:12ch">Y luego, la haces tuya.</h2>
-        <p class="lead r d2">Cada usuario arma <b>su propia terminal</b>: elige temas, estados, comisiones y NOMs; Scope calcula su señal del día, su autoevaluación de cumplimiento y su reporte técnico — que se lleva en PDF con la foto del día.</p>
+        <p class="lead r d2">Cada usuario arma <b>su propia terminal</b>: elige temas, estados, comisiones y NOMs; Scope calcula su señal del día, su autoevaluación de cumplimiento y su reporte técnico, que se lleva en PDF con la foto del día.</p>
       </div>
       <div class="viz r d3">
         <div class="tstack">
@@ -432,7 +449,7 @@
       <div class="viz r d3">
         <div class="chat">
           <div class="bubble me b1">¿Qué estado cobra más por tonelada de CO₂e?</div>
-          <div class="bubble sg b2"><div class="sgtag"><img src="assets/logo-gemi-icon.png" alt="">Signal</div>Coahuila, con <b>$528 por tonelada</b> — el impuesto al carbono más alto del país, seguido de Nuevo León ($327). ¿Te preparo el comparativo completo?</div>
+          <div class="bubble sg b2"><div class="sgtag"><img src="assets/logo-gemi-icon.png" alt="">Signal</div>Coahuila, con <b>$528 por tonelada</b>: el impuesto al carbono más alto del país, seguido de Nuevo León ($327). ¿Te preparo el comparativo completo?</div>
           <div class="bubble sg b3"><div class="typing"><span></span><span></span><span></span></div></div>
         </div>
       </div>
@@ -444,7 +461,7 @@
     <div class="glow" style="width:560px;height:560px;background:var(--g3);bottom:-16%;right:-10%;opacity:.26"></div>
     <div class="kick r">Cómo se nutre</div>
     <h2 class="r d1" style="max-width:16ch">No es una foto. Es una señal que respira.</h2>
-    <p class="lead r d2" style="max-width:780px">Detrás corre maquinaria todos los días: lectores automáticos de prensa nacional y estatal, del DOF, del Congreso, de CONAMER y de la conferencia matutina; e ingesta de datos abiertos oficiales — SEMARNAT, INECC — más bases legales curadas por GEMI. Todo con fuente. Todo fechado.</p>
+    <p class="lead r d2" style="max-width:780px">Detrás corre maquinaria todos los días: lectores automáticos de prensa nacional y estatal, del DOF, del Congreso, de CONAMER y de la conferencia matutina; e ingesta de datos abiertos oficiales de SEMARNAT e INECC, más bases legales curadas por GEMI. Todo con fuente. Todo fechado.</p>
     <div class="stats">
       <div class="stat r d2"><div class="n"><span data-count="180">0</span>+<span class="u"> fuentes</span></div><div class="l">Prensa, DOF, Congreso, CONAMER, gacetas y datos oficiales</div></div>
       <div class="stat r d3"><div class="n">Diario</div><div class="l">La señal se actualiza sola, todos los días</div></div>
@@ -476,7 +493,7 @@
     <div class="glow" style="width:600px;height:600px;background:var(--g);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.12"></div>
     <div class="kick r">El motor y el futuro</div>
     <h2 class="r d1" style="max-width:16ch">Detrás de Scope está GEMI.</h2>
-    <p class="lead r d2" style="max-width:700px">La jurisprudencia, el monitoreo internacional y el conocimiento de sus asociados. Scope es donde ese trabajo — que antes vivía en reportes — se vuelve producto vivo, listo para compartirse con socios y nuevos actores.</p>
+    <p class="lead r d2" style="max-width:700px">La jurisprudencia, el monitoreo internacional y el conocimiento de sus asociados. Scope es donde ese trabajo, que antes vivía en reportes, se vuelve producto vivo, listo para compartirse con socios y nuevos actores.</p>
     <div class="feats" style="margin-top:30px">
       <div class="feat r d3"><div class="t">Una consola por asociado</div><div class="d">Cada empresa de GEMI, su propio radar y su expediente sectorial.</div></div>
       <div class="feat r d4"><div class="t">Inteligencia, no listas</div><div class="d">Del dato oficial a la lectura que un director usa el mismo día.</div></div>
@@ -538,25 +555,33 @@
     });
   })();
 
-  // ---- radar cards ----
+  // ---- radar cards (sparklines en movimiento continuo, como el Radar real) ----
   (function(){
     var host=document.getElementById('rgrid'); if(!host)return;
     var cards=[
-      {t:'Residuos',c:'var(--mint)',v:'Alta',tr:'↑ presión',pts:[6,5,7,6,9,8,11,13],tc:'#e6b45e'},
-      {t:'Agua',c:'var(--sky)',v:'27',u:' menc.',tr:'↑ subiendo',pts:[3,4,4,6,5,8,9,12],tc:'var(--mint)'},
-      {t:'Economía circular',c:'var(--g)',v:'Media',tr:'→ estable',pts:[5,6,5,6,6,7,6,7],tc:'var(--mut)'},
-      {t:'Cambio climático',c:'var(--lav)',v:'Media',tr:'↑ leve',pts:[4,5,5,4,6,6,7,8],tc:'var(--mint)'}
+      {t:'Residuos',c:'#3fe0ad',v:'Alta',tr:'↑ presión',tc:'#e6b45e',sp:4.2,a1:7,a2:3,ph:0.4},
+      {t:'Agua',c:'#5ec8e0',v:'27',u:' menc.',tr:'↑ subiendo',tc:'#3fe0ad',sp:5.4,a1:6,a2:4,ph:1.3},
+      {t:'Economía circular',c:'#12b98a',v:'Media',tr:'→ estable',tc:'#a5bab2',sp:6.6,a1:4,a2:2,ph:2.1},
+      {t:'Cambio climático',c:'#9d8cf0',v:'Media',tr:'↑ leve',tc:'#3fe0ad',sp:5.9,a1:5,a2:3,ph:0.8}
     ];
+    var W=168,H=36,mid=H/2,step=6;
+    function wave(c){
+      var d='',ar='';
+      for(var x=0;x<=2*W;x+=step){
+        var t=x/W;
+        var y=mid-(c.a1*Math.sin(2*Math.PI*t+c.ph)+c.a2*Math.sin(4*Math.PI*t+c.ph*1.7))*0.9;
+        y=Math.max(4,Math.min(H-4,y));
+        d+=(x?'L':'M')+x+' '+y.toFixed(1);
+      }
+      ar=d+'L'+(2*W)+' '+H+'L0 '+H+'Z';
+      return '<g class="stream" style="--sp:'+c.sp+'s"><path class="fillw" d="'+ar+'" fill="'+c.c+'"/><path class="strk" d="'+d+'" stroke="'+c.c+'"/></g>';
+    }
     host.innerHTML=cards.map(function(c){
-      var mx=Math.max.apply(null,c.pts),mn=Math.min.apply(null,c.pts),rg=(mx-mn)||1;
-      var W=140,H=34,step=W/(c.pts.length-1);
-      var d=c.pts.map(function(v,j){return (j?'L':'M')+(j*step).toFixed(1)+','+(H-4-((v-mn)/rg)*(H-10)).toFixed(1);}).join(' ');
       return '<div class="rcard"><div class="rt"><i style="background:'+c.c+'"></i>'+c.t+'</div>'
         +'<div class="rv">'+c.v+(c.u?'<span class="u">'+c.u+'</span>':'')+'</div>'
         +'<div class="rtr" style="color:'+c.tc+'">'+c.tr+'</div>'
-        +'<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none"><path class="spark" d="'+d+'" stroke="'+c.c+'" style="--L:260"/></svg></div>';
+        +'<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'+wave(c)+'</svg></div>';
     }).join('');
-    setTimeout(function(){[].forEach.call(host.querySelectorAll('.spark'),function(p){var L=p.getTotalLength();p.style.setProperty('--L',L);});},30);
   })();
 
   // ---- congreso chart ----
@@ -608,6 +633,37 @@
     }
   }
 
+  // ---- fichas por entidad (real state outlines + mini spark) ----
+  (function(){
+    var host=document.getElementById('fanwrap'); if(!host)return;
+    var OUT={
+      Puebla:{vb:'0 0 2.33 2.94',d:'M2.33 2.42L2.25 2.52L2.12 2.61L1.90 2.69L1.75 2.70L1.60 2.89L1.55 2.80L1.47 2.65L1.46 2.57L1.44 2.50L1.29 2.57L1.25 2.73L1.35 2.80L1.20 2.86L1.11 2.80L0.98 2.83L0.82 2.86L0.66 2.91L0.53 2.84L0.42 2.88L0.38 2.83L0.25 2.77L0.26 2.69L0.14 2.65L0.02 2.57L0.01 2.49L0.18 2.37L0.35 2.42L0.33 2.20L0.34 2.05L0.43 1.82L0.39 1.55L0.40 1.45L0.42 1.37L0.51 1.43L0.64 1.53L0.76 1.66L0.90 1.71L1.05 1.61L1.19 1.61L1.28 1.53L1.42 1.49L1.36 1.42L1.30 1.33L1.22 1.33L1.19 1.26L1.03 1.13L0.92 1.16L0.81 1.15L0.78 0.97L0.86 0.76L0.86 0.63L0.80 0.61L0.75 0.55L0.93 0.44L1.03 0.26L1.06 0.13L1.14 0.04L1.26 0.00L1.28 0.07L1.27 0.10L1.30 0.19L1.44 0.31L1.38 0.40L1.27 0.39L1.29 0.63L1.40 0.65L1.48 0.71L1.60 0.57L1.71 0.61L1.88 0.68L1.76 0.89L1.74 1.03L1.66 1.19L1.66 1.30L1.66 1.40L1.80 1.47L1.92 1.50L2.01 1.60L1.79 1.62L1.81 1.87L1.73 2.00L1.78 2.18L1.93 2.23L1.97 2.35L2.05 2.38L2.19 2.31L2.32 2.41L2.33 2.42Z'},
+      Jalisco:{vb:'0 0 4.15 3.71',d:'M2.92 0.98L3.05 0.95L3.20 0.96L3.33 1.04L3.50 1.00L3.61 0.87L3.77 0.80L3.72 0.70L3.72 0.62L3.95 0.69L4.13 0.83L4.09 0.93L4.02 1.18L4.03 1.27L4.02 1.35L3.94 1.39L3.90 1.51L3.80 1.58L3.69 1.76L3.60 1.87L3.59 1.94L3.72 2.07L3.64 2.19L3.57 2.30L3.43 2.34L3.28 2.35L3.17 2.37L3.08 2.42L2.99 2.51L2.87 2.55L2.82 2.55L2.69 2.53L2.64 2.56L2.60 2.71L2.66 2.72L2.81 2.75L2.92 2.84L2.88 2.92L2.94 3.05L2.93 3.19L3.09 3.21L3.06 3.30L2.96 3.45L2.87 3.43L2.69 3.56L2.57 3.64L2.46 3.68L2.33 3.70L2.24 3.69L2.20 3.63L2.19 3.53L2.19 3.41L2.16 3.32L2.12 3.26L2.08 3.11L1.85 3.26L1.67 3.26L1.58 3.31L1.45 3.34L1.29 3.38L1.22 3.41L1.15 3.40L1.06 3.47L0.97 3.45L0.92 3.43L0.91 3.39L0.86 3.38L0.72 3.32L0.66 3.22L0.61 3.16L0.50 3.04L0.36 2.90L0.22 2.71L0.15 2.56L0.14 2.44L0.04 2.35L0.04 2.24L0.21 2.18L0.33 2.16L0.44 2.11L0.41 1.99L0.46 1.89L0.56 1.78L0.68 1.76L0.79 1.71L0.95 1.69L1.08 1.77L1.20 1.86L1.31 1.95L1.41 2.08L1.39 1.98L1.35 1.88L1.42 1.80L1.45 1.67L1.55 1.52L1.67 1.51L1.84 1.43L1.88 1.31L1.86 1.14L1.78 0.99L1.66 0.94L1.56 0.91L1.52 0.76L1.38 0.73L1.34 0.62L1.39 0.44L1.43 0.37L1.49 0.36L1.50 0.27L1.62 0.23L1.60 0.36L1.72 0.30L1.65 0.10L1.74 0.02L1.90 0.02L1.87 0.10L1.74 0.33L1.76 0.49L1.83 0.52L1.85 0.29L1.95 0.18L2.12 0.24L2.15 0.36L2.00 0.59L2.09 0.63L2.20 0.63L2.29 0.53L2.36 0.46L2.33 0.37L2.49 0.35L2.48 0.43L2.60 0.47L2.56 0.64L2.45 0.74L2.25 0.87L2.13 0.94L2.13 1.10L2.06 1.17L1.99 1.23L2.10 1.29L2.14 1.35L1.94 1.45L2.04 1.50L2.13 1.62L2.26 1.62L2.38 1.65L2.48 1.62L2.55 1.62L2.62 1.53L2.76 1.51L2.90 1.40L3.06 1.22L2.92 1.06L2.92 0.98Z'},
+      NL:{vb:'0 0 2.85 4.60',d:'M1.53 0.10L1.46 0.18L1.35 0.21L1.32 0.30L1.49 0.31L1.46 0.40L1.50 0.52L1.55 0.66L1.54 0.74L1.47 0.86L1.54 0.90L1.59 1.00L1.58 1.11L1.67 1.14L1.74 1.21L1.81 1.31L1.96 1.45L2.03 1.55L2.10 1.55L2.11 1.62L2.12 1.67L2.28 1.71L2.40 1.81L2.55 1.75L2.68 1.81L2.70 1.97L2.71 2.10L2.71 2.21L2.85 2.27L2.79 2.35L2.66 2.47L2.54 2.53L2.37 2.59L2.25 2.66L2.19 2.61L2.08 2.70L2.09 2.79L2.07 2.87L1.97 2.97L1.92 2.96L1.81 3.04L1.73 3.07L1.59 3.15L1.50 3.22L1.57 3.29L1.62 3.42L1.58 3.60L1.63 3.68L1.70 3.81L1.77 3.87L1.71 3.94L1.68 4.00L1.48 4.01L1.39 4.06L1.30 4.23L1.30 4.37L1.23 4.43L1.14 4.44L1.03 4.51L0.91 4.59L0.80 4.54L0.76 4.39L0.73 4.26L0.77 4.10L0.74 3.97L0.74 3.81L0.61 3.61L0.54 3.49L0.55 3.39L0.52 3.31L0.41 3.23L0.47 3.10L0.44 3.00L0.40 2.90L0.49 2.86L0.49 2.76L0.49 2.61L0.58 2.49L0.72 2.53L0.85 2.56L0.97 2.57L0.99 2.46L0.92 2.41L0.81 2.36L0.65 2.26L0.61 2.12L0.45 2.09L0.43 1.86L0.40 1.80L0.31 1.67L0.11 1.49L0.03 1.33L0.15 1.17L0.32 1.13L0.55 1.07L0.60 0.99L0.67 0.88L0.66 0.77L0.61 0.67L0.54 0.67L0.39 0.68L0.42 0.50L0.54 0.43L0.72 0.41L0.74 0.31L0.83 0.14L0.96 0.08L1.16 0.09L1.33 0.06L1.42 0.01L1.49 0.04L1.53 0.10Z'},
+      CDMX:{vb:'0 0 0.47 0.50',d:'M0.46 0.46L0.29 0.45L0.16 0.46L0.04 0.37L0.00 0.26L0.10 0.19L0.20 0.03L0.25 0.04L0.33 0.17L0.42 0.24L0.46 0.30L0.45 0.43L0.46 0.46Z'}
+    };
+    var C=[
+      {n:'Puebla',ab:'PUE',cls:'f0',o:'Puebla',m:[['3','leyes',0],['0','impuestos',1],['0','materiales',1]],sp:[1,0,2,1,2,3,2,4],nw:'4 noticias · 7 días'},
+      {n:'Jalisco',ab:'JAL',cls:'f1',o:'Jalisco',m:[['4','leyes',0],['0','impuestos',1],['3','materiales',0]],sp:[3,5,4,6,8,7,9,11],nw:'11 noticias · 7 días'},
+      {n:'Nuevo León',ab:'NL',cls:'f2',o:'NL',m:[['3','leyes',0],['4','impuestos',0],['0','materiales',1]],sp:[1,2,1,0,2,1,2,3],nw:'3 noticias · 7 días'},
+      {n:'Ciudad de México',ab:'CDMX',cls:'f3',o:'CDMX',m:[['5','leyes',0],['1','impuestos',0],['2','materiales',0]],sp:[2,1,3,2,1,2,3,4],nw:'4 noticias · 7 días'}
+    ];
+    function spark(pts){
+      var W=168,H=26,mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts),rg=(mx-mn)||1,st=W/(pts.length-1);
+      var xy=pts.map(function(v,i){return[i*st,H-3-((v-mn)/rg)*(H-8)];});
+      var ln=xy.map(function(p,i){return(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1);}).join(' ');
+      var ar=ln+'L'+W+' '+H+'L0 '+H+'Z';
+      return '<svg class="fspark" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none"><path class="ar" d="'+ar+'"/><path class="ln" d="'+ln+'" style="--L:200"/></svg>';
+    }
+    host.innerHTML=C.map(function(c){
+      var o=OUT[c.o],sil=o?'<div class="fsil"><svg viewBox="'+o.vb+'" preserveAspectRatio="xMidYMid meet"><path d="'+o.d+'"/></svg></div>':'';
+      var met=c.m.map(function(x){return '<div class="fm"><span class="fmn'+(x[2]?' z':'')+'">'+x[0]+'</span><span class="fml">'+x[1]+'</span></div>';}).join('');
+      return '<div class="fcard '+c.cls+'"><div class="fh"><div><div class="fn">'+c.n+'</div><div class="fa">'+c.ab+' · expediente</div></div>'+sil+'</div>'
+        +'<div class="fmet">'+met+'</div>'+spark(c.sp)+'<div class="fnews">'+c.nw+'</div></div>';
+    }).join('');
+    setTimeout(function(){[].forEach.call(host.querySelectorAll('.fspark .ln'),function(p){p.style.setProperty('--L',p.getTotalLength());});},30);
+  })();
+
   // ---- impuestos bars (real data) ----
   (function(){
     var host=document.getElementById('impbars'); if(!host)return;
@@ -624,6 +680,25 @@
         +'<div class="val"><span class="c">$</span><span data-count="'+d.v+'">0</span>'+(d.top?'<div class="topflag">▲ más caro</div>':'')+'</div></div>';
     }).join('');
   })();
+
+  // ---- tech backgrounds + node networks (data-science feel) ----
+  function buildNet(){
+    var nodes=[[40,60],[120,30],[90,140],[200,90],[260,180],[180,220],[300,80],[340,200],[60,240],[150,320],[280,300],[360,340]];
+    var edges=[[0,1],[0,2],[1,3],[2,3],[3,4],[3,6],[4,5],[2,5],[5,9],[8,9],[9,10],[4,10],[10,11],[6,7],[7,11],[8,2]];
+    var e=edges.map(function(p){return '<path d="M'+nodes[p[0]][0]+' '+nodes[p[0]][1]+'L'+nodes[p[1]][0]+' '+nodes[p[1]][1]+'"/>';}).join('');
+    var c=nodes.map(function(n,i){return '<circle cx="'+n[0]+'" cy="'+n[1]+'" r="'+(i%3?2.5:3.6)+'"'+(i%4===0?' class="o"':'')+' style="animation-delay:'+(i*0.28)+'s"/>';}).join('');
+    return '<svg class="technet" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">'+e+c+'</svg>';
+  }
+  function findSec(t){return secs.filter(function(x){return x.getAttribute('data-t')===t;})[0];}
+  ['Congreso','Impuestos','La señal','Construcción'].forEach(function(t){
+    var sec=findSec(t); if(sec&&!sec.querySelector('.techbg')){var d=document.createElement('div');d.className='techbg';sec.insertBefore(d,sec.firstChild);}
+  });
+  [['Radar','left:-50px;bottom:-30px'],['La señal','right:-40px;top:60px'],['Construcción','right:-20px;bottom:-20px']].forEach(function(pr){
+    var sec=findSec(pr[0]); if(!sec)return;
+    var tmp=document.createElement('div'); tmp.innerHTML=buildNet(); var svg=tmp.firstChild;
+    svg.setAttribute('style',pr[1]+';width:390px;height:390px');
+    sec.insertBefore(svg,sec.firstChild);
+  });
 
   // ---- nav / observer ----
   secs.forEach(function(s,i){var a=document.createElement('a');a.title=s.getAttribute('data-t')||('Slide '+(i+1));
