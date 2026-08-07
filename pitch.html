@@ -5,130 +5,107 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Scope · Pitch Consejo GEMI</title>
 <style>
+  @font-face{font-family:'Scope Sans';src:url('assets/fonts/heros-regular.woff2') format('woff2');font-weight:1 550;font-style:normal;font-display:swap}
+  @font-face{font-family:'Scope Sans';src:url('assets/fonts/heros-bold.woff2') format('woff2');font-weight:551 1000;font-style:normal;font-display:swap}
   :root{
-    --bg:#06100d; --bg2:#0a1712; --ink:#f3f8f5; --mut:#9fb4ac; --dim:#5f736c;
+    --bg:#06100d; --ink:#f3f8f5; --mut:#a5bab2; --dim:#63776f;
     --g:#12b98a; --g2:#0e8c74; --g3:#066750; --mint:#3fe0ad;
-    --line:rgba(255,255,255,0.08);
-    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    --mono:"SFMono-Regular",ui-monospace,"JetBrains Mono",Menlo,monospace;
+    --line:rgba(255,255,255,0.09);
+    --sans:'Scope Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
   .deck{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
   .deck::-webkit-scrollbar{width:0;display:none}
-  section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:center;padding:7vh 8vw;overflow:hidden}
-  @media(max-width:640px){section{padding:6vh 7vw}}
+  section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:center;padding:8vh 7vw;overflow:hidden}
+  @media(max-width:640px){section{padding:7vh 7vw}}
 
-  /* ── reveal ── */
   .r{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
   section.in .r{opacity:1;transform:none}
-  .r.d1{transition-delay:.08s}.r.d2{transition-delay:.18s}.r.d3{transition-delay:.30s}.r.d4{transition-delay:.42s}.r.d5{transition-delay:.54s}.r.d6{transition-delay:.66s}
+  .r.d1{transition-delay:.09s}.r.d2{transition-delay:.19s}.r.d3{transition-delay:.31s}.r.d4{transition-delay:.43s}.r.d5{transition-delay:.55s}
 
-  /* ── type ── */
-  .kick{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--g);margin-bottom:26px}
-  h1{font-size:clamp(34px,6.4vw,86px);font-weight:800;letter-spacing:-.02em;line-height:1.02}
-  h2{font-size:clamp(30px,5.4vw,70px);font-weight:800;letter-spacing:-.02em;line-height:1.05}
-  h3{font-size:clamp(22px,3vw,38px);font-weight:700;letter-spacing:-.01em;line-height:1.1}
-  .lead{font-size:clamp(16px,2vw,23px);color:var(--mut);line-height:1.55;max-width:760px;margin-top:22px;font-weight:400}
+  .kick{font-size:14px;font-weight:600;color:var(--mint);margin-bottom:22px;letter-spacing:.005em}
+  h1{font-size:clamp(36px,6.6vw,88px);font-weight:800;letter-spacing:-.025em;line-height:1.01}
+  h2{font-size:clamp(30px,5.2vw,66px);font-weight:800;letter-spacing:-.022em;line-height:1.05}
+  h3{font-size:clamp(20px,2.6vw,32px);font-weight:700;letter-spacing:-.01em;line-height:1.15}
+  .lead{font-size:clamp(16px,1.9vw,22px);color:var(--mut);line-height:1.55;max-width:720px;margin-top:22px;font-weight:400}
   .grn{color:var(--mint)}
-  .fade{color:var(--dim)}
   b,strong{font-weight:700;color:var(--ink)}
 
-  /* ── side nav dots ── */
-  .dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:11px;z-index:40}
-  .dots a{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);transition:all .25s;cursor:pointer}
+  .split{display:flex;flex-wrap:wrap;gap:clamp(30px,5vw,64px);align-items:center;justify-content:space-between}
+  .split .col{flex:1;min-width:300px}
+  .split .shotcol{flex:1.15;min-width:320px}
+
+  /* product screenshot frame (Apple-style window) */
+  .shot{border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 46px 120px rgba(0,0,0,.62);background:#fff;max-width:100%}
+  .shot .bar{display:flex;align-items:center;gap:7px;padding:9px 13px;background:#f4f7f5;border-bottom:1px solid #e6ece9}
+  .shot .bar i{width:10px;height:10px;border-radius:50%;display:inline-block;background:#d9e2dd}
+  .shot .bar i:nth-child(2){background:#e2e8e4}.shot .bar i:nth-child(3){background:#eaefec}
+  .shot .bar span{margin-left:10px;font-size:11px;color:#7a8b84;font-weight:600}
+  .shot img{display:block;width:100%;height:auto}
+  .shot.tall img{max-height:62vh;object-fit:cover;object-position:top}
+
+  .dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:40}
+  .dots a{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.16);transition:all .25s;cursor:pointer}
   .dots a.on{background:var(--mint);transform:scale(1.35)}
   .dots a:hover{background:var(--g)}
-  @media(max-width:720px){.dots{display:none}}
-
-  /* progress */
+  @media(max-width:820px){.dots{display:none}}
   .prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--g3),var(--mint));width:0;z-index:50;transition:width .15s linear}
 
-  /* topbar */
-  .topbar{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:16px 26px;z-index:45;pointer-events:none}
-  .brand{font-weight:800;letter-spacing:-.01em;font-size:16px}
-  .brand .s{color:var(--mint)}
-  .topbar .r2{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase}
-  .exit{pointer-events:auto;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--mut);text-decoration:none;text-transform:uppercase;border:1px solid var(--line);border-radius:20px;padding:6px 13px;transition:all .2s}
+  .topbar{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:15px 24px;z-index:45;pointer-events:none}
+  .topbar img{height:24px;width:auto;opacity:.95;filter:drop-shadow(0 1px 4px rgba(0,0,0,.4))}
+  .exit{pointer-events:auto;font-size:12px;font-weight:600;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:20px;padding:7px 15px;transition:all .2s}
   .exit:hover{color:var(--ink);border-color:var(--g)}
 
-  .scrollhint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;animation:bob 2.4s ease-in-out infinite}
+  .scrollhint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--dim);font-weight:500;animation:bob 2.4s ease-in-out infinite}
   @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);opacity:.5}50%{transform:translateX(-50%) translateY(6px);opacity:1}}
 
-  /* glow blobs */
-  .glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;pointer-events:none;z-index:0}
+  .glow{position:absolute;border-radius:50%;filter:blur(96px);opacity:.5;pointer-events:none;z-index:0}
   section>*{position:relative;z-index:1}
 
-  /* ── product mock frames ── */
-  .frame{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.008));backdrop-filter:blur(4px);padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-  .chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--mut);border:1px solid var(--line);border-radius:20px;padding:5px 11px}
-  .chip .dot{width:6px;height:6px;border-radius:50%;background:var(--mint)}
-
-  .bars{display:flex;flex-direction:column;gap:10px;margin-top:6px}
-  .barrow{display:flex;align-items:center;gap:12px}
-  .barrow .nm{width:120px;font-size:13px;color:var(--mut)}
-  .track{flex:1;height:8px;background:rgba(255,255,255,.07);border-radius:6px;overflow:hidden}
-  .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--g3),var(--mint));width:0;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
-  section.in .fill{width:var(--w)}
-  .barrow .vl{width:44px;text-align:right;font-family:var(--mono);font-size:13px;font-weight:700}
-
-  /* map dots */
-  .mapwrap{position:relative;width:min(560px,80vw);aspect-ratio:1.35/1;margin-top:8px}
-  .node{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px var(--g);transform:translate(-50%,-50%);opacity:0;animation:pop .6s forwards}
-  section.in .node{animation:pop .5s forwards}
-  @keyframes pop{to{opacity:1}}
-  .twk{animation:pop .5s forwards,twk 3s ease-in-out infinite}
-  @keyframes twk{0%,100%{opacity:.55}50%{opacity:1}}
-
-  /* stat grid */
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:34px 44px;margin-top:38px;max-width:900px}
-  .stat .n{font-size:clamp(38px,5vw,60px);font-weight:800;letter-spacing:-.02em;color:var(--ink)}
-  .stat .n .u{font-size:.4em;color:var(--mut);font-weight:600;letter-spacing:0}
-  .stat .l{font-size:13px;color:var(--mut);margin-top:6px;line-height:1.4}
-
-  /* feature list */
-  .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px 34px;margin-top:40px;max-width:1000px}
+  .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px 34px;margin-top:38px;max-width:1000px}
   .feat{border-top:1px solid var(--line);padding-top:14px}
   .feat .t{font-size:16px;font-weight:700;color:var(--ink)}
-  .feat .d{font-size:13px;color:var(--mut);margin-top:5px;line-height:1.5}
-  .feat .ic{width:22px;height:22px;color:var(--mint);margin-bottom:9px}
+  .feat .d{font-size:13.5px;color:var(--mut);margin-top:5px;line-height:1.5}
 
-  /* verbs */
-  .verbs{display:flex;flex-wrap:wrap;gap:18px 40px;margin-top:34px}
-  .verbs span{font-size:clamp(26px,3.6vw,46px);font-weight:800;letter-spacing:-.02em;color:var(--dim);transition:color .5s}
-  section.in .verbs span{color:var(--ink)}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:30px 40px;margin-top:38px;max-width:940px}
+  .stat .n{font-size:clamp(38px,5vw,60px);font-weight:800;letter-spacing:-.025em;color:var(--ink);line-height:1}
+  .stat .n .u{font-size:.38em;color:var(--mut);font-weight:600}
+  .stat .l{font-size:13.5px;color:var(--mut);margin-top:8px;line-height:1.45}
+
+  .verbs{display:flex;flex-wrap:wrap;gap:16px 38px;margin-top:32px}
+  .verbs span{font-size:clamp(26px,3.6vw,46px);font-weight:800;letter-spacing:-.025em;color:var(--dim);transition:color .5s}
   section.in .verbs span:nth-child(1){transition-delay:.1s;color:var(--mint)}
   section.in .verbs span:nth-child(2){transition-delay:.3s;color:var(--g)}
-  section.in .verbs span:nth-child(3){transition-delay:.5s}
-  section.in .verbs span:nth-child(4){transition-delay:.7s}
+  section.in .verbs span:nth-child(3){transition-delay:.5s;color:var(--ink)}
+  section.in .verbs span:nth-child(4){transition-delay:.7s;color:var(--ink)}
 
-  /* pricing */
-  .prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:36px;max-width:900px;width:100%}
+  .prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:15px;margin-top:34px;max-width:900px;width:100%}
   .price{border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:rgba(255,255,255,.02);transition:transform .3s,border-color .3s}
   .price.best{border-color:var(--g);background:linear-gradient(180deg,rgba(18,185,138,.10),rgba(18,185,138,.02))}
   .price:hover{transform:translateY(-4px);border-color:var(--g)}
-  .price .p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
-  .price .amt{font-size:38px;font-weight:800;letter-spacing:-.02em;margin:12px 0 2px}
+  .price .p{font-size:13px;font-weight:600;color:var(--mut)}
+  .price .amt{font-size:38px;font-weight:800;letter-spacing:-.025em;margin:12px 0 2px}
   .price .amt .c{font-size:.5em;color:var(--mut);font-weight:600;vertical-align:top}
-  .price .per{font-size:12px;color:var(--mut)}
-  .price .note{font-size:12px;color:var(--mint);margin-top:12px;font-weight:600}
-  .badge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#04120d;background:var(--mint);border-radius:20px;padding:3px 10px;margin-bottom:12px;font-weight:700}
-  .socios{margin-top:26px;max-width:900px;border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 14px 14px 0;background:rgba(18,185,138,.05);padding:20px 24px}
+  .price .per{font-size:12.5px;color:var(--mut)}
+  .price .note{font-size:12.5px;color:var(--mint);margin-top:12px;font-weight:600}
+  .badge{display:inline-block;font-size:11px;font-weight:700;color:#04120d;background:var(--mint);border-radius:20px;padding:3px 11px;margin-bottom:12px}
+  .socios{margin-top:24px;max-width:920px;border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 14px 14px 0;background:rgba(18,185,138,.05);padding:20px 24px}
   .socios .t{font-size:17px;font-weight:700}
   .socios .d{font-size:14px;color:var(--mut);margin-top:8px;line-height:1.6}
 
-  .cta{display:inline-flex;align-items:center;gap:10px;margin-top:40px;font-size:16px;font-weight:700;color:#04120d;background:var(--mint);border-radius:30px;padding:14px 26px;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 12px 40px rgba(18,185,138,.35)}
+  .cta{display:inline-flex;align-items:center;gap:10px;margin-top:38px;font-size:16px;font-weight:700;color:#04120d;background:var(--mint);border-radius:30px;padding:14px 26px;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 12px 40px rgba(18,185,138,.35)}
   .cta:hover{transform:translateY(-2px);box-shadow:0 16px 50px rgba(18,185,138,.5)}
   .cta.ghost{background:none;color:var(--ink);border:1px solid var(--line);box-shadow:none}
   .cta.ghost:hover{border-color:var(--g)}
   .ctarow{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .cap{font-size:13px;color:var(--dim);margin-top:14px}
 </style>
 </head>
 <body>
 <div class="prog" id="prog"></div>
 <div class="topbar">
-  <div class="brand">Sc<span class="s">&#9673;</span>pe</div>
+  <img src="assets/scope-logo-dark.png" alt="Scope">
   <a class="exit" href="index.html">&larr; Volver a Scope</a>
 </div>
 <div class="dots" id="dots"></div>
@@ -137,178 +114,198 @@
 
   <!-- 1 · COVER -->
   <section data-t="Inicio" style="justify-content:center;text-align:center;align-items:center">
-    <div class="glow" style="width:620px;height:620px;background:var(--g3);top:-10%;left:-10%"></div>
-    <div class="glow" style="width:520px;height:520px;background:var(--g);bottom:-15%;right:-8%;opacity:.35"></div>
-    <div class="kick r">Preview para el Consejo · GEMI</div>
+    <div class="glow" style="width:640px;height:640px;background:var(--g3);top:-8%;left:-8%"></div>
+    <div class="glow" style="width:520px;height:520px;background:var(--g);bottom:-14%;right:-8%;opacity:.32"></div>
+    <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:44px;margin-bottom:34px">
     <h1 class="r d1" style="max-width:15ch">Estamos cambiando el ambiente.</h1>
-    <div class="lead r d2" style="margin-left:auto;margin-right:auto">Esto es <b>Scope</b>. La inteligencia regulatoria ambiental de México, en un solo lugar.</div>
-    <div class="scrollhint">Desliza &nbsp;&darr;</div>
+    <div class="lead r d2" style="margin-left:auto;margin-right:auto">La inteligencia regulatoria ambiental de México, en un solo lugar.</div>
+    <div class="cap r d3">Preview para el Consejo de GEMI · 2026</div>
+    <div class="scrollhint">Desliza para comenzar &nbsp;&darr;</div>
   </section>
 
   <!-- 2 · TENSIÓN -->
   <section data-t="El problema">
-    <div class="glow" style="width:500px;height:500px;background:#7a1f1f;top:20%;right:-12%;opacity:.22"></div>
+    <div class="glow" style="width:500px;height:500px;background:#7a2020;top:22%;right:-12%;opacity:.2"></div>
     <div class="kick r">El punto de partida</div>
     <h2 class="r d1" style="max-width:18ch">La regulación ambiental no vive en un solo lugar.</h2>
-    <p class="lead r d2">Vive en <b>32 congresos estatales</b>, en el <b>Diario Oficial</b> de cada mañana, en cientos de <b>NOMs</b>, en los <b>tribunales</b>, en la mañanera y en la prensa. Cambia todos los días. Y nadie —ninguna empresa, ningún despacho— alcanza a leerla completa.</p>
+    <p class="lead r d2">Vive en <b>32 congresos estatales</b>, en el <b>Diario Oficial</b> de cada mañana, en cientos de <b>Normas Oficiales Mexicanas</b>, en los tribunales, en la conferencia matutina y en la prensa. Cambia todos los días. Ninguna empresa alcanza a leerla completa.</p>
   </section>
 
   <!-- 3 · TURN -->
   <section data-t="Scope" style="justify-content:center;text-align:center;align-items:center">
     <div class="glow" style="width:640px;height:640px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.32"></div>
-    <div class="kick r">Hasta ahora</div>
-    <h1 class="r d1" style="font-size:clamp(46px,9vw,120px)">Sc<span class="grn">&#9673;</span>pe</h1>
-    <p class="lead r d2" style="margin:18px auto 0">La reunimos toda. La volvimos legible. La pusimos viva.</p>
+    <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:clamp(40px,8vw,78px)">
+    <p class="lead r d2" style="margin:26px auto 0;font-size:clamp(18px,2.4vw,28px);color:var(--ink)">La reunimos toda. La volvimos legible. La pusimos <span class="grn">viva</span>.</p>
   </section>
 
-  <!-- 4 · QUÉ ES -->
-  <section data-t="Qué es">
-    <div class="glow" style="width:480px;height:480px;background:var(--g3);top:-10%;left:30%;opacity:.3"></div>
-    <div class="kick r">Qué es</div>
-    <h2 class="r d1" style="max-width:20ch">Toda la regulación ambiental de México, reunida en una sola imagen del país.</h2>
-    <p class="lead r d2">Una plataforma que cruza lo federal y lo estatal, lo que ya es ley y lo que apenas se discute, y lo actualiza <b>a diario</b>. Deja de ser un archivo muerto. Se convierte en una señal.</p>
-  </section>
-
-  <!-- 5 · MAPA -->
+  <!-- 4 · MAPA (screenshot) -->
   <section data-t="El país">
     <div class="kick r">El país, de un vistazo</div>
-    <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:space-between">
-      <div style="flex:1;min-width:280px">
+    <div class="split">
+      <div class="col">
         <h2 class="r d1" style="max-width:12ch">32 entidades. Una sola pantalla.</h2>
-        <p class="lead r d2">Un mapa nacional que respira: cada estado se ilumina según su actividad regulatoria y su presencia en medios. Da clic y entras a su expediente completo.</p>
+        <p class="lead r d2">Un mapa nacional que se ilumina según la actividad regulatoria y la presencia en medios de cada estado. Un clic y entras a su expediente completo.</p>
       </div>
-      <div class="mapwrap r d3" id="map"></div>
+      <div class="shotcol r d3"><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Scope · Panorama nacional</span></div><img src="assets/pitch/mapa.png" alt="Mapa nacional de actividad regulatoria"></div></div>
     </div>
   </section>
 
-  <!-- 6 · RADAR -->
+  <!-- 5 · RADAR (screenshot) -->
   <section data-t="Radar">
-    <div class="glow" style="width:460px;height:460px;background:var(--g2);bottom:-10%;left:-8%;opacity:.28"></div>
+    <div class="glow" style="width:460px;height:460px;background:var(--g2);bottom:-12%;left:-8%;opacity:.24"></div>
     <div class="kick r">Radar temático</div>
-    <div style="display:flex;flex-wrap:wrap;gap:44px;align-items:center;justify-content:space-between">
-      <div style="flex:1;min-width:300px">
+    <div class="split">
+      <div class="col">
         <h2 class="r d1" style="max-width:13ch">Cada sector tiene una señal.</h2>
-        <p class="lead r d2">Residuos, agua, economía circular, cambio climático, energía… El Radar cruza <b>prensa nacional y estatal, el DOF, el Congreso, las NOMs y la regulación internacional</b> para decirte dónde está subiendo la presión —antes de que sea obvia.</p>
+        <p class="lead r d2">Residuos, agua, economía circular, cambio climático, energía. El Radar cruza <b>prensa, DOF, Congreso, NOMs y regulación internacional</b> por tema, y te dice dónde sube la presión — con los datos duros del sector detrás.</p>
       </div>
-      <div class="frame r d3" style="flex:1;min-width:280px;max-width:420px">
-        <div class="chip"><span class="dot"></span>Señal · últimas 2 semanas</div>
-        <div class="bars">
-          <div class="barrow"><span class="nm">Residuos</span><span class="track"><span class="fill" style="--w:92%"></span></span><span class="vl">38</span></div>
-          <div class="barrow"><span class="nm">Agua</span><span class="track"><span class="fill" style="--w:100%"></span></span><span class="vl">44</span></div>
-          <div class="barrow"><span class="nm">Economía circular</span><span class="track"><span class="fill" style="--w:30%"></span></span><span class="vl">12</span></div>
-          <div class="barrow"><span class="nm">Cambio climático</span><span class="track"><span class="fill" style="--w:52%"></span></span><span class="vl">21</span></div>
-        </div>
-      </div>
+      <div class="shotcol r d3"><div class="shot tall"><div class="bar"><i></i><i></i><i></i><span>Scope · Radar · Residuos</span></div><img src="assets/pitch/radar.png" alt="Radar temático de residuos"></div></div>
     </div>
   </section>
 
-  <!-- 7 · ESTADOS / PROFUNDIDAD -->
+  <!-- 6 · CONGRESO (screenshot) -->
+  <section data-t="Congreso">
+    <div class="kick r">Poder Legislativo</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:14ch">Seguimos la Cámara de Diputados y el Senado.</h2>
+        <p class="lead r d2">Iniciativas, puntos de acuerdo y exhortos que tocan lo ambiental — con la ley que se reforma, quién la propone y su foto, y el cruce con las NOMs que monitoreas. La actividad legislativa federal, semana a semana.</p>
+      </div>
+      <div class="shotcol r d3"><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Scope · Monitor del Congreso Federal</span></div><img src="assets/pitch/congreso.png" alt="Monitor del Congreso Federal"></div></div>
+    </div>
+  </section>
+
+  <!-- 7 · EXPEDIENTES + DATO -->
   <section data-t="Expedientes">
     <div class="kick r">Cada estado, un expediente</div>
-    <h2 class="r d1" style="max-width:16ch">No es un directorio. Es profundidad.</h2>
+    <h2 class="r d1" style="max-width:17ch">No es un directorio. Es profundidad.</h2>
     <div class="feats">
       <div class="feat r d2"><div class="t">Legislación estatal</div><div class="d">Leyes, códigos y reglamentos vigentes por entidad, con fecha, estatus y el documento oficial.</div></div>
-      <div class="feat r d2"><div class="t">Impuestos verdes</div><div class="d">Tarifas normalizadas a pesos para comparar de verdad, aunque la ley las exprese en UMA.</div></div>
-      <div class="feat r d3"><div class="t">Residuos · SEMARNAT 2026</div><div class="d">Generación, composición, disposición final y cumplimiento de la NOM-083, estado por estado.</div></div>
+      <div class="feat r d2"><div class="t">Residuos · SEMARNAT 2026</div><div class="d">Generación, composición y cumplimiento de la NOM-083, estado por estado. De 2,250 sitios de disposición, solo 52 cumplen la norma.</div></div>
+      <div class="feat r d3"><div class="t">Impuestos verdes</div><div class="d">Tarifas normalizadas a pesos para comparar de verdad, aunque la ley las exprese en UMA.</div></div>
       <div class="feat r d3"><div class="t">Trámites de manejo especial</div><div class="d">Registros y autorizaciones de RME en las 32 entidades, con su portal oficial verificado.</div></div>
     </div>
   </section>
 
-  <!-- 8 · DATO DURO -->
-  <section data-t="Un dato" style="justify-content:center">
-    <div class="glow" style="width:520px;height:520px;background:var(--g3);top:0;right:0;opacity:.28"></div>
-    <div class="kick r">Lo que Scope hace visible</div>
-    <h2 class="r d1" style="max-width:20ch">De <span class="grn">2,250</span> sitios de disposición de basura en México, <span class="grn">52</span> cumplen la norma.</h2>
-    <p class="lead r d2">Catorce estados no tienen ni uno. Ese tipo de lectura —oficial, cuantificada, comparable— antes tomaba semanas de despacho. En Scope es un clic.</p>
-  </section>
-
-  <!-- 9 · ACTORES -->
-  <section data-t="Actores">
-    <div class="kick r">Actores</div>
-    <div style="display:flex;flex-wrap:wrap;gap:44px;align-items:center;justify-content:space-between">
-      <div style="flex:1;min-width:300px">
-        <h2 class="r d1" style="max-width:13ch">Sabes quién decide.</h2>
-        <p class="lead r d2">El gabinete ambiental federal, organizado por Secretaría, con su <b>directorio real</b>: nombre, cargo y correo de cada funcionario, tomado del directorio oficial de gob.mx. De SEMARNAT a la última comisión que discute tu NOM.</p>
+  <!-- 8 · IMPUESTOS (screenshot) -->
+  <section data-t="Impuestos">
+    <div class="glow" style="width:480px;height:480px;background:var(--g3);top:-10%;right:-6%;opacity:.24"></div>
+    <div class="kick r">Comparar entidades</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:12ch">¿Qué estado te cuesta más?</h2>
+        <p class="lead r d2">Los impuestos ambientales viven en unidades distintas — unos en UMA, otros en pesos. Scope los <b>normaliza a pesos</b> y los compara por tipo (GEI, agua, residuos…), marcando la entidad más cara. Una decisión de operación, resuelta en segundos.</p>
       </div>
-      <div class="frame r d3" style="flex:1;min-width:280px;max-width:400px">
-        <div class="chip"><span class="dot"></span>SEMARNAT · directorio</div>
-        <div style="margin-top:14px;display:flex;flex-direction:column;gap:13px">
-          <div><div style="font-size:15px;font-weight:700">Alicia Bárcena Ibarra</div><div style="font-size:12px;color:var(--mut)">Secretaria de Medio Ambiente y Recursos Naturales</div></div>
-          <div style="border-top:1px solid var(--line);padding-top:11px"><div style="font-size:15px;font-weight:700">Ileana Villalobos Estrada</div><div style="font-size:12px;color:var(--mut)">Subsecretaria de Regulación Ambiental</div></div>
-          <div style="border-top:1px solid var(--line);padding-top:11px"><div style="font-size:15px;font-weight:700">José Luis Samaniego Leyva</div><div style="font-size:12px;color:var(--mut)">Subsecretario de Desarrollo Sostenible y Economía Circular</div></div>
-        </div>
-      </div>
+      <div class="shotcol r d3"><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Scope · Comparar impuestos verdes</span></div><img src="assets/pitch/impuestos.png" alt="Comparación de impuestos verdes"></div></div>
     </div>
   </section>
 
-  <!-- 10 · AGENDA -->
-  <section data-t="Agenda">
-    <div class="glow" style="width:440px;height:440px;background:var(--g2);top:10%;left:-6%;opacity:.26"></div>
-    <div class="kick r">Agenda regulatoria</div>
-    <h2 class="r d1" style="max-width:16ch">Lo ves antes del Diario Oficial.</h2>
-    <p class="lead r d2">Las propuestas en consulta ante <b>CONAMER</b>, las reglamentaciones pendientes y las iniciativas del <b>Congreso de la Unión</b> — cuando todavía se pueden influir, no cuando ya son obligación.</p>
+  <!-- 9 · ACTORES (screenshot) -->
+  <section data-t="Actores">
+    <div class="kick r">Quién decide</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:13ch">Sabes con quién hablar.</h2>
+        <p class="lead r d2">El gabinete ambiental federal, organizado por Secretaría, con su <b>directorio real</b>: nombre, cargo y correo de cada funcionario, del directorio oficial de gob.mx. De SEMARNAT a la comisión que discute tu norma.</p>
+      </div>
+      <div class="shotcol r d3"><div class="shot tall"><div class="bar"><i></i><i></i><i></i><span>Scope · Actores federales</span></div><img src="assets/pitch/actores.png" alt="Directorio de dependencias federales"></div></div>
+    </div>
   </section>
 
-  <!-- 11 · MI TERMINAL -->
+  <!-- 10 · INTERNACIONAL (screenshot) -->
+  <section data-t="Internacional">
+    <div class="glow" style="width:460px;height:460px;background:var(--g2);bottom:-12%;right:-8%;opacity:.22"></div>
+    <div class="kick r">Regulación internacional</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:14ch">Lo que se decide afuera, también te alcanza.</h2>
+        <p class="lead r d2">Reglamentos de la Unión Europea, leyes de otros países y tratados que impactan a México — con su relevancia para el exportador nacional. Y la Agenda 2030 con los objetivos de mayor incidencia ambiental.</p>
+      </div>
+      <div class="shotcol r d3"><div class="shot tall"><div class="bar"><i></i><i></i><i></i><span>Scope · Regulación internacional</span></div><img src="assets/pitch/internacional.png" alt="Base de regulación internacional"></div></div>
+    </div>
+  </section>
+
+  <!-- 11 · MI TERMINAL (screenshot) -->
   <section data-t="Mi Terminal">
     <div class="kick r">Mi Terminal</div>
-    <div style="display:flex;flex-wrap:wrap;gap:44px;align-items:center;justify-content:space-between">
-      <div style="flex:1;min-width:300px">
+    <div class="split">
+      <div class="col">
         <h2 class="r d1" style="max-width:12ch">Y luego, la haces tuya.</h2>
-        <p class="lead r d2">Cada usuario elige sus temas, sus estados, sus comisiones y sus NOMs. Scope arma <b>su propia terminal</b>: su señal del día, su autoevaluación de cumplimiento y un reporte técnico que se lleva en PDF con la foto del día.</p>
+        <p class="lead r d2">Cada usuario arma <b>su propia terminal</b>: elige temas, estados, comisiones y NOMs; Scope calcula su señal del día, su autoevaluación de cumplimiento, el canal del equipo y su reporte técnico — que se lleva en PDF con la foto del día.</p>
       </div>
-      <div class="frame r d3" style="flex:1;min-width:280px;max-width:400px">
-        <div class="chip"><span class="dot"></span>Tu terminal · Actividad alta</div>
-        <h3 style="margin:14px 0 6px;font-size:19px">Residuos concentra tu señal esta semana</h3>
-        <div style="font-family:var(--mono);font-size:11px;color:var(--mut)">39 menciones en medios · últimos 7 días</div>
-        <div class="bars" style="margin-top:14px">
-          <div class="barrow"><span class="nm" style="width:90px">Residuos</span><span class="track"><span class="fill" style="--w:100%"></span></span></div>
-          <div class="barrow"><span class="nm" style="width:90px">Agua</span><span class="track"><span class="fill" style="--w:64%"></span></span></div>
-          <div class="barrow"><span class="nm" style="width:90px">E. circular</span><span class="track"><span class="fill" style="--w:30%"></span></span></div>
-        </div>
-      </div>
+      <div class="shotcol r d3"><div class="shot tall"><div class="bar"><i></i><i></i><i></i><span>Scope · Mi Terminal</span></div><img src="assets/pitch/terminal.png" alt="Mi Terminal personalizada"></div></div>
     </div>
   </section>
 
-  <!-- 12 · CÓMO SE NUTRE -->
+  <!-- 12 · SIGNAL (screenshot) -->
+  <section data-t="Signal">
+    <div class="glow" style="width:500px;height:500px;background:var(--g2);top:10%;left:-8%;opacity:.22"></div>
+    <div class="kick r">Asistente inteligente</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:13ch">Y un asistente que la entiende.</h2>
+        <p class="lead r d2"><b>Signal</b> es el asistente inteligente de Scope. Disponible desde cualquier pantalla, pensado para responder sobre tus NOMs, impuestos, comisiones y normativa con los datos de tu terminal — la capa conversacional que hace de toda esta información una respuesta.</p>
+      </div>
+      <div class="shotcol r d3" style="flex:.9;text-align:center"><div class="shot" style="display:inline-block;max-width:360px"><div class="bar"><i></i><i></i><i></i><span>Signal</span></div><img src="assets/pitch/signal.png" alt="Asistente Signal"></div></div>
+    </div>
+  </section>
+
+  <!-- 13 · AGENDA -->
+  <section data-t="Agenda">
+    <div class="glow" style="width:440px;height:440px;background:var(--g2);top:12%;left:-6%;opacity:.22"></div>
+    <div class="kick r">Agenda regulatoria</div>
+    <h2 class="r d1" style="max-width:16ch">Lo ves antes del Diario Oficial.</h2>
+    <p class="lead r d2">Las propuestas en consulta ante <b>CONAMER</b>, las reglamentaciones pendientes y las iniciativas del Congreso — cuando todavía se pueden influir, no cuando ya son obligación.</p>
+  </section>
+
+  <!-- 14 · CÓMO SE NUTRE -->
   <section data-t="La señal">
-    <div class="glow" style="width:560px;height:560px;background:var(--g3);bottom:-16%;right:-10%;opacity:.3"></div>
+    <div class="glow" style="width:560px;height:560px;background:var(--g3);bottom:-16%;right:-10%;opacity:.28"></div>
     <div class="kick r">Cómo se nutre</div>
     <h2 class="r d1" style="max-width:16ch">No es una foto. Es una señal que respira.</h2>
-    <p class="lead r d2">Detrás corre maquinaria todos los días: lectores automáticos de <b>prensa nacional y estatal</b>, del <b>DOF</b>, del <b>Congreso</b>, de <b>CONAMER</b> y de la mañanera; e ingesta de <b>datos abiertos oficiales</b> —SEMARNAT, INECC— más bases legales curadas por GEMI. Todo con fuente. Todo fechado.</p>
+    <p class="lead r d2">Detrás corre maquinaria todos los días: lectores automáticos de prensa nacional y estatal, del DOF, del Congreso, de CONAMER y de la conferencia matutina; e ingesta de datos abiertos oficiales — SEMARNAT, INECC — más bases legales curadas por GEMI. Todo con fuente. Todo fechado.</p>
     <div class="stats">
-      <div class="stat r d3"><div class="n">Diario</div><div class="l">Actualización automática de la señal</div></div>
+      <div class="stat r d2"><div class="n">+180<span class="u"> fuentes</span></div><div class="l">Prensa nacional y estatal, DOF, Congreso, CONAMER, gacetas y datos oficiales</div></div>
+      <div class="stat r d3"><div class="n">Diario</div><div class="l">La señal se actualiza sola, todos los días</div></div>
       <div class="stat r d4"><div class="n">32<span class="u"> estados</span></div><div class="l">Cobertura nacional, no solo federal</div></div>
-      <div class="stat r d5"><div class="n">1<span class="u"> fuente</span></div><div class="l">Lo disperso, reunido en un lugar</div></div>
     </div>
   </section>
 
-  <!-- 13 · GEMI / FUTURO -->
-  <section data-t="GEMI">
-    <div class="glow" style="width:600px;height:600px;background:var(--g);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.14"></div>
-    <div class="kick r">El motor</div>
+  <!-- 15 · EL TRABAJO DETRÁS -->
+  <section data-t="Construcción" style="justify-content:center">
+    <div class="kick r">Lo que hay debajo</div>
+    <h2 class="r d1" style="max-width:18ch">Seis meses de construcción sobre años de experiencia.</h2>
+    <div class="stats">
+      <div class="stat r d2"><div class="n">~6<span class="u"> meses</span></div><div class="l">De desarrollo dedicado, de la idea al producto vivo</div></div>
+      <div class="stat r d3"><div class="n">Años</div><div class="l">De experiencia de GEMI con el sector y las autoridades</div></div>
+      <div class="stat r d4"><div class="n">1<span class="u"> plataforma</span></div><div class="l">Donde ese conocimiento se vuelve producto</div></div>
+    </div>
+  </section>
+
+  <!-- 16 · IMPACTO -->
+  <section data-t="Impacto" style="justify-content:center">
+    <div class="kick r">Para quién</div>
+    <h2 class="r d1" style="max-width:18ch">Para quien vive de anticiparse.</h2>
+    <div class="verbs r d2"><span>Anticipar.</span><span>Comparar.</span><span>Cuantificar.</span><span>Cumplir.</span></div>
+    <p class="lead r d3">Direcciones de sostenibilidad, asuntos regulatorios y jurídicos: lo que antes eran semanas de despacho, aquí es una pantalla.</p>
+  </section>
+
+  <!-- 17 · GEMI / FUTURO -->
+  <section data-t="Futuro">
+    <div class="glow" style="width:600px;height:600px;background:var(--g);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.13"></div>
+    <div class="kick r">El motor y el futuro</div>
     <h2 class="r d1" style="max-width:16ch">Detrás de Scope está GEMI.</h2>
-    <p class="lead r d2">La jurisprudencia, el monitoreo internacional, el conocimiento de doce asociados y años de trabajo con las autoridades. Scope es donde todo ese conocimiento —que antes vivía en reportes— se vuelve <b>producto vivo</b>.</p>
-    <div class="feats" style="margin-top:34px">
-      <div class="feat r d3"><div class="t">Una consola por asociado</div><div class="d">Cada empresa de GEMI, su propio radar y su propio expediente sectorial.</div></div>
-      <div class="feat r d4"><div class="t">Inteligencia, no listas</div><div class="d">Del dato oficial a la lectura que un director puede usar el mismo día.</div></div>
+    <p class="lead r d2">La jurisprudencia, el monitoreo internacional y el conocimiento de sus asociados. Scope es donde ese trabajo — que antes vivía en reportes — se vuelve producto vivo.</p>
+    <div class="feats" style="margin-top:32px">
+      <div class="feat r d3"><div class="t">Una consola por asociado</div><div class="d">Cada empresa de GEMI, su propio radar y su expediente sectorial.</div></div>
+      <div class="feat r d4"><div class="t">Inteligencia, no listas</div><div class="d">Del dato oficial a la lectura que un director usa el mismo día.</div></div>
       <div class="feat r d5"><div class="t">El estándar del sector</div><div class="d">El lugar donde México lee su propia regulación ambiental.</div></div>
     </div>
   </section>
 
-  <!-- 14 · IMPACTO -->
-  <section data-t="Impacto" style="justify-content:center">
-    <div class="kick r">Para quién</div>
-    <h2 class="r d1" style="max-width:18ch">Para quien vive de anticiparse.</h2>
-    <div class="verbs r d2">
-      <span>Anticipar.</span><span>Comparar.</span><span>Cuantificar.</span><span>Cumplir.</span>
-    </div>
-    <p class="lead r d3">Directores de sostenibilidad, asuntos regulatorios y jurídicos: lo que antes eran semanas de despacho, aquí es una pantalla.</p>
-  </section>
-
-  <!-- 15 · PRECIOS -->
+  <!-- 18 · PRECIOS -->
   <section data-t="Acceso">
-    <div class="glow" style="width:520px;height:520px;background:var(--g3);top:-12%;right:-8%;opacity:.26"></div>
+    <div class="glow" style="width:520px;height:520px;background:var(--g3);top:-12%;right:-8%;opacity:.24"></div>
     <div class="kick r">Acceso</div>
     <h2 class="r d1" style="max-width:14ch">Un precio para cada ritmo.</h2>
     <div class="prices">
@@ -318,79 +315,42 @@
     </div>
     <div class="socios r d5">
       <div class="t">Los socios de GEMI ya están dentro.</div>
-      <div class="d">Cada socio recibe <b>3 usuarios</b>: dos para los socios registrados y uno extra para que lo prueben sin costo. A partir del <b>cuarto usuario</b>, se suman <b>$1,000</b> a la membresía por cada usuario, solo por los meses en que se use.</div>
+      <div class="d">Cada socio recibe <b>3 usuarios</b>: dos para los socios registrados y uno extra para probarlo sin costo. A partir del <b>cuarto usuario</b>, se suman <b>$1,000</b> a la membresía por cada uno, solo por los meses en que se use.</div>
     </div>
   </section>
 
-  <!-- 16 · CIERRE -->
+  <!-- 19 · CIERRE -->
   <section data-t="Cierre" style="justify-content:center;text-align:center;align-items:center">
     <div class="glow" style="width:680px;height:680px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.3"></div>
-    <div class="kick r">Iniciativa GEMI · 2026</div>
+    <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:38px;margin-bottom:30px">
     <h1 class="r d1" style="max-width:16ch">Estamos cambiando el ambiente.</h1>
     <p class="lead r d2" style="margin:16px auto 0">Y esta vez, se puede ver.</p>
-    <div class="ctarow r d3" style="justify-content:center;margin-top:42px">
+    <div class="ctarow r d3" style="justify-content:center;margin-top:40px">
       <a class="cta" href="index.html">Explorar Scope &rarr;</a>
-      <a class="cta ghost" href="index.html">Volver</a>
     </div>
+    <div class="cap r d4">Iniciativa GEMI · 2026</div>
   </section>
 
 </div>
 
 <script>
 (function(){
-  var deck=document.getElementById('deck');
-  var secs=[].slice.call(deck.querySelectorAll('section'));
-  var dotsWrap=document.getElementById('dots');
-  var prog=document.getElementById('prog');
-
-  // dots
-  secs.forEach(function(s,i){
-    var a=document.createElement('a');a.title=s.getAttribute('data-t')||('Slide '+(i+1));
-    a.addEventListener('click',function(){secs[i].scrollIntoView({behavior:'smooth'});});
-    dotsWrap.appendChild(a);
-  });
+  var deck=document.getElementById('deck'), secs=[].slice.call(deck.querySelectorAll('section'));
+  var dotsWrap=document.getElementById('dots'), prog=document.getElementById('prog');
+  secs.forEach(function(s,i){var a=document.createElement('a');a.title=s.getAttribute('data-t')||('Slide '+(i+1));
+    a.addEventListener('click',function(){secs[i].scrollIntoView({behavior:'smooth'});});dotsWrap.appendChild(a);});
   var dots=[].slice.call(dotsWrap.children);
-
-  // reveal + active dot
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.classList.add('in');
-        var i=secs.indexOf(e.target);
-        dots.forEach(function(d,j){d.classList.toggle('on',j===i);});
-      }
-    });
-  },{threshold:.55});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');
+    var i=secs.indexOf(e.target);dots.forEach(function(d,j){d.classList.toggle('on',j===i);});}});},{threshold:.5});
   secs.forEach(function(s){io.observe(s);});
-
-  // progress bar
-  deck.addEventListener('scroll',function(){
-    var max=deck.scrollHeight-deck.clientHeight;
-    prog.style.width=(max>0?(deck.scrollTop/max*100):0)+'%';
-  },{passive:true});
-
-  // keyboard nav
-  function cur(){var h=deck.clientHeight;return Math.round(deck.scrollTop/h);}
+  deck.addEventListener('scroll',function(){var m=deck.scrollHeight-deck.clientHeight;prog.style.width=(m>0?deck.scrollTop/m*100:0)+'%';},{passive:true});
+  function cur(){return Math.round(deck.scrollTop/deck.clientHeight);}
   function go(i){i=Math.max(0,Math.min(secs.length-1,i));secs[i].scrollIntoView({behavior:'smooth'});}
   document.addEventListener('keydown',function(e){
     if(['ArrowDown','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();go(cur()+1);}
     else if(['ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault();go(cur()-1);}
-    else if(e.key==='Home'){e.preventDefault();go(0);}
-    else if(e.key==='End'){e.preventDefault();go(secs.length-1);}
+    else if(e.key==='Home'){e.preventDefault();go(0);} else if(e.key==='End'){e.preventDefault();go(secs.length-1);}
   });
-
-  // ── dot-map of Mexico (approx. node positions, x/y in %) ──
-  var map=document.getElementById('map');
-  if(map){
-    var pts=[[16,26],[10,40],[20,52],[13,58],[30,30],[38,22],[46,28],[55,20],[62,30],[42,42],[50,44],[57,50],[36,54],[44,58],[30,66],[40,70],[52,64],[60,58],[66,44],[72,54],[78,62],[86,58],[70,70],[60,74],[50,78],[44,82],[34,78],[24,72]];
-    pts.forEach(function(p,i){
-      var n=document.createElement('div');n.className='node'+(i%3===0?' twk':'');
-      n.style.left=p[0]+'%';n.style.top=p[1]+'%';
-      n.style.animationDelay=(i*0.045)+'s';
-      var big=i%5===0;if(big){n.style.width='12px';n.style.height='12px';}
-      map.appendChild(n);
-    });
-  }
 })();
 </script>
 </body>
