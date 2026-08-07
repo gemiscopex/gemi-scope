@@ -2578,10 +2578,16 @@ function _oblRow(o){
     +right
     +'</div>';
 }
+// Subheader de sección (subordinado al título 22px "Obligaciones"): banda con acento verde
+function _oblSubhead(t,s){
+  return '<div style="background:rgba(6,103,80,0.05);border-left:3px solid #066750;border-radius:0 10px 10px 0;padding:10px 16px;margin-bottom:16px">'
+    +'<div style="font-size:15px;font-weight:700;font-family:var(--sans);color:#066750;letter-spacing:0.01em">'+t+'</div>'
+    +(s?'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.5">'+s+'</div>':'')
+    +'</div>';
+}
 function _jurisprudenciaHTML(){
   return '<div>'
-    +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Precedentes judiciales</div>'
-    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:12px">Criterios de la SCJN sobre regulación ambiental estatal — para leer qué prohibiciones locales son constitucionales y cuáles no.</div>'
+    +_oblSubhead('Precedentes judiciales','Criterios de la SCJN sobre regulación ambiental estatal — para leer qué prohibiciones locales son constitucionales y cuáles no.')
     +'<div style="font-size:11px;color:var(--text-sec);background:rgba(0,158,144,0.05);border-left:2px solid var(--green);padding:8px 12px;margin-bottom:8px;line-height:1.5;max-width:760px">El criterio aplica a <b>prohibiciones absolutas de materiales</b> (invasión de competencia federal), <b>no</b> a la regulación estatal de gestión, recolección, plan de manejo o infraestructura post-consumo — competencia propia de los estados.</div>'
     +_JURISPRUDENCIA.map(function(j){
       return _oblRow({title:j.t,desc:j.resumen,meta:j.org+' · '+j.anio,right:_oblStatus(j.criterio,'var(--green)'),url:j.url});
@@ -2599,8 +2605,7 @@ var _SUSTANCIAS=[
 ];
 function _sustanciasHTML(){
   return '<div>'
-    +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Sustancias bajo restricción</div>'
-    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Químicos y aditivos con restricción o escrutinio creciente, con su base internacional — anticipan regulación en México.</div>'
+    +_oblSubhead('Sustancias bajo restricción','Químicos y aditivos con restricción o escrutinio creciente, con su base internacional — anticipan regulación en México.')
     +_SUSTANCIAS.map(function(s){
       var color=/escrutinio/i.test(s.estatus)?'var(--amber)':'var(--red)';
       return _oblRow({title:s.n,desc:s.base,right:_oblStatus(s.estatus,color),url:s.url});
@@ -2616,8 +2621,7 @@ var _ECOCIRCULAR=[
 ];
 function _ecocircularHTML(){
   return '<div>'
-    +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Economía circular · casos de referencia</div>'
-    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Mecanismos de circularidad real en la industria — útiles como benchmark operativo.</div>'
+    +_oblSubhead('Economía circular · casos de referencia','Mecanismos de circularidad real en la industria — útiles como benchmark operativo.')
     +_ECOCIRCULAR.map(function(e){
       return _oblRow({title:e.n,desc:e.d});
     }).join('')+'</div>';
@@ -2626,8 +2630,7 @@ function _oblToggleCerts(i){var el=document.getElementById('obl-certs-'+i);var a
 function _instrumentosHTML(){
   var lnk='cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11px;font-weight:600;white-space:nowrap';
   return '<div>'
-    +'<div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Instrumentos legales</div>'
-    +'<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Obligaciones y figuras regulatorias vigentes. Los registros y reportes enlazan a su portal oficial; los distintivos se despliegan.</div>'
+    +_oblSubhead('Instrumentos legales','Obligaciones y figuras regulatorias vigentes. Los registros y reportes enlazan a su portal oficial; los distintivos se despliegan.')
     +_OBLIGACIONES.map(function(o,i){
       var right;
       if(o.certs)right='<a onclick="_oblToggleCerts('+i+')" style="'+lnk+'">Ver certificaciones <span id="obl-certs-arr-'+i+'">▾</span></a>';
