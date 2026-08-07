@@ -168,6 +168,23 @@
   section.in .intl-scroll{transform:translateY(var(--isc,-180px))}
   .intl-pin{display:flex;align-items:flex-start;gap:13px;max-width:560px;border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 12px 12px 0;background:rgba(18,185,138,.05);padding:13px 17px}
   .intl-pin .pd{width:8px;height:8px;border-radius:50%;background:var(--mint);flex-shrink:0;margin-top:4px;box-shadow:0 0 0 4px rgba(63,224,173,.12)}
+  /* Conferencias matutinas (réplica exacta del widget real) */
+  .csp{max-width:430px}
+  .chyron-hdr{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.01em;color:var(--ink);margin-bottom:12px}
+  .chyron-live{width:6px;height:6px;border-radius:50%;background:#DC2626;animation:cspPulse 1.6s ease-in-out infinite;flex-shrink:0}
+  @keyframes cspPulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .csp-node{display:grid;grid-template-columns:46px 1fr;align-items:start}
+  .csp-node-date{font-family:var(--mono);font-size:9px;color:var(--dim);text-align:right;padding-right:13px;padding-top:1px;white-space:nowrap}
+  .csp-node-body{border-left:1.5px solid var(--line);padding:0 0 13px 14px;position:relative;min-width:0}
+  .csp-node:last-child .csp-node-body{padding-bottom:2px}
+  .csp-node-body::before{content:'';position:absolute;left:-5px;top:2px;width:8px;height:8px;border-radius:50%;background:#DC2626;box-shadow:0 0 0 2px var(--bg)}
+  .csp-run-wrap{overflow:hidden}
+  .csp-run{display:inline-flex;white-space:nowrap;animation:chyronMove var(--d,50s) linear infinite}
+  .csp-run-wrap:hover .csp-run{animation-play-state:paused}
+  .csp-q{font-family:var(--mono);font-size:11px;color:var(--mut);line-height:1.4}
+  .csp-q strong{font-weight:600;color:var(--ink)}
+  .csp-sep{color:var(--dim);padding:0 13px;font-size:8px}
+  @keyframes chyronMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   .vizlbl{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;margin-bottom:12px}
   .intl-pin .pk{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--mint);letter-spacing:.05em;margin-bottom:5px}
   .intl-pin .pt{font-size:14px;font-weight:700}
@@ -295,7 +312,7 @@
   .costscale .cl{font-size:13px;font-weight:700;color:var(--mut);margin-bottom:14px}
   .crow{display:flex;align-items:center;gap:12px;margin:11px 0}
   .crow .cn{width:150px;flex-shrink:0;font-size:13px;font-weight:600}
-  .crow .ct{flex:1;height:9px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden}
+  .crow .ct{flex:1;height:11px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden}
   .crow .cf{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--g3),var(--g));transition:width 1.2s cubic-bezier(.22,1,.36,1)}
   .crow .cv{width:86px;text-align:right;font-size:13px;font-weight:700;flex-shrink:0}
   .crow .cf.hi{background:linear-gradient(90deg,var(--g2),var(--mint))}
@@ -489,9 +506,11 @@
       <div class="col">
         <h2 class="r d1" style="max-width:15ch">Lo que se decide afuera, también te alcanza.</h2>
         <p class="lead r d2">Dos señales externas que mueven la regulación de México: los instrumentos internacionales que alcanzan al exportador, y el pulso político de cada mañana.</p>
-        <div class="intl-pin r d3">
-          <span class="pd"></span>
-          <div><div class="pk">Conferencia matutina · Presidencia</div><div class="pt">El pulso político, cada mañana</div><div class="ps">Seguimos la agenda de la conferencia de Claudia Sheinbaum, donde la rentabilidad política marca el rumbo de lo ambiental en México.</div></div>
+        <div class="csp r d3">
+          <div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo</div>
+          <div class="csp-node"><div class="csp-node-date">04 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:48s"><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span></div></div></div></div>
+          <div class="csp-node"><div class="csp-node-date">03 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:42s"><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span></div></div></div></div>
+          <div class="csp-node"><div class="csp-node-date">31 jul</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:45s"><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span></div></div></div></div>
         </div>
       </div>
       <div class="viz r d3">
