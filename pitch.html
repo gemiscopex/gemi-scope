@@ -168,7 +168,9 @@
   section.in .intl-scroll{transform:translateY(var(--isc,-180px))}
   .intl-pin{display:flex;align-items:flex-start;gap:13px;max-width:560px;border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 12px 12px 0;background:rgba(18,185,138,.05);padding:13px 17px}
   .intl-pin .pd{width:8px;height:8px;border-radius:50%;background:var(--mint);flex-shrink:0;margin-top:4px;box-shadow:0 0 0 4px rgba(63,224,173,.12)}
-  .intl-pin .pt{font-size:13.5px;font-weight:700}
+  .vizlbl{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;margin-bottom:12px}
+  .intl-pin .pk{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--mint);letter-spacing:.05em;margin-bottom:5px}
+  .intl-pin .pt{font-size:14px;font-weight:700}
   .intl-pin .ps{font-size:11.5px;color:var(--mut);margin-top:3px;line-height:1.45}
   .irow{display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:opacity .2s}
   .irow:hover{opacity:.72}
@@ -482,10 +484,21 @@
 
   <!-- 12 · INTERNACIONAL -->
   <section data-t="Internacional">
-    <h2 class="r d1" style="max-width:16ch">Lo que se decide afuera, también te alcanza.</h2>
-    <p class="lead r d2" style="max-width:680px">Los instrumentos internacionales que impactan al exportador mexicano, con su jurisdicción y relevancia. Y la agenda de las conferencias matutinas de la Presidencia, donde la política marca el pulso regulatorio del país.</p>
-    <div class="intl-pin r d2" style="margin-top:18px"><span class="pd"></span><div><div class="pt">Conferencias matutinas de la Presidencia</div><div class="ps">Seguimiento diario de la agenda de Claudia Sheinbaum. Un tema de rentabilidad política que marca lo ambiental en México.</div></div></div>
-    <div class="intl-view r d3" style="margin-top:14px"><div class="intl-scroll" id="intlscroll"></div></div>
+    <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-14%;right:-8%;opacity:.18"></div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:15ch">Lo que se decide afuera, también te alcanza.</h2>
+        <p class="lead r d2">Dos señales externas que mueven la regulación de México: los instrumentos internacionales que alcanzan al exportador, y el pulso político de cada mañana.</p>
+        <div class="intl-pin r d3">
+          <span class="pd"></span>
+          <div><div class="pk">Conferencia matutina · Presidencia</div><div class="pt">El pulso político, cada mañana</div><div class="ps">Seguimos la agenda de la conferencia de Claudia Sheinbaum, donde la rentabilidad política marca el rumbo de lo ambiental en México.</div></div>
+        </div>
+      </div>
+      <div class="viz r d3">
+        <div class="vizlbl">Instrumentos internacionales · base viva de Scope</div>
+        <div class="intl-view"><div class="intl-scroll" id="intlscroll"></div></div>
+      </div>
+    </div>
   </section>
 
   <!-- 13 · MI TERMINAL (se arma paso a paso) -->
