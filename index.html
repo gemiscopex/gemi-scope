@@ -2101,43 +2101,63 @@ function _depTreeHTML(units,depth){
   }).join('');
 }
 function _depToggle(sig){_depOpen[sig]=!_depOpen[sig];renderActoresFederal();}
+// Agrupación por Secretaría rectora (SEMARNAT y sus órganos desconcentrados, etc.)
+var _SEC_GROUPS=[
+  {sec:'Medio Ambiente y Recursos Naturales',sub:'SEMARNAT y sus órganos desconcentrados',sigs:['SEMARNAT','CONAGUA','PROFEPA','CONAFOR','CONANP','ASEA']},
+  {sec:'Energía',sub:'SENER',sigs:['SENER']},
+  {sec:'Economía',sub:'SE',sigs:['ECONOMÍA']},
+  {sec:'Agricultura y Desarrollo Rural',sub:'SADER y órganos desconcentrados',sigs:['SADER','SENASICA']},
+  {sec:'Salud',sub:'SSA',sigs:['COFEPRIS']}
+];
+function _depDetailHTML(a,dep){
+  var per=(dep.personas||[]);
+  var personasHTML=per.length?('<div>'+per.map(function(p){
+    return '<div style="padding:9px 0 9px 14px;border-bottom:0.8px solid var(--border)">'
+      +'<div style="font-size:13px;font-weight:600;color:var(--text)">'+p.nombre+'</div>'
+      +'<div style="font-size:11px;color:var(--text-sec);margin-top:1px">'+p.cargo+'</div>'
+      +(p.email?'<a href="mailto:'+p.email+'" onclick="event.stopPropagation()" style="font-family:var(--mono);font-size:10px;color:var(--green);text-decoration:none">'+p.email+'</a>':'')
+      +'</div>';
+  }).join('')+'</div>'):'';
+  var dirLink=dep.dir_url?'<a href="'+dep.dir_url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-block;margin:12px 0 2px 14px;font-size:11px;font-weight:700;color:var(--green);text-decoration:none">Directorio completo y vigente en gob.mx ↗</a>':'';
+  var uni=(dep.unidades&&dep.unidades.length)?('<div style="margin-top:14px;padding-top:10px;border-top:0.8px solid var(--border)"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);padding-left:14px;margin-bottom:2px">Estructura orgánica · unidades (Reglamento Interior)</div>'+_depTreeHTML(dep.unidades,0)+'</div>'):'';
+  return '<div style="grid-column:1/-1;background:rgba(6,103,80,0.04);border-radius:12px;padding:14px 4px 16px;margin:2px 0 6px">'
+    +'<div style="display:flex;align-items:baseline;gap:10px;padding:0 14px 10px;border-bottom:0.8px solid var(--border);margin-bottom:6px">'
+      +'<span style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.1em;color:#066750">'+a.sig+'</span>'
+      +'<span style="font-size:12px;color:var(--text-sec)">'+a.dep+'</span>'
+      +'<a href="'+a.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="margin-left:auto;font-size:11px;color:var(--green);text-decoration:none">gob.mx ↗</a>'
+    +'</div>'
+    +personasHTML+dirLink+uni
+    +(dep.nota?'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:12px;padding:0 14px;line-height:1.5">'+dep.nota+'</div>':'')
+    +'</div>';
+}
 function renderActoresFederal(){
   var el=document.getElementById('actores-federal');
   if(!el)return;
   el.style.display='block';
-  el.innerHTML=ACTORES_FED.map(function(a){
-    var dep=_depGet(a.sig);
-    var open=!!_depOpen[a.sig];
-    var head='<div'+(dep?' onclick="_depToggle(\''+a.sig+'\')" style="cursor:pointer;':' style="')
-      +'display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:0.8px solid var(--border)">'
-      +'<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">'
-        +'<span style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.12em;color:var(--green)">'+a.sig+'</span>'
-        +'<span style="font-size:13px;font-weight:600;color:var(--text)">'+a.titular+'</span>'
-        +'<span style="font-size:11px;color:var(--text-sec)">'+a.cargo+' · '+a.dep+'</span>'
-      +'</div>'
-      +'<a href="'+a.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="flex-shrink:0;font-size:11px;color:var(--green);text-decoration:none">gob.mx ↗</a>'
-      +(dep?'<span style="flex-shrink:0;font-size:10px;color:var(--text-muted);width:14px;text-align:center;transition:transform .2s;transform:rotate('+(open?90:0)+'deg)">▶</span>':'')
-      +'</div>';
-    var tree='';
-    if(dep&&open){
-      var per=(dep.personas||[]);
-      var personasHTML=per.length?('<div style="padding:2px 0 4px">'+per.map(function(p){
-        return '<div style="padding:8px 0 8px 12px;border-bottom:0.8px solid var(--border)">'
-          +'<div style="font-size:13px;font-weight:600;color:var(--text)">'+p.nombre+'</div>'
-          +'<div style="font-size:11px;color:var(--text-sec);margin-top:1px">'+p.cargo+'</div>'
-          +(p.email?'<a href="mailto:'+p.email+'" onclick="event.stopPropagation()" style="font-family:var(--mono);font-size:10px;color:var(--green);text-decoration:none">'+p.email+'</a>':'')
-          +'</div>';
-      }).join('')+'</div>'):'';
-      var dirLink=dep.dir_url?'<a href="'+dep.dir_url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-block;margin:11px 0 2px 12px;font-size:11px;font-weight:700;color:var(--green);text-decoration:none">Directorio completo y vigente en gob.mx ↗</a>':'';
-      var uni=(dep.unidades&&dep.unidades.length)?('<div style="margin-top:14px;padding-top:10px;border-top:0.8px solid var(--border)"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);padding-left:12px;margin-bottom:2px">Estructura orgánica · unidades (Reglamento Interior)</div>'+_depTreeHTML(dep.unidades,0)+'</div>'):'';
-      tree='<div style="padding:6px 0 14px 0;background:rgba(6,103,80,0.02)">'
-        +personasHTML+dirLink+uni
-        +(dep.nota?'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:10px;padding-left:12px;line-height:1.5">'+dep.nota+'</div>':'')
+  var byNsig={};ACTORES_FED.forEach(function(a){byNsig[a.sig]=a;});
+  var html=_SEC_GROUPS.map(function(g){
+    var head='<div style="display:flex;align-items:baseline;gap:9px;margin:18px 0 11px;padding-bottom:7px;border-bottom:1.5px solid rgba(6,103,80,0.22)">'
+      +'<span style="width:9px;height:9px;background:#066750;display:inline-block;align-self:center"></span>'
+      +'<span style="font-size:14px;font-weight:700;font-family:var(--sans);color:var(--text)">'+g.sec+'</span>'
+      +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.05em;color:var(--text-muted)">'+g.sub+'</span></div>';
+    var tiles=g.sigs.map(function(sig){
+      var a=byNsig[sig];if(!a)return '';
+      var dep=_depGet(sig),open=!!_depOpen[sig];
+      var tile='<div onclick="_depToggle(\''+sig+'\')" style="cursor:pointer;background:'+(open?'rgba(6,103,80,0.08)':'rgba(6,103,80,0.035)')+';border-radius:11px;padding:13px 15px;transition:background .12s" '
+        +'onmouseover="if(!'+open+')this.style.background=\'rgba(6,103,80,0.06)\'" onmouseout="if(!'+open+')this.style.background=\'rgba(6,103,80,0.035)\'">'
+        +'<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">'
+          +'<span style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.1em;color:#066750">'+sig+'</span>'
+          +(dep?'<span style="font-size:14px;color:var(--text-muted);transition:transform .2s;transform:rotate('+(open?90:0)+'deg);line-height:1">›</span>':'')
+        +'</div>'
+        +'<div style="font-size:13px;font-weight:600;color:var(--text);margin-top:8px;line-height:1.3">'+a.titular+'</div>'
+        +'<div style="font-size:11px;color:var(--text-sec);margin-top:2px">'+a.cargo+'</div>'
         +'</div>';
-    }
-    return head+tree;
-  }).join('')
-  +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:14px;line-height:1.5">Estructura de SEMARNAT, CONAGUA, PROFEPA y ASEA conforme al Reglamento Interior (DOF mar-2025) y Manual de Organización. En expansión al resto de dependencias y niveles.</div>';
+      return tile+((dep&&open)?_depDetailHTML(a,dep):'');
+    }).join('');
+    return head+'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;align-items:start">'+tiles+'</div>';
+  }).join('');
+  el.innerHTML=html
+    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:18px;line-height:1.5">Directorio con nombres y cargos del directorio oficial de gob.mx (SEMARNAT con correos). Estructura de unidades conforme al Reglamento Interior. Da clic en cada dependencia para ver su directorio.</div>';
 }
 // Entrada desde el dropdown del nav: abre Actores y muestra la sub-vista
 function showActores(view){
