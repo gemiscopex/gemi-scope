@@ -202,6 +202,255 @@
      "nombre": "Unidad de Asuntos Jurídicos"
     }
    ]
+  },
+  "SENER": {
+   "titular": "Luz Elena González Escobar",
+   "cargo": "Secretaria",
+   "url": "https://www.gob.mx/sener",
+   "nota": "Estructura conforme al Reglamento Interior de SENER. Subsecretarios verificados (2025). La reforma energética 2025 sustituyó a CRE y CNH por la Comisión Nacional de Energía (CNE).",
+   "unidades": [
+    {
+     "nombre": "Subsecretaría de Hidrocarburos",
+     "cargo": "Subsecretario",
+     "titular": "Juan José Vidal Amaro"
+    },
+    {
+     "nombre": "Subsecretaría de Electricidad",
+     "cargo": "Subsecretario",
+     "titular": "José Antonio Rojas Nieto"
+    },
+    {
+     "nombre": "Subsecretaría de Planeación y Transición Energética",
+     "cargo": "Subsecretario",
+     "titular": "Jorge Marcial Islas Samperio"
+    },
+    {
+     "nombre": "Unidad de Administración y Finanzas"
+    },
+    {
+     "nombre": "Unidad de Asuntos Jurídicos"
+    },
+    {
+     "nombre": "Órganos y empresas del sector",
+     "unidades": [
+      {
+       "nombre": "Comisión Nacional de Energía (CNE) — sustituye a CRE y CNH"
+      },
+      {
+       "nombre": "Comisión Nacional para el Uso Eficiente de la Energía (CONUEE)"
+      },
+      {
+       "nombre": "Comisión Federal de Electricidad (CFE)"
+      },
+      {
+       "nombre": "Petróleos Mexicanos (Pemex)"
+      },
+      {
+       "nombre": "Comisión Nacional de Seguridad Nuclear y Salvaguardias (CNSNS)"
+      },
+      {
+       "nombre": "Instituto Nacional de Investigaciones Nucleares (ININ)"
+      }
+     ]
+    }
+   ]
+  },
+  "ECONOMÍA": {
+   "titular": "Marcelo Ebrard Casaubón",
+   "cargo": "Secretario",
+   "url": "https://www.gob.mx/se",
+   "nota": "Estructura conforme a su Reglamento Interior. Titulares indicados solo donde están verificados. La Dirección General de Normas (DGN) es la instancia clave para las Normas Oficiales Mexicanas (NOM/NMX).",
+   "unidades": [
+    {
+     "nombre": "Subsecretaría de Industria y Comercio",
+     "unidades": [
+      {
+       "nombre": "Dirección General de Normas (DGN)"
+      },
+      {
+       "nombre": "Dirección General de Industrias Pesadas y de Alta Tecnología"
+      },
+      {
+       "nombre": "Dirección General de Industrias Ligeras"
+      }
+     ]
+    },
+    {
+     "nombre": "Subsecretaría de Comercio Exterior",
+     "unidades": [
+      {
+       "nombre": "Dirección General de Comercio Exterior"
+      },
+      {
+       "nombre": "Dirección General de Reglas de Comercio Internacional"
+      }
+     ]
+    },
+    {
+     "nombre": "Subsecretaría de la Pequeña y Mediana Empresa"
+    },
+    {
+     "nombre": "Unidad de Administración y Finanzas"
+    },
+    {
+     "nombre": "Órganos del sector",
+     "unidades": [
+      {
+       "nombre": "Instituto Mexicano de la Propiedad Industrial (IMPI)"
+      },
+      {
+       "nombre": "Procuraduría Federal del Consumidor (PROFECO)"
+      },
+      {
+       "nombre": "Centro Nacional de Metrología (CENAM)"
+      },
+      {
+       "nombre": "Entidad Mexicana de Acreditación (EMA)"
+      }
+     ]
+    }
+   ]
+  },
+  "SADER": {
+   "titular": "Julio Berdegué Sacristán",
+   "cargo": "Secretario",
+   "url": "https://www.gob.mx/agricultura",
+   "nota": "Estructura conforme a su Reglamento Interior. Titulares indicados solo donde están verificados.",
+   "unidades": [
+    {
+     "nombre": "Subsecretaría de Agricultura"
+    },
+    {
+     "nombre": "Subsecretaría de Autosuficiencia Alimentaria"
+    },
+    {
+     "nombre": "Subsecretaría de Desarrollo Rural"
+    },
+    {
+     "nombre": "Oficialía Mayor"
+    },
+    {
+     "nombre": "Órganos del sector",
+     "unidades": [
+      {
+       "nombre": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)"
+      },
+      {
+       "nombre": "Comisión Nacional de Acuacultura y Pesca (CONAPESCA)"
+      },
+      {
+       "nombre": "Servicio de Información Agroalimentaria y Pesquera (SIAP)"
+      },
+      {
+       "nombre": "Servicio Nacional de Inspección y Certificación de Semillas (SNICS)"
+      },
+      {
+       "nombre": "Instituto Nacional de Investigaciones Forestales, Agrícolas y Pecuarias (INIFAP)"
+      }
+     ]
+    }
+   ]
+  },
+  "CONAFOR": {
+   "titular": "Sergio Graf Montero",
+   "cargo": "Director General",
+   "url": "https://www.gob.mx/conafor",
+   "nota": "Órgano descentralizado sectorizado a SEMARNAT. Estructura conforme a su Reglamento Interior. Titulares indicados solo donde están verificados.",
+   "unidades": [
+    {
+     "nombre": "Coordinación General de Producción y Productividad"
+    },
+    {
+     "nombre": "Coordinación General de Conservación y Restauración"
+    },
+    {
+     "nombre": "Coordinación General de Gerencias Estatales"
+    },
+    {
+     "nombre": "Coordinación General de Planeación e Información"
+    },
+    {
+     "nombre": "Coordinación General de Administración"
+    },
+    {
+     "nombre": "Unidad de Asuntos Jurídicos"
+    }
+   ]
+  },
+  "CONANP": {
+   "titular": "Pedro Álvarez-Icaza Longoria",
+   "cargo": "Comisionado Nacional",
+   "url": "https://www.gob.mx/conanp",
+   "nota": "Órgano desconcentrado de SEMARNAT. Estructura conforme a su Reglamento Interior. Titulares indicados solo donde están verificados.",
+   "unidades": [
+    {
+     "nombre": "Dirección General de Conservación para el Desarrollo"
+    },
+    {
+     "nombre": "Dirección General de Operación Regional"
+    },
+    {
+     "nombre": "Dirección General de Manejo para la Conservación de la Biodiversidad"
+    },
+    {
+     "nombre": "Dirección General de Desarrollo Institucional y Promoción"
+    },
+    {
+     "nombre": "Direcciones Regionales (11 regiones)"
+    }
+   ]
+  },
+  "COFEPRIS": {
+   "titular": "Víctor Hugo Borja Aburto",
+   "cargo": "Comisionado Federal",
+   "url": "https://www.gob.mx/cofepris",
+   "nota": "Órgano desconcentrado de la Secretaría de Salud. Estructura conforme a su Reglamento Interior. Titulares indicados solo donde están verificados.",
+   "unidades": [
+    {
+     "nombre": "Comisión de Operación Sanitaria"
+    },
+    {
+     "nombre": "Comisión de Evidencia y Manejo de Riesgos"
+    },
+    {
+     "nombre": "Comisión de Autorización Sanitaria"
+    },
+    {
+     "nombre": "Comisión de Control Analítico y Ampliación de Cobertura"
+    },
+    {
+     "nombre": "Comisión de Fomento Sanitario"
+    },
+    {
+     "nombre": "Coordinación General Jurídica y Consultiva"
+    }
+   ]
+  },
+  "SENASICA": {
+   "titular": "Francisco Javier Calderón Elizalde",
+   "cargo": "Director en Jefe",
+   "url": "https://www.gob.mx/senasica",
+   "nota": "Órgano desconcentrado de SADER. Estructura conforme a su Reglamento Interior. Titulares indicados solo donde están verificados.",
+   "unidades": [
+    {
+     "nombre": "Dirección General de Salud Animal"
+    },
+    {
+     "nombre": "Dirección General de Sanidad Vegetal"
+    },
+    {
+     "nombre": "Dirección General de Inocuidad Agroalimentaria, Acuícola y Pesquera"
+    },
+    {
+     "nombre": "Dirección General de Inspección Fitozoosanitaria"
+    },
+    {
+     "nombre": "Dirección General Jurídica"
+    },
+    {
+     "nombre": "Dirección General de Administración e Informática"
+    }
+   ]
   }
  }
 }
