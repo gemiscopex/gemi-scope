@@ -180,8 +180,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cat-rank{font-size:11px;font-weight:500;color:var(--text-muted);width:14px;text-align:center;flex-shrink:0}
 .cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .cat-name{font-size:13px;font-weight:500;color:var(--text);flex:1}
-.cat-bar-wrap{width:80px;height:3px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden}
-.cat-bar{height:100%;border-radius:2px}
+.cat-bar-wrap{width:80px;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden}
+.cat-bar{height:100%;border-radius:6px}
 .cat-count{font-size:13px;font-weight:600;color:var(--text);min-width:28px;text-align:right;font-variant-numeric:tabular-nums}
 /* ── Mapa de puntos (señal territorial) ── */
 .dotmap-card{position:relative;height:480px;padding:0!important;overflow:hidden}
@@ -264,8 +264,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .radar-mkt-icon{font-size:16px;flex-shrink:0;width:28px;text-align:center}
 .radar-mkt-name{font-size:13px;font-weight:500;color:var(--text);flex:1}
 .radar-mkt-count{font-size:11px;font-weight:700;color:var(--text-muted);font-variant-numeric:tabular-nums;min-width:30px;text-align:right}
-.radar-mkt-bar{width:60px;height:3px;border-radius:2px;overflow:hidden;background:rgba(0,0,0,0.06)}
-.radar-mkt-fill{height:100%;border-radius:2px}
+.radar-mkt-bar{width:60px;height:8px;border-radius:6px;overflow:hidden;background:rgba(0,0,0,0.05)}
+.radar-mkt-fill{height:100%;border-radius:6px}
 /* ── Terminal integral (tablero tipo Bloomberg) ── */
 .radar-live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);animation:radarPing 1.6s ease-out infinite;flex-shrink:0}
 .radar-board{border-top:0.8px solid var(--border);margin-top:2px}
@@ -343,7 +343,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .radar-state-row:last-child{border-bottom:none}
 .radar-state-rank{font-size:11px;font-weight:700;color:var(--text-muted);min-width:16px}
 .radar-state-name{font-size:12px;color:var(--text);flex:1}
-.radar-state-bar-wrap{width:70px;height:4px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden}
+.radar-state-bar-wrap{width:70px;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden}
+.radar-state-bar,.radar-state-bar-wrap>span{border-radius:6px}
 .radar-state-bar{height:100%;border-radius:2px}
 .radar-state-cnt{font-size:11px;font-weight:700;min-width:24px;text-align:right;font-variant-numeric:tabular-nums}
 .radar-news-item{padding:9px 0;border-bottom:0.8px solid rgba(0,0,0,0.04)}
@@ -366,8 +367,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cat-pop-row{display:flex;align-items:center;gap:8px;padding:5px 0}
 .cat-pop-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .cat-pop-name{font-size:12px;font-weight:500;color:var(--text);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cat-pop-bar-wrap{width:60px;height:3px;background:rgba(0,0,0,0.06);border-radius:2px;overflow:hidden}
-.cat-pop-bar{height:100%;border-radius:2px}
+.cat-pop-bar-wrap{width:60px;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden}
+.cat-pop-bar{height:100%;border-radius:6px}
 .cat-pop-count{font-size:12px;font-weight:600;color:var(--text);min-width:22px;text-align:right;font-variant-numeric:tabular-nums}
 .news-list{list-style:none}
 .news-item{display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:0.8px solid var(--border);cursor:pointer}
@@ -689,8 +690,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-hero-bars{display:flex;flex-direction:column;gap:8px}
 .cons-hero-barrow{display:grid;grid-template-columns:84px 1fr 24px;align-items:center;gap:9px}
 .cons-hero-barname{font-size:11px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cons-hero-bartrack{height:6px;background:rgba(0,0,0,0.05);border-radius:3px;overflow:hidden}
-.cons-hero-barfill{height:100%;border-radius:3px;min-width:2px}
+.cons-hero-bartrack{height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden}
+.cons-hero-barfill{height:100%;border-radius:6px;min-width:2px}
 .cons-hero-barval{font-family:var(--mono);font-size:11px;color:var(--text);text-align:right;font-variant-numeric:tabular-nums}
 @media(max-width:720px){.cons-hero{grid-template-columns:1fr;gap:16px;align-items:start}.cons-hero-head{font-size:17px}}
 .cons-desk{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:start;margin-bottom:12px}
@@ -2799,7 +2800,7 @@ function renderSPResiduos(state){
   if(e.comp){
     var seg=function(pct,c){return '<span style="display:block;height:100%;width:'+pct+'%;background:'+c+'"></span>';};
     h+='<div style="'+lab+';margin-bottom:8px">Composición estimada</div>'
-      +'<div style="display:flex;height:10px;border-radius:3px;overflow:hidden;margin-bottom:9px">'+seg(e.comp.organicos,GRN)+seg(e.comp.aprovechables,TEA)+seg(e.comp.otros,GRY)+'</div>'
+      +'<div style="display:flex;height:8px;border-radius:6px;overflow:hidden;margin-bottom:9px">'+seg(e.comp.organicos,GRN)+seg(e.comp.aprovechables,TEA)+seg(e.comp.otros,GRY)+'</div>'
       +'<div style="display:flex;gap:18px;font-size:11px;color:var(--text-sec);margin-bottom:22px">'
       +'<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;background:'+GRN+';display:inline-block"></span>Orgánicos '+e.comp.organicos.toFixed(1)+'%</span>'
       +'<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;background:'+TEA+';display:inline-block"></span>Aprovechables '+e.comp.aprovechables.toFixed(1)+'%</span>'
@@ -2838,7 +2839,7 @@ function renderSPResiduos(state){
     var mx=Math.max.apply(null,nac.rme_corrientes.map(function(c){return c.tanio;}));
     nac.rme_corrientes.slice().sort(function(a,b){return b.tanio-a.tanio;}).forEach(function(c){
       h+='<div style="display:flex;align-items:center;gap:12px;padding:5px 0"><span style="flex:1;font-size:11px;color:var(--text)">'+c.nombre+'</span>'
-        +'<span style="width:90px;height:4px;background:rgba(0,0,0,0.06);flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(c.tanio/mx*100)+'%;background:'+GRN+'"></span></span>'
+        +'<span style="width:90px;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden;flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(c.tanio/mx*100)+'%;background:'+GRN+';border-radius:6px"></span></span>'
         +'<span style="font-family:var(--mono);font-size:10px;color:var(--text-sec);min-width:78px;text-align:right">'+_resNum(c.tanio)+' t/a</span></div>';
     });
   }
@@ -3289,7 +3290,7 @@ function renderSPImpuestos(state){
         const w=rk.topMxn>0?Math.max(4,Math.round(p.mxnMax/rk.topMxn*100)):0;
         const first=rk.pos===1;
         posbar=`<div style="display:flex;align-items:center;gap:9px;margin:9px 0 3px">`
-          +`<span style="flex:1;height:5px;background:rgba(0,0,0,0.06)"><span style="display:block;height:100%;width:${w}%;background:${first?DEEP:GRN}"></span></span>`
+          +`<span style="flex:1;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden"><span style="display:block;height:100%;width:${w}%;background:${first?DEEP:GRN};border-radius:6px"></span></span>`
           +`<span style="font-size:10px;color:${first?DEEP:'var(--text-sec)'};font-weight:${first?'700':'500'};white-space:nowrap">${first?'El más caro':rk.pos+'° más caro'} de ${rk.total}</span></div>`;
       }
     }
@@ -3458,7 +3459,7 @@ function renderRankingWidget(){
     html+='<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:'+bd+'">';
     html+='<span style="font-size:11px;font-weight:700;color:var(--text-muted);min-width:18px">'+(i+1)+'</span>';
     html+='<span style="font-size:13px;flex:1;cursor:pointer;color:var(--text)" onclick="openStatePanel(\''+s+'\')">' +s+'</span>';
-    html+='<div style="width:90px;height:5px;background:var(--green-tint);border-radius:3px;overflow:hidden">';
+    html+='<div style="width:90px;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden">';
     html+='<div style="width:'+pct+'%;height:100%;background:'+scoreColor(sc.master)+';border-radius:3px"></div></div>';
     html+=scoreBadge(sc.master);
     html+='</div>';
@@ -3719,7 +3720,7 @@ function _radarDetailHTML(temaId){
   var estBars=topE.length?topE.map(function(e){
     return '<div onclick="openStatePanel(\''+e[0].replace(/'/g,"\\'")+'\')" style="display:flex;align-items:center;gap:10px;padding:7px 0;border-top:0.8px solid var(--border);cursor:pointer">'
       +'<span style="flex:1;font-size:12px;color:var(--text)">'+e[0]+'</span>'
-      +'<span style="width:70px;height:4px;background:rgba(0,0,0,0.06);flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(e[1]/mxE*100)+'%;background:'+RD_GREEN+'"></span></span>'
+      +'<span style="width:70px;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden;flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(e[1]/mxE*100)+'%;background:'+RD_GREEN+';border-radius:6px"></span></span>'
       +'<span style="font-family:var(--mono);font-size:11px;color:var(--text);min-width:20px;text-align:right">'+e[1]+'</span></div>';
   }).join(''):'<div style="font-size:11px;color:var(--text-muted);padding:8px 0">Sin actividad estatal reciente</div>';
   var estBlock='<div style="margin-bottom:20px"><div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid '+col+'33"><span style="width:7px;height:7px;border-radius:50%;background:'+col+'"></span><span style="font-size:12px;font-weight:700;color:'+col+'">Estados más activos</span> <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+topE.length+'</span></div>'+estBars+'</div>';
@@ -3845,7 +3846,7 @@ function renderSPPerfil(state,data,sc){
       <div>
         <span style="font-size:17px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.01em">${value}</span>
         ${note?`<span style="font-size:10px;color:var(--text-muted);margin-left:8px">${note}</span>`:''}
-        ${barPct!=null?`<div style="height:3px;background:rgba(0,0,0,0.06);margin-top:7px;max-width:340px"><div style="width:${Math.max(1.5,barPct)}%;height:100%;background:var(--green)"></div></div>`:''}
+        ${barPct!=null?`<div style="height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden;margin-top:7px;max-width:340px"><div style="width:${Math.max(1.5,barPct)}%;height:100%;background:var(--green);border-radius:6px"></div></div>`:''}
       </div>
     </div>`;
   }
@@ -5755,7 +5756,7 @@ function _cumplRender(){
   var summary='<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">'
     +'<span style="font-family:var(--mono);font-size:18px;font-weight:700;color:#066750;line-height:1">'+pct+'%</span>'
     +'<span style="font-size:11px;color:var(--text-sec);line-height:1.4">'+nOk+' de '+items.length+' cumplidos'+(nProc?' · '+nProc+' en proceso':'')+'</span></div>'
-    +'<div style="height:5px;background:rgba(0,0,0,.06);border-radius:3px;overflow:hidden;margin-bottom:8px"><span style="display:block;height:100%;width:'+pct+'%;background:#066750"></span></div>';
+    +'<div style="height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden;margin-bottom:8px"><span style="display:block;height:100%;width:'+pct+'%;background:#066750;border-radius:6px"></span></div>';
   el.innerHTML=summary+rows;
 }
 // ── Panel tipo chat de IA (placeholder interactivo — bot real llega después) ──
