@@ -32,9 +32,9 @@
   .cap{font-family:var(--mono);letter-spacing:.03em}
   .psub,.cl,.cest,.devnote,.price .p,.stat .n .u,.legend{font-family:var(--mono)}
   .soon,.soonbig,.topflag,.rtr,.price .per,.scrollhint,.exit,.brow .nm .ab,.irow .b,.cw-next{font-family:var(--mono)}
-  /* portada: destacar "cambiando" (mismo color y tamaño, solo resplandor) */
-  .tw{animation:twGlow 2.8s ease-in-out infinite}
-  @keyframes twGlow{0%,100%{text-shadow:0 0 0 rgba(63,224,173,0)}50%{text-shadow:0 0 28px rgba(63,224,173,.6)}}
+  /* portada: "cambiando" se escribe y borra (mismo color y tamaño) */
+  .tw{display:inline-block;text-align:left;border-right:2px solid currentColor;animation:caret 1.05s step-end infinite}
+  @keyframes caret{50%{border-color:transparent}}
   h1{font-size:clamp(36px,6.6vw,88px);font-weight:800;letter-spacing:-.025em;line-height:1.01}
   h2{font-size:clamp(28px,4.8vw,60px);font-weight:800;letter-spacing:-.022em;line-height:1.05}
   .lead{font-size:clamp(15px,1.8vw,21px);color:var(--mut);line-height:1.55;max-width:640px;margin-top:20px;font-weight:400}
@@ -376,7 +376,7 @@
     <div class="glow" style="width:640px;height:640px;background:var(--g3);top:-8%;left:-8%"></div>
     <div class="glow" style="width:520px;height:520px;background:var(--g);bottom:-14%;right:-8%;opacity:.32"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:44px;margin-bottom:34px">
-    <h1 class="r d1" style="max-width:15ch">Estamos <span class="tw">cambiando</span> el ambiente.</h1>
+    <h1 class="r d1" style="max-width:15ch">Estamos <span class="tw" id="tw">cambiando</span> el ambiente.</h1>
     <div class="lead r d2" style="margin-left:auto;margin-right:auto">La inteligencia regulatoria ambiental de México, en un solo lugar.</div>
     <div class="cap r d3">Preview para el Consejo de GEMI · 2026</div>
     <div class="scrollhint">Desliza para comenzar &nbsp;&darr;</div>
@@ -754,6 +754,19 @@
   var dotsWrap=document.getElementById('dots'), prog=document.getElementById('prog');
   var ease=function(t){return 1-Math.pow(1-t,3);};
 
+  // portada: "cambiando" se escribe y se borra en loop (ancho reservado)
+  (function(){
+    var el=document.getElementById('tw'); if(!el)return;
+    var word='cambiando',i=word.length,dir=-1;
+    el.textContent=word;
+    requestAnimationFrame(function(){el.style.minWidth=el.offsetWidth+'px';setTimeout(tick,2600);});
+    function tick(){
+      if(dir<0){i--;if(i<=0){i=0;dir=1;el.textContent='';setTimeout(tick,500);return;}}
+      else{i++;if(i>=word.length){i=word.length;dir=-1;el.textContent=word;setTimeout(tick,2600);return;}}
+      el.textContent=word.slice(0,i);
+      setTimeout(tick,dir>0?120:60);
+    }
+  })();
 
   // dot map · silueta real de México
   (function(){
