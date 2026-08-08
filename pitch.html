@@ -31,14 +31,10 @@
   .kick{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--mint);margin-bottom:20px;letter-spacing:.04em}
   .cap{font-family:var(--mono);letter-spacing:.03em}
   .psub,.cl,.cest,.devnote,.price .p,.stat .n .u,.legend{font-family:var(--mono)}
-  /* portada: "cambiando" typewriter + símbolo GEMI girando */
-  .tw{color:var(--mint);border-right:2px solid var(--mint);padding-right:2px;animation:caret 1s step-end infinite}
-  @keyframes caret{50%{border-color:transparent}}
-  .cover-logo{position:relative;display:inline-block;line-height:0}
-  .cover-logo .logo{display:block;height:44px}
-  .o-pos{position:absolute;left:46.4%;top:39%;width:0;height:0}
-  .o-spin{position:absolute;height:26px;width:auto;left:0;top:0;transform:translate(-50%,-50%);animation:oSpin 9s linear infinite}
-  @keyframes oSpin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .soon,.soonbig,.topflag,.rtr,.price .per,.scrollhint,.exit,.brow .nm .ab,.irow .b,.cw-next{font-family:var(--mono)}
+  /* portada: destacar "cambiando" (mismo color y tamaño, solo resplandor) */
+  .tw{animation:twGlow 2.8s ease-in-out infinite}
+  @keyframes twGlow{0%,100%{text-shadow:0 0 0 rgba(63,224,173,0)}50%{text-shadow:0 0 28px rgba(63,224,173,.6)}}
   h1{font-size:clamp(36px,6.6vw,88px);font-weight:800;letter-spacing:-.025em;line-height:1.01}
   h2{font-size:clamp(28px,4.8vw,60px);font-weight:800;letter-spacing:-.022em;line-height:1.05}
   .lead{font-size:clamp(15px,1.8vw,21px);color:var(--mut);line-height:1.55;max-width:640px;margin-top:20px;font-weight:400}
@@ -191,13 +187,13 @@
 
   /* internacional (lista real, auto-scroll una vez) */
   .intl-view{max-width:540px;height:320px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(180deg,transparent,#000 8%,#000 88%,transparent);mask-image:linear-gradient(180deg,transparent,#000 8%,#000 88%,transparent)}
-  .intl-scroll{transform:translateY(0);transition:transform 7s linear .4s}
-  section.in .intl-scroll{transform:translateY(var(--isc,-180px))}
+  .intl-scroll{animation:intlScroll 54s linear infinite}
+  @keyframes intlScroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
   .intl-pin{display:flex;align-items:flex-start;gap:13px;max-width:560px;border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 12px 12px 0;background:rgba(18,185,138,.05);padding:13px 17px}
   .intl-pin .pd{width:8px;height:8px;border-radius:50%;background:var(--mint);flex-shrink:0;margin-top:4px;box-shadow:0 0 0 4px rgba(63,224,173,.12)}
   /* Conferencias matutinas (réplica exacta del widget real) */
-  .csp{max-width:430px}
-  .chyron-hdr{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;letter-spacing:.01em;color:var(--ink);margin-bottom:20px}
+  .csp{max-width:360px;margin-top:44px}
+  .chyron-hdr{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:.01em;color:var(--ink);margin-bottom:15px}
   .chyron-live{width:6px;height:6px;border-radius:50%;background:#DC2626;animation:cspPulse 1.6s ease-in-out infinite;flex-shrink:0}
   @keyframes cspPulse{0%,100%{opacity:1}50%{opacity:.3}}
   .csp-node{display:grid;grid-template-columns:46px 1fr;align-items:start}
@@ -294,7 +290,7 @@
 
   /* dot map */
   .mapwrap{position:relative;width:100%;max-width:520px;aspect-ratio:5/4;margin:0 auto}
-  .mdot{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.16);transform:scale(0);transition:transform .5s cubic-bezier(.2,.9,.3,1.4),background .5s}
+  .mdot{position:absolute;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.15);transform:scale(0);transition:transform .5s cubic-bezier(.2,.9,.3,1.4),background .5s}
   section.in .mdot{transform:scale(1)}
   .mdot.hot{background:var(--g);box-shadow:0 0 0 0 rgba(18,185,138,.55);animation:ping 2.6s ease-out infinite}
   .mdot.hot.h2{background:var(--mint)}
@@ -379,11 +375,8 @@
   <section data-t="Inicio" style="justify-content:center;text-align:center;align-items:center">
     <div class="glow" style="width:640px;height:640px;background:var(--g3);top:-8%;left:-8%"></div>
     <div class="glow" style="width:520px;height:520px;background:var(--g);bottom:-14%;right:-8%;opacity:.32"></div>
-    <div class="cover-logo r" style="margin-bottom:34px">
-      <img class="logo" src="assets/scope-logo-dark.png" alt="Scope">
-      <span class="o-pos"><img class="o-spin" src="assets/logo-gemi-icon.png" alt=""></span>
-    </div>
-    <h1 class="r d1" style="max-width:15ch">Estamos<br><span class="tw" id="tw">cambiando</span><br>el ambiente.</h1>
+    <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:44px;margin-bottom:34px">
+    <h1 class="r d1" style="max-width:15ch">Estamos <span class="tw">cambiando</span> el ambiente.</h1>
     <div class="lead r d2" style="margin-left:auto;margin-right:auto">La inteligencia regulatoria ambiental de México, en un solo lugar.</div>
     <div class="cap r d3">Preview para el Consejo de GEMI · 2026</div>
     <div class="scrollhint">Desliza para comenzar &nbsp;&darr;</div>
@@ -761,25 +754,13 @@
   var dotsWrap=document.getElementById('dots'), prog=document.getElementById('prog');
   var ease=function(t){return 1-Math.pow(1-t,3);};
 
-  // portada: "cambiando" se escribe en loop
-  (function(){
-    var el=document.getElementById('tw'); if(!el)return;
-    var word='cambiando',i=word.length,dir=-1;
-    function tick(){
-      if(dir<0){i--;if(i<=0){i=0;dir=1;setTimeout(tick,650);return;}}
-      else{i++;if(i>=word.length){i=word.length;dir=-1;setTimeout(tick,2400);return;}}
-      el.textContent=word.slice(0,i);
-      setTimeout(tick,dir>0?115:65);
-    }
-    el.textContent=word; setTimeout(tick,2400);
-  })();
 
   // dot map · silueta real de México
   (function(){
     var w=document.getElementById('mapwrap'); if(!w)return;
-    var pts=[[11.5,22],[14.7,22],[17.9,22],[21.2,22],[34.1,22],[37.3,22],[14.7,26.1],[21.2,26.1],[24.4,26.1],[27.6,26.1],[30.9,26.1],[34.1,26.1],[37.3,26.1],[40.6,26.1],[17.9,30.1],[24.4,30.1],[27.6,30.1],[30.9,30.1],[34.1,30.1],[37.3,30.1],[40.6,30.1],[43.8,30.1],[50.3,30.1],[53.5,30.1],[17.9,34.2],[27.6,34.2],[30.9,34.2],[34.1,34.2],[37.3,34.2],[40.6,34.2],[43.8,34.2],[47,34.2],[50.3,34.2],[53.5,34.2],[17.9,38.2],[21.2,38.2],[30.9,38.2],[34.1,38.2],[37.3,38.2],[40.6,38.2],[43.8,38.2],[47,38.2],[50.3,38.2],[53.5,38.2],[56.8,38.2],[24.4,42.3],[30.9,42.3],[34.1,42.3],[37.3,42.3],[40.6,42.3],[43.8,42.3],[47,42.3],[50.3,42.3],[53.5,42.3],[56.8,42.3],[60,42.3],[63.2,42.3],[24.4,46.3],[37.3,46.3],[40.6,46.3],[43.8,46.3],[47,46.3],[50.3,46.3],[53.5,46.3],[56.8,46.3],[60,46.3],[63.2,46.3],[40.6,50.3],[43.8,50.3],[47,50.3],[50.3,50.3],[53.5,50.3],[56.8,50.3],[60,50.3],[63.2,50.3],[43.8,54.4],[47,54.4],[50.3,54.4],[53.5,54.4],[56.8,54.4],[60,54.4],[43.8,58.4],[47,58.4],[50.3,58.4],[53.5,58.4],[56.8,58.4],[60,58.4],[63.2,58.4],[89.1,58.4],[92.3,58.4],[43.8,62.5],[47,62.5],[50.3,62.5],[53.5,62.5],[56.8,62.5],[60,62.5],[63.2,62.5],[85.9,62.5],[89.1,62.5],[47,66.5],[50.3,66.5],[53.5,66.5],[56.8,66.5],[60,66.5],[63.2,66.5],[66.5,66.5],[82.6,66.5],[85.9,66.5],[89.1,66.5],[53.5,70.6],[56.8,70.6],[60,70.6],[63.2,70.6],[66.5,70.6],[69.7,70.6],[72.9,70.6],[76.2,70.6],[79.4,70.6],[82.6,70.6],[85.9,70.6],[60,74.6],[63.2,74.6],[66.5,74.6],[69.7,74.6],[72.9,74.6],[76.2,74.6],[79.4,74.6],[82.6,74.6],[76.2,78.6],[79.4,78.6]];
-    var hotArr=[0,54,67,88,91,103,104,105],hot={};hotArr.forEach(function(h,k){hot[h]=(k%2)+1;});
-    pts.forEach(function(p,i){var d=document.createElement('div');d.className='mdot'+(hot[i]?(' hot'+(hot[i]===2?' h2':'')):'');d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.style.transitionDelay=(i*7)+'ms';if(hot[i])d.style.animationDelay=(i*40)+'ms';w.appendChild(d);});
+    var pts=[[12.1,22.1],[16.3,26.5],[22.3,27.8],[29.1,25.9],[32.5,26.5],[39.1,25.1],[17.6,31.4],[27.6,32.9],[31.7,33.9],[37.7,35.6],[42.8,32.5],[48.6,35],[22,40.3],[29.7,39.7],[33.6,40.1],[39.7,42.8],[46,39.3],[51.4,39.2],[55.1,41.1],[23.8,45.1],[38.4,48.6],[45.8,49.1],[48.2,45.3],[55.6,49.2],[61.2,49.8],[46.3,54.6],[51.7,52],[57.3,55],[59.9,55.7],[46.1,59.8],[48.6,59.7],[57.3,60.5],[60.4,61],[65.1,63.6],[89.8,62.6],[93,62.2],[49.8,69.7],[53.6,66.7],[59.7,68.3],[67.4,67.9],[81.5,67.8],[87.5,69.2],[59.5,75.3],[64.9,76.2],[70.4,74.2],[78.6,73.1]];
+    var hotArr=[9,20,26,34,40],hot={};hotArr.forEach(function(h,k){hot[h]=(k%2)+1;});
+    pts.forEach(function(p,i){var d=document.createElement('div');d.className='mdot'+(hot[i]?(' hot'+(hot[i]===2?' h2':'')):'');d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.style.transitionDelay=(i*24)+'ms';if(hot[i])d.style.animationDelay=(i*90)+'ms';w.appendChild(d);});
   })();
 
   // mini dot map (monitor)
@@ -891,8 +872,8 @@
       ['CL','Ley REP 20.920 · Gestión de residuos','Chile','ley']
     ];
     var CH={cad:['chip cad','cadena de suministro'],tra:['chip tra','tratado'],ley:['chip ley','ley extranjera']};
-    host.innerHTML=D.map(function(r){var c=CH[r[3]];return '<div class="irow"><div class="jz">'+r[0]+'</div><div class="it"><div class="a">'+r[1]+'</div><div class="b">'+r[2]+'</div></div><span class="'+c[0]+'">'+c[1]+'</span></div>';}).join('');
-    setTimeout(function(){var view=host.parentElement;var over=host.scrollHeight-view.clientHeight;if(over>10)host.style.setProperty('--isc','-'+over+'px');},60);
+    var rows=D.map(function(r){var c=CH[r[3]];return '<div class="irow"><div class="jz">'+r[0]+'</div><div class="it"><div class="a">'+r[1]+'</div><div class="b">'+r[2]+'</div></div><span class="'+c[0]+'">'+c[1]+'</span></div>';}).join('');
+    host.innerHTML=rows+rows;
   })();
 
   // Senado: typewriter de la búsqueda
