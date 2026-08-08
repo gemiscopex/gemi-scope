@@ -10468,6 +10468,29 @@
     },
     {
       "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2025-12-09",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "titulo": "Que reforma el artículo 32 de la Ley de Desarrollo Rural Sustentable, para implementar un programa de financiamiento de economía circular, que impulse las actividades económicas en el ámbito rural y al mismo tiempo, favorezca el desarrollo sostenible, integral, incluyente y regenerativo.",
+      "presentador": "Dip. Miguel Ángel Guevara Rodríguez (PAN)",
+      "aspectos": "La iniciativa tiene por objeto implementar un programa de financiamiento de economía circular, que impulse las actividades económicas en el ámbito rural y al mismo tiempo, favorezca el desarrollo sostenible, integral, incluyente y regenerativo.\n\nPara ello propone establecer que el Ejecutivo Federal, con la participación de los gobiernos de las entidades federativas y de los municipios y los sectores social y privado del medio rural propiciarán\nimplementar un programa de financiamiento circular que, mediante la inversión pública y privada, establezca condiciones adecuadas para gestionar, desarrollar y ejecutar proyectos comunitarios de economía circular que prioricen la reducción, reutilización, renovación, reciclaje y manejo integral y continuo de productos y materiales, así como para ampliar el financiamiento a empresas rurales innovadoras que favorezcan el diseño e implementación de programas de economía circular orientados a combatir el cambio climático, la contaminación y la pérdida de biodiversidad.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Desarrollo y Conservación Rural, Agrícola y Autosuficiencia Alimentaria de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 09 de diciembre de 2025 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Retirada Retirada 27/01/2026",
+      "asunto_id": "4997461",
+      "seguimiento": "5001491",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5001491&Asunto=4997461",
+      "categorias": [
+        "residuos",
+        "cambio_climatico"
+      ],
+      "categoria": "residuos",
+      "categoria_nombre": "Residuos",
+      "id": "f01948a5bb59",
+      "scrapeado_en": "2026-08-08T18:29:49.926773+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2025-12-09",
       "legislatura": "LXVI",
       "periodo": "1er Ordinario",
@@ -10821,28 +10844,6 @@
       "categoria_nombre": "Residuos",
       "id": "37cd93e33cd2",
       "scrapeado_en": "2026-04-29T21:16:25.244956+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Senadores",
-      "camara_revisora": "Cámara de Diputados",
-      "fecha_presentacion": "2025-12-09",
-      "legislatura": "LXVI",
-      "periodo": "1er Ordinario",
-      "presentador": "Senado: Medio Ambiente, Recursos Naturales y Cambio Climático",
-      "aspectos": "La Comisión aprueba exhortar a la Semarnat para que, a través de la Comisión Nacional para el Conocimiento y Uso de la Biodiversidad, se analice y en su caso, reconozca el algo Caulerpa okamurae, como especie exótica invasora y de resultar procedente, se considere la viabilidad de diseñar e implementar medidas inmediatas de control, mitigación y eventual erradicación, en coordinación con autoridades estatales y municipales.",
-      "ultimo_tramite": "Comuníquese: Ver todos los trámites",
-      "ultimo_estatus": "Resuelto / Aprobado Aprobado 09/12/2025",
-      "asunto_id": "4998822",
-      "seguimiento": "5010219",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5010219&Asunto=4998822",
-      "categorias": [
-        "biodiversidad",
-        "cambio_climatico"
-      ],
-      "categoria": "biodiversidad",
-      "categoria_nombre": "Biodiversidad",
-      "id": "dcfb8206a9f1",
-      "scrapeado_en": "2026-04-29T21:18:17.727776+00:00"
     }
   ],
   "_meta": {
@@ -10850,6 +10851,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 164,
-    "actualizado": "2026-08-08T11:10:06Z"
+    "actualizado": "2026-08-08T18:30:15Z"
   }
 }
