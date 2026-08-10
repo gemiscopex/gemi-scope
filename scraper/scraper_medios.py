@@ -34,7 +34,10 @@ INCREMENTAL_DIAS = 3  # lo que se scrapea por corrida
 # Mismas categorías que CATS en el frontend (ids idénticos)
 KEYWORDS = {
     "circular": ["economia circular", "circularidad", "reutilizacion", "ecodiseno",
-                 "responsabilidad extendida del productor"],
+                 "responsabilidad extendida del productor",
+                 # polos/parques y su vehículo financiero (Podecibi, San José Chiapa, etc.)
+                 "podecibi", "polo de economia circular", "parque de economia circular",
+                 "polo de desarrollo", "valorizacion de residuos", "fideicomiso ambiental"],
     "agua": ["sequia", "conagua", "acuifero", "agua potable", "escasez de agua",
              "planta tratadora", "saneamiento", "agua contaminada", "rio contaminado",
              "corte de agua", "desabasto de agua", "presa "],
@@ -43,7 +46,13 @@ KEYWORDS = {
                 "fotovoltaica", "transicion energetica", "litio", "gas natural",
                 "hidrocarburos", "parque solar", "energia limpia"],
     "impuestos": ["impuesto ambiental", "impuesto verde", "ecotasa",
-                  "impuesto a emisiones", "bono de carbono"],
+                  "impuesto a emisiones", "bono de carbono",
+                  # variantes reales de impuestos verdes estatales + su impugnación
+                  "impuesto ecologico", "impuesto por extraccion", "derecho por extraccion",
+                  "extraccion de materiales", "impuesto por remediacion", "remediacion ambiental",
+                  "impuesto al carbono", "gravamen ambiental",
+                  "impugna el impuesto", "impugnan el impuesto", "impugnacion del impuesto",
+                  "controversia por el impuesto", "amparo contra el impuesto"],
     "residuos": ["residuos", "relleno sanitario", "tiradero", "reciclaje",
                  "contingencia ambiental", "calidad del aire", "contaminacion",
                  "derrame", "residuos peligrosos", "unicel", "popote",
@@ -52,7 +61,13 @@ KEYWORDS = {
                  "deforestacion", "area natural protegida", "biodiversidad",
                  "vida silvestre", "manglar", "arrecife", "incendio forestal",
                  "tala ilegal", "tala clandestina", "reforestacion", "conafor",
-                 "impacto ambiental", "ecocidio", "ambientalista", "ola de calor"],
+                 "impacto ambiental", "ecocidio", "ambientalista", "ola de calor",
+                 # controversias/impugnaciones ambientales (multiword para evitar ruido
+                 # de amparos laborales/fiscales genéricos)
+                 "amparo ambiental", "controversia constitucional ambiental",
+                 "accion de inconstitucionalidad ambiental", "clausura ambiental",
+                 "suspension de obra", "revoca la autorizacion", "nulidad de la autorizacion",
+                 "sancion de profepa", "multa de profepa"],
     "agro": ["agricultura", "campesino", "ejido", "distrito de riego",
              "fertilizante", "cosecha", "ganaderia", "acuacultura",
              "sanidad vegetal", "sanidad animal", "sader", "glifosato",
