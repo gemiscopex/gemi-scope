@@ -152,6 +152,21 @@
   .ep-link{margin-top:18px;padding-top:14px;border-top:0.8px solid rgba(0,0,0,0.07)}
   .ep-link a{font-size:12px;font-weight:600;color:#009E90;text-decoration:none}
   .ep-link .u{font-family:var(--mono);font-size:9px;color:#8A9CB0;margin-top:3px;word-break:break-all}
+  .exp-body{position:relative;height:248px;overflow:hidden;padding-top:6px}
+  .ep-panel{position:absolute;top:6px;left:0;right:0;opacity:0;pointer-events:none;transition:opacity .5s ease;transform:translateY(0);will-change:transform}
+  .ep-panel.on{opacity:1;pointer-events:auto}
+  .ep-panel.on.scroll{transition:opacity .5s ease,transform 2.4s ease}
+  .exp-sec{font-family:var(--mono);font-size:9px;font-weight:700;color:#009E90;letter-spacing:.05em;margin:2px 0 9px}
+  .ep-imp{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:0.8px solid rgba(0,0,0,0.07)}
+  .ep-impt{font-size:14px;font-weight:700;color:#0D1B2A}
+  .ep-impv{font-size:23px;font-weight:800;color:#0D1B2A;letter-spacing:-.02em;white-space:nowrap}
+  .ep-impc{font-size:.55em;color:#8A9CB0;font-weight:600;margin-right:1px}
+  .ep-impu{font-size:.5em;color:#8A9CB0;font-weight:600}
+  .ep-metaline{font-family:var(--mono);font-size:9.5px;color:#8A9CB0;margin-top:4px;line-height:1.5}
+  .ep-matrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:0.8px solid rgba(0,0,0,0.07);font-size:12.5px;color:#26332e}
+  .ep-matrow .rt2{flex:1;line-height:1.3}
+  .exp-chip{font-family:var(--mono);font-size:8.5px;font-weight:700;padding:2px 8px;border-radius:5px;background:#e7f3ee;color:#0e8c74;white-space:nowrap;flex-shrink:0}
+  .exp-chip.no{background:#fbeee2;color:#c98a3c}
   .expdeck{position:relative;max-width:440px;margin:0 auto;padding-top:42px}
   .expdeck .exp{position:relative;z-index:3;margin:0}
   .expback{position:absolute;left:0;right:0;top:42px;height:calc(100% - 42px);background:#fff;border-radius:16px;box-shadow:0 20px 55px rgba(0,0,0,.45);padding:22px 24px;color:#0D1B2A;overflow:hidden}
@@ -474,11 +489,11 @@
   </section>
 
   <!-- 10 · EXPEDIENTES -->
-  <section data-t="Expedientes">
+  <section data-t="Expedientes" data-anim="expcard">
     <div class="kick r">Cada estado, un expediente</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:13ch">No es un directorio. Es profundidad.</h2>
+        <h2 class="r d1" style="max-width:13ch">Cada estado a profundidad.</h2>
         <p class="lead r d2">Leyes vigentes con fecha y estatus, impuestos verdes, materiales regulados y la prensa de cada entidad, con el documento oficial. El expediente que un despacho tardaría semanas en armar.</p>
       </div>
       <div class="viz r d3">
@@ -492,11 +507,24 @@
           </div>
           <div class="exp-tabs2"><span class="et on">Perfil</span><span class="et">Actividad</span><span class="et">Legislación</span><span class="et">Impuestos</span><span class="et">Materiales Prohibidos</span><span class="et">Sector Industrial</span><span class="et">Residuos</span><span class="et">Trámites RME</span></div>
           <div class="exp-body">
-            <div class="ep-row"><div class="ep-lb">Población</div><div><span class="ep-v">9,209,944</span><span class="ep-src">INEGI 2020</span><div class="ep-bar"><span style="--w:54.2%"></span></div></div></div>
-            <div class="ep-row"><div class="ep-lb">Capital</div><div><span class="ep-v">Ciudad de México</span></div></div>
-            <div class="ep-row"><div class="ep-lb">Población económicamente activa</div><div><span class="ep-v">5,107,533</span><span class="ep-src">ENOE 2026-Q1</span><div class="ep-bar"><span style="--w:60.85%"></span></div></div></div>
-            <div class="ep-desc">Ciudad de México presenta una complejidad regulatoria ambiental <strong>alta</strong>, con cobertura en 5 materias ambientales. Su régimen de impuestos ambientales es <strong>en desarrollo</strong>. La capital Ciudad de México concentra la actividad legislativa del congreso estatal.</div>
-            <div class="ep-link"><a href="https://www.congresocdmx.gob.mx/" target="_blank" rel="noopener">Portal del Congreso de Ciudad de México ↗</a><div class="u">https://www.congresocdmx.gob.mx/</div></div>
+            <div class="ep-panel on" data-tab="Perfil">
+              <div class="ep-row"><div class="ep-lb">Población</div><div><span class="ep-v">9,209,944</span><span class="ep-src">INEGI 2020</span><div class="ep-bar"><span style="--w:54.2%"></span></div></div></div>
+              <div class="ep-row"><div class="ep-lb">Capital</div><div><span class="ep-v">Ciudad de México</span></div></div>
+              <div class="ep-row"><div class="ep-lb">Población económicamente activa</div><div><span class="ep-v">5,107,533</span><span class="ep-src">ENOE 2026-Q1</span><div class="ep-bar"><span style="--w:60.85%"></span></div></div></div>
+              <div class="ep-desc">Ciudad de México presenta una complejidad regulatoria ambiental <strong>alta</strong>, con cobertura en 5 materias ambientales. Su régimen de impuestos ambientales es <strong>en desarrollo</strong>. La capital concentra la actividad legislativa del congreso estatal.</div>
+              <div class="ep-link"><a href="https://www.congresocdmx.gob.mx/" target="_blank" rel="noopener">Portal del Congreso de Ciudad de México ↗</a><div class="u">https://www.congresocdmx.gob.mx/</div></div>
+            </div>
+            <div class="ep-panel" data-tab="Impuestos">
+              <div class="exp-sec">IMPUESTOS AMBIENTALES</div>
+              <div class="ep-imp"><div><div class="ep-impt">Impuesto a emisiones de GEI</div><div class="ep-metaline">Vigente desde 01/01/2025 · publicado 27/12/2024</div></div><div class="ep-impv"><span class="ep-impc">$</span>60<span class="ep-impu"> / tonCO₂e</span></div></div>
+              <div class="ep-desc">La CDMX grava las emisiones de gases de efecto invernadero de fuentes fijas dentro de su territorio. Es su primer instrumento fiscal ambiental, incorporado al Código Fiscal local.</div>
+            </div>
+            <div class="ep-panel" data-tab="Materiales Prohibidos">
+              <div class="exp-sec">MATERIALES PROHIBIDOS</div>
+              <div class="ep-matrow"><span class="rt2">Bolsas de plástico</span><span class="exp-chip no">Prohibido · 2020</span></div>
+              <div class="ep-matrow"><span class="rt2">Desechables de un solo uso: cubiertos, popotes y vasos</span><span class="exp-chip no">Prohibido · 2021</span></div>
+              <div class="ep-metaline" style="margin-top:13px">Ley de Residuos Sólidos de la CDMX · reforma 2019 con entrada en vigor escalonada.</div>
+            </div>
           </div>
         </div>
         </div>
@@ -942,6 +970,31 @@
     cursor.style.opacity='0'; runStep(0);
   }
 
+  // Expediente CDMX (frente): cicla Perfil → Impuestos → Materiales + scroll donde hay más
+  var expcardStarted=false;
+  function startExpCard(sec){
+    if(expcardStarted)return; expcardStarted=true;
+    var exp=sec.querySelector('.expdeck .exp'); if(!exp)return;
+    var tabsEl=[].slice.call(exp.querySelectorAll('.exp-tabs2 .et'));
+    var panels=[].slice.call(exp.querySelectorAll('.ep-panel'));
+    var body=exp.querySelector('.exp-body'); if(!body)return;
+    var order=['Perfil','Impuestos','Materiales Prohibidos'];
+    var timers=[];
+    function setTab(name){
+      tabsEl.forEach(function(t){t.classList.toggle('on',t.textContent.trim()===name);});
+      panels.forEach(function(p){var on=p.getAttribute('data-tab')===name;p.classList.toggle('on',on);p.classList.remove('scroll');p.style.transform='translateY(0)';});
+    }
+    function step(i){
+      var name=order[i%order.length]; setTab(name);
+      var p=panels.filter(function(x){return x.getAttribute('data-tab')===name;})[0];
+      var hold=4200;
+      if(p){var over=p.scrollHeight-body.clientHeight;
+        if(over>8){timers.push(setTimeout(function(){p.classList.add('scroll');p.style.transform='translateY(-'+over+'px)';},1200));hold=5400;}}
+      timers.push(setTimeout(function(){step(i+1);},hold));
+    }
+    step(0);
+  }
+
   // Signal: recrear toda la conversación desde el inicio al entrar
   var chatTimers=[];
   function startChat(sec){
@@ -970,6 +1023,7 @@
     }
     if(a==='termcfg')startTerm(sec);
     if(a==='chat')startChat(sec);
+    if(a==='expcard')startExpCard(sec);
   }
 
   // Senado typewriter cuando entra Actores
