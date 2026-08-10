@@ -21,8 +21,9 @@
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
   .deck{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
   .deck::-webkit-scrollbar{width:0;display:none}
-  section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:center;padding:8vh 7vw;overflow:hidden}
-  @media(max-width:640px){section{padding:7vh 6vw}}
+  section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:flex-start;padding:15vh 7vw 8vh;overflow:hidden}
+  section.mid{justify-content:center;padding-top:8vh}
+  @media(max-width:640px){section{padding:11vh 6vw 7vh}}
 
   .r{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
   section.in .r{opacity:1;transform:none}
@@ -372,7 +373,7 @@
 <div class="deck" id="deck">
 
   <!-- 1 · COVER -->
-  <section data-t="Inicio" style="justify-content:center;text-align:center;align-items:center">
+  <section class="mid" data-t="Inicio" style="text-align:center;align-items:center">
     <div class="glow" style="width:640px;height:640px;background:var(--g3);top:-8%;left:-8%"></div>
     <div class="glow" style="width:520px;height:520px;background:var(--g);bottom:-14%;right:-8%;opacity:.32"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:44px;margin-bottom:34px">
@@ -406,7 +407,7 @@
   </section>
 
   <!-- 5 · TURN -->
-  <section data-t="Scope" style="justify-content:center;text-align:center;align-items:center">
+  <section class="mid" data-t="Scope" style="text-align:center;align-items:center">
     <div class="glow" style="width:640px;height:640px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.32"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:clamp(40px,8vw,78px)">
     <p class="lead r d2" style="margin:26px auto 0;font-size:clamp(18px,2.4vw,28px);color:var(--ink)">La trituramos y le damos <span class="grn">vida</span>.</p>
@@ -737,7 +738,7 @@
   </section>
 
   <!-- 23 · CIERRE -->
-  <section data-t="Cierre" style="justify-content:center;text-align:center;align-items:center">
+  <section class="mid" data-t="Cierre" style="text-align:center;align-items:center">
     <div class="glow" style="width:680px;height:680px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.3"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:38px;margin-bottom:30px">
     <h1 class="r d1" style="max-width:16ch">Estamos cambiando el ambiente.</h1>
