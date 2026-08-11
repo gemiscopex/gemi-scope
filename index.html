@@ -678,7 +678,10 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-edit:hover{color:var(--green);border-color:var(--green)}
 .cons-grid{display:grid;grid-template-columns:2fr 1fr;gap:10px;align-items:start}
 .cons-col{display:flex;flex-direction:column;gap:10px}
-.cons-tema-row{display:grid;grid-template-columns:14px 1fr auto auto auto;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border)}
+.cons-tema-row{display:grid;grid-template-columns:12px minmax(96px,150px) 1fr 40px 18px 52px;align-items:center;gap:11px;padding:9px 0;border-bottom:0.8px solid var(--border)}
+.cons-tema-bar{height:6px;background:rgba(0,0,0,0.05);border-radius:5px;overflow:hidden}
+.cons-tema-bar>span{display:block;height:100%;border-radius:5px;min-width:2px;transition:width .5s cubic-bezier(.22,1,.36,1)}
+.cons-prio{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;text-align:right}
 .cons-mat-row{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-bottom:0.8px solid var(--border);transition:background .12s}
 .cons-mat-row[onclick]{cursor:pointer}
 .cons-mat-row[onclick]:hover{background:rgba(0,158,144,0.05)}
@@ -6233,17 +6236,20 @@ function _consSenal(sen){
     +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px">'+total+' menciones en medios · '+dias+' días · '+rows.length+' temas</div>'
     +(leadSerie.length&&total>0?('<div style="display:flex;align-items:center;gap:8px;margin-top:9px">'+_spark(leadSerie,nivel[1])+'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+(streak>=2?('↑ '+lead.c.name+' lleva '+streak+' semanas al alza'):(lead.c.name+' · últimas 8 semanas'))+'</span></div>'):'')
     +'</div>'
-    +'<div class="cons-tema-row" style="border:none;opacity:.6"><span style="width:8px"></span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Tema</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Menciones</span><span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);text-transform:uppercase">Tend.</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Prioridad</span></div>'
-    +rows.map(function(r){
+    +'<div class="cons-tema-row" style="border:none;opacity:.55"><span></span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Tema</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Volumen</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase;text-align:right">Menc.</span><span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);text-transform:uppercase">Tend.</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase;text-align:right">Prior.</span></div>'
+    +(function(){var mx=Math.max.apply(null,rows.map(function(r){return r.n7;}).concat([1]));
+      return rows.map(function(r){
+      var pct=Math.round(r.n7/mx*100);
       return '<div class="cons-tema-row">'
         +'<span style="width:8px;height:8px;border-radius:50%;background:'+r.c.color+'"></span>'
-        +'<span style="font-size:12px;color:var(--text)">'+r.c.name+'</span>'
-        +'<span style="font-family:var(--mono);font-size:11px;color:var(--text2)">'+r.n7+' <span style="color:var(--dim);font-size:9px">/'+dias+'d</span></span>'
-        +'<span style="font-family:var(--mono);font-size:12px;color:'+r.arrow[1]+'">'+r.arrow[0]+'</span>'
-        +'<span class="cons-riesgo" style="color:'+r.r[1]+';border:1px solid '+r.r[1]+'44">'+r.r[0]+'</span>'
+        +'<span style="font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+r.c.name+'</span>'
+        +'<span class="cons-tema-bar"><span style="width:'+pct+'%;background:var(--green)'+(r.n7?'':';opacity:.25')+'"></span></span>'
+        +'<span style="font-family:var(--mono);font-size:11px;color:var(--text2);text-align:right">'+r.n7+'</span>'
+        +'<span style="font-family:var(--mono);font-size:12px;color:'+r.arrow[1]+';text-align:center">'+r.arrow[0]+'</span>'
+        +'<span class="cons-prio" style="color:'+r.r[1]+'">'+r.r[0]+'</span>'
         +'</div>';
-    }).join('')
-    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:10px;line-height:1.55;border-top:0.8px solid var(--border);padding-top:8px">CÓMO SE LEE · «Menciones» = veces que ese tema apareció en <b>noticias de medios</b> (el feed diario de Scope) al cruzar sus palabras clave, en la ventana más corta con datos (7→30→90 días). La flecha compara contra el periodo anterior. «Prioridad» es el peso que tú le diste en Editar terminal, no el volumen.</div>';
+    }).join('');})()
+    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:10px;line-height:1.55;border-top:0.8px solid var(--border);padding-top:8px">CÓMO SE LEE · La <b>barra</b> es el volumen relativo de cada tema frente al más activo. «Menc.» = veces que ese tema apareció en <b>noticias de medios</b> (el feed diario de Scope) al cruzar sus palabras clave, en la ventana más corta con datos (7→30→90 días). La flecha compara contra el periodo anterior. «Prior.» es el peso que tú le diste en Editar terminal, no el volumen.</div>';
 }
 function _consComs(coms){
   var el=document.getElementById('cons-coms');if(!el)return;
