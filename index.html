@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Scope GEMI</title>
+<base href="/">
+<script>
+/* Rutas limpias (SPA): restaura la ruta tras el rebote de 404.html.
+   404.html convierte /obligaciones/leyesfederales -> /?/obligaciones/leyesfederales
+   y aquí lo devolvemos a la barra de direcciones antes de que arranque la app. */
+(function(l){
+  if(l.search && l.search.charAt(1)==='/'){
+    var decoded=l.search.slice(1).split('&').map(function(s){return s.replace(/~and~/g,'&');}).join('?');
+    history.replaceState(null,null,l.pathname.slice(0,-1)+decoded+l.hash);
+  }
+}(window.location));
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1908,6 +1920,7 @@ function showTab(id,btn){
   if(id==='estados') renderEstadosHeatmap();
   if(id==='obligaciones') renderObligaciones();
   if(id==='agenda') renderAgenda();
+  if(typeof _TABURL!=='undefined' && (id in _TABURL)) _pushRoute(_TABURL[id]);
 }
 function showLegSub(sub,btn){
   document.querySelectorAll('.leg-sub-btn').forEach(function(b){b.classList.remove('active');});
@@ -1933,6 +1946,7 @@ function showRegulacion(view){
 // Ninguna borra contenido; sólo rerutean a las vistas existentes.
 // Obligaciones ▾ : Instrumentos (nuevo) · Normativa Federal · Normativa Estatal · NOMs
 function goObligaciones(sub){
+  _pushRoute(_OBLURL[sub]||'obligaciones');
   if(sub==='noms'){showTab('normas',null);return;}
   if(sub==='instrumentos'){_oblView='instrumentos';showTab('obligaciones',null);return;}
   showTab('legislacion',null);
@@ -1940,12 +1954,13 @@ function goObligaciones(sub){
 }
 // Agenda ▾ : Congreso de la Unión · Gacetas Locales · Reglamentaciones Pendientes · DOF hoy
 function goAgenda(sub){
+  if(sub!=='locales') _pushRoute(_AGENDAURL[sub]||'agenda');
   if(sub==='congreso'){showTab('legislacion',null);showLegSub('congresomx',null);return;}
   if(sub==='locales'){goObligaciones('gacetas');return;}
   showTab('agenda',null);renderAgenda(sub||'pendientes');
 }
 // Internacional : acuerdos y tratados (vista existente)
-function goInternacional(){showTab('legislacion',null);showLegSub('acuerdos',null);}
+function goInternacional(){_pushRoute('internacional');showTab('legislacion',null);showLegSub('acuerdos',null);}
 // ── Acuerdos y tratados internacionales (estatus de México) ──
 var ACUERDOS=[
   {n:'Acuerdo de París',org:'CMNUCC',anio:2015,tema:'Clima',status:'Ratificado 2016',vig:'En vigor',implic:'Marco de las NDC de México; meta de reducción de emisiones actualizada en 2022',url:'https://unfccc.int/es/process-and-meetings/the-paris-agreement/el-acuerdo-de-paris'},
@@ -2162,6 +2177,7 @@ function renderActoresFederal(){
 }
 // Entrada desde el dropdown del nav: abre Actores y muestra la sub-vista
 function showActores(view){
+  _pushRoute(_ACTURL[view]||'actores');
   showTab('congreso',null);
   showActoresSub(view||'federal',null);
 }
@@ -6167,10 +6183,55 @@ function _consKwFeed(userKw){
   }).join('');
 }
 
+/* ===== Rutas limpias · scopegemi.com/obligaciones/leyesfederales ===== */
+var _routing=false;
+var _TABURL={dashboard:'',estados:'estados',radares:'radares',consola:'terminal',acerca:'acerca',alertas:'alertas'};
+var _OBLURL={instrumentos:'obligaciones/instrumentos',noms:'obligaciones/noms',federal:'obligaciones/leyesfederales',estatal:'obligaciones/leyesestatales',rme:'obligaciones/tramitesrme',gacetas:'obligaciones/gacetas'};
+var _AGENDAURL={congreso:'agenda/congreso',pendientes:'agenda/pendientes',dof:'dof'};
+var _ACTURL={federal:'actores/federal',estatal:'actores/estatal',legfed:'actores/legislativo-federal',legest:'actores/legislativo-estatal'};
+function _pushRoute(path){
+  if(_routing)return;
+  var url=path?('/'+path):'/';
+  if(location.pathname!==url){try{history.pushState({p:path},'',url);}catch(e){}}
+}
+function _applyRoute(raw){
+  var path=(raw||'').replace(/^\/+|\/+$/g,'');
+  _routing=true;
+  try{
+    switch(path){
+      case '': showTab('dashboard',null);break;
+      case 'estados': showTab('estados',null);break;
+      case 'radares': showTab('radares',null);break;
+      case 'terminal': case 'consola': showTab('consola',null);break;
+      case 'acerca': showTab('acerca',null);break;
+      case 'alertas': showTab('alertas',null);break;
+      case 'internacional': goInternacional();break;
+      case 'obligaciones': goObligaciones('federal');break;
+      case 'obligaciones/instrumentos': goObligaciones('instrumentos');break;
+      case 'obligaciones/noms': case 'noms': goObligaciones('noms');break;
+      case 'obligaciones/leyesfederales': goObligaciones('federal');break;
+      case 'obligaciones/leyesestatales': goObligaciones('estatal');break;
+      case 'obligaciones/tramitesrme': goObligaciones('rme');break;
+      case 'obligaciones/gacetas': goObligaciones('gacetas');break;
+      case 'agenda': case 'agenda/congreso': goAgenda('congreso');break;
+      case 'agenda/pendientes': goAgenda('pendientes');break;
+      case 'dof': goAgenda('dof');break;
+      case 'actores': case 'actores/federal': showActores('federal');break;
+      case 'actores/estatal': showActores('estatal');break;
+      case 'actores/legislativo-federal': showActores('legfed');break;
+      case 'actores/legislativo-estatal': showActores('legest');break;
+      default: showTab('dashboard',null); if(path){try{history.replaceState({p:''},'','/');}catch(e){}} break;
+    }
+  }catch(e){}
+  _routing=false;
+}
+window.addEventListener('popstate',function(){_applyRoute(location.pathname);});
+
 init();
 initSearch();
 loadComisiones();
 document.body.classList.add('dash-fixed');
+_applyRoute(location.pathname);
 </script>
 <footer class="scope-footer">
   <div class="scope-footer-brand">Scope es una plataforma de Iniciativa GEMI · v1.2 &copy; 2026</div>
