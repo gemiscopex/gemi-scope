@@ -21,6 +21,28 @@
       "scrapeado_en": "2026-08-03T19:26:04.188968+00:00"
     },
     {
+      "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-07-22",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "titulo": "Que expide la Ley General de la Calidad del Aire.",
+      "presentador": "Dip. Eduardo Gaona Domínguez (MC)",
+      "aspectos": "La iniciativa tiene por objeto establecer un sistema nacional de gestión de la calidad del aire para la coordinación de los tres órdenes de gobierno, para garantizar el derecho humano a un ambiente sano en la calidad del aire. Entre lo propuesto destaca: 1) garantizar el derecho humano a un ambiente sano en la calidad del aire; 2) establecer las competencias que tendrá la federación, entidades federativas y municipios; 3) crear el sistema Nacional de Calida del Aire como un mecanismo de coordinación entre los tres ordenes de gobierno; 4) determinar las funciones que tendrá el sistema Nacional de Calidad del Aire; 5) emitir informes sobre la calidad del aire a través de las plataformas digitales abiertas.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Presupuesto y Cuenta Pública  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 22 de julio de 2026, por acuerdo de la Mesa Directiva. Ver todos los trámites",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 22/07/2026",
+      "asunto_id": "5111027",
+      "seguimiento": "5115264",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5115264&Asunto=5111027",
+      "categorias": [
+        "calidad_aire"
+      ],
+      "categoria": "calidad_aire",
+      "categoria_nombre": "Calidad del Aire",
+      "id": "e54ce922f6e3",
+      "scrapeado_en": "2026-08-11T18:53:24.575823+00:00"
+    },
+    {
       "camara_origen": "Cámara de Senadores",
       "camara_revisora": "Cámara de Diputados",
       "fecha_presentacion": "2026-07-22",
@@ -107,6 +129,27 @@
       "categoria_nombre": "Agua",
       "id": "0cdee9645e53",
       "scrapeado_en": "2026-08-03T19:22:14.573660+00:00"
+    },
+    {
+      "camara_origen": "Comisión Permanente",
+      "fecha_presentacion": "2026-07-15",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "presentador": "Dip. Laura Irais Ballesteros Mancilla (MC)",
+      "aspectos": "La legisladora propone exhortar: 1) al Gobierno Federal, por conducto de la Secretaría de Seguridad y Protección Ciudadana, la Coordinación Nacional de Protección Civil, el Centro Nacional de Prevención de Desastres, la Secretaría de Hacienda y Crédito Público, la Secretaría de Infraestructura, Comunicaciones y Transportes, la Secretaría de Salud, la Secretaría de Bienestar, la Secretaría de Medio Ambiente y Recursos Naturales, la Secretaría de Desarrollo Agrario, Territorial y Urbano, la Secretaría de Educación Pública, la Secretaría de la Defensa Nacional, la Secretaría de Marina, la Comisión Nacional del Agua, la Comisión Federal de Electricidad y demás dependencias competentes, a hacer pública la información sobre el estado que guardan los instrumentos nacionales de protección civil, gestión integral de riesgos, atención de emergencias y desastres, particularmente en materia de sismos, por medio de sus portales oficiales y en un en un plazo no mayor a quince días hábiles; 2) al Gobierno de la Ciudad de México, por conducto de la Secretaría de Gestión Integral de Riesgos y Protección Civil, la Secretaría de Gobierno, la Secretaría de Administración y Finanzas, la Secretaría de Obras y Servicios, la Secretaría de Salud, la Secretaría de Movilidad, el Sistema de Aguas de la Ciudad de México, el C5, el Sistema de Transporte Colectivo Metro, Metrobús, Servicio de Transportes Eléctricos, Red de Transporte de Pasajeros y las dieciséis alcaldías, a hacer pública la información a través de sus portales oficiales en un plazo no mayor a quince días hábiles, sobre el estado que guardan los instrumentos locales de gestión integral de riesgos, protección civil y atención de sismos, emergencias y desastres; y, 3) al Gobierno Federal y al Gobierno de la Ciudad de México a publicar en sus portales oficiales, en formato abierto, accesible y actualizado, la información relativa a planes, programas, protocolos, atlas de riesgos, refugios temporales, albergues, rutas de evacuación, reservas estratégicas, simulacros, presupuesto disponible y mecanismos de atención a la población ante sismos, emergencias y desastres.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Primera Comisión de Trabajo: Asuntos Políticos e Internacionales (01/06/2026-31/08/2026) de Comisión Permanente. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 15 de julio de 2026, por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 15/07/2026",
+      "asunto_id": "5109892",
+      "seguimiento": "5113706",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5113706&Asunto=5109892",
+      "categorias": [
+        "agua",
+        "biodiversidad"
+      ],
+      "categoria": "agua",
+      "categoria_nombre": "Agua",
+      "id": "f1058b09af32",
+      "scrapeado_en": "2026-08-11T18:50:23.831457+00:00"
     },
     {
       "camara_origen": "Comisión Permanente",
@@ -10800,57 +10843,13 @@
       "categoria_nombre": "Agua",
       "id": "ecb27274416b",
       "scrapeado_en": "2026-04-29T21:15:58.381462+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Senadores",
-      "camara_revisora": "Cámara de Diputados",
-      "fecha_presentacion": "2025-12-09",
-      "legislatura": "LXVI",
-      "periodo": "1er Ordinario",
-      "titulo": "Que reforma diversas disposiciones de la Ley de Aguas Nacionales.",
-      "presentador": "Sen. Ricardo Anaya Cortés (PAN)",
-      "aspectos": "La iniciativa tiene por objeto crear el Programa anual de reducción del estrés hídrico. Para ello propone: 1) contemplar que esta Ley tendrá por objeto incorporar a la planeación hídrica el uso de la tecnología para el saneamiento de agua y la reutilización de aguas residuales, la modernización periódica de la infraestructura de abasto y distribución de agua potable, entre otros medios de reducción del estrés hídrico; 2) indicar que le competerá al Ejecutivo Federal el aprobar el Programa anual de reducción del estrés hídrico, diseñado e implementado con la participación de la Comisión Nacional del Agua, el Instituto Mexicano de Tecnología del Agua, la Procuraduría Federal de Protección al Ambiente, así como otras instituciones e instancias que resulten competentes; 3) determinar que el Ejecutivo Federal se asegurará de incorporar a la Política Hídrica Nacional medios de ampliación y modernización periódica de la infraestructura de abasto de agua potable así como de la implementación de un Programa permanente de reducción del estrés hídrico del país incentivando el uso de la tecnología para la reutilización de aguas residuales, la captura y procesamiento de agua de lluvia y la reparación de fugas, así como el mantenimiento de presas y sistemas hídricos del país; y, 4) agregar que el Programa anual de reducción del estrés hídrico, aprobado por el Ejecutivo Federal, que deberá sustentarse en usos intensivos de la tecnología para el saneamiento y reutilización del agua, la modernización periódica de la infraestructura de abasto y distribución de agua potable y el mantenimiento de presas y sistemas hídricos.\n\nPara tal fin modifica los artículos 1, 6, 14 Bis 3 y 15 de la Ley de Aguas Nacionales.",
-      "ultimo_tramite": "Se turnó a comisiones unidas: Estudios Legislativos, Primera de Cámara de Senadores. Dictamina. El turno se publicó en Gaceta del Senado del 9 de diciembre de 2025. Ver todos los trámites",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 09/12/2025",
-      "asunto_id": "4995866",
-      "seguimiento": "5002918",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5002918&Asunto=4995866",
-      "categorias": [
-        "agua"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "b87dfe6e547b",
-      "scrapeado_en": "2026-04-29T21:15:59.654920+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2025-12-09",
-      "legislatura": "LXVI",
-      "periodo": "1er Ordinario",
-      "titulo": "Que reforma diversas disposiciones de la Ley General para la Prevención y Gestión Integral de los Residuos, en materia de economía circular municipal.",
-      "presentador": "Dip. María Fabiola Karina Pérez Popoca (Morena)",
-      "aspectos": "La iniciativa tiene por objeto incluir la economía circular en el tratamiento de residuos en lo concerniente a la gestión municipal. Para ello propone: 1) garantizar el derecho de toda persona al medio ambiente sano y propiciar el desarrollo sustentable a través de la prevención de la gestión, valorización y gestión integral de los residuos peligrosos, considerando en todo momento los principios de economía circular; 2) determinar que en la formación y conducción de la política en materia de prevención, valorización y gestión integral de los residuos se observará la implementación de los principios y acciones de economía circular; 3) definir la economía circular como el sistema económico de producción y consumo sostenible, que permite la reducción, reutilización, reciclaje y regeneración de materiales; 4) indicar que los municipios formularán los Programas Municipales para la Prevención y Gestión Integral de los Residuos Sólidos Urbanos, los cuales deberán observar los principios y acciones de la economía circular; 5) implementar campañas permanentes de difusión para dar a conocer en la población, la importancia de las acciones, principios y objetivos de la economía circular en el manejo y tratamiento de residuos; 6) detallar que las entidades federativas y los municipios, en coordinación con la Federación, deberán elaborar e instrumentar los programas locales para la prevención y gestión integral de los residuos sólidos urbanos y de manejo especial, con base en los principios y acciones de la economía social; y, 7) agregar que dichos programas deberán contener los mecanismo y estrategias de difusión y concientización social para su correcta implementación.\n\nPara tal fin modifica los artículos 1, 2, 5, 10, 26, y 35 de la Ley General para la Prevención y Gestión Integral de los Residuos.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 09 de diciembre de 2025 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 09/12/2025",
-      "asunto_id": "4997385",
-      "seguimiento": "5001540",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5001540&Asunto=4997385",
-      "categorias": [
-        "residuos"
-      ],
-      "categoria": "residuos",
-      "categoria_nombre": "Residuos",
-      "id": "37cd93e33cd2",
-      "scrapeado_en": "2026-04-29T21:16:25.244956+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 163,
-    "actualizado": "2026-08-11T11:30:26Z"
+    "nuevas": 152,
+    "actualizado": "2026-08-11T18:54:55Z"
   }
 }
