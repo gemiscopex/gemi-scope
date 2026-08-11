@@ -747,9 +747,13 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-panel+.cons-panel{margin-top:12px}
 .cons-panel-h{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .cons-panel-h .n{color:var(--dim)}
+/* Shell de dos columnas: contenido + Signal (agente permanente a la derecha) */
+.cons-shell{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:22px;align-items:start;margin-bottom:12px}
+.cons-main{min-width:0}
+.cons-rail{position:sticky;top:16px;align-self:start;min-width:0}
+@media(max-width:1080px){.cons-shell{grid-template-columns:1fr}.cons-rail{position:static;order:-1;margin-bottom:12px}.cons-main{order:0}}
 /* Widgets reordenables (drag-and-drop v1) */
-.cons-widgets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:start;margin-bottom:12px}
-@media(max-width:1000px){.cons-widgets{grid-template-columns:1fr 1fr}}
+.cons-widgets{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;margin-bottom:12px}
 @media(max-width:680px){.cons-widgets{grid-template-columns:1fr}}
 .cons-widget{border:0.8px solid var(--border);border-radius:11px;padding:13px 15px;min-width:0;background:var(--card);transition:box-shadow .12s,opacity .12s}
 .cons-widget.wide{grid-column:1/-1}
@@ -5904,10 +5908,15 @@ function renderConsola(){
     +'<button class="cons-edit" onclick="openConsolaWizard()">⚙ EDITAR TERMINAL</button>'
     +'</div>'
     +'</div>'
-    +_consVisitHero(cfg)
-    +kpis
-    +'<div class="cons-topsplit">'+_consChatCardHTML()+_panelGemiHTML()+'</div>'
-    +'<div class="cons-widgets" id="cons-widgets">'+widgets.map(_consWidgetHTML).join('')+'</div>';
+    +'<div class="cons-shell">'
+      +'<div class="cons-main">'
+        +_consVisitHero(cfg)
+        +kpis
+        +_panelGemiHTML()
+        +'<div class="cons-widgets" id="cons-widgets">'+widgets.map(_consWidgetHTML).join('')+'</div>'
+      +'</div>'
+      +'<div class="cons-rail">'+_consSignalRailHTML()+'</div>'
+    +'</div>';
 
   _loadPanelGemi();
   if(document.getElementById('cumpl-body'))_cumplRender();
@@ -5990,6 +5999,37 @@ function _consChatSend(){
     msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. Signal está en construcción 🛠️ — muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
     msgs.scrollTop=msgs.scrollHeight;
   },550);
+}
+// ── Signal como agente permanente (columna derecha, sticky) ──
+function _consSignalRailHTML(){
+  var sug=['¿Qué NOMs me aplican?','Resume mi señal de la semana','¿Qué cambió en el DOF hoy?'];
+  return '<div style="border:0.8px solid var(--border);border-radius:14px;background:var(--card);display:flex;flex-direction:column;overflow:hidden">'
+    +'<div style="padding:16px 18px 14px;border-bottom:0.8px solid var(--border);background:linear-gradient(180deg,rgba(0,158,144,0.05),transparent)">'
+      +'<div style="display:flex;align-items:center;gap:11px">'
+        +'<img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">'
+        +'<div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:700;color:var(--text);line-height:1.1">Signal</div>'
+        +'<div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px">Tu agente sobre los datos de tu terminal</div></div>'
+      +'</div>'
+      +'<div style="display:flex;align-items:center;gap:6px;margin-top:11px"><span class="cons-live"></span>'
+        +'<span style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber)">Próximamente · en construcción</span></div>'
+    +'</div>'
+    +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;padding:14px;min-height:200px;max-height:46vh;overflow-y:auto">'
+      +_consChatBubble('Hola 👋 Soy Signal. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé cruzando los datos de tu terminal en tiempo real.',false)
+    +'</div>'
+    +'<div style="padding:0 14px 4px;display:flex;flex-direction:column;gap:2px">'
+      +'<div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px">Prueba preguntarle</div>'
+      +sug.map(function(q){return '<button onclick="_consChatAsk(this.textContent)" style="text-align:left;background:none;border:none;border-top:0.8px solid var(--border);padding:9px 2px;font-family:var(--sans);font-size:12px;color:var(--text-sec);cursor:pointer;line-height:1.35;transition:color .12s" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text-sec)\'">'+q+'</button>';}).join('')
+    +'</div>'
+    +'<div style="display:flex;gap:8px;padding:12px 14px 14px;border-top:0.8px solid var(--border)">'
+      +'<input id="cons-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;min-width:0;padding:10px 13px;border:1px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12px;color:var(--text);border-radius:9px;outline:none">'
+      +'<button onclick="_consChatSend()" style="background:var(--green);color:#fff;border:none;border-radius:9px;padding:0 16px;font-size:12px;font-weight:600;cursor:pointer;flex-shrink:0">Enviar</button>'
+    +'</div>'
+  +'</div>';
+}
+function _consChatAsk(q){
+  var inp=document.getElementById('cons-chat-input');
+  if(inp)inp.value=q;
+  _consChatSend();
 }
 // ── Resumen inteligente de Mi Terminal (reemplaza los KPIs tipo informe) ──
 function _consHeroHTML(sen,temas,estados,coms,legs,nRefs){
