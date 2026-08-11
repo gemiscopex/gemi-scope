@@ -5632,9 +5632,9 @@ function _consWelcome(){
   document.body.appendChild(ov);
   // Cascada: los módulos caen escalonados justo cuando se desvanece la bienvenida
   var items=[].slice.call(document.querySelectorAll('#consola-root .cons-topsplit, #cons-widgets > *'));
-  items.forEach(function(el,i){el.classList.add('cons-drop');el.style.animationDelay=(1.15+i*0.07)+'s';});
-  setTimeout(function(){ov.classList.add('out');},1150);
-  setTimeout(function(){if(ov.parentNode)ov.parentNode.removeChild(ov);},1800);
+  items.forEach(function(el,i){el.classList.add('cons-drop');el.style.animationDelay=(3.0+i*0.07)+'s';});
+  setTimeout(function(){ov.classList.add('out');},3000);
+  setTimeout(function(){if(ov.parentNode)ov.parentNode.removeChild(ov);},3650);
 }
 // Línea de estado rotativa en la pantalla de entrada (sensación de plataforma viva)
 var _cobTimer=null;
