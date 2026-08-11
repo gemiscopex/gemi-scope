@@ -705,7 +705,12 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-est-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border);cursor:pointer}
 .cons-est-row:last-child{border-bottom:none}
 .cons-est-row:hover .cons-est-name{color:var(--green)}
-.cons-feed-it{padding:8px 0;border-bottom:0.8px solid rgba(0,0,0,0.04);cursor:pointer}
+.cons-feed-it{position:relative;padding:8px 22px 8px 0;border-bottom:0.8px solid rgba(0,0,0,0.04);cursor:pointer}
+.cons-li{position:absolute;top:6px;right:-2px;background:none;border:none;color:var(--text-muted);cursor:pointer;padding:2px;opacity:0;transition:opacity .12s,color .12s;line-height:0}
+.cons-feed-it:hover .cons-li{opacity:.6}
+.cons-li:hover{color:#0a66c2;opacity:1}
+#scope-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--text);color:var(--bg);font-size:12px;font-family:var(--sans);padding:10px 16px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:1400;max-width:80vw;text-align:center}
+#scope-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .cons-feed-it:last-child{border-bottom:none}
 .cons-feed-it:hover .cft{color:var(--green)}
 .cft{font-size:11px;color:var(--text2);line-height:1.4;transition:color 0.12s}
@@ -6135,12 +6140,14 @@ function _consHits(kwList,days){
 function _consSenal(sen){
   var el=document.getElementById('cons-senal');if(!el)return;
   var rows=sen.rows,dias=sen.dias,lead=sen.lead,nivel=sen.nivel,total=sen.total;
+  var leadSerie=(lead&&lead.c)?_consWeekSeries(lead.c.kw,8):[],streak=_consStreak(leadSerie);
   el.innerHTML='<div style="border-left:2px solid '+nivel[1]+';padding-left:12px;margin-bottom:12px">'
     +'<span style="font-family:var(--mono);font-size:10px;color:'+nivel[1]+'">'+(total>=12?'↑ ':'→ ')+nivel[0]+'</span>'
     +'<div style="font-size:14px;font-weight:600;line-height:1.4;color:var(--text);margin-top:5px">'
     +(lead&&lead.n7?('<span style="color:'+nivel[1]+'">'+lead.c.name+'</span> es tu tema más activo: '+lead.n7+' mención'+(lead.n7===1?'':'es')+' en medios en los últimos '+dias+' días.'):'Sin menciones en medios en tus temas por ahora.')
     +'</div>'
     +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px">'+total+' menciones en medios · '+dias+' días · '+rows.length+' temas</div>'
+    +(leadSerie.length&&total>0?('<div style="display:flex;align-items:center;gap:8px;margin-top:9px">'+_spark(leadSerie,nivel[1])+'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+(streak>=2?('↑ '+lead.c.name+' lleva '+streak+' semanas al alza'):(lead.c.name+' · últimas 8 semanas'))+'</span></div>'):'')
     +'</div>'
     +'<div class="cons-tema-row" style="border:none;opacity:.6"><span style="width:8px"></span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Tema</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Menciones</span><span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);text-transform:uppercase">Tend.</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Prioridad</span></div>'
     +rows.map(function(r){
@@ -6282,7 +6289,7 @@ function _consPres(kwList){
     var frag=(frags.find(function(fr){return _consMatch(fr,kwList);})||frags[0]).trim();
     if(frag.length>130)frag=frag.substring(0,128)+'…';
     return '<div class="cons-feed-it" onclick="window.open(\''+(a.url||'#').replace(/'/g,'%27')+'\',\'_blank\')">'
-      +'<div class="cft">“'+_consHighlight(frag,kwList)+'”</div><div class="cfm">CSP · '+f+'</div></div>';
+      +'<div class="cft">“'+_consHighlight(frag,kwList)+'”</div><div class="cfm">CSP · '+f+'</div>'+_liBtn(a.url,a.titulo)+'</div>';
   }).join('');
 }
 function _consDof(kwList){
@@ -6294,7 +6301,7 @@ function _consDof(kwList){
   el.innerHTML=items.map(function(d){
     var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     return '<div class="cons-feed-it" onclick="window.open(\''+(d.url||'#').replace(/'/g,'%27')+'\',\'_blank\')">'
-      +'<div class="cft">'+d.titulo+'</div><div class="cfm">'+(d.dependencia||'DOF')+' · '+f+'</div></div>';
+      +'<div class="cft">'+d.titulo+'</div><div class="cfm">'+(d.dependencia||'DOF')+' · '+f+'</div>'+_liBtn(d.url,d.titulo)+'</div>';
   }).join('');
 }
 function _consKwFeed(userKw){
@@ -6305,8 +6312,44 @@ function _consKwFeed(userKw){
   el.innerHTML=arts.map(function(n){
     var f=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
     return '<div class="cons-feed-it" onclick="window.open(\''+(n.url||'#').replace(/'/g,'%27')+'\',\'_blank\')">'
-      +'<div class="cft">'+n.titulo+'</div><div class="cfm">'+f+'</div></div>';
+      +'<div class="cft">'+n.titulo+'</div><div class="cfm">'+f+'</div>'+_liBtn(n.url,n.titulo)+'</div>';
   }).join('');
+}
+// ── Compartir en LinkedIn (copia texto pre-armado + abre compositor) ──
+function _toast(msg){
+  var t=document.getElementById('scope-toast');
+  if(!t){t=document.createElement('div');t.id='scope-toast';document.body.appendChild(t);}
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('show');},2600);
+}
+function _shareLinkedIn(url,title,ev){
+  if(ev&&ev.stopPropagation)ev.stopPropagation();
+  var u=(url&&url!=='#')?url:'https://scopegemi.com';
+  var txt=(title?('“'+title+'”\n\n'):'')+'vía Scope · inteligencia regulatoria ambiental\n'+u;
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){_toast('Texto copiado — pégalo en tu publicación (Ctrl+V)');},function(){_toast('Abriendo LinkedIn…');});}else{_toast('Abriendo LinkedIn…');}}catch(e){}
+  window.open('https://www.linkedin.com/feed/?shareActive=true','_blank','noopener');
+}
+function _liBtn(url,title){
+  var u=String(url||'').replace(/'/g,'%27'),t=String(title||'').replace(/'/g,'%27').replace(/"/g,'&quot;');
+  return '<button class="cons-li" title="Compartir en LinkedIn" onclick="_shareLinkedIn(\''+u+'\',\''+t+'\',event)"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.1c0-1.7-.03-3.9-2.38-3.9-2.38 0-2.75 1.86-2.75 3.78V24h-4V8z"/></svg></button>';
+}
+// ── #6 Tendencia semanal (histórico desde las fechas de noticias.json) ──
+function _consWeekSeries(kwList,weeks){
+  weeks=weeks||8;var now=Date.now(),wk=7*86400000,out=[];
+  for(var i=weeks-1;i>=0;i--){
+    var lo=now-(i+1)*wk,hi=now-i*wk,c=0;
+    for(var j=0;j<noticias.length;j++){var n=noticias[j],tt=new Date(n.fecha_publicacion).getTime();
+      if(tt>=lo&&tt<hi&&_consMatch((n.titulo||'')+' '+(n.resumen||''),kwList))c++;}
+    out.push(c);
+  }
+  return out;
+}
+function _consStreak(s){if(!s||s.length<2)return 0;var up=0;for(var i=s.length-1;i>0;i--){if(s[i]>s[i-1])up++;else break;}return up;}
+function _spark(vals,color){
+  if(!vals||!vals.length)return '';
+  var w=44,h=15,max=Math.max.apply(null,vals.concat([1]));
+  var pts=vals.map(function(v,i){var x=(i/(vals.length-1))*w;var y=h-2-(v/max)*(h-5);return x.toFixed(1)+','+y.toFixed(1);}).join(' ');
+  return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none" style="vertical-align:middle;flex-shrink:0"><polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/></svg>';
 }
 
 /* ===== Rutas limpias · scopegemi.com/obligaciones/leyesfederales ===== */
@@ -6709,12 +6752,28 @@ function _enforceGate(){
   var id=((document.querySelector('.tab-content.active')||{}).id||'').replace('tab-','');
   if(!_isPublicTab(id)&&!_hasAccess()){showTab('dashboard',null);openAuth('login');}
 }
+// ── Tracker de última visita (base para "Desde tu última visita hace X") ──
+var _prevVisit=null;
+function _trackVisit(){
+  try{
+    var uid=(_session&&_session.user&&_session.user.id)||'anon';
+    var key='scope_lastvisit_'+uid, prev=localStorage.getItem(key);
+    _prevVisit=prev?parseInt(prev,10):null;
+    localStorage.setItem(key,String(Date.now()));
+  }catch(e){}
+}
+function _sinceLastVisit(){
+  if(!_prevVisit)return null;
+  var ms=Date.now()-_prevVisit,min=Math.floor(ms/60000),h=Math.floor(min/60),d=Math.floor(h/24),w=Math.floor(d/7);
+  var t=w>=1?('hace '+w+' semana'+(w>1?'s':'')):d>=1?('hace '+d+' día'+(d>1?'s':'')):h>=1?('hace '+h+' hora'+(h>1?'s':'')):min>=1?('hace '+min+' minuto'+(min>1?'s':'')):'hace un momento';
+  return {ts:_prevVisit,ms:ms,human:t};
+}
 async function _authInit(){
-  if(!_authOn()){_updateAuthUI();return;}
+  if(!_authOn()){_trackVisit();_updateAuthUI();return;}
   try{
     _sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON);
     var r=await _sb.auth.getSession();_session=(r.data&&r.data.session)||null;
-    await _loadPerfil();_updateAuthUI();_enforceGate();
+    await _loadPerfil();_trackVisit();_updateAuthUI();_enforceGate();
     _sb.auth.onAuthStateChange(async function(_e,sess){_session=sess||null;await _loadPerfil();_updateAuthUI();});
   }catch(e){console.warn('Auth init:',e);}
 }
