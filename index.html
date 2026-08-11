@@ -124,6 +124,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .um-item{display:block;width:100%;text-align:left;padding:11px 17px;font-size:13px;color:var(--text);background:none;border:none;border-top:1px solid var(--border);cursor:pointer;font-family:var(--sans)}
 .um-item:hover{background:rgba(0,158,144,0.06)}
 .um-item.danger{color:#c0392b}
+.um-av{position:relative;width:46px;height:46px;border-radius:50%;background:#066750;display:inline-flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden;user-select:none}
+.um-av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.um-av-edit{position:absolute;bottom:-2px;right:-2px;width:19px;height:19px;border-radius:50%;background:var(--card);border:1px solid var(--border-med);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text-sec);cursor:pointer}
 .nav-btn-theme{width:30px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:none;background:none;color:var(--text-sec);cursor:pointer;transition:color 0.15s;flex-shrink:0;padding:0}
 .nav-btn-theme:hover{color:var(--text)}
 .nav-btn-theme svg{display:block}
@@ -6642,10 +6645,36 @@ function _renderUserMenu(){
   var meta='';
   if(plan||vence)meta+='<div>Plan <b>'+_escUser(plan||'—')+'</b>'+(vence?(' · vence '+_escUser(vence)):'')+'</div>';
   if(emp)meta+='<div>Empresa <b>'+emp+'</b></div>';
-  el.innerHTML='<div class="um-head"><div class="um-name">'+full+'</div><div class="um-email">'+email+'</div></div>'
+  var ini=_escUser((_userFull()||'?').charAt(0).toUpperCase());
+  var src=_avatarSrc();
+  var av='<span class="um-av">'+ini+(src?'<img src="'+src+'" alt="" onerror="this.remove()">':'')+'<span class="um-av-edit" title="Cambiar foto" onclick="event.stopPropagation();_pickAvatar()">✎</span></span>';
+  el.innerHTML='<div class="um-head" style="display:flex;align-items:center;gap:12px">'+av
+      +'<div style="min-width:0"><div class="um-name">'+full+'</div><div class="um-email">'+email+'</div></div></div>'
     +(meta?'<div class="um-meta">'+meta+'</div>':'')
+    +'<button class="um-item" onclick="_pickAvatar()">Cambiar foto</button>'
+    +'<button class="um-item" onclick="_umClose();window.open(\'https://www.linkedin.com/feed/?shareActive=true\',\'_blank\',\'noopener\')">Publicar en LinkedIn ↗</button>'
     +'<button class="um-item" onclick="_umClose();openAuth(\'pending\')">Método de pago</button>'
     +'<button class="um-item danger" onclick="_umClose();_logout()">Cerrar sesión</button>';
+}
+var _avatarV=0;
+function _avatarUid(){try{return (_session&&_session.user&&_session.user.id)||'';}catch(e){return '';}}
+function _avatarSrc(){var uid=_avatarUid();if(!uid||!SUPABASE_URL)return '';return SUPABASE_URL+'/storage/v1/object/public/avatares/'+uid+'/avatar.jpg'+(_avatarV?('?v='+_avatarV):'');}
+function _pickAvatar(){
+  var inp=document.getElementById('avatar-input');
+  if(!inp){inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.id='avatar-input';inp.style.display='none';
+    inp.onchange=function(){if(inp.files&&inp.files[0])_uploadAvatar(inp.files[0]);};document.body.appendChild(inp);}
+  inp.value='';inp.click();
+}
+async function _uploadAvatar(file){
+  if(!_sb||!_avatarUid()){alert('Inicia sesión para subir tu foto.');return;}
+  if(file.size>4*1024*1024){alert('La imagen debe pesar menos de 4 MB.');return;}
+  try{
+    var uid=_avatarUid();
+    var r=await _sb.storage.from('avatares').upload(uid+'/avatar.jpg',file,{upsert:true,contentType:file.type||'image/jpeg'});
+    if(r.error){alert('No se pudo subir la foto: '+r.error.message+'\\n(¿ya existe el bucket «avatares» en Supabase?)');return;}
+    _avatarV=Date.now();
+    if(document.getElementById('user-menu'))_renderUserMenu();
+  }catch(e){alert('Error al subir la foto: '+e.message);}
 }
 document.addEventListener('click',function(e){var w=e.target.closest?e.target.closest('.nav-user-wrap'):null;if(!w)_umClose();});
 function _enforceGate(){
