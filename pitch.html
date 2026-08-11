@@ -433,18 +433,6 @@
     <p class="lead r d2" style="margin:26px auto 0;font-size:clamp(18px,2.4vw,28px);color:var(--ink)">La trituramos y le damos <span class="grn">vida</span></p>
   </section>
 
-  <!-- 6 · MAPA -->
-  <section data-t="El país">
-    <div class="kick r">Panorama nacional</div>
-    <div class="split">
-      <div class="col">
-        <h2 class="r d1" style="max-width:12ch">32 entidades en un solo lugar</h2>
-        <p class="lead r d2">Un mapa que se ilumina en donde hay actividad y más presencia de medios. Un click y estás dentro del universo de cada estado.</p>
-      </div>
-      <div class="viz r d3"><div class="mapwrap" id="mapwrap"></div></div>
-    </div>
-  </section>
-
   <!-- 7 · RADAR -->
   <section data-t="Radar">
     <div class="techbg"></div>
@@ -455,22 +443,15 @@
     <div class="rgrid r d3" id="rgrid"></div>
   </section>
 
-  <!-- 8 · CONGRESO -->
-  <section data-t="Congreso" data-anim="cong">
-    <div class="techbg"></div>
-    <div class="kick r">Poder Legislativo</div>
+  <!-- 6 · MAPA -->
+  <section data-t="El país">
+    <div class="kick r">Panorama nacional</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:14ch">Seguimos todo el Congreso de México</h2>
-        <p class="lead r d2">La Cámara de Diputados y el Senado, semana a semana: iniciativas, puntos de acuerdo y exhortos ambientales, con la ley que se reforma y quién la propone. Y monitoreamos los <b>32 congresos estatales</b>, donde también se legisla lo ambiental.</p>
+        <h2 class="r d1" style="max-width:12ch">32 entidades en un solo lugar</h2>
+        <p class="lead r d2">Un mapa que se ilumina en donde hay actividad y más presencia de medios. Un click y estás dentro del universo de cada estado.</p>
       </div>
-      <div class="viz r d3">
-        <div class="panel">
-          <div class="phdr"><div><div class="ptitle">Monitor del Congreso Federal</div><div class="psub">Actividad ambiental · últimas 8 semanas</div></div>
-            <div class="legend"><span><i style="background:var(--mint)"></i>Diputados</span><span><i style="background:var(--g3)"></i>Senado</span></div></div>
-          <svg id="congsvg" viewBox="0 0 620 200" style="width:100%;height:auto;display:block"></svg>
-        </div>
-      </div>
+      <div class="viz r d3"><div class="mapwrap" id="mapwrap"></div></div>
     </div>
   </section>
 
@@ -537,6 +518,46 @@
     </div>
   </section>
 
+  <!-- 12 · INTERNACIONAL -->
+  <section data-t="Internacional">
+    <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-14%;right:-8%;opacity:.18"></div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:15ch">Lo que se decide afuera, también te alcanza</h2>
+        <p class="lead r d2">Dos señales externas que mueven la regulación de México: los instrumentos internacionales que alcanzan al exportador, y el pulso político de cada mañana.</p>
+        <div class="csp r d3">
+          <div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo</div>
+          <div class="csp-node"><div class="csp-node-date">04 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:88s"><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span></div></div></div></div>
+          <div class="csp-node"><div class="csp-node-date">03 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:76s"><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span></div></div></div></div>
+          <div class="csp-node"><div class="csp-node-date">31 jul</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:82s"><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span></div></div></div></div>
+        </div>
+      </div>
+      <div class="viz r d3">
+        <div class="vizlbl">Instrumentos internacionales · base viva de Scope</div>
+        <div class="intl-view"><div class="intl-scroll" id="intlscroll"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · CONGRESO -->
+  <section data-t="Congreso" data-anim="cong">
+    <div class="techbg"></div>
+    <div class="kick r">Poder Legislativo</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:14ch">Seguimos todo el Congreso de México</h2>
+        <p class="lead r d2">La Cámara de Diputados y el Senado, semana a semana: iniciativas, puntos de acuerdo y exhortos ambientales, con la ley que se reforma y quién la propone. Y monitoreamos los <b>32 congresos estatales</b>, donde también se legisla lo ambiental.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="panel">
+          <div class="phdr"><div><div class="ptitle">Monitor del Congreso Federal</div><div class="psub">Actividad ambiental · últimas 8 semanas</div></div>
+            <div class="legend"><span><i style="background:var(--mint)"></i>Diputados</span><span><i style="background:var(--g3)"></i>Senado</span></div></div>
+          <svg id="congsvg" viewBox="0 0 620 200" style="width:100%;height:auto;display:block"></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 11 · ACTORES (Senado triturado) -->
   <section data-t="Actores">
     <div class="glow" style="width:420px;height:420px;background:var(--g2);bottom:-12%;right:-8%;opacity:.2"></div>
@@ -570,27 +591,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 12 · INTERNACIONAL -->
-  <section data-t="Internacional">
-    <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-14%;right:-8%;opacity:.18"></div>
-    <div class="split">
-      <div class="col">
-        <h2 class="r d1" style="max-width:15ch">Lo que se decide afuera, también te alcanza</h2>
-        <p class="lead r d2">Dos señales externas que mueven la regulación de México: los instrumentos internacionales que alcanzan al exportador, y el pulso político de cada mañana.</p>
-        <div class="csp r d3">
-          <div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo</div>
-          <div class="csp-node"><div class="csp-node-date">04 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:88s"><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span></div></div></div></div>
-          <div class="csp-node"><div class="csp-node-date">03 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:76s"><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span></div></div></div></div>
-          <div class="csp-node"><div class="csp-node-date">31 jul</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:82s"><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span></div></div></div></div>
-        </div>
-      </div>
-      <div class="viz r d3">
-        <div class="vizlbl">Instrumentos internacionales · base viva de Scope</div>
-        <div class="intl-view"><div class="intl-scroll" id="intlscroll"></div></div>
       </div>
     </div>
   </section>
