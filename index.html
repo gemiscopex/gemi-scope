@@ -790,6 +790,13 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 @keyframes cwlDot{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
 @keyframes consDrop{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .cons-drop{opacity:0;animation:consDrop .5s cubic-bezier(.2,.7,.3,1) forwards}
+/* Rediseño · widget "Desde tu última visita" (cruce de datos, diseño Scope actual) */
+.cons-vhero{border:0.8px solid var(--border);border-radius:11px;background:var(--card);padding:20px 22px;margin-bottom:12px}
+.cons-live{width:7px;height:7px;border-radius:50%;background:#066750;display:inline-block;animation:cobPulse 2.2s ease-in-out infinite;flex-shrink:0}
+.cvh-row{display:grid;grid-template-columns:86px 1fr auto 14px;align-items:center;gap:14px;padding:12px 4px;border-bottom:1px solid var(--border);transition:background .14s,padding .14s}
+.cvh-row:last-of-type{border-bottom:none}
+.cvh-row.clk{cursor:pointer}
+.cvh-row.clk:hover{background:rgba(0,158,144,0.05);padding-left:8px}
 /* ── Mi Terminal · pantalla de entrada (estilo plataforma IA) ── */
 .cons-onboard{position:relative;max-width:660px;margin:32px auto 64px;text-align:center;padding:46px 28px;overflow:hidden;animation:cwlRise .7s cubic-bezier(.2,.7,.3,1)}
 .cob-inner{position:relative}
@@ -5894,6 +5901,7 @@ function renderConsola(){
     +'<button class="cons-edit" onclick="openConsolaWizard()">⚙ EDITAR TERMINAL</button>'
     +'</div>'
     +'</div>'
+    +_consVisitHero(cfg)
     +kpis
     +'<div class="cons-topsplit">'+_consChatCardHTML()+_panelGemiHTML()+'</div>'
     +'<div class="cons-widgets" id="cons-widgets">'+widgets.map(_consWidgetHTML).join('')+'</div>';
@@ -6135,6 +6143,83 @@ function _consHits(kwList,days){
     if(new Date(n.fecha_publicacion)<cutoff)return false;
     return _consMatch((n.titulo||'')+' '+(n.resumen||''),kwList);
   });
+}
+// ── Rediseño paso 1: "Desde tu última visita" (cruce DOF+Congreso+mañanera+prensa filtrado al perfil) ──
+function _agoText(ts){
+  var ms=Date.now()-ts; if(ms<0)ms=0;
+  var m=Math.floor(ms/60000),h=Math.floor(m/60),d=Math.floor(h/24);
+  return d>=1?('hace '+d+(d>1?' días':' día')):h>=1?('hace '+h+' h'):m>=1?('hace '+m+' min'):'ahora';
+}
+function _consSinceLast(cfg){
+  var since=(typeof _prevVisit!=='undefined'&&_prevVisit)?_prevVisit:(Date.now()-7*86400000);
+  var allKw=_consTemaKws(cfg.temas||[]).concat(cfg.keywords||[]);
+  var items=[],seen={};
+  function push(cat,color,text,ts,url){ if(!text||isNaN(ts))return; var k=(url||text).slice(0,90); if(seen[k])return; seen[k]=1; items.push({cat:cat,color:color,text:text,ts:ts,url:url||''}); }
+  ((typeof _dofData!=='undefined'&&_dofData)||[]).forEach(function(x){
+    var ts=new Date(String(x.fecha||'').substring(0,10)+'T12:00:00').getTime();
+    if(ts>=since&&x.relevante!==false&&_consMatch((x.titulo||'')+' '+(x.categoria||''),allKw))push('DOF','#066750',x.titulo,ts,x.url);
+  });
+  ((typeof _congItems!=='undefined'&&_congItems)||[]).forEach(function(x){
+    var ts=new Date(String(x.fecha||'').substring(0,10)+'T12:00:00').getTime();
+    if(ts>=since&&_consMatch((x.titulo||''),allKw))push('CONGRESO','#B0851F',x.titulo,ts,x.url||'');
+  });
+  ((typeof presData!=='undefined'&&presData)||[]).forEach(function(x){
+    var ts=new Date(String(x.fecha||'').substring(0,10)+'T12:00:00').getTime();
+    if(ts>=since&&_consMatch((x.titulo||'')+' '+((x.fragmentos||[]).join(' ')),allKw))push('EJECUTIVO','#2AA88B',(x.fragmentos&&x.fragmentos[0])||x.titulo,ts,x.url||'');
+  });
+  (noticias||[]).forEach(function(n){
+    var ts=new Date(n.fecha_publicacion).getTime();
+    if(ts>=since&&_consMatch((n.titulo||'')+' '+(n.resumen||''),allKw))push('PRENSA','#0E8C74',n.titulo,ts,n.url);
+  });
+  items.sort(function(a,b){return b.ts-a.ts;});
+  var byCat={}; items.forEach(function(i){byCat[i.cat]=(byCat[i.cat]||0)+1;});
+  return {items:items,byCat:byCat};
+}
+function _consMarkSeen(){
+  _prevVisit=Date.now();
+  try{localStorage.setItem('scope_lastvisit_'+((typeof _session!=='undefined'&&_session&&_session.user&&_session.user.id)||'anon'),String(_prevVisit));}catch(e){}
+  renderConsola();
+}
+function _consVisitHero(cfg){
+  var sl=_consSinceLast(cfg),items=sl.items,n=items.length;
+  var sv=(typeof _sinceLastVisit==='function')?_sinceLastVisit():null;
+  var ago=sv?sv.human:'primera visita';
+  var head,sub;
+  if(!n){
+    head='Todo tranquilo por ahora.';
+    sub='No hay publicaciones nuevas en tus temas desde tu última visita. Signal te avisa en cuanto algo se mueva.';
+  }else{
+    head=n+(n===1?' novedad':' novedades')+' en tus temas.';
+    var lbl={DOF:'el DOF',CONGRESO:'el Congreso',EJECUTIVO:'la mañanera',PRENSA:'la prensa'},parts=[];
+    ['DOF','CONGRESO','EJECUTIVO','PRENSA'].forEach(function(c){if(sl.byCat[c])parts.push(sl.byCat[c]+' en '+lbl[c]);});
+    sub='Scope cruzó el DOF, el Congreso, la mañanera y la prensa contra tu perfil. '+parts.join(' · ')+'.';
+  }
+  var rows=items.slice(0,4).map(function(i){
+    var oc=i.url?(' onclick="window.open(\''+String(i.url).replace(/'/g,'%27')+'\',\'_blank\')"'):'';
+    return '<div class="cvh-row'+(i.url?' clk':'')+'"'+oc+'>'
+      +'<span style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;color:'+i.color+'">'+i.cat+'</span>'
+      +'<span style="font-size:13px;line-height:1.4;color:var(--text);overflow:hidden;text-overflow:ellipsis">'+_escUser(i.text)+'</span>'
+      +'<span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);white-space:nowrap">'+_agoText(i.ts)+'</span>'
+      +'<span style="color:var(--text-muted);font-size:13px">'+(i.url?'→':'')+'</span>'
+      +'</div>';
+  }).join('');
+  var stats=[['Novedades',n],['DOF',sl.byCat.DOF||0],['Congreso',sl.byCat.CONGRESO||0],['Prensa',sl.byCat.PRENSA||0]];
+  var statHTML=stats.map(function(s){return '<div><div style="font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--text);line-height:1">'+s[1]+'</div><div style="font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-top:6px">'+s[0]+'</div></div>';}).join('');
+  var lead=(typeof CATS!=='undefined'?CATS:[]).filter(function(c){return (cfg.temas||[]).indexOf(c.id)>=0;})[0];
+  var serie=(lead&&typeof _consWeekSeries==='function')?_consWeekSeries(lead.kw,8):[];
+  var spark=(serie.length&&typeof _spark==='function')?_spark(serie,'#066750'):'';
+  return '<div class="cons-vhero">'
+    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">'
+      +'<span class="cons-live"></span>'
+      +'<span style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#066750">Desde tu última visita</span>'
+      +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--text-muted)">'+ago+'</span>'
+      +(n?'<button onclick="_consMarkSeen()" style="margin-left:auto;background:none;border:none;font-family:var(--mono);font-size:9px;letter-spacing:.05em;color:var(--text-muted);cursor:pointer;padding:0">Marcar todo como visto</button>':'')
+    +'</div>'
+    +'<div style="font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.2;color:var(--text);margin-bottom:6px">'+head+'</div>'
+    +'<div style="font-size:13px;line-height:1.55;color:var(--text-sec);max-width:72ch'+(n?';margin-bottom:16px':'')+'">'+sub+'</div>'
+    +(n?('<div style="border-top:1px solid var(--border)">'+rows+'</div>'):'')
+    +(n?('<div style="display:flex;align-items:center;gap:24px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">'+statHTML+'<div style="margin-left:auto">'+spark+'</div></div>'):'')
+    +'</div>';
 }
 function _consSenal(sen){
   var el=document.getElementById('cons-senal');if(!el)return;
