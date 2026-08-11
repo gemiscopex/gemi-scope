@@ -757,6 +757,20 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cw-step.done{color:var(--green)}
 .cw-step-nav{cursor:pointer;transition:color .12s}
 .cw-step-nav:hover{color:var(--text)}
+/* ── Mi Terminal · bienvenida + cascada de módulos ── */
+#cons-welcome{position:fixed;inset:0;z-index:1250;display:flex;align-items:center;justify-content:center;background:var(--bg);animation:cwlFade .35s ease;transition:opacity .6s ease}
+#cons-welcome.out{opacity:0}
+.cwl-in{text-align:center;animation:cwlRise .8s cubic-bezier(.2,.7,.3,1)}
+.cwl-h{font-size:clamp(26px,4vw,38px);font-weight:700;color:var(--text);letter-spacing:-0.02em;line-height:1.1}
+.cwl-s{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.14em;margin-top:14px;text-transform:uppercase}
+.cwl-dots{display:inline-flex;gap:5px;margin-top:18px}
+.cwl-dots span{width:6px;height:6px;border-radius:50%;background:#066750;opacity:.3;animation:cwlDot 1s infinite}
+.cwl-dots span:nth-child(2){animation-delay:.15s}.cwl-dots span:nth-child(3){animation-delay:.3s}
+@keyframes cwlFade{from{opacity:0}to{opacity:1}}
+@keyframes cwlRise{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes cwlDot{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
+@keyframes consDrop{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.cons-drop{opacity:0;animation:consDrop .5s cubic-bezier(.2,.7,.3,1) forwards}
 .cw-body{padding:16px 24px;overflow-y:auto;flex:1;min-height:280px}
 .cw-foot{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-top:1px solid var(--border)}
 .cw-count{font-family:var(--mono);font-size:10px;color:var(--dim)}
@@ -5566,6 +5580,32 @@ function _wizNext(){
   });
   closeConsolaWizard();
   renderConsola();
+  _consWelcome();
+}
+function _consUserName(){
+  try{
+    if(typeof _perfil!=='undefined'&&_perfil&&_perfil.nombre)return String(_perfil.nombre).trim().split(/\s+/)[0];
+    if(typeof _session!=='undefined'&&_session&&_session.user){var m=_session.user.user_metadata||{};if(m.nombre)return String(m.nombre).trim().split(/\s+/)[0];}
+  }catch(e){}
+  return '';
+}
+// Bienvenida al entrar a la terminal + cascada de módulos
+function _consWelcome(){
+  var name=_consUserName().replace(/[<>]/g,'');
+  var ov=document.createElement('div');
+  ov.id='cons-welcome';
+  ov.innerHTML='<div class="cwl-in">'
+    +'<img src="/assets/logo-gemi-icon.png" alt="" style="height:46px;width:auto;margin-bottom:20px">'
+    +'<div class="cwl-h">Bienvenido'+(name?(', '+name):'')+'</div>'
+    +'<div class="cwl-s">Preparando tu terminal</div>'
+    +'<div class="cwl-dots"><span></span><span></span><span></span></div>'
+    +'</div>';
+  document.body.appendChild(ov);
+  // Cascada: los módulos caen escalonados justo cuando se desvanece la bienvenida
+  var items=[].slice.call(document.querySelectorAll('#consola-root .cons-topsplit, #cons-widgets > *'));
+  items.forEach(function(el,i){el.classList.add('cons-drop');el.style.animationDelay=(1.15+i*0.07)+'s';});
+  setTimeout(function(){ov.classList.add('out');},1150);
+  setTimeout(function(){if(ov.parentNode)ov.parentNode.removeChild(ov);},1800);
 }
 
 // ── Render de la consola ─────────────────────────────────────────────────────
@@ -6118,20 +6158,25 @@ function _consLegs(legs){
 function _consEstados(estados){
   var el=document.getElementById('cons-estados');if(!el)return;
   if(!estados.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Sin estados seleccionados</div>';return;}
-  var resumen=(_gacetaEstatalData&&_gacetaEstatalData.resumen)||[];
-  el.style.display='grid';el.style.gridTemplateColumns=(estados.length>1?'1fr 1fr':'1fr');el.style.gap='8px';
+  // Mismo lenguaje visual que el heatmap de la sección Estados: contorno del estado,
+  // abreviatura en mono, número grande (noticias = señal del estado) y conteos.
+  el.style.display='grid';el.style.gridTemplateColumns='repeat(auto-fill,minmax(150px,1fr))';el.style.gap='8px';
   el.innerHTML=estados.map(function(s){
     var nl=(typeof _nLeyes==='function')?_nLeyes(s):0, ni=(typeof _nImpuestos==='function')?_nImpuestos(s):0, nm=(typeof _nMateriales==='function')?_nMateriales(s):0, nn=stateNews[s]||0;
-    var g=resumen.find(function(r){return r.estado===s;});
-    return '<div class="cons-estcard" onclick="openStatePanel(\''+s.replace(/'/g,"\\'")+'\')">'
-      +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:6px"><span style="font-size:12px;font-weight:600;color:var(--text);line-height:1.15;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+s+'</span>'
-      +'<span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);flex-shrink:0">'+(STATE_ABBR[s]||'')+'</span></div>'
-      +'<div style="display:flex;gap:9px;margin-top:8px;font-family:var(--mono);font-size:10px">'
-        +'<span title="Leyes ambientales"><b style="color:var(--text)">'+nl+'</b> <span style="color:var(--text-muted)">leyes</span></span>'
-        +'<span title="Impuestos verdes"><b style="color:var(--text)">'+ni+'</b> <span style="color:var(--text-muted)">imp</span></span>'
-        +'<span title="Materiales prohibidos"><b style="color:var(--text)">'+nm+'</b> <span style="color:var(--text-muted)">mat</span></span>'
+    var outline=(typeof _stateOutlineSVG==='function')?_stateOutlineSVG(s,34):'';
+    var hot=nn>0;
+    var tint=nn>=4?'rgba(6,103,80,0.18)':nn>=1?'rgba(16,185,129,0.10)':'transparent';
+    return '<div onclick="openStatePanel(\''+s.replace(/'/g,"\\'")+'\')" title="Abrir expediente de '+s+'" '
+      +'style="cursor:pointer;background:'+tint+';padding:12px 14px;transition:transform .12s ease;display:flex;align-items:flex-start;gap:8px" '
+      +'onmouseover="this.style.transform=\'translateX(3px)\'" onmouseout="this.style.transform=\'\'">'
+      +'<div style="flex:1;min-width:0">'
+        +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">'+(STATE_ABBR[s]||'')+'</div>'
+        +'<div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.15;margin-bottom:9px">'+s+'</div>'
+        +'<div style="display:flex;align-items:baseline;gap:6px"><span style="font-family:var(--mono);font-size:21px;font-weight:600;color:'+(hot?'#066750':'var(--text-muted)')+'">'+nn+'</span>'
+        +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">noticia'+(nn===1?'':'s')+'</span></div>'
+        +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:7px">'+nl+' leyes · '+ni+' imp · '+nm+' mat</div>'
       +'</div>'
-      +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px">'+nn+' noticia'+(nn===1?'':'s')+(g?' · '+g.total+' gaceta'+(g.total>1?'s':''):'')+' · expediente →</div>'
+      +(outline?'<div style="flex-shrink:0;align-self:center;opacity:0.5;pointer-events:none">'+outline+'</div>':'')
       +'</div>';
   }).join('');
 }
