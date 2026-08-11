@@ -787,7 +787,6 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-drop{opacity:0;animation:consDrop .5s cubic-bezier(.2,.7,.3,1) forwards}
 /* ── Mi Terminal · pantalla de entrada (estilo plataforma IA) ── */
 .cons-onboard{position:relative;max-width:660px;margin:32px auto 64px;text-align:center;padding:46px 28px;overflow:hidden;animation:cwlRise .7s cubic-bezier(.2,.7,.3,1)}
-.cob-glow{position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:560px;height:360px;background:radial-gradient(ellipse at center,rgba(6,103,80,0.12),transparent 68%);pointer-events:none}
 .cob-inner{position:relative}
 .cob-logo{display:block;height:34px;width:auto;margin:0 auto 26px}
 .cob-kick{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);margin-bottom:18px;display:inline-flex;align-items:center;gap:8px}
@@ -797,8 +796,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cob-sub{font-size:14px;color:var(--text-sec);line-height:1.65;max-width:500px;margin:0 auto 12px}
 .cob-status{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.03em;height:16px;margin-bottom:28px;transition:opacity .25s ease}
 .cob-status b{color:var(--green);font-weight:600}
-.cob-cta{height:48px;padding:0 30px;background:#066750;color:#fff;border:none;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;transition:background .15s,transform .15s;box-shadow:0 8px 28px rgba(6,103,80,.22)}
-.cob-cta:hover{background:#0a5540;transform:translateY(-1px)}
+.cob-cta-link{display:inline-block;color:#066750;font-family:var(--sans);font-size:16px;font-weight:700;letter-spacing:-0.01em;cursor:pointer;transition:opacity .15s}
+.cob-cta-link:hover{opacity:.62}
 .cob-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:9px 22px;margin-top:32px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
 .cob-caps span{display:inline-flex;align-items:center;gap:6px}
 .cob-caps span::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--green);opacity:.55}
@@ -5829,13 +5828,12 @@ function renderConsola(){
   if(!root)return;
   if(!consolaConfigurada()){
     root.innerHTML='<div class="cons-onboard">'
-      +'<div class="cob-glow"></div>'
       +'<div class="cob-inner">'
         +'<img class="cob-logo" src="/assets/scope-logo.png?v=2" alt="Scope">'
         +'<div class="cob-h">Tu monitoreo,<br>a tu medida</div>'
         +'<div class="cob-sub">Personaliza tu terminal viva con la señal, sesiones, normas e instrumentos que le importan a tu organización. Utiliza los datos de Scope filtrados para ti.</div>'
         +'<div class="cob-status" id="cob-status"></div>'
-        +'<button class="cob-cta" onclick="openConsolaWizard()">Personaliza tu Terminal →</button>'
+        +'<div class="cob-cta-link" onclick="openConsolaWizard()">Personaliza tu Terminal →</div>'
         +'<div class="cob-caps"><span>Señal por tema</span><span>Tus estados</span><span>Comisiones</span><span>Legisladores</span><span>Referencias</span><span>Alertas</span></div>'
       +'</div>'
     +'</div>';
