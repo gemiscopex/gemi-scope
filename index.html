@@ -5361,8 +5361,8 @@ function _wizLegRow(l){
   var on=_wiz.sel.legisladores.has(l.id);
   var foto=(_fotosMap.senado&&_fotosMap.senado[l.id])||(_fotosMap.diputados&&_fotosMap.diputados[l.id])||null;
   var color=(PARTIDO_COLOR[(l.partido||'').toUpperCase()]||PARTIDO_COLOR[l.partido]||'#444');
-  var av=foto?'<img src="'+foto+'" style="width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="">'
-    :'<span style="width:26px;height:26px;border-radius:50%;background:'+color+';display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0">'+initials(l.n)+'</span>';
+  var av='<span style="position:relative;width:26px;height:26px;border-radius:50%;background:'+color+';display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden">'+initials(l.n)
+    +(foto?'<img src="'+foto+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="" onerror="this.remove()">':'')+'</span>';
   return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'legisladores\',\''+l.id.replace(/'/g,"\\'")+'\')" style="margin-bottom:5px">'
     +'<span class="mark">'+(on?'●':'○')+'</span>'+av
     +'<div style="flex:1;min-width:0"><div style="font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
@@ -6083,8 +6083,8 @@ function _consLegs(legs){
   el.innerHTML=legs.map(function(l,idx){
     var foto=(_fotosMap.senado&&_fotosMap.senado[l.id])||(_fotosMap.diputados&&_fotosMap.diputados[l.id])||null;
     var color=PARTIDO_COLOR[(l.partido||'').toUpperCase()]||'#444';
-    var av=foto?'<img src="'+foto+'" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="">'
-      :'<span style="width:34px;height:34px;border-radius:50%;background:'+color+';display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0">'+initials(l.n)+'</span>';
+    var av='<span style="position:relative;width:34px;height:34px;border-radius:50%;background:'+color+';display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden">'+initials(l.n)
+      +(foto?'<img src="'+foto+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="" onerror="this.remove()">':'')+'</span>';
     var logo=PARTIDO_LOGO[(l.partido||'').toUpperCase()];
     var silUrl='http://sil.gobernacion.gob.mx/Busquedas/Legisladores/busquedas_legisladores_buscar.php?SID=&Nombre='+encodeURIComponent(l.n);
     var instr=_consLegInstrumentos(l);
