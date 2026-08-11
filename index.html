@@ -5215,7 +5215,7 @@ function _consMaterialesTipos(){
 }
 
 // ── Wizard de configuración ──────────────────────────────────────────────────
-var _WIZ_PASOS=['temas','estados','comisiones','legisladores','referencias','afinar'];
+var _WIZ_PASOS=['temas','estados','referencias','afinar','comisiones','legisladores'];
 var _WIZ_LABEL={temas:'Temas',estados:'Estados',comisiones:'Comisiones',legisladores:'Legisladores',referencias:'Referencias',afinar:'Afinar'};
 var _WIZ_REQ={temas:true,estados:true,comisiones:true,legisladores:false,referencias:false,afinar:false};
 var _WIZ_MAX_LEG=20,_WIZ_MAX_KW=15;
@@ -5349,7 +5349,7 @@ function _wizPaintBody(){
     _wizPaintLegFilters();_wizPaintLegList();
   }
   else if(p==='referencias'){
-    var tabs=[['noms','NOMs'],['monitoreo','Impuestos · Instrumentos · Materiales']];
+    var tabs=[['noms','NOMs'],['impuestos','Impuestos'],['materiales','Materiales'],['instrumentos','Instrumentos']];
     b.innerHTML='<div class="stab-bar" style="margin-bottom:14px">'+tabs.map(function(t){
         return '<button class="stab'+(_wiz.refTab===t[0]?' on':'')+'" onclick="_wizSetRefTab(\''+t[0]+'\')">'+t[1]+'</button>';
       }).join('')+'</div><div id="cw-ref-body"></div>';
@@ -5456,7 +5456,7 @@ function _wizSetRefTab(t){_wiz.refTab=t;_wizPaintBody();_wizPaintFoot();}
 function _wizSetRefTema(t){_wiz.refTema=t;_wizPaintRef();}
 function _wizPaintRef(){
   var el=document.getElementById('cw-ref-body');if(!el)return;
-  el.innerHTML=_wiz.refTab==='noms'?_wizRefNomsHTML():_wizRefMonitoreoHTML();
+  el.innerHTML=(_wiz.refTab==='noms')?_wizRefNomsHTML():_wizRefSection(_wiz.refTab);
 }
 function _wizRefNomsHTML(){
   var norms=(typeof NORMAS!=='undefined'?NORMAS:[]);
@@ -5506,41 +5506,40 @@ function _wizMonRow(setKey,id,title,sub,badge,on){
     +(badge?'<div style="flex-shrink:0;margin-left:8px;text-align:right">'+badge+'</div>':'')
     +'</div>';
 }
-function _wizRefMonitoreoHTML(){
+function _wizRefSection(kind){
   var selCount=_wiz.sel.estados.size;
   var stHint=selCount?('Cruzado con tus <b>'+selCount+'</b> estado'+(selCount===1?'':'s')+' seleccionados.'):'Selecciona estados en el paso «Estados» para ver dónde aplica cada uno.';
-  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-bottom:16px">Elige qué quieres <b>monitorear</b> y te decimos si aplica donde operas. '+stHint+'</div>';
-  var imps=_consImpuestoTipos();
-  var impHTML='<div style="font-size:12px;font-weight:700;color:var(--green);margin:0 0 3px">¿Quieres monitorear un impuesto ambiental?</div>'
-    +'<div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Impuestos verdes estatales — extracción, emisiones, depósito de residuos…</div>'
-    +imps.map(function(t){
-      var on=_wiz.sel.impuestos.has(t),mine=_wizStatesForImpuesto(t),nat=_impNationwide(t);
-      var badge=mine.length
-        ?'<span style="font-size:9px;font-weight:700;color:var(--green);white-space:nowrap">✓ '+mine.length+' de tus estados</span>'
-        :(selCount?'<span style="font-size:9px;color:var(--text-muted);white-space:nowrap">— no en los tuyos</span>':'');
-      var sub=mine.length?mine.map(function(s){return STATE_ABBR[s]||s;}).join(' · '):(nat+' entidad'+(nat===1?'':'es')+' en el país');
-      return _wizMonRow('impuestos',t,t,sub,badge,on);
-    }).join('');
-  var mats=_consMaterialesTipos();
-  var matHTML='<div style="font-size:12px;font-weight:700;color:var(--green);margin:22px 0 3px">¿Quieres monitorear un material prohibido?</div>'
-    +'<div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Plásticos de un solo uso y otros materiales vetados por entidad.</div>'
-    +(mats.length?mats.map(function(m){
-      var on=_wiz.sel.materiales.has(m),mine=_wizStatesForMaterial(m),nat=_matNationwide(m);
-      var badge=mine.length
-        ?'<span style="font-size:9px;font-weight:700;color:var(--green);white-space:nowrap">✓ prohibido en '+mine.length+'</span>'
-        :(selCount?'<span style="font-size:9px;color:var(--text-muted);white-space:nowrap">— no en los tuyos</span>':'');
-      var sub=mine.length?mine.map(function(s){return STATE_ABBR[s]||s;}).join(' · '):(nat+' entidad'+(nat===1?'':'es')+' lo prohíben');
-      return _wizMonRow('materiales',m,m,sub,badge,on);
-    }).join(''):'<div style="font-size:11px;color:var(--dim)">Dataset en expansión.</div>');
-  var instr=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]);
-  var instrHTML='<div style="font-size:12px;font-weight:700;color:var(--green);margin:22px 0 3px">Instrumentos legales a la mano</div>'
-    +'<div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Leyes y reglamentos que quieres tener siempre visibles en tu terminal.</div>'
-    +instr.map(function(o){
-      var on=_wiz.sel.instrumentos.has(o.n);
-      var sub=(o.d||'').length>90?(o.d.slice(0,90)+'…'):(o.d||'');
-      return _wizMonRow('instrumentos',o.n,o.n,sub,'',on);
-    }).join('');
-  return head+impHTML+matHTML+instrHTML;
+  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-bottom:14px">Elige qué <b>monitorear</b> y te decimos si aplica donde operas. '+stHint+'</div>';
+  if(kind==='impuestos'){
+    var imps=_consImpuestoTipos();
+    return head+'<div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Impuestos verdes estatales — extracción, emisiones, depósito de residuos…</div>'
+      +imps.map(function(t){
+        var on=_wiz.sel.impuestos.has(t),mine=_wizStatesForImpuesto(t),nat=_impNationwide(t);
+        var badge=mine.length?'<span style="font-size:9px;font-weight:700;color:var(--green);white-space:nowrap">✓ '+mine.length+' de tus estados</span>':(selCount?'<span style="font-size:9px;color:var(--text-muted);white-space:nowrap">— no en los tuyos</span>':'');
+        var sub=mine.length?mine.map(function(s){return STATE_ABBR[s]||s;}).join(' · '):(nat+' entidad'+(nat===1?'':'es')+' en el país');
+        return _wizMonRow('impuestos',t,t,sub,badge,on);
+      }).join('');
+  }
+  if(kind==='materiales'){
+    var mats=_consMaterialesTipos();
+    return head+'<div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Plásticos de un solo uso y otros materiales vetados por entidad.</div>'
+      +(mats.length?mats.map(function(m){
+        var on=_wiz.sel.materiales.has(m),mine=_wizStatesForMaterial(m),nat=_matNationwide(m);
+        var badge=mine.length?'<span style="font-size:9px;font-weight:700;color:var(--green);white-space:nowrap">✓ prohibido en '+mine.length+'</span>':(selCount?'<span style="font-size:9px;color:var(--text-muted);white-space:nowrap">— no en los tuyos</span>':'');
+        var sub=mine.length?mine.map(function(s){return STATE_ABBR[s]||s;}).join(' · '):(nat+' entidad'+(nat===1?'':'es')+' lo prohíben');
+        return _wizMonRow('materiales',m,m,sub,badge,on);
+      }).join(''):'<div style="font-size:11px;color:var(--dim)">Dataset en expansión.</div>');
+  }
+  if(kind==='instrumentos'){
+    var instr=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]);
+    return '<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-bottom:14px">Leyes y reglamentos que quieres tener siempre a la mano en tu terminal.</div>'
+      +instr.map(function(o){
+        var on=_wiz.sel.instrumentos.has(o.n);
+        var sub=(o.d||'').length>90?(o.d.slice(0,90)+'…'):(o.d||'');
+        return _wizMonRow('instrumentos',o.n,o.n,sub,'',on);
+      }).join('');
+  }
+  return '';
 }
 // ── Afinar: sugerencias de palabras clave ──
 function _wizAddKw(v){
