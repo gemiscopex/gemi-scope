@@ -671,11 +671,36 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 /* ═══════════ MI CONSOLA ═══════════ */
 .cons-hero{max-width:600px;margin:40px auto;text-align:center;padding:52px 44px}
 .cons-hero-t{font-family:var(--mono);font-size:11px;letter-spacing:0.25em;color:var(--green);margin-bottom:14px}
-.cons-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:12px;flex-wrap:wrap}
-.cons-title{font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:0.02em;color:var(--text)}
+.cons-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+.cons-title{font-family:var(--sans);font-size:25px;font-weight:700;letter-spacing:-0.01em;color:var(--text)}
 .cons-sub{font-family:var(--sans);font-size:12px;color:var(--text-muted)}
-.cons-edit{font-family:var(--mono);font-size:10px;color:var(--text-muted);cursor:pointer;letter-spacing:0.08em;border:1px solid var(--border);padding:5px 12px;background:none}
+.cons-welcome{display:flex;align-items:center;gap:8px;margin-top:7px;font-family:var(--mono);font-size:11px;color:var(--text-sec);flex-wrap:wrap}
+.cons-welcome .eyebrow{color:#066750;font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:9px}
+.cons-welcome .ago{color:var(--text-muted)}
+.cons-welcome .seen{background:none;border:none;font-family:var(--mono);font-size:10px;color:var(--text-muted);cursor:pointer;padding:0;text-decoration:underline;letter-spacing:.03em}
+.cons-welcome .seen:hover{color:var(--green)}
+.cons-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cons-edit{font-family:var(--mono);font-size:10px;color:var(--text-sec);cursor:pointer;letter-spacing:0.04em;border:0.8px solid var(--border);padding:7px 12px;border-radius:8px;background:none;transition:color .12s,border-color .12s}
 .cons-edit:hover{color:var(--green);border-color:var(--green)}
+/* Resumen: tarjetas de selección estilo Estados/Radar, con hover que revela lo elegido */
+.cons-seltiles{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:15px}
+.cons-seltile{position:relative;padding:8px 16px 8px 12px;border-left:2px solid var(--border);cursor:default;transition:border-color .14s}
+.cons-seltile:hover{border-left-color:#066750}
+.cons-seltile .num{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--text);line-height:1}
+.cons-seltile .lab{font-size:11px;color:var(--text-sec);margin-top:4px}
+.cons-seltip{position:absolute;left:0;top:100%;margin-top:8px;z-index:40;min-width:180px;max-width:300px;background:var(--card);border:0.8px solid var(--border2);border-radius:10px;box-shadow:0 14px 36px rgba(13,27,42,0.14);padding:11px 13px;display:none}
+.cons-seltile:hover .cons-seltip{display:block}
+.cons-seltip .th{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px}
+.cons-seltip .it{font-size:12px;color:var(--text);padding:4px 0;border-top:0.8px solid rgba(0,0,0,0.05);line-height:1.4}
+/* Dúo Señal + Panel GEMI */
+.cons-duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;margin-bottom:12px}
+@media(max-width:760px){.cons-duo{grid-template-columns:1fr}}
+/* Modal genérico (Mi cumplimiento) */
+.cmod-bg{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1300;display:none;align-items:center;justify-content:center;padding:18px}
+.cmod-bg.on{display:flex}
+.cmod{background:var(--card);border:1px solid var(--border2);border-radius:14px;width:560px;max-width:calc(100vw - 24px);max-height:calc(100vh - 48px);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.2)}
+.cmod-h{padding:18px 22px;border-bottom:0.8px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.cmod-b{padding:16px 22px 22px;overflow-y:auto}
 .cons-grid{display:grid;grid-template-columns:2fr 1fr;gap:10px;align-items:start}
 .cons-col{display:flex;flex-direction:column;gap:10px}
 .cons-tema-row{display:grid;grid-template-columns:12px minmax(96px,150px) 1fr 40px 18px 52px;align-items:center;gap:11px;padding:9px 0;border-bottom:0.8px solid var(--border)}
@@ -725,7 +750,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-kpi-val{font-family:var(--mono);font-size:21px;font-weight:600;color:var(--text);line-height:1.05;margin-top:6px}
 .cons-kpi-sub{font-family:var(--mono);font-size:8px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* Resumen inteligente (reemplaza los KPIs tipo informe) */
-.cons-hero{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:center;padding:2px 0 18px;margin:0 0 16px 0;max-width:none;border-bottom:0.8px solid var(--border);text-align:left}
+.cons-hero{padding:2px 0 18px;margin:0 0 16px 0;max-width:none;border-bottom:0.8px solid var(--border);text-align:left}
 .cons-hero>div{text-align:left}
 .cons-hero-kick{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)}
 .cons-hero-head{font-family:var(--sans);font-size:20px;font-weight:700;line-height:1.25;color:var(--text);margin-top:8px;letter-spacing:-0.01em}
@@ -5883,14 +5908,11 @@ function renderConsola(){
 
   var sen=_consComputeSenal(temas,cfg.riesgos||{});
   var nRefs=(cfg.noms||[]).length+(cfg.instrumentos||[]).length+(cfg.impuestos||[]).length+(cfg.materiales||[]).length;
-  var kpis=_consHeroHTML(sen,temas,estados,coms,legs,nRefs);
-  // ── Widgets reordenables (drag-and-drop) ──
+  var kpis=_consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg);
+  // ── Widgets reordenables (drag-and-drop). Señal vive en el dúo (arriba); cumplimiento en modal. ──
   var widgets=[];
-  widgets.push({id:'senal',title:'Señal de mis temas',count:null,body:'<div id="cons-senal"></div>'});
   widgets.push({id:'estados',title:'Mis estados',count:estados.length,body:'<div id="cons-estados"></div>'});
   _consRefWidgets(cfg).forEach(function(w){widgets.push(w);});
-  if((cfg.noms||[]).length||(cfg.instrumentos||[]).length||(cfg.impuestos||[]).length||(cfg.materiales||[]).length)
-    widgets.push({id:'cumplimiento',title:'¿Cumplo? · Autoevaluación',count:null,body:'<div id="cumpl-body"></div>'});
   if(!(cfg.noms||[]).length&&!(cfg.instrumentos||[]).length&&!(cfg.impuestos||[]).length&&!(cfg.materiales||[]).length)
     widgets.push({id:'ref-vacio',title:'Referencias',count:null,body:'<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> en la sección de NOMs) para tenerlos aquí a la mano.</div>'});
   widgets.push({id:'dof',title:'DOF · normas de mis temas',count:null,body:'<div class="cons-scroll" id="cons-dof"></div>'});
@@ -5900,19 +5922,23 @@ function renderConsola(){
   if(legs.length)widgets.push({id:'legisladores',title:'Mis legisladores',count:legs.length,wide:true,body:'<div class="cons-leg-grid" id="cons-legs"></div>'});
   widgets=_consApplyOrder(widgets,cfg.layout);
 
+  var _nm=(typeof _userDisplayName==='function')?_userDisplayName():'';
+  var _greet=(_nm&&_nm!=='Mi cuenta')?('Bienvenido, '+_escUser(_nm)):'Bienvenido';
   root.innerHTML='<div class="cons-hdr">'
-    +'<div><span class="cons-title">Mi Terminal</span>'
-    +'<div class="cons-sub" style="margin-top:4px">Actualizada a diario · arrastra <span style="font-family:var(--mono)">⠿</span> para acomodarla a tu gusto</div></div>'
-    +'<div style="display:flex;gap:8px;align-items:center">'
-    +'<button class="cons-edit" onclick="_consPrintReport()" title="Genera un reporte imprimible / PDF con la foto del día de tu terminal">⎙ Imprimir reporte</button>'
-    +'<button class="cons-edit" onclick="openConsolaWizard()">⚙ EDITAR TERMINAL</button>'
+    +'<div><span class="cons-title">'+_greet+'</span>'+_consWelcomeLine(cfg)+'</div>'
+    +'<div class="cons-actions">'
+    +'<button class="cons-edit" onclick="_consPrintReport()" title="Genera un reporte imprimible / PDF con la foto del día de tu terminal">Imprimir reporte</button>'
+    +'<button class="cons-edit" onclick="_consCumplOpen()" title="Marca los instrumentos con los que ya cumples">Mi cumplimiento</button>'
+    +'<button class="cons-edit" onclick="openConsolaWizard()">Editar terminal</button>'
     +'</div>'
     +'</div>'
     +'<div class="cons-shell">'
       +'<div class="cons-main">'
-        +_consVisitHero(cfg)
         +kpis
-        +_panelGemiHTML()
+        +'<div class="cons-duo">'
+          +'<div class="cons-widget"><div class="cons-wh"><span class="cons-wt">Señal de mis temas</span></div><div id="cons-senal"></div></div>'
+          +_panelGemiHTML()
+        +'</div>'
         +'<div class="cons-widgets" id="cons-widgets">'+widgets.map(_consWidgetHTML).join('')+'</div>'
       +'</div>'
       +'<div class="cons-rail">'+_consSignalRailHTML()+'</div>'
@@ -6031,32 +6057,68 @@ function _consChatAsk(q){
   if(inp)inp.value=q;
   _consChatSend();
 }
-// ── Resumen inteligente de Mi Terminal (reemplaza los KPIs tipo informe) ──
-function _consHeroHTML(sen,temas,estados,coms,legs,nRefs){
+// ── Línea de bienvenida: pegada al saludo, cruza el perfil desde la última visita ──
+function _consWelcomeLine(cfg){
+  var sl=_consSinceLast(cfg),n=sl.items.length;
+  var sv=(typeof _sinceLastVisit==='function')?_sinceLastVisit():null;
+  var ago=sv?sv.human:'primera visita';
+  var status=n?(n+(n===1?' novedad':' novedades')+' en tus temas.'):'Todo tranquilo por ahora.';
+  return '<div class="cons-welcome"><span class="cons-live"></span>'
+    +'<span class="eyebrow">Desde tu última visita</span>'
+    +'<span class="ago">'+ago+'</span>'
+    +'<span style="color:var(--text-muted)">·</span>'
+    +'<span style="color:var(--text);font-weight:600">'+status+'</span>'
+    +(n?'<button class="seen" onclick="_consMarkSeen()">Marcar como visto</button>':'')
+  +'</div>';
+}
+// ── Mi cumplimiento: apartado (modal) para marcar los instrumentos con los que ya cumples ──
+function _consCumplOpen(){
+  var bg=document.getElementById('cmod-cumpl');
+  if(!bg){
+    bg=document.createElement('div');bg.id='cmod-cumpl';bg.className='cmod-bg';
+    bg.onclick=function(e){if(e.target===bg)_consCumplClose();};
+    bg.innerHTML='<div class="cmod"><div class="cmod-h"><div><div style="font-size:16px;font-weight:700;color:var(--text)">Mi cumplimiento</div>'
+      +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px">Marca los instrumentos con los que ya cumples. Agrega más en <b>Editar terminal → Referencias</b>.</div></div>'
+      +'<button onclick="_consCumplClose()" style="background:none;border:none;font-size:22px;color:var(--text-muted);cursor:pointer;line-height:1;flex-shrink:0">×</button></div>'
+      +'<div class="cmod-b"><div id="cumpl-body"></div></div></div>';
+    document.body.appendChild(bg);
+  }
+  bg.classList.add('on');
+  if(typeof _cumplRender==='function')_cumplRender();
+}
+function _consCumplClose(){var bg=document.getElementById('cmod-cumpl');if(bg)bg.classList.remove('on');}
+// ── Resumen inteligente de Mi Terminal: nivel + tema líder + tarjetas de selección con hover ──
+function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
+  cfg=cfg||{};
   var rows=(sen&&sen.rows)||[],lead=sen&&sen.lead,second=rows[1];
   var nivel=sen.total>=12?'Actividad alta':sen.total>=5?'Actividad media':'Actividad baja';
   var head;
   if(lead&&lead.n7){var names=lead.c.name+(second&&second.n7?' y '+second.c.name:'');head=names+' concentra'+(second&&second.n7?'n':'')+' tu señal esta semana';}
   else head='Aún sin menciones en tus temas esta semana';
-  var mx=Math.max.apply(null,rows.map(function(r){return r.n7;}).concat([1]));
-  var bars=rows.filter(function(r){return r.n7>0;}).slice(0,4).map(function(r){
-    var col=(typeof _radarColor==='function')?_radarColor(r.c.id):'#066750';
-    return '<div class="cons-hero-barrow"><span class="cons-hero-barname">'+r.c.name+'</span>'
-      +'<span class="cons-hero-bartrack"><span class="cons-hero-barfill" style="width:'+Math.round(r.n7/mx*100)+'%;background:'+col+'"></span></span>'
-      +'<span class="cons-hero-barval">'+r.n7+'</span></div>';
-  }).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:6px 0">Sin señal en medios esta semana.</div>';
-  var chip=function(n,l){return '<span class="cons-hero-chip"><b>'+n+'</b> '+l+'</span>';};
+  function tip(title,list){
+    var body=list.length
+      ? list.map(function(x){return '<div class="it">'+_escUser(x)+'</div>';}).join('')
+      : '<div class="it" style="border:none;color:var(--text-muted)">Nada seleccionado aún</div>';
+    return '<span class="cons-seltip"><div class="th">'+title+'</div>'+body+'</span>';
+  }
+  function tile(n,l,title,list){
+    return '<div class="cons-seltile"><div class="num">'+n+'</div><div class="lab">'+l+'</div>'+tip(title,list)+'</div>';
+  }
+  var refList=[];
+  (cfg.noms||[]).forEach(function(x){refList.push('NOM · '+x);});
+  (cfg.impuestos||[]).forEach(function(x){refList.push('Impuesto · '+x);});
+  (cfg.instrumentos||[]).forEach(function(x){refList.push('Instrumento · '+x);});
+  (cfg.materiales||[]).forEach(function(x){refList.push('Material · '+x);});
+  var tiles=tile(temas.length,temas.length===1?'tema':'temas','Tus temas',temas.map(function(c){return c.name;}))
+    +tile(estados.length,estados.length===1?'estado':'estados','Tus estados',estados)
+    +tile(coms.length,coms.length===1?'comisión':'comisiones','Tus comisiones',coms.map(function(c){return c.nombre;}))
+    +(legs.length?tile(legs.length,legs.length===1?'legislador':'legisladores','Tus legisladores',legs.map(function(l){return l.n;})):'')
+    +tile(nRefs,nRefs===1?'referencia':'referencias','Tus referencias',refList);
   return '<div class="cons-hero">'
-    +'<div>'
-      +'<div class="cons-hero-kick">Tu terminal · <span style="color:#066750;font-weight:700">'+nivel+'</span></div>'
-      +'<div class="cons-hero-head">'+head+'</div>'
-      +'<div class="cons-hero-sub">'+sen.total+' menciones en medios · últimos '+sen.dias+' días</div>'
-      +'<div class="cons-hero-chips">'+chip(temas.length,'temas')+chip(estados.length,'estados')+chip(coms.length,'comisiones')+(legs.length?chip(legs.length,'legisladores'):'')+chip(nRefs,'referencias')+'</div>'
-    +'</div>'
-    +'<div>'
-      +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Dónde está tu señal · 7d</div>'
-      +'<div class="cons-hero-bars">'+bars+'</div>'
-    +'</div>'
+    +'<div class="cons-hero-kick">Tu terminal · <span style="color:#066750;font-weight:700">'+nivel+'</span></div>'
+    +'<div class="cons-hero-head">'+head+'</div>'
+    +'<div class="cons-hero-sub">'+sen.total+' menciones en medios · últimos '+sen.dias+' días</div>'
+    +'<div class="cons-seltiles">'+tiles+'</div>'
   +'</div>';
 }
 // ── Panel GEMI: canal oficial del equipo (mensajes de administradores + agenda de fechas) ──
