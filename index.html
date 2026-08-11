@@ -776,7 +776,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 #cons-welcome.out{opacity:0}
 .cwl-in{text-align:center;animation:cwlRise .8s cubic-bezier(.2,.7,.3,1)}
 .cwl-h{font-size:clamp(26px,4vw,38px);font-weight:700;color:var(--text);letter-spacing:-0.02em;line-height:1.1}
-.cwl-s{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.14em;margin-top:14px;text-transform:uppercase}
+.cwl-s{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.14em;margin-top:14px;text-transform:uppercase;transition:opacity .17s ease}
 .cwl-dots{display:inline-flex;gap:5px;margin-top:18px}
 .cwl-dots span{width:6px;height:6px;border-radius:50%;background:#066750;opacity:.3;animation:cwlDot 1s infinite}
 .cwl-dots span:nth-child(2){animation-delay:.15s}.cwl-dots span:nth-child(3){animation-delay:.3s}
@@ -5630,6 +5630,12 @@ function _consWelcome(){
     +'<div class="cwl-dots"><span></span><span></span><span></span></div>'
     +'</div>';
   document.body.appendChild(ov);
+  // La línea inferior cicla frases creativas mientras "carga"
+  var sEl=ov.querySelector('.cwl-s'),si=0;
+  if(sEl){sEl.textContent=SCOPE_LOADING[0];
+    var wt=setInterval(function(){si++;sEl.style.opacity='0';setTimeout(function(){sEl.textContent=SCOPE_LOADING[si%SCOPE_LOADING.length];sEl.style.opacity='1';},170);},680);
+    setTimeout(function(){clearInterval(wt);},2950);
+  }
   // Cascada: los módulos caen escalonados justo cuando se desvanece la bienvenida
   var items=[].slice.call(document.querySelectorAll('#consola-root .cons-topsplit, #cons-widgets > *'));
   items.forEach(function(el,i){el.classList.add('cons-drop');el.style.animationDelay=(3.0+i*0.07)+'s';});
@@ -5637,18 +5643,29 @@ function _consWelcome(){
   setTimeout(function(){if(ov.parentNode)ov.parentNode.removeChild(ov);},3650);
 }
 // Línea de estado rotativa en la pantalla de entrada (sensación de plataforma viva)
+var SCOPE_LOADING=[
+  'Conectando los puntos…',
+  'Calculando emisiones…',
+  'Leyendo el Congreso…',
+  'Configurando las NOMs…',
+  'Rastreando el DOF…',
+  'Cruzando los 32 estados…',
+  'Escuchando la mañanera…',
+  'Midiendo la señal…',
+  'Afinando tu radar…',
+  'Ordenando lo que importa…'
+];
 var _cobTimer=null;
 function _consOnboardStatus(){
-  var frases=['Monitoreando 32 estados','Leyendo el DOF de hoy','Siguiendo comisiones del Congreso','Cruzando NOMs e impuestos verdes','Rastreando la conferencia matutina','Ordenando tu señal por relevancia'];
-  var i=0;
+  var frases=SCOPE_LOADING,i=0;
   function tick(){
     var el=document.getElementById('cob-status');
     if(!el){if(_cobTimer){clearInterval(_cobTimer);_cobTimer=null;}return;}
     el.style.opacity='0';
-    setTimeout(function(){var e2=document.getElementById('cob-status');if(!e2)return;e2.innerHTML='<b>›</b> '+frases[i%frases.length]+'…';e2.style.opacity='1';i++;},240);
+    setTimeout(function(){var e2=document.getElementById('cob-status');if(!e2)return;e2.innerHTML='<b>›</b> '+frases[i%frases.length];e2.style.opacity='1';i++;},240);
   }
   if(_cobTimer)clearInterval(_cobTimer);
-  tick();_cobTimer=setInterval(tick,2600);
+  tick();_cobTimer=setInterval(tick,2400);
 }
 
 // ── Render de la consola ─────────────────────────────────────────────────────
