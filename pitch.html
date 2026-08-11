@@ -23,9 +23,9 @@
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
   .deck{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
   .deck::-webkit-scrollbar{width:0;display:none}
-  section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:flex-start;padding:15vh 7vw 8vh;overflow:hidden}
-  section.mid{justify-content:center;padding-top:8vh}
-  @media(max-width:640px){section{padding:11vh 6vw 7vh}}
+  section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:safe center;padding:9vh 7vw;overflow:hidden}
+  section.mid{justify-content:safe center;padding-top:9vh}
+  @media(max-width:640px){section{padding:9vh 6vw;justify-content:flex-start}}
 
   .r{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
   section.in .r{opacity:1;transform:none}
@@ -38,6 +38,8 @@
   /* portada: "cambiando" se escribe y borra (mismo color y tamaño) */
   .tw{display:inline-block;text-align:left;border-right:2px solid currentColor;animation:caret 1.05s step-end infinite}
   @keyframes caret{50%{border-color:transparent}}
+  .twline{border-right:2px solid var(--mint);padding-right:3px;animation:caret 1.05s step-end infinite}
+  .twline.done{border-right:none;animation:none}
   h1{font-size:clamp(36px,6.6vw,88px);font-weight:800;letter-spacing:-.025em;line-height:1.01}
   h2{font-size:clamp(28px,4.8vw,60px);font-weight:800;letter-spacing:-.022em;line-height:1.05}
   .lead{font-size:clamp(15px,1.8vw,21px);color:var(--mut);line-height:1.55;max-width:640px;margin-top:20px;font-weight:400}
@@ -360,7 +362,7 @@
   .costscale{flex:1.3;min-width:320px}
   .costscale .cl{font-size:13px;font-weight:700;color:var(--mut);margin-bottom:14px}
   .crow{display:flex;align-items:center;gap:12px;margin:11px 0}
-  .crow .cn{width:150px;flex-shrink:0;font-size:13px;font-weight:600}
+  .crow .cn{width:200px;flex-shrink:0;font-size:13px;font-weight:600}
   .crow .ct{flex:1;height:11px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden}
   .crow .cf{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--g3),var(--g));transition:width 2.4s cubic-bezier(.16,1,.3,1)}
   .crow .cv{width:86px;text-align:right;font-size:13px;font-weight:700;flex-shrink:0}
@@ -374,8 +376,8 @@
   .goalband .gt{font-size:16px;font-weight:800}
   .goalband .gd{font-size:13.5px;color:var(--mut);margin-top:6px;line-height:1.55}
 
-  .cta{display:inline-flex;align-items:center;gap:10px;margin-top:36px;font-size:16px;font-weight:700;color:#04120d;background:var(--mint);border-radius:30px;padding:14px 26px;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 12px 40px rgba(18,185,138,.35)}
-  .cta:hover{transform:translateY(-2px);box-shadow:0 16px 50px rgba(18,185,138,.5)}
+  .cta{display:inline-flex;align-items:center;gap:8px;margin-top:34px;font-size:13.5px;font-weight:600;color:#fff;background:#0a0f0d;border:1px solid rgba(255,255,255,.16);border-radius:24px;padding:10px 22px;text-decoration:none;transition:transform .2s,background .2s,border-color .2s}
+  .cta:hover{transform:translateY(-2px);background:#141d19;border-color:var(--g)}
   .cap{font-size:13px;color:var(--dim);margin-top:14px}
 </style>
 </head>
@@ -394,7 +396,7 @@
     <div class="glow" style="width:640px;height:640px;background:var(--g3);top:-8%;left:-8%"></div>
     <div class="glow" style="width:520px;height:520px;background:var(--g);bottom:-14%;right:-8%;opacity:.32"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:44px;margin-bottom:34px">
-    <h1 class="r d1" style="max-width:15ch">Estamos <span class="tw" id="tw">cambiando</span> el ambiente.</h1>
+    <h1 class="r d1" style="max-width:15ch">Estamos <span class="tw" id="tw">cambiando</span> el ambiente</h1>
     <div class="lead r d2" style="margin-left:auto;margin-right:auto">La inteligencia regulatoria ambiental de México, en un solo lugar.</div>
     <div class="cap r d3">Preview para el Consejo de GEMI · 2026</div>
     <a class="r d3" href="/" style="margin-top:14px;font-family:var(--mono);font-size:13px;color:var(--mint);letter-spacing:.08em;text-decoration:none">scopegemi.com</a>
@@ -405,7 +407,7 @@
   <section data-t="De dónde venimos">
     <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-10%;left:-8%;opacity:.24"></div>
     <div class="kick r">De dónde venimos</div>
-    <h2 class="r d1" style="max-width:13ch">Primero fue nuestro trabajo.</h2>
+    <h2 class="r d1" style="max-width:13ch">Primero fue nuestro trabajo</h2>
     <p class="lead r d2" style="max-width:720px">Durante años, GEMI ha producido reportes de inteligencia y seguimiento regulatorio. Tras meses de reflexión, lo llevamos a la incubadora y lo construimos en nuestro <b>laboratorio de datos</b>: ampliar esa base y compartirla con socios y nuevos actores, en un sistema fácil de usar.</p>
     <div class="evo r d3">
       <div class="evo-pt"><span class="dot"></span><div class="lb">Seguimiento regulatorio</div></div>
@@ -420,15 +422,15 @@
   <section data-t="El reto">
     <div class="glow" style="width:500px;height:500px;background:#7a2020;top:22%;right:-12%;opacity:.18"></div>
     <div class="kick r">El reto</div>
-    <h2 class="r d1" style="max-width:18ch">La agenda ambiental no vive en un solo lugar.</h2>
+    <h2 class="r d1" style="max-width:18ch">La agenda ambiental no vive en un solo lugar</h2>
     <p class="lead r d2" style="max-width:760px">Vive al interior de los <b>32 estados del país</b>, en las acciones diarias del sector público, en cientos de revisiones de <b>Normas Oficiales Mexicanas</b>, en los congresos, en la <b>conferencia matutina de Presidencia</b> y en la prensa. Cambia todos los días y nadie alcanza a procesarla completa.</p>
   </section>
 
   <!-- 5 · TURN -->
   <section class="mid" data-t="Scope" style="text-align:center;align-items:center">
-    <div class="glow" style="width:640px;height:640px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.32"></div>
-    <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:clamp(40px,8vw,78px)">
-    <p class="lead r d2" style="margin:26px auto 0;font-size:clamp(18px,2.4vw,28px);color:var(--ink)">La trituramos y le damos <span class="grn">vida</span>.</p>
+    <div class="glow" style="width:560px;height:560px;background:var(--g2);top:78%;left:50%;transform:translate(-50%,-50%);opacity:.16"></div>
+    <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:clamp(38px,7vw,66px)">
+    <p class="lead r d2" style="margin:26px auto 0;font-size:clamp(18px,2.4vw,28px);color:var(--ink)">La trituramos y le damos <span class="grn">vida</span></p>
   </section>
 
   <!-- 6 · MAPA -->
@@ -436,7 +438,7 @@
     <div class="kick r">Panorama nacional</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:12ch">32 entidades en un solo lugar.</h2>
+        <h2 class="r d1" style="max-width:12ch">32 entidades en un solo lugar</h2>
         <p class="lead r d2">Un mapa que se ilumina en donde hay actividad y más presencia de medios. Un click y estás dentro del universo de cada estado.</p>
       </div>
       <div class="viz r d3"><div class="mapwrap" id="mapwrap"></div></div>
@@ -448,7 +450,7 @@
     <div class="techbg"></div>
     <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-12%;left:-8%;opacity:.2"></div>
     <div class="kick r">Radar temático</div>
-    <h2 class="r d1" style="max-width:15ch">Cada sector tiene su señal.</h2>
+    <h2 class="r d1" style="max-width:15ch">Cada sector tiene su señal</h2>
     <p class="lead r d2" style="max-width:640px">El Radar cruza prensa, DOF, Congreso y NOMs por tema, y te dice dónde sube la presión, con los datos duros del sector detrás.</p>
     <div class="rgrid r d3" id="rgrid"></div>
   </section>
@@ -459,7 +461,7 @@
     <div class="kick r">Poder Legislativo</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:14ch">Seguimos todo el Congreso de México.</h2>
+        <h2 class="r d1" style="max-width:14ch">Seguimos todo el Congreso de México</h2>
         <p class="lead r d2">La Cámara de Diputados y el Senado, semana a semana: iniciativas, puntos de acuerdo y exhortos ambientales, con la ley que se reforma y quién la propone. Y monitoreamos los <b>32 congresos estatales</b>, donde también se legisla lo ambiental.</p>
       </div>
       <div class="viz r d3">
@@ -496,7 +498,7 @@
     <div class="kick r">Cada estado, un expediente</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:13ch">Cada estado a profundidad.</h2>
+        <h2 class="r d1" style="max-width:13ch">Cada estado a profundidad</h2>
         <p class="lead r d2">Leyes vigentes con fecha y estatus, impuestos verdes, materiales regulados y la prensa de cada entidad, con el documento oficial. El expediente que un despacho tardaría semanas en armar.</p>
       </div>
       <div class="viz r d3">
@@ -541,7 +543,7 @@
     <div class="kick r">Quién decide</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:13ch">Sabes con quién hablar.</h2>
+        <h2 class="r d1" style="max-width:13ch">Sabes con quién hablar</h2>
         <p class="lead r d2">El gabinete federal con su directorio real (nombre, cargo y correo). Y el Congreso, triturado: buscas por <b>comisión</b> o por <b>legislador</b> y Scope te dice si la comisión ya sesionó y qué trae en agenda.</p>
       </div>
       <div class="viz r d3">
@@ -577,13 +579,13 @@
     <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-14%;right:-8%;opacity:.18"></div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:15ch">Lo que se decide afuera, también te alcanza.</h2>
+        <h2 class="r d1" style="max-width:15ch">Lo que se decide afuera, también te alcanza</h2>
         <p class="lead r d2">Dos señales externas que mueven la regulación de México: los instrumentos internacionales que alcanzan al exportador, y el pulso político de cada mañana.</p>
         <div class="csp r d3">
           <div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo</div>
-          <div class="csp-node"><div class="csp-node-date">04 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:48s"><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span></div></div></div></div>
-          <div class="csp-node"><div class="csp-node-date">03 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:42s"><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span></div></div></div></div>
-          <div class="csp-node"><div class="csp-node-date">31 jul</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:45s"><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span></div></div></div></div>
+          <div class="csp-node"><div class="csp-node-date">04 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:88s"><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span></div></div></div></div>
+          <div class="csp-node"><div class="csp-node-date">03 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:76s"><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span></div></div></div></div>
+          <div class="csp-node"><div class="csp-node-date">31 jul</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:82s"><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span></div></div></div></div>
         </div>
       </div>
       <div class="viz r d3">
@@ -599,13 +601,13 @@
     <div class="kick r">Mi Terminal</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:12ch">Y luego, la haces tuya.</h2>
+        <h2 class="r d1" style="max-width:12ch">Y luego, la haces tuya</h2>
         <p class="lead r d2">Elige temas, estados y NOMs; Scope calcula tu señal del día, tu autoevaluación de cumplimiento y tu reporte técnico en PDF. Míralo construirse.</p>
       </div>
       <div class="viz r d3">
         <div class="tcfg" id="tcfg">
           <div class="tcursor"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M4 2l15 8-6.5 1.8L11 19 4 2z" fill="#0b1a15" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
-          <div class="cw-top"><span class="cw-title">Configura tu terminal</span><span class="cw-x">×</span></div>
+          <div class="cw-top"><span class="cw-title">Personaliza tu Terminal</span><span class="cw-x">×</span></div>
           <div class="cw-steps" id="cwSteps"></div>
           <div class="cw-desc" id="cwDesc"></div>
           <div class="cw-body" id="cwBody"></div>
@@ -621,7 +623,7 @@
     <div class="kick r">Diseñada para tu terminal de trabajo</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:13ch">Pensada para la pantalla grande.</h2>
+        <h2 class="r d1" style="max-width:13ch">Pensada para la pantalla grande</h2>
         <p class="lead r d2">Scope vive donde se toman las decisiones: en la terminal de trabajo. Cada expediente, cada radar y cada comparación aprovechan el monitor completo, sin recortes.</p>
         <span class="devnote r d3">La versión para smartphone llega en la siguiente fase</span>
       </div>
@@ -641,7 +643,7 @@
     <div class="split">
       <div class="col">
         <div class="soonbig r">Siguiente fase</div>
-        <h2 class="r d1" style="max-width:13ch">Esto apenas empieza.</h2>
+        <h2 class="r d1" style="max-width:13ch">Esto apenas empieza</h2>
         <div class="road">
           <div class="roaditem r d2"><div class="ri"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9c0 1.6.4 3 1.1 4.3L3 21l4.9-1.1A9 9 0 1 0 12 3Z"/><circle cx="8.5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="15.5" cy="12" r="1"/></svg></div>
             <div class="rc"><div class="rn">Asistente Signal <span class="soon">Próximamente</span></div><div class="rd">Pregúntale por tus NOMs, impuestos o normativa y responde con los datos de tu terminal.</div></div></div>
@@ -668,7 +670,7 @@
     <div class="techbg"></div>
     <div class="glow" style="width:560px;height:560px;background:var(--g3);bottom:-16%;right:-10%;opacity:.24"></div>
     <div class="kick r">Cómo se nutre</div>
-    <h2 class="r d1" style="max-width:16ch">Una señal que respira.</h2>
+    <h2 class="r d1" style="max-width:16ch">Una señal que respira</h2>
     <p class="lead r d2" style="max-width:780px">Detrás corre maquinaria todos los días: lectores automáticos de prensa nacional y estatal, del DOF, del Congreso, de CONAMER y de la conferencia matutina; e ingesta de datos abiertos oficiales de SEMARNAT e INECC, más bases legales curadas por GEMI. Todo con fuente. Todo fechado.</p>
     <div class="stats">
       <div class="stat r d2"><div class="n"><span data-count="180">0</span>+<span class="u"> fuentes</span></div><div class="l">Prensa, DOF, Congreso, CONAMER, gacetas y datos oficiales</div></div>
@@ -681,7 +683,7 @@
   <section data-t="GEMI">
     <div class="glow" style="width:600px;height:600px;background:var(--g);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.1"></div>
     <div class="kick r">El motor y el futuro</div>
-    <h2 class="r d1" style="max-width:15ch">Detrás de Scope, 32 años de GEMI.</h2>
+    <h2 class="r d1" style="max-width:15ch">Detrás de Scope, 32 años de GEMI</h2>
     <p class="lead r d2" style="max-width:740px">Tres décadas de inteligencia regulatoria y seis meses en el laboratorio de datos, hoy en un producto vivo para quien vive de anticiparse.</p>
     <div class="verbs r d3"><span>Anticipar.</span><span>Comparar.</span><span>Cuantificar.</span><span>Cumplir.</span></div>
     <div class="feats" style="margin-top:34px">
@@ -695,7 +697,7 @@
   <section data-t="Acceso">
     <div class="glow" style="width:520px;height:520px;background:var(--g3);top:-12%;right:-8%;opacity:.22"></div>
     <div class="kick r">Acceso</div>
-    <h2 class="r d1" style="max-width:14ch">Un precio para cada ritmo.</h2>
+    <h2 class="r d1" style="max-width:14ch">Un precio para cada ritmo</h2>
     <div class="prices">
       <div class="price r d2"><div class="ptag"></div><div class="p">Mensual</div><div class="amt"><span class="c">$</span>1,699</div><div class="per">por usuario · al mes</div><div class="note"></div></div>
       <div class="price r d3"><div class="ptag"></div><div class="p">Trimestral</div><div class="amt"><span class="c">$</span>4,099</div><div class="per">por usuario · cada 3 meses</div><div class="note"></div></div>
@@ -703,7 +705,7 @@
     </div>
     <div class="socios r d5">
       <div class="t">Los socios de GEMI ya están dentro.</div>
-      <div class="d">Cada socio recibe <b>3 usuarios</b>: dos para los socios registrados y uno extra para probarlo sin costo. A partir del <b>cuarto usuario</b>, se suman <b>$1,000</b> a la membresía por cada uno, solo por los meses en que se use.</div>
+      <div class="d">Cada socio recibe <b>3 usuarios</b>: dos para sus miembros acreditados y uno extra para probarlo sin costo. Por cada usuario adicional, un precio preferencial de <b>$999 al mes</b>, solo por los meses en que se use.</div>
     </div>
   </section>
 
@@ -712,12 +714,12 @@
     <div class="techbg"></div>
     <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-12%;left:-8%;opacity:.2"></div>
     <div class="kick r">El retorno para GEMI</div>
-    <h2 class="r d1" style="max-width:16ch">Veinte usuarios sostienen una cuota.</h2>
+    <h2 class="r d1" style="max-width:16ch">Veinte usuarios sostienen una cuota</h2>
     <p class="lead r d2" style="max-width:700px">Con la suscripción mensual ($1,699 por usuario), esto es lo que Scope aporta a GEMI en un año, según cuántos usuarios sostenga.</p>
     <div class="costscale r d3" style="max-width:720px;margin-top:24px">
       <div class="cl">Ingreso anual estimado · plan mensual</div>
       <div id="revbars"></div>
-      <div class="cperuser">Con <b>~20 usuarios</b> sostenidos durante un año, Scope aporta <b>$407,760</b>: la cuota anual de una empresa (~$400,000 MXN).</div>
+      <div class="cperuser">Con <b>20 usuarios</b> sostenidos durante un año, Scope aporta <b>$407,760</b>: equivale a la cuota anual de una empresa (cerca de $400,000 MXN).</div>
     </div>
   </section>
 
@@ -726,32 +728,32 @@
     <div class="techbg"></div>
     <div class="glow" style="width:480px;height:480px;background:var(--g3);bottom:-14%;left:-8%;opacity:.2"></div>
     <div class="kick r">La operación</div>
-    <h2 class="r d1" style="max-width:15ch">Lo que cuesta sostenerlo.</h2>
+    <h2 class="r d1" style="max-width:15ch">Lo que cuesta sostenerlo</h2>
     <div class="costwrap">
       <div class="costnow r d2">
-        <div class="cl">Hoy</div>
-        <div class="cbig">Costo marginal</div>
-        <div class="cp">Scope corre sobre infraestructura de bajo costo: hosting estático y automatización que se actualiza sola. Por debajo de <b>$1,000 MXN al mes</b>.</div>
+        <div class="cl">Costo mensual real</div>
+        <div class="cbig"><span style="font-size:.55em;color:var(--mut);font-weight:600">$</span>6,215<span style="font-size:.4em;color:var(--mut);font-weight:600"> / mes</span></div>
+        <div class="cp">Números reales de operación. El dominio y los correos ya están cubiertos. El <b>hosting</b> entra a partir del <b>mes 3</b>, cuando la plataforma esté en marcha.</div>
       </div>
       <div class="costscale r d3">
-        <div class="cl">Con 1,000 usuarios activos · estimación mensual</div>
+        <div class="cl">Desglose mensual</div>
         <div id="costbars"></div>
-        <div class="ctotal"><span class="tl">Total estimado</span><span class="tv"><span style="font-size:.6em;color:var(--mut)">$</span><span data-count="20000">0</span> MXN</span></div>
-        <div class="cperuser">Alrededor de <b>$20 por usuario al mes</b> para operar, frente a un precio desde <b>$1,699</b>. El margen es lo que sostiene la reinversión en más datos e inteligencia.</div>
+        <div class="ctotal"><span class="tl">Total mensual</span><span class="tv"><span style="font-size:.6em;color:var(--mut)">$</span><span data-count="6215">0</span> MXN</span></div>
+        <div class="cperuser">El grueso es <b>hosting</b> e <b>inteligencia artificial</b>; los servicios de IA escalan con el uso del asistente. El resto es infraestructura de bajo costo, ya en marcha.</div>
       </div>
     </div>
-    <div class="cest r d3">Estimación de operación. Incluye bases de datos, almacenamiento, servicios de IA, ingesta y hosting. Los servicios de IA escalan con el uso del asistente.</div>
+    <div class="cest r d3">Costos reales de operación mensual. Antes del mes 3 (sin hosting) son <b>$3,715 al mes</b>. Los servicios de inteligencia artificial escalan con el uso del asistente.</div>
   </section>
 
   <!-- 22 · LANZAMIENTO -->
   <section data-t="Lanzamiento">
     <div class="glow" style="width:520px;height:520px;background:var(--g2);top:-12%;right:-8%;opacity:.2"></div>
     <div class="kick r">El lanzamiento</div>
-    <h2 class="r d1" style="max-width:14ch">Listos para octubre.</h2>
+    <h2 class="r d1" style="max-width:14ch">Listos para octubre</h2>
     <div class="stats" style="max-width:820px">
-      <div class="stat r d2"><div class="n"><span style="font-size:.5em;color:var(--mut)">$</span>20,000</div><div class="l">Lanzamiento · inversión única</div></div>
-      <div class="stat r d3"><div class="n"><span style="font-size:.5em;color:var(--mut)">$</span>30,000</div><div class="l">Marketing, ya requerido hasta fin de año</div></div>
-      <div class="stat r d4"><div class="n"><span style="font-size:.5em;color:var(--mut)">$</span>5,000<span class="u"> /mes</span></div><div class="l">Mantenimiento hasta diciembre</div></div>
+      <div class="stat r d2"><div class="n"><span style="font-size:.5em;color:var(--mut)">$</span>34,800</div><div class="l">Marketing + IVA · cubierto hasta fin de año</div></div>
+      <div class="stat r d3"><div class="n"><span style="font-size:.5em;color:var(--mut)">$</span>1,800<span class="u"> /mes</span></div><div class="l">Mantenimiento, hasta diciembre</div></div>
+      <div class="stat r d4"><div class="n"><span style="font-size:.5em;color:var(--mut)">$</span>40,200</div><div class="l">Inversión total de lanzamiento, a diciembre</div></div>
     </div>
     <div class="evo r d4" style="margin-top:38px;max-width:640px">
       <div class="evo-pt"><span class="dot"></span><div class="lb">Agosto</div><div class="sub">construcción</div></div>
@@ -769,11 +771,11 @@
   </section>
 
   <!-- 23 · CIERRE -->
-  <section class="mid" data-t="Cierre" style="text-align:center;align-items:center">
+  <section class="mid" data-t="Cierre" data-anim="closetw" style="text-align:center;align-items:center">
     <div class="glow" style="width:680px;height:680px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.3"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:38px;margin-bottom:30px">
-    <h1 class="r d1" style="max-width:16ch">Estamos cambiando el ambiente.</h1>
-    <p class="lead r d2" style="margin:16px auto 0">Y esta vez, se puede ver.</p>
+    <h1 class="r d1" style="max-width:16ch">Estamos cambiando el ambiente</h1>
+    <p class="lead r d2" style="margin:16px auto 0"><span id="closeTw" class="twline"></span></p>
     <a class="cta r d3" href="/">Explorar Scope &rarr;</a>
     <a class="r d4" href="/" style="margin-top:20px;font-family:var(--mono);font-size:15px;font-weight:600;color:var(--mint);letter-spacing:.06em;text-decoration:none">scopegemi.com</a>
     <div class="cap r d5">Iniciativa GEMI · 2026</div>
@@ -887,8 +889,9 @@
   // costos bars
   (function(){
     var host=document.getElementById('costbars'); if(!host)return;
-    var data=[{n:'Inteligencia artificial',v:8000},{n:'Bases de datos',v:3500},{n:'Cómputo e ingesta',v:3500},{n:'Almacenamiento',v:2500},{n:'Hosting, CDN y correo',v:2500}];
-    host.innerHTML=data.map(function(d){return '<div class="crow"><span class="cn">'+d.n+'</span><span class="ct"><span class="cf" data-w="'+(d.v/8000*100).toFixed(1)+'%"></span></span><span class="cv"><span style="color:var(--mut);font-weight:600">$</span><span data-count="'+d.v+'">0</span></span></div>';}).join('');
+    var data=[{n:'Hosting',v:2500,sub:'desde el mes 3'},{n:'Inteligencia artificial',v:1800},{n:'Mantenimiento',v:1800},{n:'Dominio y correos',v:115,sub:'ya cubierto'}];
+    var mx=2500;
+    host.innerHTML=data.map(function(d){return '<div class="crow"><span class="cn">'+d.n+(d.sub?' <span style="font-weight:400;color:var(--dim);font-size:11px">· '+d.sub+'</span>':'')+'</span><span class="ct"><span class="cf" data-w="'+(d.v/mx*100).toFixed(1)+'%"></span></span><span class="cv"><span style="color:var(--mut);font-weight:600">$</span><span data-count="'+d.v+'">0</span></span></div>';}).join('');
   })();
 
   // ingresos bars
@@ -937,12 +940,12 @@
     if(termStarted)return; termStarted=true;
     var host=document.getElementById('tcfg'); if(!host)return;
     var stepsEl=host.querySelector('#cwSteps'),descEl=host.querySelector('#cwDesc'),bodyEl=host.querySelector('#cwBody'),countEl=host.querySelector('#cwCount'),cursor=host.querySelector('.tcursor');
-    var LABELS=['Temas','Estados','Comisiones','Referencias','Afinar'];
+    var LABELS=['Temas','Estados','Referencias','Comisiones'];
     var STEPS=[
       {desc:'Elige los temas que quieres monitorear. Alimentan tu señal y las normas del DOF en tu terminal.',chips:['Residuos','Agua','Economía circular','Cambio climático'],pick:[0,1,2]},
       {desc:'¿En qué entidades opera tu organización? Verás su señal, gacetas y noticias.',chips:['Ciudad de México','Jalisco','Nuevo León','Puebla'],pick:[0,1,2]},
-      {desc:'Comisiones del Congreso a seguir: fechas de sesión, integrantes y asuntos turnados.',chips:['Medio Ambiente · Dip.','Cambio Climático · Dip.','Economía · Sen.'],pick:[0,1]},
-      {desc:'NOMs, impuestos e instrumentos que quieres tener siempre a la mano en tu terminal.',chips:['NOM-161','NOM-083','Impuesto GEI'],pick:[0,1]}
+      {desc:'NOMs, impuestos e instrumentos que quieres tener siempre a la mano en tu terminal.',chips:['NOM-161','NOM-083','Impuesto GEI'],pick:[0,1]},
+      {desc:'Comisiones del Congreso a seguir: fechas de sesión, integrantes y asuntos turnados.',chips:['Medio Ambiente · Dip.','Cambio Climático · Dip.','Economía · Sen.'],pick:[0,1]}
     ];
     var timers=[];
     function clr(){timers.forEach(clearTimeout);timers=[];}
@@ -1014,9 +1017,23 @@
     at(5400,function(){b[4]&&b[4].classList.add('show');});
   }
 
+  // Cierre: "Y esta vez, se puede ver" escrito como a mano (lento)
+  var closeTwDone=false;
+  function startCloseTw(){
+    if(closeTwDone)return; closeTwDone=true;
+    var el=document.getElementById('closeTw'); if(!el)return;
+    var txt='Y esta vez, se puede ver.',i=0;
+    setTimeout(function tp(){
+      if(i<=txt.length){el.textContent=txt.slice(0,i);i++;
+        var ch=txt.charAt(i-1),d=(ch===','||ch==='.')?260:(62+Math.floor(i%3)*22);
+        setTimeout(tp,d);
+      } else {setTimeout(function(){el.classList.add('done');},1600);}
+    },520);
+  }
   function runAnim(sec){
     var a=sec.getAttribute('data-anim');
     if(a==='cong')drawCong();
+    if(a==='closetw')startCloseTw();
     if(a==='count')runCounts(sec);
     if(a==='imp'){sec.querySelectorAll('.bfill').forEach(function(f){var w=f.getAttribute('data-w');f.style.width='0';f.getBoundingClientRect();setTimeout(function(){f.style.width=w;},40);});runCounts(sec);}
     if(a==='cost'||a==='rev'){
