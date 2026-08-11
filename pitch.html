@@ -85,8 +85,15 @@
   .evo-pt .lb{font-size:14px;font-weight:700;color:var(--mut);white-space:nowrap;text-align:center}
   .evo-pt.hl .lb{color:var(--ink);font-size:15px}
   .evo-pt .sub{font-size:11px;color:var(--dim);font-weight:500;margin-top:-6px}
-  .evo-seg{flex:1;min-width:26px;height:2px;background:linear-gradient(90deg,var(--g3),var(--g));transform:scaleX(0);transform-origin:left;transition:transform .55s ease}
+  .evo-seg{position:relative;flex:1;min-width:26px;height:2px;background:linear-gradient(90deg,var(--g3),var(--g));transform:scaleX(0);transform-origin:left;transition:transform .55s ease}
   section.in .evo-seg{transform:scaleX(1)}
+  .evo-seg::after{content:'';position:absolute;top:50%;left:0;width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 9px var(--mint);transform:translateY(-50%);opacity:0}
+  section.in .evo-seg::after{animation:evoFlow 1.9s linear infinite}
+  section.in .evo-seg:nth-child(4)::after{animation-delay:.5s}
+  @keyframes evoFlow{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:100%;opacity:0}}
+  /* nodo: chip mono de datos bajo cada etiqueta (look técnico) */
+  .evo-pt .tag{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;color:var(--dim);margin-top:3px;text-transform:uppercase}
+  .evo-pt.hl .tag{color:var(--mint)}
   section.in .evo-seg:nth-child(2){transition-delay:.35s}
   section.in .evo-seg:nth-child(4){transition-delay:.9s}
   section.in .evo-seg:nth-child(6){transition-delay:1.45s}
@@ -132,6 +139,25 @@
   .rstats{display:flex;align-items:flex-end;justify-content:space-between;gap:6px}
   .rstat-v{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink)}
   .rstat-l{font-family:var(--mono);font-size:8px;letter-spacing:.04em;color:var(--dim);margin-top:4px}
+  /* Radar · tiles clickeables + desglose de un tema */
+  .rhint{font-family:var(--mono);font-size:11px;color:var(--mint);opacity:.85}
+  .rtile.clk{cursor:pointer;transition:transform .16s,background .2s;border-radius:10px}
+  .rtile.clk:hover{transform:translateY(-2px)}
+  .rtile.act{background:rgba(18,185,138,.06)}
+  .rtile.pulse{animation:rpulse 0.9s ease-in-out 1}
+  @keyframes rpulse{0%,100%{box-shadow:0 0 0 0 rgba(63,224,173,0)}50%{box-shadow:0 0 0 3px rgba(63,224,173,.35)}}
+  .rdetail{max-height:0;overflow:hidden;opacity:0;transition:max-height .6s cubic-bezier(.2,.7,.2,1),opacity .5s,margin-top .4s}
+  .rdetail.open{max-height:420px;opacity:1;margin-top:18px}
+  .rdet-inner{max-width:760px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.01));padding:18px 20px}
+  .rdet-hd{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+  .rdet-name{font-size:15px;font-weight:800}
+  .rdet-sub{font-family:var(--mono);font-size:10px;color:var(--dim);margin-left:auto}
+  .rdet-spk{height:26px;margin:2px 0 12px}
+  .rdet-lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+  .rdet-row{display:flex;align-items:baseline;gap:12px;padding:9px 0;border-top:1px solid var(--line)}
+  .rdet-tag{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.06em;flex:0 0 62px}
+  .rdet-tt{flex:1;font-size:12.5px;color:var(--ink);line-height:1.4}
+  .rdet-dt{font-family:var(--mono);font-size:9px;color:var(--dim);flex-shrink:0;white-space:nowrap}
 
   /* expediente (réplica fiel del panel real de estado) */
   .exp{max-width:440px;margin:0 auto;background:#fff;color:#0D1B2A;border-radius:16px;box-shadow:0 26px 70px rgba(0,0,0,.5);padding:22px 24px;overflow:hidden}
@@ -216,6 +242,14 @@
   .chyron-hdr{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:.01em;color:var(--ink);margin-bottom:15px}
   .chyron-live{width:6px;height:6px;border-radius:50%;background:#DC2626;animation:cspPulse 1.6s ease-in-out infinite;flex-shrink:0}
   @keyframes cspPulse{0%,100%{opacity:1}50%{opacity:.3}}
+  /* radar de voz (indica que está hablando) */
+  .voicewave{display:inline-flex;align-items:center;gap:2px;height:13px;margin-left:9px;flex-shrink:0}
+  .voicewave i{width:2px;height:4px;background:var(--mint);border-radius:1px;animation:vwave 1s ease-in-out infinite}
+  .voicewave i:nth-child(1){animation-delay:0s}.voicewave i:nth-child(2){animation-delay:.15s}
+  .voicewave i:nth-child(3){animation-delay:.3s}.voicewave i:nth-child(4){animation-delay:.1s}
+  .voicewave i:nth-child(5){animation-delay:.42s}.voicewave i:nth-child(6){animation-delay:.22s}
+  .voicewave i:nth-child(7){animation-delay:.35s}
+  @keyframes vwave{0%,100%{height:3px;opacity:.5}50%{height:12px;opacity:1}}
   .csp-node{display:grid;grid-template-columns:46px 1fr;align-items:start}
   .csp-node-date{font-family:var(--mono);font-size:9px;color:var(--dim);text-align:right;padding-right:13px;padding-top:1px;white-space:nowrap}
   .csp-node-body{border-left:1.5px solid var(--line);padding:0 0 24px 16px;position:relative;min-width:0}
@@ -268,6 +302,13 @@
   .term-result .trh{font-family:var(--mono);font-size:9px;font-weight:700;color:#009E90;letter-spacing:.05em}
   .term-result .trv{font-size:16px;font-weight:800;margin-top:6px}
   .term-result .trs{font-size:11px;color:#7a8f87;margin-top:3px}
+  .trbars{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+  .trbar{display:grid;grid-template-columns:96px 1fr 24px;align-items:center;gap:9px}
+  .trbn{font-size:11px;color:#0D1B2A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .trbt{height:6px;background:rgba(0,0,0,.06);border-radius:5px;overflow:hidden}
+  .trbf{display:block;height:100%;background:#009E90;border-radius:5px;width:0;animation:trFill 1s cubic-bezier(.22,1,.36,1) forwards}
+  .trbv{font-family:var(--mono);font-size:10px;color:#3D5A75;text-align:right}
+  @keyframes trFill{from{width:0}}
 
   /* monitor (escritorio) */
   .monitor{max-width:480px;margin:0 auto}
@@ -407,14 +448,14 @@
   <section data-t="De dónde venimos">
     <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-10%;left:-8%;opacity:.24"></div>
     <div class="kick r">De dónde venimos</div>
-    <h2 class="r d1" style="max-width:13ch">Primero fue nuestro trabajo</h2>
-    <p class="lead r d2" style="max-width:720px">Durante años, GEMI ha producido reportes de inteligencia y seguimiento regulatorio. Tras meses de reflexión, lo llevamos a la incubadora y lo construimos en nuestro <b>laboratorio de datos</b>: ampliar esa base y compartirla con socios y nuevos actores, en un sistema fácil de usar.</p>
+    <h2 class="r d1" style="max-width:13ch">Es el ADN de GEMI</h2>
+    <p class="lead r d2" style="max-width:720px">Durante años, GEMI ha producido reportes de inteligencia y seguimiento regulatorio. Los llevamos a la incubadora y lo construimos en nuestro <b>laboratorio de datos</b>: ampliar esa base y compartirla con socios y nuevos actores, en un sistema fácil de usar.</p>
     <div class="evo r d3">
-      <div class="evo-pt"><span class="dot"></span><div class="lb">Seguimiento regulatorio</div></div>
+      <div class="evo-pt"><span class="dot"></span><div class="lb">Seguimiento regulatorio</div><div class="tag">Ingesta de fuentes</div></div>
       <div class="evo-seg"></div>
-      <div class="evo-pt"><span class="dot"></span><div class="lb">Reportes de inteligencia</div></div>
+      <div class="evo-pt"><span class="dot"></span><div class="lb">Reportes de inteligencia</div><div class="tag">Procesamiento</div></div>
       <div class="evo-seg"></div>
-      <div class="evo-pt hl"><span class="dot"></span><div class="lb">Scope</div></div>
+      <div class="evo-pt hl"><span class="dot"></span><div class="lb">Scope</div><div class="tag">Producto vivo</div></div>
     </div>
   </section>
 
@@ -422,7 +463,7 @@
   <section data-t="El reto">
     <div class="glow" style="width:500px;height:500px;background:#7a2020;top:22%;right:-12%;opacity:.18"></div>
     <div class="kick r">El reto</div>
-    <h2 class="r d1" style="max-width:18ch">La agenda ambiental no vive en un solo lugar</h2>
+    <h2 class="r d1" style="max-width:18ch">La agenda está en todos lados</h2>
     <p class="lead r d2" style="max-width:760px">Vive al interior de los <b>32 estados del país</b>, en las acciones diarias del sector público, en cientos de revisiones de <b>Normas Oficiales Mexicanas</b>, en los congresos, en la <b>conferencia matutina de Presidencia</b> y en la prensa. Cambia todos los días y nadie alcanza a procesarla completa.</p>
   </section>
 
@@ -430,17 +471,18 @@
   <section class="mid" data-t="Scope" style="text-align:center;align-items:center">
     <div class="glow" style="width:560px;height:560px;background:var(--g2);top:78%;left:50%;transform:translate(-50%,-50%);opacity:.16"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:clamp(38px,7vw,66px)">
-    <p class="lead r d2" style="margin:26px auto 0;font-size:clamp(18px,2.4vw,28px);color:var(--ink)">La trituramos y le damos <span class="grn">vida</span></p>
+    <p class="lead r d2" style="margin:26px auto 0;font-size:clamp(18px,2.4vw,28px);color:var(--ink)">Lo procesamos y le damos <span class="grn">vida</span></p>
   </section>
 
   <!-- 7 · RADAR -->
-  <section data-t="Radar">
+  <section data-t="Radar" data-anim="radardemo">
     <div class="techbg"></div>
     <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-12%;left:-8%;opacity:.2"></div>
     <div class="kick r">Radar temático</div>
     <h2 class="r d1" style="max-width:15ch">Cada sector tiene su señal</h2>
-    <p class="lead r d2" style="max-width:640px">El Radar cruza prensa, DOF, Congreso y NOMs por tema, y te dice dónde sube la presión, con los datos duros del sector detrás.</p>
+    <p class="lead r d2" style="max-width:640px">El Radar cruza prensa, DOF, Congreso y NOMs por tema, y te dice dónde sube la presión, con los datos duros del sector detrás. <span class="rhint">Toca un tema para desglosarlo.</span></p>
     <div class="rgrid r d3" id="rgrid"></div>
+    <div class="rdetail" id="rdetail"></div>
   </section>
 
   <!-- 6 · MAPA -->
@@ -462,8 +504,8 @@
     <div class="kick r">Comparar entidades</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:12ch">¿Qué estado te cuesta más?</h2>
-        <p class="lead r d2">Cada ley expresa su impuesto en unidades distintas: unas en UMA, otras en pesos. Scope las <b>normaliza a pesos</b> y las compara lado a lado. Una decisión de operación, resuelta en segundos.</p>
+        <h2 class="r d1" style="max-width:12ch">¿Qué estado cuesta más?</h2>
+        <p class="lead r d2">Cada ley expresa su impuesto en unidades distintas. Nosotros lo <b>traducimos</b> y generamos <b>comparaciones directas</b> para mejorar las operaciones en segundos.</p>
       </div>
       <div class="viz r d3">
         <div class="panel">
@@ -526,7 +568,7 @@
         <h2 class="r d1" style="max-width:15ch">Lo que se decide afuera, también te alcanza</h2>
         <p class="lead r d2">Dos señales externas que mueven la regulación de México: los instrumentos internacionales que alcanzan al exportador, y el pulso político de cada mañana.</p>
         <div class="csp r d3">
-          <div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo</div>
+          <div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo<span class="voicewave" title="En voz de la Presidenta"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
           <div class="csp-node"><div class="csp-node-date">04 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:88s"><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span></div></div></div></div>
           <div class="csp-node"><div class="csp-node-date">03 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:76s"><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span></div></div></div></div>
           <div class="csp-node"><div class="csp-node-date">31 jul</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:82s"><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span></div></div></div></div>
@@ -545,8 +587,8 @@
     <div class="kick r">Poder Legislativo</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:14ch">Seguimos todo el Congreso de México</h2>
-        <p class="lead r d2">La Cámara de Diputados y el Senado, semana a semana: iniciativas, puntos de acuerdo y exhortos ambientales, con la ley que se reforma y quién la propone. Y monitoreamos los <b>32 congresos estatales</b>, donde también se legisla lo ambiental.</p>
+        <h2 class="r d1" style="max-width:14ch">Seguimos todo el Congreso</h2>
+        <p class="lead r d2">Monitoreamos la <b>Cámara de Diputados</b> y el <b>Senado de la República</b> todos los días. Sabemos qué están proponiendo, quién y cuál es el impacto para su industria. También estamos siguiendo a los <b>32 congresos locales</b>.</p>
       </div>
       <div class="viz r d3">
         <div class="panel">
@@ -602,7 +644,7 @@
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:12ch">Y luego, la haces tuya</h2>
-        <p class="lead r d2">Elige temas, estados y NOMs; Scope calcula tu señal del día, tu autoevaluación de cumplimiento y tu reporte técnico en PDF. Míralo construirse.</p>
+        <p class="lead r d2">En la Terminal calculas tu <b>señal del día</b>, con actualizaciones y <b>reportes técnicos personalizados</b> asistidos por ti. Tú decides qué te importa más.</p>
       </div>
       <div class="viz r d3">
         <div class="tcfg" id="tcfg">
@@ -679,19 +721,6 @@
     </div>
   </section>
 
-  <!-- 17 · GEMI · motor + para quién + futuro -->
-  <section data-t="GEMI">
-    <div class="glow" style="width:600px;height:600px;background:var(--g);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.1"></div>
-    <div class="kick r">El motor y el futuro</div>
-    <h2 class="r d1" style="max-width:15ch">Detrás de Scope, 32 años de GEMI</h2>
-    <p class="lead r d2" style="max-width:740px">Tres décadas de inteligencia regulatoria y seis meses en el laboratorio de datos, hoy en un producto vivo para quien vive de anticiparse.</p>
-    <div class="verbs r d3"><span>Anticipar.</span><span>Comparar.</span><span>Cuantificar.</span><span>Cumplir.</span></div>
-    <div class="feats" style="margin-top:34px">
-      <div class="feat r d3"><div class="t">Un GEMI 24/7</div><div class="d">El conocimiento del equipo, encendido de día y de noche, sin pausas.</div></div>
-      <div class="feat r d4"><div class="t">Una consola por asociado</div><div class="d">Cada empresa de GEMI, su propio radar y su expediente sectorial.</div></div>
-      <div class="feat r d5"><div class="t">El estándar del sector</div><div class="d">El lugar donde México lee su propia regulación ambiental.</div></div>
-    </div>
-  </section>
 
   <!-- 20 · PRECIOS -->
   <section data-t="Acceso">
@@ -847,13 +876,49 @@
         +'<circle class="rdc-spk-dot" cx="'+lx+'" cy="'+ly+'" r="2" fill="'+color+'" style="animation-delay:'+delay+'s"/></svg>';
     }
     function stat(v,l,al){return '<div'+(al?' style="text-align:'+al+'"':'')+'><div class="rstat-v">'+v+'</div><div class="rstat-l">'+l+'</div></div>';}
+    window.__RADAR={T:T,ICON:ICON,spark:spark};
     host.innerHTML=T.map(function(t,i){
-      return '<div class="rtile"><div class="rhead"><span class="ricon" style="color:'+t.col+'"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON[t.id]+'</svg></span><span class="rname">'+t.name+'</span></div>'
+      return '<div class="rtile clk" data-tid="'+t.id+'" onclick="_radarExpand(\''+t.id+'\')"><div class="rhead"><span class="ricon" style="color:'+t.col+'"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON[t.id]+'</svg></span><span class="rname">'+t.name+'</span></div>'
         +'<div class="rsub">'+t.men+' menciones · 90d</div>'
         +'<div class="rspk">'+spark(t.s,t.col,i)+'</div>'
         +'<div class="rstats">'+stat(t.dof,'DOF')+stat(t.med,'medios')+stat((t.d>=0?'+':'')+t.d,'Δ 30d','right')+'</div></div>';
     }).join('');
   })();
+  // Radar · desglose de un tema (clic o autodemo en "Economía circular")
+  var RADAR_SIG={
+    circular:[['DOF','Proyecto de NOM sobre planes de manejo de residuos de manejo especial','06 abr'],['Congreso','Iniciativa de Ley General de Economía Circular','02 abr'],['Prensa','Tlaxcala instala su Sistema Estatal de Economía Circular','31 mar'],['Prensa','Avanza el esquema de responsabilidad extendida del productor','28 mar']],
+    residuos:[['DOF','Actualización de la NOM-161 sobre residuos de manejo especial','05 abr'],['Congreso','Punto de acuerdo sobre gestión integral de residuos','01 abr'],['Prensa','Nuevos rellenos sanitarios y metas de reciclaje','29 mar']],
+    agua:[['DOF','Límites máximos permisibles de descargas (NOM-001)','07 abr'],['Congreso','Reforma a la Ley de Aguas Nacionales','03 abr'],['Prensa','Estrés hídrico y reúso en la industria','30 mar']],
+    cc:[['DOF','Lineamientos del registro de emisiones (RETC) 2026','04 abr'],['Congreso','Metas de mitigación en la Ley General de Cambio Climático','02 abr'],['Prensa','Mercado de carbono y precios por tonelada','27 mar']]
+  };
+  var RADAR_TAGCOL={DOF:'#12b98a',Congreso:'#3fe0ad',Prensa:'#0e8c74'};
+  function _radarExpand(id){
+    var R=window.__RADAR; if(!R)return;
+    var t=R.T.filter(function(x){return x.id===id;})[0]; if(!t)return;
+    [].forEach.call(document.querySelectorAll('#rgrid .rtile'),function(el){el.classList.toggle('act',el.getAttribute('data-tid')===id);});
+    var host=document.getElementById('rdetail'); if(!host)return;
+    var sigs=RADAR_SIG[id]||[];
+    var rows=sigs.map(function(s){var c=RADAR_TAGCOL[s[0]]||'var(--mint)';
+      return '<div class="rdet-row"><span class="rdet-tag" style="color:'+c+'">'+s[0]+'</span><span class="rdet-tt">'+s[1]+'</span><span class="rdet-dt">'+s[2]+'</span></div>';}).join('');
+    host.innerHTML='<div class="rdet-inner"><div class="rdet-hd">'
+      +'<span class="ricon" style="color:'+t.col+'"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+R.ICON[t.id]+'</svg></span>'
+      +'<span class="rdet-name">'+t.name+'</span>'
+      +'<span class="rdet-sub">'+t.men+' menciones · 90d · Δ30d '+(t.d>=0?'+':'')+t.d+'</span></div>'
+      +'<div class="rdet-spk">'+R.spark(t.s,t.col,90)+'</div>'
+      +'<div class="rdet-lbl">Señales recientes</div>'+rows
+    +'</div>';
+    host.classList.add('open');
+  }
+  window._radarExpand=_radarExpand;
+  var radarDemoDone=false;
+  function startRadarDemo(){
+    if(radarDemoDone)return; radarDemoDone=true;
+    setTimeout(function(){
+      var tile=document.querySelector('#rgrid .rtile[data-tid="circular"]');
+      if(tile)tile.classList.add('pulse');
+      setTimeout(function(){ if(tile)tile.classList.remove('pulse'); _radarExpand('circular'); },900);
+    },1300);
+  }
 
   // congreso chart
   function drawCong(){
@@ -970,9 +1035,15 @@
     }
     function finish(){
       paintSteps(LABELS.length); descEl.textContent='Tu terminal está lista.';
-      bodyEl.innerHTML='<div class="term-result show"><div class="trh">TU SEÑAL · LISTA</div><div class="trv">Agua y Residuos concentran tu señal</div><div class="trs">38 menciones en medios · últimos 7 días</div></div>';
+      function bar(n,pct,val){return '<div class="trbar"><span class="trbn">'+n+'</span><span class="trbt"><span class="trbf" style="width:'+pct+'%"></span></span><span class="trbv">'+val+'</span></div>';}
+      bodyEl.innerHTML='<div class="term-result show">'
+        +'<div class="trh">Señal de mis temas</div>'
+        +'<div class="trv">Agua y Residuos concentran tu señal</div>'
+        +'<div class="trs">38 menciones en medios · últimos 7 días</div>'
+        +'<div class="trbars">'+bar('Agua',100,24)+bar('Residuos',70,17)+bar('Economía circular',20,5)+'</div>'
+      +'</div>';
       countEl.textContent='Terminal lista';
-      at(4200,function(){clr();cursor.style.opacity='0';runStep(0);});
+      at(5200,function(){clr();cursor.style.opacity='0';runStep(0);});
     }
     cursor.style.opacity='0'; runStep(0);
   }
@@ -1034,6 +1105,7 @@
     var a=sec.getAttribute('data-anim');
     if(a==='cong')drawCong();
     if(a==='closetw')startCloseTw();
+    if(a==='radardemo')startRadarDemo();
     if(a==='count')runCounts(sec);
     if(a==='imp'){sec.querySelectorAll('.bfill').forEach(function(f){var w=f.getAttribute('data-w');f.style.width='0';f.getBoundingClientRect();setTimeout(function(){f.style.width=w;},40);});runCounts(sec);}
     if(a==='cost'||a==='rev'){
