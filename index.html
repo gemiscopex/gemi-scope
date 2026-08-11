@@ -16,6 +16,8 @@
   }
 }(window.location));
 </script>
+<link rel="icon" type="image/png" href="/assets/logo-gemi-icon.png">
+<link rel="apple-touch-icon" href="/assets/logo-gemi-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -951,7 +953,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       <div id="search-drop" class="search-drop"></div>
     </div>
     <button class="nav-btn-consola" onclick="showTab('consola',null)">Mi Terminal</button>
-    <button class="nav-btn-login">Inicia sesión</button>
+    <button class="nav-btn-login" id="nav-login-btn" onclick="openAuth('login')">Inicia sesión</button>
     <button class="nav-btn-theme" id="theme-toggle" onclick="toggleTheme()" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro"></button>
   </div>
 </nav>
@@ -1907,6 +1909,7 @@ function buildMap(){
 }
 
 function showTab(id,btn){
+  if(typeof _gateTab==='function' && !_gateTab(id)) return;
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
@@ -1946,6 +1949,7 @@ function showRegulacion(view){
 // Ninguna borra contenido; sólo rerutean a las vistas existentes.
 // Obligaciones ▾ : Instrumentos (nuevo) · Normativa Federal · Normativa Estatal · NOMs
 function goObligaciones(sub){
+  if(typeof _gate==='function'&&!_gate())return;
   _pushRoute(_OBLURL[sub]||'obligaciones');
   if(sub==='noms'){showTab('normas',null);return;}
   if(sub==='instrumentos'){_oblView='instrumentos';showTab('obligaciones',null);return;}
@@ -1954,13 +1958,14 @@ function goObligaciones(sub){
 }
 // Agenda ▾ : Congreso de la Unión · Gacetas Locales · Reglamentaciones Pendientes · DOF hoy
 function goAgenda(sub){
+  if(typeof _gate==='function'&&!_gate())return;
   if(sub!=='locales') _pushRoute(_AGENDAURL[sub]||'agenda');
   if(sub==='congreso'){showTab('legislacion',null);showLegSub('congresomx',null);return;}
   if(sub==='locales'){goObligaciones('gacetas');return;}
   showTab('agenda',null);renderAgenda(sub||'pendientes');
 }
 // Internacional : acuerdos y tratados (vista existente)
-function goInternacional(){_pushRoute('internacional');showTab('legislacion',null);showLegSub('acuerdos',null);}
+function goInternacional(){if(typeof _gate==='function'&&!_gate())return;_pushRoute('internacional');showTab('legislacion',null);showLegSub('acuerdos',null);}
 // ── Acuerdos y tratados internacionales (estatus de México) ──
 var ACUERDOS=[
   {n:'Acuerdo de París',org:'CMNUCC',anio:2015,tema:'Clima',status:'Ratificado 2016',vig:'En vigor',implic:'Marco de las NDC de México; meta de reducción de emisiones actualizada en 2022',url:'https://unfccc.int/es/process-and-meetings/the-paris-agreement/el-acuerdo-de-paris'},
@@ -2177,6 +2182,7 @@ function renderActoresFederal(){
 }
 // Entrada desde el dropdown del nav: abre Actores y muestra la sub-vista
 function showActores(view){
+  if(typeof _gate==='function'&&!_gate())return;
   _pushRoute(_ACTURL[view]||'actores');
   showTab('congreso',null);
   showActoresSub(view||'federal',null);
@@ -6367,6 +6373,166 @@ function _signalSend(){
   },550);
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){var p=document.getElementById('signal-pop');if(p&&p.style.display==='block')p.style.display='none';}});
+</script>
+<!-- ===================== AUTH · Supabase ===================== -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ===== PEGA AQUÍ LAS LLAVES DEL PROYECTO SUPABASE EXISTENTE =====
+   El anon key es PÚBLICO (seguro en el frontend). Mientras estén vacías,
+   el candado queda APAGADO y el sitio funciona como siempre (modo dev). */
+var SUPABASE_URL  = '';
+var SUPABASE_ANON = '';
+
+/* ===== Datos del modal de pago (edítalos con los de GEMI) ===== */
+var GEMI_PAGO = {
+  beneficiario:'Iniciativa GEMI',
+  banco:'[Banco]',
+  clabe:'[CLABE de 18 dígitos]',
+  correo:'gemiscopex@gmail.com',
+  whatsapp:'[WhatsApp]'
+};
+var SCOPE_PLANES = [
+  {n:'Mensual',    p:'$1,699',  per:'MXN / mes'},
+  {n:'Trimestral', p:'$4,099',  per:'MXN / trimestre'},
+  {n:'Anual',      p:'$17,999', per:'MXN / año'}
+];
+
+var _sb=null,_session=null,_perfil=null;
+var _PUBLIC_TABS={dashboard:1,acerca:1};
+function _authOn(){return !!(SUPABASE_URL&&SUPABASE_ANON&&window.supabase);}
+function _hasAccess(){return !!(_session&&_perfil&&_perfil.activo);}
+function _isPublicTab(id){return !!_PUBLIC_TABS[id];}
+function _gate(){if(!_authOn())return true;if(_hasAccess())return true;openAuth('login');return false;}
+function _gateTab(id){if(!_authOn())return true;if(_isPublicTab(id))return true;if(_hasAccess())return true;openAuth('login');return false;}
+function _av(id){var e=document.getElementById(id);return e?(e.value||'').trim():'';}
+function _authErr(e){var m=(e&&e.message)||'';if(/Invalid login/i.test(m))return'Correo o contraseña incorrectos.';if(/already registered/i.test(m))return'Ese correo ya tiene una cuenta. Inicia sesión.';if(/rate limit/i.test(m))return'Demasiados intentos, espera un momento.';return m||'Ocurrió un error, intenta de nuevo.';}
+
+function _ensureAuthModal(){
+  if(document.getElementById('auth-bg'))return;
+  var inp='width:100%;height:42px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:var(--sans);color:var(--text);outline:none;background:var(--card2);margin-top:6px';
+  var lbl='font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;display:block;margin-top:14px';
+  var pri='width:100%;margin-top:20px;height:44px;background:#066750;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;font-family:var(--sans);cursor:pointer';
+  var link='background:none;border:none;color:#066750;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--sans);padding:0';
+  var d=document.createElement('div');
+  d.id='auth-bg';
+  d.style.cssText='display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1300;align-items:center;justify-content:center;padding:20px';
+  d.onclick=function(e){if(e.target===d)closeAuth();};
+  d.innerHTML=
+    '<div style="background:var(--card);border-radius:20px;width:100%;max-width:430px;padding:34px 34px 30px;box-shadow:0 24px 64px rgba(0,0,0,.24);animation:modalIn .22s ease;position:relative" onclick="event.stopPropagation()">'
+    +'<button onclick="closeAuth()" style="position:absolute;top:15px;right:17px;background:none;border:none;cursor:pointer;font-size:20px;color:var(--text-muted);line-height:1;padding:4px">×</button>'
+    +'<div style="display:flex;align-items:center;gap:9px;margin-bottom:6px"><img src="/assets/logo-gemi-icon.png" style="height:24px;width:auto"><span style="font-family:var(--sans);font-size:18px;font-weight:700;letter-spacing:.06em;color:#066750">Scope</span></div>'
+    // ---- LOGIN ----
+    +'<div class="authv" id="auth-login">'
+      +'<div style="font-size:22px;font-weight:700;color:var(--text);margin:16px 0 4px">Inicia sesión</div>'
+      +'<div style="font-size:13px;color:var(--text-sec);margin-bottom:6px">Accede a tu terminal de inteligencia regulatoria.</div>'
+      +'<label style="'+lbl+'">Correo</label><input id="auth-email" type="email" autocomplete="email" style="'+inp+'">'
+      +'<label style="'+lbl+'">Contraseña</label><input id="auth-pass" type="password" autocomplete="current-password" style="'+inp+'" onkeydown="if(event.key===\'Enter\')authLogin()">'
+      +'<button style="'+pri+'" onclick="authLogin()" id="auth-login-btn">Entrar</button>'
+      +'<div style="display:flex;justify-content:space-between;margin-top:16px"><button style="'+link+'" onclick="authReset()">¿Olvidaste tu contraseña?</button><button style="'+link+'" onclick="_authView(\'signup\')">Crear cuenta →</button></div>'
+    +'</div>'
+    // ---- SIGNUP ----
+    +'<div class="authv" id="auth-signup" style="display:none">'
+      +'<div style="font-size:22px;font-weight:700;color:var(--text);margin:16px 0 4px">Crear cuenta</div>'
+      +'<div style="font-size:13px;color:var(--text-sec);margin-bottom:6px">Regístrate y activaremos tu acceso al confirmar tu pago.</div>'
+      +'<label style="'+lbl+'">Nombre</label><input id="auth-nombre" type="text" style="'+inp+'">'
+      +'<label style="'+lbl+'">Empresa / organización</label><input id="auth-empresa" type="text" style="'+inp+'">'
+      +'<label style="'+lbl+'">Correo</label><input id="auth-email2" type="email" autocomplete="email" style="'+inp+'">'
+      +'<label style="'+lbl+'">Contraseña</label><input id="auth-pass2" type="password" autocomplete="new-password" style="'+inp+'" onkeydown="if(event.key===\'Enter\')authSignup()">'
+      +'<button style="'+pri+'" onclick="authSignup()" id="auth-signup-btn">Crear cuenta</button>'
+      +'<div style="margin-top:16px;text-align:center"><button style="'+link+'" onclick="_authView(\'login\')">← Ya tengo cuenta</button></div>'
+    +'</div>'
+    // ---- PENDING / PAGO ----
+    +'<div class="authv" id="auth-pending" style="display:none">'
+      +'<div id="auth-pending-body"></div>'
+    +'</div>'
+    +'<div id="auth-msg" style="display:none;margin-top:14px;font-size:12.5px;padding:10px 12px;border-radius:9px;line-height:1.5"></div>'
+    +'</div>';
+  document.body.appendChild(d);
+}
+function openAuth(view){_ensureAuthModal();document.getElementById('auth-bg').style.display='flex';document.body.style.overflow='hidden';_authView(view||'login');}
+function closeAuth(){var b=document.getElementById('auth-bg');if(b)b.style.display='none';document.body.style.overflow='';}
+function _authView(v){
+  ['login','signup','pending'].forEach(function(x){var el=document.getElementById('auth-'+x);if(el)el.style.display=(x===v)?'':'none';});
+  _authMsg('');
+  if(v==='pending')_renderPending();
+  setTimeout(function(){var f=document.getElementById(v==='login'?'auth-email':v==='signup'?'auth-nombre':'');if(f)f.focus();},60);
+}
+function _authMsg(t,err){var m=document.getElementById('auth-msg');if(!m)return;if(!t){m.style.display='none';return;}m.style.display='block';m.textContent=t;m.style.background=err===false?'rgba(6,103,80,.08)':'rgba(220,80,80,.1)';m.style.color=err===false?'#066750':'#c0392b';}
+function _authBusy(on,which){var id=which==='signup'?'auth-signup-btn':'auth-login-btn';var b=document.getElementById(id);if(!b)return;b.disabled=on;b.textContent=on?'…':(which==='signup'?'Crear cuenta':'Entrar');}
+function _renderPending(){
+  var el=document.getElementById('auth-pending-body');if(!el)return;
+  var email=(_session&&_session.user&&_session.user.email)||'';
+  var planes=SCOPE_PLANES.map(function(p){return '<div style="display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--border)"><span style="font-size:13px;color:var(--text)">'+p.n+'</span><span style="font-family:var(--mono);font-size:13px;font-weight:700;color:#066750">'+p.p+' <span style="font-size:9px;color:var(--text-muted);font-weight:500">'+p.per+'</span></span></div>';}).join('');
+  var row=function(k,v){return '<div style="display:flex;justify-content:space-between;gap:10px;padding:5px 0"><span style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">'+k+'</span><span style="font-family:var(--mono);font-size:12px;color:var(--text);text-align:right">'+v+'</span></div>';};
+  el.innerHTML=
+    '<div style="font-size:22px;font-weight:700;color:var(--text);margin:16px 0 4px">Acceso pendiente</div>'
+    +'<div style="font-size:13px;color:var(--text-sec);line-height:1.55;margin-bottom:16px">'+(email?('Tu cuenta <b>'+email+'</b> ya está creada. '):'')+'Para activarla, realiza el depósito o transferencia a GEMI y en cuanto lo confirmemos habilitamos tu acceso.</div>'
+    +'<div style="font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px">Planes</div>'+planes
+    +'<div style="font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;margin:16px 0 2px">Datos para depósito</div>'
+    +row('Beneficiario',GEMI_PAGO.beneficiario)+row('Banco',GEMI_PAGO.banco)+row('CLABE',GEMI_PAGO.clabe)
+    +'<a href="mailto:'+GEMI_PAGO.correo+'?subject='+encodeURIComponent('Comprobante de pago Scope · '+email)+'" style="display:block;text-align:center;margin-top:18px;height:44px;line-height:44px;background:#066750;color:#fff;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none">Enviar mi comprobante</a>'
+    +'<div style="margin-top:14px;text-align:center"><button style="background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;font-family:var(--sans)" onclick="_logout()">Cerrar sesión</button></div>';
+}
+async function _loadPerfil(){
+  _perfil=null;
+  if(!_sb||!_session)return;
+  try{var r=await _sb.from('perfiles').select('*').eq('id',_session.user.id).single();_perfil=r.data||null;}catch(e){_perfil=null;}
+}
+async function authLogin(){
+  if(!_sb){_authMsg('El acceso estará disponible muy pronto.');return;}
+  var email=_av('auth-email'),pass=_av('auth-pass');
+  if(!email||!pass){_authMsg('Escribe tu correo y contraseña.');return;}
+  _authBusy(true);
+  var r=await _sb.auth.signInWithPassword({email:email,password:pass});
+  _authBusy(false);
+  if(r.error){_authMsg(_authErr(r.error));return;}
+  _session=r.data.session;await _loadPerfil();_updateAuthUI();
+  if(_hasAccess()){closeAuth();_applyRoute(location.pathname);}else{_authView('pending');}
+}
+async function authSignup(){
+  if(!_sb){_authMsg('El registro estará disponible muy pronto.');return;}
+  var nombre=_av('auth-nombre'),empresa=_av('auth-empresa'),email=_av('auth-email2'),pass=_av('auth-pass2');
+  if(!nombre||!email||!pass){_authMsg('Completa nombre, correo y contraseña.');return;}
+  if(pass.length<6){_authMsg('La contraseña debe tener al menos 6 caracteres.');return;}
+  _authBusy(true,'signup');
+  var r=await _sb.auth.signUp({email:email,password:pass,options:{data:{nombre:nombre,empresa:empresa}}});
+  _authBusy(false,'signup');
+  if(r.error){_authMsg(_authErr(r.error),'signup');return;}
+  _session=r.data.session||null;await _loadPerfil();_updateAuthUI();
+  _authView('pending');
+}
+async function authReset(){
+  var email=_av('auth-email');
+  if(!_sb){_authMsg('Disponible muy pronto.');return;}
+  if(!email){_authMsg('Escribe tu correo arriba y vuelve a dar clic.');return;}
+  var r=await _sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+'/dashboard'});
+  if(r.error){_authMsg(_authErr(r.error));return;}
+  _authMsg('Te enviamos un correo para restablecer tu contraseña.',false);
+}
+async function _logout(){if(_sb){await _sb.auth.signOut();}_session=null;_perfil=null;_updateAuthUI();closeAuth();_enforceGate();}
+function _updateAuthUI(){
+  var b=document.getElementById('nav-login-btn');if(!b)return;
+  if(_session){
+    if(_hasAccess()){b.textContent='Salir';b.onclick=_logout;}
+    else{b.textContent='Acceso pendiente';b.onclick=function(){openAuth('pending');};}
+  }else{b.textContent='Inicia sesión';b.onclick=function(){openAuth('login');};}
+}
+function _enforceGate(){
+  if(!_authOn())return;
+  var id=((document.querySelector('.tab-content.active')||{}).id||'').replace('tab-','');
+  if(!_isPublicTab(id)&&!_hasAccess()){showTab('dashboard',null);openAuth('login');}
+}
+async function _authInit(){
+  if(!_authOn()){_updateAuthUI();return;}
+  try{
+    _sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON);
+    var r=await _sb.auth.getSession();_session=(r.data&&r.data.session)||null;
+    await _loadPerfil();_updateAuthUI();_enforceGate();
+    _sb.auth.onAuthStateChange(async function(_e,sess){_session=sess||null;await _loadPerfil();_updateAuthUI();});
+  }catch(e){console.warn('Auth init:',e);}
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAuth();});
+_authInit();
 </script>
 </body>
 </html>
