@@ -416,9 +416,16 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .news-empty{padding:20px 0;color:var(--text-muted);font-size:13px;text-align:center;line-height:1.8}
 .leyes-grid{display:flex;flex-direction:column;gap:0}
 /* New compact ley row */
-.ley-row{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:0.8px solid rgba(0,0,0,0.06);cursor:pointer;transition:background 0.1s;border-radius:4px}
+.ley-row{display:flex;align-items:center;gap:14px;padding:11px 12px;border-bottom:0.8px solid rgba(0,0,0,0.06);cursor:pointer;transition:background 0.1s;border-radius:5px}
 .ley-row:last-child{border-bottom:none}
-.ley-row:hover{background:rgba(0,158,144,0.04)}
+.ley-row.zeb{background:rgba(13,27,42,0.025)}
+.ley-row:hover{background:rgba(0,158,144,0.05)}
+.ley-row.zeb:hover{background:rgba(0,158,144,0.07)}
+/* Listas largas: fila intercalada (DOF, etc.) */
+.dof-item{display:flex;align-items:baseline;gap:16px;padding:11px 12px;border-top:0.8px solid var(--border);border-radius:5px;transition:background 0.1s}
+.dof-item.zeb{background:rgba(13,27,42,0.025)}
+.dof-item:hover{background:rgba(0,158,144,0.05)}
+.dof-item.zeb:hover{background:rgba(0,158,144,0.07)}
 .ley-row:hover .ley-nombre{color:var(--green)}
 .ley-sigla{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green);min-width:70px;letter-spacing:0.02em;flex-shrink:0}
 .ley-nombre{font-size:13px;font-weight:500;color:var(--text);flex:1;line-height:1.35;transition:color 0.15s}
@@ -1576,10 +1583,10 @@ const TEMA_COLORS={
   'Economía Circular':'#009E90'
 };
 function updateLeyes(){
-  document.getElementById('leyes-grid').innerHTML=leyes.map(l=>{
+  document.getElementById('leyes-grid').innerHTML=leyes.map((l,idx)=>{
     var doc=(l.u||'').replace(/'/g,'%27').replace(/"/g,'%22');
     var nombre=(typeof _leyName==='function')?_leyName(l.n):l.n;
-    return '<div class="ley-row" style="align-items:center;cursor:pointer"'+(doc?' onclick="window.open(\''+doc+'\',\'_blank\')"':'')+'>'
+    return '<div class="ley-row'+(idx%2?' zeb':'')+'" style="align-items:center;cursor:pointer"'+(doc?' onclick="window.open(\''+doc+'\',\'_blank\')"':'')+'>'
       +'<span class="ley-sigla">'+l.s+'</span>'
       +'<div style="flex:1;min-width:0">'
         +'<div class="ley-nombre" style="color:var(--text);font-weight:400;line-height:1.4">'+nombre+'</div>'
@@ -1669,7 +1676,7 @@ function renderLeyesEstTemaBar(){
 function leyEstSetEstado(v){_leyEst.estado=v;_leyEst.tema='todos';renderLeyesEstTemaBar();renderLeyesEst();}
 function leyEstSetTema(t){_leyEst.tema=t;if(t!=='todos'){_leyEst.estado='';var s=document.getElementById('leyes-est-selector');if(s)s.value='';}renderLeyesEstTemaBar();renderLeyesEst();}
 function leyEstSetQ(v){_leyEst.q=v;renderLeyesEst();}
-function _leyRow(l,stateLabel){
+function _leyRow(l,stateLabel,i){
   var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
   var tipoAbr=l.tipo==='Ley'?'LEY':l.tipo==='Código'?'CÓD':l.tipo==='Reglamento'?'REG':'NOR';
   var doc=(l.url||l.ficha_url||'');
@@ -1680,7 +1687,7 @@ function _leyRow(l,stateLabel){
   var meta=[];
   if(l.fecha_publicacion)meta.push('Publicación <span style="color:var(--text-sec)">'+l.fecha_publicacion+'</span>');
   if(l.estatus)meta.push('<span style="color:'+estatusCol+'">'+l.estatus+'</span>');
-  return '<div class="ley-row" style="align-items:center;cursor:pointer"'+(doc?' onclick="window.open(\''+doc+'\',\'_blank\')"':'')+'>'
+  return '<div class="ley-row'+((i%2)?' zeb':'')+'" style="align-items:center;cursor:pointer"'+(doc?' onclick="window.open(\''+doc+'\',\'_blank\')"':'')+'>'
     +'<span class="ley-sigla" style="color:'+tipoColor+'">'+tipoAbr+'</span>'
     +'<div style="flex:1;min-width:0">'
       +'<div class="ley-nombre" style="color:var(--text);font-weight:400;line-height:1.4">'+nombre+(stateLabel?' <span style="color:var(--text-muted)">· '+stateLabel+'</span>':'')+'</div>'
@@ -1701,7 +1708,7 @@ function renderLeyesEst(){
     var estados=Object.keys(leyesEstatalesData.estados).sort(function(a,b){return a.localeCompare(b,'es');});
     var total=0,html='';
     estados.forEach(function(st){var ls=(leyesEstatalesData.estados[st]||[]).filter(match);if(!ls.length)return;total+=ls.length;
-      html+='<div style="font-size:12px;font-weight:700;color:var(--green);margin:14px 0 6px">'+_leyStateLabel(st)+' <span style="color:var(--dim);font-weight:500;font-size:10px">· '+ls.length+'</span></div>'+ls.map(function(l){return _leyRow(l,null);}).join('');});
+      html+='<div style="font-size:12px;font-weight:700;color:var(--green);margin:14px 0 6px">'+_leyStateLabel(st)+' <span style="color:var(--dim);font-weight:500;font-size:10px">· '+ls.length+'</span></div>'+ls.map(function(l,i){return _leyRow(l,null,i);}).join('');});
     if(meta)meta.textContent=total+' ordenamiento'+(total!==1?'s':'')+(tk?' · '+((LEYES_TEMAS.find(function(t){return t[0]===_leyEst.tema;})||[])[1]||''):'')+' · '+estados.filter(function(st){return (leyesEstatalesData.estados[st]||[]).some(match);}).length+' entidades';
     list.innerHTML=total?html:'<div style="padding:24px 0;font-size:13px;color:var(--text-muted)">Sin ordenamientos que coincidan con el filtro.</div>';
     return;
@@ -1709,7 +1716,7 @@ function renderLeyesEst(){
   if(!_leyEst.estado){if(meta)meta.textContent='';list.innerHTML='<div style="padding:24px 0;font-size:13px;color:var(--text-muted)">Selecciona un estado, o filtra por tema para ver todas las entidades.</div>';return;}
   var leyes=(leyesEstatalesData.estados[_leyEst.estado]||[]);
   if(meta)meta.textContent=leyes.length+' ordenamiento'+(leyes.length!==1?'s':'')+' ambientales vigentes';
-  list.innerHTML=leyes.length?leyes.map(function(l){return _leyRow(l,null);}).join(''):'<div style="padding:32px 0;font-size:13px;color:var(--text-muted)">Sin datos disponibles para este estado.</div>';
+  list.innerHTML=leyes.length?leyes.map(function(l,i){return _leyRow(l,null,i);}).join(''):'<div style="padding:32px 0;font-size:13px;color:var(--text-muted)">Sin datos disponibles para este estado.</div>';
 }
 /* ── Presidencia / Sheinbaum: cintillo tipo noticiero ── */
 let presData=[];
@@ -3135,11 +3142,11 @@ function _agendaDof(){
     +(deHoy.length?'Publicado hoy en el DOF · '+deHoy.length:'Últimas publicaciones de nuestros temas · '+lista.length)+'</div>';
   var body=order.map(function(dep){
     var full=groups[dep],exp=!!_dofExpanded[dep],vis=exp?full:full.slice(0,3);
-    var rows=vis.map(function(d){
+    var rows=vis.map(function(d,i){
       var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
       var _u=(d.url||'https://www.dof.gob.mx/').replace(/\x27/g,'%27');
       var _sv=(typeof _dofIsSaved==='function')&&_dofIsSaved(d.url);
-      return '<div style="display:flex;align-items:baseline;gap:16px;padding:11px 0;border-top:0.8px solid var(--border)">'
+      return '<div class="dof-item'+(i%2?' zeb':'')+'">'
         +'<div style="flex:1;min-width:0;font-size:13px;color:var(--text);line-height:1.5;cursor:pointer" onclick="window.open(\''+_u+'\',\'_blank\')">'+(d.titulo||'')+'</div>'
         +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+f+'</span>'
         +'<button class="cons-normsave nav'+(_sv?' on':'')+'" title="'+(_sv?'Quitar de mi terminal':'Agregar a mi terminal')+'" onclick="_dofSaveToggle(this,\''+_u+'\',event)">'+(_sv?'✓ En tu terminal':'+ Agregar a mi terminal')+'</button>'
@@ -6974,7 +6981,7 @@ function _renderUserMenu(){
   if(emp)meta+='<div>Empresa <b>'+emp+'</b></div>';
   var ini=_escUser((_userFull()||'?').charAt(0).toUpperCase());
   var src=_avatarSrc();
-  var av='<span class="um-av">'+ini+(src?'<img src="'+src+'" alt="" onerror="this.remove()">':'')+'<span class="um-av-edit" title="Cambiar foto" onclick="event.stopPropagation();_pickAvatar()">✎</span></span>';
+  var av='<span class="um-av">'+ini+(src?'<img src="'+src+'" alt="" onerror="_avatarFallback(this)">':'')+'<span class="um-av-edit" title="Cambiar foto" onclick="event.stopPropagation();_pickAvatar()">✎</span></span>';
   el.innerHTML='<div class="um-head" style="display:flex;align-items:center;gap:12px">'+av
       +'<div style="min-width:0"><div class="um-name">'+full+'</div><div class="um-email">'+email+'</div></div></div>'
     +(meta?'<div class="um-meta">'+meta+'</div>':'')
@@ -6986,6 +6993,22 @@ function _renderUserMenu(){
 var _avatarV=0;
 function _avatarUid(){try{return (_session&&_session.user&&_session.user.id)||'';}catch(e){return '';}}
 function _avatarSrc(){var uid=_avatarUid();if(!uid||!SUPABASE_URL)return '';return SUPABASE_URL+'/storage/v1/object/public/avatares/'+uid+'/avatar.jpg'+(_avatarV?('?v='+_avatarV):'');}
+// Si la URL pública falla (bucket privado o sin política de lectura pública),
+// intenta una URL firmada con la sesión del usuario antes de rendirse.
+function _avatarFallback(img){
+  if(!img||img.dataset.tried){if(img)img.remove();return;}
+  img.dataset.tried='1';
+  try{
+    var uid=_avatarUid();
+    if(_sb&&uid&&_sb.storage){
+      _sb.storage.from('avatares').createSignedUrl(uid+'/avatar.jpg',3600).then(function(r){
+        if(r&&r.data&&r.data.signedUrl){img.src=r.data.signedUrl;}else{img.remove();}
+      }).catch(function(){img.remove();});
+      return;
+    }
+  }catch(e){}
+  img.remove();
+}
 function _pickAvatar(){
   var inp=document.getElementById('avatar-input');
   if(!inp){inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.id='avatar-input';inp.style.display='none';
