@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Scope</title>
+<script>
+/* Rutas limpias en GitHub Pages (SPA).
+   Convierte  /obligaciones/leyesfederales  ->  /?/obligaciones/leyesfederales
+   y redirige a la app; index.html restaura la ruta real en la barra.
+   pathSegmentsToKeep = 0 porque el sitio se sirve en la raíz del dominio (scopegemi.com). */
+(function(){
+  var pathSegmentsToKeep = 0;
+  var l = window.location;
+  l.replace(
+    l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+    l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+    l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+    (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+    l.hash
+  );
+})();
+</script>
+</head>
+<body></body>
+</html>
