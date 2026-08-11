@@ -113,6 +113,17 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .nav-btn-consola:hover{background:#0a5540}
 .nav-btn-login{height:32px;padding:0 16px;border:1px solid var(--border-med);border-radius:20px;background:none;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;font-family:var(--sans);transition:background 0.15s,color 0.15s;white-space:nowrap}
 .nav-btn-login:hover{background:var(--border);color:var(--text)}
+/* Menú de usuario (bubble del nav) */
+#user-menu{position:absolute;top:100%;right:0;margin-top:9px;background:var(--card);border:0.8px solid var(--border2);box-shadow:0 14px 40px rgba(0,0,0,0.16);border-radius:13px;min-width:250px;z-index:600;overflow:hidden;display:none}
+#user-menu.open{display:block;animation:modalIn .16s ease}
+.um-head{padding:15px 17px 13px}
+.um-name{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.01em}
+.um-email{font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:3px;word-break:break-all}
+.um-meta{padding:11px 17px;border-top:1px solid var(--border);font-size:12px;color:var(--text-sec);line-height:1.7}
+.um-meta b{color:var(--text);font-weight:600}
+.um-item{display:block;width:100%;text-align:left;padding:11px 17px;font-size:13px;color:var(--text);background:none;border:none;border-top:1px solid var(--border);cursor:pointer;font-family:var(--sans)}
+.um-item:hover{background:rgba(0,158,144,0.06)}
+.um-item.danger{color:#c0392b}
 .nav-btn-theme{width:30px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:none;background:none;color:var(--text-sec);cursor:pointer;transition:color 0.15s;flex-shrink:0;padding:0}
 .nav-btn-theme:hover{color:var(--text)}
 .nav-btn-theme svg{display:block}
@@ -984,7 +995,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
       <div id="search-drop" class="search-drop"></div>
     </div>
     <button class="nav-btn-consola" onclick="showTab('consola',null)">Mi Terminal</button>
-    <button class="nav-btn-login" id="nav-login-btn" onclick="openAuth('login')">Inicia sesión</button>
+    <div class="nav-user-wrap" style="position:relative;display:inline-flex"><button class="nav-btn-login" id="nav-login-btn" onclick="openAuth('login')">Inicia sesión</button><div id="user-menu"></div></div>
     <button class="nav-btn-theme" id="theme-toggle" onclick="toggleTheme()" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro"></button>
   </div>
 </nav>
@@ -5600,11 +5611,9 @@ function _wizNext(){
   _consWelcome();
 }
 function _consUserName(){
-  try{
-    if(typeof _perfil!=='undefined'&&_perfil&&_perfil.nombre)return String(_perfil.nombre).trim().split(/\s+/)[0];
-    if(typeof _session!=='undefined'&&_session&&_session.user){var m=_session.user.user_metadata||{};if(m.nombre)return String(m.nombre).trim().split(/\s+/)[0];}
-  }catch(e){}
-  return '';
+  if(typeof _session==='undefined'||!_session)return '';
+  var f=(typeof _userFull==='function')?_userFull():'';
+  return f?f.split(/\s+/)[0]:'';
 }
 // Bienvenida al entrar a la terminal + cascada de módulos
 function _consWelcome(){
@@ -6545,9 +6554,14 @@ function _renderPending(){
   var email=(_session&&_session.user&&_session.user.email)||'';
   var planes=SCOPE_PLANES.map(function(p){return '<div style="display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--border)"><span style="font-size:13px;color:var(--text)">'+p.n+'</span><span style="font-family:var(--mono);font-size:13px;font-weight:700;color:#066750">'+p.p+' <span style="font-size:9px;color:var(--text-muted);font-weight:500">'+p.per+'</span></span></div>';}).join('');
   var row=function(k,v){return '<div style="display:flex;justify-content:space-between;gap:10px;padding:5px 0"><span style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">'+k+'</span><span style="font-family:var(--mono);font-size:12px;color:var(--text);text-align:right">'+v+'</span></div>';};
+  var _activo=_hasAccess();
+  var _ph=_activo?'Método de pago':'Acceso pendiente';
+  var _pt=_activo
+    ?'Los pagos y renovaciones de Scope se realizan por depósito o transferencia a GEMI. Estos son los datos:'
+    :((email?('Tu cuenta <b>'+_escUser(email)+'</b> ya está creada. '):'')+'Para activarla, realiza el depósito o transferencia a GEMI y en cuanto lo confirmemos habilitamos tu acceso.');
   el.innerHTML=
-    '<div style="font-size:22px;font-weight:700;color:var(--text);margin:16px 0 4px">Acceso pendiente</div>'
-    +'<div style="font-size:13px;color:var(--text-sec);line-height:1.55;margin-bottom:16px">'+(email?('Tu cuenta <b>'+email+'</b> ya está creada. '):'')+'Para activarla, realiza el depósito o transferencia a GEMI y en cuanto lo confirmemos habilitamos tu acceso.</div>'
+    '<div style="text-align:center;font-size:20px;font-weight:700;color:var(--text);margin:0 0 6px">'+_ph+'</div>'
+    +'<div style="font-size:13px;color:var(--text-sec);line-height:1.55;margin-bottom:16px">'+_pt+'</div>'
     +'<div style="font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px">Planes</div>'+planes
     +'<div style="font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;margin:16px 0 2px">Datos para depósito</div>'
     +row('Beneficiario',GEMI_PAGO.beneficiario)+row('Banco',GEMI_PAGO.banco)+row('CLABE',GEMI_PAGO.clabe)
@@ -6568,7 +6582,7 @@ async function authLogin(){
   _authBusy(false);
   if(r.error){_authMsg(_authErr(r.error));return;}
   _session=r.data.session;await _loadPerfil();_updateAuthUI();
-  if(_hasAccess()){closeAuth();_applyRoute(location.pathname);}else{_authView('pending');}
+  if(_hasAccess()){closeAuth();_applyRoute(location.pathname);_consWelcome();}else{_authView('pending');}
 }
 async function authSignup(){
   if(!_sb){_authMsg('El registro estará disponible muy pronto.');return;}
@@ -6591,13 +6605,50 @@ async function authReset(){
   _authMsg('Te enviamos un correo para restablecer tu contraseña.',false);
 }
 async function _logout(){if(_sb){await _sb.auth.signOut();}_session=null;_perfil=null;_updateAuthUI();closeAuth();_enforceGate();}
+function _escUser(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function _userFull(){
+  try{
+    if(_perfil&&_perfil.nombre)return String(_perfil.nombre).trim();
+    if(_session&&_session.user){
+      var m=_session.user.user_metadata||{};
+      if(m.nombre)return String(m.nombre).trim();
+      if(m.full_name)return String(m.full_name).trim();
+      var e=_session.user.email||'';
+      if(e){var p=e.split('@')[0].replace(/[._-]+/g,' ').trim();return p.replace(/\b\w/g,function(c){return c.toUpperCase();});}
+    }
+  }catch(e){}
+  return '';
+}
+function _userDisplayName(){var f=_userFull();return f?f.split(/\s+/)[0]:'Mi cuenta';}
+function _userEmail(){try{return (_session&&_session.user&&_session.user.email)||'';}catch(e){return '';}}
+function _userEmpresa(){try{return (_perfil&&_perfil.empresa)||(_session&&_session.user&&(_session.user.user_metadata||{}).empresa)||'';}catch(e){return '';}}
 function _updateAuthUI(){
   var b=document.getElementById('nav-login-btn');if(!b)return;
   if(_session){
-    if(_hasAccess()){b.textContent='Salir';b.onclick=_logout;}
-    else{b.textContent='Acceso pendiente';b.onclick=function(){openAuth('pending');};}
-  }else{b.textContent='Inicia sesión';b.onclick=function(){openAuth('login');};}
+    if(_hasAccess()){b.textContent=_userDisplayName()+' ▾';b.onclick=_toggleUserMenu;}
+    else{b.textContent='Acceso pendiente';b.onclick=function(){openAuth('pending');};_umClose();}
+  }else{b.textContent='Inicia sesión';b.onclick=function(){openAuth('login');};_umClose();}
 }
+function _toggleUserMenu(){
+  var el=document.getElementById('user-menu');if(!el)return;
+  if(el.classList.contains('open')){el.classList.remove('open');return;}
+  _renderUserMenu();el.classList.add('open');
+}
+function _umClose(){var el=document.getElementById('user-menu');if(el)el.classList.remove('open');}
+function _renderUserMenu(){
+  var el=document.getElementById('user-menu');if(!el)return;
+  var full=_escUser(_userFull()||'Mi cuenta'),email=_escUser(_userEmail()),emp=_escUser(_userEmpresa());
+  var plan=_perfil&&_perfil.plan,vence=_perfil&&_perfil.vence,rol=(_perfil&&_perfil.rol)||'cliente';
+  var meta='';
+  if(plan||vence)meta+='<div>Plan <b>'+_escUser(plan||'—')+'</b>'+(vence?(' · vence '+_escUser(vence)):'')+'</div>';
+  if(emp)meta+='<div>Empresa <b>'+emp+'</b></div>';
+  meta+='<div>Rol <b>'+_escUser(rol)+'</b></div>';
+  el.innerHTML='<div class="um-head"><div class="um-name">'+full+'</div><div class="um-email">'+email+'</div></div>'
+    +'<div class="um-meta">'+meta+'</div>'
+    +'<button class="um-item" onclick="_umClose();openAuth(\'pending\')">Método de pago</button>'
+    +'<button class="um-item danger" onclick="_umClose();_logout()">Cerrar sesión</button>';
+}
+document.addEventListener('click',function(e){var w=e.target.closest?e.target.closest('.nav-user-wrap'):null;if(!w)_umClose();});
 function _enforceGate(){
   if(!_authOn())return;
   var id=((document.querySelector('.tab-content.active')||{}).id||'').replace('tab-','');
