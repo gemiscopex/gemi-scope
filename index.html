@@ -681,12 +681,26 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap}
 .cons-title{font-family:var(--sans);font-size:25px;font-weight:700;letter-spacing:-0.01em;color:var(--text)}
 .cons-sub{font-family:var(--sans);font-size:12px;color:var(--text-muted)}
-.cons-welcome{display:flex;align-items:center;gap:8px;margin-top:7px;font-family:var(--mono);font-size:11px;color:var(--text-sec);flex-wrap:wrap}
-.cons-welcome .eyebrow{color:#066750;font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:9px}
+.cons-greet{display:flex;align-items:center;gap:13px;min-width:0}
+.cons-greet-av{width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)}
+.cons-welcome{display:flex;align-items:center;gap:8px;margin-top:8px;font-family:var(--mono);font-size:11px;color:var(--text-sec);flex-wrap:wrap}
+.cons-welcome .eyebrow{color:#066750;font-weight:600;letter-spacing:.02em;font-size:11px}
 .cons-welcome .ago{color:var(--text-muted)}
 .cons-welcome .seen{background:none;border:none;font-family:var(--mono);font-size:10px;color:var(--text-muted);cursor:pointer;padding:0;text-decoration:underline;letter-spacing:.03em}
 .cons-welcome .seen:hover{color:var(--green)}
+.cons-welcome-status{font-family:var(--sans);font-size:13px;color:var(--text);font-weight:500;margin-top:5px}
 .cons-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cons-wadd{margin-left:auto;flex-shrink:0;background:none;border:0.8px solid var(--border);color:var(--text-muted);width:22px;height:22px;border-radius:6px;font-size:15px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:color .12s,border-color .12s;font-family:var(--sans)}
+.cons-wadd:hover{color:var(--green);border-color:var(--green)}
+.cons-help{margin-top:10px;border-top:0.8px solid var(--border);padding-top:8px}
+.cons-help-t{font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:5px}
+.cons-help-t:hover{color:var(--text-sec)}
+.cons-help-b{font-family:var(--mono);font-size:8px;color:var(--text-muted);line-height:1.55;margin-top:7px;display:none}
+.cons-help.open .cons-help-b{display:block}
+.arrlk{display:inline-block;vertical-align:middle;width:11px;height:11px}
+a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
+.cons-send{background:var(--green);color:#fff;border:none;border-radius:9px;width:42px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .12s}
+.cons-send:hover{background:#0E8C74}
 .cons-edit{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--text-sec);cursor:pointer;letter-spacing:0;border:0.8px solid var(--border);padding:7px 13px;border-radius:8px;background:none;transition:color .12s,border-color .12s;display:inline-flex;align-items:center;gap:6px}
 .cons-edit:hover{color:var(--green);border-color:var(--green)}
 .cons-edit svg{width:13px;height:13px;flex-shrink:0}
@@ -1136,7 +1150,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
         <!-- Noticia principal de la semana + semáforo (Lectura SCOPE) -->
         <div id="semana-banner"></div>
         <!-- Reporte semanal de inteligencia (newsletter GEMI en LinkedIn) -->
-        <a class="reporte-link" href="https://www.linkedin.com/newsletters/inteligencia-gemi-7421596146348847104" target="_blank" rel="noopener">Reporte semanal de inteligencia ↗</a>
+        <a class="reporte-link" href="https://www.linkedin.com/newsletters/inteligencia-gemi-7421596146348847104" target="_blank" rel="noopener">Reporte semanal de inteligencia <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>
         <div class="dash-sep"></div>
         <div class="card" style="display:flex;flex-direction:column;overflow:visible">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
@@ -2161,7 +2175,7 @@ function _agenda2030HTML(){
       return '<a href="https://www.un.org/sustainabledevelopment/es/'+ '" data-goal="'+o[0]+'" onclick="event.preventDefault();window.open(\'https://sdgs.un.org/goals/goal'+o[0]+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:12px;padding:11px 0;border-bottom:0.8px solid var(--border);text-decoration:none;cursor:pointer">'
         +'<span style="flex:0 0 26px;font-family:var(--mono);font-size:16px;font-weight:700;color:'+(amb?DEEP:'var(--text-muted)')+';font-variant-numeric:tabular-nums;text-align:right">'+o[0]+'</span>'
         +'<span style="flex:1;font-size:12px;color:var(--text);line-height:1.35">'+o[1]+(amb?' <span style="font-size:8px;font-family:var(--mono);color:'+GRN+';letter-spacing:0.06em">· AMBIENTAL</span>':'')+'</span>'
-        +'<span style="font-size:12px;color:var(--green);flex-shrink:0">↗</span>'
+        +'<span style="font-size:12px;color:var(--green);flex-shrink:0"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span>'
         +'</a>';
     }).join('')+'</div>';
   var foot='<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:14px">Fuente: Naciones Unidas · sdgs.un.org — Objetivos de Desarrollo Sostenible</div>';
@@ -2198,7 +2212,7 @@ function _intlRenderRows(){
         +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.45">'+(a.relevancia_mexico||'')+'</div>'
         +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:5px;letter-spacing:0.03em">'+_intlCatLbl(a.categoria).toUpperCase()+(a.estatus?'  ·  '+a.estatus:'')+'</div>'
       +'</div>'
-      +'<div style="text-align:right;min-width:0"><div style="font-size:11px;color:var(--text-sec);font-weight:500;line-height:1.3">'+a.jurisdiccion+(a.organismo?'<br><span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+a.organismo+'</span>':'')+'</div><div style="font-size:13px;color:var(--green);margin-top:3px">↗</div></div>'
+      +'<div style="text-align:right;min-width:0"><div style="font-size:11px;color:var(--text-sec);font-weight:500;line-height:1.3">'+a.jurisdiccion+(a.organismo?'<br><span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+a.organismo+'</span>':'')+'</div><div style="font-size:13px;color:var(--green);margin-top:3px"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></div></div>'
       +'</div>';
   }).join('');
   host.innerHTML=head+body;
@@ -2252,13 +2266,13 @@ function _depDetailHTML(a,dep){
       +(p.email?'<a href="mailto:'+p.email+'" onclick="event.stopPropagation()" style="font-family:var(--mono);font-size:10px;color:var(--green);text-decoration:none">'+p.email+'</a>':'')
       +'</div>';
   }).join('')+'</div>'):'';
-  var dirLink=dep.dir_url?'<a href="'+dep.dir_url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-block;margin:12px 0 2px 14px;font-size:11px;font-weight:700;color:var(--green);text-decoration:none">Directorio completo y vigente en gob.mx ↗</a>':'';
+  var dirLink=dep.dir_url?'<a href="'+dep.dir_url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-block;margin:12px 0 2px 14px;font-size:11px;font-weight:700;color:var(--green);text-decoration:none">Directorio completo y vigente en gob.mx <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>':'';
   var uni=(dep.unidades&&dep.unidades.length)?('<div style="margin-top:14px;padding-top:10px;border-top:0.8px solid var(--border)"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);padding-left:14px;margin-bottom:2px">Estructura orgánica · unidades (Reglamento Interior)</div>'+_depTreeHTML(dep.unidades,0)+'</div>'):'';
   return '<div style="grid-column:1/-1;background:rgba(6,103,80,0.04);border-radius:12px;padding:14px 4px 16px;margin:2px 0 6px">'
     +'<div style="display:flex;align-items:baseline;gap:10px;padding:0 14px 10px;border-bottom:0.8px solid var(--border);margin-bottom:6px">'
       +'<span style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.1em;color:#066750">'+a.sig+'</span>'
       +'<span style="font-size:12px;color:var(--text-sec)">'+a.dep+'</span>'
-      +'<a href="'+a.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="margin-left:auto;font-size:11px;color:var(--green);text-decoration:none">gob.mx ↗</a>'
+      +'<a href="'+a.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="margin-left:auto;font-size:11px;color:var(--green);text-decoration:none">gob.mx <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>'
     +'</div>'
     +personasHTML+dirLink+uni
     +(dep.nota?'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:12px;padding:0 14px;line-height:1.5">'+dep.nota+'</div>':'')
@@ -2384,7 +2398,7 @@ function _actorCell(o){
   var porConf=/por confirmar/i.test(t);
   return '<a href="'+(o.url||'#')+'" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block">'
     +'<span style="font-size:12px;font-weight:600;color:'+(porConf?'var(--text-muted)':'var(--text)')+'">'+t+'</span>'
-    +'<span style="display:block;font-size:10px;color:var(--text-sec);margin-top:1px;line-height:1.3">'+(o.dependencia||'')+' ↗</span>'
+    +'<span style="display:block;font-size:10px;color:var(--text-sec);margin-top:1px;line-height:1.3">'+(o.dependencia||'')+' <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span>'
     +'</a>';
 }
 function toggleActorEst(id){
@@ -2399,7 +2413,7 @@ function _actorEstRow(label,o){
   if(!o||!o.titular||/por confirmar/i.test(o.titular))
     return '<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">'+lbl+'<div style="font-size:12px;color:var(--text-muted)">Por confirmar</div></div>';
   return '<a href="'+(o.url||'#')+'" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:7px 0;border-bottom:0.8px solid var(--border)">'+lbl
-    +'<div style="font-size:12px;font-weight:600;color:var(--text)">'+o.titular+' <span style="color:var(--green);font-weight:400">↗</span></div>'
+    +'<div style="font-size:12px;font-weight:600;color:var(--text)">'+o.titular+' <span style="color:var(--green);font-weight:400"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span></div>'
     +'<div style="font-size:10px;color:var(--text-sec);margin-top:1px;line-height:1.3">'+(o.dependencia||'')+'</div></a>';
 }
 function _actorEstState(e,idx){
@@ -2730,7 +2744,7 @@ function _oblRow(o){
     right='<div style="text-align:right;flex-shrink:0;white-space:nowrap;padding-top:1px">'
       +(o.right||'')
       +(o.rightSub?'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:4px">'+o.rightSub+'</div>':'')
-      +(o.url?'<div style="margin-top:'+((o.right||o.rightSub)?'6px':'0')+'"><a href="'+o.url+'" target="_blank" rel="noopener" style="font-size:13px;color:var(--green);text-decoration:none">↗</a></div>':'')
+      +(o.url?'<div style="margin-top:'+((o.right||o.rightSub)?'6px':'0')+'"><a href="'+o.url+'" target="_blank" rel="noopener" style="font-size:13px;color:var(--green);text-decoration:none"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a></div>':'')
       +'</div>';
   }
   var base='display:flex;align-items:flex-start;gap:20px;padding:14px 0;border-top:0.8px solid var(--border)';
@@ -2810,7 +2824,7 @@ function _instrumentosHTML(){
             return '<div onclick="window.open(\''+(c.url||'#').replace(/'/g,'%27')+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:14px;padding:9px 0 9px 20px;border-top:0.8px solid var(--border);cursor:pointer">'
               +'<div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:var(--text)">'+c.n+'</div>'
               +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:2px">'+c.dep+'</div></div>'
-              +'<span style="font-size:13px;color:var(--green);flex-shrink:0">↗</span></div>';
+              +'<span style="font-size:13px;color:var(--green);flex-shrink:0"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span></div>';
           }).join('')+'</div>';
       }
       return row;
@@ -2917,7 +2931,7 @@ function _agendaGacetas(keepFocus){
     return '<div class="gac-row" onclick="window.open(\''+u+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:0.8px solid var(--border);cursor:pointer">'
       +'<span style="flex:0 0 168px;font-size:13px;font-weight:600;color:var(--text)">'+s+'</span>'
       +'<span style="flex:1;font-size:12px;color:var(--text-sec)">'+g[0]+'</span>'
-      +'<span style="font-size:11px;color:var(--green);white-space:nowrap">Abrir ↗</span></div>';
+      +'<span style="font-size:11px;color:var(--green);white-space:nowrap">Abrir <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span></div>';
   }).join('');
   host.innerHTML=head+(estados.length?rows:'<div style="padding:20px 0;font-size:13px;color:var(--text-muted)">Sin coincidencias.</div>');
   if(keepFocus){var i=document.getElementById('gac-search');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}}
@@ -2942,7 +2956,7 @@ function _rmeStateHTML(state){
   });
   h+='</div>';
   if(d.nota)h+='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;padding:11px 0 4px;border-top:0.8px solid var(--border);margin-top:8px">'+d.nota+'</div>';
-  if(d.portal)h+='<a href="'+d.portal.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:600;color:var(--green);text-decoration:none">Portal oficial del estado ↗</a>';
+  if(d.portal)h+='<a href="'+d.portal.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:600;color:var(--green);text-decoration:none">Portal oficial del estado <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>';
   h+='<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:14px">Fuente: Inventario nacional de trámites estatales de RME · GEMI'+((_tramitesRME._meta&&_tramitesRME._meta.actualizado)?' · act. '+_tramitesRME._meta.actualizado:'')+'</div>';
   return h;
 }
@@ -3094,7 +3108,7 @@ function _agendaConamer(){
   if(!d){host.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando…</div>';return;}
   var items=(d.items||[]);
   var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:6px">Propuestas regulatorias <b>en consulta pública</b> ante CONAMER que impactan a nuestros sectores — antes de publicarse en el DOF. '
-    +'<a href="'+((d._meta&&d._meta.url)||'https://www.herramientasregulatorias.gob.mx/')+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Portal CONAMER ↗</a></div>'
+    +'<a href="'+((d._meta&&d._meta.url)||'https://www.herramientasregulatorias.gob.mx/')+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Portal CONAMER <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a></div>'
     +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:14px">'+((d._meta&&d._meta.actualizado)||'')+' · '+items.length+' propuesta'+(items.length===1?'':'s')+'</div>';
   if(!items.length){host.innerHTML=head+'<div style="font-size:12px;color:var(--text-muted);padding:12px 0">Sin propuestas de nuestros sectores en consulta ahora mismo.</div>';return;}
   var body=items.map(function(it){
@@ -3328,7 +3342,7 @@ function renderNormas(){
         +'</div>'
         +'<span style="font-size:9px;color:var(--text-muted);flex-shrink:0;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px">'+n.dep+'</span>'
         +'<button onclick="event.stopPropagation();toggleNomTerminal(\''+n.id.replace(/'/g,"\\'")+'\',this)" title="Agregar o quitar de Mi Terminal" style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.03em;padding:3px 8px;border:0.8px solid '+(nomInTerminal(n.id)?'var(--green)':'var(--border)')+';background:'+(nomInTerminal(n.id)?'rgba(0,158,144,0.07)':'none')+';color:'+(nomInTerminal(n.id)?'var(--green)':'var(--text-muted)')+';cursor:pointer;white-space:nowrap;flex-shrink:0;margin-top:1px">'+(nomInTerminal(n.id)?'✓ En mi terminal':'+ Mi terminal')+'</button>'
-        +'<a href="'+n.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;font-weight:600;color:var(--green);flex-shrink:0;text-decoration:none;margin-top:2px">↗</a>'
+        +'<a href="'+n.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;font-weight:600;color:var(--green);flex-shrink:0;text-decoration:none;margin-top:2px"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>'
         +'</div>'
         +'<div id="'+uid+'" style="display:none;padding:10px 0 14px 34px;border-bottom:0.8px solid rgba(0,0,0,0.06)">'
           +'<div style="display:flex;gap:22px;flex-wrap:wrap;margin-bottom:10px">'
@@ -3342,7 +3356,7 @@ function renderNormas(){
           +'<div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Contexto previo</div>'
           +'<div style="font-size:12px;color:var(--text-sec);line-height:1.6;max-width:760px;margin-bottom:14px">'+(ex.contexto||'<span style="color:var(--text-muted)">El equipo GEMI cargará aquí el contexto de esta norma: antecedentes, discusión y estatus.</span>')+'</div>'
           +'<div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Documentos</div>'
-          +docs.map(function(d){return '<a href="'+d.u+'" target="_blank" rel="noopener" style="display:block;font-size:11px;color:var(--green);padding:3px 0;text-decoration:none">'+d.t+' ↗</a>';}).join('')
+          +docs.map(function(d){return '<a href="'+d.u+'" target="_blank" rel="noopener" style="display:block;font-size:11px;color:var(--green);padding:3px 0;text-decoration:none">'+d.t+' <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>';}).join('')
           +_nomCommentsHTML(n,uid)
         +'</div>'
       +'</div>';
@@ -4042,7 +4056,7 @@ function renderSPPerfil(state,data,sc){
     +statRow('Poblaci\u00f3n econ\u00f3micamente activa',perfil.pea?fmtNum(perfil.pea):'\u2014',perfil.pea&&peaMax?(perfil.pea/peaMax)*100:null,perfil.pea?'ENOE '+(perfil.pea_periodo||''):'Integraci\u00f3n en curso');
   document.getElementById('sp-perfil').innerHTML=rows
     +`<div style="margin-top:16px;padding-top:14px;font-size:12px;line-height:1.65;color:var(--text-sec)">${narrative}</div>`
-    +(data.congreso?`<div style="margin-top:18px;padding-top:14px;border-top:0.8px solid var(--border)"><a href="${data.congreso}" target="_blank" rel="noopener" style="font-size:12px;font-weight:600;color:var(--green);text-decoration:none">Portal del Congreso de ${state} ↗</a><div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px;word-break:break-all">${data.congreso}</div></div>`:'');
+    +(data.congreso?`<div style="margin-top:18px;padding-top:14px;border-top:0.8px solid var(--border)"><a href="${data.congreso}" target="_blank" rel="noopener" style="font-size:12px;font-weight:600;color:var(--green);text-decoration:none">Portal del Congreso de ${state} <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a><div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px;word-break:break-all">${data.congreso}</div></div>`:'');
 }
 function renderSPMateriales(state){
   const el=document.getElementById('sp-materiales');
@@ -4565,7 +4579,7 @@ function _congColHTML(items,color,label){
       +_congPartidoEl(partido,16)
       +'<div style="flex:1;min-width:0">'
         +'<div style="margin-bottom:1px">'+accion+nom+'</div>'
-        +'<div style="font-size:11px;color:var(--text);line-height:1.35;font-weight:600">'+p.titulo+(url?' <span style="color:'+color+';font-weight:400">↗</span>':'')+'</div>'
+        +'<div style="font-size:11px;color:var(--text);line-height:1.35;font-weight:600">'+p.titulo+(url?' <span style="color:'+color+';font-weight:400"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span>':'')+'</div>'
         +(p.detalle?'<div style="font-size:10px;color:var(--text-sec);line-height:1.35;margin-top:1px">'+p.detalle+'</div>':'')
       +'</div></div>';
   }).join('')||'<div style="font-size:11px;color:var(--text-muted);padding:10px 0">Sin instrumentos esta semana</div>';
@@ -4984,7 +4998,7 @@ function renderComisiones(data){
       +'<div class="com-avatar" style="'+avatarStyle+'">'+avatarInner+'</div>'
       +'<div class="com-info"><div class="com-member-name" style="'+(isLead?'font-weight:650':'')+'">'+m.n+'</div><div class="com-member-cargo">'+m.cargo+'</div></div>'
       +partyEl
-      +'<span style="font-size:10px;color:var(--green);flex-shrink:0;opacity:0.6;margin-left:2px">↗</span>'
+      +'<span style="font-size:10px;color:var(--green);flex-shrink:0;opacity:0.6;margin-left:2px"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span>'
       +'</a>';
   }
   var CARGO_ORDER={'presidencia':0,'presidente':0,'presidenta':0,'secretaría':1,'secretaria':1,'secretario':1};
@@ -5278,10 +5292,12 @@ var _WIZ_LABEL={temas:'Temas',estados:'Estados',comisiones:'Comisiones',legislad
 var _WIZ_REQ={temas:true,estados:true,comisiones:true,legisladores:false,referencias:false,afinar:false};
 var _WIZ_MAX_LEG=20,_WIZ_MAX_KW=15;
 var _wiz=null;
-function openConsolaWizard(){
+function openConsolaWizard(stepName){
   function go(){
     var c=loadConsola();
-    _wiz={paso:0,search:'',refTab:'noms',refTema:'todos',legCam:'todas',legPart:'todas',sel:{
+    var paso0=0;
+    if(stepName&&typeof _WIZ_PASOS!=='undefined'){var ix=_WIZ_PASOS.indexOf(stepName);if(ix>=0)paso0=ix;}
+    _wiz={paso:paso0,search:'',refTab:'noms',refTema:'todos',legCam:'todas',legPart:'todas',sel:{
       temas:new Set(c.temas||[]),estados:new Set(c.estados||[]),
       comisiones:new Set(c.comisiones||[]),legisladores:new Set(c.legisladores||[]),
       noms:new Set(c.noms||[]),instrumentos:new Set(c.instrumentos||[]),
@@ -5804,16 +5820,16 @@ function _consPrintReport(){
   setTimeout(function(){try{w.focus();w.print();}catch(e){}},600);
 }
 function _consComputeSenal(temas,riesgos){
-  var RSG={alto:['ALTO','var(--red)'],medio:['MEDIO','var(--amber)'],bajo:['BAJO','var(--green)']};
+  var RSG={alto:['ALTO','var(--red)'],medio:['MEDIO','var(--text-sec)'],bajo:['BAJO','var(--green)']};
   var dias=[7,30,90].find(function(d){return temas.some(function(c){return _consHits(c.kw,d).length>0;});})||7;
   var rows=temas.map(function(c){
     var n=_consHits(c.kw,dias).length;
     var nPrev=_consHits(c.kw,dias*2).length-n;
-    var arrow=n>nPrev?['↑','var(--amber)']:n<nPrev?['↓','var(--green)']:['→','var(--dim)'];
+    var arrow=n>nPrev?['↑','var(--red)']:n<nPrev?['↓','var(--green)']:['→','var(--dim)'];
     return {c:c,n7:n,arrow:arrow,r:RSG[(riesgos||{})[c.id]||'medio']};
   }).sort(function(a,b){return b.n7-a.n7;});
   var total=rows.reduce(function(s,r){return s+r.n7;},0);
-  var nivel=total>=12?['PRESIÓN ALTA','var(--amber)']:total>=5?['PRESIÓN MEDIA','var(--green)']:['SEÑAL BAJA','var(--dim)'];
+  var nivel=total>=12?['PRESIÓN ALTA','var(--red)']:total>=5?['PRESIÓN MEDIA','var(--green)']:['SEÑAL BAJA','var(--dim)'];
   return {rows:rows,total:total,dias:dias,lead:rows[0],nivel:nivel};
 }
 function _consImpInfo(tipo){
@@ -5834,7 +5850,7 @@ function _consRefWidgets(cfg){
     +noms.map(function(id){var n=(typeof NORMAS!=='undefined'?NORMAS:[]).find(function(x){return x.id===id;});
       if(!n)return '<div class="cons-refit"><div style="font-family:var(--mono);font-size:11px;color:var(--text)">'+id+'</div></div>';
       return '<a href="'+n.url+'" target="_blank" rel="noopener" class="cons-refit" style="display:block;text-decoration:none">'
-        +'<div style="font-family:var(--mono);font-size:10px;font-weight:600;color:var(--green)">'+n.id+' <span style="color:var(--text-muted);font-weight:400">↗</span></div>'
+        +'<div style="font-family:var(--mono);font-size:10px;font-weight:600;color:var(--green)">'+n.id+' <span style="color:var(--text-muted);font-weight:400"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span></div>'
         +'<div style="font-size:11px;color:var(--text);line-height:1.35;margin-top:2px">'+n.objeto+'</div>'
         +(n.implic?'<div style="font-size:10px;color:var(--text-muted);margin-top:2px;line-height:1.35">'+n.implic+'</div>':'')+'</a>';
     }).join('')+'</div>'});
@@ -5855,7 +5871,7 @@ function _consRefWidgets(cfg){
         +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-left:auto">'+inf.states.length+' entidad'+(inf.states.length===1?'':'es')+'</span></div>';
       var rows=inf.states.map(function(s){
         var u=(s.url||'').replace(/'/g,'%27');
-        var right=s.url?'<span style="font-size:10px;color:var(--green);white-space:nowrap">Ver norma ↗</span>':'<span style="font-size:9px;color:var(--dim);white-space:nowrap">s/liga</span>';
+        var right=s.url?'<span style="font-size:10px;color:var(--green);white-space:nowrap">Ver norma <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span>':'<span style="font-size:9px;color:var(--dim);white-space:nowrap">s/liga</span>';
         return '<div class="cons-mat-row"'+(s.url?' onclick="window.open(\''+u+'\',\'_blank\')"':'')+'>'
           +'<span style="flex:0 0 150px;font-size:11px;color:var(--text)">'+s.estado+'</span>'
           +'<span style="flex:1;font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+(s.desde?('desde '+s.desde):'')+'</span>'
@@ -5871,7 +5887,8 @@ function _consWidgetHTML(w){
   return '<div class="cons-widget'+(w.wide?' wide':'')+'" draggable="true" data-wid="'+w.id+'"'
     +' ondragstart="_consDragStart(event,\''+w.id+'\')" ondragover="_consDragOver(event)" ondragleave="_consDragLeave(event)" ondrop="_consDrop(event,\''+w.id+'\')" ondragend="_consDragEnd()">'
     +'<div class="cons-wh"><span class="cons-dh" title="Arrastra para reacomodar">⠿</span>'
-    +'<span class="cons-wt">'+w.title+'</span>'+(w.count!=null?'<span class="cons-wn">'+w.count+'</span>':'')+'</div>'
+    +'<span class="cons-wt">'+w.title+'</span>'+(w.count!=null?'<span class="cons-wn">'+w.count+'</span>':'')
+    +(w.add?'<button class="cons-wadd" title="Agregar más en Editar terminal" onclick="openConsolaWizard(\''+w.add+'\')">+</button>':'')+'</div>'
     +'<div>'+w.body+'</div></div>';
 }
 function _consApplyOrder(widgets,layout){
@@ -5930,21 +5947,23 @@ function renderConsola(){
   var kpis=_consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg);
   // ── Widgets reordenables (drag-and-drop). Señal vive en el dúo (arriba); cumplimiento en modal. ──
   var widgets=[];
-  widgets.push({id:'estados',title:'Mis estados',count:estados.length,body:'<div id="cons-estados"></div>'});
-  _consRefWidgets(cfg).forEach(function(w){widgets.push(w);});
+  widgets.push({id:'estados',title:'Mis estados',count:estados.length,add:'estados',body:'<div id="cons-estados"></div>'});
+  _consRefWidgets(cfg).forEach(function(w){w.add='referencias';widgets.push(w);});
   if(!(cfg.noms||[]).length&&!(cfg.instrumentos||[]).length&&!(cfg.impuestos||[]).length&&!(cfg.materiales||[]).length)
-    widgets.push({id:'ref-vacio',title:'Referencias',count:null,body:'<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> en la sección de NOMs) para tenerlos aquí a la mano.</div>'});
+    widgets.push({id:'ref-vacio',title:'Referencias',count:null,add:'referencias',body:'<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> aquí arriba) para tenerlos a la mano.</div>'});
   widgets.push({id:'dof',title:'Normas de mis temas',count:null,body:'<div id="cons-normas"></div>'});
   widgets.push({id:'ejecutivo',title:'Ejecutivo · menciones',count:null,body:'<div class="cons-scroll" id="cons-pres"></div>'});
-  if(userKw.length)widgets.push({id:'keywords',title:'Feed de mis keywords',count:null,body:'<div class="cons-scroll" id="cons-kw"></div>'});
-  widgets.push({id:'comisiones',title:'Mis comisiones',count:coms.length,wide:true,body:'<div id="cons-coms" style="overflow-x:auto"></div>'});
-  if(legs.length)widgets.push({id:'legisladores',title:'Mis legisladores',count:legs.length,wide:true,body:'<div class="cons-leg-grid" id="cons-legs"></div>'});
+  widgets.push({id:'comisiones',title:'Mis comisiones',count:coms.length,add:'comisiones',wide:true,body:'<div id="cons-coms" style="overflow-x:auto"></div>'});
+  if(legs.length)widgets.push({id:'legisladores',title:'Mis legisladores',count:legs.length,add:'legisladores',wide:true,body:'<div class="cons-leg-grid" id="cons-legs"></div>'});
+  if(userKw.length)widgets.push({id:'keywords',title:'Feed de mis keywords',count:null,add:'afinar',wide:true,body:'<div id="cons-kw"></div>'});
   widgets=_consApplyOrder(widgets,cfg.layout);
 
   var _nm=(typeof _userDisplayName==='function')?_userDisplayName():'';
   var _greet=(_nm&&_nm!=='Mi cuenta')?('Bienvenido, '+_escUser(_nm)):'Bienvenido';
+  var _avUrl=(typeof _avatarSrc==='function')?_avatarSrc():'';
+  var _av=_avUrl?('<img class="cons-greet-av" src="'+_avUrl+'" alt="" onerror="_avatarFallback(this)">'):'';
   root.innerHTML='<div class="cons-hdr">'
-    +'<div><span class="cons-title">'+_greet+'</span>'+_consWelcomeLine(cfg)+'</div>'
+    +'<div class="cons-greet">'+_av+'<div style="min-width:0"><span class="cons-title">'+_greet+'</span>'+_consWelcomeLine(cfg)+'</div></div>'
     +'<div class="cons-actions">'
     +'<button class="cons-edit" onclick="_consPrintReport()" title="Genera un reporte imprimible / PDF con la foto del día de tu terminal">Imprimir reporte</button>'
     +'<button class="cons-edit" onclick="_consCumplOpen()" title="Marca los instrumentos con los que ya cumples">Mi cumplimiento</button>'
@@ -6001,7 +6020,7 @@ function _cumplRender(){
     return '<div style="padding:9px 0;border-top:0.8px solid var(--border)">'
       +'<div style="display:flex;align-items:baseline;gap:8px;justify-content:space-between">'
         +'<span style="'+(it.mono?'font-family:var(--mono);':'')+'font-size:'+(it.mono?'11':'12')+'px;font-weight:600;color:'+(it.mono?'var(--green)':'var(--text)')+';min-width:0;overflow:hidden;text-overflow:ellipsis">'+it.titulo+'</span>'
-        +(it.url?'<a href="'+it.url+'" target="_blank" rel="noopener" style="font-size:9px;color:var(--text-muted);text-decoration:none;flex-shrink:0">ver ↗</a>':'')+'</div>'
+        +(it.url?'<a href="'+it.url+'" target="_blank" rel="noopener" style="font-size:9px;color:var(--text-muted);text-decoration:none;flex-shrink:0">ver <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>':'')+'</div>'
       +(it.sub?'<div style="font-size:11px;color:var(--text-sec);line-height:1.35;margin:2px 0 6px">'+it.sub+'</div>':'<div style="height:5px"></div>')
       +'<div style="display:flex;gap:6px;flex-wrap:wrap">'+ctrl+'</div>'
     +'</div>';
@@ -6055,8 +6074,8 @@ function _consSignalRailHTML(){
         +'<div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:700;color:var(--text);line-height:1.1">Signal</div>'
         +'<div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px">Tu agente sobre los datos de tu terminal</div></div>'
       +'</div>'
-      +'<div style="display:flex;align-items:center;gap:6px;margin-top:11px"><span class="cons-live"></span>'
-        +'<span style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber)">Próximamente · en construcción</span></div>'
+      +'<div style="display:flex;align-items:center;gap:6px;margin-top:11px"><span class="pgemi-live" style="background:#DC2626"></span>'
+        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.02em;color:#DC2626">Próximamente · en construcción</span></div>'
     +'</div>'
     +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;padding:14px;min-height:200px;max-height:46vh;overflow-y:auto">'
       +_consChatBubble('Hola 👋 Soy Signal. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé cruzando los datos de tu terminal en tiempo real.',false)
@@ -6067,7 +6086,7 @@ function _consSignalRailHTML(){
     +'</div>'
     +'<div style="display:flex;gap:8px;padding:12px 14px 14px;border-top:0.8px solid var(--border)">'
       +'<input id="cons-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;min-width:0;padding:10px 13px;border:1px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12px;color:var(--text);border-radius:9px;outline:none">'
-      +'<button onclick="_consChatSend()" style="background:var(--green);color:#fff;border:none;border-radius:9px;padding:0 16px;font-size:12px;font-weight:600;cursor:pointer;flex-shrink:0">Enviar</button>'
+      +'<button onclick="_consChatSend()" class="cons-send" title="Enviar a Signal"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14"/><path d="M12 6l6 6-6 6"/></svg></button>'
     +'</div>'
   +'</div>';
 }
@@ -6082,13 +6101,13 @@ function _consWelcomeLine(cfg){
   var sv=(typeof _sinceLastVisit==='function')?_sinceLastVisit():null;
   var ago=sv?sv.human:'primera visita';
   var status=n?(n+(n===1?' novedad':' novedades')+' en tus temas.'):'Todo tranquilo por ahora.';
+  var agoCap=ago?(ago.charAt(0).toUpperCase()+ago.slice(1)):ago;
   return '<div class="cons-welcome"><span class="cons-live"></span>'
     +'<span class="eyebrow">Desde tu última visita</span>'
-    +'<span class="ago">'+ago+'</span>'
-    +'<span style="color:var(--text-muted)">·</span>'
-    +'<span style="color:var(--text);font-weight:600">'+status+'</span>'
+    +'<span class="ago">'+agoCap+'</span>'
     +(n?'<button class="seen" onclick="_consMarkSeen()">Marcar como visto</button>':'')
-  +'</div>';
+  +'</div>'
+  +'<div class="cons-welcome-status">'+status+'</div>';
 }
 // ── Mi cumplimiento: apartado (modal) para marcar los instrumentos con los que ya cumples ──
 function _consCumplOpen(){
@@ -6128,11 +6147,11 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
   (cfg.impuestos||[]).forEach(function(x){refList.push('Impuesto · '+x);});
   (cfg.instrumentos||[]).forEach(function(x){refList.push('Instrumento · '+x);});
   (cfg.materiales||[]).forEach(function(x){refList.push('Material · '+x);});
-  var tiles=tile(temas.length,temas.length===1?'tema':'temas','Tus temas',temas.map(function(c){return c.name;}))
-    +tile(estados.length,estados.length===1?'estado':'estados','Tus estados',estados)
-    +tile(coms.length,coms.length===1?'comisión':'comisiones','Tus comisiones',coms.map(function(c){return c.nombre;}))
-    +(legs.length?tile(legs.length,legs.length===1?'legislador':'legisladores','Tus legisladores',legs.map(function(l){return l.n;})):'')
-    +tile(nRefs,nRefs===1?'referencia':'referencias','Tus referencias',refList);
+  var tiles=tile(temas.length,temas.length===1?'Tema':'Temas','Tus temas',temas.map(function(c){return c.name;}))
+    +tile(estados.length,estados.length===1?'Estado':'Estados','Tus estados',estados)
+    +tile(coms.length,coms.length===1?'Comisión':'Comisiones','Tus comisiones',coms.map(function(c){return c.nombre;}))
+    +(legs.length?tile(legs.length,legs.length===1?'Legislador':'Legisladores','Tus legisladores',legs.map(function(l){return l.n;})):'')
+    +tile(nRefs,nRefs===1?'Referencia':'Referencias','Tus referencias',refList);
   return '<div class="cons-hero">'
     +'<div class="cons-hero-kick">Tu terminal · <span style="color:#066750;font-weight:700">'+nivel+'</span></div>'
     +'<div class="cons-hero-head">'+head+'</div>'
@@ -6143,20 +6162,16 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
 // ── Panel GEMI: canal oficial del equipo (mensajes de administradores + agenda de fechas) ──
 var _panelGemiData=null,_agendaGemiData=null,_pgemiTab='mensajes';
 function _panelGemiHTML(){
-  return '<div class="card pgemi" style="border:0.8px solid var(--border);border-radius:14px;padding:0;background:var(--card)">'
-    +'<div style="padding:18px 20px;display:flex;flex-direction:column;gap:12px;height:100%;box-sizing:border-box">'
-      +'<div style="display:flex;align-items:center;gap:11px">'
-        +'<img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">'
-        +'<div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px">Panel GEMI</div>'
-        +'<div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px">Canal oficial del equipo</div></div>'
-        +'<span style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;letter-spacing:0.08em;color:#12A594"><span class="pgemi-live"></span>EN VIVO</span>'
-      +'</div>'
-      +'<div class="stab-bar" style="margin-bottom:0;gap:4px 18px">'
-        +'<button class="stab'+(_pgemiTab!=='agenda'?' on':'')+'" id="pgemi-tab-mensajes" onclick="_pgemiSetTab(\'mensajes\')">Mensajes</button>'
-        +'<button class="stab'+(_pgemiTab==='agenda'?' on':'')+'" id="pgemi-tab-agenda" onclick="_pgemiSetTab(\'agenda\')">Agenda</button>'
-      +'</div>'
-      +'<div id="panel-gemi-body"><div style="font-size:11px;color:var(--text-muted);padding:12px 0">Cargando…</div></div>'
+  return '<div class="cons-widget pgemi" style="padding:14px 16px">'
+    +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:11px">'
+      +'<span class="cons-wt">Panel GEMI</span>'
+      +'<span style="display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8px;letter-spacing:0.06em;color:#12A594;margin-left:auto"><span class="pgemi-live"></span>EN VIVO</span>'
     +'</div>'
+    +'<div class="stab-bar" style="margin-bottom:0;gap:4px 16px">'
+      +'<button class="stab'+(_pgemiTab!=='agenda'?' on':'')+'" id="pgemi-tab-mensajes" onclick="_pgemiSetTab(\'mensajes\')">Mensajes</button>'
+      +'<button class="stab'+(_pgemiTab==='agenda'?' on':'')+'" id="pgemi-tab-agenda" onclick="_pgemiSetTab(\'agenda\')">Agenda</button>'
+    +'</div>'
+    +'<div id="panel-gemi-body" style="max-height:300px;overflow-y:auto"><div style="font-size:11px;color:var(--text-muted);padding:10px 0">Cargando…</div></div>'
   +'</div>';
 }
 function _pgemiSetTab(t){_pgemiTab=t;_pgemiRender();}
@@ -6221,7 +6236,7 @@ function _renderPanelGemi(d){
   var fmt=function(f){if(!f)return '';var x=new Date(String(f).substring(0,10)+'T12:00:00');return isNaN(x)?'':x.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});};
   if(!msgs.length){el.innerHTML='<div style="font-size:11px;color:var(--text-muted);padding:12px 0">Sin mensajes por ahora.</div>';return;}
   el.innerHTML='<div style="display:flex;flex-direction:column;gap:12px">'+msgs.map(function(m){
-    var link=m.url?'<a href="'+(m.url||'').replace(/"/g,'%22')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-family:var(--mono);font-size:9px;color:#066750;text-decoration:none;letter-spacing:0.03em">ABRIR ↗</a>':'';
+    var link=m.url?'<a href="'+(m.url||'').replace(/"/g,'%22')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-family:var(--mono);font-size:9px;color:#066750;text-decoration:none;letter-spacing:0.03em">ABRIR <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>':'';
     return '<div style="display:flex;gap:9px;align-items:flex-start">'
       +'<img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:24px;height:24px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">'
       +'<div class="pgemi-bubble">'
@@ -6250,7 +6265,7 @@ function _refCardHTML(cfg){
     return '<div style="margin-bottom:13px"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">'+title+'</div>'
       +'<div style="display:flex;flex-wrap:wrap;gap:6px">'+items.map(function(it){
         var url=linkFn?linkFn(it):null;
-        if(url)return '<a href="'+url+'" target="_blank" rel="noopener" style="text-decoration:none;border:0.8px solid var(--border);border-radius:6px;padding:4px 9px;font-size:11px;color:var(--text)">'+it+' <span style="color:var(--green)">↗</span></a>';
+        if(url)return '<a href="'+url+'" target="_blank" rel="noopener" style="text-decoration:none;border:0.8px solid var(--border);border-radius:6px;padding:4px 9px;font-size:11px;color:var(--text)">'+it+' <span style="color:var(--green)"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span></a>';
         return '<span style="border:0.8px solid var(--border);border-radius:6px;padding:4px 9px;font-size:11px;color:var(--text-sec)">'+it+'</span>';
       }).join('')+'</div></div>';
   }
@@ -6370,7 +6385,7 @@ function _consSenal(sen){
         +'<span class="cons-prio" style="color:'+r.r[1]+'">'+r.r[0]+'</span>'
         +'</div>';
     }).join('');})()
-    +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:10px;line-height:1.55;border-top:0.8px solid var(--border);padding-top:8px">CÓMO SE LEE · La <b>barra</b> es el volumen relativo de cada tema frente al más activo. «Menc.» = veces que ese tema apareció en <b>noticias de medios</b> (el feed diario de Scope) al cruzar sus palabras clave, en la ventana más corta con datos (7→30→90 días). La flecha compara contra el periodo anterior. «Prior.» es el peso que tú le diste en Editar terminal, no el volumen.</div>';
+    +'<div class="cons-help" id="cons-senal-help"><div class="cons-help-t" onclick="this.parentNode.classList.toggle(\'open\')">Cómo se lee <span class="cons-help-caret">▾</span></div><div class="cons-help-b">La <b>barra</b> es el volumen relativo de cada tema frente al más activo. «Menc.» = veces que ese tema apareció en <b>noticias de medios</b> (el feed diario de Scope) al cruzar sus palabras clave, en la ventana más corta con datos (7→30→90 días). La flecha compara contra el periodo anterior. «Prior.» es el peso que tú le diste en Editar terminal, no el volumen.</div></div>';
 }
 function _consComs(coms){
   var el=document.getElementById('cons-coms');if(!el)return;
@@ -6385,7 +6400,7 @@ function _consComs(coms){
         +'<td style="font-family:var(--mono)">'+((c.integrantes||[]).length)+'</td>'
         +'<td style="font-family:var(--mono);font-size:10px">'+(c.ur?fmtReunion(c.ur):'—')+'</td>'
         +'<td style="font-family:var(--mono);font-size:10px;color:'+(c.pr?'var(--green)':'var(--dim)')+'">'+(c.pr?fmtReunion(c.pr):'—')+'</td>'
-        +'<td>'+(c.at?'<a href="'+c.at+'" target="_blank" rel="noopener" style="font-size:10px;font-weight:600">Asuntos ↗</a>':'')+'</td>'
+        +'<td>'+(c.at?'<a href="'+c.at+'" target="_blank" rel="noopener" style="font-size:10px;font-weight:600">Asuntos <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>':'')+'</td>'
         +'</tr>';
     }).join('')+'</table>';
 }
@@ -6429,23 +6444,27 @@ function _consLegs(legs){
       if(t.length>120)t=t.slice(0,118).replace(/\s+\S*$/,'')+'…';
       var inner='<span style="color:var(--text-muted);flex-shrink:0">'+f+'</span>'
         +'<span style="flex:1;min-width:0">'+t+'</span>'
-        +(it.url?'<span style="color:var(--green);flex-shrink:0">↗</span>':'');
+        +(it.url?'<span style="color:var(--green);flex-shrink:0"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span>':'');
       var st='display:flex;gap:8px;align-items:baseline;padding:6px 0;border-top:0.8px solid rgba(0,0,0,0.05);font-size:11px;color:var(--text2);line-height:1.45;text-decoration:none';
       return it.url
         ?'<a href="'+(it.url||'').replace(/'/g,'%27')+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="'+st+'">'+inner+'</a>'
         :'<div style="'+st+'">'+inner+'</div>';
     }).join('');
-    return '<div class="cons-leg-card" style="flex-direction:column;align-items:stretch;cursor:'+(instr.length?'pointer':'default')+'" '+(instr.length?'onclick="_toggleConsLeg(\''+uid+'\')"':'')+'>'
+    var comsAll=(l.coms||[]).filter(Boolean);
+    function info(lab,val){return val?'<div style="display:flex;gap:8px;padding:5px 0;border-top:0.8px solid rgba(0,0,0,0.05);font-size:11px;line-height:1.4"><span style="font-family:var(--mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);flex:0 0 82px">'+lab+'</span><span style="flex:1;min-width:0;color:var(--text)">'+val+'</span></div>':'';}
+    var detalle=info('Partido',l.partido||'')
+      +info('Cargo',l.cargo||'Integrante')
+      +info('Comisión'+(comsAll.length>1?'es':''),comsAll.join(' · '))
+      +(instr.length?'<div style="font-family:var(--mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin:9px 0 2px">Últimas propuestas ('+instr.length+')</div>'+listado:'<div style="font-size:10px;color:var(--dim);padding:6px 0">Sin propuestas registradas en la gaceta por ahora.</div>');
+    return '<div class="cons-leg-card" style="flex-direction:column;align-items:stretch;cursor:pointer" onclick="_toggleConsLeg(\''+uid+'\')">'
       +'<div style="display:flex;align-items:center;gap:10px">'+av
       +'<div style="flex:1;min-width:0"><div style="font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
-      +'<div style="font-family:var(--mono);font-size:8px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(l.cargo||'Integrante')+' · '+l.coms[0]+'</div></div>'
+      +'<div style="font-family:var(--mono);font-size:8px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(l.cargo||'Integrante')+' · '+(comsAll[0]||'')+'</div></div>'
       +(logo?'<img src="'+logo+'" style="height:16px;width:auto;max-width:40px;object-fit:contain;flex-shrink:0" alt="'+l.partido+'">':'')
-      +'<a href="'+silUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Ficha en el SIL" style="font-size:10px;color:var(--green);text-decoration:none;flex-shrink:0">SIL ↗</a>'
+      +'<a href="'+silUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Ficha en el SIL" style="font-size:10px;color:var(--green);text-decoration:none;flex-shrink:0">SIL <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>'
       +'</div>'
-      +(instr.length
-        ?'<div style="font-size:10px;color:var(--text-muted);margin-top:7px;user-select:none">Últimas propuestas ('+instr.length+') <span id="'+uid+'-arr" style="display:inline-block;transition:transform 0.2s;font-size:8px">▼</span></div>'
-         +'<div id="'+uid+'" style="display:none;margin-top:4px">'+listado+'</div>'
-        :'')
+      +'<div style="font-size:10px;color:var(--text-muted);margin-top:7px;user-select:none">Ver detalle <span id="'+uid+'-arr" style="display:inline-block;transition:transform 0.2s;font-size:8px">▾</span></div>'
+      +'<div id="'+uid+'" style="display:none;margin-top:5px">'+detalle+'</div>'
       +'</div>';
   }).join('');
 }
@@ -6571,13 +6590,25 @@ function _consNormas(allKw){
 }
 function _consKwFeed(userKw){
   var el=document.getElementById('cons-kw');if(!el)return;
-  var arts=noticias.filter(function(n){return _consMatch((n.titulo||'')+' '+(n.resumen||''),userKw);})
-    .sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);}).slice(0,6);
-  if(!arts.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Nada aún para: '+userKw.join(', ')+'</div>';return;}
-  el.innerHTML=arts.map(function(n){
-    var f=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
-    return '<div class="cons-feed-it" onclick="window.open(\''+(n.url||'#').replace(/'/g,'%27')+'\',\'_blank\')">'
-      +'<div class="cft">'+n.titulo+'</div><div class="cfm">'+f+'</div>'+_liBtn(n.url,n.titulo)+'</div>';
+  var blocks=userKw.map(function(kw){
+    var arts=noticias.filter(function(n){return _consMatch((n.titulo||'')+' '+(n.resumen||''),[kw]);})
+      .sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);});
+    return {kw:kw,arts:arts};
+  });
+  if(!blocks.some(function(b){return b.arts.length;})){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Nada aún para tus keywords: '+userKw.join(', ')+'</div>';return;}
+  // Vista ejecutiva: una columna por keyword, cada una con su conteo y sus últimas menciones
+  el.style.display='grid';el.style.gridTemplateColumns='repeat(auto-fill,minmax(230px,1fr))';el.style.gap='0 24px';
+  el.innerHTML=blocks.map(function(b){
+    var head='<div style="display:flex;align-items:baseline;gap:8px;padding:1px 0 7px;border-bottom:0.8px solid var(--border);margin-bottom:6px">'
+      +'<span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--green)">'+_escUser(b.kw)+'</span>'
+      +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-left:auto">'+b.arts.length+'</span></div>';
+    if(!b.arts.length)return '<div style="min-width:0;margin-bottom:14px">'+head+'<div style="font-size:10px;color:var(--dim);padding:4px 0">Sin menciones aún</div></div>';
+    var rows=b.arts.slice(0,4).map(function(n){
+      var f=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+      return '<div class="cons-feed-it" onclick="window.open(\''+(n.url||'#').replace(/'/g,'%27')+'\',\'_blank\')">'
+        +'<div class="cft">'+n.titulo+'</div><div class="cfm">'+f+'</div>'+_liBtn(n.url,n.titulo)+'</div>';
+    }).join('');
+    return '<div style="min-width:0;margin-bottom:14px">'+head+rows+'</div>';
   }).join('');
 }
 // ── Compartir en LinkedIn (copia texto pre-armado + abre compositor) ──
@@ -6987,7 +7018,7 @@ function _renderUserMenu(){
       +'<div style="min-width:0"><div class="um-name">'+full+'</div><div class="um-email">'+email+'</div></div></div>'
     +(meta?'<div class="um-meta">'+meta+'</div>':'')
     +'<button class="um-item" onclick="_pickAvatar()">Cambiar foto</button>'
-    +'<button class="um-item" onclick="_umClose();window.open(\'https://www.linkedin.com/feed/?shareActive=true\',\'_blank\',\'noopener\')">Publicar en LinkedIn ↗</button>'
+    +'<button class="um-item" onclick="_umClose();window.open(\'https://www.linkedin.com/feed/?shareActive=true\',\'_blank\',\'noopener\')">Publicar en LinkedIn <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></button>'
     +'<button class="um-item" onclick="_umClose();openAuth(\'pending\')">Método de pago</button>'
     +'<button class="um-item danger" onclick="_umClose();_logout()">Cerrar sesión</button>';
 }
