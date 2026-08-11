@@ -687,8 +687,9 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-welcome .seen{background:none;border:none;font-family:var(--mono);font-size:10px;color:var(--text-muted);cursor:pointer;padding:0;text-decoration:underline;letter-spacing:.03em}
 .cons-welcome .seen:hover{color:var(--green)}
 .cons-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.cons-edit{font-family:var(--mono);font-size:10px;color:var(--text-sec);cursor:pointer;letter-spacing:0.04em;border:0.8px solid var(--border);padding:7px 12px;border-radius:8px;background:none;transition:color .12s,border-color .12s}
+.cons-edit{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--text-sec);cursor:pointer;letter-spacing:0;border:0.8px solid var(--border);padding:7px 13px;border-radius:8px;background:none;transition:color .12s,border-color .12s;display:inline-flex;align-items:center;gap:6px}
 .cons-edit:hover{color:var(--green);border-color:var(--green)}
+.cons-edit svg{width:13px;height:13px;flex-shrink:0}
 /* Resumen: tarjetas de selección estilo Estados/Radar, con hover que revela lo elegido */
 .cons-seltiles{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:15px}
 .cons-seltile{position:relative;padding:8px 16px 8px 12px;border-left:2px solid var(--border);cursor:default;transition:border-color .14s}
@@ -5947,7 +5948,7 @@ function renderConsola(){
     +'<div class="cons-actions">'
     +'<button class="cons-edit" onclick="_consPrintReport()" title="Genera un reporte imprimible / PDF con la foto del día de tu terminal">Imprimir reporte</button>'
     +'<button class="cons-edit" onclick="_consCumplOpen()" title="Marca los instrumentos con los que ya cumples">Mi cumplimiento</button>'
-    +'<button class="cons-edit" onclick="openConsolaWizard()">Editar terminal</button>'
+    +'<button class="cons-edit" onclick="openConsolaWizard()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Editar terminal</button>'
     +'</div>'
     +'</div>'
     +'<div class="cons-shell">'
