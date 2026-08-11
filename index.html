@@ -775,7 +775,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-onboard{position:relative;max-width:660px;margin:32px auto 64px;text-align:center;padding:46px 28px;overflow:hidden;animation:cwlRise .7s cubic-bezier(.2,.7,.3,1)}
 .cob-glow{position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:560px;height:360px;background:radial-gradient(ellipse at center,rgba(6,103,80,0.12),transparent 68%);pointer-events:none}
 .cob-inner{position:relative}
-.cob-logo{height:34px;width:auto;margin-bottom:26px}
+.cob-logo{display:block;height:34px;width:auto;margin:0 auto 26px}
 .cob-kick{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);margin-bottom:18px;display:inline-flex;align-items:center;gap:8px}
 .cob-kick::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:cobPulse 1.6s infinite}
 @keyframes cobPulse{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
@@ -5803,9 +5803,8 @@ function renderConsola(){
       +'<div class="cob-glow"></div>'
       +'<div class="cob-inner">'
         +'<img class="cob-logo" src="/assets/scope-logo.png?v=2" alt="Scope">'
-        +'<div class="cob-kick">Terminal personal · inteligencia regulatoria</div>'
         +'<div class="cob-h">Tu monitoreo,<br>a tu medida</div>'
-        +'<div class="cob-sub">Scope arma una terminal viva con la señal, las sesiones, las normas del DOF y las menciones que le importan a tu organización — con los mismos datos de la plataforma, al día.</div>'
+        +'<div class="cob-sub">Personaliza tu terminal viva con la señal, sesiones, normas e instrumentos que le importan a tu organización. Utiliza los datos de Scope filtrados para ti.</div>'
         +'<div class="cob-status" id="cob-status"></div>'
         +'<button class="cob-cta" onclick="openConsolaWizard()">Personaliza tu Terminal →</button>'
         +'<div class="cob-caps"><span>Señal por tema</span><span>Tus estados</span><span>Comisiones</span><span>Legisladores</span><span>Referencias</span><span>Alertas</span></div>'
