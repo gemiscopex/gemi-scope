@@ -702,6 +702,15 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-send{background:var(--green);color:#fff;border:none;border-radius:9px;width:42px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .12s}
 .cons-send:hover{background:#0E8C74}
+/* Wizard · pestañas de Referencias (verdes, con » de secuencia, interactivas) */
+.wref-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px;margin-bottom:16px}
+.wref-tab{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--green);background:none;border:none;padding:6px 4px;cursor:pointer;transition:color .12s,transform .12s}
+.wref-tab .wchev{color:var(--text-muted);font-weight:700;font-size:14px;transition:color .12s}
+.wref-tab:last-child .wchev{display:none}
+.wref-tab:hover{color:#0E8C74;transform:translateY(-1px)}
+.wref-tab:hover .wchev{color:var(--green)}
+.wref-tab.on{color:#066750}
+.wref-tab.on>span:first-child{border-bottom:2px solid #066750;padding-bottom:3px}
 .cons-edit{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--text-sec);cursor:pointer;letter-spacing:0;border:0.8px solid var(--border);padding:7px 13px;border-radius:8px;background:none;transition:color .12s,border-color .12s;display:inline-flex;align-items:center;gap:6px}
 .cons-edit:hover{color:var(--green);border-color:var(--green)}
 .cons-edit svg{width:13px;height:13px;flex-shrink:0}
@@ -5425,8 +5434,8 @@ function _wizPaintBody(){
   }
   else if(p==='referencias'){
     var tabs=[['noms','NOMs'],['impuestos','Impuestos'],['materiales','Materiales'],['instrumentos','Instrumentos']];
-    b.innerHTML='<div class="stab-bar" style="margin-bottom:14px">'+tabs.map(function(t){
-        return '<button class="stab'+(_wiz.refTab===t[0]?' on':'')+'" onclick="_wizSetRefTab(\''+t[0]+'\')">'+t[1]+'</button>';
+    b.innerHTML='<div class="wref-tabs">'+tabs.map(function(t){
+        return '<button class="wref-tab'+(_wiz.refTab===t[0]?' on':'')+'" onclick="_wizSetRefTab(\''+t[0]+'\')"><span>'+t[1]+'</span><span class="wchev">»</span></button>';
       }).join('')+'</div><div id="cw-ref-body"></div>';
     _wizPaintRef();
   }
