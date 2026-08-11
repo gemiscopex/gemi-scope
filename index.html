@@ -789,6 +789,12 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-onboard{position:relative;max-width:660px;margin:32px auto 64px;text-align:center;padding:46px 28px;overflow:hidden;animation:cwlRise .7s cubic-bezier(.2,.7,.3,1)}
 .cob-inner{position:relative}
 .cob-logo{display:block;height:34px;width:auto;margin:0 auto 26px}
+.cob-dk{display:none}
+:root[data-theme="dark"] .cob-lt{display:none}
+:root[data-theme="dark"] .cob-dk{display:block}
+.auth-dk{display:none}
+:root[data-theme="dark"] .auth-lt{display:none}
+:root[data-theme="dark"] .auth-dk{display:inline}
 .cob-kick{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);margin-bottom:18px;display:inline-flex;align-items:center;gap:8px}
 .cob-kick::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:cobPulse 1.6s infinite}
 @keyframes cobPulse{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
@@ -798,9 +804,11 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cob-status b{color:var(--green);font-weight:600}
 .cob-cta-link{display:inline-block;color:#066750;font-family:var(--sans);font-size:16px;font-weight:700;letter-spacing:-0.01em;cursor:pointer;transition:opacity .15s}
 .cob-cta-link:hover{opacity:.62}
-.cob-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:9px 22px;margin-top:32px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
-.cob-caps span{display:inline-flex;align-items:center;gap:6px}
-.cob-caps span::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--green);opacity:.55}
+.cob-ticker{position:relative;margin-top:36px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+.cob-track{display:inline-flex;white-space:nowrap;animation:cobScroll 38s linear infinite;will-change:transform}
+.cob-cap{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted);padding:0 22px;display:inline-flex;align-items:center;flex-shrink:0}
+.cob-cap::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--green);opacity:.55;margin-right:11px}
+@keyframes cobScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .cw-body{padding:16px 24px;overflow-y:auto;flex:1;min-height:280px}
 .cw-foot{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-top:1px solid var(--border)}
 .cw-count{font-family:var(--mono);font-size:10px;color:var(--dim)}
@@ -5654,6 +5662,9 @@ var SCOPE_LOADING=[
   'Afinando tu radar…',
   'Ordenando lo que importa…'
 ];
+function _cobCaps(){
+  return ['Señal por tema','Tus estados','Comisiones','Legisladores','Referencias','Alertas legales','Radar temático','NOMs','Impuestos verdes','DOF diario','Congreso de la Unión','Mañanera'].map(function(c){return '<span class="cob-cap">'+c+'</span>';}).join('');
+}
 var _cobTimer=null;
 function _consOnboardStatus(){
   var frases=SCOPE_LOADING,i=0;
@@ -5829,12 +5840,13 @@ function renderConsola(){
   if(!consolaConfigurada()){
     root.innerHTML='<div class="cons-onboard">'
       +'<div class="cob-inner">'
-        +'<img class="cob-logo" src="/assets/scope-logo.png?v=2" alt="Scope">'
-        +'<div class="cob-h">Tu monitoreo,<br>a tu medida</div>'
+        +'<img class="cob-logo cob-lt" src="/assets/scope-logo.png?v=2" alt="Scope">'
+        +'<img class="cob-logo cob-dk" src="/assets/scope-logo-dark.png?v=2" alt="Scope">'
+        +'<div class="cob-h">Tu monitoreo<br>a tu medida</div>'
         +'<div class="cob-sub">Personaliza tu terminal viva con la señal, sesiones, normas e instrumentos que le importan a tu organización. Utiliza los datos de Scope filtrados para ti.</div>'
         +'<div class="cob-status" id="cob-status"></div>'
         +'<div class="cob-cta-link" onclick="openConsolaWizard()">Personaliza tu Terminal →</div>'
-        +'<div class="cob-caps"><span>Señal por tema</span><span>Tus estados</span><span>Comisiones</span><span>Legisladores</span><span>Referencias</span><span>Alertas</span></div>'
+        +'<div class="cob-ticker"><div class="cob-track">'+_cobCaps()+_cobCaps()+'</div></div>'
       +'</div>'
     +'</div>';
     _consOnboardStatus();
@@ -6528,7 +6540,7 @@ function _ensureAuthModal(){
   d.innerHTML=
     '<div style="background:var(--card);border-radius:20px;width:100%;max-width:400px;padding:38px 36px 30px;box-shadow:0 24px 64px rgba(0,0,0,.24);animation:modalIn .22s ease;position:relative" onclick="event.stopPropagation()">'
     +'<button onclick="closeAuth()" style="position:absolute;top:15px;right:17px;background:none;border:none;cursor:pointer;font-size:20px;color:var(--text-muted);line-height:1;padding:4px">×</button>'
-    +'<div style="text-align:center;margin-bottom:24px"><img src="/assets/scope-logo.png?v=2" alt="Scope" style="height:30px;width:auto"></div>'
+    +'<div style="text-align:center;margin-bottom:24px"><img class="auth-lt" src="/assets/scope-logo.png?v=2" alt="Scope" style="height:30px;width:auto"><img class="auth-dk" src="/assets/scope-logo-dark.png?v=2" alt="Scope" style="height:30px;width:auto"></div>'
     // ---- LOGIN ----
     +'<div class="authv" id="auth-login">'
       +'<div style="text-align:center;font-size:20px;font-weight:700;color:var(--text);margin:0 0 5px">Inicia sesión</div>'
