@@ -6638,13 +6638,12 @@ function _umClose(){var el=document.getElementById('user-menu');if(el)el.classLi
 function _renderUserMenu(){
   var el=document.getElementById('user-menu');if(!el)return;
   var full=_escUser(_userFull()||'Mi cuenta'),email=_escUser(_userEmail()),emp=_escUser(_userEmpresa());
-  var plan=_perfil&&_perfil.plan,vence=_perfil&&_perfil.vence,rol=(_perfil&&_perfil.rol)||'cliente';
+  var plan=_perfil&&_perfil.plan,vence=_perfil&&_perfil.vence;
   var meta='';
   if(plan||vence)meta+='<div>Plan <b>'+_escUser(plan||'—')+'</b>'+(vence?(' · vence '+_escUser(vence)):'')+'</div>';
   if(emp)meta+='<div>Empresa <b>'+emp+'</b></div>';
-  meta+='<div>Rol <b>'+_escUser(rol)+'</b></div>';
   el.innerHTML='<div class="um-head"><div class="um-name">'+full+'</div><div class="um-email">'+email+'</div></div>'
-    +'<div class="um-meta">'+meta+'</div>'
+    +(meta?'<div class="um-meta">'+meta+'</div>':'')
     +'<button class="um-item" onclick="_umClose();openAuth(\'pending\')">Método de pago</button>'
     +'<button class="um-item danger" onclick="_umClose();_logout()">Cerrar sesión</button>';
 }
