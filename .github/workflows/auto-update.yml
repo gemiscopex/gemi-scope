@@ -36,7 +36,19 @@ jobs:
           git add data/comisiones.json data/fotos_legisladores.json data/datosgob.json data/perfil-estados.json data/noticias-estatales.json data/sitios-contaminados.json data/emisiones-gei.json
           if git diff --cached --quiet; then
             echo "Sin cambios"
-          else
-            git commit -m "auto: datos actualizados $(TZ=America/Mexico_City date +'%Y-%m-%d %H:%M CDMX')"
-            git push
+            exit 0
           fi
+          git commit -m "auto: datos actualizados $(TZ=America/Mexico_City date +'%Y-%m-%d %H:%M CDMX')"
+          # Reintenta con rebase: si alguien empujó al mismo tiempo (p. ej. un deploy de HTML),
+          # el scraper solo toca data/*.json, así que el rebase aplica limpio y no pierde nada.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "push ok en intento $i"
+              exit 0
+            fi
+            echo "push rechazado; reintento $i tras rebase con remoto…"
+            git pull --rebase origin main || git rebase --abort
+            sleep 4
+          done
+          echo "No se pudo hacer push tras varios intentos" >&2
+          exit 1
