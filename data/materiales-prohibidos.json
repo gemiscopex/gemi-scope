@@ -1,110 +1,252 @@
 {
  "_meta": {
-  "nota": "Restricciones estatales a plásticos de un solo uso y materiales. Dataset v1: 10 entidades con documentación sólida; ~29 entidades tienen alguna restricción — en expansión.",
-  "actualizado": "2026-07-22",
-  "fuentes": [
-   "https://en15dias.com/politica-ambiental/estados-con-leyes-con-prohibicion-de-plasticos-en-mexico/",
-   "https://sonplayas.com/reportajes/quien-ya-le-dijo-no-al-plastico-en-mexico/",
-   "https://tabasco.gob.mx/noticias/entra-en-vigor-ley-que-prohibe-uso-de-bolsas-de-plastico-popotes-y-unicel"
+  "nota": "Restricciones estatales a plásticos de un solo uso, por entidad y tipo. Matriz de 31 entidades (base GEMI/Santiago); 10 entidades con fuente legal documentada.",
+  "actualizado": "2026-08-11",
+  "fuente": "GEMI · Base de datos Scope (Santiago) + documentación legal estatal",
+  "categorias": [
+   "Bolsas y popotes",
+   "Utensilios desechables",
+   "Poliestireno expandido",
+   "Microplásticos",
+   "Oxobiodegradables",
+   "Empaques"
   ]
  },
  "estados": {
-  "Veracruz": {
-   "desde": 2018,
+  "Aguascalientes": {
    "materiales": [
-    "Bolsas de plástico",
-    "Popotes"
-   ],
-   "instrumento": "Reforma a la Ley Estatal de Protección Ambiental (primera entidad del país)",
-   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=120276&ambito=ESTATAL"
-  },
-  "Sonora": {
-   "desde": 2018,
-   "materiales": [
-    "Bolsas no biodegradables",
-    "Popotes"
-   ],
-   "instrumento": "Reforma en materia de residuos; popotes prohibidos en establecimientos de alimentos",
-   "url": "https://normas.cndh.org.mx/Documentos/Sonora/Ley_EEPAE_Son.pdf"
-  },
-  "Oaxaca": {
-   "desde": 2019,
-   "materiales": [
-    "Bolsas de plástico",
-    "Popotes",
-    "Unicel (poliestireno expandido)"
-   ],
-   "instrumento": "Reforma a la Ley para la Prevención y Gestión Integral de Residuos del estado",
-   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=24382&ambito=ESTATAL"
-  },
-  "Quintana Roo": {
-   "desde": 2019,
-   "materiales": [
-    "Bolsas de plástico",
-    "Popotes",
-    "Unicel (poliestireno expandido)"
-   ],
-   "instrumento": "Reforma a la Ley para la Prevención y Gestión Integral de Residuos del estado",
-   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=77857&ambito=ESTATAL"
+    "Bolsas y popotes",
+    "Poliestireno expandido"
+   ]
   },
   "Baja California Sur": {
-   "desde": 2019,
    "materiales": [
-    "Bolsas de plástico",
-    "Contenedores de poliestireno",
-    "Popotes"
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido",
+    "Microplásticos",
+    "Empaques"
    ],
+   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=20085&ambito=ESTATAL",
    "instrumento": "Restricción de venta y distribución en todo el territorio estatal",
-   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=20085&ambito=ESTATAL"
+   "desde": 2019
   },
-  "Jalisco": {
-   "desde": 2019,
+  "Campeche": {
    "materiales": [
-    "Unicel (poliestireno expandido)",
-    "Bolsas de plástico",
-    "Popotes"
-   ],
-   "instrumento": "Reforma a la Ley Estatal del Equilibrio Ecológico y la Protección al Ambiente",
-   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=82249&ambito=ESTATAL"
+    "Bolsas y popotes"
+   ]
   },
-  "Guerrero": {
-   "desde": 2019,
+  "Chiapas": {
    "materiales": [
-    "Unicel (envases de polietileno expandido)",
-    "Popotes",
-    "Cucharas y vasos de plástico"
-   ],
-   "instrumento": "Prohibición de uso y entrega en establecimientos comerciales",
-   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=36616&ambito=ESTATAL"
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido"
+   ]
   },
-  "Hidalgo": {
-   "desde": 2019,
+  "Chihuahua": {
    "materiales": [
-    "Popotes",
-    "Bolsas de plástico",
-    "Unicel (poliestireno expandido)"
-   ],
-   "instrumento": "Prohibición estatal aprobada por unanimidad en el Congreso local",
-   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=23623&ambito=ESTATAL"
-  },
-  "Tabasco": {
-   "desde": 2020,
-   "materiales": [
-    "Bolsas de plástico",
-    "Popotes",
-    "Unicel (poliestireno expandido)"
-   ],
-   "instrumento": "Reforma de ley en vigor desde enero de 2020",
-   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=26706&ambito=ESTATAL"
+    "Bolsas y popotes"
+   ]
   },
   "Ciudad de México": {
-   "desde": 2020,
    "materiales": [
-    "Bolsas de plástico (2020)",
-    "Desechables de un solo uso: cubiertos, popotes, vasos (2021)"
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido",
+    "Microplásticos",
+    "Empaques"
    ],
+   "url": "https://paot.org.mx/centro/leyes/df/pdf/2021/LEY_RESIDUOS_SOLIDOS_25_02_2021.pdf",
    "instrumento": "Ley de Residuos Sólidos de la CDMX, reforma 2019 con entrada en vigor escalonada",
-   "url": "https://paot.org.mx/centro/leyes/df/pdf/2021/LEY_RESIDUOS_SOLIDOS_25_02_2021.pdf"
+   "desde": 2020
+  },
+  "Coahuila": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Poliestireno expandido"
+   ]
+  },
+  "Colima": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido"
+   ]
+  },
+  "Durango": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido"
+   ]
+  },
+  "México": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido"
+   ]
+  },
+  "Guanajuato": {
+   "materiales": []
+  },
+  "Guerrero": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido",
+    "Empaques"
+   ],
+   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=36616&ambito=ESTATAL",
+   "instrumento": "Prohibición de uso y entrega en establecimientos comerciales",
+   "desde": 2019
+  },
+  "Hidalgo": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido"
+   ],
+   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=23623&ambito=ESTATAL",
+   "instrumento": "Prohibición estatal aprobada por unanimidad en el Congreso local",
+   "desde": 2019
+  },
+  "Jalisco": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido"
+   ],
+   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=82249&ambito=ESTATAL",
+   "instrumento": "Reforma a la Ley Estatal del Equilibrio Ecológico y la Protección al Ambiente",
+   "desde": 2019
+  },
+  "Michoacán": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido",
+    "Empaques"
+   ]
+  },
+  "Morelos": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido"
+   ]
+  },
+  "Nayarit": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Poliestireno expandido",
+    "Empaques"
+   ]
+  },
+  "Nuevo León": {
+   "materiales": [
+    "Bolsas y popotes"
+   ]
+  },
+  "Oaxaca": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Poliestireno expandido"
+   ],
+   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=24382&ambito=ESTATAL",
+   "instrumento": "Reforma a la Ley para la Prevención y Gestión Integral de Residuos del estado",
+   "desde": 2019
+  },
+  "Puebla": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Oxobiodegradables"
+   ]
+  },
+  "Querétaro": {
+   "materiales": [
+    "Bolsas y popotes"
+   ]
+  },
+  "Quintana Roo": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido"
+   ],
+   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=77857&ambito=ESTATAL",
+   "instrumento": "Reforma a la Ley para la Prevención y Gestión Integral de Residuos del estado",
+   "desde": 2019
+  },
+  "San Luis Potosí": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido"
+   ]
+  },
+  "Sinaloa": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido",
+    "Empaques"
+   ]
+  },
+  "Sonora": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido",
+    "Oxobiodegradables",
+    "Empaques"
+   ],
+   "url": "https://normas.cndh.org.mx/Documentos/Sonora/Ley_EEPAE_Son.pdf",
+   "instrumento": "Reforma en materia de residuos; popotes prohibidos en establecimientos de alimentos",
+   "desde": 2018
+  },
+  "Tabasco": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido"
+   ],
+   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=26706&ambito=ESTATAL",
+   "instrumento": "Reforma de ley en vigor desde enero de 2020",
+   "desde": 2020
+  },
+  "Tamaulipas": {
+   "materiales": [
+    "Bolsas y popotes"
+   ]
+  },
+  "Tlaxcala": {
+   "materiales": [
+    "Empaques"
+   ]
+  },
+  "Veracruz": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido",
+    "Empaques"
+   ],
+   "url": "http://www.ordenjuridico.gob.mx/fichaOrdenamiento.php?idArchivo=120276&ambito=ESTATAL",
+   "instrumento": "Reforma a la Ley Estatal de Protección Ambiental (primera entidad del país)",
+   "desde": 2018
+  },
+  "Yucatán": {
+   "materiales": [
+    "Bolsas y popotes",
+    "Utensilios desechables",
+    "Poliestireno expandido"
+   ]
+  },
+  "Zacatecas": {
+   "materiales": [
+    "Bolsas y popotes"
+   ]
   }
  }
 }
