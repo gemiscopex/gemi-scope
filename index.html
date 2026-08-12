@@ -512,6 +512,25 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .sp-leg .ley-row{padding:9px 10px}
 .sp-leg .ley-row.zeb{background:rgba(13,27,42,0.025)}
 .sp-leg .ley-row.zeb:hover{background:rgba(0,158,144,0.07)}
+/* Residuos del expediente estatal: sistema visual homogéneo */
+.sp-res .res-h{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--green);padding-bottom:6px;border-bottom:0.8px solid var(--border);margin:26px 0 15px}
+.sp-res .res-h:first-child{margin-top:0}
+.sp-res .res-h .sub{color:var(--dim);font-weight:400;margin-left:8px;letter-spacing:0.04em}
+.sp-res .res-row{display:flex;gap:22px 32px;flex-wrap:wrap;margin-bottom:4px}
+.sp-res .res-st{flex:0 0 auto}
+.sp-res .res-v{font-size:23px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1;color:var(--text)}
+.sp-res .res-l{font-family:var(--mono);font-size:8.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-top:6px;line-height:1.4;max-width:130px}
+.sp-res .res-note{font-size:11px;color:var(--text-sec);line-height:1.55;margin:11px 0 2px}
+.sp-res .res-bar{display:flex;height:8px;border-radius:6px;overflow:hidden;margin:2px 0 10px}
+.sp-res .res-leg{display:flex;gap:18px;flex-wrap:wrap;font-size:11px;color:var(--text-sec)}
+.sp-res .res-leg span{display:inline-flex;align-items:center;gap:6px}
+.sp-res .res-leg i{width:8px;height:8px;display:inline-block;flex-shrink:0}
+.sp-res .res-crow{display:flex;align-items:center;gap:12px;padding:5px 0}
+.sp-res .res-crow .nm{flex:1;font-size:11px;color:var(--text)}
+.sp-res .res-crow .tk{width:90px;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden;flex-shrink:0}
+.sp-res .res-crow .tk i{display:block;height:100%;border-radius:6px}
+.sp-res .res-crow .vl{font-family:var(--mono);font-size:10px;color:var(--text-sec);min-width:78px;text-align:right}
+.sp-res .res-src{font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:24px;padding-top:13px;border-top:0.8px solid var(--border);line-height:1.7}
 .sp-gaceta-link{display:flex;align-items:center;gap:12px;padding:16px;background:var(--green-tint);border-radius:12px;text-decoration:none;color:var(--text);font-weight:600;font-size:14px;margin-bottom:14px;border:1px solid rgba(0,158,144,0.15);transition:background 0.15s}
 .sp-gaceta-link:hover{background:rgba(0,158,144,0.15)}
 .sp-empty{text-align:center;padding:28px;color:var(--text-muted);font-size:13px}
@@ -1263,7 +1282,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
   <!-- TAB: ACTORES -->
   <div id="tab-congreso" class="tab-content" style="padding:28px 0">
     <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Actores</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Quién decide en la agenda ambiental · LXVI Legislatura</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Quién decide en la agenda ambiental</div>
     <div class="leg-sub-bar">
       <button class="leg-sub-btn active" id="act-sub-federal" onclick="showActoresSub('federal',this)">Federal</button>
       <button class="leg-sub-btn" id="act-sub-estatal" onclick="showActoresSub('estatal',this)">Estatal</button>
@@ -1799,7 +1818,7 @@ function loadPresidencia(){
 }
 /* ── Banner semanal: noticia principal + semáforo de riesgo ── */
 function renderSemanaBanner(){
-  fetch('data/semana.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
+  fetch('data/semana.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{
     const el=document.getElementById('semana-banner');
     if(!el||!d||!d.titulo){if(el)el.style.display='none';return;}
     const MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
@@ -2147,7 +2166,7 @@ function renderAcuerdos(){
   if(!el)return;
   if(!_INTL){
     el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando…</div>';
-    fetch('data/internacional.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){_INTL=d||[];renderAcuerdos();}).catch(function(){_INTL=[];});
+    fetch('data/internacional.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(d){_INTL=d||[];renderAcuerdos();}).catch(function(){_INTL=[];});
     return;
   }
   var subbar='<div class="stab-bar" style="margin-bottom:18px">'
@@ -2367,7 +2386,7 @@ function renderComisionesEstatales(){
   var el=document.getElementById('comisiones-estatales');if(!el)return;
   if(!_comisionesEstatales){
     el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando comisiones estatales…</div>';
-    fetch('data/comisiones-estatales.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){_comisionesEstatales=d;renderComisionesEstatales();}).catch(function(){_comisionesEstatales={estados:[]};});
+    fetch('data/comisiones-estatales.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(d){_comisionesEstatales=d;renderComisionesEstatales();}).catch(function(){_comisionesEstatales={estados:[]};});
     return;
   }
   var estados=(_comisionesEstatales.estados||[]).slice().sort(function(a,b){return a.estado.localeCompare(b.estado,'es');});
@@ -2580,6 +2599,9 @@ var _CMP_COLORS=['#066750','#0E8C74','#2AA88B','#66B79E','#A7D8C8'];
 function _cmpColor(i){return _CMP_COLORS[i%_CMP_COLORS.length];}
 function _statePob(s){var p=(_perfilEstados&&_perfilEstados.estados&&_perfilEstados.estados[s])||{};return p.poblacion||0;}
 function _statePea(s){var p=(_perfilEstados&&_perfilEstados.estados&&_perfilEstados.estados[s])||{};return p.pea||0;}
+function _stateRes(s){return (_residuosData&&_residuosData.estados&&_residuosData.estados[s])||{};}
+function _stateDiag(s){return (_diagResiduos&&_diagResiduos.estados&&_diagResiduos.estados[s])||{};}
+function _stateResPct(s,field){var d=_stateDiag(s);return (d.municipios&&d[field]!=null)?(d[field]/d.municipios*100):0;}
 function _fmtK(v){v=Math.round(v||0);if(v>=1e6)return (v/1e6).toFixed(2).replace(/\.?0+$/,'')+'M';if(v>=1e3)return (v/1e3).toFixed(0)+'k';return ''+v;}
 // Grupo de barras horizontales: una barra por estado (color por serie), animadas.
 function _cmpBars(label,vals,opts){
@@ -2621,10 +2643,11 @@ function _cmpDonut(vals,centerLabel){
 // Exportar la comparación a CSV (abre en Excel; BOM UTF-8).
 function estadosExportCSV(){
   if(!_cmpStates.length)return;
-  var rows=[['Entidad','Leyes ambientales','Impuestos verdes','Materiales prohibidos','Poblacion 2020','PEA 2026Q1','PEA/poblacion %']];
+  var rows=[['Entidad','Leyes ambientales','Impuestos verdes','Materiales prohibidos','Residuos t/dia','kg/hab/dia','Recoleccion municipal %','Separacion en fuente %','Rellenos en cumplimiento','Tiraderos cielo abierto','Poblacion 2020','PEA 2026Q1','PEA/poblacion %']];
   _cmpStates.forEach(function(s){
-    var pob=_statePob(s),pea=_statePea(s);
-    rows.push([s,_nLeyes(s),_nImpuestos(s),_nMateriales(s),pob||'',pea||'',pob?(pea/pob*100).toFixed(1):'']);
+    var pob=_statePob(s),pea=_statePea(s),r=_stateRes(s),dg=_stateDiag(s);
+    var recp=_stateResPct(s,'con_recoleccion'),sepp=_stateResPct(s,'con_separacion');
+    rows.push([s,_nLeyes(s),_nImpuestos(s),_nMateriales(s),r.gen_tdia||'',r.gpc||'',recp?recp.toFixed(0):'',sepp?sepp.toFixed(0):'',dg.rellenos_cumplen!=null?dg.rellenos_cumplen:'',dg.tiraderos_cielo_abierto!=null?dg.tiraderos_cielo_abierto:'',pob||'',pea||'',pob?(pea/pob*100).toFixed(1):'']);
   });
   var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\r\n');
   var blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
@@ -2688,6 +2711,24 @@ function _cmpBody(){
         +'</div>';
     }).join('')+'<div style="font-size:9px;color:var(--text-muted)">Participación en unidades económicas · Censos Económicos (Data México)</div>';
   }
+  if(_cmpView==='residuos'){
+    if(!_residuosData&&!_diagResiduos)return '<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando datos de residuos…</div>';
+    var genV=_cmpStates.map(function(s){return _stateRes(s).gen_tdia||0;});
+    var gpcV=_cmpStates.map(function(s){return _stateRes(s).gpc||0;});
+    var recV=_cmpStates.map(function(s){return _stateResPct(s,'con_recoleccion');});
+    var sepV=_cmpStates.map(function(s){return _stateResPct(s,'con_separacion');});
+    var relV=_cmpStates.map(function(s){return _stateDiag(s).rellenos_cumplen||0;});
+    var tirV=_cmpStates.map(function(s){return _stateDiag(s).tiraderos_cielo_abierto||0;});
+    var miles=function(v){return v?Math.round(v).toLocaleString('es-MX'):'—';};
+    var out=_cmpBars('Generación · t/día',genV,{fmt:miles})
+      +_cmpBars('Per cápita · kg/hab/día',gpcV,{fmt:function(v){return v?v.toFixed(3):'—';}})
+      +_cmpBars('Recolección municipal · %',recV,{max:100,fmt:function(v){return v?Math.round(v)+'%':'—';}})
+      +_cmpBars('Separación en fuente · %',sepV,{max:100,fmt:function(v){return v?Math.round(v)+'%':'—';}})
+      +_cmpBars('Rellenos en cumplimiento',relV,{fmt:function(v){return v||'—';}})
+      +_cmpBars('Tiraderos a cielo abierto',tirV,{fmt:function(v){return v||'—';}});
+    out+='<div style="font-size:9px;font-family:var(--mono);color:var(--text-muted);margin-top:2px;line-height:1.6">Generación y per cápita: SEMARNAT 2026. Cobertura municipal y disposición: SEMARNAT–INECC, Diagnóstico Básico para la Gestión Integral de los Residuos (2026).</div>';
+    return out;
+  }
   if(_cmpView==='perfil'){
     var pobs=_cmpStates.map(_statePob), peas=_cmpStates.map(_statePea);
     var peapct=_cmpStates.map(function(s){var p=_statePob(s);return p?(_statePea(s)/p*100):0;});
@@ -2717,7 +2758,7 @@ function renderEstadosCompare(){
   var html='<div style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px">Comparar entidades · máx. 5</div>'
     +'<select onchange="estadosAddCmp(this)"'+(full?' disabled':'')+' style="width:100%;padding:7px 8px;border:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:13px;color:var(--text);margin-bottom:12px'+(full?';opacity:0.5':'')+'">'+opts+'</select>';
   if(!_cmpStates.length){
-    host.innerHTML=html+'<div style="font-size:12px;color:var(--text-muted);line-height:1.55">Elige hasta 5 entidades para compararlas con datos reales: leyes, impuestos, sector y perfil. Podrás descargar la comparación en CSV/Excel.</div>';
+    host.innerHTML=html+'<div style="font-size:12px;color:var(--text-muted);line-height:1.55">Elige hasta 5 entidades para compararlas con datos reales: leyes, impuestos, sector, residuos y perfil. Podrás descargar la comparación en CSV/Excel.</div>';
     return;
   }
   html+='<div style="margin-bottom:14px">'+_cmpStates.map(function(s,i){
@@ -2726,7 +2767,7 @@ function renderEstadosCompare(){
       +'<span style="flex:1;min-width:0">'+s+'</span>'
       +'<span onclick="estadosRemoveCmp(\''+s.replace(/'/g,"\\'")+'\')" title="Quitar" style="cursor:pointer;color:var(--text-muted);font-size:13px;padding:0 4px">✕</span></div>';
   }).join('')+'</div>';
-  var views=[['resumen','Resumen'],['impuestos','Impuestos'],['sector','Sector'],['perfil','Perfil']];
+  var views=[['resumen','Resumen'],['impuestos','Impuestos'],['sector','Sector'],['residuos','Residuos'],['perfil','Perfil']];
   html+='<div class="stab-bar" style="margin-bottom:15px">'
     +views.map(function(v){return '<span class="stab'+(v[0]===_cmpView?' on':'')+'" onclick="estadosCmpView(\''+v[0]+'\')">'+v[1]+'</span>';}).join('')+'</div>';
   html+=_cmpBody();
@@ -2757,8 +2798,9 @@ var _JURISPRUDENCIA=[
 ];
 // ── Gramática de fila canónica de SCOPE (plana, sin cajas; estatus a la derecha) ──
 function _oblStatus(text,color){
-  return '<span style="display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:0.07em;color:'+color+';white-space:nowrap">'
-    +'<span style="width:6px;height:6px;border-radius:50%;background:'+color+';flex-shrink:0"></span>'+String(text).toUpperCase()+'</span>';
+  var t=String(text||'').toLowerCase();t=t.charAt(0).toUpperCase()+t.slice(1);
+  return '<span style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.02em;color:'+color+';white-space:nowrap">'
+    +'<span style="width:6px;height:6px;border-radius:50%;background:'+color+';flex-shrink:0"></span>'+t+'</span>';
 }
 function _oblRow(o){
   var right='';
@@ -2769,11 +2811,11 @@ function _oblRow(o){
       +(o.url?'<div style="margin-top:'+((o.right||o.rightSub)?'6px':'0')+'"><a href="'+o.url+'" target="_blank" rel="noopener" style="font-size:13px;color:var(--green);text-decoration:none"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a></div>':'')
       +'</div>';
   }
-  var base='display:flex;align-items:flex-start;gap:20px;padding:14px 0;border-top:0.8px solid var(--border)';
+  var base='display:flex;align-items:flex-start;gap:20px;padding:13px 12px;border-top:0.8px solid var(--border)'+(o.zeb?';background:rgba(13,27,42,0.025)':'');
   var attrs=o.onclick?(' onclick="'+o.onclick+'" style="'+base+';cursor:pointer"'):(' style="'+base+'"');
   return '<div'+attrs+'>'
     +'<div style="flex:1;min-width:0">'
-      +'<div style="font-size:14px;font-weight:600;color:var(--text);line-height:1.35">'+o.title+'</div>'
+      +'<div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4">'+o.title+'</div>'
       +(o.desc?'<div style="font-size:12px;color:var(--text-sec);line-height:1.55;margin-top:4px;max-width:720px">'+o.desc+'</div>':'')
       +(o.meta?'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px;letter-spacing:0.02em">'+o.meta+'</div>':'')
     +'</div>'
@@ -2791,8 +2833,8 @@ function _jurisprudenciaHTML(){
   return '<div>'
     +_oblSubhead('Precedentes judiciales','Criterios de la SCJN sobre regulación ambiental estatal — para leer qué prohibiciones locales son constitucionales y cuáles no.')
     +'<div style="font-size:11px;color:var(--text-sec);background:rgba(0,158,144,0.05);border-left:2px solid var(--green);padding:8px 12px;margin-bottom:8px;line-height:1.5;max-width:760px">El criterio aplica a <b>prohibiciones absolutas de materiales</b> (invasión de competencia federal), <b>no</b> a la regulación estatal de gestión, recolección, plan de manejo o infraestructura post-consumo — competencia propia de los estados.</div>'
-    +_JURISPRUDENCIA.map(function(j){
-      return _oblRow({title:j.t,desc:j.resumen,meta:j.org+' · '+j.anio,right:_oblStatus(j.criterio,'var(--green)'),url:j.url});
+    +_JURISPRUDENCIA.map(function(j,i){
+      return _oblRow({title:j.t,desc:j.resumen,meta:j.org+' · '+j.anio,right:_oblStatus(j.criterio,'var(--green)'),url:j.url,zeb:i%2===1});
     }).join('')
   +'</div>';
 }
@@ -2808,9 +2850,9 @@ var _SUSTANCIAS=[
 function _sustanciasHTML(){
   return '<div>'
     +_oblSubhead('Sustancias bajo restricción','Químicos y aditivos con restricción o escrutinio creciente, con su base internacional — anticipan regulación en México.')
-    +_SUSTANCIAS.map(function(s){
+    +_SUSTANCIAS.map(function(s,i){
       var color=/escrutinio/i.test(s.estatus)?'var(--amber)':'var(--red)';
-      return _oblRow({title:s.n,desc:s.base,right:_oblStatus(s.estatus,color),url:s.url});
+      return _oblRow({title:s.n,desc:s.base,right:_oblStatus(s.estatus,color),url:s.url,zeb:i%2===1});
     }).join('')+'</div>';
 }
 // Economía circular · casos de referencia (generalizados, sin nombrar empresas)
@@ -2824,8 +2866,8 @@ var _ECOCIRCULAR=[
 function _ecocircularHTML(){
   return '<div>'
     +_oblSubhead('Economía circular · casos de referencia','Mecanismos de circularidad real en la industria — útiles como benchmark operativo.')
-    +_ECOCIRCULAR.map(function(e){
-      return _oblRow({title:e.n,desc:e.d});
+    +_ECOCIRCULAR.map(function(e,i){
+      return _oblRow({title:e.n,desc:e.d,zeb:i%2===1});
     }).join('')+'</div>';
 }
 function _oblToggleCerts(i){var el=document.getElementById('obl-certs-'+i);var a=document.getElementById('obl-certs-arr-'+i);if(el){var open=el.style.display!=='none';el.style.display=open?'none':'block';if(a)a.textContent=open?'▾':'▴';}}
@@ -2839,7 +2881,7 @@ function _instrumentosHTML(){
       else if(o.url)right='<a href="'+o.url+'" target="_blank" rel="noopener" style="'+lnk+'">'+(o.urlTxt||'Portal oficial →')+'</a>';
       else if(o.via==='agenda')right='<a onclick="goAgenda(\'pendientes\')" style="'+lnk+'">Reglamentación pendiente →</a>';
       else right='<a onclick="goObligaciones(\''+o.via+'\')" style="'+lnk+'">Ver sustento →</a>';
-      var row=_oblRow({title:o.n,desc:o.d,meta:'Sustento · '+o.s,right:right});
+      var row=_oblRow({title:o.n,desc:o.d,meta:'Sustento · '+o.s,right:right,zeb:i%2===1});
       if(o.certs){
         row+='<div id="obl-certs-'+i+'" style="display:none;padding:0 0 14px 0">'
           +o.certs.map(function(c){
@@ -2987,88 +3029,88 @@ function renderSPTramites(state){var el=document.getElementById('sp-rme');if(el)
 function _resNum(n){return (n||0).toLocaleString('es-MX');}
 function renderSPResiduos(state){
   var el=document.getElementById('sp-residuos');if(!el)return;
-  if(!_residuosData){el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando datos de residuos…</div>';return;}
-  var e=_residuosData.estados&&_residuosData.estados[state];var nac=_residuosData.nacional||{};
-  if(!e){el.innerHTML='<div style="font-size:12px;color:var(--text-sec);line-height:1.6;padding:8px 0">Sin datos de residuos para '+state+'.</div>';return;}
+  if(!_residuosData&&!_diagResiduos){el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando datos de residuos…</div>';return;}
+  var e=(_residuosData&&_residuosData.estados&&_residuosData.estados[state])||null;
+  var nac=(_residuosData&&_residuosData.nacional)||{};
+  var dg=(_diagResiduos&&_diagResiduos.estados&&_diagResiduos.estados[state])||null;
+  if(!e&&!dg){el.innerHTML='<div style="font-size:12px;color:var(--text-sec);line-height:1.6;padding:8px 0">Sin datos de residuos para '+state+'.</div>';return;}
   var GRN='#0E8C74',TEA='#2AA88B',GRY='#9AA3A0',AMB='#B45309';
-  var lab='font-family:var(--mono);font-size:9px;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted)';
-  var h='';
-  h+='<div style="'+lab+';margin-bottom:14px">Residuos sólidos urbanos · SEMARNAT 2026</div>';
-  // stat row: generación + per cápita
-  var gpcDelta=e.gpc-nac.gpc;
-  h+='<div style="display:flex;gap:26px;margin-bottom:20px">'
-    +'<div style="flex:0 0 auto"><div style="font-size:26px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">'+_resNum(e.gen_tdia)+'</div><div style="'+lab+';margin-top:5px">Toneladas al día</div></div>'
-    +'<div style="flex:0 0 auto"><div style="font-size:26px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">'+e.gpc.toFixed(3)+'</div><div style="'+lab+';margin-top:5px">kg / hab / día '
-    +'<span style="color:'+(gpcDelta>=0?AMB:GRN)+'">('+(gpcDelta>=0?'+':'')+gpcDelta.toFixed(3)+' vs nac.)</span></div></div>'
-    +'</div>';
-  // composición estimada (3 categorías)
-  if(e.comp){
-    var seg=function(pct,c){return '<span style="display:block;height:100%;width:'+pct+'%;background:'+c+'"></span>';};
-    h+='<div style="'+lab+';margin-bottom:8px">Composición estimada</div>'
-      +'<div style="display:flex;height:8px;border-radius:6px;overflow:hidden;margin-bottom:9px">'+seg(e.comp.organicos,GRN)+seg(e.comp.aprovechables,TEA)+seg(e.comp.otros,GRY)+'</div>'
-      +'<div style="display:flex;gap:18px;font-size:11px;color:var(--text-sec);margin-bottom:22px">'
-      +'<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;background:'+GRN+';display:inline-block"></span>Orgánicos '+e.comp.organicos.toFixed(1)+'%</span>'
-      +'<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;background:'+TEA+';display:inline-block"></span>Aprovechables '+e.comp.aprovechables.toFixed(1)+'%</span>'
-      +'<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;background:'+GRY+';display:inline-block"></span>Otros '+e.comp.otros.toFixed(1)+'%</span>'
-      +'</div>';
+  var num=function(n){return (n==null)?'—':(typeof n==='number'?n.toLocaleString('es-MX'):n);};
+  var H=function(t,sub){return '<div class="res-h">'+t+(sub?'<span class="sub">'+sub+'</span>':'')+'</div>';};
+  var ST=function(v,l,c){return '<div class="res-st"><div class="res-v"'+(c?' style="color:'+c+'"':'')+'>'+v+'</div><div class="res-l">'+l+'</div></div>';};
+  var ROW=function(items){return '<div class="res-row">'+items.join('')+'</div>';};
+  var pctOf=function(a,b){return (b&&a!=null)?(' · '+Math.round(a/b*100)+'%'):'';};
+  var srcs=[];
+  var h='<div class="sp-res">';
+  // 1 · Generación (SEMARNAT)
+  if(e){
+    var gpcDelta=(nac.gpc!=null)?(e.gpc-nac.gpc):null;
+    h+=H('Generación');
+    h+=ROW([
+      ST(num(e.gen_tdia),'Toneladas al día'),
+      ST(e.gpc.toFixed(3),'kg / hab / día'+((gpcDelta!=null)?' · <span style="color:'+(gpcDelta>=0?AMB:GRN)+'">'+(gpcDelta>=0?'+':'')+gpcDelta.toFixed(3)+' vs nac</span>':''))
+    ]);
+    if(e.comp){
+      var seg=function(pct,c){return '<i style="height:100%;width:'+pct+'%;background:'+c+'"></i>';};
+      h+=H('Composición estimada');
+      h+='<div class="res-bar">'+seg(e.comp.organicos,GRN)+seg(e.comp.aprovechables,TEA)+seg(e.comp.otros,GRY)+'</div>';
+      h+='<div class="res-leg"><span><i style="background:'+GRN+'"></i>Orgánicos '+e.comp.organicos.toFixed(1)+'%</span>'
+        +'<span><i style="background:'+TEA+'"></i>Aprovechables '+e.comp.aprovechables.toFixed(1)+'%</span>'
+        +'<span><i style="background:'+GRY+'"></i>Otros '+e.comp.otros.toFixed(1)+'%</span></div>';
+    }
+    srcs.push((_residuosData._meta&&_residuosData._meta.fuente)||'SEMARNAT 2026');
   }
-  // disposición final + cumplimiento NOM-083
-  if(e.disp){
-    var dp=e.disp,rel=e.rellenos_nom083||{total:0,tdia:0};
-    var cumpleCol=rel.total>0?GRN:AMB;
-    h+='<div style="'+lab+';margin-bottom:10px;border-top:0.8px solid var(--border);padding-top:16px">Disposición final</div>'
-      +'<div style="display:flex;gap:26px;margin-bottom:10px">'
-      +'<div><div style="font-size:22px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">'+_resNum(dp.total)+'</div><div style="'+lab+';margin-top:5px">Sitios de disposición</div></div>'
-      +'<div><div style="font-size:22px;font-weight:700;color:'+cumpleCol+';font-variant-numeric:tabular-nums;line-height:1">'+rel.total+'</div><div style="'+lab+';margin-top:5px">Cumplen NOM-083</div></div>'
-      +'<div><div style="font-size:22px;font-weight:700;color:'+(dp.D>0?AMB:'var(--text)')+';font-variant-numeric:tabular-nums;line-height:1">'+dp.D+'</div><div style="'+lab+';margin-top:5px">Tiraderos (clase D)</div></div>'
-      +'</div>'
-      +'<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-bottom:22px">'
-      +(rel.total>0
-        ? 'De '+dp.total+' sitios, <b>'+rel.total+'</b> operan como relleno sanitario conforme a la NOM-083-SEMARNAT-2003.'
-        : '<b style="color:'+AMB+'">Ningún sitio de disposición cumple la NOM-083-SEMARNAT-2003</b> en la entidad; predominan sitios no controlados.')
-      +'</div>';
+  // 2 · Cobertura municipal (diagnóstico)
+  if(dg){
+    h+=H('Cobertura municipal');
+    h+=ROW([
+      ST(num(dg.municipios),'Municipios'),
+      ST(num(dg.con_recoleccion),'Con recolección'+pctOf(dg.con_recoleccion,dg.municipios),GRN),
+      ST(num(dg.con_separacion),'Con separación en fuente'),
+      ST(num(dg.con_programas),'Con programas informativos')
+    ]);
   }
-  // costo de recolección
-  if(e.recoleccion){
+  // 3 · Disposición final (diagnóstico primero; SEMARNAT fallback)
+  if(dg&&(dg.rellenos_cumplen!=null||dg.rellenos_no_cumplen!=null||dg.tiraderos_cielo_abierto!=null||dg.sitios_disposicion!=null)){
+    h+=H('Disposición final');
+    var dcells=[];
+    if(dg.sitios_disposicion!=null)dcells.push(ST(num(dg.sitios_disposicion),'Sitios de disposición'));
+    dcells.push(ST(num(dg.rellenos_cumplen),'Rellenos en cumplimiento',GRN));
+    dcells.push(ST(num(dg.rellenos_no_cumplen),'Rellenos sin cumplimiento',(dg.rellenos_no_cumplen||0)>0?AMB:null));
+    dcells.push(ST(num(dg.tiraderos_cielo_abierto),'Tiraderos a cielo abierto',(dg.tiraderos_cielo_abierto||0)>0?AMB:null));
+    h+=ROW(dcells);
+    h+='<div class="res-note">Cumplimiento evaluado conforme a la NOM-083-SEMARNAT-2003.</div>';
+  }else if(e&&e.disp){
+    var dp=e.disp,rel=e.rellenos_nom083||{total:0};
+    h+=H('Disposición final');
+    h+=ROW([
+      ST(num(dp.total),'Sitios de disposición'),
+      ST(rel.total,'Cumplen NOM-083',rel.total>0?GRN:AMB),
+      ST(dp.D,'Tiraderos (clase D)',dp.D>0?AMB:null)
+    ]);
+    h+='<div class="res-note">'+(rel.total>0?'De '+dp.total+' sitios, <b>'+rel.total+'</b> operan como relleno sanitario conforme a la NOM-083-SEMARNAT-2003.':'<b style="color:'+AMB+'">Ningún sitio cumple la NOM-083-SEMARNAT-2003</b>; predominan sitios no controlados.')+'</div>';
+  }
+  // 4 · Costo de recolección (SEMARNAT)
+  if(e&&e.recoleccion){
     var rc=e.recoleccion;
-    h+='<div style="'+lab+';margin-bottom:10px;border-top:0.8px solid var(--border);padding-top:16px">Recolección</div>'
-      +'<div style="display:flex;gap:26px;margin-bottom:22px">'
-      +'<div><div style="font-size:22px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">$'+_resNum(rc.costo_ton)+'</div><div style="'+lab+';margin-top:5px">MXN / tonelada</div></div>'
-      +'<div><div style="font-size:22px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">'+_resNum(rc.vehiculos)+'</div><div style="'+lab+';margin-top:5px">Vehículos</div></div>'
-      +'</div>';
+    h+=H('Costo de recolección');
+    h+=ROW([
+      ST('$'+num(rc.costo_ton),'MXN / tonelada'),
+      ST(num(rc.vehiculos),'Vehículos')
+    ]);
   }
-  // panorama nacional de RME (contexto)
+  // 5 · Panorama nacional RME (SEMARNAT)
   if(nac.rme_corrientes&&nac.rme_corrientes.length){
-    h+='<div style="'+lab+';margin-bottom:4px;border-top:0.8px solid var(--border);padding-top:16px">Panorama nacional · RME por corriente</div>'
-      +'<div style="font-size:10px;color:var(--text-muted);margin-bottom:10px">Generación estimada nacional (NOM-161). Contexto para el manejo especial de la entidad.</div>';
+    h+=H('Panorama nacional','RME por corriente · NOM-161');
     var mx=Math.max.apply(null,nac.rme_corrientes.map(function(c){return c.tanio;}));
     nac.rme_corrientes.slice().sort(function(a,b){return b.tanio-a.tanio;}).forEach(function(c){
-      h+='<div style="display:flex;align-items:center;gap:12px;padding:5px 0"><span style="flex:1;font-size:11px;color:var(--text)">'+c.nombre+'</span>'
-        +'<span style="width:90px;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden;flex-shrink:0"><span style="display:block;height:100%;width:'+Math.round(c.tanio/mx*100)+'%;background:'+GRN+';border-radius:6px"></span></span>'
-        +'<span style="font-family:var(--mono);font-size:10px;color:var(--text-sec);min-width:78px;text-align:right">'+_resNum(c.tanio)+' t/a</span></div>';
+      h+='<div class="res-crow"><span class="nm">'+c.nombre+'</span>'
+        +'<span class="tk"><i style="width:'+Math.round(c.tanio/mx*100)+'%;background:'+GRN+'"></i></span>'
+        +'<span class="vl">'+num(c.tanio)+' t/a</span></div>';
     });
   }
-  h+='<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:16px;line-height:1.5">Fuente: '+(_residuosData._meta&&_residuosData._meta.fuente||'SEMARNAT 2026')+'</div>';
-  // ── Cobertura municipal · diagnóstico GEMI (base Santiago) ──
-  if(_diagResiduos&&_diagResiduos.estados&&_diagResiduos.estados[state]){
-    var dg=_diagResiduos.estados[state];
-    var dgv=function(x){return (x==null)?'—':_resNum(x);};
-    var dgpct=function(a,b){return (b&&a!=null)?(' · '+Math.round(a/b*100)+'%'):'';};
-    var muni=dg.municipios;
-    h+='<div style="'+lab+';margin:22px 0 12px;border-top:0.8px solid var(--border);padding-top:16px">Cobertura municipal · diagnóstico GEMI</div>'
-      +'<div style="display:flex;gap:22px 24px;margin-bottom:14px;flex-wrap:wrap">'
-        +'<div><div style="font-size:22px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">'+dgv(muni)+'</div><div style="'+lab+';margin-top:5px">Municipios</div></div>'
-        +'<div><div style="font-size:22px;font-weight:700;color:'+GRN+';font-variant-numeric:tabular-nums;line-height:1">'+dgv(dg.con_recoleccion)+'</div><div style="'+lab+';margin-top:5px">Con recolección'+dgpct(dg.con_recoleccion,muni)+'</div></div>'
-        +'<div><div style="font-size:22px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">'+dgv(dg.con_separacion)+'</div><div style="'+lab+';margin-top:5px">Con separación en fuente</div></div>'
-        +'<div><div style="font-size:22px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1">'+dgv(dg.con_programas)+'</div><div style="'+lab+';margin-top:5px">Con programas informativos</div></div>'
-      +'</div>'
-      +'<div style="display:flex;gap:22px 24px;flex-wrap:wrap">'
-        +'<div><div style="font-size:20px;font-weight:700;color:'+GRN+';font-variant-numeric:tabular-nums;line-height:1">'+dgv(dg.rellenos_cumplen)+'</div><div style="'+lab+';margin-top:5px">Rellenos en cumplimiento</div></div>'
-        +'<div><div style="font-size:20px;font-weight:700;color:'+((dg.rellenos_no_cumplen||0)>0?AMB:'var(--text)')+';font-variant-numeric:tabular-nums;line-height:1">'+dgv(dg.rellenos_no_cumplen)+'</div><div style="'+lab+';margin-top:5px">Rellenos sin cumplimiento</div></div>'
-        +'<div><div style="font-size:20px;font-weight:700;color:'+((dg.tiraderos_cielo_abierto||0)>0?AMB:'var(--text)')+';font-variant-numeric:tabular-nums;line-height:1">'+dgv(dg.tiraderos_cielo_abierto)+'</div><div style="'+lab+';margin-top:5px">Tiraderos a cielo abierto</div></div>'
-      +'</div>'
-      +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:12px;line-height:1.5">Fuente: '+(_diagResiduos._meta&&_diagResiduos._meta.fuente||'GEMI · Diagnóstico de residuos')+'</div>';
-  }
+  h+='<div class="res-src">Fuente &nbsp;·&nbsp; SEMARNAT–INECC, Diagnóstico Básico para la Gestión Integral de los Residuos (2026) &nbsp;·&nbsp; curaduría GEMI</div>';
+  h+='</div>';
   el.innerHTML=h;
 }
 var _rmeQ='',_rmeOpen='',_rmeNivel='todos',_rmeMore={},_RME_ORDER=['integral','portal','fichas','catalogo'];
@@ -3153,13 +3195,13 @@ function _agendaConamer(){
     +'<a href="'+((d._meta&&d._meta.url)||'https://www.herramientasregulatorias.gob.mx/')+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Portal CONAMER <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a></div>'
     +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:14px">'+((d._meta&&d._meta.actualizado)||'')+' · '+items.length+' propuesta'+(items.length===1?'':'s')+'</div>';
   if(!items.length){host.innerHTML=head+'<div style="font-size:12px;color:var(--text-muted);padding:12px 0">Sin propuestas de nuestros sectores en consulta ahora mismo.</div>';return;}
-  var body=items.map(function(it){
+  var body=items.map(function(it,i){
     var dia=(it.fecha||'').split(' ')[0];
     var match=_conamerNomMatch(it.titulo);
     var tag=(it.subtipo||'')+(it.tipo?' · '+it.tipo:'');
     var meta='<b>'+(it.siglas||'')+'</b> · '+(it.dependencia||'')+(tag?'  ·  '+tag:'')
       +(match.length?'  ·  <span style="color:var(--amber)">Actualiza '+match.join(', ')+' que monitoreas</span>':'');
-    return _oblRow({title:it.titulo,meta:meta,right:_oblStatus('En consulta','var(--green)'),rightSub:dia,onclick:'window.open(\''+(it.url||'#').replace(/\x27/g,'%27')+'\',\'_blank\')'});
+    return _oblRow({title:it.titulo,meta:meta,right:_oblStatus('En consulta','var(--green)'),rightSub:dia,zeb:i%2===1,onclick:'window.open(\''+(it.url||'#').replace(/\x27/g,'%27')+'\',\'_blank\')'});
   }).join('');
   host.innerHTML=head+body;
 }
@@ -3176,9 +3218,9 @@ function _agendaPend(){
   var ord=function(e){return _AG_ESTORD.hasOwnProperty(e)?_AG_ESTORD[e]:9;};
   var list=_PENDIENTES.filter(function(p){return _agendaEst==='todos'||p.e===_agendaEst;})
     .slice().sort(function(a,b){return ord(a.e)-ord(b.e);});
-  var rows=list.map(function(p){
+  var rows=list.map(function(p,i){
     var meta=p.org+((p.docs&&p.docs.length)?'  ·  '+p.docs.map(function(dc){return '<a href="'+dc.url+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">↓ '+dc.label+'</a>';}).join('  '):'');
-    return _oblRow({title:p.t,desc:p.d,meta:meta,right:_oblStatus(p.e,col(p.e))});
+    return _oblRow({title:p.t,desc:p.d,meta:meta,right:_oblStatus(p.e,col(p.e)),zeb:i%2===1});
   }).join('');
   host.innerHTML=filt
     +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px">'+list.length+' instrumento'+(list.length===1?'':'s')+'</div>'
@@ -3306,7 +3348,7 @@ function _esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retu
 function _cntTxt(id){var n=_nomCommentCounts[id]||0;return n===1?'1 comentario':n+' comentarios';}
 function loadNomCommentCounts(){
   if(!SCOPE_COMMENTS_ENDPOINT)return;
-  fetch(SCOPE_COMMENTS_ENDPOINT+'?action=counts',{cache:'no-store'})
+  fetch(SCOPE_COMMENTS_ENDPOINT+'?action=counts',{cache:'no-cache'})
     .then(function(r){return r.json();})
     .then(function(d){_nomCommentCounts=d||{};document.querySelectorAll('[data-nomcnt]').forEach(function(el){el.textContent=_cntTxt(el.getAttribute('data-nomcnt'));});})
     .catch(function(){});
@@ -3960,7 +4002,7 @@ function _radarDetailHTML(temaId){
   // Streams
   var news=(noticias||[]).filter(function(n){return isMxRelevant(n)&&new Date(n.fecha_publicacion).getTime()>c14&&_radarKwMatch(kw,_rdNacText(n));})
     .sort(function(a,b){return new Date(b.fecha_publicacion)-new Date(a.fecha_publicacion);}).slice(0,8)
-    .map(function(n){return row(n.titulo,((n.fuente?n.fuente+' · ':'')+formatFecha(n.fecha_publicacion)),n.url);});
+    .map(function(n){return row(n.titulo,((n.fuente?n.fuente+' · ':'')+_rdDate(n.fecha_publicacion)),n.url);});
   var estAll=((_noticiasEstatales&&_noticiasEstatales.items)||[]).filter(function(it){return _radarKwMatch(kw,(it.titulo||'')+' '+(it.resumen||''));})
     .sort(function(a,b){return new Date(String(b.fecha||'').substring(0,10))-new Date(String(a.fecha||'').substring(0,10));});
   var est=estAll.slice(0,8).map(function(it){return row(it.titulo||'',(it.estado||'')+' · '+(it.medio?it.medio+' · ':'')+_rdDate(it.fecha),it.url);});
@@ -4001,12 +4043,12 @@ function _radarDetailHTML(temaId){
   }).join(''):'<div style="font-size:11px;color:var(--text-muted);padding:8px 0">Sin actividad estatal reciente</div>';
   var estBlock='<div style="margin-bottom:20px"><div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid '+col+'33"><span style="width:7px;height:7px;border-radius:50%;background:'+col+'"></span><span style="font-size:12px;font-weight:700;color:'+col+'">Estados más activos</span> <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+topE.length+'</span></div>'+estBars+'</div>';
   return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:9px;height:9px;border-radius:50%;background:'+col+'"></span><span style="font-family:var(--mono);font-size:9px;color:'+col+';letter-spacing:0.1em;text-transform:uppercase;font-weight:700">'+tema.name+' · Vista 360°</span></div>'
-    +_emisBlock(tema)
     +(tema.id==='circular'?_podecibiBlock():'')
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
       +'<div>'+block('Señal en medios · 2 sem','var(--text)',news)+block('Prensa estatal','var(--text)',est)+estBlock+'</div>'
       +'<div>'+block('DOF · publicaciones'+(dofAll.length>3?' · +'+(dofAll.length-3)+' más':''),'var(--text)',dof)+block('Congreso'+(congAll.length>3?' · +'+(congAll.length-3)+' más':''),'var(--text)',cong)+block('NOMs','var(--text)',noms)+block('Internacional','var(--text)',intl)+'</div>'
-    +'</div>';
+    +'</div>'
+    +_emisBlock(tema);
 }
 // ── Emisiones GEI (INEGYCEI · INECC) por tema: cada tema muestra su sector ──
 function _emisMt(v){return v==null?'—':(Math.round(v/1e5)/10).toLocaleString('es-MX',{minimumFractionDigits:1,maximumFractionDigits:1});}
@@ -4468,7 +4510,7 @@ function _fixMoji(s){
   try{return decodeURIComponent(escape(s));}catch(e){return s;}
 }
 function renderWidgetFederal(){
-  fetch('data/gaceta-federal.json',{cache:'no-store'})
+  fetch('data/gaceta-federal.json',{cache:'no-cache'})
     .then(function(r){return r.ok?r.json():null;})
     .catch(function(){return null;})
     .then(function(data){
@@ -4855,7 +4897,7 @@ function _toggleGacetaRow(sid){
 function renderWidgetGacetas(){
   var el=document.getElementById('widget-gacetas');
   if(!el)return;
-  fetch('data/gaceta-estatal.json',{cache:'no-store'})
+  fetch('data/gaceta-estatal.json',{cache:'no-cache'})
     .then(function(r){return r.ok?r.json():null;})
     .catch(function(){return null;})
     .then(function(data){
@@ -4963,22 +5005,22 @@ function renderDOF(){
 // ─────────────────────────────────────────────────────────────────────────────
 var _perfilEstados=null,_materialesData=null,_datosgobData=null,_emisionesData=null,_conamerData=null,_podecibiData=null,_tramitesRME=null,_residuosData=null,_diagResiduos=null;
 async function init(){
-  try{const r=await fetch('data/noticias.json',{cache:'no-store'});noticias=await r.json()}catch(e){noticias=[]}
-  try{const r=await fetch('data/impuestos.json',{cache:'no-store'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
-  try{const r=await fetch('data/dof.json',{cache:'no-store'});_dofData=await r.json()}catch(e){_dofData=[]}
-  fetch('data/perfil-estados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_perfilEstados=d;}).catch(()=>{});
-  fetch('data/materiales-prohibidos.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_materialesData=d;}).catch(()=>{});
-  fetch('data/datosgob.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_datosgobData=d;renderDatosGob();}).catch(()=>{});
-  fetch('data/noticias-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();buildMap();}).catch(()=>{});
-  fetch('data/actores-estatales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_actoresEstatales=d;renderActoresEstatales();}).catch(()=>{});
-  fetch('data/emisiones-gei.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_emisionesData=d;if(typeof renderEmisiones==='function')renderEmisiones();}).catch(()=>{});
-  fetch('data/conamer-propuestas.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_conamerData=d;}).catch(()=>{});
-  fetch('data/podecibi.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_podecibiData=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel==='circular')det.innerHTML=_radarDetailHTML('circular');}).catch(()=>{});
-  fetch('data/tramites-rme.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_tramitesRME=d;var h=document.getElementById('rme-dir');if(h)h.innerHTML=_rmeDirHTML();}).catch(()=>{});
-  fetch('data/residuos-estatal.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_residuosData=d;}).catch(()=>{});
-  fetch('data/diagnostico-residuos.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_diagResiduos=d;}).catch(()=>{});
-  fetch('data/dependencias-federales.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{_depsFed=d;if(document.getElementById('actores-federal'))renderActoresFederal();}).catch(()=>{});
-  fetch('data/internacional.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(d){_INTL=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel)det.innerHTML=_radarDetailHTML(_radarSel);}}).catch(()=>{});
+  try{const r=await fetch('data/noticias.json',{cache:'no-cache'});noticias=await r.json()}catch(e){noticias=[]}
+  try{const r=await fetch('data/impuestos.json',{cache:'no-cache'});impuestosDB=await r.json()}catch(e){impuestosDB={}}
+  try{const r=await fetch('data/dof.json',{cache:'no-cache'});_dofData=await r.json()}catch(e){_dofData=[]}
+  fetch('data/perfil-estados.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_perfilEstados=d;}).catch(()=>{});
+  fetch('data/materiales-prohibidos.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_materialesData=d;}).catch(()=>{});
+  fetch('data/datosgob.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_datosgobData=d;renderDatosGob();}).catch(()=>{});
+  fetch('data/noticias-estatales.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_noticiasEstatales=d;renderLatestNewsTicker();buildMap();}).catch(()=>{});
+  fetch('data/actores-estatales.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_actoresEstatales=d;renderActoresEstatales();}).catch(()=>{});
+  fetch('data/emisiones-gei.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_emisionesData=d;if(typeof renderEmisiones==='function')renderEmisiones();}).catch(()=>{});
+  fetch('data/conamer-propuestas.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_conamerData=d;}).catch(()=>{});
+  fetch('data/podecibi.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_podecibiData=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel==='circular')det.innerHTML=_radarDetailHTML('circular');}).catch(()=>{});
+  fetch('data/tramites-rme.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_tramitesRME=d;var h=document.getElementById('rme-dir');if(h)h.innerHTML=_rmeDirHTML();}).catch(()=>{});
+  fetch('data/residuos-estatal.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_residuosData=d;}).catch(()=>{});
+  fetch('data/diagnostico-residuos.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_diagResiduos=d;}).catch(()=>{});
+  fetch('data/dependencias-federales.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_depsFed=d;if(document.getElementById('actores-federal'))renderActoresFederal();}).catch(()=>{});
+  fetch('data/internacional.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{if(d){_INTL=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel)det.innerHTML=_radarDetailHTML(_radarSel);}}).catch(()=>{});
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
@@ -5164,8 +5206,8 @@ function renderComisiones(data){
 async function loadComisiones(){
   try{
     var[comRes,fotosRes]=await Promise.all([
-      fetch('data/comisiones.json',{cache:'no-store'}),
-      fetch('data/fotos_legisladores.json',{cache:'no-store'}).catch(function(){return null;})
+      fetch('data/comisiones.json',{cache:'no-cache'}),
+      fetch('data/fotos_legisladores.json',{cache:'no-cache'}).catch(function(){return null;})
     ]);
     if(fotosRes&&fotosRes.ok){try{_fotosMap=await fotosRes.json();}catch(e){}}
     if(comRes.ok){_comisionesData=await comRes.json();renderComisiones(_comisionesData);}else renderComisiones(null);
@@ -5386,7 +5428,7 @@ function openConsolaWizard(stepName){
     _wizPaint();
   }
   if(_comisionesData){go();}
-  else{fetch('data/comisiones.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;})
+  else{fetch('data/comisiones.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;})
     .then(function(d){_comisionesData=d;go();}).catch(function(){go();});}
 }
 function closeConsolaWizard(){document.getElementById('consola-wiz-bg').style.display='none';_wiz=null;}
@@ -6327,7 +6369,7 @@ function _renderPanelGemi(d){
 }
 function _loadPanelGemi(){
   if(_panelGemiData&&_agendaGemiData){_pgemiRender();return;}
-  var gp=function(u){return fetch(u,{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});};
+  var gp=function(u){return fetch(u,{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});};
   Promise.all([
     _panelGemiData?Promise.resolve(_panelGemiData):gp('data/panel-gemi.json'),
     _agendaGemiData?Promise.resolve(_agendaGemiData):gp('data/agenda-gemi.json')
