@@ -23,8 +23,8 @@
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
   .deck{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
   .deck::-webkit-scrollbar{width:0;display:none}
-  section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:safe center;padding:9vh 7vw;overflow:hidden}
-  section.mid{justify-content:safe center;padding-top:9vh}
+  section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:center;padding:9vh 7vw;overflow:hidden}
+  section.mid{justify-content:center;padding-top:9vh}
   @media(max-width:640px){section{padding:9vh 6vw;justify-content:flex-start}}
 
   .r{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
@@ -420,6 +420,28 @@
   .cta{display:inline-flex;align-items:center;gap:8px;margin-top:34px;font-size:13.5px;font-weight:600;color:#fff;background:#0a0f0d;border:1px solid rgba(255,255,255,.16);border-radius:24px;padding:10px 22px;text-decoration:none;transition:transform .2s,background .2s,border-color .2s}
   .cta:hover{transform:translateY(-2px);background:#141d19;border-color:var(--g)}
   .cap{font-size:13px;color:var(--dim);margin-top:14px}
+  /* mesa de trabajo: NOM federal + hilo de comentarios en tiempo real */
+  .mesa{max-width:460px;width:100%}
+  .mesa-nom{border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.01));padding:14px 16px;margin-bottom:14px}
+  .mesa-nom .mn-id{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--mint)}
+  .mesa-nom .mn-ob{font-size:13px;color:var(--ink);margin-top:5px;line-height:1.45}
+  .mesa-nom .mn-st{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-family:var(--mono);font-size:9px;letter-spacing:.05em;color:var(--mint)}
+  .mesa-nom .mn-st .d{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 3px rgba(63,224,173,.14)}
+  .mesa-thread{display:flex;flex-direction:column;gap:11px}
+  .mcom{display:flex;gap:10px;align-items:flex-start;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
+  .mcom.show{opacity:1;transform:none}
+  .mcom .av{width:27px;height:27px;border-radius:50%;flex-shrink:0;object-fit:cover;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff}
+  .mcom .av.gemi{background:#066750}
+  .mcom .av.soc{background:#0e2a22;color:var(--mint)}
+  .mcom .bd{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;border-top-left-radius:4px;padding:9px 12px;max-width:90%}
+  .mcom .who{font-size:11px;font-weight:700;color:var(--mint)}
+  .mcom .who .role{font-weight:400;color:var(--dim);font-size:10px;margin-left:6px}
+  .mcom .tx{font-size:12.5px;color:var(--ink);line-height:1.5;margin-top:2px}
+  .mesa-input{display:flex;gap:10px;margin-top:13px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:9px 11px;background:rgba(255,255,255,.03)}
+  .mesa-ph{flex:1;font-size:12.5px;color:var(--ink);min-height:16px}
+  .mesa-ph:empty::before{content:'Deja un comentario en la mesa…';color:var(--dim)}
+  .mesa-caret{border-right:2px solid var(--mint);animation:caret 1.05s step-end infinite;padding-left:1px}
+  .mesa-send{background:var(--mint);color:#04120d;font-size:11px;font-weight:700;border-radius:8px;padding:6px 13px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -510,6 +532,34 @@
       <div class="stat r d2"><div class="n"><span data-count="180">0</span>+<span class="u"> fuentes</span></div><div class="l">Prensa, DOF, Congreso, CONAMER, gacetas y datos oficiales</div></div>
       <div class="stat r d3"><div class="n">24/7</div><div class="l">Un GEMI que no descansa: la señal se actualiza sola, de día y de noche</div></div>
       <div class="stat r d4"><div class="n"><span data-count="32">0</span><span class="u"> estados</span></div><div class="l">Cobertura nacional, no solo federal</div></div>
+    </div>
+  </section>
+
+  <!-- 16b · NOMs FEDERALES · mesa de trabajo -->
+  <section data-t="NOMs federales" data-anim="mesa">
+    <div class="techbg"></div>
+    <div class="glow" style="width:460px;height:460px;background:var(--g2);top:-10%;left:-8%;opacity:.18"></div>
+    <div class="kick r">Ámbito federal</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:15ch">El cumplimiento federal, con GEMI encima</h2>
+        <p class="lead r d2">Las <b>Normas Oficiales Mexicanas</b> rigen agua, emisiones, residuos y más. Son decenas en revisión constante, y GEMI está en las <b>mesas de trabajo</b> donde se deciden. Abrimos un <b>canal de comentarios en tiempo real</b>: conversaciones con nuestros asociados y contexto para quien necesita entender la regulación que impacta su operación.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="mesa">
+          <div class="mesa-nom">
+            <div class="mn-id">NOM · Agua regenerada para uso y consumo humano</div>
+            <div class="mn-ob">Límites permisibles de calidad del agua regenerada. Impacta el reúso de agua en la industria.</div>
+            <div class="mn-st"><span class="d"></span>En desarrollo · GEMI en la mesa</div>
+          </div>
+          <div class="mesa-thread">
+            <div class="mcom"><span class="av gemi">G</span><div class="bd"><div class="who">GEMI <span class="role">· en la mesa de revisión</span></div><div class="tx">Estamos revisando esta norma. Va a impactar directamente el reúso de agua en la industria.</div></div></div>
+            <div class="mcom"><span class="av soc">A</span><div class="bd"><div class="who">Asociado <span class="role">· empresa afiliada</span></div><div class="tx">¿Hay fecha para el anteproyecto?</div></div></div>
+            <div class="mcom"><span class="av gemi">G</span><div class="bd"><div class="who">GEMI</div><div class="tx">En cuanto se publique, lo verán aquí primero.</div></div></div>
+          </div>
+          <div class="mesa-input"><span class="mesa-ph" id="mesaPh"></span><span class="mesa-caret" id="mesaCaret"></span><span class="mesa-send">Comentar</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -752,13 +802,13 @@
   </section>
 
   <!-- 20b · INGRESOS -->
-  <section data-t="Ingresos" data-anim="rev" style="text-align:center;align-items:center">
+  <section data-t="Ingresos" data-anim="rev">
     <div class="techbg"></div>
     <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-12%;left:-8%;opacity:.2"></div>
     <div class="kick r">El retorno para GEMI</div>
-    <h2 class="r d1" style="max-width:20ch">Veinte usuarios sostienen una cuota</h2>
-    <p class="lead r d2" style="max-width:700px;margin-left:auto;margin-right:auto">Con la suscripción mensual ($1,699 por usuario), esto es lo que Scope aporta a GEMI en un año, según cuántos usuarios sostenga.</p>
-    <div class="costscale r d3" style="max-width:720px;margin:24px auto 0;text-align:left">
+    <h2 class="r d1" style="max-width:16ch">Veinte usuarios sostienen una cuota</h2>
+    <p class="lead r d2" style="max-width:700px">Con la suscripción mensual ($1,699 por usuario), esto es lo que Scope aporta a GEMI en un año, según cuántos usuarios sostenga.</p>
+    <div class="costscale r d3" style="max-width:720px;margin-top:24px">
       <div class="cl">Ingreso anual estimado · plan mensual</div>
       <div id="revbars"></div>
       <div class="cperuser">Con <b>20 usuarios</b> sostenidos durante un año, Scope aporta <b>$407,760</b>: equivale a la cuota anual de una empresa (cerca de $400,000 MXN).</div>
@@ -923,6 +973,20 @@
     host.classList.add('open');
   }
   window._radarExpand=_radarExpand;
+  // Mesa de trabajo: comentarios que aparecen + un comentario que se escribe en vivo
+  var mesaDone=false;
+  function startMesa(sec){
+    if(mesaDone)return; mesaDone=true;
+    var coms=sec.querySelectorAll('.mcom');
+    var ph=sec.querySelector('#mesaPh');
+    function at(ms,fn){setTimeout(fn,ms);}
+    at(600,function(){coms[0]&&coms[0].classList.add('show');});
+    at(1900,function(){coms[1]&&coms[1].classList.add('show');});
+    at(3200,function(){
+      var txt='En cuanto se publique, lo verán aquí primero.',i=0;
+      (function tp(){ if(i<=txt.length){ph.textContent=txt.slice(0,i);i++;setTimeout(tp,(i%3)?55:78);} else { at(650,function(){ph.textContent='';coms[2]&&coms[2].classList.add('show');}); } })();
+    });
+  }
   var radarDemoDone=false;
   function startRadarDemo(){
     if(radarDemoDone)return; radarDemoDone=true;
@@ -1119,6 +1183,7 @@
     if(a==='cong')drawCong();
     if(a==='closetw')startCloseTw();
     if(a==='radardemo')startRadarDemo();
+    if(a==='mesa')startMesa(sec);
     if(a==='count')runCounts(sec);
     if(a==='imp'){sec.querySelectorAll('.bfill').forEach(function(f){var w=f.getAttribute('data-w');f.style.width='0';f.getBoundingClientRect();setTimeout(function(){f.style.width=w;},40);});runCounts(sec);}
     if(a==='cost'||a==='rev'){
