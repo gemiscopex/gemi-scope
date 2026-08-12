@@ -503,6 +503,15 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .sp-news-title a:hover{color:var(--green)}
 .sp-news-meta{font-family:var(--mono);font-size:10px;letter-spacing:0.02em;color:var(--text-muted);margin-top:4px}
 .sp-eyebrow{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px}
+/* Legislación del expediente estatal: grupos armónicos + filas intercaladas */
+.sp-leg-group{margin-bottom:18px}
+.sp-leg-group:last-child{margin-bottom:0}
+.sp-leg-h{display:flex;align-items:baseline;gap:8px;margin:0 4px 3px;padding-bottom:6px;border-bottom:0.8px solid var(--border)}
+.sp-leg-h .t{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--green)}
+.sp-leg-h .n{font-family:var(--mono);font-size:9px;color:var(--dim);margin-left:auto}
+.sp-leg .ley-row{padding:9px 10px}
+.sp-leg .ley-row.zeb{background:rgba(13,27,42,0.025)}
+.sp-leg .ley-row.zeb:hover{background:rgba(0,158,144,0.07)}
 .sp-gaceta-link{display:flex;align-items:center;gap:12px;padding:16px;background:var(--green-tint);border-radius:12px;text-decoration:none;color:var(--text);font-weight:600;font-size:14px;margin-bottom:14px;border:1px solid rgba(0,158,144,0.15);transition:background 0.15s}
 .sp-gaceta-link:hover{background:rgba(0,158,144,0.15)}
 .sp-empty{text-align:center;padding:28px;color:var(--text-muted);font-size:13px}
@@ -599,7 +608,10 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .normas-type-toggle{display:flex;gap:4px;margin-left:auto}
 .normas-type-btn{padding:5px 11px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--card);color:var(--text-sec);transition:all 0.15s}
 .normas-type-btn.active{background:var(--green);border-color:var(--green);color:#fff}
-.nom-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid rgba(0,0,0,0.06)}
+.nom-row{display:flex;align-items:center;gap:10px;padding:9px 10px;border-bottom:0.8px solid rgba(0,0,0,0.06);border-radius:5px;transition:background 0.1s}
+.nom-row.zeb{background:rgba(13,27,42,0.025)}
+.nom-row:hover{background:rgba(0,158,144,0.05)}
+.nom-row.zeb:hover{background:rgba(0,158,144,0.07)}
 .nom-row:last-child{border-bottom:none}
 .nom-row:hover .nom-titulo{color:var(--green)}
 .nom-badge{min-width:52px;padding:4px 0;text-align:center;border-radius:6px;font-size:9px;font-weight:700;letter-spacing:0.07em;flex-shrink:0}
@@ -1289,7 +1301,6 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
   <div id="tab-normas" class="tab-content" style="padding:28px 0">
     <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
       <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Normas Oficiales Mexicanas</div>
-      <div style="font-size:11px;color:var(--text-muted)">Relevancia ambiental · LXVI Legislatura</div>
     </div>
     <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">NOMs vigentes y proyectos (PROY-NOMs) con implicación estratégica para agua, aire, residuos, logística, comercio, energía y alimentos.</div>
     <div class="normas-filters" id="normas-filters">
@@ -1302,6 +1313,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
       <button class="normas-filter-link" data-tema="Energía" onclick="filterNormas('Energía',this)">Energía</button>
       <button class="normas-filter-link" data-tema="Alimentos" onclick="filterNormas('Alimentos',this)">Alimentos</button>
       <button class="normas-filter-link" data-tema="Laboral" onclick="filterNormas('Laboral',this)">Laboral</button>
+      <button class="normas-filter-link" data-tema="Ruido y luz" onclick="filterNormas('Ruido y luz',this)">Ruido y luz</button>
     </div>
     <div id="normas-list"></div>
   </div>
@@ -3243,13 +3255,14 @@ var NORMAS=[
   {id:'PROY-NOM-AGUA-REGENERADA-2026',dep:'SEMARNAT',tema:'Agua',tipo:'PROY',objeto:'Agua regenerada para uso y consumo humano: límites permisibles de calidad del agua',implic:'Nueva norma en desarrollo en el Programa Nacional de Infraestructura de la Calidad 2026',afecta:'Reúso de agua · agua potable · industria',url:''}
 ];
 var NORMAS_TEMA_COLOR={'Agua':'#2563eb','Aire':'#0ea5e9','Residuos':'#d97706','Logística':'#7c3aed','Comercio':'#16a34a','Energía':'#f59e0b','Alimentos':'#db2777','Laboral':'#475569','Ruido y luz':'#0f766e'};
-var _normasTema='todos', _normasType='todos', _normasRendered=false;
+var _normasTema='todos', _normasType='todos', _normasRendered=false, _normasExpanded={};
 function filterNormas(tema,btn){
   _normasTema=tema;
   document.querySelectorAll('#normas-filters .normas-filter-link').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   renderNormas();
 }
+function _toggleNormasSector(tema){_normasExpanded[tema]=!_normasExpanded[tema];renderNormas();}
 function filterNormasType(type,btn){
   _normasType=type;
   document.querySelectorAll('.normas-type-btn').forEach(b=>b.classList.remove('active'));
@@ -3370,12 +3383,14 @@ function renderNormas(){
   temaOrder.forEach(function(tema){
     if(!grouped[tema])return;
     var color=NORMAS_TEMA_COLOR[tema]||'#6b7280';
-    if(_normasTema==='todos'){
+    var laws=grouped[tema], isTodos=(_normasTema==='todos'), exp=!!_normasExpanded[tema];
+    if(isTodos){
       html+='<div class="normas-section-hdr">'+tema
         +' <span style="font-size:10px;opacity:0.6;text-transform:none;letter-spacing:0">— '
-        +grouped[tema].length+' norma'+(grouped[tema].length>1?'s':'')+'</span></div>';
+        +laws.length+' norma'+(laws.length>1?'s':'')+'</span></div>';
     }
-    grouped[tema].forEach(function(n,idx){
+    var vis=(isTodos&&!exp)?laws.slice(0,3):laws;
+    vis.forEach(function(n,idx){
       var isProy=n.tipo==='PROY';
       var uid='nom-'+tema.replace(/[^a-z]/gi,'')+idx;
       var ex=NOM_EXTRA[n.id]||{};
@@ -3389,7 +3404,7 @@ function renderNormas(){
         {t:'Catálogo Nacional de Regulaciones',u:'https://catalogonacional.gob.mx/'}
       ]).filter(function(d){return d.u;});
       html+='<div>'
-        +'<div class="nom-row" style="cursor:pointer;align-items:flex-start" onclick="_toggleNomDetail(\''+uid+'\')">'
+        +'<div class="nom-row'+(idx%2?' zeb':'')+'" style="cursor:pointer;align-items:flex-start" onclick="_toggleNomDetail(\''+uid+'\')">'
         +'<span id="'+uid+'-arr" style="font-size:9px;color:var(--text-muted);transition:transform 0.2s;flex-shrink:0;display:inline-block;margin-top:3px">▶</span>'
         +'<div style="flex:1;min-width:0">'
           +'<div style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green)">'+n.id+(isProy?' <span style="font-size:8px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted)">· PROYECTO</span>':'')+((NOM_EXTRA[n.id]&&NOM_EXTRA[n.id].programa2026)?' <span style="font-size:8px;font-weight:700;letter-spacing:0.06em;color:#066750;border:0.8px solid #066750;border-radius:6px;padding:1px 5px">PNIC 2026</span>':'')+'</div>'
@@ -3418,6 +3433,9 @@ function renderNormas(){
         +'</div>'
       +'</div>';
     });
+    if(isTodos&&laws.length>3){
+      html+='<div onclick="_toggleNormasSector(\''+tema.replace(/'/g,"\\'")+'\')" style="font-size:11px;font-weight:600;color:var(--green);cursor:pointer;padding:9px 0 4px;user-select:none">'+(exp?'▲ Ver menos':'▼ Ver más ('+(laws.length-3)+')')+'</div>';
+    }
   });
   if(!html)html='<div style="text-align:center;padding:40px 20px;color:var(--text-muted);font-size:13px">Sin normas para los filtros seleccionados</div>';
   el.innerHTML=html;
@@ -3459,33 +3477,35 @@ function renderSPLegislacion(state,data){
   const sl=leyesAmbientales.estados.find(e=>e.nombre===state||(state==='México'&&e.nombre==='Estado de México'));
   const cl={equilibrio_ecologico:'Equilibrio Ecológico',residuos:'Residuos y Plásticos',agua:'Agua',forestal_biodiversidad:'Forestal y Biodiversidad',cambio_climatico:'Cambio Climático',economia_circular:'Economía Circular',plasticos:'Plásticos'};
   let html='';
-  if(sl){Object.entries(sl.leyes).forEach(([cat,laws])=>{
-    if(!laws||!laws.length)return;
-    html+='<div class="sp-eyebrow" style="margin-bottom:6px">'+(cl[cat]||cat)+'</div>';
-    laws.forEach(law=>{
-      var nombre=(typeof _leyName==='function')?_leyName(law.nombre||''):(law.nombre||'');
-      var sig=/^\s*c[oó]digo/i.test(nombre)?'CÓD':/^\s*reglamento/i.test(nombre)?'REG':/^\s*programa/i.test(nombre)?'PROG':'LEY';
-      var sigCol=sig==='LEY'?'var(--green)':sig==='CÓD'?'#2563eb':'#6b7280';
-      var doc=(law.url||'').replace(/'/g,'%27').replace(/"/g,'%22');
-      if(!doc)doc='https://www.google.com/search?q='+encodeURIComponent(nombre+' pdf');
-      var est=law.estado_vigencia||'';
-      var estCol=/vigente/i.test(est)?'var(--green)':/pendiente/i.test(est)?'#B45309':'var(--text-muted)';
-      var meta=[];
-      if(law.ultima_reforma)meta.push('Última reforma <span style="color:var(--text-sec)">'+law.ultima_reforma+'</span>');
-      if(est)meta.push('<span style="color:'+estCol+'">'+est+'</span>');
-      html+='<div class="ley-row" style="align-items:center;cursor:pointer" onclick="window.open(\''+doc+'\',\'_blank\')">'
-        +'<span class="ley-sigla" style="color:'+sigCol+'">'+sig+'</span>'
-        +'<div style="flex:1;min-width:0">'
-          +'<div class="ley-nombre" style="color:var(--text);font-weight:400;line-height:1.4">'+nombre+'</div>'
-          +(meta.length?'<div style="font-size:10px;color:var(--text-muted);margin-top:3px">'+meta.join('  ·  ')+'</div>':'')
-        +'</div>'
-        +'<span style="font-size:18px;font-weight:300;color:var(--text-muted);opacity:0.45;flex-shrink:0;line-height:1">›</span>'
-        +'</div>';
+  if(sl){
+    Object.entries(sl.leyes).forEach(([cat,laws])=>{
+      if(!laws||!laws.length)return;
+      html+='<div class="sp-leg-group"><div class="sp-leg-h"><span class="t">'+(cl[cat]||cat)+'</span><span class="n">'+laws.length+'</span></div>';
+      laws.forEach((law,i)=>{
+        var nombre=(typeof _leyName==='function')?_leyName(law.nombre||''):(law.nombre||'');
+        var sig=/^\s*c[oó]digo/i.test(nombre)?'CÓD':/^\s*reglamento/i.test(nombre)?'REG':/^\s*programa/i.test(nombre)?'PROG':'LEY';
+        var sigCol=sig==='LEY'?'var(--green)':sig==='CÓD'?'#2563eb':'#6b7280';
+        var doc=(law.url||'').replace(/'/g,'%27').replace(/"/g,'%22');
+        if(!doc)doc='https://www.google.com/search?q='+encodeURIComponent(nombre+' pdf');
+        var est=law.estado_vigencia||'';
+        var estCol=/vigente/i.test(est)?'var(--green)':/pendiente/i.test(est)?'#B45309':'var(--text-muted)';
+        var meta=[];
+        if(law.ultima_reforma)meta.push('Última reforma <span style="color:var(--text-sec)">'+law.ultima_reforma+'</span>');
+        if(est)meta.push('<span style="color:'+estCol+'">'+est+'</span>');
+        html+='<div class="ley-row'+(i%2?' zeb':'')+'" style="align-items:center;cursor:pointer" onclick="window.open(\''+doc+'\',\'_blank\')">'
+          +'<span class="ley-sigla" style="color:'+sigCol+'">'+sig+'</span>'
+          +'<div style="flex:1;min-width:0">'
+            +'<div class="ley-nombre" style="color:var(--text);font-weight:400;line-height:1.4">'+nombre+'</div>'
+            +(meta.length?'<div style="font-size:10px;color:var(--text-muted);margin-top:3px">'+meta.join('  ·  ')+'</div>':'')
+          +'</div>'
+          +'<span style="font-size:18px;font-weight:300;color:var(--text-muted);opacity:0.45;flex-shrink:0;line-height:1">›</span>'
+          +'</div>';
+      });
+      html+='</div>';
     });
-    html+='<div style="height:14px"></div>';
-  });}
+  }
   if(!html)html='<div class="sp-empty">Sin datos de legislación local disponibles</div>';
-  document.getElementById('sp-legislacion').innerHTML=html;
+  document.getElementById('sp-legislacion').innerHTML='<div class="sp-leg">'+html+'</div>';
 }
 // ── Impuestos ambientales: normalización a MXN para comparar (UMA 2026 = $117.31) ──
 var UMA_MXN_2026=117.31;
