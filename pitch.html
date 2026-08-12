@@ -422,11 +422,14 @@
   .cap{font-size:13px;color:var(--dim);margin-top:14px}
   /* mesa de trabajo: NOM federal + hilo de comentarios en tiempo real */
   .mesa{max-width:460px;width:100%}
-  .mesa-nom{border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.01));padding:14px 16px;margin-bottom:14px}
-  .mesa-nom .mn-id{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--mint)}
-  .mesa-nom .mn-ob{font-size:13px;color:var(--ink);margin-top:5px;line-height:1.45}
-  .mesa-nom .mn-st{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-family:var(--mono);font-size:9px;letter-spacing:.05em;color:var(--mint)}
-  .mesa-nom .mn-st .d{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 3px rgba(63,224,173,.14)}
+  /* tarjeta de NOM: réplica del look real de Scope (fondo blanco) */
+  .mesa-nom{background:#fff;color:#0D1B2A;border:0.8px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 22px 55px rgba(0,0,0,.42)}
+  .mesa-nom .mn-id{font-family:var(--mono);font-size:11px;font-weight:700;color:#009E90;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .mesa-nom .mn-pnic{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.06em;color:#066750;border:0.8px solid #066750;border-radius:6px;padding:2px 6px}
+  .mesa-nom .mn-ob{font-size:13px;color:#0D1B2A;font-weight:500;margin-top:6px;line-height:1.45}
+  .mesa-nom .mn-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px}
+  .mesa-nom .mn-gemi{font-family:var(--mono);font-size:9px;font-weight:700;color:#0D1B2A}
+  .mesa-nom .mn-st{font-family:var(--mono);font-size:9px;color:#5A7A98}
   .mesa-thread{display:flex;flex-direction:column;gap:11px}
   .mcom{display:flex;gap:10px;align-items:flex-start;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
   .mcom.show{opacity:1;transform:none}
@@ -539,21 +542,21 @@
   <section data-t="NOMs federales" data-anim="mesa">
     <div class="techbg"></div>
     <div class="glow" style="width:460px;height:460px;background:var(--g2);top:-10%;left:-8%;opacity:.18"></div>
-    <div class="kick r">Ámbito federal</div>
+    <div class="kick r">Desde lo federal</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:15ch">El cumplimiento federal, con GEMI encima</h2>
-        <p class="lead r d2">Las <b>Normas Oficiales Mexicanas</b> rigen agua, emisiones, residuos y más. Son decenas en revisión constante, y GEMI está en las <b>mesas de trabajo</b> donde se deciden. Abrimos un <b>canal de comentarios en tiempo real</b>: conversaciones con nuestros asociados y contexto para quien necesita entender la regulación que impacta su operación.</p>
+        <h2 class="r d1" style="max-width:15ch">El cumplimiento normativo desde GEMI</h2>
+        <p class="lead r d2">Las <b>Normas Oficiales Mexicanas</b> rigen agua, emisiones, residuos y más, en revisión constante. Abrimos un <b>canal de comentarios en tiempo real</b>.</p>
       </div>
       <div class="viz r d3">
         <div class="mesa">
           <div class="mesa-nom">
-            <div class="mn-id">NOM · Agua regenerada para uso y consumo humano</div>
-            <div class="mn-ob">Límites permisibles de calidad del agua regenerada. Impacta el reúso de agua en la industria.</div>
-            <div class="mn-st"><span class="d"></span>En desarrollo · GEMI en la mesa</div>
+            <div class="mn-id">NOM-043-SEMARNAT-1993 <span class="mn-pnic">PNIC 2026</span></div>
+            <div class="mn-ob">Niveles máximos permisibles de emisión a la atmósfera de partículas sólidas provenientes de fuentes fijas.</div>
+            <div class="mn-meta"><span class="mn-gemi">GEMI ACTIVO</span><span class="mn-st">· En desarrollo · SEMARNAT</span></div>
           </div>
           <div class="mesa-thread">
-            <div class="mcom"><span class="av gemi">G</span><div class="bd"><div class="who">GEMI <span class="role">· en la mesa de revisión</span></div><div class="tx">Estamos revisando esta norma. Va a impactar directamente el reúso de agua en la industria.</div></div></div>
+            <div class="mcom"><span class="av gemi">G</span><div class="bd"><div class="who">GEMI <span class="role">· en la mesa de revisión</span></div><div class="tx">Estamos revisando esta norma. Su modificación impacta las emisiones de fuentes fijas en la industria.</div></div></div>
             <div class="mcom"><span class="av soc">A</span><div class="bd"><div class="who">Asociado <span class="role">· empresa afiliada</span></div><div class="tx">¿Hay fecha para el anteproyecto?</div></div></div>
             <div class="mcom"><span class="av gemi">G</span><div class="bd"><div class="who">GEMI</div><div class="tx">En cuanto se publique, lo verán aquí primero.</div></div></div>
           </div>
