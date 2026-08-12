@@ -1,0 +1,329 @@
+{
+ "_meta": {
+  "nota": "Diagnóstico de gestión municipal de residuos sólidos urbanos por entidad (cobertura de recolección, programas informativos, separación en fuente y sitios de disposición).",
+  "fuente": "GEMI · Base de datos Scope (Santiago) · Diagnóstico Básico de la Gestión Integral de Residuos",
+  "actualizado": "2026-08-11"
+ },
+ "estados": {
+  "Baja California": {
+   "municipios": 7,
+   "con_recoleccion": 7,
+   "con_programas": 1,
+   "con_separacion": 5,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 5,
+   "tiraderos_cielo_abierto": 15,
+   "sitios_disposicion": 20
+  },
+  "Baja California Sur": {
+   "municipios": 5,
+   "con_recoleccion": 5,
+   "con_programas": 5,
+   "con_separacion": 0,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 2,
+   "tiraderos_cielo_abierto": 30,
+   "sitios_disposicion": 32
+  },
+  "Chihuahua": {
+   "municipios": 67,
+   "con_recoleccion": 67,
+   "con_programas": 8,
+   "con_separacion": 2,
+   "rellenos_cumplen": 2,
+   "rellenos_no_cumplen": 4,
+   "tiraderos_cielo_abierto": 158,
+   "sitios_disposicion": 164
+  },
+  "Durango": {
+   "municipios": 39,
+   "con_recoleccion": 39,
+   "con_programas": 4,
+   "con_separacion": 0,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 18,
+   "tiraderos_cielo_abierto": 43,
+   "sitios_disposicion": 61
+  },
+  "Sinaloa": {
+   "municipios": 18,
+   "con_recoleccion": 18,
+   "con_programas": 2,
+   "con_separacion": null,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 5,
+   "tiraderos_cielo_abierto": 42,
+   "sitios_disposicion": 48
+  },
+  "Sonora": {
+   "municipios": 72,
+   "con_recoleccion": 72,
+   "con_programas": 14,
+   "con_separacion": 2,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 6,
+   "tiraderos_cielo_abierto": 110,
+   "sitios_disposicion": 116
+  },
+  "Coahuila": {
+   "municipios": 38,
+   "con_recoleccion": 38,
+   "con_programas": 10,
+   "con_separacion": 0,
+   "rellenos_cumplen": 2,
+   "rellenos_no_cumplen": 7,
+   "tiraderos_cielo_abierto": 32,
+   "sitios_disposicion": 41
+  },
+  "Nuevo León": {
+   "municipios": 51,
+   "con_recoleccion": 51,
+   "con_programas": 4,
+   "con_separacion": 1,
+   "rellenos_cumplen": 3,
+   "rellenos_no_cumplen": 14,
+   "tiraderos_cielo_abierto": 25,
+   "sitios_disposicion": 42
+  },
+  "Tamaulipas": {
+   "municipios": 43,
+   "con_recoleccion": 41,
+   "con_programas": 4,
+   "con_separacion": 1,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 7,
+   "tiraderos_cielo_abierto": 34,
+   "sitios_disposicion": 41
+  },
+  "Querétaro": {
+   "municipios": 18,
+   "con_recoleccion": 18,
+   "con_programas": 9,
+   "con_separacion": 5,
+   "rellenos_cumplen": 2,
+   "rellenos_no_cumplen": 9,
+   "tiraderos_cielo_abierto": 1,
+   "sitios_disposicion": 12
+  },
+  "Guanajuato": {
+   "municipios": 46,
+   "con_recoleccion": 46,
+   "con_programas": 13,
+   "con_separacion": 0,
+   "rellenos_cumplen": 2,
+   "rellenos_no_cumplen": 17,
+   "tiraderos_cielo_abierto": 24,
+   "sitios_disposicion": 43
+  },
+  "San Luis Potosí": {
+   "municipios": 58,
+   "con_recoleccion": 57,
+   "con_programas": 10,
+   "con_separacion": 0,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 8,
+   "tiraderos_cielo_abierto": 50,
+   "sitios_disposicion": 59
+  },
+  "Zacatecas": {
+   "municipios": 58,
+   "con_recoleccion": 58,
+   "con_programas": 5,
+   "con_separacion": 1,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 4,
+   "tiraderos_cielo_abierto": 88,
+   "sitios_disposicion": 92
+  },
+  "Aguascalientes": {
+   "municipios": 11,
+   "con_recoleccion": 11,
+   "con_programas": 2,
+   "con_separacion": 0,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 0,
+   "tiraderos_cielo_abierto": 0,
+   "sitios_disposicion": 1
+  },
+  "Morelos": {
+   "municipios": 36,
+   "con_recoleccion": 36,
+   "con_programas": 2,
+   "con_separacion": 0,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 7,
+   "tiraderos_cielo_abierto": 7,
+   "sitios_disposicion": 15
+  },
+  "México": {
+   "municipios": 125,
+   "con_recoleccion": 125,
+   "con_programas": 8,
+   "con_separacion": 6,
+   "rellenos_cumplen": 6,
+   "rellenos_no_cumplen": 19,
+   "tiraderos_cielo_abierto": 38,
+   "sitios_disposicion": 63
+  },
+  "Ciudad de México": {
+   "municipios": 16,
+   "con_recoleccion": 16,
+   "con_programas": 8,
+   "con_separacion": 16,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 0,
+   "tiraderos_cielo_abierto": 0,
+   "sitios_disposicion": 0
+  },
+  "Puebla": {
+   "municipios": 217,
+   "con_recoleccion": 211,
+   "con_programas": 33,
+   "con_separacion": 8,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 12,
+   "tiraderos_cielo_abierto": 82,
+   "sitios_disposicion": 95
+  },
+  "Veracruz": {
+   "municipios": 212,
+   "con_recoleccion": 204,
+   "con_programas": 56,
+   "con_separacion": 9,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 11,
+   "tiraderos_cielo_abierto": 96,
+   "sitios_disposicion": 108
+  },
+  "Tlaxcala": {
+   "municipios": 60,
+   "con_recoleccion": 60,
+   "con_programas": 15,
+   "con_separacion": 1,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 4,
+   "tiraderos_cielo_abierto": 0,
+   "sitios_disposicion": 4
+  },
+  "Hidalgo": {
+   "municipios": 84,
+   "con_recoleccion": 82,
+   "con_programas": 15,
+   "con_separacion": 0,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 13,
+   "tiraderos_cielo_abierto": 38,
+   "sitios_disposicion": 52
+  },
+  "Nayarit": {
+   "municipios": 20,
+   "con_recoleccion": 20,
+   "con_programas": 2,
+   "con_separacion": 1,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 4,
+   "tiraderos_cielo_abierto": 24,
+   "sitios_disposicion": 29
+  },
+  "Jalisco": {
+   "municipios": 125,
+   "con_recoleccion": 125,
+   "con_programas": 24,
+   "con_separacion": 0,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 31,
+   "tiraderos_cielo_abierto": 91,
+   "sitios_disposicion": 123
+  },
+  "Colima": {
+   "municipios": 10,
+   "con_recoleccion": 10,
+   "con_programas": 3,
+   "con_separacion": 3,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 3,
+   "tiraderos_cielo_abierto": 0,
+   "sitios_disposicion": 3
+  },
+  "Michoacán": {
+   "municipios": 113,
+   "con_recoleccion": 113,
+   "con_programas": 14,
+   "con_separacion": 5,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 13,
+   "tiraderos_cielo_abierto": 99,
+   "sitios_disposicion": 112
+  },
+  "Tabasco": {
+   "municipios": 17,
+   "con_recoleccion": 17,
+   "con_programas": 3,
+   "con_separacion": null,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 3,
+   "tiraderos_cielo_abierto": 14,
+   "sitios_disposicion": 17
+  },
+  "Campeche": {
+   "municipios": 13,
+   "con_recoleccion": 13,
+   "con_programas": 4,
+   "con_separacion": 0,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 2,
+   "tiraderos_cielo_abierto": 9,
+   "sitios_disposicion": 12
+  },
+  "Quintana Roo": {
+   "municipios": 11,
+   "con_recoleccion": 11,
+   "con_programas": 4,
+   "con_separacion": 0,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 5,
+   "tiraderos_cielo_abierto": 22,
+   "sitios_disposicion": 28
+  },
+  "Yucatán": {
+   "municipios": 106,
+   "con_recoleccion": 104,
+   "con_programas": 20,
+   "con_separacion": 3,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 2,
+   "tiraderos_cielo_abierto": 124,
+   "sitios_disposicion": 126
+  },
+  "Guerrero": {
+   "municipios": 81,
+   "con_recoleccion": 80,
+   "con_programas": 15,
+   "con_separacion": 0,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 5,
+   "tiraderos_cielo_abierto": 128,
+   "sitios_disposicion": 133
+  },
+  "Oaxaca": {
+   "municipios": 570,
+   "con_recoleccion": 421,
+   "con_programas": 104,
+   "con_separacion": 33,
+   "rellenos_cumplen": 0,
+   "rellenos_no_cumplen": 16,
+   "tiraderos_cielo_abierto": 416,
+   "sitios_disposicion": 432
+  },
+  "Chiapas": {
+   "municipios": 124,
+   "con_recoleccion": 122,
+   "con_programas": 20,
+   "con_separacion": 0,
+   "rellenos_cumplen": 1,
+   "rellenos_no_cumplen": 8,
+   "tiraderos_cielo_abierto": 116,
+   "sitios_disposicion": 125
+  }
+ }
+}
