@@ -3219,7 +3219,8 @@ var NORMAS=[
   {id:'NOM-037-STPS-2023',dep:'STPS',tema:'Laboral',tipo:'NOM',objeto:'Condiciones de seguridad y salud en el trabajo bajo la modalidad de teletrabajo',implic:'',afecta:'Centros de trabajo con teletrabajo',url:''},
   {id:'NOM-035-STPS-2018',dep:'STPS',tema:'Laboral',tipo:'NOM',objeto:'Factores de riesgo psicosocial en el trabajo: identificación, análisis y prevención',implic:'',afecta:'Todos los centros de trabajo',url:''},
   {id:'NOM-081-SEMARNAT-1994',dep:'SEMARNAT',tema:'Ruido y luz',tipo:'NOM',objeto:'Límites máximos permisibles de emisión de ruido de las fuentes fijas y su método de medición',implic:'',afecta:'Industria · fuentes fijas',url:''},
-  {id:'NOM-000-SEMARNAT-2026',dep:'SEMARNAT',tema:'Ruido y luz',tipo:'NOM',objeto:'Especificaciones técnicas y clasificación de instalaciones de iluminación respecto a la contaminación lumínica; niveles máximos permisibles de luz artificial en el ambiente',implic:'En desarrollo',afecta:'Alumbrado · instalaciones de iluminación',url:''}
+  {id:'NOM-000-SEMARNAT-2026',dep:'SEMARNAT',tema:'Ruido y luz',tipo:'NOM',objeto:'Especificaciones técnicas y clasificación de instalaciones de iluminación respecto a la contaminación lumínica; niveles máximos permisibles de luz artificial en el ambiente',implic:'En desarrollo',afecta:'Alumbrado · instalaciones de iluminación',url:''},
+  {id:'PROY-NOM-AGUA-REGENERADA-2026',dep:'SEMARNAT',tema:'Agua',tipo:'PROY',objeto:'Agua regenerada para uso y consumo humano: límites permisibles de calidad del agua',implic:'Nueva norma en desarrollo en el Programa Nacional de Infraestructura de la Calidad 2026',afecta:'Reúso de agua · agua potable · industria',url:''}
 ];
 var NORMAS_TEMA_COLOR={'Agua':'#2563eb','Aire':'#0ea5e9','Residuos':'#d97706','Logística':'#7c3aed','Comercio':'#16a34a','Energía':'#f59e0b','Alimentos':'#db2777','Laboral':'#475569','Ruido y luz':'#0f766e'};
 var _normasTema='todos', _normasType='todos', _normasRendered=false;
@@ -3238,7 +3239,19 @@ function filterNormasType(type,btn){
 // Estatus PNIC y flag GEMI por NOM. gemi: true=participación activa, false=no,
 // null=por confirmar con el equipo GEMI. El estatus PNIC se refinará con el
 // scraper de CONAMER (pendiente); mientras, se deriva del tipo.
-var NOM_EXTRA={};
+// Programa Nacional de Infraestructura de la Calidad 2026 (base GEMI/Santiago):
+// estatus PNIC + participación de GEMI por norma. Se publica la participación de GEMI (decisión del usuario).
+var NOM_EXTRA={
+ 'PROY-NOM-AGUA-REGENERADA-2026':{programa2026:true,pnic:'Nueva · en desarrollo (PNIC 2026)',gemi:true,contexto:'Nueva NOM sobre agua regenerada para uso y consumo humano, en desarrollo dentro del Programa Nacional de Infraestructura de la Calidad 2026. GEMI participa activamente en su grupo de trabajo.'},
+ 'NOM-002-SEMARNAT-1996':{programa2026:true,pnic:'Modificación · pausada (PNIC 2026)',gemi:true,contexto:'Propuesta de modificación dentro del PNIC 2026, actualmente pausada. GEMI participa en el grupo de trabajo.'},
+ 'NOM-160-SEMARNAT-2011':{programa2026:true,pnic:'Reprogramación · en consulta pública (PNIC 2026)',gemi:true,contexto:'Reprogramada en el PNIC 2026; actualmente en consulta pública. GEMI participa en su revisión.'},
+ 'NOM-161-SEMARNAT-2011':{programa2026:true,pnic:'Cancelada en el PNIC 2026',gemi:false,contexto:'Su revisión fue cancelada dentro del PNIC 2026.'},
+ 'NOM-043-SEMARNAT-1993':{programa2026:true,pnic:'Modificación · en desarrollo (PNIC 2026)',gemi:true,contexto:'En desarrollo su modificación dentro del PNIC 2026. GEMI participa activamente.'},
+ 'NOM-085-SEMARNAT-2011':{programa2026:true,pnic:'Modificación · en desarrollo (PNIC 2026)',gemi:true,contexto:'En desarrollo su modificación dentro del PNIC 2026. GEMI participa activamente.'},
+ 'NOM-000-SEMARNAT-2026':{programa2026:true,pnic:'Nueva · pausada (PNIC 2026)',gemi:true,contexto:'Nueva NOM de contaminación lumínica dentro del PNIC 2026, actualmente pausada. GEMI participa en el grupo de trabajo.'},
+ 'NOM-144-SEMARNAT-2017':{programa2026:true,pnic:'Reprogramación · pausada (PNIC 2026)',gemi:true,contexto:'Reprogramada en el PNIC 2026, actualmente pausada. GEMI participa en su revisión.'},
+ 'NOM-052-SEMARNAT-2005':{programa2026:true,pnic:'Modificación · pausada (PNIC 2026)',gemi:false,contexto:'Propuesta de modificación dentro del PNIC 2026, actualmente pausada.'}
+};
 function _nomPnic(n){
   var ex=NOM_EXTRA[n.id]||{};
   if(ex.pnic)return ex.pnic;
@@ -3359,7 +3372,7 @@ function renderNormas(){
         +'<div class="nom-row" style="cursor:pointer;align-items:flex-start" onclick="_toggleNomDetail(\''+uid+'\')">'
         +'<span id="'+uid+'-arr" style="font-size:9px;color:var(--text-muted);transition:transform 0.2s;flex-shrink:0;display:inline-block;margin-top:3px">▶</span>'
         +'<div style="flex:1;min-width:0">'
-          +'<div style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green)">'+n.id+(isProy?' <span style="font-size:8px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted)">· PROYECTO</span>':'')+'</div>'
+          +'<div style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green)">'+n.id+(isProy?' <span style="font-size:8px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted)">· PROYECTO</span>':'')+((NOM_EXTRA[n.id]&&NOM_EXTRA[n.id].programa2026)?' <span style="font-size:8px;font-weight:700;letter-spacing:0.06em;color:#066750;border:0.8px solid #066750;border-radius:6px;padding:1px 5px">PNIC 2026</span>':'')+'</div>'
           +'<div style="font-size:12px;color:var(--text);font-weight:500;margin-top:4px">'+n.objeto+'</div>'
           +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.4">'+n.implic+'</div>'
           +'<div data-nomcnt="'+_esc(n.id)+'" style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:5px">'+_cntTxt(n.id)+'</div>'
