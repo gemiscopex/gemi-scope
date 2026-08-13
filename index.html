@@ -5092,7 +5092,7 @@ function renderComisiones(data){
   var dip=coms.filter(function(c){return c.camara==='Diputados';});
   var sen=coms.filter(function(c){return c.camara==='Senado';});
   if(!dip.length&&!sen.length){el.innerHTML='<div style="font-size:12px;color:var(--text-muted)">Sin datos de comisiones disponibles</div>';return;}
-  function norm(c){return {nombre:c.nombre||c.n||'',url:c.url||'',at:c.at||'',ur:c.ur?fmtReunion(c.ur):'—',pr:c.pr?fmtReunion(c.pr):'—',integrantes:(c.integrantes||[]).map(function(m){return{n:m.n||m.nombre||'',cargo:m.cargo||'',partido:m.partido||''};})};}
+  function norm(c){return {nombre:c.nombre||c.n||'',url:c.url||'',at:c.at||'',nota:c.nota||'',ur:c.ur?fmtReunion(c.ur):'—',pr:c.pr?fmtReunion(c.pr):'—',integrantes:(c.integrantes||[]).map(function(m){return{n:m.n||m.nombre||'',cargo:m.cargo||'',partido:m.partido||''};})};}
   function memberHTML(m){
     var color=PARTIDO_COLOR[m.partido]||PARTIDO_COLOR[(m.partido||'').toUpperCase()]||'#6b7280';
     var isLead=m.cargo&&(m.cargo.toLowerCase().includes('president')||m.cargo.toLowerCase().includes('secretari'));
@@ -5147,6 +5147,7 @@ function renderComisiones(data){
         +'<div style="flex:1;min-width:0">'
           +'<div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:7px">'+members.length+' integrantes</div>'
           +'<div style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center">'+partyChips+'</div>'
+          +(c.nota?'<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-top:9px;padding-left:9px;border-left:2px solid var(--green)">'+c.nota+'</div>':'')
         +'</div>'
         +(c.at?'<a href="'+c.at+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="flex-shrink:0;padding:5px 12px;background:var(--green);color:#fff;border-radius:8px;font-size:10px;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:0.02em;margin-top:2px">Asuntos Turnados →</a>':'')
         +'</div>';
