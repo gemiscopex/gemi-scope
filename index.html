@@ -2964,7 +2964,7 @@ var _PENDIENTES=[
   {t:'Reglamento de la Ley General de Aguas',e:'PENDIENTE',d:'Reglamento de la nueva Ley General de Aguas (DOF 11-dic-2025); definirá concesiones, usos y obligaciones de reporte para usuarios industriales.',org:'CONAGUA / SEMARNAT',docs:[]},
   {t:'Reforma a la LGEEPA (anunciada)',e:'PENDIENTE',d:'Reforma anunciada a la Ley General del Equilibrio Ecológico y la Protección al Ambiente; ajustaría instrumentos de política ambiental y evaluación de impacto.',org:'Ejecutivo Federal / Congreso',docs:[]},
   {t:'Reforma a la LGPGIR en materia de REP',e:'EN PROCESO',d:'Adecúa la Ley General para la Prevención y Gestión Integral de los Residuos al esquema de Responsabilidad Extendida del Productor.',org:'Congreso de la Unión',docs:[]},
-  {t:'Actualización NOM-161-SEMARNAT (residuos de manejo especial)',e:'PROYECTO',d:'Amplía los listados y las obligaciones de plan de manejo para productores.',org:'SEMARNAT / CONAMER',docs:[]},
+  {t:'Actualización NOM-161-SEMARNAT (residuos de manejo especial)',e:'PROYECTO',d:'Amplía los listados y las obligaciones de plan de manejo para productores.',org:'SEMARNAT',docs:[]},
   {t:'Contenido mínimo reciclado (PCR) en envases',e:'PENDIENTE',d:'Discusión sobre obligar un porcentaje mínimo de resina reciclada post-consumo en envases; tema crítico por la brecha técnica del PCR food-grade y de los multilaminados.',org:'SEMARNAT / Congreso',docs:[]},
   {t:'Restricción a aditivos oxodegradables',e:'PENDIENTE',d:'Varios estados avanzan en restringir o prohibir aditivos prooxidantes (oxodegradables); alineado con la Directiva SUP de la UE y el consenso científico (fragmentan en microplásticos).',org:'Congresos estatales',docs:[]},
   {t:'Descarbonización del transporte / electromovilidad',e:'EN PROCESO',d:'Política pública de electromovilidad y descarbonización del transporte; impacto estructural de mediano-largo plazo para estaciones de servicio y logística.',org:'SENER / SEMARNAT',docs:[]},
@@ -2984,7 +2984,7 @@ function agendaSetEst(e){_agendaEst=e;_agendaPend();}
 function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
   if(['dof','pendientes','conamer','gacetas'].indexOf(view)>=0)_agendaView=view;
-  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta · CONAMER'],['dof','DOF · publicaciones']];
+  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta · ATDT'],['dof','DOF · publicaciones']];
   var nav='<div class="stab-bar" style="margin-bottom:20px">'+tabs.map(function(t){
       return '<button class="stab'+(_agendaView===t[0]?' on':'')+'" onclick="agendaSetView(\''+t[0]+'\')">'+t[1]+'</button>';
     }).join('')+'</div>';
@@ -3238,9 +3238,10 @@ function _agendaConamer(){
   var d=_conamerData;
   if(!d){host.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando…</div>';return;}
   var items=(d.items||[]);
-  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:6px">Propuestas regulatorias <b>en consulta pública</b> ante CONAMER que impactan a nuestros sectores — antes de publicarse en el DOF. '
-    +'<a href="'+((d._meta&&d._meta.url)||'https://www.herramientasregulatorias.gob.mx/')+'" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Portal CONAMER <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a></div>'
-    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:14px">'+((d._meta&&d._meta.actualizado)||'')+' · '+items.length+' propuesta'+(items.length===1?'':'s')+'</div>';
+  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:6px">Anteproyectos regulatorios que impactan a nuestros sectores — antes de publicarse en el DOF. '
+    +'<a href="https://www.gob.mx/atdt" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Agencia de Transformación Digital (ATDT) <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a></div>'
+    +'<div style="font-size:10px;color:var(--text-muted);line-height:1.5;margin-bottom:8px;padding-left:9px;border-left:2px solid var(--amber)">La reforma del <b>22-abr-2025</b> extinguió la CONAMER y trasladó la mejora regulatoria a la <b>ATDT</b>; se eliminaron la consulta pública obligatoria y el Análisis de Impacto Regulatorio (AIR) para decretos y reglamentos del Ejecutivo. Se conserva el seguimiento de anteproyectos aún vigentes.</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:14px">'+((d._meta&&d._meta.actualizado)||'')+' · '+items.length+' anteproyecto'+(items.length===1?'':'s')+'</div>';
   if(!items.length){host.innerHTML=head+'<div style="font-size:12px;color:var(--text-muted);padding:12px 0">Sin propuestas de nuestros sectores en consulta ahora mismo.</div>';return;}
   var body=items.map(function(it,i){
     var dia=(it.fecha||'').split(' ')[0];
