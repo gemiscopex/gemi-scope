@@ -328,6 +328,13 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .rdc-thead{display:flex;align-items:center;gap:8px;min-width:0}
 .rdc-ticon{color:#066750;display:flex;align-items:center;flex-shrink:0}
 .rdc-tname{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rdc-caret{margin-left:auto;color:var(--text-muted);display:inline-flex;align-items:center;flex-shrink:0;transition:transform .25s ease,color .2s}
+.rdc-caret svg{width:15px;height:15px;display:block}
+.rdc-tile:hover .rdc-caret{color:#066750}
+.rdc-tile.sel .rdc-caret{transform:rotate(180deg);color:#066750}
+.rdc-scroll::-webkit-scrollbar{width:5px}
+.rdc-scroll::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.16);border-radius:3px}
+.rdc-scroll::-webkit-scrollbar-track{background:transparent}
 .rdc-tsub{font-family:var(--mono);font-size:8px;letter-spacing:.02em;color:var(--text-muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rdc-tspark{margin:11px 0 9px;height:26px}
 /* Animación en bucle de las sparklines: se redibujan cada 22s, desfasadas 2s por tile,
@@ -999,7 +1006,11 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
   #actores-estatales > div{grid-template-columns:1fr !important;gap:4px !important}
   #actores-estatales > div > span:first-child{font-size:13px !important;margin-top:8px}
   #datosgob-grid{grid-template-columns:1fr !important}
-  .nav-drop{display:none !important}
+  /* Menús desplegables en móvil: se abren por tap (.open), no por hover */
+  .nav-drop-wrap:hover .nav-drop{display:none}
+  .nav-drop{display:none}
+  .nav-drop-wrap.open .nav-drop{display:block;position:fixed;left:8px;right:8px;top:auto;min-width:0;max-height:70vh;overflow-y:auto;z-index:1200;box-shadow:0 14px 44px rgba(0,0,0,0.24)}
+  .nav-drop-it .nd-sub{margin-left:auto}
 
   /* ── MI CONSOLA ── */
   .cons-grid{grid-template-columns:1fr !important}
@@ -1077,35 +1088,35 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
   </div>
   <div class="nav-tabs">
     <div class="nav-drop-wrap">
-      <button class="tab-btn" onclick="goObligaciones('federal')">Obligaciones ▾</button>
+      <button class="tab-btn" onclick="navDrop(event,this,function(){goObligaciones('federal')})">Obligaciones ▾</button>
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="goObligaciones('instrumentos')">Instrumentos<span class="nd-sub">Planes, REP, registros, distintivos</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs<span class="nd-sub">Normas oficiales mexicanas</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('federal')">Leyes Federales<span class="nd-sub">Legislación federal ambiental</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('estatal')">Leyes Estatales<span class="nd-sub">32 entidades</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('rme')">Trámites RME<span class="nd-sub">Residuos de manejo especial · 32 entidades</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('gacetas')">Gacetas Oficiales<span class="nd-sub">Publicación oficial por entidad</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs</div>
+        <div class="nav-drop-it" onclick="goObligaciones('federal')">Leyes Federales</div>
+        <div class="nav-drop-it" onclick="goObligaciones('estatal')">Leyes Estatales</div>
+        <div class="nav-drop-it" onclick="goObligaciones('rme')">Trámites RME<span class="nd-sub">Residuos de manejo especial</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('gacetas')">Gacetas por entidades</div>
       </div>
     </div>
     <button class="tab-btn" onclick="showTab('estados',null)">Estados</button>
     <div class="nav-drop-wrap">
-      <button class="tab-btn" onclick="goAgenda('congreso')">Agenda ▾</button>
+      <button class="tab-btn" onclick="navDrop(event,this,function(){goAgenda('congreso')})">Agenda ▾</button>
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="goAgenda('congreso')">Congreso de la Unión<span class="nd-sub">Actividad federal</span></div>
-        <div class="nav-drop-it" onclick="goAgenda('pendientes')">Reglamentaciones Pendientes<span class="nd-sub">Instrumentos por publicar</span></div>
+        <div class="nav-drop-it" onclick="goAgenda('pendientes')">Reglamentaciones Pendientes</div>
       </div>
     </div>
     <div class="nav-drop-wrap">
-      <button class="tab-btn" onclick="goAgenda('dof')">DOF ▾</button>
+      <button class="tab-btn" onclick="navDrop(event,this,function(){goAgenda('dof')})">DOF ▾</button>
       <div class="nav-drop dof-drop" id="dof-drop"></div>
     </div>
     <div class="nav-drop-wrap">
-      <button class="tab-btn" onclick="showActores('federal')">Actores ▾</button>
+      <button class="tab-btn" onclick="navDrop(event,this,function(){showActores('federal')})">Actores ▾</button>
       <div class="nav-drop">
-        <div class="nav-drop-it" onclick="showActores('federal')">Federal<span class="nd-sub">Gabinete ambiental</span></div>
-        <div class="nav-drop-it" onclick="showActores('estatal')">Estatal<span class="nd-sub">Titulares por estado</span></div>
-        <div class="nav-drop-it" onclick="showActores('legfed')">Legislativo Federal<span class="nd-sub">Comisiones del Congreso de la Unión</span></div>
-        <div class="nav-drop-it" onclick="showActores('legest')">Legislativo Estatal<span class="nd-sub">Comisiones de congresos locales</span></div>
+        <div class="nav-drop-it" onclick="showActores('federal')">Federal</div>
+        <div class="nav-drop-it" onclick="showActores('estatal')">Estatal</div>
+        <div class="nav-drop-it" onclick="showActores('legfed')">Legislativo Federal</div>
+        <div class="nav-drop-it" onclick="showActores('legest')">Legislativo Estatal</div>
       </div>
     </div>
     <button class="tab-btn" onclick="goInternacional()">Internacional</button>
@@ -1273,7 +1284,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
     <!-- Vista Gacetas Oficiales (directorio por entidad) -->
     <div id="leg-view-gacetas" style="display:none">
       <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
-        <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Gacetas Oficiales</div>
+        <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Gacetas por entidades</div>
       </div>
       <div id="gacetas-dir" style="margin-top:6px"></div>
     </div>
@@ -2115,6 +2126,25 @@ function showRegulacion(view){
 // ── Cirugía mayor (2026-07-28): 5 categorías nuevas del nav ──────────────
 // Ninguna borra contenido; sólo rerutean a las vistas existentes.
 // Obligaciones ▾ : Instrumentos (nuevo) · Normativa Federal · Normativa Estatal · NOMs
+// Menús desplegables: en móvil (≤680px) el botón abre/cierra el panel por tap; en desktop navega (el hover ya muestra el menú)
+function navDrop(e,btn,navFn){
+  if(window.innerWidth>680){ if(typeof navFn==='function')navFn(); return; }
+  if(e){e.preventDefault();e.stopPropagation();}
+  var wrap=btn.closest('.nav-drop-wrap');if(!wrap)return;
+  var drop=wrap.querySelector('.nav-drop');
+  var wasOpen=wrap.classList.contains('open');
+  document.querySelectorAll('.nav-drop-wrap.open').forEach(function(w){w.classList.remove('open');});
+  if(!wasOpen){
+    wrap.classList.add('open');
+    if(drop){var r=btn.getBoundingClientRect();drop.style.top=(r.bottom+4)+'px';}
+  }
+}
+document.addEventListener('click',function(e){
+  var inside=e.target.closest?e.target.closest('.nav-drop-wrap'):null;
+  if(!inside||(e.target.closest&&e.target.closest('.nav-drop-it'))){
+    document.querySelectorAll('.nav-drop-wrap.open').forEach(function(w){w.classList.remove('open');});
+  }
+},true);
 function goObligaciones(sub){
   if(typeof _gate==='function'&&!_gate())return;
   _pushRoute(_OBLURL[sub]||'obligaciones');
@@ -3881,7 +3911,7 @@ function renderRadares(){
     var darr=d>0?'▲ ':d<0?'▼ ':'';
     var mini=function(v,l,al){return '<div'+(al?' style="text-align:'+al+'"':'')+'><div class="rdc-tstat-v">'+v+'</div><div class="rdc-tstat-l">'+l+'</div></div>';};
     return '<div class="rdc-tile" data-tid="'+t.id+'" onclick="_radarToggle(\''+t.id+'\')">'
-      +'<div class="rdc-thead"><span class="rdc-ticon" style="color:'+_radarColor('residuos')+'">'+_radarIcon(t.id)+'</span><span class="rdc-tname">'+t.name+'</span></div>'
+      +'<div class="rdc-thead"><span class="rdc-ticon" style="color:'+_radarColor('residuos')+'">'+_radarIcon(t.id)+'</span><span class="rdc-tname">'+t.name+'</span><span class="rdc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>'
       +'<div class="rdc-tsub">'+(s.news90+s.est)+' menciones · 90d</div>'
       +'<div class="rdc-tspark">'+_radarSparkFluid(_radarDaily(t,21),col,i)+'</div>'
       +'<div class="rdc-tstats">'+mini(s.dof,_dofMark)+mini(s.est,_estMark)+mini(darr+Math.abs(d),'Δ 30d','right')+'</div>'
@@ -3986,13 +4016,18 @@ function _radarDetailHTML(temaId){
   var kw=tema.kw,c90=_RD_NEWS-90*864e5,c14=_RD_NEWS-14*864e5;
   var col=(typeof _radarColor==='function')?_radarColor(temaId):'#066750';
   var esc=function(u){return (u||'#').replace(/'/g,'%27');};
-  function block(title,color,items){
+  function block(title,color,items,scroll){
+    var body;
+    if(!items.length){body='<div style="font-size:11px;color:var(--text-muted);padding:8px 0">Sin registros que crucen con este tema.</div>';}
+    else if(scroll&&items.length>5){body='<div class="rdc-scroll" style="max-height:198px;overflow-y:auto;-webkit-overflow-scrolling:touch;margin-right:-6px;padding-right:6px">'+items.join('')+'</div>';}
+    else{body=items.join('');}
     return '<div style="margin-bottom:20px">'
       +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid '+col+'33">'
         +'<span style="width:7px;height:7px;border-radius:50%;background:'+col+';flex-shrink:0"></span>'
         +'<span style="font-size:12px;font-weight:700;color:'+col+';letter-spacing:.01em">'+title+'</span>'
-        +'<span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+items.length+'</span></div>'
-      +(items.length?items.join(''):'<div style="font-size:11px;color:var(--text-muted);padding:8px 0">Sin registros que crucen con este tema.</div>')+'</div>';
+        +'<span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+items.length+'</span>'
+        +(scroll&&items.length>5?'<span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-left:auto">desliza ↓</span>':'')+'</div>'
+      +body+'</div>';
   }
   function row(title,meta,url){
     return '<div'+(url?' onclick="window.open(\''+esc(url)+'\',\'_blank\')" style="cursor:pointer;':' style="')+'display:flex;align-items:baseline;gap:14px;padding:9px 0;border-top:0.8px solid var(--border)">'
@@ -4001,11 +4036,11 @@ function _radarDetailHTML(temaId){
   }
   // Streams
   var news=(noticias||[]).filter(function(n){return isMxRelevant(n)&&new Date(n.fecha_publicacion).getTime()>c14&&_radarKwMatch(kw,_rdNacText(n));})
-    .sort(function(a,b){return new Date(b.fecha_publicacion)-new Date(a.fecha_publicacion);}).slice(0,8)
+    .sort(function(a,b){return new Date(b.fecha_publicacion)-new Date(a.fecha_publicacion);}).slice(0,15)
     .map(function(n){return row(n.titulo,((n.fuente?n.fuente+' · ':'')+_rdDate(n.fecha_publicacion)),n.url);});
   var estAll=((_noticiasEstatales&&_noticiasEstatales.items)||[]).filter(function(it){return _radarKwMatch(kw,(it.titulo||'')+' '+(it.resumen||''));})
     .sort(function(a,b){return new Date(String(b.fecha||'').substring(0,10))-new Date(String(a.fecha||'').substring(0,10));});
-  var est=estAll.slice(0,8).map(function(it){return row(it.titulo||'',(it.estado||'')+' · '+(it.medio?it.medio+' · ':'')+_rdDate(it.fecha),it.url);});
+  var est=estAll.slice(0,15).map(function(it){return row(it.titulo||'',(it.estado||'')+' · '+(it.medio?it.medio+' · ':'')+_rdDate(it.fecha),it.url);});
   var dofAll=(_dofData||[]).filter(function(d){return _radarKwMatch(kw,d.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
   var dof=dofAll.slice(0,3).map(function(d){var t=(d.titulo||'');if(t.length>60)t=t.slice(0,58)+'…';return row('<b>'+(d.dependencia||'DOF')+'</b> · '+t,_rdDate(d.fecha),d.url||'https://www.dof.gob.mx/');});
   var congAll=(_congItems||[]).filter(function(c){return _radarKwMatch(kw,c.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
@@ -4045,7 +4080,7 @@ function _radarDetailHTML(temaId){
   return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:9px;height:9px;border-radius:50%;background:'+col+'"></span><span style="font-family:var(--mono);font-size:9px;color:'+col+';letter-spacing:0.1em;text-transform:uppercase;font-weight:700">'+tema.name+' · Vista 360°</span></div>'
     +(tema.id==='circular'?_podecibiBlock():'')
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
-      +'<div>'+block('Señal en medios · 2 sem','var(--text)',news)+block('Prensa estatal','var(--text)',est)+estBlock+'</div>'
+      +'<div>'+block('Señal en medios · 2 sem','var(--text)',news,true)+block('Prensa estatal','var(--text)',est,true)+estBlock+'</div>'
       +'<div>'+block('DOF · publicaciones'+(dofAll.length>3?' · +'+(dofAll.length-3)+' más':''),'var(--text)',dof)+block('Congreso'+(congAll.length>3?' · +'+(congAll.length-3)+' más':''),'var(--text)',cong)+block('NOMs','var(--text)',noms)+block('Internacional','var(--text)',intl)+'</div>'
     +'</div>'
     +_emisBlock(tema);
