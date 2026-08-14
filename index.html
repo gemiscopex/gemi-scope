@@ -1830,15 +1830,16 @@ function loadPresidencia(){
       const qs=(a.fragmentos||[]).slice(0,6).map(fr=>{let s=fr.replace(/\s+/g,' ').trim();return s.length>150?s.slice(0,148)+'…':s;});
       const run=qs.map(s=>'<span class="csp-q" onclick="window.open(\''+url+'\',\'_blank\')">“'+_cspBold(s)+'”</span>').join('<span class="csp-sep">●</span>');
       const seq=run+'<span class="csp-sep">●</span>';
+      // --d estimado inline (12 px/s) para que NUNCA caiga al default rápido del CSS; se refina abajo con la medición real
+      const plain=qs.join('       ')+'       ';
+      const estDur=Math.max(40,Math.round(plain.length*6.5/12));
       nodes+='<div class="csp-node'+(idx===0?' csp-latest':'')+'"><div class="csp-node-date">'+f+'</div>'
-        +'<div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" id="cspr-'+idx+'">'+seq+seq+'</div></div></div></div>';
+        +'<div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" id="cspr-'+idx+'" style="--d:'+estDur+'s">'+seq+seq+'</div></div></div></div>';
     });
     el.innerHTML='<div class="chyron-hdr" style="margin-bottom:12px"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo</div>'+nodes;
-    // Pace de las frases (~12 px/s), pausable al hover
-    requestAnimationFrame(()=>{
-      confs.forEach((_,idx)=>{const inner=document.getElementById('cspr-'+idx);
-        if(inner)inner.style.setProperty('--d',Math.max(50,Math.round(inner.scrollWidth/2/12))+'s');});
-    });
+    // Pace real de las frases: 12 px/s (igual que Últimas Noticias), pausable al hover. Reintenta hasta que el layout esté listo.
+    var _cspPace=function(){var ok=true;confs.forEach(function(_,idx){var inner=document.getElementById('cspr-'+idx);if(inner){var w=inner.scrollWidth;if(w>40)inner.style.setProperty('--d',Math.max(40,Math.round(w/2/12))+'s');else ok=false;}});return ok;};
+    if(!_cspPace()){var _cspT=0,_cspIv=setInterval(function(){if(_cspPace()||++_cspT>30)clearInterval(_cspIv);},200);}
   }).catch(()=>{
     const el=document.getElementById('csp-chyron');
     if(el)el.style.display='none';
