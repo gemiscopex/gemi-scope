@@ -652,7 +652,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .nom-dep{font-size:10px;color:var(--text-muted);font-weight:500}
 .nom-link{font-size:10px;font-weight:600;color:var(--green);text-decoration:none;margin-left:auto;flex-shrink:0;padding:4px 10px;border:1px solid rgba(0,158,144,0.3);border-radius:6px;transition:background 0.15s}
 .nom-link:hover{background:var(--green-tint)}
-.normas-section-hdr{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);padding:14px 0 8px;border-bottom:0.8px solid var(--border);margin-bottom:10px}
+.normas-section-hdr{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--green);padding:0 0 6px;border-bottom:0.8px solid var(--border);margin:24px 0 12px}
 /* La ficha del estado va completa en Helvetica (incluye fechas y números) */
 .state-modal,.state-modal *{font-family:var(--sans)}
 .state-modal .sp-eyebrow,.state-modal .sp-news-meta,.state-modal .ley-sigla{font-family:var(--mono)}
@@ -719,9 +719,11 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap}
 .cons-title{font-family:var(--sans);font-size:25px;font-weight:700;letter-spacing:-0.01em;color:var(--text)}
 .cons-sub{font-family:var(--sans);font-size:12px;color:var(--text-muted)}
-.cons-greet{position:relative;min-width:0}
-.cons-greet-av{position:absolute;right:100%;margin-right:13px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;object-fit:cover;border:0.8px solid var(--border)}
-@media(max-width:1260px){.cons-greet{padding-left:56px}.cons-greet-av{right:auto;left:0;margin-right:0}}
+.cons-greet{display:flex;align-items:center;gap:14px;min-width:0}
+.cons-greet-av{position:relative;width:48px;height:48px;border-radius:50%;flex-shrink:0;overflow:hidden;background:rgba(0,158,144,0.12);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:700;font-size:18px;color:var(--green);letter-spacing:0.01em}
+.cons-greet-av::before{content:attr(data-fb);position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.cons-greet-av img{position:relative;width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+.cons-greet-txt{min-width:0;display:flex;flex-direction:column;gap:1px}
 .cons-welcome{display:flex;align-items:center;gap:8px;margin-top:8px;font-family:var(--mono);font-size:11px;color:var(--text-sec);flex-wrap:wrap}
 .cons-welcome .eyebrow{color:#066750;font-weight:600;letter-spacing:.02em;font-size:11px}
 .cons-welcome .ago{color:var(--text-muted)}
@@ -2854,9 +2856,9 @@ function _oblRow(o){
 }
 // Subheader de sección (subordinado al título 22px "Obligaciones"): banda con acento verde
 function _oblSubhead(t,s){
-  return '<div style="background:rgba(6,103,80,0.05);border-left:3px solid #066750;border-radius:0 10px 10px 0;padding:10px 16px;margin-bottom:16px">'
-    +'<div style="font-size:15px;font-weight:700;font-family:var(--sans);color:#066750;letter-spacing:0.01em">'+t+'</div>'
-    +(s?'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.5">'+s+'</div>':'')
+  return '<div style="margin:2px 0 14px">'
+    +'<div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--green);padding-bottom:6px;border-bottom:0.8px solid var(--border)">'+t+'</div>'
+    +(s?'<div style="font-size:11px;color:var(--text-sec);margin-top:8px;line-height:1.5;max-width:760px">'+s+'</div>':'')
     +'</div>';
 }
 function _jurisprudenciaHTML(){
@@ -3458,7 +3460,7 @@ function renderNormas(){
     var laws=grouped[tema], isTodos=(_normasTema==='todos'), exp=!!_normasExpanded[tema];
     if(isTodos){
       html+='<div class="normas-section-hdr">'+tema
-        +' <span style="font-size:10px;opacity:0.6;text-transform:none;letter-spacing:0">— '
+        +' <span style="font-size:9px;font-weight:400;color:var(--text-muted);text-transform:none;letter-spacing:0.02em">· '
         +laws.length+' norma'+(laws.length>1?'s':'')+'</span></div>';
     }
     var vis=(isTodos&&!exp)?laws.slice(0,3):laws;
@@ -6117,9 +6119,10 @@ function renderConsola(){
   var _nm=(typeof _userDisplayName==='function')?_userDisplayName():'';
   var _greet=(_nm&&_nm!=='Mi cuenta')?('Bienvenido, '+_escUser(_nm)):'Bienvenido';
   var _avUrl=(typeof _avatarSrc==='function')?_avatarSrc():'';
-  var _av=_avUrl?('<img class="cons-greet-av" src="'+_avUrl+'" alt="" onerror="_avatarFallback(this)">'):'';
+  var _mono=(_nm&&_nm!=='Mi cuenta')?initials(_nm):'S';
+  var _av='<div class="cons-greet-av" data-fb="'+_escUser(_mono)+'">'+(_avUrl?('<img src="'+_avUrl+'" alt="" onerror="_avatarFallback(this)">'):'')+'</div>';
   root.innerHTML='<div class="cons-hdr">'
-    +'<div class="cons-greet">'+_av+'<div style="min-width:0"><span class="cons-title">'+_greet+'</span>'+_consWelcomeLine(cfg)+'</div></div>'
+    +'<div class="cons-greet">'+_av+'<div class="cons-greet-txt"><span class="cons-title">'+_greet+'</span>'+_consWelcomeLine(cfg)+'</div></div>'
     +'<div class="cons-actions">'
     +'<button class="cons-edit" onclick="_consPrintReport()" title="Genera un reporte imprimible / PDF con la foto del día de tu terminal">Imprimir reporte</button>'
     +'<button class="cons-edit" onclick="_consCumplOpen()" title="Marca los instrumentos con los que ya cumples">Mi cumplimiento</button>'
