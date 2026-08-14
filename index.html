@@ -640,6 +640,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .nom-row.zeb:hover{background:rgba(0,158,144,0.07)}
 .nom-row:last-child{border-bottom:none}
 .nom-row:hover .nom-titulo{color:var(--green)}
+.nom-lab{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase}
+.nom-tech{background:rgba(13,27,42,0.05);border-radius:8px;padding:12px 14px;margin-bottom:14px}
 .nom-badge{min-width:52px;padding:4px 0;text-align:center;border-radius:6px;font-size:9px;font-weight:700;letter-spacing:0.07em;flex-shrink:0}
 .nom-badge.vigente{background:rgba(0,158,144,0.12);color:#009E90}
 .nom-badge.proyecto{background:rgba(245,158,11,0.12);color:#E8A33D}
@@ -3367,20 +3369,29 @@ function filterNormasType(type,btn){
 // Programa Nacional de Infraestructura de la Calidad 2026 (base GEMI/Santiago):
 // estatus PNIC + participación de GEMI por norma. Se publica la participación de GEMI (decisión del usuario).
 var NOM_EXTRA={
- 'PROY-NOM-AGUA-REGENERADA-2026':{programa2026:true,pnic:'Nueva · en desarrollo (PNIC 2026)',gemi:true,contexto:'Nueva NOM sobre agua regenerada para uso y consumo humano, en desarrollo dentro del Programa Nacional de Infraestructura de la Calidad 2026. GEMI participa activamente en su grupo de trabajo.'},
- 'NOM-002-SEMARNAT-1996':{programa2026:true,pnic:'Modificación · pausada (PNIC 2026)',gemi:true,contexto:'Propuesta de modificación dentro del PNIC 2026, actualmente pausada. GEMI participa en el grupo de trabajo.'},
- 'NOM-160-SEMARNAT-2011':{programa2026:true,pnic:'Reprogramación · en consulta pública (PNIC 2026)',gemi:true,contexto:'Reprogramada en el PNIC 2026; actualmente en consulta pública. GEMI participa en su revisión.'},
- 'NOM-161-SEMARNAT-2011':{programa2026:true,pnic:'Cancelada en el PNIC 2026',gemi:false,contexto:'Su revisión fue cancelada dentro del PNIC 2026.'},
- 'NOM-043-SEMARNAT-1993':{programa2026:true,pnic:'Modificación · en desarrollo (PNIC 2026)',gemi:true,contexto:'En desarrollo su modificación dentro del PNIC 2026. GEMI participa activamente.'},
- 'NOM-085-SEMARNAT-2011':{programa2026:true,pnic:'Modificación · en desarrollo (PNIC 2026)',gemi:true,contexto:'En desarrollo su modificación dentro del PNIC 2026. GEMI participa activamente.'},
- 'NOM-000-SEMARNAT-2026':{programa2026:true,pnic:'Nueva · pausada (PNIC 2026)',gemi:true,contexto:'Nueva NOM de contaminación lumínica dentro del PNIC 2026, actualmente pausada. GEMI participa en el grupo de trabajo.'},
- 'NOM-144-SEMARNAT-2017':{programa2026:true,pnic:'Reprogramación · pausada (PNIC 2026)',gemi:true,contexto:'Reprogramada en el PNIC 2026, actualmente pausada. GEMI participa en su revisión.'},
- 'NOM-052-SEMARNAT-2005':{programa2026:true,pnic:'Modificación · pausada (PNIC 2026)',gemi:false,contexto:'Propuesta de modificación dentro del PNIC 2026, actualmente pausada.'}
+ 'PROY-NOM-AGUA-REGENERADA-2026':{programa2026:true,grupo:'ACTIVO',pnic:'Nueva · en desarrollo (PNIC 2026)',gemi:true,contexto:'Nueva NOM sobre agua regenerada para uso y consumo humano, en desarrollo dentro del Programa Nacional de Infraestructura de la Calidad 2026. GEMI participa activamente en su grupo de trabajo.'},
+ 'NOM-002-SEMARNAT-1996':{programa2026:true,grupo:'PAUSADO',pnic:'Modificación · pausada (PNIC 2026)',gemi:true,contexto:'Propuesta de modificación dentro del PNIC 2026, actualmente pausada. GEMI participa en el grupo de trabajo.'},
+ 'NOM-160-SEMARNAT-2011':{programa2026:true,grupo:'PAUSADO',pnic:'Reprogramación · en consulta pública (PNIC 2026)',gemi:true,contexto:'Reprogramada en el PNIC 2026; actualmente en consulta pública. GEMI participa en su revisión.'},
+ 'NOM-161-SEMARNAT-2011':{programa2026:true,grupo:'CANCELADO',pnic:'Cancelada en el PNIC 2026',gemi:false,contexto:'Su revisión fue cancelada dentro del PNIC 2026.'},
+ 'NOM-043-SEMARNAT-1993':{programa2026:true,grupo:'ACTIVO',pnic:'Modificación · en desarrollo (PNIC 2026)',gemi:true,contexto:'En desarrollo su modificación dentro del PNIC 2026. GEMI participa activamente.'},
+ 'NOM-085-SEMARNAT-2011':{programa2026:true,grupo:'ACTIVO',pnic:'Modificación · en desarrollo (PNIC 2026)',gemi:true,contexto:'En desarrollo su modificación dentro del PNIC 2026. GEMI participa activamente.'},
+ 'NOM-000-SEMARNAT-2026':{programa2026:true,grupo:'PAUSADO',pnic:'Nueva · pausada (PNIC 2026)',gemi:true,contexto:'Nueva NOM de contaminación lumínica dentro del PNIC 2026, actualmente pausada. GEMI participa en el grupo de trabajo.'},
+ 'NOM-144-SEMARNAT-2017':{programa2026:true,grupo:'PAUSADO',pnic:'Reprogramación · pausada (PNIC 2026)',gemi:true,contexto:'Reprogramada en el PNIC 2026, actualmente pausada. GEMI participa en su revisión.'},
+ 'NOM-052-SEMARNAT-2005':{programa2026:true,grupo:'PAUSADO',pnic:'Modificación · pausada (PNIC 2026)',gemi:false,contexto:'Propuesta de modificación dentro del PNIC 2026, actualmente pausada.'}
 };
 function _nomPnic(n){
   var ex=NOM_EXTRA[n.id]||{};
   if(ex.pnic)return ex.pnic;
   return n.tipo==='PROY'?'En proceso normativo · proyecto en el PNIC':'Vigente';
+}
+// Estatus del grupo de trabajo del PNIC 2026 para una NOM
+function _nomGrupo(n){
+  var ex=NOM_EXTRA[n.id]||{};
+  if(!ex.programa2026)return {label:'No aplica',col:'#8A9CB0',active:false,na:true};
+  var g=(ex.grupo||'').toUpperCase();
+  if(g==='ACTIVO')return {label:'Activo',col:'#066750',active:true};
+  if(g==='CANCELADO')return {label:'Cancelado',col:'#DC2626',active:false};
+  return {label:'Inactivo · pausado',col:'#B45309',active:false};
 }
 function _toggleNomDetail(uid){
   var d=document.getElementById(uid);
@@ -3487,10 +3498,9 @@ function renderNormas(){
       var uid='nom-'+tema.replace(/[^a-z]/gi,'')+idx;
       var ex=NOM_EXTRA[n.id]||{};
       var gemi=ex.gemi;
-      var gemiChip=gemi===true
-        ?'<span style="font-size:9px;font-weight:700;color:var(--text)">GEMI ACTIVO</span>'
-        :gemi===false?'<span style="font-size:9px;color:var(--text-muted)">GEMI: sin participación</span>'
-        :'<span style="font-size:9px;color:var(--text-muted)">GEMI: por confirmar</span>';
+      var _ng=_nomGrupo(n);
+      var _gc=gemi===true?'#066750':gemi===false?'#DC2626':'#8A9CB0';
+      var _gt=gemi===true?'GEMI participa':gemi===false?'GEMI no participa':'GEMI · por confirmar';
       var docs=(ex.docs||[]).concat([
         {t:'Publicación oficial · DOF',u:n.url},
         {t:'Catálogo Nacional de Regulaciones',u:'https://catalogonacional.gob.mx/'}
@@ -3508,18 +3518,24 @@ function renderNormas(){
         +'<button onclick="event.stopPropagation();toggleNomTerminal(\''+n.id.replace(/'/g,"\\'")+'\',this)" title="Agregar o quitar de Mi Terminal" style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.03em;padding:3px 8px;border:0.8px solid '+(nomInTerminal(n.id)?'var(--green)':'var(--border)')+';background:'+(nomInTerminal(n.id)?'rgba(0,158,144,0.07)':'none')+';color:'+(nomInTerminal(n.id)?'var(--green)':'var(--text-muted)')+';cursor:pointer;white-space:nowrap;flex-shrink:0;margin-top:1px">'+(nomInTerminal(n.id)?'✓ En mi terminal':'+ Mi terminal')+'</button>'
         +(n.url?'<a href="'+n.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;font-weight:600;color:var(--green);flex-shrink:0;text-decoration:none;margin-top:2px"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>':'<span style="width:14px;flex-shrink:0"></span>')
         +'</div>'
-        +'<div id="'+uid+'" style="display:none;padding:10px 0 14px 34px;border-bottom:0.8px solid rgba(0,0,0,0.06)">'
-          +'<div style="display:flex;gap:22px;flex-wrap:wrap;margin-bottom:10px">'
-            +'<div><div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Estatus PNIC</div>'
-            +'<div style="font-size:11px;color:var(--text);font-weight:600;margin-top:3px">'+_nomPnic(n)+'</div></div>'
-            +'<div><div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Participación GEMI</div>'
-            +'<div style="margin-top:4px">'+gemiChip+'</div></div>'
-            +(n.afecta?'<div style="min-width:180px"><div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase">Sectores afectados</div>'
-              +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.4">'+n.afecta+'</div></div>':'')
+        +'<div id="'+uid+'" style="display:none;padding:12px 0 16px 34px;border-bottom:0.8px solid rgba(0,0,0,0.06)">'
+          +'<div style="display:flex;flex-wrap:wrap;gap:10px 24px;margin-bottom:14px">'
+            +'<span style="display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.03em;color:'+_ng.col+'"><span style="width:7px;height:7px;border-radius:50%;background:'+_ng.col+';flex-shrink:0"></span>Grupo de trabajo · '+_ng.label+'</span>'
+            +'<span style="display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.03em;color:'+_gc+'"><span style="width:7px;height:7px;border-radius:50%;background:'+_gc+';flex-shrink:0"></span>'+_gt+'</span>'
           +'</div>'
-          +'<div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Contexto previo</div>'
-          +'<div style="font-size:12px;color:var(--text-sec);line-height:1.6;max-width:760px;margin-bottom:14px">'+(ex.contexto||'<span style="color:var(--text-muted)">El equipo GEMI cargará aquí el contexto de esta norma: antecedentes, discusión y estatus.</span>')+'</div>'
-          +'<div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px">Documentos</div>'
+          +(n.afecta?'<div style="margin-bottom:12px"><div class="nom-lab">Campos de aplicación</div><div style="font-size:12px;color:var(--text);margin-top:3px;line-height:1.5">'+n.afecta+'</div></div>':'')
+          +(ex.programa2026?'<div style="margin-bottom:12px"><div class="nom-lab">Estatus en el PNIC 2026</div><div style="font-size:12px;color:var(--text);font-weight:600;margin-top:3px">'+_nomPnic(n)+'</div></div>':'')
+          +'<div class="nom-lab">Contexto</div>'
+          +'<div style="font-size:12px;color:var(--text-sec);line-height:1.6;max-width:760px;margin:3px 0 14px">'+(ex.contexto||'<span style="color:var(--text-muted)">El equipo GEMI cargará aquí el contexto de esta norma: antecedentes, discusión y estatus.</span>')+'</div>'
+          +'<div class="nom-tech"><div class="nom-lab" style="margin-bottom:9px">Información técnica</div>'
+            +'<div style="display:flex;flex-wrap:wrap;gap:12px 26px">'
+              +'<div style="min-width:110px"><div class="nom-lab">Norma</div><div style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--text);margin-top:3px">'+n.id+'</div></div>'
+              +'<div style="min-width:110px"><div class="nom-lab">Dependencia</div><div style="font-size:11px;color:var(--text);margin-top:3px">'+n.dep+'</div></div>'
+              +'<div style="min-width:110px"><div class="nom-lab">Tipo</div><div style="font-size:11px;color:var(--text);margin-top:3px">'+(isProy?'Proyecto (PROY-NOM)':'NOM vigente')+'</div></div>'
+              +(n.objeto?'<div style="flex-basis:100%"><div class="nom-lab">Objeto</div><div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.45">'+n.objeto+'</div></div>':'')
+            +'</div>'
+          +'</div>'
+          +'<div class="nom-lab" style="margin-bottom:5px">Documentos</div>'
           +docs.map(function(d){return '<a href="'+d.u+'" target="_blank" rel="noopener" style="display:block;font-size:11px;color:var(--green);padding:3px 0;text-decoration:none">'+d.t+' <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>';}).join('')
           +_nomCommentsHTML(n,uid)
         +'</div>'
