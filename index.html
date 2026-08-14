@@ -683,8 +683,9 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .dof-it-t{font-size:11px;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .dof-it-m{font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px}
 /* ═══════════ ETAPA 1: BANNER SEMANAL + CINTILLO + RADAR FAB ═══════════ */
-.radar-fab{display:inline-flex;align-items:center;gap:7px;border-radius:20px;border:1px solid var(--border-med);background:var(--card);cursor:pointer;position:relative;flex-shrink:0;align-self:center;margin:0 18px 0 0;padding:5px 13px 5px 11px;font-family:var(--sans);font-size:12px;font-weight:600;color:var(--text);transition:border-color .15s,color .15s}
-.radar-fab:hover{border-color:var(--green);color:var(--green)}
+.radar-fab{display:inline-flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;position:relative;flex-shrink:0;align-self:center;margin:0 0 0 4px;padding:4px;border-radius:8px;transition:background .15s}
+.radar-fab:hover{background:rgba(0,158,144,0.08)}
+.nav-tab-sep{width:1px;height:22px;background:var(--border);align-self:center;flex-shrink:0;margin:0 18px 0 12px}
 .radar-fab-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:radarPing 2.2s ease-out infinite;flex-shrink:0}
 .radar-ico{width:19px;height:19px;display:block;flex-shrink:0}
 .radar-spin{transform-origin:50px 50px;animation:radarRot 2.6s linear infinite}
@@ -1107,7 +1108,8 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
     <img id="nav-logo" src="assets/scope-logo.png?v=2" alt="Scope" title="Inicio" onclick="showTab('dashboard',null)" style="height:30px;width:auto;display:block;cursor:pointer;position:relative;top:2px">
   </div>
   <div class="nav-tabs">
-    <button class="radar-fab" onclick="showTab('radares',null)" data-tt="Radares: Monitoreo de actividad de los sectores"><svg class="radar-ico" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="rdrsw" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#12A594" stop-opacity="0"/><stop offset="100%" stop-color="#12A594" stop-opacity="0.6"/></radialGradient></defs><circle cx="50" cy="50" r="40" fill="none" stroke="#0E8C74" stroke-width="6" stroke-opacity="0.30"/><circle cx="50" cy="50" r="26" fill="none" stroke="#0E8C74" stroke-width="6" stroke-opacity="0.38"/><g class="radar-spin"><path d="M50 50 L50 8 A42 42 0 0 1 88 34 Z" fill="url(#rdrsw)"/><line x1="50" y1="50" x2="50" y2="8" stroke="#066750" stroke-width="6" stroke-linecap="round"/></g><circle cx="50" cy="50" r="7" fill="#066750"/></svg>Radar</button>
+    <button class="radar-fab" onclick="showTab('radares',null)" data-tt="Radares: Monitoreo de actividad de los sectores"><svg class="radar-ico" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="rdrsw" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#12A594" stop-opacity="0"/><stop offset="100%" stop-color="#12A594" stop-opacity="0.6"/></radialGradient></defs><circle cx="50" cy="50" r="40" fill="none" stroke="#0E8C74" stroke-width="6" stroke-opacity="0.30"/><circle cx="50" cy="50" r="26" fill="none" stroke="#0E8C74" stroke-width="6" stroke-opacity="0.38"/><g class="radar-spin"><path d="M50 50 L50 8 A42 42 0 0 1 88 34 Z" fill="url(#rdrsw)"/><line x1="50" y1="50" x2="50" y2="8" stroke="#066750" stroke-width="6" stroke-linecap="round"/></g><circle cx="50" cy="50" r="7" fill="#066750"/></svg></button>
+    <span class="nav-tab-sep" aria-hidden="true"></span>
     <div class="nav-drop-wrap">
       <button class="tab-btn" onclick="navDrop(event,this,function(){goObligaciones('federal')})">Obligaciones ▾</button>
       <div class="nav-drop">
@@ -2662,7 +2664,30 @@ function estadosAddCmp(sel){
 }
 function estadosRemoveCmp(name){ _cmpStates=_cmpStates.filter(function(s){return s!==name;}); renderEstadosCompare(); }
 function estadosCmpView(v){ _cmpView=v; renderEstadosCompare(); }
-var _CMP_COLORS=['#066750','#0E8C74','#2AA88B','#66B79E','#A7D8C8'];
+var _CMP_COLORS=['#0E8C74','#2F6FB0','#E0A500','#12A594','#1F5E52'];
+// Iconos por categoría económica (mismo lenguaje de línea que el Radar), verde GEMI
+function _sectorIcon(n){
+  var k=(typeof qa==='function'?qa((n||'').toLowerCase()):(n||'').toLowerCase()),P;
+  if(/agro|pesca/.test(k))P='<path d="M4 16C4 9 9 4 16 4c0 7-5 12-12 12Z"/><path d="M4 16c3-3 6-5 9-6"/>';
+  else if(/residuos|apoyo a negocios/.test(k))P='<path d="M5 7a6 6 0 0 1 10-1"/><path d="M15 13a6 6 0 0 1-10 1"/><path d="M15 3v3h-3"/><path d="M5 17v-3h3"/>';
+  else if(/mayoreo/.test(k))P='<path d="M3 8l1-3h12l1 3"/><path d="M4 8v9h12V8"/><path d="M8 17v-4h4v4"/>';
+  else if(/menudeo|comercio/.test(k))P='<path d="M6 7V6a4 4 0 0 1 8 0v1"/><path d="M4 7h12l-1 10H5Z"/>';
+  else if(/construc/.test(k))P='<path d="M5 17V4h10v13"/><path d="M8 7h4M8 10h4M8 13h4"/><path d="M3 17h14"/>';
+  else if(/corporativ/.test(k))P='<path d="M4 17V4h8v13"/><path d="M12 17V9h4v8"/><path d="M6 7h1M9 7h1M6 10h1M9 10h1"/>';
+  else if(/educ/.test(k))P='<path d="M10 4 2 8l8 4 8-4Z"/><path d="M5 10v4c0 1 5 3 5 3s5-2 5-3v-4"/>';
+  else if(/energ|agua/.test(k))P='<path d="M11 2 4 11h4.5L8 18l7-9h-4.5Z"/>';
+  else if(/esparci/.test(k))P='<path d="M10 3l2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4L5.5 19.7l.9-5L2.8 8.2l5-.7Z"/>';
+  else if(/finanz/.test(k))P='<circle cx="10" cy="10" r="7.2"/><path d="M10 6v8M8 8.2h3a1.4 1.4 0 0 1 0 2.8H8m0 0h3.6"/>';
+  else if(/hospital/.test(k))P='<path d="M3 8v9M3 12h14v5M17 12v-2a2 2 0 0 0-2-2H8v4"/>';
+  else if(/inmobil/.test(k))P='<path d="M3 10l7-6 7 6"/><path d="M5 9v8h10V9"/><path d="M8 17v-4h4v4"/>';
+  else if(/log|transp/.test(k))P='<path d="M2 6h9v8H2Z"/><path d="M11 9h4l2 2v3h-6Z"/><circle cx="6" cy="16" r="1.4"/><circle cx="14" cy="16" r="1.4"/>';
+  else if(/manufac/.test(k))P='<path d="M3 17V9l4 2V9l4 2V7l6 3v7Z"/><path d="M3 17h14"/>';
+  else if(/medios/.test(k))P='<path d="M10 12v6"/><circle cx="10" cy="9" r="2"/><path d="M6 5a6 6 0 0 0 0 8M14 5a6 6 0 0 1 0 8"/>';
+  else if(/miner/.test(k))P='<path d="M3 16 8 7l3 5 2-3 4 7Z"/>';
+  else if(/profesional/.test(k))P='<path d="M3 7h14v9H3Z"/><path d="M7 7V5h6v2"/><path d="M3 11h14"/>';
+  else P='<circle cx="10" cy="10" r="3"/><path d="M10 3v2M10 15v2M3 10h2M15 10h2M5 5l1.4 1.4M13.6 13.6 15 15M15 5l-1.4 1.4M6.4 13.6 5 15"/>';
+  return '<svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--green)">'+P+'</svg>';
+}
 function _cmpColor(i){return _CMP_COLORS[i%_CMP_COLORS.length];}
 function _statePob(s){var p=(_perfilEstados&&_perfilEstados.estados&&_perfilEstados.estados[s])||{};return p.poblacion||0;}
 function _statePea(s){var p=(_perfilEstados&&_perfilEstados.estados&&_perfilEstados.estados[s])||{};return p.pea||0;}
@@ -2771,7 +2796,7 @@ function _cmpBody(){
         +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><span style="width:9px;height:9px;background:'+_cmpColor(i)+';display:inline-block;flex-shrink:0"></span><span style="font-size:12px;font-weight:600;color:var(--text)">'+s+'</span></div>'
         +(top.length?top.map(function(sec){var w=mx>0?(sec.pct/mx*100):0;
           return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'
-            +'<div style="width:96px;font-size:10px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+sec.n+'</div>'
+            +'<div style="width:120px;display:flex;align-items:center;gap:6px;font-size:10px;color:var(--text-sec);min-width:0">'+_sectorIcon(sec.n)+'<span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+sec.n+'</span></div>'
             +'<div style="flex:1;min-width:0;height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden"><div class="cmp-bar" data-w="'+w.toFixed(1)+'" style="height:100%;width:0;background:'+_cmpColor(i)+';border-radius:6px"></div></div>'
             +'<div style="width:44px;text-align:right;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums">'+sec.pct.toFixed(1)+'%</div></div>';
         }).join(''):'<div style="font-size:11px;color:var(--text-muted)">Sin datos de sectores</div>')
