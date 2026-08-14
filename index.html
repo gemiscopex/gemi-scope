@@ -538,6 +538,16 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .sp-res .res-crow .tk i{display:block;height:100%;border-radius:6px}
 .sp-res .res-crow .vl{font-family:var(--mono);font-size:10px;color:var(--text-sec);min-width:78px;text-align:right}
 .sp-res .res-src{font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:24px;padding-top:13px;border-top:0.8px solid var(--border);line-height:1.7}
+.sp-res .res-h svg.ic{color:var(--green);margin-right:7px;vertical-align:-2px}
+.sp-res .res-hero{display:flex;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:6px}
+.sp-res .res-hero .big{font-size:34px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;color:var(--text)}
+.sp-res .res-chip{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;font-weight:700;padding:4px 9px;border-radius:20px}
+.sp-res .res-rings{display:flex;gap:14px 22px;flex-wrap:wrap;align-items:flex-start}
+.sp-res .res-ring{display:flex;flex-direction:column;align-items:center;gap:8px;width:98px}
+.sp-res .res-ring .rl{font-family:var(--mono);font-size:8.5px;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-muted);text-align:center;line-height:1.4}
+.sp-res .res-donut{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:4px}
+.sp-res .res-seg{display:flex;height:12px;border-radius:7px;overflow:hidden;margin:2px 0 12px}
+.sp-res .res-seg i{height:100%}
 .sp-gaceta-link{display:flex;align-items:center;gap:12px;padding:16px;background:var(--green-tint);border-radius:12px;text-decoration:none;color:var(--text);font-weight:600;font-size:14px;margin-bottom:14px;border:1px solid rgba(0,158,144,0.15);transition:background 0.15s}
 .sp-gaceta-link:hover{background:rgba(0,158,144,0.15)}
 .sp-empty{text-align:center;padding:28px;color:var(--text-muted);font-size:13px}
@@ -3085,74 +3095,102 @@ function renderSPResiduos(state){
   var nac=(_residuosData&&_residuosData.nacional)||{};
   var dg=(_diagResiduos&&_diagResiduos.estados&&_diagResiduos.estados[state])||null;
   if(!e&&!dg){el.innerHTML='<div style="font-size:12px;color:var(--text-sec);line-height:1.6;padding:8px 0">Sin datos de residuos para '+state+'.</div>';return;}
-  var GRN='#0E8C74',TEA='#2AA88B',GRY='#9AA3A0',AMB='#B45309';
+  var GRN='#0E8C74',TEA='#2AA88B',LGR='#66B79E',GRY='#9AA3A0',AMB='#B45309',RED='#DC2626';
   var num=function(n){return (n==null)?'—':(typeof n==='number'?n.toLocaleString('es-MX'):n);};
-  var H=function(t,sub){return '<div class="res-h">'+t+(sub?'<span class="sub">'+sub+'</span>':'')+'</div>';};
+  var ICONS={
+    gen:'<path d="M3 6h14"/><path d="M8 6V4h4v2"/><path d="M5 6l1 11h8l1-11"/>',
+    comp:'<path d="M5 7a6 6 0 0 1 10-1"/><path d="M15 13a6 6 0 0 1-10 1"/><path d="M15 3v3h-3"/><path d="M5 17v-3h3"/>',
+    cob:'<path d="M4 17V8l6-4 6 4v9"/><path d="M4 17h12"/><path d="M8 17v-4h4v4"/>',
+    disp:'<path d="M10 3 2 17h16L10 3Z"/><path d="M10 8v4"/><path d="M10 14v.4"/>',
+    costo:'<circle cx="10" cy="10" r="7.2"/><path d="M10 6v8M8 8.2h3a1.4 1.4 0 0 1 0 2.8H8m0 0h3.6"/>',
+    nac:'<circle cx="10" cy="10" r="7.2"/><path d="M2.8 10h14.4M10 2.8c2.2 2.2 2.2 12.2 0 14.4M10 2.8c-2.2 2.2-2.2 12.2 0 14.4"/>'
+  };
+  var H=function(k,t,sub){return '<div class="res-h"><svg class="ic" viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5">'+(ICONS[k]||'')+'</svg>'+t+(sub?'<span class="sub">'+sub+'</span>':'')+'</div>';};
   var ST=function(v,l,c){return '<div class="res-st"><div class="res-v"'+(c?' style="color:'+c+'"':'')+'>'+v+'</div><div class="res-l">'+l+'</div></div>';};
   var ROW=function(items){return '<div class="res-row">'+items.join('')+'</div>';};
-  var pctOf=function(a,b){return (b&&a!=null)?(' · '+Math.round(a/b*100)+'%'):'';};
-  var srcs=[];
+  var RING=function(pct,color,center,label){
+    pct=Math.max(0,Math.min(100,pct||0));
+    var r=26,c=2*Math.PI*r,off=c*(1-pct/100);
+    return '<div class="res-ring"><svg width="66" height="66" viewBox="0 0 66 66">'
+      +'<circle cx="33" cy="33" r="26" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="6"/>'
+      +'<circle cx="33" cy="33" r="26" fill="none" stroke="'+color+'" stroke-width="6" stroke-linecap="round" stroke-dasharray="'+c.toFixed(1)+' '+c.toFixed(1)+'" stroke-dashoffset="'+off.toFixed(1)+'" transform="rotate(-90 33 33)"/>'
+      +'<text x="33" y="38" text-anchor="middle" style="font-family:var(--mono);font-size:15px;font-weight:700;fill:'+color+'">'+center+'</text></svg>'
+      +'<div class="rl">'+label+'</div></div>';
+  };
+  var DONUT=function(segs){
+    var total=segs.reduce(function(a,s){return a+s.v;},0)||1;
+    var cx=42,cy=42,r=32,rin=20,a0=-Math.PI/2,paths='';
+    segs.forEach(function(s){var f=s.v/total;if(f<=0)return;var a1=a0+f*2*Math.PI;
+      var x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+      var xi1=cx+rin*Math.cos(a1),yi1=cy+rin*Math.sin(a1),xi0=cx+rin*Math.cos(a0),yi0=cy+rin*Math.sin(a0);
+      var lg=f>0.5?1:0;
+      paths+='<path d="M'+x0.toFixed(1)+' '+y0.toFixed(1)+' A'+r+' '+r+' 0 '+lg+' 1 '+x1.toFixed(1)+' '+y1.toFixed(1)+' L'+xi1.toFixed(1)+' '+yi1.toFixed(1)+' A'+rin+' '+rin+' 0 '+lg+' 0 '+xi0.toFixed(1)+' '+yi0.toFixed(1)+' Z" fill="'+s.c+'"/>';
+      a0=a1;});
+    return '<svg width="84" height="84" viewBox="0 0 84 84" style="flex-shrink:0">'+paths+'</svg>';
+  };
+  var pct=function(a,b){return (b&&a!=null)?Math.round(a/b*100):null;};
   var h='<div class="sp-res">';
-  // 1 · Generación (SEMARNAT)
+  // 1 · Generación (hero)
   if(e){
-    var gpcDelta=(nac.gpc!=null)?(e.gpc-nac.gpc):null;
-    h+=H('Generación');
-    h+=ROW([
-      ST(num(e.gen_tdia),'Toneladas al día'),
-      ST(e.gpc.toFixed(3),'kg / hab / día'+((gpcDelta!=null)?' · <span style="color:'+(gpcDelta>=0?AMB:GRN)+'">'+(gpcDelta>=0?'+':'')+gpcDelta.toFixed(3)+' vs nac</span>':''))
-    ]);
+    var gd=(nac.gpc!=null)?(e.gpc-nac.gpc):null;
+    h+=H('gen','Generación');
+    h+='<div class="res-hero">'
+      +'<div><div class="big">'+num(e.gen_tdia)+'</div><div class="res-l">Toneladas al día</div></div>'
+      +'<div><div class="big" style="font-size:26px">'+e.gpc.toFixed(3)+'</div><div class="res-l">kg / hab / día</div></div>'
+      +((gd!=null)?'<div style="padding-bottom:5px"><span class="res-chip" style="background:'+(gd>=0?'rgba(180,83,9,0.10)':'rgba(0,158,144,0.10)')+';color:'+(gd>=0?AMB:GRN)+'">'+(gd>=0?'▲':'▼')+' '+(gd>=0?'+':'')+gd.toFixed(3)+' vs nacional</span></div>':'')
+    +'</div>';
+    // Composición (dona)
     if(e.comp){
-      var seg=function(pct,c){return '<i style="height:100%;width:'+pct+'%;background:'+c+'"></i>';};
-      h+=H('Composición estimada');
-      h+='<div class="res-bar">'+seg(e.comp.organicos,GRN)+seg(e.comp.aprovechables,TEA)+seg(e.comp.otros,GRY)+'</div>';
-      h+='<div class="res-leg"><span><i style="background:'+GRN+'"></i>Orgánicos '+e.comp.organicos.toFixed(1)+'%</span>'
-        +'<span><i style="background:'+TEA+'"></i>Aprovechables '+e.comp.aprovechables.toFixed(1)+'%</span>'
-        +'<span><i style="background:'+GRY+'"></i>Otros '+e.comp.otros.toFixed(1)+'%</span></div>';
+      h+=H('comp','Composición estimada');
+      h+='<div class="res-donut">'+DONUT([{v:e.comp.organicos,c:GRN},{v:e.comp.aprovechables,c:TEA},{v:e.comp.otros,c:GRY}])
+        +'<div class="res-leg" style="flex-direction:column;gap:9px">'
+          +'<span><i style="background:'+GRN+'"></i>Orgánicos <b style="color:var(--text);margin-left:5px">'+e.comp.organicos.toFixed(1)+'%</b></span>'
+          +'<span><i style="background:'+TEA+'"></i>Aprovechables <b style="color:var(--text);margin-left:5px">'+e.comp.aprovechables.toFixed(1)+'%</b></span>'
+          +'<span><i style="background:'+GRY+'"></i>Otros <b style="color:var(--text);margin-left:5px">'+e.comp.otros.toFixed(1)+'%</b></span>'
+        +'</div></div>';
     }
-    srcs.push((_residuosData._meta&&_residuosData._meta.fuente)||'SEMARNAT 2026');
   }
-  // 2 · Cobertura municipal (diagnóstico)
+  // 2 · Cobertura municipal (anillos)
   if(dg){
-    h+=H('Cobertura municipal');
-    h+=ROW([
-      ST(num(dg.municipios),'Municipios'),
-      ST(num(dg.con_recoleccion),'Con recolección'+pctOf(dg.con_recoleccion,dg.municipios),GRN),
-      ST(num(dg.con_separacion),'Con separación en fuente'),
-      ST(num(dg.con_programas),'Con programas informativos')
-    ]);
+    h+=H('cob','Cobertura municipal');
+    var pRec=pct(dg.con_recoleccion,dg.municipios),pSep=pct(dg.con_separacion,dg.municipios),pPro=pct(dg.con_programas,dg.municipios);
+    h+='<div class="res-rings">'
+      +'<div class="res-ring"><div style="font-size:23px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1;padding-top:20px">'+num(dg.municipios)+'</div><div class="rl">Municipios</div></div>'
+      +(pRec!=null?RING(pRec,GRN,pRec+'%','Con recolección'):'')
+      +(pSep!=null?RING(pSep,TEA,pSep+'%','Con separación en fuente'):'')
+      +(pPro!=null?RING(pPro,LGR,pPro+'%','Con programas informativos'):'')
+    +'</div>';
   }
-  // 3 · Disposición final (diagnóstico primero; SEMARNAT fallback)
+  // 3 · Disposición final (barra de riesgo)
   if(dg&&(dg.rellenos_cumplen!=null||dg.rellenos_no_cumplen!=null||dg.tiraderos_cielo_abierto!=null||dg.sitios_disposicion!=null)){
-    h+=H('Disposición final');
-    var dcells=[];
-    if(dg.sitios_disposicion!=null)dcells.push(ST(num(dg.sitios_disposicion),'Sitios de disposición'));
-    dcells.push(ST(num(dg.rellenos_cumplen),'Rellenos en cumplimiento',GRN));
-    dcells.push(ST(num(dg.rellenos_no_cumplen),'Rellenos sin cumplimiento',(dg.rellenos_no_cumplen||0)>0?AMB:null));
-    dcells.push(ST(num(dg.tiraderos_cielo_abierto),'Tiraderos a cielo abierto',(dg.tiraderos_cielo_abierto||0)>0?AMB:null));
-    h+=ROW(dcells);
-    h+='<div class="res-note">Cumplimiento evaluado conforme a la NOM-083-SEMARNAT-2003.</div>';
+    h+=H('disp','Disposición final');
+    var rc=dg.rellenos_cumplen||0,rn=dg.rellenos_no_cumplen||0,ti=dg.tiraderos_cielo_abierto||0,tot=rc+rn+ti;
+    if(tot>0){
+      var sg=function(v,c){return v>0?'<i style="width:'+(v/tot*100).toFixed(1)+'%;background:'+c+'"></i>':'';};
+      h+='<div class="res-seg">'+sg(rc,GRN)+sg(rn,AMB)+sg(ti,RED)+'</div>';
+    }
+    h+='<div class="res-leg" style="margin-bottom:9px">'
+      +'<span><i style="background:'+GRN+'"></i>En cumplimiento <b style="color:var(--text);margin-left:5px">'+num(dg.rellenos_cumplen)+'</b></span>'
+      +'<span><i style="background:'+AMB+'"></i>Sin cumplimiento <b style="color:var(--text);margin-left:5px">'+num(dg.rellenos_no_cumplen)+'</b></span>'
+      +'<span><i style="background:'+RED+'"></i>Tiraderos a cielo abierto <b style="color:var(--text);margin-left:5px">'+num(dg.tiraderos_cielo_abierto)+'</b></span>'
+    +'</div>';
+    var sinC=rn+ti,pSin=tot>0?Math.round(sinC/tot*100):0;
+    h+='<div class="res-note">'+(pSin>0?'<b style="color:'+(pSin>=50?RED:AMB)+'">'+pSin+'% de los sitios operan sin control adecuado</b> conforme a la NOM-083-SEMARNAT-2003.':'Todos los sitios evaluados cumplen la NOM-083-SEMARNAT-2003.')+'</div>';
   }else if(e&&e.disp){
     var dp=e.disp,rel=e.rellenos_nom083||{total:0};
-    h+=H('Disposición final');
-    h+=ROW([
-      ST(num(dp.total),'Sitios de disposición'),
-      ST(rel.total,'Cumplen NOM-083',rel.total>0?GRN:AMB),
-      ST(dp.D,'Tiraderos (clase D)',dp.D>0?AMB:null)
-    ]);
+    h+=H('disp','Disposición final');
+    h+=ROW([ST(num(dp.total),'Sitios de disposición'),ST(rel.total,'Cumplen NOM-083',rel.total>0?GRN:AMB),ST(dp.D,'Tiraderos (clase D)',dp.D>0?AMB:null)]);
     h+='<div class="res-note">'+(rel.total>0?'De '+dp.total+' sitios, <b>'+rel.total+'</b> operan como relleno sanitario conforme a la NOM-083-SEMARNAT-2003.':'<b style="color:'+AMB+'">Ningún sitio cumple la NOM-083-SEMARNAT-2003</b>; predominan sitios no controlados.')+'</div>';
   }
-  // 4 · Costo de recolección (SEMARNAT)
+  // 4 · Costo de recolección
   if(e&&e.recoleccion){
-    var rc=e.recoleccion;
-    h+=H('Costo de recolección');
-    h+=ROW([
-      ST('$'+num(rc.costo_ton),'MXN / tonelada'),
-      ST(num(rc.vehiculos),'Vehículos')
-    ]);
+    var rc2=e.recoleccion;
+    h+=H('costo','Costo de recolección');
+    h+=ROW([ST('$'+num(rc2.costo_ton),'MXN / tonelada'),ST(num(rc2.vehiculos),'Vehículos')]);
   }
-  // 5 · Panorama nacional RME (SEMARNAT)
+  // 5 · Panorama nacional RME
   if(nac.rme_corrientes&&nac.rme_corrientes.length){
-    h+=H('Panorama nacional','RME por corriente · NOM-161');
+    h+=H('nac','Panorama nacional','RME por corriente · NOM-161');
     var mx=Math.max.apply(null,nac.rme_corrientes.map(function(c){return c.tanio;}));
     nac.rme_corrientes.slice().sort(function(a,b){return b.tanio-a.tanio;}).forEach(function(c){
       h+='<div class="res-crow"><span class="nm">'+c.nombre+'</span>'
