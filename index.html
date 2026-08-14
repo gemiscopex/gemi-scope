@@ -1152,7 +1152,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
       <button class="sp-tab" onclick="showSPTab('actividad',this)">Actividad</button>
       <button class="sp-tab" onclick="showSPTab('legislacion',this)">Legislación</button>
       <button class="sp-tab" onclick="showSPTab('impuestos',this)">Impuestos</button>
-      <button class="sp-tab" onclick="showSPTab('materiales',this)">Materiales Prohibidos</button>
+      <button class="sp-tab" onclick="showSPTab('materiales',this)">Materiales Regulados</button>
       <button class="sp-tab" onclick="showSPTab('sectorial',this)">Sector Industrial</button>
       <button class="sp-tab" onclick="showSPTab('residuos',this)">Residuos</button>
       <button class="sp-tab" onclick="showSPTab('rme',this)">Trámites RME</button>
@@ -1302,9 +1302,8 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
       <button class="leg-sub-btn" id="act-sub-legfed" onclick="showActoresSub('legfed',this)">Legislativo Federal</button>
       <button class="leg-sub-btn" id="act-sub-legest" onclick="showActoresSub('legest',this)">Legislativo Estatal</button>
     </div>
-    <!-- Federal: gabinete ambiental -->
+    <!-- Federal: dependencias del ejecutivo -->
     <div id="actores-view-federal">
-      <div class="card-label">Gabinete Ambiental Federal</div>
       <div id="actores-federal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px 24px"></div>
     </div>
     <!-- Estatal: titulares por estado -->
@@ -1343,7 +1342,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
       <button class="normas-filter-link" data-tema="Logística" onclick="filterNormas('Logística',this)">Logística</button>
       <button class="normas-filter-link" data-tema="Comercio" onclick="filterNormas('Comercio',this)">Comercio</button>
       <button class="normas-filter-link" data-tema="Energía" onclick="filterNormas('Energía',this)">Energía</button>
-      <button class="normas-filter-link" data-tema="Alimentos" onclick="filterNormas('Alimentos',this)">Alimentos</button>
+      <button class="normas-filter-link" data-tema="Inocuidad" onclick="filterNormas('Inocuidad',this)">Inocuidad</button>
       <button class="normas-filter-link" data-tema="Laboral" onclick="filterNormas('Laboral',this)">Laboral</button>
       <button class="normas-filter-link" data-tema="Ruido y luz" onclick="filterNormas('Ruido y luz',this)">Ruido y luz</button>
     </div>
@@ -1677,7 +1676,16 @@ var LEYES_EST_TEMA_LABEL={
   'residuos':'Residuos','cambio_climatico':'Clima','energia_renovable':'Energía',
   'mineria':'Minería','hidrocarburos':'Hidrocarburos','pesca':'Pesca','ambiental_general':'Ambiental'
 };
-var _leyEst={estado:'',tema:'todos',q:''};
+var _leyEst={estado:'',tema:'todos',tipo:'todos',q:''};
+// Ordenamientos placeholder (sin ley específica / pendientes) — se ocultan hasta cargar la DB de plásticos de un solo uso
+function _isLeyPlaceholder(l){
+  var n=(l.nombre||'').toLowerCase().trim();
+  if(/^sin ley/.test(n))return true;
+  if((l.estatus||l.estado_vigencia||'').toLowerCase()==='pendiente')return true;
+  return false;
+}
+// Homologa el formato de fecha (mes en minúscula, como Leyes Federales)
+function _leyFechaFmt(s){return String(s||'').replace(/\b(Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre)\b/g,function(m){return m.toLowerCase();});}
 var LEYES_TEMAS=[['todos','Todos'],['ambiental_general','Ambiental general'],['agua','Agua'],['forestal','Forestal'],['biodiversidad','Biodiversidad'],['cambio_climatico','Cambio climático'],['residuos','Residuos / Economía circular'],['energia_renovable','Energía renovable'],['hidrocarburos','Hidrocarburos'],['mineria','Minería']];
 // Normaliza nombres TODO-MAYÚSCULAS a Capitalización tipo título (respeta siglas y preposiciones)
 var _LEY_KEEPUP={NOM:1,NMX:1,LGEEPA:1,LGPGIR:1,LGEC:1,LAN:1,DOF:1,REP:1,CDMX:1,GEI:1,RME:1,RSU:1,ISSSTE:1,IMSS:1,PEMEX:1,CFE:1};
@@ -1720,7 +1728,7 @@ function _mergeCuratedLeyes(){
     var arr=leyesEstatalesData.estados[vk],seen={};arr.forEach(function(l){seen[qa((l.nombre||'').toLowerCase())]=1;});
     var L=se.leyes||{};
     Object.keys(L).forEach(function(cat){(L[cat]||[]).forEach(function(law){
-      var key=qa((law.nombre||'').toLowerCase());if(!law.nombre||seen[key])return;seen[key]=1;
+      var key=qa((law.nombre||'').toLowerCase());if(!law.nombre||seen[key]||_isLeyPlaceholder(law))return;seen[key]=1;
       var tipo=/reglamento/i.test(law.nombre)?'Reglamento':/c[oó]digo/i.test(law.nombre)?'Código':'Ley';
       arr.push({nombre:law.nombre,tipo:tipo,temas:[_LEY_CAT_TEMA[cat]||'ambiental_general'],estatus:law.estado_vigencia||'Vigente',url:law.url||'',ficha_url:law.url||'',fecha_publicacion:law.ultima_reforma||'',_curada:true});
     });});
@@ -1740,21 +1748,26 @@ function loadLeyesEstatales(){
 }
 function renderLeyesEstTemaBar(){
   var bar=document.getElementById('leyes-est-temabar');if(!bar)return;
-  bar.innerHTML=LEYES_TEMAS.map(function(t){return '<button class="stab'+(_leyEst.tema===t[0]?' on':'')+'" onclick="leyEstSetTema(\''+t[0]+'\')">'+t[1]+'</button>';}).join('');
+  bar.style.flexWrap='wrap';
+  var tipos=[['todos','Todos'],['Ley','Leyes'],['Reglamento','Reglamentos'],['Código','Códigos']];
+  var tipoBtns=tipos.map(function(t){return '<button class="stab'+(_leyEst.tipo===t[0]?' on':'')+'" onclick="leyEstSetTipo(\''+t[0]+'\')">'+t[1]+'</button>';}).join('');
+  var temaBtns=LEYES_TEMAS.map(function(t){return '<button class="stab'+(_leyEst.tema===t[0]?' on':'')+'" onclick="leyEstSetTema(\''+t[0]+'\')">'+t[1]+'</button>';}).join('');
+  bar.innerHTML=tipoBtns+'<span style="flex-basis:100%;height:0"></span>'+temaBtns;
 }
 function leyEstSetEstado(v){_leyEst.estado=v;_leyEst.tema='todos';renderLeyesEstTemaBar();renderLeyesEst();}
 function leyEstSetTema(t){_leyEst.tema=t;if(t!=='todos'){_leyEst.estado='';var s=document.getElementById('leyes-est-selector');if(s)s.value='';}renderLeyesEstTemaBar();renderLeyesEst();}
+function leyEstSetTipo(t){_leyEst.tipo=t;renderLeyesEstTemaBar();renderLeyesEst();}
 function leyEstSetQ(v){_leyEst.q=v;renderLeyesEst();}
 function _leyRow(l,stateLabel,i){
   var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
   var tipoAbr=l.tipo==='Ley'?'LEY':l.tipo==='Código'?'CÓD':l.tipo==='Reglamento'?'REG':'NOR';
   var doc=(l.url||l.ficha_url||'');
-  if(!doc)doc='https://www.google.com/search?q='+encodeURIComponent(l.nombre+' pdf');
+  if(!doc)doc='https://www.google.com/search?q='+encodeURIComponent('"'+l.nombre+'" filetype:pdf');
   doc=doc.replace(/'/g,'%27').replace(/"/g,'%22');
   var nombre=_leyName(l.nombre||'');
   var estatusCol=/vigente/i.test(l.estatus||'')?'var(--green)':/abrogad|derogad|no vigente/i.test(l.estatus||'')?'#B45309':'var(--text-muted)';
   var meta=[];
-  if(l.fecha_publicacion)meta.push('Publicación <span style="color:var(--text-sec)">'+l.fecha_publicacion+'</span>');
+  if(l.fecha_publicacion)meta.push('Última reforma <span style="color:var(--text-sec)">'+_leyFechaFmt(l.fecha_publicacion)+'</span>');
   if(l.estatus)meta.push('<span style="color:'+estatusCol+'">'+l.estatus+'</span>');
   return '<div class="ley-row'+((i%2)?' zeb':'')+'" style="align-items:center;cursor:pointer"'+(doc?' onclick="window.open(\''+doc+'\',\'_blank\')"':'')+'>'
     +'<span class="ley-sigla" style="color:'+tipoColor+'">'+tipoAbr+'</span>'
@@ -1771,9 +1784,11 @@ function renderLeyesEst(){
   var q=qa((_leyEst.q||'').toLowerCase());
   var tk=_leyEst.tema!=='todos'?_leyEst.tema:null;
   var match=function(l){var n=qa((l.nombre||'').toLowerCase());
+    if(_isLeyPlaceholder(l))return false;
+    if(_leyEst.tipo&&_leyEst.tipo!=='todos'&&(l.tipo||'Ley')!==_leyEst.tipo)return false;
     if(tk&&(l.temas||[]).indexOf(tk)<0)return false;
     if(q&&n.indexOf(q)<0)return false;return true;};
-  if(tk||q){
+  if(tk||q||(_leyEst.tipo&&_leyEst.tipo!=='todos')){
     var estados=Object.keys(leyesEstatalesData.estados).sort(function(a,b){return a.localeCompare(b,'es');});
     var total=0,html='';
     estados.forEach(function(st){var ls=(leyesEstatalesData.estados[st]||[]).filter(match);if(!ls.length)return;total+=ls.length;
@@ -1783,9 +1798,9 @@ function renderLeyesEst(){
     return;
   }
   if(!_leyEst.estado){if(meta)meta.textContent='';list.innerHTML='<div style="padding:24px 0;font-size:13px;color:var(--text-muted)">Selecciona un estado, o filtra por tema para ver todas las entidades.</div>';return;}
-  var leyes=(leyesEstatalesData.estados[_leyEst.estado]||[]);
+  var leyes=(leyesEstatalesData.estados[_leyEst.estado]||[]).filter(match);
   if(meta)meta.textContent=leyes.length+' ordenamiento'+(leyes.length!==1?'s':'')+' ambientales vigentes';
-  list.innerHTML=leyes.length?leyes.map(function(l,i){return _leyRow(l,null,i);}).join(''):'<div style="padding:32px 0;font-size:13px;color:var(--text-muted)">Sin datos disponibles para este estado.</div>';
+  list.innerHTML=leyes.length?leyes.map(function(l,i){return _leyRow(l,null,i);}).join(''):'<div style="padding:32px 0;font-size:13px;color:var(--text-muted)">Sin ordenamientos para este filtro.</div>';
 }
 /* ── Presidencia / Sheinbaum: cintillo tipo noticiero ── */
 let presData=[];
@@ -2569,7 +2584,7 @@ function _nMateriales(s){var m=((_materialesData&&_materialesData.estados)||{})[
 var _ESTADO_METRICS={
   leyes:     {label:'N° de leyes ambientales', short:'leyes',      get:_nLeyes},
   impuestos: {label:'N° de impuestos verdes',  short:'impuestos',  get:_nImpuestos},
-  materiales:{label:'Materiales prohibidos',   short:'materiales', get:_nMateriales},
+  materiales:{label:'Materiales regulados',   short:'materiales', get:_nMateriales},
   pea:       {label:'PEA (activos, ENOE)',     short:'PEA',        get:_statePea}
 };
 var _estadoColorBy='leyes';
@@ -2675,7 +2690,7 @@ function _cmpDonut(vals,centerLabel){
 // Exportar la comparación a CSV (abre en Excel; BOM UTF-8).
 function estadosExportCSV(){
   if(!_cmpStates.length)return;
-  var rows=[['Entidad','Leyes ambientales','Impuestos verdes','Materiales prohibidos','Residuos t/dia','kg/hab/dia','Recoleccion municipal %','Separacion en fuente %','Rellenos en cumplimiento','Tiraderos cielo abierto','Poblacion 2020','PEA 2026Q1','PEA/poblacion %']];
+  var rows=[['Entidad','Leyes ambientales','Impuestos verdes','Materiales regulados','Residuos t/dia','kg/hab/dia','Recoleccion municipal %','Separacion en fuente %','Rellenos en cumplimiento','Tiraderos cielo abierto','Poblacion 2020','PEA 2026Q1','PEA/poblacion %']];
   _cmpStates.forEach(function(s){
     var pob=_statePob(s),pea=_statePea(s),r=_stateRes(s),dg=_stateDiag(s);
     var recp=_stateResPct(s,'con_recoleccion'),sepp=_stateResPct(s,'con_separacion');
@@ -2773,7 +2788,7 @@ function _cmpBody(){
     return out;
   }
   // Resumen (default) — conteos REALES, sin índices inventados
-  var metrics=[['Leyes ambientales',_nLeyes],['Impuestos verdes',_nImpuestos],['Materiales prohibidos',_nMateriales]];
+  var metrics=[['Leyes ambientales',_nLeyes],['Impuestos verdes',_nImpuestos],['Materiales regulados',_nMateriales]];
   var out=metrics.map(function(m){
     var vals=_cmpStates.map(function(s){return m[1](s);});
     return _cmpBars(m[0],vals,{fmt:function(v){return v;}});
@@ -3310,7 +3325,7 @@ var NORMAS=[
   {id:'NOM-144-SEMARNAT-2017',dep:'SEMARNAT',tema:'Comercio',tipo:'NOM',objeto:'Embalaje de madera para exportación',implic:'Incide en comercio internacional',afecta:'Logística · tarimas · exportadores',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5484957'},
   {id:'NOM-005-ASEA-2016',dep:'ASEA',tema:'Energía',tipo:'NOM',objeto:'Diseño, construcción y operación de estaciones de servicio (diésel y gasolinas)',implic:'Hermeticidad de tanques, recuperación de vapores y protección ambiental en gasolineras',afecta:'Estaciones de servicio · hidrocarburos · retail',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5459927&fecha=07/11/2016'},
   {id:'NOM-016-CRE-2016',dep:'CRE',tema:'Energía',tipo:'NOM',objeto:'Especificaciones de calidad de los petrolíferos',implic:'Calidad de combustibles en toda la cadena de producción y suministro',afecta:'Combustibles · estaciones de servicio',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5450011&fecha=29/08/2016'},
-  {id:'NOM-251-SSA1-2009',dep:'SSA',tema:'Alimentos',tipo:'NOM',objeto:'Prácticas de higiene para el proceso de alimentos, bebidas o suplementos',implic:'Base sanitaria para procesamiento y empaque en contacto con alimentos',afecta:'Alimentos · bebidas · empaque en contacto con alimentos',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5133449&fecha=01/03/2010'},
+  {id:'NOM-251-SSA1-2009',dep:'SSA',tema:'Inocuidad',tipo:'NOM',objeto:'Prácticas de higiene para el proceso de alimentos, bebidas o suplementos',implic:'Base sanitaria para procesamiento y empaque en contacto con alimentos',afecta:'Alimentos · bebidas · empaque en contacto con alimentos',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5133449&fecha=01/03/2010'},
   {id:'NOM-025-STPS-2008',dep:'STPS',tema:'Laboral',tipo:'NOM',objeto:'Condiciones de iluminación en los centros de trabajo',implic:'Mínimos obligatorios de iluminación; concurre con regulación ambiental de iluminación (contaminación lumínica) y de seguridad',afecta:'Todos los centros de trabajo · concurrencia con NOM ambiental de iluminación',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5076393&fecha=30/12/2008'},
   {id:'NOM-003-CONAGUA-1996',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Requisitos durante la construcción de pozos de extracción de agua para prevenir la contaminación de acuíferos',implic:'',afecta:'Usuarios de aguas subterráneas · perforación de pozos',url:''},
   {id:'NOM-004-CONAGUA-1996',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Requisitos para la protección de acuíferos durante el mantenimiento, rehabilitación y cierre de pozos de extracción de agua',implic:'',afecta:'Usuarios de aguas subterráneas',url:''},
@@ -3328,7 +3343,7 @@ var NORMAS=[
   {id:'NOM-000-SEMARNAT-2026',dep:'SEMARNAT',tema:'Ruido y luz',tipo:'NOM',objeto:'Especificaciones técnicas y clasificación de instalaciones de iluminación respecto a la contaminación lumínica; niveles máximos permisibles de luz artificial en el ambiente',implic:'En desarrollo',afecta:'Alumbrado · instalaciones de iluminación',url:''},
   {id:'PROY-NOM-AGUA-REGENERADA-2026',dep:'SEMARNAT',tema:'Agua',tipo:'PROY',objeto:'Agua regenerada para uso y consumo humano: límites permisibles de calidad del agua',implic:'Nueva norma en desarrollo en el Programa Nacional de Infraestructura de la Calidad 2026',afecta:'Reúso de agua · agua potable · industria',url:''}
 ];
-var NORMAS_TEMA_COLOR={'Agua':'#2563eb','Aire':'#0ea5e9','Residuos':'#d97706','Logística':'#7c3aed','Comercio':'#16a34a','Energía':'#f59e0b','Alimentos':'#db2777','Laboral':'#475569','Ruido y luz':'#0f766e'};
+var NORMAS_TEMA_COLOR={'Agua':'#2563eb','Aire':'#0ea5e9','Residuos':'#d97706','Logística':'#7c3aed','Comercio':'#16a34a','Energía':'#f59e0b','Inocuidad':'#db2777','Laboral':'#475569','Ruido y luz':'#0f766e'};
 var _normasTema='todos', _normasType='todos', _normasRendered=false, _normasExpanded={};
 function filterNormas(tema,btn){
   _normasTema=tema;
@@ -3452,7 +3467,7 @@ function renderNormas(){
   var list=NORMAS.filter(function(n){return _normasTema==='todos'||n.tema===_normasTema;});
   var grouped={};
   list.forEach(function(n){if(!grouped[n.tema])grouped[n.tema]=[];grouped[n.tema].push(n);});
-  var temaOrder=['Agua','Aire','Residuos','Logística','Comercio','Energía','Alimentos','Laboral','Ruido y luz'];
+  var temaOrder=['Agua','Aire','Residuos','Logística','Comercio','Energía','Inocuidad','Laboral','Ruido y luz'];
   var html='';
   temaOrder.forEach(function(tema){
     if(!grouped[tema])return;
@@ -3553,7 +3568,8 @@ function renderSPLegislacion(state,data){
   let html='';
   if(sl){
     Object.entries(sl.leyes).forEach(([cat,laws])=>{
-      if(!laws||!laws.length)return;
+      laws=(laws||[]).filter(function(l){return !_isLeyPlaceholder(l);});
+      if(!laws.length)return;
       html+='<div class="sp-leg-group"><div class="sp-leg-h"><span class="t">'+(cl[cat]||cat)+'</span><span class="n">'+laws.length+'</span></div>';
       laws.forEach((law,i)=>{
         var nombre=(typeof _leyName==='function')?_leyName(law.nombre||''):(law.nombre||'');
@@ -4223,7 +4239,7 @@ function renderSPMateriales(state){
     return;
   }
   el.innerHTML=`
-    <div class="sp-eyebrow">Materiales prohibidos / restringidos</div>
+    <div class="sp-eyebrow">Materiales regulados · plásticos de un solo uso</div>
     <div style="font-size:12px;color:var(--text-sec);margin-bottom:12px">Desde <strong>${mat.desde}</strong> \u00b7 ${mat.instrumento}</div>
     ${mat.materiales.map(m=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border);font-size:13px;color:var(--text)"><span style="color:#DC2626;font-size:12px">\u2298</span>${m}</div>`).join('')}
     <div style="font-size:10px;color:var(--text-muted);margin-top:12px">Dataset de Scope v1 \u00b7 verificar el instrumento estatal vigente antes de decisiones de cumplimiento.</div>`;
@@ -5692,7 +5708,7 @@ function _wizPaintRef(){
 }
 function _wizRefNomsHTML(){
   var norms=(typeof NORMAS!=='undefined'?NORMAS:[]);
-  var order=['Agua','Aire','Residuos','Logística','Comercio','Energía','Alimentos','Laboral'];
+  var order=['Agua','Aire','Residuos','Logística','Comercio','Energía','Inocuidad','Laboral'];
   var present=order.filter(function(t){return norms.some(function(n){return n.tema===t;});});
   var bar='<div class="stab-bar" style="gap:2px 16px;margin-bottom:12px">'
     +'<button class="stab'+(_wiz.refTema==='todos'?' on':'')+'" onclick="_wizSetRefTema(\'todos\')">Todos</button>'
@@ -6023,7 +6039,7 @@ function _consRefWidgets(cfg){
         +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:3px">En '+inf.states.length+' entidad'+(inf.states.length===1?'':'es')+(inf.prices.length?' · '+inf.prices.slice(0,2).join(' / '):'')+'</div>'
         +(inf.states.length?'<div style="font-size:10px;color:var(--text-sec);margin-top:2px;line-height:1.35">'+inf.states.join(' · ')+'</div>':'')+'</div>';
     }).join('')});
-  if(mats.length)out.push({id:'ref-mats',title:'Materiales prohibidos',count:mats.length,body:
+  if(mats.length)out.push({id:'ref-mats',title:'Materiales regulados',count:mats.length,body:
     mats.map(function(m){var inf=_consMatInfo(m);
       var head='<div style="display:flex;align-items:baseline;gap:8px;margin:2px 0 8px"><span style="font-size:12px;font-weight:600;color:var(--text)"><span style="color:var(--red)">⊘</span> '+m+'</span>'
         +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-left:auto">'+inf.states.length+' entidad'+(inf.states.length===1?'':'es')+'</span></div>';
@@ -6432,7 +6448,7 @@ function _refCardHTML(cfg){
     +grp('NOMs',noms,nomUrl)
     +grp('Instrumentos legales',instr,null)
     +grp('Impuestos ambientales',imps,null)
-    +grp('Materiales prohibidos',mats,null)
+    +grp('Materiales regulados',mats,null)
   +'</div>';
 }
 function _consHits(kwList,days){
