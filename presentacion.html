@@ -447,6 +447,24 @@
   .mesa-caret{border-right:2px solid var(--mint);animation:caret 1.05s step-end infinite;padding-left:1px}
   .mesa-send{background:var(--mint);color:#04120d;font-size:11px;font-weight:700;border-radius:8px;padding:6px 13px;flex-shrink:0}
 
+  /* NUEVO · el caos (avalancha de fuentes) */
+  .chaos{display:flex;flex-wrap:wrap;gap:11px 13px;margin-top:32px;max-width:860px}
+  .chip-src{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--mut);border:1px solid var(--line);border-radius:20px;padding:8px 14px;background:rgba(255,255,255,.03);opacity:0;transform:translateY(10px);transition:opacity .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1)}
+  section.in .chip-src{opacity:1;transform:none}
+  .chip-src.hot{color:#e6b45e;border-color:rgba(230,180,94,.4);background:rgba(230,180,94,.07)}
+  .chip-src.hot::after{content:' · hoy';color:#e6b45e;opacity:.8}
+  .chaos-note{margin-top:26px;font-size:clamp(16px,2vw,22px);font-weight:800;letter-spacing:-.02em;color:var(--ink);opacity:0;transform:translateY(14px);transition:opacity .8s .9s,transform .8s .9s}
+  section.in .chaos-note{opacity:1;transform:none}
+  /* NUEVO · demo embebida en vivo (browser frame con la app real) */
+  .liveframe{max-width:580px;margin:0 auto;border-radius:14px;overflow:hidden;box-shadow:0 30px 74px rgba(0,0,0,.28);border:1px solid rgba(0,0,0,.09);background:#fff}
+  .lf-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#e9eef0;border-bottom:1px solid rgba(0,0,0,.06)}
+  .lf-dot{width:10px;height:10px;border-radius:50%;background:#c7d0d3}
+  .lf-live{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.06em;color:#0e8c74}
+  .lf-live i{width:6px;height:6px;border-radius:50%;background:#12b98a;animation:cspPulse 1.6s ease-in-out infinite}
+  .lf-url{font-family:var(--mono);font-size:11px;color:#5A7A98}
+  .lf-screen{position:relative;width:100%;height:352px;overflow:hidden;background:#fff}
+  .lf-screen iframe{position:absolute;top:0;left:0;width:1460px;height:912px;border:0;transform:scale(.397);transform-origin:top left;pointer-events:none}
+  @media(max-width:560px){.lf-screen{height:280px}.lf-screen iframe{transform:scale(.33)}}
   /* Presentación · momentos blancos (producto héroe) — híbrido con la base oscura */
   section.lite{background:#f4f6f8;color:#0D1B2A}
   section.lite .kick{color:#0e8c74}
@@ -483,6 +501,34 @@
   </section>
 
   <!-- 3 · RETO -->
+  <!-- NUEVO · EL CAOS (before/after) -->
+  <section data-t="El caos">
+    <div class="glow" style="width:520px;height:520px;background:#7a2020;top:-12%;left:-8%;opacity:.16"></div>
+    <div class="kick r">Todos los días</div>
+    <h2 class="r d1" style="max-width:17ch">Una avalancha imposible de seguir a mano</h2>
+    <p class="lead r d2" style="max-width:720px">El responsable de cumplimiento de una empresa abre su día ante todo esto a la vez. Cambia constantemente, todo importa, y no hay un solo lugar donde verlo completo.</p>
+    <div class="chaos">
+      <span class="chip-src hot" style="transition-delay:.10s">DOF</span>
+      <span class="chip-src" style="transition-delay:.16s">Cámara de Diputados</span>
+      <span class="chip-src" style="transition-delay:.22s">Senado de la República</span>
+      <span class="chip-src" style="transition-delay:.28s">32 congresos locales</span>
+      <span class="chip-src" style="transition-delay:.34s">NOM-001-SEMARNAT</span>
+      <span class="chip-src hot" style="transition-delay:.40s">NOM-161</span>
+      <span class="chip-src" style="transition-delay:.46s">NOM-083</span>
+      <span class="chip-src" style="transition-delay:.52s">SCJN</span>
+      <span class="chip-src hot" style="transition-delay:.58s">Conferencia matutina</span>
+      <span class="chip-src" style="transition-delay:.64s">Prensa nacional</span>
+      <span class="chip-src" style="transition-delay:.70s">Prensa estatal</span>
+      <span class="chip-src" style="transition-delay:.76s">ATDT</span>
+      <span class="chip-src" style="transition-delay:.82s">Gacetas oficiales</span>
+      <span class="chip-src" style="transition-delay:.88s">SEMARNAT</span>
+      <span class="chip-src" style="transition-delay:.94s">INECC</span>
+      <span class="chip-src" style="transition-delay:1.00s">Impuestos verdes</span>
+      <span class="chip-src" style="transition-delay:1.06s">Instrumentos internacionales</span>
+    </div>
+    <div class="chaos-note">No es falta de información. Es exceso de información sin sentido.</div>
+  </section>
+
   <section data-t="El reto">
     <div class="glow" style="width:500px;height:500px;background:#7a2020;top:22%;right:-12%;opacity:.18"></div>
     <div class="kick r">El reto</div>
@@ -513,6 +559,24 @@
   </section>
 
   <!-- 7 · RADAR -->
+  <!-- NUEVO · DEMO EN VIVO (app real embebida) -->
+  <section class="lite" data-t="En vivo">
+    <div class="kick r">En vivo, ahora mismo</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:13ch">Esto no es un render</h2>
+        <p class="lead r d2">Lo que ves a la derecha es Scope corriendo <b>en vivo</b>, con los datos reales de hoy. El mapa, el radar y la señal se actualizan solos cada mañana.</p>
+        <p class="lead r d3" style="margin-top:14px;font-size:15px">Ningún dato inventado. Todo con fuente y fecha.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="liveframe">
+          <div class="lf-bar"><span class="lf-dot"></span><span class="lf-dot"></span><span class="lf-dot"></span><span class="lf-url">scopegemi.com</span><span class="lf-live"><i></i>EN VIVO</span></div>
+          <div class="lf-screen"><iframe src="index.html" loading="lazy" title="Scope en vivo" scrolling="no"></iframe></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section data-t="Radar" data-anim="radardemo">
     <div class="techbg"></div>
     <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-12%;left:-8%;opacity:.2"></div>
@@ -745,6 +809,21 @@
   </section>
 
   <!-- 16 · CÓMO SE NUTRE -->
+  <!-- NUEVO · NÚMEROS QUE IMPORTAN (prueba de que es real) -->
+  <section data-t="Números que importan" data-anim="count">
+    <div class="techbg"></div>
+    <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-10%;right:-8%;opacity:.18"></div>
+    <div class="kick r">Por qué es real</div>
+    <h2 class="r d1" style="max-width:15ch">Datos oficiales, no estimaciones</h2>
+    <p class="lead r d2" style="max-width:720px">Cada cifra de Scope viene de una fuente oficial, con fecha y liga a la fuente. Esto ya está armado, no es una promesa.</p>
+    <div class="stats">
+      <div class="stat r d2"><div class="n"><span data-count="32">0</span></div><div class="l">Expedientes estatales completos, uno por entidad</div></div>
+      <div class="stat r d3"><div class="n"><span data-count="150">0</span>+</div><div class="l">Leyes y ordenamientos ambientales estatales curados</div></div>
+      <div class="stat r d4"><div class="n"><span data-count="20">0</span>+</div><div class="l">Instrumentos internacionales que alcanzan al exportador</div></div>
+      <div class="stat r d2"><div class="n">6am</div><div class="l">La señal se actualiza sola cada mañana, sin intervención</div></div>
+    </div>
+  </section>
+
   <section data-t="La señal" data-anim="count">
     <div class="techbg"></div>
     <div class="glow" style="width:560px;height:560px;background:var(--g3);bottom:-16%;right:-10%;opacity:.24"></div>
@@ -818,6 +897,15 @@
   </section>
 
   <!-- 23 · CIERRE -->
+  <!-- NUEVO · ONE MORE THING (Signal) -->
+  <section class="mid" data-t="One more thing" style="text-align:center;align-items:center">
+    <div class="glow" style="width:560px;height:560px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.18"></div>
+    <div class="cap r" style="color:var(--mut);font-size:14px;letter-spacing:.12em">One more thing…</div>
+    <h2 class="r d1" style="max-width:14ch;margin-top:16px">Y en octubre, llega Signal</h2>
+    <p class="lead r d2" style="margin:18px auto 0;max-width:640px">Un agente que responde tus dudas de NOMs, impuestos y normativa cruzando los datos de tu propia terminal. Scope deja de solo mostrarte la agenda: <b>te la explica</b>.</p>
+    <div class="soonbig r d3" style="margin-top:22px">Disponible en octubre</div>
+  </section>
+
   <section class="mid" data-t="Cierre" data-anim="closetw" style="text-align:center;align-items:center">
     <div class="glow" style="width:680px;height:680px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.3"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:38px;margin-bottom:30px">
