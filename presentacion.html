@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Scope · Presentación</title>
+<link rel="icon" type="image/png" href="/assets/logo-gemi-icon.png">
+<link rel="apple-touch-icon" href="/assets/logo-gemi-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Scope Sans';src:url('assets/fonts/heros-regular.woff2') format('woff2');font-weight:1 550;font-style:normal;font-display:swap}
+  @font-face{font-family:'Scope Sans';src:url('assets/fonts/heros-bold.woff2') format('woff2');font-weight:551 1000;font-style:normal;font-display:swap}
+  :root{
+    --bg:#06100d; --ink:#f3f8f5; --mut:#a5bab2; --dim:#63776f;
+    --g:#12b98a; --g2:#0e8c74; --g3:#066750; --mint:#3fe0ad; --amber:#e6b45e;
+    --line:rgba(255,255,255,0.09);
+    --sans:'Scope Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .deck{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+  .deck::-webkit-scrollbar{width:0;display:none}
+  section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:center;padding:9vh 7vw;overflow:hidden}
+  section.mid{justify-content:center;padding-top:9vh}
+  @media(max-width:640px){section{padding:9vh 6vw;justify-content:flex-start}}
+
+  .r{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  section.in .r{opacity:1;transform:none}
+  .r.d1{transition-delay:.09s}.r.d2{transition-delay:.19s}.r.d3{transition-delay:.31s}.r.d4{transition-delay:.43s}.r.d5{transition-delay:.55s}
+
+  .kick{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--mint);margin-bottom:20px;letter-spacing:.04em}
+  .cap{font-family:var(--mono);letter-spacing:.03em}
+  .psub,.cl,.cest,.devnote,.price .p,.stat .n .u,.legend{font-family:var(--mono)}
+  .soon,.soonbig,.topflag,.rtr,.price .per,.scrollhint,.exit,.brow .nm .ab,.irow .b,.cw-next{font-family:var(--mono)}
+  /* portada: "cambiando" se escribe y borra (mismo color y tamaño) */
+  .tw{display:inline-block;text-align:left;border-right:2px solid currentColor;animation:caret 1.05s step-end infinite}
+  @keyframes caret{50%{border-color:transparent}}
+  .twline{border-right:2px solid var(--mint);padding-right:3px;animation:caret 1.05s step-end infinite}
+  .twline.done{border-right:none;animation:none}
+  h1{font-size:clamp(36px,6.6vw,88px);font-weight:800;letter-spacing:-.025em;line-height:1.01}
+  h2{font-size:clamp(28px,4.8vw,60px);font-weight:800;letter-spacing:-.022em;line-height:1.05}
+  .lead{font-size:clamp(15px,1.8vw,21px);color:var(--mut);line-height:1.55;max-width:640px;margin-top:20px;font-weight:400}
+  .grn{color:var(--mint)} b,strong{font-weight:700;color:var(--ink)}
+
+  .split{display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,60px);align-items:center;justify-content:space-between}
+  .split .col{flex:1;min-width:290px}
+  .split .viz{flex:1.1;min-width:320px;width:100%}
+
+  .dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:9px;z-index:40}
+  .dots a{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.16);transition:all .25s;cursor:pointer}
+  .dots a.on{background:var(--mint);transform:scale(1.35)}
+  .dots a:hover{background:var(--g)}
+  @media(max-width:820px){.dots{display:none}}
+  .prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--g3),var(--mint));width:0;z-index:50;transition:width .15s linear}
+
+  .topbar{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:15px 24px;z-index:45;pointer-events:none}
+  .topbar img{height:24px;width:auto;opacity:.95;filter:drop-shadow(0 1px 4px rgba(0,0,0,.4))}
+  .exit{pointer-events:auto;font-size:12px;font-weight:600;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:20px;padding:7px 15px;transition:all .2s}
+  .exit:hover{color:var(--ink);border-color:var(--g)}
+
+  .scrollhint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--dim);font-weight:500;animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);opacity:.5}50%{transform:translateX(-50%) translateY(6px);opacity:1}}
+
+  .glow{position:absolute;border-radius:50%;filter:blur(96px);opacity:.5;pointer-events:none;z-index:0}
+  section>*{position:relative;z-index:1}
+
+  /* evolución (origen) */
+  .evo{display:flex;align-items:center;margin-top:46px;max-width:720px}
+  .evo-pt{display:flex;flex-direction:column;align-items:center;gap:13px;flex-shrink:0;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
+  section.in .evo-pt{opacity:1;transform:none}
+  section.in .evo-pt:nth-child(3){transition-delay:.55s}
+  section.in .evo-pt:nth-child(5){transition-delay:1.1s}
+  section.in .evo-pt:nth-child(7){transition-delay:1.6s}
+  .evo-pt .dot{width:12px;height:12px;border-radius:50%;background:var(--dim);transition:background .5s ease,box-shadow .5s ease}
+  section.in .evo-pt .dot{background:var(--g)}
+  section.in .evo-pt:nth-child(1) .dot{transition-delay:.2s}
+  section.in .evo-pt:nth-child(3) .dot{transition-delay:.75s}
+  section.in .evo-pt:nth-child(5) .dot{transition-delay:1.3s}
+  section.in .evo-pt:nth-child(7) .dot{transition-delay:1.8s}
+  .evo-pt.hl .dot{background:var(--mint);box-shadow:0 0 0 5px rgba(63,224,173,.14)}
+  section.in .evo-pt.hl .dot{background:var(--mint);box-shadow:0 0 0 6px rgba(63,224,173,.18)}
+  .evo-pt .lb{font-size:14px;font-weight:700;color:var(--mut);white-space:nowrap;text-align:center}
+  .evo-pt.hl .lb{color:var(--ink);font-size:15px}
+  .evo-pt .sub{font-size:11px;color:var(--dim);font-weight:500;margin-top:-6px}
+  .evo-seg{position:relative;flex:1;min-width:26px;height:2px;background:linear-gradient(90deg,var(--g3),var(--g));transform:scaleX(0);transform-origin:left;transition:transform .55s ease}
+  section.in .evo-seg{transform:scaleX(1)}
+  .evo-seg::after{content:'';position:absolute;top:50%;left:0;width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 9px var(--mint);transform:translateY(-50%);opacity:0}
+  section.in .evo-seg::after{animation:evoFlow 1.9s linear infinite}
+  section.in .evo-seg:nth-child(4)::after{animation-delay:.5s}
+  @keyframes evoFlow{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:100%;opacity:0}}
+  /* nodo: chip mono de datos bajo cada etiqueta (look técnico) */
+  .evo-pt .tag{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;color:var(--dim);margin-top:3px;text-transform:uppercase}
+  .evo-pt.hl .tag{color:var(--mint)}
+  section.in .evo-seg:nth-child(2){transition-delay:.35s}
+  section.in .evo-seg:nth-child(4){transition-delay:.9s}
+  section.in .evo-seg:nth-child(6){transition-delay:1.45s}
+  @media(max-width:640px){.evo{flex-direction:column;align-items:flex-start;gap:16px;margin-top:32px}
+    .evo-pt{flex-direction:row;gap:12px}.evo-pt .lb{text-align:left}.evo-seg{display:none}.evo-pt .lb{font-size:15px}}
+
+  /* panel base */
+  .panel{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:20px;padding:22px 24px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+  .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px}
+  .ptitle{font-size:13px;font-weight:700;color:var(--ink)}
+  .psub{font-size:11px;color:var(--dim)}
+  .legend{display:flex;gap:14px;font-size:11px;color:var(--mut)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+  /* impuestos bars */
+  .brow{display:flex;align-items:center;gap:14px;margin:15px 0}
+  .brow .nm{width:120px;flex-shrink:0;font-size:14px;font-weight:600}
+  .brow .nm .ab{font-size:10px;color:var(--dim);margin-left:6px;font-weight:600}
+  .btrack{flex:1;height:12px;background:rgba(255,255,255,.06);border-radius:7px;overflow:hidden}
+  .bfill{height:100%;width:0;border-radius:7px;background:linear-gradient(90deg,var(--g3),var(--g));transition:width 1.3s cubic-bezier(.22,1,.36,1)}
+  .brow.top .bfill{background:linear-gradient(90deg,var(--g2),var(--mint))}
+  .brow .val{width:104px;text-align:right;font-size:15px;font-weight:800;letter-spacing:-.02em;flex-shrink:0}
+  .brow .val .c{font-size:.68em;color:var(--mut);font-weight:600}
+  .topflag{font-size:11px;font-weight:700;color:var(--mint);margin-top:2px}
+
+  /* radar (idéntico al real: tiles planos, verdes GEMI, sparkline difuminada) */
+  .rgrid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:22px;max-width:900px}
+  @media(max-width:820px){.rgrid{grid-template-columns:repeat(2,1fr);row-gap:26px}}
+  @media(max-width:460px){.rgrid{grid-template-columns:1fr;row-gap:20px}}
+  .rtile{border-left:1px solid var(--line);padding:2px 20px;min-width:0}
+  .rtile:first-child{border-left:none;padding-left:0}
+  @media(max-width:820px){.rtile:nth-child(2n+1){border-left:none;padding-left:0}}
+  @media(max-width:460px){.rtile{border-left:none;padding-left:0}}
+  .rhead{display:flex;align-items:center;gap:8px;min-width:0}
+  .ricon{display:flex;flex-shrink:0}
+  .rname{font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rsub{font-family:var(--mono);font-size:9px;letter-spacing:.02em;color:var(--dim);margin-top:4px}
+  .rspk{margin:11px 0 9px;height:26px}
+  .rdc-spk{stroke-dasharray:1;animation:rdSpkDraw 28s ease-in-out infinite}
+  .rdc-spk-dot{animation:rdSpkPulse 28s ease-in-out infinite}
+  @keyframes rdSpkDraw{0%{stroke-dashoffset:1;opacity:0}14%{stroke-dashoffset:0;opacity:1}88%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+  @keyframes rdSpkPulse{0%{opacity:0}14%{opacity:1}88%{opacity:1}100%{opacity:0}}
+  .rstats{display:flex;align-items:flex-end;justify-content:space-between;gap:6px}
+  .rstat-v{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink)}
+  .rstat-l{font-family:var(--mono);font-size:8px;letter-spacing:.04em;color:var(--dim);margin-top:4px}
+  /* Radar · tiles clickeables + desglose de un tema */
+  .rhint{font-family:var(--mono);font-size:11px;color:var(--mint);opacity:.85}
+  .rtile.clk{cursor:pointer;transition:transform .16s,background .2s;border-radius:10px}
+  .rtile.clk:hover{transform:translateY(-2px)}
+  .rtile.act{background:rgba(18,185,138,.06)}
+  .rtile.pulse{animation:rpulse 0.9s ease-in-out 1}
+  @keyframes rpulse{0%,100%{box-shadow:0 0 0 0 rgba(63,224,173,0)}50%{box-shadow:0 0 0 3px rgba(63,224,173,.35)}}
+  .rdetail{max-height:0;overflow:hidden;opacity:0;transition:max-height .6s cubic-bezier(.2,.7,.2,1),opacity .5s,margin-top .4s}
+  .rdetail.open{max-height:420px;opacity:1;margin-top:18px}
+  .rdet-inner{max-width:760px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.01));padding:18px 20px}
+  .rdet-hd{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+  .rdet-name{font-size:15px;font-weight:800}
+  .rdet-sub{font-family:var(--mono);font-size:10px;color:var(--dim);margin-left:auto}
+  .rdet-spk{height:26px;margin:2px 0 12px}
+  .rdet-lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+  .rdet-row{display:flex;align-items:baseline;gap:12px;padding:9px 0;border-top:1px solid var(--line)}
+  .rdet-tag{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.06em;flex:0 0 62px}
+  .rdet-tt{flex:1;font-size:12.5px;color:var(--ink);line-height:1.4}
+  .rdet-dt{font-family:var(--mono);font-size:9px;color:var(--dim);flex-shrink:0;white-space:nowrap}
+
+  /* expediente (réplica fiel del panel real de estado) */
+  .exp{max-width:440px;margin:0 auto;background:#fff;color:#0D1B2A;border-radius:16px;box-shadow:0 26px 70px rgba(0,0,0,.5);padding:22px 24px;overflow:hidden}
+  .exp-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:15px}
+  .exp-name{font-size:24px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:12px;line-height:1}
+  .exp-sil svg{height:30px;width:auto;max-width:52px;opacity:.55;display:block}
+  .exp-sil svg path{fill:none;stroke:#5A7A98;stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+  .exp-close{font-size:12px;color:#5A7A98;border:0.8px solid rgba(0,0,0,0.13);border-radius:8px;padding:5px 12px;flex-shrink:0;white-space:nowrap}
+  .exp-tabs2{display:flex;flex-wrap:wrap;gap:9px 15px;padding-bottom:10px;border-bottom:0.8px solid rgba(0,0,0,0.07)}
+  .et{font-size:12.5px;font-weight:600;color:#5A7A98;letter-spacing:.01em;padding-bottom:8px}
+  .et.on{color:#0D1B2A;box-shadow:inset 0 -1.6px 0 #009E90}
+  .exp-body{padding-top:6px}
+  .ep-row{display:grid;grid-template-columns:150px 1fr;gap:4px 16px;align-items:baseline;padding:11px 0;border-bottom:0.8px solid rgba(0,0,0,0.07)}
+  .ep-lb{font-size:9px;font-weight:600;letter-spacing:.09em;color:#8A9CB0;text-transform:uppercase}
+  .ep-v{font-size:17px;font-weight:700;color:#0D1B2A;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .ep-src{font-size:10px;color:#8A9CB0;margin-left:8px}
+  .ep-bar{height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden;margin-top:7px;max-width:340px}
+  .ep-bar span{display:block;height:100%;background:#009E90;border-radius:6px;width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1) .35s}
+  section.in .ep-bar span{width:var(--w)}
+  .ep-desc{margin-top:16px;font-size:12px;line-height:1.65;color:#5A7A98}
+  .ep-desc strong{color:#0D1B2A;font-weight:700}
+  .ep-link{margin-top:18px;padding-top:14px;border-top:0.8px solid rgba(0,0,0,0.07)}
+  .ep-link a{font-size:12px;font-weight:600;color:#009E90;text-decoration:none}
+  .ep-link .u{font-family:var(--mono);font-size:9px;color:#8A9CB0;margin-top:3px;word-break:break-all}
+  .exp-body{position:relative;height:248px;overflow:hidden;padding-top:6px}
+  .ep-panel{position:absolute;top:6px;left:0;right:0;opacity:0;pointer-events:none;transition:opacity .5s ease;transform:translateY(0);will-change:transform}
+  .ep-panel.on{opacity:1;pointer-events:auto}
+  .ep-panel.on.scroll{transition:opacity .5s ease,transform 2.4s ease}
+  .exp-sec{font-family:var(--mono);font-size:9px;font-weight:700;color:#009E90;letter-spacing:.05em;margin:2px 0 9px}
+  .ep-imp{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:0.8px solid rgba(0,0,0,0.07)}
+  .ep-impt{font-size:14px;font-weight:700;color:#0D1B2A}
+  .ep-impv{font-size:23px;font-weight:800;color:#0D1B2A;letter-spacing:-.02em;white-space:nowrap}
+  .ep-impc{font-size:.55em;color:#8A9CB0;font-weight:600;margin-right:1px}
+  .ep-impu{font-size:.5em;color:#8A9CB0;font-weight:600}
+  .ep-metaline{font-family:var(--mono);font-size:9.5px;color:#8A9CB0;margin-top:4px;line-height:1.5}
+  .ep-matrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:0.8px solid rgba(0,0,0,0.07);font-size:12.5px;color:#26332e}
+  .ep-matrow .rt2{flex:1;line-height:1.3}
+  .exp-chip{font-family:var(--mono);font-size:8.5px;font-weight:700;padding:2px 8px;border-radius:5px;background:#e7f3ee;color:#0e8c74;white-space:nowrap;flex-shrink:0}
+  .exp-chip.no{background:#fbeee2;color:#c98a3c}
+  .expdeck{position:relative;max-width:440px;margin:0 auto;padding-top:42px}
+  .expdeck .exp{position:relative;z-index:3;margin:0}
+  .expback{position:absolute;left:0;right:0;top:42px;height:calc(100% - 42px);background:#fff;border-radius:16px;box-shadow:0 20px 55px rgba(0,0,0,.45);padding:22px 24px;color:#0D1B2A;overflow:hidden}
+  .expback .exp-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:15px}
+  .expback .expb-name{font-size:24px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:12px;line-height:1}
+  .expback .expb-name svg{height:30px;width:auto;max-width:52px;opacity:.5;display:block}
+  .expback .expb-name svg path{fill:none;stroke:#5A7A98;stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+  .expback .exp-close{font-size:12px;color:#5A7A98;border:0.8px solid rgba(0,0,0,0.13);border-radius:8px;padding:5px 12px;flex-shrink:0;white-space:nowrap}
+  .expback .expb-tabs{font-family:var(--mono);font-size:11px;color:#9bb0a8;letter-spacing:.02em;border-top:0.8px solid rgba(0,0,0,0.07);padding-top:14px}
+  .expback.bk1{z-index:1;transform:translate(-52px,-30px) rotate(-6deg) scale(.955)}
+  .expback.bk2{z-index:2;transform:translate(40px,-16px) rotate(5deg) scale(.978)}
+  @media(max-width:520px){.expback.bk1{transform:translate(-26px,-28px) rotate(-5deg) scale(.94)}.expback.bk2{transform:translate(22px,-15px) rotate(4deg) scale(.97)}}
+
+  /* Senado / actores */
+  .senp{max-width:420px;margin:0 auto}
+  .sen-modes{display:flex;gap:8px;margin-bottom:14px}
+  .sen-mode{font-size:11.5px;font-weight:700;padding:6px 13px;border-radius:20px;border:1px solid var(--line);color:var(--mut)}
+  .sen-mode.on{background:#066750;border-color:#066750;color:#fff}
+  .sen-search{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:13.5px;color:var(--mut)}
+  .sen-search svg{width:16px;height:16px;flex-shrink:0;stroke:var(--dim);fill:none;stroke-width:1.8}
+  .sen-search .q{color:var(--ink);font-weight:600}
+  .sen-search .car{display:inline-block;width:2px;height:15px;background:var(--mint);margin-left:1px;vertical-align:-2px;animation:blink2 1s steps(1) infinite}
+  @keyframes blink2{50%{opacity:0}}
+  .sen-card{border-top:1px solid var(--line);padding:14px 0 4px;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
+  section.in .sen-card.s1{transition-delay:1.2s;opacity:1;transform:none}
+  section.in .sen-card.s2{transition-delay:1.6s;opacity:1;transform:none}
+  .sen-card .cn{font-size:14px;font-weight:700;line-height:1.25}
+  .sen-card .cm{font-size:11px;color:var(--mut);margin-top:3px}
+  .sen-status{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;margin-top:9px}
+  .sen-status .sd{width:7px;height:7px;border-radius:50%}
+  .sen-status.ok{color:var(--mint)} .sen-status.ok .sd{background:var(--mint)}
+  .sen-status.no{color:var(--amber)} .sen-status.no .sd{background:var(--amber)}
+  .sen-meta{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:7px}
+
+  /* internacional (lista real, auto-scroll una vez) */
+  .intl-view{max-width:540px;height:320px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(180deg,transparent,#000 8%,#000 88%,transparent);mask-image:linear-gradient(180deg,transparent,#000 8%,#000 88%,transparent)}
+  .intl-scroll{animation:intlScroll 54s linear infinite}
+  @keyframes intlScroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+  .intl-pin{display:flex;align-items:flex-start;gap:13px;max-width:560px;border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 12px 12px 0;background:rgba(18,185,138,.05);padding:13px 17px}
+  .intl-pin .pd{width:8px;height:8px;border-radius:50%;background:var(--mint);flex-shrink:0;margin-top:4px;box-shadow:0 0 0 4px rgba(63,224,173,.12)}
+  /* Conferencias matutinas (réplica exacta del widget real) */
+  .csp{max-width:360px;margin-top:44px}
+  .chyron-hdr{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:.01em;color:var(--ink);margin-bottom:15px}
+  .chyron-live{width:6px;height:6px;border-radius:50%;background:#DC2626;animation:cspPulse 1.6s ease-in-out infinite;flex-shrink:0}
+  @keyframes cspPulse{0%,100%{opacity:1}50%{opacity:.3}}
+  /* radar de voz (indica que está hablando) */
+  .voicewave{display:inline-flex;align-items:center;gap:2px;height:13px;margin-left:9px;flex-shrink:0}
+  .voicewave i{width:2px;height:4px;background:#DC2626;border-radius:1px;animation:vwave 1s ease-in-out infinite}
+  .voicewave i:nth-child(1){animation-delay:0s}.voicewave i:nth-child(2){animation-delay:.15s}
+  .voicewave i:nth-child(3){animation-delay:.3s}.voicewave i:nth-child(4){animation-delay:.1s}
+  .voicewave i:nth-child(5){animation-delay:.42s}.voicewave i:nth-child(6){animation-delay:.22s}
+  .voicewave i:nth-child(7){animation-delay:.35s}
+  @keyframes vwave{0%,100%{height:3px;opacity:.5}50%{height:12px;opacity:1}}
+  .csp-node{display:grid;grid-template-columns:46px 1fr;align-items:start}
+  .csp-node-date{font-family:var(--mono);font-size:9px;color:var(--dim);text-align:right;padding-right:13px;padding-top:1px;white-space:nowrap}
+  .csp-node-body{border-left:1.5px solid var(--line);padding:0 0 24px 16px;position:relative;min-width:0}
+  .csp-node:last-child .csp-node-body{padding-bottom:2px}
+  .csp-node-body::before{content:'';position:absolute;left:-5px;top:2px;width:8px;height:8px;border-radius:50%;background:#DC2626;box-shadow:0 0 0 2px var(--bg)}
+  .csp-run-wrap{overflow:hidden}
+  .csp-run{display:inline-flex;white-space:nowrap;animation:chyronMove var(--d,50s) linear infinite}
+  .csp-run-wrap:hover .csp-run{animation-play-state:paused}
+  .csp-q{font-family:var(--mono);font-size:11px;color:var(--mut);line-height:1.4}
+  .csp-q strong{font-weight:600;color:var(--ink)}
+  .csp-sep{color:var(--dim);padding:0 13px;font-size:8px}
+  @keyframes chyronMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .vizlbl{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;margin-bottom:12px}
+  .intl-pin .pk{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--mint);letter-spacing:.05em;margin-bottom:5px}
+  .intl-pin .pt{font-size:14px;font-weight:700}
+  .intl-pin .ps{font-size:11.5px;color:var(--mut);margin-top:3px;line-height:1.45}
+  .irow{display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:opacity .2s}
+  .irow:hover{opacity:.72}
+  .irow .jz{width:40px;flex-shrink:0;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--mut);text-align:center}
+  .irow .it{flex:1;min-width:0}
+  .irow .it .a{font-size:13.5px;font-weight:700;line-height:1.25}
+  .irow .it .b{font-size:11px;color:var(--mut);margin-top:2px}
+  .irow .chip{font-size:9.5px;font-weight:700;padding:3px 9px;border-radius:20px;flex-shrink:0;white-space:nowrap}
+  .chip.cad{color:var(--mint);background:rgba(63,224,173,.12)}
+  .chip.tra{color:#8fd6bf;background:rgba(14,140,116,.16)}
+  .chip.ley{color:var(--mut);background:rgba(255,255,255,.06)}
+
+  /* terminal · wizard "Configura tu terminal" (réplica del real) */
+  .tcfg{position:relative;max-width:410px;margin:0 auto;background:#fff;color:#0D1B2A;border-radius:16px;padding:19px 21px;box-shadow:0 26px 70px rgba(0,0,0,.5);min-height:320px;display:flex;flex-direction:column}
+  .cw-top{display:flex;justify-content:space-between;align-items:center}
+  .cw-title{font-size:15px;font-weight:800}
+  .cw-x{color:#9bb0a8;font-size:18px;line-height:1}
+  .cw-steps{display:flex;flex-wrap:wrap;gap:6px 12px;margin:13px 0 11px}
+  .cw-step{font-family:var(--mono);font-size:9.5px;font-weight:600;color:#b4c6bd;letter-spacing:.02em;transition:color .3s}
+  .cw-step.on{color:#009E90}
+  .cw-step.done{color:#0D1B2A}
+  .cw-desc{font-size:11.5px;color:#5A7A98;line-height:1.5;min-height:36px}
+  .cw-body{flex:1;padding:13px 0 6px}
+  .tchips{display:flex;flex-wrap:wrap;gap:8px}
+  .tchip{font-size:12px;font-weight:600;padding:7px 13px;border-radius:20px;border:1px solid #dbe6e0;color:#54685f;transition:background .35s,color .35s,border-color .35s,transform .2s}
+  .tchip.sel{background:#009E90;border-color:#009E90;color:#fff}
+  .tchip.sel:after{content:' ✓';font-size:10px;opacity:.9}
+  .tchip.pop{transform:scale(1.09)}
+  .cw-foot{display:flex;justify-content:space-between;align-items:center;border-top:0.8px solid rgba(0,0,0,0.07);padding-top:12px;margin-top:4px}
+  .cw-count{font-family:var(--mono);font-size:10px;color:#9bb0a8}
+  .cw-next{font-size:12px;font-weight:700;color:#fff;background:#009E90;border-radius:20px;padding:6px 16px}
+  .tcursor{position:absolute;top:0;left:0;pointer-events:none;opacity:0;transition:transform .5s cubic-bezier(.4,.05,.2,1),opacity .25s;z-index:6;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3))}
+  .term-result{padding-top:2px;opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s}
+  .term-result.show{opacity:1;transform:none}
+  .term-result .trh{font-family:var(--mono);font-size:9px;font-weight:700;color:#009E90;letter-spacing:.05em}
+  .term-result .trv{font-size:16px;font-weight:800;margin-top:6px}
+  .term-result .trs{font-size:11px;color:#7a8f87;margin-top:3px}
+  .trbars{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+  .trbar{display:grid;grid-template-columns:96px 1fr 24px;align-items:center;gap:9px}
+  .trbn{font-size:11px;color:#0D1B2A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .trbt{height:6px;background:rgba(0,0,0,.06);border-radius:5px;overflow:hidden}
+  .trbf{display:block;height:100%;background:#009E90;border-radius:5px;width:0;animation:trFill 1s cubic-bezier(.22,1,.36,1) forwards}
+  .trbv{font-family:var(--mono);font-size:10px;color:#3D5A75;text-align:right}
+  @keyframes trFill{from{width:0}}
+
+  /* monitor (escritorio) */
+  .monitor{max-width:480px;margin:0 auto}
+  .screen{background:#0e1c17;border:1px solid var(--line);border-radius:16px;padding:9px;box-shadow:0 34px 80px rgba(0,0,0,.55)}
+  .screen-inner{background:#0b1016;border-radius:9px;height:272px;overflow:hidden;position:relative}
+  .screen-inner img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+  .mini-nav{display:flex;align-items:center;gap:8px;padding:11px 13px;border-bottom:1px solid #e6ece9}
+  .mini-logo{font-size:12px;font-weight:800;color:#066750;letter-spacing:-.01em}
+  .mini-nd{width:24px;height:6px;border-radius:4px;background:#dde7e2}
+  .mini-nd:first-of-type{background:#bfe0d4}
+  .mini-map{position:absolute;inset:44px 10px 10px 10px}
+  .mini-map .md{position:absolute;width:7px;height:7px;border-radius:50%;background:#cfdad4;transform:scale(0);transition:transform .5s cubic-bezier(.2,.9,.3,1.4)}
+  section.in .mini-map .md{transform:scale(1)}
+  .mini-map .md.on{background:#12b98a}.mini-map .md.on2{background:#3fe0ad}
+  .stand{width:78px;height:14px;background:linear-gradient(#12312a,#0b1a15);margin:0 auto;border-radius:0 0 7px 7px}
+  .stand-base{width:150px;height:8px;background:#0b1a15;border:1px solid var(--line);border-top:none;margin:5px auto 0;border-radius:9px}
+  .devnote{display:inline-block;margin-top:16px;font-size:12px;font-weight:600;color:var(--mint);background:rgba(63,224,173,.1);border-radius:20px;padding:6px 14px}
+
+  /* roadmap (siguiente fase) + chat */
+  .road{margin-top:6px}
+  .roaditem{display:flex;align-items:flex-start;gap:14px;padding:15px 0;border-top:1px solid var(--line)}
+  .road .roaditem:first-child{border-top:none;padding-top:4px}
+  .roaditem .ri{width:34px;height:34px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(18,185,138,.1);color:var(--mint)}
+  .roaditem .ri svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .roaditem .rn{font-size:15px;font-weight:700;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .roaditem .rd{font-size:13px;color:var(--mut);margin-top:3px;line-height:1.5}
+  .soon{font-size:10px;font-weight:700;color:var(--mint);background:rgba(63,224,173,.12);border-radius:20px;padding:2px 9px}
+  .soonbig{display:inline-block;font-size:11px;font-weight:700;color:#04120d;background:var(--mint);border-radius:20px;padding:3px 11px;margin-bottom:14px}
+  .chat{max-width:400px}
+  .bubble{border-radius:16px;padding:13px 16px;font-size:14px;line-height:1.5;margin:10px 0;opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
+  .bubble.show{opacity:1;transform:none}
+  .bubble.gone{display:none}
+  .bubble.me{background:linear-gradient(180deg,var(--g2),var(--g3));color:#eafff8;margin-left:auto;max-width:82%;border-bottom-right-radius:5px}
+  .bubble.sg{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--ink);max-width:92%;border-bottom-left-radius:5px}
+  .sgtag{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--mint);margin-bottom:4px}
+  .sgtag img{width:20px;height:20px;border-radius:6px}
+  .typing{display:inline-flex;gap:4px;padding:2px 0}
+  .typing span{width:6px;height:6px;border-radius:50%;background:var(--mut);animation:blink 1.2s infinite}
+  .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+
+  /* dot map */
+  .mapwrap{position:relative;width:100%;max-width:520px;aspect-ratio:5/4;margin:0 auto}
+  .mdot{position:absolute;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.15);transform:scale(0);transition:transform .5s cubic-bezier(.2,.9,.3,1.4),background .5s}
+  section.in .mdot{transform:scale(1)}
+  .mdot.hot{background:var(--g);box-shadow:0 0 0 0 rgba(18,185,138,.55);animation:ping 2.6s ease-out infinite}
+  .mdot.hot.h2{background:var(--mint)}
+  @keyframes ping{0%{box-shadow:0 0 0 0 rgba(18,185,138,.5)}70%{box-shadow:0 0 0 12px rgba(18,185,138,0)}100%{box-shadow:0 0 0 0 rgba(18,185,138,0)}}
+
+  /* data-science bg (solo malla sutil, sin red/ADN) */
+  .techbg{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1.5px);background-size:26px 26px;
+    -webkit-mask-image:radial-gradient(ellipse 75% 70% at 60% 45%,#000 30%,transparent 80%);
+    mask-image:radial-gradient(ellipse 75% 70% at 60% 45%,#000 30%,transparent 80%)}
+
+  /* generic */
+  .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px 34px;margin-top:34px;max-width:1000px}
+  .feat{border-top:1px solid var(--line);padding-top:13px}
+  .feat .t{font-size:15px;font-weight:700}.feat .d{font-size:13px;color:var(--mut);margin-top:5px;line-height:1.5}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:28px 40px;margin-top:36px;max-width:920px}
+  .stat .n{font-size:clamp(34px,5vw,56px);font-weight:800;letter-spacing:-.025em;line-height:1}
+  .stat .n .u{font-size:.36em;color:var(--mut);font-weight:600}
+  .stat .l{font-size:13px;color:var(--mut);margin-top:8px;line-height:1.45}
+  .verbs{display:flex;flex-wrap:wrap;gap:14px 36px;margin-top:30px}
+  .verbs span{font-size:clamp(24px,3.4vw,44px);font-weight:800;letter-spacing:-.025em;color:var(--dim);transition:color .5s}
+  section.in .verbs span:nth-child(1){transition-delay:.1s;color:var(--mint)}
+  section.in .verbs span:nth-child(2){transition-delay:.3s;color:var(--g)}
+  section.in .verbs span:nth-child(3){transition-delay:.5s;color:var(--ink)}
+  section.in .verbs span:nth-child(4){transition-delay:.7s;color:var(--ink)}
+
+  /* precios (limpio, alineado) */
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;max-width:860px;width:100%}
+  @media(max-width:720px){.prices{grid-template-columns:1fr;max-width:400px}}
+  .price{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:rgba(255,255,255,.02);transition:transform .3s,border-color .3s}
+  .price.best{border-color:var(--g);background:linear-gradient(180deg,rgba(18,185,138,.10),rgba(18,185,138,.02))}
+  .price:hover{transform:translateY(-4px);border-color:var(--g)}
+  .ptag{height:22px;margin-bottom:14px}
+  .ptag span{font-size:10.5px;font-weight:700;color:#04120d;background:var(--mint);border-radius:20px;padding:3px 10px}
+  .price .p{font-size:13px;font-weight:600;color:var(--mut)}
+  .price .amt{font-size:38px;font-weight:800;letter-spacing:-.025em;margin:8px 0 4px;line-height:1}
+  .price .amt .c{font-size:.42em;color:var(--mut);font-weight:600;vertical-align:top;margin-right:1px}
+  .price .per{font-size:12.5px;color:var(--mut)}
+  .price .note{font-size:12.5px;color:var(--mint);margin-top:14px;font-weight:600;min-height:18px}
+  .socios{margin-top:22px;max-width:860px;border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 14px 14px 0;background:rgba(18,185,138,.05);padding:18px 22px}
+  .socios .t{font-size:16px;font-weight:700}.socios .d{font-size:14px;color:var(--mut);margin-top:8px;line-height:1.6}
+
+  /* costos + lanzamiento */
+  .costwrap{display:flex;flex-wrap:wrap;gap:34px 54px;margin-top:28px;align-items:flex-start}
+  .costnow{flex:1;min-width:250px;max-width:320px}
+  .costnow .cl{font-size:13px;font-weight:700;color:var(--mint);margin-bottom:10px}
+  .costnow .cbig{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:-.025em;line-height:1.05}
+  .costnow .cp{font-size:13.5px;color:var(--mut);margin-top:12px;line-height:1.55}
+  .costscale{flex:1.3;min-width:320px}
+  .costscale .cl{font-size:13px;font-weight:700;color:var(--mut);margin-bottom:14px}
+  .crow{display:flex;align-items:center;gap:12px;margin:11px 0}
+  .crow .cn{width:200px;flex-shrink:0;font-size:13px;font-weight:600}
+  .crow .ct{flex:1;height:11px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden}
+  .crow .cf{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--g3),var(--g));transition:width 3.6s cubic-bezier(.16,1,.3,1)}
+  .crow .cv{width:86px;text-align:right;font-size:13px;font-weight:700;flex-shrink:0}
+  .crow .cf.hi{background:linear-gradient(90deg,var(--g2),var(--mint))}
+  .ctotal{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  .ctotal .tl{font-size:14px;font-weight:700}.ctotal .tv{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .cperuser{margin-top:14px;background:rgba(18,185,138,.06);border-left:3px solid var(--mint);border-radius:0 12px 12px 0;padding:12px 15px;font-size:13px;color:var(--mut);line-height:1.55}
+  .cperuser b{color:var(--ink)}
+  .cest{font-size:11px;color:var(--dim);margin-top:14px;max-width:640px}
+  .goalband{margin-top:26px;max-width:820px;border:1px solid var(--g);border-radius:14px;background:linear-gradient(180deg,rgba(18,185,138,.12),rgba(18,185,138,.03));padding:18px 22px}
+  .goalband .gt{font-size:16px;font-weight:800}
+  .goalband .gd{font-size:13.5px;color:var(--mut);margin-top:6px;line-height:1.55}
+
+  .cta{display:inline-flex;align-items:center;gap:8px;margin-top:34px;font-size:13.5px;font-weight:600;color:#fff;background:#0a0f0d;border:1px solid rgba(255,255,255,.16);border-radius:24px;padding:10px 22px;text-decoration:none;transition:transform .2s,background .2s,border-color .2s}
+  .cta:hover{transform:translateY(-2px);background:#141d19;border-color:var(--g)}
+  .cap{font-size:13px;color:var(--dim);margin-top:14px}
+  /* mesa de trabajo: NOM federal + hilo de comentarios en tiempo real */
+  .mesa{max-width:460px;width:100%}
+  /* tarjeta de NOM: réplica del look real de Scope (fondo blanco) */
+  .mesa-nom{background:#fff;color:#0D1B2A;border:0.8px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 22px 55px rgba(0,0,0,.42)}
+  .mesa-nom .mn-id{font-family:var(--mono);font-size:11px;font-weight:700;color:#009E90;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .mesa-nom .mn-pnic{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.06em;color:#066750;border:0.8px solid #066750;border-radius:6px;padding:2px 6px}
+  .mesa-nom .mn-ob{font-size:13px;color:#0D1B2A;font-weight:500;margin-top:6px;line-height:1.45}
+  .mesa-nom .mn-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px}
+  .mesa-nom .mn-gemi{font-family:var(--mono);font-size:9px;font-weight:700;color:#0D1B2A}
+  .mesa-nom .mn-st{font-family:var(--mono);font-size:9px;color:#5A7A98}
+  .mesa-thread{display:flex;flex-direction:column;gap:11px}
+  .mcom{display:flex;gap:10px;align-items:flex-start;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
+  .mcom.show{opacity:1;transform:none}
+  .mcom .av{width:27px;height:27px;border-radius:50%;flex-shrink:0;object-fit:cover;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff}
+  .mcom .av.gemi{background:#066750}
+  .mcom .av.soc{background:#0e2a22;color:var(--mint)}
+  .mcom .bd{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;border-top-left-radius:4px;padding:9px 12px;max-width:90%}
+  .mcom .who{font-size:11px;font-weight:700;color:var(--mint)}
+  .mcom .who .role{font-weight:400;color:var(--dim);font-size:10px;margin-left:6px}
+  .mcom .tx{font-size:12.5px;color:var(--ink);line-height:1.5;margin-top:2px}
+  .mesa-input{display:flex;gap:10px;margin-top:13px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:9px 11px;background:rgba(255,255,255,.03)}
+  .mesa-ph{flex:1;font-size:12.5px;color:var(--ink);min-height:16px}
+  .mesa-ph:empty::before{content:'Deja un comentario en la mesa…';color:var(--dim)}
+  .mesa-caret{border-right:2px solid var(--mint);animation:caret 1.05s step-end infinite;padding-left:1px}
+  .mesa-send{background:var(--mint);color:#04120d;font-size:11px;font-weight:700;border-radius:8px;padding:6px 13px;flex-shrink:0}
+
+  /* Presentación · momentos blancos (producto héroe) — híbrido con la base oscura */
+  section.lite{background:#f4f6f8;color:#0D1B2A}
+  section.lite .kick{color:#0e8c74}
+  section.lite h1,section.lite h2{color:#0D1B2A}
+  section.lite .lead{color:#5A7A98}
+  section.lite .lead b,section.lite b,section.lite strong{color:#0D1B2A}
+  section.lite .grn{color:#0e8c74}
+  section.lite .glow{opacity:.10}
+  section.lite .devnote{color:#0e8c74;background:rgba(0,158,144,.10)}
+  section.lite .rhint{color:#0e8c74}
+  section.lite .cap{color:#8A9CB0}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="topbar">
+  <img src="assets/scope-logo-dark.png" alt="Scope">
+  <a class="exit" href="/">&larr; Volver a Scope</a>
+</div>
+<div class="dots" id="dots"></div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 · COVER -->
+  <section class="mid" data-t="Inicio" style="text-align:center;align-items:center">
+    <div class="glow" style="width:640px;height:640px;background:var(--g3);top:-8%;left:-8%"></div>
+    <div class="glow" style="width:520px;height:520px;background:var(--g);bottom:-14%;right:-8%;opacity:.32"></div>
+    <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:44px;margin-bottom:34px">
+    <h1 class="r d1" style="max-width:15ch">Estamos <span class="tw" id="tw">cambiando</span> el ambiente</h1>
+    <div class="lead r d2" style="margin-left:auto;margin-right:auto">La inteligencia regulatoria ambiental de México, en un solo lugar.</div>
+    <div class="cap r d3">Presentación · 2026</div>
+    <a class="r d3" href="/" style="margin-top:14px;font-family:var(--mono);font-size:13px;color:var(--mint);letter-spacing:.08em;text-decoration:none">scopegemi.com</a>
+    <div class="scrollhint">Desliza para comenzar &nbsp;&darr;</div>
+  </section>
+
+  <!-- 3 · RETO -->
+  <section data-t="El reto">
+    <div class="glow" style="width:500px;height:500px;background:#7a2020;top:22%;right:-12%;opacity:.18"></div>
+    <div class="kick r">El reto</div>
+    <h2 class="r d1" style="max-width:18ch">La agenda está en todos lados</h2>
+    <p class="lead r d2" style="max-width:760px">Vive al interior de los <b>32 estados del país</b>, en las acciones diarias del sector público, en cientos de revisiones de <b>Normas Oficiales Mexicanas</b>, en los congresos, en la <b>conferencia matutina de Presidencia</b> y en la prensa. Cambia todos los días y nadie alcanza a procesarla completa.</p>
+  </section>
+
+  <!-- 2 · ORIGEN -->
+  <section data-t="De dónde venimos">
+    <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-10%;left:-8%;opacity:.24"></div>
+    <div class="kick r">De dónde venimos</div>
+    <h2 class="r d1" style="max-width:13ch">Es el ADN de GEMI</h2>
+    <p class="lead r d2" style="max-width:720px">Durante años, GEMI ha producido reportes de inteligencia y seguimiento regulatorio. Los llevamos a la incubadora y lo construimos en nuestro <b>laboratorio de datos</b>: ampliar esa base y compartirla con socios y nuevos actores, en un sistema fácil de usar.</p>
+    <div class="evo r d3">
+      <div class="evo-pt"><span class="dot"></span><div class="lb">Seguimiento regulatorio</div><div class="tag">Ingesta de fuentes</div></div>
+      <div class="evo-seg"></div>
+      <div class="evo-pt"><span class="dot"></span><div class="lb">Reportes de inteligencia</div><div class="tag">Procesamiento</div></div>
+      <div class="evo-seg"></div>
+      <div class="evo-pt hl"><span class="dot"></span><div class="lb">Scope</div><div class="tag">Producto vivo</div></div>
+    </div>
+  </section>
+
+  <!-- 5 · TURN -->
+  <section class="mid" data-t="Scope" style="text-align:center;align-items:center">
+    <div class="glow" style="width:560px;height:560px;background:var(--g2);top:78%;left:50%;transform:translate(-50%,-50%);opacity:.16"></div>
+    <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:clamp(38px,7vw,66px)">
+    <p class="lead r d2" style="margin:26px auto 0;font-size:clamp(18px,2.4vw,28px);color:var(--ink)">Lo procesamos y le damos <span class="grn">vida</span></p>
+  </section>
+
+  <!-- 7 · RADAR -->
+  <section data-t="Radar" data-anim="radardemo">
+    <div class="techbg"></div>
+    <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-12%;left:-8%;opacity:.2"></div>
+    <div class="kick r">Radar temático</div>
+    <h2 class="r d1" style="max-width:15ch">Cada sector tiene su señal</h2>
+    <p class="lead r d2" style="max-width:640px">El Radar cruza prensa, DOF, Congreso y NOMs por tema, y te dice dónde sube la presión, con los datos duros del sector detrás. <span class="rhint">Toca un tema para desglosarlo.</span></p>
+    <div class="rgrid r d3" id="rgrid"></div>
+    <div class="rdetail" id="rdetail"></div>
+  </section>
+
+  <!-- 6 · MAPA -->
+  <section data-t="El país">
+    <div class="kick r">Panorama nacional</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:12ch">32 entidades en un solo lugar</h2>
+        <p class="lead r d2">Un mapa que se ilumina en donde hay actividad y más presencia de medios. Un click y estás dentro del universo de cada estado.</p>
+      </div>
+      <div class="viz r d3"><div class="mapwrap" id="mapwrap"></div></div>
+    </div>
+  </section>
+
+  <!-- 10 · EXPEDIENTES -->
+  <section class="lite" data-t="Expedientes" data-anim="expcard">
+    <div class="kick r">Cada estado, un expediente</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:13ch">Cada estado a profundidad</h2>
+        <p class="lead r d2">Leyes vigentes con fecha y estatus, impuestos verdes, materiales regulados y la prensa de cada entidad, con el documento oficial. El expediente que un despacho tardaría semanas en armar.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="expdeck">
+          <div class="expback bk1"><div class="exp-hd"><div class="expb-name">Jalisco<svg viewBox="0 0 4.15 3.71" preserveAspectRatio="xMidYMid meet"><path d="M2.92 0.98L3.05 0.95L3.20 0.96L3.33 1.04L3.50 1.00L3.61 0.87L3.77 0.80L3.72 0.70L3.72 0.62L3.95 0.69L4.13 0.83L4.09 0.93L4.02 1.18L4.03 1.27L4.02 1.35L3.94 1.39L3.90 1.51L3.80 1.58L3.69 1.76L3.60 1.87L3.59 1.94L3.72 2.07L3.64 2.19L3.57 2.30L3.43 2.34L3.28 2.35L3.17 2.37L3.08 2.42L2.99 2.51L2.87 2.55L2.82 2.55L2.69 2.53L2.64 2.56L2.60 2.71L2.66 2.72L2.81 2.75L2.92 2.84L2.88 2.92L2.94 3.05L2.93 3.19L3.09 3.21L3.06 3.30L2.96 3.45L2.87 3.43L2.69 3.56L2.57 3.64L2.46 3.68L2.33 3.70L2.24 3.69L2.20 3.63L2.19 3.53L2.19 3.41L2.16 3.32L2.12 3.26L2.08 3.11L1.85 3.26L1.67 3.26L1.58 3.31L1.45 3.34L1.29 3.38L1.22 3.41L1.15 3.40L1.06 3.47L0.97 3.45L0.92 3.43L0.91 3.39L0.86 3.38L0.72 3.32L0.66 3.22L0.61 3.16L0.50 3.04L0.36 2.90L0.22 2.71L0.15 2.56L0.14 2.44L0.04 2.35L0.04 2.24L0.21 2.18L0.33 2.16L0.44 2.11L0.41 1.99L0.46 1.89L0.56 1.78L0.68 1.76L0.79 1.71L0.95 1.69L1.08 1.77L1.20 1.86L1.31 1.95L1.41 2.08L1.39 1.98L1.35 1.88L1.42 1.80L1.45 1.67L1.55 1.52L1.67 1.51L1.84 1.43L1.88 1.31L1.86 1.14L1.78 0.99L1.66 0.94L1.56 0.91L1.52 0.76L1.38 0.73L1.34 0.62L1.39 0.44L1.43 0.37L1.49 0.36L1.50 0.27L1.62 0.23L1.60 0.36L1.72 0.30L1.65 0.10L1.74 0.02L1.90 0.02L1.87 0.10L1.74 0.33L1.76 0.49L1.83 0.52L1.85 0.29L1.95 0.18L2.12 0.24L2.15 0.36L2.00 0.59L2.09 0.63L2.20 0.63L2.29 0.53L2.36 0.46L2.33 0.37L2.49 0.35L2.48 0.43L2.60 0.47L2.56 0.64L2.45 0.74L2.25 0.87L2.13 0.94L2.13 1.10L2.06 1.17L1.99 1.23L2.10 1.29L2.14 1.35L1.94 1.45L2.04 1.50L2.13 1.62L2.26 1.62L2.38 1.65L2.48 1.62L2.55 1.62L2.62 1.53L2.76 1.51L2.90 1.40L3.06 1.22L2.92 1.06L2.92 0.98Z"/></svg></div><span class="exp-close">Cerrar</span></div><div class="expb-tabs">Perfil · Actividad · Legislación · Impuestos</div></div>
+          <div class="expback bk2"><div class="exp-hd"><div class="expb-name">Nuevo León<svg viewBox="0 0 2.85 4.60" preserveAspectRatio="xMidYMid meet"><path d="M1.53 0.10L1.46 0.18L1.35 0.21L1.32 0.30L1.49 0.31L1.46 0.40L1.50 0.52L1.55 0.66L1.54 0.74L1.47 0.86L1.54 0.90L1.59 1.00L1.58 1.11L1.67 1.14L1.74 1.21L1.81 1.31L1.96 1.45L2.03 1.55L2.10 1.55L2.11 1.62L2.12 1.67L2.28 1.71L2.40 1.81L2.55 1.75L2.68 1.81L2.70 1.97L2.71 2.10L2.71 2.21L2.85 2.27L2.79 2.35L2.66 2.47L2.54 2.53L2.37 2.59L2.25 2.66L2.19 2.61L2.08 2.70L2.09 2.79L2.07 2.87L1.97 2.97L1.92 2.96L1.81 3.04L1.73 3.07L1.59 3.15L1.50 3.22L1.57 3.29L1.62 3.42L1.58 3.60L1.63 3.68L1.70 3.81L1.77 3.87L1.71 3.94L1.68 4.00L1.48 4.01L1.39 4.06L1.30 4.23L1.30 4.37L1.23 4.43L1.14 4.44L1.03 4.51L0.91 4.59L0.80 4.54L0.76 4.39L0.73 4.26L0.77 4.10L0.74 3.97L0.74 3.81L0.61 3.61L0.54 3.49L0.55 3.39L0.52 3.31L0.41 3.23L0.47 3.10L0.44 3.00L0.40 2.90L0.49 2.86L0.49 2.76L0.49 2.61L0.58 2.49L0.72 2.53L0.85 2.56L0.97 2.57L0.99 2.46L0.92 2.41L0.81 2.36L0.65 2.26L0.61 2.12L0.45 2.09L0.43 1.86L0.40 1.80L0.31 1.67L0.11 1.49L0.03 1.33L0.15 1.17L0.32 1.13L0.55 1.07L0.60 0.99L0.67 0.88L0.66 0.77L0.61 0.67L0.54 0.67L0.39 0.68L0.42 0.50L0.54 0.43L0.72 0.41L0.74 0.31L0.83 0.14L0.96 0.08L1.16 0.09L1.33 0.06L1.42 0.01L1.49 0.04L1.53 0.10Z"/></svg></div><span class="exp-close">Cerrar</span></div><div class="expb-tabs">Perfil · Actividad · Legislación · Impuestos</div></div>
+          <div class="exp">
+          <div class="exp-hd">
+            <div class="exp-name">Ciudad de México <span class="exp-sil"><svg viewBox="0 0 0.472 0.501" preserveAspectRatio="xMidYMid meet"><path d="M0.460 0.458L0.329 0.485L0.267 0.460L0.162 0.456L0.089 0.443L0.030 0.339L0.000 0.262L0.071 0.200L0.127 0.158L0.200 0.031L0.251 0.003L0.283 0.070L0.331 0.175L0.401 0.228L0.420 0.284L0.458 0.303L0.470 0.399L0.460 0.458Z"/></svg></span></div>
+            <span class="exp-close">Cerrar</span>
+          </div>
+          <div class="exp-tabs2"><span class="et on">Perfil</span><span class="et">Actividad</span><span class="et">Legislación</span><span class="et">Impuestos</span><span class="et">Materiales Prohibidos</span><span class="et">Sector Industrial</span><span class="et">Residuos</span><span class="et">Trámites RME</span></div>
+          <div class="exp-body">
+            <div class="ep-panel on" data-tab="Perfil">
+              <div class="ep-row"><div class="ep-lb">Población</div><div><span class="ep-v">9,209,944</span><span class="ep-src">INEGI 2020</span><div class="ep-bar"><span style="--w:54.2%"></span></div></div></div>
+              <div class="ep-row"><div class="ep-lb">Capital</div><div><span class="ep-v">Ciudad de México</span></div></div>
+              <div class="ep-row"><div class="ep-lb">Población económicamente activa</div><div><span class="ep-v">5,107,533</span><span class="ep-src">ENOE 2026-Q1</span><div class="ep-bar"><span style="--w:60.85%"></span></div></div></div>
+              <div class="ep-desc">Ciudad de México presenta una complejidad regulatoria ambiental <strong>alta</strong>, con cobertura en 5 materias ambientales. Su régimen de impuestos ambientales es <strong>en desarrollo</strong>. La capital concentra la actividad legislativa del congreso estatal.</div>
+              <div class="ep-link"><a href="https://www.congresocdmx.gob.mx/" target="_blank" rel="noopener">Portal del Congreso de Ciudad de México ↗</a><div class="u">https://www.congresocdmx.gob.mx/</div></div>
+            </div>
+            <div class="ep-panel" data-tab="Impuestos">
+              <div class="exp-sec">IMPUESTOS AMBIENTALES</div>
+              <div class="ep-imp"><div><div class="ep-impt">Impuesto a emisiones de GEI</div><div class="ep-metaline">Vigente desde 01/01/2025 · publicado 27/12/2024</div></div><div class="ep-impv"><span class="ep-impc">$</span>60<span class="ep-impu"> / tonCO₂e</span></div></div>
+              <div class="ep-desc">La CDMX grava las emisiones de gases de efecto invernadero de fuentes fijas dentro de su territorio. Es su primer instrumento fiscal ambiental, incorporado al Código Fiscal local.</div>
+            </div>
+            <div class="ep-panel" data-tab="Materiales Prohibidos">
+              <div class="exp-sec">MATERIALES PROHIBIDOS</div>
+              <div class="ep-matrow"><span class="rt2">Bolsas de plástico</span><span class="exp-chip no">Prohibido · 2020</span></div>
+              <div class="ep-matrow"><span class="rt2">Desechables de un solo uso: cubiertos, popotes y vasos</span><span class="exp-chip no">Prohibido · 2021</span></div>
+              <div class="ep-metaline" style="margin-top:13px">Ley de Residuos Sólidos de la CDMX · reforma 2019 con entrada en vigor escalonada.</div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16b · NOMs FEDERALES · mesa de trabajo -->
+  <section data-t="NOMs federales" data-anim="mesa">
+    <div class="techbg"></div>
+    <div class="glow" style="width:460px;height:460px;background:var(--g2);top:-10%;left:-8%;opacity:.18"></div>
+    <div class="kick r">Desde lo federal</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:15ch">El cumplimiento normativo desde GEMI</h2>
+        <p class="lead r d2">Las <b>Normas Oficiales Mexicanas</b> rigen agua, emisiones, residuos y más, en revisión constante. Abrimos un <b>canal de comentarios en tiempo real</b>.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="mesa">
+          <div class="mesa-nom">
+            <div class="mn-id">NOM-043-SEMARNAT-1993 <span class="mn-pnic">PNIC 2026</span></div>
+            <div class="mn-ob">Niveles máximos permisibles de emisión a la atmósfera de partículas sólidas provenientes de fuentes fijas.</div>
+            <div class="mn-meta"><span class="mn-gemi">GEMI ACTIVO</span><span class="mn-st">· En desarrollo · SEMARNAT</span></div>
+          </div>
+          <div class="mesa-thread">
+            <div class="mcom"><span class="av gemi">G</span><div class="bd"><div class="who">GEMI <span class="role">· en la mesa de revisión</span></div><div class="tx">Estamos revisando esta norma. Su modificación impacta las emisiones de fuentes fijas en la industria.</div></div></div>
+            <div class="mcom"><span class="av soc">A</span><div class="bd"><div class="who">Asociado <span class="role">· empresa afiliada</span></div><div class="tx">¿Hay fecha para el anteproyecto?</div></div></div>
+            <div class="mcom"><span class="av gemi">G</span><div class="bd"><div class="who">GEMI</div><div class="tx">En cuanto se publique, lo verán aquí primero.</div></div></div>
+          </div>
+          <div class="mesa-input"><span class="mesa-ph" id="mesaPh"></span><span class="mesa-caret" id="mesaCaret"></span><span class="mesa-send">Comentar</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · IMPUESTOS -->
+  <section data-t="Impuestos" data-anim="imp">
+    <div class="techbg"></div>
+    <div class="glow" style="width:460px;height:460px;background:var(--g3);top:-10%;right:-6%;opacity:.2"></div>
+    <div class="kick r">Comparar entidades</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:12ch">¿Qué estado cuesta más?</h2>
+        <p class="lead r d2">Cada ley expresa su impuesto en unidades distintas. Nosotros lo <b>traducimos</b> y generamos <b>comparaciones directas</b> para mejorar las operaciones en segundos.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="panel">
+          <div class="phdr"><div><div class="ptitle">Impuesto al carbono · por tonelada de CO₂e</div><div class="psub">Normalizado a MXN · UMA 2026 = $117.31</div></div></div>
+          <div id="impbars"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · CONGRESO -->
+  <section data-t="Congreso" data-anim="cong">
+    <div class="techbg"></div>
+    <div class="kick r">Poder Legislativo</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:14ch">Seguimos todo el Congreso</h2>
+        <p class="lead r d2">Monitoreamos la <b>Cámara de Diputados</b> y el <b>Senado de la República</b> todos los días. Sabemos qué están proponiendo, quién y cuál es el impacto para su industria. También estamos siguiendo a los <b>32 congresos locales</b>.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="panel">
+          <div class="phdr"><div><div class="ptitle">Monitor del Congreso Federal</div><div class="psub">Actividad ambiental · últimas 8 semanas</div></div>
+            <div class="legend"><span><i style="background:var(--mint)"></i>Diputados</span><span><i style="background:var(--g3)"></i>Senado</span></div></div>
+          <svg id="congsvg" viewBox="0 0 620 200" style="width:100%;height:auto;display:block"></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · ACTORES (Senado triturado) -->
+  <section data-t="Actores">
+    <div class="glow" style="width:420px;height:420px;background:var(--g2);bottom:-12%;right:-8%;opacity:.2"></div>
+    <div class="kick r">Quién decide</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:13ch">Sabes con quién hablar</h2>
+        <p class="lead r d2">El gabinete federal con su directorio real (nombre, cargo y correo). Y el Congreso, triturado: buscas por <b>comisión</b> o por <b>legislador</b> y Scope te dice si la comisión ya sesionó y qué trae en agenda.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="senp panel">
+          <div class="sen-modes"><span class="sen-mode on">Por comisión</span><span class="sen-mode">Por legislador</span></div>
+          <div class="sen-search"><svg viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg><span class="q" id="senq"></span><span class="car"></span></div>
+          <div class="sen-res">
+            <div class="sen-card s1">
+              <div class="cn">Cambio Climático y Sostenibilidad</div>
+              <div class="cm">Cámara de Diputados</div>
+              <div class="sen-status ok"><span class="sd"></span>Sesionó · 06 ago 2026</div>
+              <div class="sen-meta">2 iniciativas en agenda</div>
+            </div>
+            <div class="sen-card s2">
+              <div class="cn">Medio Ambiente, Recursos Naturales y Cambio Climático</div>
+              <div class="cm">Senado de la República</div>
+              <div class="sen-status ok"><span class="sd"></span>Sesionó · 12 ago 2026</div>
+              <div class="sen-meta">3 iniciativas · 2 dictámenes en agenda</div>
+            </div>
+            <div class="sen-card s3">
+              <div class="cn">Economía</div>
+              <div class="cm">Senado de la República</div>
+              <div class="sen-status no"><span class="sd"></span>Sin sesión esta semana</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · INTERNACIONAL -->
+  <section data-t="Internacional">
+    <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-14%;right:-8%;opacity:.18"></div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:15ch">Las decisiones nos alcanzan</h2>
+        <p class="lead r d2">Dos señales externas que mueven la regulación de México: los instrumentos internacionales que alcanzan al exportador, y el pulso político de cada mañana.</p>
+        <div class="csp r d3">
+          <div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo<span class="voicewave" title="En voz de la Presidenta"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+          <div class="csp-node"><div class="csp-node-date">04 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:88s"><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span></div></div></div></div>
+          <div class="csp-node"><div class="csp-node-date">03 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:76s"><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span></div></div></div></div>
+          <div class="csp-node"><div class="csp-node-date">31 jul</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:82s"><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span></div></div></div></div>
+        </div>
+      </div>
+      <div class="viz r d3">
+        <div class="vizlbl">Instrumentos internacionales · base viva de Scope</div>
+        <div class="intl-view"><div class="intl-scroll" id="intlscroll"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · MI TERMINAL (se arma paso a paso) -->
+  <section class="lite" data-t="Mi Terminal" data-anim="termcfg">
+    <div class="glow" style="width:440px;height:440px;background:var(--g2);top:8%;left:-8%;opacity:.2"></div>
+    <div class="kick r">Mi Terminal</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:12ch">Y luego, la haces tuya</h2>
+        <p class="lead r d2">En la Terminal calculas tu <b>señal del día</b>, con actualizaciones y <b>reportes técnicos personalizados</b> asistidos por ti. Tú decides qué te importa más.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="tcfg" id="tcfg">
+          <div class="tcursor"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M4 2l15 8-6.5 1.8L11 19 4 2z" fill="#0b1a15" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+          <div class="cw-top"><span class="cw-title">Personaliza tu Terminal</span><span class="cw-x">×</span></div>
+          <div class="cw-steps" id="cwSteps"></div>
+          <div class="cw-desc" id="cwDesc"></div>
+          <div class="cw-body" id="cwBody"></div>
+          <div class="cw-foot"><span class="cw-count" id="cwCount"></span><span class="cw-next">Siguiente</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 · ESCRITORIO -->
+  <section data-t="Escritorio">
+    <div class="glow" style="width:440px;height:440px;background:var(--g3);bottom:-14%;right:-8%;opacity:.2"></div>
+    <div class="kick r">Diseñada para tu terminal de trabajo</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:13ch">Pensada para la pantalla grande</h2>
+        <p class="lead r d2">Scope vive donde se toman las decisiones: en la terminal de trabajo. Cada expediente, cada radar y cada comparación aprovechan el monitor completo, sin recortes.</p>
+        <span class="devnote r d3">La versión para smartphone llega en la siguiente fase</span>
+      </div>
+      <div class="viz r d3">
+        <div class="monitor">
+          <div class="screen"><div class="screen-inner"><img src="assets/pitch/dashboard-dark.png" alt="Scope · dashboard en modo noche"></div></div>
+          <div class="stand"></div><div class="stand-base"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 · CÓMO SE NUTRE -->
+  <section data-t="La señal" data-anim="count">
+    <div class="techbg"></div>
+    <div class="glow" style="width:560px;height:560px;background:var(--g3);bottom:-16%;right:-10%;opacity:.24"></div>
+    <div class="kick r">Cómo se nutre</div>
+    <h2 class="r d1" style="max-width:16ch">Una señal que respira</h2>
+    <p class="lead r d2" style="max-width:780px">Detrás corre maquinaria todos los días: lectores automáticos de prensa nacional y estatal, del DOF, del Congreso, de CONAMER y de la conferencia matutina; e ingesta de datos abiertos oficiales de SEMARNAT e INECC, más bases legales curadas por GEMI. Todo con fuente. Todo fechado.</p>
+    <div class="stats">
+      <div class="stat r d2"><div class="n"><span data-count="180">0</span>+<span class="u"> fuentes</span></div><div class="l">Prensa, DOF, Congreso, CONAMER, gacetas y datos oficiales</div></div>
+      <div class="stat r d3"><div class="n">24/7</div><div class="l">Un GEMI que no descansa: la señal se actualiza sola, de día y de noche</div></div>
+      <div class="stat r d4"><div class="n"><span data-count="32">0</span><span class="u"> estados</span></div><div class="l">Cobertura nacional, no solo federal</div></div>
+    </div>
+  </section>
+
+  <!-- 2b · TRACCIÓN -->
+  <section data-t="Tracción" data-anim="count">
+    <div class="techbg"></div>
+    <div class="glow" style="width:460px;height:460px;background:var(--g2);top:-8%;right:-8%;opacity:.18"></div>
+    <div class="kick r">Cómo hemos crecido</div>
+    <h2 class="r d1" style="max-width:15ch">La información nos hizo crecer</h2>
+    <p class="lead r d2" style="max-width:720px">En menos de <b>seis meses</b>, sin invertir un solo peso en publicidad.</p>
+    <div class="stats" style="max-width:920px">
+      <div class="stat r d2"><div class="n"><span data-count="15">0</span>+</div><div class="l">Mesas de trabajo simultáneas</div></div>
+      <div class="stat r d3"><div class="n"><span class="n" style="font-size:.7em;color:var(--mut)">~</span><span data-count="500">0</span></div><div class="l">Seguidores orgánicos en LinkedIn</div></div>
+      <div class="stat r d4"><div class="n"><span data-count="234">0</span></div><div class="l">Suscriptores al Newsletter semanal</div></div>
+    </div>
+  </section>
+
+  <!-- 15 · SIGUIENTE FASE -->
+  <section data-t="Siguiente fase" data-anim="chat">
+    <div class="glow" style="width:480px;height:480px;background:var(--g2);top:12%;right:-8%;opacity:.2"></div>
+    <div class="kick r">Lo que viene</div>
+    <div class="split">
+      <div class="col">
+        <div class="soonbig r">Siguiente fase</div>
+        <h2 class="r d1" style="max-width:13ch">Esto apenas empieza</h2>
+        <div class="road">
+          <div class="roaditem r d2"><div class="ri"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9c0 1.6.4 3 1.1 4.3L3 21l4.9-1.1A9 9 0 1 0 12 3Z"/><circle cx="8.5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="15.5" cy="12" r="1"/></svg></div>
+            <div class="rc"><div class="rn">Asistente Signal <span class="soon">Disponible en octubre</span></div><div class="rd">Pregúntale por tus NOMs, impuestos o normativa y responde con los datos de tu terminal.</div></div></div>
+          <div class="roaditem r d3"><div class="ri"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l5-4 5 4v13"/><path d="M9 21v-5h2v5"/><path d="M17 21V11l3-2v12"/></svg></div>
+            <div class="rc"><div class="rn">Lectura municipal <span class="soon">Próximamente</span></div><div class="rd">Ampliación de fuentes al nivel municipal, para bajar la señal a donde opera cada planta.</div></div></div>
+          <div class="roaditem r d4"><div class="ri"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></div>
+            <div class="rc"><div class="rn">App para smartphone <span class="soon">Próximamente</span></div><div class="rd">La experiencia de Scope, también en el teléfono, para consultarla fuera de la terminal.</div></div></div>
+        </div>
+      </div>
+      <div class="viz r d3">
+        <div class="chat" id="sigchat">
+          <div class="bubble me">¿Qué estado cobra más por tonelada de CO₂e?</div>
+          <div class="bubble sg"><div class="typing"><span></span><span></span><span></span></div></div>
+          <div class="bubble sg"><div class="sgtag"><img src="assets/logo-gemi-icon.png" alt="">Signal <span class="soon">Disponible en octubre</span></div>Coahuila, con <b>$528 por tonelada</b>: el impuesto al carbono más alto del país, seguido de Nuevo León ($327). ¿Te preparo el comparativo completo?</div>
+          <div class="bubble me">Sí, y añade el impuesto al agua.</div>
+          <div class="bubble sg"><div class="typing"><span></span><span></span><span></span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 20 · PRECIOS -->
+  <section data-t="Acceso">
+    <div class="glow" style="width:520px;height:520px;background:var(--g3);top:-12%;right:-8%;opacity:.22"></div>
+    <div class="kick r">Acceso</div>
+    <h2 class="r d1" style="max-width:14ch">Un precio para cada ritmo</h2>
+    <div class="prices">
+      <div class="price r d2"><div class="ptag"></div><div class="p">Mensual</div><div class="amt"><span class="c">$</span>1,699</div><div class="per">por usuario · al mes</div><div class="note"></div></div>
+      <div class="price r d3"><div class="ptag"></div><div class="p">Trimestral</div><div class="amt"><span class="c">$</span>4,099</div><div class="per">por usuario · cada 3 meses</div><div class="note"></div></div>
+      <div class="price best r d4"><div class="ptag"><span>Mejor valor</span></div><div class="p">Anual</div><div class="amt"><span class="c">$</span>17,999</div><div class="per">por usuario · al año</div><div class="note">Dos meses sin costo</div></div>
+    </div>
+    <div class="socios r d5">
+      <div class="t">Los socios de GEMI ya están dentro.</div>
+      <div class="d">Cada socio recibe <b>3 usuarios</b>: dos para sus miembros acreditados y uno extra para probarlo sin costo. Por cada usuario adicional, un precio preferencial de <b>$999 al mes</b>, solo por los meses en que se use.</div>
+    </div>
+  </section>
+
+  <!-- 23 · CIERRE -->
+  <section class="mid" data-t="Cierre" data-anim="closetw" style="text-align:center;align-items:center">
+    <div class="glow" style="width:680px;height:680px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.3"></div>
+    <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:38px;margin-bottom:30px">
+    <h1 class="r d1" style="max-width:16ch">Estamos cambiando el ambiente</h1>
+    <p class="lead r d2" style="margin:16px auto 0"><span id="closeTw" class="twline"></span></p>
+    <a class="cta r d3" href="/">Explorar Scope &rarr;</a>
+    <a class="r d4" href="/" style="margin-top:20px;font-family:var(--mono);font-size:15px;font-weight:600;color:var(--mint);letter-spacing:.06em;text-decoration:none">scopegemi.com</a>
+    <div class="cap r d5">Iniciativa GEMI · 2026</div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  var deck=document.getElementById('deck'), secs=[].slice.call(deck.querySelectorAll('section'));
+  var dotsWrap=document.getElementById('dots'), prog=document.getElementById('prog');
+  var ease=function(t){return 1-Math.pow(1-t,3);};
+
+  // portada: "cambiando" se escribe y se borra en loop (ancho reservado)
+  (function(){
+    var el=document.getElementById('tw'); if(!el)return;
+    var word='cambiando',i=word.length,dir=-1;
+    el.textContent=word;
+    requestAnimationFrame(function(){el.style.minWidth=el.offsetWidth+'px';setTimeout(tick,2600);});
+    function tick(){
+      if(dir<0){i--;if(i<=0){i=0;dir=1;el.textContent='';setTimeout(tick,500);return;}}
+      else{i++;if(i>=word.length){i=word.length;dir=-1;el.textContent=word;setTimeout(tick,2600);return;}}
+      el.textContent=word.slice(0,i);
+      setTimeout(tick,dir>0?120:60);
+    }
+  })();
+
+  // dot map · silueta real de México
+  (function(){
+    var w=document.getElementById('mapwrap'); if(!w)return;
+    var pts=[[12.1,22.1],[16.3,26.5],[22.3,27.8],[29.1,25.9],[32.5,26.5],[39.1,25.1],[17.6,31.4],[27.6,32.9],[31.7,33.9],[37.7,35.6],[42.8,32.5],[48.6,35],[22,40.3],[29.7,39.7],[33.6,40.1],[39.7,42.8],[46,39.3],[51.4,39.2],[55.1,41.1],[23.8,45.1],[38.4,48.6],[45.8,49.1],[48.2,45.3],[55.6,49.2],[61.2,49.8],[46.3,54.6],[51.7,52],[57.3,55],[59.9,55.7],[46.1,59.8],[48.6,59.7],[57.3,60.5],[60.4,61],[65.1,63.6],[89.8,62.6],[93,62.2],[49.8,69.7],[53.6,66.7],[59.7,68.3],[67.4,67.9],[81.5,67.8],[87.5,69.2],[59.5,75.3],[64.9,76.2],[70.4,74.2],[78.6,73.1]];
+    var hotArr=[9,20,26,34,40],hot={};hotArr.forEach(function(h,k){hot[h]=(k%2)+1;});
+    pts.forEach(function(p,i){var d=document.createElement('div');d.className='mdot'+(hot[i]?(' hot'+(hot[i]===2?' h2':'')):'');d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.style.transitionDelay=(i*24)+'ms';if(hot[i])d.style.animationDelay=(i*90)+'ms';w.appendChild(d);});
+  })();
+
+  // mini dot map (monitor)
+  (function(){
+    var w=document.getElementById('minimap'); if(!w)return;
+    var pts=[],N=34;
+    for(var i=0;i<N;i++){var t=i/(N-1);var cx=10+t*76+Math.sin(i*1.7)*9;var cy=14+t*66+Math.cos(i*2.1)*12;pts.push([Math.max(3,Math.min(94,cx)),Math.max(4,Math.min(92,cy))]);}
+    pts.push([88,42],[92,34]);
+    var hot={4:1,11:2,18:1,25:2,31:1};
+    pts.forEach(function(p,i){var d=document.createElement('div');d.className='md'+(hot[i]?(' on'+(hot[i]===2?'2':'')):'');d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.style.transitionDelay=(i*20)+'ms';w.appendChild(d);});
+  })();
+
+  // radar (idéntico al real)
+  (function(){
+    var host=document.getElementById('rgrid'); if(!host)return;
+    var ICON={
+      residuos:'<path d="M3 6h14"/><path d="M8 6V4h4v2"/><path d="M5 6l1 11h8l1-11"/>',
+      agua:'<path d="M10 2S4 9 4 13a6 6 0 0 0 12 0C16 9 10 2 10 2Z"/>',
+      circular:'<path d="M5 7a6 6 0 0 1 10-1"/><path d="M15 13a6 6 0 0 1-10 1"/><path d="M15 3v3h-3"/><path d="M5 17v-3h3"/>',
+      cc:'<path d="M6 14a3.5 3.5 0 0 1-.5-7 4.5 4.5 0 0 1 8.6-1A3.2 3.2 0 0 1 14.5 14Z"/>'
+    };
+    var T=[
+      {id:'residuos',name:'Residuos',col:'#066750',men:47,dof:3,med:44,d:6,s:[22,20,24,23,26,25,28,27,30,29,33,31,35,34,38,37,41,40,44,43,47]},
+      {id:'agua',name:'Agua',col:'#0E8C74',men:39,dof:2,med:37,d:4,s:[18,19,17,20,22,21,24,23,26,25,27,26,29,28,31,30,33,34,36,37,39]},
+      {id:'circular',name:'Economía circular',col:'#12A594',men:21,dof:1,med:20,d:2,s:[8,9,8,10,9,11,10,12,11,13,12,14,13,15,14,16,15,17,18,20,21]},
+      {id:'cc',name:'Cambio climático',col:'#0A7C63',men:28,dof:2,med:26,d:3,s:[12,13,12,14,15,14,16,15,17,18,17,19,20,19,22,21,24,23,25,27,28]}
+    ];
+    function spark(data,color,idx){
+      var W=180,H=26,n=data.length,mx=Math.max.apply(null,data.concat([1]));
+      var pts=data.map(function(v,i){return ((i/(n-1))*W).toFixed(1)+','+(H-2-(v/mx)*(H-4)).toFixed(1);}).join(' ');
+      var lx=W,ly=(H-2-(data[n-1]/mx)*(H-4)).toFixed(1),gid='rdg'+idx,delay=-(idx*2);
+      return '<svg viewBox="0 0 180 26" preserveAspectRatio="none" style="width:100%;height:26px;display:block;overflow:visible">'
+        +'<defs><linearGradient id="'+gid+'" x1="0" y1="0" x2="1" y2="0">'
+        +'<stop offset="0" stop-color="'+color+'" stop-opacity="0"/><stop offset="0.45" stop-color="'+color+'" stop-opacity="0.35"/><stop offset="1" stop-color="'+color+'" stop-opacity="1"/></linearGradient></defs>'
+        +'<polyline class="rdc-spk" pathLength="1" points="'+pts+'" fill="none" stroke="url(#'+gid+')" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" style="animation-delay:'+delay+'s"/>'
+        +'<circle class="rdc-spk-dot" cx="'+lx+'" cy="'+ly+'" r="2" fill="'+color+'" style="animation-delay:'+delay+'s"/></svg>';
+    }
+    function stat(v,l,al){return '<div'+(al?' style="text-align:'+al+'"':'')+'><div class="rstat-v">'+v+'</div><div class="rstat-l">'+l+'</div></div>';}
+    window.__RADAR={T:T,ICON:ICON,spark:spark};
+    host.innerHTML=T.map(function(t,i){
+      return '<div class="rtile clk" data-tid="'+t.id+'" onclick="_radarExpand(\''+t.id+'\')"><div class="rhead"><span class="ricon" style="color:'+t.col+'"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON[t.id]+'</svg></span><span class="rname">'+t.name+'</span></div>'
+        +'<div class="rsub">'+t.men+' menciones · 90d</div>'
+        +'<div class="rspk">'+spark(t.s,t.col,i)+'</div>'
+        +'<div class="rstats">'+stat(t.dof,'DOF')+stat(t.med,'medios')+stat((t.d>=0?'+':'')+t.d,'Δ 30d','right')+'</div></div>';
+    }).join('');
+  })();
+  // Radar · desglose de un tema (clic o autodemo en "Economía circular")
+  var RADAR_SIG={
+    circular:[['DOF','Proyecto de NOM sobre planes de manejo de residuos de manejo especial','06 abr'],['Congreso','Iniciativa de Ley General de Economía Circular','02 abr'],['Prensa','Tlaxcala instala su Sistema Estatal de Economía Circular','31 mar'],['Prensa','Avanza el esquema de responsabilidad extendida del productor','28 mar']],
+    residuos:[['DOF','Actualización de la NOM-161 sobre residuos de manejo especial','05 abr'],['Congreso','Punto de acuerdo sobre gestión integral de residuos','01 abr'],['Prensa','Nuevos rellenos sanitarios y metas de reciclaje','29 mar']],
+    agua:[['DOF','Límites máximos permisibles de descargas (NOM-001)','07 abr'],['Congreso','Reforma a la Ley de Aguas Nacionales','03 abr'],['Prensa','Estrés hídrico y reúso en la industria','30 mar']],
+    cc:[['DOF','Lineamientos del registro de emisiones (RETC) 2026','04 abr'],['Congreso','Metas de mitigación en la Ley General de Cambio Climático','02 abr'],['Prensa','Mercado de carbono y precios por tonelada','27 mar']]
+  };
+  var RADAR_TAGCOL={DOF:'#12b98a',Congreso:'#3fe0ad',Prensa:'#0e8c74'};
+  function _radarExpand(id){
+    var R=window.__RADAR; if(!R)return;
+    var t=R.T.filter(function(x){return x.id===id;})[0]; if(!t)return;
+    [].forEach.call(document.querySelectorAll('#rgrid .rtile'),function(el){el.classList.toggle('act',el.getAttribute('data-tid')===id);});
+    var host=document.getElementById('rdetail'); if(!host)return;
+    var sigs=RADAR_SIG[id]||[];
+    var rows=sigs.map(function(s){var c=RADAR_TAGCOL[s[0]]||'var(--mint)';
+      return '<div class="rdet-row"><span class="rdet-tag" style="color:'+c+'">'+s[0]+'</span><span class="rdet-tt">'+s[1]+'</span><span class="rdet-dt">'+s[2]+'</span></div>';}).join('');
+    host.innerHTML='<div class="rdet-inner"><div class="rdet-hd">'
+      +'<span class="ricon" style="color:'+t.col+'"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+R.ICON[t.id]+'</svg></span>'
+      +'<span class="rdet-name">'+t.name+'</span>'
+      +'<span class="rdet-sub">'+t.men+' menciones · 90d · Δ30d '+(t.d>=0?'+':'')+t.d+'</span></div>'
+      +'<div class="rdet-spk">'+R.spark(t.s,t.col,90)+'</div>'
+      +'<div class="rdet-lbl">Señales recientes</div>'+rows
+    +'</div>';
+    host.classList.add('open');
+  }
+  window._radarExpand=_radarExpand;
+  // Mesa de trabajo: comentarios que aparecen + un comentario que se escribe en vivo
+  var mesaDone=false;
+  function startMesa(sec){
+    if(mesaDone)return; mesaDone=true;
+    var coms=sec.querySelectorAll('.mcom');
+    var ph=sec.querySelector('#mesaPh');
+    function at(ms,fn){setTimeout(fn,ms);}
+    at(600,function(){coms[0]&&coms[0].classList.add('show');});
+    at(1900,function(){coms[1]&&coms[1].classList.add('show');});
+    at(3200,function(){
+      var txt='En cuanto se publique, lo verán aquí primero.',i=0;
+      (function tp(){ if(i<=txt.length){ph.textContent=txt.slice(0,i);i++;setTimeout(tp,(i%3)?55:78);} else { at(650,function(){ph.textContent='';coms[2]&&coms[2].classList.add('show');}); } })();
+    });
+  }
+  var radarDemoDone=false;
+  function startRadarDemo(){
+    if(radarDemoDone)return; radarDemoDone=true;
+    setTimeout(function(){
+      var tile=document.querySelector('#rgrid .rtile[data-tid="circular"]');
+      if(tile)tile.classList.add('pulse');
+      setTimeout(function(){ if(tile)tile.classList.remove('pulse'); _radarExpand('circular'); },900);
+    },1300);
+  }
+
+  // congreso chart
+  function drawCong(){
+    var svg=document.getElementById('congsvg'); if(!svg)return;
+    var dip=[4,6,9,7,11,8,13,10], sen=[3,4,5,8,6,9,7,11], n=dip.length;
+    var W=620,H=200,PL=30,PR=16,PT=16,PB=30,IW=W-PL-PR,IH=H-PT-PB, mx=Math.max.apply(null,dip.concat(sen));
+    function X(i){return PL+i/(n-1)*IW;} function Y(v){return PT+IH-(v/mx)*IH;}
+    function smooth(a){var p=a.map(function(v,i){return[X(i),Y(v)];});var d='M'+p[0][0].toFixed(1)+','+p[0][1].toFixed(1);
+      for(var i=0;i<p.length-1;i++){var p0=p[i-1]||p[i],p1=p[i],p2=p[i+1],p3=p[i+2]||p[i+1];
+        d+=' C'+(p1[0]+(p2[0]-p0[0])/6).toFixed(1)+','+(p1[1]+(p2[1]-p0[1])/6).toFixed(1)+' '+(p2[0]-(p3[0]-p1[0])/6).toFixed(1)+','+(p2[1]-(p3[1]-p1[1])/6).toFixed(1)+' '+p2[0].toFixed(1)+','+p2[1].toFixed(1);}
+      return d;}
+    var grid='';[0,Math.round(mx/2),mx].forEach(function(v){var y=Y(v).toFixed(1);
+      grid+='<line x1="'+PL+'" y1="'+y+'" x2="'+(W-PR)+'" y2="'+y+'" stroke="rgba(255,255,255,.08)"/><text x="'+(PL-6)+'" y="'+(Y(v)+3).toFixed(1)+'" text-anchor="end" font-size="9" fill="#63776f">'+v+'</text>';});
+    var xl='';for(var i=0;i<n;i+=2){xl+='<text x="'+X(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" font-size="9" fill="#63776f">s'+(i+1)+'</text>';}
+    var pd='',ps='';for(var j=0;j<n;j++){pd+='<circle cx="'+X(j).toFixed(1)+'" cy="'+Y(dip[j]).toFixed(1)+'" r="3" fill="#3fe0ad" opacity="0" class="cpt"/>';ps+='<circle cx="'+X(j).toFixed(1)+'" cy="'+Y(sen[j]).toFixed(1)+'" r="3" fill="#066750" opacity="0" class="cpt"/>';}
+    svg.innerHTML=grid+xl+'<path id="cpD" d="'+smooth(dip)+'" fill="none" stroke="#3fe0ad" stroke-width="2.6" stroke-linecap="round"/><path id="cpS" d="'+smooth(sen)+'" fill="none" stroke="#066750" stroke-width="2.6" stroke-linecap="round"/>'+pd+ps;
+    ['cpD','cpS'].forEach(function(id,k){var p=svg.querySelector('#'+id);var L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;p.getBoundingClientRect();p.style.transition='stroke-dashoffset 1.5s ease '+(k*0.25)+'s';p.style.strokeDashoffset='0';});
+    svg.querySelectorAll('.cpt').forEach(function(c,i){setTimeout(function(){c.style.transition='opacity .4s';c.style.opacity='1';},1500+i*40);});
+  }
+
+  // count-up
+  function countUp(el,dur){var target=parseFloat(el.getAttribute('data-count')),start=null;dur=dur||1100;
+    function step(ts){if(!start)start=ts;var t=Math.min(1,(ts-start)/dur);el.textContent=Math.round(ease(t)*target).toLocaleString('en-US');if(t<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
+  function runCounts(sec){[].forEach.call(sec.querySelectorAll('[data-count]'),function(el){el.textContent='0';countUp(el);});}
+
+  // impuestos bars
+  (function(){
+    var host=document.getElementById('impbars'); if(!host)return;
+    var data=[{st:'Coahuila',ab:'COAH',v:528,top:true},{st:'Nuevo León',ab:'NL',v:327},{st:'Zacatecas',ab:'ZAC',v:250},{st:'Estado de México',ab:'MÉX',v:58}];
+    host.innerHTML=data.map(function(d){return '<div class="brow'+(d.top?' top':'')+'"><div class="nm">'+d.st+'<span class="ab">'+d.ab+'</span></div><div class="btrack"><div class="bfill" data-w="'+(d.v/528*100).toFixed(1)+'%"></div></div><div class="val"><span class="c">$</span><span data-count="'+d.v+'">0</span>'+(d.top?'<div class="topflag">▲ más caro</div>':'')+'</div></div>';}).join('');
+  })();
+
+  // costos bars
+  (function(){
+    var host=document.getElementById('costbars'); if(!host)return;
+    var data=[{n:'Hosting',v:2500,sub:'desde el mes 3'},{n:'Inteligencia artificial',v:1800},{n:'Mantenimiento',v:1800},{n:'Dominio y correos',v:115,sub:'ya cubierto'}];
+    var mx=2500;
+    host.innerHTML=data.map(function(d){return '<div class="crow"><span class="cn">'+d.n+(d.sub?' <span style="font-weight:400;color:var(--dim);font-size:11px">· '+d.sub+'</span>':'')+'</span><span class="ct"><span class="cf" data-w="'+(d.v/mx*100).toFixed(1)+'%"></span></span><span class="cv"><span style="color:var(--mut);font-weight:600">$</span><span data-count="'+d.v+'">0</span></span></div>';}).join('');
+  })();
+
+  // ingresos bars
+  (function(){
+    var host=document.getElementById('revbars'); if(!host)return;
+    var data=[{n:'5 usuarios',v:101940},{n:'10 usuarios',v:203880},{n:'20 usuarios',v:407760,top:true},{n:'50 usuarios',v:1019400}];
+    host.innerHTML=data.map(function(d){return '<div class="crow"><span class="cn">'+d.n+'</span><span class="ct"><span class="cf'+(d.top?' hi':'')+'" data-w="'+(d.v/1019400*100).toFixed(1)+'%"></span></span><span class="cv"><span style="color:var(--mut);font-weight:600">$</span><span data-count="'+d.v+'">0</span></span></div>';}).join('');
+  })();
+
+  // internacional: lista real + altura de scroll
+  (function(){
+    var host=document.getElementById('intlscroll'); if(!host)return;
+    var D=[
+      ['UE','EUDR · Productos libres de deforestación','Reglamento (UE) 2023/1115','cad'],
+      ['UE','CBAM · Ajuste en frontera por carbono','Reglamento (UE) 2023/956','cad'],
+      ['UE','CSDDD · Diligencia debida en sostenibilidad','Directiva (UE) 2024/1760','cad'],
+      ['UE','ESPR · Ecodiseño para productos sostenibles','Reglamento (UE) 2024/1781','cad'],
+      ['UE','PPWR · Envases y residuos de envases','Reglamento (UE) 2025/40','cad'],
+      ['UE','CSRD · Reporte de sostenibilidad corporativa','Directiva (UE) 2022/2464','cad'],
+      ['DE','LkSG · Diligencia en cadenas de suministro','Alemania','cad'],
+      ['FR','Loi de Vigilance · Deber de vigilancia','Francia · Ley 2017-399','cad'],
+      ['US','UFLPA · Prevención de trabajo forzoso','Estados Unidos','cad'],
+      ['T-MEC','Capítulo 24 · Medio Ambiente','América del Norte','tra'],
+      ['ONU','Acuerdo de París','Tratado vinculante','tra'],
+      ['ALC','Acuerdo de Escazú','Tratado vinculante','tra'],
+      ['ONU','Convenio de Basilea','Movimientos de residuos peligrosos','tra'],
+      ['CL','Ley REP 20.920 · Gestión de residuos','Chile','ley']
+    ];
+    var CH={cad:['chip cad','cadena de suministro'],tra:['chip tra','tratado'],ley:['chip ley','ley extranjera']};
+    var rows=D.map(function(r){var c=CH[r[3]];return '<div class="irow"><div class="jz">'+r[0]+'</div><div class="it"><div class="a">'+r[1]+'</div><div class="b">'+r[2]+'</div></div><span class="'+c[0]+'">'+c[1]+'</span></div>';}).join('');
+    host.innerHTML=rows+rows;
+  })();
+
+  // Senado: typewriter de la búsqueda
+  var senDone=false;
+  function startSen(sec){
+    if(senDone)return; senDone=true;
+    var el=document.getElementById('senq'); if(!el)return;
+    var txt='Medio Ambiente',i=0;
+    (function tp(){if(i<=txt.length){el.textContent=txt.slice(0,i);i++;setTimeout(tp,70);}})();
+  }
+
+  // Terminal: wizard real "Configura tu terminal", paso a paso y animado
+  var termStarted=false;
+  function startTerm(sec){
+    if(termStarted)return; termStarted=true;
+    var host=document.getElementById('tcfg'); if(!host)return;
+    var stepsEl=host.querySelector('#cwSteps'),descEl=host.querySelector('#cwDesc'),bodyEl=host.querySelector('#cwBody'),countEl=host.querySelector('#cwCount'),cursor=host.querySelector('.tcursor');
+    var LABELS=['Temas','Estados','Referencias','Comisiones'];
+    var STEPS=[
+      {desc:'Elige los temas que quieres monitorear. Alimentan tu señal y las normas del DOF en tu terminal.',chips:['Residuos','Agua','Economía circular','Cambio climático'],pick:[0,1,2]},
+      {desc:'¿En qué entidades opera tu organización? Verás su señal, gacetas y noticias.',chips:['Ciudad de México','Jalisco','Nuevo León','Puebla'],pick:[0,1,2]},
+      {desc:'NOMs, impuestos e instrumentos que quieres tener siempre a la mano en tu terminal.',chips:['NOM-161','NOM-083','Impuesto GEI'],pick:[0,1]},
+      {desc:'Comisiones del Congreso a seguir: fechas de sesión, integrantes y asuntos turnados.',chips:['Medio Ambiente · Dip.','Cambio Climático · Dip.','Economía · Sen.'],pick:[0,1]}
+    ];
+    var timers=[];
+    function clr(){timers.forEach(clearTimeout);timers=[];}
+    function at(ms,fn){timers.push(setTimeout(fn,ms));}
+    function paintSteps(cur){stepsEl.innerHTML=LABELS.map(function(l,i){var cls='cw-step'+(i<cur?' done':(i===cur?' on':''));return '<span class="'+cls+'">'+(i<cur?'✓ ':'')+l+'</span>';}).join('');}
+    function runStep(si){
+      if(si>=STEPS.length){finish();return;}
+      var step=STEPS[si];
+      paintSteps(si); descEl.textContent=step.desc;
+      bodyEl.innerHTML='<div class="tchips">'+step.chips.map(function(ch){return '<span class="tchip">'+ch+'</span>';}).join('')+'</div>';
+      countEl.textContent='0 seleccionados';
+      var chips=[].slice.call(bodyEl.querySelectorAll('.tchip'));
+      var t=450,sel=0;
+      step.pick.forEach(function(pi){
+        var chip=chips[pi];
+        at(t,function(){cursor.style.opacity='1';cursor.style.transform='translate('+(chip.offsetLeft+chip.offsetWidth-15)+'px,'+(chip.offsetTop+chip.offsetHeight/2-4)+'px)';});
+        at(t+440,function(){chip.classList.add('sel','pop');setTimeout(function(){chip.classList.remove('pop');},200);sel++;countEl.textContent=sel+' seleccionado'+(sel===1?'':'s');});
+        t+=650;
+      });
+      at(t+150,function(){cursor.style.opacity='0';});
+      at(t+950,function(){runStep(si+1);});
+    }
+    function finish(){
+      paintSteps(LABELS.length); descEl.textContent='Tu terminal está lista.';
+      function bar(n,pct,val){return '<div class="trbar"><span class="trbn">'+n+'</span><span class="trbt"><span class="trbf" style="width:'+pct+'%"></span></span><span class="trbv">'+val+'</span></div>';}
+      bodyEl.innerHTML='<div class="term-result show">'
+        +'<div class="trh">Señal de mis temas</div>'
+        +'<div class="trv">Agua y Residuos concentran tu señal</div>'
+        +'<div class="trs">38 menciones en medios · últimos 7 días</div>'
+        +'<div class="trbars">'+bar('Agua',100,24)+bar('Residuos',70,17)+bar('Economía circular',20,5)+'</div>'
+      +'</div>';
+      countEl.textContent='Terminal lista';
+      at(5200,function(){clr();cursor.style.opacity='0';runStep(0);});
+    }
+    cursor.style.opacity='0'; runStep(0);
+  }
+
+  // Expediente CDMX (frente): cicla Perfil → Impuestos → Materiales + scroll donde hay más
+  var expcardStarted=false;
+  function startExpCard(sec){
+    if(expcardStarted)return; expcardStarted=true;
+    var exp=sec.querySelector('.expdeck .exp'); if(!exp)return;
+    var tabsEl=[].slice.call(exp.querySelectorAll('.exp-tabs2 .et'));
+    var panels=[].slice.call(exp.querySelectorAll('.ep-panel'));
+    var body=exp.querySelector('.exp-body'); if(!body)return;
+    var order=['Perfil','Impuestos','Materiales Prohibidos'];
+    var timers=[];
+    function setTab(name){
+      tabsEl.forEach(function(t){t.classList.toggle('on',t.textContent.trim()===name);});
+      panels.forEach(function(p){var on=p.getAttribute('data-tab')===name;p.classList.toggle('on',on);p.classList.remove('scroll');p.style.transform='translateY(0)';});
+    }
+    function step(i){
+      var name=order[i%order.length]; setTab(name);
+      var p=panels.filter(function(x){return x.getAttribute('data-tab')===name;})[0];
+      var hold=4200;
+      if(p){var over=p.scrollHeight-body.clientHeight;
+        if(over>8){timers.push(setTimeout(function(){p.classList.add('scroll');p.style.transform='translateY(-'+over+'px)';},1200));hold=5400;}}
+      timers.push(setTimeout(function(){step(i+1);},hold));
+    }
+    step(0);
+  }
+
+  // Signal: recrear toda la conversación desde el inicio al entrar
+  var chatTimers=[];
+  function startChat(sec){
+    var chat=document.getElementById('sigchat'); if(!chat)return;
+    chatTimers.forEach(clearTimeout); chatTimers=[];
+    var b=[].slice.call(chat.querySelectorAll('.bubble'));
+    b.forEach(function(x){x.classList.remove('show','gone');});
+    function at(ms,fn){chatTimers.push(setTimeout(fn,ms));}
+    at(350,function(){b[0]&&b[0].classList.add('show');});
+    at(1300,function(){b[1]&&b[1].classList.add('show');});
+    at(3000,function(){if(b[1])b[1].classList.add('gone'); b[2]&&b[2].classList.add('show');});
+    at(4400,function(){b[3]&&b[3].classList.add('show');});
+    at(5400,function(){b[4]&&b[4].classList.add('show');});
+  }
+
+  // Cierre: "Y esta vez, se puede ver" escrito como a mano (lento)
+  var closeTwDone=false;
+  function startCloseTw(){
+    if(closeTwDone)return; closeTwDone=true;
+    var el=document.getElementById('closeTw'); if(!el)return;
+    var txt='Y esta vez, se puede ver.',i=0;
+    setTimeout(function tp(){
+      if(i<=txt.length){el.textContent=txt.slice(0,i);i++;
+        var ch=txt.charAt(i-1),d=(ch===','||ch==='.')?260:(62+Math.floor(i%3)*22);
+        setTimeout(tp,d);
+      } else {setTimeout(function(){el.classList.add('done');},1600);}
+    },520);
+  }
+  function runAnim(sec){
+    var a=sec.getAttribute('data-anim');
+    if(a==='cong')drawCong();
+    if(a==='closetw')startCloseTw();
+    if(a==='radardemo')startRadarDemo();
+    if(a==='mesa')startMesa(sec);
+    if(a==='count')runCounts(sec);
+    if(a==='imp'){sec.querySelectorAll('.bfill').forEach(function(f){var w=f.getAttribute('data-w');f.style.width='0';f.getBoundingClientRect();setTimeout(function(){f.style.width=w;},40);});runCounts(sec);}
+    if(a==='cost'||a==='rev'){
+      var rows=[].slice.call(sec.querySelectorAll('.crow'));
+      rows.forEach(function(row){var f=row.querySelector('.cf');if(f){f.style.width='0';f.getBoundingClientRect();}var n=row.querySelector('[data-count]');if(n)n.textContent='0';});
+      rows.forEach(function(row,idx){setTimeout(function(){var f=row.querySelector('.cf');if(f)f.style.width=f.getAttribute('data-w');var n=row.querySelector('[data-count]');if(n)countUp(n,3200);},450+idx*620);});
+      var tot=sec.querySelector('.ctotal [data-count]');if(tot){tot.textContent='0';setTimeout(function(){countUp(tot,3600);},450+rows.length*620);}
+    }
+    if(a==='termcfg')startTerm(sec);
+    if(a==='chat')startChat(sec);
+    if(a==='expcard')startExpCard(sec);
+  }
+
+  // Senado typewriter cuando entra Actores
+  var actSec=secs.filter(function(s){return s.getAttribute('data-t')==='Actores';})[0];
+
+  // techbg
+  ['Congreso','Impuestos','La señal','Operación'].forEach(function(t){
+    var sec=secs.filter(function(x){return x.getAttribute('data-t')===t;})[0];
+    if(sec&&!sec.querySelector('.techbg')){var d=document.createElement('div');d.className='techbg';sec.insertBefore(d,sec.firstChild);}
+  });
+
+  // nav / observer
+  secs.forEach(function(s,i){var a=document.createElement('a');a.title=s.getAttribute('data-t')||('Slide '+(i+1));a.addEventListener('click',function(){secs[i].scrollIntoView({behavior:'smooth'});});dotsWrap.appendChild(a);});
+  var dots=[].slice.call(dotsWrap.children);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in');runAnim(e.target);
+      if(e.target===actSec)startSen(e.target);
+      var i=secs.indexOf(e.target);dots.forEach(function(d,j){d.classList.toggle('on',j===i);});}
+  });},{threshold:.45});
+  secs.forEach(function(s){io.observe(s);});
+  deck.addEventListener('scroll',function(){var m=deck.scrollHeight-deck.clientHeight;prog.style.width=(m>0?deck.scrollTop/m*100:0)+'%';},{passive:true});
+  function cur(){return Math.round(deck.scrollTop/deck.clientHeight);}
+  function go(i){i=Math.max(0,Math.min(secs.length-1,i));secs[i].scrollIntoView({behavior:'smooth'});}
+  document.addEventListener('keydown',function(e){
+    if(['ArrowDown','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();go(cur()+1);}
+    else if(['ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault();go(cur()-1);}
+    else if(e.key==='Home'){e.preventDefault();go(0);} else if(e.key==='End'){e.preventDefault();go(secs.length-1);}
+  });
+})();
+</script>
+</body>
+</html>
