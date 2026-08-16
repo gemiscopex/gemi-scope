@@ -2398,9 +2398,9 @@ function renderActoresFederal(){
   el.style.display='block';
   var byNsig={};ACTORES_FED.forEach(function(a){byNsig[a.sig]=a;});
   var html=_SEC_GROUPS.map(function(g){
-    var head='<div style="display:flex;align-items:baseline;gap:10px;margin:20px 0 11px;padding-bottom:7px;border-bottom:1.5px solid rgba(6,103,80,0.22)">'
-      +'<span style="font-size:14px;font-weight:700;font-family:var(--sans);color:var(--text)">'+g.sec+'</span>'
-      +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.05em;color:var(--text-muted)">'+g.sub+'</span></div>';
+    var head='<div class="normas-section-hdr" style="display:flex;align-items:baseline;gap:10px;margin:22px 0 12px">'
+      +'<span>'+g.sec+'</span>'
+      +'<span style="font-family:var(--mono);font-size:9px;font-weight:400;letter-spacing:0.03em;color:var(--text-muted);text-transform:none">'+g.sub+'</span></div>';
     var tiles=g.sigs.map(function(sig){
       var a=byNsig[sig];if(!a)return '';
       var dep=_depGet(sig),open=!!_depOpen[sig];
