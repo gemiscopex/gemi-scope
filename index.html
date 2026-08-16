@@ -138,6 +138,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .main{max-width:1200px;margin:0 auto;padding:24px 28px 32px}
 .scope-footer{max-width:1200px;margin:44px auto 0;padding:18px 28px 26px;border-top:0.8px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap}
 .scope-footer-brand{font-family:var(--mono);font-size:10px;letter-spacing:0.02em;color:var(--text-muted)}
+.scope-footer-legal{flex-basis:100%;font-size:10px;line-height:1.65;color:var(--text-muted);max-width:960px;margin-top:4px;padding-top:12px;border-top:0.8px solid var(--border)}
 .scope-footer-links{display:flex;gap:24px;font-size:11px}
 .scope-footer a{color:var(--text-muted);text-decoration:none;transition:color .15s}
 .scope-footer a:hover{color:var(--text)}
@@ -7082,6 +7083,7 @@ _applyRoute(location.pathname);
     <a href="#">Privacidad</a>
     <a href="pitch.html" style="color:var(--green);font-weight:600">Pitch Consejo</a>
   </nav>
+  <div class="scope-footer-legal">Los nombres, logotipos e imágenes de dependencias, legisladores y partidos políticos son propiedad de sus respectivos titulares y se usan con fines exclusivamente informativos y de identificación. Scope e Iniciativa GEMI no están afiliadas ni avaladas por dichas entidades. La información proviene de fuentes oficiales; para el texto vinculante consulta siempre la fuente original.</div>
 </footer>
 <!-- MODAL REGISTRO -->
 <div id="reg-modal-bg" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.48);z-index:1200;display:none;align-items:center;justify-content:center;padding:20px" onclick="closeRegModal(event)">
