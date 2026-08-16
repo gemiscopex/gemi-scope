@@ -685,6 +685,21 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .dof-it:hover .dof-it-t{-webkit-line-clamp:unset;overflow:visible;color:var(--text)}
 .dof-it-more{display:none;font-family:var(--mono);font-size:8px;letter-spacing:0.04em;color:var(--text-muted);margin-top:6px;padding-top:6px;border-top:0.8px solid var(--border);line-height:1.5}
 .dof-it:hover .dof-it-more{display:block}
+/* ── Preview in-app (drawer lateral): leyes / iniciativas / puntos de acuerdo ── */
+.peek-bg{position:fixed;inset:0;background:rgba(13,27,42,0.35);opacity:0;pointer-events:none;transition:opacity .2s;z-index:1400}
+.peek-bg.open{opacity:1;pointer-events:auto}
+.peek{position:fixed;top:0;right:0;height:100vh;width:min(440px,94vw);background:var(--card);border-left:0.8px solid var(--border);box-shadow:-14px 0 44px rgba(0,0,0,0.16);transform:translateX(100%);transition:transform .24s ease;z-index:1401;display:flex;flex-direction:column;overflow-y:auto}
+.peek.open{transform:translateX(0)}
+.peek-hd{position:sticky;top:0;background:var(--card);padding:18px 22px 14px;border-bottom:0.8px solid var(--border);display:flex;align-items:flex-start;gap:12px;z-index:2}
+.peek-x{margin-left:auto;background:none;border:none;font-size:22px;color:var(--text-muted);cursor:pointer;line-height:1;flex-shrink:0;padding:0}
+.peek-x:hover{color:var(--text)}
+.peek-body{padding:16px 22px 30px}
+.peek-kind{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--green)}
+.peek-title{font-size:16px;font-weight:700;line-height:1.35;color:var(--text)}
+.peek-meta{display:flex;flex-wrap:wrap;gap:12px 24px;margin:15px 0}
+.peek-meta .m .l{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.peek-meta .m .v{font-size:12px;color:var(--text);margin-top:3px;line-height:1.4}
+.peek-open{display:inline-flex;align-items:center;gap:7px;background:var(--green);color:#fff;border:none;border-radius:9px;padding:11px 17px;font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;text-decoration:none}
 .dof-it-m{font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px}
 /* ═══════════ ETAPA 1: BANNER SEMANAL + CINTILLO + RADAR FAB ═══════════ */
 .radar-fab{display:inline-flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;position:relative;flex-shrink:0;align-self:center;margin:0 0 0 4px;padding:4px;border-radius:8px;transition:background .15s}
@@ -1161,6 +1176,8 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
     <button class="nav-btn-theme" id="theme-toggle" onclick="toggleTheme()" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro"></button>
   </div>
 </nav>
+<div id="peek-bg" class="peek-bg" onclick="_peekClose()"></div>
+<div id="peek" class="peek" role="dialog" aria-modal="true" aria-label="Vista previa"></div>
 <!-- STATE MODAL -->
 <div id="state-modal-bg" class="state-modal-bg" style="display:none" onclick="closeStatePanel()">
   <div class="state-modal" onclick="event.stopPropagation()">
@@ -1783,6 +1800,25 @@ function leyEstSetEstado(v){_leyEst.estado=v;_leyEst.tema='todos';renderLeyesEst
 function leyEstSetTema(t){_leyEst.tema=t;if(t!=='todos'){_leyEst.estado='';var s=document.getElementById('leyes-est-selector');if(s)s.value='';}renderLeyesEstTemaBar();renderLeyesEst();}
 function leyEstSetTipo(t){_leyEst.tipo=t;renderLeyesEstTemaBar();renderLeyesEst();}
 function leyEstSetQ(v){_leyEst.q=v;renderLeyesEst();}
+// ── Preview in-app (drawer): muestra la ficha del elemento dentro de Scope y abre la fuente oficial ──
+var _peekReg=[];
+function _peekPush(d){_peekReg.push(d);return _peekReg.length-1;}
+function _scopePeekId(i){_scopePeek(_peekReg[i]);}
+function _peekClose(){var p=document.getElementById('peek'),b=document.getElementById('peek-bg');if(p)p.classList.remove('open');if(b)b.classList.remove('open');}
+function _scopePeek(d){
+  if(!d)return;var p=document.getElementById('peek'),b=document.getElementById('peek-bg');if(!p)return;
+  var meta=(d.meta||[]).filter(function(m){return m&&m.v;}).map(function(m){return '<div class="m"><div class="l">'+m.l+'</div><div class="v">'+m.v+'</div></div>';}).join('');
+  p.innerHTML='<div class="peek-hd"><div style="flex:1;min-width:0"><div class="peek-kind">'+(d.kind||'Ficha')+'</div></div><button class="peek-x" onclick="_peekClose()" aria-label="Cerrar">×</button></div>'
+    +'<div class="peek-body">'
+      +'<div class="peek-title">'+(d.title||'')+'</div>'
+      +(meta?'<div class="peek-meta">'+meta+'</div>':'')
+      +(d.body?'<div style="font-size:13px;color:var(--text-sec);line-height:1.65;margin:4px 0 18px">'+d.body+'</div>':'<div style="margin-bottom:16px"></div>')
+      +(d.url?'<a class="peek-open" href="'+String(d.url).replace(/"/g,'&quot;')+'" target="_blank" rel="noopener">'+(d.urlLabel||'Abrir fuente oficial')+' <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>':'')
+      +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:20px;line-height:1.6">Vista previa en Scope · el documento completo abre en la fuente oficial.</div>'
+    +'</div>';
+  if(b)b.classList.add('open');p.classList.add('open');
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')_peekClose();});
 function _leyRow(l,stateLabel,i){
   var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
   var tipoAbr=l.tipo==='Ley'?'LEY':l.tipo==='Código'?'CÓD':l.tipo==='Reglamento'?'REG':'NOR';
@@ -1794,7 +1830,11 @@ function _leyRow(l,stateLabel,i){
   var meta=[];
   if(l.fecha_publicacion)meta.push('Última reforma <span style="color:var(--text-sec)">'+_leyFechaFmt(l.fecha_publicacion)+'</span>');
   if(l.estatus)meta.push('<span style="color:'+estatusCol+'">'+l.estatus+'</span>');
-  return '<div class="ley-row'+((i%2)?' zeb':'')+'" style="align-items:center;cursor:pointer"'+(doc?' onclick="window.open(\''+doc+'\',\'_blank\')"':'')+'>'
+  var hasDoc=!!(l.url||l.ficha_url);
+  var _pk=_peekPush({kind:(l.tipo||'Ley')+(stateLabel?' · '+stateLabel:''),title:nombre,
+    meta:[{l:'Tipo',v:l.tipo||'Ley'},{l:'Estatus',v:l.estatus||''},{l:'Última reforma',v:l.fecha_publicacion?_leyFechaFmt(l.fecha_publicacion):''},{l:'Entidad',v:stateLabel||''}],
+    url:doc,urlLabel:hasDoc?'Abrir documento oficial':'Buscar el documento'});
+  return '<div class="ley-row'+((i%2)?' zeb':'')+'" style="align-items:center;cursor:pointer" onclick="_scopePeekId('+_pk+')">'
     +'<span class="ley-sigla" style="color:'+tipoColor+'">'+tipoAbr+'</span>'
     +'<div style="flex:1;min-width:0">'
       +'<div class="ley-nombre" style="color:var(--text);font-weight:400;line-height:1.4">'+nombre+(stateLabel?' <span style="color:var(--text-muted)">· '+stateLabel+'</span>':'')+'</div>'
@@ -3714,7 +3754,11 @@ function renderSPLegislacion(state,data){
         var meta=[];
         if(law.ultima_reforma)meta.push('Última reforma <span style="color:var(--text-sec)">'+law.ultima_reforma+'</span>');
         if(est)meta.push('<span style="color:'+estCol+'">'+est+'</span>');
-        html+='<div class="ley-row'+(i%2?' zeb':'')+'" style="align-items:center;cursor:pointer" onclick="window.open(\''+doc+'\',\'_blank\')">'
+        var _hasDoc=!!law.url;
+        var _pk=_peekPush({kind:(sig==='CÓD'?'Código':sig==='REG'?'Reglamento':'Ley')+' · '+state,title:nombre,
+          meta:[{l:'Categoría',v:cl[cat]||cat},{l:'Estatus',v:est},{l:'Última reforma',v:law.ultima_reforma||''}],
+          body:law.nota||'',url:doc,urlLabel:_hasDoc?'Abrir documento oficial':'Buscar el documento'});
+        html+='<div class="ley-row'+(i%2?' zeb':'')+'" style="align-items:center;cursor:pointer" onclick="_scopePeekId('+_pk+')">'
           +'<span class="ley-sigla" style="color:'+sigCol+'">'+sig+'</span>'
           +'<div style="flex:1;min-width:0">'
             +'<div class="ley-nombre" style="color:var(--text);font-weight:400;line-height:1.4">'+nombre+'</div>'
@@ -4575,7 +4619,8 @@ function _listHTML(arr,fallbackUrl,limit){
     if(cat) h+='<span style="font-size:8px;font-weight:700;padding:1px 6px;border-radius:3px;background:'+cc+'18;color:'+cc+';letter-spacing:0.04em">'+cat.toUpperCase()+'</span>';
     h+='<span style="font-size:9px;color:var(--text-muted);margin-left:auto">'+fecha+'</span>';
     h+='</div>';
-    h+='<a href="'+(it.url||fallbackUrl)+'" target="_blank" rel="noopener" style="font-size:11px;color:var(--text);text-decoration:none;line-height:1.4;display:block" title="'+titulo.replace(/"/g,'&quot;')+'" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text)\'">'+tCorto+'</a>';
+    var _pk=_peekPush({kind:(it.tipo==='punto_acuerdo'?'Punto de acuerdo':it.tipo==='dictamen'?'Dictamen':'Iniciativa')+(cat?' · '+cat:''),title:titulo,meta:[{l:'Autor',v:it.autor||''},{l:'Fecha',v:fecha},{l:'Categoría',v:cat}],url:(it.url||fallbackUrl),urlLabel:'Abrir en la Gaceta oficial'});
+    h+='<div onclick="_scopePeekId('+_pk+')" style="font-size:11px;color:var(--text);cursor:pointer;line-height:1.4" title="'+titulo.replace(/"/g,'&quot;')+'" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text)\'">'+tCorto+'</div>';
     h+=autor;
     h+='</div>';
   });
