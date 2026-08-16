@@ -651,6 +651,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .nom-row:last-child{border-bottom:none}
 .nom-row:hover .nom-titulo{color:var(--green)}
 .nom-lab{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase}
+.umatch{display:inline-flex;align-items:center;gap:3px;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:0.05em;color:#066750;vertical-align:middle;margin-left:6px}
 .nom-tech{background:rgba(13,27,42,0.05);border-radius:8px;padding:12px 14px;margin-bottom:14px}
 .nom-badge{min-width:52px;padding:4px 0;text-align:center;border-radius:6px;font-size:9px;font-weight:700;letter-spacing:0.07em;flex-shrink:0}
 .nom-badge.vigente{background:rgba(0,158,144,0.12);color:#009E90}
@@ -3455,6 +3456,11 @@ var NORMAS=[
   {id:'PROY-NOM-AGUA-REGENERADA-2026',dep:'SEMARNAT',tema:'Agua',tipo:'PROY',objeto:'Agua regenerada para uso y consumo humano: límites permisibles de calidad del agua',implic:'Nueva norma en desarrollo en el Programa Nacional de Infraestructura de la Calidad 2026',afecta:'Reúso de agua · agua potable · industria',url:''}
 ];
 var NORMAS_TEMA_COLOR={'Agua':'#2563eb','Aire':'#0ea5e9','Residuos':'#d97706','Logística':'#7c3aed','Comercio':'#16a34a','Energía':'#f59e0b','Inocuidad':'#db2777','Laboral':'#475569','Ruido y luz':'#0f766e'};
+// ── Señal de match con el perfil del usuario (temas + keywords de Mi Terminal) ──
+function _userCfg(){try{return JSON.parse(localStorage.getItem('scope_consola_v1')||'null');}catch(e){return null;}}
+function _userKws(){var c=_userCfg();if(!c)return [];var t=(typeof _consTemaKws==='function')?_consTemaKws(c.temas||[]):[];return t.concat(c.keywords||[]);}
+function _userMatch(text){var kws=_userKws();if(!kws.length)return false;return (typeof _consMatch==='function')?_consMatch(text||'',kws):false;}
+function _userTag(){return '<span class="umatch" title="Coincide con tus temas de interés en Mi Terminal"><svg viewBox="0 0 20 20" width="9" height="9" fill="currentColor" style="flex-shrink:0"><path d="M10 1.5l2.5 5.2 5.7.7-4.2 4 1.1 5.6L10 19.3 4.9 22l1.1-5.6-4.2-4 5.7-.7Z"/></svg>Tu tema</span>';}
 var _normasTema='todos', _normasType='todos', _normasRendered=false, _normasExpanded={};
 function filterNormas(tema,btn){
   _normasTema=tema;
@@ -3604,6 +3610,7 @@ function renderNormas(){
       var uid='nom-'+tema.replace(/[^a-z]/gi,'')+idx;
       var ex=NOM_EXTRA[n.id]||{};
       var gemi=ex.gemi;
+      var _um=_userMatch(n.id+' '+n.objeto+' '+(n.afecta||'')+' '+(n.implic||'')+' '+n.tema);
       var _ng=_nomGrupo(n);
       var _gc=gemi===true?'#066750':gemi===false?'#DC2626':'#8A9CB0';
       var _gt=gemi===true?'GEMI participa':gemi===false?'GEMI no participa':'GEMI · por confirmar';
@@ -3615,7 +3622,7 @@ function renderNormas(){
         +'<div class="nom-row'+(idx%2?' zeb':'')+'" style="cursor:pointer;align-items:flex-start" onclick="_toggleNomDetail(\''+uid+'\')">'
         +'<span id="'+uid+'-arr" style="font-size:9px;color:var(--text-muted);transition:transform 0.2s;flex-shrink:0;display:inline-block;margin-top:3px">▶</span>'
         +'<div style="flex:1;min-width:0">'
-          +'<div style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green)">'+n.id+(isProy?' <span style="font-size:8px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted)">· PROYECTO</span>':'')+((NOM_EXTRA[n.id]&&NOM_EXTRA[n.id].programa2026)?' <span style="font-size:8px;font-weight:700;letter-spacing:0.06em;color:#066750;border:0.8px solid #066750;border-radius:6px;padding:1px 5px">PNIC 2026</span>':'')+'</div>'
+          +'<div style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green)">'+n.id+(isProy?' <span style="font-size:8px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted)">· PROYECTO</span>':'')+((NOM_EXTRA[n.id]&&NOM_EXTRA[n.id].programa2026)?' <span style="font-size:8px;font-weight:700;letter-spacing:0.06em;color:#066750;border:0.8px solid #066750;border-radius:6px;padding:1px 5px">PNIC 2026</span>':'')+(_um?_userTag():'')+'</div>'
           +'<div style="font-size:12px;color:var(--text);font-weight:500;margin-top:4px">'+n.objeto+'</div>'
           +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.4">'+n.implic+'</div>'
           +'<div data-nomcnt="'+_esc(n.id)+'" style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:5px">'+_cntTxt(n.id)+'</div>'
