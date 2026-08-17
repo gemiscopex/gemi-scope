@@ -918,8 +918,12 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-gauge .g-lvl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-top:6px}
 .cons-gauge .g-of{font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:3px}
 .cons-htiles{display:flex;flex-direction:column;gap:0;flex:1;min-width:200px}
-.cons-htile{display:flex;align-items:center;gap:11px;padding:9px 2px;border-bottom:0.8px solid var(--border)}
+.cons-htile{display:flex;align-items:center;gap:11px;padding:9px 2px;border-bottom:0.8px solid var(--border);position:relative;cursor:default}
 .cons-htile:last-child{border-bottom:none}
+.cons-htip{position:absolute;left:0;top:calc(100% - 2px);z-index:60;min-width:180px;max-width:290px;background:var(--card);border:0.8px solid var(--border2);padding:10px 13px;display:none}
+.cons-htile:hover .cons-htip{display:block}
+.cons-htip .th{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px;display:block}
+.cons-htip .it{display:block;font-size:12px;color:var(--text);padding:4px 0;border-top:0.8px solid rgba(0,0,0,0.05);line-height:1.35}
 .cons-htile .ic{color:var(--green);flex-shrink:0;display:flex}
 .cons-htile .k{font-size:13px;color:var(--text);flex:1;min-width:0}
 .cons-htile .v{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
@@ -935,6 +939,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-widget.open .cons-wcaret{transform:rotate(180deg);color:var(--green)}
 .cons-widget.open .cons-wt{color:var(--green)}
 .cons-wbody{max-height:0;overflow:hidden;transition:max-height .32s ease}
+.cons-wdesc{font-size:11px;color:var(--text-muted);line-height:1.5;margin:7px 0 0;max-width:70ch}
 /* wizard */
 .cw-bg{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1300;display:none;align-items:center;justify-content:center;padding:18px}
 .cw{background:var(--card);border:1px solid var(--border2);width:660px;max-width:calc(100vw - 24px);max-height:calc(100vh - 40px);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.2)}
@@ -6335,6 +6340,7 @@ function _consWidgetHTML(w){
     +'<span class="cons-wt">'+w.title+'</span>'+(w.count!=null?'<span class="cons-wn">'+w.count+'</span>':'')
     +(w.add?'<button class="cons-wadd" title="Agregar más en Editar terminal" onclick="event.stopPropagation();openConsolaWizard(\''+w.add+'\')">+</button>':'')
     +'<span class="cons-wcaret">▾</span></div>'
+    +(w.desc?'<div class="cons-wdesc">'+w.desc+'</div>':'')
     +'<div class="cons-wbody"><div style="padding-top:12px">'+w.body+'</div></div></div>';
 }
 // Expande/colapsa un bloque de seguimiento (clic en el header)
@@ -6408,15 +6414,15 @@ function renderConsola(){
   var kpis=_consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg);
   // ── Widgets reordenables (drag-and-drop). Señal vive en el dúo (arriba); cumplimiento en modal. ──
   var widgets=[];
-  widgets.push({id:'estados',title:'Mis estados',count:estados.length,add:'estados',body:'<div id="cons-estados"></div>'});
+  widgets.push({id:'estados',title:'Mis estados',count:estados.length,add:'estados',desc:'Las entidades que sigues, con su nivel de actividad regulatoria. Para vigilar dónde se mueve tu agenda.',body:'<div id="cons-estados"></div>'});
   _consRefWidgets(cfg).forEach(function(w){w.add='referencias';widgets.push(w);});
   if(!(cfg.noms||[]).length&&!(cfg.instrumentos||[]).length&&!(cfg.impuestos||[]).length&&!(cfg.materiales||[]).length)
     widgets.push({id:'ref-vacio',title:'Referencias',count:null,add:'referencias',body:'<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> aquí arriba) para tenerlos a la mano.</div>'});
-  widgets.push({id:'dof',title:'Normas de mis temas',count:null,body:'<div id="cons-normas"></div>'});
-  widgets.push({id:'ejecutivo',title:'Ejecutivo · menciones',count:null,body:'<div class="cons-scroll" id="cons-pres"></div>'});
-  widgets.push({id:'comisiones',title:'Mis comisiones',count:coms.length,add:'comisiones',wide:true,body:'<div id="cons-coms" style="overflow-x:auto"></div>'});
-  if(legs.length)widgets.push({id:'legisladores',title:'Mis legisladores',count:legs.length,add:'legisladores',wide:true,body:'<div class="cons-leg-grid" id="cons-legs"></div>'});
-  if(userKw.length)widgets.push({id:'keywords',title:'Feed de mis keywords',count:null,add:'afinar',wide:true,body:'<div id="cons-kw"></div>'});
+  widgets.push({id:'dof',title:'Normas de mis temas',count:null,desc:'Publicaciones del DOF que cruzan tus temas, más las que guardaste. Tu radar normativo del día.',body:'<div id="cons-normas"></div>'});
+  widgets.push({id:'ejecutivo',title:'Ejecutivo · menciones',count:null,desc:'Menciones de tus temas en la conferencia matutina del Ejecutivo, con su liga a la versión estenográfica.',body:'<div class="cons-scroll" id="cons-pres"></div>'});
+  widgets.push({id:'comisiones',title:'Mis comisiones',count:coms.length,add:'comisiones',wide:true,desc:'Las comisiones legislativas que sigues y sus integrantes. Para saber quién decide en tu agenda.',body:'<div id="cons-coms" style="overflow-x:auto"></div>'});
+  if(legs.length)widgets.push({id:'legisladores',title:'Mis legisladores',count:legs.length,add:'legisladores',wide:true,desc:'Legisladores que sigues, por cámara y partido. Los actores clave para tu incidencia.',body:'<div class="cons-leg-grid" id="cons-legs"></div>'});
+  if(userKw.length)widgets.push({id:'keywords',title:'Feed de mis keywords',count:null,add:'afinar',wide:true,desc:'Coincidencias de tus palabras clave (empresa, plantas, cuenca…) en medios y fuentes oficiales.',body:'<div id="cons-kw"></div>'});
   widgets=_consApplyOrder(widgets,cfg.layout);
 
   var _nm=(typeof _userDisplayName==='function')?_userDisplayName():'';
@@ -6427,7 +6433,7 @@ function renderConsola(){
   root.innerHTML='<div class="cons-hdr">'
     +'<div class="cons-greet">'+_av+'<div class="cons-greet-txt"><span class="cons-title">'+_greet+'</span>'+_consWelcomeLine(cfg,sen)+'</div></div>'
     +'<div class="cons-actions">'
-    +'<button class="cons-edit" onclick="_consPrintReport()" title="Genera un reporte imprimible / PDF con la foto del día de tu terminal">Imprimir reporte</button>'
+    +'<button class="cons-edit" onclick="_consPrintReport()" title="Descarga un reporte sintético de tu terminal en PDF">Descargar reporte</button>'
     +'<button class="cons-edit" onclick="_consCumplOpen()" title="Marca los instrumentos con los que ya cumples">Mi cumplimiento</button>'
     +'<button class="cons-edit" onclick="openConsolaWizard()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Editar terminal</button>'
     +'</div>'
@@ -6516,7 +6522,7 @@ function _consChatCardHTML(){
       +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);border:0.8px solid var(--border);padding:2px 8px;border-radius:0;letter-spacing:0.06em">PRÓXIMAMENTE</span>'
     +'</div>'
     +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;background:rgba(13,27,42,0.02);border-radius:0;padding:12px;min-height:80px;max-height:240px;overflow-y:auto">'
-      +_consChatBubble('Hola 👋 Soy Signal, tu asistente inteligente. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé con los datos de tu terminal en tiempo real.',false)
+      +_consChatBubble('Hola 👋 Soy Signal, tu asistente inteligente. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa. Te responderé con los datos de tu terminal en tiempo real.',false)
     +'</div>'
     +'<div style="display:flex;gap:8px;margin-top:11px">'
       +'<input id="cons-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;padding:10px 13px;border:0.8px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12px;color:var(--text);border-radius:0;outline:none">'
@@ -6534,7 +6540,7 @@ function _consChatSend(){
   msgs.insertAdjacentHTML('beforeend',_consChatBubble(v,true));
   inp.value='';msgs.scrollTop=msgs.scrollHeight;
   setTimeout(function(){
-    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. Signal está en construcción 🛠️ — muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
+    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. Signal está en construcción 🛠️. Muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
     msgs.scrollTop=msgs.scrollHeight;
   },550);
 }
@@ -6567,10 +6573,10 @@ function _consSignalRailHTML(){
         +'<div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px">Tu agente sobre los datos de tu terminal</div></div>'
       +'</div>'
       +'<div style="display:flex;align-items:center;gap:6px;margin-top:11px"><span class="pgemi-live" style="background:var(--text-muted)"></span>'
-        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.02em;color:var(--text-muted)">Próximamente · en construcción</span></div>'
+        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.02em;color:var(--text-muted)">En construcción</span></div>'
     +'</div>'
     +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;padding:14px;min-height:200px;max-height:46vh;overflow-y:auto">'
-      +_consChatBubble('Hola 👋 Soy Signal. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé cruzando los datos de tu terminal en tiempo real.',false)
+      +_consChatBubble('Hola 👋 Soy Signal. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa. Te responderé cruzando los datos de tu terminal en tiempo real.',false)
     +'</div>'
     +'<div style="padding:0 14px 4px;display:flex;flex-direction:column;gap:2px">'
       +'<div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px">Prueba preguntarle</div>'
@@ -6643,12 +6649,21 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
     legs:'<circle cx="10" cy="6" r="2.6"/><path d="M4.5 18c0-3.2 2.6-5 5.5-5s5.5 1.8 5.5 5"/>',
     refs:'<path d="M6 3h6l3 3v11H6z"/><path d="M12 3v3h3"/>'
   };
-  var mtile=function(icon,label,n){return '<div class="cons-htile"><span class="ic"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">'+icon+'</svg></span><span class="k">'+label+'</span><span class="v">'+n+'</span></div>';};
-  var htiles=mtile(_mic.temas,'Temas',temas.length)
-    +mtile(_mic.estados,'Estados',estados.length)
-    +mtile(_mic.coms,'Comisiones',coms.length)
-    +(legs.length?mtile(_mic.legs,'Legisladores',legs.length):'')
-    +mtile(_mic.refs,'Referencias',nRefs);
+  var refList=[];
+  (cfg.noms||[]).forEach(function(x){refList.push('NOM · '+x);});
+  (cfg.impuestos||[]).forEach(function(x){refList.push('Impuesto · '+x);});
+  (cfg.instrumentos||[]).forEach(function(x){refList.push('Instrumento · '+x);});
+  (cfg.materiales||[]).forEach(function(x){refList.push('Material · '+x);});
+  var mtile=function(icon,label,n,list){
+    list=(list||[]).filter(Boolean);
+    var tip=list.length?('<span class="cons-htip"><span class="th">'+label+'</span>'+list.map(function(x){return '<span class="it">'+_escUser(x)+'</span>';}).join('')+'</span>'):'';
+    return '<div class="cons-htile"><span class="ic"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">'+icon+'</svg></span><span class="k">'+label+'</span><span class="v">'+n+'</span>'+tip+'</div>';
+  };
+  var htiles=mtile(_mic.temas,'Temas',temas.length,temas.map(function(c){return c.name;}))
+    +mtile(_mic.estados,'Estados',estados.length,estados)
+    +mtile(_mic.coms,'Comisiones',coms.length,coms.map(function(c){return c.nombre;}))
+    +(legs.length?mtile(_mic.legs,'Legisladores',legs.length,legs.map(function(l){return l.n;})):'')
+    +mtile(_mic.refs,'Referencias',nRefs,refList);
   // Novedades compactas, pegadas al pie del héroe (solo cuando hay)
   var sl=(typeof _consSinceLast==='function')?_consSinceLast(cfg):{items:[]},nv=sl.items.length,nvStrip='';
   if(nv){
@@ -6723,7 +6738,8 @@ function _renderPanelAgenda(el){
         +(e.nota?'<div style="font-size:10px;color:var(--text-sec);line-height:1.4;margin-top:2px">'+_escHtml(e.nota)+'</div>':'')
         +'<div style="display:flex;gap:12px;margin-top:4px;font-family:var(--mono);font-size:9px">'
           +'<a href="'+gcal+'" target="_blank" rel="noopener" style="color:#066750;text-decoration:none">＋ Google</a>'
-          +'<a href="'+_icsHref(e)+'" download="evento-scope.ics" style="color:#066750;text-decoration:none">＋ Outlook/.ics</a>'
+          +'<a href="'+_icsHref(e)+'" download="evento-scope.ics" style="color:#066750;text-decoration:none">＋ Apple/iCal</a>'
+          +'<a href="'+_icsHref(e)+'" download="evento-scope.ics" style="color:#066750;text-decoration:none">＋ Outlook</a>'
           +(e.src==='Tú'?'<span onclick="_pgemiDelUser('+e.ui+')" style="color:var(--text-muted);cursor:pointer">Quitar</span>':'')
         +'</div>'
       +'</div></div>';
@@ -7175,10 +7191,8 @@ function _sparkWide(vals,color){
   if(!vals||vals.length<2)return '';
   var W=120,H=22,mx=Math.max.apply(null,vals.concat([1]));
   var pts=vals.map(function(v,i){var x=(i/(vals.length-1))*W;var y=H-3-(v/mx)*(H-7);return x.toFixed(1)+','+y.toFixed(1);}).join(' ');
-  var lx=W,ly=H-3-(vals[vals.length-1]/mx)*(H-7);
   return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" style="width:100%;height:22px;display:block;overflow:visible">'
-    +'<polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>'
-    +'<circle cx="'+lx+'" cy="'+ly.toFixed(1)+'" r="2.1" fill="'+color+'"/></svg>';
+    +'<polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/></svg>';
 }
 function _spark(vals,color){
   if(!vals||!vals.length)return '';
@@ -7354,7 +7368,7 @@ function signalToggle(){
   pop.style.display=open?'block':'none';
   if(open){
     if(!_signalInit){
-      document.getElementById('sig-chat-msgs').innerHTML=_consChatBubble('Hola 👋 Soy Signal, tu asistente inteligente. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé con los datos de tu terminal en tiempo real.',false);
+      document.getElementById('sig-chat-msgs').innerHTML=_consChatBubble('Hola 👋 Soy Signal, tu asistente inteligente. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa. Te responderé con los datos de tu terminal en tiempo real.',false);
       _signalInit=true;
     }
     setTimeout(function(){var i=document.getElementById('sig-chat-input');if(i)i.focus();},60);
@@ -7367,7 +7381,7 @@ function _signalSend(){
   msgs.insertAdjacentHTML('beforeend',_consChatBubble(v,true));
   inp.value='';msgs.scrollTop=msgs.scrollHeight;
   setTimeout(function(){
-    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. Signal está en construcción 🛠️ — muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
+    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. Signal está en construcción 🛠️. Muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
     msgs.scrollTop=msgs.scrollHeight;
   },550);
 }
