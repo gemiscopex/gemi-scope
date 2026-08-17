@@ -4110,21 +4110,25 @@ function renderRadares(){
   var _pin='<svg width="8" height="8" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" style="vertical-align:-1px"><path d="M10 18s6-5.5 6-10a6 6 0 0 0-12 0c0 4.5 6 10 6 10Z"/><circle cx="10" cy="7.5" r="2"/></svg>';
   var _dofMark='<span style="font-family:Georgia,\'Times New Roman\',serif;font-weight:500;letter-spacing:.6px;font-size:10px;text-transform:none">DOF</span>';
   var _estMark='<span style="display:inline-flex;align-items:center;gap:3px">'+_pin+'Estados</span>';
-  // Intensidad de señal por tema, misma familia que el heatmap de Estados
-  // (transparente → gris → esmeralda → verde GEMI, relativo al máximo del Radar)
-  var _maxSenal=Math.max.apply(null,rows.map(function(r){return r.s.senal;}).concat([1]));
-  function _rdFrac(v){return _maxSenal>0?v/_maxSenal:0;}
-  function _rdEdge(v){var f=_rdFrac(v);return f>=0.75?'#066750':f>=0.5?'#10b981':f>=0.25?'var(--text-sec)':'var(--text-muted)';}
-  function _rdTint(v){var f=_rdFrac(v);return f>=0.75?'rgba(6,103,80,0.16)':f>=0.5?'rgba(16,185,129,0.11)':f>=0.25?'rgba(120,130,140,0.08)':'transparent';}
-  function _rdLevel(v){var f=_rdFrac(v);return f>=0.75?'Alta':f>=0.5?'Media-alta':f>=0.25?'Media':'Baja';}
+  // Intensidad de señal por POSICIÓN en el ranking (no relativa al máximo), para que
+  // el color se distribuya por todo el Radar y no solo en los primeros temas.
+  // Misma familia que el heatmap de Estados: gris → esmeralda → verde GEMI.
+  var _senVal={};rows.forEach(function(r){_senVal[r.t.id]=r.s.senal;});
+  var _senSorted=Object.keys(_senVal).sort(function(a,b){return _senVal[b]-_senVal[a];});
+  var _senRank={};_senSorted.forEach(function(id,i){_senRank[id]=i;});
+  var _nT=Math.max(rows.length,1);
+  function _rdFrac(id){return _nT>1?1-(_senRank[id]/(_nT-1)):1;}
+  function _rdEdge(id){var f=_rdFrac(id);return f>=0.72?'#066750':f>=0.46?'#10b981':f>=0.2?'var(--text-sec)':'var(--text-muted)';}
+  function _rdTint(id){var f=_rdFrac(id);return f>=0.72?'rgba(6,103,80,0.10)':f>=0.46?'rgba(16,185,129,0.07)':f>=0.2?'rgba(120,130,140,0.05)':'transparent';}
+  function _rdLevel(id){var f=_rdFrac(id);return f>=0.72?'Alta':f>=0.46?'Media-alta':f>=0.2?'Media':'Baja';}
   var body=rows.map(function(r,i){
     var t=r.t,s=r.s,d=s.delta;
-    var heat=_rdEdge(s.senal),bg=_rdTint(s.senal);
+    var heat=_rdEdge(t.id),bg=_rdTint(t.id);
     var darr=d>0?'▲ ':d<0?'▼ ':'';
     var mini=function(v,l,al){return '<div'+(al?' style="text-align:'+al+'"':'')+'><div class="rdc-tstat-v">'+v+'</div><div class="rdc-tstat-l">'+l+'</div></div>';};
     return '<div class="rdc-tile" data-tid="'+t.id+'" onclick="_radarToggle(\''+t.id+'\')" style="background:'+bg+'">'
       +'<div class="rdc-thead"><span class="rdc-ticon" style="color:'+heat+'">'+_radarIcon(t.id)+'</span><span class="rdc-tname">'+t.name+'</span><span class="rdc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>'
-      +'<div class="rdc-tsub"><span style="color:'+heat+';font-weight:600">'+_rdLevel(s.senal)+'</span> · '+(s.news90+s.est)+' menciones · 90d</div>'
+      +'<div class="rdc-tsub"><span style="color:'+heat+';font-weight:600">'+_rdLevel(t.id)+'</span> · '+(s.news90+s.est)+' menciones · 90d</div>'
       +'<div class="rdc-tspark">'+_radarSparkFluid(_radarDaily(t,21),heat,i)+'</div>'
       +'<div class="rdc-tstats">'+mini(s.dof,_dofMark)+mini(s.est,_estMark)+mini(darr+Math.abs(d),'Δ 30d','right')+'</div>'
     +'</div>';
