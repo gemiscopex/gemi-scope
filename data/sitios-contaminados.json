@@ -1,25 +1,25 @@
 {
  "_meta": {
-  "actualizado": "2026-08-10T07:12 CDMX",
+  "actualizado": "2026-08-17T17:22 CDMX",
   "fuente": "SEMARNAT · Inventario Nacional de Sitios Contaminados y Remediados (datos.gob.mx)",
   "url": "https://www.datos.gob.mx/dataset/inventario_sitios_contaminados_remediados"
  },
  "nacional": {
-  "contaminados": 1142,
-  "remediados": 1051,
+  "contaminados": 1141,
+  "remediados": 1052,
   "por_contaminante": {
    "Hidrocarburos": 1044,
    "Metales y metaloides": 39,
    "Mezcla de contaminantes": 26,
    "Ácidos y bases": 18,
-   "Otros contaminantes no normados": 7,
+   "Otros contaminantes no normados": 6,
    "N.E.I.": 3,
    "Bifenilos policlorados": 2,
    "Solventes orgánicos": 2,
    "Plaguicidas": 1
   },
   "por_modalidad": {
-   "Pasivo ambiental": 572,
+   "Pasivo ambiental": 571,
    "Emergencia ambiental": 570
   }
  },
@@ -248,19 +248,19 @@
    ]
   },
   "Veracruz": {
-   "contaminados": 329,
-   "remediados": 99,
+   "contaminados": 328,
+   "remediados": 100,
    "pct_remediado": 23,
    "por_contaminante": {
     "Hidrocarburos": 323,
-    "Otros contaminantes no normados": 2,
     "Mezcla de contaminantes": 1,
+    "Otros contaminantes no normados": 1,
     "Ácidos y bases": 1,
     "Metales y metaloides": 1,
     "N.E.I.": 1
    },
    "por_modalidad": {
-    "Pasivo ambiental": 212,
+    "Pasivo ambiental": 211,
     "Emergencia ambiental": 117
    },
    "top_municipios": {
