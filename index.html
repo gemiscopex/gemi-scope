@@ -1795,6 +1795,7 @@ function _mergeCuratedLeyes(){
   leyesAmbientales.estados.forEach(function(se){
     var nm=se.nombre==='Estado de México'?'México':se.nombre;
     var vk=keyByNorm[qa(nm.toLowerCase())];if(!vk)return;
+    if(typeof _LEYEST_OVERRIDE!=='undefined'&&_LEYEST_OVERRIDE[vk])return; // Santiago (2026-08) es la verdad; no fusionar leyes viejas
     var arr=leyesEstatalesData.estados[vk],seen={};arr.forEach(function(l){seen[qa((l.nombre||'').toLowerCase())]=1;});
     var L=se.leyes||{};
     Object.keys(L).forEach(function(cat){(L[cat]||[]).forEach(function(law){
@@ -1814,6 +1815,9 @@ function loadLeyesEstatales(){
     if(sel){Object.entries(d.estados).filter(function(e){return e[1]&&e[1].length>0;}).sort(function(a,b){return _leyStateLabel(a[0]).localeCompare(_leyStateLabel(b[0]),'es');}).forEach(function(pair){
       var opt=document.createElement('option');opt.value=pair[0];opt.textContent=_leyStateLabel(pair[0])+' ('+pair[1].length+')';sel.appendChild(opt);});}
     renderLeyesEstTemaBar();renderLeyesEst();
+    // Refresca superficies que cuentan leyes por estado (cards + terminal) al llegar los datos
+    try{var hm=document.getElementById('estados-heatmap');if(hm&&hm.innerHTML&&typeof renderEstadosHeatmap==='function')renderEstadosHeatmap();}catch(e){}
+    try{if(document.getElementById('cons-estados')&&typeof renderConsola==='function')renderConsola();}catch(e){}
   }).catch(function(){});
 }
 function renderLeyesEstTemaBar(){
@@ -2678,7 +2682,22 @@ function renderDofMenu(){
 // ═══ CIRUGÍA MAYOR · render de las categorías nuevas ═══════════════════════
 // ── ESTADOS · heatmap de 32 entidades (reusa openStatePanel) ──
 // ── Métricas REALES por estado (nada inventado) ──
-function _leyEntry(s){return (leyesAmbientales.estados||[]).find(function(e){return e.nombre===s||(s==='México'&&e.nombre==='Estado de México')||(s==='Estado de México'&&e.nombre==='México');});}
+// Estados actualizados por Santiago (2026-08): su verdad vive en leyes-estatales.json y
+// debe permear a las cards y al expediente (que leen la estructura agrupada de leyesAmbientales).
+var _LEYEST_OVERRIDE={'Aguascalientes':1,'Baja California':1,'Baja California Sur':1,'Chiapas':1,'Chihuahua':1};
+function _leyEntryFromEstatal(s){
+  var TMAP={agua:'agua',ambiental_general:'equilibrio_ecologico',residuos:'residuos',cambio_climatico:'cambio_climatico',forestal:'forestal_biodiversidad',biodiversidad:'forestal_biodiversidad',energia_renovable:'energia',hidrocarburos:'energia',mineria:'equilibrio_ecologico'};
+  var grouped={};
+  (leyesEstatalesData.estados[s]||[]).forEach(function(l){
+    var cat=TMAP[(l.temas&&l.temas[0])||'ambiental_general']||'equilibrio_ecologico';
+    (grouped[cat]=grouped[cat]||[]).push({nombre:l.nombre,url:l.url||l.ficha_url||'',estado_vigencia:l.estatus||'Vigente',ultima_reforma:l.fecha_publicacion||''});
+  });
+  return {nombre:s,leyes:grouped};
+}
+function _leyEntry(s){
+  if(_LEYEST_OVERRIDE[s]&&typeof leyesEstatalesData!=='undefined'&&leyesEstatalesData&&(leyesEstatalesData.estados||{})[s])return _leyEntryFromEstatal(s);
+  return (leyesAmbientales.estados||[]).find(function(e){return e.nombre===s||(s==='México'&&e.nombre==='Estado de México')||(s==='Estado de México'&&e.nombre==='México');});
+}
 function _nLeyes(s){var e=_leyEntry(s);if(!e)return 0;var L=e.leyes||{};return Object.keys(L).reduce(function(a,t){return a+((L[t]||[]).length);},0);}
 function _nImpuestos(s){return (typeof impuestosDB!=='undefined'&&impuestosDB[s])?impuestosDB[s].length:0;}
 function _nMateriales(s){var m=((_materialesData&&_materialesData.estados)||{})[s];return (m&&m.materiales)?m.materiales.length:0;}
@@ -3773,7 +3792,7 @@ function renderSPFicha(state,data){
 }
 function renderSPLegislacion(state,data){
   const sl=leyesAmbientales.estados.find(e=>e.nombre===state||(state==='México'&&e.nombre==='Estado de México'));
-  const cl={equilibrio_ecologico:'Equilibrio Ecológico',residuos:'Residuos y Plásticos',agua:'Agua',forestal_biodiversidad:'Forestal y Biodiversidad',cambio_climatico:'Cambio Climático',economia_circular:'Economía Circular',plasticos:'Plásticos'};
+  const cl={equilibrio_ecologico:'Equilibrio Ecológico',residuos:'Residuos y Plásticos',agua:'Agua',forestal_biodiversidad:'Forestal y Biodiversidad',cambio_climatico:'Cambio Climático',economia_circular:'Economía Circular',plasticos:'Plásticos',energia:'Energía'};
   let html='';
   if(sl){
     Object.entries(sl.leyes).forEach(([cat,laws])=>{
@@ -7354,6 +7373,7 @@ window.addEventListener('popstate',function(){_applyRoute(location.pathname);});
 init();
 initSearch();
 loadComisiones();
+if(typeof loadLeyesEstatales==='function')loadLeyesEstatales(); // carga temprana: las cards cuentan leyes con datos actualizados
 document.body.classList.add('dash-fixed');
 _applyRoute(location.pathname);
 </script>
