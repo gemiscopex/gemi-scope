@@ -776,15 +776,12 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-send{background:var(--green);color:#fff;border:none;border-radius:0;width:42px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .12s}
 .cons-send:hover{background:#0E8C74}
-/* Wizard · pestañas de Referencias (verdes, con » de secuencia, interactivas) */
-.wref-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px;margin-bottom:16px}
-.wref-tab{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--green);background:none;border:none;padding:6px 4px;cursor:pointer;transition:color .12s,transform .12s}
-.wref-tab .wchev{color:var(--text-muted);font-weight:700;font-size:14px;transition:color .12s}
-.wref-tab:last-child .wchev{display:none}
-.wref-tab:hover{color:#0E8C74;transform:translateY(-1px)}
-.wref-tab:hover .wchev{color:var(--green)}
-.wref-tab.on{color:#066750}
-.wref-tab.on>span:first-child{border-bottom:2px solid #066750;padding-bottom:3px}
+/* Wizard · pestañas de Referencias — mismo estilo underline-tab que .stab (homologadas) */
+.wref-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:2px 18px;margin-bottom:16px;border-bottom:0.8px solid var(--border)}
+.wref-tab{display:inline-flex;align-items:center;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:0.01em;color:var(--text-muted);padding:0 0 11px;cursor:pointer;white-space:nowrap;transition:color .12s,border-color .12s}
+.wref-tab .wchev{display:none}
+.wref-tab:hover{color:var(--text-sec)}
+.wref-tab.on{color:var(--text);font-weight:600;border-bottom-color:var(--green)}
 .cons-edit{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--text-sec);cursor:pointer;letter-spacing:0;border:0.8px solid var(--border);padding:7px 13px;border-radius:0;background:none;transition:color .12s,border-color .12s;display:inline-flex;align-items:center;gap:6px}
 .cons-edit:hover{color:var(--green);border-color:var(--green)}
 .cons-edit svg{width:13px;height:13px;flex-shrink:0}
@@ -5853,12 +5850,12 @@ function _wizPaintBody(){
   }
   else if(p==='afinar'){
     b.innerHTML=
-      '<div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:4px">Palabras clave</div>'
+      '<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px">Palabras clave</div>'
       +'<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-bottom:12px">Son los términos con los que tu terminal te alerta <b>primero</b>. Cada palabra se cruza contra el DOF, el feed del Ejecutivo, las gacetas estatales y las noticias: cuando aparece, ese asunto sube en tu señal. Agrega lo que solo tú conoces — el nombre de tu empresa, tus plantas, tu cuenca, un trámite o una NOM puntual.</div>'
       +'<input class="cw-search" id="cw-kw-input" placeholder="Escribe y presiona Enter · ej. mi empresa, cuenca Lerma, NOM-001…" onkeydown="_wizKwKey(event)" style="margin-bottom:8px">'
       +'<div class="cw-chips" id="cw-chips"></div>'
       +'<div id="cw-kw-sug"></div>'
-      +'<div style="font-size:12px;font-weight:700;color:var(--green);margin:22px 0 3px">Nivel de riesgo por tema</div>'
+      +'<div style="font-size:12px;font-weight:700;color:var(--text);margin:22px 0 3px">Nivel de riesgo por tema</div>'
       +'<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-bottom:10px">Le dice al algoritmo cuánto peso dar a cada tema. Un tema en <b>alto</b> pesa más en tu señal y encabeza tu feed aunque tenga pocos registros.</div>'
       +'<div id="cw-riesgos"></div>'
       +'<div style="margin-top:22px;padding-top:14px;border-top:0.8px solid var(--border);font-size:11px;color:var(--text-muted);line-height:1.55">'
@@ -6584,13 +6581,14 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
   var head;
   if(lead&&lead.n7){var names=lead.c.name+(second&&second.n7?' y '+second.c.name:'');head=names+' concentra'+(second&&second.n7?'n':'')+' tu señal esta semana';}
   else head='Aún sin menciones en tus temas esta semana';
-  // Índice compuesto 0–100 (presión regulatoria de tu perfil), con retorno decreciente
-  var score=Math.max(3,Math.min(99,Math.round(100*(1-Math.exp(-(sen.total||0)/170)))));
-  var R=70,C=2*Math.PI*R,off=(C*(1-score/100)).toFixed(1);
+  // Anillo = menciones reales en tus temas (la suma) + nivel; el aro se llena por nivel
+  var lvlWord=sen.total>=12?'alto':sen.total>=5?'medio':'bajo';
+  var fillPct=sen.total>=12?92:sen.total>=5?60:28;
+  var R=70,C=2*Math.PI*R,off=(C*(1-fillPct/100)).toFixed(1);
   var gauge='<div class="cons-gauge"><svg width="150" height="150" viewBox="0 0 160 160">'
     +'<circle cx="80" cy="80" r="'+R+'" fill="none" stroke="rgba(120,130,140,0.2)" stroke-width="11"/>'
     +'<circle cx="80" cy="80" r="'+R+'" fill="none" stroke="var(--green)" stroke-width="11" stroke-linecap="round" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+off+'" transform="rotate(-90 80 80)"/>'
-    +'</svg><div class="g-ctr"><div class="g-score">'+score+'</div><div class="g-lvl">'+nivel+'</div><div class="g-of">'+(sen.total||0)+' menciones · '+sen.dias+' días</div></div></div>';
+    +'</svg><div class="g-ctr"><div class="g-score">'+(sen.total||0)+'</div><div class="g-of">menciones · '+sen.dias+' días</div><div class="g-lvl">Nivel '+lvlWord+'</div></div></div>';
   var desc=function(arr,max){arr=(arr||[]).filter(Boolean);if(!arr.length)return 'Nada seleccionado aún';return _escUser(arr.slice(0,max).join(' · '))+(arr.length>max?' +'+(arr.length-max):'');};
   var htiles=
      '<div class="cons-htile hot"><div class="k">Temas</div><div class="v">'+temas.length+'</div><div class="d">'+desc(temas.map(function(c){return c.name;}),2)+'</div></div>'
