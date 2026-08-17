@@ -7016,7 +7016,8 @@ function _consComs(coms){
         +'<td style="font-family:var(--mono)">'+((c.integrantes||[]).length)+'</td>'
         +'<td style="font-family:var(--mono);font-size:10px">'+(c.ur?fmtReunion(c.ur):'—')+'</td>'
         +'<td style="font-family:var(--mono);font-size:10px;color:'+(c.pr?'var(--green)':'var(--dim)')+'">'+(c.pr?fmtReunion(c.pr):'—')+'</td>'
-        +'<td>'+(c.at?'<a href="'+c.at+'" target="_blank" rel="noopener" style="font-size:10px;font-weight:600">Asuntos <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>':'')+'</td>'
+        +'<td style="white-space:nowrap">'+(c.at?'<a href="'+c.at+'" target="_blank" rel="noopener" style="font-size:10px;font-weight:600">Asuntos <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>':'')
+          +'<button title="Quitar de mi terminal" onclick="_consQuickRemove(\'comisiones\',\''+String(_comId(c)).replace(/'/g,"\\'")+'\',event)" style="background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;padding:2px;margin-left:8px;opacity:.55">✕</button></td>'
         +'</tr>';
     }).join('')+'</table>';
 }
@@ -7078,6 +7079,7 @@ function _consLegs(legs){
       +'<div style="font-family:var(--mono);font-size:8px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(l.cargo||'Integrante')+' · '+(comsAll[0]||'')+'</div></div>'
       +(logo?'<img src="'+logo+'" style="height:16px;width:auto;max-width:40px;object-fit:contain;flex-shrink:0" alt="'+l.partido+'">':'')
       +'<a href="'+silUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Ficha en el SIL" style="font-size:10px;color:var(--green);text-decoration:none;flex-shrink:0">SIL <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>'
+      +'<button title="Quitar de mi terminal" onclick="_consQuickRemove(\'legisladores\',\''+String(l.id).replace(/'/g,"\\'")+'\',event)" style="background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;padding:2px;flex-shrink:0;opacity:.55">✕</button>'
       +'</div>'
       +'<div style="font-size:10px;color:var(--text-muted);margin-top:7px;user-select:none">Ver detalle <span id="'+uid+'-arr" style="display:inline-block;transition:transform 0.2s;font-size:8px">▾</span></div>'
       +'<div id="'+uid+'" style="display:none;margin-top:5px">'+detalle+'</div>'
@@ -7086,18 +7088,17 @@ function _consLegs(legs){
 }
 function _consEstados(estados){
   var el=document.getElementById('cons-estados');if(!el)return;
-  if(!estados.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Sin estados seleccionados</div>';return;}
-  // Mismo lenguaje visual que el heatmap de la sección Estados: contorno del estado,
-  // abreviatura en mono, número grande (noticias = señal del estado) y conteos.
-  el.style.display='grid';el.style.gridTemplateColumns='repeat(auto-fill,minmax(150px,1fr))';el.style.gap='8px';
-  el.innerHTML=estados.map(function(s){
+  if(!estados.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Sin estados seleccionados. Usa <b>+</b> arriba para agregar.</div>';return;}
+  var cards=estados.map(function(s){
     var nl=(typeof _nLeyes==='function')?_nLeyes(s):0, ni=(typeof _nImpuestos==='function')?_nImpuestos(s):0, nm=(typeof _nMateriales==='function')?_nMateriales(s):0, nn=stateNews[s]||0;
     var outline=(typeof _stateOutlineSVG==='function')?_stateOutlineSVG(s,34):'';
     var hot=nn>0;
     var tint=nn>=4?'rgba(6,103,80,0.18)':nn>=1?'rgba(16,185,129,0.10)':'transparent';
-    return '<div onclick="openStatePanel(\''+s.replace(/'/g,"\\'")+'\')" title="Abrir expediente de '+s+'" '
-      +'style="cursor:pointer;background:'+tint+';padding:12px 14px;transition:transform .12s ease;display:flex;align-items:flex-start;gap:8px" '
-      +'onmouseover="this.style.transform=\'translateX(3px)\'" onmouseout="this.style.transform=\'\'">'
+    var se=s.replace(/'/g,"\\'");
+    return '<div title="Abrir expediente de '+s+'" '
+      +'style="position:relative;cursor:pointer;background:'+tint+';padding:12px 14px;transition:transform .12s ease;display:flex;align-items:flex-start;gap:8px" '
+      +'onclick="openStatePanel(\''+se+'\')" onmouseover="this.style.transform=\'translateX(3px)\'" onmouseout="this.style.transform=\'\'">'
+      +'<button title="Quitar de mi terminal" onclick="_consQuickRemove(\'estados\',\''+se+'\',event)" style="position:absolute;top:6px;right:6px;background:none;border:none;color:var(--text-muted);font-size:13px;line-height:1;cursor:pointer;padding:2px;opacity:.55">✕</button>'
       +'<div style="flex:1;min-width:0">'
         +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.07em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">'+(STATE_ABBR[s]||'')+'</div>'
         +'<div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.15;margin-bottom:9px">'+s+'</div>'
@@ -7108,6 +7109,38 @@ function _consEstados(estados){
       +(outline?'<div style="flex-shrink:0;align-self:center;opacity:0.5;pointer-events:none">'+outline+'</div>':'')
       +'</div>';
   }).join('');
+  el.style.display='block';
+  el.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">'+cards+'</div>'+_consEstadosCompare(estados);
+}
+// Comparativa de los estados que sigues (nutre Mis estados con benchmark)
+function _consEstadosCompare(estados){
+  if(!estados||estados.length<2)return '';
+  var COL=(typeof _CMP_COLORS!=='undefined'?_CMP_COLORS:['#0E8C74','#2F6FB0','#E0A500','#12A594','#1F5E52']);
+  var metrics=[
+    {label:'Leyes ambientales',get:function(s){return (typeof _nLeyes==='function')?_nLeyes(s):0;}},
+    {label:'Impuestos ambientales',get:function(s){return (typeof _nImpuestos==='function')?_nImpuestos(s):0;}},
+    {label:'Materiales restringidos',get:function(s){return (typeof _nMateriales==='function')?_nMateriales(s):0;}},
+    {label:'Señal en prensa · notas',get:function(s){return (typeof stateNews!=='undefined'&&stateNews[s])||0;}}
+  ];
+  var legend='<div style="display:flex;flex-wrap:wrap;gap:8px 14px;margin-bottom:13px">'+estados.map(function(s,i){return '<span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--text-sec)"><span style="width:9px;height:9px;background:'+COL[i%COL.length]+';display:inline-block;flex-shrink:0"></span>'+s+'</span>';}).join('')+'</div>';
+  var bars=metrics.map(function(m){
+    var vals=estados.map(m.get),max=Math.max.apply(null,vals.concat([1]));
+    return '<div style="margin-bottom:15px"><div style="font-size:11px;font-weight:600;color:var(--text-sec);margin-bottom:8px">'+m.label+'</div>'
+      +estados.map(function(s,i){var v=vals[i],w=Math.max(2,v/max*100);return '<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><div style="flex:1;min-width:0;height:7px;background:rgba(0,0,0,0.05);overflow:hidden"><div style="height:100%;width:'+w.toFixed(0)+'%;background:'+COL[i%COL.length]+'"></div></div><div style="width:36px;text-align:right;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;flex-shrink:0">'+v+'</div></div>';}).join('')
+    +'</div>';
+  }).join('');
+  return '<div style="margin-top:18px;padding-top:14px;border-top:0.8px solid var(--border)">'
+    +'<div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:12px">Comparativa de tus estados</div>'
+    +legend+bars+'</div>';
+}
+// Quitar un ítem de la terminal al instante (estados/comisiones/legisladores/noms/…)
+function _consQuickRemove(kind,id,ev){
+  if(ev&&ev.stopPropagation)ev.stopPropagation();
+  if(typeof loadConsola!=='function')return;
+  var cfg=loadConsola();cfg[kind]=(cfg[kind]||[]).filter(function(x){return x!==id;});
+  if(typeof saveConsola==='function')saveConsola(cfg);
+  if(typeof renderConsola==='function')renderConsola();
+  if(typeof _toast==='function')_toast('Quitado de tu terminal');
 }
 // Resalta en negritas las palabras que hacen match con los filtros del usuario
 function _consHighlight(text,kwList){
