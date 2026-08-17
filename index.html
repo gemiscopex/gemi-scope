@@ -770,7 +770,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-welcome .seen:hover{color:var(--green)}
 .cons-welcome-status{font-family:var(--sans);font-size:13px;color:var(--text);font-weight:500;margin-top:5px}
 .cons-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.cons-wadd{margin-left:auto;flex-shrink:0;background:none;border:0.8px solid var(--border);color:var(--text-muted);width:22px;height:22px;border-radius:6px;font-size:15px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:color .12s,border-color .12s;font-family:var(--sans)}
+.cons-wadd{margin-left:auto;flex-shrink:0;background:none;border:0.8px solid var(--border);color:var(--text-muted);width:22px;height:22px;border-radius:0;font-size:15px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:color .12s,border-color .12s;font-family:var(--sans)}
 .cons-wadd:hover{color:var(--green);border-color:var(--green)}
 .cons-help{margin-top:10px;border-top:0.8px solid var(--border);padding-top:8px}
 .cons-help-t{font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:5px}
@@ -779,7 +779,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .cons-help.open .cons-help-b{display:block}
 .arrlk{display:inline-block;vertical-align:middle;width:11px;height:11px}
 a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
-.cons-send{background:var(--green);color:#fff;border:none;border-radius:9px;width:42px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .12s}
+.cons-send{background:var(--green);color:#fff;border:none;border-radius:0;width:42px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .12s}
 .cons-send:hover{background:#0E8C74}
 /* Wizard · pestañas de Referencias (verdes, con » de secuencia, interactivas) */
 .wref-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px;margin-bottom:16px}
@@ -790,7 +790,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .wref-tab:hover .wchev{color:var(--green)}
 .wref-tab.on{color:#066750}
 .wref-tab.on>span:first-child{border-bottom:2px solid #066750;padding-bottom:3px}
-.cons-edit{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--text-sec);cursor:pointer;letter-spacing:0;border:0.8px solid var(--border);padding:7px 13px;border-radius:8px;background:none;transition:color .12s,border-color .12s;display:inline-flex;align-items:center;gap:6px}
+.cons-edit{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--text-sec);cursor:pointer;letter-spacing:0;border:0.8px solid var(--border);padding:7px 13px;border-radius:0;background:none;transition:color .12s,border-color .12s;display:inline-flex;align-items:center;gap:6px}
 .cons-edit:hover{color:var(--green);border-color:var(--green)}
 .cons-edit svg{width:13px;height:13px;flex-shrink:0}
 /* Resumen: tarjetas de selección estilo Estados/Radar, con hover que revela lo elegido */
@@ -799,7 +799,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-seltile:hover{border-left-color:#066750}
 .cons-seltile .num{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--text);line-height:1}
 .cons-seltile .lab{font-size:11px;color:var(--text-sec);margin-top:4px}
-.cons-seltip{position:absolute;left:0;top:100%;margin-top:8px;z-index:40;min-width:180px;max-width:300px;background:var(--card);border:0.8px solid var(--border2);border-radius:10px;box-shadow:0 14px 36px rgba(13,27,42,0.14);padding:11px 13px;display:none}
+.cons-seltip{position:absolute;left:0;top:100%;margin-top:8px;z-index:40;min-width:180px;max-width:300px;background:var(--card);border:0.8px solid var(--border2);border-radius:0;padding:11px 13px;display:none}
 .cons-seltile:hover .cons-seltip{display:block}
 .cons-seltip .th{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px}
 .cons-seltip .it{font-size:12px;color:var(--text);padding:4px 0;border-top:0.8px solid rgba(0,0,0,0.05);line-height:1.4}
@@ -815,8 +815,8 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-grid{display:grid;grid-template-columns:2fr 1fr;gap:10px;align-items:start}
 .cons-col{display:flex;flex-direction:column;gap:10px}
 .cons-tema-row{display:grid;grid-template-columns:12px minmax(96px,150px) 1fr 40px 18px 52px;align-items:center;gap:11px;padding:9px 0;border-bottom:0.8px solid var(--border)}
-.cons-tema-bar{height:6px;background:rgba(0,0,0,0.05);border-radius:5px;overflow:hidden}
-.cons-tema-bar>span{display:block;height:100%;border-radius:5px;min-width:2px;transition:width .5s cubic-bezier(.22,1,.36,1)}
+.cons-tema-bar{height:6px;background:rgba(0,0,0,0.05);border-radius:0;overflow:hidden}
+.cons-tema-bar>span{display:block;height:100%;border-radius:0;min-width:2px;transition:width .5s cubic-bezier(.22,1,.36,1)}
 .cons-prio{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;text-align:right}
 .cons-mat-row{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-bottom:0.8px solid var(--border);transition:background .12s}
 .cons-mat-row[onclick]{cursor:pointer}
@@ -859,12 +859,12 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-norm-it:last-child{border-bottom:none}
 .cons-norm-it .cft{cursor:pointer}
 .cons-norm-it:hover .cft{color:var(--green)}
-.cons-normsave{flex-shrink:0;background:none;border:0.8px solid var(--border);color:var(--text-muted);font-family:var(--mono);font-size:10px;letter-spacing:.02em;border-radius:6px;padding:3px 7px;cursor:pointer;transition:color .12s,border-color .12s,background .12s;line-height:1.3;white-space:nowrap}
+.cons-normsave{flex-shrink:0;background:none;border:0.8px solid var(--border);color:var(--text-muted);font-family:var(--mono);font-size:10px;letter-spacing:.02em;border-radius:0;padding:3px 7px;cursor:pointer;transition:color .12s,border-color .12s,background .12s;line-height:1.3;white-space:nowrap}
 .cons-normsave:hover{border-color:var(--green);color:var(--green)}
 .cons-normsave.on{border-color:#066750;color:#066750;background:rgba(6,103,80,0.06)}
 /* consola · terminal (paneles delgados, sin sombra) */
 .cons-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:9px;margin-bottom:14px}
-.cons-kpi{border:0.8px solid var(--border);border-radius:9px;padding:11px 13px;min-width:0}
+.cons-kpi{border:0;border-left:2px solid var(--border);border-radius:0;padding:2px 0 2px 13px;min-width:0}
 .cons-kpi-lbl{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase}
 .cons-kpi-val{font-family:var(--mono);font-size:21px;font-weight:600;color:var(--text);line-height:1.05;margin-top:6px}
 .cons-kpi-sub{font-family:var(--mono);font-size:8px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -880,14 +880,14 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-hero-bars{display:flex;flex-direction:column;gap:8px}
 .cons-hero-barrow{display:grid;grid-template-columns:84px 1fr 24px;align-items:center;gap:9px}
 .cons-hero-barname{font-size:11px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cons-hero-bartrack{height:8px;background:rgba(0,0,0,0.05);border-radius:6px;overflow:hidden}
-.cons-hero-barfill{height:100%;border-radius:6px;min-width:2px}
+.cons-hero-bartrack{height:8px;background:rgba(0,0,0,0.05);border-radius:0;overflow:hidden}
+.cons-hero-barfill{height:100%;border-radius:0;min-width:2px}
 .cons-hero-barval{font-family:var(--mono);font-size:11px;color:var(--text);text-align:right;font-variant-numeric:tabular-nums}
 @media(max-width:720px){.cons-hero{grid-template-columns:1fr;gap:16px;align-items:start}.cons-hero-head{font-size:17px}}
 .cons-desk{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:start;margin-bottom:12px}
 @media(max-width:1000px){.cons-desk{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.cons-desk{grid-template-columns:1fr}}
-.cons-panel{border:0.8px solid var(--border);border-radius:11px;padding:13px 15px;min-width:0}
+.cons-panel{border:0;border-radius:0;padding:0;min-width:0}
 .cons-panel+.cons-panel{margin-top:12px}
 .cons-panel-h{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .cons-panel-h .n{color:var(--dim)}
@@ -899,7 +899,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 /* Widgets reordenables (drag-and-drop v1) */
 .cons-widgets{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;margin-bottom:12px}
 @media(max-width:680px){.cons-widgets{grid-template-columns:1fr}}
-.cons-widget{border:0.8px solid var(--border);border-radius:11px;padding:13px 15px;min-width:0;background:var(--card);transition:box-shadow .12s,opacity .12s}
+.cons-widget{border:0;border-top:0.8px solid var(--border);border-radius:0;padding:14px 0 0;min-width:0;background:none;transition:opacity .12s}
 .cons-widget.wide{grid-column:1/-1}
 .cons-widget.dragging{opacity:0.4}
 .cons-widget.drop-target{box-shadow:0 0 0 2px var(--green) inset;border-color:transparent}
@@ -910,11 +910,11 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-wn{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--text-muted);flex-shrink:0}
 .cons-scroll{max-height:280px;overflow-y:auto;margin:0 -3px;padding:0 3px;scrollbar-width:thin}
 .cons-scroll::-webkit-scrollbar{width:3px}.cons-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.cons-estcard{border:0.8px solid var(--border);border-radius:9px;padding:9px 11px;cursor:pointer;transition:border-color .12s,transform .12s;min-width:0}
-.cons-estcard:hover{border-color:var(--green);transform:translateX(2px)}
+.cons-estcard{border:0;border-bottom:0.8px solid var(--border);border-radius:0;padding:9px 2px;cursor:pointer;transition:background .12s,transform .12s;min-width:0}
+.cons-estcard:hover{background:rgba(0,158,144,0.05);transform:translateX(2px)}
 .cons-refit{padding:8px 0;border-bottom:0.8px solid rgba(0,0,0,0.05)}
 .cons-refit:last-child{border-bottom:none}
-.cons-wide{border:0.8px solid var(--border);border-radius:11px;padding:14px 16px;margin-bottom:12px;min-width:0}
+.cons-wide{border:0;border-top:0.8px solid var(--border);border-radius:0;padding:14px 0 0;margin-bottom:12px;min-width:0}
 /* wizard */
 .cw-bg{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1300;display:none;align-items:center;justify-content:center;padding:18px}
 .cw{background:var(--card);border:1px solid var(--border2);width:660px;max-width:calc(100vw - 24px);max-height:calc(100vh - 40px);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.2)}
@@ -942,7 +942,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 @keyframes consDrop{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .cons-drop{opacity:0;animation:consDrop .5s cubic-bezier(.2,.7,.3,1) forwards}
 /* Rediseño · widget "Desde tu última visita" (cruce de datos, diseño Scope actual) */
-.cons-vhero{border:0.8px solid var(--border);border-radius:11px;background:var(--card);padding:20px 22px;margin-bottom:12px}
+.cons-vhero{border:0;border-bottom:0.8px solid var(--border);border-radius:0;background:none;padding:2px 0 18px;margin-bottom:12px}
 .cons-live{width:7px;height:7px;border-radius:50%;background:#066750;display:inline-block;animation:cobPulse 2.2s ease-in-out infinite;flex-shrink:0}
 .cvh-row{display:grid;grid-template-columns:86px 1fr auto 14px;align-items:center;gap:14px;padding:12px 4px;border-bottom:1px solid var(--border);transition:background .14s,padding .14s}
 .cvh-row:last-of-type{border-bottom:none}
@@ -990,7 +990,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cw-search{width:100%;box-sizing:border-box;padding:8px 12px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none;margin-bottom:10px}
 .cw-search:focus{border-color:var(--green)}
 .cw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.cw-chip{font-family:var(--mono);font-size:10px;color:var(--text);background:rgba(0,158,144,0.1);border:1px solid rgba(0,158,144,0.3);padding:3px 8px;display:inline-flex;align-items:center;gap:6px}
+.cw-chip{font-family:var(--mono);font-size:10px;color:var(--text);background:none;border:0.8px solid var(--border);padding:3px 8px;display:inline-flex;align-items:center;gap:6px}
 .cw-chip span{cursor:pointer;color:var(--dim)}
 .cw-chip span:hover{color:var(--red)}
 .cw-rsg{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border)}
@@ -6441,24 +6441,24 @@ function _cumplRender(){
 }
 // ── Panel tipo chat de IA (placeholder interactivo — bot real llega después) ──
 function _consChatCardHTML(){
-  return '<div class="card" style="margin-bottom:20px;border:0.8px solid var(--border);border-radius:14px;padding:18px 20px">'
+  return '<div class="card" style="margin-bottom:20px;border:0;border-top:0.8px solid var(--border);border-radius:0;padding:14px 0 0">'
     +'<div style="display:flex;align-items:center;gap:11px;margin-bottom:12px">'
       +'<img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">'
       +'<div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700;color:var(--text)">Signal</div>'
       +'<div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:1px">Asistente inteligente para mejorar tu experiencia</div></div>'
-      +'<span style="font-family:var(--mono);font-size:9px;color:var(--amber);border:0.8px solid var(--amber);padding:2px 8px;border-radius:10px;letter-spacing:0.06em">PRÓXIMAMENTE</span>'
+      +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);border:0.8px solid var(--border);padding:2px 8px;border-radius:0;letter-spacing:0.06em">PRÓXIMAMENTE</span>'
     +'</div>'
-    +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;background:rgba(0,0,0,0.02);border-radius:10px;padding:12px;min-height:80px;max-height:240px;overflow-y:auto">'
+    +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;background:rgba(13,27,42,0.02);border-radius:0;padding:12px;min-height:80px;max-height:240px;overflow-y:auto">'
       +_consChatBubble('Hola 👋 Soy Signal, tu asistente inteligente. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé con los datos de tu terminal en tiempo real.',false)
     +'</div>'
     +'<div style="display:flex;gap:8px;margin-top:11px">'
-      +'<input id="cons-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;padding:10px 13px;border:1px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12px;color:var(--text);border-radius:9px;outline:none">'
-      +'<button onclick="_consChatSend()" style="background:var(--green);color:#fff;border:none;border-radius:9px;padding:0 18px;font-size:12px;font-weight:600;cursor:pointer">Enviar</button>'
+      +'<input id="cons-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;padding:10px 13px;border:0.8px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12px;color:var(--text);border-radius:0;outline:none">'
+      +'<button onclick="_consChatSend()" style="background:var(--green);color:#fff;border:none;border-radius:0;padding:0 18px;font-size:12px;font-weight:600;cursor:pointer">Enviar</button>'
     +'</div>'
   +'</div>';
 }
 function _consChatBubble(text,isUser){
-  return '<div style="align-self:'+(isUser?'flex-end':'flex-start')+';max-width:82%;background:'+(isUser?'var(--green)':'var(--card)')+';color:'+(isUser?'#fff':'var(--text)')+';border:'+(isUser?'none':'0.8px solid var(--border)')+';padding:8px 12px;border-radius:'+(isUser?'12px 12px 3px 12px':'12px 12px 12px 3px')+';font-size:12px;line-height:1.5">'+_escHtml(text)+'</div>';
+  return '<div style="align-self:'+(isUser?'flex-end':'flex-start')+';max-width:82%;background:'+(isUser?'var(--green)':'transparent')+';color:'+(isUser?'#fff':'var(--text)')+';border:none;'+(isUser?'':'border-left:2px solid var(--border);')+'padding:'+(isUser?'8px 12px':'2px 0 2px 12px')+';border-radius:0;font-size:12px;line-height:1.5">'+_escHtml(text)+'</div>';
 }
 function _consChatSend(){
   var inp=document.getElementById('cons-chat-input'),msgs=document.getElementById('cons-chat-msgs');
@@ -6474,15 +6474,15 @@ function _consChatSend(){
 // ── Signal como agente permanente (columna derecha, sticky) ──
 function _consSignalRailHTML(){
   var sug=['¿Qué NOMs me aplican?','Resume mi señal de la semana','¿Qué cambió en el DOF hoy?'];
-  return '<div style="border:0.8px solid var(--border);border-radius:14px;background:var(--card);display:flex;flex-direction:column;overflow:hidden">'
+  return '<div style="border:0.8px solid var(--border);border-radius:0;background:var(--card);display:flex;flex-direction:column;overflow:hidden">'
     +'<div style="padding:16px 18px 14px;border-bottom:0.8px solid var(--border)">'
       +'<div style="display:flex;align-items:center;gap:11px">'
         +'<img src="assets/logo-gemi.jpeg" alt="GEMI" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0;border:0.8px solid var(--border)">'
         +'<div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:700;color:var(--text);line-height:1.1">Signal</div>'
         +'<div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px">Tu agente sobre los datos de tu terminal</div></div>'
       +'</div>'
-      +'<div style="display:flex;align-items:center;gap:6px;margin-top:11px"><span class="pgemi-live" style="background:#DC2626"></span>'
-        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.02em;color:#DC2626">Próximamente · en construcción</span></div>'
+      +'<div style="display:flex;align-items:center;gap:6px;margin-top:11px"><span class="pgemi-live" style="background:var(--text-muted)"></span>'
+        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.02em;color:var(--text-muted)">Próximamente · en construcción</span></div>'
     +'</div>'
     +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;padding:14px;min-height:200px;max-height:46vh;overflow-y:auto">'
       +_consChatBubble('Hola 👋 Soy Signal. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa — y te responderé cruzando los datos de tu terminal en tiempo real.',false)
@@ -6492,7 +6492,7 @@ function _consSignalRailHTML(){
       +sug.map(function(q){return '<button onclick="_consChatAsk(this.textContent)" style="text-align:left;background:none;border:none;border-top:0.8px solid var(--border);padding:9px 2px;font-family:var(--sans);font-size:12px;color:var(--text-sec);cursor:pointer;line-height:1.35;transition:color .12s" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text-sec)\'">'+q+'</button>';}).join('')
     +'</div>'
     +'<div style="display:flex;gap:8px;padding:12px 14px 14px;border-top:0.8px solid var(--border)">'
-      +'<input id="cons-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;min-width:0;padding:10px 13px;border:1px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12px;color:var(--text);border-radius:9px;outline:none">'
+      +'<input id="cons-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;min-width:0;padding:10px 13px;border:0.8px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12px;color:var(--text);border-radius:0;outline:none">'
       +'<button onclick="_consChatSend()" class="cons-send" title="Enviar a Signal"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14"/><path d="M12 6l6 6-6 6"/></svg></button>'
     +'</div>'
   +'</div>';
