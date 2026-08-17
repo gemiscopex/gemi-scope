@@ -6365,7 +6365,7 @@ function renderConsola(){
   var _mono=(_nm&&_nm!=='Mi cuenta')?initials(_nm):'S';
   var _av='<div class="cons-greet-av" data-fb="'+_escUser(_mono)+'">'+(_avUrl?('<img src="'+_avUrl+'" alt="" onerror="_avatarFallback(this)">'):'')+'</div>';
   root.innerHTML='<div class="cons-hdr">'
-    +'<div class="cons-greet">'+_av+'<div class="cons-greet-txt"><span class="cons-title">'+_greet+'</span>'+_consWelcomeLine(cfg)+'</div></div>'
+    +'<div class="cons-greet">'+_av+'<div class="cons-greet-txt"><span class="cons-title">'+_greet+'</span>'+_consWelcomeLine(cfg,sen)+'</div></div>'
     +'<div class="cons-actions">'
     +'<button class="cons-edit" onclick="_consPrintReport()" title="Genera un reporte imprimible / PDF con la foto del día de tu terminal">Imprimir reporte</button>'
     +'<button class="cons-edit" onclick="_consCumplOpen()" title="Marca los instrumentos con los que ya cumples">Mi cumplimiento</button>'
@@ -6382,7 +6382,7 @@ function renderConsola(){
         +'</div>'
         +'<div class="cons-widgets" id="cons-widgets">'+widgets.map(_consWidgetHTML).join('')+'</div>'
       +'</div>'
-      +'<div class="cons-rail">'+_consSignalRailHTML()+'</div>'
+      +'<div class="cons-rail">'+_consActivityRailHTML(sen)+_consSignalRailHTML()+'</div>'
     +'</div>';
 
   _loadPanelGemi();
@@ -6467,6 +6467,16 @@ function _consChatSend(){
     msgs.scrollTop=msgs.scrollHeight;
   },550);
 }
+// ── Nivel de actividad del terminal (rail derecho, arriba de Signal) ──
+function _consActivityRailHTML(sen){
+  var nivel=sen.total>=12?'Actividad alta':sen.total>=5?'Actividad media':'Actividad baja';
+  var col=sen.total>=5?'var(--green)':'var(--text-muted)';
+  return '<div style="margin:6px 0 16px">'
+    +'<div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);padding-bottom:6px;border-bottom:0.8px solid var(--border)">Tu terminal</div>'
+    +'<div style="font-family:var(--sans);font-size:20px;font-weight:700;letter-spacing:-0.01em;color:'+col+';margin-top:11px;line-height:1">'+nivel+'</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:.04em;color:var(--text-muted);margin-top:6px">'+sen.total+' menciones · últimos '+sen.dias+' días</div>'
+  +'</div>';
+}
 // ── Signal como agente permanente (columna derecha, sticky) ──
 function _consSignalRailHTML(){
   var sug=['¿Qué NOMs me aplican?','Resume mi señal de la semana','¿Qué cambió en el DOF hoy?'];
@@ -6499,18 +6509,21 @@ function _consChatAsk(q){
   _consChatSend();
 }
 // ── Línea de bienvenida: pegada al saludo, cruza el perfil desde la última visita ──
-function _consWelcomeLine(cfg){
+// Una sola línea de estado condensada: tema líder + novedades sin ver.
+// (Ya no repite "Desde tu última visita" ni el nivel de actividad: eso vive en el rail.)
+function _consWelcomeLine(cfg,sen){
   var sl=_consSinceLast(cfg),n=sl.items.length;
-  var sv=(typeof _sinceLastVisit==='function')?_sinceLastVisit():null;
-  var ago=sv?sv.human:'primera visita';
-  var status=n?(n+(n===1?' novedad':' novedades')+' en tus temas.'):'Todo tranquilo por ahora.';
-  var agoCap=ago?(ago.charAt(0).toUpperCase()+ago.slice(1)):ago;
+  var lead=sen&&sen.lead,hasLead=lead&&lead.n7;
+  var main=hasLead
+    ? ('<span style="color:var(--green);font-weight:700">'+_escUser(lead.c.name)+'</span> concentra tu señal esta semana')
+    : 'Semana tranquila en tus temas';
+  var nov=n?('<b style="color:var(--text)">'+n+(n===1?' novedad':' novedades')+'</b> sin ver'):'sin novedades pendientes';
   return '<div class="cons-welcome"><span class="cons-live"></span>'
-    +'<span class="eyebrow">Desde tu última visita</span>'
-    +'<span class="ago">'+agoCap+'</span>'
-    +(n?'<button class="seen" onclick="_consMarkSeen()">Marcar como visto</button>':'')
-  +'</div>'
-  +'<div class="cons-welcome-status">'+status+'</div>';
+    +'<span style="color:var(--text-sec)">'+main+'</span>'
+    +'<span style="color:var(--border-med,#ccc)">·</span>'
+    +'<span style="color:var(--text-sec)">'+nov+'</span>'
+    +(n?'<button class="seen" onclick="_consMarkSeen()">Marcar visto</button>':'')
+  +'</div>';
 }
 // ── Mi cumplimiento: apartado (modal) para marcar los instrumentos con los que ya cumples ──
 function _consCumplOpen(){
@@ -6556,9 +6569,7 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
     +(legs.length?tile(legs.length,legs.length===1?'Legislador':'Legisladores','Tus legisladores',legs.map(function(l){return l.n;})):'')
     +tile(nRefs,nRefs===1?'Referencia':'Referencias','Tus referencias',refList);
   return '<div class="cons-hero">'
-    +'<div class="cons-hero-kick">Tu terminal · <span style="color:#066750;font-weight:700">'+nivel+'</span></div>'
-    +'<div class="cons-hero-head">'+head+'</div>'
-    +'<div class="cons-hero-sub">'+sen.total+' menciones en medios · últimos '+sen.dias+' días</div>'
+    +'<div class="cons-hero-kick" style="color:var(--green)">Lo que monitoreas</div>'
     +'<div class="cons-seltiles">'+tiles+'</div>'
   +'</div>';
 }
