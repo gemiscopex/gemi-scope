@@ -247,7 +247,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 /* Alertas de actividad por entidad (relativas al máximo de notas estatales) */
 .dot-wrap{position:relative;width:9px;height:9px}
 .dot-core{position:absolute;left:0;top:0;width:9px;height:9px;border-radius:50%;border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.28);z-index:2}
-.dot-ring{position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--green);z-index:1;animation:pulseRing 1.9s ease-out infinite}
+.dot-ring{position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--red);z-index:1;animation:pulseRing 1.9s ease-out infinite}
 .dot-medio .dot-core{animation:blinkSoft 2.8s ease-in-out infinite}
 @keyframes blinkSoft{0%,100%{opacity:1}50%{opacity:0.46}}
 /* Escala tipo mapa (km, cambia con el zoom) */
@@ -2110,10 +2110,10 @@ function _mapAlertCounts(){
   if(items.length){items.forEach(function(it){var e=it&&it.estado;if(e)counts[e]=(counts[e]||0)+1;});return counts;}
   return (typeof stateNews!=='undefined'&&stateNews)||{};
 }
-// Nivel de alerta relativo al máximo: alto (verde, parpadea) · medio (verde claro, parpadeo suave) · pasivo (negro)
+// Semáforo relativo al máximo: alto (rojo, parpadea) · medio (ámbar, parpadeo suave) · bajo (verde GEMI)
 function _dotTier(c,mx){
-  if(mx>0&&c>0){var r=c/mx;if(r>=0.6)return{k:'alto',c:'var(--green)'};if(r>=0.3)return{k:'medio',c:'#5FC7BA'};}
-  return {k:'pasivo',c:'var(--dot-pasivo)'};
+  if(mx>0&&c>0){var r=c/mx;if(r>=0.6)return{k:'alto',c:'var(--red)'};if(r>=0.3)return{k:'medio',c:'var(--amber)'};}
+  return {k:'bajo',c:'var(--green)'};
 }
 function _updateMapScale(){
   var vp=document.getElementById('map-viewport'),host=document.getElementById('map-scale');
@@ -2161,9 +2161,9 @@ function buildMap(){
   });
   el.innerHTML=html;
   var lg=document.getElementById('dotmap-legend');
-  if(lg)lg.innerHTML='<span><i style="background:var(--green)"></i>Actividad alta</span>'
-    +'<span><i style="background:#5FC7BA"></i>Media</span>'
-    +'<span><i style="background:var(--dot-pasivo)"></i>Pasiva</span>';
+  if(lg)lg.innerHTML='<span><i style="background:var(--red)"></i>Actividad alta</span>'
+    +'<span><i style="background:var(--amber)"></i>Media</span>'
+    +'<span><i style="background:var(--green)"></i>Tranquila</span>';
   _updateMapScale();
   _loadGeoOutline();
   _renderGeoOutline();
