@@ -384,6 +384,8 @@
   @media(max-width:720px){.prices{grid-template-columns:1fr;max-width:400px}}
   .price{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:rgba(255,255,255,.02);transition:transform .3s,border-color .3s}
   .price.best{border-color:var(--g);background:linear-gradient(180deg,rgba(18,185,138,.10),rgba(18,185,138,.02))}
+  section[data-anim="prices"] .price,section[data-anim="prices"] .socios{opacity:0;transform:translateY(24px) scale(.955);transition:opacity .8s cubic-bezier(.2,.8,.2,1.04),transform .8s cubic-bezier(.2,.8,.2,1.04)}
+  section[data-anim="prices"].in .price,section[data-anim="prices"].in .socios{opacity:1;transform:none}
   .price:hover{transform:translateY(-4px);border-color:var(--g)}
   .ptag{height:22px;margin-bottom:14px}
   .ptag span{font-size:10.5px;font-weight:700;color:#04120d;background:var(--mint);border-radius:20px;padding:3px 10px}
@@ -453,6 +455,8 @@
   section.in .chip-src{opacity:1;transform:none}
   .chip-src.hot{color:#e6b45e;border-color:rgba(230,180,94,.4);background:rgba(230,180,94,.07)}
   .chip-src.hot::after{content:' · hoy';color:#e6b45e;opacity:.8}
+  .chip-src.flash{color:#e6b45e !important;border-color:rgba(230,180,94,.6) !important;background:rgba(230,180,94,.12) !important;box-shadow:0 0 20px rgba(230,180,94,.28);transition:opacity .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1),color .16s ease,border-color .16s ease,background .16s ease,box-shadow .16s ease}
+  @media (prefers-reduced-motion:reduce){.chip-src.flash{box-shadow:none}}
   .chaos-note{margin-top:26px;font-size:clamp(16px,2vw,22px);font-weight:800;letter-spacing:-.02em;color:var(--ink);opacity:0;transform:translateY(14px);transition:opacity .8s .9s,transform .8s .9s}
   section.in .chaos-note{opacity:1;transform:none}
   /* NUEVO · demo embebida en vivo (browser frame con la app real) */
@@ -482,7 +486,6 @@
 <div class="prog" id="prog"></div>
 <div class="topbar">
   <img src="assets/scope-logo-dark.png" alt="Scope">
-  <a class="exit" href="/">&larr; Volver a Scope</a>
 </div>
 <div class="dots" id="dots"></div>
 
@@ -497,24 +500,23 @@
     <div class="lead r d2" style="margin-left:auto;margin-right:auto">La inteligencia regulatoria ambiental de México, en un solo lugar.</div>
     <div class="cap r d3">Presentación · 2026</div>
     <a class="r d3" href="/" style="margin-top:14px;font-family:var(--mono);font-size:13px;color:var(--mint);letter-spacing:.08em;text-decoration:none">scopegemi.com</a>
-    <div class="scrollhint">Desliza para comenzar &nbsp;&darr;</div>
   </section>
 
-  <section data-t="El caos">
+  <section data-t="El caos" data-anim="chaos">
     <div class="glow" style="width:520px;height:520px;background:#7a2020;top:-12%;left:-8%;opacity:.16"></div>
-    <div class="kick r">Todos los días</div>
-    <h2 class="r d1" style="max-width:17ch">Una avalancha imposible de seguir a mano</h2>
-    <p class="lead r d2" style="max-width:720px">El responsable de cumplimiento de una empresa abre su día ante todo esto a la vez. Cambia constantemente, todo importa, y no hay un solo lugar donde verlo completo.</p>
+    <div class="kick r">Sabemos cuál es el problema</div>
+    <h2 class="r d1" style="max-width:15ch">Nada está en un solo lugar</h2>
+    <p class="lead r d2" style="max-width:720px">Navegamos más de 40 fuentes todos los días y todo está cambiando. Las actualizaciones son cada vez que hacemos refresh.</p>
     <div class="chaos">
-      <span class="chip-src hot" style="transition-delay:.10s">DOF</span>
+      <span class="chip-src" style="transition-delay:.10s">DOF</span>
       <span class="chip-src" style="transition-delay:.16s">Cámara de Diputados</span>
       <span class="chip-src" style="transition-delay:.22s">Senado de la República</span>
       <span class="chip-src" style="transition-delay:.28s">32 congresos locales</span>
       <span class="chip-src" style="transition-delay:.34s">NOM-001-SEMARNAT</span>
-      <span class="chip-src hot" style="transition-delay:.40s">NOM-161</span>
+      <span class="chip-src" style="transition-delay:.40s">NOM-161</span>
       <span class="chip-src" style="transition-delay:.46s">NOM-083</span>
       <span class="chip-src" style="transition-delay:.52s">SCJN</span>
-      <span class="chip-src hot" style="transition-delay:.58s">Conferencia matutina</span>
+      <span class="chip-src" style="transition-delay:.58s">Conferencia matutina</span>
       <span class="chip-src" style="transition-delay:.64s">Prensa nacional</span>
       <span class="chip-src" style="transition-delay:.70s">Prensa estatal</span>
       <span class="chip-src" style="transition-delay:.76s">ATDT</span>
@@ -524,23 +526,22 @@
       <span class="chip-src" style="transition-delay:1.00s">Impuestos verdes</span>
       <span class="chip-src" style="transition-delay:1.06s">Instrumentos internacionales</span>
     </div>
-    <div class="chaos-note">No es falta de información. Es exceso de información sin sentido.</div>
   </section>
 
   <section data-t="De dónde venimos">
     <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-10%;left:-8%;opacity:.24"></div>
     <div class="kick r">De dónde venimos</div>
-    <h2 class="r d1" style="max-width:13ch">Es el ADN de GEMI</h2>
-    <p class="lead r d2" style="max-width:720px">Durante años, GEMI ha producido reportes de inteligencia y seguimiento regulatorio. Esto no nace de cero: nace de esa base de años de trabajo real.</p>
-    <p class="lead r d3" style="max-width:720px;margin-top:18px;font-size:clamp(19px,2.4vw,28px);color:var(--ink)">Y lo convertimos en un <span class="grn">producto vivo</span>.</p>
+    <h2 class="r d1" style="max-width:15ch">Llevamos nuestro ADN a un algoritmo</h2>
+    <p class="lead r d2" style="max-width:720px">Entendimos que los <b>32 años de historia</b> son un aprendizaje que se puede imprimir en datos e inteligencia.</p>
+    <p class="lead r d3" style="max-width:720px;margin-top:18px;font-size:clamp(19px,2.4vw,28px);color:var(--ink)">Con eso hicimos un <span class="grn">producto vivo</span>.</p>
   </section>
 
   <section class="lite" data-t="En vivo">
-    <div class="kick r">En vivo, ahora mismo</div>
+    <div class="kick r">GEMI 24/7</div>
     <div class="split">
       <div class="col">
-        <h2 class="r d1" style="max-width:13ch">Esto no es un render</h2>
-        <p class="lead r d2">Lo que ves a la derecha es Scope corriendo <b>en vivo</b>, con los datos reales de hoy. El mapa, el radar y la señal se actualizan solos cada mañana.</p>
+        <h2 class="r d1" style="max-width:13ch">Hecho en GEMI</h2>
+        <p class="lead r d2">A la derecha está <b>Scope en vivo</b> con los datos reales. Trajimos nuestros mejores productos y los pusimos a andar solos.</p>
         <p class="lead r d3" style="margin-top:14px;font-size:15px">Ningún dato inventado. Todo con fuente y fecha.</p>
       </div>
       <div class="viz r d3">
@@ -770,28 +771,41 @@
     </div>
   </section>
 
-  <section data-t="Acceso">
+  <section data-t="Acceso" data-anim="prices">
     <div class="glow" style="width:520px;height:520px;background:var(--g3);top:-12%;right:-8%;opacity:.22"></div>
     <div class="kick r">Acceso</div>
     <h2 class="r d1" style="max-width:14ch">Un precio para cada ritmo</h2>
     <div class="prices">
-      <div class="price r d2"><div class="ptag"></div><div class="p">Mensual</div><div class="amt"><span class="c">$</span>1,699</div><div class="per">por usuario · al mes</div><div class="note"></div></div>
-      <div class="price r d3"><div class="ptag"></div><div class="p">Trimestral</div><div class="amt"><span class="c">$</span>4,099</div><div class="per">por usuario · cada 3 meses</div><div class="note"></div></div>
-      <div class="price best r d4"><div class="ptag"><span>Mejor valor</span></div><div class="p">Anual</div><div class="amt"><span class="c">$</span>17,999</div><div class="per">por usuario · al año</div><div class="note">Dos meses sin costo</div></div>
+      <div class="price" style="transition-delay:.35s"><div class="ptag"></div><div class="p">Mensual</div><div class="amt"><span class="c">$</span>1,699</div><div class="per">por usuario · al mes</div><div class="note"></div></div>
+      <div class="price" style="transition-delay:1s"><div class="ptag"></div><div class="p">Trimestral</div><div class="amt"><span class="c">$</span>4,099</div><div class="per">por usuario · cada 3 meses</div><div class="note"></div></div>
+      <div class="price best" style="transition-delay:1.65s"><div class="ptag"><span>Mejor valor</span></div><div class="p">Anual</div><div class="amt"><span class="c">$</span>17,999</div><div class="per">por usuario · al año</div><div class="note">Dos meses sin costo</div></div>
     </div>
-    <div class="socios r d5">
+    <div class="socios" style="transition-delay:2.4s">
       <div class="t">Los socios de GEMI ya están dentro.</div>
       <div class="d">Cada socio recibe <b>3 usuarios</b>: dos para sus miembros acreditados y uno extra para probarlo sin costo. Por cada usuario adicional, un precio preferencial de <b>$999 al mes</b>, solo por los meses en que se use.</div>
     </div>
   </section>
 
-  <section class="mid" data-t="One more thing" style="text-align:center;align-items:center">
-    <div class="glow" style="width:560px;height:560px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.18"></div>
-    <div class="cap r" style="color:var(--mut);font-size:14px;letter-spacing:.12em">One more thing…</div>
-    <h2 class="r d1" style="max-width:14ch;margin-top:16px">Y en octubre, llega Signal</h2>
-    <p class="lead r d2" style="margin:18px auto 0;max-width:640px">Un agente que responde tus dudas de NOMs, impuestos y normativa cruzando los datos de tu propia terminal. Scope deja de solo mostrarte la agenda: <b>te la explica</b>.</p>
-    <div class="soonbig r d3" style="margin-top:22px">Disponible en octubre</div>
-    <p class="r d4" style="margin:24px auto 0;max-width:600px;color:var(--mut);font-size:15px">Y después, la señal baja a lo <b>municipal</b> y llega al teléfono con la <b>app de Scope</b>.</p>
+  <section data-t="One more thing" data-anim="chat">
+    <div class="glow" style="width:560px;height:560px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.16"></div>
+    <div class="cap r" style="color:var(--mut);font-size:14px;letter-spacing:.12em">One more thing&hellip;</div>
+    <div class="split" style="margin-top:22px">
+      <div class="col">
+        <h2 class="r d1" style="max-width:14ch">Y en octubre, llega Signal</h2>
+        <p class="lead r d2" style="margin:18px 0 0;max-width:520px">Un agente que responde tus dudas de NOMs, impuestos y normativa cruzando los datos de tu propia terminal. Scope deja de solo mostrarte la agenda: <b>te la explica</b>.</p>
+        <div class="soonbig r d3" style="margin-top:22px">Disponible en octubre</div>
+        <p class="r d4" style="margin:22px 0 0;max-width:520px;color:var(--mut);font-size:15px">Y después, la señal baja a lo <b>municipal</b> y llega al teléfono con la <b>app de Scope</b>.</p>
+      </div>
+      <div class="viz r d2">
+        <div class="chat" id="sigchat">
+          <div class="bubble me">¿Qué estado cobra más por tonelada de CO₂e?</div>
+          <div class="bubble sg"><div class="typing"><span></span><span></span><span></span></div></div>
+          <div class="bubble sg"><div class="sgtag"><img src="assets/logo-gemi-icon.png" alt="">Signal <span class="soon">Disponible en octubre</span></div>Coahuila, con <b>$528 por tonelada</b>: el impuesto al carbono más alto del país, seguido de Nuevo León ($327). ¿Te preparo el comparativo completo?</div>
+          <div class="bubble me">Sí, y añade el impuesto al agua.</div>
+          <div class="bubble sg"><div class="typing"><span></span><span></span><span></span></div></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="mid" data-t="Cierre" data-anim="closetw" style="text-align:center;align-items:center">
@@ -1126,6 +1140,24 @@
     if(a==='termcfg')startTerm(sec);
     if(a==='chat')startChat(sec);
     if(a==='expcard')startExpCard(sec);
+    if(a==='chaos')chaosMarquee(sec);
+  }
+  // Marquee de cine: ilumina chips al azar con sentido de urgencia
+  var _chaosTimer=null;
+  function chaosMarquee(sec){
+    if(_chaosTimer)return;
+    var chips=[].slice.call(sec.querySelectorAll('.chip-src'));
+    if(!chips.length)return;
+    function on(el){el.style.color='#e6b45e';el.style.borderColor='rgba(230,180,94,.6)';el.style.background='rgba(230,180,94,.12)';el.style.boxShadow='0 0 20px rgba(230,180,94,.30)';}
+    function off(el){el.style.color='';el.style.borderColor='';el.style.background='';el.style.boxShadow='';}
+    function tick(){
+      var n=1+Math.floor(Math.random()*2);
+      for(var i=0;i<n;i++){
+        var c=chips[Math.floor(Math.random()*chips.length)];
+        if(!c.dataset.on){c.dataset.on='1';on(c);(function(el){setTimeout(function(){off(el);delete el.dataset.on;},650+Math.random()*750);})(c);}
+      }
+    }
+    setTimeout(function(){tick();_chaosTimer=setInterval(tick,430);},1300);
   }
 
   // Senado typewriter cuando entra Actores
