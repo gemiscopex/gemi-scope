@@ -548,7 +548,7 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .sp-res .res-ring .rl{font-family:var(--mono);font-size:8.5px;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-muted);text-align:center;line-height:1.4}
 .sp-res .res-donut{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:4px}
 .sp-res .res-seg{display:flex;height:12px;border-radius:7px;overflow:hidden;margin:2px 0 12px}
-.sp-res .res-seg i{height:100%}
+.sp-res .res-seg i{height:100%;box-shadow:inset -1.6px 0 0 var(--card)}
 .sp-gaceta-link{display:flex;align-items:center;gap:12px;padding:16px;background:var(--green-tint);border-radius:12px;text-decoration:none;color:var(--text);font-weight:600;font-size:14px;margin-bottom:14px;border:1px solid rgba(0,158,144,0.15);transition:background 0.15s}
 .sp-gaceta-link:hover{background:rgba(0,158,144,0.15)}
 .sp-empty{text-align:center;padding:28px;color:var(--text-muted);font-size:13px}
@@ -3206,6 +3206,8 @@ function renderSPResiduos(state){
   var dg=(_diagResiduos&&_diagResiduos.estados&&_diagResiduos.estados[state])||null;
   if(!e&&!dg){el.innerHTML='<div style="font-size:12px;color:var(--text-sec);line-height:1.6;padding:8px 0">Sin datos de residuos para '+state+'.</div>';return;}
   var GRN='#0E8C74',TEA='#2AA88B',LGR='#66B79E',GRY='#9AA3A0',AMB='#B45309',RED='#DC2626';
+  // Composición (categorías): rampa fría GEMI bien espaciada, distinta del semáforo de Disposición
+  var C_ORG='#066750',C_APR='#12A594',C_OTR='#C2CBC7';
   var num=function(n){return (n==null)?'—':(typeof n==='number'?n.toLocaleString('es-MX'):n);};
   var ICONS={
     gen:'<path d="M3 6h14"/><path d="M8 6V4h4v2"/><path d="M5 6l1 11h8l1-11"/>',
@@ -3234,7 +3236,7 @@ function renderSPResiduos(state){
       var x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
       var xi1=cx+rin*Math.cos(a1),yi1=cy+rin*Math.sin(a1),xi0=cx+rin*Math.cos(a0),yi0=cy+rin*Math.sin(a0);
       var lg=f>0.5?1:0;
-      paths+='<path d="M'+x0.toFixed(1)+' '+y0.toFixed(1)+' A'+r+' '+r+' 0 '+lg+' 1 '+x1.toFixed(1)+' '+y1.toFixed(1)+' L'+xi1.toFixed(1)+' '+yi1.toFixed(1)+' A'+rin+' '+rin+' 0 '+lg+' 0 '+xi0.toFixed(1)+' '+yi0.toFixed(1)+' Z" fill="'+s.c+'"/>';
+      paths+='<path d="M'+x0.toFixed(1)+' '+y0.toFixed(1)+' A'+r+' '+r+' 0 '+lg+' 1 '+x1.toFixed(1)+' '+y1.toFixed(1)+' L'+xi1.toFixed(1)+' '+yi1.toFixed(1)+' A'+rin+' '+rin+' 0 '+lg+' 0 '+xi0.toFixed(1)+' '+yi0.toFixed(1)+' Z" fill="'+s.c+'" stroke="var(--card)" stroke-width="1.6"/>';
       a0=a1;});
     return '<svg width="84" height="84" viewBox="0 0 84 84" style="flex-shrink:0">'+paths+'</svg>';
   };
@@ -3252,11 +3254,11 @@ function renderSPResiduos(state){
     // Composición (dona)
     if(e.comp){
       h+=H('comp','Composición estimada');
-      h+='<div class="res-donut">'+DONUT([{v:e.comp.organicos,c:GRN},{v:e.comp.aprovechables,c:TEA},{v:e.comp.otros,c:GRY}])
+      h+='<div class="res-donut">'+DONUT([{v:e.comp.organicos,c:C_ORG},{v:e.comp.aprovechables,c:C_APR},{v:e.comp.otros,c:C_OTR}])
         +'<div class="res-leg" style="flex-direction:column;gap:9px">'
-          +'<span><i style="background:'+GRN+'"></i>Orgánicos <b style="color:var(--text);margin-left:5px">'+e.comp.organicos.toFixed(1)+'%</b></span>'
-          +'<span><i style="background:'+TEA+'"></i>Aprovechables <b style="color:var(--text);margin-left:5px">'+e.comp.aprovechables.toFixed(1)+'%</b></span>'
-          +'<span><i style="background:'+GRY+'"></i>Otros <b style="color:var(--text);margin-left:5px">'+e.comp.otros.toFixed(1)+'%</b></span>'
+          +'<span><i style="background:'+C_ORG+'"></i>Orgánicos <b style="color:var(--text);margin-left:5px">'+e.comp.organicos.toFixed(1)+'%</b></span>'
+          +'<span><i style="background:'+C_APR+'"></i>Aprovechables <b style="color:var(--text);margin-left:5px">'+e.comp.aprovechables.toFixed(1)+'%</b></span>'
+          +'<span><i style="background:'+C_OTR+'"></i>Otros <b style="color:var(--text);margin-left:5px">'+e.comp.otros.toFixed(1)+'%</b></span>'
         +'</div></div>';
     }
   }
