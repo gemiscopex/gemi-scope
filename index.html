@@ -917,13 +917,18 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-gauge .g-score{font-family:var(--sans);font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--green);font-variant-numeric:tabular-nums}
 .cons-gauge .g-lvl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-top:6px}
 .cons-gauge .g-of{font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:3px}
-.cons-htiles{display:grid;grid-template-columns:repeat(2,minmax(120px,1fr));gap:2px 0;flex:1;min-width:230px}
-@media(max-width:440px){.cons-htiles{grid-template-columns:1fr}}
-.cons-htile{padding:9px 15px;border-left:2px solid var(--border)}
-.cons-htile.hot{border-left-color:var(--green)}
-.cons-htile .k{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
-.cons-htile .v{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-top:4px;line-height:1;color:var(--text);font-variant-numeric:tabular-nums}
-.cons-htile .d{font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cons-htiles{display:flex;flex-direction:column;gap:0;flex:1;min-width:200px}
+.cons-htile{display:flex;align-items:center;gap:11px;padding:9px 2px;border-bottom:0.8px solid var(--border)}
+.cons-htile:last-child{border-bottom:none}
+.cons-htile .ic{color:var(--green);flex-shrink:0;display:flex}
+.cons-htile .k{font-size:13px;color:var(--text);flex:1;min-width:0}
+.cons-htile .v{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.cons-nvstrip{margin-top:18px;padding-top:15px;border-top:0.8px solid var(--border)}
+.cons-nvrow{display:grid;grid-template-columns:76px 1fr auto;gap:11px;align-items:center;padding:7px 0;border-bottom:0.8px solid rgba(0,0,0,0.04)}
+.cons-nvrow:last-child{border-bottom:none}
+.cons-nvrow .src{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.05em}
+.cons-nvrow .txt{font-size:12px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cons-nvrow .ago{font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap}
 /* Bloques colapsables (clic para expandir) */
 .cons-wh.tog{cursor:pointer;border-bottom:none;padding-bottom:0;margin-bottom:0}
 .cons-wcaret{color:var(--text-muted);font-size:10px;transition:transform .2s,color .2s;flex-shrink:0;padding-left:6px}
@@ -6412,7 +6417,6 @@ function renderConsola(){
   widgets.push({id:'comisiones',title:'Mis comisiones',count:coms.length,add:'comisiones',wide:true,body:'<div id="cons-coms" style="overflow-x:auto"></div>'});
   if(legs.length)widgets.push({id:'legisladores',title:'Mis legisladores',count:legs.length,add:'legisladores',wide:true,body:'<div class="cons-leg-grid" id="cons-legs"></div>'});
   if(userKw.length)widgets.push({id:'keywords',title:'Feed de mis keywords',count:null,add:'afinar',wide:true,body:'<div id="cons-kw"></div>'});
-  widgets.push({id:'panelgemi',title:'Panel GEMI',count:null,body:_panelGemiBody()});
   widgets=_consApplyOrder(widgets,cfg.layout);
 
   var _nm=(typeof _userDisplayName==='function')?_userDisplayName():'';
@@ -6432,10 +6436,9 @@ function renderConsola(){
       +'<div class="cons-main">'
         +kpis
         +'<section style="margin-top:32px"><div class="cons-hero-kick" style="color:var(--green);padding-bottom:7px;border-bottom:0.8px solid var(--border);margin-bottom:14px">Señal de mis temas</div><div id="cons-senal"></div></section>'
-        +'<div style="margin-top:32px">'+_consVisitHero(cfg)+'</div>'
         +'<div class="cons-widgets" id="cons-widgets">'+widgets.map(_consWidgetHTML).join('')+'</div>'
       +'</div>'
-      +'<div class="cons-rail">'+_consActivityRailHTML(sen)+_consSignalRailHTML()+'</div>'
+      +'<div class="cons-rail">'+_consSignalRailHTML()+_consPanelGemiRailHTML()+'</div>'
     +'</div>';
 
   _loadPanelGemi();
@@ -6535,6 +6538,14 @@ function _consChatSend(){
     msgs.scrollTop=msgs.scrollHeight;
   },550);
 }
+// ── Panel GEMI · Agenda en el rail (debajo de Signal) ──
+function _consPanelGemiRailHTML(){
+  _pgemiTab='agenda';
+  return '<div style="margin-top:22px">'
+    +'<div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);padding-bottom:6px;border-bottom:0.8px solid var(--border);margin-bottom:12px">Agenda GEMI</div>'
+    +'<div id="panel-gemi-body" style="max-height:340px;overflow-y:auto"><div style="font-size:11px;color:var(--text-muted);padding:8px 0">Cargando…</div></div>'
+  +'</div>';
+}
 // ── Nivel de actividad del terminal (rail derecho, arriba de Signal) ──
 function _consActivityRailHTML(sen){
   var nivel=sen.total>=12?'Actividad alta':sen.total>=5?'Actividad media':'Actividad baja';
@@ -6625,16 +6636,34 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
     +'<circle cx="80" cy="80" r="'+R+'" fill="none" stroke="rgba(120,130,140,0.2)" stroke-width="11"/>'
     +'<circle cx="80" cy="80" r="'+R+'" fill="none" stroke="var(--green)" stroke-width="11" stroke-linecap="round" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+off+'" transform="rotate(-90 80 80)"/>'
     +'</svg><div class="g-ctr"><div class="g-score">'+(sen.total||0)+'</div><div class="g-of">menciones · '+sen.dias+' días</div><div class="g-lvl">Nivel '+lvlWord+'</div></div></div>';
-  var desc=function(arr,max){arr=(arr||[]).filter(Boolean);if(!arr.length)return 'Nada seleccionado aún';return _escUser(arr.slice(0,max).join(' · '))+(arr.length>max?' +'+(arr.length-max):'');};
-  var htiles=
-     '<div class="cons-htile hot"><div class="k">Temas</div><div class="v">'+temas.length+'</div><div class="d">'+desc(temas.map(function(c){return c.name;}),2)+'</div></div>'
-    +'<div class="cons-htile"><div class="k">Estados</div><div class="v">'+estados.length+'</div><div class="d">'+desc(estados,2)+'</div></div>'
-    +'<div class="cons-htile"><div class="k">Comisiones</div><div class="v">'+coms.length+'</div><div class="d">'+desc(coms.map(function(c){return c.nombre;}),1)+'</div></div>'
-    +(legs.length?'<div class="cons-htile"><div class="k">Legisladores</div><div class="v">'+legs.length+'</div><div class="d">'+desc(legs.map(function(l){return l.n;}),1)+'</div></div>':'')
-    +'<div class="cons-htile"><div class="k">Referencias</div><div class="v">'+nRefs+'</div><div class="d">NOMs · impuestos · materiales</div></div>';
+  var _mic={
+    temas:'<path d="M10 3l7 4-7 4-7-4 7-4Z"/><path d="M3 12l7 4 7-4"/>',
+    estados:'<path d="M10 18s6-5.5 6-10a6 6 0 0 0-12 0c0 4.5 6 10 6 10Z"/><circle cx="10" cy="8" r="2"/>',
+    coms:'<path d="M4 18V6l6-3 6 3v12"/><path d="M8 18v-4h4v4"/>',
+    legs:'<circle cx="10" cy="6" r="2.6"/><path d="M4.5 18c0-3.2 2.6-5 5.5-5s5.5 1.8 5.5 5"/>',
+    refs:'<path d="M6 3h6l3 3v11H6z"/><path d="M12 3v3h3"/>'
+  };
+  var mtile=function(icon,label,n){return '<div class="cons-htile"><span class="ic"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">'+icon+'</svg></span><span class="k">'+label+'</span><span class="v">'+n+'</span></div>';};
+  var htiles=mtile(_mic.temas,'Temas',temas.length)
+    +mtile(_mic.estados,'Estados',estados.length)
+    +mtile(_mic.coms,'Comisiones',coms.length)
+    +(legs.length?mtile(_mic.legs,'Legisladores',legs.length):'')
+    +mtile(_mic.refs,'Referencias',nRefs);
+  // Novedades compactas, pegadas al pie del héroe (solo cuando hay)
+  var sl=(typeof _consSinceLast==='function')?_consSinceLast(cfg):{items:[]},nv=sl.items.length,nvStrip='';
+  if(nv){
+    nvStrip='<div class="cons-nvstrip"><div class="cons-hero-kick" style="color:var(--green);margin-bottom:9px">Nuevo desde tu última visita · '+nv+'</div>'
+      +sl.items.slice(0,3).map(function(i){
+        var oc=i.url?(' onclick="window.open(\''+String(i.url).replace(/'/g,'%27')+'\',\'_blank\')" style="cursor:pointer"'):'';
+        return '<div class="cons-nvrow"'+oc+'><span class="src" style="color:'+i.color+'">'+i.cat+'</span><span class="txt">'+_escUser(i.text)+'</span><span class="ago">'+((typeof _agoText==='function')?_agoText(i.ts):'')+'</span></div>';
+      }).join('')
+      +(nv>3?'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);padding-top:8px">+'+(nv-3)+' más</div>':'')
+    +'</div>';
+  }
   return '<div class="cons-hero">'
     +'<div class="cons-hero-kick" style="color:var(--green)">Estado de tu terminal</div>'
     +'<div class="cons-herorow">'+gauge+'<div class="cons-htiles">'+htiles+'</div></div>'
+    +nvStrip
   +'</div>';
 }
 // ── Panel GEMI: canal oficial del equipo (mensajes de administradores + agenda de fechas) ──
@@ -6850,14 +6879,14 @@ function _consSenal(sen){
     +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px">'+total+' menciones en medios · '+dias+' días · '+rows.length+' temas</div>'
     +(leadSerie.length&&total>0?('<div style="display:flex;align-items:center;gap:8px;margin-top:9px">'+_spark(leadSerie,nivel[1])+'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+(streak>=2?('↑ '+lead.c.name+' lleva '+streak+' semanas al alza'):(lead.c.name+' · últimas 8 semanas'))+'</span></div>'):'')
     +'</div>'
-    +'<div class="cons-tema-row" style="border:none;opacity:.55"><span></span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Tema</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Volumen</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase;text-align:right">Menc.</span><span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);text-transform:uppercase">Tend.</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase;text-align:right">Prior.</span></div>'
+    +'<div class="cons-tema-row" style="border:none;opacity:.55"><span></span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Tema</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase">Trayectoria · 8 sem</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase;text-align:right">Menc.</span><span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);text-transform:uppercase">Tend.</span><span style="font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--text-muted);text-transform:uppercase;text-align:right">Prior.</span></div>'
     +(function(){var mx=Math.max.apply(null,rows.map(function(r){return r.n7;}).concat([1]));
       return rows.map(function(r){
       var pct=Math.round(r.n7/mx*100);
       return '<div class="cons-tema-row" style="cursor:pointer" onclick="_consTemaToggle(\''+r.c.id+'\')" title="Ver las menciones de este tema">'
         +'<span style="width:8px;height:8px;border-radius:50%;background:'+r.c.color+'"></span>'
         +'<span style="font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+r.c.name+' <span id="cment-arr-'+r.c.id+'" style="font-size:8px;color:var(--text-muted)">▸</span></span>'
-        +'<span class="cons-tema-bar"><span style="width:'+pct+'%;background:var(--green)'+(r.n7?'':';opacity:.25')+'"></span></span>'
+        +'<span style="min-width:0">'+(function(){var s=(typeof _consWeekSeries==='function')?_consWeekSeries(r.c.kw,8):[];return (s.length>1)?_sparkWide(s,r.c.color||'var(--green)'):'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">—</span>';})()+'</span>'
         +'<span style="font-family:var(--mono);font-size:11px;color:var(--text2);text-align:right">'+r.n7+'</span>'
         +'<span style="font-family:var(--mono);font-size:12px;color:'+r.arrow[1]+';text-align:center">'+r.arrow[0]+'</span>'
         +'<span class="cons-prio" style="color:'+r.r[1]+'">'+r.r[0]+'</span>'
@@ -7049,7 +7078,7 @@ function _dofSaveToggle(btn,url,ev){
   else{var d=(_dofData||[]).filter(function(x){return String(x.url||'')===u;})[0]||{};arr.push({url:u,titulo:d.titulo||'',dependencia:d.dependencia||'DOF',fecha:d.fecha||''});nowSaved=true;}
   _dofSavedSet(arr);
   if(typeof _toast==='function')_toast(nowSaved?'Guardada en tu terminal · Normas de mis temas':'Quitada de tu terminal');
-  if(btn){var nav=btn.classList.contains('nav');btn.classList.toggle('on',nowSaved);btn.textContent=nav?(nowSaved?'✓ En tu terminal':'+ Agregar a mi terminal'):(nowSaved?'✓':'+');btn.title=nowSaved?'Quitar de mi terminal':'Agregar a mi terminal';}
+  if(btn){var nav=btn.classList.contains('nav');btn.classList.toggle('on',nowSaved);btn.textContent=nav?(nowSaved?'✓ En tu terminal':'+ Agregar a mi terminal'):(nowSaved?'✕':'+');btn.title=nowSaved?'Quitar de mi terminal':'Agregar a mi terminal';}
   if(document.getElementById('cons-normas'))_consNormas(window.__consAllKw||[]);
 }
 function _consNormRow(d,savedTab){
@@ -7061,7 +7090,7 @@ function _consNormRow(d,savedTab){
       +'<div class="cft">'+(d.titulo||'(sin título)')+'</div>'
       +'<div class="cfm">'+(d.dependencia||'DOF')+' · '+f+'</div>'
     +'</div>'
-    +'<button class="cons-normsave'+(saved?' on':'')+'" title="'+(saved?'Quitar de mi terminal':'Agregar a mi terminal')+'" onclick="_dofSaveToggle(this,\''+u+'\',event)">'+(saved?'✓':'+')+'</button>'
+    +'<button class="cons-normsave'+(saved?' on':'')+'" title="'+(saved?'Quitar de mi terminal':'Agregar a mi terminal')+'" onclick="_dofSaveToggle(this,\''+u+'\',event)">'+(saved?'✕':'+')+'</button>'
   +'</div>';
 }
 function _consNormasSet(t){_consNormasTab=t;_consNormas(window.__consAllKw||[]);}
@@ -7141,6 +7170,16 @@ function _consWeekSeries(kwList,weeks){
   return out;
 }
 function _consStreak(s){if(!s||s.length<2)return 0;var up=0;for(var i=s.length-1;i>0;i--){if(s[i]>s[i-1])up++;else break;}return up;}
+// Sparkline de trayectoria (ancho 100%, punta marcada) — para la señal por tema en el tiempo
+function _sparkWide(vals,color){
+  if(!vals||vals.length<2)return '';
+  var W=120,H=22,mx=Math.max.apply(null,vals.concat([1]));
+  var pts=vals.map(function(v,i){var x=(i/(vals.length-1))*W;var y=H-3-(v/mx)*(H-7);return x.toFixed(1)+','+y.toFixed(1);}).join(' ');
+  var lx=W,ly=H-3-(vals[vals.length-1]/mx)*(H-7);
+  return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" style="width:100%;height:22px;display:block;overflow:visible">'
+    +'<polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>'
+    +'<circle cx="'+lx+'" cy="'+ly.toFixed(1)+'" r="2.1" fill="'+color+'"/></svg>';
+}
 function _spark(vals,color){
   if(!vals||!vals.length)return '';
   var w=44,h=15,max=Math.max.apply(null,vals.concat([1]));
