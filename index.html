@@ -698,7 +698,9 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .peek-open{display:inline-flex;align-items:center;gap:7px;background:var(--green);color:#fff;border:none;border-radius:9px;padding:11px 17px;font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;text-decoration:none}
 .dof-it-m{font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px}
 /* ═══════════ ETAPA 1: BANNER SEMANAL + CINTILLO + RADAR FAB ═══════════ */
-.radar-fab{display:inline-flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;position:relative;flex-shrink:0;align-self:center;margin:0 0 0 4px;padding:4px;border-radius:8px;transition:background .15s}
+.radar-fab{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;background:none;cursor:pointer;position:relative;flex-shrink:0;align-self:center;margin:0 0 0 4px;padding:4px 8px 4px 4px;border-radius:8px;transition:background .15s}
+.radar-fab-lbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.09em;color:var(--text)}
+@media(max-width:1180px){.radar-fab-lbl{display:none}}
 .radar-fab:hover{background:rgba(0,158,144,0.08)}
 .nav-tab-sep{width:1px;height:22px;background:var(--border);align-self:center;flex-shrink:0;margin:0 18px 0 12px}
 .radar-fab-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:radarPing 2.2s ease-out infinite;flex-shrink:0}
@@ -1142,7 +1144,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
     <img id="nav-logo" src="assets/scope-logo.png?v=2" alt="Scope" title="Inicio" onclick="showTab('dashboard',null)" style="height:30px;width:auto;display:block;cursor:pointer;position:relative;top:2px">
   </div>
   <div class="nav-tabs">
-    <button class="radar-fab" onclick="showTab('radares',null)" data-tt="Radares: Monitoreo de actividad de los sectores"><svg class="radar-ico" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="rdrsw" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#12A594" stop-opacity="0"/><stop offset="100%" stop-color="#12A594" stop-opacity="0.6"/></radialGradient></defs><circle cx="50" cy="50" r="40" fill="none" stroke="#0E8C74" stroke-width="6" stroke-opacity="0.30"/><circle cx="50" cy="50" r="26" fill="none" stroke="#0E8C74" stroke-width="6" stroke-opacity="0.38"/><g class="radar-spin"><path d="M50 50 L50 8 A42 42 0 0 1 88 34 Z" fill="url(#rdrsw)"/><line x1="50" y1="50" x2="50" y2="8" stroke="#066750" stroke-width="6" stroke-linecap="round"/></g><circle cx="50" cy="50" r="7" fill="#066750"/></svg></button>
+    <button class="radar-fab" onclick="showTab('radares',null)" data-tt="Radares: Monitoreo de actividad de los sectores"><svg class="radar-ico" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="rdrsw" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#12A594" stop-opacity="0"/><stop offset="100%" stop-color="#12A594" stop-opacity="0.6"/></radialGradient></defs><circle cx="50" cy="50" r="40" fill="none" stroke="#0E8C74" stroke-width="6" stroke-opacity="0.30"/><circle cx="50" cy="50" r="26" fill="none" stroke="#0E8C74" stroke-width="6" stroke-opacity="0.38"/><g class="radar-spin"><path d="M50 50 L50 8 A42 42 0 0 1 88 34 Z" fill="url(#rdrsw)"/><line x1="50" y1="50" x2="50" y2="8" stroke="#066750" stroke-width="6" stroke-linecap="round"/></g><circle cx="50" cy="50" r="7" fill="#066750"/></svg><span class="radar-fab-lbl">RADAR</span></button>
     <span class="nav-tab-sep" aria-hidden="true"></span>
     <div class="nav-drop-wrap">
       <button class="tab-btn" onclick="navDrop(event,this,function(){goObligaciones('federal')})">Obligaciones ▾</button>
@@ -5774,6 +5776,7 @@ function _wizPaint(){
     +'<div class="cw-foot">'
       +'<span class="cw-count" id="cw-count"></span>'
       +'<div style="display:flex;gap:8px">'
+        +'<button class="cw-btn" id="cw-save" onclick="_wizSaveExit()" title="Guarda lo que llevas y cierra">Guardar y salir</button>'
         +(_wiz.paso>0?'<button class="cw-btn" onclick="_wizBack()">← Atrás</button>':'')
         +'<button class="cw-btn primary" id="cw-next" onclick="_wizNext()"></button>'
       +'</div>'
@@ -5786,7 +5789,25 @@ function _wizPaintFoot(){
   var btn=document.getElementById('cw-next');
   btn.textContent=last?'Listo ✓':'Siguiente →';
   btn.disabled=!_wizOk();
+  var sv=document.getElementById('cw-save');
+  if(sv)sv.disabled=(_wiz.sel.temas.size===0); // basta con tener al menos un tema
   document.getElementById('cw-count').textContent=_wizCount();
+}
+// Guarda lo seleccionado hasta ahora y cierra (disponible en cualquier paso)
+function _wizCommit(){
+  saveConsola({
+    temas:[..._wiz.sel.temas],estados:[..._wiz.sel.estados],
+    comisiones:[..._wiz.sel.comisiones],legisladores:[..._wiz.sel.legisladores],
+    noms:[..._wiz.sel.noms],instrumentos:[..._wiz.sel.instrumentos],
+    impuestos:[..._wiz.sel.impuestos],materiales:[..._wiz.sel.materiales],
+    keywords:_wiz.sel.keywords.slice(),riesgos:_wiz.sel.riesgos,
+    layout:(loadConsola().layout||[])
+  });
+}
+function _wizSaveExit(){
+  if(_wiz.sel.temas.size===0)return;
+  _wizCommit();closeConsolaWizard();renderConsola();
+  if(typeof _toast==='function')_toast('Terminal actualizada');
 }
 function _wizPaintBody(){
   var p=_WIZ_PASOS[_wiz.paso],b=document.getElementById('cw-body');
@@ -5937,10 +5958,10 @@ function _wizPaintLegList(){
       var g=legs.filter(function(l){return l.camara===cm[0];});
       if(!g.length)return;
       html+='<div style="font-size:11px;font-weight:700;color:var(--green);margin:8px 0 6px">'+cm[1]+' <span style="color:var(--dim);font-weight:500;font-size:10px">· '+g.length+'</span></div>'
-        +g.slice(0,60).map(_wizLegRow).join('');
+        +g.map(_wizLegRow).join('');
     });
   }else{
-    html=legs.slice(0,80).map(_wizLegRow).join('');
+    html=legs.map(_wizLegRow).join('');
   }
   el.innerHTML=html;
 }
@@ -6431,12 +6452,24 @@ function renderConsola(){
 //    instrumentos legales (NOMs + instrumentos) que ya eligió en Referencias ──
 function _consCumplGet(){try{return JSON.parse(localStorage.getItem('scope_cumplimiento_v1'))||{};}catch(e){return {};}}
 function _consCumplSet(key,st){var m=_consCumplGet();if(m[key]===st)delete m[key];else m[key]=st;try{localStorage.setItem('scope_cumplimiento_v1',JSON.stringify(m));}catch(e){}_cumplRender();}
+// Mi cumplimiento = catálogo COMPLETO de obligaciones (siempre presente) + lo que agregaste en Referencias.
 function _cumplItems(cfg){
-  var items=[];
-  (cfg.noms||[]).forEach(function(id){var n=(typeof NORMAS!=='undefined'?NORMAS:[]).find(function(x){return x.id===id;});items.push({key:'nom:'+id,titulo:id,sub:n?n.objeto:'',url:n?n.url:'',mono:true});});
-  (cfg.instrumentos||[]).forEach(function(nm){var o=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).find(function(x){return x.n===nm;});items.push({key:'ins:'+nm,titulo:nm,sub:o?o.d:'',url:'',mono:false});});
-  (cfg.impuestos||[]).forEach(function(t){var inf=(typeof _consImpInfo==='function')?_consImpInfo(t):{states:[]};items.push({key:'imp:'+t,titulo:t,sub:'Impuesto ambiental · en '+inf.states.length+' entidad'+(inf.states.length===1?'':'es'),url:'',mono:false});});
-  (cfg.materiales||[]).forEach(function(mm){var inf=(typeof _consMatInfo==='function')?_consMatInfo(mm):{states:[]};items.push({key:'mat:'+mm,titulo:mm,sub:'Material restringido · prohibido en '+inf.states.length+' entidad'+(inf.states.length===1?'':'es'),url:'',mono:false});});
+  cfg=cfg||{};
+  var items=[],seen={};
+  function push(key,titulo,sub,url,mono,grupo){if(seen[key])return;seen[key]=1;items.push({key:key,titulo:titulo,sub:sub||'',url:url||'',mono:!!mono,grupo:grupo});}
+  // 1) Instrumentos legales (todo el catálogo base) + distintivos/certificaciones
+  (typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).forEach(function(o){
+    push('ins:'+o.n,o.n,o.d,o.url||'',false,'Instrumentos legales');
+    (o.certs||[]).forEach(function(c){push('cert:'+c.n,c.n,'Distintivo voluntario · '+c.dep,c.url||'',false,'Distintivos y certificaciones');});
+  });
+  // 2) NOMs que agregaste en Referencias
+  (cfg.noms||[]).forEach(function(id){var n=(typeof NORMAS!=='undefined'?NORMAS:[]).find(function(x){return x.id===id;});push('nom:'+id,id,n?n.objeto:'',n?n.url:'',true,'NOMs de mis temas');});
+  // 3) Impuestos ambientales que agregaste
+  (cfg.impuestos||[]).forEach(function(t){var inf=(typeof _consImpInfo==='function')?_consImpInfo(t):{states:[]};push('imp:'+t,t,'Impuesto ambiental · en '+inf.states.length+' entidad'+(inf.states.length===1?'':'es'),'',false,'Impuestos ambientales');});
+  // 4) Materiales restringidos que agregaste
+  (cfg.materiales||[]).forEach(function(mm){var inf=(typeof _consMatInfo==='function')?_consMatInfo(mm):{states:[]};push('mat:'+mm,mm,'Material restringido · prohibido en '+inf.states.length+' entidad'+(inf.states.length===1?'':'es'),'',false,'Materiales restringidos');});
+  // 5) Instrumentos que hayas agregado a mano fuera del catálogo
+  (cfg.instrumentos||[]).forEach(function(nm){var o=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).find(function(x){return x.n===nm;});push('ins:'+nm,nm,o?o.d:'',o&&o.url?o.url:'',false,'Instrumentos legales');});
   return items;
 }
 function _cumplRender(){
@@ -6447,12 +6480,15 @@ function _cumplRender(){
   var nOk=items.filter(function(it){return m[it.key]==='cumplo';}).length;
   var nProc=items.filter(function(it){return m[it.key]==='proceso';}).length;
   var opts=[['cumplo','Cumplo','#066750','rgba(6,103,80,.08)'],['proceso','En proceso','#B7791F','rgba(183,121,31,.08)'],['na','No aplica','var(--text-muted)','rgba(0,0,0,.03)']];
+  var lastG=null;
   var rows=items.map(function(it){
     var cur=m[it.key]||'';var k=it.key.replace(/'/g,"\\'");
+    var hdr='';
+    if(it.grupo&&it.grupo!==lastG){lastG=it.grupo;hdr='<div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin:16px 0 2px;padding-bottom:5px;border-bottom:0.8px solid var(--border)">'+it.grupo+'</div>';}
     var ctrl=opts.map(function(o){var on=cur===o[0];
-      return '<button onclick="_consCumplSet(\''+k+'\',\''+o[0]+'\')" style="font-family:var(--mono);font-size:9px;letter-spacing:.03em;padding:3px 8px;border:0.8px solid '+(on?o[2]:'var(--border)')+';background:'+(on?o[3]:'none')+';color:'+(on?o[2]:'var(--text-muted)')+';cursor:pointer;border-radius:6px">'+o[1]+'</button>';
+      return '<button onclick="_consCumplSet(\''+k+'\',\''+o[0]+'\')" style="font-family:var(--mono);font-size:9px;letter-spacing:.03em;padding:3px 8px;border:0.8px solid '+(on?o[2]:'var(--border)')+';background:'+(on?o[3]:'none')+';color:'+(on?o[2]:'var(--text-muted)')+';cursor:pointer;border-radius:0">'+o[1]+'</button>';
     }).join('');
-    return '<div style="padding:9px 0;border-top:0.8px solid var(--border)">'
+    return hdr+'<div style="padding:9px 0;border-top:0.8px solid var(--border)">'
       +'<div style="display:flex;align-items:baseline;gap:8px;justify-content:space-between">'
         +'<span style="'+(it.mono?'font-family:var(--mono);':'')+'font-size:'+(it.mono?'11':'12')+'px;font-weight:600;color:'+(it.mono?'var(--green)':'var(--text)')+';min-width:0;overflow:hidden;text-overflow:ellipsis">'+it.titulo+'</span>'
         +(it.url?'<a href="'+it.url+'" target="_blank" rel="noopener" style="font-size:9px;color:var(--text-muted);text-decoration:none;flex-shrink:0">ver <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>':'')+'</div>'
@@ -7550,7 +7586,10 @@ async function _authInit(){
   try{
     _sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON);
     var r=await _sb.auth.getSession();_session=(r.data&&r.data.session)||null;
-    await _loadPerfil();_trackVisit();_updateAuthUI();_enforceGate();
+    await _loadPerfil();_trackVisit();_updateAuthUI();
+    // Al restaurar la sesión en un refresh, re-aplica la ruta para volver a la vista
+    // gateada (p. ej. /terminal) en vez de dejar al usuario pasmado en el login.
+    if(_hasAccess())_applyRoute(location.pathname); else _enforceGate();
     _sb.auth.onAuthStateChange(async function(_e,sess){_session=sess||null;await _loadPerfil();_updateAuthUI();});
   }catch(e){console.warn('Auth init:',e);}
 }
