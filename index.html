@@ -1820,6 +1820,13 @@ function _scopePeek(d){
   if(b)b.classList.add('open');p.classList.add('open');
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')_peekClose();});
+// Términos y avisos legales (se abre desde el footer; ya no van en la página)
+function _openTerminos(){
+  _scopePeek({kind:'Legal',title:'Términos y avisos',
+    body:'<b>Uso de la plataforma.</b> Scope es una herramienta informativa de Iniciativa GEMI. La información proviene de fuentes oficiales y se ofrece con fines de orientación; para el texto vinculante consulta siempre la fuente original.'
+      +'<br><br><b>Marcas y contenidos de terceros.</b> Los nombres, logotipos e imágenes de dependencias, legisladores y partidos políticos son propiedad de sus respectivos titulares y se usan con fines exclusivamente informativos y de identificación. Scope e Iniciativa GEMI no están afiliadas ni avaladas por dichas entidades.'
+      +'<br><br><b>Privacidad.</b> Tu configuración de Mi Terminal se guarda en este equipo. No se comparte con terceros; al iniciar sesión viajará contigo para personalizar tu experiencia.'});
+}
 function _leyRow(l,stateLabel,i){
   var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
   var tipoAbr=l.tipo==='Ley'?'LEY':l.tipo==='Código'?'CÓD':l.tipo==='Reglamento'?'REG':'NOR';
@@ -7121,12 +7128,11 @@ _applyRoute(location.pathname);
   <div class="scope-footer-brand">Scope es una plataforma de Iniciativa GEMI · v1.2 &copy; 2026</div>
   <nav class="scope-footer-links">
     <a href="#" onclick="showTab('acerca',null);return false">Sobre Scope</a>
-    <a href="#">Términos</a>
-    <a href="#">Privacidad</a>
+    <a href="#" onclick="_openTerminos();return false">Términos</a>
+    <a href="#" onclick="_openTerminos();return false">Privacidad</a>
     <a href="presentacion.html" style="color:var(--green);font-weight:600">Presentación</a>
     <a href="pitch.html" style="color:var(--green);font-weight:600">Pitch Consejo</a>
   </nav>
-  <div class="scope-footer-legal">Los nombres, logotipos e imágenes de dependencias, legisladores y partidos políticos son propiedad de sus respectivos titulares y se usan con fines exclusivamente informativos y de identificación. Scope e Iniciativa GEMI no están afiliadas ni avaladas por dichas entidades. La información proviene de fuentes oficiales; para el texto vinculante consulta siempre la fuente original.</div>
 </footer>
 <!-- MODAL REGISTRO -->
 <div id="reg-modal-bg" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.48);z-index:1200;display:none;align-items:center;justify-content:center;padding:20px" onclick="closeRegModal(event)">
