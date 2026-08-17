@@ -892,7 +892,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-rail{position:sticky;top:16px;align-self:start;min-width:0}
 @media(max-width:1080px){.cons-shell{grid-template-columns:1fr}.cons-rail{position:static;order:-1;margin-bottom:12px}.cons-main{order:0}}
 /* Widgets reordenables (drag-and-drop v1) */
-.cons-widgets{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;margin-bottom:12px}
+.cons-widgets{display:grid;grid-template-columns:1fr;gap:14px;align-items:start;margin-bottom:12px}
 @media(max-width:680px){.cons-widgets{grid-template-columns:1fr}}
 .cons-widget{border:0;border-top:0.8px solid var(--border);border-radius:0;padding:14px 0 0;min-width:0;background:none;transition:opacity .12s}
 .cons-widget.wide{grid-column:1/-1}
@@ -910,6 +910,27 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-refit{padding:8px 0;border-bottom:0.8px solid rgba(0,0,0,0.05)}
 .cons-refit:last-child{border-bottom:none}
 .cons-wide{border:0;border-top:0.8px solid var(--border);border-radius:0;padding:14px 0 0;margin-bottom:12px;min-width:0}
+/* Hero índice (anillo estilo Whoop/Garmin) + tiles de monitoreo */
+.tnum{font-variant-numeric:tabular-nums}
+.cons-herorow{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-top:14px}
+.cons-gauge{position:relative;width:150px;height:150px;flex-shrink:0}
+.cons-gauge .g-ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cons-gauge .g-score{font-family:var(--sans);font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--green);font-variant-numeric:tabular-nums}
+.cons-gauge .g-lvl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-top:6px}
+.cons-gauge .g-of{font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:3px}
+.cons-htiles{display:grid;grid-template-columns:repeat(2,minmax(120px,1fr));gap:2px 0;flex:1;min-width:230px}
+@media(max-width:440px){.cons-htiles{grid-template-columns:1fr}}
+.cons-htile{padding:9px 15px;border-left:2px solid var(--border)}
+.cons-htile.hot{border-left-color:var(--green)}
+.cons-htile .k{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.cons-htile .v{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-top:4px;line-height:1;color:var(--text);font-variant-numeric:tabular-nums}
+.cons-htile .d{font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Bloques colapsables (clic para expandir) */
+.cons-wh.tog{cursor:pointer;border-bottom:none;padding-bottom:0;margin-bottom:0}
+.cons-wcaret{color:var(--text-muted);font-size:10px;transition:transform .2s,color .2s;flex-shrink:0;padding-left:6px}
+.cons-widget.open .cons-wcaret{transform:rotate(180deg);color:var(--green)}
+.cons-widget.open .cons-wt{color:var(--green)}
+.cons-wbody{max-height:0;overflow:hidden;transition:max-height .32s ease}
 /* wizard */
 .cw-bg{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1300;display:none;align-items:center;justify-content:center;padding:18px}
 .cw{background:var(--card);border:1px solid var(--border2);width:660px;max-width:calc(100vw - 24px);max-height:calc(100vh - 40px);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.2)}
@@ -6287,10 +6308,26 @@ var _consDragId=null;
 function _consWidgetHTML(w){
   return '<div class="cons-widget'+(w.wide?' wide':'')+'" draggable="true" data-wid="'+w.id+'"'
     +' ondragstart="_consDragStart(event,\''+w.id+'\')" ondragover="_consDragOver(event)" ondragleave="_consDragLeave(event)" ondrop="_consDrop(event,\''+w.id+'\')" ondragend="_consDragEnd()">'
-    +'<div class="cons-wh"><span class="cons-dh" title="Arrastra para reacomodar">⠿</span>'
+    +'<div class="cons-wh tog" onclick="_consWToggle(event,\''+w.id+'\')"><span class="cons-dh" title="Arrastra para reacomodar" onclick="event.stopPropagation()">⠿</span>'
     +'<span class="cons-wt">'+w.title+'</span>'+(w.count!=null?'<span class="cons-wn">'+w.count+'</span>':'')
-    +(w.add?'<button class="cons-wadd" title="Agregar más en Editar terminal" onclick="openConsolaWizard(\''+w.add+'\')">+</button>':'')+'</div>'
-    +'<div>'+w.body+'</div></div>';
+    +(w.add?'<button class="cons-wadd" title="Agregar más en Editar terminal" onclick="event.stopPropagation();openConsolaWizard(\''+w.add+'\')">+</button>':'')
+    +'<span class="cons-wcaret">▾</span></div>'
+    +'<div class="cons-wbody"><div style="padding-top:12px">'+w.body+'</div></div></div>';
+}
+// Expande/colapsa un bloque de seguimiento (clic en el header)
+function _consWToggle(ev,id){
+  var w=document.querySelector('.cons-widget[data-wid="'+id+'"]');if(!w)return;
+  var body=w.querySelector('.cons-wbody');
+  var open=w.classList.toggle('open');
+  if(body)body.style.maxHeight=open?(body.scrollHeight+40)+'px':'0px';
+}
+// Cuerpo del Panel GEMI (sin header propio: usa el header colapsable estándar)
+function _panelGemiBody(){
+  return '<div class="stab-bar" style="margin-bottom:0;gap:4px 16px">'
+    +'<button class="stab'+(_pgemiTab!=='agenda'?' on':'')+'" id="pgemi-tab-mensajes" onclick="event.stopPropagation();_pgemiSetTab(\'mensajes\')">Mensajes</button>'
+    +'<button class="stab'+(_pgemiTab==='agenda'?' on':'')+'" id="pgemi-tab-agenda" onclick="event.stopPropagation();_pgemiSetTab(\'agenda\')">Agenda</button>'
+    +'</div>'
+    +'<div id="panel-gemi-body" style="max-height:300px;overflow-y:auto"><div style="font-size:11px;color:var(--text-muted);padding:10px 0">Cargando…</div></div>';
 }
 function _consApplyOrder(widgets,layout){
   if(!layout||!layout.length)return widgets;
@@ -6357,6 +6394,7 @@ function renderConsola(){
   widgets.push({id:'comisiones',title:'Mis comisiones',count:coms.length,add:'comisiones',wide:true,body:'<div id="cons-coms" style="overflow-x:auto"></div>'});
   if(legs.length)widgets.push({id:'legisladores',title:'Mis legisladores',count:legs.length,add:'legisladores',wide:true,body:'<div class="cons-leg-grid" id="cons-legs"></div>'});
   if(userKw.length)widgets.push({id:'keywords',title:'Feed de mis keywords',count:null,add:'afinar',wide:true,body:'<div id="cons-kw"></div>'});
+  widgets.push({id:'panelgemi',title:'Panel GEMI',count:null,body:_panelGemiBody()});
   widgets=_consApplyOrder(widgets,cfg.layout);
 
   var _nm=(typeof _userDisplayName==='function')?_userDisplayName():'';
@@ -6374,12 +6412,9 @@ function renderConsola(){
     +'</div>'
     +'<div class="cons-shell">'
       +'<div class="cons-main">'
-        +_consVisitHero(cfg)
         +kpis
-        +'<div class="cons-duo">'
-          +'<div class="cons-widget"><div class="cons-wh"><span class="cons-wt">Señal de mis temas</span></div><div id="cons-senal"></div></div>'
-          +_panelGemiHTML()
-        +'</div>'
+        +'<section style="margin-top:32px"><div class="cons-hero-kick" style="color:var(--green);padding-bottom:7px;border-bottom:0.8px solid var(--border);margin-bottom:14px">Señal de mis temas</div><div id="cons-senal"></div></section>'
+        +'<div style="margin-top:32px">'+_consVisitHero(cfg)+'</div>'
         +'<div class="cons-widgets" id="cons-widgets">'+widgets.map(_consWidgetHTML).join('')+'</div>'
       +'</div>'
       +'<div class="cons-rail">'+_consActivityRailHTML(sen)+_consSignalRailHTML()+'</div>'
@@ -6518,7 +6553,7 @@ function _consWelcomeLine(cfg,sen){
     ? ('<span style="color:var(--green);font-weight:700">'+_escUser(lead.c.name)+'</span> concentra tu señal esta semana')
     : 'Semana tranquila en tus temas';
   var nov=n?('<b style="color:var(--text)">'+n+(n===1?' novedad':' novedades')+'</b> sin ver'):'sin novedades pendientes';
-  return '<div class="cons-welcome"><span class="cons-live"></span>'
+  return '<div class="cons-welcome"><span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;flex-shrink:0"></span>'
     +'<span style="color:var(--text-sec)">'+main+'</span>'
     +'<span style="color:var(--border-med,#ccc)">·</span>'
     +'<span style="color:var(--text-sec)">'+nov+'</span>'
@@ -6549,28 +6584,23 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
   var head;
   if(lead&&lead.n7){var names=lead.c.name+(second&&second.n7?' y '+second.c.name:'');head=names+' concentra'+(second&&second.n7?'n':'')+' tu señal esta semana';}
   else head='Aún sin menciones en tus temas esta semana';
-  function tip(title,list){
-    var body=list.length
-      ? list.map(function(x){return '<div class="it">'+_escUser(x)+'</div>';}).join('')
-      : '<div class="it" style="border:none;color:var(--text-muted)">Nada seleccionado aún</div>';
-    return '<span class="cons-seltip"><div class="th">'+title+'</div>'+body+'</span>';
-  }
-  function tile(n,l,title,list){
-    return '<div class="cons-seltile"><div class="num">'+n+'</div><div class="lab">'+l+'</div>'+tip(title,list)+'</div>';
-  }
-  var refList=[];
-  (cfg.noms||[]).forEach(function(x){refList.push('NOM · '+x);});
-  (cfg.impuestos||[]).forEach(function(x){refList.push('Impuesto · '+x);});
-  (cfg.instrumentos||[]).forEach(function(x){refList.push('Instrumento · '+x);});
-  (cfg.materiales||[]).forEach(function(x){refList.push('Material · '+x);});
-  var tiles=tile(temas.length,temas.length===1?'Tema':'Temas','Tus temas',temas.map(function(c){return c.name;}))
-    +tile(estados.length,estados.length===1?'Estado':'Estados','Tus estados',estados)
-    +tile(coms.length,coms.length===1?'Comisión':'Comisiones','Tus comisiones',coms.map(function(c){return c.nombre;}))
-    +(legs.length?tile(legs.length,legs.length===1?'Legislador':'Legisladores','Tus legisladores',legs.map(function(l){return l.n;})):'')
-    +tile(nRefs,nRefs===1?'Referencia':'Referencias','Tus referencias',refList);
+  // Índice compuesto 0–100 (presión regulatoria de tu perfil), con retorno decreciente
+  var score=Math.max(3,Math.min(99,Math.round(100*(1-Math.exp(-(sen.total||0)/170)))));
+  var R=70,C=2*Math.PI*R,off=(C*(1-score/100)).toFixed(1);
+  var gauge='<div class="cons-gauge"><svg width="150" height="150" viewBox="0 0 160 160">'
+    +'<circle cx="80" cy="80" r="'+R+'" fill="none" stroke="rgba(120,130,140,0.2)" stroke-width="11"/>'
+    +'<circle cx="80" cy="80" r="'+R+'" fill="none" stroke="var(--green)" stroke-width="11" stroke-linecap="round" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+off+'" transform="rotate(-90 80 80)"/>'
+    +'</svg><div class="g-ctr"><div class="g-score">'+score+'</div><div class="g-lvl">'+nivel+'</div><div class="g-of">'+(sen.total||0)+' menciones · '+sen.dias+' días</div></div></div>';
+  var desc=function(arr,max){arr=(arr||[]).filter(Boolean);if(!arr.length)return 'Nada seleccionado aún';return _escUser(arr.slice(0,max).join(' · '))+(arr.length>max?' +'+(arr.length-max):'');};
+  var htiles=
+     '<div class="cons-htile hot"><div class="k">Temas</div><div class="v">'+temas.length+'</div><div class="d">'+desc(temas.map(function(c){return c.name;}),2)+'</div></div>'
+    +'<div class="cons-htile"><div class="k">Estados</div><div class="v">'+estados.length+'</div><div class="d">'+desc(estados,2)+'</div></div>'
+    +'<div class="cons-htile"><div class="k">Comisiones</div><div class="v">'+coms.length+'</div><div class="d">'+desc(coms.map(function(c){return c.nombre;}),1)+'</div></div>'
+    +(legs.length?'<div class="cons-htile"><div class="k">Legisladores</div><div class="v">'+legs.length+'</div><div class="d">'+desc(legs.map(function(l){return l.n;}),1)+'</div></div>':'')
+    +'<div class="cons-htile"><div class="k">Referencias</div><div class="v">'+nRefs+'</div><div class="d">NOMs · impuestos · materiales</div></div>';
   return '<div class="cons-hero">'
-    +'<div class="cons-hero-kick" style="color:var(--green)">Lo que monitoreas</div>'
-    +'<div class="cons-seltiles">'+tiles+'</div>'
+    +'<div class="cons-hero-kick" style="color:var(--green)">Estado de tu terminal</div>'
+    +'<div class="cons-herorow">'+gauge+'<div class="cons-htiles">'+htiles+'</div></div>'
   +'</div>';
 }
 // ── Panel GEMI: canal oficial del equipo (mensajes de administradores + agenda de fechas) ──
