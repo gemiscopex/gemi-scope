@@ -920,10 +920,11 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-htiles{display:flex;flex-direction:column;gap:0;flex:1;min-width:200px}
 .cons-htile{display:flex;align-items:center;gap:11px;padding:9px 2px;border-bottom:0.8px solid var(--border);position:relative;cursor:default}
 .cons-htile:last-child{border-bottom:none}
-.cons-htip{position:absolute;left:0;top:calc(100% - 2px);z-index:60;min-width:180px;max-width:290px;background:var(--card);border:0.8px solid var(--border2);padding:10px 13px;display:none}
-.cons-htile:hover .cons-htip{display:block}
+.cons-htip{position:absolute;right:0;left:auto;top:calc(100% - 4px);z-index:60;min-width:200px;max-width:300px;max-height:280px;overflow-y:auto;background:var(--card);border:0.8px solid var(--border2);padding:10px 13px;display:none;box-shadow:0 12px 34px rgba(13,27,42,0.14)}
+.cons-htile:hover .cons-htip,.cons-htip:hover{display:block}
 .cons-htip .th{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px;display:block}
-.cons-htip .it{display:block;font-size:12px;color:var(--text);padding:4px 0;border-top:0.8px solid rgba(0,0,0,0.05);line-height:1.35}
+.cons-htip .it{display:block;font-size:12px;color:var(--text);padding:6px 0;border-top:0.8px solid rgba(0,0,0,0.05);line-height:1.35;cursor:pointer;transition:color .12s}
+.cons-htip .it:hover{color:var(--green)}
 .cons-htile .ic{color:var(--green);flex-shrink:0;display:flex}
 .cons-htile .k{font-size:13px;color:var(--text);flex:1;min-width:0}
 .cons-htile .v{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
@@ -6340,8 +6341,31 @@ function _consWidgetHTML(w){
     +'<span class="cons-wt">'+w.title+'</span>'+(w.count!=null?'<span class="cons-wn">'+w.count+'</span>':'')
     +(w.add?'<button class="cons-wadd" title="Agregar más en Editar terminal" onclick="event.stopPropagation();openConsolaWizard(\''+w.add+'\')">+</button>':'')
     +'<span class="cons-wcaret">▾</span></div>'
-    +(w.desc?'<div class="cons-wdesc">'+w.desc+'</div>':'')
-    +'<div class="cons-wbody"><div style="padding-top:12px">'+w.body+'</div></div></div>';
+    +'<div class="cons-wbody"><div style="padding-top:12px">'+(w.desc?'<div class="cons-wdesc" style="margin:0 0 13px">'+w.desc+'</div>':'')+w.body+'</div></div></div>';
+}
+// Desde el tooltip de "Estado de tu terminal": salta al bloque correspondiente,
+// lo abre, hace scroll y resalta el ítem elegido. Todo conectado.
+function _consJump(widgetId,item){
+  item=(item||'').trim();
+  if(widgetId==='senal'){var s=document.getElementById('cons-senal');if(s)s.scrollIntoView({behavior:'smooth',block:'center'});_consHighlightIn(document.getElementById('cons-senal'),item);return;}
+  var w=document.querySelector('.cons-widget[data-wid="'+widgetId+'"]');if(!w)return;
+  var wasOpen=w.classList.contains('open');
+  if(!wasOpen)_consWToggle(null,widgetId);
+  setTimeout(function(){
+    w.scrollIntoView({behavior:'smooth',block:'center'});
+    _consHighlightIn(w,item);
+  },wasOpen?60:360);
+}
+function _consHighlightIn(root,item){
+  if(!root||!item)return;
+  var nodes=root.querySelectorAll('div,span,a');
+  for(var i=0;i<nodes.length;i++){
+    if(nodes[i].children.length===0 && nodes[i].textContent.trim()===item){
+      var row=nodes[i].closest('.cons-est-row,.cons-leg-card,.cons-norm-it,.cons-tema-row,tr,div');
+      if(row){row.style.transition='background .35s';row.style.background='rgba(0,158,144,0.16)';setTimeout(function(){row.style.background='';},1900);row.scrollIntoView({behavior:'smooth',block:'center'});}
+      return;
+    }
+  }
 }
 // Expande/colapsa un bloque de seguimiento (clic en el header)
 function _consWToggle(ev,id){
@@ -6611,21 +6635,20 @@ function _consWelcomeLine(cfg,sen){
   +'</div>';
 }
 // ── Mi cumplimiento: apartado (modal) para marcar los instrumentos con los que ya cumples ──
+// Mi cumplimiento en el panel lateral derecho (mismo drawer #peek de Legislación)
 function _consCumplOpen(){
-  var bg=document.getElementById('cmod-cumpl');
-  if(!bg){
-    bg=document.createElement('div');bg.id='cmod-cumpl';bg.className='cmod-bg';
-    bg.onclick=function(e){if(e.target===bg)_consCumplClose();};
-    bg.innerHTML='<div class="cmod"><div class="cmod-h"><div><div style="font-size:16px;font-weight:700;color:var(--text)">Mi cumplimiento</div>'
-      +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px">Marca los instrumentos con los que ya cumples. Agrega más en <b>Editar terminal → Referencias</b>.</div></div>'
-      +'<button onclick="_consCumplClose()" style="background:none;border:none;font-size:22px;color:var(--text-muted);cursor:pointer;line-height:1;flex-shrink:0">×</button></div>'
-      +'<div class="cmod-b"><div id="cumpl-body"></div></div></div>';
-    document.body.appendChild(bg);
-  }
-  bg.classList.add('on');
+  var p=document.getElementById('peek'),b=document.getElementById('peek-bg');
+  if(!p)return;
+  p.innerHTML='<div class="peek-hd"><div style="flex:1;min-width:0"><div class="peek-kind">Mi terminal</div></div><button class="peek-x" onclick="_consCumplClose()" aria-label="Cerrar">×</button></div>'
+    +'<div class="peek-body">'
+      +'<div class="peek-title">Mi cumplimiento</div>'
+      +'<div style="font-size:12px;color:var(--text-sec);line-height:1.55;margin:6px 0 16px">Marca los instrumentos con los que ya cumples. Agrega más en <b>Editar terminal → Referencias</b>.</div>'
+      +'<div id="cumpl-body"></div>'
+    +'</div>';
+  if(b)b.classList.add('open');p.classList.add('open');
   if(typeof _cumplRender==='function')_cumplRender();
 }
-function _consCumplClose(){var bg=document.getElementById('cmod-cumpl');if(bg)bg.classList.remove('on');}
+function _consCumplClose(){if(typeof _peekClose==='function')_peekClose();}
 // ── Resumen inteligente de Mi Terminal: nivel + tema líder + tarjetas de selección con hover ──
 function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
   cfg=cfg||{};
@@ -6654,16 +6677,16 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
   (cfg.impuestos||[]).forEach(function(x){refList.push('Impuesto · '+x);});
   (cfg.instrumentos||[]).forEach(function(x){refList.push('Instrumento · '+x);});
   (cfg.materiales||[]).forEach(function(x){refList.push('Material · '+x);});
-  var mtile=function(icon,label,n,list){
+  var mtile=function(icon,label,n,list,jump){
     list=(list||[]).filter(Boolean);
-    var tip=list.length?('<span class="cons-htip"><span class="th">'+label+'</span>'+list.map(function(x){return '<span class="it">'+_escUser(x)+'</span>';}).join('')+'</span>'):'';
+    var tip=list.length?('<span class="cons-htip"><span class="th">'+label+'</span>'+list.map(function(x){return '<span class="it" onclick="_consJump(\''+jump+'\',this.textContent)">'+_escUser(x)+'</span>';}).join('')+'</span>'):'';
     return '<div class="cons-htile"><span class="ic"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">'+icon+'</svg></span><span class="k">'+label+'</span><span class="v">'+n+'</span>'+tip+'</div>';
   };
-  var htiles=mtile(_mic.temas,'Temas',temas.length,temas.map(function(c){return c.name;}))
-    +mtile(_mic.estados,'Estados',estados.length,estados)
-    +mtile(_mic.coms,'Comisiones',coms.length,coms.map(function(c){return c.nombre;}))
-    +(legs.length?mtile(_mic.legs,'Legisladores',legs.length,legs.map(function(l){return l.n;})):'')
-    +mtile(_mic.refs,'Referencias',nRefs,refList);
+  var htiles=mtile(_mic.temas,'Temas',temas.length,temas.map(function(c){return c.name;}),'senal')
+    +mtile(_mic.estados,'Estados',estados.length,estados,'estados')
+    +mtile(_mic.coms,'Comisiones',coms.length,coms.map(function(c){return c.nombre;}),'comisiones')
+    +(legs.length?mtile(_mic.legs,'Legisladores',legs.length,legs.map(function(l){return l.n;}),'legisladores'):'')
+    +mtile(_mic.refs,'Referencias',nRefs,refList,'dof');
   // Novedades compactas, pegadas al pie del héroe (solo cuando hay)
   var sl=(typeof _consSinceLast==='function')?_consSinceLast(cfg):{items:[]},nv=sl.items.length,nvStrip='';
   if(nv){
