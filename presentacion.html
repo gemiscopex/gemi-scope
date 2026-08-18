@@ -166,7 +166,22 @@
   .rtile.pulse{animation:rpulse 0.9s ease-in-out 1}
   @keyframes rpulse{0%,100%{box-shadow:0 0 0 0 rgba(63,224,173,0)}50%{box-shadow:0 0 0 3px rgba(63,224,173,.35)}}
   .rdetail{max-height:0;overflow:hidden;opacity:0;transition:max-height .6s cubic-bezier(.2,.7,.2,1),opacity .5s,margin-top .4s}
-  .rdetail.open{max-height:420px;opacity:1;margin-top:18px}
+  .rdetail.open{max-height:560px;opacity:1;margin-top:16px}
+  .r360-pod{margin-top:10px;border:1px solid rgba(63,224,173,.28);border-left:3px solid var(--mint);border-radius:0 10px 10px 0;background:rgba(63,224,173,.05);padding:9px 11px}
+  .r360-podh{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.05em;color:var(--mint);text-transform:uppercase;display:flex;flex-wrap:wrap;gap:5px 8px;align-items:baseline}
+  .r360-podh span{color:var(--dim);font-weight:600;text-transform:none;letter-spacing:0}
+  .r360-podr{display:flex;align-items:center;gap:8px;margin-top:7px;font-size:11px}
+  .r360-podm{font-weight:700;color:var(--ink);white-space:nowrap}
+  .r360-pode{color:var(--mut);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .r360-badge{font-family:var(--mono);font-size:8px;font-weight:700;border:1px solid;border-radius:4px;padding:1px 6px;white-space:nowrap}
+  .r360-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px 16px;margin-top:12px}
+  .r360-cat{border-top:1px solid var(--line);padding-top:7px;min-width:0}
+  .r360-cth{display:flex;justify-content:space-between;align-items:baseline;gap:6px;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--mint);letter-spacing:.03em}
+  .r360-cth>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .r360-cn{color:var(--ink);font-size:11px;flex-shrink:0}
+  .r360-cit{font-size:11px;color:var(--mut);margin-top:4px;line-height:1.35}
+  .r360-cm{font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:2px}
+  @media(max-width:620px){.r360-grid{grid-template-columns:1fr}}
   .rdet-inner{max-width:760px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.01));padding:18px 20px}
   .rdet-hd{display:flex;align-items:center;gap:11px;margin-bottom:10px}
   .rdet-name{font-size:15px;font-weight:800}
@@ -343,6 +358,22 @@
   .trbf{display:block;height:100%;background:#009E90;border-radius:5px;width:0;animation:trFill 1s cubic-bezier(.22,1,.36,1) forwards}
   .trbv{font-family:var(--mono);font-size:10px;color:#3D5A75;text-align:right}
   @keyframes trFill{from{width:0}}
+  .term-built{opacity:0;transform:translateY(8px);transition:opacity .6s,transform .6s}
+  .term-built.show{opacity:1;transform:none}
+  .tb-hd{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .tb-av{width:32px;height:32px;border-radius:50%;background:#0E8C74;color:#fff;font-family:var(--mono);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .tb-hi{font-size:15px;font-weight:700;color:#0D1B2A;line-height:1.2}
+  .tb-sub{font-size:11px;color:#5a6b64;margin-top:2px}
+  .tb-hero{display:flex;align-items:center;gap:13px;padding:13px 0;border-top:1px solid rgba(0,0,0,.07);border-bottom:1px solid rgba(0,0,0,.07)}
+  .tb-lvl{flex-shrink:0}
+  .tb-lvn{font-size:13px;font-weight:700;color:#0D1B2A}
+  .tb-lvs{font-family:var(--mono);font-size:9px;color:#8a9c95;margin-top:2px}
+  .tb-tiles{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;max-width:160px;justify-content:flex-end}
+  .tbt{display:flex;flex-direction:column;align-items:center;background:#f2f7f5;border-radius:8px;padding:6px 8px;min-width:42px}
+  .tbt b{font-size:15px;color:#0D1B2A;font-variant-numeric:tabular-nums;line-height:1}
+  .tbt span{font-family:var(--mono);font-size:8px;color:#7c8b84;margin-top:2px}
+  .tb-sig{margin-top:13px}
+  .tb-sig .trh{font-family:var(--mono);font-size:9px;font-weight:700;color:#009E90;letter-spacing:.05em;margin-bottom:2px}
 
   /* monitor (escritorio) */
   .monitor{max-width:480px;margin:0 auto}
@@ -1029,27 +1060,66 @@
     }).join('');
   })();
   // Radar · desglose de un tema (clic o autodemo en "Economía circular")
-  var RADAR_SIG={
-    circular:[['DOF','Proyecto de NOM sobre planes de manejo de residuos de manejo especial','06 abr'],['Congreso','Iniciativa de Ley General de Economía Circular','02 abr'],['Prensa','Tlaxcala instala su Sistema Estatal de Economía Circular','31 mar'],['Prensa','Avanza el esquema de responsabilidad extendida del productor','28 mar']],
-    residuos:[['DOF','Actualización de la NOM-161 sobre residuos de manejo especial','05 abr'],['Congreso','Punto de acuerdo sobre gestión integral de residuos','01 abr'],['Prensa','Nuevos rellenos sanitarios y metas de reciclaje','29 mar']],
-    agua:[['DOF','Límites máximos permisibles de descargas (NOM-001)','07 abr'],['Congreso','Reforma a la Ley de Aguas Nacionales','03 abr'],['Prensa','Estrés hídrico y reúso en la industria','30 mar']],
-    cc:[['DOF','Lineamientos del registro de emisiones (RETC) 2026','04 abr'],['Congreso','Metas de mitigación en la Ley General de Cambio Climático','02 abr'],['Prensa','Mercado de carbono y precios por tonelada','27 mar']]
+  // Vista 360° por tema (réplica del radar real: todas las categorías + fuentes)
+  var RADAR_360={
+    circular:{senal:84,d30:6,
+      podecibi:[['Tlaxcala · Apizaco','Sistema Estatal de Economía Circular','Vigente'],['Nuevo León · Salinas Victoria','Polo de desarrollo circular','En conflicto']],
+      cats:[['Señal en medios · 2 sem',44,'Avanza la responsabilidad extendida del productor','Reforma · 28 mar'],
+        ['Prensa estatal',18,'Tlaxcala instala su Sistema Estatal de EC','La Jornada de Oriente · 31 mar'],
+        ['Estados más activos',6,'Tlaxcala · CDMX · Jalisco · Nuevo León',''],
+        ['DOF · publicaciones',3,'Proyecto de NOM · planes de manejo de RME','SEMARNAT · 06 abr'],
+        ['Congreso',2,'Iniciativa de Ley General de Economía Circular','Diputados · Morena · 02 abr'],
+        ['NOMs',4,'NOM-161-SEMARNAT-2011 · residuos de manejo especial',''],
+        ['Internacional',3,'PPWR · Envases y residuos de envases','UE · 2025']]},
+    residuos:{senal:71,d30:6,
+      cats:[['Señal en medios · 2 sem',44,'Nuevos rellenos sanitarios y metas de reciclaje','El Universal · 29 mar'],
+        ['Prensa estatal',15,'Estados endurecen la separación de residuos','20 mar'],
+        ['Estados más activos',6,'Estado de México · CDMX · Jalisco',''],
+        ['DOF · publicaciones',3,'Actualización de la NOM-161 sobre RME','SEMARNAT · 05 abr'],
+        ['Congreso',2,'Punto de acuerdo sobre gestión integral de residuos','Senado · 01 abr'],
+        ['NOMs',5,'NOM-083-SEMARNAT-2003 · sitios de disposición',''],
+        ['Internacional',2,'Convenio de Basilea · residuos peligrosos','ONU']]},
+    agua:{senal:66,d30:4,
+      cats:[['Señal en medios · 2 sem',37,'Estrés hídrico y reúso en la industria','Milenio · 30 mar'],
+        ['Prensa estatal',14,'Concesiones bajo revisión en el norte','22 mar'],
+        ['Estados más activos',6,'Nuevo León · Coahuila · Guanajuato',''],
+        ['DOF · publicaciones',2,'Límites máximos de descargas (NOM-001)','SEMARNAT · 07 abr'],
+        ['Congreso',2,'Reforma a la Ley de Aguas Nacionales','Diputados · 03 abr'],
+        ['NOMs',4,'NOM-001-SEMARNAT-2021 · descargas de aguas',''],
+        ['Internacional',1,'Objetivo 6 · Agua limpia y saneamiento','ONU']]},
+    cc:{senal:58,d30:3,
+      cats:[['Señal en medios · 2 sem',26,'Mercado de carbono y precios por tonelada','El Financiero · 27 mar'],
+        ['Prensa estatal',11,'Estados fijan impuestos al carbono','24 mar'],
+        ['Estados más activos',6,'Coahuila · Nuevo León · Querétaro',''],
+        ['DOF · publicaciones',2,'Lineamientos del registro de emisiones (RETC)','SEMARNAT · 04 abr'],
+        ['Congreso',2,'Metas de mitigación en la LGCC','Senado · 02 abr'],
+        ['NOMs',3,'NOM-085-SEMARNAT · emisiones a la atmósfera',''],
+        ['Internacional',3,'CBAM · Ajuste en frontera por carbono','UE · 2023']]}
   };
-  var RADAR_TAGCOL={DOF:'#12b98a',Congreso:'#3fe0ad',Prensa:'#0e8c74'};
+  var R360_BADGE={'Vigente':'#12b98a','En conflicto':'#e6b45e','Cancelado':'#d98a8a'};
   function _radarExpand(id){
     var R=window.__RADAR; if(!R)return;
     var t=R.T.filter(function(x){return x.id===id;})[0]; if(!t)return;
     [].forEach.call(document.querySelectorAll('#rgrid .rtile'),function(el){el.classList.toggle('act',el.getAttribute('data-tid')===id);});
     var host=document.getElementById('rdetail'); if(!host)return;
-    var sigs=RADAR_SIG[id]||[];
-    var rows=sigs.map(function(s){var c=RADAR_TAGCOL[s[0]]||'var(--mint)';
-      return '<div class="rdet-row"><span class="rdet-tag" style="color:'+c+'">'+s[0]+'</span><span class="rdet-tt">'+s[1]+'</span><span class="rdet-dt">'+s[2]+'</span></div>';}).join('');
-    host.innerHTML='<div class="rdet-inner"><div class="rdet-hd">'
+    var D=RADAR_360[id]||{cats:[]};
+    var pod='';
+    if(D.podecibi){
+      pod='<div class="r360-pod"><div class="r360-podh">Polos de Economía Circular (PODECIBI)<span>Declaratorias SEMARNAT · DOF</span></div>'
+        +D.podecibi.map(function(p){var c=R360_BADGE[p[2]]||'var(--mint)';return '<div class="r360-podr"><span class="r360-podm">'+p[0]+'</span><span class="r360-pode">'+p[1]+'</span><span class="r360-badge" style="color:'+c+';border-color:'+c+'">'+p[2]+'</span></div>';}).join('')
+      +'</div>';
+    }
+    var cats=(D.cats||[]).map(function(c){
+      return '<div class="r360-cat"><div class="r360-cth"><span>'+c[0]+'</span><span class="r360-cn">'+c[1]+'</span></div>'
+        +'<div class="r360-cit">'+c[2]+'</div>'+(c[3]?'<div class="r360-cm">'+c[3]+'</div>':'')+'</div>';
+    }).join('');
+    host.innerHTML='<div class="rdet-inner r360"><div class="rdet-hd">'
       +'<span class="ricon" style="color:'+t.col+'"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+R.ICON[t.id]+'</svg></span>'
-      +'<span class="rdet-name">'+t.name+'</span>'
-      +'<span class="rdet-sub">'+t.men+' menciones · 90d · Δ30d '+(t.d>=0?'+':'')+t.d+'</span></div>'
+      +'<span class="rdet-name">'+t.name+' · Vista 360°</span>'
+      +'<span class="rdet-sub">señal '+(D.senal||t.men)+' · '+t.men+' menc · Δ30d +'+(D.d30!=null?D.d30:t.d)+'</span></div>'
       +'<div class="rdet-spk">'+R.spark(t.s,t.col,90)+'</div>'
-      +'<div class="rdet-lbl">Señales recientes</div>'+rows
+      +pod
+      +'<div class="r360-grid">'+cats+'</div>'
     +'</div>';
     host.classList.add('open');
   }
@@ -1212,27 +1282,31 @@
       bodyEl.innerHTML='<div class="tchips">'+step.chips.map(function(ch){return '<span class="tchip">'+ch+'</span>';}).join('')+'</div>';
       countEl.textContent='0 seleccionados';
       var chips=[].slice.call(bodyEl.querySelectorAll('.tchip'));
-      var t=450,sel=0;
+      var t=260,sel=0;
       step.pick.forEach(function(pi){
         var chip=chips[pi];
         at(t,function(){cursor.style.opacity='1';cursor.style.transform='translate('+(chip.offsetLeft+chip.offsetWidth-15)+'px,'+(chip.offsetTop+chip.offsetHeight/2-4)+'px)';});
-        at(t+440,function(){chip.classList.add('sel','pop');setTimeout(function(){chip.classList.remove('pop');},200);sel++;countEl.textContent=sel+' seleccionado'+(sel===1?'':'s');});
-        t+=650;
+        at(t+250,function(){chip.classList.add('sel','pop');setTimeout(function(){chip.classList.remove('pop');},180);sel++;countEl.textContent=sel+' seleccionado'+(sel===1?'':'s');});
+        t+=380;
       });
-      at(t+150,function(){cursor.style.opacity='0';});
-      at(t+950,function(){runStep(si+1);});
+      at(t+100,function(){cursor.style.opacity='0';});
+      at(t+520,function(){runStep(si+1);});
     }
     function finish(){
-      paintSteps(LABELS.length); descEl.textContent='Tu terminal está lista.';
+      var titleEl=host.querySelector('.cw-title'); if(titleEl)titleEl.textContent='Mi Terminal';
+      paintSteps(LABELS.length); descEl.textContent='Tu terminal está lista, Mauricio.';
+      countEl.textContent='En vivo';
+      var r=22,c=2*Math.PI*r,off=c*(1-0.76);
+      var ring='<svg width="58" height="58" viewBox="0 0 58 58"><circle cx="29" cy="29" r="22" fill="none" stroke="#e7efec" stroke-width="5"/><circle cx="29" cy="29" r="22" fill="none" stroke="#0E8C74" stroke-width="5" stroke-linecap="round" stroke-dasharray="'+c.toFixed(1)+'" stroke-dashoffset="'+off.toFixed(1)+'" transform="rotate(-90 29 29)"/><text x="29" y="34" text-anchor="middle" style="font-family:var(--mono);font-size:15px;font-weight:700;fill:#0D1B2A">38</text></svg>';
+      function tile(n,l){return '<div class="tbt"><b>'+n+'</b><span>'+l+'</span></div>';}
       function bar(n,pct,val){return '<div class="trbar"><span class="trbn">'+n+'</span><span class="trbt"><span class="trbf" style="width:'+pct+'%"></span></span><span class="trbv">'+val+'</span></div>';}
-      bodyEl.innerHTML='<div class="term-result show">'
-        +'<div class="trh">Señal de mis temas</div>'
-        +'<div class="trv">Agua y Residuos concentran tu señal</div>'
-        +'<div class="trs">38 menciones en medios · últimos 7 días</div>'
-        +'<div class="trbars">'+bar('Agua',100,24)+bar('Residuos',70,17)+bar('Economía circular',20,5)+'</div>'
+      bodyEl.innerHTML='<div class="term-built show">'
+        +'<div class="tb-hd"><span class="tb-av">M</span><div class="tb-hdx"><div class="tb-hi">Bienvenido, Mauricio</div><div class="tb-sub">Agua y Residuos concentran tu señal</div></div></div>'
+        +'<div class="tb-hero">'+ring+'<div class="tb-lvl"><div class="tb-lvn">Nivel alto</div><div class="tb-lvs">38 menciones · 7 días</div></div>'
+          +'<div class="tb-tiles">'+tile(3,'Temas')+tile(3,'Estados')+tile(2,'Comisiones')+tile(2,'Refs')+'</div></div>'
+        +'<div class="tb-sig"><div class="trh">Señal de mis temas</div><div class="trbars">'+bar('Agua',100,24)+bar('Residuos',70,17)+bar('Economía circular',20,5)+'</div></div>'
       +'</div>';
-      countEl.textContent='Terminal lista';
-      at(5200,function(){clr();cursor.style.opacity='0';runStep(0);});
+      at(6200,function(){clr();cursor.style.opacity='0';if(titleEl)titleEl.textContent='Personaliza tu Terminal';runStep(0);});
     }
     cursor.style.opacity='0'; runStep(0);
   }
