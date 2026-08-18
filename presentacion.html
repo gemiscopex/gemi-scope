@@ -1376,9 +1376,9 @@
       var GREENS=['#066750','#0E8C74','#12A594','#3fe0ad'];
       var parts=targets.map(function(t,i){return {x:Math.random()*W,y:Math.random()*H,tx:t.x,ty:t.y,c:GREENS[i%4]};});
       function rnd(a,b){return a+Math.random()*(b-a);}
-      var TOKENS=['NOM-161-SEMARNAT-2011','NOM-083-SEMARNAT-2003','NOM-001-SEMARNAT-2021','NOM-052-SEMARNAT-2005','NOM-004-SEMARNAT-2002','40.6% orgánicos','36.2% aprovechables','23.2% otros','100% recolección','50% programas','10,699 t/día','139,902 t/día','1.158 kg/hab/día','$528 / tonCO₂e','$60 / tonCO₂e','UMA 2026 = $117.31','GENERACIÓN','COMPOSICIÓN ESTIMADA','DISPOSICIÓN FINAL','IMPUESTOS VERDES','COBERTURA MUNICIPAL','SEÑAL DEL RADAR','Economía circular +21','Residuos +47','Agua +39','DOF · 06 abr','32 estados','180+ fuentes'];
-      var NS=Math.max(9,Math.floor(W/125)), streams=[];
-      for(var s=0;s<NS;s++)streams.push({x:rnd(0,W),y:rnd(-H,0),vy:rnd(0.8,2.1),t:TOKENS[Math.floor(Math.random()*TOKENS.length)],sz:Math.round(rnd(10,13)),br:Math.random()<0.34});
+      var TOKENS=['NOM-161-SEMARNAT-2011','NOM-083-SEMARNAT-2003','NOM-001-SEMARNAT-2021','NOM-052-SEMARNAT-2005','NOM-004-SEMARNAT-2002','NOM-043-SEMARNAT-1993','NOM-085-SEMARNAT-2011','NOM-147-SEMARNAT','40.6% orgánicos','36.2% aprovechables','23.2% otros','100% recolección','50% programas','88% cobertura','12% reciclaje','10,699 t/día','139,902 t/día','1.158 kg/hab/día','1.076 nacional','2,250 sitios','$528 / tonCO₂e','$327 / tonCO₂e','$60 / tonCO₂e','UMA 2026 = $117.31','GENERACIÓN','COMPOSICIÓN ESTIMADA','DISPOSICIÓN FINAL','IMPUESTOS VERDES','COBERTURA MUNICIPAL','SEÑAL DEL RADAR','MATERIALES REGULADOS','TRÁMITES RME','Economía circular +21','Residuos +47','Agua +39','Cambio climático +28','DOF · 06 abr','Diputados · iniciativa','Senado · minuta','Escazú · tratado','CBAM · UE 2023/956','EUDR · deforestación','REP · envases','32 estados','180+ fuentes','Coahuila','Nuevo León','Jalisco','LGEEPA art. 111','LAN · concesiones'];
+      var NS=Math.max(34,Math.floor(W/34)), streams=[];
+      for(var s=0;s<NS;s++)streams.push({x:rnd(0,W),y:rnd(-H*1.4,0),vy:rnd(2.6,6.4),t:TOKENS[Math.floor(Math.random()*TOKENS.length)],sz:Math.round(rnd(9,13)),br:Math.random()<0.4});
       var t0=null,DUR=19000;
       function frame(ts){
         if(t0==null)t0=ts; var el=ts-t0;
@@ -1389,7 +1389,7 @@
           for(var s2=0;s2<streams.length;s2++){
             var st=streams[s2];
             st.y+=st.vy;
-            if(st.y>H+22){st.y=-rnd(10,200);st.x=rnd(0,W);st.t=TOKENS[Math.floor(Math.random()*TOKENS.length)];st.br=Math.random()<0.34;st.sz=Math.round(rnd(10,13));}
+            if(st.y>H+22){st.y=-rnd(10,460);st.x=rnd(0,W);st.t=TOKENS[Math.floor(Math.random()*TOKENS.length)];st.br=Math.random()<0.4;st.sz=Math.round(rnd(9,13));st.vy=rnd(2.6,6.4);}
             ctx.font=st.sz+'px "IBM Plex Mono",monospace';
             ctx.fillStyle=st.br?'rgba(63,224,173,'+(0.58*codeAlpha).toFixed(3)+')':'rgba(14,140,116,'+(0.32*codeAlpha).toFixed(3)+')';
             ctx.fillText(st.t,st.x,st.y);
