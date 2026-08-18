@@ -438,7 +438,7 @@
   .reveal-kick{position:absolute;top:26%;left:0;right:0;z-index:3;font-family:var(--mono);font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);opacity:0;transform:translateY(10px);transition:opacity 1s,transform 1s}
   .reveal-kick.show{opacity:1;transform:none}
   .reveal-kick.hide{opacity:0;transform:translateY(-8px);transition:opacity .8s,transform .8s}
-  .reveal-logo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.985);width:clamp(200px,38vw,440px);z-index:2;opacity:0;transition:opacity 1.5s ease,transform 1.5s ease;filter:drop-shadow(0 10px 34px rgba(0,0,0,.62))}
+  .reveal-logo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.985);width:clamp(180px,26vw,300px);z-index:2;opacity:0;transition:opacity 1.5s ease,transform 1.5s ease;filter:drop-shadow(0 10px 34px rgba(0,0,0,.62))}
   .reveal-logo.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
   .reveal-tag{position:absolute;bottom:24%;left:0;right:0;z-index:3;margin:0 auto;max-width:34ch;font-size:clamp(15px,1.8vw,20px);color:var(--mut);opacity:0;transform:translateY(10px);transition:opacity 1.2s,transform 1.2s}
   .reveal-tag.show{opacity:1;transform:none}
@@ -622,7 +622,7 @@
     <canvas id="revealCanvas"></canvas>
     <div class="reveal-kick" id="revealKick">Les presentamos</div>
     <img class="reveal-logo" id="revealLogo" src="assets/scope-logo-dark.png" alt="Scope">
-    <div class="reveal-tag" id="revealTag">La inteligencia regulatoria ambiental de México, materializada.</div>
+    <div class="reveal-tag" id="revealTag">La primera herramienta de inteligencia regulatoria ambiental en México.</div>
   </section>
 
   <section class="lite" data-t="En vivo">
@@ -1364,7 +1364,7 @@
       off.width=Math.round(W);off.height=Math.round(H);
       draw(octx);
       var data; try{data=octx.getImageData(0,0,off.width,off.height).data;}catch(e){return [];}
-      var pts=[],gap=Math.max(4,Math.round(W/230));
+      var pts=[],gap=Math.max(3,Math.round(W/340));
       for(var y=0;y<off.height;y+=gap){for(var x=0;x<off.width;x+=gap){if(data[(y*off.width+x)*4+3]>130)pts.push({x:x,y:y});}}
       return pts;
     }
@@ -1400,7 +1400,7 @@
           if(assemble<1){cx+=Math.sin(el/300+i)*3*(1-assemble);cy+=Math.cos(el/280+i)*3*(1-assemble);}
           ctx.globalAlpha=pa;
           ctx.fillStyle=pt.c;
-          ctx.fillRect(cx,cy,1.9,1.9);
+          ctx.fillRect(cx,cy,1.4,1.4);
         }
         ctx.globalAlpha=1;
         if(el<DUR+600)requestAnimationFrame(frame);
