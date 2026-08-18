@@ -121,6 +121,25 @@
 
   /* radar (idéntico al real: tiles planos, verdes GEMI, sparkline difuminada) */
   .rgrid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:22px;max-width:900px}
+  .radarbox{width:100%;max-width:540px;margin:0 auto}
+  .radarbox .rgrid{grid-template-columns:repeat(2,1fr);max-width:none;margin-top:0;row-gap:24px;column-gap:6px}
+  .radarbox .rtile{padding:2px 16px}
+  .cong-hint{color:var(--mint)}
+  .cdip{transition:r .2s}
+  .cdip.sel{filter:drop-shadow(0 0 6px rgba(63,224,173,.9))}
+  .cdipg:hover .cdip,.cdip.sel{r:5.2}
+  @keyframes cpulse{0%,100%{r:3.4}50%{r:6.4}}
+  .cdip.pulse{animation:cpulse 1s ease 2}
+  .congmock{max-height:0;overflow:hidden;opacity:0;transition:max-height .55s cubic-bezier(.2,.7,.2,1),opacity .5s,margin-top .4s}
+  .congmock.open{max-height:280px;opacity:1;margin-top:14px}
+  .cmk-card{border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 12px 12px 0;background:rgba(255,255,255,.03);padding:14px 16px}
+  .cmk-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mint)}
+  .cmk-title{font-size:16px;font-weight:700;color:var(--ink);margin-top:6px;line-height:1.3}
+  .cmk-meta{display:flex;flex-wrap:wrap;gap:7px 13px;margin-top:9px;font-family:var(--mono);font-size:10px;color:var(--dim);align-items:center}
+  .cmk-party{font-weight:700;color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:2px 8px}
+  .cmk-body{font-size:13px;color:var(--mut);margin-top:10px;line-height:1.5}
+  .cmk-foot{display:flex;gap:14px;align-items:center;margin-top:11px;font-family:var(--mono);font-size:10px;color:var(--dim)}
+  .cmk-imp{font-weight:700}
   @media(max-width:820px){.rgrid{grid-template-columns:repeat(2,1fr);row-gap:26px}}
   @media(max-width:460px){.rgrid{grid-template-columns:1fr;row-gap:20px}}
   .rtile{border-left:1px solid var(--line);padding:2px 20px;min-width:0}
@@ -387,6 +406,42 @@
   .stat .n{font-size:clamp(34px,5vw,56px);font-weight:800;letter-spacing:-.025em;line-height:1}
   .stat .n .u{font-size:.36em;color:var(--mut);font-weight:600}
   .stat .l{font-size:13px;color:var(--mut);margin-top:8px;line-height:1.45}
+  .panel.intk{padding:18px 20px;max-width:440px;margin:0 auto}
+  .intk-hd{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .intk-live{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:intkpulse 1.9s infinite}
+  @keyframes intkpulse{0%{box-shadow:0 0 0 0 rgba(63,224,173,.45)}70%{box-shadow:0 0 0 8px rgba(63,224,173,0)}100%{box-shadow:0 0 0 0 rgba(63,224,173,0)}}
+  .intk-time{margin-left:auto;letter-spacing:.02em;color:var(--dim);text-transform:none}
+  .intk-rows{display:flex;flex-direction:column}
+  .intk-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);opacity:0;transform:translateX(14px);transition:opacity .55s,transform .55s}
+  .intk-row.on{opacity:1;transform:none}
+  .intk-row:last-child{border-bottom:0}
+  .intk-dot{width:8px;height:8px;border-radius:50%;background:var(--dim);flex-shrink:0;transition:background .4s,box-shadow .4s}
+  .intk-row.ok .intk-dot{background:var(--mint);box-shadow:0 0 8px rgba(63,224,173,.6)}
+  .intk-b{flex:1;min-width:0}
+  .intk-n{font-size:13.5px;color:var(--ink);font-weight:500;line-height:1.3}
+  .intk-s{font-family:var(--mono);font-size:9.5px;color:var(--dim);margin-top:2px}
+  .intk-tick{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.04em;color:var(--mint);opacity:0;transition:opacity .4s;flex-shrink:0}
+  .intk-row.ok .intk-tick{opacity:1}
+  .intk-kpis{display:flex;gap:34px;margin-top:32px}
+  .ik .ikn{font-size:38px;font-weight:800;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .ik .ikp{color:var(--mint)}
+  .ik .ikam{font-size:17px;margin-left:2px;color:var(--mut)}
+  .ik .ikl{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:9px;line-height:1.35}
+  .adnstack{display:flex;flex-direction:column;max-width:440px;width:100%;border-left:2px solid var(--line);padding-left:28px}
+  .adnm{padding:15px 0;opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+  .adnm.on{opacity:1;transform:none}
+  .adnn{font-size:clamp(40px,5vw,58px);font-weight:800;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .adnp{color:var(--mint)}
+  .adnam{font-size:.42em;margin-left:3px;color:var(--mut);font-weight:700}
+  .adnl{font-size:13px;color:var(--mut);margin-top:10px;line-height:1.4;max-width:330px}
+  #revealCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+  .reveal-kick{position:absolute;top:26%;left:0;right:0;z-index:3;font-family:var(--mono);font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);opacity:0;transform:translateY(10px);transition:opacity 1s,transform 1s}
+  .reveal-kick.show{opacity:1;transform:none}
+  .reveal-kick.hide{opacity:0;transform:translateY(-8px);transition:opacity .8s,transform .8s}
+  .reveal-logo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.985);width:clamp(220px,50vw,560px);z-index:2;opacity:0;transition:opacity 1.5s ease,transform 1.5s ease;filter:drop-shadow(0 12px 40px rgba(0,0,0,.5))}
+  .reveal-logo.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .reveal-tag{position:absolute;bottom:24%;left:0;right:0;z-index:3;margin:0 auto;max-width:34ch;font-size:clamp(15px,1.8vw,20px);color:var(--mut);opacity:0;transform:translateY(10px);transition:opacity 1.2s,transform 1.2s}
+  .reveal-tag.show{opacity:1;transform:none}
   .verbs{display:flex;flex-wrap:wrap;gap:14px 36px;margin-top:30px}
   .verbs span{font-size:clamp(24px,3.4vw,44px);font-weight:800;letter-spacing:-.025em;color:var(--dim);transition:color .5s}
   section.in .verbs span:nth-child(1){transition-delay:.1s;color:var(--mint)}
@@ -521,7 +576,7 @@
     <div class="glow" style="width:520px;height:520px;background:#7a2020;top:-12%;left:-8%;opacity:.16"></div>
     <div class="kick r">Sabemos cuál es el problema</div>
     <h2 class="r d1" style="max-width:15ch">Nada está en un solo lugar</h2>
-    <p class="lead r d2" style="max-width:720px">Navegamos más de 40 fuentes todos los días y todo está cambiando. Las actualizaciones son cada vez que hacemos refresh.</p>
+    <p class="lead r d2" style="max-width:720px">Navegamos más de 40 fuentes a diario y todo está cambiando. Las actualizaciones son cada vez que damos refresh.</p>
     <div class="chaos">
       <span class="chip-src" style="transition-delay:.10s">DOF</span>
       <span class="chip-src" style="transition-delay:.16s">Cámara de Diputados</span>
@@ -543,12 +598,31 @@
     </div>
   </section>
 
-  <section data-t="De dónde venimos">
+  <section data-t="De dónde venimos" data-anim="adncount">
     <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-10%;left:-8%;opacity:.24"></div>
     <div class="kick r">De dónde venimos</div>
-    <h2 class="r d1" style="max-width:15ch">Llevamos nuestro ADN a un algoritmo</h2>
-    <p class="lead r d2" style="max-width:720px">Entendimos que los <b>32 años de historia</b> son un aprendizaje que se puede imprimir en datos e inteligencia.</p>
-    <p class="lead r d3" style="max-width:720px;margin-top:18px;font-size:clamp(19px,2.4vw,28px);color:var(--ink)">Con eso hicimos un <span class="grn">producto vivo</span>.</p>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:15ch">Llevamos nuestro ADN a un algoritmo</h2>
+        <p class="lead r d2" style="max-width:540px">Entendimos que los <b>32 años de historia</b> son un aprendizaje que se puede imprimir en datos e inteligencia.</p>
+        <p class="lead r d3" style="max-width:540px;margin-top:18px;font-size:clamp(19px,2.4vw,28px);color:var(--ink)">Con eso hicimos un <span class="grn">producto vivo</span>.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="adnstack" id="adnStack">
+          <div class="adnm"><div class="adnn"><span data-count="32">0</span></div><div class="adnl">estados con expediente completo</div></div>
+          <div class="adnm"><div class="adnn"><span data-count="180">0</span><span class="adnp">+</span></div><div class="adnl">fuentes oficiales conectadas</div></div>
+          <div class="adnm"><div class="adnn"><span data-count="20">0</span><span class="adnp">+</span></div><div class="adnl">instrumentos internacionales que alcanzan al exportador</div></div>
+          <div class="adnm"><div class="adnn">6<span class="adnam">AM</span></div><div class="adnl">se actualiza sola, cada día, sin intervención</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mid" data-t="Les presentamos" data-anim="reveal" style="text-align:center;align-items:center;overflow:hidden">
+    <canvas id="revealCanvas"></canvas>
+    <div class="reveal-kick" id="revealKick">Les presentamos</div>
+    <img class="reveal-logo" id="revealLogo" src="assets/scope-logo-dark.png" alt="Scope">
+    <div class="reveal-tag" id="revealTag">La inteligencia regulatoria ambiental de México, materializada.</div>
   </section>
 
   <section class="lite" data-t="En vivo">
@@ -568,17 +642,21 @@
     </div>
   </section>
 
-  <section data-t="Números que importan" data-anim="count">
+  <section data-t="Números que importan" data-anim="intake">
     <div class="techbg"></div>
     <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-10%;right:-8%;opacity:.18"></div>
     <div class="kick r">Por qué es real</div>
-    <h2 class="r d1" style="max-width:16ch">Datos oficiales, actualizados solos</h2>
-    <p class="lead r d2" style="max-width:720px">Cada cifra viene de una fuente oficial, con fecha y liga. Detrás corre maquinaria todos los días: prensa nacional y estatal, DOF, Congreso y la conferencia matutina, más datos abiertos de SEMARNAT e INECC. Nada inventado.</p>
-    <div class="stats">
-      <div class="stat r d2"><div class="n"><span data-count="32">0</span></div><div class="l">Estados con expediente completo, no solo lo federal</div></div>
-      <div class="stat r d3"><div class="n"><span data-count="180">0</span>+<span class="u"> fuentes</span></div><div class="l">Prensa, DOF, Congreso, gacetas y datos oficiales</div></div>
-      <div class="stat r d4"><div class="n"><span data-count="20">0</span>+</div><div class="l">Instrumentos internacionales que alcanzan al exportador</div></div>
-      <div class="stat r d2"><div class="n">6am</div><div class="l">La señal se actualiza sola cada mañana, sin intervención</div></div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:15ch">Datos oficiales, actualizados solos</h2>
+        <p class="lead r d2" style="max-width:540px">Cada cifra viene de una fuente oficial, con fecha y liga. Detrás corre maquinaria que no para: prensa, DOF, Congreso y la conferencia matutina, más datos abiertos de SEMARNAT e INECC. Nada inventado, todo con fuente y fecha.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="panel intk">
+          <div class="intk-hd"><span class="intk-live"></span>Ingesta en vivo<span class="intk-time">hoy · 6:00 AM</span></div>
+          <div class="intk-rows" id="intkRows"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -682,10 +760,19 @@
     <div class="techbg"></div>
     <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-12%;left:-8%;opacity:.2"></div>
     <div class="kick r">Radar temático</div>
-    <h2 class="r d1" style="max-width:15ch">Cada sector tiene su señal</h2>
-    <p class="lead r d2" style="max-width:640px">El Radar cruza prensa, DOF, Congreso y NOMs por tema, y te dice dónde sube la presión, con los datos duros del sector detrás. <span class="rhint">Toca un tema para desglosarlo.</span></p>
-    <div class="rgrid r d3" id="rgrid"></div>
-    <div class="rdetail" id="rdetail"></div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:13ch">Cada sector tiene su señal</h2>
+        <p class="lead r d2" style="max-width:500px">El Radar cruza prensa, DOF, Congreso y NOMs por tema, y te dice dónde sube la presión, con los datos duros del sector detrás.</p>
+        <p class="r d3" style="max-width:500px;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--mint);letter-spacing:.04em">Cada tema se desglosa con sus señales recientes.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="radarbox">
+          <div class="rgrid" id="rgrid"></div>
+          <div class="rdetail" id="rdetail"></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section data-t="NOMs federales" data-anim="mesa">
@@ -725,9 +812,10 @@
       </div>
       <div class="viz r d3">
         <div class="panel">
-          <div class="phdr"><div><div class="ptitle">Monitor del Congreso Federal</div><div class="psub">Actividad ambiental · últimas 8 semanas</div></div>
+          <div class="phdr"><div><div class="ptitle">Actividad del Congreso Federal</div><div class="psub">Actividad ambiental · últimas 8 semanas <span class="cong-hint">· toca un punto</span></div></div>
             <div class="legend"><span><i style="background:var(--mint)"></i>Diputados</span><span><i style="background:var(--g3)"></i>Senado</span></div></div>
           <svg id="congsvg" viewBox="0 0 620 200" style="width:100%;height:auto;display:block"></svg>
+          <div class="congmock" id="congmock"></div>
         </div>
       </div>
     </div>
@@ -825,9 +913,15 @@
     </div>
   </section>
 
-  <section data-t="One more thing" data-anim="chat">
+  <section class="mid" data-t="One more thing" data-anim="omt" style="text-align:center;align-items:center">
+    <div class="glow" style="width:620px;height:620px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.2"></div>
+    <h1 class="r" style="max-width:18ch;font-size:clamp(40px,7vw,86px)"><span class="tw" id="omtTw">One more thing</span></h1>
+    <div class="cap r d3" style="margin-top:30px;color:var(--dim);font-family:var(--mono);letter-spacing:.14em">Desliza para descubrirlo &darr;</div>
+  </section>
+
+  <section data-t="Signal" data-anim="chat">
     <div class="glow" style="width:560px;height:560px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.16"></div>
-    <div class="cap r" style="color:var(--mut);font-size:14px;letter-spacing:.12em">One more thing&hellip;</div>
+    <div class="kick r">Lo que viene</div>
     <div class="split" style="margin-top:22px">
       <div class="col">
         <h2 class="r d1" style="max-width:14ch">Y en octubre, llega Signal</h2>
@@ -982,6 +1076,33 @@
   }
 
   // congreso chart
+  // Iniciativas mockup (representativas) por punto de la línea de Diputados
+  var CONG_INI=[
+    {t:'Reforma a la Ley de Aguas Nacionales',grp:'Morena',com:'Comisión de Recursos Hidráulicos, Agua Potable y Saneamiento',dt:'10 feb 2026',b:'Prioriza el uso humano del agua sobre el industrial en cuencas con estrés hídrico y ordena revisar concesiones.',imp:'medio',tags:'Agua · Industria'},
+    {t:'Punto de acuerdo sobre gestión integral de residuos',grp:'PVEM',com:'Comisión de Medio Ambiente y Recursos Naturales',dt:'17 feb 2026',b:'Exhorta a fortalecer la NOM-161 y los planes de manejo de residuos de manejo especial en las entidades.',imp:'medio',tags:'Residuos'},
+    {t:'Iniciativa sobre metas de mitigación climática',grp:'Morena',com:'Comisión de Cambio Climático y Sostenibilidad',dt:'24 feb 2026',b:'Actualiza las metas nacionales de reducción de emisiones y su verificación en el registro RETC.',imp:'alto',tags:'Cambio climático · Emisiones'},
+    {t:'Reforma en responsabilidad extendida del productor',grp:'Movimiento Ciudadano',com:'Comisión de Medio Ambiente y Recursos Naturales',dt:'03 mar 2026',b:'Obliga a productores de envases y plásticos a financiar su recolección y valorización.',imp:'alto',tags:'Economía circular · Envases'},
+    {t:'Iniciativa de inventario nacional de calidad del aire',grp:'PAN',com:'Comisión de Medio Ambiente y Recursos Naturales',dt:'11 mar 2026',b:'Crea un inventario nacional de emisiones de fuentes fijas con reporte público anual.',imp:'medio',tags:'Aire · Emisiones'},
+    {t:'Iniciativa de deforestación cero para 2030',grp:'PVEM',com:'Comisión de Medio Ambiente y Recursos Naturales',dt:'18 mar 2026',b:'Establece metas vinculantes de conservación forestal alineadas al reglamento europeo EUDR.',imp:'alto',tags:'Forestal · Exportación'},
+    {t:'Iniciativa de Ley General de Economía Circular',grp:'Morena',com:'Comisión de Medio Ambiente y Recursos Naturales',dt:'02 abr 2026',b:'Crea el marco nacional de economía circular: metas de valorización, ecodiseño y responsabilidad del productor.',imp:'alto',tags:'Economía circular · Manufactura'},
+    {t:'Reforma en transición energética y renovables',grp:'PT',com:'Comisión de Energía',dt:'09 abr 2026',b:'Fija metas de generación limpia y prioriza el despacho de energías renovables en la red.',imp:'medio',tags:'Energía · Renovables'}
+  ];
+  window._congShow=function(i){
+    var d=CONG_INI[i]; if(!d)return;
+    var host=document.getElementById('congmock'); if(!host)return;
+    var svg=document.getElementById('congsvg');
+    if(svg)[].forEach.call(svg.querySelectorAll('.cdip'),function(c){c.classList.toggle('sel',+c.getAttribute('data-i')===i);});
+    var impCol=d.imp==='alto'?'#3fe0ad':'var(--mut)';
+    host.innerHTML='<div class="cmk-card">'
+      +'<div class="cmk-tag">Iniciativa · Cámara de Diputados</div>'
+      +'<div class="cmk-title">'+d.t+'</div>'
+      +'<div class="cmk-meta"><span class="cmk-party">'+d.grp+'</span><span>'+d.com+'</span><span>Presentada '+d.dt+'</span></div>'
+      +'<div class="cmk-body">'+d.b+'</div>'
+      +'<div class="cmk-foot"><span class="cmk-imp" style="color:'+impCol+'">Impacto '+d.imp+'</span><span>'+d.tags+'</span></div>'
+    +'</div>';
+    host.classList.add('open');
+  };
+  var congDemo=false;
   function drawCong(){
     var svg=document.getElementById('congsvg'); if(!svg)return;
     var dip=[4,6,9,7,11,8,13,10], sen=[3,4,5,8,6,9,7,11], n=dip.length;
@@ -994,10 +1115,14 @@
     var grid='';[0,Math.round(mx/2),mx].forEach(function(v){var y=Y(v).toFixed(1);
       grid+='<line x1="'+PL+'" y1="'+y+'" x2="'+(W-PR)+'" y2="'+y+'" stroke="rgba(255,255,255,.08)"/><text x="'+(PL-6)+'" y="'+(Y(v)+3).toFixed(1)+'" text-anchor="end" font-size="9" fill="#63776f">'+v+'</text>';});
     var xl='';for(var i=0;i<n;i+=2){xl+='<text x="'+X(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" font-size="9" fill="#63776f">s'+(i+1)+'</text>';}
-    var pd='',ps='';for(var j=0;j<n;j++){pd+='<circle cx="'+X(j).toFixed(1)+'" cy="'+Y(dip[j]).toFixed(1)+'" r="3" fill="#3fe0ad" opacity="0" class="cpt"/>';ps+='<circle cx="'+X(j).toFixed(1)+'" cy="'+Y(sen[j]).toFixed(1)+'" r="3" fill="#066750" opacity="0" class="cpt"/>';}
-    svg.innerHTML=grid+xl+'<path id="cpD" d="'+smooth(dip)+'" fill="none" stroke="#3fe0ad" stroke-width="2.6" stroke-linecap="round"/><path id="cpS" d="'+smooth(sen)+'" fill="none" stroke="#066750" stroke-width="2.6" stroke-linecap="round"/>'+pd+ps;
+    var pd='',ps='';for(var j=0;j<n;j++){
+      ps+='<circle cx="'+X(j).toFixed(1)+'" cy="'+Y(sen[j]).toFixed(1)+'" r="3" fill="#066750" opacity="0" class="cpt"/>';
+      pd+='<g class="cdipg" style="cursor:pointer" onclick="_congShow('+j+')"><circle cx="'+X(j).toFixed(1)+'" cy="'+Y(dip[j]).toFixed(1)+'" r="12" fill="transparent"/><circle class="cpt cdip" data-i="'+j+'" cx="'+X(j).toFixed(1)+'" cy="'+Y(dip[j]).toFixed(1)+'" r="3.4" fill="#3fe0ad" opacity="0"/></g>';
+    }
+    svg.innerHTML=grid+xl+'<path id="cpD" d="'+smooth(dip)+'" fill="none" stroke="#3fe0ad" stroke-width="2.6" stroke-linecap="round"/><path id="cpS" d="'+smooth(sen)+'" fill="none" stroke="#066750" stroke-width="2.6" stroke-linecap="round"/>'+ps+pd;
     ['cpD','cpS'].forEach(function(id,k){var p=svg.querySelector('#'+id);var L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;p.getBoundingClientRect();p.style.transition='stroke-dashoffset 1.5s ease '+(k*0.25)+'s';p.style.strokeDashoffset='0';});
     svg.querySelectorAll('.cpt').forEach(function(c,i){setTimeout(function(){c.style.transition='opacity .4s';c.style.opacity='1';},1500+i*40);});
+    if(!congDemo){congDemo=true;setTimeout(function(){var s=svg.querySelector('.cdip[data-i="6"]');if(s)s.classList.add('pulse');setTimeout(function(){if(window._congShow)_congShow(6);},1000);},2400);}
   }
 
   // count-up
@@ -1169,7 +1294,9 @@
     if(a==='radardemo')startRadarDemo();
     if(a==='mesa')startMesa(sec);
     if(a==='count')runCounts(sec);
-    if(a==='imp'){sec.querySelectorAll('.bfill').forEach(function(f){var w=f.getAttribute('data-w');f.style.width='0';f.getBoundingClientRect();setTimeout(function(){f.style.width=w;},40);});runCounts(sec);}
+    if(a==='imp'){var irows=[].slice.call(sec.querySelectorAll('.brow'));
+      irows.forEach(function(row){var f=row.querySelector('.bfill');if(f){f.style.width='0';f.getBoundingClientRect();}var n=row.querySelector('[data-count]');if(n)n.textContent='0';var tf=row.querySelector('.topflag');if(tf)tf.style.opacity='0';});
+      irows.forEach(function(row,idx){setTimeout(function(){row.classList.add('load');var f=row.querySelector('.bfill');if(f)f.style.width=f.getAttribute('data-w');var n=row.querySelector('[data-count]');if(n)countUp(n,1400);var tf=row.querySelector('.topflag');if(tf){tf.style.transition='opacity .5s';setTimeout(function(){tf.style.opacity='1';},900);}},400+idx*680);});}
     if(a==='cost'||a==='rev'){
       var rows=[].slice.call(sec.querySelectorAll('.crow'));
       rows.forEach(function(row){var f=row.querySelector('.cf');if(f){f.style.width='0';f.getBoundingClientRect();}var n=row.querySelector('[data-count]');if(n)n.textContent='0';});
@@ -1180,6 +1307,10 @@
     if(a==='chat')startChat(sec);
     if(a==='expcard')startExpCard(sec);
     if(a==='chaos')chaosMarquee(sec);
+    if(a==='adncount')startAdnCount(sec);
+    if(a==='intake')startIntake(sec);
+    if(a==='reveal')startReveal(sec);
+    if(a==='omt')startOmt(sec);
   }
   // Marquee de cine: ilumina chips al azar con sentido de urgencia
   var _chaosTimer=null;
@@ -1190,13 +1321,120 @@
     function on(el){el.style.color='#e6b45e';el.style.borderColor='rgba(230,180,94,.6)';el.style.background='rgba(230,180,94,.12)';el.style.boxShadow='0 0 20px rgba(230,180,94,.30)';}
     function off(el){el.style.color='';el.style.borderColor='';el.style.background='';el.style.boxShadow='';}
     function tick(){
-      var n=1+Math.floor(Math.random()*2);
-      for(var i=0;i<n;i++){
-        var c=chips[Math.floor(Math.random()*chips.length)];
-        if(!c.dataset.on){c.dataset.on='1';on(c);(function(el){setTimeout(function(){off(el);delete el.dataset.on;},650+Math.random()*750);})(c);}
-      }
+      var c=chips[Math.floor(Math.random()*chips.length)];
+      if(!c.dataset.on){c.dataset.on='1';on(c);(function(el){setTimeout(function(){off(el);delete el.dataset.on;},1600+Math.random()*1300);})(c);}
     }
-    setTimeout(function(){tick();_chaosTimer=setInterval(tick,430);},1300);
+    setTimeout(function(){tick();_chaosTimer=setInterval(tick,1150);},1500);
+  }
+
+  // De dónde venimos: cifras que suben una por una
+  var adnDone=false;
+  function startAdnCount(sec){
+    if(adnDone)return; adnDone=true;
+    var items=[].slice.call(sec.querySelectorAll('.adnm'));
+    items.forEach(function(m,i){setTimeout(function(){m.classList.add('on');var n=m.querySelector('[data-count]');if(n)countUp(n,1500);},450+i*680);});
+  }
+
+  // One more thing: se escribe como "cambiando" del cover
+  var omtDone=false;
+  function startOmt(sec){
+    if(omtDone)return; omtDone=true;
+    var el=sec.querySelector('#omtTw'); if(!el)return;
+    var word='One more thing',i=0; el.textContent='';
+    setTimeout(function tp(){
+      if(i<=word.length){el.textContent=word.slice(0,i);i++;
+        var ch=word.charAt(i-1),d=(ch===' ')?150:(95+Math.floor(i%3)*32);
+        setTimeout(tp,d);
+      }
+    },650);
+  }
+
+  // Les presentamos: código que se materializa en el logo de Scope (~15s, estilo reveal Apple)
+  var revealDone=false;
+  function startReveal(sec){
+    if(revealDone)return; revealDone=true;
+    var cv=sec.querySelector('#revealCanvas'); if(!cv)return;
+    var ctx=cv.getContext('2d'); if(!ctx)return;
+    var DPR=Math.min(2,window.devicePixelRatio||1), W=0,H=0;
+    function size(){var r=sec.getBoundingClientRect();W=Math.max(1,r.width);H=Math.max(1,r.height);cv.width=W*DPR;cv.height=H*DPR;cv.style.width=W+'px';cv.style.height=H+'px';ctx.setTransform(DPR,0,0,DPR,0,0);}
+    size();
+    var kick=sec.querySelector('#revealKick'), tag=sec.querySelector('#revealTag'), logo=sec.querySelector('#revealLogo');
+    function buildTargets(draw){
+      var off=document.createElement('canvas'),octx=off.getContext('2d');
+      off.width=Math.round(W);off.height=Math.round(H);
+      draw(octx);
+      var data; try{data=octx.getImageData(0,0,off.width,off.height).data;}catch(e){return [];}
+      var pts=[],gap=Math.max(4,Math.round(W/230));
+      for(var y=0;y<off.height;y+=gap){for(var x=0;x<off.width;x+=gap){if(data[(y*off.width+x)*4+3]>130)pts.push({x:x,y:y});}}
+      return pts;
+    }
+    function run(targets){
+      if(!targets.length){targets=buildTargets(function(o){var fs=Math.min(210,W*0.24);o.fillStyle='#fff';o.textAlign='center';o.textBaseline='middle';o.font='800 '+fs+'px Helvetica,Arial,sans-serif';o.fillText('Scope',W/2,H/2);});}
+      var GREENS=['#066750','#0E8C74','#12A594','#3fe0ad'];
+      var parts=targets.map(function(t,i){return {x:Math.random()*W,y:Math.random()*H,tx:t.x,ty:t.y,c:GREENS[i%4]};});
+      var GLYPH=('ETAOINSRHLDCUMFPGWYBVK{}<>/=;:0123456789NOMDOFLGEEPARETC').split('');
+      var colW=16, cols=Math.max(1,Math.floor(W/colW)), drops=[];
+      for(var c=0;c<cols;c++)drops.push(Math.random()*-H);
+      var t0=null,DUR=15000;
+      function frame(ts){
+        if(t0==null)t0=ts; var el=ts-t0;
+        ctx.clearRect(0,0,W,H);
+        var codeAlpha = el<7000 ? Math.min(1,el/1200)*(1-Math.max(0,(el-4200)/2800)) : 0;
+        if(codeAlpha>0.01){
+          ctx.font='13px "IBM Plex Mono",monospace';
+          for(var k=0;k<cols;k++){
+            drops[k]+=5+(k%3);
+            if(drops[k]>H)drops[k]=Math.random()*-200;
+            ctx.fillStyle='rgba(14,140,116,'+(0.16*codeAlpha).toFixed(3)+')';
+            ctx.fillText(GLYPH[(k+Math.floor(drops[k]/16))%GLYPH.length],k*colW,drops[k]);
+            ctx.fillStyle='rgba(63,224,173,'+(0.42*codeAlpha).toFixed(3)+')';
+            ctx.fillText(GLYPH[(k*7+Math.floor(drops[k]/16))%GLYPH.length],k*colW,drops[k]-16);
+          }
+        }
+        var assemble=Math.max(0,Math.min(1,(el-4200)/5200));
+        var ease=1-Math.pow(1-assemble,3);
+        var pa=(el>9800)?Math.max(0.15,1-(el-9800)/1600):(0.25+0.75*assemble);
+        for(var i=0;i<parts.length;i++){
+          var pt=parts[i];
+          var cx=pt.x+(pt.tx-pt.x)*ease, cy=pt.y+(pt.ty-pt.y)*ease;
+          if(assemble<1){cx+=Math.sin(el/300+i)*3*(1-assemble);cy+=Math.cos(el/280+i)*3*(1-assemble);}
+          ctx.globalAlpha=pa;
+          ctx.fillStyle=pt.c;
+          ctx.fillRect(cx,cy,1.9,1.9);
+        }
+        ctx.globalAlpha=1;
+        if(el<DUR+600)requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+      setTimeout(function(){kick&&kick.classList.add('show');},400);
+      setTimeout(function(){kick&&kick.classList.add('hide');},3900);
+      setTimeout(function(){logo&&logo.classList.add('show');},10000);
+      setTimeout(function(){tag&&tag.classList.add('show');},12000);
+    }
+    var im=new Image();
+    im.onload=function(){run(buildTargets(function(o){var iw=im.naturalWidth,ih=im.naturalHeight;if(!iw||!ih)return;var sc=Math.min(W*0.50/iw,H*0.32/ih),dw=iw*sc,dh=ih*sc;o.drawImage(im,(W-dw)/2,(H-dh)/2,dw,dh);}));};
+    im.onerror=function(){run([]);};
+    im.src='assets/scope-logo-dark.png';
+  }
+
+  // Por qué es real: fuentes que se conectan en vivo, una por una
+  var intkDone=false;
+  function startIntake(sec){
+    if(intkDone)return; intkDone=true;
+    var host=sec.querySelector('#intkRows'); if(!host)return;
+    var SRC=[
+      ['Diario Oficial de la Federación','NOMs, acuerdos y decretos'],
+      ['Prensa nacional','40+ medios de circulación'],
+      ['Prensa estatal','cobertura en las 32 entidades'],
+      ['Cámara de Diputados','iniciativas y puntos de acuerdo'],
+      ['Senado de la República','minutas y dictámenes'],
+      ['Conferencia matutina','versión estenográfica del día'],
+      ['SEMARNAT · datos abiertos','sitios contaminados y residuos'],
+      ['INECC','inventarios de emisiones']
+    ];
+    host.innerHTML=SRC.map(function(s){return '<div class="intk-row"><span class="intk-dot"></span><div class="intk-b"><div class="intk-n">'+s[0]+'</div><div class="intk-s">'+s[1]+'</div></div><span class="intk-tick">conectado</span></div>';}).join('');
+    var rows=[].slice.call(host.querySelectorAll('.intk-row'));
+    rows.forEach(function(r,i){setTimeout(function(){r.classList.add('on');setTimeout(function(){r.classList.add('ok');},560);},400+i*470);});
   }
 
   // Senado typewriter cuando entra Actores
