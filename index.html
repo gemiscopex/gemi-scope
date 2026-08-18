@@ -3791,7 +3791,7 @@ function renderSPFicha(state,data){
     </div>`;
 }
 function renderSPLegislacion(state,data){
-  const sl=leyesAmbientales.estados.find(e=>e.nombre===state||(state==='México'&&e.nombre==='Estado de México'));
+  const sl=(typeof _leyEntry==='function')?_leyEntry(state):leyesAmbientales.estados.find(e=>e.nombre===state||(state==='México'&&e.nombre==='Estado de México'));
   const cl={equilibrio_ecologico:'Equilibrio Ecológico',residuos:'Residuos y Plásticos',agua:'Agua',forestal_biodiversidad:'Forestal y Biodiversidad',cambio_climatico:'Cambio Climático',economia_circular:'Economía Circular',plasticos:'Plásticos',energia:'Energía'};
   let html='';
   if(sl){
