@@ -321,6 +321,12 @@
   .cmp-bar{height:8px;background:rgba(255,255,255,.1);border-radius:6px;margin-top:16px;overflow:hidden}
   .cmp-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--g3),var(--mint));border-radius:6px;width:0;animation:cmpBar 1.1s cubic-bezier(.22,1,.36,1) forwards}
   @keyframes cmpBar{from{width:0}}
+  .cmp-icount{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--mint);margin-bottom:10px}
+  .cmp-icount.cmp-mut{color:#fff;opacity:.55}
+  .cmp-irow{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+  .cmp-it{font-family:var(--mono);font-size:13px;color:#fff;letter-spacing:.02em}
+  .cmp-iv{font-family:var(--mono);font-size:17px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .cmp-irow.cmp-none .cmp-it{color:#fff;opacity:.55}
   .cmp-stat{margin-bottom:16px}
   .cmp-donut{display:flex;align-items:center;gap:16px;margin-bottom:14px}
   .cmp-leg{display:flex;flex-direction:column;gap:6px;font-size:11px;color:#fff}
@@ -833,7 +839,7 @@
     <div class="techbg"></div>
     <div class="glow" style="width:460px;height:460px;background:var(--g2);top:-10%;left:-6%;opacity:.18"></div>
     <div class="kick r">Comparar entidades</div>
-    <h2 class="r d1" style="max-width:18ch">Dos estados, lado a lado</h2>
+    <h2 class="r d1" style="max-width:18ch;color:#fff">Dos estados, lado a lado</h2>
     <p class="lead r d2" style="max-width:640px;color:#fff">Eliges las entidades que te interesan y Scope arma la comparación al instante, tema por tema.</p>
     <div class="cmp r d3">
       <div class="cmp-sel" id="cmpSel">
@@ -1495,15 +1501,16 @@
     var timers=[]; function at(ms,fn){timers.push(setTimeout(fn,ms));}
     var donutCH='<svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="26" fill="none" stroke="#066750" stroke-width="12" stroke-dasharray="63.05 100.31" stroke-dashoffset="0" transform="rotate(-90 40 40)"/><circle cx="40" cy="40" r="26" fill="none" stroke="#12A594" stroke-width="12" stroke-dasharray="60.26 103.11" stroke-dashoffset="-63.05" transform="rotate(-90 40 40)"/><circle cx="40" cy="40" r="26" fill="none" stroke="#C2CBC7" stroke-width="12" stroke-dasharray="40.05 123.31" stroke-dashoffset="-123.31" transform="rotate(-90 40 40)"/></svg>';
     var donutMX='<svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="26" fill="none" stroke="#066750" stroke-width="12" stroke-dasharray="66.13 97.24" stroke-dashoffset="0" transform="rotate(-90 40 40)"/><circle cx="40" cy="40" r="26" fill="none" stroke="#12A594" stroke-width="12" stroke-dasharray="59.03 104.33" stroke-dashoffset="-66.13" transform="rotate(-90 40 40)"/><circle cx="40" cy="40" r="26" fill="none" stroke="#C2CBC7" stroke-width="12" stroke-dasharray="38.21 125.16" stroke-dashoffset="-125.16" transform="rotate(-90 40 40)"/></svg>';
-    var chih={n:'Chihuahua',gen:'4,256',gpc:'1.092',comp:[38.6,36.9,24.5],mun:67,ti:158,imp:null,dn:donutCH};
-    var mex={n:'Estado de México',gen:'19,593',gpc:'1.127',comp:[40.5,36.1,23.4],mun:125,ti:38,imp:'$58',dn:donutMX};
+    var chih={n:'Chihuahua',gen:'4,256',gpc:'1.092',comp:[38.6,36.9,24.5],mun:67,ti:158,imp:[],dn:donutCH};
+    var mex={n:'Estado de México',gen:'19,593',gpc:'1.127',comp:[40.5,36.1,23.4],mun:125,ti:38,dn:donutMX,
+      imp:[['GEI','$58 / tonCO₂e'],['Agua','$141–108 / m³'],['Residuos','$100 / ton']]};
     function setTab(name){[].forEach.call(tabs.querySelectorAll('.cmp-tab'),function(t){t.classList.toggle('on',t.getAttribute('data-tab')===name);});}
     function impCol(s){
-      return '<div class="cmp-col"><div class="cmp-cn">'+s.n+'</div>'
-        +(s.imp
-          ? '<div class="cmp-big">'+s.imp+'<span class="cmp-u">/ tonCO₂e</span></div><div class="cmp-l">Impuesto al carbono · vigente</div><div class="cmp-bar"><span style="width:100%"></span></div>'
-          : '<div class="cmp-big cmp-none">Sin impuesto</div><div class="cmp-l">Sin gravamen verde vigente</div><div class="cmp-bar"><span style="width:6%"></span></div>')
-      +'</div>';
+      var body = (s.imp&&s.imp.length)
+        ? '<div class="cmp-icount">'+s.imp.length+' impuestos verdes vigentes</div>'
+          + s.imp.map(function(t){return '<div class="cmp-irow"><span class="cmp-it">'+t[0]+'</span><span class="cmp-iv">'+t[1]+'</span></div>';}).join('')
+        : '<div class="cmp-icount cmp-mut">0 impuestos verdes</div><div class="cmp-irow cmp-none"><span class="cmp-it">Sin gravamen verde vigente</span></div>';
+      return '<div class="cmp-col"><div class="cmp-cn">'+s.n+'</div>'+body+'</div>';
     }
     function resCol(s){
       return '<div class="cmp-col"><div class="cmp-cn">'+s.n+'</div>'
