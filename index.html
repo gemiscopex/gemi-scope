@@ -2358,15 +2358,17 @@ var _ODS=[
   [15,'Vida de ecosistemas terrestres',1],[16,'Paz, justicia e instituciones sólidas',0],
   [17,'Alianzas para lograr los objetivos',0]
 ];
+// Colores oficiales de la ONU por ODS (sdgs.un.org)
+var _ODS_COL=['#E5243B','#DDA63A','#4C9F38','#C5192D','#FF3A21','#26BDE2','#FCC30B','#A21942','#FD6925','#DD1367','#FD9D24','#BF8B2E','#3F7E44','#0A97D9','#56C02B','#00689D','#19486A'];
 function _agenda2030HTML(){
   var GRN='#0E8C74',DEEP='#066750';
   var head='<div style="font-size:12px;color:var(--text-sec);line-height:1.55;margin-bottom:16px">Los <b>17 Objetivos de Desarrollo Sostenible</b> de la Agenda 2030 (ONU). México los incorpora a su planeación nacional; los resaltados en verde son los de mayor incidencia <b>ambiental</b>. Da clic para ver las metas oficiales de cada objetivo.</div>'
     +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px">17 objetivos · 7 de incidencia ambiental</div>';
   var grid='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0 26px">'
     +_ODS.map(function(o){
-      var amb=o[2]===1;
-      return '<a href="https://www.un.org/sustainabledevelopment/es/'+ '" data-goal="'+o[0]+'" onclick="event.preventDefault();window.open(\'https://sdgs.un.org/goals/goal'+o[0]+'\',\'_blank\')" style="display:flex;align-items:baseline;gap:12px;padding:11px 0;border-bottom:0.8px solid var(--border);text-decoration:none;cursor:pointer">'
-        +'<span style="flex:0 0 26px;font-family:var(--mono);font-size:16px;font-weight:700;color:'+(amb?DEEP:'var(--text-muted)')+';font-variant-numeric:tabular-nums;text-align:right">'+o[0]+'</span>'
+      var amb=o[2]===1;var col=_ODS_COL[o[0]-1]||'#0E8C74';
+      return '<a href="https://www.un.org/sustainabledevelopment/es/'+ '" data-goal="'+o[0]+'" onclick="event.preventDefault();window.open(\'https://sdgs.un.org/goals/goal'+o[0]+'\',\'_blank\')" style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:0.8px solid var(--border);text-decoration:none;cursor:pointer">'
+        +'<span style="flex:0 0 34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:'+col+';color:#fff;font-family:var(--mono);font-size:15px;font-weight:700;border-radius:5px;font-variant-numeric:tabular-nums">'+o[0]+'</span>'
         +'<span style="flex:1;font-size:12px;color:var(--text);line-height:1.35">'+o[1]+(amb?' <span style="font-size:8px;font-family:var(--mono);color:'+GRN+';letter-spacing:0.06em">· AMBIENTAL</span>':'')+'</span>'
         +'<span style="font-size:12px;color:var(--green);flex-shrink:0"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span>'
         +'</a>';
@@ -4082,8 +4084,8 @@ var _radarSel=null,_RD_NOW=Date.now(),_RD_NEWS=Date.now();
 var RD_GREEN='#066750';  // verde del logo GEMI — base de las gráficas del Radar
 // Paleta GEMI (verdes/teales del logo + variaciones) — cada tema toma un tono distinto
 var GEMI_PAL=['#066750','#0E8C74','#12A594','#2C6552','#3FA07E','#0A7C63','#149E8C','#57B894','#1B5E4F','#08A88F','#2E8B74','#6CBE98','#0F7A62'];
-var _RD_COLOR={};(typeof RADAR_TEMAS!=='undefined'?RADAR_TEMAS:[]).forEach(function(t,i){_RD_COLOR[t.id]=GEMI_PAL[i%GEMI_PAL.length];});
-function _radarColor(id){return _RD_COLOR[id]||RD_GREEN;}
+var _RD_COLOR={};(typeof RADAR_TEMAS!=='undefined'?RADAR_TEMAS:[]).forEach(function(t,i){_RD_COLOR[t.id]='#0E8C74';});
+function _radarColor(id){return '#0E8C74';}
 var _radarSort='senal';
 function _radarSetSort(k){_radarSort=k;renderRadares();}
 // Ancla la ventana al dato más reciente disponible: robusto ante snapshots viejos
@@ -4167,8 +4169,8 @@ function renderRadares(){
   var _senRank={};_senSorted.forEach(function(id,i){_senRank[id]=i;});
   var _nT=Math.max(rows.length,1);
   function _rdFrac(id){return _nT>1?1-(_senRank[id]/(_nT-1)):1;}
-  function _rdEdge(id){var f=_rdFrac(id);return f>=0.72?'#066750':f>=0.46?'#10b981':f>=0.2?'var(--text-sec)':'var(--text-muted)';}
-  function _rdTint(id){var f=_rdFrac(id);return f>=0.72?'rgba(6,103,80,0.10)':f>=0.46?'rgba(16,185,129,0.07)':f>=0.2?'rgba(120,130,140,0.05)':'transparent';}
+  function _rdEdge(id){return '#0E8C74';}
+  function _rdTint(id){return 'transparent';}
   function _rdLevel(id){var f=_rdFrac(id);return f>=0.72?'Alta':f>=0.46?'Media-alta':f>=0.2?'Media':'Baja';}
   var body=rows.map(function(r,i){
     var t=r.t,s=r.s,d=s.delta;
