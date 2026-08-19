@@ -7627,7 +7627,7 @@ function authPreview(){
       .catch(function(){_authMsg('No se pudo enviar. Intenta de nuevo en un momento.');})
       .finally(function(){b.disabled=false;b.textContent='Enviar solicitud';});
   }else{
-    window.location.href='mailto:gemiscopex@gmail.com?subject='+encodeURIComponent('Registro al preview de Scope')
+    window.location.href='mailto:contacto@scopegemi.com?subject='+encodeURIComponent('Registro al preview de Scope')
       +'&body='+encodeURIComponent('Nombre: '+nombre+'\nEmpresa: '+empresa+'\nCorreo: '+email+'\n\nQuiero acceso al preview de Scope.');
     _authMsg('Se abrió tu correo para enviarnos tu registro.',false);
   }
