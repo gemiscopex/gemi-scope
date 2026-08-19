@@ -446,8 +446,8 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .leg-com-title{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px}
 /* ─ Accordion comisiones ─ */
 .com-section{margin-bottom:32px}
-.com-section-hdr{padding-bottom:10px;border-bottom:1.5px solid var(--text);margin-bottom:2px}
-.com-section-name{font-family:var(--sans);font-size:18px;font-weight:700;letter-spacing:0.04em;color:var(--text);text-transform:uppercase}
+.com-section-hdr{padding-bottom:8px;border-bottom:0.8px solid var(--border);margin-bottom:4px}
+.com-section-name{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--green);text-transform:uppercase}
 .com-section-sub{font-size:10px;color:var(--text-muted);margin-top:4px;letter-spacing:0.02em}
 .com-row{display:flex;align-items:center;gap:8px;padding:8px 10px;cursor:pointer;transition:background 0.12s;border-bottom:0.8px solid rgba(0,0,0,0.05);border-radius:6px}
 .com-row:hover{background:rgba(0,158,144,0.05)}
@@ -6675,13 +6675,15 @@ function _consSignalRailHTML(){
     +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;padding:14px;min-height:200px;max-height:46vh;overflow-y:auto">'
       +_consChatBubble('Hola 👋 Soy Signal. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa. Te responderé cruzando los datos de tu terminal en tiempo real.',false)
     +'</div>'
-    +'<div style="padding:0 14px 4px;display:flex;flex-direction:column;gap:2px">'
-      +'<div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px">Prueba preguntarle</div>'
-      +sug.map(function(q){return '<button onclick="_consChatAsk(this.textContent)" style="text-align:left;background:none;border:none;border-top:0.8px solid var(--border);padding:9px 2px;font-family:var(--sans);font-size:12px;color:var(--text-sec);cursor:pointer;line-height:1.35;transition:color .12s" onmouseover="this.style.color=\'var(--green)\'" onmouseout="this.style.color=\'var(--text-sec)\'">'+q+'</button>';}).join('')
+    +'<div style="padding:2px 14px 6px;display:flex;flex-direction:column;gap:7px">'
+      +'<div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1px">Prueba preguntarle</div>'
+      +sug.map(function(q){return '<button onclick="_consChatAsk(this.textContent)" style="text-align:left;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 13px;font-family:var(--sans);font-size:12.5px;color:var(--text-sec);cursor:pointer;line-height:1.35;transition:border-color .12s,color .12s" onmouseover="this.style.borderColor=\'var(--green)\';this.style.color=\'var(--text)\'" onmouseout="this.style.borderColor=\'var(--border)\';this.style.color=\'var(--text-sec)\'">'+q+'</button>';}).join('')
     +'</div>'
-    +'<div style="display:flex;gap:8px;padding:12px 14px 14px;border-top:0.8px solid var(--border)">'
-      +'<input id="cons-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;min-width:0;padding:10px 13px;border:0.8px solid var(--border);background:var(--card);font-family:var(--sans);font-size:12px;color:var(--text);border-radius:0;outline:none">'
-      +'<button onclick="_consChatSend()" class="cons-send" title="Enviar a Signal"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14"/><path d="M12 6l6 6-6 6"/></svg></button>'
+    +'<div style="padding:8px 14px 14px">'
+      +'<div style="display:flex;align-items:flex-end;gap:8px;border:1px solid var(--border);border-radius:16px;padding:7px 7px 7px 15px;background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.05)">'
+        +'<input id="cons-chat-input" placeholder="Pregúntale a Signal…" onkeydown="if(event.key===\'Enter\')_consChatSend()" style="flex:1;min-width:0;padding:6px 0;border:none;background:transparent;font-family:var(--sans);font-size:13.5px;color:var(--text);outline:none">'
+        +'<button onclick="_consChatSend()" class="cons-send" title="Enviar a Signal" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></svg></button>'
+      +'</div>'
     +'</div>'
   +'</div>';
 }
