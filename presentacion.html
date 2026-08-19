@@ -300,6 +300,22 @@
   .sd-dt{font-family:var(--mono);font-size:9px;color:var(--dim);flex-shrink:0}
 
   /* internacional (lista real, auto-scroll una vez) */
+  /* Regístrate al preview (mockup animado) */
+  .prevcard{max-width:400px;margin:0 auto;background:#fff;color:#0D1B2A;border-radius:18px;padding:26px 28px 24px;box-shadow:0 26px 70px rgba(0,0,0,.5)}
+  .prev-top{text-align:center;margin-bottom:16px}
+  .prev-top img{filter:none}
+  .prev-h{text-align:center;font-size:19px;font-weight:800;color:#0D1B2A}
+  .prev-sub{text-align:center;font-size:12px;color:#5a6b64;margin:5px 0 18px;line-height:1.5}
+  .prev-field{margin-bottom:12px}
+  .prev-field label{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#8a9c95;margin-bottom:5px}
+  .prev-in{min-height:40px;border:1px solid rgba(0,0,0,.14);border-radius:10px;padding:10px 13px;font-size:13.5px;color:#0D1B2A;display:flex;align-items:center;background:#fbfdfc}
+  .prev-in.focus{border-color:#0E8C74;box-shadow:0 0 0 3px rgba(14,140,116,.12)}
+  .prev-car{display:inline-block;width:2px;height:16px;background:#0E8C74;opacity:0;margin-left:1px}
+  .prev-in.focus .prev-car{opacity:1;animation:blink2 1s steps(1) infinite}
+  .prev-btn{width:100%;margin-top:6px;padding:12px;border:none;border-radius:11px;background:#0E8C74;color:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:transform .12s,box-shadow .12s,filter .12s}
+  .prev-btn.press{transform:scale(.97);filter:brightness(.92)}
+  .prev-ok{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s,opacity .4s,margin-top .4s;font-size:12.5px;color:#0E8C74;line-height:1.5;text-align:center;background:rgba(14,140,116,.08);border-radius:10px}
+  .prev-ok.show{max-height:80px;opacity:1;margin-top:14px;padding:11px 12px}
   /* Radar display con fondo blanco (como el app real) */
   .radarwhite{background:#ffffff}
   .radarwhite .techbg,.radarwhite .glow{display:none}
@@ -691,8 +707,6 @@
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:44px;margin-bottom:34px">
     <h1 class="r d1" style="max-width:15ch">Estamos <span class="tw" id="tw">cambiando</span> el ambiente</h1>
     <div class="lead r d2" style="margin-left:auto;margin-right:auto">La inteligencia regulatoria ambiental de México, en un solo lugar.</div>
-    <div class="cap r d3">Presentación · 2026</div>
-    <a class="r d3" href="/" style="margin-top:14px;font-family:var(--mono);font-size:13px;color:var(--mint);letter-spacing:.08em;text-decoration:none">scopegemi.com</a>
   </section>
 
   <section data-t="El caos" data-anim="chaos">
@@ -1036,6 +1050,31 @@
     <div class="socios" style="transition-delay:15.6s">
       <div class="t">Los socios de GEMI ya están dentro.</div>
       <div class="d">Cada socio recibe <b>3 usuarios</b>: dos para sus miembros acreditados y uno extra para probarlo sin costo. Por cada usuario adicional, un precio preferencial de <b>$999 al mes</b>, solo por los meses en que se use.</div>
+    </div>
+  </section>
+
+  <section data-t="Preview" data-anim="prev">
+    <div class="techbg"></div>
+    <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-10%;right:-8%;opacity:.18"></div>
+    <div class="kick r">Únete al preview</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:14ch">Regístrate al preview</h2>
+        <p class="lead r d2" style="max-width:540px;color:#fff">Scope está en <b>preview privado</b>. Desde el mismo login dejas tu correo y te damos de alta en cuanto abrimos tu acceso.</p>
+        <p class="r d3" style="max-width:540px;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--mint);letter-spacing:.04em">Inicia sesión → Regístrate al preview → nos llega tu correo.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="prevcard" id="prevCard">
+          <div class="prev-top"><img src="assets/scope-logo-dark.png" alt="Scope" style="height:22px"></div>
+          <div class="prev-h">Regístrate al preview</div>
+          <div class="prev-sub">Déjanos tus datos y te damos de alta al abrir tu acceso.</div>
+          <div class="prev-field"><label>Nombre</label><div class="prev-in" id="prevNom"></div></div>
+          <div class="prev-field"><label>Empresa / organización</label><div class="prev-in" id="prevEmp"></div></div>
+          <div class="prev-field"><label>Correo</label><div class="prev-in" id="prevMail"><span class="prev-car"></span></div></div>
+          <button class="prev-btn" id="prevBtn">Enviar solicitud</button>
+          <div class="prev-ok" id="prevOk">Recibimos tu registro. Te avisamos por correo en cuanto abramos tu acceso.</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1492,6 +1531,7 @@
     if(a==='reveal')startReveal(sec);
     if(a==='omt')startOmt(sec);
     if(a==='cmp')startCmp(sec);
+    if(a==='prev')startPrev(sec);
   }
   // Marquee de cine: ilumina chips al azar con sentido de urgencia
   var _chaosTimer=null;
@@ -1552,6 +1592,30 @@
       at(2500,function(){setTab('imp');paint('<div class="cmp-grid">'+impCol(bc)+impCol(mex)+'</div>');});
       at(8000,function(){setTab('res');paint('<div class="cmp-grid">'+resCol(bc)+resCol(mex)+'</div>');});
       at(15000,function(){timers.forEach(clearTimeout);timers=[];[].forEach.call(sel.querySelectorAll('.cmp-chip'),function(c){c.classList.remove('on');});setTab('');body.innerHTML='';run();});
+    }
+    run();
+  }
+
+  // Regístrate al preview: teclea datos y "envía" (loop)
+  var prevDone=false;
+  function startPrev(sec){
+    if(prevDone)return; prevDone=true;
+    var nom=sec.querySelector('#prevNom'), emp=sec.querySelector('#prevEmp'), mail=sec.querySelector('#prevMail'), btn=sec.querySelector('#prevBtn'), ok=sec.querySelector('#prevOk');
+    if(!mail)return;
+    var timers=[]; function at(ms,fn){timers.push(setTimeout(fn,ms));}
+    function typ(el,txt,speed,done){
+      el.classList.add('focus'); var i=0; var caret=el.querySelector('.prev-car');
+      (function tp(){ if(i<=txt.length){ el.textContent=txt.slice(0,i); if(caret)el.appendChild(caret); i++; timers.push(setTimeout(tp,speed)); } else { el.classList.remove('focus'); done&&done(); } })();
+    }
+    function run(){
+      at(700,function(){typ(nom,'Mauricio Hernández',55,function(){
+        at(400,function(){typ(emp,'Grupo Industrial del Norte',45,function(){
+          at(400,function(){typ(mail,'mauricio@grupoindustrial.mx',55,function(){
+            at(600,function(){btn.classList.add('press');setTimeout(function(){btn.classList.remove('press');ok.classList.add('show');},220);});
+            at(6000,function(){timers.forEach(clearTimeout);timers=[];nom.textContent='';emp.textContent='';mail.innerHTML='<span class="prev-car"></span>';ok.classList.remove('show');run();});
+          });});
+        });});
+      });});
     }
     run();
   }
