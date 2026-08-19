@@ -688,15 +688,13 @@
   .chaos-note{margin-top:26px;font-size:clamp(16px,2vw,22px);font-weight:800;letter-spacing:-.02em;color:var(--ink);opacity:0;transform:translateY(14px);transition:opacity .8s .9s,transform .8s .9s}
   section.in .chaos-note{opacity:1;transform:none}
   /* NUEVO · demo embebida en vivo (browser frame con la app real) */
-  .liveframe{max-width:580px;margin:0 auto;border-radius:14px;overflow:hidden;box-shadow:0 30px 74px rgba(0,0,0,.28);border:1px solid rgba(0,0,0,.09);background:#fff}
-  .lf-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#e9eef0;border-bottom:1px solid rgba(0,0,0,.06)}
-  .lf-dot{width:10px;height:10px;border-radius:50%;background:#c7d0d3}
-  .lf-live{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.06em;color:#0e8c74}
-  .lf-live i{width:6px;height:6px;border-radius:50%;background:#12b98a;animation:cspPulse 1.6s ease-in-out infinite}
-  .lf-url{font-family:var(--mono);font-size:11px;color:#5A7A98}
-  .lf-screen{position:relative;width:100%;height:352px;overflow:hidden;background:#fff}
-  .lf-screen iframe{position:absolute;top:0;left:0;width:1460px;height:912px;border:0;transform:scale(.397);transform-origin:top left;pointer-events:none}
-  @media(max-width:560px){.lf-screen{height:280px}.lf-screen iframe{transform:scale(.33)}}
+  .ipad{position:relative;max-width:640px;margin:0 auto;padding:15px 19px;background:linear-gradient(150deg,#40444b 0%,#23262b 55%,#15171a 100%);border-radius:32px;box-shadow:0 44px 96px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.10),inset 0 0 0 1px rgba(0,0,0,.5)}
+  .ipad::before{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:#0a0b0d;box-shadow:inset 0 0 2px rgba(120,150,160,.5)}
+  .ipad-screen{position:relative;width:100%;height:435px;overflow:hidden;background:#fff;border-radius:5px;box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.55)}
+  .ipad-screen iframe{position:absolute;top:0;left:0;width:1460px;height:1095px;border:0;transform:scale(.397);transform-origin:top left;pointer-events:none}
+  .ipad-live{position:absolute;top:11px;right:13px;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.92);font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.06em;color:#0e8c74;box-shadow:0 2px 8px rgba(0,0,0,.14)}
+  .ipad-live i{width:6px;height:6px;border-radius:50%;background:#12b98a;animation:cspPulse 1.6s ease-in-out infinite}
+  @media(max-width:560px){.ipad{padding:12px 15px;border-radius:26px}.ipad-screen{height:330px}.ipad-screen iframe{width:1460px;height:831px;transform:scale(.397)}}
   /* Presentación · momentos blancos (producto héroe) — híbrido con la base oscura */
   section.lite{background:#f4f6f8;color:#0D1B2A}
   section.lite .kick{color:#0e8c74}
@@ -789,9 +787,11 @@
         <p class="lead r d2">Un recorrido rápido sobre qué features estamos integrando en la primera versión.</p>
       </div>
       <div class="viz r d3">
-        <div class="liveframe">
-          <div class="lf-bar"><span class="lf-dot"></span><span class="lf-dot"></span><span class="lf-dot"></span><span class="lf-url">scopegemi.com</span><span class="lf-live"><i></i>EN VIVO</span></div>
-          <div class="lf-screen"><iframe src="index.html" loading="lazy" title="Scope en vivo" scrolling="no"></iframe></div>
+        <div class="ipad">
+          <div class="ipad-screen">
+            <iframe src="index.html" loading="lazy" title="Scope en vivo" scrolling="no"></iframe>
+            <span class="ipad-live"><i></i>EN VIVO</span>
+          </div>
         </div>
       </div>
     </div>
