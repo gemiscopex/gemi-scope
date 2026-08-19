@@ -13,7 +13,7 @@
   @font-face{font-family:'Scope Sans';src:url('assets/fonts/heros-regular.woff2') format('woff2');font-weight:1 550;font-style:normal;font-display:swap}
   @font-face{font-family:'Scope Sans';src:url('assets/fonts/heros-bold.woff2') format('woff2');font-weight:551 1000;font-style:normal;font-display:swap}
   :root{
-    --bg:#06100d; --ink:#f3f8f5; --mut:#a5bab2; --dim:#63776f;
+    --bg:#06100d; --ink:#ffffff; --mut:#eef4f1; --dim:#b4c6bf;
     --g:#12b98a; --g2:#0e8c74; --g3:#066750; --mint:#3fe0ad; --amber:#e6b45e;
     --line:rgba(255,255,255,0.09);
     --sans:'Scope Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -31,7 +31,7 @@
   section.in .r{opacity:1;transform:none}
   .r.d1{transition-delay:.09s}.r.d2{transition-delay:.19s}.r.d3{transition-delay:.31s}.r.d4{transition-delay:.43s}.r.d5{transition-delay:.55s}
 
-  .kick{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--mint);margin-bottom:20px;letter-spacing:.04em}
+  .kick{font-family:var(--mono);font-size:15.5px;font-weight:700;color:var(--mint);margin-bottom:20px;letter-spacing:.04em}
   .cap{font-family:var(--mono);letter-spacing:.03em}
   .psub,.cl,.cest,.devnote,.price .p,.stat .n .u,.legend{font-family:var(--mono)}
   .soon,.soonbig,.topflag,.rtr,.price .per,.scrollhint,.exit,.brow .nm .ab,.irow .b,.cw-next{font-family:var(--mono)}
@@ -438,10 +438,10 @@
   .stat .n .u{font-size:.36em;color:var(--mut);font-weight:600}
   .stat .l{font-size:13px;color:var(--mut);margin-top:8px;line-height:1.45}
   .panel.intk{padding:18px 20px;max-width:440px;margin:0 auto}
-  .intk-hd{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .intk-hd{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding-bottom:12px;border-bottom:1px solid var(--line)}
   .intk-live{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:intkpulse 1.9s infinite}
   @keyframes intkpulse{0%{box-shadow:0 0 0 0 rgba(63,224,173,.45)}70%{box-shadow:0 0 0 8px rgba(63,224,173,0)}100%{box-shadow:0 0 0 0 rgba(63,224,173,0)}}
-  .intk-time{margin-left:auto;letter-spacing:.02em;color:var(--dim);text-transform:none}
+  .intk-time{margin-left:auto;letter-spacing:.02em;color:#fff;text-transform:none;font-weight:400}
   .intk-rows{display:flex;flex-direction:column}
   .intk-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);opacity:0;transform:translateX(14px);transition:opacity .55s,transform .55s}
   .intk-row.on{opacity:1;transform:none}
@@ -450,7 +450,7 @@
   .intk-row.ok .intk-dot{background:var(--mint);box-shadow:0 0 8px rgba(63,224,173,.6)}
   .intk-b{flex:1;min-width:0}
   .intk-n{font-size:13.5px;color:var(--ink);font-weight:500;line-height:1.3}
-  .intk-s{font-family:var(--mono);font-size:9.5px;color:var(--dim);margin-top:2px}
+  .intk-s{font-family:var(--mono);font-size:10px;color:#ffffff;opacity:.82;margin-top:2px}
   .intk-tick{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.04em;color:var(--mint);opacity:0;transition:opacity .4s;flex-shrink:0}
   .intk-row.ok .intk-tick{opacity:1}
   .intk-kpis{display:flex;gap:34px;margin-top:32px}
@@ -554,7 +554,7 @@
 
   /* NUEVO · el caos (avalancha de fuentes) */
   .chaos{display:flex;flex-wrap:wrap;gap:11px 13px;margin-top:32px;max-width:860px}
-  .chip-src{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--mut);border:1px solid var(--line);border-radius:20px;padding:8px 14px;background:rgba(255,255,255,.03);opacity:0;transform:translateY(10px);transition:opacity .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1)}
+  .chip-src{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:22px;padding:11px 19px;background:rgba(255,255,255,.04);opacity:0;transform:translateY(10px);transition:opacity .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1)}
   section.in .chip-src{opacity:1;transform:none}
   .chip-src.hot{color:#e6b45e;border-color:rgba(230,180,94,.4);background:rgba(230,180,94,.07)}
   .chip-src.hot::after{content:' · hoy';color:#e6b45e;opacity:.8}
@@ -622,7 +622,6 @@
       <span class="chip-src" style="transition-delay:.58s">Conferencia matutina</span>
       <span class="chip-src" style="transition-delay:.64s">Prensa nacional</span>
       <span class="chip-src" style="transition-delay:.70s">Prensa estatal</span>
-      <span class="chip-src" style="transition-delay:.76s">ATDT</span>
       <span class="chip-src" style="transition-delay:.82s">Gacetas oficiales</span>
       <span class="chip-src" style="transition-delay:.88s">SEMARNAT</span>
       <span class="chip-src" style="transition-delay:.94s">INECC</span>
@@ -642,10 +641,9 @@
       </div>
       <div class="viz r d3">
         <div class="adnstack" id="adnStack">
-          <div class="adnm"><div class="adnn"><span data-count="32">0</span></div><div class="adnl">estados con expediente completo</div></div>
-          <div class="adnm"><div class="adnn"><span data-count="180">0</span><span class="adnp">+</span></div><div class="adnl">fuentes oficiales conectadas</div></div>
-          <div class="adnm"><div class="adnn"><span data-count="20">0</span><span class="adnp">+</span></div><div class="adnl">instrumentos internacionales que alcanzan al exportador</div></div>
-          <div class="adnm"><div class="adnn">6<span class="adnam">AM</span></div><div class="adnl">se actualiza sola, cada día, sin intervención</div></div>
+          <div class="adnm"><div class="adnn"><span data-count="32">0</span></div><div class="adnl">entidades con expediente completo</div></div>
+          <div class="adnm"><div class="adnn"><span data-count="380">0</span><span class="adnp">+</span></div><div class="adnl">fuentes oficiales conectadas</div></div>
+          <div class="adnm"><div class="adnn"><span data-count="100">0</span><span class="adnp">+</span></div><div class="adnl">actores clave del ecosistema regulatorio</div></div>
         </div>
       </div>
     </div>
@@ -665,30 +663,11 @@
       <div class="col">
         <h2 class="r d1" style="max-width:13ch">Hecho en GEMI</h2>
         <p class="lead r d2">A la derecha está <b>Scope en vivo</b> con los datos reales. Trajimos nuestros mejores productos y los pusimos a andar solos.</p>
-        <p class="lead r d3" style="margin-top:14px;font-size:15px">Ningún dato inventado. Todo con fuente y fecha.</p>
       </div>
       <div class="viz r d3">
         <div class="liveframe">
           <div class="lf-bar"><span class="lf-dot"></span><span class="lf-dot"></span><span class="lf-dot"></span><span class="lf-url">scopegemi.com</span><span class="lf-live"><i></i>EN VIVO</span></div>
           <div class="lf-screen"><iframe src="index.html" loading="lazy" title="Scope en vivo" scrolling="no"></iframe></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section data-t="Números que importan" data-anim="intake">
-    <div class="techbg"></div>
-    <div class="glow" style="width:480px;height:480px;background:var(--g2);top:-10%;right:-8%;opacity:.18"></div>
-    <div class="kick r">Por qué es real</div>
-    <div class="split">
-      <div class="col">
-        <h2 class="r d1" style="max-width:15ch">Datos oficiales, actualizados solos</h2>
-        <p class="lead r d2" style="max-width:540px">Cada cifra viene de una fuente oficial, con fecha y liga. Detrás corre maquinaria que no para: prensa, DOF, Congreso y la conferencia matutina, más datos abiertos de SEMARNAT e INECC. Nada inventado, todo con fuente y fecha.</p>
-      </div>
-      <div class="viz r d3">
-        <div class="panel intk">
-          <div class="intk-hd"><span class="intk-live"></span>Ingesta en vivo<span class="intk-time">hoy · 6:00 AM</span></div>
-          <div class="intk-rows" id="intkRows"></div>
         </div>
       </div>
     </div>
@@ -710,7 +689,7 @@
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:13ch">Cada estado a profundidad</h2>
-        <p class="lead r d2">Leyes vigentes con fecha y estatus, impuestos verdes, materiales regulados y la prensa de cada entidad, con el documento oficial. El expediente que un despacho tardaría semanas en armar.</p>
+        <p class="lead r d2">Perfiles de cada estado con información completa sobre su operación y sectores, procesados para cada usuario.</p>
       </div>
       <div class="viz r d3">
         <div class="expdeck">
@@ -797,8 +776,8 @@
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:13ch">Cada sector tiene su señal</h2>
-        <p class="lead r d2" style="max-width:500px">El Radar cruza prensa, DOF, Congreso y NOMs por tema, y te dice dónde sube la presión, con los datos duros del sector detrás.</p>
-        <p class="r d3" style="max-width:500px;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--mint);letter-spacing:.04em">Cada tema se desglosa con sus señales recientes.</p>
+        <p class="lead r d2" style="max-width:500px;color:#fff">El Radar cruza prensa, DOF, Congreso y NOMs por tema, y te dice dónde sube la presión, con los datos duros del sector detrás.</p>
+        <p class="r d3" style="max-width:500px;margin-top:14px;font-family:var(--mono);font-size:12px;color:#fff;letter-spacing:.04em">Cada tema se desglosa con sus señales recientes.</p>
       </div>
       <div class="viz r d3">
         <div class="radarbox">
@@ -896,8 +875,7 @@
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:15ch">Las decisiones nos alcanzan</h2>
-        <p class="lead r d2">Dos señales externas que mueven la regulación de México: los instrumentos internacionales que alcanzan al exportador, y el pulso político de cada mañana.</p>
-        <div class="csp r d3">
+        <div class="csp r d2" style="margin-top:22px">
           <div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo<span class="voicewave" title="En voz de la Presidenta"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
           <div class="csp-node"><div class="csp-node-date">04 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:88s"><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span></div></div></div></div>
           <div class="csp-node"><div class="csp-node-date">03 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:76s"><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span></div></div></div></div>
@@ -950,18 +928,16 @@
   <section class="mid" data-t="One more thing" data-anim="omt" style="text-align:center;align-items:center">
     <div class="glow" style="width:620px;height:620px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.2"></div>
     <h1 class="r" style="max-width:18ch;font-size:clamp(40px,7vw,86px)"><span class="tw" id="omtTw">One more thing</span></h1>
-    <div class="cap r d3" style="margin-top:30px;color:var(--dim);font-family:var(--mono);letter-spacing:.14em">Desliza para descubrirlo &darr;</div>
   </section>
 
   <section data-t="Signal" data-anim="chat">
     <div class="glow" style="width:560px;height:560px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.16"></div>
-    <div class="kick r">Lo que viene</div>
-    <div class="split" style="margin-top:22px">
+    <div class="split" style="margin-top:8px">
       <div class="col">
-        <h2 class="r d1" style="max-width:14ch">Y en octubre, llega Signal</h2>
-        <p class="lead r d2" style="margin:18px 0 0;max-width:520px">Un agente que responde tus dudas de NOMs, impuestos y normativa cruzando los datos de tu propia terminal. Scope deja de solo mostrarte la agenda: <b>te la explica</b>.</p>
+        <h2 class="r d1" style="max-width:14ch">En octubre llega Signal</h2>
+        <p class="lead r d2" style="margin:18px 0 0;max-width:520px">Un agente de GEMI que responde tus dudas y cruza los datos de tu propia terminal.</p>
         <div class="soonbig r d3" style="margin-top:22px">Disponible en octubre</div>
-        <p class="r d4" style="margin:22px 0 0;max-width:520px;color:var(--mut);font-size:15px">Y después, la señal baja a lo <b>municipal</b> y llega al teléfono con la <b>app de Scope</b>.</p>
+        <p class="r d4" style="margin:22px 0 0;max-width:520px;color:var(--ink);font-size:15px">Después, la señal va a ser municipal y en una app en tu teléfono.</p>
       </div>
       <div class="viz r d2">
         <div class="chat" id="sigchat">
@@ -978,7 +954,7 @@
   <section class="mid" data-t="Cierre" data-anim="closetw" style="text-align:center;align-items:center">
     <div class="glow" style="width:680px;height:680px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.3"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:38px;margin-bottom:30px">
-    <h1 class="r d1" style="max-width:16ch">Estamos cambiando el ambiente</h1>
+    <h1 class="r d1" style="max-width:17ch">El universo GEMI en un solo lugar</h1>
     <p class="lead r d2" style="margin:16px auto 0"><span id="closeTw" class="twline"></span></p>
     <a class="cta r d3" href="/">Explorar Scope &rarr;</a>
     <a class="r d4" href="/" style="margin-top:20px;font-family:var(--mono);font-size:15px;font-weight:600;color:var(--mint);letter-spacing:.06em;text-decoration:none">scopegemi.com</a>
@@ -1356,7 +1332,7 @@
   function startCloseTw(){
     if(closeTwDone)return; closeTwDone=true;
     var el=document.getElementById('closeTw'); if(!el)return;
-    var txt='Y esta vez, se puede ver.',i=0;
+    var txt='Estamos cambiando el ambiente. Vamos a que lo veas.',i=0;
     setTimeout(function tp(){
       if(i<=txt.length){el.textContent=txt.slice(0,i);i++;
         var ch=txt.charAt(i-1),d=(ch===','||ch==='.')?260:(62+Math.floor(i%3)*22);
@@ -1450,9 +1426,9 @@
       var GREENS=['#066750','#0E8C74','#12A594','#3fe0ad'];
       var parts=targets.map(function(t,i){return {x:Math.random()*W,y:Math.random()*H,tx:t.x,ty:t.y,c:GREENS[i%4]};});
       function rnd(a,b){return a+Math.random()*(b-a);}
-      var TOKENS=['NOM-161-SEMARNAT-2011','NOM-083-SEMARNAT-2003','NOM-001-SEMARNAT-2021','NOM-052-SEMARNAT-2005','NOM-004-SEMARNAT-2002','NOM-043-SEMARNAT-1993','NOM-085-SEMARNAT-2011','NOM-147-SEMARNAT','40.6% orgánicos','36.2% aprovechables','23.2% otros','100% recolección','50% programas','88% cobertura','12% reciclaje','10,699 t/día','139,902 t/día','1.158 kg/hab/día','1.076 nacional','2,250 sitios','$528 / tonCO₂e','$327 / tonCO₂e','$60 / tonCO₂e','UMA 2026 = $117.31','GENERACIÓN','COMPOSICIÓN ESTIMADA','DISPOSICIÓN FINAL','IMPUESTOS VERDES','COBERTURA MUNICIPAL','SEÑAL DEL RADAR','MATERIALES REGULADOS','TRÁMITES RME','Economía circular +21','Residuos +47','Agua +39','Cambio climático +28','DOF · 06 abr','Diputados · iniciativa','Senado · minuta','Escazú · tratado','CBAM · UE 2023/956','EUDR · deforestación','REP · envases','32 estados','180+ fuentes','Coahuila','Nuevo León','Jalisco','LGEEPA art. 111','LAN · concesiones'];
+      var TOKENS=['const nom = "NOM-161-SEMARNAT"','dof.publicar("06 abr")','tema.residuos += 47','señal["agua"] = 39','if (riesgo > 0.8) alertar()','fetch("/dof/hoy")','estado["Jalisco"].leyes = 20','impuesto.co2e = 528','composicion = [40.6, 36.2, 23.2]','cobertura.recoleccion = 1.0','congreso.iniciativa("EC")','while (fuentes < 180) scan()','radar.map(t => t.senal)','const uma_2026 = 117.31','municipios.filter(cumple)','emisiones.push(139902)','nom.match(/residuos/)','scope.actualizar("06:00")','new Array<Estado>(32)','return vigente ? ok : revisar','gpc = 1.158 // kg/hab/día','reforma.fecha = "27/04/26"','circular.polos["Tlaxcala"]','senado.minuta(dictamen)','intl["CBAM"] = "UE 2023/956"','export const señal = {}','tramites.RME.requeridos()','normas.forEach(publicar)','let delta_30d = +21','contaminantes.RETC()','gen_tdia = 10699','materiales.regulados.length','api.get("/radar/circular")','props.estado === "Nuevo León"'];
       var NS=Math.max(34,Math.floor(W/34)), streams=[];
-      for(var s=0;s<NS;s++)streams.push({x:rnd(0,W),y:rnd(-H*1.4,0),vy:rnd(2.6,6.4),t:TOKENS[Math.floor(Math.random()*TOKENS.length)],sz:Math.round(rnd(9,13)),br:Math.random()<0.4});
+      for(var s=0;s<NS;s++)streams.push({x:rnd(0,W),y:rnd(-H*1.4,0),vy:rnd(2.6,6.4),t:TOKENS[Math.floor(Math.random()*TOKENS.length)],sz:Math.round(rnd(11,15)),br:Math.random()<0.4});
       var t0=null,DUR=19000;
       function frame(ts){
         if(t0==null)t0=ts; var el=ts-t0;
@@ -1464,8 +1440,8 @@
             var st=streams[s2];
             st.y+=st.vy;
             if(st.y>H+22){st.y=-rnd(10,460);st.x=rnd(0,W);st.t=TOKENS[Math.floor(Math.random()*TOKENS.length)];st.br=Math.random()<0.4;st.sz=Math.round(rnd(9,13));st.vy=rnd(2.6,6.4);}
-            ctx.font=st.sz+'px "IBM Plex Mono",monospace';
-            ctx.fillStyle=st.br?'rgba(63,224,173,'+(0.58*codeAlpha).toFixed(3)+')':'rgba(14,140,116,'+(0.32*codeAlpha).toFixed(3)+')';
+            ctx.font='500 '+st.sz+'px "IBM Plex Mono",monospace';
+            ctx.fillStyle=st.br?'rgba(90,240,190,'+(0.92*codeAlpha).toFixed(3)+')':'rgba(30,175,140,'+(0.6*codeAlpha).toFixed(3)+')';
             ctx.fillText(st.t,st.x,st.y);
           }
         }
