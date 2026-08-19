@@ -267,7 +267,7 @@
   .sen-search{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.3);border-radius:12px;padding:11px 14px;font-size:13.5px;color:#fff}
   .sen-search svg{width:16px;height:16px;flex-shrink:0;stroke:#fff;fill:none;stroke-width:1.8}
   .sen-search .q{color:#fff;font-weight:600}
-  .sen-search .car{display:inline-block;width:2px;height:15px;background:var(--mint);margin-left:1px;vertical-align:-2px;animation:blink2 1s steps(1) infinite}
+  .sen-search .car{display:inline-block;width:2px;height:15px;background:#fff;margin-left:1px;vertical-align:-2px;animation:blink2 1s steps(1) infinite}
   @keyframes blink2{50%{opacity:0}}
   .sen-card{border-top:1px solid var(--line);padding:14px 0 4px;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
   section.in .sen-card.s1{transition-delay:1.2s;opacity:1;transform:none}
@@ -300,6 +300,18 @@
   .sd-dt{font-family:var(--mono);font-size:9px;color:var(--dim);flex-shrink:0}
 
   /* internacional (lista real, auto-scroll una vez) */
+  /* Personalización de medios */
+  .media-p{max-width:520px;width:100%;margin:0 auto}
+  .media-hd{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mint);padding-bottom:11px;border-bottom:1px solid var(--line);margin-bottom:6px}
+  .media-live{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:intkpulse 1.9s infinite}
+  .media-row{display:grid;grid-template-columns:1.3fr 1fr 70px;align-items:center;gap:10px 12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .media-nm{font-size:13.5px;color:#fff;font-weight:600;line-height:1.25;min-width:0}
+  .media-am{display:block;font-family:var(--mono);font-size:9px;color:#fff;opacity:.6;margin-top:3px;letter-spacing:.02em}
+  .media-tag{font-family:var(--mono);font-size:10px;color:#fff;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .media-right{display:flex;align-items:center;gap:10px}
+  .media-bt{grid-column:1 / -1;height:6px;background:rgba(255,255,255,.09);border-radius:5px;overflow:hidden;margin-top:2px}
+  .media-bf{display:block;height:100%;background:linear-gradient(90deg,var(--g3),var(--mint));border-radius:5px;width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+  .media-v{font-family:var(--mono);font-size:16px;font-weight:700;color:#fff;text-align:right;font-variant-numeric:tabular-nums}
   /* Regístrate al preview (mockup animado) */
   .prevcard{max-width:400px;margin:0 auto;background:#fff;color:#0D1B2A;border-radius:18px;padding:26px 28px 24px;box-shadow:0 26px 70px rgba(0,0,0,.5)}
   .prev-top{text-align:center;margin-bottom:16px}
@@ -639,6 +651,13 @@
   .mesa-nom .mn-id{font-family:var(--mono);font-size:11px;font-weight:700;color:#009E90;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .mesa-nom .mn-pnic{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.06em;color:#066750;border:0.8px solid #066750;border-radius:6px;padding:2px 6px}
   .mesa-nom .mn-ob{font-size:13px;color:#0D1B2A;font-weight:500;margin-top:6px;line-height:1.45}
+  .mn-ping{position:relative;display:inline-block;width:8px;height:8px;border-radius:50%;background:#0E8C74;margin-right:8px;flex-shrink:0}
+  .mn-ping::after{content:'';position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(14,140,116,.45);animation:mnPing 1.7s infinite}
+  @keyframes mnPing{70%{box-shadow:0 0 0 9px rgba(14,140,116,0)}100%{box-shadow:0 0 0 0 rgba(14,140,116,0)}}
+  .mesa-nom .mn-gemi{display:inline-flex;align-items:center}
+  .mesa-nom .mn-gt{display:flex;align-items:center;font-size:12px;color:#0D1B2A;margin-top:12px;padding-top:11px;border-top:0.8px solid rgba(0,0,0,.07)}
+  .mesa-nom .mn-gt b{color:#B45309;font-weight:700;margin-left:4px}
+  .mesa-nom .mn-ctx{font-size:11.5px;color:#5a6b64;margin-top:7px;line-height:1.5}
   .mesa-nom .mn-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px}
   .mesa-nom .mn-gemi{font-family:var(--mono);font-size:9px;font-weight:700;color:#0D1B2A}
   .mesa-nom .mn-st{font-family:var(--mono);font-size:9px;color:#5A7A98}
@@ -913,7 +932,7 @@
   <section data-t="NOMs federales" data-anim="mesa">
     <div class="techbg"></div>
     <div class="glow" style="width:460px;height:460px;background:var(--g2);top:-10%;left:-8%;opacity:.18"></div>
-    <div class="kick r">Desde lo federal</div>
+    <div class="kick r">Lo normativo</div>
     <div class="split">
       <div class="col">
         <h2 class="r d1" style="max-width:15ch">El cumplimiento normativo desde GEMI</h2>
@@ -924,7 +943,9 @@
           <div class="mesa-nom">
             <div class="mn-id">NOM-043-SEMARNAT-1993 <span class="mn-pnic">PNIC 2026</span></div>
             <div class="mn-ob">Niveles máximos permisibles de emisión a la atmósfera de partículas sólidas provenientes de fuentes fijas.</div>
-            <div class="mn-meta"><span class="mn-gemi">GEMI ACTIVO</span><span class="mn-st">· En desarrollo · SEMARNAT</span></div>
+            <div class="mn-meta"><span class="mn-gemi"><span class="mn-ping"></span>GEMI ACTIVO</span><span class="mn-st">· En desarrollo · SEMARNAT</span></div>
+            <div class="mn-gt"><span class="mn-ping"></span>Grupo de Trabajo GEMI · <b>por confirmar</b></div>
+            <div class="mn-ctx">GEMI está en la mesa de revisión de esta norma. Sigues el pulso del anteproyecto en tu Radar, con su contexto y sus actores.</div>
           </div>
           <div class="mesa-thread">
             <div class="mcom"><span class="av gemi">G</span><div class="bd"><div class="who">GEMI <span class="role">· en la mesa de revisión</span></div><div class="tx">Estamos revisando esta norma. Su modificación impacta las emisiones de fuentes fijas en la industria.</div></div></div>
@@ -932,6 +953,25 @@
             <div class="mcom"><span class="av gemi">G</span><div class="bd"><div class="who">GEMI</div><div class="tx">En cuanto se publique, lo verán aquí primero.</div></div></div>
           </div>
           <div class="mesa-input"><span class="mesa-ph" id="mesaPh"></span><span class="mesa-caret" id="mesaCaret"></span><span class="mesa-send">Comentar</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-t="Medios" data-anim="media">
+    <div class="techbg"></div>
+    <div class="glow" style="width:460px;height:460px;background:var(--g2);bottom:-12%;right:-8%;opacity:.18"></div>
+    <div class="kick r">Personalización de medios</div>
+    <div class="split">
+      <div class="col">
+        <h2 class="r d1" style="max-width:15ch">Seguimos los medios que te importan</h2>
+        <p class="lead r d2" style="max-width:540px;color:#fff">Personalizamos el seguimiento a prensa <b>nacional y estatal</b> según los hits que recibe la industria y lo que cubre cada región: desde <b>incendios forestales</b> hasta <b>caídas de energía</b> o <b>estrés hídrico</b>.</p>
+        <p class="r d3" style="max-width:540px;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--mint);letter-spacing:.04em">Cada medio, su ámbito y el tema que más cubre.</p>
+      </div>
+      <div class="viz r d3">
+        <div class="media-p">
+          <div class="media-hd"><span class="media-live"></span>Medios monitoreados · nacional y estatal</div>
+          <div class="media-rows" id="mediaRows"></div>
         </div>
       </div>
     </div>
@@ -1408,7 +1448,7 @@
     var stepsEl=host.querySelector('#cwSteps'),descEl=host.querySelector('#cwDesc'),bodyEl=host.querySelector('#cwBody'),countEl=host.querySelector('#cwCount'),cursor=host.querySelector('.tcursor');
     var LABELS=['Temas','Estados','Referencias','Comisiones'];
     var STEPS=[
-      {desc:'Elige los temas que quieres monitorear. Alimentan tu señal y las normas del DOF en tu terminal.',chips:['Residuos','Agua','Economía circular','Cambio climático'],pick:[0,1,2]},
+      {desc:'Elige los temas que quieres monitorear. Alimentan tu señal y las normas del DOF en tu terminal.',chips:['Residuos','Agua','Economía circular','Energía'],pick:[0,1,2,3]},
       {desc:'¿En qué entidades opera tu organización? Verás su señal, gacetas y noticias.',chips:['Ciudad de México','Jalisco','Nuevo León','Puebla'],pick:[0,1,2]},
       {desc:'NOMs, impuestos e instrumentos que quieres tener siempre a la mano en tu terminal.',chips:['NOM-161','NOM-083','Impuesto GEI'],pick:[0,1]},
       {desc:'Comisiones del Congreso a seguir: fechas de sesión, integrantes y asuntos turnados.',chips:['Medio Ambiente · Dip.','Cambio Climático · Dip.','Economía · Sen.'],pick:[0,1]}
@@ -1532,6 +1572,7 @@
     if(a==='omt')startOmt(sec);
     if(a==='cmp')startCmp(sec);
     if(a==='prev')startPrev(sec);
+    if(a==='media')startMedia(sec);
   }
   // Marquee de cine: ilumina chips al azar con sentido de urgencia
   var _chaosTimer=null;
@@ -1594,6 +1635,28 @@
       at(15000,function(){timers.forEach(clearTimeout);timers=[];[].forEach.call(sel.querySelectorAll('.cmp-chip'),function(c){c.classList.remove('on');});setTab('');body.innerHTML='';run();});
     }
     run();
+  }
+
+  // Personalización de medios: barras de hits + conteo por medio
+  var mediaDone=false;
+  function startMedia(sec){
+    if(mediaDone)return; mediaDone=true;
+    var host=sec.querySelector('#mediaRows'); if(!host)return;
+    var M=[['El Universal','Nacional','Estrés hídrico',128],
+      ['Reforma','Nacional','Energía',94],
+      ['Milenio','Nacional','Incendios forestales',76],
+      ['El Diario de Chihuahua','Chihuahua','Estrés hídrico',41],
+      ['La Jornada Maya','Quintana Roo','Sargazo',29],
+      ['El Sol de Puebla','Puebla','Caídas de energía',24]];
+    var mx=128;
+    host.innerHTML=M.map(function(m){
+      return '<div class="media-row"><div class="media-nm">'+m[0]+'<span class="media-am">'+m[1]+'</span></div><span class="media-tag">'+m[2]+'</span><span class="media-v" data-count="'+m[3]+'">0</span><div class="media-bt"><span class="media-bf" data-w="'+(m[3]/mx*100).toFixed(1)+'%"></span></div></div>';
+    }).join('');
+    var rows=[].slice.call(host.querySelectorAll('.media-row'));
+    rows.forEach(function(row,i){setTimeout(function(){
+      var f=row.querySelector('.media-bf');if(f)f.style.width=f.getAttribute('data-w');
+      var n=row.querySelector('[data-count]');if(n)countUp(n,1400);
+    },400+i*320);});
   }
 
   // Regístrate al preview: teclea datos y "envía" (loop)
