@@ -5672,7 +5672,7 @@ function initSearch(){
 var _comisionesData=null;
 var _CONSOLA_KEY_BASE='scope_consola_v1';
 function consolaKey(){
-  var uid=null; // cuando exista login: id de usuario → 'scope_consola_v1::'+uid
+  var uid=(typeof _session!=='undefined'&&_session&&_session.user&&_session.user.id)||null;
   return uid?_CONSOLA_KEY_BASE+'::'+uid:_CONSOLA_KEY_BASE;
 }
 var _CONSOLA_DEFAULTS={temas:[],estados:[],comisiones:[],legisladores:[],keywords:[],riesgos:{},noms:[],instrumentos:[],impuestos:[],materiales:[],layout:[]};
@@ -5696,6 +5696,32 @@ function loadConsola(){
 }
 function saveConsola(c){
   try{localStorage.setItem(consolaKey(),JSON.stringify(c));}catch(err){/* Safari privado */}
+  _consPush(c); // sube la config a la cuenta (perfiles.config) para que persista y viaje con el usuario
+}
+// ── Sincronización de la config con la cuenta (Supabase perfiles.config) ──────
+var _consPushT=null;
+function _consPush(c){
+  try{
+    if(typeof _sb==='undefined'||!_sb||!_session)return;
+    clearTimeout(_consPushT);
+    _consPushT=setTimeout(function(){
+      try{_sb.from('perfiles').update({config:c}).eq('id',_session.user.id).then(function(){},function(){});}catch(e){}
+    },600);
+  }catch(e){}
+}
+function _consHydrate(){
+  try{
+    if(typeof _perfil==='undefined'||!_perfil||!_session)return;
+    var cfg=_perfil.config;
+    var hasServer=cfg&&typeof cfg==='object'&&!Array.isArray(cfg)&&Object.keys(cfg).length>0;
+    if(hasServer){
+      // la cuenta manda: baja su config (incluye las precargadas que sembramos)
+      try{localStorage.setItem(consolaKey(),JSON.stringify(Object.assign({},_CONSOLA_DEFAULTS,cfg)));}catch(e){}
+    }else if(consolaConfigurada()){
+      // el server estaba vacío pero había config local: consérvala subiéndola
+      _consPush(loadConsola());
+    }
+  }catch(e){}
 }
 function consolaConfigurada(){
   var c=loadConsola();
@@ -7542,13 +7568,13 @@ var SCOPE_PLANES = [
   {n:'Anual',      p:'$17,999', per:'MXN / año'}
 ];
 
-var _sb=null,_session=null,_perfil=null;
-var _PUBLIC_TABS={dashboard:1,acerca:1};
+var _sb=null,_session=null,_perfil=null,_authLocked=false;
+var _PUBLIC_TABS={}; // beta: todo Scope queda detrás del login
 function _authOn(){return !!(SUPABASE_URL&&SUPABASE_ANON&&window.supabase);}
 function _hasAccess(){return !!(_session&&_perfil&&_perfil.activo);}
 function _isPublicTab(id){return !!_PUBLIC_TABS[id];}
-function _gate(){if(!_authOn())return true;if(_hasAccess())return true;openAuth('login');return false;}
-function _gateTab(id){if(!_authOn())return true;if(_isPublicTab(id))return true;if(_hasAccess())return true;openAuth('login');return false;}
+function _gate(){if(!_authOn())return true;if(_hasAccess())return true;openAuth(_session?'pending':'login',true);return false;}
+function _gateTab(id){if(!_authOn())return true;if(_isPublicTab(id))return true;if(_hasAccess())return true;openAuth(_session?'pending':'login',true);return false;}
 function _av(id){var e=document.getElementById(id);return e?(e.value||'').trim():'';}
 function _authErr(e){var m=(e&&e.message)||'';if(/Invalid login/i.test(m))return'Correo o contraseña incorrectos.';if(/already registered/i.test(m))return'Ese correo ya tiene una cuenta. Inicia sesión.';if(/rate limit/i.test(m))return'Demasiados intentos, espera un momento.';return m||'Ocurrió un error, intenta de nuevo.';}
 
@@ -7564,7 +7590,7 @@ function _ensureAuthModal(){
   d.onclick=function(e){if(e.target===d)closeAuth();};
   d.innerHTML=
     '<div style="background:var(--card);border-radius:20px;width:100%;max-width:400px;padding:38px 36px 30px;box-shadow:0 24px 64px rgba(0,0,0,.24);animation:modalIn .22s ease;position:relative" onclick="event.stopPropagation()">'
-    +'<button onclick="closeAuth()" style="position:absolute;top:15px;right:17px;background:none;border:none;cursor:pointer;font-size:20px;color:var(--text-muted);line-height:1;padding:4px">×</button>'
+    +'<button id="auth-x" onclick="closeAuth()" style="position:absolute;top:15px;right:17px;background:none;border:none;cursor:pointer;font-size:20px;color:var(--text-muted);line-height:1;padding:4px">×</button>'
     +'<div style="text-align:center;margin-bottom:24px"><img class="auth-lt" src="/assets/scope-logo.png?v=2" alt="Scope" style="height:30px;width:auto"><img class="auth-dk" src="/assets/scope-logo-dark.png?v=2" alt="Scope" style="height:30px;width:auto"></div>'
     // ---- LOGIN ----
     +'<div class="authv" id="auth-login">'
@@ -7606,8 +7632,16 @@ function _ensureAuthModal(){
     +'</div>';
   document.body.appendChild(d);
 }
-function openAuth(view){_ensureAuthModal();document.getElementById('auth-bg').style.display='flex';document.body.style.overflow='hidden';_authView(view||'login');}
-function closeAuth(){var b=document.getElementById('auth-bg');if(b)b.style.display='none';document.body.style.overflow='';}
+function openAuth(view,locked){
+  _ensureAuthModal();
+  _authLocked=!!locked;
+  var d=document.getElementById('auth-bg'),x=document.getElementById('auth-x');
+  if(_authLocked){d.style.background='var(--bg)';if(x)x.style.display='none';}
+  else{d.style.background='rgba(0,0,0,.5)';if(x)x.style.display='';}
+  d.style.display='flex';document.body.style.overflow='hidden';
+  _authView(view||'login');
+}
+function closeAuth(){if(_authLocked)return;var b=document.getElementById('auth-bg');if(b)b.style.display='none';document.body.style.overflow='';}
 function _authView(v){
   ['login','signup','preview','pending'].forEach(function(x){var el=document.getElementById('auth-'+x);if(el)el.style.display=(x===v)?'':'none';});
   _authMsg('');
@@ -7666,8 +7700,8 @@ async function authLogin(){
   var r=await _sb.auth.signInWithPassword({email:email,password:pass});
   _authBusy(false);
   if(r.error){_authMsg(_authErr(r.error));return;}
-  _session=r.data.session;await _loadPerfil();_updateAuthUI();
-  if(_hasAccess()){closeAuth();_applyRoute(location.pathname);_consWelcome();}else{_authView('pending');}
+  _session=r.data.session;await _loadPerfil();_consHydrate();_updateAuthUI();
+  if(_hasAccess()){_authLocked=false;closeAuth();_applyRoute(location.pathname);_consWelcome();}else{_authView('pending');}
 }
 async function authSignup(){
   if(!_sb){_authMsg('El registro estará disponible muy pronto.');return;}
@@ -7777,8 +7811,9 @@ async function _uploadAvatar(file){
 document.addEventListener('click',function(e){var w=e.target.closest?e.target.closest('.nav-user-wrap'):null;if(!w)_umClose();});
 function _enforceGate(){
   if(!_authOn())return;
-  var id=((document.querySelector('.tab-content.active')||{}).id||'').replace('tab-','');
-  if(!_isPublicTab(id)&&!_hasAccess()){showTab('dashboard',null);openAuth('login');}
+  if(_hasAccess())return;
+  showTab('dashboard',null);
+  openAuth(_session?'pending':'login',true); // beta: candado sobre todo el sitio
 }
 // ── Tracker de última visita (base para "Desde tu última visita hace X") ──
 var _prevVisit=null;
@@ -7798,15 +7833,16 @@ function _sinceLastVisit(){
 }
 async function _authInit(){
   if(!_authOn()){_trackVisit();_updateAuthUI();return;}
+  openAuth('login',true); // candado inmediato mientras resolvemos la sesión (evita fogonazo de contenido)
   try{
     _sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON);
     var r=await _sb.auth.getSession();_session=(r.data&&r.data.session)||null;
-    await _loadPerfil();_trackVisit();_updateAuthUI();
+    await _loadPerfil();_consHydrate();_trackVisit();_updateAuthUI();
     // Al restaurar la sesión en un refresh, re-aplica la ruta para volver a la vista
     // gateada (p. ej. /terminal) en vez de dejar al usuario pasmado en el login.
-    if(_hasAccess())_applyRoute(location.pathname); else _enforceGate();
-    _sb.auth.onAuthStateChange(async function(_e,sess){_session=sess||null;await _loadPerfil();_updateAuthUI();});
-  }catch(e){console.warn('Auth init:',e);}
+    if(_hasAccess()){_authLocked=false;closeAuth();_applyRoute(location.pathname);} else _enforceGate();
+    _sb.auth.onAuthStateChange(async function(_e,sess){_session=sess||null;await _loadPerfil();_consHydrate();_updateAuthUI();});
+  }catch(e){console.warn('Auth init:',e);_authLocked=false;closeAuth();}
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAuth();});
 _authInit();
