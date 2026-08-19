@@ -176,16 +176,16 @@
   .r360-badge{font-family:var(--mono);font-size:8px;font-weight:700;border:1px solid;border-radius:4px;padding:1px 6px;white-space:nowrap}
   .r360-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px 16px;margin-top:12px}
   .r360-cat{border-top:1px solid var(--line);padding-top:7px;min-width:0}
-  .r360-cth{display:flex;justify-content:space-between;align-items:baseline;gap:6px;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--mint);letter-spacing:.03em}
+  .r360-cth{display:flex;justify-content:space-between;align-items:baseline;gap:6px;font-family:var(--mono);font-size:9px;font-weight:700;color:#fff;letter-spacing:.03em}
   .r360-cth>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .r360-cn{color:var(--ink);font-size:11px;flex-shrink:0}
-  .r360-cit{font-size:11px;color:var(--mut);margin-top:4px;line-height:1.35}
-  .r360-cm{font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:2px}
+  .r360-cit{font-size:11px;color:#fff;opacity:.9;margin-top:4px;line-height:1.35}
+  .r360-cm{font-family:var(--mono);font-size:8.5px;color:#fff;opacity:.68;margin-top:2px}
   @media(max-width:620px){.r360-grid{grid-template-columns:1fr}}
   .rdet-inner{max-width:760px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.01));padding:18px 20px}
   .rdet-hd{display:flex;align-items:center;gap:11px;margin-bottom:10px}
   .rdet-name{font-size:15px;font-weight:800}
-  .rdet-sub{font-family:var(--mono);font-size:10px;color:var(--dim);margin-left:auto}
+  .rdet-sub{font-family:var(--mono);font-size:10px;color:#fff;opacity:.8;margin-left:auto}
   .rdet-spk{height:26px;margin:2px 0 12px}
   .rdet-lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
   .rdet-row{display:flex;align-items:baseline;gap:12px;padding:9px 0;border-top:1px solid var(--line)}
@@ -846,7 +846,7 @@
         <span class="cmp-chip" data-st="Aguascalientes">Aguascalientes</span>
         <span class="cmp-chip" data-st="Chihuahua">Chihuahua</span>
         <span class="cmp-chip" data-st="Jalisco">Jalisco</span>
-        <span class="cmp-chip" data-st="mex">Estado de México</span>
+        <span class="cmp-chip" data-st="bc">Baja California</span>
         <span class="cmp-chip" data-st="Nuevo León">Nuevo León</span>
         <span class="cmp-chip" data-st="Puebla">Puebla</span>
       </div>
@@ -1119,7 +1119,7 @@
     function stat(v,l,al){return '<div'+(al?' style="text-align:'+al+'"':'')+'><div class="rstat-v">'+v+'</div><div class="rstat-l">'+l+'</div></div>';}
     window.__RADAR={T:T,ICON:ICON,spark:spark};
     host.innerHTML=T.map(function(t,i){
-      return '<div class="rtile clk" data-tid="'+t.id+'" onclick="_radarExpand(\''+t.id+'\')"><div class="rhead"><span class="ricon" style="color:'+t.col+'"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON[t.id]+'</svg></span><span class="rname">'+t.name+'</span></div>'
+      return '<div class="rtile clk" data-tid="'+t.id+'" onclick="_radarExpand(\''+t.id+'\')"><div class="rhead"><span class="ricon" style="color:#fff"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON[t.id]+'</svg></span><span class="rname">'+t.name+'</span></div>'
         +'<div class="rsub">'+t.men+' menciones · 90d</div>'
         +'<div class="rspk">'+spark(t.s,t.col,i)+'</div>'
         +'<div class="rstats">'+stat(t.dof,'DOF')+stat(t.med,'medios')+stat((t.d>=0?'+':'')+t.d,'Δ 30d','right')+'</div></div>';
@@ -1180,7 +1180,7 @@
         +'<div class="r360-cit">'+c[2]+'</div>'+(c[3]?'<div class="r360-cm">'+c[3]+'</div>':'')+'</div>';
     }).join('');
     host.innerHTML='<div class="rdet-inner r360"><div class="rdet-hd">'
-      +'<span class="ricon" style="color:'+t.col+'"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+R.ICON[t.id]+'</svg></span>'
+      +'<span class="ricon" style="color:#fff"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+R.ICON[t.id]+'</svg></span>'
       +'<span class="rdet-name">'+t.name+' · Vista 360°</span>'
       +'<span class="rdet-sub">señal '+(D.senal||t.men)+' · '+t.men+' menc · Δ30d +'+(D.d30!=null?D.d30:t.d)+'</span></div>'
       +'<div class="rdet-spk">'+R.spark(t.s,t.col,90)+'</div>'
@@ -1500,10 +1500,10 @@
     if(!sel||!tabs||!body)return;
     var timers=[]; function at(ms,fn){timers.push(setTimeout(fn,ms));}
     var donutCH='<svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="26" fill="none" stroke="#066750" stroke-width="12" stroke-dasharray="63.05 100.31" stroke-dashoffset="0" transform="rotate(-90 40 40)"/><circle cx="40" cy="40" r="26" fill="none" stroke="#12A594" stroke-width="12" stroke-dasharray="60.26 103.11" stroke-dashoffset="-63.05" transform="rotate(-90 40 40)"/><circle cx="40" cy="40" r="26" fill="none" stroke="#C2CBC7" stroke-width="12" stroke-dasharray="40.05 123.31" stroke-dashoffset="-123.31" transform="rotate(-90 40 40)"/></svg>';
-    var donutMX='<svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="26" fill="none" stroke="#066750" stroke-width="12" stroke-dasharray="66.13 97.24" stroke-dashoffset="0" transform="rotate(-90 40 40)"/><circle cx="40" cy="40" r="26" fill="none" stroke="#12A594" stroke-width="12" stroke-dasharray="59.03 104.33" stroke-dashoffset="-66.13" transform="rotate(-90 40 40)"/><circle cx="40" cy="40" r="26" fill="none" stroke="#C2CBC7" stroke-width="12" stroke-dasharray="38.21 125.16" stroke-dashoffset="-125.16" transform="rotate(-90 40 40)"/></svg>';
+    var donutBC='<svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="26" fill="none" stroke="#066750" stroke-width="12" stroke-dasharray="63.38 99.99" stroke-dashoffset="0" transform="rotate(-90 40 40)"/><circle cx="40" cy="40" r="26" fill="none" stroke="#12A594" stroke-width="12" stroke-dasharray="60.10 103.26" stroke-dashoffset="-63.38" transform="rotate(-90 40 40)"/><circle cx="40" cy="40" r="26" fill="none" stroke="#C2CBC7" stroke-width="12" stroke-dasharray="39.88 123.48" stroke-dashoffset="-123.48" transform="rotate(-90 40 40)"/></svg>';
     var chih={n:'Chihuahua',gen:'4,256',gpc:'1.092',comp:[38.6,36.9,24.5],mun:67,ti:158,imp:[],dn:donutCH};
-    var mex={n:'Estado de México',gen:'19,593',gpc:'1.127',comp:[40.5,36.1,23.4],mun:125,ti:38,dn:donutMX,
-      imp:[['GEI','$58 / tonCO₂e'],['Agua','$141–108 / m³'],['Residuos','$100 / ton']]};
+    var bc={n:'Baja California',gen:'4,508',gpc:'1.142',comp:[38.8,36.8,24.4],mun:7,ti:15,dn:donutBC,
+      imp:[['Extracción de Materiales','$4.78 / m³'],['GEI','$0.17 / kg']]};
     function setTab(name){[].forEach.call(tabs.querySelectorAll('.cmp-tab'),function(t){t.classList.toggle('on',t.getAttribute('data-tab')===name);});}
     function impCol(s){
       var body = (s.imp&&s.imp.length)
@@ -1522,9 +1522,9 @@
     function paint(html){body.classList.remove('fade');body.innerHTML=html;void body.offsetWidth;body.classList.add('fade');}
     function run(){
       at(700,function(){var c=sel.querySelector('.cmp-chip[data-st="Chihuahua"]');if(c)c.classList.add('on');});
-      at(1600,function(){var c=sel.querySelector('.cmp-chip[data-st="mex"]');if(c)c.classList.add('on');});
-      at(2500,function(){setTab('imp');paint('<div class="cmp-grid">'+impCol(chih)+impCol(mex)+'</div>');});
-      at(8000,function(){setTab('res');paint('<div class="cmp-grid">'+resCol(chih)+resCol(mex)+'</div>');});
+      at(1600,function(){var c=sel.querySelector('.cmp-chip[data-st="bc"]');if(c)c.classList.add('on');});
+      at(2500,function(){setTab('imp');paint('<div class="cmp-grid">'+impCol(chih)+impCol(bc)+'</div>');});
+      at(8000,function(){setTab('res');paint('<div class="cmp-grid">'+resCol(chih)+resCol(bc)+'</div>');});
       at(15000,function(){timers.forEach(clearTimeout);timers=[];[].forEach.call(sel.querySelectorAll('.cmp-chip'),function(c){c.classList.remove('on');});setTab('');body.innerHTML='';run();});
     }
     run();
