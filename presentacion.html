@@ -300,6 +300,18 @@
   .sd-dt{font-family:var(--mono);font-size:9px;color:var(--dim);flex-shrink:0}
 
   /* internacional (lista real, auto-scroll una vez) */
+  .dec3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(22px,3vw,46px);margin-top:30px;align-items:start}
+  @media(max-width:900px){.dec3{grid-template-columns:1fr;gap:26px}}
+  .dec-col{min-width:0}
+  .dec-hd{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mint);padding-bottom:9px;border-bottom:.8px solid var(--line);margin-bottom:13px}
+  .csp-mini{max-height:340px;overflow:hidden}
+  .dec3 .intl-view{max-width:none;height:340px}
+  .consulta{display:flex;flex-direction:column}
+  .cns-row{padding:11px 0;border-bottom:.8px solid var(--line)}
+  .cns-row:first-child{padding-top:0}
+  .cns-tt{font-size:12.5px;color:#fff;line-height:1.4}
+  .cns-meta{font-family:var(--mono);font-size:9.5px;color:#fff;opacity:.72;margin-top:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .cns-tag{color:#04120d;background:var(--mint);border-radius:4px;padding:1px 7px;font-weight:700;opacity:1}
   .intl-view{max-width:540px;height:320px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(180deg,transparent,#000 8%,#000 88%,transparent);mask-image:linear-gradient(180deg,transparent,#000 8%,#000 88%,transparent)}
   .intl-scroll{animation:intlScroll 54s linear infinite}
   @keyframes intlScroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
@@ -420,7 +432,7 @@
   .roaditem .rn{font-size:15px;font-weight:700;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   .roaditem .rd{font-size:13px;color:var(--mut);margin-top:3px;line-height:1.5}
   .soon{font-size:10px;font-weight:700;color:var(--mint);background:rgba(63,224,173,.12);border-radius:20px;padding:2px 9px}
-  .soonbig{display:inline-block;font-size:11px;font-weight:700;color:#04120d;background:var(--mint);border-radius:20px;padding:3px 11px;margin-bottom:14px}
+  .soonbig{display:inline-block;font-size:15px;font-weight:700;color:#04120d;background:var(--mint);border-radius:22px;padding:7px 18px;margin-bottom:14px;box-shadow:0 6px 22px rgba(63,224,173,.28)}
   .chat{max-width:400px}
   .bubble{border-radius:16px;padding:13px 16px;font-size:14px;line-height:1.5;margin:10px 0;opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
   .bubble.show{opacity:1;transform:none}
@@ -884,19 +896,30 @@
 
   <section data-t="Internacional">
     <div class="glow" style="width:440px;height:440px;background:var(--g2);bottom:-14%;right:-8%;opacity:.18"></div>
-    <div class="split">
-      <div class="col">
-        <h2 class="r d1" style="max-width:15ch">Las decisiones nos alcanzan</h2>
-        <div class="csp r d2" style="margin-top:22px">
-          <div class="chyron-hdr"><span class="chyron-live"></span>Conferencias matutinas del Ejecutivo<span class="voicewave" title="En voz de la Presidenta"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
-          <div class="csp-node"><div class="csp-node-date">04 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:88s"><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“¿Qué significan esos 15 mil millones de dólares? Que la fiscal pueda publicar.”</span><span class="csp-sep">●</span></div></div></div></div>
-          <div class="csp-node"><div class="csp-node-date">03 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:76s"><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span></div></div></div></div>
-          <div class="csp-node"><div class="csp-node-date">31 jul</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:82s"><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span></div></div></div></div>
+    <div class="kick r">Lo que se está decidiendo</div>
+    <h2 class="r d1" style="max-width:20ch">Las decisiones nos alcanzan</h2>
+    <div class="dec3 r d2">
+      <div class="dec-col">
+        <div class="dec-hd"><span class="chyron-live"></span>Conferencias del Ejecutivo</div>
+        <div class="csp csp-mini">
+          <div class="csp-node"><div class="csp-node-date">04 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:88s"><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span><span class="csp-q">“Sinaloa, el Bajío y otros estados tienen producción de <strong>maíz híbrido</strong>.”</span><span class="csp-sep">●</span><span class="csp-q">“Más allá de la política de Estados Unidos, nosotros seguimos con el plan.”</span><span class="csp-sep">●</span></div></div></div></div>
+          <div class="csp-node"><div class="csp-node-date">03 ago</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:76s"><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span><span class="csp-q">“En las escuelas está regulado que no se venda comida chatarra ni exceso de azúcares.”</span><span class="csp-sep">●</span><span class="csp-q">“<strong>Regulamos</strong> que no se puede anunciar el tabaco, ni la comida chatarra.”</span><span class="csp-sep">●</span></div></div></div></div>
+          <div class="csp-node"><div class="csp-node-date">31 jul</div><div class="csp-node-body"><div class="csp-run-wrap"><div class="csp-run" style="--d:82s"><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span><span class="csp-q">“En inundaciones estuvo personal del estado de Coahuila, y de Texas.”</span><span class="csp-sep">●</span><span class="csp-q">“Fue una plática sobre los proyectos y el <strong>Plan México</strong>, esencialmente.”</span><span class="csp-sep">●</span></div></div></div></div>
         </div>
       </div>
-      <div class="viz r d3">
-        <div class="vizlbl">Instrumentos internacionales · base viva de Scope</div>
+      <div class="dec-col">
+        <div class="dec-hd">Instrumentos internacionales</div>
         <div class="intl-view"><div class="intl-scroll" id="intlscroll"></div></div>
+      </div>
+      <div class="dec-col">
+        <div class="dec-hd">En consulta · ATDT</div>
+        <div class="consulta">
+          <div class="cns-row"><div class="cns-tt">Anteproyecto de NOM sobre planes de manejo de residuos de manejo especial</div><div class="cns-meta"><span class="cns-tag">Consulta</span>SEMARNAT · cierra 12 sep</div></div>
+          <div class="cns-row"><div class="cns-tt">Modificación a la NOM-001-SEMARNAT · límites de descargas de agua</div><div class="cns-meta"><span class="cns-tag">AIR</span>SEMARNAT · cierra 05 sep</div></div>
+          <div class="cns-row"><div class="cns-tt">Lineamientos del Registro de Emisiones y Transferencia de Contaminantes 2026</div><div class="cns-meta"><span class="cns-tag">Consulta</span>SEMARNAT · cierra 28 ago</div></div>
+          <div class="cns-row"><div class="cns-tt">Disposiciones de etiquetado ambiental para envases y empaques</div><div class="cns-meta"><span class="cns-tag">Consulta</span>Economía · cierra 19 sep</div></div>
+          <div class="cns-row"><div class="cns-tt">Actualización de la NOM-161 sobre residuos de manejo especial</div><div class="cns-meta"><span class="cns-tag">AIR</span>SEMARNAT · cierra 22 sep</div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -927,11 +950,11 @@
     <div class="kick r">Acceso</div>
     <h2 class="r d1" style="max-width:14ch">Un precio para cada ritmo</h2>
     <div class="prices">
-      <div class="price" style="transition-delay:.35s"><div class="ptag"></div><div class="p">Mensual</div><div class="amt"><span class="c">$</span>1,699</div><div class="per">por usuario · al mes</div><div class="note"></div></div>
-      <div class="price" style="transition-delay:1s"><div class="ptag"></div><div class="p">Trimestral</div><div class="amt"><span class="c">$</span>4,099</div><div class="per">por usuario · cada 3 meses</div><div class="note"></div></div>
-      <div class="price best" style="transition-delay:1.65s"><div class="ptag"><span>Mejor valor</span></div><div class="p">Anual</div><div class="amt"><span class="c">$</span>17,999</div><div class="per">por usuario · al año</div><div class="note">Dos meses sin costo</div></div>
+      <div class="price" style="transition-delay:.6s"><div class="ptag"></div><div class="p">Mensual</div><div class="amt"><span class="c">$</span>1,699</div><div class="per">por usuario · al mes</div><div class="note"></div></div>
+      <div class="price" style="transition-delay:5.6s"><div class="ptag"></div><div class="p">Trimestral</div><div class="amt"><span class="c">$</span>4,099</div><div class="per">por usuario · cada 3 meses</div><div class="note"></div></div>
+      <div class="price best" style="transition-delay:10.6s"><div class="ptag"><span>Mejor valor</span></div><div class="p">Anual</div><div class="amt"><span class="c">$</span>17,999</div><div class="per">por usuario · al año</div><div class="note">Dos meses sin costo</div></div>
     </div>
-    <div class="socios" style="transition-delay:2.4s">
+    <div class="socios" style="transition-delay:15.6s">
       <div class="t">Los socios de GEMI ya están dentro.</div>
       <div class="d">Cada socio recibe <b>3 usuarios</b>: dos para sus miembros acreditados y uno extra para probarlo sin costo. Por cada usuario adicional, un precio preferencial de <b>$999 al mes</b>, solo por los meses en que se use.</div>
     </div>
@@ -966,7 +989,7 @@
   <section class="mid" data-t="Cierre" data-anim="closetw" style="text-align:center;align-items:center">
     <div class="glow" style="width:680px;height:680px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.3"></div>
     <img class="r" src="assets/scope-logo-dark.png" alt="Scope" style="height:38px;margin-bottom:30px">
-    <h1 class="r d1" style="max-width:17ch">El universo GEMI en un solo lugar</h1>
+    <h1 class="r d1" style="max-width:17ch">El ecosistema GEMI en un solo lugar</h1>
     <p class="lead r d2" style="margin:16px auto 0"><span id="closeTw" class="twline"></span></p>
     <a class="cta r d3" href="/">Explorar Scope &rarr;</a>
     <a class="r d4" href="/" style="margin-top:20px;font-family:var(--mono);font-size:15px;font-weight:600;color:var(--mint);letter-spacing:.06em;text-decoration:none">scopegemi.com</a>
