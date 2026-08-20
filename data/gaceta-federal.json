@@ -2973,6 +2973,28 @@
   ],
   "senado": [
     {
+      "titulo": "De la Primera Comisión, el que contiene punto de acuerdo: Por el que la Comisión Permanente reconoce los esfuerzos y resultados alcanzados por la Secretaría de Seguridad y Protección Ciudadana en el cumplimiento de los objetivos establecidos en materia de seguridad pública dentro del plan nacional de desarrollo 2025–2030, la estrategia nacional de seguridad pública 2024–2030 y la estrategia nacion",
+      "tipo": "punto_acuerdo",
+      "fecha": "2026-08-19",
+      "autor": "",
+      "partido": "",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_comision_permanente/documento/162245",
+      "id": "315b738e53be",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "De la Primera Comisión, el que DESECHA punto de acuerdo: El relativo al Plan Estratégico de Procuración de Justicia 2026–2029.",
+      "tipo": "punto_acuerdo",
+      "fecha": "2026-08-19",
+      "autor": "",
+      "partido": "",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_comision_permanente/documento/162281",
+      "id": "1bf5e58dbc6b",
+      "camara": "SEN"
+    },
+    {
       "titulo": "Uno, de la Segunda Comisión, el que contiene punto de acuerdo: 2.1 Por el que se exhorta a la Secretaría de Medio Ambiente y Recursos Naturales y a la Agencia de Seguridad, Energía y Ambiente para que continúen con la revisión de los proyectos energéticos en el Golfo de California, a fin de fortalecer la evaluación de sus posibles impactos ambientales, así como la prevención, mitigación y atención",
       "tipo": "punto_acuerdo",
       "fecha": "2026-08-19",
@@ -2992,6 +3014,17 @@
       "categoria": "ambiental",
       "url": "https://www.senado.gob.mx/66/gaceta_comision_permanente/documento/162209",
       "id": "2577200a007b",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "De la Tercera Comisión, el que contiene punto de acuerdo: Por el que se reconoce la actuación de la Secretaría de Medio Ambiente y Recursos Naturales respecto del proyecto turístico proyectado en Mahahual, Quintana Roo, y se exhorta a las autoridades competentes a fortalecer la planeación y la supervisión del desarrollo turístico bajo criterios de sostenibilidad, participación comunitaria y protec",
+      "tipo": "punto_acuerdo",
+      "fecha": "2026-08-19",
+      "autor": "",
+      "partido": "",
+      "categoria": "ambiental",
+      "url": "https://www.senado.gob.mx/66/gaceta_comision_permanente/documento/162230",
+      "id": "5390d0947de0",
       "camara": "SEN"
     },
     {
@@ -4492,7 +4525,7 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-08-19T22:18:16Z",
+    "ultima_actualizacion": "2026-08-20T11:00:53Z",
     "mes": "2026-08"
   }
 }
