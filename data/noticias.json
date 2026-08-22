@@ -1,5 +1,36 @@
 [
   {
+    "id": "03034cb92a2f",
+    "titulo": "Sequía en EU: Los niveles de agua de los lagos Powell y Mead caen a mínimos históricos",
+    "url": "https://www.elfinanciero.com.mx/mundo/2026/08/18/sequia-en-eu-los-niveles-de-agua-de-los-lagos-powell-mead-y-caen-a-minimos-historicos/",
+    "fuente": "El Financiero",
+    "resumen": "Un estudio de la agencia estadounidense realizado el pasado julio proyectó que las reservas de agua del lago Powell corrían el riesgo de alcanzar unos niveles cercanos a los 3 mil 490 pies necesarios para generar electricidad.",
+    "fecha_publicacion": "2026-08-22T22:01:15Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua",
+      "biodiversidad"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-08-22T22:13:54.283506+00:00"
+  },
+  {
+    "id": "b706a83f2653",
+    "titulo": "Aseguran en rancho de Campeche avioneta, armas y huachicol",
+    "url": "https://www.reforma.com/aseguran-en-rancho-de-campeche-avioneta-armas-y-huachicol/ar3262560",
+    "fuente": "Reforma",
+    "resumen": "Autoridades federales aseguraron una avioneta, armamento, combustible y dinero en efectivo tras cateo en un rancho en Champotón, Campeche.",
+    "fecha_publicacion": "2026-08-22T21:38:52Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": "Campeche",
+    "scrapeado_en": "2026-08-22T22:13:54.275183+00:00"
+  },
+  {
     "id": "c2b797415e52",
     "titulo": "Lo de una renta: Vecinos de Cancún reclaman a CFE recibos de luz con cobros de hasta 7 mil pesos",
     "url": "https://www.elfinanciero.com.mx/estados/2026/08/22/lo-de-una-renta-vecinos-de-cancun-reclaman-a-cfe-recibos-de-luz-con-cobros-de-hasta-7-mil-pesos/",
@@ -9056,35 +9087,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-08-01T11:44:19.479554+00:00"
-  },
-  {
-    "id": "56fdfa732377",
-    "titulo": "Arranca en Bellas Artes la edición 37 de Cuéntalee",
-    "url": "https://www.jornada.com.mx/2026/08/01/cultura/a04n2cul?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "El Festival Internacional de Narración Oral Cuéntalee México, que este año celebra su edición 37, se ha consolidado como uno de los encuentros más importantes de su tipo en México y América Latina y como espacio de encuentro cultural que promueve la lectura, la expresión artística y la preservación del patrimonio oral, además de acercar a públicos de todas las edades a la riqueza y el poder de la palabra viva.",
-    "fecha_publicacion": "2026-08-01T10:14:44Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-01T11:44:19.486004+00:00"
-  },
-  {
-    "id": "e1487a10466d",
-    "titulo": "Hallazgo de depósito ilegal de combustible en Nuevo León fue gracias a GN: Sheinbaum",
-    "url": "https://www.jornada.com.mx/2026/08/01/politica/006n3pol?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "El aseguramiento de un depósito ilegal de combustible en Cadereyta, Nuevo León, en mayo pasado, fue posible gracias a un hallazgo de la Guardia Nacional (GN), señaló la presidenta Claudia Sheinbaum Pardo, al puntualizar que no se trató de una refinería, sino de un centro de procesamiento.",
-    "fecha_publicacion": "2026-08-01T10:14:44Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": "Nuevo Leon",
-    "scrapeado_en": "2026-08-01T11:44:19.495126+00:00"
   }
 ]
