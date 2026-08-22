@@ -1,5 +1,35 @@
 [
   {
+    "id": "c2b797415e52",
+    "titulo": "Lo de una renta: Vecinos de Cancún reclaman a CFE recibos de luz con cobros de hasta 7 mil pesos",
+    "url": "https://www.elfinanciero.com.mx/estados/2026/08/22/lo-de-una-renta-vecinos-de-cancun-reclaman-a-cfe-recibos-de-luz-con-cobros-de-hasta-7-mil-pesos/",
+    "fuente": "El Financiero",
+    "resumen": "“Queremos que se nos escuche”, señalaron los habitantes, quienes demandaron pagar únicamente lo que corresponde a su consumo de luz.",
+    "fecha_publicacion": "2026-08-22T18:10:38Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": "Quintana Roo",
+    "scrapeado_en": "2026-08-22T18:15:29.471176+00:00"
+  },
+  {
+    "id": "9f27a69176cf",
+    "titulo": "El fuego terminó, la emergencia continúa: Krem-1",
+    "url": "https://www.greenpeace.org/mexico/blog/65457/pozo-krem-emergencia-ambiental-continua/",
+    "fuente": "Greenpeace MX",
+    "resumen": "Durante 150 días, el pozo exploratorio Krem-1, en Las Choapas, Veracruz, permaneció en llamas tras una fuga de gas ocurrida el 5 de marzo de 2026. Alrededor de 3,431 personas…",
+    "fecha_publicacion": "2026-08-22T15:00:00Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad"
+    ],
+    "estado": "Veracruz",
+    "scrapeado_en": "2026-08-22T18:15:29.431047+00:00"
+  },
+  {
     "id": "9f3cc9e86bd1",
     "titulo": "Tras amenazas de Trump a socios comerciales de Teherán, suben petroprecios",
     "url": "https://www.jornada.com.mx/2026/08/22/mundo/018n3mun?partner=rss",
@@ -119,6 +149,21 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-08-22T10:51:39.247428+00:00"
+  },
+  {
+    "id": "a91b2a900fa3",
+    "titulo": "Hoy No Circula sabatino 22 de agosto: estos autos no salen a las calles de CDMX y Edomex el cuarto sábado del mes",
+    "url": "",
+    "fuente": "Expansion",
+    "resumen": "El programa tiene como finalidad reducir las emisiones contaminantes en la CDMX y su zona metropolitana.",
+    "fecha_publicacion": "2026-08-22T00:53:21Z",
+    "categoria": "calidad_aire",
+    "categoria_nombre": "Calidad del Aire",
+    "categorias": [
+      "calidad_aire"
+    ],
+    "estado": "Ciudad de Mexico",
+    "scrapeado_en": "2026-08-22T18:15:29.439317+00:00"
   },
   {
     "id": "53b542a7d0f7",
@@ -9041,50 +9086,5 @@
     ],
     "estado": "Nuevo Leon",
     "scrapeado_en": "2026-08-01T11:44:19.495126+00:00"
-  },
-  {
-    "id": "83e086ef697b",
-    "titulo": "Gustavo Leal F.: IMSS: reservas, inversiones y quejas",
-    "url": "https://www.jornada.com.mx/2026/08/01/politica/012a2pol?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Según Zoe Robledo, director  general del IMSS, en 2019 se contaba con 200 mil millones de pesos de reserva, que hoy asciende a 700 mil: el reto es mantener sostenibilidad de largo plazo lo que implica “ecualizar” los recursos a inversión con el gasto en todas sus áreas. Las reservas se administran con criterios estrictos obteniendo mayores rendimientos: hoy 8 por ciento de sus ingresos provienen de utilidades de Afore-XXI-Banorte. Estos recursos no se utilizan para inversión, sino para mantener ",
-    "fecha_publicacion": "2026-08-01T10:14:44Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-01T11:44:19.496425+00:00"
-  },
-  {
-    "id": "a81f578d152e",
-    "titulo": "Obtuvo Pemex ganancias de 18 mil mdp en el segundo trimestre",
-    "url": "https://www.jornada.com.mx/2026/08/01/economia/013n1eco?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "En el segundo trimestre de 2026, Petróleos Mexicanos (Pemex) obtuvo ganancias por 18 mil 24 millones de pesos, que revirtieron parcialmente las pérdidas reportadas entre enero y marzo. Además, la empresa informó que su deuda financiera se redujo 9.1 por ciento respecto al cierre de 2025.",
-    "fecha_publicacion": "2026-08-01T10:14:44Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-01T11:44:19.505180+00:00"
-  },
-  {
-    "id": "40cb983d4580",
-    "titulo": "Sufren las Chivas y rescatan el empate 1-1 en su visita a Puebla",
-    "url": "https://www.jornada.com.mx/2026/08/01/deportes/a10n1dep?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "El Guadalajara rescató un empate de su visita al estadio Cuauhtémoc. Tras una semana empañada por polémicas extracancha, relacionadas con el ex seleccionado nacional Javier Hernández y la falta de éxitos en la liga, el Rebaño vino de atrás y rescató el 1-1 definitivo frente al Puebla, en un encuentro pasado por agua, que puso en marcha la tercera jornada de la Liga Mx.",
-    "fecha_publicacion": "2026-08-01T10:14:44Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Jalisco",
-    "scrapeado_en": "2026-08-01T11:44:19.511608+00:00"
   }
 ]
