@@ -216,6 +216,29 @@ def is_mexico_relevant(titulo: str, resumen: str = "") -> bool:
         return False
     return True  # ambiguous / global → allow
 
+# ── Blocklist de ruido: deportes / farándula / espectáculos / nota roja que se
+# cuela por un match superficial ("solar" en un luchador, "materiales" en un
+# balón) o por fuentes generales. DURO = siempre fuera; SUAVE = fuera salvo
+# señal ambiental fuerte (>=2 categorías).
+EXCLUIR_DURO = ["casa de los famosos", "reality", "telenovela", "farandula",
+                "cantante", "concierto", "futbol", "futbolista", "beisbol",
+                "basquetbol", "boxeo", "liga mx", "seleccion mexicana",
+                "goleador", "balon", "fifa", "arena mexico", "luchador",
+                "horoscopo", "miss universo", "certamen de belleza"]
+EXCLUIR_SUAVE = ["asesin", "homicidio", "feminicidio", "masacre", "balacera",
+                 "sicario", "narcotrafic", "narcomenudeo", "secuestr",
+                 "descuartiz", "huachicol"]
+_EXCL_DURO_RX  = [re.compile(r"(?<![a-z0-9])" + re.escape(x) + r"[a-z0-9]*") for x in EXCLUIR_DURO]
+_EXCL_SUAVE_RX = [re.compile(r"(?<![a-z0-9])" + re.escape(x) + r"[a-z0-9]*") for x in EXCLUIR_SUAVE]
+
+def es_ruido(titulo: str, resumen: str = "", n_cats: int = 0) -> bool:
+    t = normalize(f"{titulo} {resumen}")
+    if any(rx.search(t) for rx in _EXCL_DURO_RX):
+        return True
+    if n_cats < 2 and any(rx.search(t) for rx in _EXCL_SUAVE_RX):
+        return True
+    return False
+
 def detect_categories(titulo: str, resumen: str = "") -> list:
     t = normalize(f"{titulo} {resumen}")
     return [cat for cat, kws in KEYWORDS_AMBIENTAL.items()
@@ -363,6 +386,9 @@ def main():
         especializada = fuente in FUENTES_ESPECIALIZADAS
         cats = detect_categories(titulo, resumen)
 
+        # Descarta deportes/farándula/nota roja aunque venga de fuente especializada
+        if es_ruido(titulo, resumen, len(cats)):
+            continue
         # Las fuentes especializadas pasan siempre; las generales necesitan keyword
         if not cats and not especializada:
             continue
