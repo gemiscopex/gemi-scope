@@ -23,7 +23,7 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
 
 # Siglas de dependencias de nuestros sectores + keywords de filtrado
-SIGLAS = {"ASEA","SEMARNAT","CONAGUA","CONAFOR","PROFEPA","CRE","SENER",
+SIGLAS = {"ASEA","SEMARNAT","CONAGUA","CONAFOR","PROFEPA","CRE","CNE","SENER",
           "CONANP","INECC","SADER","CFE","CONUEE"}
 KW = ["ambient","residuo","reciclaje","plastic","agua","hidric","energ","hidrocarbur",
       "petrol","combustible"," gas","emision","carbono","clima","forestal","biodivers",
