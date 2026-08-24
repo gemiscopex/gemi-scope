@@ -42,7 +42,7 @@ KEYWORDS = {
              "planta tratadora", "saneamiento", "agua contaminada", "rio contaminado",
              "corte de agua", "desabasto de agua", "presa "],
     "energia": ["pemex", "cfe", "apagon", "tarifas electricas", "gasoducto",
-                "refineria", "huachicol", "energia solar", "energia eolica",
+                "refineria", "energia solar", "energia eolica",
                 "fotovoltaica", "transicion energetica", "litio", "gas natural",
                 "hidrocarburos", "parque solar", "energia limpia"],
     "impuestos": ["impuesto ambiental", "impuesto verde", "ecotasa",
@@ -68,7 +68,7 @@ KEYWORDS = {
                  "accion de inconstitucionalidad ambiental", "clausura ambiental",
                  "suspension de obra", "revoca la autorizacion", "nulidad de la autorizacion",
                  "sancion de profepa", "multa de profepa"],
-    "agro": ["agricultura", "campesino", "ejido", "distrito de riego",
+    "agro": ["agricultura", "campesino", "distrito de riego",
              "fertilizante", "cosecha", "ganaderia", "acuacultura",
              "sanidad vegetal", "sanidad animal", "sader", "glifosato",
              "perdida de cosecha", "sequia agricola"],
@@ -118,16 +118,40 @@ def es_extranjera(texto):
         return not any(rx.search(t) for rx in _MX_RX)
     return False
 
+# ── Blocklist de ruido: nota roja / deportes / espectáculos que se cuela por una
+# keyword ambiental incidental en el cuerpo (p. ej. una nota de crimen que
+# menciona "ejido" o "cfe"). DURO = siempre fuera (nunca es regulatorio
+# ambiental). SUAVE = fuera salvo que haya señal ambiental fuerte (>=2 keywords),
+# para no matar notas legítimas de enforcement (derrames, tala, clausuras).
+EXCLUIR_DURO = ["casa de los famosos", "reality", "telenovela", "farandula",
+                "cantante", "futbol", "beisbol", "basquetbol", "boxeo",
+                "liga mx", "seleccion mexicana", "goleador", "horoscopo",
+                "miss universo", "certamen de belleza"]
+EXCLUIR_SUAVE = ["asesin", "homicidio", "feminicidio", "masacre", "balacera",
+                 "sicario", "narcotrafic", "narcomenudeo", "secuestr",
+                 "descuartiz", "auto robado", "vehiculo robado", "didi",
+                 "huachicol"]
+_EXCL_DURO_RX  = [re.compile(r"(?<![a-z0-9])" + re.escape(x) + r"[a-z0-9]*") for x in EXCLUIR_DURO]
+_EXCL_SUAVE_RX = [re.compile(r"(?<![a-z0-9])" + re.escape(x) + r"[a-z0-9]*") for x in EXCLUIR_SUAVE]
+
 def clasifica(texto):
     if es_extranjera(texto):
         return None
     t = norm(texto)
+    if any(rx.search(t) for rx in _EXCL_DURO_RX):
+        return None  # deportes / farándula / espectáculos
     mejor, hits_max = None, 0
     for cat, rxs in _KW_RX.items():
         hits = sum(1 for rx in rxs if rx.search(t))
         if hits > hits_max:
             hits_max, mejor = hits, cat
-    return mejor  # None si no hay señal ambiental (o si es extranjera)
+    if mejor is None:
+        return None
+    # Señal ambiental débil (una sola keyword) + término de nota roja → descarta:
+    # casi siempre es crimen/política que menciona de pasada algo ambiental.
+    if hits_max < 2 and any(rx.search(t) for rx in _EXCL_SUAVE_RX):
+        return None
+    return mejor
 
 def limpia(s):
     s = html.unescape(re.sub(r"<[^>]+>", " ", s or ""))
