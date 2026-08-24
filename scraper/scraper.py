@@ -71,11 +71,15 @@ HDR = {"User-Agent": UA, "Accept": "application/rss+xml, application/xml, text/x
 KEYWORDS_AMBIENTAL = {
     "agua":             ["agua","cuenca","rio","lago","acuifero","hidric",
                          "conagua","sequia","inundacion","presa",
-                         "agua potable","escasez de agua","descarga de aguas"],
+                         "agua potable","escasez de agua","descarga de aguas",
+                         "concesion de agua","titulo de agua","repda","veda",
+                         "registro publico de derechos de agua","infraestructura hidrica","tandeo"],
     "energia_renovable":["solar","eolica","fotovoltaic","hidroelectric",
                          "renovable","cfe","sener","geotermia",
                          "parque eolico","parque solar","energia limpia",
-                         "transicion energetica"],
+                         "transicion energetica","cne","comision nacional de energia",
+                         "almacenamiento de energia","bess","certificado de energia limpia",
+                         "sistema de informacion energetica","contenido nacional","asea"],
     "hidrocarburos":    ["pemex","refineria","ducto","oleoducto","gasoducto",
                          "fracking","hidrocarburos","petroleo","gas natural",
                          "combustible","combustibles fosiles"],
@@ -90,7 +94,9 @@ KEYWORDS_AMBIENTAL = {
                          "smog","calidad del aire"],
     "residuos":         ["basura","residuo","relleno sanitario","reciclaj",
                          "plastico","incinerador","economia circular",
-                         "desecho peligroso","residuo toxico"],
+                         "desecho peligroso","residuo toxico","resina pet","resina hdpe",
+                         "envase retornable","contenido reciclado","rep envases",
+                         "rep vidrio","rep aluminio","ecoce","cofepris","etiquetado"],
     "cambio_climatico": ["cambio climatico","calentamiento global",
                          "carbono","gei","co2","inecc","mitigacion",
                          "lgcc","cop","paris","descarbonizacion",
@@ -100,7 +106,7 @@ KEYWORDS_AMBIENTAL = {
                          "extraccion minera"],
     "transgenico":      ["transgenico","glifosato","bayer","monsanto",
                          "semilla","soberania alimentaria","maiz nativo",
-                         "plaguicida","glifo"],
+                         "plaguicida","glifo","cebada maltera","lupulo","malta"],
 }
 
 # Fuentes especializadas: todos sus artículos pasan aunque no tengan keyword explícito
