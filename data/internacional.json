@@ -90,15 +90,6 @@
   "url": "https://www.cbp.gov/trade/forced-labor/UFLPA"
  },
  {
-  "nombre": "T-MEC — Capítulo 24 (Medio Ambiente)",
-  "jurisdiccion": "América del Norte",
-  "categoria": "cadena_suministro",
-  "anio": 2020,
-  "estatus": "Vigente desde 1-jul-2020",
-  "relevancia_mexico": "Obliga a México a cumplir sus leyes ambientales y acuerdos multilaterales como condición del comercio; su incumplimiento puede activar paneles que afectan el acceso preferencial.",
-  "url": "https://www.gob.mx/t-mec"
- },
- {
   "nombre": "Estrategia Nacional de Economía Circular (ENEC)",
   "jurisdiccion": "Colombia",
   "categoria": "ley_extranjera",
@@ -300,5 +291,86 @@
   "estatus": "Adoptado por consenso (México como Parte del CDB) el 19-dic-2022 en la COP15 (Montreal). No es un tratado autónomo vinculante, sino un marco bajo el CDB con 4 objetivos a 2050 y 23 metas a 2030; México alinea su Estrategia Nacional (ENBioMex) desde 2023.",
   "relevancia_mexico": "Orienta la regulación futura de biodiversidad (meta 30x30 de áreas protegidas, reducción de contaminación y plaguicidas, restauración, subsidios dañinos y divulgación empresarial de impactos), anticipando obligaciones para agroindustria, extracción, energía, pesca y financiamiento verde.",
   "url": "https://www.biodiversidad.gob.mx/planeta/internacional/cbd/marco-mundial-de-biodiversidad-post-2020"
+ },
+ {
+  "nombre": "T-MEC · Cap. 3 — Agricultura",
+  "jurisdiccion": "T-MEC (América del Norte)",
+  "categoria": "tmec",
+  "anio": 2020,
+  "estatus": "Vigente desde 1-jul-2020; sujeto a la revisión conjunta de 2026.",
+  "relevancia_mexico": "Rige el acceso a mercados agrícolas y la biotecnología agrícola; relevante para insumos como cebada maltera, lúpulo y malta (Cerveceros de México) y para la agroindustria.",
+  "url": "https://www.gob.mx/t-mec"
+ },
+ {
+  "nombre": "T-MEC · Cap. 8 — Propiedad de la Nación sobre los Hidrocarburos",
+  "jurisdiccion": "T-MEC (América del Norte)",
+  "categoria": "tmec",
+  "anio": 2020,
+  "estatus": "Vigente desde 1-jul-2020.",
+  "relevancia_mexico": "Reafirma la propiedad directa e inalienable del Estado mexicano sobre los hidrocarburos; enmarca el margen soberano de la política energética que afecta a inversión y proyectos del sector (Siemens Energy, Pemex, CFE).",
+  "url": "https://www.gob.mx/t-mec"
+ },
+ {
+  "nombre": "T-MEC · Cap. 9 — Medidas Sanitarias y Fitosanitarias (MSF)",
+  "jurisdiccion": "T-MEC (América del Norte)",
+  "categoria": "tmec",
+  "anio": 2020,
+  "estatus": "Vigente desde 1-jul-2020.",
+  "relevancia_mexico": "Disciplina las medidas de inocuidad alimentaria y sanidad agropecuaria basadas en ciencia; relevante para alimentos y bebidas, insumos agrícolas y contacto con alimentos (Cerveceros, Rotoplas).",
+  "url": "https://www.gob.mx/t-mec"
+ },
+ {
+  "nombre": "T-MEC · Cap. 11 — Obstáculos Técnicos al Comercio (OTC)",
+  "jurisdiccion": "T-MEC (América del Norte)",
+  "categoria": "tmec",
+  "anio": 2020,
+  "estatus": "Vigente desde 1-jul-2020.",
+  "relevancia_mexico": "Regula normas, reglamentos técnicos (NOMs), etiquetado y evaluación de la conformidad; base de las obligaciones de etiquetado y certificación que tocan a las tres empresas (envases, productos, equipos).",
+  "url": "https://www.gob.mx/t-mec"
+ },
+ {
+  "nombre": "T-MEC · Cap. 12 — Anexos Sectoriales (OTC)",
+  "jurisdiccion": "T-MEC (América del Norte)",
+  "categoria": "tmec",
+  "anio": 2020,
+  "estatus": "Vigente desde 1-jul-2020.",
+  "relevancia_mexico": "Anexos técnicos por sector (sustancias químicas, cosméticos, fórmulas, dispositivos y estándares de desempeño); relevante para químicos y materiales en contacto con producto (Rotoplas, Cerveceros) y equipos (Siemens Energy).",
+  "url": "https://www.gob.mx/t-mec"
+ },
+ {
+  "nombre": "T-MEC · Cap. 14 — Inversión",
+  "jurisdiccion": "T-MEC (América del Norte)",
+  "categoria": "tmec",
+  "anio": 2020,
+  "estatus": "Vigente desde 1-jul-2020; ISDS acotado (transición desde el TLCAN).",
+  "relevancia_mexico": "Fija la protección a la inversión extranjera y el mecanismo de solución de controversias inversionista-Estado (limitado); relevante para la inversión de capital de las tres empresas y sus proyectos (p. ej. generación de Siemens Energy).",
+  "url": "https://www.gob.mx/t-mec"
+ },
+ {
+  "nombre": "T-MEC · Cap. 22 — Empresas Propiedad del Estado y Monopolios Designados",
+  "jurisdiccion": "T-MEC (América del Norte)",
+  "categoria": "tmec",
+  "anio": 2020,
+  "estatus": "Vigente desde 1-jul-2020.",
+  "relevancia_mexico": "Disciplina a las empresas del Estado (CFE, Pemex) para que actúen con criterios comerciales y no distorsionen la competencia; central para quien compite o interconecta con CFE (Siemens Energy).",
+  "url": "https://www.gob.mx/t-mec"
+ },
+ {
+  "nombre": "T-MEC · Cap. 23 — Laboral (Mecanismo Laboral de Respuesta Rápida)",
+  "jurisdiccion": "T-MEC (América del Norte)",
+  "categoria": "tmec",
+  "anio": 2020,
+  "estatus": "Vigente desde 1-jul-2020; MLRR activo y de uso frecuente.",
+  "relevancia_mexico": "Permite acciones rápidas ante presuntas violaciones a la libertad sindical y negociación colectiva en instalaciones específicas; riesgo directo para plantas manufactureras (Siemens Energy, Rotoplas, Cerveceros).",
+  "url": "https://www.gob.mx/t-mec"
+ },
+ {
+  "nombre": "T-MEC · Cap. 24 — Medio Ambiente",
+  "jurisdiccion": "T-MEC (América del Norte)",
+  "categoria": "tmec",
+  "anio": 2020,
+  "estatus": "Vigente desde 1-jul-2020; sujeto a la revisión conjunta de 2026.",
+  "relevancia_mexico": "Obliga a México a aplicar sus leyes ambientales y varios acuerdos multilaterales como condición del comercio; su incumplimiento puede activar paneles que afectan el acceso preferencial. Cubre a las tres empresas.",
+  "url": "https://www.gob.mx/t-mec"
  }
 ]
