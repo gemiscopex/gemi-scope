@@ -975,7 +975,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cw-step-nav{cursor:pointer;transition:color .12s}
 .cw-step-nav:hover{color:var(--text)}
 /* ── Mi Terminal · bienvenida + cascada de módulos ── */
-#cons-welcome{position:fixed;inset:0;z-index:1250;display:flex;align-items:center;justify-content:center;background:var(--bg);animation:cwlFade .35s ease;transition:opacity .6s ease}
+#cons-welcome{position:fixed;inset:0;z-index:1250;display:flex;align-items:center;justify-content:center;background:var(--bg);animation:cwlFade .3s ease;transition:opacity .35s ease}
 #cons-welcome.out{opacity:0}
 .cwl-in{text-align:center;animation:cwlRise .8s cubic-bezier(.2,.7,.3,1)}
 .cwl-h{font-size:clamp(26px,4vw,38px);font-weight:700;color:var(--text);letter-spacing:-0.02em;line-height:1.1}
@@ -6430,14 +6430,14 @@ function _consWelcome(){
   // La línea inferior cicla frases creativas mientras "carga"
   var sEl=ov.querySelector('.cwl-s'),si=0;
   if(sEl){sEl.textContent=SCOPE_LOADING[0];
-    var wt=setInterval(function(){si++;sEl.style.opacity='0';setTimeout(function(){sEl.textContent=SCOPE_LOADING[si%SCOPE_LOADING.length];sEl.style.opacity='1';},170);},680);
-    setTimeout(function(){clearInterval(wt);},2950);
+    var wt=setInterval(function(){si++;sEl.style.opacity='0';setTimeout(function(){sEl.textContent=SCOPE_LOADING[si%SCOPE_LOADING.length];sEl.style.opacity='1';},120);},420);
+    setTimeout(function(){clearInterval(wt);},950);
   }
   // Cascada: los módulos caen escalonados justo cuando se desvanece la bienvenida
   var items=[].slice.call(document.querySelectorAll('#consola-root .cons-topsplit, #cons-widgets > *'));
-  items.forEach(function(el,i){el.classList.add('cons-drop');el.style.animationDelay=(3.0+i*0.07)+'s';});
-  setTimeout(function(){ov.classList.add('out');},3000);
-  setTimeout(function(){if(ov.parentNode)ov.parentNode.removeChild(ov);},3650);
+  items.forEach(function(el,i){el.classList.add('cons-drop');el.style.animationDelay=(1.0+i*0.05)+'s';});
+  setTimeout(function(){ov.classList.add('out');},1000);
+  setTimeout(function(){if(ov.parentNode)ov.parentNode.removeChild(ov);},1400);
 }
 // Línea de estado rotativa en la pantalla de entrada (sensación de plataforma viva)
 var SCOPE_LOADING=[
