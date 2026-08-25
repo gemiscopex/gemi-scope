@@ -114,7 +114,9 @@ FUENTES_ESPECIALIZADAS = {"Mongabay Latam", "Causa Natura", "Pie de Pagina",
                            "CEMDA", "Greenpeace MX",
                            # Fuentes cuyo foco es ambiental/regulatorio (todo pasa):
                            "Normateca Ambiental", "Ambiente Plastico", "Residuos Expo",
-                           "Fundacion Cortinas"}
+                           "Fundacion Cortinas",
+                           # Medios dedicados a energía (todo su contenido es del sector):
+                           "Energy21", "Energia Hoy", "PV Magazine MX"}
 # Nota: los bufetes (VTZ, Basham, Tirant) e IMCO cubren muchos temas, por eso NO son
 # especializadas: solo pasan sus artículos que cruzan una keyword ambiental.
 
