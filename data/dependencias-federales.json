@@ -432,83 +432,6 @@
     },
     {
      "nombre": "Unidad de Asuntos Jurídicos"
-    },
-    {
-     "nombre": "Órganos y empresas del sector",
-     "unidades": [
-      {
-       "nombre": "Comisión Nacional de Energía (CNE) — sustituye a CRE y CNH",
-       "cargo": "Director General",
-       "titular": "Juan Carlos Solís Ávila",
-       "unidades": [
-        {
-         "nombre": "Comité Técnico · integrante experta",
-         "titular": "María Elena Huesca Pérez"
-        },
-        {
-         "nombre": "Comité Técnico · integrante experto",
-         "titular": "Diego Marie Phillippe Chatellier Lorentzen"
-        },
-        {
-         "nombre": "Comité Técnico · integrante experta",
-         "titular": "Lissette Mendoza Barrón"
-        }
-       ]
-      },
-      {
-       "nombre": "Comisión Nacional para el Uso Eficiente de la Energía (CONUEE)",
-       "cargo": "Director General",
-       "titular": "Israel Jáuregui Nares"
-      },
-      {
-       "nombre": "Comisión Federal de Electricidad (CFE)",
-       "cargo": "Directora General",
-       "titular": "Emilia Esther Calleja Alor",
-       "unidades": [
-        {
-         "nombre": "Dirección Corporativa de Operaciones",
-         "titular": "Héctor Sergio López Villarreal"
-        },
-        {
-         "nombre": "Dirección Corporativa de Negocios Comerciales",
-         "titular": "Liliana Barrera Jiménez"
-        },
-        {
-         "nombre": "Dirección Corporativa de Finanzas",
-         "titular": "Eugenio Amador Quijano"
-        },
-        {
-         "nombre": "Dirección Corporativa de Administración",
-         "titular": "Yesica Luna Espino"
-        },
-        {
-         "nombre": "Dirección Corporativa de Planeación Estratégica",
-         "titular": "Rafael Narváez Ávila"
-        }
-       ]
-      },
-      {
-       "nombre": "Petróleos Mexicanos (Pemex)",
-       "cargo": "Director General",
-       "titular": "Juan Carlos Carpio Fragoso",
-       "unidades": [
-        {
-         "nombre": "Dirección de Procesos Industriales",
-         "titular": "Carlos Armando Lechuga Aguiñaga"
-        }
-       ]
-      },
-      {
-       "nombre": "Comisión Nacional de Seguridad Nuclear y Salvaguardias (CNSNS)",
-       "cargo": "Director General",
-       "titular": "Alejandro Núñez Carrera"
-      },
-      {
-       "nombre": "Instituto Nacional de Investigaciones Nucleares (ININ)",
-       "cargo": "Director General",
-       "titular": "Javier Cuitláhuac Palacios Hernández"
-      }
-     ]
     }
    ],
    "dir_url": "https://www.gob.mx/sener/api/v1/levels",
@@ -972,6 +895,114 @@
    ],
    "dir_url": "https://www.gob.mx/senasica/api/v1/levels",
    "personas": []
+  },
+  "CFE": {
+   "titular": "Emilia Esther Calleja Alor",
+   "cargo": "Directora General",
+   "url": "https://www.gob.mx/cfe",
+   "nota": "Empresa pública del Estado (sector energía). Estructura corporativa reorganizada en direcciones tras la reforma 2024-2025. Titulares verificados con fuentes oficiales y prensa (ago-2026).",
+   "personas": [
+    {
+     "nombre": "Emilia Esther Calleja Alor",
+     "cargo": "Directora General"
+    },
+    {
+     "nombre": "Héctor Sergio López Villarreal",
+     "cargo": "Director Corporativo de Operaciones (generación, transmisión, distribución y suministro)"
+    },
+    {
+     "nombre": "Liliana Barrera Jiménez",
+     "cargo": "Directora Corporativa de Negocios Comerciales"
+    },
+    {
+     "nombre": "Eugenio Amador Quijano",
+     "cargo": "Director Corporativo de Finanzas"
+    },
+    {
+     "nombre": "Yesica Luna Espino",
+     "cargo": "Directora Corporativa de Administración"
+    },
+    {
+     "nombre": "Rafael Narváez Ávila",
+     "cargo": "Director Corporativo de Planeación Estratégica"
+    }
+   ]
+  },
+  "PEMEX": {
+   "titular": "Juan Carlos Carpio Fragoso",
+   "cargo": "Director General",
+   "url": "https://www.gob.mx/pemex",
+   "nota": "Empresa pública del Estado (sector energía). Reestructurada tras la nueva Ley de Pemex; las filiales pasaron a direcciones del corporativo. Titulares verificados (ago-2026); la Dirección de Exploración y Producción estaba en definición.",
+   "personas": [
+    {
+     "nombre": "Juan Carlos Carpio Fragoso",
+     "cargo": "Director General (desde el 14-may-2026)"
+    },
+    {
+     "nombre": "Carlos Armando Lechuga Aguiñaga",
+     "cargo": "Director de Procesos Industriales (antes Pemex Transformación Industrial)"
+    }
+   ]
+  },
+  "CNE": {
+   "titular": "Juan Carlos Solís Ávila",
+   "cargo": "Director General",
+   "url": "https://www.gob.mx/cne",
+   "nota": "Órgano regulador creado por la reforma energética 2024-2025; sustituye a la CRE y la CNH. Entró en funciones el 21-may-2025; sectorizado a SENER. Integrantes verificados con fuentes oficiales y prensa (ago-2026).",
+   "personas": [
+    {
+     "nombre": "Juan Carlos Solís Ávila",
+     "cargo": "Director General"
+    },
+    {
+     "nombre": "María Elena Huesca Pérez",
+     "cargo": "Integrante experta del Comité Técnico"
+    },
+    {
+     "nombre": "Diego Marie Phillippe Chatellier Lorentzen",
+     "cargo": "Integrante experto del Comité Técnico"
+    },
+    {
+     "nombre": "Lissette Mendoza Barrón",
+     "cargo": "Integrante experta del Comité Técnico"
+    }
+   ]
+  },
+  "CONUEE": {
+   "titular": "Israel Jáuregui Nares",
+   "cargo": "Director General",
+   "url": "https://www.gob.mx/conuee",
+   "nota": "Órgano administrativo desconcentrado de SENER. Titular nombrado en 2023; continuidad bajo la administración actual no confirmada por fuente oficial fechada en 2026.",
+   "personas": [
+    {
+     "nombre": "Israel Jáuregui Nares",
+     "cargo": "Director General"
+    }
+   ]
+  },
+  "CNSNS": {
+   "titular": "Alejandro Núñez Carrera",
+   "cargo": "Director General",
+   "url": "https://www.gob.mx/cnsns",
+   "nota": "Órgano desconcentrado del sector energía (seguridad nuclear y salvaguardias). Titular confirmado en documentos oficiales (2026).",
+   "personas": [
+    {
+     "nombre": "Alejandro Núñez Carrera",
+     "cargo": "Director General"
+    }
+   ]
+  },
+  "ININ": {
+   "titular": "Javier Cuitláhuac Palacios Hernández",
+   "cargo": "Director General",
+   "url": "https://www.gob.mx/inin",
+   "nota": "Instituto de investigación del sector energía (nuclear). Titular en la página de estructura de gob.mx/inin.",
+   "personas": [
+    {
+     "nombre": "Javier Cuitláhuac Palacios Hernández",
+     "cargo": "Director General"
+    }
+   ]
   }
  }
 }
