@@ -41,6 +41,9 @@ jobs:
       - name: Scraper CONAGUA / REPDA (agua)
         run: python scraper/scraper_conagua.py
 
+      - name: Scraper Energia (SENER / CNE / CENACE)
+        run: python scraper/scraper_energia.py
+
       - name: Scraper DOF (Diario Oficial de la Federacion)
         run: python scraper/scraper_dof.py
 
