@@ -3210,15 +3210,42 @@ var GACETAS_OFICIALES={
 "Zacatecas":["Periódico Oficial del Gobierno del Estado","https://periodico.zacatecas.gob.mx/"]
 };
 var _gacQ='';
+var _gacOficiales=null,_gacOfLoaded=false;
 function gacSetQ(v){_gacQ=v;_agendaGacetas(true);}
 function _agendaGacetas(keepFocus){
   var host=document.getElementById('gacetas-dir')||document.getElementById('agenda-view');if(!host)return;
+  if(!_gacOfLoaded){
+    _gacOfLoaded=true;
+    fetch('data/gacetas-oficiales-recientes.json',{cache:'no-cache'})
+      .then(function(r){return r.ok?r.json():null;})
+      .then(function(d){_gacOficiales=d;_agendaGacetas(false);})
+      .catch(function(){});
+  }
   var q=qa((_gacQ||'').toLowerCase());
   var estados=Object.keys(GACETAS_OFICIALES).sort(function(a,b){return a.localeCompare(b,'es');})
     .filter(function(s){return !q||qa(s.toLowerCase()).indexOf(q)>=0||qa(GACETAS_OFICIALES[s][0].toLowerCase()).indexOf(q)>=0;});
   var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:14px">Actividad regulatoria de las 32 entidades: lo publicado <b>al día</b> en la prensa estatal, más el <b>directorio</b> de la publicación oficial (Periódico/Gaceta) de cada estado, donde las leyes, decretos y reglamentos tienen validez legal.</div>'
     +'<div style="position:relative;max-width:340px;margin-bottom:6px"><span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none">⌕</span>'
     +'<input id="gac-search" oninput="gacSetQ(this.value)" value="'+(_gacQ||'').replace(/"/g,'&quot;')+'" placeholder="Buscar entidad…" style="width:100%;box-sizing:border-box;padding:8px 12px 8px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none;border-radius:10px"></div>';
+  function fmtF(f){var d=new Date(String(f||'').substring(0,10)+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('es-MX',{day:'2-digit',month:'short'});}
+  // ── Ediciones oficiales recientes (raspadas por estado, etapa 1) ──
+  var oficiales='';
+  var ofItems=((_gacOficiales&&_gacOficiales.items)||[]).filter(function(it){
+    return !q||qa((it.estado||'').toLowerCase()).indexOf(q)>=0;
+  }).slice(0,24);
+  if(ofItems.length){
+    var ofEstados=((_gacOficiales&&_gacOficiales._meta&&_gacOficiales._meta.por_estado)||{});
+    oficiales='<div class="cons-hero-kick" style="color:#066750;margin:6px 0 4px">Ediciones oficiales recientes</div>'
+      +'<div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Ediciones del Periódico/Diario Oficial traídas directo del portal de cada estado (etapa 1: '+Object.keys(ofEstados).length+' entidades con portal accesible). Abre el PDF oficial.</div>'
+      +ofItems.map(function(it){
+        var u=(it.url||'#').replace(/'/g,'%27');
+        return '<div class="gac-feed-it" onclick="window.open(\''+u+'\',\'_blank\')">'
+          +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">'
+            +'<span style="font-size:13px;color:var(--text);line-height:1.4"><span style="font-family:var(--mono);font-size:9px;color:#066750;letter-spacing:0.04em">'+_escUser((it.estado||'').toUpperCase())+'</span>  '+_escUser(it.titulo||'')+'</span>'
+            +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap;flex-shrink:0">'+fmtF(it.fecha)+'</span>'
+          +'</div></div>';
+      }).join('');
+  }
   // ── Feed "al día": actividad regulatoria estatal desde la prensa estatal (diaria) ──
   var REG_KW=['ley','decreto','reforma','reglamento','norma','nom-','gaceta','acuerdo','iniciativa','concesion','permiso','veda','ordenamiento','congreso','diputad','constituc','abroga','adiciona','expide','bando','ambiental','residuos'];
   var feedItems=((typeof _noticiasEstatales!=='undefined'&&_noticiasEstatales&&_noticiasEstatales.items)||[]).filter(function(it){
@@ -3226,7 +3253,6 @@ function _agendaGacetas(keepFocus){
     if(q && qa((it.estado||'').toLowerCase()).indexOf(q)<0)return false;
     return REG_KW.some(function(k){return t.indexOf(qa(k))>=0;});
   }).sort(function(a,b){return new Date(String(b.fecha||'').substring(0,10))-new Date(String(a.fecha||'').substring(0,10));}).slice(0,18);
-  function fmtF(f){var d=new Date(String(f||'').substring(0,10)+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('es-MX',{day:'2-digit',month:'short'});}
   var feed='';
   if(feedItems.length){
     feed='<div class="cons-hero-kick" style="color:#066750;margin:6px 0 10px">Al día · actividad regulatoria estatal</div>'
@@ -3254,7 +3280,9 @@ function _agendaGacetas(keepFocus){
   var dirHead='<div class="cons-hero-kick" style="color:#066750;margin:26px 0 4px;padding-top:18px;border-top:0.8px solid var(--border)">Directorio de publicaciones oficiales <span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);font-weight:400">· '+estados.length+' entidad'+(estados.length===1?'':'es')+'</span></div>'
     +'<div style="font-size:11px;color:var(--text-muted);margin-bottom:12px">El Periódico o Gaceta Oficial de cada estado. Da clic para abrir el portal.</div>';
   var grid=estados.length?('<div class="gac-grid">'+cells+'</div>'):'<div style="padding:12px 0;font-size:13px;color:var(--text-muted)">Sin coincidencias.</div>';
-  host.innerHTML=head+feed+dirHead+grid;
+  var ofSep=oficiales?'<div style="margin-bottom:22px">'+oficiales+'</div>':'';
+  var feedSep=feed?'<div style="margin:'+(oficiales?'22px':'6px')+' 0 0;padding-top:'+(oficiales?'18px':'0')+';border-top:'+(oficiales?'0.8px solid var(--border)':'none')+'">'+feed+'</div>':'';
+  host.innerHTML=head+ofSep+feedSep+dirHead+grid;
   if(keepFocus){var i=document.getElementById('gac-search');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}}
 }
 // ── Trámites de Residuos de Manejo Especial (RME) por entidad ────────────
