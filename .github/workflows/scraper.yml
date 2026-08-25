@@ -35,6 +35,12 @@ jobs:
       - name: Scraper Noticias (Google News RSS)
         run: python scraper/scraper.py
 
+      - name: Scraper COFEPRIS (regulatorio sanitario)
+        run: python scraper/scraper_cofepris.py
+
+      - name: Scraper CONAGUA / REPDA (agua)
+        run: python scraper/scraper_conagua.py
+
       - name: Scraper DOF (Diario Oficial de la Federacion)
         run: python scraper/scraper_dof.py
 
