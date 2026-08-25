@@ -43,14 +43,45 @@ def buscar(query, rows=8):
         print(f"  ERROR {query!r}: {str(e)[:100]}")
         return []
 
+def buscar_org(org, rows=8):
+    """Datasets por organización (más preciso que texto libre; p.ej. CONAGUA/REPDA)."""
+    try:
+        r = requests.get(API, params={"fq": f"organization:{org}", "rows": rows,
+                                      "sort": "metadata_modified desc"},
+                         headers=UA, timeout=25, verify=False)
+        if r.status_code != 200:
+            return []
+        return (r.json().get("result") or {}).get("results") or []
+    except Exception as e:
+        print(f"  ERROR org {org!r}: {str(e)[:100]}")
+        return []
+
 def main():
     out = {"_meta": {"actualizado": cdmx_now().strftime("%Y-%m-%dT%H:%M CDMX"),
                      "fuente": "datos.gob.mx · CKAN API"},
            "temas": {}}
     vistos = set()
     total = 0
+    # Fuentes por organización que enriquecen un tema (más preciso que texto libre)
+    ORG_TEMA = {"Agua": ["conagua"]}
     for tema, q in TEMAS.items():
         items = []
+        # 1) Datasets oficiales por organización (p.ej. CONAGUA → agua/REPDA/disponibilidad)
+        for org in ORG_TEMA.get(tema, []):
+            for p in buscar_org(org):
+                pid = p.get("id")
+                if not pid or pid in vistos:
+                    continue
+                vistos.add(pid)
+                items.append({
+                    "titulo": (p.get("title") or "").strip(),
+                    "org": (p.get("organization") or {}).get("title") or org.upper(),
+                    "fecha": (p.get("metadata_modified") or "")[:10],
+                    "url": f"https://www.datos.gob.mx/dataset/{p.get('name','')}" if p.get("name")
+                           else "https://www.datos.gob.mx/",
+                    "recursos": len(p.get("resources") or []),
+                })
+        # 2) Búsqueda por texto libre del tema
         for p in buscar(q):
             pid = p.get("id")
             if not pid or pid in vistos:
@@ -66,7 +97,7 @@ def main():
                        else "https://www.datos.gob.mx/",
                 "recursos": len(p.get("resources") or []),
             })
-            if len(items) >= 5:
+            if len(items) >= 7:
                 break
         out["temas"][tema] = items
         total += len(items)
