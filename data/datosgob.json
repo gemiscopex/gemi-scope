@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-08-24T17:21 CDMX",
+  "actualizado": "2026-08-24T19:13 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -20,13 +20,6 @@
     "recursos": 4
    },
    {
-    "titulo": "Certificados de sanidad acuícola",
-    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
-    "fecha": "2026-03-10",
-    "url": "https://www.datos.gob.mx/dataset/certificados_sanidad_acuicola",
-    "recursos": 1
-   },
-   {
     "titulo": "Plan de Apertura de Datos CONAGUA",
     "org": "Comisión Nacional del Agua (CONAGUA)",
     "fecha": "2026-02-03",
@@ -34,10 +27,31 @@
     "recursos": 1
    },
    {
+    "titulo": "Estaciones del Sistema de Información Hidrológica",
+    "org": "Comisión Nacional del Agua (CONAGUA)",
+    "fecha": "2025-06-02",
+    "url": "https://www.datos.gob.mx/dataset/estaciones_sistema_informacion_hidrologica",
+    "recursos": 3
+   },
+   {
+    "titulo": "Certificados de sanidad acuícola",
+    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
+    "fecha": "2026-03-10",
+    "url": "https://www.datos.gob.mx/dataset/certificados_sanidad_acuicola",
+    "recursos": 1
+   },
+   {
     "titulo": "Personas reconocidas por buenas prácticas acuícolas y de manufactura de productos acuícolas",
     "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
     "fecha": "2025-11-13",
     "url": "https://www.datos.gob.mx/dataset/personas_reconocidas_buenas_practicas_acuicolas_manufactura_productos_acuicolas",
+    "recursos": 1
+   },
+   {
+    "titulo": "Unidades de Producción Acuícola de SENASICA",
+    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
+    "fecha": "2025-08-18",
+    "url": "https://www.datos.gob.mx/dataset/unidades_produccion_acuicola_senasica",
     "recursos": 1
    }
   ],
@@ -76,9 +90,7 @@
     "fecha": "2026-03-11",
     "url": "https://www.datos.gob.mx/dataset/laboratorios_analisis_plaguicidas_vegetales_laboratorios_deteccion_organismos_patogenos",
     "recursos": 1
-   }
-  ],
-  "Emisiones / Aire": [
+   },
    {
     "titulo": "Concentraciones validadas de calidad del aire por entidad federativa",
     "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
@@ -86,6 +98,15 @@
     "url": "https://www.datos.gob.mx/dataset/concentraciones_validadas_calidad_aire_entidad_federativa",
     "recursos": 20
    },
+   {
+    "titulo": "Emergencias ambientales asociadas a sustancias químicas ocurridas en la República Mexicana",
+    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
+    "fecha": "2026-02-19",
+    "url": "https://www.datos.gob.mx/dataset/emergencias_ambientales_sustancias_quimicas",
+    "recursos": 1
+   }
+  ],
+  "Emisiones / Aire": [
    {
     "titulo": "Inventario Nacional de Emisiones de Gases y Compuestos de Efecto Invernadero (INEGYCEI)",
     "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
@@ -143,6 +164,20 @@
     "fecha": "2026-05-07",
     "url": "https://www.datos.gob.mx/dataset/escenarios_cambio_climatico",
     "recursos": 1
+   },
+   {
+    "titulo": "Economía sectorial, ambiental y de recursos naturales",
+    "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
+    "fecha": "2026-05-07",
+    "url": "https://www.datos.gob.mx/dataset/economia_sectorial_ambiental_recursos_naturales",
+    "recursos": 5
+   },
+   {
+    "titulo": "Identificación de áreas potenciales de distribución de vertebrados terrestres en un contexto de cambio climático de INECC",
+    "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
+    "fecha": "2026-05-07",
+    "url": "https://www.datos.gob.mx/dataset/areas_potenciales_distribucion_vertebrados_terrestres_contexto_cambio_climatico_inecc",
+    "recursos": 7
    }
   ],
   "Energía": [
@@ -189,6 +224,20 @@
     "fecha": "2026-03-25",
     "url": "https://www.datos.gob.mx/dataset/sanidad",
     "recursos": 4
+   },
+   {
+    "titulo": "Pagos por servicios ambientales",
+    "org": "Comisión Nacional Forestal (CONAFOR)",
+    "fecha": "2026-03-25",
+    "url": "https://www.datos.gob.mx/dataset/pagos_servicios_ambientales",
+    "recursos": 2
+   },
+   {
+    "titulo": "Padrón de beneficiarios",
+    "org": "Comisión Nacional Forestal (CONAFOR)",
+    "fecha": "2026-03-24",
+    "url": "https://www.datos.gob.mx/dataset/padron_beneficiarios_conafor",
+    "recursos": 1
    }
   ]
  }
