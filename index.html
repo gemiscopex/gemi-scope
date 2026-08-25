@@ -3014,7 +3014,7 @@ function _oblRow(o){
   var attrs=o.onclick?(' onclick="'+o.onclick+'" style="'+base+';cursor:pointer"'):(' style="'+base+'"');
   return '<div'+attrs+'>'
     +'<div style="flex:1;min-width:0">'
-      +'<div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4">'+o.title+'</div>'
+      +'<div style="font-size:13px;font-weight:'+(o.titleWeight||600)+';color:var(--text);line-height:1.4">'+o.title+'</div>'
       +(o.desc?'<div style="font-size:12px;color:var(--text-sec);line-height:1.55;margin-top:4px;max-width:720px">'+o.desc+'</div>':'')
       +(o.meta?'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px;letter-spacing:0.02em">'+o.meta+'</div>':'')
     +'</div>'
@@ -3464,7 +3464,7 @@ function _agendaConamer(){
     var tag=(it.subtipo||'')+(it.tipo?' · '+it.tipo:'');
     var meta='<b>'+(it.siglas||'')+'</b> · '+(it.dependencia||'')+(tag?'  ·  '+tag:'')
       +(match.length?'  ·  <span style="color:var(--amber)">Actualiza '+match.join(', ')+' que monitoreas</span>':'');
-    return _oblRow({title:it.titulo,meta:meta,right:_oblStatus('En consulta','var(--green)'),rightSub:dia,zeb:i%2===1,onclick:'window.open(\''+(it.url||'#').replace(/\x27/g,'%27')+'\',\'_blank\')'});
+    return _oblRow({title:it.titulo,titleWeight:400,meta:meta,right:_oblStatus('En consulta','var(--green)'),rightSub:dia,zeb:i%2===1,onclick:'window.open(\''+(it.url||'#').replace(/\x27/g,'%27')+'\',\'_blank\')'});
   }).join('');
   host.innerHTML=head+body;
 }
