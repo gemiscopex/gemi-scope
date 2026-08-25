@@ -2435,6 +2435,12 @@ var ACTORES_FED=[
   {sig:'CONAGUA',dep:'Comisión Nacional del Agua',titular:'Efraín Morales López',cargo:'Director General',url:'https://www.gob.mx/conagua'},
   {sig:'PROFEPA',dep:'Procuraduría Federal de Protección al Ambiente',titular:'Mariana Boy Tamborrell',cargo:'Procuradora',url:'https://www.gob.mx/profepa'},
   {sig:'SENER',dep:'Secretaría de Energía',titular:'Luz Elena González Escobar',cargo:'Secretaria',url:'https://www.gob.mx/sener'},
+  {sig:'CFE',dep:'Comisión Federal de Electricidad',titular:'Emilia Esther Calleja Alor',cargo:'Directora General',url:'https://www.gob.mx/cfe'},
+  {sig:'PEMEX',dep:'Petróleos Mexicanos',titular:'Juan Carlos Carpio Fragoso',cargo:'Director General',url:'https://www.gob.mx/pemex'},
+  {sig:'CNE',dep:'Comisión Nacional de Energía',titular:'Juan Carlos Solís Ávila',cargo:'Director General',url:'https://www.gob.mx/cne'},
+  {sig:'CONUEE',dep:'Comisión Nacional para el Uso Eficiente de la Energía',titular:'Israel Jáuregui Nares',cargo:'Director General',url:'https://www.gob.mx/conuee'},
+  {sig:'CNSNS',dep:'Comisión Nacional de Seguridad Nuclear y Salvaguardias',titular:'Alejandro Núñez Carrera',cargo:'Director General',url:'https://www.gob.mx/cnsns'},
+  {sig:'ININ',dep:'Instituto Nacional de Investigaciones Nucleares',titular:'Javier Cuitláhuac Palacios Hernández',cargo:'Director General',url:'https://www.gob.mx/inin'},
   {sig:'ECONOMÍA',dep:'Secretaría de Economía',titular:'Marcelo Ebrard Casaubón',cargo:'Secretario',url:'https://www.gob.mx/se'},
   {sig:'SADER',dep:'Secretaría de Agricultura y Desarrollo Rural',titular:'Columba Jazmín López Gutiérrez',cargo:'Secretaria',url:'https://www.gob.mx/agricultura'},
   {sig:'CONAFOR',dep:'Comisión Nacional Forestal',titular:'Sergio Graf Montero',cargo:'Director General',url:'https://www.gob.mx/conafor'},
@@ -2464,7 +2470,7 @@ function _depToggle(sig){var was=_depOpen[sig];_depOpen={};if(!was)_depOpen[sig]
 // Agrupación por Secretaría rectora (SEMARNAT y sus órganos desconcentrados, etc.)
 var _SEC_GROUPS=[
   {sec:'Medio Ambiente y Recursos Naturales',sub:'SEMARNAT y sus órganos desconcentrados',sigs:['SEMARNAT','CONAGUA','PROFEPA','CONAFOR','CONANP','ASEA']},
-  {sec:'Energía',sub:'SENER',sigs:['SENER']},
+  {sec:'Energía',sub:'SENER, empresas del Estado y órganos del sector',sigs:['SENER','CFE','PEMEX','CNE','CONUEE','CNSNS','ININ']},
   {sec:'Economía',sub:'SE',sigs:['ECONOMÍA']},
   {sec:'Agricultura y Desarrollo Rural',sub:'SADER y órganos desconcentrados',sigs:['SADER','SENASICA']},
   {sec:'Salud',sub:'SSA',sigs:['COFEPRIS']}
