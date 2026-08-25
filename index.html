@@ -3224,7 +3224,7 @@ function _agendaGacetas(keepFocus){
   var q=qa((_gacQ||'').toLowerCase());
   var estados=Object.keys(GACETAS_OFICIALES).sort(function(a,b){return a.localeCompare(b,'es');})
     .filter(function(s){return !q||qa(s.toLowerCase()).indexOf(q)>=0||qa(GACETAS_OFICIALES[s][0].toLowerCase()).indexOf(q)>=0;});
-  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:14px">Actividad regulatoria de las 32 entidades: lo publicado <b>al día</b> en la prensa estatal, más el <b>directorio</b> de la publicación oficial (Periódico/Gaceta) de cada estado, donde las leyes, decretos y reglamentos tienen validez legal.</div>'
+  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:14px">Publicación oficial de cada entidad — el Periódico o Gaceta Oficial donde leyes, decretos, reglamentos y acuerdos estatales tienen validez legal. Arriba, las <b>ediciones recientes</b> traídas directo del portal de cada estado; abajo, el <b>directorio</b> completo de las 32 entidades.</div>'
     +'<div style="position:relative;max-width:340px;margin-bottom:6px"><span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none">⌕</span>'
     +'<input id="gac-search" oninput="gacSetQ(this.value)" value="'+(_gacQ||'').replace(/"/g,'&quot;')+'" placeholder="Buscar entidad…" style="width:100%;box-sizing:border-box;padding:8px 12px 8px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none;border-radius:10px"></div>';
   function fmtF(f){var d=new Date(String(f||'').substring(0,10)+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('es-MX',{day:'2-digit',month:'short'});}
@@ -3246,28 +3246,8 @@ function _agendaGacetas(keepFocus){
           +'</div></div>';
       }).join('');
   }
-  // ── Feed "al día": actividad regulatoria estatal desde la prensa estatal (diaria) ──
-  var REG_KW=['ley','decreto','reforma','reglamento','norma','nom-','gaceta','acuerdo','iniciativa','concesion','permiso','veda','ordenamiento','congreso','diputad','constituc','abroga','adiciona','expide','bando','ambiental','residuos'];
-  var feedItems=((typeof _noticiasEstatales!=='undefined'&&_noticiasEstatales&&_noticiasEstatales.items)||[]).filter(function(it){
-    var t=qa(((it.titulo||'')+' '+(it.resumen||'')).toLowerCase());
-    if(q && qa((it.estado||'').toLowerCase()).indexOf(q)<0)return false;
-    return REG_KW.some(function(k){return t.indexOf(qa(k))>=0;});
-  }).sort(function(a,b){return new Date(String(b.fecha||'').substring(0,10))-new Date(String(a.fecha||'').substring(0,10));}).slice(0,18);
-  var feed='';
-  if(feedItems.length){
-    feed='<div class="cons-hero-kick" style="color:#066750;margin:6px 0 10px">Al día · actividad regulatoria estatal</div>'
-      +feedItems.map(function(it){
-        var u=(it.url||'#').replace(/'/g,'%27');
-        return '<div class="gac-feed-it" onclick="window.open(\''+u+'\',\'_blank\')">'
-          +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">'
-            +'<span style="font-size:13px;color:var(--text);line-height:1.4">'+_escUser(it.titulo||'')+'</span>'
-            +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap;flex-shrink:0">'+fmtF(it.fecha)+'</span>'
-          +'</div>'
-          +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:4px;letter-spacing:0.02em">'+_escUser(it.estado||'')+(it.medio?' · '+_escUser(it.medio):'')+'</div>'
-          +'</div>';
-      }).join('')
-      +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:8px;line-height:1.5">Prensa estatal filtrada a términos regulatorios. Para el texto vinculante, abre la publicación oficial de la entidad abajo.</div>';
-  }
+  // (La actividad regulatoria de prensa estatal NO va aquí: vive en el scrape de
+  //  noticias y aparece en Noticias, Radar, Mi Terminal y el expediente por estado.)
   // ── Directorio de publicaciones oficiales (3 columnas) ──
   var arrk='<svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg>';
   var cells=estados.map(function(s){
@@ -3280,9 +3260,8 @@ function _agendaGacetas(keepFocus){
   var dirHead='<div class="cons-hero-kick" style="color:#066750;margin:26px 0 4px;padding-top:18px;border-top:0.8px solid var(--border)">Directorio de publicaciones oficiales <span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);font-weight:400">· '+estados.length+' entidad'+(estados.length===1?'':'es')+'</span></div>'
     +'<div style="font-size:11px;color:var(--text-muted);margin-bottom:12px">El Periódico o Gaceta Oficial de cada estado. Da clic para abrir el portal.</div>';
   var grid=estados.length?('<div class="gac-grid">'+cells+'</div>'):'<div style="padding:12px 0;font-size:13px;color:var(--text-muted)">Sin coincidencias.</div>';
-  var ofSep=oficiales?'<div style="margin-bottom:22px">'+oficiales+'</div>':'';
-  var feedSep=feed?'<div style="margin:'+(oficiales?'22px':'6px')+' 0 0;padding-top:'+(oficiales?'18px':'0')+';border-top:'+(oficiales?'0.8px solid var(--border)':'none')+'">'+feed+'</div>':'';
-  host.innerHTML=head+ofSep+feedSep+dirHead+grid;
+  var ofSep=oficiales?'<div style="margin-bottom:26px;padding-bottom:8px">'+oficiales+'</div>':'';
+  host.innerHTML=head+ofSep+dirHead+grid;
   if(keepFocus){var i=document.getElementById('gac-search');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}}
 }
 // ── Trámites de Residuos de Manejo Especial (RME) por entidad ────────────
