@@ -1,12 +1,13 @@
 {
  "_meta": {
-  "ultima_actualizacion": "2026-08-24T20:21:36 CDMX",
-  "estados_con_actividad": 4,
+  "ultima_actualizacion": "2026-08-24T20:55:29 CDMX",
+  "estados_con_actividad": 5,
   "por_estado": {
    "Yucatán": 19,
    "Guerrero": 22,
    "Tabasco": 10,
-   "Colima": 6
+   "Colima": 5,
+   "Durango": 12
   },
   "nota": "Ediciones oficiales recientes raspadas por estado (etapa 1: estados con portal accesible). No es cobertura nacional completa."
  },
@@ -24,63 +25,135 @@
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-08-24_2.pdf"
   },
   {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/68-normal-2026_20260821134649.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/67-normal-2026_20260819143130.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/66-normal-2026_20260820100516.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/65-normal-2026_20260820094141.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/65-bis-2026_20260820095020.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/64-normal-2026_20260820092417.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/64-bis-2026_20260820093203.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/63-normal-2026_20260805133816.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/63-bis-2026_20260820083758.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/62-normal-2026_20260803092143.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/61-normal-2026_20260729152939.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-23",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/60-normal-2026_20260726144512.pdf"
+  },
+  {
    "estado": "Tabasco",
    "fecha": "2026-08-22",
-   "titulo": "Periódico Oficial · 8761 SUPLEMENTO K SEGOB. -RESOLUCIÓN DE CARÁCTER GENERAL POR QUE SE OT…",
+   "titulo": "Periódico Oficial · SUPLEMENTO K SEGOB. -RESOLUCIÓN DE CARÁCTER GENERAL POR QUE SE OTORGAN…",
    "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8977/firmado_qr.pdf"
   },
   {
    "estado": "Tabasco",
    "fecha": "2026-08-22",
-   "titulo": "Periódico Oficial · 8761 SUPLEMENTO G AYUNTAMIENTO DE TEAPA. -ACUERDO POR EL QUE SE APRUEB…",
+   "titulo": "Periódico Oficial · SUPLEMENTO G AYUNTAMIENTO DE TEAPA. -ACUERDO POR EL QUE SE APRUEBA EL …",
    "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8976/firmado_qr.pdf"
   },
   {
    "estado": "Tabasco",
    "fecha": "2026-08-22",
-   "titulo": "Periódico Oficial · 8761 SUPLEMENTO F AYUNTAMIENTO DE JALAPA. -LINEAMIENTOS GENERALES PARA…",
+   "titulo": "Periódico Oficial · SUPLEMENTO F AYUNTAMIENTO DE JALAPA. -LINEAMIENTOS GENERALES PARA LA E…",
    "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8975/firmado_qr.pdf"
   },
   {
    "estado": "Tabasco",
    "fecha": "2026-08-22",
-   "titulo": "Periódico Oficial · 8761 SUPLEMENTO I AYUNTAMIENTO DE COMALCALCO.-FE DE ERRATAS: ACUERDO M…",
+   "titulo": "Periódico Oficial · SUPLEMENTO I AYUNTAMIENTO DE COMALCALCO.-FE DE ERRATAS: ACUERDO MEDIAN…",
    "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8974/firmado_qr.pdf"
   },
   {
    "estado": "Tabasco",
    "fecha": "2026-08-22",
-   "titulo": "Periódico Oficial · 8761 SUPLEMENTO H INSTITUTO TECNOLÓGICO SUPERIOR DE LOS RÍOS. -CÓDIGO …",
+   "titulo": "Periódico Oficial · SUPLEMENTO H INSTITUTO TECNOLÓGICO SUPERIOR DE LOS RÍOS. -CÓDIGO DE CO…",
    "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8973/firmado_qr.pdf"
   },
   {
    "estado": "Tabasco",
    "fecha": "2026-08-22",
-   "titulo": "Periódico Oficial · 8761 SUPLEMENTO D AYUNTAMIENTO DE JONUTA. -ACUERDO POR EL QUE EL H. CA…",
+   "titulo": "Periódico Oficial · SUPLEMENTO D AYUNTAMIENTO DE JONUTA. -ACUERDO POR EL QUE EL H. CABILDO…",
    "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8972/firmado_qr.pdf"
   },
   {
    "estado": "Tabasco",
    "fecha": "2026-08-22",
-   "titulo": "Periódico Oficial · 8761 SUPLEMENTO C IEPCT. -RESOLUCIÓN INE/CG478/2026 DEL CONSEJO GENERA…",
+   "titulo": "Periódico Oficial · SUPLEMENTO C IEPCT. -RESOLUCIÓN INE/CG478/2026 DEL CONSEJO GENERAL DEL…",
    "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8971/firmado_qr.pdf"
   },
   {
    "estado": "Tabasco",
    "fecha": "2026-08-22",
-   "titulo": "Periódico Oficial · 8761 SUPLEMENTO B COMISIÓN ESTATAL DE CONCILIACIÓN Y ALBITRAJE MÉDICO …",
+   "titulo": "Periódico Oficial · SUPLEMENTO B COMISIÓN ESTATAL DE CONCILIACIÓN Y ALBITRAJE MÉDICO DE TA…",
    "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8970/firmado_qr.pdf"
   },
   {
    "estado": "Tabasco",
    "fecha": "2026-08-22",
-   "titulo": "Periódico Oficial · 8761 SUPLEMENTO J AYUNTAMIENTO DE HUIMANGUILLO.-ACUERDO MEDIANTE EL CU…",
+   "titulo": "Periódico Oficial · SUPLEMENTO J AYUNTAMIENTO DE HUIMANGUILLO.-ACUERDO MEDIANTE EL CUAL SE…",
    "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8968/firmado_qr.pdf"
   },
   {
    "estado": "Tabasco",
    "fecha": "2026-08-22",
-   "titulo": "Periódico Oficial · 8761 SUPLEMENTO E AYUNTAMIENTO DE EMILIANO ZAPATA. -ADENDUM A LAS REGL…",
+   "titulo": "Periódico Oficial · SUPLEMENTO E AYUNTAMIENTO DE EMILIANO ZAPATA. -ADENDUM A LAS REGLAS DE…",
    "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8967/firmado_qr.pdf"
   },
   {
@@ -154,12 +227,6 @@
    "fecha": "2026-08-17",
    "titulo": "Diario Oficial · edición matutina",
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-08-17_1.pdf"
-  },
-  {
-   "estado": "Colima",
-   "fecha": "2026-08-15",
-   "titulo": "Periódico Oficial del Estado",
-   "url": "https://periodicooficial.col.gob.mx/p/15082026/p26081501.pdf"
   },
   {
    "estado": "Yucatán",
@@ -283,6 +350,12 @@
   },
   {
    "estado": "Colima",
+   "fecha": "2026-08-10",
+   "titulo": "Periódico Oficial del Estado",
+   "url": "https://periodicooficial.col.gob.mx/p/10082026/p26081001.pdf"
+  },
+  {
+   "estado": "Colima",
    "fecha": "2026-08-08",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/08082026/p26080801.pdf"
@@ -322,12 +395,6 @@
    "fecha": "2026-08-07",
    "titulo": "Periódico Oficial No. 63",
    "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-63-07-AGOSTO-2026.pdf"
-  },
-  {
-   "estado": "Colima",
-   "fecha": "2026-08-07",
-   "titulo": "Periódico Oficial del Estado",
-   "url": "https://periodicooficial.col.gob.mx/p/07082026/p26080701.pdf"
   },
   {
    "estado": "Yucatán",
