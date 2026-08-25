@@ -2708,7 +2708,7 @@ function renderDofMenu(){
           +'<span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+f+(d.relevante?' · <span style="color:var(--amber)">REL</span>':'')+'</span>'
         +'</div>'
         +'<div class="dof-it-t" style="color:var(--text-sec);margin-top:3px">'+(d.titulo||'')+'</div>'
-        +'<div class="dof-it-more">'+[d.tipo,d.categoria,d.codigo].filter(Boolean).join(' · ')+(d.tipo||d.categoria||d.codigo?' · ':'')+'Abrir en el DOF ↗</div>'
+        +'<div class="dof-it-more">'+(d.tipo?_tcKw(d.tipo)+' · ':'')+'Abrir en el DOF ↗</div>'
         +'</div>';
     }).join('')
     +'<div class="nav-drop-sep"></div>'
@@ -5305,6 +5305,19 @@ function _congUserKws(){
     return uk.concat(tk).filter(Boolean);
   }catch(e){return [];}
 }
+// Title-case para keywords (se guardan en minúsculas): "ley de aguas nacionales" → "Ley de Aguas Nacionales".
+// Respeta conectores en minúscula y siglas en mayúscula.
+var _KW_SIGLAS={cne:1,cfe:1,cnh:1,cre:1,pet:1,hdpe:1,rep:1,nom:1,lan:1,lgeepa:1,lgpgir:1,lgcc:1,lgdfs:1,lgvs:1,bess:1,sie:1,gei:1,co2:1,pfas:1,sup:1,cel:1,uma:1,cca:1,aca:1,tmec:1,msf:1,otc:1,ppwr:1,cbam:1,eudr:1,csddd:1,espr:1,csrd:1,ods:1,cdmx:1,imta:1,conuee:1,cnsns:1,inin:1,cofepris:1,semarnat:1,profepa:1,conafor:1,conanp:1,inecc:1,asea:1,sener:1,cenace:1,pemex:1,repda:1,sader:1,senasica:1,ecoce:1,conagua:1,dof:1,air:1};
+function _tcKw(s){
+  s=String(s||'').trim();if(!s)return s;
+  var conn={de:1,del:1,la:1,el:1,los:1,las:1,y:1,e:1,en:1,para:1,con:1,por:1,al:1,a:1,o:1,u:1};
+  return s.split(/\s+/).map(function(w,i){
+    var lw=w.toLowerCase();
+    if(_KW_SIGLAS[lw])return lw.toUpperCase();
+    if(i>0&&conn[lw])return lw;
+    return lw.charAt(0).toUpperCase()+lw.slice(1);
+  }).join(' ');
+}
 function _congMatchKw(it,kws){
   if(!kws||!kws.length)return null;
   var hay=_norm((it.titulo||''));
@@ -5340,13 +5353,14 @@ function _congRow(it){
   var mk=_congMatchKw(it,_congKwsCache);
   var accionTag='<span style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#066750">'+p.accion+'</span>';
   var nomTag=(p.noms&&p.noms.length)?'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)"> · '+p.noms[0]+'</span>':'';
-  var badge=mk?'<span title="Coincide con tu tema: '+String(mk).replace(/"/g,'&quot;')+'" style="font-family:var(--mono);font-size:8px;color:#066750;white-space:nowrap"> · ● '+mk+'</span>':'';
+  var mkLabel=mk?_tcKw(mk):'';
+  var badge=mk?'<span title="Coincide con tu tema: '+String(mkLabel).replace(/"/g,'&quot;')+'" style="font-family:var(--mono);font-size:8px;color:#066750;white-space:nowrap"> · ● '+mkLabel+'</span>':'';
   var quien=autor?('<span style="color:var(--text-sec);font-weight:600">'+autor+'</span> · '):'';
   // Preview in-app (sin salir de Scope) con ficha del documento
   var _pkMeta=[{l:'Autor',v:autor||''},{l:'Cámara',v:cam},{l:'Partido',v:partido||''},{l:'Acción',v:p.accion||''}];
   if(p.noms&&p.noms.length)_pkMeta.push({l:'NOM referida',v:p.noms.join(' · ')});
   _pkMeta.push({l:'Fecha',v:fecha});
-  if(mk)_pkMeta.push({l:'Coincide con tu tema',v:mk});
+  if(mk)_pkMeta.push({l:'Coincide con tu tema',v:mkLabel});
   var _pkBody=(p.detalle||'');
   if(p.leyes&&p.leyes.length>1)_pkBody+=(_pkBody?'<br><br>':'')+'<b>También modifica:</b> '+p.leyes.slice(1).join(' · ');
   var _pk=_peekPush({kind:(p.tipo==='punto_acuerdo'?'Punto de acuerdo':'Iniciativa de ley')+(cam?' · '+cam:''),title:p.titulo||(it.titulo||''),meta:_pkMeta,body:_pkBody,url:(it.url||''),urlLabel:(it.camara==='SEN'?'Abrir en la Gaceta del Senado':'Abrir en la Gaceta de Diputados')});
