@@ -173,9 +173,39 @@ def scrape_colima():
             out.append({"estado":est,"fecha":fecha_iso(d),"titulo":"Periódico Oficial del Estado","url":u})
     return out
 
+def scrape_durango():
+    est, out, seen = "Durango", [], set()
+    r = get("https://periodicooficial.durango.gob.mx/")
+    if not r or r.status_code != 200:
+        return out
+    soup = BeautifulSoup(r.text, "html.parser")
+    filas = []
+    for a in soup.find_all("a", href=re.compile(r"/periodicos/[0-9a-f\-]{36}")):
+        href = a["href"]
+        if href in seen: continue
+        seen.add(href)
+        ctx = a.find_parent(["tr","li","div"])
+        txt = (ctx.get_text(" ", strip=True) if ctx else a.get_text(" ", strip=True))
+        dm = re.search(r'(\d{1,2})\s+de\s+([A-Za-zÁÉÍÓÚáéíóú]+)\s+de\s+(20\d{2})', txt, re.I)
+        iso = None
+        if dm and dm.group(2).lower() in MESES:
+            iso = f"{dm.group(3)}-{MESES[dm.group(2).lower()]:02d}-{int(dm.group(1)):02d}"
+        num = re.search(r'No\.?\s*(\d+)', txt)
+        filas.append((href if href.startswith("http") else "https://periodicooficial.durango.gob.mx"+href, iso,
+                      "Periódico Oficial"+(f" No. {num.group(1)}" if num else "")))
+    # solo las recientes dentro de ventana; una petición de detalle por edición
+    filas = [f for f in filas if f[1] and dentro_ventana(f[1])][:12]
+    for det_url, iso, tit in filas:
+        d = get(det_url)
+        if not d or d.status_code != 200: continue
+        pm = re.search(r'(https?://[^"\'\s]+\.pdf)', d.text)
+        if not pm: continue
+        out.append({"estado":est,"fecha":iso,"titulo":tit,"url":pm.group(1)})
+    return out
+
 # Chihuahua queda fuera: su índice /atach2/periodicos/ solo tiene archivo viejo (2019-2022),
 # sin ediciones recientes. Se reincorporará cuando se localice el índice vigente.
-ADAPTADORES = [scrape_yucatan, scrape_guerrero, scrape_tabasco, scrape_colima]
+ADAPTADORES = [scrape_yucatan, scrape_guerrero, scrape_tabasco, scrape_colima, scrape_durango]
 
 
 def main():
