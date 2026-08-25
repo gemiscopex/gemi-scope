@@ -63,12 +63,12 @@ def main():
     vistos = set()
     total = 0
     # Fuentes por organización que enriquecen un tema (más preciso que texto libre)
-    ORG_TEMA = {"Agua": ["conagua"]}
+    ORG_TEMA = {"Agua": ["conagua"], "Energía": ["cenace", "sener"]}
     for tema, q in TEMAS.items():
         items = []
-        # 1) Datasets oficiales por organización (p.ej. CONAGUA → agua/REPDA/disponibilidad)
+        # 1) Datasets oficiales por organización (p.ej. CONAGUA → agua/REPDA; CENACE/SENER → energía)
         for org in ORG_TEMA.get(tema, []):
-            for p in buscar_org(org):
+            for p in buscar_org(org)[:4]:   # tope por organización: evita 8 snapshots casi idénticos
                 pid = p.get("id")
                 if not pid or pid in vistos:
                     continue
@@ -97,7 +97,7 @@ def main():
                        else "https://www.datos.gob.mx/",
                 "recursos": len(p.get("resources") or []),
             })
-            if len(items) >= 7:
+            if len(items) >= 10:
                 break
         out["temas"][tema] = items
         total += len(items)
