@@ -3224,45 +3224,51 @@ function _agendaGacetas(keepFocus){
   var q=qa((_gacQ||'').toLowerCase());
   var estados=Object.keys(GACETAS_OFICIALES).sort(function(a,b){return a.localeCompare(b,'es');})
     .filter(function(s){return !q||qa(s.toLowerCase()).indexOf(q)>=0||qa(GACETAS_OFICIALES[s][0].toLowerCase()).indexOf(q)>=0;});
-  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:14px">Publicación oficial de cada entidad — el Periódico o Gaceta Oficial donde leyes, decretos, reglamentos y acuerdos estatales tienen validez legal. Arriba, las <b>ediciones recientes</b> traídas directo del portal de cada estado; abajo, el <b>directorio</b> completo de las 32 entidades.</div>'
-    +'<div style="position:relative;max-width:340px;margin-bottom:6px"><span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none">⌕</span>'
-    +'<input id="gac-search" oninput="gacSetQ(this.value)" value="'+(_gacQ||'').replace(/"/g,'&quot;')+'" placeholder="Buscar entidad…" style="width:100%;box-sizing:border-box;padding:8px 12px 8px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none;border-radius:10px"></div>';
-  function fmtF(f){var d=new Date(String(f||'').substring(0,10)+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('es-MX',{day:'2-digit',month:'short'});}
-  // ── Ediciones oficiales recientes (raspadas por estado, etapa 1) ──
-  var oficiales='';
-  var ofItems=((_gacOficiales&&_gacOficiales.items)||[]).filter(function(it){
-    return !q||qa((it.estado||'').toLowerCase()).indexOf(q)>=0;
-  }).slice(0,24);
-  if(ofItems.length){
-    var ofEstados=((_gacOficiales&&_gacOficiales._meta&&_gacOficiales._meta.por_estado)||{});
-    oficiales='<div class="cons-hero-kick" style="color:#066750;margin:6px 0 4px">Ediciones oficiales recientes</div>'
-      +'<div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Ediciones del Periódico/Diario Oficial traídas directo del portal de cada estado (etapa 1: '+Object.keys(ofEstados).length+' entidades con portal accesible). Abre el PDF oficial.</div>'
-      +ofItems.map(function(it){
-        var u=(it.url||'#').replace(/'/g,'%27');
-        return '<div class="gac-feed-it" onclick="window.open(\''+u+'\',\'_blank\')">'
-          +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">'
-            +'<span style="font-size:13px;color:var(--text);line-height:1.4"><span style="font-family:var(--mono);font-size:9px;color:#066750;letter-spacing:0.04em">'+_escUser((it.estado||'').toUpperCase())+'</span>  '+_escUser(it.titulo||'')+'</span>'
-            +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap;flex-shrink:0">'+fmtF(it.fecha)+'</span>'
-          +'</div></div>';
-      }).join('');
-  }
-  // (La actividad regulatoria de prensa estatal NO va aquí: vive en el scrape de
-  //  noticias y aparece en Noticias, Radar, Mi Terminal y el expediente por estado.)
-  // ── Directorio de publicaciones oficiales (3 columnas) ──
-  var arrk='<svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg>';
+  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:14px">Publicación oficial de cada entidad — el Periódico o Gaceta Oficial donde leyes, decretos, reglamentos y acuerdos estatales tienen validez legal. Da clic en un estado para ver sus ediciones recientes y abrir su portal.</div>'
+    +'<div style="position:relative;max-width:340px;margin-bottom:14px"><span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none">⌕</span>'
+    +'<input id="gac-search" oninput="gacSetQ(this.value)" value="'+(_gacQ||'').replace(/"/g,'&quot;')+'" placeholder="Buscar entidad…" style="width:100%;box-sizing:border-box;padding:8px 12px 8px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none;border-radius:10px"></div>'
+    +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">'+estados.length+' entidad'+(estados.length===1?'':'es')+'</div>';
   var cells=estados.map(function(s){
-    var g=GACETAS_OFICIALES[s];var u=g[1].replace(/'/g,'%27');
-    return '<div class="gac-cell" onclick="window.open(\''+u+'\',\'_blank\')">'
-      +'<div class="gc-top"><span class="gc-name">'+s+'</span><span class="gc-open">Abrir '+arrk+'</span></div>'
+    var g=GACETAS_OFICIALES[s];
+    var n=((_gacOficiales&&_gacOficiales.items)||[]).filter(function(it){return it.estado===s;}).length;
+    var badge=n?('<span class="gc-open">'+n+' recientes</span>'):'<span class="gc-open" style="color:var(--text-muted)">Portal</span>';
+    return '<div class="gac-cell" onclick="_gacPeek(\''+s.replace(/'/g,"\\'")+'\')">'
+      +'<div class="gc-top"><span class="gc-name">'+s+'</span>'+badge+'</div>'
       +'<div class="gc-pub">'+g[0]+'</div>'
       +'</div>';
   }).join('');
-  var dirHead='<div class="cons-hero-kick" style="color:#066750;margin:26px 0 4px;padding-top:18px;border-top:0.8px solid var(--border)">Directorio de publicaciones oficiales <span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);font-weight:400">· '+estados.length+' entidad'+(estados.length===1?'':'es')+'</span></div>'
-    +'<div style="font-size:11px;color:var(--text-muted);margin-bottom:12px">El Periódico o Gaceta Oficial de cada estado. Da clic para abrir el portal.</div>';
   var grid=estados.length?('<div class="gac-grid">'+cells+'</div>'):'<div style="padding:12px 0;font-size:13px;color:var(--text-muted)">Sin coincidencias.</div>';
-  var ofSep=oficiales?'<div style="margin-bottom:26px;padding-bottom:8px">'+oficiales+'</div>':'';
-  host.innerHTML=head+ofSep+dirHead+grid;
+  host.innerHTML=head+grid;
   if(keepFocus){var i=document.getElementById('gac-search');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}}
+}
+// Panel lateral (drawer) de un estado: ediciones oficiales recientes + portal
+function _gacPeek(estado){
+  var g=GACETAS_OFICIALES[estado];if(!g)return;
+  function fmtF(f){var d=new Date(String(f||'').substring(0,10)+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});}
+  var eds=((_gacOficiales&&_gacOficiales.items)||[]).filter(function(it){return it.estado===estado;})
+    .sort(function(a,b){return new Date(String(b.fecha||'').substring(0,10))-new Date(String(a.fecha||'').substring(0,10));}).slice(0,14);
+  var body;
+  if(eds.length){
+    body='<div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">Ediciones recientes · '+eds.length+'</div>'
+      +eds.map(function(it){
+        var u=String(it.url||'#').replace(/"/g,'&quot;');
+        return '<a href="'+u+'" target="_blank" rel="noopener" style="display:block;padding:9px 0;border-bottom:0.8px solid var(--border);text-decoration:none">'
+          +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">'
+            +'<span style="font-size:12.5px;color:var(--text);line-height:1.4">'+_escUser(it.titulo||'Edición')+'</span>'
+            +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap;flex-shrink:0">'+fmtF(it.fecha)+'</span>'
+          +'</div></a>';
+      }).join('');
+  }else{
+    body='<div style="font-size:12.5px;color:var(--text-sec);line-height:1.6">Las ediciones de esta entidad se consultan directamente en su portal oficial. Estamos sumando el rastreo automático de más estados por etapas.</div>';
+  }
+  _scopePeek({
+    kind:'Gaceta oficial · '+estado,
+    title:g[0],
+    meta:[{l:'Entidad',v:estado},{l:'Ediciones rastreadas',v:eds.length?String(eds.length):'—'}],
+    body:body,
+    url:g[1],
+    urlLabel:'Abrir portal oficial'
+  });
 }
 // ── Trámites de Residuos de Manejo Especial (RME) por entidad ────────────
 var _RME_COL={integral:'#0E8C74',portal:'#2AA88B',fichas:'#7A9B8E',catalogo:'#9AA3A0'};
