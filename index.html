@@ -1446,6 +1446,11 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
   </div>
   <div id="tab-radares" class="tab-content" style="padding:28px 0">
     <div id="radar-terminal"></div>
+    <div id="datosgob-section" style="margin-top:40px;padding-top:24px;border-top:0.8px solid var(--border)">
+      <div style="font-size:16px;font-weight:700;font-family:var(--sans);letter-spacing:0.01em;margin-bottom:3px">Datos abiertos oficiales</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Datasets del gobierno federal por tema, integrados de datos.gob.mx. Energía incluye el mercado eléctrico de CENACE (precios de nodos) y SENER. Actualizado a diario.</div>
+      <div id="datosgob-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px 30px"></div>
+    </div>
   </div>
 
   <!-- ═══ ESTADOS · heatmap 32 entidades → expediente (openStatePanel) ═══ -->
@@ -2232,7 +2237,7 @@ function showTab(id,btn){
   document.body.classList.toggle('dash-fixed',id==='dashboard');
   window.scrollTo(0,0);
   if(id==='normas') renderNormas();
-  if(id==='radares') buildRadarTrendChart();
+  if(id==='radares'){buildRadarTrendChart();if(typeof renderDatosGob==='function')renderDatosGob();}
   if(id==='consola') renderConsola();
   if(id==='estados') renderEstadosHeatmap();
   if(id==='obligaciones') renderObligaciones();
@@ -2660,11 +2665,11 @@ function renderDatosGob(){
   el.innerHTML=Object.keys(temas).map(function(tema){
     var items=temas[tema]||[];
     if(!items.length)return '';
-    return '<div style="padding:12px 0">'
-      +'<div style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;border-bottom:0.8px solid var(--border);padding-bottom:6px;margin-bottom:4px">'+tema+'</div>'
-      +items.slice(0,4).map(function(d){
-        return '<a href="'+d.url+'" target="_blank" rel="noopener" style="display:block;padding:6px 0;text-decoration:none;border-bottom:0.8px solid rgba(0,0,0,0.04)">'
-          +'<div style="font-size:11px;color:var(--text);line-height:1.4">'+d.titulo+'</div>'
+    return '<div style="padding:0">'
+      +'<div style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;border-bottom:0.8px solid var(--border);padding-bottom:6px;margin-bottom:4px">'+tema+' <span style="color:var(--dim)">· '+items.length+'</span></div>'
+      +items.slice(0,6).map(function(d){
+        return '<a href="'+d.url+'" target="_blank" rel="noopener" style="display:block;padding:7px 0;text-decoration:none;border-bottom:0.8px solid rgba(0,0,0,0.04)">'
+          +'<div style="font-size:11px;color:var(--text);line-height:1.4">'+d.titulo+(d.recursos?' <span style="color:var(--text-muted);font-family:var(--mono);font-size:9px">· '+d.recursos+' rec.</span>':'')+'</div>'
           +'<div style="font-size:9px;color:var(--text-muted);margin-top:2px">'+(d.org||'')+(d.fecha?' · '+d.fecha:'')+'</div>'
           +'</a>';
       }).join('')
