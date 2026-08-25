@@ -28,6 +28,10 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # ---------------------------------------------------------------------------
 BASE_DIR   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT_FILE = os.path.join(BASE_DIR, "data", "gaceta-federal.json")
+# Archivo histórico permanente (append-only): nunca descarta por antigüedad.
+# gaceta-federal.json conserva la ventana de 60 días (dashboard/gráfica);
+# congreso-historico.json acumula TODO lo scrapeado para búsqueda por ley/tema/legislador/año.
+ARCHIVE_FILE = os.path.join(BASE_DIR, "data", "congreso-historico.json")
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -692,6 +696,52 @@ def merge_and_save(new_diputados: list, new_senado: list) -> None:
 # Entry point
 # ---------------------------------------------------------------------------
 
+def append_archive(new_diputados: list, new_senado: list) -> None:
+    """Acumula en congreso-historico.json TODO lo scrapeado, sin descartar por fecha.
+    Dedup por id; conserva el histórico completo para el buscador del Congreso."""
+    archive = []
+    if os.path.exists(ARCHIVE_FILE):
+        try:
+            with open(ARCHIVE_FILE, "r", encoding="utf-8") as fh:
+                prev = json.load(fh)
+            archive = prev.get("items", []) if isinstance(prev, dict) else (prev or [])
+        except Exception as exc:
+            print(f"  [WARN] archivo histórico ilegible, se reinicia: {exc}")
+            archive = []
+
+    by_id = {}
+    for it in archive:
+        iid = it.get("id") or make_id(it.get("url", "") + it.get("titulo", ""))
+        by_id[iid] = it
+
+    added = 0
+    for it in list(new_diputados) + list(new_senado):
+        iid = it.get("id") or make_id(it.get("url", "") + it.get("titulo", ""))
+        cam = it.get("camara") or ("DIP" if it in new_diputados else "SEN")
+        rec = dict(it); rec["camara"] = cam; rec["id"] = iid
+        if iid not in by_id:
+            added += 1
+        by_id[iid] = rec  # refresca datos si ya existía
+
+    items = list(by_id.values())
+    items.sort(key=lambda x: str(x.get("fecha", "")), reverse=True)
+
+    anios = sorted({str(x.get("fecha", ""))[:4] for x in items if x.get("fecha")}, reverse=True)
+    out = {
+        "_meta": {
+            "actualizado": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "total": len(items),
+            "anios": anios,
+            "nota": "Archivo histórico acumulado de instrumentos legislativos ambientales (Diputados y Senado). Append-only: no se descarta por antigüedad.",
+        },
+        "items": items,
+    }
+    os.makedirs(os.path.dirname(ARCHIVE_FILE), exist_ok=True)
+    with open(ARCHIVE_FILE, "w", encoding="utf-8") as fh:
+        json.dump(out, fh, ensure_ascii=False, indent=1)
+    print(f"[ARCHIVO] congreso-historico.json  |  +{added} nuevos · {len(items)} total ({len(anios)} años)")
+
+
 def main():
     print(f"[START] scraper_gacetas.py — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
@@ -706,6 +756,7 @@ def main():
     print(f"\n  Reparto Permanente → Diputados: +{len(perm_dip)} · Senado: {len(new_senado)}")
 
     merge_and_save(new_diputados, new_senado)
+    append_archive(new_diputados, new_senado)
 
     print("\n[DONE]")
 
