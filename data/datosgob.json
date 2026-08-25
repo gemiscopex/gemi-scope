@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-08-24T19:13 CDMX",
+  "actualizado": "2026-08-24T19:26 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -53,6 +53,13 @@
     "fecha": "2025-08-18",
     "url": "https://www.datos.gob.mx/dataset/unidades_produccion_acuicola_senasica",
     "recursos": 1
+   },
+   {
+    "titulo": "Rezago social",
+    "org": "Consejo Nacional de Evaluación de la Política de Desarrollo Social (CONEVAL)",
+    "fecha": "2025-06-04",
+    "url": "https://www.datos.gob.mx/dataset/rezago_social",
+    "recursos": 17
    }
   ],
   "Residuos": [
@@ -103,6 +110,13 @@
     "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
     "fecha": "2026-02-19",
     "url": "https://www.datos.gob.mx/dataset/emergencias_ambientales_sustancias_quimicas",
+    "recursos": 1
+   },
+   {
+    "titulo": "Certificados de cumplimiento ambiental emitidos por la PROFEPA a empresas comercializadoras e importadoras de Vehículos Nuevos",
+    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
+    "fecha": "2026-02-19",
+    "url": "https://www.datos.gob.mx/dataset/certificados_cumplimiento_ambiental_empresas_vehiculos",
     "recursos": 1
    }
   ],
@@ -182,6 +196,62 @@
   ],
   "Energía": [
    {
+    "titulo": "Precios de Nodos Distribuidos, Mercado de Tiempo Real, Sistema Interconectado Baja California, 2020",
+    "org": "Centro Nacional de Control de Energía (CENACE)",
+    "fecha": "2026-04-03",
+    "url": "https://www.datos.gob.mx/dataset/pnd_mtr_sistema_interconectado_baja_california_2020",
+    "recursos": 24
+   },
+   {
+    "titulo": "Precios de Nodos Distribuidos, Mercado de Día en Adelanto, Sistema Interconectado Baja California Sur, 2020",
+    "org": "Centro Nacional de Control de Energía (CENACE)",
+    "fecha": "2026-04-02",
+    "url": "https://www.datos.gob.mx/dataset/pnd_mda_sistema_interconectado_baja_california_sur_2020",
+    "recursos": 24
+   },
+   {
+    "titulo": "Precios de Nodos Distribuidos, Mercado de Tiempo Real, Sistema Interconectado Baja California Sur, 2020",
+    "org": "Centro Nacional de Control de Energía (CENACE)",
+    "fecha": "2026-04-01",
+    "url": "https://www.datos.gob.mx/dataset/pnd_mtr_sistema_interconectado_baja_california_sur_2020",
+    "recursos": 24
+   },
+   {
+    "titulo": "Precios de Nodos Distribuidos, Mercado de Día en Adelanto, Sistema Interconectado Baja California, 2020",
+    "org": "Centro Nacional de Control de Energía (CENACE)",
+    "fecha": "2026-03-31",
+    "url": "https://www.datos.gob.mx/dataset/pnd_mda_sistema_interconectado_baja_california_2020",
+    "recursos": 24
+   },
+   {
+    "titulo": "Comercio exterior de hidrocarburos; importaciones y exportaciones (2026)",
+    "org": "Secretaría de Energía (SENER)",
+    "fecha": "2026-07-20",
+    "url": "https://www.datos.gob.mx/dataset/comercio_exterior_hidrocarburos_importaciones_exportaciones_2026",
+    "recursos": 6
+   },
+   {
+    "titulo": "Coordenadas de pozos terminados (2026)",
+    "org": "Secretaría de Energía (SENER)",
+    "fecha": "2026-07-09",
+    "url": "https://www.datos.gob.mx/dataset/coordenadas_pozos_terminados_2026",
+    "recursos": 5
+   },
+   {
+    "titulo": "Contratos para la Exploración y Extracción de Hidrocarburos (2026)",
+    "org": "Secretaría de Energía (SENER)",
+    "fecha": "2026-07-09",
+    "url": "https://www.datos.gob.mx/dataset/contratos_para_exploracion_extraccion_hidrocarburos_2026",
+    "recursos": 10
+   },
+   {
+    "titulo": "Información de transporte y almacenamiento de Gas Natural (2026)",
+    "org": "Secretaría de Energía (SENER)",
+    "fecha": "2026-07-09",
+    "url": "https://www.datos.gob.mx/dataset/informacion_transporte_almacenamiento_gas_natural_2026",
+    "recursos": 1
+   },
+   {
     "titulo": "Gas Natural",
     "org": "Comisión Nacional de Energía (CNE)",
     "fecha": "2026-04-17",
@@ -238,6 +308,13 @@
     "fecha": "2026-03-24",
     "url": "https://www.datos.gob.mx/dataset/padron_beneficiarios_conafor",
     "recursos": 1
+   },
+   {
+    "titulo": "Incendios forestales",
+    "org": "Comisión Nacional Forestal (CONAFOR)",
+    "fecha": "2026-03-24",
+    "url": "https://www.datos.gob.mx/dataset/incendios_forestales",
+    "recursos": 16
    }
   ]
  }
