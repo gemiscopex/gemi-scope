@@ -3557,6 +3557,7 @@ function _congHistToggle(i){
     d.innerHTML='<div style="font-size:12px;color:var(--text-sec);line-height:1.55;max-width:760px;margin-bottom:8px">'+_esc(it.titulo||'')+'</div>'
       +link
       +_nomCommentsHTML({id:it.id},'chist-c-'+i,'esta iniciativa');
+    _srvEnsure(function(){_commentsPaint(it.id);});
   }
   d.style.display='block';if(arr)arr.textContent='▾';
 }
@@ -3711,10 +3712,13 @@ function _toggleNomDetail(uid){
 }
 // ── Comentarios de NOMs · backend: Google Apps Script → Google Sheet ──────────
 // Cuando el Web App esté desplegado, pega aquí su URL /exec (termina en /exec):
-var SCOPE_COMMENTS_ENDPOINT = '';
+// Pega aquí la URL /exec de la Aplicación web (Apps Script) cuando esté desplegada.
+// Mientras esté vacío, se puede probar con localStorage.setItem('scope_comments_endpoint','https://…/exec')
+var SCOPE_COMMENTS_ENDPOINT = '' || (function(){try{return localStorage.getItem('scope_comments_endpoint')||'';}catch(e){return '';}})();
 var _nomCommentCounts = {};
+var _srvComments = {}, _srvLoaded = false, _srvLoading = false;
 function _esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-function _cntTxt(id){var n=_nomCommentCounts[id]||0;var l=_snLoad(id).length;var t=n+l;return t===1?'1 comentario':t+' comentarios';}
+function _cntTxt(id){var s=(_srvComments[id]||[]).length;var n=s||(_nomCommentCounts[id]||0);var l=_snLoad(id).length;var t=n+l;return t===1?'1 comentario':t+' comentarios';}
 // ── Notas locales (fallback sin backend): persisten por cuenta en este dispositivo ──
 function _snUid(){try{return (typeof _session!=='undefined'&&_session&&_session.user&&_session.user.id)||'anon';}catch(e){return 'anon';}}
 function _snKey(id){return 'scope_notes_'+_snUid()+'_'+id;}
@@ -3731,13 +3735,45 @@ function _snHTML(id){
     +'</div>';
   }).join('')+'</div>';
 }
-function loadNomCommentCounts(){
-  if(!SCOPE_COMMENTS_ENDPOINT)return;
-  fetch(SCOPE_COMMENTS_ENDPOINT+'?action=counts',{cache:'no-cache'})
-    .then(function(r){return r.json();})
-    .then(function(d){_nomCommentCounts=d||{};document.querySelectorAll('[data-nomcnt]').forEach(function(el){el.textContent=_cntTxt(el.getAttribute('data-nomcnt'));});})
-    .catch(function(){});
+// Render de una tarjeta de comentario (servidor o nota local)
+function _cmtItemHTML(c,localFlag){
+  var d=new Date(c.ts),f=isNaN(d)?'':d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});
+  return '<div style="padding:8px 0;border-bottom:0.8px solid var(--border)">'
+    +'<div style="font-size:12px;line-height:1.5;color:var(--text)">'+_esc(c.t)+'</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:4px">'+(c.n?_esc(c.n)+' · ':'')+f+(localFlag?' · nota local':'')+'</div>'
+  +'</div>';
 }
+// Comentarios compartidos (servidor) + notas locales, recientes primero
+function _commentsHTML(id){
+  var srv=(_srvComments[id]||[]).map(function(c){return _cmtItemHTML(c,false);}).join('');
+  var loc=_snLoad(id).map(function(c){return _cmtItemHTML(c,true);}).join('');
+  var inner=srv+loc;
+  return inner?('<div style="margin-bottom:10px">'+inner+'</div>'):'';
+}
+// Repinta todos los contenedores de un id + su contador
+function _commentsPaint(id){
+  document.querySelectorAll('[data-cnotes="'+(window.CSS&&CSS.escape?CSS.escape(id):id)+'"]').forEach(function(el){el.innerHTML=_commentsHTML(id);});
+  document.querySelectorAll('[data-nomcnt]').forEach(function(el){if(el.getAttribute('data-nomcnt')===id)el.textContent=_cntTxt(id);});
+}
+// Repinta todo lo que esté en el DOM tras cargar del servidor
+function _srvPaintAll(){
+  document.querySelectorAll('[data-cnotes]').forEach(function(el){var id=el.getAttribute('data-cnotes');el.innerHTML=_commentsHTML(id);});
+  document.querySelectorAll('[data-nomcnt]').forEach(function(el){el.textContent=_cntTxt(el.getAttribute('data-nomcnt'));});
+}
+// Trae TODOS los comentarios de una sola vez (action=all) y cachea
+function _srvFetchAll(cb){
+  if(!SCOPE_COMMENTS_ENDPOINT){_srvLoaded=true;if(cb)cb();return;}
+  if(_srvLoading){if(cb)cb();return;}
+  _srvLoading=true;
+  fetch(SCOPE_COMMENTS_ENDPOINT+'?action=all',{cache:'no-cache'})
+    .then(function(r){return r.json();})
+    .then(function(d){_srvComments=d||{};_srvLoaded=true;_srvLoading=false;_srvPaintAll();if(cb)cb();})
+    .catch(function(){_srvLoading=false;if(cb)cb();});
+}
+// Garantiza que el cache esté cargado antes de pintar (para vistas que se abren después)
+function _srvEnsure(cb){ if(_srvLoaded){if(cb)cb();return;} _srvFetchAll(cb); }
+// Compat: la llamada existente en renderNormas ahora carga comentarios completos
+function loadNomCommentCounts(){ _srvLoaded=false; _srvFetchAll(); }
 function submitNomComment(nomId,uid){
   var box=document.getElementById(uid+'-cform');if(!box)return;
   var nombre=(box.querySelector('.cf-nom').value||'').trim();
@@ -3748,21 +3784,22 @@ function submitNomComment(nomId,uid){
   // Sin backend compartido todavía: guarda la nota localmente (por cuenta, este dispositivo)
   if(!SCOPE_COMMENTS_ENDPOINT){
     _snAdd(nomId,nombre,texto);
-    var nb=document.getElementById(uid+'-notes');if(nb)nb.innerHTML=_snHTML(nomId);
     box.querySelector('.cf-txt').value='';
-    document.querySelectorAll('[data-nomcnt="'+nomId+'"]').forEach(function(el){el.textContent=_cntTxt(nomId);});
+    _commentsPaint(nomId);
     msg.style.color='var(--green)';msg.textContent='Nota guardada en tu terminal.';
     return;
   }
   var btn=box.querySelector('.cf-send');btn.disabled=true;btn.textContent='Enviando…';
-  var body=new URLSearchParams({action:'add',nom:nomId,nombre:nombre,email:email,comentario:texto});
+  var tipo=(uid.indexOf('chist')===0)?'iniciativa':'nom';
+  var body=new URLSearchParams({action:'add',id:nomId,nom:nomId,tipo:tipo,nombre:nombre,email:email,comentario:texto});
   fetch(SCOPE_COMMENTS_ENDPOINT,{method:'POST',body:body})
     .then(function(r){return r.json();})
-    .then(function(){
-      msg.style.color='var(--green)';msg.textContent='¡Gracias! Tu comentario se registró.';
+    .then(function(res){
+      msg.style.color='var(--green)';msg.textContent='¡Gracias! Tu comentario se publicó.';
       box.querySelector('.cf-txt').value='';
-      _nomCommentCounts[nomId]=(_nomCommentCounts[nomId]||0)+1;
-      document.querySelectorAll('[data-nomcnt="'+nomId+'"]').forEach(function(el){el.textContent=_cntTxt(nomId);});
+      var c=(res&&res.comment)||{n:nombre,t:texto,ts:Date.now()};
+      _srvComments[nomId]=[c].concat(_srvComments[nomId]||[]);
+      _commentsPaint(nomId);
     })
     .catch(function(){msg.style.color='#ef4444';msg.textContent='No se pudo enviar. Intenta de nuevo.';})
     .finally(function(){btn.disabled=false;btn.textContent='Enviar comentario';});
@@ -3771,7 +3808,7 @@ function _nomCommentsHTML(n,uid,label){
   label=label||'esta norma';
   return '<div style="margin-top:16px;border-top:0.8px solid var(--border);padding-top:14px">'
     +'<div style="font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:9px">Notas y comentarios · <span data-nomcnt="'+_esc(n.id)+'">'+_cntTxt(n.id)+'</span></div>'
-    +'<div class="cf-notes" id="'+uid+'-notes">'+_snHTML(n.id)+'</div>'
+    +'<div class="cf-notes" id="'+uid+'-notes" data-cnotes="'+_esc(n.id)+'">'+_commentsHTML(n.id)+'</div>'
     +'<div id="'+uid+'-cform">'
       +'<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:8px;max-width:760px">'
         +'<input class="cf-nom" placeholder="Nombre (opcional)" style="flex:1;min-width:150px;border:none;border-bottom:1px solid var(--border);background:transparent;font-family:var(--sans);font-size:12px;padding:5px 0;color:var(--text)">'
