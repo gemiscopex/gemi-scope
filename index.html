@@ -1446,11 +1446,6 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
   </div>
   <div id="tab-radares" class="tab-content" style="padding:28px 0">
     <div id="radar-terminal"></div>
-    <div id="datosgob-section" style="margin-top:40px;padding-top:24px;border-top:0.8px solid var(--border)">
-      <div style="font-size:16px;font-weight:700;font-family:var(--sans);letter-spacing:0.01em;margin-bottom:3px">Datos abiertos oficiales</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Datasets del gobierno federal por tema, integrados de datos.gob.mx. Energía incluye el mercado eléctrico de CENACE (precios de nodos) y SENER. Actualizado a diario.</div>
-      <div id="datosgob-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px 30px"></div>
-    </div>
   </div>
 
   <!-- ═══ ESTADOS · heatmap 32 entidades → expediente (openStatePanel) ═══ -->
@@ -2237,7 +2232,7 @@ function showTab(id,btn){
   document.body.classList.toggle('dash-fixed',id==='dashboard');
   window.scrollTo(0,0);
   if(id==='normas') renderNormas();
-  if(id==='radares'){buildRadarTrendChart();if(typeof renderDatosGob==='function')renderDatosGob();}
+  if(id==='radares') buildRadarTrendChart();
   if(id==='consola') renderConsola();
   if(id==='estados') renderEstadosHeatmap();
   if(id==='obligaciones') renderObligaciones();
