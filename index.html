@@ -3565,9 +3565,10 @@ function _agendaProximo(){
   }
   var todayISO=new Date().toISOString().slice(0,10);
   var ev=[];
-  // Consultas abiertas (ATDT) — ventanas para comentar, accionables ahora
+  // Consultas abiertas (ATDT) — ventanas para comentar. Si hay fecha de cierre, es un vencimiento real.
   (((typeof _conamerData!=='undefined'&&_conamerData)||{}).items||[]).forEach(function(it){
-    ev.push({fecha:String(it.fecha||'').substring(0,10),tipo:'Consulta abierta',color:'#0E8C74',titulo:it.titulo||'',sub:(it.siglas||'')+((it.dependencia?' · '+it.dependencia:''))+' · en consulta ATDT',url:it.url||''});
+    var cierre=(it.fecha_cierre||'').substring(0,10);
+    ev.push({fecha:cierre||String(it.fecha||'').substring(0,10),tipo:cierre?'Cierre de consulta':'Consulta abierta',color:cierre?'#B45309':'#0E8C74',titulo:it.titulo||'',sub:(it.siglas||'')+((it.dependencia?' · '+it.dependencia:''))+(cierre?' · último día para comentar':' · en consulta ATDT'),url:it.url||'',cierre:!!cierre});
   });
   // Sesiones de comisiones que vienen
   (((typeof _comisionesData!=='undefined'&&_comisionesData)||{}).comisiones||[]).forEach(function(c){
@@ -3593,7 +3594,7 @@ function _agendaProximo(){
         +'<div style="font-size:13px;color:var(--text);line-height:1.4">'+_escUser(e.titulo)+'</div>'
         +(e.sub?'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px;letter-spacing:.02em">'+_escUser(e.sub)+'</div>':'')
       +'</div>'
-      +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;padding-top:2px">'+fmtF(e.fecha)+'</div>'
+      +'<div style="text-align:right;flex-shrink:0;padding-top:2px"><div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap">'+fmtF(e.fecha)+'</div>'+(function(){var dd=new Date(e.fecha+'T12:00:00'),hoy=new Date(new Date().toDateString());var dias=Math.round((dd-hoy)/864e5);if(isNaN(dias)||dias<0||dias>120)return '';var col=(e.cierre&&dias<=7)?'#B45309':'var(--text-muted)';return '<div style="font-family:var(--mono);font-size:8px;color:'+col+';margin-top:2px;white-space:nowrap">'+(dias===0?'hoy':'en '+dias+' d')+'</div>';})()+'</div>'
     +'</div>';
   }).join('');
   host.innerHTML=head+'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">'+ev.length+' en el horizonte</div>'+rows;
@@ -3614,7 +3615,17 @@ function _agendaConamer(){
     var tag=(it.subtipo||'')+(it.tipo?' · '+it.tipo:'');
     var meta='<b>'+(it.siglas||'')+'</b> · '+(it.dependencia||'')+(tag?'  ·  '+tag:'')
       +(match.length?'  ·  <span style="color:var(--amber)">Actualiza '+match.join(', ')+' que monitoreas</span>':'');
-    return _oblRow({title:it.titulo,titleWeight:400,meta:meta,right:_oblStatus('En consulta','var(--green)'),rightSub:dia,zeb:i%2===1,onclick:'window.open(\''+(it.url||'#').replace(/\x27/g,'%27')+'\',\'_blank\')'});
+    var cierre=(it.fecha_cierre||'').substring(0,10);
+    var right,rightSub;
+    if(cierre){
+      var cd=new Date(cierre+'T12:00:00'),hoy=new Date(new Date().toDateString()),dias=Math.round((cd-hoy)/864e5);
+      var cfmt=isNaN(cd)?cierre:cd.toLocaleDateString('es-MX',{day:'2-digit',month:'short'});
+      right=_oblStatus('Cierra '+cfmt,dias<=7?'#B45309':'var(--amber)');
+      rightSub=(!isNaN(dias)&&dias>=0)?(dias===0?'último día':'faltan '+dias+' días'):dia;
+    }else{
+      right=_oblStatus('En consulta','var(--green)');rightSub=dia;
+    }
+    return _oblRow({title:it.titulo,titleWeight:400,meta:meta,right:right,rightSub:rightSub,zeb:i%2===1,onclick:'window.open(\''+(it.url||'#').replace(/\x27/g,'%27')+'\',\'_blank\')'});
   }).join('');
   host.innerHTML=head+body;
 }
