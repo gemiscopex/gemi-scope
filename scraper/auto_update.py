@@ -85,23 +85,29 @@ def gql(query, retries=3):
     return {}
 
 def dip_sesiones(oid):
-    """Devuelve (ultima 'DD/MM/YYYY' | None, proxima | None)."""
+    """Devuelve (ultima 'DD/MM/YYYY' | None, proxima | None, sesiones_futuras[list])."""
     data = gql("""{
       getReunionesComision(Oid: "%s") { Fecha NombreReunion }
     }""" % oid)
     reuniones = data.get("getReunionesComision") or []
     hoy = now_cdmx().date()
-    pasadas, futuras = [], []
+    pasadas, futuras, fut_list = [], [], []
     for r in reuniones:
         f = (r.get("Fecha") or "")[:10]
         try:
             d = datetime.strptime(f, "%Y-%m-%d").date()
         except ValueError:
             continue
-        (pasadas if d <= hoy else futuras).append(d)
+        if d <= hoy:
+            pasadas.append(d)
+        else:
+            futuras.append(d)
+            fut_list.append({"fecha": d.strftime("%Y-%m-%d"),
+                             "nombre": (r.get("NombreReunion") or "").strip()})
     ultima  = max(pasadas).strftime("%d/%m/%Y") if pasadas else None
     proxima = min(futuras).strftime("%d/%m/%Y") if futuras else None
-    return ultima, proxima
+    fut_list.sort(key=lambda x: x["fecha"])
+    return ultima, proxima, fut_list
 
 def dip_fotos_api(oid):
     """Devuelve lista de (nombre_api, foto_url) de una comisión."""
@@ -121,17 +127,17 @@ def dip_fotos_api(oid):
 # ── Senado: micrositios (fechas) ─────────────────────────────────────────────
 
 def sen_sesiones(slug):
-    """Parsea comisiones.senado.gob.mx/{slug}/reuniones → (ultima, proxima)."""
+    """Parsea comisiones.senado.gob.mx/{slug}/reuniones → (ultima, proxima, sesiones_futuras)."""
     try:
         r = requests.get(f"https://comisiones.senado.gob.mx/{slug}/reuniones",
                          headers=UA, timeout=20, verify=False)
         if r.status_code != 200:
-            return None, None
+            return None, None, []
     except Exception:
-        return None, None
+        return None, None, []
     fechas = set(re.findall(r"\d{2}/\d{2}/\d{4}", r.text))
     hoy = now_cdmx().date()
-    pasadas, futuras = [], []
+    pasadas, futuras, fut_list = [], [], []
     for f in fechas:
         try:
             d = datetime.strptime(f, "%d/%m/%Y").date()
@@ -140,10 +146,15 @@ def sen_sesiones(slug):
         # Descarta fechas absurdas (fuera de la legislatura)
         if not (2024 <= d.year <= 2030):
             continue
-        (pasadas if d <= hoy else futuras).append(d)
+        if d <= hoy:
+            pasadas.append(d)
+        else:
+            futuras.append(d)
+            fut_list.append({"fecha": d.strftime("%Y-%m-%d"), "nombre": ""})
     ultima  = max(pasadas).strftime("%d/%m/%Y") if pasadas else None
     proxima = min(futuras).strftime("%d/%m/%Y") if futuras else None
-    return ultima, proxima
+    fut_list.sort(key=lambda x: x["fecha"])
+    return ultima, proxima, fut_list
 
 # ── Senado: fotos vía Playwright ─────────────────────────────────────────────
 
@@ -236,20 +247,26 @@ def main():
         cam = (c.get("camara") or "").lower()
         nombre = c.get("nombre", "?")
         ultima = proxima = None
+        sesiones = []
         if cam == "diputados":
             m = OID_RE.search(c.get("url", ""))
             if m:
-                ultima, proxima = dip_sesiones(m.group(1))
+                ultima, proxima, sesiones = dip_sesiones(m.group(1))
                 if not args.skip_photos:
                     for (n, foto) in dip_fotos_api(m.group(1)):
                         dip_api_fotos[word_set(n)] = foto
         elif cam == "senado":
             m = SLUG_RE.search(c.get("at", ""))
             if m:
-                ultima, proxima = sen_sesiones(m.group(1))
+                ultima, proxima, sesiones = sen_sesiones(m.group(1))
             m2 = SEN_ID_RE.search(c.get("url", ""))
             if m2:
                 sen_com_ids.append(m2.group(1))
+        # Sesiones que vienen (para el calendario de Agenda GEMI); solo futuras
+        if sesiones:
+            c["sesiones"] = sesiones
+        elif "sesiones" in c:
+            c["sesiones"] = []
         # "Última sesión" solo avanza — los micrositios a veces van atrasados
         # respecto a datos capturados de otras fuentes; nunca retrocedemos.
         d_new, d_old = parse_ddmmyyyy(ultima), parse_ddmmyyyy(c.get("ur"))
