@@ -836,6 +836,21 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .gac-cell .gc-pub{font-size:10.5px;color:var(--text-sec);line-height:1.35;margin-top:3px}
 .gac-feed-it{padding:9px 0;border-bottom:0.8px solid var(--border);cursor:pointer;transition:background .12s}
 .gac-feed-it:hover{background:rgba(0,158,144,0.045)}
+/* Trending en el Congreso */
+.cong-trending{margin:2px 0 18px;padding:14px 16px;border:0.8px solid var(--border)}
+.cong-tr-hd{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#066750;margin-bottom:12px}
+.cong-tr-hd span{color:var(--text-muted);font-weight:400;letter-spacing:.02em}
+.cong-tr-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 34px}
+.cong-tr-sub{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+.cong-tr-row{display:grid;grid-template-columns:minmax(90px,1.1fr) 1fr 26px;align-items:center;gap:10px;padding:5px 0}
+.cong-tr-lbl{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cong-tr-bar{height:5px;background:rgba(0,0,0,0.05);overflow:hidden}
+.cong-tr-bar>span{display:block;height:100%;min-width:2px;background:var(--green);transition:width .5s cubic-bezier(.22,1,.36,1)}
+.cong-tr-n{font-family:var(--mono);font-size:11px;color:var(--text2);text-align:right}
+.cong-tr-lrow{display:grid;grid-template-columns:1fr 26px;align-items:baseline;gap:10px;padding:6px 0;border-bottom:0.8px solid var(--border);cursor:pointer}
+.cong-tr-lrow:hover{background:rgba(0,158,144,0.045)}
+.cong-tr-lley{font-size:12px;color:var(--text);line-height:1.35}
+@media(max-width:640px){.cong-tr-grid{grid-template-columns:1fr}}
 /* Monitor Congreso: animación de dibujado (una sola vez) */
 .cong-anim-line{stroke-dasharray:1;stroke-dashoffset:1}
 .cong-anim-fade{opacity:0}
@@ -5422,6 +5437,38 @@ function _congRenderList(){
 }
 var _congSoloMis=false;
 function _congToggleMis(v){_congSoloMis=!!v;_congExpanded=true;_congRenderList();}
+// ── Trending en el Congreso: qué se discute más (temas calientes + leyes más tocadas).
+//    Conteo determinista sobre las iniciativas/puntos recientes; sin IA. ──
+function _congTrendingHTML(){
+  var items=_congItems||[];if(items.length<4)return '';
+  var now=Date.now(),win=90*864e5;
+  var recent=items.filter(function(it){var d=new Date(String(it.fecha||'').substring(0,10)).getTime();return isNaN(d)?false:d>now-win;});
+  if(recent.length<4)recent=items;
+  var CATS_=(typeof CATS!=='undefined')?CATS:[];
+  var temas=CATS_.map(function(c){return {c:c,n:recent.filter(function(it){return _radarKwMatch(c.kw,it.titulo||'');}).length};})
+    .filter(function(x){return x.n>0;}).sort(function(a,b){return b.n-a.n;}).slice(0,6);
+  var leyMap={};
+  recent.forEach(function(it){var p=(typeof _congParse==='function')?_congParse(it):{leyes:[]};(p.leyes||[]).forEach(function(l){var k=l.replace(/\s+/g,' ').trim();if(k.length<8)return;leyMap[k]=(leyMap[k]||0)+1;});});
+  var leyes=Object.keys(leyMap).map(function(k){return {n:k,c:leyMap[k]};}).sort(function(a,b){return b.c-a.c||a.n.localeCompare(b.n);}).slice(0,5);
+  if(!temas.length&&!leyes.length)return '';
+  var mx=temas.length?temas[0].n:1;
+  var temaRows=temas.map(function(t){
+    var pct=Math.max(6,Math.round(t.n/mx*100));
+    return '<div class="cong-tr-row"><span class="cong-tr-lbl">'+t.c.name+'</span>'
+      +'<span class="cong-tr-bar"><span style="width:'+pct+'%"></span></span>'
+      +'<span class="cong-tr-n">'+t.n+'</span></div>';
+  }).join('');
+  var leyRows=leyes.map(function(l){
+    return '<div class="cong-tr-lrow" onclick="_congSearch(\''+String(l.n).slice(0,26).replace(/'/g,"\\'")+'\')" title="Ver iniciativas que tocan esta ley">'
+      +'<span class="cong-tr-lley">'+_escHtml(l.n)+'</span><span class="cong-tr-n">'+l.c+'</span></div>';
+  }).join('');
+  return '<div class="cong-trending">'
+    +'<div class="cong-tr-hd">Trending en el Congreso <span>· lo más discutido, últimos 90 días</span></div>'
+    +'<div class="cong-tr-grid">'
+      +(temaRows?'<div><div class="cong-tr-sub">Temas más calientes</div>'+temaRows+'</div>':'')
+      +(leyRows?'<div><div class="cong-tr-sub">Leyes más discutidas</div>'+leyRows+'</div>':'')
+    +'</div></div>';
+}
 function _renderCongreso(panel){
   var el=document.getElementById('widget-congreso');
   if(!el)return;
@@ -5442,7 +5489,7 @@ function _renderCongreso(panel){
       +'<span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none">⌕</span>'
       +'<input id="cong-search" value="'+_congQ.replace(/"/g,'&quot;')+'" oninput="_congSearch(this.value)" placeholder="Buscar por ley, tema o legislador…" style="width:100%;box-sizing:border-box;padding:8px 10px 8px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none">'
     +'</div></div>';
-  el.innerHTML=tabs+filt+'<div id="cong-list"></div>';
+  el.innerHTML=tabs+_congTrendingHTML()+filt+'<div id="cong-list"></div>';
   _congRenderList();
 }
 var _gacetaEstatalData=null;
@@ -7074,7 +7121,17 @@ function _renderPanelAgenda(el){
   var MES=['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
   var admin=((_agendaGemiData&&_agendaGemiData.eventos)||[]).map(function(e){return {fecha:e.fecha,titulo:e.titulo,nota:e.nota||e.lugar||'',src:'GEMI'};});
   var user=_pgemiUserEvents().map(function(e,i){return {fecha:e.fecha,titulo:e.titulo,nota:'',src:'Tú',ui:i};});
-  var all=admin.concat(user).filter(function(e){return e.fecha;}).sort(function(a,b){return String(a.fecha).localeCompare(String(b.fecha));});
+  // Sesiones que vienen de las comisiones del Congreso (Gaceta de cada cámara)
+  var hoyISO=new Date().toISOString().slice(0,10);
+  var cong=[];
+  ((_comisionesData&&_comisionesData.comisiones)||[]).forEach(function(c){
+    (c.sesiones||[]).forEach(function(s){
+      if(!s||!s.fecha||s.fecha<hoyISO)return;
+      var camA=(c.camara||'').toLowerCase()==='senado'?'Senado':'Diputados';
+      cong.push({fecha:s.fecha,titulo:'Sesión · '+(c.nombre||'Comisión'),nota:(s.nombre?s.nombre+' · ':'')+camA+' · Convocatoria en Gaceta',url:c.url||'',src:'Congreso'});
+    });
+  });
+  var all=admin.concat(cong).concat(user).filter(function(e){return e.fecha;}).sort(function(a,b){return String(a.fecha).localeCompare(String(b.fecha));});
   var hoy=new Date(new Date().toDateString());
   var rows=all.map(function(e){
     var dd=new Date(e.fecha+'T12:00:00');var day=isNaN(dd)?'':dd.getDate();var mon=isNaN(dd)?'':MES[dd.getMonth()];
