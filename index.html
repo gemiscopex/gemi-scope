@@ -842,10 +842,11 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cong-tr-hd span{color:var(--text-muted);font-weight:400;letter-spacing:.02em}
 .cong-tr-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 34px}
 .cong-tr-sub{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
-.cong-tr-row{display:grid;grid-template-columns:minmax(90px,1.1fr) 1fr 26px;align-items:center;gap:10px;padding:5px 0}
+.cong-tr-row{display:grid;grid-template-columns:minmax(84px,1fr) 62px 14px 24px;align-items:center;gap:10px;padding:6px 0;cursor:pointer;border-bottom:0.8px solid var(--border)}
+.cong-tr-row:hover{background:rgba(0,158,144,0.045)}
 .cong-tr-lbl{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cong-tr-bar{height:5px;background:rgba(0,0,0,0.05);overflow:hidden}
-.cong-tr-bar>span{display:block;height:100%;min-width:2px;background:var(--green);transition:width .5s cubic-bezier(.22,1,.36,1)}
+.cong-tr-spark{min-width:0;display:flex;align-items:center}
+.cong-tr-arr{font-family:var(--mono);font-size:12px;text-align:center}
 .cong-tr-n{font-family:var(--mono);font-size:11px;color:var(--text2);text-align:right}
 .cong-tr-lrow{display:grid;grid-template-columns:1fr 26px;align-items:baseline;gap:10px;padding:6px 0;border-bottom:0.8px solid var(--border);cursor:pointer}
 .cong-tr-lrow:hover{background:rgba(0,158,144,0.045)}
@@ -5437,25 +5438,52 @@ function _congRenderList(){
 }
 var _congSoloMis=false;
 function _congToggleMis(v){_congSoloMis=!!v;_congExpanded=true;_congRenderList();}
-// ── Trending en el Congreso: qué se discute más (temas calientes + leyes más tocadas).
-//    Conteo determinista sobre las iniciativas/puntos recientes; sin IA. ──
+// ── Trending en el Congreso: qué se discute más, con su trayectoria (sparkline).
+//    Conteo determinista sobre las iniciativas/puntos; sin IA. Cada tema abre su
+//    vista transversal en el Radar. ──
+var _CAT2RADAR={circular:'circular',agua:'agua',energia:'energia',residuos:'residuos',plasticos:'plasticos',impuestos:'fiscal',ambiente:'biodiv',agro:'agricultura',cumplimiento:'sanciones',infraestructura:'infra'};
+function _congGoRadarTema(catId){
+  var rid=_CAT2RADAR[catId]||catId;
+  if(typeof showTab==='function')showTab('radares');
+  if(typeof showRadarTema==='function')setTimeout(function(){showRadarTema(rid);},30);
+}
+function _congTemaWeekly(cat,nWeeks){
+  nWeeks=nWeeks||8;
+  var mondayNow=(typeof _isoMonday==='function')?_isoMonday(new Date()).getTime():Date.now();
+  var weeks=[];for(var i=0;i<nWeeks;i++)weeks.push(0);
+  (_congItems||[]).forEach(function(it){
+    if(!_radarKwMatch(cat.kw,it.titulo||''))return;
+    var t=new Date(String(it.fecha||'').substring(0,10)+'T12:00:00').getTime();if(isNaN(t))return;
+    var wm=(typeof _isoMonday==='function')?_isoMonday(new Date(t)).getTime():t;
+    var idx=Math.round((mondayNow-wm)/(7*864e5));
+    if(idx>=0&&idx<nWeeks)weeks[nWeeks-1-idx]++;
+  });
+  return weeks;
+}
+function _congTrendArrow(series){
+  var s=series||[],half=Math.floor(s.length/2);
+  var add=function(a,b){return a+b;};
+  var rec=s.slice(half).reduce(add,0),prev=s.slice(0,half).reduce(add,0);
+  if(rec>prev)return '<span style="color:#066750">↑</span>';
+  if(rec<prev)return '<span style="color:var(--text-muted)">↓</span>';
+  return '<span style="color:var(--text-muted)">→</span>';
+}
 function _congTrendingHTML(){
   var items=_congItems||[];if(items.length<4)return '';
-  var now=Date.now(),win=90*864e5;
-  var recent=items.filter(function(it){var d=new Date(String(it.fecha||'').substring(0,10)).getTime();return isNaN(d)?false:d>now-win;});
-  if(recent.length<4)recent=items;
   var CATS_=(typeof CATS!=='undefined')?CATS:[];
-  var temas=CATS_.map(function(c){return {c:c,n:recent.filter(function(it){return _radarKwMatch(c.kw,it.titulo||'');}).length};})
+  var temas=CATS_.map(function(c){return {c:c,n:(_congItems||[]).filter(function(it){return _radarKwMatch(c.kw,it.titulo||'');}).length};})
     .filter(function(x){return x.n>0;}).sort(function(a,b){return b.n-a.n;}).slice(0,6);
   var leyMap={};
-  recent.forEach(function(it){var p=(typeof _congParse==='function')?_congParse(it):{leyes:[]};(p.leyes||[]).forEach(function(l){var k=l.replace(/\s+/g,' ').trim();if(k.length<8)return;leyMap[k]=(leyMap[k]||0)+1;});});
+  (_congItems||[]).forEach(function(it){var p=(typeof _congParse==='function')?_congParse(it):{leyes:[]};(p.leyes||[]).forEach(function(l){var k=l.replace(/\s+/g,' ').trim();if(k.length<8)return;leyMap[k]=(leyMap[k]||0)+1;});});
   var leyes=Object.keys(leyMap).map(function(k){return {n:k,c:leyMap[k]};}).sort(function(a,b){return b.c-a.c||a.n.localeCompare(b.n);}).slice(0,5);
   if(!temas.length&&!leyes.length)return '';
-  var mx=temas.length?temas[0].n:1;
   var temaRows=temas.map(function(t){
-    var pct=Math.max(6,Math.round(t.n/mx*100));
-    return '<div class="cong-tr-row"><span class="cong-tr-lbl">'+t.c.name+'</span>'
-      +'<span class="cong-tr-bar"><span style="width:'+pct+'%"></span></span>'
+    var serie=_congTemaWeekly(t.c,8);
+    var spark=(typeof _sparkWide==='function'&&serie.some(function(v){return v>0;}))?_sparkWide(serie,'#066750'):'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">—</span>';
+    return '<div class="cong-tr-row" onclick="_congGoRadarTema(\''+t.c.id+'\')" title="Ver &laquo;'+t.c.name+'&raquo; transversal en el Radar">'
+      +'<span class="cong-tr-lbl">'+t.c.name+'</span>'
+      +'<span class="cong-tr-spark">'+spark+'</span>'
+      +'<span class="cong-tr-arr">'+_congTrendArrow(serie)+'</span>'
       +'<span class="cong-tr-n">'+t.n+'</span></div>';
   }).join('');
   var leyRows=leyes.map(function(l){
@@ -5463,9 +5491,9 @@ function _congTrendingHTML(){
       +'<span class="cong-tr-lley">'+_escHtml(l.n)+'</span><span class="cong-tr-n">'+l.c+'</span></div>';
   }).join('');
   return '<div class="cong-trending">'
-    +'<div class="cong-tr-hd">Trending en el Congreso <span>· lo más discutido, últimos 90 días</span></div>'
+    +'<div class="cong-tr-hd">Trending</div>'
     +'<div class="cong-tr-grid">'
-      +(temaRows?'<div><div class="cong-tr-sub">Temas más calientes</div>'+temaRows+'</div>':'')
+      +(temaRows?'<div><div class="cong-tr-sub">Temas · trayectoria 8 semanas</div>'+temaRows+'</div>':'')
       +(leyRows?'<div><div class="cong-tr-sub">Leyes más discutidas</div>'+leyRows+'</div>':'')
     +'</div></div>';
 }
