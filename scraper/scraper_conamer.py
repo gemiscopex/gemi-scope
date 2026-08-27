@@ -57,6 +57,9 @@ async () => {
         href: href, categoria: cat,
         siglas: (txts.find(x=>/Siglas:/.test(x))||'').replace('Siglas:','').trim(),
         fecha: (txts.find(x=>/Actualizaci/.test(x))||'').replace(/Actualizaci[^:]*:/,'').trim(),
+        // Cualquier texto que hable de comentarios/cierre/plazo de la consulta pública
+        plazo: (txts.find(x=>/coment|cierre|vence|plazo|periodo|per[ií]odo|consulta\s+p[uú]blica|fecha\s+l[ií]mite|env[ií]o de comentarios/i.test(x))||''),
+        textos: txts,
         titulo: tt, dependencia: dep, tipo: tags[0]||'', subtipo: tags[2]||''
       });
     });
@@ -89,6 +92,44 @@ def es_sector(r):
     hay = qa((r.get("titulo") or "") + " " + (r.get("dependencia") or ""))
     return any(k in hay for k in KW)
 
+_MESES_C = {"enero":1,"febrero":2,"marzo":3,"abril":4,"mayo":5,"junio":6,"julio":7,
+            "agosto":8,"septiembre":9,"setiembre":9,"octubre":10,"noviembre":11,"diciembre":12}
+
+def _fecha_cierre(r):
+    """Deriva la fecha de cierre de la consulta desde el texto de la tarjeta.
+    Devuelve (ISO 'YYYY-MM-DD' | '', texto_plazo). Si hay un rango, toma la fecha
+    MÁS TARDÍA (el cierre). Best-effort: si la plataforma no la expone, queda vacío."""
+    blobs = []
+    if r.get("plazo"):
+        blobs.append(r["plazo"])
+    for t in (r.get("textos") or []):
+        if re.search(r"coment|cierre|vence|plazo|per[ií]odo|consulta\s+p[uú]blica|fecha\s+l[ií]mite", t, re.I):
+            blobs.append(t)
+    plazo_txt = " · ".join(dict.fromkeys([b for b in blobs if b]))[:200]
+    fechas = []
+    for b in blobs:
+        for m in re.finditer(r"(\d{1,2})[/\-](\d{1,2})[/\-](\d{4})", b):
+            try:
+                fechas.append(datetime(int(m.group(3)), int(m.group(2)), int(m.group(1))).date())
+            except ValueError:
+                pass
+        for m in re.finditer(r"(\d{4})-(\d{2})-(\d{2})", b):
+            try:
+                fechas.append(datetime(int(m.group(1)), int(m.group(2)), int(m.group(3))).date())
+            except ValueError:
+                pass
+        for m in re.finditer(r"(\d{1,2})\s+de\s+([A-Za-zÁÉÍÓÚáéíóú]+)\s+de\s+(\d{4})", b, re.I):
+            mes = _MESES_C.get(m.group(2).lower())
+            if mes:
+                try:
+                    fechas.append(datetime(int(m.group(3)), mes, int(m.group(1))).date())
+                except ValueError:
+                    pass
+    if not fechas:
+        return "", plazo_txt
+    return max(fechas).strftime("%Y-%m-%d"), plazo_txt
+
+
 def main():
     print("SCOPE — CONAMER propuestas —", cdmx_now().strftime("%Y-%m-%d %H:%M CDMX"))
     try:
@@ -120,11 +161,13 @@ def main():
             continue
         seen.add(href)
         url = href if href.startswith("http") else BASE + ("" if href.startswith("/") else "/") + href
+        cierre_iso, plazo_txt = _fecha_cierre(r)
         items.append({
             "id": href, "siglas": r.get("siglas",""), "fecha": r.get("fecha",""),
             "titulo": r.get("titulo",""), "dependencia": r.get("dependencia",""),
             "tipo": r.get("tipo",""), "subtipo": r.get("subtipo",""),
             "categoria": r.get("categoria",""), "url": url,
+            "fecha_cierre": cierre_iso, "plazo": plazo_txt,
         })
     # AIR (anteproyectos sustantivos) primero, luego exenciones
     items.sort(key=lambda x: 0 if str(x.get("tipo","")).startswith("Análisis") else 1)
