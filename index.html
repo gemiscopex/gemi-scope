@@ -844,6 +844,12 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cong-trend-item{display:flex;align-items:stretch;gap:10px}
 .cong-trend-rank{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--text-muted);width:18px;flex-shrink:0;text-align:right;padding-top:15px}
 .cong-trend-item:first-of-type .cong-trend-rank{color:#066750}
+/* Vencimientos y sesiones (línea de tiempo) */
+.prox-row{display:flex;align-items:flex-start;gap:16px;padding:13px 2px;border-top:0.8px solid var(--border)}
+.prox-row[onclick]:hover{background:rgba(0,158,144,0.04)}
+.prox-date{text-align:center;flex-shrink:0;width:38px}
+.prox-date .prox-d{font-family:var(--mono);font-size:18px;font-weight:700;color:#066750;line-height:1}
+.prox-date .prox-m{font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--text-muted);margin-top:2px}
 .cong-tr-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 34px}
 .cong-tr-sub{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
 .cong-tr-row{display:grid;grid-template-columns:minmax(84px,1fr) 62px 14px 24px;align-items:center;gap:10px;padding:6px 0;cursor:pointer;border-bottom:0.8px solid var(--border)}
@@ -3186,13 +3192,13 @@ function agendaSetView(v){_agendaView=v;_agendaEst='todos';renderAgenda();}
 function agendaSetEst(e){_agendaEst=e;_agendaPend();}
 function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
-  if(['dof','pendientes','conamer','gacetas','historico'].indexOf(view)>=0)_agendaView=view;
-  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta · ATDT'],['historico','Congreso · histórico'],['dof','DOF · publicaciones']];
+  if(['dof','pendientes','conamer','gacetas','historico','proximo'].indexOf(view)>=0)_agendaView=view;
+  var tabs=[['proximo','Vencimientos y sesiones'],['pendientes','Reglamentaciones pendientes'],['conamer','En consulta · ATDT'],['historico','Congreso · histórico'],['dof','DOF · publicaciones']];
   var nav='<div class="stab-bar" style="margin-bottom:20px">'+tabs.map(function(t){
       return '<button class="stab'+(_agendaView===t[0]?' on':'')+'" onclick="agendaSetView(\''+t[0]+'\')">'+t[1]+'</button>';
     }).join('')+'</div>';
   host.innerHTML=nav+'<div id="agenda-view"></div>';
-  if(_agendaView==='dof')_agendaDof();else if(_agendaView==='conamer')_agendaConamer();else if(_agendaView==='historico')_agendaHistorico();else _agendaPend();
+  if(_agendaView==='dof')_agendaDof();else if(_agendaView==='conamer')_agendaConamer();else if(_agendaView==='historico')_agendaHistorico();else if(_agendaView==='proximo')_agendaProximo();else _agendaPend();
 }
 // Directorio de gacetas / periódicos oficiales por entidad (publicación oficial estatal)
 var GACETAS_OFICIALES={
@@ -3538,6 +3544,50 @@ function _conamerNomMatch(titulo){
       if(nb&&b.indexOf(nb.split('-').slice(0,3).join('-'))===0)out.push(n.id);});
   });
   return out;
+}
+// ── Vencimientos y sesiones: lo accionable en una línea de tiempo (consultas abiertas,
+//    sesiones de comisiones que vienen, agenda GEMI). Solo fechas reales; sin inventar. ──
+var _agendaGemiLoaded=false;
+function _agendaProximo(){
+  var host=document.getElementById('agenda-view');if(!host)return;
+  if(!_agendaGemiLoaded && typeof _agendaGemiData!=='undefined' && !_agendaGemiData){
+    _agendaGemiLoaded=true;
+    fetch('data/agenda-gemi.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(d){_agendaGemiData=d;_agendaProximo();}).catch(function(){});
+  }
+  var todayISO=new Date().toISOString().slice(0,10);
+  var ev=[];
+  // Consultas abiertas (ATDT) — ventanas para comentar, accionables ahora
+  (((typeof _conamerData!=='undefined'&&_conamerData)||{}).items||[]).forEach(function(it){
+    ev.push({fecha:String(it.fecha||'').substring(0,10),tipo:'Consulta abierta',color:'#0E8C74',titulo:it.titulo||'',sub:(it.siglas||'')+((it.dependencia?' · '+it.dependencia:''))+' · en consulta ATDT',url:it.url||''});
+  });
+  // Sesiones de comisiones que vienen
+  (((typeof _comisionesData!=='undefined'&&_comisionesData)||{}).comisiones||[]).forEach(function(c){
+    (c.sesiones||[]).forEach(function(s){if(s&&s.fecha&&s.fecha>=todayISO)ev.push({fecha:s.fecha,tipo:'Sesión',color:'#B0851F',titulo:'Comisión de '+(c.nombre||''),sub:(c.camara==='Senado'?'Senado':'Diputados')+(s.nombre?' · '+s.nombre:'')+' · convocatoria en Gaceta',url:c.url||''});});
+  });
+  // Agenda GEMI (eventos futuros)
+  (((typeof _agendaGemiData!=='undefined'&&_agendaGemiData)||{}).eventos||[]).forEach(function(e){
+    if(e.fecha&&e.fecha>=todayISO)ev.push({fecha:e.fecha,tipo:'GEMI',color:'#066750',titulo:e.titulo||'',sub:e.nota||e.lugar||'',url:''});
+  });
+  ev.sort(function(a,b){return String(a.fecha).localeCompare(String(b.fecha));});
+  var head='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;margin-bottom:14px">Lo accionable en una línea de tiempo: <b>consultas públicas abiertas</b> (ventanas para comentar), <b>sesiones de comisiones</b> que vienen y <b>fechas de la agenda GEMI</b>, en un solo lugar.</div>';
+  if(!ev.length){
+    host.innerHTML=head+'<div style="font-size:12px;color:var(--text-muted);line-height:1.6;padding:14px 0">Nada urgente ahora mismo. Durante el receso legislativo (hasta el 1-sep) casi no hay sesiones ni consultas nuevas; esta vista se llena sola cuando abren consultas en la ATDT y las comisiones convocan.</div>';
+    return;
+  }
+  function fmtF(f){var d=new Date(String(f||'').substring(0,10)+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});}
+  var rows=ev.map(function(e,i){
+    var oc=e.url?(' onclick="window.open(\''+String(e.url).replace(/'/g,'%27')+'\',\'_blank\')" style="cursor:pointer"'):'';
+    return '<div class="prox-row"'+oc+'>'
+      +'<div class="prox-date"><div class="prox-d">'+(new Date(e.fecha+'T12:00:00').getDate()||'')+'</div><div class="prox-m">'+(['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'][new Date(e.fecha+'T12:00:00').getMonth()]||'')+'</div></div>'
+      +'<div style="flex:1;min-width:0">'
+        +'<div style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:'+e.color+';margin-bottom:2px">'+e.tipo+'</div>'
+        +'<div style="font-size:13px;color:var(--text);line-height:1.4">'+_escUser(e.titulo)+'</div>'
+        +(e.sub?'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px;letter-spacing:.02em">'+_escUser(e.sub)+'</div>':'')
+      +'</div>'
+      +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;padding-top:2px">'+fmtF(e.fecha)+'</div>'
+    +'</div>';
+  }).join('');
+  host.innerHTML=head+'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">'+ev.length+' en el horizonte</div>'+rows;
 }
 function _agendaConamer(){
   var host=document.getElementById('agenda-view');if(!host)return;
@@ -4249,6 +4299,23 @@ function renderAlertas(filter){
   if(!el)return;
   const filtered=filter&&filter!=='all'?alertas.filter(a=>a.tipo===filter):alertas;
   if(!filtered.length){el.innerHTML='<div class="sp-empty">Sin alertas activas en esta categoría</div>';return;}
+  // ── Personalización: alertas de los estados que sigue el usuario en su terminal ──
+  var _mios='';
+  try{
+    var _cfg=(typeof loadConsola==='function')?loadConsola():null;
+    var _mis=(_cfg&&_cfg.estados)||[];
+    if(_mis.length){
+      var _pref=filtered.filter(function(a){return _mis.indexOf(a.estado)>=0;})
+        .sort(function(a,b){var o={critico:0,alto:1,medio:2};return (o[a.nivel]||3)-(o[b.nivel]||3);});
+      if(_pref.length){
+        var _tl={fiscal:'FISCAL',regulatoria:'REGULATORIA',territorial:'TERRITORIAL',complejidad:'COMPLEJIDAD'};
+        _mios='<div style="margin-bottom:20px">'
+          +'<div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#066750;padding-bottom:6px;border-bottom:0.8px solid var(--border);margin-bottom:8px">Relevantes para ti <span style="color:var(--text-muted);font-weight:400">· tus estados</span></div>'
+          +_pref.map(function(a){return '<div class="alerta-row" onclick="openStatePanel(\''+a.estado+'\')"><span class="ar-tipo ar-'+a.nivel+'">'+(_tl[a.tipo]||(a.tipo||'').toUpperCase())+'</span><span class="ar-estado">'+a.estado+'</span><span class="ar-desc">'+(a.que||'')+'</span><span class="ar-action">→</span></div>';}).join('')
+        +'</div>';
+      }
+    }
+  }catch(e){}
   const groups=[
     {key:'critico',label:'CRÍTICO',items:filtered.filter(a=>a.nivel==='critico')},
     {key:'alto',label:'ALTO',items:filtered.filter(a=>a.nivel==='alto')},
@@ -4270,7 +4337,7 @@ function renderAlertas(filter){
       +'</div>';
   });
   html+='</div>';
-  el.innerHTML=html;
+  el.innerHTML=_mios+html;
 }
 function toggleAlertaGrp(id){
   const el=document.getElementById(id);
@@ -5338,6 +5405,51 @@ function _tcKw(s){
     return lw.charAt(0).toUpperCase()+lw.slice(1);
   }).join(' ');
 }
+// ── Seguimiento de legisladores: perfil con TODAS sus iniciativas + comisiones ──
+function _legiPerfil(nombre){
+  if(!nombre)return;
+  var nk=(typeof _consNk==='function')?_consNk(nombre):(nombre||'').toLowerCase();
+  var mine=(_congItems||[]).filter(function(it){return _consNk(_congAutor(it)||'')===nk;});
+  // dedup por título+fecha
+  var seen={},inis=[];
+  mine.forEach(function(it){var k=(it.titulo||'')+'|'+(it.fecha||'');if(!seen[k]){seen[k]=1;inis.push(it);}});
+  inis.sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
+  var partido='';for(var i=0;i<inis.length&&!partido;i++){partido=_congPartido(inis[i])||'';}
+  var camara=inis[0]?(inis[0].camara==='SEN'?'Senado':'Diputados'):'';
+  var coms=[];((_comisionesData&&_comisionesData.comisiones)||[]).forEach(function(c){
+    (c.integrantes||[]).forEach(function(m){if(_consNk(m.n||m.nombre||'')===nk&&coms.indexOf(c.nombre)<0)coms.push(c.nombre);});
+  });
+  var nIni=inis.filter(function(it){return it.tipo!=='punto_acuerdo';}).length;
+  var nPto=inis.length-nIni;
+  var body='';
+  if(coms.length){
+    body+='<div style="font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">Comisiones</div>'
+      +'<div style="font-size:12px;color:var(--text-sec);line-height:1.5;margin-bottom:14px">'+coms.map(_escHtml).join(' · ')+'</div>';
+  }
+  body+='<div style="font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">Actividad legislativa · '+inis.length+'</div>';
+  if(inis.length){
+    body+=inis.slice(0,40).map(function(it){
+      var p=(typeof _congParse==='function')?_congParse(it):{accion:'',titulo:(it.titulo||'')};
+      var f=it.fecha?new Date(it.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}):'';
+      var u=String(it.url||'#').replace(/"/g,'&quot;');
+      return '<a href="'+u+'" target="_blank" rel="noopener" style="display:block;padding:9px 0;border-bottom:0.8px solid var(--border);text-decoration:none">'
+        +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">'
+          +'<span style="font-size:12.5px;color:var(--text);line-height:1.4"><span style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#066750">'+(p.accion||'')+'</span>  '+_escHtml(p.titulo||it.titulo||'')+'</span>'
+          +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap;flex-shrink:0">'+f+'</span>'
+        +'</div></a>';
+    }).join('');
+    if(inis.length>40)body+='<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);padding:8px 0">+ '+(inis.length-40)+' más</div>';
+  }else{
+    body+='<div style="font-size:12px;color:var(--text-muted);line-height:1.5">Sin actividad legislativa reciente en el archivo de Scope (ventana del scrape). Se poblará conforme presente instrumentos.</div>';
+  }
+  _scopePeek({
+    kind:'Legislador'+(camara?' · '+camara:''),
+    title:nombre,
+    meta:[{l:'Partido',v:partido||'—'},{l:'Cámara',v:camara||'—'},{l:'Iniciativas',v:String(nIni)},{l:'Puntos de acuerdo',v:String(nPto)}],
+    body:body,url:''
+  });
+}
+function _legiClick(ev,nombre){if(ev){ev.stopPropagation();}_legiPerfil(nombre);}
 function _congMatchKw(it,kws){
   if(!kws||!kws.length)return null;
   var hay=_norm((it.titulo||''));
@@ -5375,7 +5487,7 @@ function _congRow(it){
   var nomTag=(p.noms&&p.noms.length)?'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)"> · '+p.noms[0]+'</span>':'';
   var mkLabel=mk?_tcKw(mk):'';
   var badge=mk?'<span title="Coincide con tu tema: '+String(mkLabel).replace(/"/g,'&quot;')+'" style="font-family:var(--mono);font-size:8px;color:#066750;white-space:nowrap"> · ● '+mkLabel+'</span>':'';
-  var quien=autor?('<span style="color:var(--text-sec);font-weight:600">'+autor+'</span> · '):'';
+  var quien=autor?('<span onclick="_legiClick(event,\''+autor.replace(/'/g,"\\'").replace(/"/g,'&quot;')+'\')" title="Ver el perfil y las iniciativas de '+autor.replace(/"/g,'&quot;')+'" style="color:var(--text-sec);font-weight:600;cursor:pointer;text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:2px">'+autor+'</span> · '):'';
   // Preview in-app (sin salir de Scope) con ficha del documento
   var _pkMeta=[{l:'Autor',v:autor||''},{l:'Cámara',v:cam},{l:'Partido',v:partido||''},{l:'Acción',v:p.accion||''}];
   if(p.noms&&p.noms.length)_pkMeta.push({l:'NOM referida',v:p.noms.join(' · ')});
@@ -5894,6 +6006,35 @@ function initSearch(){
       });
     });
     if(er.length)groups.push({label:'Leyes Estatales',items:er});
+    // Iniciativas del Congreso
+    try{
+      var cr=((typeof _congItems!=='undefined'&&_congItems)||[]).filter(function(it){return norm(it.titulo||'').includes(qn);}).slice(0,4).map(function(it){
+        var p=(typeof _congParse==='function')?_congParse(it):{accion:'',titulo:it.titulo};
+        return {title:(p.accion?p.accion+' · ':'')+(p.titulo||it.titulo||''),meta:(it.camara==='SEN'?'Senado':'Diputados')+(it.fecha?' · '+fmtDate(it.fecha):''),fn:function(){window.open(it.url||'https://gaceta.diputados.gob.mx/','_blank');}};
+      });
+      if(cr.length)groups.push({label:'Iniciativas',items:cr});
+    }catch(e){}
+    // DOF
+    try{
+      var dr=((typeof _dofData!=='undefined'&&_dofData)||[]).filter(function(d){return norm((d.titulo||'')+' '+(d.dependencia||'')).includes(qn);}).slice(0,3).map(function(d){
+        return {title:(d.dependencia?d.dependencia+' · ':'')+(d.titulo||''),meta:'DOF'+(d.fecha?' · '+fmtDate(d.fecha):''),fn:function(){window.open(d.url||'https://www.dof.gob.mx/','_blank');}};
+      });
+      if(dr.length)groups.push({label:'DOF',items:dr});
+    }catch(e){}
+    // NOMs
+    try{
+      var mr=((typeof NORMAS!=='undefined'&&NORMAS)||[]).filter(function(nm){return norm((nm.id||'')+' '+(nm.objeto||'')+' '+(nm.afecta||'')).includes(qn);}).slice(0,3).map(function(nm){
+        return {title:nm.id||'NOM',meta:(nm.dep||'')+(nm.objeto?' · '+nm.objeto:''),fn:function(){goObligaciones('noms');}};
+      });
+      if(mr.length)groups.push({label:'NOMs',items:mr});
+    }catch(e){}
+    // Tratados internacionales
+    try{
+      var ir=((typeof _INTL!=='undefined'&&_INTL)||[]).filter(function(a){return norm((a.nombre||'')+' '+(a.relevancia_mexico||'')).includes(qn);}).slice(0,3).map(function(a){
+        return {title:a.nombre||'',meta:(a.jurisdiccion||'')+(a.anio?' · '+a.anio:''),fn:function(){if(a.url){window.open(a.url,'_blank');}else{goInternacional();}}};
+      });
+      if(ir.length)groups.push({label:'Internacional',items:ir});
+    }catch(e){}
     // Render
     if(!groups.length){
       drop.innerHTML='<div class="sdrop-empty">Sin resultados para "'+q+'"</div>';
