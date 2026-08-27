@@ -837,9 +837,13 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .gac-feed-it{padding:9px 0;border-bottom:0.8px solid var(--border);cursor:pointer;transition:background .12s}
 .gac-feed-it:hover{background:rgba(0,158,144,0.045)}
 /* Trending en el Congreso */
-.cong-trending{margin:2px 0 18px;padding:14px 16px;border:0.8px solid var(--border)}
-.cong-tr-hd{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#066750;margin-bottom:12px}
+.cong-trending{margin:0 0 22px;padding:0 0 12px;border-bottom:0.8px solid var(--border)}
+.cong-tr-hd{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#066750;margin-bottom:3px}
 .cong-tr-hd span{color:var(--text-muted);font-weight:400;letter-spacing:.02em}
+.cong-tr-lead{font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:6px}
+.cong-trend-item{display:flex;align-items:stretch;gap:10px}
+.cong-trend-rank{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--text-muted);width:18px;flex-shrink:0;text-align:right;padding-top:15px}
+.cong-trend-item:first-of-type .cong-trend-rank{color:#066750}
 .cong-tr-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 34px}
 .cong-tr-sub{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
 .cong-tr-row{display:grid;grid-template-columns:minmax(84px,1fr) 62px 14px 24px;align-items:center;gap:10px;padding:6px 0;cursor:pointer;border-bottom:0.8px solid var(--border)}
@@ -5438,64 +5442,31 @@ function _congRenderList(){
 }
 var _congSoloMis=false;
 function _congToggleMis(v){_congSoloMis=!!v;_congExpanded=true;_congRenderList();}
-// ── Trending en el Congreso: qué se discute más, con su trayectoria (sparkline).
-//    Conteo determinista sobre las iniciativas/puntos; sin IA. Cada tema abre su
-//    vista transversal en el Radar. ──
-var _CAT2RADAR={circular:'circular',agua:'agua',energia:'energia',residuos:'residuos',plasticos:'plasticos',impuestos:'fiscal',ambiente:'biodiv',agro:'agricultura',cumplimiento:'sanciones',infraestructura:'infra'};
-function _congGoRadarTema(catId){
-  var rid=_CAT2RADAR[catId]||catId;
-  if(typeof showTab==='function')showTab('radares');
-  if(typeof showRadarTema==='function')setTimeout(function(){showRadarTema(rid);},30);
-}
-function _congTemaWeekly(cat,nWeeks){
-  nWeeks=nWeeks||8;
-  var mondayNow=(typeof _isoMonday==='function')?_isoMonday(new Date()).getTime():Date.now();
-  var weeks=[];for(var i=0;i<nWeeks;i++)weeks.push(0);
-  (_congItems||[]).forEach(function(it){
-    if(!_radarKwMatch(cat.kw,it.titulo||''))return;
-    var t=new Date(String(it.fecha||'').substring(0,10)+'T12:00:00').getTime();if(isNaN(t))return;
-    var wm=(typeof _isoMonday==='function')?_isoMonday(new Date(t)).getTime():t;
-    var idx=Math.round((mondayNow-wm)/(7*864e5));
-    if(idx>=0&&idx<nWeeks)weeks[nWeeks-1-idx]++;
-  });
-  return weeks;
-}
-function _congTrendArrow(series){
-  var s=series||[],half=Math.floor(s.length/2);
-  var add=function(a,b){return a+b;};
-  var rec=s.slice(half).reduce(add,0),prev=s.slice(0,half).reduce(add,0);
-  if(rec>prev)return '<span style="color:#066750">↑</span>';
-  if(rec<prev)return '<span style="color:var(--text-muted)">↓</span>';
-  return '<span style="color:var(--text-muted)">→</span>';
-}
+// ── Trending en el Congreso (estilo Politico PRO): ranking de las iniciativas más
+//    activas y relevantes AHORA. Cada una abre su ficha (y la Gaceta). Sin IA:
+//    score determinista = recencia + relevancia temática + leyes que toca. ──
 function _congTrendingHTML(){
-  var items=_congItems||[];if(items.length<4)return '';
-  var CATS_=(typeof CATS!=='undefined')?CATS:[];
-  var temas=CATS_.map(function(c){return {c:c,n:(_congItems||[]).filter(function(it){return _radarKwMatch(c.kw,it.titulo||'');}).length};})
-    .filter(function(x){return x.n>0;}).sort(function(a,b){return b.n-a.n;}).slice(0,6);
-  var leyMap={};
-  (_congItems||[]).forEach(function(it){var p=(typeof _congParse==='function')?_congParse(it):{leyes:[]};(p.leyes||[]).forEach(function(l){var k=l.replace(/\s+/g,' ').trim();if(k.length<8)return;leyMap[k]=(leyMap[k]||0)+1;});});
-  var leyes=Object.keys(leyMap).map(function(k){return {n:k,c:leyMap[k]};}).sort(function(a,b){return b.c-a.c||a.n.localeCompare(b.n);}).slice(0,5);
-  if(!temas.length&&!leyes.length)return '';
-  var temaRows=temas.map(function(t){
-    var serie=_congTemaWeekly(t.c,8);
-    var spark=(typeof _sparkWide==='function'&&serie.some(function(v){return v>0;}))?_sparkWide(serie,'#066750'):'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">—</span>';
-    return '<div class="cong-tr-row" onclick="_congGoRadarTema(\''+t.c.id+'\')" title="Ver &laquo;'+t.c.name+'&raquo; transversal en el Radar">'
-      +'<span class="cong-tr-lbl">'+t.c.name+'</span>'
-      +'<span class="cong-tr-spark">'+spark+'</span>'
-      +'<span class="cong-tr-arr">'+_congTrendArrow(serie)+'</span>'
-      +'<span class="cong-tr-n">'+t.n+'</span></div>';
-  }).join('');
-  var leyRows=leyes.map(function(l){
-    return '<div class="cong-tr-lrow" onclick="_congSearch(\''+String(l.n).slice(0,26).replace(/'/g,"\\'")+'\')" title="Ver iniciativas que tocan esta ley">'
-      +'<span class="cong-tr-lley">'+_escHtml(l.n)+'</span><span class="cong-tr-n">'+l.c+'</span></div>';
+  var items=_congItems||[];if(items.length<3)return '';
+  var now=Date.now(),CATS_=(typeof CATS!=='undefined')?CATS:[];
+  var scored=items.map(function(it){
+    var t=new Date(String(it.fecha||'').substring(0,10)+'T12:00:00').getTime();
+    var daysAgo=isNaN(t)?999:(now-t)/864e5;
+    var rec=Math.max(0,45-daysAgo);                    // recencia (0..45)
+    var temaHits=CATS_.reduce(function(a,c){return a+(_radarKwMatch(c.kw,it.titulo||'')?1:0);},0);
+    var p=(typeof _congParse==='function')?_congParse(it):{leyes:[]};
+    var leyes=Math.min((p.leyes||[]).length,3);
+    var iniB=it.tipo!=='punto_acuerdo'?5:0;            // iniciativas pesan más que exhortos
+    return {it:it,score:rec+temaHits*6+leyes*4+iniB};
+  }).filter(function(x){return x.score>0;}).sort(function(a,b){return b.score-a.score;}).slice(0,6);
+  if(scored.length<3)return '';
+  var rows=scored.map(function(s,i){
+    return '<div class="cong-trend-item"><span class="cong-trend-rank">'+(i+1)+'</span>'
+      +'<div style="flex:1;min-width:0">'+_congRow(s.it)+'</div></div>';
   }).join('');
   return '<div class="cong-trending">'
     +'<div class="cong-tr-hd">Trending</div>'
-    +'<div class="cong-tr-grid">'
-      +(temaRows?'<div><div class="cong-tr-sub">Temas · trayectoria 8 semanas</div>'+temaRows+'</div>':'')
-      +(leyRows?'<div><div class="cong-tr-sub">Leyes más discutidas</div>'+leyRows+'</div>':'')
-    +'</div></div>';
+    +'<div class="cong-tr-lead">Las iniciativas más activas y relevantes ahora — da clic para abrir la ley.</div>'
+    +rows+'</div>';
 }
 function _renderCongreso(panel){
   var el=document.getElementById('widget-congreso');
