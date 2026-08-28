@@ -1008,11 +1008,115 @@
    "titular": "Édgar Amador Zamora",
    "cargo": "Secretario de Hacienda y Crédito Público",
    "url": "https://www.gob.mx/hacienda",
-   "nota": "Rectora de las finanzas públicas y del financiamiento del sector energético (presupuesto, deuda, garantías, Plan México). Titular verificado con fuente oficial (nombrado por la Presidencia, mar-2025).",
+   "nota": "Estructura conforme al Reglamento Interior de la SHCP. Titulares verificados con fuentes oficiales/prensa (ago-2026); las unidades sin titular confirmado se listan por su nombre oficial y su titular se omite (no se inventa). Rectora del financiamiento público del sector energético (presupuesto, deuda, garantías, Plan México).",
    "personas": [
     {
      "nombre": "Édgar Amador Zamora",
      "cargo": "Secretario de Hacienda y Crédito Público"
+    }
+   ],
+   "unidades": [
+    {
+     "nombre": "Subsecretaría de Hacienda y Crédito Público",
+     "cargo": "Subsecretaria",
+     "titular": "María del Carmen Bonilla Rodríguez",
+     "unidades": [
+      {
+       "nombre": "Unidad de Crédito Público"
+      },
+      {
+       "nombre": "Unidad de Banca de Desarrollo"
+      },
+      {
+       "nombre": "Unidad de Banca, Valores y Ahorro"
+      },
+      {
+       "nombre": "Unidad de Seguros, Pensiones y Seguridad Social"
+      },
+      {
+       "nombre": "Unidad de Planeación Económica de la Hacienda Pública"
+      },
+      {
+       "nombre": "Unidad de Asuntos Internacionales de Hacienda"
+      }
+     ]
+    },
+    {
+     "nombre": "Subsecretaría de Ingresos",
+     "cargo": "Subsecretario",
+     "titular": "Carlos Gabriel Lerma Gotera",
+     "unidades": [
+      {
+       "nombre": "Unidad de Legislación Tributaria"
+      },
+      {
+       "nombre": "Unidad de Política de Ingresos Tributarios"
+      },
+      {
+       "nombre": "Unidad de Política de Ingresos No Tributarios"
+      },
+      {
+       "nombre": "Unidad de Coordinación con Entidades Federativas"
+      }
+     ]
+    },
+    {
+     "nombre": "Subsecretaría de Egresos",
+     "cargo": "Subsecretario",
+     "unidades": [
+      {
+       "nombre": "Unidad de Política y Control Presupuestario"
+      },
+      {
+       "nombre": "Unidad de Contabilidad Gubernamental"
+      },
+      {
+       "nombre": "Unidad de Inversiones"
+      },
+      {
+       "nombre": "Dirección General de Programación y Presupuesto"
+      }
+     ]
+    },
+    {
+     "nombre": "Procuraduría Fiscal de la Federación",
+     "cargo": "Procurador Fiscal"
+    },
+    {
+     "nombre": "Tesorería de la Federación (TESOFE)",
+     "cargo": "Tesorero"
+    },
+    {
+     "nombre": "Unidad de Inteligencia Financiera (UIF)",
+     "cargo": "Titular de la Unidad"
+    },
+    {
+     "nombre": "Unidad de Administración y Finanzas",
+     "cargo": "Titular de la Unidad"
+    },
+    {
+     "nombre": "Órganos administrativos desconcentrados",
+     "titular": " ",
+     "unidades": [
+      {
+       "nombre": "Servicio de Administración Tributaria (SAT)"
+      },
+      {
+       "nombre": "Comisión Nacional Bancaria y de Valores (CNBV)"
+      },
+      {
+       "nombre": "Comisión Nacional de Seguros y Fianzas (CNSF)"
+      },
+      {
+       "nombre": "Comisión Nacional del Sistema de Ahorro para el Retiro (CONSAR)"
+      },
+      {
+       "nombre": "Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)"
+      },
+      {
+       "nombre": "Instituto para Devolver al Pueblo lo Robado (INDEP)"
+      }
+     ]
     }
    ]
   },
@@ -1020,11 +1124,44 @@
    "titular": "Jorge Alberto Mendoza Sánchez",
    "cargo": "Director General",
    "url": "https://www.gob.mx/banobras",
-   "nota": "Banca de desarrollo para infraestructura. Estructura de financiamiento de proyectos de energía (planes 2026 por miles de mdd para renovables e infraestructura). Titular verificado con prensa oficial (2026).",
+   "dir_url": "https://transparencia.banobras.gob.mx/unidad-de-transparencia/fraccion-ii-estructura-organica/",
+   "nota": "Estructura conforme al Manual General de Organización de Banobras (S.N.C.). El Consejo Directivo designó al Director General y a siete Directores Generales Adjuntos (2025). Titulares verificados donde consta; los demás se listan por su nombre oficial. Banca de desarrollo para infraestructura, con línea de financiamiento a proyectos de energía.",
    "personas": [
     {
      "nombre": "Jorge Alberto Mendoza Sánchez",
      "cargo": "Director General"
+    }
+   ],
+   "unidades": [
+    {
+     "nombre": "Dirección General Adjunta de Financiamiento y Asistencia Técnica a Gobiernos",
+     "cargo": "Director General Adjunto",
+     "titular": "Antonio García Carreño"
+    },
+    {
+     "nombre": "Dirección General Adjunta de Banca de Inversión",
+     "cargo": "Director General Adjunto"
+    },
+    {
+     "nombre": "Dirección General Adjunta de Crédito",
+     "cargo": "Director General Adjunto"
+    },
+    {
+     "nombre": "Dirección General Adjunta de Administración y Finanzas",
+     "cargo": "Director General Adjunto"
+    },
+    {
+     "nombre": "Dirección General Adjunta Fiduciaria",
+     "cargo": "Director General Adjunto"
+    },
+    {
+     "nombre": "Dirección General Adjunta de Riesgos",
+     "cargo": "Director General Adjunto"
+    },
+    {
+     "nombre": "Dirección General Adjunta Jurídica",
+     "cargo": "Directora General Adjunta",
+     "titular": "Julieta Yelena Fernández Ugalde"
     }
    ]
   },
@@ -1032,20 +1169,77 @@
    "titular": "Iván Escalante Ruiz",
    "cargo": "Procurador Federal del Consumidor",
    "url": "https://www.gob.mx/profeco",
-   "nota": "Protección al consumidor: vigila precios de combustibles (gasolina, diésel, gas LP) vía 'Quién es Quién en los Precios', etiquetado y prácticas comerciales. Titular verificado con fuente oficial (2026).",
+   "nota": "Estructura conforme al Estatuto Orgánico de la Profeco. Titulares de subprocuradurías verificados donde consta. Vigila precios de combustibles (gasolina, diésel, gas LP) vía la Dirección General de Verificación de Combustibles y \"Quién es Quién en los Precios\".",
    "personas": [
     {
      "nombre": "Iván Escalante Ruiz",
      "cargo": "Procurador Federal del Consumidor"
     }
+   ],
+   "unidades": [
+    {
+     "nombre": "Subprocuraduría de Servicios",
+     "cargo": "Subprocuradora",
+     "titular": "Noreli Domínguez Acosta",
+     "unidades": [
+      {
+       "nombre": "Dirección General de Quejas y Conciliación"
+      },
+      {
+       "nombre": "Dirección General de Contratos de Adhesión, Registros y Autofinanciamiento"
+      },
+      {
+       "nombre": "Dirección General de Procedimientos"
+      }
+     ]
+    },
+    {
+     "nombre": "Subprocuraduría de Verificación",
+     "cargo": "Subprocurador",
+     "titular": "Salvador Farías Higareda",
+     "unidades": [
+      {
+       "nombre": "Dirección General de Verificación y Vigilancia"
+      },
+      {
+       "nombre": "Dirección General de Verificación de Combustibles"
+      },
+      {
+       "nombre": "Laboratorio Nacional de Protección al Consumidor"
+      }
+     ]
+    },
+    {
+     "nombre": "Subprocuraduría Jurídica",
+     "cargo": "Subprocurador",
+     "titular": "Rafael Ochoa Morales",
+     "unidades": [
+      {
+       "nombre": "Dirección General de lo Contencioso y de Recursos"
+      },
+      {
+       "nombre": "Dirección General Consultiva"
+      }
+     ]
+    },
+    {
+     "nombre": "Subprocuraduría de Telecomunicaciones",
+     "cargo": "Subprocurador",
+     "unidades": [
+      {
+       "nombre": "Dirección General de Contratos de Adhesión de Telecomunicaciones"
+      }
+     ]
+    },
+    {
+     "nombre": "Coordinación General de Educación y Divulgación",
+     "cargo": "Coordinador General"
+    },
+    {
+     "nombre": "Unidad de Administración y Finanzas",
+     "cargo": "Titular de la Unidad"
+    }
    ]
-  },
-  "SEMPRA": {
-   "titular": "Empresa privada",
-   "cargo": "Gas natural, GNL e infraestructura energética",
-   "url": "https://www.sempra.com",
-   "nota": "Actor privado del mercado energético mexicano (no es dependencia pública). Matriz de Ecogas (distribución de gas natural) e IEnova (ductos, almacenamiento, GNL Costa Azul). Se sigue por su peso en inversión y regulación del sector. No se listan ejecutivos por tratarse de empresa privada; consulta su sala de prensa para vocería vigente.",
-   "personas": []
   }
  }
 }
