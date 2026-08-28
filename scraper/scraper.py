@@ -58,6 +58,7 @@ RSS_FEEDS = {
     # ── Sectoriales (energía, residuos, plásticos) ───────────────────────────
     "Energia Hoy":       "https://energiahoy.com/feed/",
     "PV Magazine MX":    "https://www.pv-magazine-mexico.com/feed/",
+    "Energia a Debate":  "https://www.energiaadebate.com/feed/",
     "Residuos Expo":     "https://residuosexpo.com/?feed=rss2",
     "Ambiente Plastico": "https://ambienteplastico.com/feed/",
 }
