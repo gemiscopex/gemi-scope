@@ -2511,8 +2511,7 @@ var ACTORES_FED=[
   {sig:'SENASICA',dep:'Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria',titular:'Francisco Javier Calderón Elizalde',cargo:'Director en Jefe',url:'https://www.gob.mx/senasica'},
   {sig:'SHCP',dep:'Secretaría de Hacienda y Crédito Público',titular:'Édgar Amador Zamora',cargo:'Secretario',url:'https://www.gob.mx/hacienda'},
   {sig:'BANOBRAS',dep:'Banco Nacional de Obras y Servicios Públicos',titular:'Jorge Alberto Mendoza Sánchez',cargo:'Director General',url:'https://www.gob.mx/banobras'},
-  {sig:'PROFECO',dep:'Procuraduría Federal del Consumidor',titular:'Iván Escalante Ruiz',cargo:'Procurador',url:'https://www.gob.mx/profeco'},
-  {sig:'SEMPRA',dep:'Sempra · Ecogas / IEnova (empresa privada)',titular:'Empresa privada',cargo:'Gas natural, GNL e infraestructura',url:'https://www.sempra.com'}
+  {sig:'PROFECO',dep:'Procuraduría Federal del Consumidor',titular:'Iván Escalante Ruiz',cargo:'Procurador',url:'https://www.gob.mx/profeco'}
 ];
 var _depsFed=null,_depOpen={};
 function _depGet(sig){return (_depsFed&&_depsFed.dependencias&&_depsFed.dependencias[sig])||null;}
@@ -2539,8 +2538,7 @@ var _SEC_GROUPS=[
   {sec:'Economía',sub:'SE',sigs:['ECONOMÍA']},
   {sec:'Agricultura y Desarrollo Rural',sub:'SADER y órganos desconcentrados',sigs:['SADER','SENASICA']},
   {sec:'Salud',sub:'SSA',sigs:['COFEPRIS']},
-  {sec:'Hacienda, financiamiento y consumidor',sub:'Actores transversales que inciden en energía e infraestructura',sigs:['SHCP','BANOBRAS','PROFECO']},
-  {sec:'Actores privados del mercado energético',sub:'Empresas privadas de seguimiento (no son dependencias públicas)',sigs:['SEMPRA']}
+  {sec:'Hacienda, financiamiento y consumidor',sub:'Actores públicos transversales que inciden en energía e infraestructura',sigs:['SHCP','BANOBRAS','PROFECO']}
 ];
 function _depDetailHTML(a,dep){
   var per=(dep.personas||[]);
