@@ -2508,7 +2508,11 @@ var ACTORES_FED=[
   {sig:'CONANP',dep:'Comisión Nacional de Áreas Naturales Protegidas',titular:'Pedro Álvarez-Icaza Longoria',cargo:'Comisionado Nacional',url:'https://www.gob.mx/conanp'},
   {sig:'ASEA',dep:'Agencia de Seguridad, Energía y Ambiente',titular:'Andrea González Hernández',cargo:'Directora Ejecutiva',url:'https://www.gob.mx/asea'},
   {sig:'COFEPRIS',dep:'Comisión Federal para la Protección contra Riesgos Sanitarios',titular:'Víctor Hugo Borja Aburto',cargo:'Comisionado Federal',url:'https://www.gob.mx/cofepris'},
-  {sig:'SENASICA',dep:'Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria',titular:'Francisco Javier Calderón Elizalde',cargo:'Director en Jefe',url:'https://www.gob.mx/senasica'}
+  {sig:'SENASICA',dep:'Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria',titular:'Francisco Javier Calderón Elizalde',cargo:'Director en Jefe',url:'https://www.gob.mx/senasica'},
+  {sig:'SHCP',dep:'Secretaría de Hacienda y Crédito Público',titular:'Édgar Amador Zamora',cargo:'Secretario',url:'https://www.gob.mx/hacienda'},
+  {sig:'BANOBRAS',dep:'Banco Nacional de Obras y Servicios Públicos',titular:'Jorge Alberto Mendoza Sánchez',cargo:'Director General',url:'https://www.gob.mx/banobras'},
+  {sig:'PROFECO',dep:'Procuraduría Federal del Consumidor',titular:'Iván Escalante Ruiz',cargo:'Procurador',url:'https://www.gob.mx/profeco'},
+  {sig:'SEMPRA',dep:'Sempra · Ecogas / IEnova (empresa privada)',titular:'Empresa privada',cargo:'Gas natural, GNL e infraestructura',url:'https://www.sempra.com'}
 ];
 var _depsFed=null,_depOpen={};
 function _depGet(sig){return (_depsFed&&_depsFed.dependencias&&_depsFed.dependencias[sig])||null;}
@@ -2534,7 +2538,9 @@ var _SEC_GROUPS=[
   {sec:'Energía',sub:'SENER, empresas del Estado y órganos del sector',sigs:['SENER','CFE','PEMEX','CNE','CONUEE','CNSNS','ININ']},
   {sec:'Economía',sub:'SE',sigs:['ECONOMÍA']},
   {sec:'Agricultura y Desarrollo Rural',sub:'SADER y órganos desconcentrados',sigs:['SADER','SENASICA']},
-  {sec:'Salud',sub:'SSA',sigs:['COFEPRIS']}
+  {sec:'Salud',sub:'SSA',sigs:['COFEPRIS']},
+  {sec:'Hacienda, financiamiento y consumidor',sub:'Actores transversales que inciden en energía e infraestructura',sigs:['SHCP','BANOBRAS','PROFECO']},
+  {sec:'Actores privados del mercado energético',sub:'Empresas privadas de seguimiento (no son dependencias públicas)',sigs:['SEMPRA']}
 ];
 function _depDetailHTML(a,dep){
   var per=(dep.personas||[]);
@@ -5610,21 +5616,42 @@ function _congToggleMis(v){_congSoloMis=!!v;_congExpanded=true;_congRenderList()
 function _congTrendData(){
   var items=_congItems||[];if(items.length<3)return [];
   var now=Date.now(),CATS_=(typeof CATS!=='undefined')?CATS:[];
+  // 5º factor: cobertura de prensa. Cuenta -una sola vez por tema- las notas
+  // recientes (<=45d, relevancia MX) que tocan cada tema; luego cada iniciativa
+  // hereda la suma de los temas que toca. Mismo motor determinista del Radar.
+  var recentNews=[];
+  try{recentNews=(typeof noticias!=='undefined'?noticias:[]||[]).filter(function(n){
+    var d=new Date(n.fecha_publicacion).getTime();
+    return !isNaN(d)&&(now-d)/864e5<=45&&(typeof isMxRelevant!=='function'||isMxRelevant(n));});
+  }catch(e){recentNews=[];}
+  var themeCov={};
+  CATS_.forEach(function(c){
+    themeCov[c.id]=recentNews.filter(function(n){
+      var txt=(typeof _rdNacText==='function')?_rdNacText(n):((n.titulo||'')+' '+(n.resumen||''));
+      return _radarKwMatch(c.kw,txt);}).length;
+  });
+  // Normaliza el calor entre temas: cada iniciativa hereda el calor de su tema MÁS
+  // caliente (no la suma, que satura). heat 0..1 relativo al tema más cubierto.
+  var maxCov=1;CATS_.forEach(function(c){if((themeCov[c.id]||0)>maxCov)maxCov=themeCov[c.id];});
   return items.map(function(it){
     var t=new Date(String(it.fecha||'').substring(0,10)+'T12:00:00').getTime();
     var daysAgo=isNaN(t)?999:(now-t)/864e5;
     var rec=Math.max(0,45-daysAgo);
-    var temaHits=CATS_.reduce(function(a,c){return a+(_radarKwMatch(c.kw,it.titulo||'')?1:0);},0);
+    var temaHits=0,hottest=0;
+    CATS_.forEach(function(c){if(_radarKwMatch(c.kw,it.titulo||'')){temaHits++;if((themeCov[c.id]||0)>hottest)hottest=themeCov[c.id]||0;}});
     var p=(typeof _congParse==='function')?_congParse(it):{leyes:[]};
     var leyes=Math.min((p.leyes||[]).length,3);
     var iniB=it.tipo!=='punto_acuerdo'?5:0;
-    return {it:it,score:rec+temaHits*6+leyes*4+iniB};
+    var heat=hottest/maxCov; // 0..1: calor mediático del tema relativo al más caliente
+    var presB=heat*18; // 0..18: no domina, pero re-ordena hacia lo mediáticamente caliente
+    return {it:it,score:rec+temaHits*6+leyes*4+iniB+presB,pres:hottest,heat:heat};
   }).filter(function(x){return x.score>0;}).sort(function(a,b){return b.score-a.score;}).slice(0,10);
 }
 function _congTrendingHTML(){
   var scored=_congTrendData();if(scored.length<3)return '';
   var cards=scored.map(function(s,i){
-    var it=s.it,p=(typeof _congParse==='function')?_congParse(it):{accion:'',titulo:it.titulo||'',detalle:''};
+    var it=s.it,pres=s.pres||0,heat=s.heat||0,p=(typeof _congParse==='function')?_congParse(it):{accion:'',titulo:it.titulo||'',detalle:''};
+    var heatL=heat>=0.66?'TEMA MUY CALIENTE':(heat>=0.33?'TEMA CALIENTE':'');
     var partido=(typeof _congPartido==='function')?_congPartido(it):'';
     var autor=(typeof _congAutor==='function')?_congAutor(it):'';
     var f=it.fecha?new Date(it.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}):'';
@@ -5633,10 +5660,10 @@ function _congTrendingHTML(){
     var u=String(it.url||'#').replace(/'/g,'%27');
     var accionLast=autor?('Presentada por '+autor+(partido?' · '+partido:'')):('Registrada en '+cam);
     return '<div class="ctcard" onclick="window.open(\''+u+'\',\'_blank\')" title="Abrir en la Gaceta">'
-      +'<div class="ctcard-top"><span class="ctcard-rank">'+(i+1)+'</span><span class="ctcard-tags">'+cam.toUpperCase()+' · '+tipoL.toUpperCase()+'</span></div>'
+      +'<div class="ctcard-top"><span class="ctcard-rank">'+(i+1)+'</span><span class="ctcard-tags">'+cam.toUpperCase()+' · '+tipoL.toUpperCase()+(heatL?' · '+heatL:'')+'</span></div>'
       +'<div class="ctcard-title">'+_escHtml(p.titulo||it.titulo||'')+'</div>'
       +(p.detalle?'<div class="ctcard-detail">'+_escHtml(p.detalle)+'</div>':'')
-      +'<div class="ctcard-action"><b>Última acción</b> · '+f+'<br>'+_escHtml(accionLast)+'</div>'
+      +'<div class="ctcard-action"><b>Última acción</b> · '+f+'<br>'+_escHtml(accionLast)+(pres>=8?'<br><span style="color:#066750">Cobertura del tema · '+pres+' notas en prensa (45d)</span>':'')+'</div>'
     +'</div>';
   }).join('');
   var per=3,pages=Math.ceil(scored.length/per);
