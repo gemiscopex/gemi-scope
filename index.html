@@ -840,15 +840,30 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cong-trending{margin:0 0 22px;padding:0 0 12px;border-bottom:0.8px solid var(--border)}
 .cong-tr-hd{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#066750;margin-bottom:3px}
 .cong-tr-hd span{color:var(--text-muted);font-weight:400;letter-spacing:.02em}
-.cong-tr-lead{font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:6px}
-.cong-trend-row{display:grid;grid-template-columns:16px 1fr auto;align-items:baseline;gap:11px;padding:8px 0;border-bottom:0.8px solid var(--border);cursor:pointer}
-.cong-trend-row:hover{background:rgba(0,158,144,0.045)}
-.cong-trend-rank{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--text-muted);text-align:right}
-.cong-trend-row:first-of-type .cong-trend-rank{color:#066750}
-.cong-trend-main{min-width:0}
-.cong-trend-title{display:block;font-size:12.5px;color:var(--text);line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cong-trend-sub{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8.5px;letter-spacing:.02em;color:var(--text-muted);margin-top:3px}
-.cong-trend-date{font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap}
+/* Trending · carrusel de tarjetas (estilo Politico, diseño plano: separadores, sin cajas) */
+.cong-trend-wrap{margin:0 0 24px;padding:0 0 14px;border-bottom:0.8px solid var(--border)}
+.cong-trend-head{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.cong-trend-head .ct-title{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#066750}
+.cong-trend-vp{overflow:hidden}
+.cong-trend-track{display:flex;transition:transform .32s cubic-bezier(.22,1,.36,1);will-change:transform}
+.ctcard{flex:0 0 33.333%;box-sizing:border-box;padding:2px 20px 4px;border-left:0.8px solid var(--border);cursor:pointer;display:flex;flex-direction:column;gap:9px;min-height:150px}
+.ctcard:first-child{border-left:none;padding-left:2px}
+.ctcard:hover .ctcard-title{color:#066750}
+.ctcard-top{display:flex;align-items:center;gap:10px}
+.ctcard-rank{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text-muted)}
+.ctcard:hover .ctcard-rank{color:#066750}
+.ctcard-tags{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.05em;color:var(--text-muted)}
+.ctcard-title{font-size:14px;font-weight:600;color:var(--text);line-height:1.32;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transition:color .12s}
+.ctcard-detail{font-size:11px;color:var(--text-sec);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ctcard-action{font-family:var(--mono);font-size:9px;color:var(--text-muted);line-height:1.55;margin-top:auto}
+.ctcard-action b{color:#066750;font-weight:700;letter-spacing:.02em}
+.ct-arrows{display:flex;align-items:center;gap:11px;margin-top:12px}
+.ct-arrow{width:30px;height:30px;border-radius:50%;border:0.8px solid var(--border);background:none;color:var(--text-muted);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:16px;line-height:0;flex-shrink:0;transition:border-color .12s,color .12s}
+.ct-arrow:hover{border-color:#066750;color:#066750}
+.ct-prog{flex:1;height:2px;background:var(--border);position:relative;overflow:hidden}
+.ct-prog>span{position:absolute;top:0;height:100%;background:#066750;transition:width .2s,left .2s}
+.ct-count{font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap}
+@media(max-width:760px){.ctcard{flex:0 0 100%;border-left:none;padding-left:2px;padding-right:2px}}
 /* Vencimientos y sesiones (línea de tiempo) */
 .prox-row{display:flex;align-items:flex-start;gap:16px;padding:13px 2px;border-top:0.8px solid var(--border)}
 .prox-row[onclick]:hover{background:rgba(0,158,144,0.04)}
@@ -5589,39 +5604,68 @@ function _congRenderList(){
 }
 var _congSoloMis=false;
 function _congToggleMis(v){_congSoloMis=!!v;_congExpanded=true;_congRenderList();}
-// ── Trending en el Congreso (estilo Politico PRO): ranking de las iniciativas más
-//    activas y relevantes AHORA. Cada una abre su ficha (y la Gaceta). Sin IA:
-//    score determinista = recencia + relevancia temática + leyes que toca. ──
-function _congTrendingHTML(){
-  var items=_congItems||[];if(items.length<3)return '';
+// ── Trending en el Congreso (carrusel estilo Politico PRO): tarjetas de las
+//    iniciativas más activas ahora, con flechas. Cada una abre la ley en la Gaceta.
+//    Score determinista = recencia + relevancia temática + leyes que toca. Sin IA. ──
+function _congTrendData(){
+  var items=_congItems||[];if(items.length<3)return [];
   var now=Date.now(),CATS_=(typeof CATS!=='undefined')?CATS:[];
-  var scored=items.map(function(it){
+  return items.map(function(it){
     var t=new Date(String(it.fecha||'').substring(0,10)+'T12:00:00').getTime();
     var daysAgo=isNaN(t)?999:(now-t)/864e5;
-    var rec=Math.max(0,45-daysAgo);                    // recencia (0..45)
+    var rec=Math.max(0,45-daysAgo);
     var temaHits=CATS_.reduce(function(a,c){return a+(_radarKwMatch(c.kw,it.titulo||'')?1:0);},0);
     var p=(typeof _congParse==='function')?_congParse(it):{leyes:[]};
     var leyes=Math.min((p.leyes||[]).length,3);
-    var iniB=it.tipo!=='punto_acuerdo'?5:0;            // iniciativas pesan más que exhortos
+    var iniB=it.tipo!=='punto_acuerdo'?5:0;
     return {it:it,score:rec+temaHits*6+leyes*4+iniB};
-  }).filter(function(x){return x.score>0;}).sort(function(a,b){return b.score-a.score;}).slice(0,6);
-  if(scored.length<3)return '';
-  var rows=scored.map(function(s,i){
-    var it=s.it,p=(typeof _congParse==='function')?_congParse(it):{accion:'',titulo:it.titulo||''};
+  }).filter(function(x){return x.score>0;}).sort(function(a,b){return b.score-a.score;}).slice(0,10);
+}
+function _congTrendingHTML(){
+  var scored=_congTrendData();if(scored.length<3)return '';
+  var cards=scored.map(function(s,i){
+    var it=s.it,p=(typeof _congParse==='function')?_congParse(it):{accion:'',titulo:it.titulo||'',detalle:''};
     var partido=(typeof _congPartido==='function')?_congPartido(it):'';
-    var plogo=(typeof PARTIDO_LOGO!=='undefined'&&partido)?PARTIDO_LOGO[partido]:'';
-    var f=it.fecha?new Date(it.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
-    var pchip=plogo?('<img src="'+plogo+'" alt="'+_escHtml(partido)+'" title="'+_escHtml(partido)+'" style="height:13px;width:auto;vertical-align:-2px;flex-shrink:0">'):(partido?'<span style="font-family:var(--mono);font-size:8px;font-weight:700;color:var(--text-muted)">'+_escHtml(partido)+'</span>':'');
+    var autor=(typeof _congAutor==='function')?_congAutor(it):'';
+    var f=it.fecha?new Date(it.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}):'';
+    var cam=it.camara==='SEN'?'Senado':'Diputados';
+    var tipoL=it.tipo==='punto_acuerdo'?'Punto de acuerdo':'Iniciativa';
     var u=String(it.url||'#').replace(/'/g,'%27');
-    return '<div class="cong-trend-row" onclick="window.open(\''+u+'\',\'_blank\')" title="Abrir en la Gaceta">'
-      +'<span class="cong-trend-rank">'+(i+1)+'</span>'
-      +'<span class="cong-trend-main"><span class="cong-trend-title">'+_escHtml(p.titulo||it.titulo||'')+'</span>'
-        +'<span class="cong-trend-sub"><span style="color:#066750;font-weight:700">'+(p.accion||'Iniciativa')+'</span> · '+(it.camara==='SEN'?'Senado':'Diputados')+(partido?' · ':'')+pchip+'</span></span>'
-      +'<span class="cong-trend-date">'+f+'</span></div>';
+    var accionLast=autor?('Presentada por '+autor+(partido?' · '+partido:'')):('Registrada en '+cam);
+    return '<div class="ctcard" onclick="window.open(\''+u+'\',\'_blank\')" title="Abrir en la Gaceta">'
+      +'<div class="ctcard-top"><span class="ctcard-rank">'+(i+1)+'</span><span class="ctcard-tags">'+cam.toUpperCase()+' · '+tipoL.toUpperCase()+'</span></div>'
+      +'<div class="ctcard-title">'+_escHtml(p.titulo||it.titulo||'')+'</div>'
+      +(p.detalle?'<div class="ctcard-detail">'+_escHtml(p.detalle)+'</div>':'')
+      +'<div class="ctcard-action"><b>Última acción</b> · '+f+'<br>'+_escHtml(accionLast)+'</div>'
+    +'</div>';
   }).join('');
-  return '<div class="cong-trending">'
-    +'<div class="cong-tr-hd">Trending <span>· lo más activo ahora</span></div>'
-    +rows+'</div>';
+  var per=3,pages=Math.ceil(scored.length/per);
+  return '<div class="cong-trend-wrap">'
+    +'<div class="cong-trend-head">'
+      +'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#066750" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg>'
+      +'<span class="ct-title">Trending en el Congreso</span>'
+      +'<span class="ct-count" style="margin-left:auto">'+scored.length+' destacados</span>'
+    +'</div>'
+    +'<div class="cong-trend-vp"><div class="cong-trend-track" id="cong-trend-track">'+cards+'</div></div>'
+    +'<div class="ct-arrows">'
+      +'<button class="ct-arrow" onclick="_ctScroll(-1)" aria-label="Anterior">‹</button>'
+      +'<button class="ct-arrow" onclick="_ctScroll(1)" aria-label="Siguiente">›</button>'
+      +'<div class="ct-prog" id="cong-trend-prog"><span style="width:'+(100/pages).toFixed(1)+'%;left:0"></span></div>'
+      +'<div class="ct-count" id="cong-trend-page">1/'+pages+'</div>'
+    +'</div>'
+  +'</div>';
+}
+var _ctPage=0;
+function _ctPerView(){return (window.innerWidth<=760)?1:3;}
+function _ctScroll(dir){
+  var vp=document.querySelector('.cong-trend-vp'),t=document.getElementById('cong-trend-track');
+  if(!vp||!t)return;
+  var per=_ctPerView(),pages=Math.max(1,Math.ceil(t.children.length/per));
+  _ctPage=Math.min(pages-1,Math.max(0,_ctPage+dir));
+  t.style.transform='translateX('+(-_ctPage*vp.clientWidth)+'px)';
+  var prog=document.getElementById('cong-trend-prog'),pg=document.getElementById('cong-trend-page');
+  if(prog){var bar=prog.querySelector('span');if(bar){bar.style.width=(100/pages).toFixed(1)+'%';bar.style.left=(_ctPage*100/pages).toFixed(1)+'%';}}
+  if(pg)pg.textContent=(_ctPage+1)+'/'+pages;
 }
 function _renderCongreso(panel){
   var el=document.getElementById('widget-congreso');
@@ -5643,6 +5687,7 @@ function _renderCongreso(panel){
       +'<span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none">⌕</span>'
       +'<input id="cong-search" value="'+_congQ.replace(/"/g,'&quot;')+'" oninput="_congSearch(this.value)" placeholder="Buscar por ley, tema o legislador…" style="width:100%;box-sizing:border-box;padding:8px 10px 8px 30px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none">'
     +'</div></div>';
+  _ctPage=0;
   el.innerHTML=_congTrendingHTML()+tabs+filt+'<div id="cong-list"></div>';
   _congRenderList();
 }
