@@ -106,6 +106,12 @@ KEYWORDS_AMBIENTAL = {
                          "reserva de la biosfera","especie en peligro","extincion","biodivers",
                          "vida silvestre","corredor biologic","parque nacional","manglar",
                          "arrecife","jaguar","ballena","manati"],
+    "regulacion_amb":   ["lgeepa","equilibrio ecologico","ley general del equilibrio ecologico",
+                         "ley ambiental","reforma ambiental","ley general de residuos",
+                         "ley general de vida silvestre","ley de aguas nacionales",
+                         "justicia ambiental","defensores ambientales","defensores del medio ambiente",
+                         "ordenamiento ecologico","patrimonio biocultural","impacto ambiental",
+                         "evaluacion de impacto ambiental","restauracion ambiental"],
     "infra":            ["planta de tratamiento","alcantarillado","acueducto","colector",
                          "obra hidraulica","infraestructura hidrica"],
     "agricultura":      ["agricultura","agropecuari","ganaderi","ganader","fertilizante",
@@ -243,50 +249,111 @@ def fetch_html(url: str, retries: int = 2) -> str | None:
 # ---------------------------------------------------------------------------
 # Extract Sheinbaum's own words, split into paragraphs
 # ---------------------------------------------------------------------------
-def extraer_intervenciones_csp(html: str) -> list:
-    """Return list of CSP intervention strings."""
+# Etiquetas de orador que NO son funcionarios (prensa/moderación): se ignoran
+RE_JOURNALIST = re.compile(r"pregunta|periodista|interlocutor|moderador|^voz\b|intervencion",
+                           re.IGNORECASE)
+# Cargos que sí queremos capturar además de la Presidenta (funcionarios)
+_OFICIAL_KW = ["secretari", "subsecretari", "director", "titular", "comisionad",
+               "procurador", "gobernador", "coordinador", "jefe de gobierno",
+               "general de", "almirante", "presidente de", "directora"]
+_ORG_TAG = [("medio ambiente", "Semarnat"), ("semarnat", "Semarnat"),
+            ("recursos naturales", "Semarnat"), ("energia", "Sener"),
+            ("agricultura", "Sader"), ("desarrollo rural", "Sader"),
+            ("hacienda", "SHCP"), ("comision nacional del agua", "Conagua"),
+            ("conagua", "Conagua"), ("bienestar", "Bienestar"),
+            ("economia", "Economía"), ("salud", "Salud"), ("gobernacion", "Segob")]
+
+def _speaker_label(p: str):
+    """Si el párrafo ABRE un turno de orador, devuelve la etiqueta (texto antes de
+    los dos puntos). Una etiqueta real es un encabezado corto con MAYÚSCULAS
+    dominantes (p. ej. 'PRESIDENTA CLAUDIA SHEINBAUM PARDO' o 'ALICIA BÁRCENA
+    IBARRA, SECRETARIA DE MEDIO AMBIENTE...'). Si no, None."""
+    head = p[:110]
+    if ":" not in head:
+        return None
+    lead = p.split(":", 1)[0].strip()
+    if not (3 <= len(lead) <= 95):
+        return None
+    if len(lead.split()) > 13:
+        return None
+    letters = [c for c in lead if c.isalpha()]
+    if not letters:
+        return None
+    upper = sum(1 for c in letters if c == c.upper())
+    if upper / len(letters) < 0.7:        # una oración normal no es casi todo mayúsculas
+        return None
+    return lead
+
+def _speaker_kind(label: str) -> str:
+    su = normalize(label)
+    if RE_CSP_LABEL.search(label) or "presidenta" in su:
+        return "csp"
+    if RE_JOURNALIST.search(su):
+        return "press"
+    if any(w in su for w in _OFICIAL_KW):
+        return "oficial"
+    return "otro"
+
+def _short_speaker(label: str) -> str:
+    """'ALICIA BÁRCENA IBARRA, SECRETARIA DE MEDIO AMBIENTE...' -> 'Alicia Bárcena Ibarra (Semarnat)'."""
+    name = label.split(",")[0].strip()
+    name = " ".join(w.capitalize() for w in name.split())
+    su = normalize(label)
+    for key, tag in _ORG_TAG:
+        if key in su:
+            return f"{name} ({tag})"
+    return name
+
+def parse_turns(html: str) -> list:
+    """Divide la estenográfica en turnos [(etiqueta_orador, [párrafos])]."""
     soup = BeautifulSoup(html, "html.parser")
     body = soup.find("div", class_="article-body") or soup
-    parrafos = [p.get_text("\n", strip=True) for p in body.find_all(["p", "div"])]
-    intervenciones = []
-    capturando = False
-    actual = []
+    parrafos = [p.get_text(" ", strip=True) for p in body.find_all(["p", "div"])]
+    turns = []
+    speaker = None
+    buf = []
     for parr in parrafos:
-        if RE_CSP_LABEL.search(parr):
-            capturando = True
-            actual = [parr]
-        elif capturando and RE_OTHER_SPEAKER.match(parr.strip()):
-            if actual:
-                intervenciones.append("\n".join(actual))
-            capturando = False
-            actual = []
-        elif capturando:
-            actual.append(parr)
-    if actual:
-        intervenciones.append("\n".join(actual))
-    return intervenciones
+        p = parr.strip()
+        if not p:
+            continue
+        label = _speaker_label(p)
+        if label is not None:
+            if speaker is not None and buf:
+                turns.append((speaker, buf))
+            speaker = label
+            rest = p.split(":", 1)[1].strip()
+            buf = [rest] if len(rest) >= 1 else []
+        elif speaker is not None:
+            buf.append(p)
+    if speaker is not None and buf:
+        turns.append((speaker, buf))
+    return turns
 
-def extract_env_fragments(html: str, max_frags: int = 6) -> list:
+def extract_env_fragments(html: str, max_frags: int = 8) -> list:
     """
-    De las palabras de Sheinbaum únicamente, devuelve párrafos con
-    contenido ambiental genuino (sin seguridad, sin menciones de paso).
-    Si no se pueden aislar los turnos de la Presidenta, devuelve [].
+    Devuelve fragmentos con contenido ambiental genuino de la Presidenta Y de los
+    funcionarios que exponen (secretarios/directores; p. ej. la titular de Semarnat
+    presentando la reforma a la LGEEPA). Los turnos de la Presidenta van sin prefijo;
+    los de funcionarios se anteponen con el orador ('Alicia Bárcena Ibarra (Semarnat): …')
+    para dar atribución y que sean buscables. Se ignoran prensa/preguntas.
     """
-    intervenciones = extraer_intervenciones_csp(html)
-    if not intervenciones:
-        # Sin turnos identificados: no incluimos fragmentos para evitar ruido
+    turns = parse_turns(html)
+    if not turns:
         return []
-
     fragments = []
-    for bloque in intervenciones:
-        for line in bloque.split("\n"):
+    for label, paras in turns:
+        kind = _speaker_kind(label)
+        if kind not in ("csp", "oficial"):
+            continue
+        prefix = "" if kind == "csp" else _short_speaker(label) + ": "
+        for line in paras:
             line = line.strip()
             if len(line) < 80:           # párrafos muy cortos son poco informativos
                 continue
             if is_env_fragment(line):
-                fragments.append(line[:500])
-            if len(fragments) >= max_frags:
-                return fragments
+                fragments.append((prefix + line)[:520])
+                if len(fragments) >= max_frags:
+                    return fragments
     return fragments
 
 # ---------------------------------------------------------------------------
@@ -361,25 +428,30 @@ def main():
     existing_ids = {a["id"] for a in existing}
     print(f"Artículos existentes: {len(existing)}")
 
-    # Ventana de 8 días para recuperar mañaneras que se hayan quedado atrás
-    # (p. ej. tras un cambio de formato de URL). Se salta fines de semana y las
-    # que ya existan (probando ambos formatos de id: con y sin cero).
+    # Ventana de 10 días con UPSERT: se re-scrapea cada día del rango y, si trae
+    # contenido, se REEMPLAZA la versión guardada. Esto permite que mejoras en la
+    # extracción (p. ej. capturar a los secretarios que exponen, no solo a la
+    # Presidenta) apliquen retroactivamente a los días recientes. Si el re-scrape
+    # falla o no publica, se conserva lo que ya había (no se pierde nada).
     added = 0
-    for delta in range(0, 8):
+    for delta in range(0, 10):
         d = today - timedelta(days=delta)
         if d.weekday() >= 5:  # skip weekends
             continue
         ids_try = {make_id(build_url(d, True)), make_id(build_url(d, False))}
-        if ids_try & existing_ids:
-            print(f"  {d}: ya existe")
-            continue
+        ya = bool(ids_try & existing_ids)
         print(f"  Scrapeando {d}...", end=" ", flush=True)
         art = scrape_date(d)
         if art:
+            # upsert: quita la versión previa (por id o por fecha) y agrega la nueva
+            existing[:] = [a for a in existing
+                           if a.get("id") not in ids_try and a.get("fecha") != d.isoformat()]
             existing.append(art)
             existing_ids.add(art["id"])
             added += 1
-            print(f"✓ temas: {art['categorias']} | {len(art['fragmentos'])} fragmentos")
+            print(f"{'↻ actualizada' if ya else '✓ nueva'} | temas: {art['categorias']} | {len(art['fragmentos'])} frag")
+        elif ya:
+            print("— se conserva la versión previa")
         else:
             print("— sin contenido ambiental o no publicada aún")
         time.sleep(1.5)
