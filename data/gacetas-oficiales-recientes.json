@@ -1,15 +1,149 @@
 {
  "_meta": {
-  "ultima_actualizacion": "2026-08-29T17:59:37 CDMX",
-  "estados_con_actividad": 3,
+  "ultima_actualizacion": "2026-08-30T09:07:22 CDMX",
+  "estados_con_actividad": 5,
   "por_estado": {
    "Yucatán": 18,
+   "Guerrero": 22,
+   "Tabasco": 10,
    "Colima": 7,
    "Durango": 12
   },
   "nota": "Ediciones oficiales recientes raspadas por estado (etapa 1: estados con portal accesible). No es cobertura nacional completa."
  },
  "items": [
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/70-normal-2026_20260828164007.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/69-normal-2026_20260826173611.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/68-normal-2026_20260821134649.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/67-normal-2026_20260819143130.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/66-normal-2026_20260820100516.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/65-normal-2026_20260820094141.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/65-bis-2026_20260820095020.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/64-normal-2026_20260820092417.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/64-bis-2026_20260820093203.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/63-normal-2026_20260805133816.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/63-bis-2026_20260820083758.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-08-30",
+   "titulo": "Periódico Oficial No. 70",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/62-normal-2026_20260803092143.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-08-29",
+   "titulo": "Periódico Oficial · SUPLEMENTO D AYUNTAMIENTO DE CENTLA.-FE DE ERRATAS:MEDIANTE LA CUAL SE…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9006/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-08-29",
+   "titulo": "Periódico Oficial · SUPLEMENTO J SECRETARÍA DE CULTURA. -CÓDIGO DE CONDUCTA DE LA SECRETAR…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9005/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-08-29",
+   "titulo": "Periódico Oficial · SUPLEMENTO I AYUNTAMIENTO DE CENTRO. -LICITACIÓN PÚBLICA NACIONAL, REL…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9004/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-08-29",
+   "titulo": "Periódico Oficial · SUPLEMENTO H FISCALÍA GENERAL DEL ESTADO. -EDICTO CON NÚMERO DE CASO C…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9003/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-08-29",
+   "titulo": "Periódico Oficial · SUPLEMENTO G AYUNTAMIENTO DE BALANCÁN. - . POLÍTICAS Y LINEAMIENTOS DE…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9002/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-08-29",
+   "titulo": "Periódico Oficial · SUPLEMENTO F AYUNTAMIENTO DE TEAPA. -PRESUPUESTO DE EGRESOS MUNICIPAL …",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9001/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-08-29",
+   "titulo": "Periódico Oficial · SUPLEMENTO E AYUNTAMIENTO DE NACAJUCA. -FE DE ERRATAS: RESPECTO A LA R…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9000/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-08-29",
+   "titulo": "Periódico Oficial · SUPLEMENTO C AYUNTAMIENTO DE CENTRO. -ACUERDO MEDIANTE EL CUAL SE AUTO…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8998/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-08-29",
+   "titulo": "Periódico Oficial · SUPLEMENTO B INSTITUTO PARA EL FOMENTO DE LAS ARTESANIAS DE TABASCO. -…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8997/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-08-29",
+   "titulo": "Periódico Oficial · SUPLEMENTO 0 FISCALÍA GENERAL DEL ESTADO. -ACUERDO GENERAL AG/FGE/RAGE…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/8996/firmado_qr.pdf"
+  },
   {
    "estado": "Colima",
    "fecha": "2026-08-29",
@@ -29,78 +163,6 @@
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-08-27_1.pdf"
   },
   {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/69-normal-2026_20260826173611.pdf"
-  },
-  {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/68-normal-2026_20260821134649.pdf"
-  },
-  {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/67-normal-2026_20260819143130.pdf"
-  },
-  {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/66-normal-2026_20260820100516.pdf"
-  },
-  {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/65-normal-2026_20260820094141.pdf"
-  },
-  {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/65-bis-2026_20260820095020.pdf"
-  },
-  {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/64-normal-2026_20260820092417.pdf"
-  },
-  {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/64-bis-2026_20260820093203.pdf"
-  },
-  {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/63-normal-2026_20260805133816.pdf"
-  },
-  {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/63-bis-2026_20260820083758.pdf"
-  },
-  {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/62-normal-2026_20260803092143.pdf"
-  },
-  {
-   "estado": "Durango",
-   "fecha": "2026-08-27",
-   "titulo": "Periódico Oficial No. 69",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/61-normal-2026_20260729152939.pdf"
-  },
-  {
    "estado": "Yucatán",
    "fecha": "2026-08-26",
    "titulo": "Diario Oficial · edición matutina",
@@ -117,6 +179,30 @@
    "fecha": "2026-08-25",
    "titulo": "Diario Oficial · edición matutina",
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-08-25_1.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-25",
+   "titulo": "Periódico Oficial · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/Periodico-68-Alcance-III-25-Agosto-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-25",
+   "titulo": "Periódico Oficial · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/Periodico-68-Alcance-II-25-Agosto-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-25",
+   "titulo": "Periódico Oficial",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/Periodico-068-A-I-25-Agosto-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-25",
+   "titulo": "Periódico Oficial No. 68",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-68-25-AGOSTO-2026.pdf"
   },
   {
    "estado": "Yucatán",
@@ -141,6 +227,18 @@
    "fecha": "2026-08-21",
    "titulo": "Diario Oficial · edición matutina",
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-08-21_1.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-21",
+   "titulo": "Periódico Oficial No. 67 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-67-ALCANCE-I-21-AGOSTO-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-21",
+   "titulo": "Periódico Oficial No. 67",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-67-21-AGOSTO-2026.pdf"
   },
   {
    "estado": "Yucatán",
@@ -173,6 +271,18 @@
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-08-18_1.pdf"
   },
   {
+   "estado": "Guerrero",
+   "fecha": "2026-08-18",
+   "titulo": "Periódico Oficial No. 66 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-66-ALCANCE-I-18-AGOSTO-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-18",
+   "titulo": "Periódico Oficial No. 66",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-66-18-AGOSTO-2026.pdf"
+  },
+  {
    "estado": "Yucatán",
    "fecha": "2026-08-17",
    "titulo": "Diario Oficial · edición matutina",
@@ -189,6 +299,54 @@
    "fecha": "2026-08-14",
    "titulo": "Diario Oficial · edición matutina",
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-08-14_1.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-14",
+   "titulo": "Periódico Oficial No. 65 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-65-ALCANCE-VII-14-AGOSTO-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-14",
+   "titulo": "Periódico Oficial No. 65 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-65-ALCANCE-VI-14-AGOSTO-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-14",
+   "titulo": "Periódico Oficial",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/Periodico-065-A-V-14-Agosto-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-14",
+   "titulo": "Periódico Oficial · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/Periodico-65-Alcance-IV-14-Agosto-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-14",
+   "titulo": "Periódico Oficial No. 65 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-65-ALCANCE-III-14-AGOSTO-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-14",
+   "titulo": "Periódico Oficial No. 65 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-65-ALCANCE-II-14-AGOSTO-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-14",
+   "titulo": "Periódico Oficial No. 65 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-65-ALCANCE-I-14-AGOSTO-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-14",
+   "titulo": "Periódico Oficial No. 65",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-65-14-AGOSTO-2026.pdf"
   },
   {
    "estado": "Colima",
@@ -221,6 +379,36 @@
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-08-11_1.pdf"
   },
   {
+   "estado": "Guerrero",
+   "fecha": "2026-08-11",
+   "titulo": "Periódico Oficial",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/Periodico-064-A-V-11-Agosto-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-11",
+   "titulo": "Periódico Oficial",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/Periodico-064-A-IV-11-Agosto-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-11",
+   "titulo": "Periódico Oficial · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/Periodico-64-Alcance-III-11-Agosto-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-11",
+   "titulo": "Periódico Oficial · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/Periodico-64-Alcance-II-11-Agosto-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-11",
+   "titulo": "Periódico Oficial No. 64",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-64-11-AGOSTO-2026.pdf"
+  },
+  {
    "estado": "Yucatán",
    "fecha": "2026-08-10",
    "titulo": "Diario Oficial · edición matutina",
@@ -231,6 +419,12 @@
    "fecha": "2026-08-10",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/10082026/p26081001.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-08-01",
+   "titulo": "Periódico Oficial No. 64 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/08/P.O-64-11-ALCANCE-I-AGOSTO-2026.pdf"
   }
  ]
 }
