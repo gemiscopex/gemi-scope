@@ -1234,6 +1234,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
         <div class="nav-drop-it" onclick="goObligaciones('estatal')">Leyes Estatales</div>
         <div class="nav-drop-it" onclick="goObligaciones('rme')">Trámites RME<span class="nd-sub">Residuos de manejo especial</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('gacetas')">Gacetas por entidades</div>
+        <div class="nav-drop-it" onclick="goObligaciones('eventualidades')">Eventualidades<span class="nd-sub">Ley seca · Beta</span></div>
       </div>
     </div>
     <button class="tab-btn" onclick="showTab('estados',null)">Estados</button>
@@ -2423,6 +2424,7 @@ function goObligaciones(sub){
   _pushRoute(_OBLURL[sub]||'obligaciones');
   if(sub==='noms'){showTab('normas',null);return;}
   if(sub==='instrumentos'){_oblView='instrumentos';showTab('obligaciones',null);return;}
+  if(sub==='eventualidades'){_oblView='eventualidades';showTab('obligaciones',null);return;}
   showTab('legislacion',null);
   showLegSub(['estatal','gacetas','rme'].indexOf(sub)>=0?sub:'federal',null);
 }
@@ -3258,14 +3260,118 @@ var _oblView='instrumentos';
 function oblSetView(v){_oblView=v;renderObligaciones();}
 function renderObligaciones(){
   var host=document.getElementById('obligaciones-body');if(!host)return;
-  var views=[['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
+  var views=[['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular'],['eventualidades','Eventualidades']];
   var nav='<div class="stab-bar">'
-    +views.map(function(v){return '<span class="stab'+(v[0]===_oblView?' on':'')+'" onclick="oblSetView(\''+v[0]+'\')">'+v[1]+'</span>';}).join('')+'</div>';
+    +views.map(function(v){var beta=(v[0]==='eventualidades')?'<span style="font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.1em;color:var(--green);border:0.8px solid var(--green);border-radius:3px;padding:1px 3px;margin-left:5px;vertical-align:middle">BETA</span>':'';return '<span class="stab'+(v[0]===_oblView?' on':'')+'" onclick="oblSetView(\''+v[0]+'\')">'+v[1]+beta+'</span>';}).join('')+'</div>';
   var body= _oblView==='precedentes'?_jurisprudenciaHTML()
     : _oblView==='sustancias'?_sustanciasHTML()
     : _oblView==='ecocircular'?_ecocircularHTML()
+    : _oblView==='eventualidades'?_eventualidadesHTML()
     : _instrumentosHTML();
   host.innerHTML=nav+body;
+  if(_oblView==='eventualidades'&&_leySecaData&&typeof _lsRun==='function')_lsRun();
+}
+// ── Eventualidades · Ley seca (capa de prensa, datos reales de data/ley-seca.json) ──
+var _leySecaData=null,_lsLoading=false;
+function _lsLoad(){
+  if(_leySecaData||_lsLoading)return;
+  _lsLoading=true;
+  fetch('data/ley-seca.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(d){
+    _leySecaData=d||{eventos:[]};_lsLoading=false;
+    if(_oblView==='eventualidades')renderObligaciones();
+  }).catch(function(){_leySecaData={eventos:[]};_lsLoading=false;if(_oblView==='eventualidades')renderObligaciones();});
+}
+function _lsTitle(t){
+  t=String(t||'').trim();
+  var letters=t.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ]/g,'');
+  var up=(letters.match(/[A-ZÁÉÍÓÚÑ]/g)||[]).length;
+  if(letters.length>6 && up/letters.length>0.6){
+    t=t.toLowerCase().replace(/([.:¿¡]\s*|^\s*[¿¡"']*)([a-záéíóúñ])/u,function(m,a,b){return a+b.toUpperCase();});
+    t=t.charAt(0).toUpperCase()+t.slice(1);
+  }
+  return t;
+}
+function _lsCol(tag,h,p){
+  return '<div><div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;color:var(--green);text-transform:uppercase;margin-bottom:7px">'+tag+'</div>'
+    +'<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:5px">'+h+'</div>'
+    +'<div style="font-size:12px;color:var(--text-sec);line-height:1.6">'+p+'</div></div>';
+}
+function _eventualidadesHTML(){
+  if(!_leySecaData){_lsLoad();return '<div style="padding:26px 0;color:var(--text-muted);font-size:13px">Cargando eventualidades…</div>';}
+  var ev=_leySecaData.eventos||[];
+  var edos=Array.from(new Set(ev.map(function(e){return e.estado;}).filter(Boolean))).sort();
+  var edoOpts='<option value="">Todos los estados</option>'+edos.map(function(x){return '<option>'+x+'</option>';}).join('');
+  var motSet=Array.from(new Set(ev.map(function(e){return e.motivo;}).filter(function(m){return m&&m!=='Otro';}))).sort();
+  var motOpts='<option value="">Todo motivo</option>'+motSet.map(function(x){return '<option>'+x+'</option>';}).join('');
+  var st='font-size:13px;padding:7px 11px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);outline:none;font-family:var(--sans);border-radius:8px';
+  var act='';try{if(_leySecaData._meta&&_leySecaData._meta.actualizado){var ad=new Date(_leySecaData._meta.actualizado);if(!isNaN(ad))act=ad.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});}}catch(e){}
+  return ''
+    +'<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px">'
+      +'<span style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;color:#066750;text-transform:uppercase">Ley seca · Restricciones de venta</span>'
+      +'<span style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.12em;color:var(--green);border:0.8px solid var(--green);border-radius:3px;padding:2px 6px">BETA</span>'
+    +'</div>'
+    +'<div style="font-size:13px;color:var(--text-sec);max-width:74ch;line-height:1.6;margin-bottom:4px">Detección de prohibiciones y restricciones a la venta de alcohol por estado, municipio y alcaldía. Capa de prensa: rastrea medios nacionales y locales y normaliza cada nota a un evento con su plaza y motivo. La vigencia exacta se confirma en el bando o periódico oficial de la plaza.</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:.04em;margin-bottom:20px">Fuente: prensa vía Google News'+(act?' · actualizado '+act:'')+' · relevante para el sector bebidas</div>'
+    +'<div id="ls-stats" style="display:grid;grid-template-columns:repeat(3,1fr);border-top:0.8px solid var(--border);border-bottom:0.8px solid var(--border);margin-bottom:22px"></div>'
+    +'<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:6px">'
+      +'<input id="ls-q" placeholder="Buscar plaza o texto…" oninput="_lsRun()" style="'+st+';flex:1;min-width:200px">'
+      +'<select id="ls-edo" onchange="_lsRun()" style="'+st+'">'+edoOpts+'</select>'
+      +'<select id="ls-mot" onchange="_lsRun()" style="'+st+'">'+motOpts+'</select>'
+      +'<select id="ls-amb" onchange="_lsRun()" style="'+st+'"><option value="">Todo ámbito</option><option>Estatal</option><option>Municipal</option><option>Alcaldía</option></select>'
+    +'</div>'
+    +'<div id="ls-count" style="font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;color:var(--text-muted);margin:12px 0 4px"></div>'
+    +'<div id="ls-rows"></div>'
+    +'<div style="margin-top:40px;padding-top:22px;border-top:1px solid var(--text)">'
+      +'<div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;color:#066750;text-transform:uppercase;margin-bottom:16px">Cómo se arma</div>'
+      +'<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px">'
+        +_lsCol('Capa 1 · Activa','Prensa nacional y local','Rastreo continuo de medios por estado y municipio. La ley seca casi siempre se anuncia en prensa días antes del bando. Es la capa que ya está corriendo en esta vista.')
+        +_lsCol('Capa 2 · Autoritativa','Periódicos oficiales y bandos','El decreto o bando en el periódico oficial del estado o la gaceta municipal, más los reglamentos de venta permanentes. Confirma el evento y su vigencia. En desarrollo, por plazas prioritarias.')
+        +_lsCol('Capa 3 · Anticipación','Calendario predecible','Muchas restricciones son previsibles: jornadas electorales, Semana Santa, Grito de Independencia, fiestas patronales. Se pre-cargan las ventanas probables por plaza para avisar con anticipación.')
+      +'</div>'
+    +'</div>';
+}
+function _lsRun(){
+  if(!_leySecaData)return;
+  var ev=_leySecaData.eventos||[];
+  var q=((document.getElementById('ls-q')||{}).value||'').trim();
+  var edo=(document.getElementById('ls-edo')||{}).value||'';
+  var mot=(document.getElementById('ls-mot')||{}).value||'';
+  var amb=(document.getElementById('ls-amb')||{}).value||'';
+  function nrm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+  var qn=nrm(q);
+  var list=ev.filter(function(e){
+    if(edo&&e.estado!==edo)return false;
+    if(mot&&e.motivo!==mot)return false;
+    if(amb&&e.ambito!==amb)return false;
+    if(qn&&nrm((e.titulo||'')+' '+(e.estado||'')+' '+(e.fuente||'')).indexOf(qn)<0)return false;
+    return true;
+  });
+  var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  var rows=list.map(function(e){
+    var d=e.fecha_publicacion?new Date(e.fecha_publicacion):null;
+    var fl=d&&!isNaN(d)?(('0'+d.getDate()).slice(-2)+' '+MES[d.getMonth()]):'';
+    var plaza=(e.estado||'Sin ubicar')+(e.ambito?' · '+e.ambito:'');
+    var motChip=(e.motivo&&e.motivo!=='Otro')?'<span style="font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--green);text-transform:uppercase">'+e.motivo+'</span>':'<span style="color:var(--text-muted);font-size:11px">—</span>';
+    var u=String(e.url||'#').replace(/'/g,'%27');
+    return '<div style="display:grid;grid-template-columns:56px 150px 104px 1fr;gap:14px;padding:12px 0;border-bottom:0.8px solid var(--border);cursor:pointer;align-items:baseline" onclick="window.open(\''+u+'\',\'_blank\')" title="Abrir nota">'
+      +'<div style="font-family:var(--mono);font-size:11px;color:#066750;white-space:nowrap;font-variant-numeric:tabular-nums">'+fl+'</div>'
+      +'<div style="font-size:12.5px;color:var(--text);font-weight:600">'+_escHtml(plaza)+'</div>'
+      +'<div>'+motChip+'</div>'
+      +'<div><div style="font-size:12.5px;color:var(--text);line-height:1.5">'+_escHtml(_lsTitle(e.titulo))+'</div>'
+        +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:2px">'+_escHtml(e.fuente||'')+' ↗</div></div>'
+    +'</div>';
+  }).join('');
+  var rc=document.getElementById('ls-rows');
+  if(rc)rc.innerHTML=rows||'<div style="padding:22px 0;color:var(--text-muted);font-size:13px">Sin eventos con esos filtros.</div>';
+  var cd=document.getElementById('ls-count');
+  if(cd)cd.textContent=list.length+' evento'+(list.length===1?'':'s')+' · más reciente primero';
+  var stEl=document.getElementById('ls-stats');
+  if(stEl){
+    var estados=new Set(ev.map(function(e){return e.estado;}).filter(Boolean)).size;
+    var now=Date.now(),d7=ev.filter(function(e){var t=new Date(e.fecha_publicacion).getTime();return !isNaN(t)&&(now-t)/864e5<=7;}).length;
+    function stat(n,l,last){return '<div style="padding:15px 16px 15px 0'+(last?'':'')+'">'+'<div style="font-size:26px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1">'+n+'</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase;margin-top:8px">'+l+'</div></div>';}
+    stEl.innerHTML=stat(ev.length,'Restricciones detectadas')+stat(estados,'Estados con actividad')+stat(d7,'Últimos 7 días',true);
+  }
 }
 // ── AGENDA · reglamentaciones pendientes + DOF hoy + accesos ──
 // docs: [{label, url}] — enlaces a documentos cuando estén disponibles (opcional)
