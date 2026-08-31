@@ -1021,25 +1021,291 @@
    "nota": "Estructura conforme al Reglamento Interior de SENER. Subsecretarios verificados. La reforma energética 2024-2025 sustituyó a CRE y CNH por la Comisión Nacional de Energía (CNE), que entró en funciones el 21-may-2025. Titulares de órganos y empresas del sector verificados con fuentes oficiales y prensa (ago-2026); CFE, Pemex, CNE y ASEA reflejan los relevos de 2025-2026.",
    "unidades": [
     {
-     "nombre": "Subsecretaría de Hidrocarburos",
-     "cargo": "Subsecretario",
-     "titular": "Juan José Vidal Amaro"
-    },
-    {
-     "nombre": "Subsecretaría de Electricidad",
-     "cargo": "Subsecretario",
-     "titular": "José Antonio Rojas Nieto"
+     "nombre": "Persona titular de la Secretaría de Energía",
+     "cargo": "Secretaria de Energía",
+     "titular": "Luz Elena González Escobar"
     },
     {
      "nombre": "Subsecretaría de Planeación y Transición Energética",
-     "cargo": "Subsecretario",
-     "titular": "Jorge Marcial Islas Samperio"
+     "cargo": "Subsecretario(a)",
+     "unidades": [
+      {
+       "nombre": "Unidad del Sistema Nacional de Información Energética",
+       "cargo": "Titular de Unidad",
+       "unidades": [
+        {
+         "nombre": "Dirección General de Registros e Información Geoespacial del Sistema Nacional de Información Energética",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Metodologías y Estadísticas del Sistema Nacional de Información Energética",
+         "cargo": "Director(a) General"
+        }
+       ]
+      },
+      {
+       "nombre": "Dirección General de Planeación e Integración Energética",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Energías Renovables",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Eficiencia y Sustentabilidad Energética",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Transición Energética",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Desarrollo Tecnológico y Acceso a la Energía",
+       "cargo": "Director(a) General"
+      }
+     ]
     },
     {
-     "nombre": "Unidad de Administración y Finanzas"
+     "nombre": "Subsecretaría de Electricidad",
+     "cargo": "Subsecretario(a)",
+     "unidades": [
+      {
+       "nombre": "Unidad del Sistema Eléctrico Nacional y Política Nuclear",
+       "cargo": "Titular de Unidad",
+       "unidades": [
+        {
+         "nombre": "Dirección General de Evaluación Financiera de la Unidad del Sistema Eléctrico Nacional y Política Nuclear",
+         "cargo": "Director(a) General"
+        }
+       ]
+      },
+      {
+       "nombre": "Dirección General de Confiabilidad y Seguridad del Sector Eléctrico",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Distribución, Usos Finales de Energía Eléctrica y Vinculación Social",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Generación y Transmisión de Energía Eléctrica",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Análisis y Evaluación del Mercado Eléctrico Mayorista",
+       "cargo": "Director(a) General"
+      }
+     ]
     },
     {
-     "nombre": "Unidad de Asuntos Jurídicos"
+     "nombre": "Subsecretaría de Hidrocarburos",
+     "cargo": "Subsecretario(a)",
+     "unidades": [
+      {
+       "nombre": "Unidad de Desarrollo de Modelos Contractuales y de Asignaciones, Proyectos Regulatorios y Argumentación Técnica",
+       "cargo": "Titular de Unidad",
+       "unidades": [
+        {
+         "nombre": "Dirección General de Diseño, Desarrollo e Implementación de Asignaciones y Contratos de Exploración y Extracción",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Proyectos de Regulación, Normas Oficiales Mexicanas y Estándares",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Desarrollo de Argumentación Técnica para la Implementación de la Política Regulatoria del Sector Hidrocarburos",
+         "cargo": "Director(a) General"
+        }
+       ]
+      },
+      {
+       "nombre": "Unidad Técnica de Exploración",
+       "cargo": "Titular de Unidad",
+       "unidades": [
+        {
+         "nombre": "Dirección General de Registro de Recursos Energéticos y Prospectivos de la Nación",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Evaluación del Potencial de Hidrocarburos",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Autorizaciones de Estudios y Pozos Exploratorios",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Planes de Exploración y Programas de Evaluación",
+         "cargo": "Director(a) General"
+        }
+       ]
+      },
+      {
+       "nombre": "Unidad Técnica de Extracción de Hidrocarburos",
+       "cargo": "Titular de Unidad",
+       "unidades": [
+        {
+         "nombre": "Dirección General de Medición y Balances de la Producción",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Reservas de Hidrocarburos",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Planes y Programas de Extracción",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Administración de Campos de Extracción",
+         "cargo": "Director(a) General"
+        }
+       ]
+      },
+      {
+       "nombre": "Unidad de Políticas de Transformación Industrial",
+       "cargo": "Titular de Unidad",
+       "unidades": [
+        {
+         "nombre": "Dirección General de Gas Natural y Petroquímicos",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Petrolíferos",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Permisos de Importación y Exportación de Hidrocarburos, Petroquímicos y Petrolíferos",
+         "cargo": "Director(a) General"
+        }
+       ]
+      },
+      {
+       "nombre": "Unidad de Seguimiento y Supervisión de Asignaciones, Contratos y Permisos",
+       "cargo": "Titular de Unidad",
+       "unidades": [
+        {
+         "nombre": "Dirección General de Evaluación del Cumplimiento de Obligaciones de las Asignaciones y Contratos",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Seguimiento de Asignaciones",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Seguimiento de Contratos",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Supervisión Técnica",
+         "cargo": "Director(a) General"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Unidad de Administración y Finanzas",
+     "cargo": "Titular de Unidad",
+     "unidades": [
+      {
+       "nombre": "Dirección General de Programación y Presupuesto",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Recursos Humanos",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Recursos Materiales y Servicios Generales",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Desarrollo de Sistemas, Infraestructura y Comunicaciones",
+       "cargo": "Director(a) General"
+      }
+     ]
+    },
+    {
+     "nombre": "Oficina de la persona titular de la Secretaría",
+     "cargo": "Titular",
+     "unidades": [
+      {
+       "nombre": "Unidad de Asuntos Jurídicos",
+       "cargo": "Titular de Unidad",
+       "unidades": [
+        {
+         "nombre": "Dirección General de lo Consultivo",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Normatividad",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Representación Legal y de lo Contencioso",
+         "cargo": "Director(a) General"
+        }
+       ]
+      },
+      {
+       "nombre": "Unidad de Enlace Legislativo",
+       "cargo": "Titular de Unidad"
+      },
+      {
+       "nombre": "Unidad de Estrategia, Vinculación Interinstitucional y Seguimiento de Proyectos e Inversiones",
+       "cargo": "Titular de Unidad",
+       "unidades": [
+        {
+         "nombre": "Dirección General de Evaluación, Análisis y Seguimiento de Proyectos",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Estrategia y Vinculación Interinstitucional",
+         "cargo": "Director(a) General"
+        },
+        {
+         "nombre": "Dirección General de Innovación y Gobierno Ágil",
+         "cargo": "Director(a) General"
+        }
+       ]
+      },
+      {
+       "nombre": "Dirección General de Asuntos Internacionales",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Comunicación Social",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Impacto Social, Consulta Previa y Ocupación Superficial",
+       "cargo": "Director(a) General"
+      },
+      {
+       "nombre": "Dirección General de Transparencia y Protección de Datos Personales",
+       "cargo": "Director(a) General"
+      }
+     ]
+    },
+    {
+     "nombre": "Órganos administrativos desconcentrados",
+     "cargo": "Titular",
+     "unidades": [
+      {
+       "nombre": "Comisión Nacional de Seguridad Nuclear y Salvaguardias",
+       "cargo": "Titular del Órgano Desconcentrado"
+      },
+      {
+       "nombre": "Comisión Nacional para el Uso Eficiente de la Energía",
+       "cargo": "Titular del Órgano Desconcentrado"
+      },
+      {
+       "nombre": "Comisión Nacional de Energía",
+       "cargo": "Titular del Órgano Desconcentrado"
+      }
+     ]
     }
    ],
    "dir_url": "https://www.gob.mx/sener/api/v1/levels",
@@ -2091,6 +2357,309 @@
      "nombre": "Rafael Narváez Ávila",
      "cargo": "Director Corporativo de Planeación Estratégica"
     }
+   ],
+   "unidades": [
+    {
+     "nombre": "Consejo de Administración",
+     "cargo": "Órgano supremo de administración",
+     "unidades": [
+      {
+       "nombre": "Comité de Adquisiciones, Arrendamientos, Servicios y Obras",
+       "cargo": "Comité auxiliar del Consejo"
+      },
+      {
+       "nombre": "Comité de Auditoría",
+       "cargo": "Comité auxiliar del Consejo"
+      },
+      {
+       "nombre": "Comité de Empresas filiales",
+       "cargo": "Comité auxiliar del Consejo"
+      },
+      {
+       "nombre": "Comité de Estrategia e Inversiones",
+       "cargo": "Comité auxiliar del Consejo"
+      },
+      {
+       "nombre": "Comité de Recursos Humanos, Remuneraciones y Austeridad",
+       "cargo": "Comité auxiliar del Consejo"
+      },
+      {
+       "nombre": "Comité de Sostenibilidad",
+       "cargo": "Comité auxiliar del Consejo"
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección General",
+     "cargo": "Directora General",
+     "titular": "Emilia Esther Calleja Alor",
+     "unidades": [
+      {
+       "nombre": "Coordinación de Control Interno",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Comunicación",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Relaciones Interinstitucionales y Justicia Energética",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación Nuclear",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Contratos de Producción Externa de Energía",
+       "cargo": "Coordinador(a)"
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Operación",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Generación",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Coordinación Nacional de Generación Termoeléctrica y Energías Intermitentes",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación Nacional de Generación Hidroeléctrica",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Energéticos y Gestión de la Energía",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Subdirección de Transmisión",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Coordinación de Redes de Transporte Eléctrico",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Mantenimiento de Equipo de Subestaciones",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Monitoreo y Operación de Activos",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Subdirección de Distribución",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Coordinación de Distribución",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación Comercial",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Subdirección de Seguridad Física",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Coordinación de Mercado Eléctrico Mayorista",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación Técnica",
+       "cargo": "Coordinador(a)"
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Servicios Especializados y Estrategia Comercial",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Estrategia Comercial",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Subdirección de Servicios Especializados y Nuevos Productos",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Coordinación de Servicios Especializados",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación TELECOM",
+       "cargo": "Coordinador(a)"
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Finanzas",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Operación Financiera",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Subdirección de Control Financiero",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Subdirección de Financiamiento y Coberturas",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Subdirección de Evaluación de Proyectos de Inversión",
+       "cargo": "Subdirector(a)"
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Administración",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Contratación y Servicios",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Coordinación de Administración y Servicios",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Contratación de Obras y Servicios Relacionados",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Subdirección de Recursos Humanos",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Coordinación de Desarrollo del Capital Humano",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Subdirección de Transformación Digital",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Coordinación del Patrimonio y Aseguramiento de Activos",
+       "cargo": "Coordinador(a)"
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Ingeniería y Proyectos de Infraestructura",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Desarrollo y Evaluación de Proyectos",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Coordinación de Desarrollo de Proyectos",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Estudios de Ingeniería Civil y Protección Ambiental",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Subdirección de Ingeniería y Administración de la Construcción",
+       "cargo": "Subdirector(a)"
+      },
+      {
+       "nombre": "Coordinación de Proyectos de Energías Limpias",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Proyectos Termoeléctricos",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Proyectos Transmisión y Transformación",
+       "cargo": "Coordinador(a)"
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Planeación",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Coordinación de Estudios Económicos",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Vinculación",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Evaluación",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Sostenibilidad y Transición Energética",
+       "cargo": "Coordinador(a)"
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección Jurídica",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Coordinación de Asuntos Contenciosos",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Estrategia Legal y Asuntos Consultivos",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Coordinación de Proyectos y Derechos Inmobiliarios",
+       "cargo": "Coordinador(a)"
+      }
+     ]
+    },
+    {
+     "nombre": "Auditoría Interna",
+     "cargo": "Titular de la Auditoría Interna"
+    },
+    {
+     "nombre": "Empresas Filiales",
+     "cargo": "Empresas filiales creadas por el Consejo",
+     "unidades": [
+      {
+       "nombre": "CFE Calificados S.A. de C.V.",
+       "cargo": "Empresa filial"
+      },
+      {
+       "nombre": "CFEnergía S.A. de C.V.",
+       "cargo": "Empresa filial"
+      },
+      {
+       "nombre": "CFE International LLC",
+       "cargo": "Empresa filial"
+      },
+      {
+       "nombre": "CFE Intermediación de Contratos Legados S.A. de C.V.",
+       "cargo": "Empresa filial"
+      },
+      {
+       "nombre": "CFE Capital S. de R.L. de C.V.",
+       "cargo": "Empresa filial"
+      }
+     ]
+    }
    ]
   },
   "PEMEX": {
@@ -2106,6 +2675,1365 @@
     {
      "nombre": "Carlos Armando Lechuga Aguiñaga",
      "cargo": "Director de Procesos Industriales (antes Pemex Transformación Industrial)"
+    }
+   ],
+   "unidades": [
+    {
+     "nombre": "Dirección General",
+     "cargo": "Director(a) General",
+     "titular": "Juan Carlos Carpio Fragoso"
+    },
+    {
+     "nombre": "Dirección de Exploración y Extracción",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Exploración",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Estudios Regionales",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Evaluación de Prospectos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Caracterización de Yacimientos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Geofísica",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Programación y Evaluación en Exploración",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Activo de Exploración Marina Norte",
+         "cargo": "Titular del Activo"
+        },
+        {
+         "nombre": "Activo de Exploración Terrestre Norte",
+         "cargo": "Titular del Activo"
+        },
+        {
+         "nombre": "Activo de Exploración Marina Sur",
+         "cargo": "Titular del Activo"
+        },
+        {
+         "nombre": "Activo de Exploración Terrestre Sur",
+         "cargo": "Titular del Activo"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Exploración y Extracción por Contratos y Asociaciones",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Gestión y Seguimiento de Contratos y Asociaciones de Exploración y Extracción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Operación de Contratos y Asociaciones de Exploración",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Operación de Contratos y Asociaciones de Extracción Norte",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Operación de Contratos y Asociaciones de Extracción Sur",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Extracción Región Marina Noreste",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Coordinación Operativa RMNE",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Mantenimiento, Confiabilidad y Construcción RMNE",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Programación y Evaluación RMNE",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Activo de Extracción Cantarell",
+         "cargo": "Titular del Activo"
+        },
+        {
+         "nombre": "Activo de Extracción Ku-Maloob-Zaap",
+         "cargo": "Titular del Activo"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Extracción Región Marina Suroeste",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Coordinación Operativa RMSO",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Control Operativo y Acondicionamiento de Hidrocarburos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Mantenimiento, Confiabilidad y Construcción RMSO",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Programación y Evaluación RMSO",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Activo de Extracción Abkatun-Pol-Chuc",
+         "cargo": "Titular del Activo"
+        },
+        {
+         "nombre": "Activo de Extracción Litoral de Tabasco",
+         "cargo": "Titular del Activo"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Extracción Región Terrestre Sur",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Coordinación Operativa RS",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Mantenimiento, Confiabilidad y Construcción RS",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Programación y Evaluación RS",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Activo de Extracción Macuspana-Muspac",
+         "cargo": "Titular del Activo"
+        },
+        {
+         "nombre": "Activo de Extracción Samaria-Luna",
+         "cargo": "Titular del Activo"
+        },
+        {
+         "nombre": "Activo de Extracción Bellota-Jujo",
+         "cargo": "Titular del Activo"
+        },
+        {
+         "nombre": "Activo de Extracción Cinco Presidentes",
+         "cargo": "Titular del Activo"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Extracción Región Terrestre Norte",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Coordinación Operativa RN",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Mantenimiento, Confiabilidad y Construcción RN",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Programación y Evaluación RN",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Activo de Extracción Reynosa",
+         "cargo": "Titular del Activo"
+        },
+        {
+         "nombre": "Activo de Extracción Poza Rica-Altamira",
+         "cargo": "Titular del Activo"
+        },
+        {
+         "nombre": "Activo de Extracción Veracruz",
+         "cargo": "Titular del Activo"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Mantenimiento Estático y Logística",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Programación y Evaluación",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Mantenimiento Estático e Infraestructura Complementaria Marina",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Servicios de Logística Marina",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Mantenimiento Estático e Infraestructura Complementaria Terrestre",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Servicios de Logística Terrestre",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección Técnica de Exploración y Extracción",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Planes de Extracción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Recuperación Avanzada de Hidrocarburos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Ingeniería de Intervenciones a Pozos de Exploración",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Ingeniería de Intervenciones a Pozos de Extracción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Aseguramiento Técnico de Exploración y Extracción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Recursos y Reservas de Hidrocarburos",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Administración de Exploración y Extracción",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Integración y Optimización de Exploración y Extracción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Programación y Evaluación Operativa",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguimiento y Mejora Continua de Costos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Cumplimiento de Obligaciones Técnicas para la Exploración y Extracción",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Seguridad, Salud en el Trabajo y Protección Ambiental",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia del Sistema Pemex Seguridad, Salud en el Trabajo y Protección Ambiental",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Evaluación, Auditoría y Normatividad",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguridad, Salud en el Trabajo y Protección Ambiental Región Norte",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguridad, Salud en el Trabajo y Protección Ambiental Región Sur",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguridad, Salud en el Trabajo y Protección Ambiental Región Marina",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguridad, Salud en el Trabajo y Protección Ambiental Perforación",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Diseño, Ingeniería y Ejecución de Proyectos",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Programación y Evaluación",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Caracterización y Evaluación de Campos Nuevos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Ejecución y Seguimiento de Pozos de Desarrollo",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Supervisión de Proyectos de Infraestructura",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Diseño de Proyectos de Exploración y Extracción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Ingeniería de Infraestructura de Exploración y Extracción",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Perforación, Terminación y Mantenimiento de Pozos",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Programación y Evaluación",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Operación y Mantenimiento de Equipos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Perforación y Reparación de Pozos Terrestre Norte",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Perforación y Reparación de Pozos Terrestre Sur",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Perforación y Reparación de Pozos Marina",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Servicios a Pozos",
+         "cargo": "Gerente"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Procesos Industriales",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Producción de Petrolíferos",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Administración de la Producción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Ingeniería de Procesos y Mejora Operativa",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Refinería Salamanca",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Refinería Madero",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Refinería Cadereyta",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Refinería Minatitlán",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Refinería Salina Cruz",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Refinería Tula",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Refinería Olmeca",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Producción de Petroquímica Secundaria",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Administración de la Producción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Ingeniería de Procesos y Mejora Operativa",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Complejo Petroquímico Cangrejera",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Complejo Petroquímico Morelos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Complejo Petroquímico Cosoleacaque",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Planeación y Evaluación Operativa",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Estrategias y Optimización",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Coordinación de Operaciones",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Análisis y Desempeño Operativo",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Evaluación Económica y Financiera",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Control y Soporte al Negocio",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Abasto de Petrolíferos y Petroquímicos",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Planeación y Evaluación de Petrolíferos y Petroquímicos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Operativa de Petrolíferos y Petroquímicos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Operación de Importaciones y Exportaciones de Petrolíferos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Operativa de Servicios con Terceros",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Proyectos Industriales",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Proyectos 1",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Proyectos 2",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Ingeniería y Costos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguimiento y Control de Proyectos Petrolíferos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguimiento y Control de Proyectos Petroquímicos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Administración de Impactos y Normatividad",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Seguridad Industrial y Protección Ambiental",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Auditoría y Estándares de Seguridad, Salud en el Trabajo, Protección Ambiental y Confiabilidad de Activos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguridad de los Procesos Petrolíferos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguridad de los Procesos Petroquímicos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Confiabilidad de Activos de Producción de Petrolíferos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Confiabilidad de Activos de Producción de Petroquímicos",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Fertilizantes",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia Operativa y Comercial de Fertilizantes",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Proyectos de Fertilizantes",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Administración de la Producción de Fertilizantes",
+         "cargo": "Gerente"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Transformación Energética",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Procesos de Gas y Derivados",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Complejo Procesador de Gas Ciudad Pemex",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Complejo Procesador de Gas Nuevo Pemex",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Complejo Procesador de Gas Cactus",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Complejo Procesador de Gas Burgos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Administración de la Producción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Confiabilidad de los Activos de Procesos de Gas y Derivados",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Ingeniería de Procesos y Mejora Operativa",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguridad de los Procesos de Gas y Derivados",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Electricidad",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Programación Operativa",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Operativa de Servicios con Terceros",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Proyectos de Cogeneración y Eficiencia Energética",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Tecnologías y Energías Alternativas",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Aprovechamiento y Desarrollo",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Proyectos de Energías Alternativas y Economía Circular",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Geoenergías",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Aprovechamiento y Desarrollo de Proyectos de Geoenergía",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Implementación y Operación de Proyectos de Geoenergía",
+         "cargo": "Gerente"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Logística y Salvaguardia Estratégica",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Tratamiento y Logística Primaria",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Coordinación de Tratamiento y Logística Primaria",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Operaciones de Tratamiento y Logística Primaria Norte",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Operaciones de Tratamiento y Logística Primaria Sur",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Operaciones de Tratamiento y Logística Primaria Marinas",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Transporte",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Coordinación Logística",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Transporte Terrestre",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Transporte, Mantenimiento y Servicios de Ductos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Transporte Marítimo",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Almacenamiento",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Coordinación de Almacenamiento",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Almacenamiento Centro",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Almacenamiento Golfo",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Almacenamiento Norte",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Almacenamiento Pacífico",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Almacenamiento y Servicios Portuarios",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Operación de Terminales de Gas LP y Petroquímicos",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Salvaguardia Estratégica, Seguridad Física e Industrial",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Coordinación e Inteligencia Estratégica",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Estrategia y Sistemas de Seguridad y Monitoreo",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguridad Física",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Gestión Técnica de Salvaguardia Estratégica y Combate al Mercado Ilícito",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguridad, Salud en el Trabajo y Protección Ambiental",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Regulación, Medición, Calidad, Balances y Soporte Operativo",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Cumplimiento Regulatorio y Soporte Operativo",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Medición",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Calidad",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Balances y Trazabilidad",
+         "cargo": "Gerente"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Comercialización",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Estrategia, Precios e Inteligencia Comercial",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Estrategia, Inteligencia Comercial, Desarrollo de Clientes y Modelos de Negocio",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Precios",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Soporte Comercial y Servicios al Cliente",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Comercialización de Combustibles de Transporte e Hidrocarburos",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Comercialización de Hidrocarburos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Operación Comercial de Combustibles de Transporte",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Comercialización de Combustibles de Transporte",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Comercialización de Productos y Combustibles Industriales",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Comercialización de Gas Natural y Etano",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Comercialización de Gas Licuado de Petróleo y Residuales",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Comercialización de Productos Petroquímicos y Fertilizantes",
+         "cargo": "Gerente"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Finanzas",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Presupuesto",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Coordinación de Operación Presupuestal del Segmento \"A\"",
+         "cargo": "Coordinador(a)"
+        },
+        {
+         "nombre": "Gerencia de Seguimiento Presupuestal \"A\" ii) Gerencia de Formulación y Operación Presupuestal \"A\" iii) Gerencia de Contratos y Seguimiento Operativo",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Coordinación de Operación Presupuestal del Segmento \"B\"",
+         "cargo": "Coordinador(a)"
+        },
+        {
+         "nombre": "Gerencia de Seguimiento Presupuestal \"B\" ii) Gerencia de Formulación y Operación Presupuestal \"B\"",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Coordinación de Operación Presupuestal del Segmento \"C\"",
+         "cargo": "Coordinador(a)"
+        },
+        {
+         "nombre": "Gerencia de Seguimiento Presupuestal \"C\" ii) Gerencia de Formulación y Operación Presupuestal \"C\"",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Programación Presupuestal",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Control Presupuestario",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Gestión Presupuestal",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Contabilidad y Fiscal",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Contabilidad Central",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Fiscal",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Contabilidad para Segmentos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Contabilidad de Costos",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Tesorería",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Financiamientos e Inversiones",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Procesos de Tesorería",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Operaciones de Tesorería",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Administración de Riesgos, Aseguramiento y Análisis Económico Financiero",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Seguros y Fianzas",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Reaseguro",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Administración de Riesgos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Análisis Económico Financiero",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Evaluación y Seguimiento de Inversiones",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Precios",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Coordinación Financiera y Seguimiento a Empresas Filiales",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Evaluación y Control de Ingresos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguimiento a Empresas Filiales",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Gestión y Control Financiero",
+         "cargo": "Gerente"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Administración y Servicios",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Abastecimiento",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Coordinación de Abastecimiento para Servicios de Soporte y Control de Almacenes",
+         "cargo": "Coordinador(a)"
+        },
+        {
+         "nombre": "Gerencia de Contrataciones para Servicios de Soporte ii) Gerencia de Administración y Control de Almacenes de Bienes de Consumo",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Coordinación de Análisis, Estrategias Contractuales y Relación con Proveedores y Contratistas",
+         "cargo": "Coordinador(a)"
+        },
+        {
+         "nombre": "Gerencia de Alianzas Contractuales, Abastecimiento Estratégico y Estándares Técnicos ii) Gerencia de Evaluación, Vinculación y Desarrollo de Proveedores y Contratistas iii) Gerencia de Ingeniería de Costos iv) Gerencia de Análisis de Mercado",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Coordinación de Abastecimiento para Exploración y Extracción",
+         "cargo": "Coordinador(a)"
+        },
+        {
+         "nombre": "Gerencia de Contrataciones para Mantenimiento, Confiabilidad y Logística Marina ii) Gerencia de Contrataciones para Exploración y Extracción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Coordinación de Abastecimiento para Procesos Industriales, Transformación Energética y Logística",
+         "cargo": "Coordinador(a)"
+        },
+        {
+         "nombre": "Gerencia de Contrataciones para Procesos Industriales ii) Gerencia de Contrataciones para Transformación Energética y Logística",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Mejora del Proceso, Vinculación y Planeación",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Capital Humano",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Coordinación de Relaciones Laborales",
+         "cargo": "Coordinador(a)"
+        },
+        {
+         "nombre": "Gerencia Regional de Relaciones Laborales Sureste ii) Gerencia Regional de Relaciones Laborales Sur iii) Gerencia Regional de Relaciones Laborales Altiplano iv) Gerencia Regional de Relaciones Laborales Norte",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Coordinación de Nómina, Capacitación y Movimientos de Personal",
+         "cargo": "Coordinador(a)"
+        },
+        {
+         "nombre": "Gerencia de Nómina y Prestaciones Económicas ii) Gerencia de Ingresos y Movimientos de Personal iii) Gerencia de Capacitación, Desempeño y Servicios al Personal",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Organización e Integración de Estructuras",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Asuntos Internos",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Servicios de Salud",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Atención Médica",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Programas y Políticas de Salud Pública",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Administración de Servicios de Salud",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Servicios y Administración de Bienes",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Servicios Generales",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Administración Patrimonial",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Obra y Mantenimiento Centro-Norte",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Obra y Mantenimiento Sureste-Marina",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Tecnologías de la Información y Comunicaciones",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Coordinación de Soluciones y Servicios de Negocio",
+         "cargo": "Coordinador(a)"
+        },
+        {
+         "nombre": "Gerencia de Soluciones Empresariales ii) Gerencia de Desarrollo e Integración de Soluciones de Negocio iii) Gerencia de Soluciones Tecnológicas para Procesos Sustantivos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Coordinación de Servicios de Tecnologías de la Información y Comunicaciones",
+         "cargo": "Coordinador(a)"
+        },
+        {
+         "nombre": "Gerencia de Servicios Digitales ii) Gerencia de Seguridad de la Información iii) Gerencia de Servicios e Infraestructura de Comunicaciones iv) Gerencia de Soporte Operativo y Entrega de Servicios de Tecnologías de la Información y Comunicaciones",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Innovación y Gobierno Digital",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguimiento Estratégico y Cumplimiento Normativo",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Coordinación de Control y Soporte de Administración y Servicios",
+       "cargo": "Coordinador(a)"
+      },
+      {
+       "nombre": "Gerencia de Responsabilidad Social",
+       "cargo": "Gerente"
+      },
+      {
+       "nombre": "Gerencia de Inclusión y Derechos Humanos",
+       "cargo": "Gerente"
+      },
+      {
+       "nombre": "Gerencia de Enlace Legislativo",
+       "cargo": "Gerente"
+      },
+      {
+       "nombre": "Gerencia de Enlace para el Consejo de Administración",
+       "cargo": "Gerente"
+      },
+      {
+       "nombre": "Gerencia de Comunicación y Mercadotecnia",
+       "cargo": "Gerente"
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección Jurídica",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección Jurídica Consultiva y de Contratos",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia Jurídica de Contratos de Exploración y Extracción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Jurídica de Contratos",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Jurídica de Asuntos Consultivos y Patrimoniales",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Jurídica de Asuntos Financieros y Mercantiles",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección Jurídica de Asuntos Especiales",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia Jurídica de Cumplimiento Legal",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Jurídica Normativa",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Jurídica de Visitaduría y Estadística",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Servicios Jurídicos",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección Jurídica Contenciosa",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia Jurídica Contenciosa de Derecho Privado",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Jurídica Contenciosa Administrativa",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Jurídica Contenciosa Laboral",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Jurídica Contenciosa Penal",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia Jurídica Regional",
+         "cargo": "Gerente"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Dirección de Planeación, Coordinación, Desempeño y Sostenibilidad",
+     "cargo": "Director(a)",
+     "unidades": [
+      {
+       "nombre": "Subdirección de Planeación Estratégica y Análisis Regulatorio",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Planeación Estratégica",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Análisis Regulatorio",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Costos Operativos",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Ejecución de la Estrategia de Inversiones",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Administración y Seguimiento de Inversiones",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Proyectos Desarrollados con Terceros para Exploración y Extracción",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Análisis de Ingeniería de Inversiones",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Proyectos Desarrollados con Terceros para Procesos Industriales, Logística y Transformación Energética",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Programación, Coordinación, Evaluación e Información Institucional",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Programación de Operaciones y Optimización Integral",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Coordinación Operativa",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Integración de la Información Institucional",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Análisis y Evaluación del Desempeño",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Seguridad, Salud, Gestión Ambiental, Energética y Confiabilidad",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Mejora de Procesos Institucionales",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Gestión Ambiental, Energética y Cambio Climático",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Seguridad Industrial y Salud en el Trabajo",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Confiabilidad Operacional y Gestión del Mantenimiento",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Subdirección de Control Interno Institucional",
+       "cargo": "Subdirector(a)",
+       "unidades": [
+        {
+         "nombre": "Gerencia de Apoyo y Seguimiento al Control Interno Financiero",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Apoyo y Seguimiento al Control Interno en Empresas Filiales y Normatividad",
+         "cargo": "Gerente"
+        },
+        {
+         "nombre": "Gerencia de Apoyo y Seguimiento al Control Interno en Pemex",
+         "cargo": "Gerente"
+        }
+       ]
+      },
+      {
+       "nombre": "Gerencia de Sostenibilidad XI. Auditoría Interna",
+       "cargo": "Gerente"
+      },
+      {
+       "nombre": "Gerencia de Auditoría a Pemex",
+       "cargo": "Gerente"
+      },
+      {
+       "nombre": "Gerencia de Auditoría a Filiales, Legalidad y Tecnologías de la Información",
+       "cargo": "Gerente"
+      },
+      {
+       "nombre": "Gerencia de Auditoría a Exploración y Extracción",
+       "cargo": "Gerente"
+      },
+      {
+       "nombre": "Gerencia de Auditoría a Procesos Industriales, Transformación Energética y Logística",
+       "cargo": "Gerente"
+      },
+      {
+       "nombre": "Gerencia de Enlace con Instancias Revisoras CAPÍTULO SEGUNDO DE LA DIRECCIÓN DE EXPLORACIÓN Y EXTRACCIÓN SECCIÓN PRIMERA DE LA DIRECCIÓN DE EXPLORACIÓN Y EXTRACCIÓN",
+       "cargo": "Gerente"
+      }
+     ]
     }
    ]
   },
