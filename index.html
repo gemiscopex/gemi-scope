@@ -3272,7 +3272,8 @@ function renderObligaciones(){
   if(_oblView==='eventualidades'&&_leySecaData&&typeof _lsRun==='function')_lsRun();
 }
 // ── Eventualidades · Ley seca (capa de prensa, datos reales de data/ley-seca.json) ──
-var _leySecaData=null,_lsLoading=false;
+var _leySecaData=null,_lsLoading=false,_lsOpenWk=null;
+function _lsWeek(k){_lsOpenWk=(_lsOpenWk===k?null:k);_lsRun();}
 function _lsLoad(){
   if(_leySecaData||_lsLoading)return;
   _lsLoading=true;
@@ -3287,6 +3288,32 @@ function _lsMyStates(){
 function _lsEdoEq(a,b){
   function n(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/^estado de /,'').trim();}
   return !!a&&!!b&&n(a)===n(b);
+}
+var _LS_MESN={enero:0,febrero:1,marzo:2,abril:3,mayo:4,junio:5,julio:6,agosto:7,septiembre:8,setiembre:8,octubre:9,noviembre:10,diciembre:11};
+function _lsVig(e){
+  var t=(e.titulo||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  var y=2026,m,r;
+  r=t.match(/(\d{1,2})\s*(?:al|y|-|a|hasta el)\s*(\d{1,2})\s+de\s+([a-z]+)/);
+  if(r&&_LS_MESN[r[3]]!=null){m=_LS_MESN[r[3]];return {ini:new Date(y,m,+r[1]),fin:new Date(y,m,+r[2])};}
+  r=t.match(/(\d{1,2})\s+de\s+([a-z]+)/);
+  if(r&&_LS_MESN[r[2]]!=null){m=_LS_MESN[r[2]];return {ini:new Date(y,m,+r[1]),fin:new Date(y,m,+r[1])};}
+  for(var mn in _LS_MESN){if(t.indexOf(mn)>=0){var mi=_LS_MESN[mn];return {ini:new Date(y,mi,1),fin:new Date(y,mi+1,0),fuzzy:true};}}
+  return null;
+}
+function _lsState(e){
+  var v=_lsVig(e); if(!v)return {st:'sf'};
+  var hoy=new Date();hoy.setHours(0,0,0,0);
+  if(v.fin<hoy)return {st:'fin',v:v};
+  if(v.ini>hoy)return {st:'prox',v:v};
+  return {st:'vigor',v:v};
+}
+function _lsVigLabel(e){
+  var M=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  var s=_lsState(e),v=s.v;
+  if(!v){var d=new Date(e.fecha_publicacion);return isNaN(d)?'':('Detectada '+('0'+d.getDate()).slice(-2)+' '+M[d.getMonth()]);}
+  if(v.fuzzy)return M[v.ini.getMonth()];
+  var a=('0'+v.ini.getDate()).slice(-2),b=('0'+v.fin.getDate()).slice(-2);
+  return v.ini.getTime()===v.fin.getTime()?(a+' '+M[v.ini.getMonth()]):(a+'–'+b+' '+M[v.fin.getMonth()]);
 }
 function _lsTitle(t){
   t=String(t||'').trim();
@@ -3323,7 +3350,13 @@ function _eventualidadesHTML(){
     +'</div>'
     +'<div style="font-size:13px;color:var(--text-sec);max-width:74ch;line-height:1.6;margin-bottom:4px">Detección de prohibiciones y restricciones a la venta de alcohol por estado, municipio y alcaldía. Capa de prensa: rastrea medios nacionales y locales y normaliza cada nota a un evento con su plaza y motivo. La vigencia exacta se confirma en el bando o periódico oficial de la plaza.</div>'
     +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:.04em;margin-bottom:20px">Fuente: prensa vía Google News'+(act?' · actualizado '+act:'')+' · relevante para el sector bebidas</div>'
-    +'<div id="ls-stats" style="display:grid;grid-template-columns:repeat(3,1fr);border-top:0.8px solid var(--border);border-bottom:0.8px solid var(--border);margin-bottom:22px"></div>'
+    +'<div id="ls-stats" style="display:grid;grid-template-columns:repeat(3,1fr);border-top:0.8px solid var(--border);border-bottom:0.8px solid var(--border);margin-bottom:16px"></div>'
+    +'<div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin-bottom:18px;font-size:11px;color:var(--text-sec)">'
+      +'<span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#066750;margin-right:6px"></span>En vigor</span>'
+      +'<span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:none;border:1.6px solid #066750;margin-right:6px"></span>Próxima</span>'
+      +'<span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--text-muted);opacity:.5;margin-right:6px"></span>Concluida</span>'
+      +'<span style="color:var(--text-muted)">Fuente <b style="color:#066750">● prensa</b> · la vigencia exacta se confirma en el bando o periódico oficial</span>'
+    +'</div>'
     +'<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:6px">'
       +'<input id="ls-q" placeholder="Buscar plaza o texto…" oninput="_lsRun()" style="'+st+';flex:1;min-width:200px">'
       +'<select id="ls-edo" onchange="_lsRun()" style="'+st+'">'+edoOpts+'</select>'
@@ -3359,31 +3392,43 @@ function _lsRun(){
     if(qn&&nrm((e.titulo||'')+' '+(e.estado||'')+' '+(e.fuente||'')).indexOf(qn)<0)return false;
     return true;
   });
-  var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-  var rows=list.map(function(e){
-    var d=e.fecha_publicacion?new Date(e.fecha_publicacion):null;
-    var fl=d&&!isNaN(d)?(('0'+d.getDate()).slice(-2)+' '+MES[d.getMonth()]):'';
+  var _ORD={vigor:0,prox:1,sf:2,fin:3};
+  var _STL={vigor:'En vigor',prox:'Próxima',fin:'Concluida',sf:'Sin fecha'};
+  list.forEach(function(e){var s=_lsState(e);e._st=s.st;e._sini=s.v?s.v.ini.getTime():0;});
+  list.sort(function(a,b){return (_ORD[a._st]-_ORD[b._st]) || (a._st==='prox'?a._sini-b._sini:b._sini-a._sini) || (String(b.fecha_publicacion||'')).localeCompare(String(a.fecha_publicacion||''));});
+  function _dot(st){
+    var base='display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;position:relative;top:-1px;';
+    if(st==='vigor')return '<span style="'+base+'background:#066750"></span>';
+    if(st==='prox')return '<span style="'+base+'background:none;border:1.6px solid #066750"></span>';
+    if(st==='fin')return '<span style="'+base+'background:var(--text-muted);opacity:.5"></span>';
+    return '<span style="'+base+'background:none;border:1.6px solid var(--text-muted);opacity:.6"></span>';
+  }
+  var CAP=25;var shown=list.slice(0,CAP);
+  var rows=shown.map(function(e){
+    var u=String(e.url||'#').replace(/'/g,'%27');
     var plaza=(e.estado||'Sin ubicar')+(e.ambito?' · '+e.ambito:'');
     var motChip=(e.motivo&&e.motivo!=='Otro')?'<span style="font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--green);text-transform:uppercase">'+e.motivo+'</span>':'<span style="color:var(--text-muted);font-size:11px">—</span>';
-    var u=String(e.url||'#').replace(/'/g,'%27');
-    return '<div style="display:grid;grid-template-columns:56px 150px 104px 1fr;gap:14px;padding:12px 0;border-bottom:0.8px solid var(--border);cursor:pointer;align-items:baseline" onclick="window.open(\''+u+'\',\'_blank\')" title="Abrir nota">'
-      +'<div style="font-family:var(--mono);font-size:11px;color:#066750;white-space:nowrap;font-variant-numeric:tabular-nums">'+fl+'</div>'
+    var stCls=e._st==='vigor'?'color:#066750;font-weight:600':'color:var(--text-muted)';
+    return '<div style="display:grid;grid-template-columns:118px 148px 96px 1fr;gap:14px;padding:12px 0;border-bottom:0.8px solid var(--border);cursor:pointer;align-items:baseline" onclick="window.open(\''+u+'\',\'_blank\')" title="Abrir nota">'
+      +'<div style="font-family:var(--mono);font-size:11px;color:var(--text);white-space:nowrap;font-variant-numeric:tabular-nums">'+_dot(e._st)+_escHtml(_lsVigLabel(e))
+        +'<span style="display:block;font-size:8.5px;letter-spacing:.05em;text-transform:uppercase;margin-top:3px;padding-left:16px;'+stCls+'">'+_STL[e._st]+'</span></div>'
       +'<div style="font-size:12.5px;color:var(--text);font-weight:600">'+_escHtml(plaza)+'</div>'
       +'<div>'+motChip+'</div>'
-      +'<div><div style="font-size:12.5px;color:var(--text);line-height:1.5">'+_escHtml(_lsTitle(e.titulo))+'</div>'
-        +'<div style="font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:2px">'+_escHtml(e.fuente||'')+' ↗</div></div>'
+      +'<div style="font-size:12.5px;color:var(--text);line-height:1.5">'+_escHtml(_lsTitle(e.titulo))
+        +' <span style="font-family:var(--mono);font-size:9.5px;color:#066750">● '+_escHtml(e.fuente||'')+' ↗</span></div>'
     +'</div>';
   }).join('');
   var rc=document.getElementById('ls-rows');
   if(rc)rc.innerHTML=rows||'<div style="padding:22px 0;color:var(--text-muted);font-size:13px">Sin eventos con esos filtros.</div>';
   var cd=document.getElementById('ls-count');
-  if(cd)cd.textContent=list.length+' evento'+(list.length===1?'':'s')+(edo==='__mine__'?' · filtrado a tus plazas':'')+' · más reciente primero';
+  if(cd)cd.textContent=(list.length>CAP?('Mostrando '+CAP+' de '+list.length):list.length+' evento'+(list.length===1?'':'s'))+(edo==='__mine__'?' · tus plazas':'')+' · en vigor y próximas primero';
   var stEl=document.getElementById('ls-stats');
   if(stEl){
-    var estados=new Set(ev.map(function(e){return e.estado;}).filter(Boolean)).size;
-    var now=Date.now(),d7=ev.filter(function(e){var t=new Date(e.fecha_publicacion).getTime();return !isNaN(t)&&(now-t)/864e5<=7;}).length;
-    function stat(n,l,last){return '<div style="padding:15px 16px 15px 0'+(last?'':'')+'">'+'<div style="font-size:26px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1">'+n+'</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase;margin-top:8px">'+l+'</div></div>';}
-    stEl.innerHTML=stat(ev.length,'Restricciones detectadas')+stat(estados,'Estados con actividad')+stat(d7,'Últimos 7 días',true);
+    var nv=list.filter(function(e){return e._st==='vigor';}).length;
+    var np=list.filter(function(e){return e._st==='prox';}).length;
+    var estados=new Set(list.map(function(e){return e.estado;}).filter(Boolean)).size;
+    function stat(n,l){return '<div style="padding:15px 16px 15px 0"><div style="font-size:26px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1">'+n+'</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase;margin-top:8px">'+l+'</div></div>';}
+    stEl.innerHTML=stat(nv,'En vigor')+stat(np,'Próximas')+stat(estados,'Estados con actividad');
   }
 }
 // ── AGENDA · reglamentaciones pendientes + DOF hoy + accesos ──
