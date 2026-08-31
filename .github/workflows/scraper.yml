@@ -44,6 +44,9 @@ jobs:
       - name: Scraper Energia (SENER / CNE / CENACE)
         run: python scraper/scraper_energia.py
 
+      - name: Scraper Ley Seca (restricciones de venta de alcohol)
+        run: python scraper/scraper_leyseca.py
+
       - name: Scraper DOF (Diario Oficial de la Federacion)
         run: python scraper/scraper_dof.py
 
