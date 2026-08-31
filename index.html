@@ -3309,7 +3309,7 @@ function _eventualidadesHTML(){
   var edos=Array.from(new Set(ev.map(function(e){return e.estado;}).filter(Boolean))).sort();
   var mine=_lsMyStates();
   var mineEv=mine.length?ev.filter(function(e){return mine.some(function(m){return _lsEdoEq(m,e.estado);});}):[];
-  var defMine=mineEv.length>0;
+  var defMine=false; // demo abre en Nacional (Todos); "Mis plazas" queda a un clic
   var mineOpt=mine.length?('<option value="__mine__"'+(defMine?' selected':'')+'>Mis plazas'+(mineEv.length?' ('+mineEv.length+')':'')+'</option>'):'';
   var edoOpts=mineOpt+'<option value=""'+(defMine?'':' selected')+'>Todos los estados</option>'+edos.map(function(x){return '<option>'+x+'</option>';}).join('');
   var motSet=Array.from(new Set(ev.map(function(e){return e.motivo;}).filter(function(m){return m&&m!=='Otro';}))).sort();
