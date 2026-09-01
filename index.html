@@ -2071,7 +2071,7 @@ function _mnnRun(){
     .filter(function(a){return !mes || String(a.fecha||'').substring(0,7)===mes;})
     .sort(function(a,b){return String(b.fecha||'').localeCompare(String(a.fecha||''));});
   var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-  var rows='',total=0,cap=400,convCount=0;
+  var rowsArr=[],total=0,cap=60,convCount=0;
   for(var i=0;i<confs.length;i++){
     var a=confs[i], url=String(a.url||'#').replace(/'/g,'%27');
     var d=a.fecha?new Date(a.fecha.substring(0,10)+'T12:00:00'):null;
@@ -2086,19 +2086,16 @@ function _mnnRun(){
     convCount++;
     for(var j=0;j<frags.length && total<cap;j++){
       total++;
-      rows+='<div style="display:flex;gap:14px;padding:11px 0;border-bottom:0.8px solid var(--border);cursor:pointer" onclick="window.open(\''+url+'\',\'_blank\')" title="Abrir versión estenográfica">'
-        +'<div style="font-family:var(--mono);font-size:10px;color:var(--green);white-space:nowrap;padding-top:3px;min-width:66px">'+fl+'</div>'
-        +'<div style="font-size:13px;line-height:1.55;color:var(--text)">“'+_cspBold(String(frags[j]).replace(/\s+/g,' ').trim())+'”</div>'
-        +'</div>';
+      rowsArr.push(_oblRow({title:'“'+_cspBold(String(frags[j]).replace(/\s+/g,' ').trim())+'”',titleWeight:400,meta:fl+' · Conferencia matutina',url:url,zeb:total%2===0,onclick:'window.open(\''+url+'\',\'_blank\')'}));
     }
     if(total>=cap)break;
   }
   var MM=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
   var lbl=[]; if(tema)lbl.push('sobre '+tema.name); if(mes){lbl.push('en '+MM[parseInt(mes.substring(5,7),10)-1]+' '+mes.substring(0,4));} if(q)lbl.push('con “'+q+'”');
   var cd=document.getElementById('mnn-count');
-  if(cd)cd.textContent=total+(total===cap?'+':'')+' menciones'+(lbl.length?' · '+lbl.join(' · '):'')+' · en '+convCount+' conferencias';
+  if(cd)cd.textContent=total+(total>=cap?'+':'')+' menciones'+(lbl.length?' · '+lbl.join(' · '):'')+' · en '+convCount+' conferencias';
   var rc=document.getElementById('mnn-results');
-  if(rc)rc.innerHTML=rows||'<div style="color:var(--text-muted);font-size:13px;padding:20px 0">Sin menciones con esos filtros. Prueba otro tema, otro mes o una palabra distinta.</div>';
+  if(rc)rc.innerHTML=rowsArr.join('')||'<div style="color:var(--text-muted);font-size:13px;padding:20px 0">Sin menciones con esos filtros. Prueba otro tema, otro mes o una palabra distinta.</div>';
 }
 /* ── Banner semanal: noticia principal + semáforo de riesgo ── */
 function renderSemanaBanner(){
@@ -3815,17 +3812,13 @@ function _agendaProximo(){
     return;
   }
   function fmtF(f){var d=new Date(String(f||'').substring(0,10)+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});}
+  var hoy0=new Date(new Date().toDateString());
   var rows=ev.map(function(e,i){
-    var oc=e.url?(' onclick="window.open(\''+String(e.url).replace(/'/g,'%27')+'\',\'_blank\')" style="cursor:pointer"'):'';
-    return '<div class="prox-row"'+oc+'>'
-      +'<div class="prox-date"><div class="prox-d">'+(new Date(e.fecha+'T12:00:00').getDate()||'')+'</div><div class="prox-m">'+(['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'][new Date(e.fecha+'T12:00:00').getMonth()]||'')+'</div></div>'
-      +'<div style="flex:1;min-width:0">'
-        +'<div style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:'+e.color+';margin-bottom:2px">'+e.tipo+'</div>'
-        +'<div style="font-size:13px;color:var(--text);line-height:1.4">'+_escUser(e.titulo)+'</div>'
-        +(e.sub?'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:3px;letter-spacing:.02em">'+_escUser(e.sub)+'</div>':'')
-      +'</div>'
-      +'<div style="text-align:right;flex-shrink:0;padding-top:2px"><div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap">'+fmtF(e.fecha)+'</div>'+(function(){var dd=new Date(e.fecha+'T12:00:00'),hoy=new Date(new Date().toDateString());var dias=Math.round((dd-hoy)/864e5);if(isNaN(dias)||dias<0||dias>120)return '';var col=(e.cierre&&dias<=7)?'#B45309':'var(--text-muted)';return '<div style="font-family:var(--mono);font-size:8px;color:'+col+';margin-top:2px;white-space:nowrap">'+(dias===0?'hoy':'en '+dias+' d')+'</div>';})()+'</div>'
-    +'</div>';
+    var dd=new Date(e.fecha+'T12:00:00'),dias=Math.round((dd-hoy0)/864e5);
+    var col=(e.cierre&&!isNaN(dias)&&dias<=7)?'#B45309':'var(--green)';
+    var sub=(!isNaN(dias)&&dias>=0&&dias<=120)?(dias===0?'hoy':'en '+dias+' días'):'';
+    var meta='<b>'+e.tipo+'</b>'+(e.sub?'  ·  '+_escUser(e.sub):'');
+    return _oblRow({title:_escUser(e.titulo),titleWeight:400,meta:meta,right:_oblStatus(fmtF(e.fecha),col),rightSub:sub,zeb:i%2===1,onclick:e.url?('window.open(\''+String(e.url).replace(/\x27/g,'%27')+'\',\'_blank\')'):''});
   }).join('');
   host.innerHTML=head+'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px">'+ev.length+' en el horizonte</div>'+rows;
 }
@@ -3911,15 +3904,10 @@ function _congHistRender(){
     var tipoLbl=it.tipo==='punto_acuerdo'?'Punto de acuerdo':(it.tipo==='dictamen'?'Dictamen':'Iniciativa');
     var autor=_congAutor(it);
     var meta=[camLbl,it.partido||'',autor,(_CONGHIST_CATLBL[it.categoria]||''),tipoLbl].filter(Boolean).join('  ·  ');
-    var arrId='chist-arr-'+i,detId='chist-det-'+i;
-    return '<div class="cons-tema-row" style="grid-template-columns:1fr auto;cursor:pointer;align-items:start;gap:16px" onclick="_congHistToggle('+i+')">'
-        +'<div style="min-width:0">'
-          +'<div style="font-size:13px;font-weight:400;color:var(--text);line-height:1.4">'+_esc(_congAsunto(it))+' <span id="'+arrId+'" style="font-size:8px;color:var(--text-muted)">▸</span></div>'
-          +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px;letter-spacing:0.02em">'+_esc(meta)+'</div>'
-        +'</div>'
-        +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap;text-align:right;padding-top:2px">'+dia+'</div>'
-      +'</div>'
-      +'<div id="'+detId+'" style="display:none;padding:2px 0 14px 2px"></div>';
+    var title=_esc(_congAsunto(it))+' <span id="chist-arr-'+i+'" style="font-size:8px;color:var(--text-muted)">▸</span>';
+    var right='<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap">'+dia+'</span>';
+    return _oblRow({title:title,titleWeight:400,meta:_esc(meta),right:right,zeb:i%2===1,onclick:'_congHistToggle('+i+')'})
+      +'<div id="chist-det-'+i+'" style="display:none;padding:0 12px 14px 14px"></div>';
   }).join('');
   var more=all.length>CAP?('<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);padding:10px 0">Mostrando '+CAP+' de '+all.length+'. Afina tu búsqueda o filtros para ver el resto.</div>'):'';
   host.innerHTML=body+more;
