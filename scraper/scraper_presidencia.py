@@ -210,18 +210,35 @@ def _env_hit_count(text_norm: str) -> int:
     """Cuenta cuántos keywords ambientales distintos aparecen en el texto."""
     return sum(1 for kw in ALL_KW if _kw_match(normalize(kw), text_norm))
 
+# Términos "suaves" (económicos/comerciales/genéricos) que NO deben calificar por sí
+# solos un fragmento como ambiental. Sin un ANCLA ambiental real generaban falsos
+# positivos en la mañanera (dinero recuperado, "millones de dólares", Plan México,
+# aranceles, multas a medios, "delito/sanción" en migración, etc.).
+_SOFT = {
+    "inversion","nearshoring","relocalizacion","plan mexico","polo de desarrollo",
+    "polos de desarrollo","polos del bienestar","parque industrial","inversion extranjera",
+    "nueva planta","planta armadora","armadora","ensambladora","empleos directos",
+    "genera empleos","anuncio de inversion","millones de dolares","mil millones",
+    "capital extranjero","kia","nissan","tesla","planta de","complejo industrial",
+    "sancion","multa","clausura","infraccion","inspeccion","procedimiento administrativo",
+    "arancel","exportacion","importacion","t-mec","tmec","tratado comercial","comercio exterior",
+}
+def _core_hits(text_norm: str) -> int:
+    """Hits de keywords ambientales REALES (excluye los términos económicos suaves)."""
+    return sum(1 for kw in ALL_KW
+               if normalize(kw) not in _SOFT and _kw_match(normalize(kw), text_norm))
+
 def is_env_fragment(line: str) -> bool:
     """
     True si el fragmento tiene contenido ambiental genuino:
-    - Al menos 1 keyword ambiental con word-boundary
-    - Sin frases de seguridad/crimen (o con ellas pero con 3+ hits ambientales)
+    - Al menos 1 ANCLA ambiental real (keyword core, no solo económica/genérica)
+    - Sin frases de seguridad/política/financieras (o con ellas pero con 3+ hits)
     """
     t = normalize(line)
-    hits = _env_hit_count(t)
-    if hits == 0:
+    if _core_hits(t) == 0:
         return False
     has_security = any(normalize(d) in t for d in EXCLUIR_FRAGS)
-    if has_security and hits < 3:
+    if has_security and _env_hit_count(t) < 3:
         return False
     return True
 
