@@ -170,6 +170,22 @@ EXCLUIR_FRAGS = [
     "antisecuestro",
     "detencion de presuntos",
     "presunto culpable",
+    # Político / electoral / judicial / financiero (no son nuestros temas; evita que
+    # "sanción/multa/millones" arrastren notas de García Luna, censura, UIF, etc.)
+    "derechos politicos",
+    "tribunal electoral",
+    "garcia luna",
+    "lavado de dinero",
+    "inteligencia financiera",
+    "desvio de recursos",
+    "libertad de expresion",
+    "censura",
+    "difamacion",
+    "concesionario de medios",
+    "vinculado a proceso",
+    "reforma judicial",
+    "poder judicial",
+    "instituto nacional electoral",
 ]
 
 # ---------------------------------------------------------------------------
@@ -256,6 +272,15 @@ RE_JOURNALIST = re.compile(r"pregunta|periodista|interlocutor|moderador|^voz\b|i
 _OFICIAL_KW = ["secretari", "subsecretari", "director", "titular", "comisionad",
                "procurador", "gobernador", "coordinador", "jefe de gobierno",
                "general de", "almirante", "presidente de", "directora"]
+# Solo capturamos a funcionarios de SECTORES RELEVANTES (ambiental/energía/agua/
+# agro/salud/economía). Un secretario de Educación o el titular de la UIF hablando
+# de otro tema NO debe arrastrar la conferencia (era la fuente de falsos positivos).
+_OFICIAL_SECTOR = ["medio ambiente", "recursos naturales", "semarnat",
+                   "proteccion al ambiente", "profepa", "energia",
+                   "comision nacional de energia", "agua", "conagua", "hidraul",
+                   "agricultura", "desarrollo rural", "sader", "salud", "cofepris",
+                   "riesgos sanitarios", "economia", "cambio climatico", "conafor",
+                   "forestal", "pesca", "conanp", "asea", "ambiental"]
 _ORG_TAG = [("medio ambiente", "Semarnat"), ("semarnat", "Semarnat"),
             ("recursos naturales", "Semarnat"), ("energia", "Sener"),
             ("agricultura", "Sader"), ("desarrollo rural", "Sader"),
@@ -290,7 +315,7 @@ def _speaker_kind(label: str) -> str:
         return "csp"
     if RE_JOURNALIST.search(su):
         return "press"
-    if any(w in su for w in _OFICIAL_KW):
+    if any(w in su for w in _OFICIAL_KW) and any(s in su for s in _OFICIAL_SECTOR):
         return "oficial"
     return "otro"
 
@@ -376,7 +401,9 @@ def scrape_date(d: date) -> dict | None:
     # Extraer fragmentos ambientales de los turnos de la Presidenta
     fragmentos = extract_env_fragments(html)
     if not fragmentos:
-        return None   # sin contenido ambiental en sus propias palabras
+        # Se descargó bien pero NO hay contenido de nuestros temas. Se distingue de
+        # un fallo de fetch (None) para poder RETIRAR entradas viejas mal clasificadas.
+        return {"_empty": True}
 
     # Categorías derivadas de los fragmentos (no del texto completo)
     texto_frags = " ".join(fragmentos)
@@ -442,7 +469,7 @@ def main():
         ya = bool(ids_try & existing_ids)
         print(f"  Scrapeando {d}...", end=" ", flush=True)
         art = scrape_date(d)
-        if art:
+        if art and not art.get("_empty"):
             # upsert: quita la versión previa (por id o por fecha) y agrega la nueva
             existing[:] = [a for a in existing
                            if a.get("id") not in ids_try and a.get("fecha") != d.isoformat()]
@@ -450,10 +477,20 @@ def main():
             existing_ids.add(art["id"])
             added += 1
             print(f"{'↻ actualizada' if ya else '✓ nueva'} | temas: {art['categorias']} | {len(art['fragmentos'])} frag")
+        elif art and art.get("_empty"):
+            # Se descargó bien pero sin nuestros temas: RETIRA la entrada vieja si existía
+            # (limpia falsos positivos que quedaron de una versión anterior del filtro).
+            if ya:
+                existing[:] = [a for a in existing
+                               if a.get("id") not in ids_try and a.get("fecha") != d.isoformat()]
+                existing_ids -= ids_try
+                print("— retirada (ya no cruza nuestros temas)")
+            else:
+                print("— sin contenido de nuestros temas")
         elif ya:
-            print("— se conserva la versión previa")
+            print("— fetch falló; se conserva la versión previa")
         else:
-            print("— sin contenido ambiental o no publicada aún")
+            print("— no publicada aún")
         time.sleep(1.5)
 
     existing.sort(key=lambda a: a.get("fecha", ""), reverse=True)
