@@ -7445,7 +7445,7 @@ function _consChatSend(){
   msgs.insertAdjacentHTML('beforeend',_consChatBubble(v,true));
   inp.value='';msgs.scrollTop=msgs.scrollHeight;
   setTimeout(function(){
-    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. Signal está en construcción 🛠️. Muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
+    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. Signal estará disponible en octubre. Muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
     msgs.scrollTop=msgs.scrollHeight;
   },550);
 }
@@ -7469,7 +7469,7 @@ function _consActivityRailHTML(sen){
 }
 // ── Signal como agente permanente (columna derecha, sticky) ──
 function _consSignalRailHTML(){
-  var sug=['¿Qué NOMs me aplican?','Resume mi señal de la semana','¿Qué cambió en el DOF hoy?'];
+  var sug=['¿Qué NOMs me aplican?','Resume mi señal de la semana'];
   return '<div style="border:0.8px solid var(--border);border-radius:0;background:var(--card);display:flex;flex-direction:column;overflow:hidden">'
     +'<div style="padding:16px 18px 14px;border-bottom:0.8px solid var(--border)">'
       +'<div style="display:flex;align-items:center;gap:11px">'
@@ -7478,7 +7478,7 @@ function _consSignalRailHTML(){
         +'<div style="font-size:10px;color:var(--text-muted);line-height:1.3;margin-top:2px">Tu agente sobre los datos de tu terminal</div></div>'
       +'</div>'
       +'<div style="display:flex;align-items:center;gap:6px;margin-top:11px"><span class="pgemi-live" style="background:var(--text-muted)"></span>'
-        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.02em;color:var(--text-muted)">En construcción</span></div>'
+        +'<span style="font-family:var(--mono);font-size:9px;letter-spacing:0.02em;color:var(--text-muted)">Disponible en octubre</span></div>'
     +'</div>'
     +'<div id="cons-chat-msgs" style="display:flex;flex-direction:column;gap:8px;padding:14px;min-height:200px;max-height:46vh;overflow-y:auto">'
       +_consChatBubble('Hola 👋 Soy Signal. Pronto podrás preguntarme sobre tus NOMs, impuestos ambientales, comisiones y normativa. Te responderé cruzando los datos de tu terminal en tiempo real.',false)
@@ -8398,7 +8398,7 @@ function _signalSend(){
   msgs.insertAdjacentHTML('beforeend',_consChatBubble(v,true));
   inp.value='';msgs.scrollTop=msgs.scrollHeight;
   setTimeout(function(){
-    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. Signal está en construcción 🛠️. Muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
+    msgs.insertAdjacentHTML('beforeend',_consChatBubble('Gracias por tu pregunta. Signal estará disponible en octubre. Muy pronto podré responderte con tus NOMs, impuestos, comisiones y normativa al día.',false));
     msgs.scrollTop=msgs.scrollHeight;
   },550);
 }
