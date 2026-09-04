@@ -899,8 +899,9 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-table th{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.1em;color:var(--dim);text-transform:uppercase;text-align:left;padding:6px 8px;border-bottom:1px solid var(--border)}
 .cons-table td{font-size:11px;color:var(--text2);padding:8px;border-bottom:0.8px solid rgba(0,0,0,0.04);vertical-align:middle}
 .cons-table tr:hover td{background:rgba(0,0,0,0.018)}
-.cons-leg-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.cons-leg-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:start}
 .cons-leg-card{min-width:0;display:flex;align-items:center;gap:10px;padding:9px 11px;border:0.8px solid var(--border);text-decoration:none;color:inherit;transition:border-color 0.15s}
+.cons-leg-card.exp{grid-column:1/-1}
 .cons-leg-card:hover{border-color:var(--green)}
 .cons-est-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.8px solid var(--border);cursor:pointer}
 .cons-est-row:last-child{border-bottom:none}
@@ -7953,6 +7954,8 @@ function _toggleConsLeg(uid,ev){
   d.style.display=open?'none':'block';
   var arr=document.getElementById(uid+'-arr');
   if(arr)arr.style.transform=open?'':'rotate(180deg)';
+  var card=d.closest('.cons-leg-card');
+  if(card)card.classList.toggle('exp',!open);
 }
 function _consLegs(legs){
   var el=document.getElementById('cons-legs');if(!el)return;
