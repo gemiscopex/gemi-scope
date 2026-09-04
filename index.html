@@ -1242,8 +1242,8 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
       <button class="tab-btn" onclick="navDrop(event,this,function(){goAgenda('congreso')})">Agenda ▾</button>
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="goAgenda('congreso')">Congreso de la Unión</div>
-        <div class="nav-drop-it" onclick="goAgenda('conamer')">En consulta · ATDT</div>
-        <div class="nav-drop-it" onclick="showTab('mananera',null)">Conferencias · Ejecutivo</div>
+        <div class="nav-drop-it" onclick="goAgenda('conamer')">En consulta</div>
+        <div class="nav-drop-it" onclick="showTab('mananera',null)">Seguimiento Ejecutivo</div>
         <div class="nav-drop-it" onclick="goAgenda('pendientes')">Reglamentaciones Pendientes</div>
       </div>
     </div>
@@ -1536,8 +1536,8 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
     <div id="agenda-body"></div>
   </div>
   <div id="tab-mananera" class="tab-content" style="padding:28px 0">
-    <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Conferencias Ejecutivo</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:22px">Conferencias matutinas de la Presidencia. Explora por palabra clave; cada término te lleva a la cita textual, con fecha y liga a la versión estenográfica.</div>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px"><div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Seguimiento Ejecutivo</div><span style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--green);border:0.8px solid var(--green);border-radius:3px;padding:2px 7px;text-transform:uppercase">En progreso</span></div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:22px">Conferencias matutinas de la Presidencia. Elige un tema o un actor para ver qué se dijo y cuándo, con liga a la versión estenográfica.</div>
     <div id="mananera-wrap"></div>
   </div>
 </div>
@@ -2030,6 +2030,47 @@ function loadPresidencia(){
 }
 /* ── Mañaneras: buscador por tema / mes / palabra (usa presData) ── */
 var _mnnData=null;
+var _mnnData=null,_segTema=null,_segActor=null;
+var _SEG_ACTOR={
+  'PRES':{name:'Claudia Sheinbaum',sub:'Presidencia'},
+  'Semarnat':{name:'Alicia Bárcena',sub:'Semarnat'},
+  'Sener':{name:'Luz Elena González',sub:'Sener'},
+  'Conagua':{name:'Efraín Morales',sub:'Conagua'},
+  'Economía':{name:'Marcelo Ebrard',sub:'Economía'},
+  'SHCP':{name:'Édgar Amador',sub:'SHCP'},
+  'Profepa':{name:'Mariana Boy',sub:'Profepa'},
+  'Sader':{name:'SADER',sub:''},'Salud':{name:'Salud',sub:''},
+  'Bienestar':{name:'Bienestar',sub:''},'Segob':{name:'Gobernación',sub:''}
+};
+function _segItems(){
+  var data=(typeof presData!=='undefined'&&presData&&presData.length)?presData:(_mnnData||[]);
+  var confs=data.filter(function(a){return (a.fuente||'').toLowerCase().indexOf('stenogr')>=0 && (a.fragmentos||[]).length;});
+  var out=[];
+  confs.forEach(function(a){
+    var d=a.fecha?new Date(a.fecha.substring(0,10)+'T12:00:00'):null;
+    var url=String(a.url||'#').replace(/'/g,'%27');
+    (a.fragmentos||[]).forEach(function(fr){
+      var t=String(fr||'').replace(/\s+/g,' ').trim();
+      var m=t.match(/^.{0,90}?\(([^)]+)\)\s*:/);
+      out.push({fecha:a.fecha,d:d,url:url,frag:t,org:m?m[1].trim():'PRES'});
+    });
+  });
+  return out;
+}
+function _segCat(){return _segTema?CATS.filter(function(c){return c.id===_segTema;})[0]:null;}
+function _segActors(it){
+  var cat=_segCat(),map={};
+  it.forEach(function(x){ if(cat&&!_radarKwMatch(cat.kw,x.frag))return; map[x.org]=(map[x.org]||0)+1; });
+  return Object.keys(map).filter(function(org){return _SEG_ACTOR[org];}).map(function(org){var a=_SEG_ACTOR[org];return {org:org,name:a.name,sub:a.sub,n:map[org]};})
+    .sort(function(a,b){return b.n-a.n;}).slice(0,12);
+}
+function _segSetTema(id){_segTema=(_segTema===id?null:id);renderMananera();}
+function _segSetActor(org){_segActor=(_segActor===org?null:org);renderMananera();}
+function _segClear(){_segTema=null;_segActor=null;renderMananera();}
+function _segToggle(i){
+  var det=document.getElementById('seg-det-'+i),sh=document.getElementById('seg-sh-'+i),ar=document.getElementById('seg-ar-'+i);
+  if(!det)return;var open=det.style.display==='none';det.style.display=open?'':'none';if(sh)sh.style.display=open?'none':'';if(ar)ar.textContent=open?'▾':'▸';
+}
 function renderMananera(){
   var wrap=document.getElementById('mananera-wrap'); if(!wrap)return;
   var data=(typeof presData!=='undefined'&&presData&&presData.length)?presData:_mnnData;
@@ -2040,106 +2081,67 @@ function renderMananera(){
     }).catch(function(){wrap.innerHTML='<div style="color:var(--text-muted);font-size:13px">No se pudieron cargar las conferencias.</div>';});
     return;
   }
-  var confs=data.filter(function(a){return (a.fuente||'').toLowerCase().indexOf('stenogr')>=0 && (a.fragmentos||[]).length;});
-  var MES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-  var mesesSet={}; confs.forEach(function(a){var f=String(a.fecha||'').substring(0,7); if(f)mesesSet[f]=1;});
-  var meses=Object.keys(mesesSet).sort().reverse();
-  var mesOpts='<option value="">Todos los meses</option>'+meses.map(function(m){var y=m.substring(0,4),mo=parseInt(m.substring(5,7),10);return '<option value="'+m+'">'+MES[mo-1]+' '+y+'</option>';}).join('');
-  var temaOpts='<option value="">Todos los temas</option>'+CATS.map(function(c){return '<option value="'+c.id+'">'+c.name+'</option>';}).join('');
-  var st='font-size:13px;padding:7px 11px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);outline:none;font-family:var(--sans);border-radius:8px';
-  wrap.innerHTML=''
-    +'<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">'
-    +'<input id="mnn-q" placeholder="Buscar palabra… (p. ej. agua, litio, LGEEPA)" oninput="_mnnRun()" style="'+st+';flex:1;min-width:220px">'
-    +'<select id="mnn-tema" onchange="_mnnRun()" style="'+st+'">'+temaOpts+'</select>'
-    +'<select id="mnn-mes" onchange="_mnnRun()" style="'+st+'">'+mesOpts+'</select>'
-    +'</div>'
-    +'<div id="mnn-kw" style="margin:18px 0 4px"></div>'
-    +'<div id="mnn-count" style="font-family:var(--mono);font-size:9px;letter-spacing:0.05em;color:var(--text-muted);margin:14px 0 2px"></div>'
-    +'<div id="mnn-results"></div>';
-  _mnnRun();
-}
-// Vocabulario de términos clave (aplanado de CATS, términos punchy)
-var _MNN_VOCAB=null;
-function _mnnVocab(){
-  if(_MNN_VOCAB)return _MNN_VOCAB;
-  var seen={},out=[];
-  (typeof CATS!=='undefined'?CATS:[]).forEach(function(c){(c.kw||[]).forEach(function(k){
-    var n=(typeof _consNk==='function')?_consNk(k):k.toLowerCase();
-    if(n.length<3||n.length>22||seen[n])return; seen[n]=1;
-    var re=n.indexOf(' ')>=0?null:new RegExp('\\b'+n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
-    out.push({kw:k,n:n,re:re});
-  });});
-  _MNN_VOCAB=out; return out;
-}
-var _mnnRows=[];
-function _mnnToggle(i){
-  var det=document.getElementById('mnn-det-'+i),sh=document.getElementById('mnn-sh-'+i),ar=document.getElementById('mnn-ar-'+i);
-  if(!det)return;
-  var open=det.style.display==='none';
-  det.style.display=open?'':'none'; if(sh)sh.style.display=open?'none':''; if(ar)ar.textContent=open?'▾':'▸';
-}
-function _mnnKw(term){
-  var q=document.getElementById('mnn-q'); if(q)q.value=term; _mnnRun();
-  var r=document.getElementById('mnn-results'); if(r&&r.scrollIntoView)r.scrollIntoView({block:'nearest',behavior:'smooth'});
-}
-function _mnnRun(){
-  var data=(typeof presData!=='undefined'&&presData&&presData.length)?presData:(_mnnData||[]);
-  var q=((document.getElementById('mnn-q')||{}).value||'').trim();
-  var temaId=(document.getElementById('mnn-tema')||{}).value||'';
-  var mes=(document.getElementById('mnn-mes')||{}).value||'';
-  var qn=q?((typeof _consNk==='function')?_consNk(q):q.toLowerCase()):'';
-  var tema=temaId?CATS.filter(function(c){return c.id===temaId;})[0]:null;
-  var confs=data.filter(function(a){return (a.fuente||'').toLowerCase().indexOf('stenogr')>=0 && (a.fragmentos||[]).length;})
-    .filter(function(a){return !mes || String(a.fecha||'').substring(0,7)===mes;})
-    .sort(function(a,b){return String(b.fecha||'').localeCompare(String(a.fecha||''));});
-  // base = fragmentos filtrados por tema+mes (NO por q); q solo filtra el feed
-  var base=[],confSet={};
-  confs.forEach(function(a){
-    var d=a.fecha?new Date(a.fecha.substring(0,10)+'T12:00:00'):null;
-    var url=String(a.url||'#').replace(/'/g,'%27');
-    (a.fragmentos||[]).forEach(function(fr){
-      var t=String(fr||'').replace(/\s+/g,' ').trim();
-      if(tema && !(typeof _radarKwMatch==='function'&&_radarKwMatch(tema.kw,t)))return;
-      base.push({fr:t,tn:(typeof _consNk==='function')?_consNk(t):t.toLowerCase(),d:d,url:url,fecha:a.fecha});
-    });
-  });
-  // ── Términos más mencionados (sobre base) ──
-  var vocab=_mnnVocab(),counts=[];
-  vocab.forEach(function(v){var c=0;for(var i=0;i<base.length;i++){var tn=base[i].tn;if(v.re?v.re.test(tn):tn.indexOf(v.n)>=0)c++;}if(c>0)counts.push({kw:v.kw,n:v.n,c:c});});
-  counts.sort(function(a,b){return b.c-a.c;}); counts=counts.slice(0,16);
-  var kwEl=document.getElementById('mnn-kw');
-  if(kwEl){
-    var chips=counts.map(function(t){
-      var on=qn&&qn===t.n; var lbl=(typeof _tcKw==='function')?_tcKw(t.kw):(t.kw.charAt(0).toUpperCase()+t.kw.slice(1));
-      return '<span onclick="_mnnKw(\''+t.kw.replace(/\x27/g,'')+'\')" style="cursor:pointer;font-size:12.5px;color:'+(on?'#066750':'var(--text)')+';font-weight:'+(on?'700':'400')+'" onmouseover="this.style.color=\'#066750\'" onmouseout="this.style.color=\''+(on?'#066750':'var(--text)')+'\'">'+lbl+' <span style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+t.c+'</span></span>';
-    }).join('<span style="color:var(--border2);margin:0 2px">·</span>');
-    kwEl.innerHTML='<div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#066750;margin-bottom:9px">Términos más mencionados</div>'
-      +'<div style="display:flex;flex-wrap:wrap;gap:7px 4px;align-items:baseline;line-height:1.7">'+(chips||'<span style="color:var(--text-muted);font-size:12px">—</span>')+'</div>'
-      +(qn?'<div style="margin-top:8px"><span onclick="_mnnKw(\'\')" style="cursor:pointer;font-family:var(--mono);font-size:9px;letter-spacing:.05em;color:var(--green)">↺ limpiar «'+_esc(q)+'»</span></div>':'');
-  }
-  // ── Feed de extractos (filtra por q; palabra suelta = límite de palabra) ──
-  var qre=(qn&&qn.indexOf(' ')<0)?new RegExp('\\b'+qn.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')):null;
-  var items=base.filter(function(it){return !qn||(qre?qre.test(it.tn):it.tn.indexOf(qn)>=0);});
-  var cap=80,shown=items.slice(0,cap); _mnnRows=shown;
-  var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-  var rows=shown.map(function(it,i){
-    var fl=it.d?(('0'+it.d.getDate()).slice(-2)+' '+MES[it.d.getMonth()]+' '+it.d.getFullYear()):'';
-    var full=it.fr, sh=full.length>150?(full.slice(0,148).replace(/\s+\S*$/,'')+'…'):full;
-    var zeb=i%2?'background:rgba(13,27,42,0.025);':'';
-    return '<div style="display:flex;gap:14px;padding:12px;border-top:0.8px solid var(--border);align-items:baseline;'+zeb+'">'
-      +'<div style="font-family:var(--mono);font-size:10px;color:#066750;white-space:nowrap;min-width:66px;padding-top:2px">'+fl+'</div>'
-      +'<div style="flex:1;min-width:0">'
-        +'<div onclick="_mnnToggle('+i+')" style="cursor:pointer;font-size:13px;line-height:1.5;color:var(--text)"><span id="mnn-sh-'+i+'">“'+_cspBold(sh)+'”</span><span id="mnn-ar-'+i+'" style="font-size:8px;color:var(--text-muted);margin-left:6px">▸</span></div>'
-        +'<div id="mnn-det-'+i+'" style="display:none;font-size:13px;line-height:1.65;color:var(--text);margin-top:7px">“'+_cspBold(full)+'” <a href="'+it.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-family:var(--mono);font-size:10px;color:var(--green);text-decoration:none;white-space:nowrap">ver estenográfica ↗</a></div>'
-      +'</div>'
+  var it=_segItems();
+  function hdr(t){return '<div class="normas-section-hdr" style="margin:0 0 12px">'+t+'</div>';}
+  var temasHTML=CATS.map(function(c){
+    var on=_segTema===c.id;
+    var n=it.filter(function(x){return (!_segActor||x.org===_segActor)&&_radarKwMatch(c.kw,x.frag);}).length;
+    return '<div onclick="_segSetTema(\''+c.id+'\')" style="cursor:pointer;padding:11px 13px;border:0.8px solid '+(on?'var(--green)':'var(--border)')+';border-radius:10px;background:'+(on?'rgba(6,103,80,.06)':'transparent')+'">'
+      +'<div style="font-size:13px;font-weight:600;color:'+(on?'#066750':'var(--text)')+'">'+c.name+'</div>'
+      +'<div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:3px">'+n+' menciones</div>'
     +'</div>';
   }).join('');
-  var MM=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-  var lbl=[]; if(tema)lbl.push('sobre '+tema.name); if(mes)lbl.push('en '+MM[parseInt(mes.substring(5,7),10)-1]+' '+mes.substring(0,4)); if(q)lbl.push('con «'+q+'»');
-  var cd=document.getElementById('mnn-count');
-  if(cd)cd.textContent=items.length+(items.length>cap?' (mostrando '+cap+')':'')+' menciones'+(lbl.length?' · '+lbl.join(' · '):'');
-  var rc=document.getElementById('mnn-results');
-  if(rc)rc.innerHTML=rows||'<div style="color:var(--text-muted);font-size:13px;padding:20px 0">Sin menciones con esos filtros. Prueba otro término o mes.</div>';
+  var actHTML=_segActors(it).map(function(a){
+    var on=_segActor===a.org;
+    return '<span onclick="_segSetActor(\''+a.org.replace(/\x27/g,'')+'\')" style="cursor:pointer;color:'+(on?'#066750':'var(--text)')+';font-weight:'+(on?'700':'400')+';font-size:12.5px">'+a.name+(a.sub?' <span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+a.sub+'</span>':'')+' <span style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+a.n+'</span></span>';
+  }).join('<span style="color:var(--border2);margin:0 4px">·</span>');
+  wrap.innerHTML=''
+    +hdr('Filtrar por tema')
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:9px;margin-bottom:26px">'+temasHTML+'</div>'
+    +hdr('Actores invitados')
+    +'<div style="display:flex;flex-wrap:wrap;gap:9px 4px;align-items:baseline;line-height:1.9">'+(actHTML||'<span style="color:var(--text-muted);font-size:12px">—</span>')+'</div>'
+    +((_segTema||_segActor)?'<div style="margin:10px 0 0"><span onclick="_segClear()" style="cursor:pointer;font-family:var(--mono);font-size:9px;letter-spacing:.05em;color:var(--green)">↺ limpiar filtros</span></div>':'')
+    +'<div style="border-top:1px solid var(--text);margin-top:22px;padding-top:18px">'+hdr('Línea de tiempo')+'<div id="seg-tl"></div></div>';
+  _segRun();
+}
+function _segRun(){
+  var el=document.getElementById('seg-tl'); if(!el)return;
+  var it=_segItems(),cat=_segCat();
+  var byDate={},order=[];
+  it.forEach(function(x){
+    var f=x.fecha; if(!byDate[f]){byDate[f]={d:x.d,all:0,hits:[]};order.push(f);}
+    byDate[f].all++;
+    if((!cat||_radarKwMatch(cat.kw,x.frag))&&(!_segActor||x.org===_segActor))byDate[f].hits.push(x);
+  });
+  order.sort(function(a,b){return String(b).localeCompare(String(a));});
+  var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  function flabel(d,f){return d?(('0'+d.getDate()).slice(-2)+' '+MES[d.getMonth()]+' '+d.getFullYear()):f;}
+  if(!_segTema&&!_segActor){
+    var rows=order.slice(0,40).map(function(f){var g=byDate[f];
+      return '<div style="display:flex;gap:14px;padding:9px 0;border-bottom:0.8px solid var(--border);align-items:baseline"><div style="font-family:var(--mono);font-size:11px;color:#066750;min-width:100px">'+flabel(g.d,f)+'</div><div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+g.all+' menciones</div></div>';
+    }).join('');
+    el.innerHTML='<div style="font-size:12px;color:var(--text-sec);margin-bottom:14px;line-height:1.55">Elige un <b>tema</b> o un <b>actor</b> arriba para ver las citas y cuándo se dijeron. Por ejemplo, da clic en <b>Alicia Bárcena</b> y verás en qué conferencias participó y qué dijo.</div>'+rows;
+    return;
+  }
+  var dates=order.filter(function(f){return byDate[f].hits.length;});
+  var total=dates.reduce(function(s,f){return s+byDate[f].hits.length;},0),idx=0;
+  var html=dates.map(function(f){
+    var g=byDate[f];
+    var cites=g.hits.map(function(x){
+      var i=idx++,full=x.frag,sh=full.length>150?(full.slice(0,148).replace(/\s+\S*$/,'')+'…'):full;
+      return '<div style="padding:7px 0">'
+        +'<div onclick="_segToggle('+i+')" style="cursor:pointer;font-size:13px;line-height:1.5;color:var(--text)"><span id="seg-sh-'+i+'">“'+_cspBold(sh)+'”</span><span id="seg-ar-'+i+'" style="font-size:8px;color:var(--text-muted);margin-left:6px">▸</span></div>'
+        +'<div id="seg-det-'+i+'" style="display:none;font-size:13px;line-height:1.65;color:var(--text);margin-top:6px">“'+_cspBold(full)+'” <a href="'+x.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-family:var(--mono);font-size:10px;color:var(--green);text-decoration:none">ver estenográfica ↗</a></div>'
+      +'</div>';
+    }).join('');
+    return '<div style="position:relative;padding-left:20px;margin-bottom:6px">'
+      +'<div style="position:absolute;left:0;top:2px;bottom:0;width:1px;background:var(--border)"></div>'
+      +'<div style="position:absolute;left:-3px;top:8px;width:8px;height:8px;border-radius:50%;background:#066750"></div>'
+      +'<div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#066750;margin-bottom:2px">'+flabel(g.d,f)+' <span style="font-weight:400;color:var(--text-muted)">· '+g.hits.length+'</span></div>'
+      +cites
+    +'</div>';
+  }).join('');
+  el.innerHTML=total?('<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:14px">'+total+' menciones · '+dates.length+' conferencias</div>'+html):'<div style="color:var(--text-muted);font-size:13px;padding:14px 0">Sin menciones con ese filtro. Prueba otro tema o actor.</div>';
 }
 /* ── Banner semanal: noticia principal + semáforo de riesgo ── */
 function renderSemanaBanner(){
@@ -3474,7 +3476,7 @@ function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
   if(['dof','pendientes','conamer'].indexOf(view)>=0)_agendaView=view;
   if(['pendientes','conamer','dof'].indexOf(_agendaView)<0)_agendaView='pendientes';
-  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta · ATDT'],['dof','DOF · publicaciones']];
+  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta'],['dof','DOF · publicaciones']];
   var nav='<div class="stab-bar" style="margin-bottom:20px">'+tabs.map(function(t){
       return '<button class="stab'+(_agendaView===t[0]?' on':'')+'" onclick="agendaSetView(\''+t[0]+'\')">'+t[1]+'</button>';
     }).join('')+'</div>';
@@ -6396,7 +6398,7 @@ function initSearch(){
           var pf=String(pa.fragmentos[pj]||'');
           if(norm(pf).includes(qn)){
             pr2.push({title:pf.replace(/\s+/g,' ').trim().slice(0,120),meta:'Mañanera'+(pa.fecha?' · '+fmtDate(pa.fecha):''),
-              fn:(function(qq){return function(){showTab('mananera',null);setTimeout(function(){var q2=document.getElementById('mnn-q');if(q2){q2.value=qq;_mnnRun();}},130);};})(q)});
+              fn:(function(qq){return function(){showTab('mananera',null);setTimeout(function(){try{var t=(CATS||[]).filter(function(c){return _radarKwMatch(c.kw,qq);})[0];if(t&&typeof _segSetTema==='function'&&_segTema!==t.id)_segSetTema(t.id);}catch(e){}},160);};})(q)});
           }
         }
       }
