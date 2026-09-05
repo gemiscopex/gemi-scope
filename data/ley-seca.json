@@ -1,11 +1,31 @@
 {
  "_meta": {
-  "actualizado": "2026-09-05T13:31:37Z",
+  "actualizado": "2026-09-05T19:43:17Z",
   "fuente": "Prensa nacional y local vía Google News",
   "nota": "Capa de prensa (Beta). Detección de restricciones a la venta de alcohol. La vigencia exacta se confirma en el bando o periódico oficial de cada plaza.",
   "total": 200
  },
  "eventos": [
+  {
+   "id": "b75d5dfd47d2",
+   "titulo": "Aplican Ley Seca en Tepoztlán y cierran el paso al Tepozteco ¡Conoce todos los detalles!",
+   "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNTkNsYmIyWmM4RnQzRmJEWW9CYzBmczVQdTF1b0VmbXJuQjN0UzhScWtILWluMk5YODlyRFBMemU0eWpDVmN2U19jT01oVmFYN2p0M09mVzFFemV6bW9CVEloT0VBWE44bmdsZWc0NmthTlFZZldoRHhIZzlvb2FKZ19OVk94WDlXWTFHc3Z3QVBCNkRiSHQ3eE1qNy1QeGNaVkVIaTdlYTlCUk5xd2QtZ3FsZktKWWpqV0xhNQ?oc=5",
+   "fuente": "El Sol de México",
+   "fecha_publicacion": "2026-09-05T16:02:58Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
+  {
+   "id": "1e518a4ea845",
+   "titulo": "Exhortan a municipios de Morelos a aplicar Ley Seca el 15 y 16 de septiembre - El Sol de Cuernavaca",
+   "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNYXlyUFhXTGdQTmVlMUdPaUFoRHMzTFJJb3l6UDJZV2NmTmZZdFAyUGh4R1FpT05NUGZqSnBkbVJrMVZ4cGtnSkd0Z0g4RGlRaUhmM2ZGMDV2R2NPYl9sTERxbWM3Mlp5Nng1ZU01Y2dYZzJybEc5NmtPSC1JYmZPeVM5SUNtR3BObXI1TUt5SUFOS2VxUmNLMDFaekRRVDRfSjkybTRxVXJhY3FQemxaLWhoWjBXckQyS2trc3VKSktjNHhDWG1KZWJBRmNXYV9UR01lbjNYQVpKcFpWcEZV?oc=5",
+   "fuente": "El Sol de México",
+   "fecha_publicacion": "2026-09-05T15:39:52Z",
+   "estado": "Morelos",
+   "ambito": "Municipal",
+   "motivo": "Festividad"
+  },
   {
    "id": "658860614a10",
    "titulo": "Descarta Canirac impacto por Ley Seca en Fiestas Patrias",
@@ -1983,26 +2003,6 @@
    "fuente": "El Financiero",
    "fecha_publicacion": "2026-06-25T07:00:00Z",
    "estado": "",
-   "ambito": "Municipal",
-   "motivo": "Otro"
-  },
-  {
-   "id": "f9ec9e0873f9",
-   "titulo": "¿Hay Ley Seca en Edomex hoy 24 de junio por el partido de México? Esto sabemos",
-   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOZFBaeEdaaE9pckJjak00T2U5d0k3Q0FSc05mcmhwMnZIeDJpUktKazZwMjJEVnNwOXFRS0lPeFFmN29NRWp3Yk5hcVN3aC1uc2NVc1p0RFdMcHZHdk53OG11Zy1taXRFRVZDM2JPYk53YjI4c1RLY25CQmZJZkJOZVRNZkZhbXEwWTRXbUw2b0RkcDlpOXJF0gGXAUFVX3lxTE9NcnVPY0otS051ZkRNYjBsMlVGQUQtd0VRa29IZWdYa280VjlJOW1uU3I2Nnh1NmpsOTlmUFZCZmJLblUyd2N2M2dqdFdIS3Y1b243SjBXZmF5NUU4Q0cxSi1VYlV0eEwzWkx4YTVMelJGTnhEeFR6aW9ScktmMFJyOE1DLXVIdi1VV3lvX2F0OGxZeHJnMmM?oc=5",
-   "fuente": "MILENIO",
-   "fecha_publicacion": "2026-06-24T07:00:00Z",
-   "estado": "Estado de México",
-   "ambito": "Municipal",
-   "motivo": "Orden público"
-  },
-  {
-   "id": "db2e6e7fe22a",
-   "titulo": "¿De cuánto es la multa a los negocios que vendan alcohol durante la Ley Seca en CdMx por el México vs Chequia?",
-   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQSklEbjBMU3JQa2RNM3E4dDVXeEgzdXZMaXNwbHVpdk10Q29RQnhSQTVtXy1WS2VQbEFKaHRpNUUyWmVBWHdRRkdTTGZiSGgtS0FhTFFZU1VGbFc2ai10MDZRcDdINml6TzlNQWVWMDZuXy1ueGw3Mm9PZzBIbk1HVllienk5eHkyaWY4U0NiVk4yUzg5UUM2akJkNl9odUdWZ1d6eV8yUdIBpwFBVV95cUxPOFBNNF9IQkgtUkJkbmo3V3NfS2tsY09vUXJ4UG1OUkcwR2NGNDZqbkIwbHpTY0UtSlRFc3JWcFlES0ZTaE9ldlJHbkJSWk5ZY3dpbXZZYjY4UFRldW0tamwxN0JmSEc0SC1FSmVlSkJVeXJ3d09mdXhQdlJlM3Bsb3JLSXhYSFhlaXpidlV3dnhBVHBkZGxhdlhDU1ZtWDl5LWs4MEhEZw?oc=5",
-   "fuente": "MILENIO",
-   "fecha_publicacion": "2026-06-24T07:00:00Z",
-   "estado": "Ciudad de México",
    "ambito": "Municipal",
    "motivo": "Otro"
   }
