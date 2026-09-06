@@ -1375,6 +1375,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
         <div style="font-size:11px;color:var(--text-muted)">México · LXVI Legislatura</div>
       </div>
       <div style="font-size:12px;color:var(--text-sec);margin-bottom:20px">Leyes federales ambientales vigentes. Haz clic para abrir el PDF oficial.</div>
+      <div id="intel-entry"></div>
       <div class="leyes-grid" id="leyes-grid"></div>
     </div>
     <!-- Vista Estatal -->
@@ -1431,7 +1432,69 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
       </div>
       <div id="gacetas-dir" style="margin-top:6px"></div>
     </div>
+    <!-- Vista Inteligencia (exclusiva por empresa; corre sobre el compendio) -->
+    <div id="leg-view-inteligencia" style="display:none"><div id="intel-wrap"></div></div>
   </div>
+
+  <style>
+  .intel-crumb{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin:0 0 10px;cursor:default}
+  .intel-crumb .lnk{color:var(--text-muted);cursor:pointer;text-decoration:none}
+  .intel-crumb .lnk:hover{color:var(--text)}
+  .intel-crumb b{color:var(--green);font-weight:700}
+  .intel-crumb .sep{margin:0 8px;color:var(--border2)}
+  .intel-mast{border-bottom:1.6px solid var(--text);padding-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+  .intel-h1{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:0}
+  .intel-sub{font-size:13.5px;color:var(--text-sec);margin:9px 0 0;max-width:60ch}
+  .intel-seal{flex-shrink:0;border:0.8px solid var(--border);border-radius:3px;padding:9px 13px;background:var(--card)}
+  .intel-seal .s1{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)}
+  .intel-seal .s2{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--green);margin-top:3px}
+  .intel-seal .s3{font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:3px}
+  .intel-admin{display:flex;align-items:center;gap:10px;margin:16px 0 0;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+  .intel-admin select{appearance:none;-webkit-appearance:none;padding:6px 26px 6px 11px;font-family:var(--mono);font-size:11px;color:var(--text);background:var(--card);border:0.8px solid var(--green);border-radius:4px;cursor:pointer;outline:none;letter-spacing:.02em}
+  .intel-ro{margin-top:22px}
+  .intel-ro-top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:0.8px solid var(--border);padding-bottom:9px;gap:12px;flex-wrap:wrap}
+  .intel-ro-lab{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text);font-weight:700}
+  .intel-ro-asof{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;color:var(--text-muted)}
+  .intel-ro-asof .live{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:6px;vertical-align:middle}
+  .intel-bar{display:flex;gap:2px;height:8px;margin:16px 0 0}
+  .intel-bar span{border-radius:1px}
+  .intel-op{background:var(--green)} .intel-ac{background:#B45309} .intel-mo{background:var(--text-muted)}
+  .intel-leg{display:flex;gap:34px;margin:13px 0 0;flex-wrap:wrap}
+  .intel-leg .it{display:flex;align-items:baseline;gap:9px}
+  .intel-leg .k{width:9px;height:9px;border-radius:2px;flex-shrink:0;position:relative;top:1px}
+  .intel-leg .n{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1}
+  .intel-leg .t{font-size:11px;color:var(--text-sec);line-height:1.25;max-width:15ch}
+  .intel-lead{font-size:13.5px;color:var(--text);line-height:1.6;margin:20px 0 6px;max-width:74ch;border-left:2px solid var(--green);padding-left:14px}
+  .intel-shdr{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);border-top:1.4px solid var(--text);padding-top:11px;margin:34px 0 4px;display:flex;justify-content:space-between;align-items:baseline}
+  .intel-shdr .c{color:var(--text-muted);font-size:9px;letter-spacing:.05em}
+  .intel-ficha{border-bottom:0.8px solid var(--border);padding:16px 0}
+  .intel-ficha:nth-child(even){background:rgba(6,103,80,.02)}
+  .intel-frow{display:flex;gap:16px;align-items:flex-start;cursor:pointer}
+  .intel-fname{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.01em;line-height:1.25}
+  .intel-fname .code{font-family:var(--mono);font-size:10px;font-weight:400;color:var(--text-muted);margin-left:8px}
+  .intel-fregula{font-size:12px;color:var(--text-sec);margin-top:4px}
+  .intel-fpara{font-size:12.5px;color:var(--text);margin-top:9px;line-height:1.5;padding-left:12px;border-left:2px solid var(--green)}
+  .intel-fpara .k{font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--green);display:block;margin-bottom:3px}
+  .intel-open{font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:.05em;margin-top:9px;display:inline-block}
+  .intel-fsig{flex-shrink:0;text-align:right;min-width:126px}
+  .intel-chip{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.03em;display:inline-flex;align-items:center;gap:6px}
+  .intel-chip .d{width:7px;height:7px;border-radius:50%;background:currentColor}
+  .intel-chip.op{color:var(--green)} .intel-chip.ac{color:#B45309} .intel-chip.mo{color:var(--text-muted)}
+  .intel-fscore{font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:6px}
+  .intel-exp{margin-top:14px;padding:14px 0 2px 12px;border-left:2px solid var(--border)}
+  .intel-ehdr{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px}
+  .intel-art{display:flex;gap:14px;padding:9px 0;border-top:0.8px solid var(--border);font-size:12px;color:var(--text-sec);line-height:1.45}
+  .intel-art:first-of-type{border-top:0}
+  .intel-art .ax{flex:0 0 30%;color:var(--text);font-weight:600}
+  .intel-art .ax .s{display:block;font-family:var(--mono);font-size:8.5px;font-weight:400;color:var(--text-muted);margin-top:3px}
+  .intel-art .ab{flex:1;min-width:0}
+  .intel-art .an{flex:0 0 70px;text-align:right}
+  .intel-btn-entry{display:inline-flex;align-items:center;gap:8px;margin:0 0 20px;padding:10px 15px;border:0.8px solid var(--green);border-radius:8px;background:rgba(6,103,80,.05);color:var(--green);font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:background .12s}
+  .intel-btn-entry:hover{background:rgba(6,103,80,.11)}
+  .intel-btn-entry .tag{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;border:0.8px solid var(--green);border-radius:3px;padding:1px 5px}
+  .intel-foot{margin-top:34px;font-size:11px;color:var(--text-muted);line-height:1.55;border-top:0.8px solid var(--border);padding-top:14px}
+  @media(max-width:680px){.intel-frow{flex-direction:column}.intel-fsig{text-align:left}.intel-art{flex-wrap:wrap}.intel-art .ax,.intel-art .an{flex-basis:auto}.intel-art .an{text-align:left}}
+  </style>
 
   <!-- TAB: ACTORES -->
   <div id="tab-congreso" class="tab-content" style="padding:28px 0">
@@ -2434,6 +2497,91 @@ function showLegSub(sub,btn){
   if(sub==='acuerdos')renderAcuerdos();
   if(sub==='gacetas'&&typeof _agendaGacetas==='function')_agendaGacetas();
   if(sub==='rme'){var rh=document.getElementById('rme-dir');if(rh)rh.innerHTML=_rmeDirHTML();}
+  var iv=document.getElementById('leg-view-inteligencia');if(iv)iv.style.display=sub==='inteligencia'?'':'none';
+  if(sub==='federal')_renderIntelEntry();
+  if(sub==='inteligencia')renderInteligencia();
+}
+// ── Inteligencia regulatoria por empresa (exclusiva; corre sobre el compendio, no lo sustituye) ──
+var _ADMIN_EMAILS=['gemiscopex@gmail.com','rleon@iniciativagemi.org','sdecelis@iniciativagemi.org'];
+var _INTEL=null,_intelSel=null,_intelN=0;
+function _isAdmin(){try{return _ADMIN_EMAILS.indexOf((_userEmail()||'').toLowerCase())>=0;}catch(_){return false;}}
+function _intelLoad(cb){
+  if(_INTEL){cb&&cb();return;}
+  fetch('data/inteligencia.json').then(function(r){return r.ok?r.json():null;}).then(function(d){_INTEL=d||{empresas:{},dominios:{}};cb&&cb();}).catch(function(){_INTEL={empresas:{},dominios:{}};cb&&cb();});
+}
+function _intelEmpresaFor(){try{var dom=((_userEmail()||'').toLowerCase().split('@')[1])||'';if(_INTEL&&_INTEL.dominios&&_INTEL.dominios[dom])return _INTEL.dominios[dom];}catch(_){}return null;}
+function _intelCurrentId(){var emp=_intelEmpresaFor();if(_isAdmin()){if(_intelSel&&_INTEL.empresas[_intelSel])return _intelSel;return emp||Object.keys(_INTEL.empresas||{})[0]||null;}return emp;}
+function _intelSetEmpresa(id){_intelSel=id;renderInteligencia();}
+function _renderIntelEntry(){
+  var el=document.getElementById('intel-entry');if(!el)return;el.innerHTML='';
+  if(!_hasAccess())return;
+  _intelLoad(function(){
+    var admin=_isAdmin(),emp=_intelEmpresaFor();
+    if(!admin&&!emp)return;
+    var id=admin?(emp||Object.keys(_INTEL.empresas||{})[0]):emp;
+    var label=(id&&_INTEL.empresas[id]?_INTEL.empresas[id].nombre:(admin?'empresas':'tu empresa'));
+    el.innerHTML='<button class="intel-btn-entry" onclick="goInteligencia()"><span class="tag">Inteligencia</span> '+_escUser(label)+' <span style="font-family:var(--mono)">→</span></button>';
+  });
+}
+function goInteligencia(){if(typeof _gate==='function'&&!_gate())return;showTab('legislacion',null);showLegSub('inteligencia',null);}
+function _intelLvl(n){return n==='op'?'op':n==='ac'?'ac':n==='mo'?'mo':'';}
+function _intelFicha(f){
+  var uid='intelf-'+(_intelN++);
+  var ejes=(f.ejes||[]).map(function(x){
+    var an=x.nivel?'<span class="intel-chip '+_intelLvl(x.nivel)+'"><span class="d"></span>'+_escUser(x.tag||'')+'</span>':'';
+    return '<div class="intel-art"><div class="ax">'+_escUser(x.eje||'')+(x.sub?'<span class="s">'+_escUser(x.sub)+'</span>':'')+'</div><div class="ab">'+_escUser(x.txt||'')+'</div><div class="an">'+an+'</div></div>';
+  }).join('');
+  return '<div class="intel-ficha">'
+    +'<div class="intel-frow" onclick="_intelToggle(\''+uid+'\')">'
+      +'<div style="flex:1;min-width:0">'
+        +'<div class="intel-fname">'+_escUser(f.nombre||'')+(f.code?'<span class="code">'+_escUser(f.code)+'</span>':'')+'</div>'
+        +(f.regula?'<div class="intel-fregula">'+_escUser(f.regula)+'</div>':'')
+        +(f.para?'<div class="intel-fpara"><span class="k">Para '+_escUser((_INTEL.empresas[_intelCurrentId()]||{}).nombre||'la empresa')+'</span>'+_escUser(f.para)+'</div>':'')
+        +'<span class="intel-open">▸ Ver análisis</span>'
+      +'</div>'
+      +'<div class="intel-fsig"><span class="intel-chip '+_intelLvl(f.nivel)+'"><span class="d"></span>'+_escUser(f.chip||'')+'</span>'+(f.score?'<div class="intel-fscore">'+_escUser(f.score)+'</div>':'')+'</div>'
+    +'</div>'
+    +'<div class="intel-exp" id="'+uid+'" style="display:none"><div class="intel-ehdr">Análisis por eje</div>'+ejes+'</div>'
+  +'</div>';
+}
+function _intelToggle(uid){var d=document.getElementById(uid);if(d)d.style.display=d.style.display==='none'?'':'none';}
+function _intelHTML(e){
+  var r=e.resumen||{},t=(r.total||0),op=(r.oportunidad||0),ac=(r.accion||0),mo=(r.monitoreo||0);
+  var admin=_isAdmin();
+  var sel='';
+  if(admin){
+    var opts=Object.keys(_INTEL.empresas||{}).map(function(k){return '<option value="'+k+'"'+(k===_intelCurrentId()?' selected':'')+'>'+_escUser(_INTEL.empresas[k].nombre)+'</option>';}).join('');
+    sel='<div class="intel-admin"><span>Vista admin · ver inteligencia de</span><select onchange="_intelSetEmpresa(this.value)">'+opts+'</select></div>';
+  }
+  var leyes=(e.leyes||[]).map(_intelFicha).join('');
+  var noms=(e.noms||[]).map(_intelFicha).join('');
+  return ''
+    +'<p class="intel-crumb"><span class="lnk" onclick="showLegSub(\'federal\',null)">Leyes Federales</span> <span class="sep">▸</span> <b>Inteligencia · '+_escUser(e.nombre||'')+'</b></p>'
+    +'<div class="intel-mast"><div><h1 class="intel-h1">Inteligencia regulatoria</h1>'
+      +'<p class="intel-sub">La lectura del marco federal ambiental cruzada con el modelo de negocio de tu empresa. Corre sobre el compendio de Leyes Federales; no lo reemplaza.</p></div>'
+      +'<div class="intel-seal"><div class="s1">Terminal exclusiva</div><div class="s2">'+_escUser(e.nombre||'')+'</div><div class="s3">'+_escUser(e.sello||'')+'</div></div></div>'
+    + sel
+    +'<div class="intel-ro"><div class="intel-ro-top"><span class="intel-ro-lab">Exposición al marco federal</span>'
+      +'<span class="intel-ro-asof"><span class="live"></span>'+t+' ordenamientos · al '+_escUser(e.asof||'')+'</span></div>'
+      +'<div class="intel-bar">'+(op?'<span class="intel-op" style="flex:'+op+'"></span>':'')+(ac?'<span class="intel-ac" style="flex:'+ac+'"></span>':'')+(mo?'<span class="intel-mo" style="flex:'+mo+'"></span>':'')+'</div>'
+      +'<div class="intel-leg">'
+        +'<div class="it"><span class="k intel-op"></span><span class="n">'+op+'</span><span class="t">Oportunidad competitiva</span></div>'
+        +'<div class="it"><span class="k intel-ac"></span><span class="n">'+ac+'</span><span class="t">Requieren acción</span></div>'
+        +'<div class="it"><span class="k intel-mo"></span><span class="n">'+mo+'</span><span class="t">Monitoreo</span></div>'
+      +'</div></div>'
+    +(r.lead?'<p class="intel-lead">'+_escUser(r.lead)+'</p>':'')
+    +'<div class="intel-shdr"><span>Leyes que te aplican</span><span class="c">'+(e.leyes||[]).length+' analizadas · da clic para el detalle</span></div>'+leyes
+    +'<div class="intel-shdr"><span>NOMs que te afectan</span><span class="c">de la ficha técnica · GEMI</span></div>'+noms
+    +'<div class="intel-foot"><b>Análisis curado por GEMI con apoyo del motor.</b> Corre sobre el texto legal vigente ligado en el compendio de Leyes Federales y sobre la ficha de negocio de cada empresa. La escala de oportunidad refleja el motor de análisis de GEMI orientado a beneficio. No constituye asesoría legal.</div>';
+}
+function renderInteligencia(){
+  var wrap=document.getElementById('intel-wrap');if(!wrap)return;
+  _intelLoad(function(){
+    if(!_hasAccess()){wrap.innerHTML='<div style="color:var(--text-muted);font-size:13px;padding:24px 0">Inicia sesión para ver la inteligencia de tu empresa.</div>';return;}
+    var id=_intelCurrentId(),e=id&&_INTEL.empresas?_INTEL.empresas[id]:null;
+    if(!e){wrap.innerHTML='<div style="color:var(--text-muted);font-size:13px;padding:24px 0">Tu inteligencia regulatoria se está preparando.</div>';return;}
+    _intelN=0;wrap.innerHTML=_intelHTML(e);
+  });
 }
 // ── Regulación: entrada desde el mini menú del nav ──
 function showRegulacion(view){
@@ -8606,6 +8754,7 @@ function _updateAuthUI(){
     if(_hasAccess()){b.textContent=_userDisplayName()+' ▾';b.onclick=_toggleUserMenu;}
     else{b.textContent='Acceso pendiente';b.onclick=function(){openAuth('pending');};_umClose();}
   }else{b.textContent='Inicia sesión';b.onclick=function(){openAuth('login');};_umClose();}
+  try{if(typeof _renderIntelEntry==='function')_renderIntelEntry();}catch(e){}
 }
 function _toggleUserMenu(){
   var el=document.getElementById('user-menu');if(!el)return;
