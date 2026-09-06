@@ -2005,7 +2005,6 @@ function _leyRow(l,stateLabel,i){
   var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
   var tipoAbr=l.tipo==='Ley'?'LEY':l.tipo==='Código'?'CÓD':l.tipo==='Reglamento'?'REG':'NOR';
   var doc=(l.url||l.ficha_url||'');
-  if(!doc)doc='https://www.google.com/search?q='+encodeURIComponent('"'+l.nombre+'" filetype:pdf');
   doc=doc.replace(/'/g,'%27').replace(/"/g,'%22');
   var nombre=_leyName(l.nombre||'');
   var estatusCol=/vigente/i.test(l.estatus||'')?'var(--green)':/abrogad|derogad|no vigente/i.test(l.estatus||'')?'#B45309':'var(--text-muted)';
@@ -2015,7 +2014,7 @@ function _leyRow(l,stateLabel,i){
   var hasDoc=!!(l.url||l.ficha_url);
   var _pk=_peekPush({kind:(l.tipo||'Ley')+(stateLabel?' · '+stateLabel:''),title:nombre,
     meta:[{l:'Tipo',v:l.tipo||'Ley'},{l:'Estatus',v:l.estatus||''},{l:'Última reforma',v:l.fecha_publicacion?_leyFechaFmt(l.fecha_publicacion):''},{l:'Entidad',v:stateLabel||''}],
-    url:doc,urlLabel:hasDoc?'Abrir documento oficial':'Buscar el documento'});
+    url:doc,urlLabel:'Abrir documento oficial',body:hasDoc?'':'Documento oficial aún no ligado; en curación por GEMI.'});
   return '<div class="ley-row'+((i%2)?' zeb':'')+'" style="align-items:center;cursor:pointer" onclick="_scopePeekId('+_pk+')">'
     +'<span class="ley-sigla" style="color:'+tipoColor+'">'+tipoAbr+'</span>'
     +'<div style="flex:1;min-width:0">'
@@ -4541,7 +4540,7 @@ function renderSPLegislacion(state,data){
         var sig=/^\s*c[oó]digo/i.test(nombre)?'CÓD':/^\s*reglamento/i.test(nombre)?'REG':/^\s*programa/i.test(nombre)?'PROG':'LEY';
         var sigCol=sig==='LEY'?'var(--green)':sig==='CÓD'?'#2563eb':'#6b7280';
         var doc=(law.url||'').replace(/'/g,'%27').replace(/"/g,'%22');
-        if(!doc)doc='https://www.google.com/search?q='+encodeURIComponent(nombre+' pdf');
+        /* sin documento ligado: no se manda a Google */
         var est=law.estado_vigencia||'';
         var estCol=/vigente/i.test(est)?'var(--green)':/pendiente/i.test(est)?'#B45309':'var(--text-muted)';
         var meta=[];
@@ -4550,7 +4549,7 @@ function renderSPLegislacion(state,data){
         var _hasDoc=!!law.url;
         var _pk=_peekPush({kind:(sig==='CÓD'?'Código':sig==='REG'?'Reglamento':'Ley')+' · '+state,title:nombre,
           meta:[{l:'Categoría',v:cl[cat]||cat},{l:'Estatus',v:est},{l:'Última reforma',v:law.ultima_reforma||''}],
-          body:law.nota||'',url:doc,urlLabel:_hasDoc?'Abrir documento oficial':'Buscar el documento'});
+          body:law.nota||(_hasDoc?'':'Documento oficial aún no ligado; en curación por GEMI.'),url:doc,urlLabel:'Abrir documento oficial'});
         html+='<div class="ley-row'+(i%2?' zeb':'')+'" style="align-items:center;cursor:pointer" onclick="_scopePeekId('+_pk+')">'
           +'<span class="ley-sigla" style="color:'+sigCol+'">'+sig+'</span>'
           +'<div style="flex:1;min-width:0">'
