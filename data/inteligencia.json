@@ -1,0 +1,81 @@
+{
+ "_meta": {
+  "actualizado": "2026-09-06",
+  "nota": "Análisis regulatorio curado por GEMI con apoyo del motor. Corre sobre el compendio de Leyes Federales; no lo sustituye. No constituye asesoría legal.",
+  "fuente": "GEMI · motor de análisis (piloto)"
+ },
+ "admins": ["gemiscopex@gmail.com", "rleon@iniciativagemi.org", "sdecelis@iniciativagemi.org"],
+ "dominios": { "chep.com": "chep", "brambles.com": "chep" },
+ "empresas": {
+  "chep": {
+   "nombre": "CHEP México",
+   "giro": "Pooling de tarimas y embalaje reutilizable",
+   "sello": "Pooling · circular · MX-01",
+   "asof": "6 sep 2026",
+   "resumen": {
+    "total": 12, "oportunidad": 5, "accion": 4, "monitoreo": 3,
+    "lead": "La balanza se inclina a favor de CHEP: el reúso y el pooling convierten obligaciones de residuos en ventaja competitiva. La atención inmediata está en 4 ordenamientos, encabezados por la NOM-144 / NIMF-15 (embalaje de madera de exportación), que pega directo al negocio de tarimas."
+   },
+   "leyes": [
+    {
+     "nombre": "Ley General para la Prevención y Gestión Integral de los Residuos",
+     "code": "LGPGIR",
+     "regula": "Regula residuos de manejo especial, planes de manejo y responsabilidad extendida del productor.",
+     "para": "Tu modelo de pooling reduce el embalaje que se vuelve residuo: menos plan de manejo y menos manifiestos que la tarima desechable. Es el argumento por el que un proveedor migró a CHEP.",
+     "nivel": "op", "chip": "Oportunidad alta", "score": "ventaja en 3 de 4 ejes",
+     "ejes": [
+      {"eje": "Planes de manejo", "sub": "Arts. 27–28", "txt": "Menos residuo de embalaje = menos plan y menos manifiestos que rendir.", "nivel": "op", "tag": "Alta"},
+      {"eje": "Responsabilidad Extendida", "sub": "Arts. 5–6 · REP", "txt": "El retorno y reúso de CHEP ya es un esquema REP en operación; cumplir se vuelve servicio vendible.", "nivel": "op", "tag": "Alta"},
+      {"eje": "Manifiestos", "sub": "Transporte RME", "txt": "Menos flujos de residuo por operación = menos manifiestos. Métrica comparable frente a competencia.", "nivel": "ac", "tag": "Media"}
+     ]
+    },
+    {
+     "nombre": "Ley General del Equilibrio Ecológico y la Protección al Ambiente",
+     "code": "LGEEPA · reforma 2026",
+     "regula": "La reforma 2026 incorpora economía circular y evaluación ambiental estratégica.",
+     "para": "La circularidad y la evaluación estratégica colocan el reúso en el centro de la política ambiental: el giro de CHEP queda del lado favorecido de la reforma.",
+     "nivel": "op", "chip": "Oportunidad alta", "score": "alineada a tu modelo",
+     "ejes": [
+      {"eje": "Economía circular", "sub": "Reforma 2026", "txt": "Eleva el reúso como principio; base para posicionar el pooling ante la autoridad y clientes.", "nivel": "op", "tag": "Alta"},
+      {"eje": "Evaluación estratégica", "sub": "Nuevo instrumento", "txt": "Favorece soluciones de menor huella de material; ventaja argumental en licitaciones.", "nivel": "ac", "tag": "Media"}
+     ]
+    },
+    {
+     "nombre": "Ley General de Cambio Climático",
+     "code": "LGCC",
+     "regula": "Reporte de emisiones y metas de mitigación por sector.",
+     "para": "El pooling reduce la huella logística por reúso; el dato de ciclos por activo alimenta el reporte y se vuelve argumento ESG ante clientes.",
+     "nivel": "ac", "chip": "Oportunidad media", "score": "dato ya disponible",
+     "ejes": [
+      {"eje": "Registro de emisiones", "sub": "RETC · reporte", "txt": "CHEP ya mide ciclos y retornos; convertir el reporte obligatorio en narrativa de sostenibilidad.", "nivel": "ac", "tag": "Media"}
+     ]
+    }
+   ],
+   "noms": [
+    {
+     "nombre": "Medidas fitosanitarias para embalaje de madera de exportación",
+     "code": "NOM-144-SEMARNAT-2017 · NIMF-15",
+     "regula": "Marca internacional obligatoria para tarimas de madera usadas en comercio internacional.",
+     "para": "Impacta el corazón del negocio: las tarimas de madera para exportación deben cumplir el tratamiento y la marca. Cumplirlo de forma centralizada por CHEP es un servicio de valor para el cliente exportador.",
+     "nivel": "ac", "chip": "Requiere acción", "score": "alta relevancia",
+     "ejes": [
+      {"eje": "Objeto", "sub": "", "txt": "Tratamiento fitosanitario y marca NIMF-15 del embalaje de madera para evitar plagas en comercio internacional.", "nivel": "", "tag": ""},
+      {"eje": "Estatus PNIC 2026", "sub": "", "txt": "Reprogramada · pausada. GEMI participa en el grupo de trabajo.", "nivel": "", "tag": ""},
+      {"eje": "Para CHEP", "sub": "", "txt": "Oportunidad de ofrecer tarimas certificadas como servicio; anticipar la modificación vía la participación de GEMI.", "nivel": "op", "tag": "Alta"}
+     ]
+    },
+    {
+     "nombre": "Criterios para clasificar residuos de manejo especial y planes de manejo",
+     "code": "NOM-161-SEMARNAT-2011",
+     "regula": "Define qué residuos son de manejo especial y cuáles requieren plan de manejo.",
+     "para": "Base técnica para un plan de manejo simplificado gracias al reúso; menos categorías aplicables que a un modelo desechable.",
+     "nivel": "mo", "chip": "Monitoreo", "score": "GEMI participa · PNIC",
+     "ejes": [
+      {"eje": "Estatus PNIC 2026", "sub": "", "txt": "En consulta pública / reprogramación. GEMI participa en su revisión.", "nivel": "", "tag": ""},
+      {"eje": "Para CHEP", "sub": "", "txt": "Seguir el cambio: una clasificación más estricta favorece modelos de menor generación como el pooling.", "nivel": "ac", "tag": "Media"}
+     ]
+    }
+   ]
+  }
+ }
+}
