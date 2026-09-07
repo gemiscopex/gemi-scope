@@ -3013,24 +3013,32 @@ function toggleActorEst(id){
 }
 function _actorEstRow(label,o){
   var lbl='<div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">'+label+'</div>';
-  if(!o||!o.titular||/por confirmar/i.test(o.titular))
+  var tit=(o&&o.titular&&!/por confirmar/i.test(o.titular))?o.titular:'';
+  var dep=(o&&o.dependencia)||'';
+  if(!tit&&!dep)
     return '<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">'+lbl+'<div style="font-size:12px;color:var(--text-muted)">Por confirmar</div></div>';
-  return '<a href="'+(o.url||'#')+'" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:7px 0;border-bottom:0.8px solid var(--border)">'+lbl
-    +'<div style="font-size:12px;font-weight:600;color:var(--text)">'+o.titular+' <span style="color:var(--green);font-weight:400"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span></div>'
-    +'<div style="font-size:10px;color:var(--text-sec);margin-top:1px;line-height:1.3">'+(o.dependencia||'')+'</div></a>';
+  var primary,secondary;
+  if(tit){primary=tit;secondary=dep;}else{primary=dep;secondary='Titular por confirmar';}
+  var arr=o&&o.url?' <span style="color:var(--green);font-weight:400"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span>':'';
+  var inner=lbl
+    +'<div style="font-size:12px;font-weight:600;color:var(--text);line-height:1.3">'+primary+arr+'</div>'
+    +(secondary?'<div style="font-size:10px;color:var(--text-sec);margin-top:1px;line-height:1.3">'+secondary+'</div>':'');
+  return (o&&o.url)
+    ?'<a href="'+o.url+'" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:7px 0;border-bottom:0.8px solid var(--border)">'+inner+'</a>'
+    :'<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">'+inner+'</div>';
 }
+var _ACT_EST_SECTORS=[['medio_ambiente','Medio Ambiente'],['agua','Agua'],['energia','Energía'],['cambio_climatico','Cambio Climático'],['movilidad','Movilidad'],['economia','Economía']];
 function _actorEstState(e,idx){
   var d=(_actoresEstatales.estados||{})[e]||{}, id='aest-'+idx;
+  var rows=_ACT_EST_SECTORS.map(function(s){return d[s[0]]?_actorEstRow(s[1],d[s[0]]):'';}).join('');
+  if(!rows)rows='<div style="padding:7px 0;font-size:12px;color:var(--text-muted)">Por confirmar</div>';
   return '<div>'
     +'<div class="com-row" id="'+id+'-h" onclick="toggleActorEst(\''+id+'\')">'
       +'<span class="com-row-scope"></span>'
       +'<span class="com-row-name">'+e+'</span>'
       +'<span class="com-arrow">▶</span>'
     +'</div>'
-    +'<div class="com-body" id="'+id+'-b"><div class="com-body-inner">'
-      +_actorEstRow('Medio Ambiente',d.medio_ambiente)
-      +_actorEstRow('Economía',d.economia)
-    +'</div></div>'
+    +'<div class="com-body" id="'+id+'-b"><div class="com-body-inner">'+rows+'</div></div>'
   +'</div>';
 }
 function renderActoresEstatales(){
