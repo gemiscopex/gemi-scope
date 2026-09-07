@@ -2234,7 +2234,7 @@ function _segRun(){
     +'</div>';
   }).join('');
   el.innerHTML=''
-    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:6px">'+totalHits+' menciones · '+active.length+' conferencias'+(filtered?' · da clic en una barra':'')+'</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:6px">'+totalHits+(totalHits===1?' mención':' menciones')+' · '+active.length+(active.length===1?' conferencia':' conferencias')+' · da clic en una barra</div>'
     +'<div class="seg-track">'+bars+ticks+'</div>'
     +'<div class="seg-detail"><div class="seg-detail-h">'+_segFlabel(g.d)+'</div>'
     +'<div class="seg-detail-sub">'+g.hits.length+(g.hits.length===1?' mención':' menciones')+' en esta conferencia · da clic para desplegar</div>'
