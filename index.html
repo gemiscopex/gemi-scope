@@ -2098,7 +2098,7 @@ function loadPresidencia(){
 }
 /* ── Mañaneras: buscador por tema / mes / palabra (usa presData) ── */
 var _mnnData=null;
-var _mnnData=null,_segTema=null,_segActor=null;
+var _mnnData=null,_segTema=null,_segActor=null,_segSelDate=null;
 var _SEG_ACTOR={
   'PRES':{name:'Claudia Sheinbaum',sub:'Presidencia'},
   'Semarnat':{name:'Alicia Bárcena',sub:'Semarnat'},
@@ -2150,7 +2150,7 @@ function renderMananera(){
     return;
   }
   var it=_segItems();
-  function hdr(t){return '<div class="normas-section-hdr" style="margin:0 0 12px">'+t+'</div>';}
+  function hdr(t){return '<div class="card-label" style="margin:0 0 12px;padding-bottom:8px;border-bottom:0.8px solid var(--border)">'+t+'</div>';}
   var temasHTML=CATS.map(function(c){
     var on=_segTema===c.id;
     var n=it.filter(function(x){return (!_segActor||x.org===_segActor)&&_radarKwMatch(c.kw,x.frag);}).length;
@@ -2172,44 +2172,73 @@ function renderMananera(){
     +'<div style="border-top:1px solid var(--text);margin-top:22px;padding-top:18px">'+hdr('Línea de tiempo')+'<div id="seg-tl"></div></div>';
   _segRun();
 }
+var _SEG_MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function _segFlabel(d){return ('0'+d.getDate()).slice(-2)+' '+_SEG_MES[d.getMonth()]+' '+d.getFullYear();}
+function _segPick(f){_segSelDate=f;_segRun();}
+function _segTip(ev,f,c){
+  var t=document.getElementById('seg-tip');
+  if(!t){t=document.createElement('div');t.id='seg-tip';t.className='seg-tip';document.body.appendChild(t);}
+  var d=new Date(f.substring(0,10)+'T12:00:00');
+  t.innerHTML=_segFlabel(d)+' · '+c+(c===1?' mención':' menciones');
+  var r=ev.target.getBoundingClientRect();
+  t.style.left=(r.left+r.width/2)+'px';t.style.top=r.top+'px';t.style.opacity='1';
+}
+function _segTipHide(){var t=document.getElementById('seg-tip');if(t)t.style.opacity='0';}
 function _segRun(){
   var el=document.getElementById('seg-tl'); if(!el)return;
+  if(!document.getElementById('seg-css')){var st=document.createElement('style');st.id='seg-css';st.textContent=''
+    +'.seg-track{position:relative;height:98px;border-bottom:1px solid var(--border);margin:2px 0 20px}'
+    +'.seg-bar{position:absolute;bottom:20px;transform:translateX(-50%);border-radius:1px 1px 0 0;cursor:pointer;transition:background .12s,box-shadow .12s}'
+    +'.seg-bar:not(.faint):hover{background:#066750 !important}'
+    +'.seg-bar.sel{box-shadow:0 0 0 3px rgba(6,103,80,.14)}'
+    +'.seg-detail-h{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px}'
+    +'.seg-detail-sub{font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:10px}'
+    +'.seg-cite{padding:8px 0;border-top:0.8px solid var(--border)}'
+    +'.seg-cite:first-of-type{border-top:0}'
+    +'.seg-tip{position:fixed;z-index:2000;background:var(--text);color:var(--card);font-family:var(--mono);font-size:10px;padding:5px 9px;border-radius:6px;pointer-events:none;white-space:nowrap;transform:translate(-50%,-150%);box-shadow:0 6px 18px rgba(0,0,0,.2);opacity:0;transition:opacity .1s}';
+    document.head.appendChild(st);}
   var it=_segItems(),cat=_segCat();
   var byDate={},order=[];
   it.forEach(function(x){
-    var f=x.fecha; if(!byDate[f]){byDate[f]={d:x.d,all:0,hits:[]};order.push(f);}
-    byDate[f].all++;
+    var f=x.fecha; if(!f||!x.d)return;
+    if(!byDate[f]){byDate[f]={d:x.d,hits:[]};order.push(f);}
     if((!cat||_radarKwMatch(cat.kw,x.frag))&&(!_segActor||x.org===_segActor))byDate[f].hits.push(x);
   });
-  order.sort(function(a,b){return String(b).localeCompare(String(a));});
-  var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-  function flabel(d,f){return d?(('0'+d.getDate()).slice(-2)+' '+MES[d.getMonth()]+' '+d.getFullYear()):f;}
-  if(!_segTema&&!_segActor){
-    var rows=order.slice(0,40).map(function(f){var g=byDate[f];
-      return '<div style="display:flex;gap:14px;padding:9px 0;border-bottom:0.8px solid var(--border);align-items:baseline"><div style="font-family:var(--mono);font-size:11px;color:#066750;min-width:100px">'+flabel(g.d,f)+'</div><div style="font-family:var(--mono);font-size:10px;color:var(--text-muted)">'+g.all+' menciones</div></div>';
-    }).join('');
-    el.innerHTML='<div style="font-size:12px;color:var(--text-sec);margin-bottom:14px;line-height:1.55">Elige un <b>tema</b> o un <b>actor</b> arriba para ver las citas y cuándo se dijeron. Por ejemplo, da clic en <b>Alicia Bárcena</b> y verás en qué conferencias participó y qué dijo.</div>'+rows;
-    return;
-  }
-  var dates=order.filter(function(f){return byDate[f].hits.length;});
-  var total=dates.reduce(function(s,f){return s+byDate[f].hits.length;},0),idx=0;
-  var html=dates.map(function(f){
-    var g=byDate[f];
-    var cites=g.hits.map(function(x){
-      var i=idx++,full=x.frag,sh=full.length>150?(full.slice(0,148).replace(/\s+\S*$/,'')+'…'):full;
-      return '<div style="padding:7px 0">'
-        +'<div onclick="_segToggle('+i+')" style="cursor:pointer;font-size:13px;line-height:1.5;color:var(--text)"><span id="seg-sh-'+i+'">“'+_cspBold(sh)+'”</span><span id="seg-ar-'+i+'" style="font-size:8px;color:var(--text-muted);margin-left:6px">▸</span></div>'
-        +'<div id="seg-det-'+i+'" style="display:none;font-size:13px;line-height:1.65;color:var(--text);margin-top:6px">“'+_cspBold(full)+'” <a href="'+x.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-family:var(--mono);font-size:10px;color:var(--green);text-decoration:none">ver estenográfica ↗</a></div>'
-      +'</div>';
-    }).join('');
-    return '<div style="position:relative;padding-left:20px;margin-bottom:6px">'
-      +'<div style="position:absolute;left:0;top:2px;bottom:0;width:1px;background:var(--border)"></div>'
-      +'<div style="position:absolute;left:-3px;top:8px;width:8px;height:8px;border-radius:50%;background:#066750"></div>'
-      +'<div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#066750;margin-bottom:2px">'+flabel(g.d,f)+' <span style="font-weight:400;color:var(--text-muted)">· '+g.hits.length+'</span></div>'
-      +cites
+  if(!order.length){el.innerHTML='<div style="color:var(--text-muted);font-size:12px;padding:14px 0">Sin conferencias registradas.</div>';return;}
+  var filtered=!!(_segTema||_segActor);
+  var dts=order.map(function(f){return {f:f,d:byDate[f].d,c:byDate[f].hits.length};});
+  dts.sort(function(a,b){return a.d-b.d;});
+  var active=dts.filter(function(x){return x.c>0;});
+  if(!active.length){el.innerHTML='<div style="color:var(--text-muted);font-size:13px;padding:14px 0">Sin menciones con ese filtro. Prueba otro tema o actor.</div>';return;}
+  var tmin=dts[0].d.getTime(),tmax=dts[dts.length-1].d.getTime(),span=Math.max(864e5,tmax-tmin);
+  var maxC=Math.max(1,Math.max.apply(null,active.map(function(x){return x.c;})));
+  var totalHits=active.reduce(function(s,x){return s+x.c;},0);
+  if(!_segSelDate||!byDate[_segSelDate]||!byDate[_segSelDate].hits.length){_segSelDate=active[active.length-1].f;}
+  function pct(d){return ((d.getTime()-tmin)/span)*100;}
+  var bars=dts.map(function(x){
+    var isSel=x.f===_segSelDate,faint=!x.c;
+    var h=faint?7:(15+Math.round((x.c/maxC)*56));
+    var col=faint?'var(--border2)':(isSel?'#066750':'rgba(6,103,80,.42)');
+    return '<div class="seg-bar'+(faint?' faint':'')+(isSel?' sel':'')+'" onclick="_segPick(\''+x.f+'\')" onmouseenter="_segTip(event,\''+x.f+'\','+x.c+')" onmouseleave="_segTipHide()" style="left:'+pct(x.d).toFixed(2)+'%;width:'+(faint?2:3)+'px;height:'+h+'px;background:'+col+'"></div>';
+  }).join('');
+  var ticks='',mi=new Date(tmin);mi.setDate(1);var mend=new Date(tmax);
+  while(mi<=mend){var p=((mi.getTime()-tmin)/span)*100;
+    if(p>=-3&&p<=103)ticks+='<div style="position:absolute;left:'+Math.max(0,Math.min(100,p)).toFixed(2)+'%;bottom:0;transform:translateX(-50%);text-align:center"><div style="width:1px;height:6px;background:var(--border);margin:0 auto"></div><div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:3px">'+_SEG_MES[mi.getMonth()]+(mi.getMonth()===0?" '"+String(mi.getFullYear()).slice(-2):'')+'</div></div>';
+    mi.setMonth(mi.getMonth()+1);}
+  var g=byDate[_segSelDate],idx=0;
+  var cites=g.hits.map(function(x){
+    var i=idx++,full=x.frag,sh=full.length>150?(full.slice(0,148).replace(/\s+\S*$/,'')+'…'):full;
+    return '<div class="seg-cite">'
+      +'<div onclick="_segToggle('+i+')" style="cursor:pointer;font-size:13px;line-height:1.5;color:var(--text)"><span id="seg-sh-'+i+'">“'+_cspBold(sh)+'”</span><span id="seg-ar-'+i+'" style="font-size:8px;color:var(--text-muted);margin-left:6px">▸</span></div>'
+      +'<div id="seg-det-'+i+'" style="display:none;font-size:13px;line-height:1.65;color:var(--text);margin-top:6px">“'+_cspBold(full)+'” <a href="'+x.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-family:var(--mono);font-size:10px;color:var(--green);text-decoration:none">ver estenográfica ↗</a></div>'
     +'</div>';
   }).join('');
-  el.innerHTML=total?('<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:14px">'+total+' menciones · '+dates.length+' conferencias</div>'+html):'<div style="color:var(--text-muted);font-size:13px;padding:14px 0">Sin menciones con ese filtro. Prueba otro tema o actor.</div>';
+  el.innerHTML=''
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-bottom:6px">'+totalHits+' menciones · '+active.length+' conferencias'+(filtered?' · da clic en una barra':'')+'</div>'
+    +'<div class="seg-track">'+bars+ticks+'</div>'
+    +'<div class="seg-detail"><div class="seg-detail-h">'+_segFlabel(g.d)+'</div>'
+    +'<div class="seg-detail-sub">'+g.hits.length+(g.hits.length===1?' mención':' menciones')+' en esta conferencia · da clic para desplegar</div>'
+    +cites+'</div>';
 }
 /* ── Banner semanal: noticia principal + semáforo de riesgo ── */
 function renderSemanaBanner(){
