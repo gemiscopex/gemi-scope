@@ -924,6 +924,10 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-normsave{flex-shrink:0;background:none;border:0.8px solid var(--border);color:var(--text-muted);font-family:var(--mono);font-size:10px;letter-spacing:.02em;border-radius:0;padding:3px 7px;cursor:pointer;transition:color .12s,border-color .12s,background .12s;line-height:1.3;white-space:nowrap}
 .cons-normsave:hover{border-color:var(--green);color:var(--green)}
 .cons-normsave.on{border-color:#066750;color:#066750;background:rgba(6,103,80,0.06)}
+.nom-add{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:11.5px;font-weight:600;color:var(--text-sec);background:var(--card);border:0.8px solid var(--border);border-radius:8px;padding:5px 11px;cursor:pointer;transition:border-color .12s,color .12s,background .12s;white-space:nowrap;flex-shrink:0;line-height:1;margin-top:1px}
+.nom-add:hover{border-color:var(--green);color:var(--green)}
+.nom-add.on{background:rgba(6,103,80,.07);border-color:var(--green);color:var(--green)}
+.nom-add .ic{font-size:14px;line-height:1;font-weight:400;position:relative;top:.5px}
 /* consola · terminal (paneles delgados, sin sombra) */
 .cons-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:9px;margin-bottom:14px}
 .cons-kpi{border:0;border-left:2px solid var(--border);border-radius:0;padding:2px 0 2px 13px;min-width:0}
@@ -1235,7 +1239,8 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
         <div class="nav-drop-it" onclick="goObligaciones('estatal')">Leyes Estatales</div>
         <div class="nav-drop-it" onclick="goObligaciones('rme')">Trámites RME<span class="nd-sub">Residuos de manejo especial</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('gacetas')">Gacetas por entidades</div>
-        <div class="nav-drop-it" onclick="goObligaciones('eventualidades')">Eventualidades<span class="nd-sub">Ley seca · Beta</span></div>
+        <!-- Eventualidades (Ley seca · Beta) oculto por ahora; código y datos conservados para cuando se sumen Cerveceros de México -->
+
       </div>
     </div>
     <button class="tab-btn" onclick="showTab('estados',null)">Estados</button>
@@ -1437,23 +1442,23 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
   </div>
 
   <style>
-  .intel-crumb{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin:0 0 10px;cursor:default}
+  .intel-crumb{font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--text-muted);margin:0 0 12px;cursor:default}
   .intel-crumb .lnk{color:var(--text-muted);cursor:pointer;text-decoration:none}
   .intel-crumb .lnk:hover{color:var(--text)}
   .intel-crumb b{color:var(--green);font-weight:700}
   .intel-crumb .sep{margin:0 8px;color:var(--border2)}
   .intel-mast{border-bottom:1.6px solid var(--text);padding-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
-  .intel-h1{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:0}
+  .intel-h1{font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.15;margin:0}
   .intel-sub{font-size:13.5px;color:var(--text-sec);margin:9px 0 0;max-width:60ch}
   .intel-seal{flex-shrink:0;border:0.8px solid var(--border);border-radius:3px;padding:9px 13px;background:var(--card)}
-  .intel-seal .s1{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)}
+  .intel-seal .s1{font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--text-muted)}
   .intel-seal .s2{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--green);margin-top:3px}
   .intel-seal .s3{font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:3px}
-  .intel-admin{display:flex;align-items:center;gap:10px;margin:16px 0 0;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+  .intel-admin{display:flex;align-items:center;gap:10px;margin:16px 0 0;font-family:var(--mono);font-size:10px;letter-spacing:.02em;color:var(--text-muted)}
   .intel-admin select{appearance:none;-webkit-appearance:none;padding:6px 26px 6px 11px;font-family:var(--mono);font-size:11px;color:var(--text);background:var(--card);border:0.8px solid var(--green);border-radius:4px;cursor:pointer;outline:none;letter-spacing:.02em}
   .intel-ro{margin-top:22px}
   .intel-ro-top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:0.8px solid var(--border);padding-bottom:9px;gap:12px;flex-wrap:wrap}
-  .intel-ro-lab{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text);font-weight:700}
+  .intel-ro-lab{font-family:var(--sans);font-size:13px;letter-spacing:.01em;color:var(--text);font-weight:700}
   .intel-ro-asof{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;color:var(--text-muted)}
   .intel-ro-asof .live{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:6px;vertical-align:middle}
   .intel-bar{display:flex;gap:2px;height:8px;margin:16px 0 0}
@@ -1465,8 +1470,8 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
   .intel-leg .n{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1}
   .intel-leg .t{font-size:11px;color:var(--text-sec);line-height:1.25;max-width:15ch}
   .intel-lead{font-size:13.5px;color:var(--text);line-height:1.6;margin:20px 0 6px;max-width:74ch;border-left:2px solid var(--green);padding-left:14px}
-  .intel-shdr{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);border-top:1.4px solid var(--text);padding-top:11px;margin:34px 0 4px;display:flex;justify-content:space-between;align-items:baseline}
-  .intel-shdr .c{color:var(--text-muted);font-size:9px;letter-spacing:.05em}
+  .intel-shdr{font-family:var(--sans);font-size:15px;font-weight:700;letter-spacing:.01em;color:var(--text);border-bottom:0.8px solid var(--border);padding-bottom:8px;margin:34px 0 8px;display:flex;justify-content:space-between;align-items:baseline}
+  .intel-shdr .c{font-family:var(--mono);color:var(--text-muted);font-size:9px;letter-spacing:.03em;font-weight:400}
   .intel-ficha{border-bottom:0.8px solid var(--border);padding:16px 0}
   .intel-ficha:nth-child(even){background:rgba(6,103,80,.02)}
   .intel-frow{display:flex;gap:16px;align-items:flex-start;cursor:pointer}
@@ -1474,7 +1479,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
   .intel-fname .code{font-family:var(--mono);font-size:10px;font-weight:400;color:var(--text-muted);margin-left:8px}
   .intel-fregula{font-size:12px;color:var(--text-sec);margin-top:4px}
   .intel-fpara{font-size:12.5px;color:var(--text);margin-top:9px;line-height:1.5;padding-left:12px;border-left:2px solid var(--green)}
-  .intel-fpara .k{font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--green);display:block;margin-bottom:3px}
+  .intel-fpara .k{font-family:var(--mono);font-size:9px;letter-spacing:.02em;color:var(--green);display:block;margin-bottom:3px}
   .intel-open{font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:.05em;margin-top:9px;display:inline-block}
   .intel-fsig{flex-shrink:0;text-align:right;min-width:126px}
   .intel-chip{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.03em;display:inline-flex;align-items:center;gap:6px}
@@ -1482,7 +1487,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
   .intel-chip.op{color:var(--green)} .intel-chip.ac{color:#B45309} .intel-chip.mo{color:var(--text-muted)}
   .intel-fscore{font-family:var(--mono);font-size:8.5px;color:var(--text-muted);margin-top:6px}
   .intel-exp{margin-top:14px;padding:14px 0 2px 12px;border-left:2px solid var(--border)}
-  .intel-ehdr{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px}
+  .intel-ehdr{font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--text-muted);margin-bottom:10px}
   .intel-art{display:flex;gap:14px;padding:9px 0;border-top:0.8px solid var(--border);font-size:12px;color:var(--text-sec);line-height:1.45}
   .intel-art:first-of-type{border-top:0}
   .intel-art .ax{flex:0 0 30%;color:var(--text);font-weight:600}
@@ -1491,7 +1496,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
   .intel-art .an{flex:0 0 70px;text-align:right}
   .intel-btn-entry{display:inline-flex;align-items:center;gap:8px;margin:0 0 20px;padding:10px 15px;border:0.8px solid var(--green);border-radius:8px;background:rgba(6,103,80,.05);color:var(--green);font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:background .12s}
   .intel-btn-entry:hover{background:rgba(6,103,80,.11)}
-  .intel-btn-entry .tag{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;border:0.8px solid var(--green);border-radius:3px;padding:1px 5px}
+  .intel-btn-entry .tag{font-family:var(--mono);font-size:8.5px;letter-spacing:.03em;border:0.8px solid var(--green);border-radius:3px;padding:1px 5px}
   .intel-foot{margin-top:34px;font-size:11px;color:var(--text-muted);line-height:1.55;border-top:0.8px solid var(--border);padding-top:14px}
   @media(max-width:680px){.intel-frow{flex-direction:column}.intel-fsig{text-align:left}.intel-art{flex-wrap:wrap}.intel-art .ax,.intel-art .an{flex-basis:auto}.intel-art .an{text-align:left}}
   </style>
@@ -3468,7 +3473,7 @@ var _oblView='instrumentos';
 function oblSetView(v){_oblView=v;renderObligaciones();}
 function renderObligaciones(){
   var host=document.getElementById('obligaciones-body');if(!host)return;
-  var views=[['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular'],['eventualidades','Eventualidades']];
+  var views=[['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
   var nav='<div class="stab-bar">'
     +views.map(function(v){var beta=(v[0]==='eventualidades')?'<span style="font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.1em;color:var(--green);border:0.8px solid var(--green);border-radius:3px;padding:1px 3px;margin-left:5px;vertical-align:middle">BETA</span>':'';return '<span class="stab'+(v[0]===_oblView?' on':'')+'" onclick="oblSetView(\''+v[0]+'\')">'+v[1]+beta+'</span>';}).join('')+'</div>';
   var body= _oblView==='precedentes'?_jurisprudenciaHTML()
@@ -4405,10 +4410,9 @@ function _nomCommentsHTML(n,uid,label){
 // ── NOMs ↔ Mi Terminal: agregar/quitar una NOM como referencia ──
 function nomInTerminal(id){try{return (loadConsola().noms||[]).indexOf(id)>=0;}catch(e){return false;}}
 function _nomBtnPaint(btn,on){
-  btn.innerHTML=on?'✓ En mi terminal':'+ Mi terminal';
-  btn.style.color=on?'var(--green)':'var(--text-muted)';
-  btn.style.borderColor=on?'var(--green)':'var(--border)';
-  btn.style.background=on?'rgba(0,158,144,0.07)':'none';
+  btn.classList.add('nom-add');
+  btn.classList.toggle('on',on);
+  btn.innerHTML=on?'<span class="ic">✓</span>En terminal':'<span class="ic">+</span>Mi terminal';
 }
 function toggleNomTerminal(id,btn){
   var c=loadConsola(); c.noms=c.noms||[];
@@ -4461,7 +4465,7 @@ function renderNormas(){
           +'<div data-nomcnt="'+_esc(n.id)+'" style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:5px">'+_cntTxt(n.id)+'</div>'
         +'</div>'
         +'<span style="font-size:9px;color:var(--text-muted);flex-shrink:0;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px">'+n.dep+'</span>'
-        +'<button onclick="event.stopPropagation();toggleNomTerminal(\''+n.id.replace(/'/g,"\\'")+'\',this)" title="Agregar o quitar de Mi Terminal" style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.03em;padding:3px 8px;border:0.8px solid '+(nomInTerminal(n.id)?'var(--green)':'var(--border)')+';background:'+(nomInTerminal(n.id)?'rgba(0,158,144,0.07)':'none')+';color:'+(nomInTerminal(n.id)?'var(--green)':'var(--text-muted)')+';cursor:pointer;white-space:nowrap;flex-shrink:0;margin-top:1px">'+(nomInTerminal(n.id)?'✓ En mi terminal':'+ Mi terminal')+'</button>'
+        +'<button onclick="event.stopPropagation();toggleNomTerminal(\''+n.id.replace(/'/g,"\\'")+'\',this)" title="Agregar o quitar de Mi Terminal" class="nom-add'+(nomInTerminal(n.id)?' on':'')+'">'+(nomInTerminal(n.id)?'<span class="ic">✓</span>En terminal':'<span class="ic">+</span>Mi terminal')+'</button>'
         +(n.url?'<a href="'+n.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;font-weight:600;color:var(--green);flex-shrink:0;text-decoration:none;margin-top:2px"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>':'<span style="width:14px;flex-shrink:0"></span>')
         +'</div>'
         +'<div id="'+uid+'" style="display:none;padding:12px 0 16px 34px;border-bottom:0.8px solid rgba(0,0,0,0.06)">'
