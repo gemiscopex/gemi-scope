@@ -1,6 +1,89 @@
 {
   "iniciativas": [
     {
+      "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-09-02",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Cámara de Diputados",
+      "aspectos": "La Cámara de Diputados aprueba fomentar el uso del hidrógeno verde como una fuente de energía limpia. Para ello propone incorporar el concepto de -Hidrógeno renovable- como aquel producido mediante el uso de energía renovable o electricidad producida con fuentes renovables.",
+      "ultimo_tramite": "Se turnó a comisiones unidas: Estudios Legislativos de Cámara de Senadores. Dictamina. Ver todos los trámites",
+      "ultimo_estatus": "Pendiente en comisión(es) de revisora Pendiente 02/09/2026",
+      "asunto_id": "5120795",
+      "seguimiento": "5090377",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5090377&Asunto=5120795",
+      "categorias": [
+        "energia_renovable"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "ed4d4cff1855",
+      "scrapeado_en": "2026-09-07T16:03:39.119076+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
+      "fecha_presentacion": "2026-09-02",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Dip. Claudia Quiñones Garrido (PAN)",
+      "aspectos": "La legisladora propone exhortar: 1) a la Comisión Federal de Electricidad para que, en el ámbito de sus atribuciones, realice un diagnóstico técnico integral del estado que guarda la infraestructura de transmisión y distribución de energía eléctrica en el estado de Veracruz, particularmente en los municipios donde se han registrado interrupciones recurrentes o prolongadas del suministro, con el objeto de identificar las causas que originan dichas fallas y establecer las acciones correctivas necesarias para garantizar la continuidad, calidad, confiabilidad y seguridad del servicio público de electricidad. Asimismo, se le exhorta para que, con base en los resultados del diagnóstico, implemente un programa emergente de mantenimiento preventivo y correctivo, así como de rehabilitación, modernización y fortalecimiento de la infraestructura eléctrica, que contemple la sustitución de líneas, circuitos, transformadores, subestaciones y demás equipos que hayan rebasado su vida útil o presenten deficiencias operativas, estableciendo prioridades, metas y plazos específicos para su ejecución; 2) a la Secretaría de Energía , en coordinación con la Comisión Federal de Electricidad, para que, en ejercicio de sus atribuciones de planeación y conducción de la política energética nacional, valore la incorporación de los proyectos de infraestructura eléctrica requeridos para el estado de Veracruz dentro de los programas de ampliación y modernización de la Red Nacional de Transmisión y de las Redes Generales de Distribución, privilegiando aquellas regiones que presentan interrupciones recurrentes del suministro eléctrico y garantizando que dichas acciones se desarrollen bajo criterios de eficiencia, continuidad, calidad, confiabilidad y seguridad; 3) a la Comisión Nacional de Energía para que, en el ámbito de sus atribuciones regulatorias y de supervisión, verifique el cumplimiento de las disposiciones aplicables en materia de calidad, continuidad, confiabilidad y seguridad del servicio público de energía eléctrica en el estado de Veracruz, realizando las acciones de inspección que resulten procedentes y, en su caso, emitiendo las recomendaciones o determinaciones que correspondan para asegurar la adecuada prestación del servicio. Asimismo, se le exhorta para que haga del conocimiento público las acciones implementadas con motivo de las interrupciones del suministro eléctrico registradas en la entidad, privilegiando los principios de transparencia y rendición de cuentas; y, 4) a la Comisión Federal de Electricidad para que fortalezca los mecanismos de comunicación y atención a las personas usuarias mediante la implementación de protocolos de información oportuna sobre las suspensiones programadas y las interrupciones imprevistas del suministro eléctrico, precisando las causas que las motivan, las zonas afectadas, el tiempo estimado para el restablecimiento del servicio y los avances en las labores de reparación. Asimismo, se le exhorta para que establezca mecanismos de atención prioritaria en favor de hospitales, centros de salud, sistemas de abastecimiento de agua potable, instituciones educativas, personas usuarias que dependan de equipos médicos eléctricos y demás instalaciones cuya operación resulte esencial para la  protección de los derechos fundamentales de la población.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Energía  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 02 de septiembre de 2026 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 02/09/2026",
+      "asunto_id": "5120537",
+      "seguimiento": "5122279",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5122279&Asunto=5120537",
+      "categorias": [
+        "agua"
+      ],
+      "categoria": "agua",
+      "categoria_nombre": "Agua",
+      "id": "8036e41df110",
+      "scrapeado_en": "2026-09-07T16:04:02.325766+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
+      "fecha_presentacion": "2026-09-02",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Dip. Eva María Vásquez Hernández (PAN)",
+      "aspectos": "La legisladora propone exhortar a la CFE: 1) para que realice, en el ámbito de sus atribuciones, una revisión técnica integral de la infraestructura de distribución de energía eléctrica ubicada en el municipio de Mexicali, Baja California, particularmente en las zonas que resultaron afectadas por la tormenta registrada el pasado 28 de agosto de 2026, a fin de identificar posibles riesgos, deterioros o condiciones de vulnerabilidad que puedan provocar futuras interrupciones en el suministro eléctrico; 2) para que informe a la opinión pública, de manera fundada y motivada, las causas técnicas que provocaron la caída masiva de postes de energía eléctrica durante los recientes fenómenos meteorológicos registrados en el municipio de Mexicali, Baja California, así como las acciones inmediatas y preventivas que serán implementadas para evitar que hechos similares vuelvan a afectar a la población; 3) para que fortalezca los programas de mantenimiento preventivo, sustitución y modernización de postes, transformadores, líneas de distribución y demás infraestructura eléctrica en el municipio de Mexicali, considerando las condiciones climáticas extremas y los fenómenos meteorológicos propios de la región; y, 4) para que elabore y haga público un programa específico de prevención y atención de contingencias meteorológicas para el municipio de Mexicali, Baja California, que contemple mecanismos de respuesta inmediata, personal técnico suficiente, disponibilidad de materiales y protocolos para el restablecimiento prioritario del suministro eléctrico en las zonas afectadas.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Energía  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 02 de septiembre de 2026 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 02/09/2026",
+      "asunto_id": "5120547",
+      "seguimiento": "5122284",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5122284&Asunto=5120547",
+      "categorias": [
+        "energia_renovable",
+        "calidad_aire"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "8dd35f2da0c5",
+      "scrapeado_en": "2026-09-07T16:05:29.214024+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
+      "fecha_presentacion": "2026-09-02",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Dip. José Guillermo Anaya Llamas (PAN)",
+      "aspectos": "El legislador propone exhortar: 1) a la Comisión Federal de Electricidad y al Comité Técnico del Fideicomiso de Proyectos de Generación Convencional 10673 para que, dentro de los quince días hábiles siguientes a la notificación del presente acuerdo y salvaguardando la información legalmente reservada, hagan publica a toda la ciudadanía la información integral sobre la Central de Ciclo Combinado Lerdo que incluya: a) estatus jurídico del contrato FPGC/10673-010/2022, convenios modificatorios, prórrogas y suspensiones; b) avance físico real certificado por componente y avance financiero conciliado con el costo estimado de conclusión; c) estado de conservación, custodia, seguros y vigencia de las garantías y penas convencionales; y, d) diagnóstico sobre el esquema de garantías del proyecto y la situación contractual de los trabajos ejecutados; 2) a la Secretaría de Energía, a la Comisión Federal de Electricidad y al Centro Nacional de Control de Energía (Cenace) para que, en el ámbito de sus competencias, presenten una estrategia integral para la conclusión y entrada en operación de la CCC Lerdo con ruta crítica y calendario de pruebas, así como un diagnóstico de confiabilidad del sistema eléctrico en la Región Lagunera que defina medidas operativas transitorias para garantizar el suministro en la zona; 3) a la Comisión Federal de Electricidad y al Fideicomiso de Proyectos de Generación Convencional 10673 para que instalen una mesa técnica y jurídica con las empresas mexicanas subcontratistas afectadas, a fin de integrar un padrón documentado de trabajos e insumos efectivamente incorporados a la obra y evaluar las vías legales para evitar afectaciones indebidas a las empresas nacionales; 4) a la Auditoría Superior de la Federación, a la Secretaría Anticorrupción y Buen Gobierno y a la Auditoría Interna de la CFE para que, en el ámbito de sus respectivas atribuciones, auditen integralmente los recursos públicos destinados a la CCC Lerdo e investiguen la posible existencia de faltas administrativas u omisiones en la supervisión, liberación de pagos y gestión de garantías, deslindando las responsabilidades que correspondan; y, 5) a la Comisión Federal de Electricidad para que, en cumplimiento de la Ley de la Empresa Pública del Estado, Comisión Federal de Electricidad, mantenga disponible en su portal institucional un tablero público de seguimiento sobre la CCC Lerdo con la actualización mensual del avance físico y financiero conciliado del proyecto.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Energía  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 02 de septiembre de 2026 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 02/09/2026",
+      "asunto_id": "5120539",
+      "seguimiento": "5122280",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5122280&Asunto=5120539",
+      "categorias": [
+        "energia_renovable",
+        "biodiversidad"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "f75d9057f533",
+      "scrapeado_en": "2026-09-07T16:05:30.495958+00:00"
+    },
+    {
       "camara_origen": "Cámara de Senadores",
       "camara_revisora": "Cámara de Diputados",
       "fecha_presentacion": "2026-09-02",
@@ -43,6 +126,53 @@
       "categoria_nombre": "Calidad del Aire",
       "id": "79aa9f3c98fc",
       "scrapeado_en": "2026-09-03T20:21:15.984402+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-08-24",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "titulo": "Que adiciona diversas disposiciones a la Ley General de Turismo.",
+      "presentador": "Dip. Ivonne Aracely Ortega Pacheco (MC)",
+      "aspectos": "La iniciativa tiene por objeto promover la gestión ambiental del turismo en pueblos mágicos. Para ello propone: 1) definir los siguientes conceptos: a) la capacidad de carga ambiental y turística como el umbral máximo de visitantes, actividades o aprovechamientos turísticos que una localidad puede recibir o desarrollar en un periodo determinado, sin comprometer de manera significativa la preservación del patrimonio natural y cultural, la disponibilidad de recursos, la prestación de servicios, la calidad ambiental ni el bienestar de la población residente, conforme a los lineamientos técnicos que emita la Secretaría, en coordinación con la Secretaría de Medio Ambiente y Recursos Naturales, en términos de esta Ley; y, b) pueblo mágico como la localidad con nombramiento otorgado por la Secretaría de Turismo, en razón de sus atributos culturales, históricos, naturales, simbólicos o patrimoniales, conforme a las disposiciones aplicables; 2) señalar que la Secretaría de Turismo en coordinación con la Semarnat, los gobierno de las entidades federativas, los municipios y las demarcaciones territoriales de la Ciudad de México, en cuya jurisdicción se ubique la localidad con nombramiento de Pueblo Mágico, establecerá las bases para que éstos últimos elaboren y mantengan actualizado un instrumento de diagnóstico y gestión ambiental turística; 3) indicar que dicho instrumento deberá incorpora al menos: i) estimaciones de capacidad de carga ambiental y turística; ii) identificación de riesgos ambientales asociados a la presión turística; iii) criterios para el uso eficiente del agua y la energía; iv) medidas para la prevención y manejo integral de residuos; v) acciones para la conservación del patrimonio natural, biocultural, paisajístico e histórico; vi) previsiones en materia de movilidad, saneamiento e infraestructura turística; y, vii) mecanismos de participación social y comunitaria; 4) considerar que los lineamientos generales para la elaboración, actualización y seguimiento del instrumento referido serán emitidos conjuntamente por la Secretaría y la Secretaría de Medio Ambiente y Recursos Naturales, y deberán revisarse al menos cada tres años; 5) determinar que la información derivada de los instrumentos previstos en el artículo anterior tendrá carácter público y se integrará al Atlas Turístico de México, en los términos que determine la Secretaría de Turismo; y, 6) observar que la acreditación del cumplimiento de los lineamientos, una vez emitidos conjuntamente por la Secretaría y la Secretaría de Medio Ambiente y Recursos Naturales, será condición necesaria para la permanencia de las localidades en el Programa Pueblos Mágicos, conforme a los mecanismos de evaluación que al efecto establezca la Secretaría, garantizando el derecho de audiencia y un plazo razonable para subsanar.\n\nPara tal fin modifica los artículos 3, 23 Bis y 23 Ter de la Ley General de Turismo.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Turismo  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 24 de agosto de 2026, por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 24/08/2026",
+      "asunto_id": "5118933",
+      "seguimiento": "5119560",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5119560&Asunto=5118933",
+      "categorias": [
+        "agua",
+        "biodiversidad",
+        "residuos"
+      ],
+      "categoria": "agua",
+      "categoria_nombre": "Agua",
+      "id": "3b9acccd568c",
+      "scrapeado_en": "2026-09-07T16:03:54.619840+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Senadores",
+      "camara_revisora": "Cámara de Diputados",
+      "fecha_presentacion": "2026-08-24",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "titulo": "Que reforma y adiciona diversas disposiciones de la Ley General de Bienes Nacionales y de la Ley General del Equilibrio Ecológico y la Protección al Ambiente.",
+      "presentador": "Sen. Olga Patricia Sosa Ruíz (Morena)",
+      "aspectos": "La iniciativa tiene por objeto garantizar playas limpias y sostenibles, así como prevenir su contaminación por residuos sólidos. Para ello propone: 1) contemplar que la Semarnat promoverá acciones orientadas a la conservación, limpieza y sostenibilidad de las playas y de la zona federal marítimo terrestre, mediante programas de prevención y reducción de residuos sólidos, particularmente plásticos de un solo uso; el fomento de infraestructura para la adecuada separación y disposición de residuos; la educación ambiental; y la participación coordinada de los sectores público, privado y social en la protección de los ecosistemas costeros; 2) indicar que los concesionarios y permisionarios que aprovechen y exploten la zona federal marítimo terrestre deberán mantener limpias y libres de residuos las áreas objeto de concesión o permiso; implementar medidas para la adecuada separación, recolección y disposición de residuos sólidos; y colaborar con las acciones de conservación y protección ambiental que determine la Semarnat conforme a las disposiciones aplicables; 3) señalar que la Semarnat promoverá, en coordinación con los concesionarios, permisionarios y demás autoridades competentes, acciones orientadas a la conservación, protección y aprovechamiento sustentable de las playas y de la zona federal marítimo terrestre; 4) plantear que para tal efecto, fomentará: a) la reducción progresiva del uso y consumo de plásticos de un solo uso en las actividades económicas que se desarrollen en las áreas concesionadas; b) la instalación y operación de infraestructura destinada a la separación, recolección y disposición adecuada de residuos sólidos; c) la implementación de programas y acciones de educación, sensibilización y concientización ambiental dirigidos a usuarios, visitantes y prestadores de servicios; d) la instalación de estaciones de hidratación y la adopción de mecanismos que contribuyan a disminuir el consumo de envases desechables; y, e) el otorgamiento de reconocimientos, certificaciones o distintivos a los concesionarios que implementen prácticas sobresalientes en materia de limpieza, conservación, restauración y protección ambiental; 5) considerar que para la preservación y aprovechamiento sustentable de la flora y fauna silvestre se considerará la prevención, reducción y control de la contaminación generada por residuos sólidos y demás agentes contaminantes que representen una amenaza para la biodiversidad, los hábitats naturales, los ecosistemas costeros y marinos, así como para las especies de flora y fauna silvestres.\n\nPara tal fin modifica los artículos 120, 127 y 127 Bis de la Ley General de Bienes Nacionales; y, 79 de la Ley General del Equilibrio Ecológico y la Protección al Ambiente.",
+      "ultimo_tramite": "Se turnó a comisiones unidas: Estudios Legislativos de Cámara de Senadores. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 24 de agosto de 2026, por acuerdo de la Mesa Directiva. Ver todos los trámites",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 24/08/2026",
+      "asunto_id": "5118957",
+      "seguimiento": "5119569",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5119569&Asunto=5118957",
+      "categorias": [
+        "biodiversidad",
+        "residuos"
+      ],
+      "categoria": "biodiversidad",
+      "categoria_nombre": "Biodiversidad",
+      "id": "f4ab5e1d5865",
+      "scrapeado_en": "2026-09-07T16:04:33.304559+00:00"
     },
     {
       "camara_origen": "Cámara de Diputados",
@@ -201,6 +331,29 @@
       "categoria_nombre": "Residuos",
       "id": "eb6e33a8a81a",
       "scrapeado_en": "2026-09-03T20:22:10.574021+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-08-19",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "titulo": "Que reforma y adiciona diversas disposiciones de la Ley Federal del Mar.",
+      "presentador": "Dip. Julia Licet Jiménez Angulo (PAN)",
+      "aspectos": "La iniciativa tiene por objeto protección ambiental marina. Entre lo propuesto destaca 1) la protección, preservación, restauración y aprovechamiento sustentable del medio marino, incluyendo la prevención, reducción y control de toda forma de contaminación marina, así como la conservación de la biodiversidad y de los ecosistemas costeros y oceánicos; 2) señalar que las autoridades competentes deberán aplicar el principio precautorio, el enfoque ecosistémico y la gestión integral del medio marino en el ejercicio de sus atribuciones relacionadas con las zonas marinas mexicanas. El Estado promoverá políticas y acciones orientadas a la mitigación y adaptación frente a los efectos del cambio climático en las zonas marinas mexicanas; 3) toda obra o actividad susceptible de causar desequilibrio ecológico o rebasar los límites y condiciones establecidos en las disposiciones aplicables para proteger el medio marino deberá someterse a evaluación de impacto ambiental conforme a la legislación correspondiente, considerando de manera específica los efectos acumulativos, sinérgicos y de largo plazo sobre los ecosistemas marinos.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Opina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 19 de agosto de 2026, por acuerdo de la Mesa Directiva. Ver todos los trámites",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 19/08/2026",
+      "asunto_id": "5116751",
+      "seguimiento": "5119236",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5119236&Asunto=5116751",
+      "categorias": [
+        "biodiversidad",
+        "cambio_climatico"
+      ],
+      "categoria": "biodiversidad",
+      "categoria_nombre": "Biodiversidad",
+      "id": "511d868a32ea",
+      "scrapeado_en": "2026-09-07T16:03:40.408822+00:00"
     },
     {
       "camara_origen": "Comisión Permanente",
@@ -954,6 +1107,30 @@
       "categoria_nombre": "Biodiversidad",
       "id": "42b826ff53e1",
       "scrapeado_en": "2026-08-22T10:55:31.474841+00:00"
+    },
+    {
+      "camara_origen": "Comisión Permanente",
+      "fecha_presentacion": "2026-08-12",
+      "legislatura": "LXVI",
+      "periodo": "2do Receso",
+      "presentador": "Sen. Maki Esther Ortiz Domínguez (PVEM)",
+      "aspectos": "La legisladora propone exhortar a: 1) al Ejecutivo Federal, a través de la SEMARNAT para que proceda a la actualización urgente de la NOM-044-SEMARNAT-2017 con el fin de homologarla a los estándares de emisiones Euro V, Euro VI y EPA 10, incorporar requisitos obligatorios para el uso permanente del SCR en vehículos pesados, y establecer la certificación obligatoria de calidad de la urea automotriz conforme a la norma ISO 22241, con mecanismos reales de verificación y cumplimiento; todo ello en congruencia con las metas sectoriales de la Contribución Determinada a Nivel Nacional 3.0; 2) la SEMARNAT y de PEMEX para que de manera coordinada garanticen la disponibilidad plena y permanente del diésel ultra bajo en azufre (DUBA, 15 partes por millón) en todo el territorio nacional, conforme a las obligaciones de la NOM-016-CRE-2016 y la NOM-044-SEMARNAT-2017, condición técnica indispensable para que los vehículos pesados puedan operar bajo los estándares Euro V, Euro VI y EPA 10 para que el Sistema de Reducción Catalítica Selectiva (SCR) funcione de manera óptima; 3) al Ejecutivo Federal, a través de la SICT, la SEMARNAT para que en el ámbito de sus respectivas facultades evalúen e implementen un programa nacional de distribución y acceso universal a la urea automotriz, que incluya establecimiento de requisitos claros para los trámites pertinentes ante la ASEA para su venta en estaciones de servicio, establecimiento de una red nacional de suministro en carreteras federales y puntos logísticos estratégicos, y la aplicación de sanciones efectivas ante la desconexión o inhabilitación intencional del sistema SCR; 4) la Secretaría de Medio Ambiente y Recursos Naturales, la Secretaria de Economía y de la Secretaría de Infraestructura, Comunicaciones y Transportes, para que en el ámbito de sus respectivas facultades, diseñen e implementen un programa permanente de renovación y chatarrización del parque vehicular de transporte pesado, que incluya créditos blandos accesibles para micro y pequeñas empresas transportistas en coordinación con la banca de desarrollo, incentivos fiscales para la adquisición de unidades con tecnología Euro VI y EPA 10, y verificación técnica-ambiental estricta a la importación de vehículos pesados usados; 5) al Ejecutivo Federal para que, establezca una instancia rectora con atribuciones claras para coordinar la política de transición energética del sector autotransporte, que articule las acciones de SEMARNAT, SICT, Petróleos Mexicanos la Secretaría de Economía, la Comisión Federal de Electricidad y la ASEA; defina indicadores sectoriales medibles, verificables y desagregados por subsector alineados con las metas de la NDС 3.0, y publique, a más tardar en el primer semestre de 2026, el Programa Especial de Cambio Climático con responsabilidades específicas y plazos por dependencia; 6) los titulares de la Secretaría de Medio Ambiente y Recursos Naturales, la Secretaría de Energía, así como la Secretaría de Infraestructura, Comunicaciones y Transportes para que implementen una estrategia de descarbonización del sector automotriz, considerando la necesidad de mayor infraestructura de carga para vehículos eléctricos e híbridos; las mejoras en el portal de CFE para instalación de infraestructura de carga; promoción de transporte eléctrico urbano de traslado de personas; uso de biocombustibles; y 7) la SEMARNAT para que convoque a la instalación de una mesa de trabajo interinstitucional que convoque a diversos sectores, entre ellos sociedad civil, dependencias, instituciones públicas y privadas, asociaciones de transportistas, entre otros, para la actualización de las normas oficiales y programas en materia de reducción de emisiones.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Tercera Comisión de Trabajo: Asuntos Económicos (01/06/2026-31/08/2026) de Comisión Permanente. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Comisión Permanente del 12 de agosto de 2026, por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 12/08/2026",
+      "asunto_id": "5115715",
+      "seguimiento": "5118295",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5118295&Asunto=5115715",
+      "categorias": [
+        "energia_renovable",
+        "hidrocarburos",
+        "biodiversidad",
+        "calidad_aire",
+        "cambio_climatico"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "095d245b9c32",
+      "scrapeado_en": "2026-09-07T16:03:41.701005+00:00"
     },
     {
       "camara_origen": "Comisión Permanente",
@@ -10633,186 +10810,13 @@
       "categoria_nombre": "Cambio Climático",
       "id": "392cbcc5ebcb",
       "scrapeado_en": "2026-04-29T21:14:41.554740+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "fecha_presentacion": "2026-03-03",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "presentador": "Dip. Óscar Fernando Torres Castañeda (PRI)",
-      "aspectos": "El legislador propone exhortar a la Comisión Federal de Electricidad a establecer una Tarifa Eléctrica Especial para los Sistemas Municipales y Paraestatales de Agua Potable y Saneamiento, con el fin de garantizar el derecho humano al agua, mejorar la sostenibilidad financiera de los organismos operadores y propiciar tarifas de agua más accesibles para las y los mexicanos.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Energía  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 03 de marzo de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 03/03/2026",
-      "asunto_id": "5026763",
-      "seguimiento": "5031025",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5031025&Asunto=5026763",
-      "categorias": [
-        "agua"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "bab608e65f8b",
-      "scrapeado_en": "2026-04-29T21:15:37.924489+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "fecha_presentacion": "2026-03-03",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "presentador": "Dip. Óscar Fernando Torres Castañeda (PRI)",
-      "aspectos": "El legislador propone exhortar: 1) al titular de la Secretaría de Relaciones Exteriores, al Director General de la Comisión Nacional del Agua (Conagua), y a la Comisionada de la Sección Mexicana de la Comisión Internacional de Límites y Aguas (CILA), a que: 1. Suspendan o modulen de inmediato las extracciones extraordinarias en la Presa Internacional La Amistad para evitar que los niveles del embalse descienden a la cota mínima operativa necesaria para garantizar el funcionamiento seguro de los equipos de bombeo del Sistema Municipal de Aguas y Saneamiento (SIMAS) de Ciudad Acuña; 2. Garanticen el cumplimiento irrestricto del orden de prelación establecido en el Artículo 3 del Tratado de Aguas de 1944, asegurando que el abastecimiento doméstico de las poblaciones fronterizas mexicanas no sea sacrificado para el cumplimiento de cuotas de entrega internacional; y 3. Promuevan una correcta interpretación del tratado ante una comisión internacional de arbitraje integrada por especialistas de organismos internacionales, que determine con datos científicos las causas de la crisis hídrica en toda la cuenca del Bravo y el Colorado, que llevó a la falta de agua en los ríos por causa de las condiciones climatológicas; 2) a Comisión Nacional del Aguay a la Secretaría de Hacienda y Crédito Público a constituir un fondo de emergencia técnica para la implementación inmediata de obras de captación emergentes (sistemas de bombeo flotante o dragado de canales) en la Presa La amistad, que aseguren la continuidad del servicio de agua potable para Ciudad Acuña independientemente de las fluctuaciones de nivel derivadas de los compromisos internacionales; y, 3) a la Sección Mexicana de Comisión Internacional de Límites y Aguas (CILA) a hacer público la curva de descenso proyectada de la Presa La Amistad hasta el 31 de marzo de 2026 y las medidas de contingencia acordadas bilateralmente para proteger el derecho humano al agua en la zona urbana de Ciudad Acuña y Del Río.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Recursos Hidráulicos, Agua Potable y Saneamiento  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 03 de marzo de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 03/03/2026",
-      "asunto_id": "5026745",
-      "seguimiento": "5030984",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5030984&Asunto=5026745",
-      "categorias": [
-        "agua",
-        "calidad_aire"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "945491eb9fa2",
-      "scrapeado_en": "2026-04-29T21:15:39.198961+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-03-03",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que reforma y adiciona diversas disposiciones de la Ley General para la Prevención y Gestión Integral de los Residuos.",
-      "presentador": "Dip. Ricardo Madrid Pérez (PVEM)",
-      "aspectos": "La iniciativa tiene por objeto definir los planes de manejo, registro y ejecución de las pilas y baterías incluidas las portátiles, las destinadas a medios de transporte ligero, las de uso industrial y las diseñadas para vehículos eléctricos, cualquiera que sea su clasificación como residuos peligrosos o de manejo especial conforme a la Ley y la Norma Oficial Mexicana correspondiente. Para ello propone: 1) prohibir la fabricación, importación, exportación, distribución, comercialización o puesta en el mercado nacional de pilas y baterías que contengan más de 0.0005% de mercurio en peso, calculado sobre la masa total de cada unidad ; 2) toda persona física o moral que fabrique, ensamble, importe o introduzca por primera vez en el mercado nacional pilas o baterías será responsable de financiar al cien por ciento la recolección, el transporte, el reciclaje, la valorización y la disposición final ambientalmente adecuada de los productos que ponga en el mercado, una vez concluida su vida útil; 3) todo productor sin establecimiento en territorio nacional que ponga por primera vez en el mercado mexicano pilas, baterías o productos que las incorporen deberá designar un representante autorizado y registrarlo ante la Semarnat, indicando domicilio, Registro Federal de Contribuyentes, poderes y la vigencia del mandato; 4) constituir una garantía financiera, suficiente para cubrir los costos de recolección, transporte, almacenamiento temporal, tratamiento, reciclaje y disposición final ambientalmente adecuada de las pilas y baterías que hayan puesto en el mercado, en caso de incumplimiento, abandono, cese de operaciones o insolvencia. La garantía podrá constituirse mediante fondo, fianza, seguro o cualquier otro instrumento que determine la Norma Oficial Mexicana; 5) instituir el Índice Nacional de Recolección como el indicador oficial para medir el porcentaje de pilas y baterías portátiles recuperadas respecto del total de unidades puestas por primera vez en el mercado nacional durante los tres años calendario inmediatos anteriores; 6) establecer que toda batería para vehículo eléctrico, batería de medios de transporte ligero y batería industrial con capacidad energética superior a 2 kWh deberá portar un identificador digital -código QR, tecnología NFC u otro medio interoperable- que permita el acceso inmediato a su pasaporte electrónico; 7) impulsar la economía circular y reducir la extracción de recursos primarios, la Secretaría de Medio Ambiente y Recursos Naturales establecerá, mediante Norma Oficial Mexicana, los porcentajes mínimos de contenido reciclado que deberán incorporar las pilas y baterías puestas en el mercado nacional, los cuales no podrán ser inferiores a: 16 % para cobalto, 85 % para plomo, 6 % para níquel y 6 % para litio, calculados en peso sobre el material activo total de cada batería; 8) prohibir la eliminación de pilas y baterías, así como de sus componentes, mediante vertido en rellenos sanitarios, disposición subterránea o incineración, en cualquier etapa de su ciclo de vida, exceptuando los residuos resultantes de procesos de reciclaje autorizados; 9) crear el Sistema Estadístico y de Control de Pilas como una plataforma nacional administrada por la Secretaría, como sistema único y público de información sobre pilas y baterías a lo largo de su ciclo de vida; 10) determinar que la Semarnat coordinará con las autoridades aduaneras, ambientales y fiscales la interconexión de sus bases de datos para verificar la exactitud y veracidad de la información reportada. El incumplimiento de las obligaciones de reporte o la entrega de información falsa o incompleta será sancionado en los términos de la Ley; 11) sancionar a quienes incumplan las obligaciones previstas en la Ley; y, 12) la multa podrá fijarse entre quinientas y cincuenta mil veces el valor diario de la Unidad de Medida y Actualización, considerando la gravedad de la conducta, el daño o riesgo al ambiente o a la salud, el beneficio económico obtenido, el carácter intencional y la reincidencia.\n\nPara tal fin modifica los artículos 5, 28, 94 Bis, 94 Bis A, 94 Bis B, 94 Bis C, 94 Bis D, 94 Bis E, 94 Bis F, 94 Bis G, 94 Bis H, 106 y 112 de la Ley General para la Prevención y Gestión Integral de los Residuos.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 03 de marzo de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 03/03/2026",
-      "asunto_id": "5026500",
-      "seguimiento": "5030907",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5030907&Asunto=5026500",
-      "categorias": [
-        "biodiversidad",
-        "residuos",
-        "mineria"
-      ],
-      "categoria": "biodiversidad",
-      "categoria_nombre": "Biodiversidad",
-      "id": "0e649d778b23",
-      "scrapeado_en": "2026-04-29T21:16:13.738137+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-03-03",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que adiciona diversas disposiciones a la Ley General del Equilibrio Ecológico y la Protección al Ambiente y de la Ley General de Asentamientos Humanos, Ordenamiento Territorial y Desarrollo Urbano, en materia de reubicación de industrias de alto impacto ambiental.",
-      "presentador": "Dip. Irais Virginia Reyes De la Torre (MC)",
-      "aspectos": "La iniciativa tiene por objeto crear un Registro Nacional de Industrias de Alto Impacto Ambiental ubicadas en zonas urbanas o habitacionales, resultado del crecimiento urbano.\n\nEntre lo propuesto destaca: 1) definir el concepto de -Industria de alto impacto ambiental- como aquella cuya operación, emisiones, descargas, residuos o uso de materiales peligrosos generen afectaciones significativas al medio ambiente o a la salud humana; 2) facultar a la Secretaría de Medio Ambiente y Recursos Naturales (Semarnat) a emitir recomendaciones vinculantes cuando se acredite que una industria representa un riesgo grave para la salud o el ambiente; 3) indicar que la autoridad competente iniciará el Procedimiento de Reubicación Obligatoria cuando los estudios técnicos y del análisis de riesgo ambiental determinen que una fuente fija constituye un riesgo o peligro para la salud humana o el equilibrio ecológico; y, 4) determinar que los gobiernos estatales y municipales deberán adecuar sus planes de desarrollo urbano para facilitar la relocalización de estas industrias en zonas aptas, bajo condiciones de control ambiental reforzado.\n\nPara ello modifica los artículos 3; un Capítulo II Bis al Título Cuarto denominado -De la Reubicación de las Industrias de Alto Impacto Ambiental en Áreas Urbanas, Habitacionales por Crecimiento Urbano- y los artículos 116 Bis 1, 116 Bis 2, 116 Bis 3, 116 Bis 4, 116 Bis 5, 116 Bis 6 y 116 Bis 7 de la Ley General del Equilibrio Ecológico y la Protección al Ambiente; y, 3, 4 y 28 Bis de la Ley General de Asentamientos Humanos, Ordenamiento Territorial y Desarrollo Urbano.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Desarrollo Urbano y Ordenamiento Territorial de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 03 de marzo de 2026 por acuerdo de la Mesa Directiva. Ver todos los trámites",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 03/03/2026",
-      "asunto_id": "5026002",
-      "seguimiento": "5030409",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5030409&Asunto=5026002",
-      "categorias": [
-        "biodiversidad",
-        "calidad_aire",
-        "residuos"
-      ],
-      "categoria": "biodiversidad",
-      "categoria_nombre": "Biodiversidad",
-      "id": "c8d7a25e4da7",
-      "scrapeado_en": "2026-04-29T21:16:15.019633+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-03-03",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que reforma y adiciona diversas disposiciones de la Ley General de Desarrollo Forestal Sustentable y de la Ley General de Asentamientos Humanos, Ordenamiento Territorial y Desarrollo Urbano, en materia de bosques urbanos.",
-      "presentador": "Dip. Ivonne Aracely Ortega Pacheco (MC)",
-      "aspectos": "La iniciativa tiene por objeto visibilizar e incorporar la figura de -bosque urbano- como infraestructura verde estratégica.\n\nEntre lo propuesto destaca: 1) definir los concepto de -Bosque urbano- y -Infraestructura verde urbana-; 2) fomentar actividades que protejan la biodiversidad en los bosques productivos y urbanos mediante prácticas silvícolas sustentables, estableciendo medidas para la identificación, conservación, manejo y evaluación de atributos de alto valor de conservación; 3)  establecer que los instrumentos económicos y los programas de pago por servicios ambientales forestales podrán aplicarse a los bosques urbanos, considerando los servicios ambientales que proporcionan a la población, de conformidad con los lineamientos que emita la Secretaría de Medio Ambiente y Recursos Naturales; y, 4) elaborar, mantener y publicar un Inventario Municipal de Bosques Urbanos.\n\nPara ello modifica los artículos 1, 7 y 129 de la Ley General de Desarrollo Forestal Sustentable; y, 3, 6, 8, 10 y 11 de la Ley General de Asentamientos Humanos, Ordenamiento Territorial y Desarrollo Urbano.",
-      "ultimo_tramite": "Se turnó a comisiones unidas: Desarrollo Urbano y Ordenamiento Territorial de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 03 de marzo de 2026 por acuerdo de la Mesa Directiva. Ver todos los trámites",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 03/03/2026",
-      "asunto_id": "5025743",
-      "seguimiento": "5055432",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5055432&Asunto=5025743",
-      "categorias": [
-        "deforestacion"
-      ],
-      "categoria": "deforestacion",
-      "categoria_nombre": "Forestal",
-      "id": "b5ecec3ebbea",
-      "scrapeado_en": "2026-04-29T21:17:56.101992+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-03-03",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que reforma y adiciona el artículo 198 de la Ley Federal de Derechos, en materia de recursos para conservación y manejo de áreas naturales protegidas.",
-      "presentador": "Dip. Ivonne Aracely Ortega Pacheco (MC)",
-      "aspectos": "La iniciativa tiene por objeto determinar que los ingresos que se obtengan por la recaudación de derechos se destinarán íntegros a la Comisión Nacional de Áreas Naturales Protegidas (Conanp) para el manejo sustentable de las áreas naturales protegidas, priorizando conservación, acciones de protección, vigilancia, restauración, infraestructura para visitantes, fortalecimiento monitoreo y comunitario con perspectiva de género. \n\nEntre lo propuesto destaca: 1) establecer que la Tesorería de la Federación reintegrará a la Comisión Nacional de Áreas Naturales Protegidas el cien por ciento de los recursos recaudados; y, 2) indicar que la Conanp publicará trimestralmente, dentro de los 15 días naturales siguientes al cierre del trimestre, un informe en su portal institucional y en formato de datos abiertos, que incluya al menos los montos recaudados por concepto de los montos reintegrados y la fecha del reintegro, el monto ejercido en el trimestre identificando su clasificación funcional, así como los proyectos financiados y su avance físico financiero, en forma desagregada por área natural protegida.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Hacienda y Crédito Público  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 03 de marzo de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 03/03/2026",
-      "asunto_id": "5025999",
-      "seguimiento": "5030406",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5030406&Asunto=5025999",
-      "categorias": [
-        "biodiversidad"
-      ],
-      "categoria": "biodiversidad",
-      "categoria_nombre": "Biodiversidad",
-      "id": "8c1c646d52db",
-      "scrapeado_en": "2026-04-29T21:19:43.335218+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "fecha_presentacion": "2026-03-03",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "presentador": "Dip. César Israel Damián Retes (PAN)",
-      "aspectos": "El legislador propone exhortar: 1) a la titular de la Secretaría de Medio Ambiente y Recursos Naturales para que, a través del principio de transparencia y máxima publicidad, informe a la opinión pública de manera detallada los acuerdos establecidos con el gobierno de los Estados Unidos de América, así como su grado de cumplimiento, para atender la contaminación del río Tijuana en Baja California; y, 2) a la Secretaría de Medio Ambiente y Recursos Naturales para que, a través del principio de transparencia y máxima publicidad, informe a la opinión pública de manera detallada las acciones emprendidas por el gobierno federal, para atender la contaminación del río Tijuana en Baja California.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 03 de marzo de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 03/03/2026",
-      "asunto_id": "5026660",
-      "seguimiento": "5030956",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5030956&Asunto=5026660",
-      "categorias": [
-        "agua"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "7b0210682dbd",
-      "scrapeado_en": "2026-04-29T21:19:57.365705+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "fecha_presentacion": "2026-03-03",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "presentador": "Dip. Rubén Ignacio Moreira Valdez (PRI)",
-      "aspectos": "El legislador propone exhortar: 1) a Petróleos Mexicanos para que informe de manera pública, detallada y actualizada el monto total de los adeudos pendientes con proveedores en Ciudad del Carmen, Campeche, desglosado por ejercicio fiscal, tipo de contrato, estatus de validación y calendario estimado de pagos, garantizando la transparencia y certeza jurídica para las empresas afectadas; 2) a la Secretaría de Hacienda y Crédito Público para que, en el ámbito de sus atribuciones, evalúe mecanismos financieros que permitan garantizar liquidez para el cumplimiento oportuno de las obligaciones contractuales de Petróleos Mexicanos con sus proveedores, particularmente aquellos ubicados en Ciudad del Carmen, Campeche; y, 3) a la Secretaría Anticorrupción y Buen Gobierno para que, en coordinación con el Órgano Interno de Control en Petróleos Mexicanos, realice una revisión administrativa sobre los criterios de priorización de pagos, procesos de validación de facturas, y posibles irregularidades en la adjudicación o liberación de recursos destinados a proveedores.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Hacienda y Crédito Público  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 03 de marzo de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 03/03/2026",
-      "asunto_id": "5026769",
-      "seguimiento": "5031028",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5031028&Asunto=5026769",
-      "categorias": [
-        "hidrocarburos"
-      ],
-      "categoria": "hidrocarburos",
-      "categoria_nombre": "Hidrocarburos",
-      "id": "4b5189d3c652",
-      "scrapeado_en": "2026-04-29T21:22:29.558265+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 75,
-    "actualizado": "2026-09-06T23:36:31Z"
+    "nuevas": 67,
+    "actualizado": "2026-09-07T16:09:03Z"
   }
 }
