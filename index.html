@@ -3749,8 +3749,8 @@ var _RME_COL={integral:'#0E8C74',portal:'#2AA88B',fichas:'#7A9B8E',catalogo:'#9A
 // Obligaciones RME por tipo de generador (fraseo técnico: Obligatorio / Condicionado / No aplicable)
 var _rmeGen='gran',_rmeCurState=null;
 var _RME_OBLIG=[
-  {n:'Registro como generador de RME',s:'LGPGIR art. 20 · autoridad estatal',url:'https://www.gob.mx/tramites',peq:{st:'cond',txt:'Según entidad'},gran:{st:'obl',txt:'Requerido'}},
-  {n:'Plan de Manejo de RME',s:'LGPGIR arts. 27–28 · NOM-161-SEMARNAT-2011',url:'https://www.gob.mx/tramites/ficha/registro-de-plan-de-manejo-de-residuos/SEMARNAT911',peq:{st:'no',txt:'No aplicable (salvo producto listado)'},gran:{st:'obl',txt:'Requerido'}},
+  {n:'Registro como generador de RME',s:'LGPGIR art. 20 · autoridad estatal',peq:{st:'cond',txt:'Según entidad'},gran:{st:'obl',txt:'Requerido'}},
+  {n:'Plan de Manejo de RME',s:'LGPGIR arts. 27–28 · NOM-161-SEMARNAT-2011',peq:{st:'no',txt:'No aplicable (salvo producto listado)'},gran:{st:'obl',txt:'Requerido'}},
   {n:'Bitácora de generación',s:'LGPGIR · reglamento estatal',peq:{st:'cond',txt:'Según volumen'},gran:{st:'obl',txt:'Requerido'}},
   {n:'Manifiesto de entrega–transporte–recepción',s:'LGPGIR · transporte autorizado',peq:{st:'cond',txt:'Al enviar a manejo'},gran:{st:'obl',txt:'Requerido'}},
   {n:'Prestadores de servicios autorizados',s:'LGPGIR · autorización estatal / SEMARNAT',peq:{st:'obl',txt:'Requerido'},gran:{st:'obl',txt:'Requerido'}}
@@ -3797,7 +3797,8 @@ function _rmeStateHTML(state){
   });
   h+='</div>';
   if(d.nota)h+='<div style="font-size:11px;color:var(--text-sec);line-height:1.55;padding:11px 0 4px;border-top:0.8px solid var(--border);margin-top:8px">'+d.nota+'</div>';
-  if(d.portal)h+='<a href="'+d.portal.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:11px;font-weight:600;color:var(--green);text-decoration:none">Portal oficial del estado <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>';
+  if(d.portal)h+='<a href="'+d.portal.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;padding:9px 14px;border:0.8px solid var(--green);border-radius:8px;background:rgba(6,103,80,.05);font-size:12px;font-weight:600;color:var(--green);text-decoration:none">Ir al portal del trámite · autoridad estatal <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>';
+  else h+='<div style="font-size:11px;color:var(--text-muted);margin-top:12px;line-height:1.5">El trámite se realiza ante <b style="color:var(--text-sec)">'+d.autoridad+'</b>. Consulta la ventanilla estatal correspondiente.</div>';
   h+='<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:14px">Fuente: Inventario nacional de trámites estatales de RME · GEMI'+((_tramitesRME._meta&&_tramitesRME._meta.actualizado)?' · act. '+_tramitesRME._meta.actualizado:'')+'</div>';
   return h;
 }
