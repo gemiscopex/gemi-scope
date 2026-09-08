@@ -449,18 +449,21 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .com-section-hdr{padding-bottom:8px;border-bottom:0.8px solid var(--border);margin-bottom:4px}
 .com-section-name{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:0.01em;color:var(--text)}
 .com-section-sub{font-size:10px;color:var(--text-muted);margin-top:4px;letter-spacing:0.02em}
-.com-row{display:flex;align-items:center;gap:8px;padding:8px 10px;cursor:pointer;transition:background 0.12s;border-bottom:0.8px solid rgba(0,0,0,0.05);border-radius:6px}
-.com-row:hover{background:rgba(0,158,144,0.05)}
-.com-row.open{background:rgba(0,158,144,0.06)}
-.com-row-name{flex:1;font-size:12px;font-weight:500;color:var(--text);line-height:1.3}
-.com-row-scope{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0}
-.com-row-spacer{width:5px;flex-shrink:0}
-.com-scope-tag{font-size:8px;font-weight:700;letter-spacing:0.06em;color:var(--green);background:rgba(0,158,144,0.1);padding:2px 5px;border-radius:4px;flex-shrink:0}
-.com-arrow{font-size:9px;color:var(--text-muted);transition:transform 0.22s ease;flex-shrink:0}
+.com-accordion{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:10px;align-items:start}
+.com-tile-wrap{min-width:0}
+.com-row{display:block;cursor:pointer;background:rgba(6,103,80,0.035);border-radius:11px;padding:13px 15px;transition:background 0.12s}
+.com-row:hover{background:rgba(6,103,80,0.06)}
+.com-row.open{background:rgba(6,103,80,0.08)}
+.com-tile-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.com-tile-kick{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.1em;color:#066750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.com-tile-name{font-size:13px;font-weight:600;color:var(--text);margin-top:8px;line-height:1.3}
+.com-tile-pres{font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.3}
+.com-tile-meta{font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:6px;letter-spacing:0.02em}
+.com-arrow{font-size:14px;line-height:1;color:var(--text-muted);transition:transform 0.22s ease;flex-shrink:0}
 .com-row.open .com-arrow{transform:rotate(90deg)}
 .com-body{max-height:0;overflow:hidden;transition:max-height 0.32s ease}
 .com-body.open{max-height:3600px}
-.com-body-inner{background:rgba(0,0,0,0.018);border-radius:0 0 8px 8px;padding:12px 12px 8px;margin-bottom:4px}
+.com-body-inner{background:rgba(6,103,80,0.045);border-radius:11px;padding:14px 15px 10px;margin-top:6px}
 .com-members{border-top:0.8px solid var(--border);padding-top:8px}
 .com-member{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:0.8px solid var(--border);text-decoration:none;color:inherit;transition:background 0.12s;border-radius:4px;margin:0 -4px;padding-left:4px;padding-right:4px;cursor:pointer}
 .com-member:last-child{border-bottom:none}
@@ -1527,7 +1530,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
     <!-- Legislativo Federal: comisiones del Congreso de la Unión -->
     <div id="actores-view-legfed" style="display:none">
       <div class="card-label" style="color:var(--green)">Comisiones del Congreso de la Unión</div>
-      <div id="comisiones-list" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
+      <div id="comisiones-list"><div style="font-size:12px;color:var(--text-muted);padding:20px 0">Cargando comisiones...</div></div>
     </div>
     <!-- Legislativo Estatal: comisiones de los congresos estatales -->
     <div id="actores-view-legest" style="display:none">
@@ -6464,11 +6467,17 @@ function renderComisiones(data){
         +'<div><div style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);text-transform:uppercase">Próxima sesión</div><div style="font-size:11px;color:var(--text);margin-top:2px">'+(c.pr||'—')+'</div></div>'
         +'<div style="margin-left:auto;align-self:center"><a href="'+(c.url||portalUrl)+'" target="_blank" rel="noopener" style="font-size:10px;color:var(--green);text-decoration:none;font-weight:600" onclick="event.stopPropagation()">Convocatoria en Gaceta →</a></div>'
         +'</div>';
-      return '<div>'
+      var pres=grpPres[0];
+      var kick=(pres&&pres.partido)?pres.partido:'Comisión';
+      var presLine=pres?pres.n+' · Presidencia':'Presidencia por confirmar';
+      var prTxt=(c.pr&&c.pr!=='—')?c.pr:'';
+      var metaLine=members.length+' '+(members.length===1?'integrante':'integrantes')+(prTxt?' · próx. sesión '+prTxt:'');
+      return '<div class="com-tile-wrap">'
         +'<div class="com-row" id="com-hdr-'+id+'" onclick="toggleComision(\''+id+'\')">'
-          +'<span class="com-row-scope"></span>'
-          +'<span class="com-row-name">'+c.nombre+'</span>'
-          +'<span class="com-arrow">▶</span>'
+          +'<div class="com-tile-top"><span class="com-tile-kick">'+kick+'</span><span class="com-arrow">›</span></div>'
+          +'<div class="com-tile-name">'+c.nombre+'</div>'
+          +'<div class="com-tile-pres">'+presLine+'</div>'
+          +'<div class="com-tile-meta">'+metaLine+'</div>'
         +'</div>'
         +'<div class="com-body" id="com-body-'+id+'">'
           +'<div class="com-body-inner">'
