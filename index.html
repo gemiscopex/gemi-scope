@@ -5102,9 +5102,9 @@ function _radarDetailHTML(temaId){
     .sort(function(a,b){return new Date(String(b.fecha||'').substring(0,10))-new Date(String(a.fecha||'').substring(0,10));});
   var est=estAll.slice(0,15).map(function(it){return row(it.titulo||'',(it.estado||'')+' · '+(it.medio?it.medio+' · ':'')+_rdDate(it.fecha),it.url);});
   var dofAll=(_dofData||[]).filter(function(d){return _radarKwMatch(kw,d.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
-  var dof=dofAll.slice(0,3).map(function(d){var t=(d.titulo||'');if(t.length>60)t=t.slice(0,58)+'…';return row('<b>'+(d.dependencia||'DOF')+'</b> · '+t,_rdDate(d.fecha),d.url||'https://www.dof.gob.mx/');});
+  var dof=dofAll.map(function(d){var t=(d.titulo||'');if(t.length>60)t=t.slice(0,58)+'…';return row('<b>'+(d.dependencia||'DOF')+'</b> · '+t,_rdDate(d.fecha),d.url||'https://www.dof.gob.mx/');});
   var congAll=(_congItems||[]).filter(function(c){return _radarKwMatch(kw,c.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
-  var cong=congAll.slice(0,3).map(function(c){
+  var cong=congAll.map(function(c){
     var pp=(typeof _congParse==='function')?_congParse(c):{accion:'',titulo:(c.titulo||'')};
     var tit=pp.titulo;if(tit.length>60)tit=tit.slice(0,58)+'…';
     var cam=c.camara==='SEN'?'Senado':'Diputados';
@@ -5141,7 +5141,7 @@ function _radarDetailHTML(temaId){
     +(tema.id==='circular'?_podecibiBlock():'')
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
       +'<div>'+block('Señal en medios · 2 sem','var(--text)',news,true)+block('Prensa estatal','var(--text)',est,true)+estBlock+'</div>'
-      +'<div>'+block('DOF · publicaciones'+(dofAll.length>3?' · +'+(dofAll.length-3)+' más':''),'var(--text)',dof)+block('Congreso'+(congAll.length>3?' · +'+(congAll.length-3)+' más':''),'var(--text)',cong)+block('NOMs','var(--text)',noms)+block('Internacional','var(--text)',intl)+'</div>'
+      +'<div>'+block('DOF · publicaciones','var(--text)',dof,true)+block('Congreso','var(--text)',cong,true)+block('NOMs','var(--text)',noms)+block('Internacional','var(--text)',intl)+'</div>'
     +'</div>'
     +_emisBlock(tema);
 }
