@@ -2966,7 +2966,7 @@ function renderComisionesEstatales(){
     +'</div>';
   var e=estados.filter(function(x){return x.estado===_comEstSel;})[0];
   var rows=(e.comisiones||[]).map(function(c,i){
-    var id='est-'+i, col=_TEMA_COM_COLOR[c.tema]||'#6b7280';
+    var id='est-'+i;
     var presKey=_estStrip(c.presidente).toLowerCase(), integ=(c.integrantes||[]).slice();
     var hasPres=integ.some(function(x){return _estStrip(x).toLowerCase()===presKey;});
     var members=hasPres?integ:(c.presidente?[c.presidente].concat(integ):integ);
@@ -2974,17 +2974,19 @@ function renderComisionesEstatales(){
     var membersHTML=members.length
       ?'<div class="com-members">'+members.map(function(m){return _estMemberHTML(m,_estStrip(m).toLowerCase()===presKey);}).join('')+'</div>'
       :'<div style="font-size:11px;color:var(--text-muted);font-style:italic;padding:4px 0 8px">Integración pendiente de publicación oficial</div>';
-    var ficha='<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:2px;padding-bottom:10px;border-bottom:0.8px solid var(--border)">'
-      +'<div><div style="font-size:11px;font-weight:700;color:var(--text)">'+members.length+' integrante'+(members.length===1?'':'s')+'</div>'
-      +'<div style="font-size:10px;color:var(--text-sec);margin-top:3px">Preside: <b>'+(c.presidente||'—')+'</b></div></div>'
-      +'<span class="com-scope-tag" style="color:'+col+';background:'+col+'18">'+(_TEMA_COM_LBL[c.tema]||c.tema).toUpperCase()+'</span>'
-      +'</div>';
+    var ficha='<div style="margin-bottom:2px;padding-bottom:10px;border-bottom:0.8px solid var(--border)">'
+      +'<div style="font-size:11px;font-weight:700;color:var(--text)">'+members.length+' integrante'+(members.length===1?'':'s')+'</div>'
+      +'<div style="font-size:10px;color:var(--text-sec);margin-top:3px">Preside: <b>'+(c.presidente||'—')+'</b></div></div>';
     var footer='<div style="display:flex;margin-top:10px;padding-top:10px;border-top:0.8px solid var(--border)"><a href="'+(c.url||e.congreso_url||'#')+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:10px;color:var(--green);text-decoration:none;font-weight:600;margin-left:auto">Ficha oficial de la comisión →</a></div>';
-    return '<div>'
+    var kick=_TEMA_COM_LBL[c.tema]||c.tema||'Comisión';
+    var presLine=c.presidente?_estStrip(c.presidente)+' · Presidencia':'Presidencia por confirmar';
+    var metaLine=members.length+' '+(members.length===1?'integrante':'integrantes');
+    return '<div class="com-tile-wrap">'
       +'<div class="com-row" id="com-hdr-'+id+'" onclick="toggleComision(\''+id+'\')">'
-        +'<span class="com-row-scope" style="background:'+col+'"></span>'
-        +'<span class="com-row-name">'+c.nombre+'</span>'
-        +'<span class="com-arrow">▶</span>'
+        +'<div class="com-tile-top"><span class="com-tile-kick">'+kick+'</span><span class="com-arrow">›</span></div>'
+        +'<div class="com-tile-name">'+c.nombre+'</div>'
+        +'<div class="com-tile-pres">'+presLine+'</div>'
+        +'<div class="com-tile-meta">'+metaLine+'</div>'
       +'</div>'
       +'<div class="com-body" id="com-body-'+id+'"><div class="com-body-inner">'+ficha+membersHTML+footer+'</div></div>'
     +'</div>';
@@ -3033,13 +3035,16 @@ function _actorEstRow(label,o){
 var _ACT_EST_SECTORS=[['medio_ambiente','Medio Ambiente'],['agua','Agua'],['energia','Energía'],['cambio_climatico','Cambio Climático'],['movilidad','Movilidad'],['economia','Economía']];
 function _actorEstState(e,idx){
   var d=(_actoresEstatales.estados||{})[e]||{}, id='aest-'+idx;
-  var rows=_ACT_EST_SECTORS.map(function(s){return d[s[0]]?_actorEstRow(s[1],d[s[0]]):'';}).join('');
+  var present=_ACT_EST_SECTORS.filter(function(s){return d[s[0]];});
+  var rows=present.map(function(s){return _actorEstRow(s[1],d[s[0]]);}).join('');
   if(!rows)rows='<div style="padding:7px 0;font-size:12px;color:var(--text-muted)">Por confirmar</div>';
-  return '<div>'
+  var kick=present.length?present.length+' '+(present.length===1?'sector':'sectores'):'Por confirmar';
+  var metaLine=present.length?present.map(function(s){return s[1];}).join(' · '):'Autoridades por confirmar';
+  return '<div class="com-tile-wrap">'
     +'<div class="com-row" id="'+id+'-h" onclick="toggleActorEst(\''+id+'\')">'
-      +'<span class="com-row-scope"></span>'
-      +'<span class="com-row-name">'+e+'</span>'
-      +'<span class="com-arrow">▶</span>'
+      +'<div class="com-tile-top"><span class="com-tile-kick">'+kick+'</span><span class="com-arrow">›</span></div>'
+      +'<div class="com-tile-name">'+e+'</div>'
+      +'<div class="com-tile-meta">'+metaLine+'</div>'
     +'</div>'
     +'<div class="com-body" id="'+id+'-b"><div class="com-body-inner">'+rows+'</div></div>'
   +'</div>';
@@ -3050,11 +3055,7 @@ function renderActoresEstatales(){
   var q=qa(((document.getElementById('actores-est-search')||{}).value||'').toLowerCase()).trim();
   var estados=Object.keys(_actoresEstatales.estados||{}).filter(function(e){return !q||qa(e.toLowerCase()).indexOf(q)>=0;}).sort(function(a,b){return a.localeCompare(b,'es');});
   if(!estados.length){el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Sin coincidencias</div>';return;}
-  var half=Math.ceil(estados.length/2), col1=estados.slice(0,half), col2=estados.slice(half);
-  el.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
-    +'<div>'+col1.map(function(e,i){return _actorEstState(e,i);}).join('')+'</div>'
-    +'<div>'+col2.map(function(e,i){return _actorEstState(e,half+i);}).join('')+'</div>'
-    +'</div>';
+  el.innerHTML='<div class="com-accordion">'+estados.map(function(e,i){return _actorEstState(e,i);}).join('')+'</div>';
 }
 // ── Datos abiertos ambientales (datos.gob.mx, via scraper diario) ──
 function renderDatosGob(){
