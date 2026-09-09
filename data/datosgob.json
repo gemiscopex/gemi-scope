@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-09-08T10:12 CDMX",
+  "actualizado": "2026-09-08T19:03 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -224,6 +224,13 @@
     "recursos": 24
    },
    {
+    "titulo": "Producción de Hidrocarburos (2026)",
+    "org": "Secretaría de Energía (SENER)",
+    "fecha": "2026-09-08",
+    "url": "https://www.datos.gob.mx/dataset/produccion_hidrocarburos_2026",
+    "recursos": 6
+   },
+   {
     "titulo": "Comercio exterior de hidrocarburos; importaciones y exportaciones (2026)",
     "org": "Secretaría de Energía (SENER)",
     "fecha": "2026-07-20",
@@ -243,13 +250,6 @@
     "fecha": "2026-07-09",
     "url": "https://www.datos.gob.mx/dataset/contratos_para_exploracion_extraccion_hidrocarburos_2026",
     "recursos": 10
-   },
-   {
-    "titulo": "Información de transporte y almacenamiento de Gas Natural (2026)",
-    "org": "Secretaría de Energía (SENER)",
-    "fecha": "2026-07-09",
-    "url": "https://www.datos.gob.mx/dataset/informacion_transporte_almacenamiento_gas_natural_2026",
-    "recursos": 1
    },
    {
     "titulo": "Gas Natural",
