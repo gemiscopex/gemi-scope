@@ -1,6 +1,26 @@
 {
   "diputados": [
     {
+      "titulo": "Que adiciona el artículo 15 Bis a la Ley General del Equilibrio Ecológico y la Protección al Ambiente, a cargo del diputado José Luis Téllez Marín, del Grupo Parlamentario del PT",
+      "tipo": "iniciativa",
+      "fecha": "2026-09-09",
+      "autor": "",
+      "partido": "PT",
+      "categoria": "ambiental",
+      "url": "https://gaceta.diputados.gob.mx/Gaceta/66/2026/sep/20260909-II-4.html#Iniciativa1",
+      "id": "c16c967c9c02"
+    },
+    {
+      "titulo": "Que adiciona diversas disposiciones al Código Penal Federal, en materia de tipificación de conductas que dañen el medio ambiente (ecocidio), a cargo de la diputada Verónica Martínez García, del Grupo Parlamentario del PRI",
+      "tipo": "iniciativa",
+      "fecha": "2026-09-09",
+      "autor": "",
+      "partido": "PRI",
+      "categoria": "ambiental",
+      "url": "https://gaceta.diputados.gob.mx/Gaceta/66/2026/sep/20260909-II-5.html#Iniciativa10",
+      "id": "8843735ee432"
+    },
+    {
       "titulo": "Que adiciona un artículo 23 Bis a la Ley Federal de Sanidad Animal y reforma los párrafos tercero, quinto y sexto del artículo 87 Bis 2 de la Ley General del Equilibrio Ecológico y la Protección al Ambiente, en materia de maltrato y sacrificio animal por cuestiones de control poblacional, a cargo de la diputada Dulce María Corina Villegas Guarneros",
       "tipo": "iniciativa",
       "fecha": "2026-09-08",
@@ -2128,248 +2148,6 @@
   ],
   "senado": [
     {
-      "titulo": "9.\tDe la Sen. Karen Castrejón Trujillo, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adicionan diversas disposiciones del Código Penal Federal.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Karen Castrejón Trujillo",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162490",
-      "id": "46f6ba4e4ae8",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "15.\tDe la Sen. Angélica Montes Rentería, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman y adicionan diversas disposiciones de la ley de Desarrollo Rural Sustentable.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Angélica Montes Rentería",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162510",
-      "id": "0be1db23cc2d",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "20.\tDe la Sen. Mayuli Latifa Martínez Simón, del Grupo Parlamentario del Partido Acción Nacional, con proyecto de decreto por el que se reforman los artículos 26 fracción XI, 27 fracciones V y VI, 28 fracción IV, 29 fracción IV, 30 fracciones V y XX, 82 fracción II, y 110 fracciones III y IV; se adicionan los artículos 3 con una fracción XLIII, 27 con una fracción VII, 82 con una fracción VII, 101",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Mayuli Latifa Martínez Simón",
-      "partido": "PAN",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162568",
-      "id": "cdb056e64d14",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "27.\tDel Sen. Gilberto Hernández Villafuerte, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman diversas disposiciones de la Ley General del Equilibrio Ecológico y la Protección al Ambiente.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Gilberto Hernández Villafuerte",
-      "partido": "PVEM",
-      "categoria": "ambiental",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162698",
-      "id": "86f2b906c008",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "33.\tDe la Sen. Virginia Magaña Fonseca, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforma la fracción XI del artículo 73 y se adiciona un artículo 73 Quáter al Título Tercero de la Ley General de Salud.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Virginia Magaña Fonseca",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162700",
-      "id": "5da05f7aaf6d",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "39.\tDel Sen. Carlos Humberto Suárez Flores, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman y adicionan diversas disposiciones de la Ley de Aguas Nacionales.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Carlos Humberto Suárez Flores",
-      "partido": "PVEM",
-      "categoria": "agua",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162779",
-      "id": "5b16a4e51781",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "45.\tDel Sen. Jorge Carlos Ramírez Marín, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adiciona un párrafo cuarto al artículo 24 de la Ley General para Prevenir, Sancionar y Erradicar los Delitos en Materia de Trata de Personas y para la Protección y Asistencia a las Víctimas de estos Delitos.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Jorge Carlos Ramírez Marín",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162777",
-      "id": "5948d9053032",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "50.\tDe la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman y adicionan diversas disposiciones de la Ley General de Aguas.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "",
-      "partido": "PVEM",
-      "categoria": "agua",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162563",
-      "id": "5d66b8129b31",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "54.\tDe la Sen. Maki Esther Ortíz Domínguez, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman diversas disposiciones de la Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Maki Esther Ortíz Domínguez",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162562",
-      "id": "9d155d7eaea8",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "58.\tDe la Sen. Ruth González Silva, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforma la fracción II BIS del artículo 64 y se adiciona un artículo 64 BIS 2 a la Ley General de Salud.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Ruth González Silva",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162711",
-      "id": "f1f84a3ab5b1",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "62.\tDe la Sen. Maki Esther Ortíz Domínguez, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adiciona la fracción XXXIII Bis del artículo 3 y se adiciona la fracción II Bis del artículo 11 de la Ley General del Equilibrio Ecológico y la Protección al Ambiente.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Maki Esther Ortíz Domínguez",
-      "partido": "PVEM",
-      "categoria": "ambiental",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162557",
-      "id": "12e777208475",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "66.\tDe la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adiciona un quinto párrafo al artículo 4º de la Constitución Política de los Estados Unidos Mexicanos, recorriéndose los subsecuentes.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162515",
-      "id": "e037b88f922a",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "70.\tDe la Sen. Maki Esther Ortíz Domínguez, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman, adicionan y derogan diversas disposiciones de la Ley para Impulsar el Incremento Sostenido de la Productividad y la Competitividad de la Economía Nacional.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Maki Esther Ortíz Domínguez",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162552",
-      "id": "b36543cd8d45",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "74.\tDe la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforma el Capítulo I de las Autoridades Migratorias del Título Tercero de las Autoridades en materia Migratoria; y se adiciona el Capítulo I BIS Denominado del Consejo Consultivo Nacional para la Investigación y Prospectiva de la Movilidad Humana, d",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162506",
-      "id": "3a511f5dedf1",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "78. De la Sen. Maki Esther Ortíz Domínguez, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adicionan diversas disposiciones de la Ley de Cámaras Empresariales y sus Confederaciones.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Maki Esther Ortíz Domínguez",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162546",
-      "id": "3504c6b5705c",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "82.\tDe la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforma la Ley General de Salud.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162494",
-      "id": "a06f9fa4c5df",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "86. De la Sen. Maki Esther Ortíz Domínguez, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman diversas disposiciones de la Ley General de Salud.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "Maki Esther Ortíz Domínguez",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162527",
-      "id": "a9d24bd1835d",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "90.\tDe la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adiciona un párrafo quinto al artículo 4º de la Constitución Política de los Estados Unidos Mexicanos.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162493",
-      "id": "7698ab14e7ee",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "94. De la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adiciona el artículo 7 ter y se reforma el artículo 128 de la Ley Federal de Protección al Consumidor.",
-      "tipo": "decreto",
-      "fecha": "2026-09-09",
-      "autor": "",
-      "partido": "PVEM",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162658",
-      "id": "7b8549ff9831",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "11.\tDel Sen. Luis Donaldo Colosio Riojas, del Grupo Parlamentario de Movimiento Ciudadano, con punto de acuerdo por el que se exhorta a la Secretaría de Medio Ambiente y Recursos Naturales y a la Agencia de Seguridad, Energía y Ambiente a hacer públicos los resultados de la investigación sobre los episodios de emisiones odoríferas registrados en la zona metropolitana de Monterrey, a publicar el in",
-      "tipo": "punto_acuerdo",
-      "fecha": "2026-09-09",
-      "autor": "Luis Donaldo Colosio Riojas",
-      "partido": "MC",
-      "categoria": "energía",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162754",
-      "id": "ed203d5d1785",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "20.\tDe senadoras y senadores Alejandro Moreno Cárdenas, Manuel Añorve Baños, Alma Carolina Viggiano Austria, Pablo Guillermo Angulo Briceño, Cristina Ruíz Sandoval, Rolando Rodrigo Zapata Bello, Claudia Edith Anaya Mota, Gabriel Elizondo Pérez, Mely Romero Celis, Paloma Sánchez Ramos, Ángel García Yáñez, Karla Guadalupe Toledo Zamora y Anabell Ávalos Zempoalteca, del Grupo Parlamentario del Partid",
-      "tipo": "punto_acuerdo",
-      "fecha": "2026-09-09",
-      "autor": "",
-      "partido": "PRI",
-      "categoria": "general",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162539",
-      "id": "370e29a33e35",
-      "camara": "SEN"
-    },
-    {
-      "titulo": "38.\tDel Sen. Ángel García Yáñez, del Grupo Parlamentario del Partido Revolucionario Institucional, con punto de acuerdo por el que se exhorta a la Secretaría de Medio Ambiente y Recursos Naturales, a la Procuraduría Federal de Protección al Ambiente, a la Secretaría de Desarrollo Sustentable del estado de Morelos, y al Ayuntamiento de Cuernavaca, para que atiendan de manera prioritaria, coordinada",
-      "tipo": "punto_acuerdo",
-      "fecha": "2026-09-09",
-      "autor": "Ángel García Yáñez",
-      "partido": "PRI",
-      "categoria": "ambiental",
-      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162521",
-      "id": "2f068948e03d",
-      "camara": "SEN"
-    },
-    {
       "titulo": "Del Sen. Carlos Humberto Suárez Flores, del Grupo Parlamentario del Partido Verde Ecologista de México, con punto de acuerdo por el que se exhorta a la Secretaría de Relaciones Exteriores y a la Comisión Nacional del Agua para que, en coordinación con el Banco de Desarrollo de América del Norte, fortalezcan un esquema de coordinación técnica para identificar, priorizar, estructurar y promover el f",
       "tipo": "punto_acuerdo",
       "fecha": "2026-09-08",
@@ -3085,6 +2863,248 @@
       "camara": "SEN"
     },
     {
+      "titulo": "9.\tDe la Sen. Karen Castrejón Trujillo, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adicionan diversas disposiciones del Código Penal Federal.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Karen Castrejón Trujillo",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162490",
+      "id": "46f6ba4e4ae8",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "15.\tDe la Sen. Angélica Montes Rentería, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman y adicionan diversas disposiciones de la ley de Desarrollo Rural Sustentable.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Angélica Montes Rentería",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162510",
+      "id": "0be1db23cc2d",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "20.\tDe la Sen. Mayuli Latifa Martínez Simón, del Grupo Parlamentario del Partido Acción Nacional, con proyecto de decreto por el que se reforman los artículos 26 fracción XI, 27 fracciones V y VI, 28 fracción IV, 29 fracción IV, 30 fracciones V y XX, 82 fracción II, y 110 fracciones III y IV; se adicionan los artículos 3 con una fracción XLIII, 27 con una fracción VII, 82 con una fracción VII, 101",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Mayuli Latifa Martínez Simón",
+      "partido": "PAN",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162568",
+      "id": "cdb056e64d14",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "27.\tDel Sen. Gilberto Hernández Villafuerte, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman diversas disposiciones de la Ley General del Equilibrio Ecológico y la Protección al Ambiente.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Gilberto Hernández Villafuerte",
+      "partido": "PVEM",
+      "categoria": "ambiental",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162698",
+      "id": "86f2b906c008",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "33.\tDe la Sen. Virginia Magaña Fonseca, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforma la fracción XI del artículo 73 y se adiciona un artículo 73 Quáter al Título Tercero de la Ley General de Salud.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Virginia Magaña Fonseca",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162700",
+      "id": "5da05f7aaf6d",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "39.\tDel Sen. Carlos Humberto Suárez Flores, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman y adicionan diversas disposiciones de la Ley de Aguas Nacionales.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Carlos Humberto Suárez Flores",
+      "partido": "PVEM",
+      "categoria": "agua",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162779",
+      "id": "5b16a4e51781",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "45.\tDel Sen. Jorge Carlos Ramírez Marín, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adiciona un párrafo cuarto al artículo 24 de la Ley General para Prevenir, Sancionar y Erradicar los Delitos en Materia de Trata de Personas y para la Protección y Asistencia a las Víctimas de estos Delitos.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Jorge Carlos Ramírez Marín",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162777",
+      "id": "5948d9053032",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "50.\tDe la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman y adicionan diversas disposiciones de la Ley General de Aguas.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "",
+      "partido": "PVEM",
+      "categoria": "agua",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162563",
+      "id": "5d66b8129b31",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "54.\tDe la Sen. Maki Esther Ortíz Domínguez, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman diversas disposiciones de la Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Maki Esther Ortíz Domínguez",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162562",
+      "id": "9d155d7eaea8",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "58.\tDe la Sen. Ruth González Silva, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforma la fracción II BIS del artículo 64 y se adiciona un artículo 64 BIS 2 a la Ley General de Salud.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Ruth González Silva",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162711",
+      "id": "f1f84a3ab5b1",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "62.\tDe la Sen. Maki Esther Ortíz Domínguez, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adiciona la fracción XXXIII Bis del artículo 3 y se adiciona la fracción II Bis del artículo 11 de la Ley General del Equilibrio Ecológico y la Protección al Ambiente.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Maki Esther Ortíz Domínguez",
+      "partido": "PVEM",
+      "categoria": "ambiental",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162557",
+      "id": "12e777208475",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "66.\tDe la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adiciona un quinto párrafo al artículo 4º de la Constitución Política de los Estados Unidos Mexicanos, recorriéndose los subsecuentes.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162515",
+      "id": "e037b88f922a",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "70.\tDe la Sen. Maki Esther Ortíz Domínguez, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman, adicionan y derogan diversas disposiciones de la Ley para Impulsar el Incremento Sostenido de la Productividad y la Competitividad de la Economía Nacional.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Maki Esther Ortíz Domínguez",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162552",
+      "id": "b36543cd8d45",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "74.\tDe la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforma el Capítulo I de las Autoridades Migratorias del Título Tercero de las Autoridades en materia Migratoria; y se adiciona el Capítulo I BIS Denominado del Consejo Consultivo Nacional para la Investigación y Prospectiva de la Movilidad Humana, d",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162506",
+      "id": "3a511f5dedf1",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "78. De la Sen. Maki Esther Ortíz Domínguez, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adicionan diversas disposiciones de la Ley de Cámaras Empresariales y sus Confederaciones.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Maki Esther Ortíz Domínguez",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162546",
+      "id": "3504c6b5705c",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "82.\tDe la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforma la Ley General de Salud.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162494",
+      "id": "a06f9fa4c5df",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "86. De la Sen. Maki Esther Ortíz Domínguez, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se reforman diversas disposiciones de la Ley General de Salud.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "Maki Esther Ortíz Domínguez",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162527",
+      "id": "a9d24bd1835d",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "90.\tDe la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adiciona un párrafo quinto al artículo 4º de la Constitución Política de los Estados Unidos Mexicanos.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162493",
+      "id": "7698ab14e7ee",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "94. De la Sen. María del Rocío Corona Nakamura, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adiciona el artículo 7 ter y se reforma el artículo 128 de la Ley Federal de Protección al Consumidor.",
+      "tipo": "decreto",
+      "fecha": "2026-09-09",
+      "autor": "",
+      "partido": "PVEM",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162658",
+      "id": "7b8549ff9831",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "11.\tDel Sen. Luis Donaldo Colosio Riojas, del Grupo Parlamentario de Movimiento Ciudadano, con punto de acuerdo por el que se exhorta a la Secretaría de Medio Ambiente y Recursos Naturales y a la Agencia de Seguridad, Energía y Ambiente a hacer públicos los resultados de la investigación sobre los episodios de emisiones odoríferas registrados en la zona metropolitana de Monterrey, a publicar el in",
+      "tipo": "punto_acuerdo",
+      "fecha": "2026-09-09",
+      "autor": "Luis Donaldo Colosio Riojas",
+      "partido": "MC",
+      "categoria": "energía",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162754",
+      "id": "ed203d5d1785",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "20.\tDe senadoras y senadores Alejandro Moreno Cárdenas, Manuel Añorve Baños, Alma Carolina Viggiano Austria, Pablo Guillermo Angulo Briceño, Cristina Ruíz Sandoval, Rolando Rodrigo Zapata Bello, Claudia Edith Anaya Mota, Gabriel Elizondo Pérez, Mely Romero Celis, Paloma Sánchez Ramos, Ángel García Yáñez, Karla Guadalupe Toledo Zamora y Anabell Ávalos Zempoalteca, del Grupo Parlamentario del Partid",
+      "tipo": "punto_acuerdo",
+      "fecha": "2026-09-09",
+      "autor": "",
+      "partido": "PRI",
+      "categoria": "general",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162539",
+      "id": "370e29a33e35",
+      "camara": "SEN"
+    },
+    {
+      "titulo": "38.\tDel Sen. Ángel García Yáñez, del Grupo Parlamentario del Partido Revolucionario Institucional, con punto de acuerdo por el que se exhorta a la Secretaría de Medio Ambiente y Recursos Naturales, a la Procuraduría Federal de Protección al Ambiente, a la Secretaría de Desarrollo Sustentable del estado de Morelos, y al Ayuntamiento de Cuernavaca, para que atiendan de manera prioritaria, coordinada",
+      "tipo": "punto_acuerdo",
+      "fecha": "2026-09-09",
+      "autor": "Ángel García Yáñez",
+      "partido": "PRI",
+      "categoria": "ambiental",
+      "url": "https://www.senado.gob.mx/66/gaceta_del_senado/documento/162521",
+      "id": "2f068948e03d",
+      "camara": "SEN"
+    },
+    {
       "titulo": "De la Sen. Virginia Magaña Fonseca, del Grupo Parlamentario del Partido Verde Ecologista de México, con proyecto de decreto por el que se adiciona la fracción XX al artículo 4º, recorriéndose las subsecuentes y se adiciona el artículo 50 Bis a la Ley General de Derechos de Niñas, Niños y Adolescentes, y se reforma el artículo 51 Bis 2 y se adiciona el artículo 51 Bis 4 a La Ley General de Salud.",
       "tipo": "decreto",
       "fecha": "2026-07-29",
@@ -3614,7 +3634,7 @@
     }
   ],
   "_meta": {
-    "ultima_actualizacion": "2026-09-09T23:46:03Z",
+    "ultima_actualizacion": "2026-09-10T14:38:25Z",
     "mes": "2026-09"
   }
 }
