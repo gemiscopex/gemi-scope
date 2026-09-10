@@ -1,11 +1,21 @@
 {
  "_meta": {
-  "actualizado": "2026-09-10T20:14:30Z",
+  "actualizado": "2026-09-10T23:36:24Z",
   "fuente": "Prensa nacional y local vía Google News",
   "nota": "Capa de prensa (Beta). Detección de restricciones a la venta de alcohol. La vigencia exacta se confirma en el bando o periódico oficial de cada plaza.",
   "total": 200
  },
  "eventos": [
+  {
+   "id": "4d82c7a586d6",
+   "titulo": "Cuautla aplicará Ley Seca durante festejos patrios",
+   "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPWmpvaVk2M2dJNklPcWRHX0FuRTNsQW93MzZ3NFVydnJLODFydTFWT3JVckQ4dk83cU03dUJnVVVFMUZGUU92ZXNBQ1Z1MVZpajFlcmhRZ1ZSc2J1T0RuVjZEWVhrbXZqQU8tVFd5RDhBWlBtSTMtVXVfZEhMR05oMU1uNDZSX2tBYlhvUQ?oc=5",
+   "fuente": "noticiasdecuautla.mx",
+   "fecha_publicacion": "2026-09-10T23:22:25Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
   {
    "id": "9c943b6db1a5",
    "titulo": "Habrá ley seca el 16 de septiembre en Aguascalientes",
@@ -13,6 +23,16 @@
    "fuente": "UnoTV",
    "fecha_publicacion": "2026-09-10T19:49:17Z",
    "estado": "Aguascalientes",
+   "ambito": "Municipal",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "8cd55b96cf34",
+   "titulo": "¿Habrá Ley Seca por las Fiestas Patrias? Esto se sabe para el 15 y 16 de septiembre",
+   "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQZXE3eXlqdnhmN054clhNY1V3eU5kMkZWY2VHZlNEXzhKNkJaaGtlamxrMWVDR2JrZ2hsMl83MUVRalVmNlU3Q1RqZGFudmtfcTIzSmtPZlNacFUtNTYwdVhFTHp4akdnYnR6VzdBSkJaQksySFF1ZTZ6Qm1qQlQxajRnVUowY0pwNWFXb2s0TERqbndyczJkekVuZFhYZjN0a1RVLXFXbFlfQU1FQld6Q2JIRXp2Q0NsZmhhVDNLWEg1QXk1ODVnSkN3?oc=5",
+   "fuente": "W Radio México",
+   "fecha_publicacion": "2026-09-10T19:27:58Z",
+   "estado": "",
    "ambito": "Municipal",
    "motivo": "Festividad"
   },
@@ -1977,32 +1997,12 @@
    "motivo": "Otro"
   },
   {
-   "id": "0a7dc83336b1",
-   "titulo": "Habrá ley seca en CDMX por el partido de México vs Ecuador: checa en qué horarios y colonias",
-   "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOaEJ4bXhTeEZkYzBkelljdllmVFlCQk1mWlZKVmlBZFh1V2hsSW5CN2czS0JBRUFXSXE3R2Z1VHF0MzVJeGp5OHRkaUJUaWt3SUhWOTg3dU1iYTF6VTVnRFlnY2tvMmZyNW1OVW1qTUc1WWk5SmFrR1d1SFU3Q1FxVlM5M0dJU3lvNGJjWXJ3YV9FM3hSN21mYlJ1LWZZYkhvMXZzNEFJSnpQeWRtOUpR?oc=5",
-   "fuente": "Chilango",
+   "id": "fc38b4c8b2f1",
+   "titulo": "Cerrarán la zona dorada de CSL por el mundial; no habrá ley seca",
+   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPbHJDdG5ZZXVFRGtFeFBaS2RzZTAwa3ZnRXJGTHQ2cDA0MXpfTWVPb1ZKNkVMaHFSM2wyOVNON3FfdmI3S0tXUUd4eGthckZDUnlCWklnQ0ZLc182dmdDSkhybHo1RlBVRGg1YjVvRTdIMHJlTnNKOFV1dVcyd2Z1QUlWNGpMVkZOYnRMY2FORHNYN1RsNXR1S2kxV2M0S28wNHZQRDB1QVJVQTE1?oc=5",
+   "fuente": "diarioelindependiente.mx",
    "fecha_publicacion": "2026-06-30T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Municipal",
-   "motivo": "Orden público"
-  },
-  {
-   "id": "ebcf79b77165",
-   "titulo": "Ley Seca en CdMx: prohíben venta de bebidas alcohólicas por el partido de México contra Ecuador | Lista comple",
-   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNUU1oenpNaUN6NTNHd3RrNjlHT1MzNFNpTFkwSkxfLVlzbXM5bmZsSS02ODM4Q05lNEdyZTVqOWZ5LTVmLVk4TWVkb19kMGZmajA5dzdsdGxieU12OVczZmF4SV8tTGY4b2hFWEZnN0lQZ0MzR1ZmejYxaUxSaVF5aHJ0UTROM2FQZkFFbzJZWVLSAZABQVVfeXFMTjZLVnl0WHU0dE9CM1VBcG5sM1NnZTJhWU5fQXc3cEdnVGEzYWd4SW5Bdlh3MXpzaW1hRWhsZ1ktaGcyTzRueTFtbjBrVThTc3UxaExNU1ZYN21fblhfQjVuRnFzMXR2MXpCUzhXbEtzb0k2Q0lzdXM2Z2oxQWxHSEkzSE1XcHVwR3hOc1dEdUQ5?oc=5",
-   "fuente": "milenio.com",
-   "fecha_publicacion": "2026-06-30T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Municipal",
-   "motivo": "Orden público"
-  },
-  {
-   "id": "0d0ba1d5c8be",
-   "titulo": "¿En qué zonas de la CDMX habrá Ley Seca por el juego entre México y Ecuador hoy martes 30 de junio?",
-   "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPMW41ZDRYUF8wN0lHQ2JXUlltWW51R0hqQTVJejNBS21leE02d2UzOUZyWlhBRDJxaHBBRmQyOU9xQjlTYmp6NEJyVV9tdTIzU0JTOFF5NjdSZ2gzTmx6QlRjTmx1UmhNTDFhZENNUjhJbkVxeTJUcVNyZW1NWkVRZ2hnUXItQ1RpZVBfaENycFZHb1V6dFM1TVB6VHpITHk4YU9LdDRjTWFJT0N2SnBN?oc=5",
-   "fuente": "López-Dóriga Digital",
-   "fecha_publicacion": "2026-06-30T07:00:00Z",
-   "estado": "Ciudad de México",
+   "estado": "",
    "ambito": "Municipal",
    "motivo": "Otro"
   }
