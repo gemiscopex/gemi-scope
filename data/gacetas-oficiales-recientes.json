@@ -1,9 +1,9 @@
 {
  "_meta": {
-  "ultima_actualizacion": "2026-09-11T18:00:30 CDMX",
+  "ultima_actualizacion": "2026-09-12T07:54:06 CDMX",
   "estados_con_actividad": 3,
   "por_estado": {
-   "Yucatán": 16,
+   "Yucatán": 22,
    "Colima": 5,
    "Durango": 12
   },
@@ -11,10 +11,28 @@
  },
  "items": [
   {
+   "estado": "Yucatán",
+   "fecha": "2026-09-11",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-11_1.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-09-11",
+   "titulo": "Diario Oficial · edición vespertina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-11_2.pdf"
+  },
+  {
    "estado": "Colima",
    "fecha": "2026-09-11",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/11092026/p26091101.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-09-10",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-10_1.pdf"
   },
   {
    "estado": "Durango",
@@ -87,6 +105,24 @@
    "fecha": "2026-09-10",
    "titulo": "Periódico Oficial No. 73",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/64-normal-2026_20260820092417.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-09-09",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-09_1.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-09-08",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-08_1.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-09-07",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-07_1.pdf"
   },
   {
    "estado": "Yucatán",
