@@ -1,11 +1,161 @@
 {
  "_meta": {
-  "actualizado": "2026-09-15T00:07:25Z",
+  "actualizado": "2026-09-15T15:13:45Z",
   "fuente": "Prensa nacional y local vía Google News",
   "nota": "Capa de prensa (Beta). Detección de restricciones a la venta de alcohol. La vigencia exacta se confirma en el bando o periódico oficial de cada plaza.",
   "total": 200
  },
  "eventos": [
+  {
+   "id": "cc7a5ee80b1d",
+   "titulo": "Ley Seca 2026: ¿a qué hora inicia este 15 de septiembre y qué alcaldías y municipios tendrán restricciones?",
+   "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOY0U3TnZEMU1NYjZ5eUZfdGJFVjJyVXZMdkNrZ0tSV2dFSlVTaUp6RDVGMjRKeUNEaXY0VmQ4b3k4QVY5Yjl2RzY3S3NTQUpTUTI3OXh6Y1I2bVFlWUJCOWgwV2tweV9GazA4bjlvUktOYlN2bHAxNk1oaEdfcE5EN0hDVlJ5NzhBSHRFTGJvQUF4ZGc1ZjlwTU5wSW1wbVNJU09CWjREVm1KUjZ1RlZONmxCYk1QLU55Wng5akFVaUVHYVJiQl9STGQxZnZCQ0hvRG1EQlpIei1ieXNLM3RqWXVtdlVOaTROZUdvOUFsOS0?oc=5",
+   "fuente": "Récord",
+   "fecha_publicacion": "2026-09-15T14:28:55Z",
+   "estado": "",
+   "ambito": "Alcaldía",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "dce840bf0860",
+   "titulo": "¿Hay Ley Seca en Jalisco por Grito de Independencia 2026?",
+   "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPaXlaRnFLOWNFTmRGR3B1RDFvM3l5dVBQZlEybFJ0X1FGRm5QWmpyLW16c0F0Y2x1RkxhRnJjRHlGZGNvbDhyNk03RXBTdWduNnljaWRGbWtPbS1oTE5lb09zcGRlbEc3cGEyajNqR0lId25DNDR0Mk5PaGpieXdycGRpTExwYTQ0MEQxbVFld3BVc3c?oc=5",
+   "fuente": "Líder Empresarial",
+   "fecha_publicacion": "2026-09-15T14:25:22Z",
+   "estado": "Jalisco",
+   "ambito": "Municipal",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "1f2dbcfdfefd",
+   "titulo": "Hasta 11 mil pesos multa para quienes violen Ley Seca en Ecatepec",
+   "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPR3QzY3pTRGlmdktyV05KN3dyaDFSLUZqczB2MjVLeVpHQzQ2a3dEMUJ5U2ZFSkY5djkzWUxmUlhqWGZzdU5pQS14blBOc1lXWld3QUtuMnd6Z3dmVDVoOFJ4c3BKNGdxLTZlenVBT0tBb1cwSEVYamFzYjAydl8zTm1RSzQ3aXh4ZFdELXVlVVIzVjNxc1E0RUhqWHFINW5NcDE5M3lEZklfYlUtUHpTNHBxN1ZzRGh1SU0zVDhzcEw5aUx5YlBXMVhfdklvVVZJb1ZfOWxDRzd1SDQ?oc=5",
+   "fuente": "Heraldo Estado de México",
+   "fecha_publicacion": "2026-09-15T14:23:56Z",
+   "estado": "Estado de México",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
+  {
+   "id": "10afd2935d96",
+   "titulo": "¿Dónde habrá Ley Seca en EDOMEX el 15 de septiembre del 2026?",
+   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNNzlENkUwRFRoZVhjM1l2WXVwejBRVUJudVMteW5USEw5UFNGRFd0d3haZ3pxTzg4Z2Zwb3hiM2FnTlV5MWFjZENqazJITEROUGpZbVBJV3ZpSWh6VktjVDB3aDlSdmNWRG5xMWEyd3V3NDZScE81N0ZYUTBaUG4zZ0cxc1hYOGVfRnFjeF92T1ZSRTMwQW9UMlNFUE1LY2JldW1jSGVSaHp5Z0JVUHhWUktuYmZaWG5IVVFqdXlGbzFTaFc1NHFlMTI4cXpXci1sV0xZ?oc=5",
+   "fuente": "Heraldo Estado de México",
+   "fecha_publicacion": "2026-09-15T14:08:00Z",
+   "estado": "Estado de México",
+   "ambito": "Municipal",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "3b337eacab75",
+   "titulo": "¿En qué Alcaldías de la CDMX hay Ley Seca y prohiben venta de alcohol este 15 y 16 de Septiembre 2026?",
+   "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNOWRWWUN5VjNVbGhCaGtIVGZUQjBjV0V0clpSdTRiRDBrWUNpMGRKb1hvNVd3Vzc5NXJkS3ZKSExfR2pRMHhxd1NxZW5SZjA5TjluOGZfaTBOMDhBUGNZVHE4SUROSEdlRExQVWVrNGtNVFVlMExQSzRzaWVobC04Y1QxczNNVjZ4SkhlTFUzZ0dTVmZkazJWOERwa1FicWhDNF96VFRqZVNKOGpMbHZsLS01cHhDRW84VXZrSmFaMnBFdF9mdUllNXBaVkZVcmpDejZvOEhzcnd0OHoyd2c?oc=5",
+   "fuente": "foxsports.com.mx",
+   "fecha_publicacion": "2026-09-15T13:55:00Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "be258fe377eb",
+   "titulo": "¿En qué alcaldías habrá Ley Seca en CDMX por Grito de Independencia 2026?",
+   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOdlVpVkRCYklJQVZqeWdpZFZSQUl2SFl2UXRwcFlxSlgzRkpaSHJtT1pwaDBQaU8zYXdEZVRkdjRhWXplc1JDTU1vTXdlQnlubDRKcGVhR2JLdHBQMS15bDhpVWloZ1RJYmplWWp3QmY5eVV4VHB2VkFDXzV2VkE2ZUxvYjdNdFJnVHp0aHBJdWktXzZIVjgxaWtaSlJnRTVoTG53VEJFSlA?oc=5",
+   "fuente": "Líder Empresarial",
+   "fecha_publicacion": "2026-09-15T13:15:35Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "7c6f9a90455e",
+   "titulo": "¿A qué hora inicia la Ley Seca hoy 15 de septiembre en CDMX y Estado de México?",
+   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNZFhsSklRbng3UllMS1JNcnlyeGZuMFpJTWlSZ1dFOXYzaXpxbTNBUXotcnNyVEt3TEw5UUNlREVRZHRva2VSd0hidmpPUmtDdmNmSHBHN1ZlYnRxY2FuWDZ6Z0xGN1gwSmt2N3lJZlhBV1Y4RllvMndNdkRvU1NFVFZQQmJlYkd2ZDgwNUJOcDNRV05LX3JjT0lfX0tId3d0WjV4ZWdqcWIxek53cGdHX0F0Q1VKcUJWSlhwUTgwRjNmZUZfcUM1QnhnYzNTbVpVc1lB?oc=5",
+   "fuente": "El Heraldo de México",
+   "fecha_publicacion": "2026-09-15T13:08:00Z",
+   "estado": "Ciudad de México",
+   "ambito": "Estatal",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "fa9cad1a55bb",
+   "titulo": "Habrá ley seca en municipios de la zona sur",
+   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOb3d3LXBZSi1GZEM3SUJOMWxSQThjeXZlNmZHUk5ySVNGUWVVVW5ZWWhINENPZ0xuQWhwdGdFNXFWRWQ5V1daUkRKcVNmRzJfTTZUOW9SNTdnOHI1UlQ0XzBMcGEwZURqcEp6WEVaSXFlTUlYQzJMcm5Vckk3c3p2MnZ1VjBmeDRqYzM2elhyYkUzNTN0TkdvTWpibDZXOFhoQkpITTNzMV9peVZ4?oc=5",
+   "fuente": "launion.com.mx",
+   "fecha_publicacion": "2026-09-15T12:23:11Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
+  {
+   "id": "31de4a758a7a",
+   "titulo": "Hay Ley Seca Mañana en CDMX: Esta Es la Multa Por No Respetar Restricción en 2026",
+   "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOMmxyNDFfdXJZT0VtNGFjdVJ2MlViMDlxR3hDLTFUVXQyXzRnRW16RGEwUW1JcmgycU4xLVJoR2lCOFpxUi0wM1h3NXNFNG9XVURLcy1MWjBOeGZ5TjEwSHRfRElBMnV6Mkx3R0UwRWxHTGJld1lpSnhLdUwxUV9LWlFxdGlXa0NvT1ZGZTYxUzFDNi1IcVAzeTUxbkdyLVRmb2g2Yk9KRFVJMWF4QU9BbnNVTDBmYjRNVnBhN01sRnMxbnpMWDB5VWxxWXRiRUt0M0E?oc=5",
+   "fuente": "N+",
+   "fecha_publicacion": "2026-09-15T05:01:20Z",
+   "estado": "Ciudad de México",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
+  {
+   "id": "a9a58ef84065",
+   "titulo": "Habrá Ley Seca este 15 de septiembre en estas alcaldías de CDMX",
+   "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNd0pHQWN3OEpCUmwwLUppWENBX2R6S3lTcy14MXRnZWRNalFEOUI0eXQ4ZTAzM05PYzhFNUpWb2NDYkRJMFFrMWF1MlhxSndLSkVIWXdBZ0ZBWDNxQmNXamJiZ0RqVG9uWWh6TG5hQ054cjgtNHRNRGRDSGptYlN6ekpBd2lzRDhCQmRXX0RwY0pJNy1oam1ZOUZ6aExGdE9sLS0w?oc=5",
+   "fuente": "Dónde Ir",
+   "fecha_publicacion": "2026-09-15T03:59:36Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "7049b4b4bd11",
+   "titulo": "¿Hay ley seca en Puebla el 15 de septiembre 2026?",
+   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1CUzBKQUFsVThYbjRxZExfMDRxRDNBYWlpWlVrN3NIdG9JZGc1SFFaSkx1dUhWWm9ES2JSeTdZV0hZRERXb0Qyb0VicWIxWVY4bjh6dVlDVlRpMGJJcUdVZTFDbElsdjNSNGRMNXc5TzBjZFRFVnBTZkJn0gF6QVVfeXFMT2c4cXpuZ1hZS2ZiaEdpSzktR1gxN3lpRkFyQkFiNEt5QjhWZEl0c0J3YW1TRDJSNVpxOXRDLWFya1NGSHhraXpndkIyR0Z5WkdTYmJOci1XSXlsWFgyaHJvT1A3cXRDQ1JXeXk5dW9Hb3VYZHZBdUdUaUE?oc=5",
+   "fuente": "Telediario",
+   "fecha_publicacion": "2026-09-15T03:07:00Z",
+   "estado": "Puebla",
+   "ambito": "Municipal",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "b5cb26609d0d",
+   "titulo": "Ley Seca 2026: dónde aplica el 15 y 16",
+   "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1WbDZIck9vRmdMREIxWTdZaWlxLWctV3pBYm91S2VYM0h2T1AxM09vS0tXZ2w5SEItOF8yNkkyVmRLc01udFcwZk1RMFhTQ3pyTm5MdHRTR0w4VjkyTjlUczVmaEFrODlzaFVMWUdhaUFGdw?oc=5",
+   "fuente": "fomoera.com",
+   "fecha_publicacion": "2026-09-15T01:30:32Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
+  {
+   "id": "f7b6d1b9a1a3",
+   "titulo": "Grito de la Independencia 2026: los conciertos en las alcaldías, alcoholímetro y Ley Seca",
+   "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPYU1FSml3bE92Uy1VY2VIUGxIYW1LTlJqQjdiUTZzc3VoaWtmOEhDSVdvNF9ubHFReVRsVHA5MzZidTNrSUVZRTQ4MURFbXZvbVpGeTljLV9KSnQ2ckZfM2xUZ19YNkNiMUpEb002c19CZjY2c01jTTl0SEpzS2FONWZIZU5GWmNpbmZtYXBzRUVBdmtZUGVYTzJ5eUdYdnF0cTFTYksxN0VFWktaZ0pEakcwSnJLblQ4NlljUUdEZzVzbllGa2VxStIB3AFBVV95cUxNcl9OaGF4dy0wOEVQZDBGeVJnZ1pYVlotZEFCcWE1QkpZY0FOTjdwOWo0Zm1vdE1oZk5yREhXWHRKenY4b1V6QlZ4bzRGMXFLYzhHcW9ldjdyZmg3VmdtSkp3SkFkN1gyVVVZeUxySHMzamJiOVlrMWhOUkJPc3FFd0h5aHFYTzJWMDNVZEZHV1ZDY296aWh3WEFIbG9MOTNrVzI3eXJObk1vcDRGLWJIRGhPNUFHRHZHZTA4Q29TWkp4S1hBWVI1UFRTZFRYWFlRbkJHa1VsY3BIQkta?oc=5",
+   "fuente": "EL PAÍS",
+   "fecha_publicacion": "2026-09-15T01:05:26Z",
+   "estado": "",
+   "ambito": "Alcaldía",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "2eacf71dc794",
+   "titulo": "Ley seca en CDMX por Fiestas Patrias: alcaldías donde no se venderá alcohol el 15 y 16 de septiembre",
+   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPZkgtNGhMdGFwRmptSnppa080dXl2WGduTlpYWnJwOF9hTkEwZ2NLbXpLYnIyNUVMZUw4Nmp2ZjlxZHNsLW9UbElmTGg1SjYxSVJQcXdkdXQxQVR1Vm9sNF9NNGZwNmZlT09tOWRHcExQV2lqZ1ZsYmoxaWlHaXBJRExQd2lLTmhoSHB1VkExZ2hVaW8yMnNJ?oc=5",
+   "fuente": "La Silla Rota",
+   "fecha_publicacion": "2026-09-15T00:17:00Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "14388ddf7386",
+   "titulo": "Tetecala aplicará ley seca y prohibirá pirotecnia durante las celebraciones de las fiestas patrias.",
+   "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQZnBoYnY2d3A2MjJwT25SMkp6WGplSjZ1bGFpM0xoNFBHMmxsV01xU2xGbDRmVUVyNGN1U1ZfeV9kRTNzWG1pNHRJblNoVE5lZ1JtSHF1UWVrZ0l3Rm1neGZLYzdNeHNlaldBLTRDRVYxbDRSN2JtYXYxTWYzYTIzNmVSVnc0a0JfOUx4Q2x2ZTZiQTdVVWF1a2tVdlo1Y2h6dnFnU0ZiRnVfM3REWjF6MXREQWVxM2xYUi1pNUFrelFaX1VWQ3MwVQ?oc=5",
+   "fuente": "RTv Noticias Morelos",
+   "fecha_publicacion": "2026-09-14T23:13:24Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Festividad"
+  },
   {
    "id": "e43f26908d4e",
    "titulo": "A Esta Hora Inicia Ley Seca en CDMX y Edomex por Fiestas Patrias 2026",
@@ -34,6 +184,16 @@
    "fecha_publicacion": "2026-09-14T22:38:43Z",
    "estado": "Ciudad de México",
    "ambito": "Municipal",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "fb99dc7812cf",
+   "titulo": "Alcaldía por alcaldía en CDMX donde NO habrá LEY SECA para el 15 y 16 de septiembre",
+   "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNbUNPM291SHNuVTQ5cHk1UFlhSTdkSzNnbXhoU05CUFczWDE0Mkx1SlVoNnVhUlZyQmRUVGhiRlhoQ0owbml0Z3pQQ2FKdnZiRTRVQzZvYWl1ZjdGTEt2R2w4VzRTRnY3UGxINFRiVjVvX0lUS2FKNTRUWGJkMW4wUjdzQ0xtZThBbTlsYkExeUUxNEtjMFRtQWdvWTRKSzdGcjF1bGpaX1BJRUFSQlpCedIBvgFBVV95cUxPVFFqZlY4SE54QzBKbk9fRXh4WmJtTFdUeTF3dWVnMV9xMjRpZC1qYWJ2VW1IWGxzazJ0UWl4aGlGQ3hYRWthQ083ZGFLVXFuRnMtYzUyNld5X1ZmZS1qa1lrT24zaG55X2hJVTg5VFVYNWtqR2tJZUJhd04tanktVjU3OEg4NXlmWUg5OVlHOFpnWFlROGVQclNzcWwtUE43bVgtMWJPbTNIdXc4em80MElrSzI0OFVfUkhNTFZ3?oc=5",
+   "fuente": "la-lista.com",
+   "fecha_publicacion": "2026-09-14T22:37:35Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
    "motivo": "Festividad"
   },
   {
@@ -122,6 +282,16 @@
    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQZzJBNWE5Uy16SkI1ZS1rQnZFWmotUnhxVlUwd2lGRjl5WU9fUV9CeWdSS29kb25BV2VEbFBmZVE5OHBfeXBnaUdER0pxQnlrUGswUnc5VmRBTGhDX1ROUWlaUFl1MTJ2b05NVUVIUnh0eFloX2pQWEphZFlUekY2WlRDT0VNR2dSVjByXzF1TGpGWS1meWdSTFdCa0lMcm5PYmdZcWRwSnFiLThLWndUOURrcw?oc=5",
    "fuente": "Meganoticias.mx",
    "fecha_publicacion": "2026-09-14T19:06:56Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
+  {
+   "id": "5fecfd2a9f9a",
+   "titulo": "Sin Ley Seca, bares y restaurantes deberán cumplir horarios",
+   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPdlI0aEpmNUVibkRpR201WTREM0NtOVkxLWJudi1TdTF4NnFiRWY3YnNrcWhDaDZtUEF2bjRFVkxhRGdDQ3lGWVczWUNmN2IxeENFQmhuSVl5OWR2MXBzVWZsZ05OWVFQVmhzbXpiT0JDejhYQWExaTdmTV9HQ3BIbFd4SHc3TkJXYVFRM0JrMHZ5djRZQm5GamV2MU0yZU5IemJwaS1CX0pMMldRNEx3WkxWcWJtUQ?oc=5",
+   "fuente": "meganoticias.mx",
+   "fecha_publicacion": "2026-09-14T19:06:00Z",
    "estado": "",
    "ambito": "Municipal",
    "motivo": "Otro"
@@ -1835,176 +2005,6 @@
    "estado": "Ciudad de México",
    "ambito": "Municipal",
    "motivo": "Orden público"
-  },
-  {
-   "id": "855992dac267",
-   "titulo": "Huitzilac pone horario a la venta de alcohol en Tres Marías para evitar accidentes y hechos delictivos",
-   "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPY1JWZXJTMmJIc0oyczhCQ01ZM0xEYjZWSENxUHZ1NkpzbTBjRWJPVm8zenVJeml5ZWNBSkNOSHhGOGR0dEZqWnl4MFZEVkphelN1aFNycUs4bE52MWQxdWJ0LUFiTDlya3hVYVZqTmRKZmJCZzYxb1lCMzZhcmpQemFER2pCSGxQdmdBNFg3VTVXMkpBWVlaS3l0elluZGRWa256QzA4RVl2cjZTVmxHNG9tcDE5Q0dWNEtKM1F5aGYxMzJ4LUN1bw?oc=5",
-   "fuente": "oem.com.mx",
-   "fecha_publicacion": "2026-08-09T07:00:00Z",
-   "estado": "",
-   "ambito": "Municipal",
-   "motivo": "Otro"
-  },
-  {
-   "id": "01719428852d",
-   "titulo": "¿Habrá Ley Seca por las Fiestas Patrias en Tapachula? Esto dijeron las autoridades",
-   "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOOWtIZXBkR1NLcTBES0J5cTd3RUNZUW5hQmF5Rjd3TEtPNmphXzhDcUNDOGJkZnZpbjNwbWw5amhUS3Vnb3RJZVMtNVNpYXluSjFJTmlwSmU5QWtHMmhmLWFmVmNIWVBXcjE2SnRZSkhrSk5QOTZacmhSTHNjSDdyLU9xa3hRSTNDalB4RmxhYjM2TWNiNEdYUUM3ei1WMGJVNnhWTmRnUEJJcklKSXlpb3VvUXplenJNOFNQaw?oc=5",
-   "fuente": "TV Azteca Chiapas",
-   "fecha_publicacion": "2026-08-03T07:00:00Z",
-   "estado": "",
-   "ambito": "Municipal",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "0fd64a0701c2",
-   "titulo": "¿Cuándo habrá \"Ley Seca\" en 3 pueblos de Tláhuac? Fechas y multas por violar la restricción",
-   "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQdjBTNTR1b1RFNENpUXlaVDhFdkxFQi1fVWo0c2NMTEhlWVV1a3Y3enBZZktlejZQZmgwRy0tYUc4eWN6SW9rMWwzV0R5U2V4ZWgxY2N3M3pBODRfN3p3Y2xZXzhBd3FGODBxMGNVYkMtd1NhSVh1VU9YN2dVYWE0cjNkTkU5d3dkS3BfREtxVnlaenBsOEh1XzRFVEtRTWRlTk1iZ3htN2o5Y2RSX1ZkQjVsLTFDNkN6UzRlNkxWbktlbk55OHBmQWt3V0dMMmVON1ByZ3doZ0hteXVP?oc=5",
-   "fuente": "El Heraldo de México",
-   "fecha_publicacion": "2026-08-02T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Otro"
-  },
-  {
-   "id": "4f1a6aec3333",
-   "titulo": "Estas son las colonias y barrios de Tláhuac que tendrán Ley Seca en agosto por celebraciones religiosas",
-   "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQZlF5YXJtWTZOTFNSSGtEbWFBSG53bmwxNWJmd1VnSzctMko5ajBzM1hmWGtrX1lvcnplUUJLN0djMzJNZW9GelRDbU9qUnltTTd0SkVZVjQyVGRjV21Sakc3SlhDTHpUMFF4bzNHdHhqTnBqaE9IcUxOQjFGWFduYm9HR1laalF4N1NCY3NZZ203eVBhTjNhd2pJUG56ZTYxazlOQkZ4dkptd3I3cDlOZGJVdzRydHZKNWdoVnZOUlZreVVGM01Bb09oRU1ta0JzUWZBVm1GbzF3bXk5ME1uMTVVZmVvd3NRRWfSAf4BQVVfeXFMUDFXa1U5YkdMNnFXTFdOTWt5bkl5QWExZlBxVXFBSG5UcGJfOVplTFV2bjZMdXBpaDBqRnVLdURuSTdTR2NlT1V5clVtR1c1YzRLeEFKcUg4c1lSazlDd0tneGZ1elR2cm1KVll4eC1yaVp5OXNMYkR4LVBXWlFCazRwRXlZUm9YYm9tZ0gyQzllbGJBSmkwaGFhMjA0NGR1TE9jVGNzVFRSZU9XNUZqRnloNW80MkVpckZoeVhJbWVpa3REN1lZdy1kRlFKSi1VS3lQNVIwbE1MVTVTaEhMN0VwMjloMThmWWhiZ2MzWkJ5d05xYnBOem5TWG9uamc?oc=5",
-   "fuente": "eluniversal.com.mx",
-   "fecha_publicacion": "2026-07-31T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Religioso"
-  },
-  {
-   "id": "335a4fd8f13f",
-   "titulo": "Ley Seca CDMX Agosto 2026: ¿En Qué Alcaldías No Venderán Alcohol Casi un Mes?",
-   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQaWRDVko4SmswUHIyajdDbUNzQUl2cEhZYzdhQVV3M1VHU2NEZWpMNmxzaDk5dDltTVllWGR1dFdFN2VPMHk5bXVKX1RZbGt5QU91RXRYemFsVkpNRXFrXy14c094dVZpSVpZOEhhLUs0UUc2ajE1U2xQWmJhYVFnUnRUQkRZbzZnSW1iQ1RGUmI0bkhKZmRSdy1LR2U4UVdFWFBxaTVveEppejJDa0NQZzVEVnRQVF9vREpqVGRZd3NIZjFabFJjVHBNVWZxVmtuN0Rn?oc=5",
-   "fuente": "N+ Noticias",
-   "fecha_publicacion": "2026-07-31T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Otro"
-  },
-  {
-   "id": "327dcd0609fc",
-   "titulo": "¿Vives en Xochimilco? Habrá Ley Seca durante agosto por fiestas patronales",
-   "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBPXzdta3NGaHl6bkw0d2hmQjBuLU54TzNuTE5NZUxzSzl2ek9pZl9kSkFOZGJDYXBVRUN0ajN5WGktbkp0MjlQR1R1NXItVFYxZDc1cHl2bl8xQVNQNFdkVm1Tb05zcFBPUEFLaUo5dUNBNEVHOWt1Wm1PMHRrSFE?oc=5",
-   "fuente": "UnoTV",
-   "fecha_publicacion": "2026-07-29T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "b2067e41aba1",
-   "titulo": "Esta es la alcaldía de CDMX que tendrá ley seca en agosto 2026",
-   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNNHVlV01Ed2lRU25FYW1XWkRDbF9DeXpPSkV3LUJhaG1FcTFLUk0taGdwY2VRR1Y4c3dMSlZFN29wVll1ZzJWVVFuUk9pQThfaEotY2JwZE1Sd215dUZrb0tKcEhkcHFNcnRHdkFRNTRIeGZTRURKS1F2eTlKWUNYTFl6YUhMTV8yb3hCMGhnekJoNmd5VkZGNjBsdUhvWDJvaGljTUl3aUxKWTAxWmVDMld6RnHSAboBQVVfeXFMTjAxd1pWTjE3QTA3YkQ2enlzcURLYlNVOHRCd3AwTGtSNjM4ZHNSMU5qYmE0cEF4WVNNb05MdVMyN0c0elAwaFVjWDh5WkJlZWEwckVKeTRJczV4bjR6UVJkSnU2bXVockNmYnpad1NKQUV6Y3ZFa3RWeDdKajlTLWJ0amRxY3YxbHJKcmN5czZpWXE1LXpMMnE2THpQYThXSC1rUC1jb3ZOU3ZYZE9BYjV0WjRYOWpjZGVn?oc=5",
-   "fuente": "El Informador",
-   "fecha_publicacion": "2026-07-29T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Otro"
-  },
-  {
-   "id": "6ffd496ee9c1",
-   "titulo": "Habrá ley seca en 6 pueblos de Xochimilco durante las fiestas patronales de agosto, estas son las fechas",
-   "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOZm16NXppdU50ZFJTR1k4QjFMemZLNkZkM3pmV2FrQzdYZ1VUSXA3M2l4b2V2Qld5UXdZMjlhYVQ0ZEc5YVRmbTZCUG9paEVHczJ3Z3RsZExxcG1Kd3c2am9FZmQyUHBaQ1AxWXFZREYzQVVRLWFaZGEzZllsdnhJbFppS2lYdGx6QVlhMU00Nkc3MzFiRFI4cDc4LTl4UkF1aGZfZHdpRmxScUVXeVJjYmZuYWFudmtRbjduVWFhTDR3SFNQUWV3Q0h2aWcwajFLUG9tVzVramFIRTdoRkNRMTJKUTYxV3BvcFpVTjVLY3ladUNLbUE?oc=5",
-   "fuente": "El Heraldo de México",
-   "fecha_publicacion": "2026-07-27T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "a09c8de91255",
-   "titulo": "Xochimilco aplicará Ley Seca por fiestas patronales",
-   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNcTZoR3hLZUxWMmVLRE9mY3hDSzZPb2tPUWIzc29EdWZaYnNlcDJwSTl5eWo3em1GNC1iQjBmZENocU4wbDh3M0VQNkhVbUJVdmcxbnpNTVRKTHlJYUJRQ18wV0t0NkxrYzNRQ1BuZUR6dFJtSU9jY2hRaGlJSjcwVXFMSDN1a3E1WVNXY3VyM2lMVXo1YTBaNklZblczRmw4MzB5bUhpTExubEtka08tQlVPMnlfVU9qVk9ZZ29rYl96ZEktRUc3aHhOQURzMWtPMTdR0gHnAUFVX3lxTFBBSVk5VFZHUS1Cck5iUGdsSFFnUjVIempneWxEWXhyUEZwcnFCY3pDbUw3dzlQaVZYUkI5VURjUjI5eUZuTG9GaHpRNThWWWRwUFZxQjRVbURGNHBwMEE3YkJmNFI2YjR6aFhZVmZ3YXkzZUlLNUQtLXBjV2pBMW9RellaUTFKSWk0RFdOV2c3RkZNNnFQdVBJOXVNRWJ3VEx5RGoxQ3hINW9tX2VnQjBRSFRKS3NnOWFuTm5adXctcm5pYWV5SDZoelY2SkFyWnAyNmo1bTFrUzdaOExGVHk5Zy1mR24zcw?oc=5",
-   "fuente": "El Universal",
-   "fecha_publicacion": "2026-07-27T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "3aa8f76f9938",
-   "titulo": "Se aplicará Ley Seca en CDMX hasta el 27 de julio: ¿En qué alcaldías y por qué?",
-   "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPWUVDY21kZHpfNzNfUVFKM19BVUlqWTJfVjlFZ25aMnJ3ZVZ5Q0hIWXVsQnFzZVk3U3E0a2hjX1pWZ2JPeG5DbE10NzB4NUVrVWR3VjlKd3R6NXZVaXBQY3BJUlNMTHY4eUMtbDNTblhuNGJ2a2pqeWE3N2E5TnNHRG9NX2NnVTVRaGlRVEI1OXRwWmowbVNSVHpOOTJQWHFtOHVlRG5jdS1zbnVOaW4xdEpteGRNSko5?oc=5",
-   "fuente": "foxsports.com.mx",
-   "fecha_publicacion": "2026-07-25T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Otro"
-  },
-  {
-   "id": "081b69607dcf",
-   "titulo": "Ley Seca en CDMX: conoce la alcaldía y colonias donde aplicará del 24 al 27 de julio",
-   "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNR1ZMRHJLdmpIT3QtMlNYcGZMeE4wWERXOUVfYkxWM21CaDU3MVQ4Q3lYNW5CRVpVS3dDYWhRR3Q5VlpJb1llWEEwRURDYVpLZnM2cDdJRWFEUWhXcl91WGhhMUJiXzJMTVlnc2pfNEliUVUzMzJBZzJPRkc1eHd4YW5NU3k5YjhQUW9QdThtUnFpRHZSZEl5WVJqU2swRnpHcmxJd29QakhBZjNzTFpsd1JOX2N5amJTa09DTTFEUWsyaFA5M1YySEZGNA?oc=5",
-   "fuente": "UnoTV",
-   "fecha_publicacion": "2026-07-24T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Otro"
-  },
-  {
-   "id": "6e1d63a6d723",
-   "titulo": "Ley seca en CDMX: qué alcaldía y colonias suspenden venta de alcohol este fin de semana",
-   "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPUDFWbTFKekVzRm9zVmtiLUdDM3NVcURiMERjUjU3enhLR0h5NWJ3Y09BOHBDN0k5elNKNGJhUnFvNXdYaHVHc1REQXFPOHpBQ0ZvWnZld1VIeTNVbjloZUFFYjZpbHUtSmYwYm5EQXQwOUk3OUh2Skw0cURqcmFGRWx3Ny1RbnduLUZBNW1YQU1hSEx1cGI5NWlIYWZ1QUMzOUV3TEE3eC0xZGxXY09VQXktejlaV3pEcHBlYUFwOUxvdXZ3ZXlBWXhlQnRQcmhGRXJ6U0NYb0Y?oc=5",
-   "fuente": "Récord",
-   "fecha_publicacion": "2026-07-24T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Otro"
-  },
-  {
-   "id": "b54361905ed9",
-   "titulo": "Ley Seca del 24 al 27 de julio en CDMX: ¿En qué alcaldía y cuáles son las colonias afectadas?",
-   "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQQjJuRDctS2lGMTJjQkp6RmR6UV9nTjh1TWZBRlo4MENYWnF3OWNGcEpNeHlpT1pISzlNbC1kbW05cGtORFI2MzV2ekVtTldYdGRrQjQwNGl5Sjg0ZDB4ZmZIMG50TDNQb2gwN3RQb1g5NEFCY1FHMjY1SlhSTmQ4OWJDNjRjalMwVUMyX1N2eTUzakwwUTF2X0dDQVM4N1puS2lKV0pkeGE0bHdqNmZicy1JdmxVRjZ2YXZoQkJqQ2FYMTR2VUhReHdRdWxYMEh0VlFFQkZqT3pNejZ1TXFN0gHkAUFVX3lxTFA4XzRsOE5EdzBVQmVjeDNuRE5IcHc0THZOT2M0Y21aRGJhblpVZ2FYQ1huSGtTU29kT2lLajY5aXBfdWM5emUyb0lIbm03TWk3UXdYek9jNFBYTTdTVnNSc1NHS3lYbkFRZ2VNdEFKNUFwbm5WYzJJY3RIbWQySktVVkZKZks5TVNKTUZsZEd3UVpNcEpZSlZDNlpOWmU5NU1zNjVYcFdQeVZTT0w2ZEEyRUZmMmVyZV9sNTZyZElXYV91a1lmNDlRVmh4SkU0Z1dZM2JyOUxHYkhkdVJSc3pUNXMzTw?oc=5",
-   "fuente": "Radio Fórmula",
-   "fecha_publicacion": "2026-07-23T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Otro"
-  },
-  {
-   "id": "370112463d66",
-   "titulo": "¿Por Qué Habrá Ley Seca en CDMX? Lista de Colonias Donde No Venderán Alcohol este Fin de semana",
-   "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNRDlUNHBzQ0M1ZlNzWlB2RDdwbVhGTGFSLXpVOG5ROGNvb0dBbTZLX3dPTExXREdIek81anc0aFFGR3lud3llTmVRNjFHTG9UOXFZNGNBSVNDbnRjdzc0MWpCbHJtYWZnQ2IxUTVaWWVFcGVwQkp1WjhMN3VkZS1tNW1JWi1PV1pxRThVU3U2Y1duQ0c0ZHVQTDEyUXAzU0dudzgtWUFRUk8yTGk4Q1N5U3RwdlhHN0NqWTFfRkNZNUphaDVWOTEtUmNxVXo?oc=5",
-   "fuente": "N+ Noticias",
-   "fecha_publicacion": "2026-07-23T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Municipal",
-   "motivo": "Otro"
-  },
-  {
-   "id": "abc4d4860436",
-   "titulo": "Magdalena Contreras implementa ley seca en ocho colonias por festividad religiosa",
-   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNZzIyMDJrNENHV2k3V1VPcFBmRDUyODlGZ1AyLVhveTd0dElWOWlFRGp5X1Z5cGlXRUZfelBuUDZXeDV2NGlBOTA1dmNOWlk0ZVNFLU9scGJ0U3B6ZEhDZm95Z1BEOGxLT3RfOFA1MklXaG54MDcwcWhNazA1cVBhRkNickx5dkRSZHRiWkdCdnVTeno0YkYyQUtxNGxrNm9RZ203ZG9XWWNHT2dIdlgzV044NXRmZVladWVGbEVUQnVLY2Z6cFZYTEc2Y2pDRE9j0gHkAUFVX3lxTE9iLUVpaGROaWp2MjhwREh0RFJLZjFaTVVtOG9tRmo5aGFiVk1JcGczTVZSYzlaUXJDVmg3Y1Rxd0JJZVBkTzdnc1A5ZGZIc3M0NTJ3bWx1d1Rod1otWTR4MldhMkFyQ3hzLVFIMjJUamttQnA5YjdFR1E0U00xOHhZSFdOa0hucnprTXMwV2NPTFNFR0VmWjE5cWdFY2xGWlFPSFF4MjU1TC10d0V4S2N2NkRnVHlhTmllUGs2MWJJUlY3ZDk5VmRZWVJXR0pOX1VRUjQ2bzlpNHlNYnJQWFdMbm9zZA?oc=5",
-   "fuente": "El Universal",
-   "fecha_publicacion": "2026-07-23T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "8ea9aac6b2e6",
-   "titulo": "Habrá LEY SECA de 13 días en uno de los pueblos de la alcaldía Tlalpan; a partir de esta fecha no se podrá vender alcohol",
-   "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQdTRIUjlaMmNNU3Fjd01OdWVDRzZyNi1KQmhDeWctXzBQNUZlUE9pRGtuZ055bXAzbFY5ME9uWVpxVHJRdDZ2TkhBVjMyYlVEWndMMk5mNGJzSFgwYW5kNUxUek1McXBoVVU1dkVoRnpLOEx3c1FOeGN2cS1oYl9jVloyeF93YllTcFgwV20xcXJoTjRkSnRQX1ZTX0djX3JJdk5HU0tMMDN0SC1YZzZOTXZVeHItNGs2MWVHS01ISmRoTTVFMUlpRlBLRDBZSHI5VmxNcUtsZE5oZWFIOHVkSWdZU2k1bnRYNUNrTnZBbVVRYkJxbVFnQ0F2QlZCYkdGblVsQ2FNVXBnLUZE?oc=5",
-   "fuente": "El Heraldo de México",
-   "fecha_publicacion": "2026-07-20T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Otro"
-  },
-  {
-   "id": "53a596fbebbd",
-   "titulo": "Tlalpan tendrá ley seca en uno de sus pueblos durante dos semanas",
-   "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNYWV4X0VVbmtwSU11dlVWb0NRTlBLUThfNU5UQmd0dXJhcHdiVGQ1SkVsWE54aGVYX2Z5RldmZ2RwcGRvUndBSTR4d0pvbWdicXVHY3lFLWRkcmVDQmV4a2JkSnVCRFk2T2x5LXJCaVR2T0p1TllSSkp5VGx0N0p4OTBOYklPVGZfNGkzOUZieVBDdVJBLXdjd1R4Ty1NSGVrUWc3WEFxaXB2Tm5fdm5LNXBjUTh4cWFQaVB3eVF3dEFHMGprb0FLRtIB3AFBVV95cUxPMnhyU0hWdm1valZ0eXRNUFB1SnM2OTlHUjRiZEgzTEcxTnQ1cHRBUG54VUFfVG5OZHZnWndsYVFLbU02X0ZpTWd0dHprRmVBN1RRcUY0NV83a0lmM1Bka0tReTdTN1pDdHBYT2laV2h1Sm1obURjbXcwc1BnZnRkWlFfM0VVM0pXVWxZQTRCaTUxZlYyWTRNSHZ4REplcHVNcGFUTkhIRThsVnBWcGRPamdCbTQ1S0dlWUpscDdxS1REN0hoVUx2dGFvMk1TdXNMQks2ZW5fWGtSZ2Z1?oc=5",
-   "fuente": "El Universal",
-   "fecha_publicacion": "2026-07-20T07:00:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Otro"
   }
  ]
 }

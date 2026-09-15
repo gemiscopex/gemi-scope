@@ -2,6 +2,30 @@
   "iniciativas": [
     {
       "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-09-09",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "titulo": "Que adiciona diversas disposiciones de la Ley General del Equilibrio Ecológico y la Protección al Ambiente, en materia de reubicación de industrias de alto impacto ambiental.",
+      "presentador": "Dip. Irais Virginia Reyes De la Torre (MC)",
+      "aspectos": "La iniciativa tiene por objeto crear un Registro Nacional de Industrias de Alto Impacto Ambiental ubicadas en zonas urbanas o habitacionales, resultado del crecimiento urbano.\n\nEntre lo propuesto destaca: 1) definir el concepto de -Industria de alto impacto ambiental- como aquella cuya operación, emisiones, descargas, residuos o uso de materiales peligrosos generen afectaciones significativas al medio ambiente o a la salud humana; 2) facultar a la Secretaría de Medio Ambiente y Recursos Naturales (Semarnat) a emitir recomendaciones vinculantes cuando se acredite que una industria representa un riesgo grave para la salud o el ambiente; 3) indicar que la autoridad competente iniciará el Procedimiento de Reubicación Obligatoria cuando los estudios técnicos y del análisis de riesgo ambiental determinen que una fuente fija constituye un riesgo o peligro para la salud humana o el equilibrio ecológico; y, 4) determinar que los gobiernos estatales y municipales deberán adecuar sus planes de desarrollo urbano para facilitar la relocalización de estas industrias en zonas aptas, bajo condiciones de control ambiental reforzado.\n\nPara ello modifica los artículos 3; un Capítulo II Bis al Título Cuarto denominado -De la Reubicación de las Industrias de Alto Impacto Ambiental en Áreas Urbanas, Habitacionales por Crecimiento Urbano- y los artículos 116 Bis 1, 116 Bis 2, 116 Bis 3, 116 Bis 4, 116 Bis 5, 116 Bis 6 y 116 Bis 7 de la Ley General del Equilibrio Ecológico y la Protección al Ambiente; y, 3, 4 y 28 Bis de la Ley General de Asentamientos Humanos, Ordenamiento Territorial y Desarrollo Urbano.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 09 de septiembre de 2026 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 09/09/2026",
+      "asunto_id": "5127552",
+      "seguimiento": "5128756",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5128756&Asunto=5127552",
+      "categorias": [
+        "biodiversidad",
+        "calidad_aire",
+        "residuos"
+      ],
+      "categoria": "biodiversidad",
+      "categoria_nombre": "Biodiversidad",
+      "id": "e2ddd3e1279e",
+      "scrapeado_en": "2026-09-15T15:19:01.273815+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2026-09-08",
       "legislatura": "LXVI",
       "periodo": "1er Ordinario",
@@ -10790,35 +10814,13 @@
       "categoria_nombre": "Residuos",
       "id": "1fc8afd6cc77",
       "scrapeado_en": "2026-09-15T00:11:35.858796+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-03-18",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que reforma y adiciona el artículo 6° de la Constitución Política de los Estados Unidos Mexicanos, en materia de acceso a la información en materia ambiental.",
-      "presentador": "Dip. Laura Irais Ballesteros Mancilla (MC)",
-      "aspectos": "La iniciativa tiene por objeto ampliar el acceso a la información en materia medioambiental.\n\nPara ello propone determinar que en ningún caso podrá clasificarse como reservada la información: a) relativa al procedimiento de evaluación del impacto ambiental ni aquella correspondiente a sus resultados; y, 2) relacionada con los impactos o afectaciones al medio ambiente derivados de la implementación y desarrollo de políticas públicas.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Puntos Constitucionales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 18 de marzo de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 18/03/2026",
-      "asunto_id": "5040777",
-      "seguimiento": "5045591",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5045591&Asunto=5040777",
-      "categorias": [
-        "biodiversidad"
-      ],
-      "categoria": "biodiversidad",
-      "categoria_nombre": "Biodiversidad",
-      "id": "12bc12329a09",
-      "scrapeado_en": "2026-05-06T16:01:00.703730+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 61,
-    "actualizado": "2026-09-15T00:16:28Z"
+    "nuevas": 76,
+    "actualizado": "2026-09-15T15:24:35Z"
   }
 }
