@@ -2007,7 +2007,28 @@ function _openTerminos(){
   _scopePeek({kind:'Legal',title:'Términos y avisos',
     body:'<b>Uso de la plataforma.</b> Scope es una herramienta informativa de Iniciativa GEMI. La información proviene de fuentes oficiales y se ofrece con fines de orientación; para el texto vinculante consulta siempre la fuente original.'
       +'<br><br><b>Marcas y contenidos de terceros.</b> Los nombres, logotipos e imágenes de dependencias, legisladores y partidos políticos son propiedad de sus respectivos titulares y se usan con fines exclusivamente informativos y de identificación. Scope e Iniciativa GEMI no están afiliadas ni avaladas por dichas entidades.'
-      +'<br><br><b>Privacidad.</b> Tu configuración de Mi Terminal se guarda en este equipo. No se comparte con terceros; al iniciar sesión viajará contigo para personalizar tu experiencia.'});
+      +'<br><br><b>Privacidad.</b> Tu configuración de Mi Terminal se guarda en este equipo. No se comparte con terceros; al iniciar sesión viajará contigo para personalizar tu experiencia. Consulta el <a href="#" onclick="_peekClose();setTimeout(_openPrivacidad,180);return false" style="color:var(--green)">Aviso de privacidad</a>.'});
+}
+// Aviso de privacidad (se abre desde el footer) · estilo Scope, sin em-dashes
+function _openPrivacidad(){
+  var p=document.getElementById('peek'),b=document.getElementById('peek-bg');if(!p)return;
+  var sec=function(t,body){return '<div class="card-label" style="margin:18px 0 4px">'+t+'</div>'
+    +'<div style="font-size:13px;color:var(--text-sec);line-height:1.65">'+body+'</div>';};
+  p.innerHTML='<div class="peek-hd"><div style="flex:1;min-width:0"><div class="peek-kind">Legal</div></div><button class="peek-x" onclick="_peekClose()" aria-label="Cerrar">×</button></div>'
+    +'<div class="peek-body">'
+      +'<div class="peek-title">Aviso de privacidad</div>'
+      +'<div style="font-size:12px;color:var(--text-sec);line-height:1.6;margin:6px 0 4px">Iniciativa GEMI, operadora de la plataforma Scope (scopegemi.com), es responsable del tratamiento de tus datos personales. Contacto en materia de privacidad: <a href="mailto:contacto@scopegemi.com" style="color:var(--green)">contacto@scopegemi.com</a>.</div>'
+      +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:.03em;margin-bottom:6px">Última actualización: 17 de septiembre de 2026</div>'
+      +sec('Datos que recabamos','Solo el mínimo indispensable: tu nombre, correo institucional y la empresa de tu cuenta, más los temas, estados, comisiones y referencias públicas que eliges seguir en tu terminal.')
+      +sec('Datos que no recabamos','No recabamos datos personales sensibles, ni información confidencial u operativa de tu organización. La plataforma no permite subir tus documentos internos, y no usamos analítica ni rastreo de terceros.')
+      +sec('Para qué usamos tus datos','Únicamente para autenticar tu acceso, prestarte el servicio de la plataforma y darte soporte. No hay finalidades secundarias, elaboración de perfiles ni publicidad.')
+      +sec('Con quién se comparten','No compartimos ni vendemos tus datos, ni entre clientes. Solo intervienen los proveedores tecnológicos necesarios para operar el servicio (por ejemplo, el proveedor de autenticación), sujetos a sus propias obligaciones de seguridad y confidencialidad.')
+      +sec('Lo que se queda en tu equipo','Tu autoevaluación de cumplimiento, tu agenda y tus notas guardadas viven solo en tu navegador y no se envían a nuestros servidores.')
+      +sec('Tus derechos (ARCO)','Puedes acceder, rectificar, cancelar u oponerte al tratamiento de tus datos, revocar tu consentimiento o pedir que borremos tu cuenta, escribiendo a <a href="mailto:contacto@scopegemi.com" style="color:var(--green)">contacto@scopegemi.com</a>.')
+      +sec('Cambios a este aviso','Cualquier actualización se publicará en scopegemi.com.')
+      +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:20px;line-height:1.6">Iniciativa GEMI · Scope · scopegemi.com</div>'
+    +'</div>';
+  if(b)b.classList.add('open');p.classList.add('open');
 }
 function _leyRow(l,stateLabel,i){
   var tipoColor=l.tipo==='Ley'?'var(--green)':l.tipo==='Código'?'#2563eb':'#6b7280';
@@ -8609,7 +8630,7 @@ _applyRoute(location.pathname);
   <nav class="scope-footer-links">
     <a href="#" onclick="showTab('acerca',null);return false">Sobre Scope</a>
     <a href="#" onclick="_openTerminos();return false">Términos</a>
-    <a href="#" onclick="_openTerminos();return false">Privacidad</a>
+    <a href="#" onclick="_openPrivacidad();return false">Aviso de privacidad</a>
   </nav>
 </footer>
 <!-- MODAL REGISTRO -->
