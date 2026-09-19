@@ -1,11 +1,21 @@
 {
  "_meta": {
-  "actualizado": "2026-09-18T23:48:06Z",
+  "actualizado": "2026-09-19T13:59:18Z",
   "fuente": "Prensa nacional y local vía Google News",
   "nota": "Capa de prensa (Beta). Detección de restricciones a la venta de alcohol. La vigencia exacta se confirma en el bando o periódico oficial de cada plaza.",
   "total": 200
  },
  "eventos": [
+  {
+   "id": "c901909bb847",
+   "titulo": "Taquería de San Cristóbal es suspendida tras denuncia por venta de alcohol - El Heraldo de Chiapas",
+   "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNbmdRcVdoc2xKdGVNMHlBRG02NW10UHdlWkhHSm5Yb2MtYVFwV0ZlWEplemdnNlZ3STJqWnJwR3psNzNlS1VoWVc4T08yLVJteDNPT25qMXh6R2thWGt4anRCajVYWXI1aGplVHA4YUdDdFBnc1lWa09BWUNzdmdfMDc1SE82ZTRkb3JiX096TXo0NUM4SU9sbkxBcnFGMXB1Z0xnd05ZNFNyZ1R1X1lGWHExYm01VTlxdUdSaDFvcnhqMkhHWEE?oc=5",
+   "fuente": "El Sol de México",
+   "fecha_publicacion": "2026-09-19T04:11:43Z",
+   "estado": "Chiapas",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
   {
    "id": "eaf8cb259f7e",
    "titulo": "Ley Seca en Cuajimalpa: ¿dónde y cuándo estará prohibida la venta de alcohol?",
@@ -874,6 +884,16 @@
    "fecha_publicacion": "2026-09-14T14:51:00Z",
    "estado": "",
    "ambito": "Municipal",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "0604cad2612c",
+   "titulo": "Ley seca en CDMX el 15 de septiembre: prohíben venta de alcohol en alcaldías por el Grito de Independencia",
+   "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNQjBhTE9FUHphTGhZdWFSRXNCNDBobFhHbmQ2cjdKanRNenJoa0RPY29rUVcxMjhPb1VhTlhrZGNibjZ6Q20xWHczOTgzRkRQQ1Z1N0ZYUEpfdmJZX2h5bEgzbTVVb2F0eTIyYXlNUm8xb2E0UVlaN3BTQllYc3RvVExSdU5TOEpjRTFRbFlHU1ZPMlZhYmczNEJWNmxpSUxCNVHSAa8BQVVfeXFMTi1SN2pGbk1hbUt5akxTWnM4NXZEQlFaSUtlMERsU015dVBpa0JEWDAzc01WbHNYdzhVcllRbmFEMUl5VjJFbzE2cFE4bExqN3RLSW5hdzFhTGpjUEpQYjFXN2VtemxrdDQ1OWw5TkxPcE5vUnZYU0FzbVV0X2lpTWxNVzBha0M4UlRFYmc3UVNtc2tmWUlHTmU3b0hfMFBEVVVWeWVVaXd1YVRjQmRUUQ?oc=5",
+   "fuente": "Expansión Política",
+   "fecha_publicacion": "2026-09-14T14:40:00Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
    "motivo": "Festividad"
   },
   {
@@ -1984,26 +2004,6 @@
    "fecha_publicacion": "2026-09-02T17:32:46Z",
    "estado": "Puebla",
    "ambito": "Municipal",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "3e319ad363c9",
-   "titulo": "¿Habrá Ley Seca en Puebla el 15 de septiembre? Esto se sabe",
-   "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPaVNETGw2YXk2bUlfdUdOb2czQ0RkSXFyQUZHY0hPRDhPbVZ5VUhqWU1EMTZCLU94dUxnN1BDSGZGZzhOaUhJcWVpZDlac21hUExFQUExMlBtU2JWYzlkbGQwRUtUMmQxM3RFVjdBeGlac3R3c0hITF9wOXNVRElQRHg2ZDFnVlFoTUhLcWVZd0o0WVpONm9IYWJ0SVM3SnRFWmlDbtIBuAFBVV95cUxNMlBXaGlkOVAzbmtBZUp5enMzZnkxTi1JZVV5VkVFbzc3T2g2bDctS3pUNjJqQ1ZmdEpXTjdwdV9ySjZUTno2QnFtaHhKVzBFU1c2RWNxRDFWcFBlLWszektjWkVPOUlNcnEzSlhPdTlkYW1ialZPQzRvU05Xd0o2UDA5SnNQcW1hOHFFUng3cmhNUTdCQ2Iyd1BJT3JOdWhnSnlObVF0Q09pUU1ZbjlhWlRrbW5YeFI1?oc=5",
-   "fuente": "El Universal Puebla",
-   "fecha_publicacion": "2026-09-02T16:43:46Z",
-   "estado": "Puebla",
-   "ambito": "Municipal",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "c3d11cbf32ae",
-   "titulo": "¡Activan Ley Seca! Xochimilco NO tendrá venta de alcohol por fiestas patronales; te decimos cuándo",
-   "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNTjhUbXZRNTRiTVNWTG1vT3pIYy1yZlJqQm5Sa3J1RUtFM3B5RE1wYldDZ0QzRl9GR3JjLVVXbUFwejdSYzNWc0ZfalJZeU1rdzRmRm95SG5TTUtVejBUSWFBTkk0Nmx3S25CZDgzenRqWW1sU0JEdzUyWVZGS1NoeVBxYkRLU3c5X1RkMWNoNmpaRjdZSTh2ay1nTlYxS0k10gGgAUFVX3lxTFByLW5tTkVyaU0zTnJobk1SNnU0VVJhSUs0d1JTQ3lkLVRJZE45TEZoQklkNjFLR1R0d29fdl93MnJxZFdnblJPTkpuYXFNZ2IwbThsOFpzUTNBLV9sWnAxTmpaR2twOEZyNGhFR0UwTVh5WE90U0RjRGNiTUlSLWFiMkE1RnFYTlRUa0JQa045N0s0Q25WdG43QVpCM0Jjc2M?oc=5",
-   "fuente": "Telediario",
-   "fecha_publicacion": "2026-09-02T16:42:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
    "motivo": "Festividad"
   }
  ]
