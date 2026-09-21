@@ -370,6 +370,43 @@
   .ig-grid .g2{background:linear-gradient(150deg,#3a4a44,#11201b)}
   .ig-grid .g3{background:linear-gradient(150deg,#4a5b6e,#26333f)}
   .ig-grid .g4{background:linear-gradient(150deg,#1c1c22,#0b0b0d);align-items:center;justify-content:center;color:#fff}
+  /* ===== commits (Cuatro compromisos, se escriben 1-2-3-4) ===== */
+  .commits{margin-top:30px;max-width:960px;display:flex;flex-direction:column}
+  .cm-row{display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:baseline;padding:18px 0;border-top:1px solid var(--lineL);opacity:0;transform:translateX(-14px);transition:opacity .6s,transform .6s;transition-delay:calc(.15s + var(--i,0)*.5s)}
+  .cm-row:first-child{border-top:none}
+  section.in .cm-row{opacity:1;transform:none}
+  .cm-n{font-family:var(--mono);font-size:clamp(28px,3.4vw,42px);font-weight:700;color:var(--kick-l);line-height:1}
+  .cm-t{font-size:clamp(17px,1.9vw,22px);font-weight:800;color:var(--ink-l)}
+  .cm-s{font-size:clamp(13px,1.4vw,16px);color:var(--mut-l);margin-top:5px;line-height:1.45;max-width:640px}
+  /* ===== tri (articulación de tres partes) ===== */
+  .tri{margin:34px auto 0;max-width:1000px}
+  .tri-parents{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center}
+  @media(max-width:760px){.tri-parents{grid-template-columns:1fr;gap:14px}.tri-links{display:none}.tri-child{margin-top:16px}}
+  .tri-role{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--kick-l)}
+  .tri-name{font-size:clamp(15px,1.7vw,20px);font-weight:800;color:var(--ink-l);margin-top:8px;line-height:1.15}
+  .tri-node.grn .tri-name{color:var(--g2)}
+  .tri-sub{font-size:12.5px;color:var(--mut-l);margin-top:6px;line-height:1.4}
+  .tri-links{display:block;width:100%;height:78px;margin:4px 0 0}
+  .tri-links .tl-p{fill:none;stroke:#c3d3ca;stroke-width:1.5;vector-effect:non-scaling-stroke;stroke-dasharray:230;stroke-dashoffset:230;transition:stroke-dashoffset 1.1s ease .55s}
+  section.in .tri-links .tl-p{stroke-dashoffset:0}
+  .tri-child{text-align:center;margin-top:2px}
+  .tri-clabel{display:inline-block;font-size:clamp(16px,2vw,24px);font-weight:800;color:#fff;background:var(--dk);padding:14px 28px;border-radius:14px;box-shadow:0 12px 34px rgba(14,59,44,.18)}
+  /* ===== Observatorio · por qué (Public Affairs) ===== */
+  .obs-why{margin-top:26px;max-width:980px;display:flex;flex-direction:column}
+  .owr{display:grid;grid-template-columns:168px 1fr;gap:22px;align-items:baseline;padding:16px 0;border-top:1px solid var(--lineL)}
+  .owr:first-child{border-top:none}
+  .owk{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kick-l);font-weight:700}
+  .owx{font-size:clamp(15px,1.65vw,20px);color:var(--ink-l);line-height:1.45}
+  @media(max-width:640px){.owr{grid-template-columns:1fr;gap:4px}}
+  .obs-ctx{margin-top:26px;max-width:920px;border-left:2px solid var(--dk);padding:4px 0 4px 18px}
+  .octx-h{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--kick-l);font-weight:700}
+  .octx-b{font-size:clamp(13px,1.45vw,16px);color:var(--mut-l);line-height:1.5;margin-top:6px}
+  /* ===== Recta final · nodos del pipe escalonados ===== */
+  .pnode{opacity:0;transform:translateY(8px);transition:opacity .6s,transform .6s}
+  section.in .pnode{opacity:1;transform:none}
+  section.in .pipe .pnode:nth-child(3){transition-delay:.45s}
+  section.in .pipe .pnode:nth-child(4){transition-delay:1.15s}
+  section.in .pipe .pnode:nth-child(5){transition-delay:1.85s}
 </style>
 </head>
 <body>
@@ -528,7 +565,7 @@
     <div class="k r">Nuestra participación en la iniciativa</div>
     <div class="t r d1">Nuestra participación</div>
     <div class="checks">
-      <div class="chk" style="--i:0"><div class="ok">✓</div><div class="cx"><b>Institución y representantes.</b> Benjamín del Arco como ponente, Ruben y Santiago como representantes.</div></div>
+      <div class="chk" style="--i:0"><div class="ok">✓</div><div class="cx"><b>Institución y representantes.</b> Presidente del Consejo de GEMI, Benjamín del Arco, como ponente.</div></div>
       <div class="chk" style="--i:1"><div class="ok">✓</div><div class="cx"><b>Reseña institucional.</b> Historial de GEMI desde 1994, miembro fundador del comité que hoy normaliza medio ambiente.</div></div>
       <div class="chk" style="--i:2"><div class="ok">✓</div><div class="cx"><b>Información para el dictamen.</b> Por qué la perspectiva operativa de la industria le sirve a la Comisión.</div></div>
       <div class="chk" style="--i:3"><div class="ok">✓</div><div class="cx"><b>Tres propuestas específicas.</b> Con artículo, texto exacto y justificación, no comentarios generales.</div></div>
@@ -537,36 +574,29 @@
   </section>
 
   <!-- 8 · El camino a ley -->
-  <section class="lt" data-t="Camino a ley">
+  <section class="lt" data-anim="tl" data-t="Camino a ley">
     <div class="k r">Cómo se mueve esto desde aquí</div>
     <div class="t r d1">El camino hasta convertirse en ley</div>
-    <div class="flow">
-      <div class="step solid" style="--i:0"><div class="st">Registro</div><div class="ss">Cierra 23 sep</div></div>
-      <div class="arrow" style="--i:0">→</div>
-      <div class="step" style="--i:1"><div class="st">Audiencias</div><div class="ss">GEMI presenta, fecha por confirmar</div></div>
-      <div class="arrow" style="--i:1">→</div>
-      <div class="step" style="--i:2"><div class="st">Dictamen</div><div class="ss">La Comisión decide qué incorpora</div></div>
-      <div class="arrow" style="--i:2">→</div>
-      <div class="step" style="--i:3"><div class="st">Pleno, Diputados</div><div class="ss">Vota el dictamen</div></div>
-      <div class="arrow" style="--i:3">→</div>
-      <div class="step" style="--i:4"><div class="st">Senado</div><div class="ss">Cámara revisora</div></div>
+    <div class="tl">
+      <div class="tl-base"></div><div class="tl-fill"></div>
+      <div class="tnode" style="--i:0"><div class="tdot"></div><div class="tdate">Registro</div><div class="tdesc">Cierra el 23 de septiembre</div></div>
+      <div class="tnode hl" style="--i:1"><div class="tdot"></div><div class="tdate">Audiencias</div><div class="tdesc"><b>GEMI presenta</b>, fecha por confirmar</div></div>
+      <div class="tnode hl" style="--i:2"><div class="tdot"></div><div class="tdate">Dictamen</div><div class="tdesc">La Comisión decide qué incorpora</div></div>
+      <div class="tnode" style="--i:3"><div class="tdot"></div><div class="tdate">Pleno · Diputados</div><div class="tdesc">Vota el dictamen</div></div>
+      <div class="tnode" style="--i:4"><div class="tdot"></div><div class="tdate">Senado</div><div class="tdesc">Cámara revisora</div></div>
     </div>
-    <div class="foot r d6">El momento de mayor peso de una propuesta técnica es entre audiencias y dictamen, exactamente donde estamos parados hoy.</div>
+    <div class="foot r d7">El momento de mayor peso de una propuesta técnica es entre audiencias y dictamen, exactamente donde estamos parados hoy.</div>
   </section>
 
   <!-- 9 · Una sola voz (rediseñada + animada) -->
-  <section class="lt" data-anim="voice" data-t="Una sola voz">
-    <div class="k r">Por qué esto no se puede dejar pasar</div>
-    <div class="t r d1">Una sola voz, no diez sueltas</div>
-    <div class="voice-hero r d2">Una postura fragmentada se ignora. Una voz técnica y unificada se sienta a negociar.</div>
+  <section class="lt" data-anim="voice" data-t="Conciliación de GEMI">
+    <div class="k r">La postura de GEMI ante la iniciativa</div>
+    <div class="t r d1">Conciliación de GEMI</div>
+    <div class="voice-hero r d2">Una postura como organización para dialogar sobre lo técnico y lo posible.</div>
     <div class="voz">
       <div class="frags"><span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span></div>
       <div class="one"></div>
-      <div class="voz-lbl">Una sola voz</div>
-    </div>
-    <div class="facts">
-      <div class="fact" style="--i:0"><div class="fn">38 años</div><div class="fx">Primera reescritura integral de la ley desde 1988.</div></div>
-      <div class="fact" style="--i:1"><div class="fn">No solos</div><div class="fx">Sociedad civil ya señaló el mismo vacío en la Evaluación Ambiental Estratégica.</div></div>
+      <div class="voz-lbl">Conciliación de GEMI</div>
     </div>
   </section>
 
@@ -581,7 +611,7 @@
   <!-- 11 · Casi un año -->
   <section class="lt" data-t="Cómo llegamos">
     <div class="k r">Cómo llegamos aquí</div>
-    <div class="t r d1">Casi un año de trabajo, no una idea nueva</div>
+    <div class="t r d1">Casi un año de trabajo</div>
     <div class="bl">
       <div class="bli r d2"><div class="bd"></div><div>Casi un año construyendo el Acuerdo Voluntario sobre sustancias en contacto con alimentos.</div></div>
       <div class="bli r d3"><div class="bd"></div><div>Héctor Martínez, de Siegwerk, lo ha empujado desde dentro de la industria, no solo desde GEMI.</div></div>
@@ -589,16 +619,30 @@
     </div>
   </section>
 
+  <!-- El mundo ya regula (movida) -->
+  <section class="lt" data-t="El mundo ya regula">
+    <div class="k r">El mundo ya regula esto, México todavía no</div>
+    <div class="t r d1">Regulación incremental, desde 2011</div>
+    <div class="cards c4">
+      <div class="card tint r d2"><div class="ct">2011</div><div class="cs" style="margin-top:8px">Unión Europea, Reglamento de Plásticos</div></div>
+      <div class="card tint r d3"><div class="ct">India</div><div class="cs" style="margin-top:8px">Regulación progresiva adoptada</div></div>
+      <div class="card tint r d4"><div class="ct">Alemania</div><div class="cs" style="margin-top:8px">Regulación progresiva adoptada</div></div>
+      <div class="card tint r d5"><div class="ct">China</div><div class="cs" style="margin-top:8px">Regulación progresiva adoptada</div></div>
+    </div>
+    <div class="foot r d6">Cada uno construyó principios generales para evitar la transferencia de sustancias a alimentos. México llega tarde a la conversación global. El Acuerdo Voluntario es la forma de no llegar tarde también a la solución.</div>
+  </section>
+
   <!-- 12 · Cuatro compromisos -->
   <section class="lt" data-t="Cuatro compromisos">
     <div class="k r">Qué dice el acuerdo, en concreto</div>
     <div class="t r d1">Cuatro compromisos, no una declaración de buenas intenciones</div>
-    <div class="cards c3">
-      <div class="card r d2"><div class="ct">Lista armonizada</div><div class="cs" style="margin-top:8px">Sustancias permitidas, con proceso claro para incorporar nuevas</div></div>
-      <div class="card r d3"><div class="ct">Base científica</div><div class="cs" style="margin-top:8px">Uso respaldado en principios científicos, no en percepción</div></div>
-      <div class="card r d4"><div class="ct">Transparencia</div><div class="cs" style="margin-top:8px">De extremo a extremo en la cadena de suministro</div></div>
+    <div class="commits">
+      <div class="cm-row" style="--i:0"><div class="cm-n">1</div><div class="cm-b"><div class="cm-t">Lista armonizada</div><div class="cm-s">Sustancias permitidas, con un proceso claro para incorporar nuevas.</div></div></div>
+      <div class="cm-row" style="--i:1"><div class="cm-n">2</div><div class="cm-b"><div class="cm-t">Base científica</div><div class="cm-s">Uso respaldado en principios científicos, no en percepción.</div></div></div>
+      <div class="cm-row" style="--i:2"><div class="cm-n">3</div><div class="cm-b"><div class="cm-t">Transparencia</div><div class="cm-s">Trazabilidad de extremo a extremo en la cadena de suministro.</div></div></div>
+      <div class="cm-row" style="--i:3"><div class="cm-n">4</div><div class="cm-b"><div class="cm-t">Mejora continua</div><div class="cm-s">Revisión periódica de la lista conforme avanza la evidencia científica.</div></div></div>
     </div>
-    <div class="banner r d5"><span class="bn">1°</span><span>País del continente americano con un acuerdo voluntario específico para tintas de impresión.</span></div>
+    <div class="foot r d6"><b class="grn">1°</b> país del continente americano con un acuerdo voluntario específico para tintas de impresión.</div>
   </section>
 
   <!-- 13 · El foro donde se firma -->
@@ -615,18 +659,6 @@
     </div>
   </section>
 
-  <!-- 14 · Regulación incremental -->
-  <section class="lt" data-t="El mundo ya regula">
-    <div class="k r">El mundo ya regula esto, México todavía no</div>
-    <div class="t r d1">Regulación incremental, desde 2011</div>
-    <div class="cards c4">
-      <div class="card tint r d2"><div class="ct">2011</div><div class="cs" style="margin-top:8px">Unión Europea, Reglamento de Plásticos</div></div>
-      <div class="card tint r d3"><div class="ct">India</div><div class="cs" style="margin-top:8px">Regulación progresiva adoptada</div></div>
-      <div class="card tint r d4"><div class="ct">Alemania</div><div class="cs" style="margin-top:8px">Regulación progresiva adoptada</div></div>
-      <div class="card tint r d5"><div class="ct">China</div><div class="cs" style="margin-top:8px">Regulación progresiva adoptada</div></div>
-    </div>
-    <div class="foot r d6">Cada uno construyó principios generales para evitar la transferencia de sustancias a alimentos. México llega tarde a la conversación global. El Acuerdo Voluntario es la forma de no llegar tarde también a la solución.</div>
-  </section>
 
   <!-- 15 · La recta final por etapa (live tracker) -->
   <section class="nk" data-t="Recta final">
@@ -667,16 +699,36 @@
     <div class="div-sub r d2">Nuestro asiento permanente en la mesa</div>
   </section>
 
-  <!-- 17 · Tres fundadores -->
-  <section class="lt" data-t="Tres fundadores">
-    <div class="k r">Qué es, y por qué GEMI está adentro</div>
-    <div class="t r d1">Tres fundadores, un solo lanzamiento</div>
-    <div class="cards c3">
-      <div class="card tint r d2"><div class="ct">Comisión Especial de Economía Circular</div><div class="cs" style="margin-top:8px">Senado de la República, rectoría del proyecto</div></div>
-      <div class="card tint r d3"><div class="ct">Tecnológico de Monterrey</div><div class="cs" style="margin-top:8px">Aliado académico fundador</div></div>
-      <div class="card solid r d4"><div class="ct" style="color:var(--grn)">Iniciativa GEMI</div><div class="cs" style="margin-top:8px">Aliado fundador desde el sector empresarial</div></div>
+  <!-- 16b · Por qué el Observatorio -->
+  <section class="lt" data-t="Por qué el Observatorio">
+    <div class="k r">Antes del cómo, el porqué</div>
+    <div class="t r d1">Para qué construimos el Observatorio</div>
+    <div class="obs-why">
+      <div class="owr r d2"><span class="owk">La idea</span><span class="owx">La economía circular se legisla estado por estado y nadie tiene el mapa completo. Nosotros lo levantamos.</span></div>
+      <div class="owr r d3"><span class="owk">Qué resuelve</span><span class="owx">Una sola fuente pública para que toda la industria anticipe dónde y cuándo se mueve la regulación.</span></div>
+      <div class="owr r d4"><span class="owk">Nuestro lugar</span><span class="owx">Coloca a GEMI como el referente técnico que articula gobierno, academia y empresa en este tema.</span></div>
+      <div class="owr r d5"><span class="owk">Qué esperamos</span><span class="owx">Que sea el punto de anclaje de GEMI en la agenda de economía circular del país.</span></div>
     </div>
-    <div class="foot r d5">Lanzamiento el <b class="grn">15 de octubre</b>, en el Senado. Es el canal institucional correcto, la comisión que el Senado creó específicamente para este tema.</div>
+    <div class="obs-ctx r d6">
+      <div class="octx-h">Comisión de Economía Circular · Senado de la República</div>
+      <div class="octx-b">Comisión del Senado dedicada a impulsar la agenda de economía circular. El senador <b>Néstor Camarillo</b> la impulsa y firma la Declaratoria del Observatorio.</div>
+    </div>
+  </section>
+
+  <!-- 17 · Tres fundadores -->
+  <section class="lt" data-anim="founders" data-t="Tres fundadores">
+    <div class="k r">Qué es, y por qué GEMI está adentro</div>
+    <div class="t r d1">Una articulación de tres partes</div>
+    <div class="tri">
+      <div class="tri-parents">
+        <div class="tri-node r d2" style="--i:0"><div class="tri-role">Senado de la República</div><div class="tri-name">Comisión de Economía Circular</div><div class="tri-sub">Rectoría institucional del proyecto</div></div>
+        <div class="tri-node r d3" style="--i:1"><div class="tri-role">Academia</div><div class="tri-name">Tecnológico de Monterrey</div><div class="tri-sub">Aliado académico fundador</div></div>
+        <div class="tri-node grn r d4" style="--i:2"><div class="tri-role">Sector empresarial</div><div class="tri-name">Iniciativa GEMI</div><div class="tri-sub">Aliado fundador desde la industria</div></div>
+      </div>
+      <svg class="tri-links" viewBox="0 0 300 90" preserveAspectRatio="none"><path class="tl-p" d="M50 4 C50 48,150 44,150 86"/><path class="tl-p" d="M150 4 L150 86"/><path class="tl-p" d="M250 4 C250 48,150 44,150 86"/></svg>
+      <div class="tri-child r d5"><span class="tri-clabel">Observatorio de Economía Circular</span></div>
+    </div>
+    <div class="foot r d6">Lanzamiento el <b class="grn">15 de octubre</b> en el Senado, el canal institucional creado específicamente para este tema.</div>
   </section>
 
   <!-- 18 · Calendario anual -->
@@ -799,18 +851,6 @@
     </div>
   </section>
 
-  <!-- 23 · Hilo conductor -->
-  <section class="dk" data-t="El hilo conductor">
-    <div class="glow" style="width:680px;height:680px;background:var(--g2);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.22"></div>
-    <div class="k r">El hilo conductor</div>
-    <div class="t r d1">Tres frentes abiertos al mismo tiempo, una sola función</div>
-    <div class="lead r d2">GEMI traduce la complejidad regulatoria en ventaja para ustedes, en el Congreso, en la mesa de sustancias, y ahora también en los estados.</div>
-    <div class="cards c3" style="margin-top:auto">
-      <div class="card r d3" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="ct" style="color:#fff">LGEEPA</div><div class="cs" style="margin-top:6px">Audiencias públicas por confirmar</div></div>
-      <div class="card r d4" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="ct" style="color:#fff">Sustancias</div><div class="cs" style="margin-top:6px">Cabildeo arranca el 23 de septiembre</div></div>
-      <div class="card r d5" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="ct" style="color:#fff">Observatorio</div><div class="cs" style="margin-top:6px">Lanzamiento el 15 de octubre</div></div>
-    </div>
-  </section>
 
 </div>
 
