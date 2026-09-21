@@ -3150,7 +3150,15 @@ function renderDofMenu(){
 var _LEYEST_OVERRIDE={'Aguascalientes':1,'Baja California':1,'Baja California Sur':1,'Chiapas':1,'Chihuahua':1,'Ciudad de México':1,'Colima':1,'Durango':1,'México':1,'Guanajuato':1,'Guerrero':1,'Hidalgo':1,'Jalisco':1,'Querétaro':1,'San Luis Potosí':1,'Puebla':1,'Nuevo León':1,'Michoacán':1,'Zacatecas':1,'Oaxaca':1};
 // nombre canónico del app (con acento) -> clave en leyes-estatales.json (sin acento en algunos estados)
 var _LEYEST_JSONKEY={'Ciudad de México':'Ciudad de Mexico','México':'Mexico','Nuevo León':'Nuevo Leon','Michoacán':'Michoacan','Querétaro':'Queretaro','San Luis Potosí':'San Luis Potosi'};
-function _leyestKey(s){return (_LEYEST_JSONKEY[s]||s);}
+function _leyestKey(s){
+  var est=(typeof leyesEstatalesData!=='undefined'&&leyesEstatalesData&&leyesEstatalesData.estados)||null;
+  if(!est)return (_LEYEST_JSONKEY[s]||s);
+  if(_LEYEST_JSONKEY[s]&&est[_LEYEST_JSONKEY[s]]!==undefined)return _LEYEST_JSONKEY[s];
+  if(est[s]!==undefined)return s;
+  var t=qa((s||'').toLowerCase()); // match sin acentos contra las llaves reales del json
+  for(var k in est){if(qa(k.toLowerCase())===t)return k;}
+  return (_LEYEST_JSONKEY[s]||s);
+}
 function _leyEntryFromEstatal(s){
   var TMAP={agua:'agua',ambiental_general:'equilibrio_ecologico',residuos:'residuos',cambio_climatico:'cambio_climatico',forestal:'forestal_biodiversidad',biodiversidad:'forestal_biodiversidad',energia_renovable:'energia',hidrocarburos:'energia',mineria:'equilibrio_ecologico'};
   var grouped={};
@@ -3161,7 +3169,13 @@ function _leyEntryFromEstatal(s){
   return {nombre:s,leyes:grouped};
 }
 function _leyEntry(s){
-  if(_LEYEST_OVERRIDE[s]&&typeof leyesEstatalesData!=='undefined'&&leyesEstatalesData&&(leyesEstatalesData.estados||{})[_leyestKey(s)])return _leyEntryFromEstatal(s);
+  // Fuente única: leyes-estatales.json (Santiago, ya fusionado con curadas por _mergeCuratedLeyes).
+  // Vale para TODOS los estados que la base cubre, no solo los del override. Así la ficha y el mapa
+  // muestran exactamente lo mismo que la lista de Legislación Estatal.
+  if(typeof leyesEstatalesData!=='undefined'&&leyesEstatalesData&&leyesEstatalesData.estados){
+    var arr=leyesEstatalesData.estados[_leyestKey(s)];
+    if(arr&&arr.length)return _leyEntryFromEstatal(s);
+  }
   return (leyesAmbientales.estados||[]).find(function(e){return e.nombre===s||(s==='México'&&e.nombre==='Estado de México')||(s==='Estado de México'&&e.nombre==='México');});
 }
 function _nLeyes(s){var e=_leyEntry(s);if(!e)return 0;var L=e.leyes||{};return Object.keys(L).reduce(function(a,t){return a+((L[t]||[]).length);},0);}
@@ -4749,9 +4763,9 @@ function scoreColor(score){if(score>=70)return'#ef4444';if(score>=45)return'#f97
 function scoreLabel(score){return score>=70?'Cr\u00edtico':score>=45?'Alto':score>=20?'Moderado':'Bajo';}
 function scoreBadge(score){const l=scoreLabel(score);const cls=score>=70?'critico':score>=45?'alto':score>=20?'medio':'baixo';return`<span class="score-badge score-${cls}">${l} ${score}</span>`;}
 function computeICR(sn){
-  const e=leyesAmbientales.estados.find(e=>e.nombre===sn);
+  const e=(typeof _leyEntry==='function')?_leyEntry(sn):leyesAmbientales.estados.find(e=>e.nombre===sn);
   const th=e?Object.keys(e.leyes||{}):[];
-  const nl=th.reduce((a,t)=>a+(e.leyes[t]?.length||0),0);
+  const nl=th.reduce((a,t)=>a+((e.leyes&&e.leyes[t]?e.leyes[t].length:0)),0);
   const nt=(impuestosDB[sn]||[]).length;
   return Math.round(Math.min(100,(th.length/7)*40+Math.min(30,nl*3)+Math.min(20,nt*6)+(estadoData[sn]?.congreso?10:0)));
 }
@@ -6350,6 +6364,15 @@ async function init(){
   fetch('data/diagnostico-residuos.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_diagResiduos=d;}).catch(()=>{});
   fetch('data/dependencias-federales.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{_depsFed=d;if(document.getElementById('actores-federal'))renderActoresFederal();}).catch(()=>{});
   fetch('data/internacional.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{if(d){_INTL=d;var det=document.getElementById('rdc-detail');if(det&&_radarSel)det.innerHTML=_radarDetailHTML(_radarSel);}}).catch(()=>{});
+  // Carga temprana de la base ESTATAL (fuente única): fichas, heatmap y scores deben leer lo mismo que la lista de Legislación Estatal
+  fetch('data/leyes-estatales.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{
+    if(!d)return; leyesEstatalesData=d;
+    if(typeof _mergeCuratedLeyes==='function')_mergeCuratedLeyes();
+    if(typeof computeScores==='function')computeScores();
+    try{var hm=document.getElementById('estados-heatmap');if(hm&&hm.innerHTML&&typeof renderEstadosHeatmap==='function')renderEstadosHeatmap();}catch(e){}
+    try{if(document.getElementById('cons-estados')&&typeof renderConsola==='function')renderConsola();}catch(e){}
+    try{if(typeof renderScoreNacional==='function')renderScoreNacional();}catch(e){}
+  }).catch(()=>{});
   processData();
   computeScores();
   updateStatus();renderLatestNewsTicker();buildSparkWidget();updateNews();updateLeyes();buildMap();
