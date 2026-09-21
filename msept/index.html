@@ -480,6 +480,31 @@
   .ev::before{content:'';position:absolute;left:-21px;top:50%;margin-top:-6px;width:11px;height:11px;border-radius:50%;background:var(--g2);border:2px solid var(--lt);transform:scale(0);transition:transform .45s cubic-bezier(.2,1.5,.4,1);transition-delay:calc(.5s + var(--i,0)*.3s)}
   section.in .ev::before{transform:scale(1)}
   .ev.urgent::before{background:#d9636b}
+  /* ===== L17 invitación / convocatoria ===== */
+  .invite{margin-top:26px;max-width:1000px}
+  .inv-h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kick-l);margin-bottom:14px}
+  .inv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:760px){.inv-grid{grid-template-columns:1fr 1fr}}
+  .inv-card{border-left:2px solid var(--g2);padding:4px 0 4px 14px}
+  .inv-role{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut-l)}
+  .inv-name{font-size:clamp(15px,1.6vw,19px);font-weight:800;color:var(--ink-l);margin-top:6px;line-height:1.15}
+  /* ===== L18 Recta final · más tech ===== */
+  section[data-t="Recta final"] .card{position:relative;overflow:hidden}
+  section[data-t="Recta final"] .card::after{content:'';position:absolute;top:0;left:0;height:2px;width:100%;background:linear-gradient(90deg,var(--g),var(--mint));transform:scaleX(0);transform-origin:left;transition:transform .9s ease;transition-delay:calc(.7s + var(--i,0)*.22s)}
+  section[data-t="Recta final"].in .card::after{transform:scaleX(1)}
+  section[data-t="Recta final"] .kv{opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s;transition-delay:calc(.95s + var(--i,0)*.22s)}
+  section[data-t="Recta final"].in .kv{opacity:1;transform:none}
+  section[data-t="Recta final"] .chip{opacity:0;transform:scale(.7);transition:opacity .4s,transform .5s cubic-bezier(.2,1.5,.4,1);transition-delay:calc(.85s + var(--i,0)*.22s)}
+  section[data-t="Recta final"].in .chip{opacity:1;transform:none}
+  section[data-t="Recta final"] .card:first-of-type::before{content:'';position:absolute;top:0;bottom:0;width:64px;left:-90px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);pointer-events:none;z-index:1}
+  section[data-t="Recta final"].in .card:first-of-type::before{animation:cardsheen 3.4s ease-in-out 1.8s infinite}
+  @keyframes cardsheen{0%{left:-90px}55%,100%{left:112%}}
+  .tcar{display:inline-block;width:6px;height:13px;background:currentColor;margin-left:5px;vertical-align:-2px;animation:tcar 1s step-end infinite}
+  @keyframes tcar{50%{opacity:0}}
+  /* ===== L24 · encuadre del console (que no se desborde) ===== */
+  .obs-mock{align-self:center;min-width:0}
+  .intel{max-width:500px;width:100%;margin-left:auto;margin-right:0}
+  @media(max-width:860px){.intel{margin:0 auto}}
 </style>
 </head>
 <body>
@@ -689,7 +714,7 @@
     <div class="bl">
       <div class="bli r d2"><div class="bd"></div><div>Casi un año construyendo el Acuerdo Voluntario sobre sustancias en contacto con alimentos.</div></div>
       <div class="bli r d3"><div class="bd"></div><div>Héctor Martínez, de Siegwerk, lo ha empujado desde dentro de la industria, no solo desde GEMI.</div></div>
-      <div class="bli r d4"><div class="bd"></div><div>La ruta de trabajo del foro en el Senado, "Sustancias que Importan", ya está entregada.</div></div>
+      <div class="bli r d4"><div class="bd"></div><div>Estamos trabajando la ruta para firmar el acuerdo con autoridades y legisladores en noviembre.</div></div>
     </div>
   </section>
 
@@ -721,16 +746,19 @@
 
   <!-- 13 · El foro donde se firma -->
   <section class="lt" data-t="El foro">
-    <div class="k r">"Sustancias que Importan" · Senado de la República</div>
-    <div class="t r d1">El foro donde se firma</div>
-    <div class="lead r d2">Convoca el Senador Emmanuel Reyes Carmona. Última semana de octubre, primera de noviembre.</div>
-    <div class="rows">
-      <div class="row r d2"><div class="tm">9:00</div><div class="tx">Apertura, foto oficial y firma del Acuerdo</div></div>
-      <div class="row r d3"><div class="tm">9:45</div><div class="tx">Mesa de contexto: por qué es crítico hablar de esto ahora</div></div>
-      <div class="row r d4"><div class="tm">10:30</div><div class="tx">Mesa de aterrizaje en México: primeros pasos</div></div>
-      <div class="row r d5"><div class="tm">11:15</div><div class="tx">Mesa de cierre: caso de éxito</div></div>
-      <div class="row r d6"><div class="tm">11:30</div><div class="tx">Comentarios finales del Senador Reyes Carmona</div></div>
+    <div class="k r">Comisión de Economía · Senado de la República</div>
+    <div class="t r d1">Los queremos a todos en la mesa</div>
+    <div class="lead r d2" style="max-width:920px">En noviembre convocamos una mesa de diálogo bajo la Comisión de Economía del Senado para afinar los pendientes y construir, con consenso, un acuerdo empresarial que refleje las mejores prácticas.</div>
+    <div class="invite">
+      <div class="inv-h r d3">Queremos en la mesa</div>
+      <div class="inv-grid">
+        <div class="inv-card r d3"><div class="inv-role">Gobierno federal</div><div class="inv-name">Secretaría de Economía</div></div>
+        <div class="inv-card r d4"><div class="inv-role">Gobierno federal</div><div class="inv-name">Secretaría de Salud</div></div>
+        <div class="inv-card r d5"><div class="inv-role">Autoridad ambiental</div><div class="inv-name">SEMARNAT</div></div>
+        <div class="inv-card r d6"><div class="inv-role">Sector privado</div><div class="inv-name">Empresas del sector</div></div>
+      </div>
     </div>
+    <div class="foot r d7">Un acuerdo construido con consenso, no impuesto. La invitación está abierta: cuantas más empresas se sumen, más fuerte queda el acuerdo para toda la industria.</div>
   </section>
 
 
@@ -748,7 +776,7 @@
       <div class="card r d2">
         <div class="ch"><div class="ct">Documento acordado</div><span class="chip red">URGENTE</span></div>
         <div class="kv"><span class="kk">Responsable</span><span class="vv">Héctor Martínez</span></div>
-        <div class="kv"><span class="kk">Firmantes</span><span class="vv" style="color:#e88a90">Cabildeo en curso</span></div>
+        <div class="kv"><span class="kk">Firmantes</span><span class="vv" style="color:#e88a90">Cabildeo en curso<span class="tcar"></span></span></div>
         <div class="kv"><span class="kk">Bloqueante para</span><span class="vv">La firma</span></div>
       </div>
       <div class="card r d3">
