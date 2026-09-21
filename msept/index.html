@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>GEMI · Sesión de membresía</title>
+<link rel="icon" type="image/png" href="/assets/logo-gemi-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Scope Sans';src:url('/assets/fonts/heros-regular.woff2') format('woff2');font-weight:1 550;font-style:normal;font-display:swap}
+  @font-face{font-family:'Scope Sans';src:url('/assets/fonts/heros-bold.woff2') format('woff2');font-weight:551 1000;font-style:normal;font-display:swap}
+  :root{
+    --dk:#0e3b2c;      /* verde oscuro portada/dividers */
+    --nk:#09201a;      /* casi negro verde (seguimiento) */
+    --lt:#f6f8f1;      /* crema contenido */
+    --ink-d:#eef5f0; --mut-d:#8fb6a6; --dim-d:#5c7d70;
+    --ink-l:#0e3b2c; --mut-l:#57685f; --dim-l:#8b9a90;
+    --kick-d:#57d3a6; --kick-l:#2f9e6d;
+    --g:#12b98a; --g2:#0e8c74; --g3:#066750; --mint:#3fe0ad;
+    --red:#e0787f; --amber:#dcb066; --blue:#9fb6de; --grn:#5fd3aa;
+    --lineD:rgba(255,255,255,.10); --lineL:#e2e8e0;
+    --sans:'Scope Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased;background:var(--dk);color:var(--ink-d);overflow-x:hidden}
+  .deck{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+  .deck::-webkit-scrollbar{width:0;display:none}
+  section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:center;padding:9vh 8vw;overflow:hidden}
+  section.dk{background:var(--dk);color:var(--ink-d)}
+  section.nk{background:var(--nk);color:var(--ink-d)}
+  section.lt{background:var(--lt);color:var(--ink-l)}
+  section.center{justify-content:center}
+  @media(max-width:760px){section{padding:8vh 7vw;justify-content:flex-start}}
+
+  /* reveal */
+  .r{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  section.in .r{opacity:1;transform:none}
+  .d1{transition-delay:.07s}.d2{transition-delay:.15s}.d3{transition-delay:.24s}.d4{transition-delay:.34s}.d5{transition-delay:.45s}.d6{transition-delay:.56s}.d7{transition-delay:.67s}
+
+  .k{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+  .dk .k,.nk .k{color:var(--kick-d)} .lt .k{color:var(--kick-l)}
+  h1{font-size:clamp(40px,6.4vw,92px);font-weight:800;letter-spacing:-.028em;line-height:1.0}
+  .t{font-size:clamp(30px,4.7vw,62px);font-weight:800;letter-spacing:-.022em;line-height:1.05}
+  .lead{font-size:clamp(15px,1.7vw,21px);line-height:1.55;max-width:760px;margin-top:16px;font-weight:400}
+  .dk .lead,.nk .lead{color:var(--mut-d)} .lt .lead{color:var(--mut-l)}
+  .foot{font-family:var(--sans);font-size:clamp(12px,1.35vw,15px);font-style:italic;margin-top:26px;max-width:900px;line-height:1.5}
+  .dk .foot,.nk .foot{color:var(--dim-d)} .lt .foot{color:var(--dim-l)}
+  b,strong{font-weight:700}
+  .grn{color:var(--kick-l)} .dk .grn,.nk .grn{color:var(--grn)}
+
+  /* portada */
+  .logo{height:52px;width:auto;align-self:flex-start;margin-bottom:26px;border-radius:12px}
+  .pills{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;padding-top:40px}
+  .pill{font-size:13px;font-weight:700;padding:12px 18px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)}
+  .date{font-size:clamp(16px,2vw,24px);color:var(--mut-d);margin-top:18px}
+
+  /* divider grande */
+  .big-n{font-size:clamp(70px,11vw,150px);font-weight:800;letter-spacing:-.03em;line-height:.9;color:rgba(255,255,255,.10)}
+  .div-sub{font-size:clamp(15px,1.9vw,22px);color:var(--kick-d);font-weight:700;margin-top:14px}
+
+  /* filas de tiempo/agenda */
+  .rows{margin-top:30px;max-width:1000px}
+  .row{display:grid;grid-template-columns:160px 1fr;gap:26px;padding:15px 0;align-items:baseline;border-top:1px solid var(--lineL)}
+  .nk .row,.dk .row{border-top:1px solid var(--lineD)}
+  .row:first-child{border-top:none}
+  .row .tm{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--kick-l)}
+  .dk .row .tm,.nk .row .tm{color:var(--kick-d)}
+  .row .tx{font-size:clamp(15px,1.6vw,19px);line-height:1.4}
+
+  /* timeline horizontal */
+  .tl{position:relative;margin-top:54px;display:flex;justify-content:space-between;gap:14px}
+  .tl::before{content:'';position:absolute;top:7px;left:1%;right:1%;height:2px;background:var(--lineL)}
+  .lt .tl::before{background:#cfe0d6}
+  .tnode{position:relative;flex:1;min-width:0}
+  .tdot{width:15px;height:15px;border-radius:50%;background:#bcd3c7;border:3px solid var(--lt);position:relative;z-index:2;transform:scale(.6);transition:transform .5s ease}
+  section.in .tdot{transform:scale(1)}
+  .tnode.hl .tdot{background:var(--g2)}
+  .tdate{font-size:13px;font-weight:700;margin-top:16px;color:var(--ink-l)}
+  .tdesc{font-size:13px;color:var(--mut-l);margin-top:5px;line-height:1.4}
+  .tnode.hl .tdesc{color:var(--ink-l)}
+  @media(max-width:760px){.tl{flex-direction:column;gap:0}.tl::before{display:none}.tnode{display:grid;grid-template-columns:22px 1fr;gap:14px;padding:10px 0}.tdate,.tdesc{margin-top:0}}
+
+  /* flujo de pasos */
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin-top:34px}
+  .step{flex:1;min-width:180px;border:1px solid var(--lineL);border-radius:14px;padding:18px 18px;background:#fff}
+  .step .st{font-size:15px;font-weight:700;margin-bottom:6px}
+  .step .ss{font-size:13px;color:var(--mut-l);line-height:1.4}
+  .step.amber{background:#fdf3e0;border-color:#eccf97}
+  .step.amber .st,.step.amber .ss{color:#8a6a25}
+  .step.solid{background:var(--dk);border-color:var(--dk)}
+  .step.solid .st{color:#fff}.step.solid .ss{color:var(--mut-d)}
+  .arrow{align-self:center;color:#bcd3c7;font-size:26px;line-height:1;flex:0 0 auto}
+  @media(max-width:760px){.arrow{display:none}.step{min-width:100%}}
+
+  /* tarjetas (grids) */
+  .cards{display:grid;gap:16px;margin-top:34px}
+  .c2{grid-template-columns:repeat(2,1fr)} .c3{grid-template-columns:repeat(3,1fr)} .c4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:900px){.c3,.c4{grid-template-columns:1fr 1fr}} @media(max-width:640px){.c2,.c3,.c4{grid-template-columns:1fr}}
+  .card{border-radius:16px;padding:20px 22px;border:1px solid var(--lineL);background:#fff}
+  .lt .card.tint{background:#eef4ec;border-color:#dbe7df}
+  .card.solid{background:var(--dk);border-color:var(--dk);color:#fff}
+  .card.solid .ct{color:#fff}.card.solid .cs{color:var(--mut-d)}.card.solid .cn{color:var(--grn)}
+  .card .ch{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}
+  .card .ct{font-size:16px;font-weight:700;color:var(--ink-l);line-height:1.2}
+  .card .cn{font-size:26px;font-weight:800;color:var(--kick-l);line-height:1}
+  .card .cs{font-size:14px;color:var(--mut-l);line-height:1.45}
+  /* tarjetas en slides oscuros */
+  .nk .card{background:rgba(255,255,255,.035);border:1px solid var(--lineD)}
+  .nk .card .ct{color:#fff}.nk .card .cs{color:var(--mut-d)}
+  .kv{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:5px 0}
+  .kv .kk{color:var(--mut-d)} .nk .kv .kk{color:var(--mut-d)} .lt .kv .kk{color:var(--mut-l)}
+  .kv .vv{font-weight:700;text-align:right}
+  .kvsep{height:1px;background:var(--lineD);margin:8px 0}
+
+  /* chips de estatus */
+  .chip{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.04em;padding:5px 11px;border-radius:8px;white-space:nowrap;flex:0 0 auto}
+  .chip.red{background:rgba(224,120,127,.16);color:#e88a90}
+  .chip.amber{background:rgba(220,176,102,.16);color:#e0b56a}
+  .chip.grn{background:rgba(63,174,127,.20);color:#5fd3aa}
+  .chip.blue{background:rgba(107,140,196,.20);color:#9fb6de}
+  .lt .chip.red{background:#fbe4e5;color:#b64a52}.lt .chip.amber{background:#f6ecd4;color:#8a6a25}
+  .lt .chip.grn{background:#dff0e7;color:#1e7a53}.lt .chip.blue{background:#e4ebf6;color:#42618f}
+
+  /* checklist */
+  .checks{margin-top:30px;max-width:1000px}
+  .chk{display:grid;grid-template-columns:30px 1fr;gap:16px;align-items:start;padding:14px 0;border-top:1px solid var(--lineL)}
+  .chk:first-child{border-top:none}
+  .chk .ok{width:24px;height:24px;border-radius:50%;background:var(--g2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+  .chk .cx{font-size:clamp(15px,1.55vw,18px);line-height:1.45;color:var(--ink-l)}
+  .chk .cx b{color:var(--ink-l)}
+
+  /* bullets */
+  .bl{margin-top:28px;max-width:1000px}
+  .bli{display:grid;grid-template-columns:16px 1fr;gap:16px;align-items:start;padding:14px 0;border-top:1px solid var(--lineL);font-size:clamp(15px,1.6vw,19px);line-height:1.45}
+  .bli:first-child{border-top:none}
+  .bli .bd{width:9px;height:9px;border-radius:50%;background:var(--g2);margin-top:9px}
+
+  /* banner número grande */
+  .bignum{display:flex;align-items:center;gap:24px;background:var(--dk);color:#fff;border-radius:16px;padding:24px 28px;margin-top:8px}
+  .bignum .n{font-size:clamp(46px,6vw,74px);font-weight:800;color:var(--grn);line-height:.9;flex:0 0 auto}
+  .bignum .bx{font-size:clamp(14px,1.5vw,18px);color:#d6e6dd;line-height:1.5}
+  .lt .banner{background:var(--dk);color:#fff;border-radius:16px;padding:20px 26px;margin-top:16px;font-size:clamp(15px,1.7vw,20px);font-weight:600;display:flex;gap:16px;align-items:baseline}
+  .lt .banner .bn{font-size:26px;font-weight:800;color:var(--grn)}
+
+  /* dos paneles */
+  .duo{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;margin-top:30px}
+  @media(max-width:760px){.duo{grid-template-columns:1fr}}
+  .pnl{border-radius:16px;padding:22px 24px}
+  .pnl.solid{background:var(--dk);color:#fff}
+  .pnl.solid .pl{color:var(--grn)} .pnl.solid .ph{color:#fff}.pnl.solid .pp{color:var(--mut-d)}
+  .pnl.ghost{background:#fff;border:1px solid var(--lineL)}
+  .pnl.ghost .pl{color:var(--mut-l)}.pnl.ghost .ph{color:var(--ink-l)}.pnl.ghost .pp{color:var(--mut-l)}
+  .pl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+  .ph{font-size:19px;font-weight:700;line-height:1.25;margin-bottom:6px}
+  .pp{font-size:14px;line-height:1.5}
+
+  /* nav */
+  .dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:9px;z-index:40}
+  .dots a{width:8px;height:8px;border-radius:50%;background:rgba(120,140,130,.4);transition:all .25s;cursor:pointer}
+  .dots a.on{background:var(--g);transform:scale(1.4)}
+  @media(max-width:820px){.dots{display:none}}
+  .prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--g3),var(--mint));width:0;z-index:50;transition:width .15s linear}
+  .brand{position:fixed;top:14px;left:22px;z-index:45;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);pointer-events:none;mix-blend-mode:difference}
+  .hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.05em;animation:bob 2.4s ease-in-out infinite}
+  .dk .hint,.nk .hint{color:var(--dim-d)} .lt .hint{color:var(--dim-l)}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);opacity:.55}50%{transform:translateX(-50%) translateY(6px);opacity:1}}
+</style>
+</head>
+<body>
+<div class="prog"></div>
+<div class="brand">GEMI · Asuntos Públicos</div>
+<div class="dots"></div>
+<div class="deck">
+
+  <!-- 1 · Portada -->
+  <section class="dk center" data-t="Portada">
+    <img class="logo r" src="/assets/logo-gemi-icon.png" alt="GEMI" onerror="this.style.display='none'">
+    <div class="k r d1">Coordinación de Asuntos Públicos</div>
+    <h1 class="r d2">Sesión de membresía</h1>
+    <div class="date r d3">22 de septiembre de 2026</div>
+    <div class="pills r d4">
+      <span class="pill">LGEEPA</span>
+      <span class="pill">Acuerdo de Sustancias</span>
+      <span class="pill">Observatorio de Economía Circular</span>
+    </div>
+    <div class="hint">↓ desliza o usa las flechas</div>
+  </section>
+
+  <!-- 2 · Agenda -->
+  <section class="lt" data-t="Agenda">
+    <div class="k r">Cómo usamos los 90 minutos</div>
+    <div class="t r d1">Noventa minutos, tres decisiones</div>
+    <div class="rows">
+      <div class="row r d1"><div class="tm">0–5 min</div><div class="tx">Marco: dónde estamos parados</div></div>
+      <div class="row r d2"><div class="tm">5–30 min</div><div class="tx">LGEEPA: el proceso y las audiencias públicas</div></div>
+      <div class="row r d3"><div class="tm">30–50 min</div><div class="tx">Acuerdo de Sustancias: cerrar el texto</div></div>
+      <div class="row r d4"><div class="tm">50–70 min</div><div class="tx">Observatorio de Economía Circular: el lanzamiento</div></div>
+      <div class="row r d5"><div class="tm">70–90 min</div><div class="tx">Discusión abierta y próximos pasos</div></div>
+    </div>
+    <div class="foot r d6">Cada bloque cierra con espacio para preguntas de la mesa.</div>
+  </section>
+
+  <!-- 3 · Divider 01 -->
+  <section class="dk" data-t="01 · LGEEPA">
+    <div class="big-n r">01</div>
+    <h1 class="r d1">LGEEPA</h1>
+    <div class="div-sub r d2">La primera reescritura completa desde 1988</div>
+  </section>
+
+  <!-- 4 · Timeline proceso -->
+  <section class="lt" data-t="El proceso">
+    <div class="k r">El proceso, tal como lo hemos seguido</div>
+    <div class="t r d1">GEMI no llegó tarde a esta conversación</div>
+    <div class="tl">
+      <div class="tnode r d1"><div class="tdot"></div><div class="tdate">Ene 2026</div><div class="tdesc">Entra en vigor la Ley General de Economía Circular</div></div>
+      <div class="tnode r d2"><div class="tdot"></div><div class="tdate">1 sep 2026</div><div class="tdesc">Presidencia envía la iniciativa de nueva LGEEPA</div></div>
+      <div class="tnode r d3"><div class="tdot"></div><div class="tdate">Sep 2026</div><div class="tdesc">Se abre el registro de audiencias públicas</div></div>
+      <div class="tnode hl r d4"><div class="tdot"></div><div class="tdate">17 sep 2026</div><div class="tdesc"><b>GEMI se registra</b>, Benjamín del Arco como ponente</div></div>
+      <div class="tnode r d5"><div class="tdot"></div><div class="tdate">23 sep 2026</div><div class="tdesc">Cierra el registro de participantes</div></div>
+      <div class="tnode r d6"><div class="tdot"></div><div class="tdate">Próximo</div><div class="tdesc">Audiencias públicas, fecha por confirmar</div></div>
+    </div>
+    <div class="foot r d7">331 artículos. Primera reescritura integral en 38 años.</div>
+  </section>
+
+  <!-- 5 · Evaluación Ambiental Estratégica -->
+  <section class="lt" data-t="Evaluación Estratégica">
+    <div class="k r">Artículos 22 a 28 · El instrumento más nuevo de la iniciativa</div>
+    <div class="t r d1">Qué es la Evaluación Ambiental Estratégica</div>
+    <div class="lead r d2">Evalúa políticas públicas, programas sectoriales y proyectos de infraestructura nacional o estratégica antes de que la decisión se tome. No existía en la ley de 1988.</div>
+    <div class="flow">
+      <div class="step r d2"><div class="st">1. Solicitud</div><div class="ss">Se presenta el proyecto o programa a evaluar</div></div>
+      <div class="arrow r d2">→</div>
+      <div class="step r d3"><div class="st">2. Opinión de dependencias</div><div class="ss">15 días hábiles, dentro de gobierno</div></div>
+      <div class="arrow r d3">→</div>
+      <div class="step amber r d4"><div class="st">3. Consulta externa</div><div class="ss">Opcional, a discreción de la Secretaría</div></div>
+      <div class="arrow r d4">→</div>
+      <div class="step r d5"><div class="st">4. Resolución</div><div class="ss">La Secretaría decide</div></div>
+    </div>
+    <div class="foot r d6" style="color:#8a6a25;font-style:normal;font-weight:700">El paso 3 es discrecional, y no menciona al sector productivo directamente afectado.</div>
+  </section>
+
+  <!-- 6 · Reporte de fricción -->
+  <section class="nk" data-t="Reporte de fricción">
+    <div class="k r">Reporte de fricción · Lectura de asuntos públicos, no una probabilidad oficial</div>
+    <div class="t r d1">Tres puntos, calificados</div>
+    <div class="cards c3">
+      <div class="card r d2">
+        <div class="ch"><div class="ct">Evaluación Ambiental Estratégica</div><span class="chip red">FRICCIÓN ALTA</span></div>
+        <div class="kv"><span class="kk">Artículo</span><span class="vv">26</span></div>
+        <div class="kv"><span class="kk">Consulta obligatoria hoy</span><span class="vv" style="color:#e88a90">No</span></div>
+        <div class="kv"><span class="kk">Respaldo externo</span><span class="vv grn">Sí, sociedad civil</span></div>
+      </div>
+      <div class="card r d3">
+        <div class="ch"><div class="ct">Gradualidad de NOMs</div><span class="chip amber">FRICCIÓN MEDIA</span></div>
+        <div class="kv"><span class="kk">Artículo</span><span class="vv">65</span></div>
+        <div class="kv"><span class="kk">Mecanismo hoy</span><span class="vv" style="color:#e88a90">Ninguno</span></div>
+        <div class="kv"><span class="kk">Precedente</span><span class="vv grn">NOM-001-2021</span></div>
+      </div>
+      <div class="card r d4">
+        <div class="ch"><div class="ct">Prohibiciones estatales y municipales</div><span class="chip grn">RESPALDO ALTO</span></div>
+        <div class="kv"><span class="kk">Artículos</span><span class="vv">5, 7, 8</span></div>
+        <div class="kv"><span class="kk">Codificado hoy</span><span class="vv" style="color:#e88a90">No</span></div>
+        <div class="kv"><span class="kk">Precedente</span><span class="vv grn">2 casos ganados, SCJN</span></div>
+      </div>
+    </div>
+    <div class="foot r d5">Calificación de Asuntos Públicos de GEMI, con base en el texto de la iniciativa y precedente documentado. No es una proyección legislativa oficial.</div>
+  </section>
+
+  <!-- 7 · Qué mandamos -->
+  <section class="lt" data-t="Qué mandamos">
+    <div class="k r">Ya está hecho, no es una intención</div>
+    <div class="t r d1">Qué mandamos el 17 de septiembre</div>
+    <div class="checks">
+      <div class="chk r d1"><div class="ok">✓</div><div class="cx"><b>Institución y representantes.</b> Benjamín del Arco como ponente, Ruben y Santiago como representantes.</div></div>
+      <div class="chk r d2"><div class="ok">✓</div><div class="cx"><b>Reseña institucional.</b> Historial de GEMI desde 1994, miembro fundador del comité que hoy normaliza medio ambiente.</div></div>
+      <div class="chk r d3"><div class="ok">✓</div><div class="cx"><b>Información para el dictamen.</b> Por qué la perspectiva operativa de la industria le sirve a la Comisión.</div></div>
+      <div class="chk r d4"><div class="ok">✓</div><div class="cx"><b>Tres propuestas específicas.</b> Con artículo, texto exacto y justificación, no comentarios generales.</div></div>
+    </div>
+    <div class="foot r d5">Somos de las pocas organizaciones que llegan con texto legislativo propio, no solo con una opinión.</div>
+  </section>
+
+  <!-- 8 · El camino a ley -->
+  <section class="lt" data-t="Camino a ley">
+    <div class="k r">Cómo se mueve esto desde aquí</div>
+    <div class="t r d1">El camino hasta convertirse en ley</div>
+    <div class="flow">
+      <div class="step solid r d1"><div class="st">Registro</div><div class="ss">Cierra 23 sep</div></div>
+      <div class="arrow r d1">→</div>
+      <div class="step r d2"><div class="st">Audiencias</div><div class="ss">GEMI presenta, fecha por confirmar</div></div>
+      <div class="arrow r d2">→</div>
+      <div class="step r d3"><div class="st">Dictamen</div><div class="ss">La Comisión decide qué incorpora</div></div>
+      <div class="arrow r d3">→</div>
+      <div class="step r d4"><div class="st">Pleno, Diputados</div><div class="ss">Vota el dictamen</div></div>
+      <div class="arrow r d4">→</div>
+      <div class="step r d5"><div class="st">Senado</div><div class="ss">Cámara revisora</div></div>
+    </div>
+    <div class="foot r d6">El momento de mayor peso de una propuesta técnica es entre audiencias y dictamen, exactamente donde estamos parados hoy.</div>
+  </section>
+
+  <!-- 9 · Una sola voz -->
+  <section class="lt" data-t="Una sola voz">
+    <div class="k r">Por qué esto no se puede dejar pasar</div>
+    <div class="t r d1">Una sola voz, no diez sueltas</div>
+    <div class="cards c3">
+      <div class="card r d2"><div class="cn">38 años</div><div class="cs" style="margin-top:10px">Es la primera reescritura integral de la ley desde 1988.</div></div>
+      <div class="card r d3"><div class="cn">No solos</div><div class="cs" style="margin-top:10px">Sociedad civil ya señaló el mismo vacío en la Evaluación Ambiental Estratégica.</div></div>
+      <div class="card solid r d4"><div class="cn">Una mesa</div><div class="cs" style="margin-top:10px">Una postura fragmentada se ignora. Una voz técnica y unificada se sienta a negociar.</div></div>
+    </div>
+  </section>
+
+  <!-- 10 · Divider 02 -->
+  <section class="dk" data-t="02 · Sustancias">
+    <div class="big-n r">02</div>
+    <h1 class="r d1">Acuerdo de Sustancias</h1>
+    <div class="div-sub r d2">Un año de trabajo, la recta final</div>
+  </section>
+
+  <!-- 11 · Casi un año -->
+  <section class="lt" data-t="Cómo llegamos">
+    <div class="k r">Cómo llegamos aquí</div>
+    <div class="t r d1">Casi un año de trabajo, no una idea nueva</div>
+    <div class="bl">
+      <div class="bli r d2"><div class="bd"></div><div>Casi un año construyendo el Acuerdo Voluntario sobre sustancias en contacto con alimentos.</div></div>
+      <div class="bli r d3"><div class="bd"></div><div>Héctor Martínez, de Siegwerk, lo ha empujado desde dentro de la industria, no solo desde GEMI.</div></div>
+      <div class="bli r d4"><div class="bd"></div><div>La ruta de trabajo del foro en el Senado, "Sustancias que Importan", ya está entregada.</div></div>
+    </div>
+  </section>
+
+  <!-- 12 · Cuatro compromisos -->
+  <section class="lt" data-t="Cuatro compromisos">
+    <div class="k r">Qué dice el acuerdo, en concreto</div>
+    <div class="t r d1">Cuatro compromisos, no una declaración de buenas intenciones</div>
+    <div class="cards c3">
+      <div class="card r d2"><div class="ct">Lista armonizada</div><div class="cs" style="margin-top:8px">Sustancias permitidas, con proceso claro para incorporar nuevas</div></div>
+      <div class="card r d3"><div class="ct">Base científica</div><div class="cs" style="margin-top:8px">Uso respaldado en principios científicos, no en percepción</div></div>
+      <div class="card r d4"><div class="ct">Transparencia</div><div class="cs" style="margin-top:8px">De extremo a extremo en la cadena de suministro</div></div>
+    </div>
+    <div class="banner r d5"><span class="bn">1°</span><span>País del continente americano con un acuerdo voluntario específico para tintas de impresión.</span></div>
+  </section>
+
+  <!-- 13 · El foro donde se firma -->
+  <section class="lt" data-t="El foro">
+    <div class="k r">"Sustancias que Importan" · Senado de la República</div>
+    <div class="t r d1">El foro donde se firma</div>
+    <div class="lead r d2">Convoca el Senador Emmanuel Reyes Carmona. Última semana de octubre, primera de noviembre.</div>
+    <div class="rows">
+      <div class="row r d2"><div class="tm">9:00</div><div class="tx">Apertura, foto oficial y firma del Acuerdo</div></div>
+      <div class="row r d3"><div class="tm">9:45</div><div class="tx">Mesa de contexto: por qué es crítico hablar de esto ahora</div></div>
+      <div class="row r d4"><div class="tm">10:30</div><div class="tx">Mesa de aterrizaje en México: primeros pasos</div></div>
+      <div class="row r d5"><div class="tm">11:15</div><div class="tx">Mesa de cierre: caso de éxito</div></div>
+      <div class="row r d6"><div class="tm">11:30</div><div class="tx">Comentarios finales del Senador Reyes Carmona</div></div>
+    </div>
+  </section>
+
+  <!-- 14 · Regulación incremental -->
+  <section class="lt" data-t="El mundo ya regula">
+    <div class="k r">El mundo ya regula esto, México todavía no</div>
+    <div class="t r d1">Regulación incremental, desde 2011</div>
+    <div class="cards c4">
+      <div class="card tint r d2"><div class="ct">2011</div><div class="cs" style="margin-top:8px">Unión Europea, Reglamento de Plásticos</div></div>
+      <div class="card tint r d3"><div class="ct">India</div><div class="cs" style="margin-top:8px">Regulación progresiva adoptada</div></div>
+      <div class="card tint r d4"><div class="ct">Alemania</div><div class="cs" style="margin-top:8px">Regulación progresiva adoptada</div></div>
+      <div class="card tint r d5"><div class="ct">China</div><div class="cs" style="margin-top:8px">Regulación progresiva adoptada</div></div>
+    </div>
+    <div class="foot r d6">Cada uno construyó principios generales para evitar la transferencia de sustancias a alimentos. México llega tarde a la conversación global. El Acuerdo Voluntario es la forma de no llegar tarde también a la solución.</div>
+  </section>
+
+  <!-- 15 · La recta final por etapa -->
+  <section class="nk" data-t="Recta final">
+    <div class="k r">Seguimiento de Asuntos Públicos · Estatus del Acuerdo</div>
+    <div class="t r d1">La recta final, por etapa</div>
+    <div class="cards c3">
+      <div class="card r d2">
+        <div class="ch"><div class="ct">Documento acordado</div><span class="chip red">URGENTE</span></div>
+        <div class="kv"><span class="kk">Responsable</span><span class="vv">Héctor Martínez</span></div>
+        <div class="kv"><span class="kk">Firmantes</span><span class="vv" style="color:#e88a90">Cabildeo en curso</span></div>
+        <div class="kv"><span class="kk">Bloqueante para</span><span class="vv">La firma</span></div>
+      </div>
+      <div class="card r d3">
+        <div class="ch"><div class="ct">Cabildeo con firmantes</div><span class="chip blue">PROGRAMADO</span></div>
+        <div class="kv"><span class="kk">Arranca</span><span class="vv">23 de septiembre</span></div>
+        <div class="kv"><span class="kk">Formato</span><span class="vv">Reunión por empresa</span></div>
+      </div>
+      <div class="card r d4">
+        <div class="ch"><div class="ct">Firma con testigos</div><span class="chip grn">META</span></div>
+        <div class="kv"><span class="kk">Fecha objetivo</span><span class="vv">Antes de fin de año</span></div>
+        <div class="kv"><span class="kk">Legitimidad</span><span class="vv grn">Autoridades, testigos</span></div>
+      </div>
+    </div>
+    <div class="foot r d5">Seguimiento de Asuntos Públicos de GEMI. No refleja un compromiso formal de fecha por parte de terceros.</div>
+  </section>
+
+  <!-- 16 · Divider 03 -->
+  <section class="dk" data-t="03 · Observatorio">
+    <div class="big-n r">03</div>
+    <h1 class="r d1" style="font-size:clamp(34px,5.4vw,74px)">Observatorio de Economía Circular</h1>
+    <div class="div-sub r d2">Nuestro asiento permanente en la mesa</div>
+  </section>
+
+  <!-- 17 · Tres fundadores -->
+  <section class="lt" data-t="Tres fundadores">
+    <div class="k r">Qué es, y por qué GEMI está adentro</div>
+    <div class="t r d1">Tres fundadores, un solo lanzamiento</div>
+    <div class="cards c3">
+      <div class="card tint r d2"><div class="ct">Comisión Especial de Economía Circular</div><div class="cs" style="margin-top:8px">Senado de la República, rectoría del proyecto</div></div>
+      <div class="card tint r d3"><div class="ct">Tecnológico de Monterrey</div><div class="cs" style="margin-top:8px">Aliado académico fundador</div></div>
+      <div class="card solid r d4"><div class="ct" style="color:var(--grn)">Iniciativa GEMI</div><div class="cs" style="margin-top:8px">Aliado fundador desde el sector empresarial</div></div>
+    </div>
+    <div class="foot r d5">Lanzamiento el <b class="grn">15 de octubre</b>, en el Senado. Es el canal institucional correcto, la comisión que el Senado creó específicamente para este tema.</div>
+  </section>
+
+  <!-- 18 · Calendario anual -->
+  <section class="nk" data-t="Calendario anual">
+    <div class="k r">Seguimiento de Asuntos Públicos · Qué está confirmado y qué no</div>
+    <div class="t r d1">Calendario anual, por certeza</div>
+    <div class="cards c4">
+      <div class="card r d2"><div class="ch"><div class="ct">Enero 2027</div><span class="chip grn">CONFIRMADO</span></div><div class="cs" style="margin-top:6px"><b style="color:#fff">28 de enero</b><br>Reglamento LGEC + avance estatal</div></div>
+      <div class="card r d3"><div class="ch"><div class="ct">Abril</div><span class="chip blue">POR DEFINIR</span></div><div class="cs" style="margin-top:6px">Fecha pendiente<br>Segunda entrega del mapa</div></div>
+      <div class="card r d4"><div class="ch"><div class="ct">Julio</div><span class="chip blue">POR DEFINIR</span></div><div class="cs" style="margin-top:6px">Fecha pendiente<br>Tercera entrega del mapa</div></div>
+      <div class="card r d5"><div class="ch"><div class="ct">Octubre</div><span class="chip blue">POR DEFINIR</span></div><div class="cs" style="margin-top:6px">Fecha pendiente<br>Aniversario del lanzamiento</div></div>
+    </div>
+    <div class="foot r d6">Solo enero tiene fecha y contenido cerrados. Las otras tres sesiones son compromiso de calendario, no producto definido.</div>
+  </section>
+
+  <!-- 19 · El día del lanzamiento -->
+  <section class="lt" data-t="Día del lanzamiento">
+    <div class="k r">15 de octubre, 10:00 horas, Senado</div>
+    <div class="t r d1">El día del lanzamiento</div>
+    <div class="duo">
+      <div class="pnl solid r d2">
+        <div class="pl">10:26 – 10:38</div>
+        <div class="ph">Panorama regulatorio y demostración de Scope</div>
+        <div class="pp">Presenta Rubén León Flores en representación de GEMI</div>
+      </div>
+      <div class="pnl ghost r d3">
+        <div class="pl">Panel "Del dato a la implementación"</div>
+        <div class="ph" style="font-weight:400;font-size:16px">CHEP confirmado. Bimbo y Jumex en proceso.</div>
+      </div>
+    </div>
+    <div class="foot r d4">Firmantes de la Declaratoria: Senador Camarillo, Tecnológico de Monterrey, Benjamín del Arco por GEMI.</div>
+  </section>
+
+  <!-- 20 · Mapa público -->
+  <section class="lt" data-t="Mapa público">
+    <div class="k r">Lo que GEMI pone sobre la mesa</div>
+    <div class="t r d1">Un mapa público, no un producto cerrado</div>
+    <div class="duo">
+      <div class="pnl solid r d2">
+        <div class="pl">gemiscope.com/observatorio</div>
+        <div class="ph">Mapa interactivo público del estado de la economía circular por entidad federativa</div>
+        <div class="pp">Sin accesos individuales a Scope. Sin costo por participar.</div>
+      </div>
+      <div class="pnl ghost r d3">
+        <div class="pl">Por qué importa</div>
+        <div class="ph" style="font-weight:400;font-size:16px;line-height:1.5">Buena parte de la legislación real de economía circular vive en los estados. El Observatorio es la puerta natural para llegar ahí.</div>
+      </div>
+    </div>
+    <div class="foot r d4">Primera entrega, 28 de enero de 2027: reglamento de la LGEC y avance legislativo estatal.</div>
+  </section>
+
+  <!-- 21 · Próximas semanas -->
+  <section class="lt" data-t="Próximas semanas">
+    <div class="k r">Para que nadie salga de aquí sin el dato</div>
+    <div class="t r d1">Las próximas semanas, con fecha</div>
+    <div class="bignum r d1"><div class="n">65</div><div class="bx">días de retraso sobre el plazo legal de 180 días para publicar el reglamento de la Ley General de Economía Circular, vencido el 19 de julio de 2026.</div></div>
+    <div class="rows">
+      <div class="row r d2"><div class="tm">28–29 sep</div><div class="tx">Audiencias públicas LGEEPA: academia y comunidades el 28, sector industrial y autoridades estatales el 29</div></div>
+      <div class="row r d3"><div class="tm">29 sep · 15–18h</div><div class="tx">Mesa de presupuesto con perspectiva de desarrollo sustentable, coordina el Partido Verde</div></div>
+      <div class="row r d4"><div class="tm">9 oct</div><div class="tx">La Cámara publica en su micrositio los documentos de las mesas del Presupuesto de Egresos</div></div>
+      <div class="row r d5"><div class="tm">20 oct</div><div class="tx">Vence el plazo para que la Cámara apruebe la Ley de Ingresos 2027</div></div>
+    </div>
+    <div class="foot r d6">Los periodos legislativos estatales ya arrancaron. Se espera avance en las leyes locales de Economía Circular.</div>
+  </section>
+
+  <!-- 22 · Tres semanas del clima -->
+  <section class="lt" data-t="Tres semanas del clima">
+    <div class="k r">La misma conversación, tres geografías</div>
+    <div class="t r d1">Tres semanas del clima, casi seguidas</div>
+    <div class="cards c3">
+      <div class="card r d2"><div class="cn" style="font-size:15px;color:var(--kick-l)">20–27 SEP</div><div class="ct" style="margin-top:8px">Climate Week NYC</div><div class="cs" style="margin-top:6px">En paralelo a la Asamblea General de la ONU. Agenda climática y empresarial internacional.</div></div>
+      <div class="card r d3"><div class="cn" style="font-size:15px;color:var(--kick-l)">28 SEP–1 OCT</div><div class="ct" style="margin-top:8px">UNECE Sustainable Energy Week</div><div class="cs" style="margin-top:6px">Ginebra. Agenda internacional de transición energética.</div></div>
+      <div class="card solid r d4"><div class="cn" style="font-size:15px">5–9 OCT</div><div class="ct" style="margin-top:8px;color:#fff">Semana de Acción por el Clima y la Naturaleza</div><div class="cs" style="margin-top:6px">México por el Clima, CDMX. Actividades centrales del 6 al 8, Papalote Museo del Niño.</div></div>
+    </div>
+    <div class="foot r d5">Ninguna es un evento aislado. Es la misma conversación regulatoria y de inversión, en escalas distintas, en tres semanas seguidas.</div>
+  </section>
+
+  <!-- 23 · Hilo conductor -->
+  <section class="dk" data-t="El hilo conductor">
+    <div class="k r">El hilo conductor</div>
+    <div class="t r d1">Tres frentes abiertos al mismo tiempo, una sola función</div>
+    <div class="lead r d2">GEMI traduce la complejidad regulatoria en ventaja para ustedes, en el Congreso, en la mesa de sustancias, y ahora también en los estados.</div>
+    <div class="cards c3" style="margin-top:auto">
+      <div class="card r d3" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="ct" style="color:#fff">LGEEPA</div><div class="cs" style="margin-top:6px">Audiencias públicas por confirmar</div></div>
+      <div class="card r d4" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="ct" style="color:#fff">Sustancias</div><div class="cs" style="margin-top:6px">Cabildeo arranca el 23 de septiembre</div></div>
+      <div class="card r d5" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)"><div class="ct" style="color:#fff">Observatorio</div><div class="cs" style="margin-top:6px">Lanzamiento el 15 de octubre</div></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  var deck=document.querySelector('.deck'),prog=document.querySelector('.prog'),dotsWrap=document.querySelector('.dots');
+  var secs=[].slice.call(document.querySelectorAll('section'));
+  secs.forEach(function(s,i){var a=document.createElement('a');a.title=s.getAttribute('data-t')||('Slide '+(i+1));a.addEventListener('click',function(){secs[i].scrollIntoView({behavior:'smooth'});});dotsWrap.appendChild(a);});
+  var dots=[].slice.call(dotsWrap.children);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in');var i=secs.indexOf(e.target);dots.forEach(function(d,j){d.classList.toggle('on',j===i);});}
+  });},{threshold:.5});
+  secs.forEach(function(s){io.observe(s);});
+  deck.addEventListener('scroll',function(){var m=deck.scrollHeight-deck.clientHeight;prog.style.width=(m>0?deck.scrollTop/m*100:0)+'%';},{passive:true});
+  function cur(){return Math.round(deck.scrollTop/deck.clientHeight);}
+  function go(i){i=Math.max(0,Math.min(secs.length-1,i));secs[i].scrollIntoView({behavior:'smooth'});}
+  document.addEventListener('keydown',function(e){
+    if(['ArrowDown','ArrowRight','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();go(cur()+1);}
+    else if(['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key)>=0){e.preventDefault();go(cur()-1);}
+    else if(e.key==='Home'){e.preventDefault();go(0);} else if(e.key==='End'){e.preventDefault();go(secs.length-1);}
+  });
+})();
+</script>
+</body>
+</html>
