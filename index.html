@@ -7600,6 +7600,7 @@ function renderConsola(){
   // ── Widgets reordenables (drag-and-drop). Señal vive en el dúo (arriba); cumplimiento en modal. ──
   var widgets=[];
   widgets.push({id:'estados',title:'Mis estados',count:estados.length,add:'estados',desc:'Las entidades que sigues, con su nivel de actividad regulatoria. Para vigilar dónde se mueve tu agenda.',body:'<div id="cons-estados"></div>'});
+  if(estados.length)widgets.push({id:'leyes',title:'Legislación de mis estados',count:estados.reduce(function(a,s){return a+((typeof _nLeyes==='function')?_nLeyes(s):0);},0),add:'estados',wide:true,desc:'Leyes, reglamentos y códigos ambientales vigentes en los estados que sigues, de la misma base estatal que el directorio. Para el seguimiento normativo de tu operación en cada entidad.',body:'<div id="cons-leyes"></div>'});
   _consRefWidgets(cfg).forEach(function(w){w.add='referencias';widgets.push(w);});
   if(!(cfg.noms||[]).length&&!(cfg.instrumentos||[]).length&&!(cfg.impuestos||[]).length&&!(cfg.materiales||[]).length)
     widgets.push({id:'ref-vacio',title:'Referencias',count:null,add:'referencias',body:'<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> aquí arriba) para tenerlos a la mano.</div>'});
@@ -7638,6 +7639,7 @@ function renderConsola(){
   if(document.getElementById('cumpl-body'))_cumplRender();
   if(document.getElementById('cons-senal'))_consSenal(sen);
   if(document.getElementById('cons-estados'))_consEstados(estados);
+  if(document.getElementById('cons-leyes'))_consLeyes(estados);
   if(document.getElementById('cons-coms'))_consComs(coms);
   if(legs.length&&document.getElementById('cons-legs'))_consLegs(legs);
   if(document.getElementById('cons-pres'))_consPres(allKw);
@@ -8401,6 +8403,42 @@ function _consEstados(estados){
   }).join('');
   el.style.display='block';
   el.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">'+cards+'</div>'+_consEstadosCompare(estados);
+}
+// Legislación de mis estados: lista las leyes (fuente única _leyEntry) de cada estado seguido
+function _consLeyes(estados){
+  var el=document.getElementById('cons-leyes');if(!el)return;
+  if(!estados.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Agrega estados a tu terminal para ver su legislación aquí.</div>';return;}
+  var html=estados.map(function(s){
+    var e=(typeof _leyEntry==='function')?_leyEntry(s):null;
+    var groups=(e&&e.leyes)?e.leyes:{};
+    var rows=[];
+    Object.keys(groups).forEach(function(cat){(groups[cat]||[]).forEach(function(l){
+      if(typeof _isLeyPlaceholder==='function'&&_isLeyPlaceholder(l))return; rows.push(l);
+    });});
+    var se=s.replace(/'/g,"\\'");
+    var head='<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-bottom:0.8px solid var(--border);padding-bottom:6px;margin:16px 0 6px">'
+      +'<span style="font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--green)">'+s+'</span>'
+      +'<span onclick="openStatePanel(\''+se+'\')" title="Abrir expediente estatal" style="font-family:var(--mono);font-size:10px;color:var(--text-muted);cursor:pointer;white-space:nowrap">'+rows.length+' leyes · ver expediente →</span></div>';
+    if(!rows.length)return head+'<div style="font-size:11px;color:var(--text-muted);padding:4px 0 8px">Sin datos de legislación local disponibles.</div>';
+    var body=rows.map(function(l,i){
+      var nombre=(typeof _leyName==='function')?_leyName(l.nombre||''):(l.nombre||'');
+      var sig=/^\s*c[oó]digo/i.test(nombre)?'CÓD':/^\s*reglamento/i.test(nombre)?'REG':/^\s*programa/i.test(nombre)?'PROG':'LEY';
+      var sigCol=sig==='LEY'?'var(--green)':sig==='CÓD'?'#2563eb':'#6b7280';
+      var est=l.estado_vigencia||'';
+      var estCol=/vigente/i.test(est)?'var(--green)':/abrogad/i.test(est)?'#b91c1c':/pendiente/i.test(est)?'#B45309':'var(--text-muted)';
+      var url=(l.url||'');
+      var click=url?('window.open(\''+url.replace(/'/g,"%27")+'\',\'_blank\',\'noopener\')'):('openStatePanel(\''+se+'\')');
+      return '<div class="ley-row'+(i%2?' zeb':'')+'" style="align-items:center;cursor:pointer" onclick="'+click+'">'
+        +'<span class="ley-sigla" style="color:'+sigCol+'">'+sig+'</span>'
+        +'<div style="flex:1;min-width:0"><div class="ley-nombre" style="color:var(--text);font-weight:400;line-height:1.35">'+nombre+'</div>'
+        +(est?'<div style="font-size:10px;color:'+estCol+';margin-top:2px">'+est+(l.ultima_reforma?' · última reforma <span style="color:var(--text-sec)">'+l.ultima_reforma+'</span>':'')+'</div>':'')
+        +'</div>'
+        +'<span style="font-size:16px;font-weight:300;color:var(--text-muted);opacity:.4;flex-shrink:0;line-height:1">›</span></div>';
+    }).join('');
+    return head+body;
+  }).join('');
+  el.style.display='block';
+  el.innerHTML=html;
 }
 // Comparativa de los estados que sigues (nutre Mis estados con benchmark)
 function _consEstadosCompare(estados){
