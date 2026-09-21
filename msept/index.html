@@ -47,7 +47,7 @@
   .t{font-size:clamp(30px,4.7vw,62px);font-weight:800;letter-spacing:-.022em;line-height:1.05}
   .lead{font-size:clamp(15px,1.7vw,21px);line-height:1.55;max-width:820px;margin-top:16px;font-weight:400}
   .dk .lead,.nk .lead{color:var(--mut-d)} .lt .lead{color:var(--mut-l)}
-  .foot{font-size:clamp(12px,1.35vw,15px);font-style:italic;margin-top:26px;max-width:960px;line-height:1.5}
+  .foot{font-size:clamp(12px,1.35vw,15px);margin-top:26px;max-width:960px;line-height:1.5}
   .dk .foot,.nk .foot{color:var(--dim-d)} .lt .foot{color:var(--dim-l)}
   b,strong{font-weight:700}
   .grn{color:var(--grn)}
@@ -67,7 +67,7 @@
   /* cover (lámina 1) */
   .cover{justify-content:center;align-items:center;text-align:center}
   .cover .logo-c{height:clamp(84px,11vw,120px);width:auto;margin-bottom:32px;border-radius:20px}
-  .cover .mem{font-family:var(--mono);font-size:clamp(15px,2vw,23px);letter-spacing:.2em;text-transform:uppercase;color:var(--kick-d);font-weight:600}
+  .cover .mem{font-family:var(--sans);font-size:clamp(15px,2vw,23px);letter-spacing:.13em;text-transform:uppercase;color:var(--kick-d);font-weight:700}
   .cover .tagline{position:absolute;bottom:8vh;left:0;right:0;font-size:clamp(14px,1.7vw,20px);color:var(--mut-d);font-weight:500}
   .tw{display:inline-block;text-align:left;color:var(--mint);border-right:2px solid var(--mint);animation:caret 1.05s step-end infinite}
   @keyframes caret{50%{border-color:transparent}}
@@ -281,9 +281,43 @@
   .cover .tagline{position:static;bottom:auto;margin-top:22px}
   .assoc{margin-top:clamp(30px,6vh,64px);display:flex;flex-direction:column;align-items:center;gap:16px;max-width:1120px}
   .assoc-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim-d)}
-  .assoc-wall{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(24px,3.2vw,50px);row-gap:clamp(18px,2.8vh,32px)}
-  .assoc-wall img{height:clamp(21px,2.4vw,29px);width:auto;max-width:150px;object-fit:contain;opacity:.7;transition:opacity .3s ease}
-  @media(max-width:760px){.assoc-wall img{height:20px}}
+  .assoc-wall{display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:clamp(12px,2vw,34px)}
+  .assoc-wall img{height:clamp(14px,1.9vw,26px);width:auto;object-fit:contain;opacity:.72;transition:opacity .3s ease;flex:0 0 auto}
+  @media(max-width:900px){.assoc-wall{gap:14px}.assoc-wall img{height:16px}}
+  @media(max-width:520px){.assoc-wall{flex-wrap:wrap;gap:16px 18px}.assoc-wall img{height:16px}}
+  /* ===== Observatorio · mockup Scope con mapa de puntos ===== */
+  .obs-split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,4vw,56px);align-items:center;margin-top:26px}
+  @media(max-width:860px){.obs-split{grid-template-columns:1fr;gap:26px}}
+  .obs-copy .lead{margin-top:0}
+  .obs-pts{margin-top:22px;display:flex;flex-direction:column;gap:14px;max-width:460px}
+  .obs-pt{font-size:clamp(14px,1.5vw,17px);line-height:1.5;color:var(--mut-l)}
+  .obs-pt .obs-k{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kick-l);margin-right:9px;font-weight:700}
+  .obs-win{background:#fff;border:1px solid var(--lineL);border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(14,59,44,.10)}
+  .obs-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:#eef2ee;border-bottom:1px solid var(--lineL)}
+  .obs-bar .obs-dot{width:9px;height:9px;border-radius:50%;background:#cbd5cd}
+  .obs-url{margin-left:12px;font-family:var(--mono);font-size:11.5px;color:#6a7c72;background:#fff;border:1px solid var(--lineL);border-radius:7px;padding:4px 12px;flex:1}
+  .obs-inner{padding:18px 20px}
+  .obs-title{font-size:16px;font-weight:800;color:var(--ink-l);letter-spacing:-.01em}
+  .obs-sub{font-size:12px;color:var(--mut-l);margin-top:3px;font-family:var(--mono)}
+  .obs-mapwrap{margin:14px 0 6px}
+  .obs-map{width:100%;height:auto;display:block}
+  .obs-map circle{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(.25);transition:opacity .45s ease,transform .5s cubic-bezier(.2,1.3,.4,1);transition-delay:calc(.25s + var(--i,0)*.03s)}
+  section.in .obs-map circle{opacity:1;transform:scale(1)}
+  .obs-map circle.dim{fill:#c6d5cc}
+  .obs-map circle.on{fill:var(--g);filter:drop-shadow(0 0 2.2px rgba(18,185,138,.75))}
+  section.in .obs-map circle.on{animation:obspulse 2.8s ease-in-out 1.2s infinite}
+  @keyframes obspulse{0%,100%{filter:drop-shadow(0 0 1.4px rgba(18,185,138,.45))}50%{filter:drop-shadow(0 0 4px rgba(18,185,138,.95))}}
+  .obs-legend{display:flex;gap:18px;font-size:11.5px;color:var(--mut-l);margin-top:8px}
+  .obs-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;background:#c6d5cc;margin-right:6px;vertical-align:-1px}
+  .obs-legend i.on{background:var(--g)}
+  .obs-kpis{display:flex;gap:26px;margin-top:14px;padding-top:14px;border-top:1px solid var(--lineL)}
+  .obs-kpi{font-size:12.5px;color:var(--mut-l)}
+  .obs-kpi b{font-size:22px;font-weight:800;color:var(--ink-l);letter-spacing:-.02em;margin-right:6px}
+  .obs-kpi b.grn{color:var(--g2)}
+  /* ===== Asuntos Generales · peticiones ===== */
+  .ag-asks{margin-top:34px;display:flex;flex-direction:column;gap:16px;max-width:780px}
+  .ag-ask{font-size:clamp(15px,1.6vw,19px);line-height:1.5;color:var(--mut-d)}
+  .ag-ask .ag-k{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--kick-d);font-weight:700;margin-right:10px}
 </style>
 </head>
 <body>
@@ -614,11 +648,10 @@
       <div class="pnl solid r d2">
         <div class="pl">10:26 – 10:38</div>
         <div class="ph">Panorama regulatorio y demostración de Scope</div>
-        <div class="pp">Presenta Rubén León Flores en representación de GEMI</div>
       </div>
       <div class="pnl ghost r d3">
         <div class="pl">Panel "Del dato a la implementación"</div>
-        <div class="ph" style="font-weight:400;font-size:16px">CHEP confirmado. Bimbo y Jumex en proceso.</div>
+        <div class="ph" style="font-weight:400;font-size:16px;line-height:1.5">La invitación a participar está abierta a todos los asociados. Una conversación sobre la experiencia de observar la economía circular en todo el país.</div>
       </div>
     </div>
     <div class="foot r d4">Firmantes de la Declaratoria: Senador Camarillo, Tecnológico de Monterrey, Benjamín del Arco por GEMI.</div>
@@ -628,18 +661,28 @@
   <section class="lt" data-t="Mapa público">
     <div class="k r">Lo que GEMI pone sobre la mesa</div>
     <div class="t r d1">Un mapa público, no un producto cerrado</div>
-    <div class="duo">
-      <div class="pnl solid r d2">
-        <div class="pl">gemiscope.com/observatorio</div>
-        <div class="ph">Mapa interactivo público del estado de la economía circular por entidad federativa</div>
-        <div class="pp">Sin accesos individuales a Scope. Sin costo por participar.</div>
+    <div class="obs-split">
+      <div class="obs-copy">
+        <p class="lead r d2">Un mapa interactivo y público del estado de la economía circular por entidad federativa. Sin accesos individuales a Scope y sin costo por participar.</p>
+        <div class="obs-pts">
+          <div class="obs-pt r d3"><span class="obs-k">Abierto</span>gemiscope.com/observatorio, disponible para cualquiera.</div>
+          <div class="obs-pt r d4"><span class="obs-k">Estatal</span>Buena parte de la legislación de economía circular vive en los estados. El Observatorio es la puerta natural para llegar ahí.</div>
+        </div>
       </div>
-      <div class="pnl ghost r d3">
-        <div class="pl">Por qué importa</div>
-        <div class="ph" style="font-weight:400;font-size:16px;line-height:1.5">Buena parte de la legislación real de economía circular vive en los estados. El Observatorio es la puerta natural para llegar ahí.</div>
+      <div class="obs-mock r d3">
+        <div class="obs-win">
+          <div class="obs-bar"><span class="obs-dot"></span><span class="obs-dot"></span><span class="obs-dot"></span><div class="obs-url">gemiscope.com/observatorio</div></div>
+          <div class="obs-inner">
+            <div class="obs-title">Observatorio de Economía Circular</div>
+            <div class="obs-sub">Avance normativo por entidad · actualización en vivo</div>
+            <div class="obs-mapwrap"><svg class="obs-map" viewBox="0 0 100 66" preserveAspectRatio="xMidYMid meet"><circle class="dim" cx="8" cy="8" r="1.5" style="--i:0"/><circle class="dim" cx="24" cy="12" r="1.5" style="--i:1"/><circle class="dim" cx="37" cy="13" r="1.5" style="--i:2"/><circle class="dim" cx="48" cy="18" r="1.5" style="--i:3"/><circle class="dim" cx="15" cy="27" r="1.5" style="--i:4"/><circle class="on" cx="55" cy="22" r="2.1" style="--i:5"/><circle class="dim" cx="62" cy="27" r="1.5" style="--i:6"/><circle class="dim" cx="28" cy="28" r="1.5" style="--i:7"/><circle class="dim" cx="41" cy="28" r="1.5" style="--i:8"/><circle class="dim" cx="47" cy="33" r="1.5" style="--i:9"/><circle class="dim" cx="55" cy="34" r="1.5" style="--i:10"/><circle class="dim" cx="35" cy="38" r="1.5" style="--i:11"/><circle class="dim" cx="48" cy="37" r="1.5" style="--i:12"/><circle class="on" cx="51" cy="40" r="2.1" style="--i:13"/><circle class="on" cx="55" cy="41" r="2.1" style="--i:14"/><circle class="dim" cx="58" cy="43" r="1.5" style="--i:15"/><circle class="on" cx="40" cy="42" r="2.1" style="--i:16"/><circle class="dim" cx="38" cy="46" r="1.5" style="--i:17"/><circle class="dim" cx="46" cy="47" r="1.5" style="--i:18"/><circle class="on" cx="55" cy="46" r="2.1" style="--i:19"/><circle class="on" cx="57" cy="47" r="2.1" style="--i:20"/><circle class="dim" cx="56" cy="49" r="1.5" style="--i:21"/><circle class="dim" cx="60" cy="45" r="1.5" style="--i:22"/><circle class="on" cx="60" cy="48" r="2.1" style="--i:23"/><circle class="dim" cx="65" cy="44" r="1.5" style="--i:24"/><circle class="dim" cx="51" cy="53" r="1.5" style="--i:25"/><circle class="dim" cx="61" cy="55" r="1.5" style="--i:26"/><circle class="dim" cx="71" cy="52" r="1.5" style="--i:27"/><circle class="dim" cx="71" cy="59" r="1.5" style="--i:28"/><circle class="dim" cx="77" cy="50" r="1.5" style="--i:29"/><circle class="on" cx="83" cy="45" r="2.1" style="--i:30"/><circle class="dim" cx="87" cy="50" r="1.5" style="--i:31"/></svg></div>
+            <div class="obs-legend"><span><i class="on"></i>Con avance normativo</span><span><i></i>En seguimiento</span></div>
+            <div class="obs-kpis"><div class="obs-kpi"><b>32</b>estados monitoreados</div><div class="obs-kpi"><b class="grn">8</b>con avance normativo</div></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="foot r d4">Primera entrega, 28 de enero de 2027: reglamento de la LGEC y avance legislativo estatal.</div>
+    <div class="foot r d5">Primera entrega, 28 de enero de 2027: reglamento de la LGEC y avance legislativo estatal.</div>
   </section>
 
   <!-- 21 · Lo que viene (iCal) -->
@@ -674,6 +717,10 @@
     <div class="big-n r">04</div>
     <h1 class="r d1">Asuntos Generales</h1>
     <div class="div-sub r d2">Iniciativas y proyectos en marcha, comentarios de la mesa</div>
+    <div class="ag-asks">
+      <div class="ag-ask r d3"><span class="ag-k">Comparte</span>Envíanos las comunicaciones institucionales de sus logros en sostenibilidad y economía circular. Empezamos a difundirlas en nuestras redes.</div>
+      <div class="ag-ask r d4"><span class="ag-k">Síguenos</span>En Instagram: <b class="grn">@iniciativa.gemi</b></div>
+    </div>
   </section>
 
   <!-- 23 · Hilo conductor -->
