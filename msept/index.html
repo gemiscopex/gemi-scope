@@ -318,6 +318,51 @@
   .ag-asks{margin-top:34px;display:flex;flex-direction:column;gap:16px;max-width:780px}
   .ag-ask{font-size:clamp(15px,1.6vw,19px);line-height:1.5;color:var(--mut-d)}
   .ag-ask .ag-k{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--kick-d);font-weight:700;margin-right:10px}
+  /* ===== Mapa REAL de Scope (proyección + siluetas GeoJSON) ===== */
+  .scope-map{position:relative;width:100%;aspect-ratio:680/480;background:#fff;overflow:hidden;border-radius:8px;border:1px solid var(--lineL)}
+  .sm-annot{position:absolute;inset:0;pointer-events:none}
+  .sm-annot svg{position:absolute;inset:0;width:100%;height:100%}
+  .sm-dots{position:absolute;inset:0}
+  .sm-dot{position:absolute;transform:translate(-50%,-50%) scale(.4);display:flex;flex-direction:column;align-items:center;gap:2px;opacity:0;transition:opacity .4s ease,transform .5s cubic-bezier(.2,1.3,.4,1);transition-delay:calc(.35s + var(--i,0)*.022s)}
+  section.in .sm-dot{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .sm-core{width:8px;height:8px;border-radius:50%;background:#2b4a6f;border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.28)}
+  .sm-abbr{font-family:var(--mono);font-size:7px;color:#94a3b8;letter-spacing:.02em;white-space:nowrap}
+  .sm-dot.on .sm-core{background:var(--g);box-shadow:0 0 0 3px rgba(18,185,138,.18),0 1px 3px rgba(0,0,0,.28)}
+  .sm-dot.on .sm-abbr{color:var(--g2);font-weight:700}
+  .sm-ocean{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#aec3d1;pointer-events:none;white-space:nowrap}
+  .sm-pac{left:15%;top:84%}.sm-gulf{left:72%;top:20%}
+  /* ===== Asuntos Generales · split + iPhone Instagram ===== */
+  .ag-split{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,4vw,60px);align-items:center}
+  @media(max-width:860px){.ag-split{grid-template-columns:1fr;gap:26px}.ag-phone-wrap{display:none}}
+  .ag-phone-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;justify-self:center}
+  .ag-phone-cap{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--kick-d)}
+  .iphone{position:relative;width:clamp(206px,16vw,244px);aspect-ratio:9/19.5;background:#0b0b0d;border-radius:38px;padding:8px;box-shadow:0 34px 80px rgba(0,0,0,.5),inset 0 0 0 2px #26262b}
+  .ip-screen{position:relative;width:100%;height:100%;background:#fff;border-radius:30px;overflow:hidden}
+  .ip-island{position:absolute;top:16px;left:50%;transform:translateX(-50%);width:32%;height:19px;background:#0b0b0d;border-radius:11px;z-index:6}
+  .ip-side{position:absolute;background:#3a3a3e;border-radius:2px;width:3px}
+  .ip-side-l1{left:-2px;top:92px;height:22px}.ip-side-l2{left:-2px;top:122px;height:40px}.ip-side-r{right:-2px;top:112px;height:56px}
+  .ig-shot{display:flex;flex-direction:column;height:100%;background:#fff;color:#111}
+  .ig-status{display:flex;justify-content:space-between;align-items:center;padding:9px 18px 3px;font-size:9px;font-weight:800;color:#111}
+  .ig-ico{font-family:var(--mono);font-size:8px;letter-spacing:.05em}
+  .ig-top{display:flex;align-items:center;justify-content:space-between;padding:7px 12px;border-bottom:1px solid #eee}
+  .ig-handle{font-weight:700;font-size:12px;color:#111}
+  .ig-back,.ig-menu{font-size:15px;color:#111;line-height:1}
+  .ig-head{display:flex;align-items:center;gap:12px;padding:12px}
+  .ig-ava{width:52px;height:52px;border-radius:50%;flex:0 0 auto;overflow:hidden;padding:3px;background:conic-gradient(from 20deg,#066750,#12b98a,#3fe0ad,#066750)}
+  .ig-ava img{width:100%;height:100%;object-fit:contain;border-radius:50%;background:#fff;padding:2px}
+  .ig-ava.noimg{background:#066750}
+  .ig-stats{display:flex;flex:1;justify-content:space-around;text-align:center}
+  .ig-stats>div{flex:1}
+  .ig-stats b{display:block;font-size:13px;color:#111;font-weight:800}
+  .ig-stats span{font-size:9px;color:#666}
+  .ig-bio{padding:0 12px;display:flex;flex-direction:column;gap:2px}
+  .ig-bio b{font-size:11px;color:#111}
+  .ig-bio span{font-size:9.5px;color:#333;line-height:1.35}
+  .ig-follow{display:flex;gap:6px;padding:10px 12px}
+  .ig-btn{flex:1;text-align:center;font-size:10px;font-weight:700;color:#fff;background:#0095f6;border-radius:8px;padding:6px 0}
+  .ig-btn.ghost{background:#efefef;color:#111}
+  .ig-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;padding:2px 0 0;flex:1}
+  .ig-grid i{background:linear-gradient(135deg,#e7efe9,#d6e4dc);display:block}
 </style>
 </head>
 <body>
@@ -675,7 +720,7 @@
           <div class="obs-inner">
             <div class="obs-title">Observatorio de Economía Circular</div>
             <div class="obs-sub">Avance normativo por entidad · actualización en vivo</div>
-            <div class="obs-mapwrap"><svg class="obs-map" viewBox="0 0 100 66" preserveAspectRatio="xMidYMid meet"><circle class="dim" cx="8" cy="8" r="1.5" style="--i:0"/><circle class="dim" cx="24" cy="12" r="1.5" style="--i:1"/><circle class="dim" cx="37" cy="13" r="1.5" style="--i:2"/><circle class="dim" cx="48" cy="18" r="1.5" style="--i:3"/><circle class="dim" cx="15" cy="27" r="1.5" style="--i:4"/><circle class="on" cx="55" cy="22" r="2.1" style="--i:5"/><circle class="dim" cx="62" cy="27" r="1.5" style="--i:6"/><circle class="dim" cx="28" cy="28" r="1.5" style="--i:7"/><circle class="dim" cx="41" cy="28" r="1.5" style="--i:8"/><circle class="dim" cx="47" cy="33" r="1.5" style="--i:9"/><circle class="dim" cx="55" cy="34" r="1.5" style="--i:10"/><circle class="dim" cx="35" cy="38" r="1.5" style="--i:11"/><circle class="dim" cx="48" cy="37" r="1.5" style="--i:12"/><circle class="on" cx="51" cy="40" r="2.1" style="--i:13"/><circle class="on" cx="55" cy="41" r="2.1" style="--i:14"/><circle class="dim" cx="58" cy="43" r="1.5" style="--i:15"/><circle class="on" cx="40" cy="42" r="2.1" style="--i:16"/><circle class="dim" cx="38" cy="46" r="1.5" style="--i:17"/><circle class="dim" cx="46" cy="47" r="1.5" style="--i:18"/><circle class="on" cx="55" cy="46" r="2.1" style="--i:19"/><circle class="on" cx="57" cy="47" r="2.1" style="--i:20"/><circle class="dim" cx="56" cy="49" r="1.5" style="--i:21"/><circle class="dim" cx="60" cy="45" r="1.5" style="--i:22"/><circle class="on" cx="60" cy="48" r="2.1" style="--i:23"/><circle class="dim" cx="65" cy="44" r="1.5" style="--i:24"/><circle class="dim" cx="51" cy="53" r="1.5" style="--i:25"/><circle class="dim" cx="61" cy="55" r="1.5" style="--i:26"/><circle class="dim" cx="71" cy="52" r="1.5" style="--i:27"/><circle class="dim" cx="71" cy="59" r="1.5" style="--i:28"/><circle class="dim" cx="77" cy="50" r="1.5" style="--i:29"/><circle class="on" cx="83" cy="45" r="2.1" style="--i:30"/><circle class="dim" cx="87" cy="50" r="1.5" style="--i:31"/></svg></div>
+            <div class="obs-mapwrap"><div class="scope-map" id="obsmap"><div class="sm-annot" id="obs-annot"></div><div class="sm-dots" id="obs-dots"></div><div class="sm-ocean sm-pac">Océano Pacífico</div><div class="sm-ocean sm-gulf">Golfo de México</div></div></div>
             <div class="obs-legend"><span><i class="on"></i>Con avance normativo</span><span><i></i>En seguimiento</span></div>
             <div class="obs-kpis"><div class="obs-kpi"><b>32</b>estados monitoreados</div><div class="obs-kpi"><b class="grn">8</b>con avance normativo</div></div>
           </div>
@@ -714,12 +759,36 @@
   <!-- Asuntos Generales -->
   <section class="dk" data-t="Asuntos Generales">
     <div class="glow" style="width:600px;height:600px;background:var(--g3);bottom:-14%;left:-8%;opacity:.3"></div>
-    <div class="big-n r">04</div>
-    <h1 class="r d1">Asuntos Generales</h1>
-    <div class="div-sub r d2">Iniciativas y proyectos en marcha, comentarios de la mesa</div>
-    <div class="ag-asks">
-      <div class="ag-ask r d3"><span class="ag-k">Comparte</span>Envíanos las comunicaciones institucionales de sus logros en sostenibilidad y economía circular. Empezamos a difundirlas en nuestras redes.</div>
-      <div class="ag-ask r d4"><span class="ag-k">Síguenos</span>En Instagram: <b class="grn">@iniciativa.gemi</b></div>
+    <div class="ag-split">
+      <div class="ag-col">
+        <div class="big-n r">04</div>
+        <h1 class="r d1">Asuntos Generales</h1>
+        <div class="div-sub r d2">Iniciativas y proyectos en marcha, comentarios de la mesa</div>
+        <div class="ag-asks">
+          <div class="ag-ask r d3"><span class="ag-k">Comparte</span>Envíanos las comunicaciones institucionales de sus logros en sostenibilidad y economía circular. Empezamos a difundirlas en nuestras redes.</div>
+          <div class="ag-ask r d4"><span class="ag-k">Síguenos</span>En Instagram: <b class="grn">@iniciativa.gemi</b></div>
+        </div>
+      </div>
+      <div class="ag-phone-wrap r d3">
+        <div class="iphone">
+          <span class="ip-side ip-side-l1"></span><span class="ip-side ip-side-l2"></span><span class="ip-side ip-side-r"></span>
+          <div class="ip-screen">
+            <div class="ig-shot" id="igShot">
+              <div class="ig-status"><span>9:41</span><span class="ig-ico">5G</span></div>
+              <div class="ig-top"><span class="ig-back">&#8249;</span><span class="ig-handle">iniciativa.gemi</span><span class="ig-menu">&#8943;</span></div>
+              <div class="ig-head">
+                <div class="ig-ava"><img src="/assets/logo-gemi-icon.png" alt="GEMI" onerror="this.parentNode.classList.add('noimg')"></div>
+                <div class="ig-stats"><div><b>128</b><span>posts</span></div><div><b>2,4k</b><span>seguidores</span></div><div><b>312</b><span>seguidos</span></div></div>
+              </div>
+              <div class="ig-bio"><b>Iniciativa GEMI</b><span>Estamos cambiando el ambiente · economía circular y sostenibilidad en México</span></div>
+              <div class="ig-follow"><span class="ig-btn">Seguir</span><span class="ig-btn ghost">Mensaje</span></div>
+              <div class="ig-grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="ip-island"></div>
+        </div>
+        <div class="ag-phone-cap">@iniciativa.gemi</div>
+      </div>
     </div>
   </section>
 
@@ -787,6 +856,38 @@
     else if(['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key)>=0){e.preventDefault();go(cur()-1);}
     else if(e.key==='Home'){e.preventDefault();go(0);} else if(e.key==='End'){e.preventDefault();go(secs.length-1);}
   });
+})();
+</script>
+
+<script>
+/* Mapa real de Scope reproducido en el mockup del Observatorio */
+(function(){
+  var SC={'Aguascalientes':[21.876,-102.296],'Baja California':[30.840,-115.285],'Baja California Sur':[26.011,-111.346],'Campeche':[19.830,-90.535],'Chiapas':[16.756,-93.129],'Chihuahua':[28.632,-106.068],'Ciudad de México':[19.432,-99.133],'Coahuila':[27.058,-101.706],'Colima':[19.245,-103.724],'Durango':[24.027,-104.653],'Guanajuato':[20.917,-101.162],'Guerrero':[17.549,-99.500],'Hidalgo':[20.091,-98.762],'Jalisco':[20.659,-103.349],'México':[19.359,-99.851],'Michoacán':[19.566,-101.707],'Morelos':[18.924,-99.233],'Nayarit':[21.751,-104.845],'Nuevo León':[25.592,-99.996],'Oaxaca':[17.073,-96.726],'Puebla':[19.041,-98.206],'Querétaro':[20.588,-100.389],'Quintana Roo':[19.181,-88.480],'San Luis Potosí':[22.150,-100.976],'Sinaloa':[25.022,-107.604],'Sonora':[29.291,-110.309],'Tabasco':[17.987,-92.948],'Tamaulipas':[24.266,-98.836],'Tlaxcala':[19.318,-98.238],'Veracruz':[19.173,-96.134],'Yucatán':[20.710,-89.073],'Zacatecas':[22.770,-102.583]};
+  var AB={'Aguascalientes':'AGS','Baja California':'BC','Baja California Sur':'BCS','Campeche':'CAM','Chiapas':'CHIS','Chihuahua':'CHIH','Ciudad de México':'CDMX','Coahuila':'COAH','Colima':'COL','Durango':'DGO','Guanajuato':'GTO','Guerrero':'GRO','Hidalgo':'HGO','Jalisco':'JAL','México':'MEX','Michoacán':'MICH','Morelos':'MOR','Nayarit':'NAY','Nuevo León':'NL','Oaxaca':'OAX','Puebla':'PUE','Querétaro':'QRO','Quintana Roo':'QROO','San Luis Potosí':'SLP','Sinaloa':'SIN','Sonora':'SON','Tabasco':'TAB','Tamaulipas':'TAM','Tlaxcala':'TLAX','Veracruz':'VER','Yucatán':'YUC','Zacatecas':'ZAC'};
+  var ON={'Ciudad de México':1,'Jalisco':1,'Nuevo León':1,'México':1,'Querétaro':1,'Yucatán':1,'Guanajuato':1,'Puebla':1};
+  var B={lngMin:-117.8,lngMax:-86.0,latMin:14.0,latMax:33.2},I={x0:6,x1:96,y0:10,y1:88};
+  function pX(l){return I.x0+(l-B.lngMin)/(B.lngMax-B.lngMin)*(I.x1-I.x0);}
+  function pY(l){return I.y0+(B.latMax-l)/(B.latMax-B.latMin)*(I.y1-I.y0);}
+  function dots(){
+    var host=document.getElementById('obs-dots'); if(!host)return;
+    var h='',i=0;
+    Object.keys(SC).forEach(function(st){var c=SC[st];var x=pX(c[1]).toFixed(2),y=pY(c[0]).toFixed(2);var ab=AB[st]||st.slice(0,3).toUpperCase();var on=ON[st]?' on':'';
+      h+='<div class="sm-dot'+on+'" style="left:'+x+'%;top:'+y+'%;--i:'+(i++)+'"><span class="sm-core"></span><span class="sm-abbr">'+ab+'</span></div>';});
+    host.innerHTML=h;
+  }
+  function geo(){
+    var host=document.getElementById('obs-annot'); if(!host)return;
+    fetch('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json',{cache:'force-cache'})
+      .then(function(r){return r.json();}).then(function(g){
+        var d='';
+        (g.features||[]).forEach(function(f){var gm=f.geometry;if(!gm)return;var polys=gm.type==='Polygon'?[gm.coordinates]:(gm.type==='MultiPolygon'?gm.coordinates:[]);
+          polys.forEach(function(poly){poly.forEach(function(ring){if(ring.length<3)return;var dec=ring.filter(function(_,k){return k===0||k===ring.length-1||k%2===0;});
+            d+='M'+dec.map(function(p){return pX(p[0]).toFixed(2)+' '+pY(p[1]).toFixed(2);}).join('L')+'Z';});});});
+        host.innerHTML='<svg viewBox="0 0 100 100" preserveAspectRatio="none"><style>path{vector-effect:non-scaling-stroke}</style><path d="'+d+'" fill="#f2f6f3" stroke="#C8D5DF" stroke-width="1"/></svg>';
+      }).catch(function(){});
+  }
+  function init(){dots();geo();}
+  if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
 })();
 </script>
 </body>
