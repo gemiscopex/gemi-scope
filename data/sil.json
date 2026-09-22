@@ -73,6 +73,27 @@
     },
     {
       "camara_origen": "Cámara de Diputados",
+      "fecha_presentacion": "2026-09-08",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Dip. Irais Virginia Reyes De la Torre (MC)",
+      "aspectos": "La legisladora propone exhortar: 1)  a las personas titulares de la Secretaría de Energía, la Secretaría de Medio Ambiente y Recursos Naturales, la Agencia Nacional de Seguridad Industrial y de Protección al Medio Ambiente del Sector Hidrocarburos y la Comisión Nacional del Agua: a)  a que, en cualquier proceso de evaluación o eventual autorización relacionado con la exploración y extracción de gas no convencional mediante fracturación hidráulica, y conforme al marco jurídico aplicable, consideren criterios científicos, técnicos, ambientales, territoriales e hídricos que permitan determinar la viabilidad de los proyectos de manera diferenciada para cada región, priorizando la disponibilidad y calidad del agua para consumo humano, la producción de alimentos y las actividades agrícolas y ganaderas, así como la protección de los ecosistemas y la biodiversidad; y, b) a que complementen, actualicen y hagan público el mapa de zonas con potencial para el aprovechamiento de gas natural no convencional presentado por el Comité Científico, incorporando información y criterios objetivos que permitan identificar, de acuerdo con las características de cada territorio, zonas susceptibles de restricción o exclusión para la fracturación hidráulica, considerando, entre otros elementos, la disponibilidad y el estrés hídrico, la condición de las cuencas y acuíferos, el abastecimiento de agua para consumo humano y producción de alimentos, la biodiversidad, la densidad poblacional y la vulnerabilidad ambiental y social, sin que dicho mapa implique por sí mismo la autorización de actividades de exploración o extracción; 2) a las personas titulares de la Secretaría de Energía, la Secretaría de Medio Ambiente y Recursos Naturales, la Agencia Nacional de Seguridad Industrial y de Protección al Medio Ambiente del Sector Hidrocarburos y las demás autoridades que hayan participado en los trabajos del Comité Científico, a que hagan pública y accesible, en los términos de las disposiciones aplicables en materia de transparencia, la información científica, técnica, ambiental e hídrica generada, recopilada o utilizada por dicho Comité para sustentar sus conclusiones y recomendaciones, incluyendo, en la medida jurídicamente procedente, los estudios, dictámenes, metodologías, criterios, bases de información y datos empleados, a fin de garantizar el derecho de acceso a la información y favorecer una participación pública informada; y, 3) a las personas titulares de la Secretaría de Energía, la Secretaría de Medio Ambiente y Recursos Naturales y la Agencia Nacional de Seguridad Industrial y de Protección al Medio Ambiente del Sector Hidrocarburos, en el ámbito de sus respectivas competencias, a que, previo a cualquier determinación relacionada con la eventual implementación de proyectos para el aprovechamiento de gas natural no convencional mediante fracturación hidráulica, fortalezcan y garanticen mecanismos efectivos de información y participación pública de las comunidades y sectores potencialmente involucrados y, cuando jurídicamente corresponda, los procesos de consulta previstos en la Constitución, los tratados internacionales y las disposiciones aplicables, atendiendo a las características sociales, ambientales, hídricas y productivas de cada región.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Energía  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 08 de septiembre de 2026 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 08/09/2026",
+      "asunto_id": "5123929",
+      "seguimiento": "5128676",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5128676&Asunto=5123929",
+      "categorias": [
+        "agua",
+        "hidrocarburos"
+      ],
+      "categoria": "agua",
+      "categoria_nombre": "Agua",
+      "id": "99986163a4f1",
+      "scrapeado_en": "2026-09-22T00:33:42.949543+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
       "camara_revisora": "Cámara de Senadores",
       "fecha_presentacion": "2026-09-08",
       "legislatura": "LXVI",
@@ -10619,6 +10640,28 @@
     },
     {
       "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-03-19",
+      "legislatura": "LXVI",
+      "periodo": "2do Ordinario",
+      "titulo": "Que reforma el artículo 4° de la Constitución Política de los Estados Unidos Mexicanos, en materia del derecho a la energía eléctrica.",
+      "presentador": "Dip. Laura Irais Ballesteros Mancilla (MC)",
+      "aspectos": "La iniciativa tiene por objeto establecer que toda persona tendrá derecho al acceso a la energía eléctrica para consumo personal, doméstico y educativo en forma asequible, fiable, sostenible y renovable, moderna, segura y de calidad.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Puntos Constitucionales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 19 de marzo de 2026 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 19/03/2026",
+      "asunto_id": "5044466",
+      "seguimiento": "5045775",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5045775&Asunto=5044466",
+      "categorias": [
+        "energia_renovable"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "c465b7a5b503",
+      "scrapeado_en": "2026-09-22T00:32:32.942154+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2026-03-19",
       "legislatura": "LXVI",
       "periodo": "2do Ordinario",
@@ -10771,52 +10814,6 @@
       "categoria_nombre": "Residuos",
       "id": "b77247976e12",
       "scrapeado_en": "2026-04-29T21:21:05.287445+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-03-19",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que adiciona el artículo 27 de la Constitución Política de los Estados Unidos Mexicanos, en materia de transición energética.",
-      "presentador": "Dip. Cindy Winkler Trujillo (PVEM) Dip. Gerardo Villarreal Solís (PVEM) Dip. Juan Carlos Valladares Eichelmann (PVEM) Dip. Karina Alejandra Trujillo Trujillo (PVEM) Dip. Julio Javier Scherer Pareyón (PVEM) Dip. Ruth Maricela Silva Andraca (PVEM) Dip. Ana Erika Santana González (PVEM) Dip. Claudia Sánchez Juárez (PVEM) Dip. Ciria Yamile Salomón Durán (PVEM) Dip. Antonio de Jesús Ramírez Ramos (PVEM) Dip. Jonathan Puertos Chimalhua (PVEM) Dip. Alejandro Pérez Cuéllar (PVEM) Dip. Ma. Leonor Noyola Cervantes (PVEM) Dip. María Del Carmen Nava García (PVEM) Dip. María Luisa Mendoza Mondragón (PVEM) Dip. Ricardo Madrid Pérez (PVEM) Dip. Carlos Arturo Madrazo Silva (PVEM) Dip. Mario Alberto López Hernández (PVEM) Dip. Javier Octavio Herrera Borunda (PVEM) Dip. Blanca Estela Hernández Rodríguez (PVEM) Dip. Carlos Alberto Guevara Garza (PVEM) Dip. Deliamaría González Flandez (PVEM) Dip. Ricardo Gallardo Juárez (PVEM) Dip. Fausto Gallardo García (PVEM) Dip. José Antonio Gali López (PVEM) Dip. María Graciela Gaitán Díaz (PVEM) Dip. Celia Esther Fonseca Galicia (PVEM) Dip. José Luis Fernández Martínez (PVEM) Dip. Nayeli Arlen Fernández Cruz (PVEM) Dip. Mayra Espino Suárez (PVEM) Dip. Felipe Miguel Delgado Carrillo (PVEM) Dip. Marco Antonio De la Mora Torreblanca (PVEM) Dip. Héctor Alfonso De la Garza Villarreal (PVEM) Dip. Jesús Martín Cuanalo Araujo (PVEM) Dip. Fátima Almendra Cruz Peláez (PVEM) Dip. Manuel Alejandro Cota Cárdenas (PVEM) Dip. Juan Luis Carrillo Soberanis (PVEM) Dip. Liliana Carbajal Méndez (PVEM) Dip. Carlos Enrique Canturosas Villarreal (PVEM) Dip. José Braña Mojica (PVEM) Dip. Raúl Bolaños Cacho Cué (PVEM) Dip. Gabriela Benavides Cobos (PVEM) Dip. Oscar Bautista Villegas (PVEM) Dip. Alejandro Avilés Álvarez (PVEM) Dip. Eruviel Ávila Villegas (PVEM) Dip. Adolfo Alatriste Cantú (PVEM) Dip. Anabel Acosta Islas (PVEM) Dip. Carlos Alberto Puente Salas (PVEM) Dip. Ricardo Astudillo Suárez (PVEM)",
-      "aspectos": "La iniciativa tiene por objeto establecer lineamientos en materia de transición energética. Entre lo propuesto destaca el precisar que el Estado coordinará la Transición Energética y fomentará el uso sustentable de todas las fuentes de anergia de las que dispone la Nación, con el fin de reducir las emisiones de gases y compuestos de efecto invernadero.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Puntos Constitucionales  de Cámara de Diputados. Dictamina.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 19/03/2026",
-      "asunto_id": "5044434",
-      "seguimiento": "5044574",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5044574&Asunto=5044434",
-      "categorias": [
-        "energia_renovable",
-        "calidad_aire"
-      ],
-      "categoria": "energia_renovable",
-      "categoria_nombre": "Energía Renovable",
-      "id": "396d2b178970",
-      "scrapeado_en": "2026-04-29T21:22:54.024538+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-03-19",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que reforma y adiciona el artículo 7º de la Ley General de Cambio Climático.",
-      "presentador": "Dip. Amparo Lilia Olivares Castañeda (PAN)",
-      "aspectos": "La iniciativa tiene por objeto establecer en coordinación con el Sistema Nacional de Protección Civil un sistema de alerta temprana ante la ocurrencia de fenómenos hidrometeorológicos extremos, incluyendo huracanes, lluvias atípicas, olas de calor, olas de frío y sus efectos como inundaciones, deslaves, marea alta, u otros que generan vulnerabilidad en la población, en la infraestructura estratégica y en las actividades productivas del país.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Cambio Climático y Sostenibilidad de Cámara de Diputados. Dictamina.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 19/03/2026",
-      "asunto_id": "5044321",
-      "seguimiento": "5044596",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5044596&Asunto=5044321",
-      "categorias": [
-        "agua",
-        "cambio_climatico"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "f78a49046b8e",
-      "scrapeado_en": "2026-04-27T21:06:45.697680+00:00"
     }
   ],
   "_meta": {
@@ -10824,6 +10821,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 63,
-    "actualizado": "2026-09-21T21:34:00Z"
+    "actualizado": "2026-09-22T00:37:05Z"
   }
 }
