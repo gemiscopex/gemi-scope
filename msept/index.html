@@ -67,9 +67,9 @@
   /* cover (lámina 1) */
   .cover{justify-content:center;align-items:center;text-align:center}
   .cover .logo-c{height:clamp(84px,11vw,120px);width:auto;margin-bottom:32px;border-radius:20px}
-  .cover .mem{font-family:var(--sans);font-size:clamp(15px,2vw,23px);letter-spacing:.13em;text-transform:uppercase;color:var(--kick-d);font-weight:700}
-  .cover .tagline{position:absolute;bottom:8vh;left:0;right:0;font-size:clamp(14px,1.7vw,20px);color:var(--mut-d);font-weight:500}
-  .tw{display:inline-block;text-align:left;color:var(--mint);border-right:2px solid var(--mint);animation:caret 1.05s step-end infinite}
+  .cover .mem{font-family:var(--sans);font-size:clamp(15px,2vw,23px);letter-spacing:.13em;text-transform:uppercase;color:var(--kick-l);font-weight:700}
+  .cover .tagline{position:absolute;bottom:8vh;left:0;right:0;font-size:clamp(14px,1.7vw,20px);color:var(--mut-l);font-weight:500}
+  .tw{display:inline-block;text-align:left;color:var(--g2);border-right:2px solid var(--g2);animation:caret 1.05s step-end infinite}
   @keyframes caret{50%{border-color:transparent}}
 
   /* divider */
@@ -282,10 +282,10 @@
   /* cover tagline en flujo + muro de asociados (logos monocromo blanco) */
   .cover .tagline{position:static;bottom:auto;margin-top:22px}
   .assoc{margin-top:clamp(30px,6vh,64px);display:flex;flex-direction:column;align-items:center;gap:16px;max-width:1120px}
-  .assoc-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim-d)}
-  .assoc-wall{width:100vw;align-self:center;display:flex;justify-content:center;padding:18px 0;background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.93) 13%,rgba(255,255,255,.93) 87%,rgba(255,255,255,0) 100%)}
-  .assoc-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:15px 22px;max-width:940px;width:100%;padding:0 24px}
-  .assoc-row img{height:clamp(16px,1.7vw,22px);width:auto;object-fit:contain;opacity:1;flex:0 0 auto}
+  .assoc-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim-l)}
+  .assoc-wall{display:flex;justify-content:center;width:100%;padding:4px 0}
+  .assoc-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 26px;max-width:1080px;width:100%;padding:0 24px}
+  .assoc-row img{height:clamp(19px,2vw,26px);width:auto;object-fit:contain;opacity:1;flex:0 0 auto}
   @media(max-width:900px){.assoc-row{gap:12px 18px}.assoc-row img{height:20px}}
   @media(max-width:520px){.assoc-row{gap:12px 16px}.assoc-row img{height:19px}}
   /* ===== Observatorio · mockup Scope con mapa de puntos ===== */
@@ -429,7 +429,7 @@
   .just3 .jz{font-size:clamp(12px,1.15vw,14.5px);line-height:1.5;color:var(--mut-d);padding-top:14px;border-top:1px solid var(--lineD);position:relative}
   .just3 .jz::before{content:'';position:absolute;top:-1px;left:0;width:34px;height:2px;background:var(--g2)}
   @media(max-width:900px){.just3{grid-template-columns:1fr;gap:14px}}
-  .voz-live{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:26px;flex-wrap:wrap}
+  .voz-live{display:flex;align-items:center;justify-content:flex-start;gap:11px;margin-top:24px;flex-wrap:wrap}
   .voz-live .vl-dot{width:10px;height:10px;border-radius:50%;background:var(--g);animation:vlpulse 1.5s ease-out infinite;flex:0 0 auto}
   .voz-live .vl-tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--g2)}
   .voz-live .vl-text{font-size:clamp(15px,1.8vw,21px);font-weight:700;color:var(--ink-l)}
@@ -553,9 +553,7 @@
 <div class="deck">
 
   <!-- 1 · Cover -->
-  <section class="dk cover" data-t="Inicio">
-    <div class="glow" style="width:680px;height:680px;background:var(--g3);top:-14%;left:-10%"></div>
-    <div class="glow" style="width:560px;height:560px;background:var(--g);bottom:-16%;right:-10%;opacity:.28"></div>
+  <section class="lt cover" data-t="Inicio">
     <img class="logo-c r" src="/assets/logo-gemi-icon.png" alt="GEMI" onerror="this.style.display='none'">
     <div class="mem r d1">Membresía 09/2026</div>
     <div class="tagline r d2">Estamos <span class="tw" id="tw">cambiando</span> el ambiente</div>
@@ -756,19 +754,6 @@
     <div class="foot r d8">Calificación de Asuntos Públicos de GEMI, con base en el texto de la iniciativa y precedente documentado. No es una proyección legislativa oficial.</div>
   </section>
 
-  <!-- 7 · Qué mandamos -->
-  <section class="lt" data-t="Qué mandamos">
-    <div class="k r">Nuestra participación en la iniciativa</div>
-    <div class="t r d1">Nuestra participación</div>
-    <div class="checks">
-      <div class="chk" style="--i:0"><div class="ok">✓</div><div class="cx"><b>Institución y representantes.</b> Presidente del Consejo de GEMI, Benjamín del Arco, como ponente.</div></div>
-      <div class="chk" style="--i:1"><div class="ok">✓</div><div class="cx"><b>Reseña institucional.</b> Historial de GEMI desde 1994, miembro fundador del comité que hoy normaliza medio ambiente.</div></div>
-      <div class="chk" style="--i:2"><div class="ok">✓</div><div class="cx"><b>Información para el dictamen.</b> Por qué la perspectiva operativa de la industria le sirve a la Comisión.</div></div>
-      <div class="chk" style="--i:3"><div class="ok">✓</div><div class="cx"><b>Tres propuestas específicas.</b> Con artículo, texto exacto y justificación, no comentarios generales.</div></div>
-    </div>
-    <div class="foot r d5">Somos de las pocas organizaciones que llegan con texto legislativo propio, no solo con una opinión.</div>
-  </section>
-
   <!-- 8 · El camino a ley -->
   <section class="lt" data-anim="tl" data-t="Camino a ley">
     <div class="k r">Cómo se mueve esto desde aquí</div>
@@ -782,6 +767,18 @@
       <div class="tnode" style="--i:4"><div class="tdot"></div><div class="tdate">Senado</div><div class="tdesc">Cámara revisora</div></div>
     </div>
     <div class="foot r d7">El momento de mayor peso de una propuesta técnica es entre audiencias y dictamen, exactamente donde estamos parados hoy. El acuerdo permite ampliar las mesas hasta un día más según el número de registros; lo damos por probable.</div>
+  </section>
+
+  <!-- 7 · Nuestra participación -->
+  <section class="lt" data-t="Qué mandamos">
+    <div class="k r">Nuestra participación en la iniciativa</div>
+    <div class="t r d1">Nuestra participación</div>
+    <div class="checks">
+      <div class="chk" style="--i:0"><div class="ok">✓</div><div class="cx"><b>Institución y representantes.</b> Presidente del Consejo de GEMI, Benjamín del Arco, como ponente.</div></div>
+      <div class="chk" style="--i:1"><div class="ok">✓</div><div class="cx"><b>Reseña institucional.</b> Historial de GEMI desde 1994, miembro fundador del comité que hoy normaliza medio ambiente.</div></div>
+      <div class="chk" style="--i:2"><div class="ok">✓</div><div class="cx"><b>Información para el dictamen.</b> Por qué la perspectiva operativa de la industria le sirve a la Comisión.</div></div>
+      <div class="chk" style="--i:3"><div class="ok">✓</div><div class="cx"><b>Tres propuestas específicas.</b> Con artículo, texto exacto y justificación, no comentarios generales.</div></div>
+    </div>
   </section>
 
   <!-- 9 · Una sola voz (rediseñada + animada) -->
