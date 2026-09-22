@@ -418,17 +418,34 @@
   .obs-item.sub{margin-left:20px}
   .obs-item .sb{color:var(--g2);font-weight:700}
   @media(max-width:900px){.reg-split{grid-template-columns:1fr;gap:22px}}
-  .eae-def{max-width:1080px;margin-top:18px;padding:22px 26px}
-  .eae-def .sp{font-size:clamp(13.5px,1.5vw,18px);line-height:1.55;color:var(--ink-l)}
+  .eae-def{max-width:1080px;margin-top:18px;padding:0;background:#0c1a15;border:1px solid #1c3a2e;border-radius:12px;overflow:hidden;box-shadow:0 12px 30px rgba(14,59,44,.16)}
+  .code-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;background:#0a1512;border-bottom:1px solid #1c3a2e}
+  .code-bar i{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .code-bar i:first-child{background:#e5695f}.code-bar i:nth-child(2){background:#e0b56a}.code-bar i:nth-child(3){background:#5fd3aa}
+  .code-bar span{margin-left:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#6f9585}
+  .eae-def .sp{font-family:var(--mono);font-size:clamp(11.5px,1.2vw,14.5px);line-height:1.7;color:#cfe6db;letter-spacing:.01em;padding:clamp(16px,2vw,24px) clamp(18px,2.2vw,26px);display:block}
+  .eae-def .sp b{color:#63e6ad;font-weight:600}
+  .eae-def .twc{background:#63e6ad}
   .eae-two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);margin-top:26px;max-width:1080px}
   .eae-two .sp{font-size:clamp(13px,1.4vw,16.5px);line-height:1.55;color:var(--ink-l)}
   @media(max-width:900px){.eae-two{grid-template-columns:1fr;gap:18px}}
   .twc{display:inline-block;width:2px;height:1em;background:var(--g2);margin-left:1px;vertical-align:-2px;animation:twblink .85s steps(1) infinite}
   @keyframes twblink{50%{opacity:0}}
   .just3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px);margin-top:20px}
-  .just3 .jz{font-size:clamp(12px,1.15vw,14.5px);line-height:1.5;color:var(--mut-d);padding-top:14px;border-top:1px solid var(--lineD);position:relative}
-  .just3 .jz::before{content:'';position:absolute;top:-1px;left:0;width:34px;height:2px;background:var(--g2)}
-  @media(max-width:900px){.just3{grid-template-columns:1fr;gap:14px}}
+  .just4{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,22px);margin-top:18px}
+  .just3 .jz,.just4 .jz{font-size:clamp(11px,1.05vw,13.5px);line-height:1.48;color:var(--mut-d);padding-top:13px;border-top:1px solid var(--lineD);position:relative}
+  .just3 .jz::before,.just4 .jz::before{content:'';position:absolute;top:-1px;left:0;width:32px;height:2px;background:var(--g2)}
+  @media(max-width:900px){.just3,.just4{grid-template-columns:1fr;gap:14px}}
+  .pos3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px);margin-top:22px;align-items:stretch}
+  .pos-card{padding:18px 20px;display:flex;flex-direction:column}
+  .pos-h{font-family:var(--mono);font-size:clamp(12px,1.2vw,15px);letter-spacing:.05em;font-weight:800;color:var(--ink-l);margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--g2)}
+  .pos-lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--kick-l);margin:9px 0 5px}
+  .pos-lbl.prop{color:var(--g2)}
+  .pos-item{display:grid;grid-template-columns:14px 1fr;gap:8px;font-size:clamp(11px,1.05vw,13px);line-height:1.42;color:var(--ink-l);padding:3px 0}
+  .pos-item .pm{font-weight:700;font-size:12px;line-height:1.4}
+  .pos-item.pos .pm{color:var(--mut-l)}
+  .pos-item.ok .pm{color:var(--g2)}
+  @media(max-width:900px){.pos3{grid-template-columns:1fr;gap:14px}}
   .voz-live{display:flex;align-items:center;justify-content:flex-start;gap:11px;margin-top:24px;flex-wrap:wrap}
   .voz-live .vl-dot{width:10px;height:10px;border-radius:50%;background:var(--g);animation:vlpulse 1.5s ease-out infinite;flex:0 0 auto}
   .voz-live .vl-tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--g2)}
@@ -670,10 +687,10 @@
     <!-- Santiago · 1 · Evaluación ambiental estratégica -->
   <section class="lt" data-anim="type" data-t="Evaluación ambiental estratégica">
     <div class="t r d1">Evaluación ambiental estratégica</div>
-    <div class="eae-def card tint r d2"><div class="sp" data-tw><b>XLIV. Evaluación ambiental estratégica:</b> Instrumento de política pública de planeación y gestión ambiental que tiene por objeto identificar, valorar y considerar los impactos ambientales significativos, acumulativos, sinérgicos y residuales en la formulación, modificación, actualización o ejecución de los planes, programas o proyectos de <b>infraestructura nacional de interés público y de gran trascendencia para el desarrollo,</b> a efecto de determinar e incorporar medidas estratégicas y criterios para la prevención, mitigación y compensación ambiental;</div></div>
+    <div class="eae-def r d2"><div class="code-bar"><i></i><i></i><i></i><span>Fracc. XLIV</span></div><div class="sp" data-tw><b>XLIV. Evaluación ambiental estratégica:</b> Instrumento de política pública de planeación y gestión ambiental que tiene por objeto identificar, valorar y considerar los impactos ambientales significativos, acumulativos, sinérgicos y residuales en la formulación, modificación, actualización o ejecución de los planes, programas o proyectos de <b>infraestructura nacional de interés público y de gran trascendencia para el desarrollo,</b> a efecto de determinar e incorporar medidas estratégicas y criterios para la prevención, mitigación y compensación ambiental;</div></div>
     <div class="eae-two">
-      <div class="sp r d3" data-tw>Exentos: no requieren o se encuentran exentas de evaluación de impacto ambiental, las obras o actividades en las que se acredite que no producen impactos ambientales significativos no causan ni pueden causar desequilibrios ecológicos, no rebasan los límites</div>
-      <div class="sp r d4" data-tw>Equivalencia: MIA-EIA Artículo 28. El dictamen favorable de una evaluación ambiental estratégica de un plan, programa o proyecto de infraestructura nacional o estratégico es equivalente a la autorización de impacto ambiental prevista en la presente ley para cada etapa que hubiese sido debidamente evaluada.</div>
+      <div class="sp r d3" data-tw><b>Exentos</b>: no requieren o se encuentran exentas de evaluación de impacto ambiental, las obras o actividades en las que se acredite que no producen impactos ambientales significativos no causan ni pueden causar desequilibrios ecológicos, no rebasan los límites</div>
+      <div class="sp r d4" data-tw><b>Equivalencia</b>: MIA-EIA Artículo 28. El dictamen favorable de una evaluación ambiental estratégica de un plan, programa o proyecto de infraestructura nacional o estratégico es equivalente a la autorización de impacto ambiental prevista en la presente ley para cada etapa que hubiese sido debidamente evaluada.</div>
     </div>
   </section>
 
@@ -720,13 +737,33 @@
     </div>
   </section>
 
+  <!-- Santiago · MIA · ¿Qué cambió de la MIA? -->
+  <section class="lt" data-t="Modificaciones a la MIA">
+    <div class="t r d1">¿Qué cambió de la MIA?</div>
+    <div class="reg-split">
+      <div class="reg-copy">
+        <div class="santi">
+          <div class="sp r d2"><b>Requisitos:</b> Ampliación Sustantiva en las exigencias. Se incorpora el análisis de <b>efectos acumulativos</b> con obras efectuadas en el pasado o que están ocurriendo en el presente.</div>
+          <div class="sp r d3"><b>Riesgos operativos</b>: Si una empresa solicita autorización de EIA para un nuevo proyecto, debe caracterizar impactos de proyectos ajenos que se ejecutaron en el pasado o que están en operación actual en la región. Requiere información sobre operaciones de terceros que se puede no tener acceso a documentar.</div>
+          <div class="sp r d4"><b>Alcance ecosistémico integral de la evaluación:</b> La iniciativa amplía el alcance a evaluar efectos en el ecosistema completo, no solo en los recursos directamente involucrados.</div>
+        </div>
+      </div>
+      <div class="obs-card card tint r d4">
+        <div class="obs-card-h">Observaciones</div>
+        <div class="obs-item"><span class="sb">&#10146;</span><span><b>Incertidumbre:</b> Existe ambigüedad sobre el alcance temporal y espacial de la "región".</span></div>
+        <div class="obs-item sub"><span class="sb">&#10146;</span><span>Si la suma acumulativa de impactos pasados, presentes y del nuevo proyecto rebasa la capacidad de carga regional, el nuevo proyecto puede ser denegado aunque su impacto propio sea aceptable.</span></div>
+        <div class="obs-item"><span class="sb">&#10146;</span><span><b>Implicación operativa:</b> Un proyecto que directamente afecta un recurso, puede ser denegado o condicionado por efectos indirectos en otros recursos.</span></div>
+      </div>
+    </div>
+  </section>
+
   <!-- 6 · Tres puntos calificados (stats NFL/PFF) -->
   <section class="nk" data-anim="stats" data-t="Reporte de fricción">
-    <div class="t r d1">Tres puntos, calificados</div>
-    <div class="cards c3">
+    <div class="t r d1">Cuatro puntos</div>
+    <div class="cards c4">
       <div class="card stat-card" style="--i:0">
-        <div class="grade-bar gb-red"></div>
-        <div class="ch"><div class="ct">Evaluación Ambiental Estratégica</div><span class="chip red">FRICCIÓN ALTA</span></div>
+        <div class="grade-bar gb-grn"></div>
+        <div class="ch"><div class="ct">Evaluación Ambiental Estratégica</div><span class="chip grn">RESPALDO ALTO</span></div>
         <div class="kv"><span class="kk">Artículo</span><span class="vv bignum-v" data-count="26">0</span></div>
         <div class="kv"><span class="kk">Consulta obligatoria hoy</span><span class="vv" style="color:#e88a90">No</span></div>
         <div class="kv"><span class="kk">Respaldo externo</span><span class="vv grn">Sí, sociedad civil</span></div>
@@ -739,19 +776,27 @@
         <div class="kv"><span class="kk">Precedente</span><span class="vv grn">NOM-001-2021</span></div>
       </div>
       <div class="card stat-card" style="--i:2">
-        <div class="grade-bar gb-grn"></div>
-        <div class="ch"><div class="ct">Prohibiciones estatales y municipales</div><span class="chip grn">RESPALDO ALTO</span></div>
+        <div class="grade-bar gb-red"></div>
+        <div class="ch"><div class="ct">Prohibiciones estatales y municipales</div><span class="chip red">FRICCIÓN ALTA</span></div>
         <div class="kv"><span class="kk">Artículos</span><span class="vv bignum-v">5, 7, 8</span></div>
         <div class="kv"><span class="kk">Codificado hoy</span><span class="vv" style="color:#e88a90">No</span></div>
         <div class="kv"><span class="kk">Precedente</span><span class="vv grn">2 casos ganados, SCJN</span></div>
       </div>
+      <div class="card stat-card" style="--i:3">
+        <div class="grade-bar gb-red"></div>
+        <div class="ch"><div class="ct">Modificaciones a la MIA</div><span class="chip red">FRICCIÓN ALTA</span></div>
+        <div class="kv"><span class="kk">Artículo</span><span class="vv bignum-v" data-count="51">0</span></div>
+        <div class="kv"><span class="kk">Cambio</span><span class="vv" style="color:#e88a90">Efectos acumulativos</span></div>
+        <div class="kv"><span class="kk">Carga probatoria</span><span class="vv" style="color:#e88a90">Obras de terceros</span></div>
+      </div>
     </div>
-    <div class="just3">
+    <div class="just4">
       <div class="jz r d5" style="--i:0">La EAE es el instrumento más novedoso pero no contempla ninguna etapa de consulta obligatoria. No menciona el sector afectado por los proyectos evaluados.</div>
       <div class="jz r d6" style="--i:1">El Artículo 63 obliga a considerar la gradualidad según las características del proceso productivo, pero no según la capacidad instalada del ecosistema de verificación. Puede que el regulador tenga limitaciones.</div>
       <div class="jz r d7" style="--i:2">La SCJN ha resuelto que las prohibiciones invaden competencias federales. Proponemos que se codifique esto y reducir litigio futuro.</div>
+      <div class="jz r d8" style="--i:3">El análisis de efectos acumulativos (Art. 51) exige carga probatoria sobre obras de terceros sin acotar alcance temporal ni espacial.</div>
     </div>
-    <div class="foot r d8">Calificación de Asuntos Públicos de GEMI, con base en el texto de la iniciativa y precedente documentado. No es una proyección legislativa oficial.</div>
+    <div class="foot r d9">Calificación de Asuntos Públicos de GEMI, con base en el texto de la iniciativa y precedente documentado. No es una proyección legislativa oficial.</div>
   </section>
 
   <!-- 8 · El camino a ley -->
@@ -782,16 +827,36 @@
   </section>
 
   <!-- 9 · Una sola voz (rediseñada + animada) -->
-  <section class="lt" data-anim="voice" data-t="Conciliación de GEMI">
+  <section class="lt" data-t="Conciliación de GEMI">
     <div class="k r">La postura de GEMI ante la iniciativa</div>
     <div class="t r d1">Conciliación de GEMI</div>
     <div class="voice-hero r d2">Una postura como organización para dialogar sobre lo técnico y lo posible.</div>
-    <div class="voz">
-      <div class="frags"><span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span></div>
-      <div class="one"></div>
-      <div class="voz-lbl">Conciliación de GEMI</div>
+    <div class="pos3">
+      <div class="pos-card card r d3" style="--i:0">
+        <div class="pos-h">Registro de infractores</div>
+        <div class="pos-lbl">Posición GEMI</div>
+        <div class="pos-item pos"><span class="pm">&#10146;</span><span>El bloqueo de permisos por cualquier sitio, desproporciona la sanción respecto a la infracción localizada por 7 a 10 años.</span></div>
+        <div class="pos-item pos"><span class="pm">&#10146;</span><span>El Art. 314 declara plazos y vía de reducción sin procedimiento operativo, la salida depende de discrecionalidad administrativa.</span></div>
+        <div class="pos-lbl prop">Propuesta</div>
+        <div class="pos-item ok"><span class="pm">&#10003;</span><span>Acotar el bloqueo de permisos al sitio de la infracción, salvo la autoridad tenga evidencia de que haya tenido origen por práctica corporativa y no accidente aislado.</span></div>
+        <div class="pos-item ok"><span class="pm">&#10003;</span><span>Incorporar procedimiento de reducción y egreso con plazo.</span></div>
+      </div>
+      <div class="pos-card card r d4" style="--i:1">
+        <div class="pos-h">Modificaciones a la MIA</div>
+        <div class="pos-lbl">Posición GEMI</div>
+        <div class="pos-item pos"><span class="pm">&#10146;</span><span>El análisis de efectos acumulativos (Art. 51) exige carga probatoria sobre obras de terceros sin acotar alcance temporal ni espacial.</span></div>
+        <div class="pos-lbl prop">Propuesta</div>
+        <div class="pos-item ok"><span class="pm">&#10003;</span><span>Limitar el análisis acumulativo a obras en operación al momento de presentación, con radio geográfico definido en reglamento y carga probatoria acotada a información pública.</span></div>
+      </div>
+      <div class="pos-card card r d5" style="--i:2">
+        <div class="pos-h">Régimen de sanciones</div>
+        <div class="pos-lbl">Posición GEMI</div>
+        <div class="pos-item pos"><span class="pm">&#10146;</span><span>Cualquier incumplimiento formal de la "normativa ambiental" te expone al catálogo completo de sanciones y potencialmente al Registro.</span></div>
+        <div class="pos-item pos"><span class="pm">&#10146;</span><span>Ese mismo incumplimiento menor puede además detonar la inscripción en el Registro de Infractores (Art. 313), con 7-10 años de consecuencias severas.</span></div>
+        <div class="pos-lbl prop">Propuesta</div>
+        <div class="pos-item ok"><span class="pm">&#10003;</span><span>Incorporar causas eximentes o atenuantes específicas y distinguir entre infracciones graves y no graves.</span></div>
+      </div>
     </div>
-    <div class="voz-live r d3"><span class="vl-dot"></span><span class="vl-tag">En vivo</span><span class="vl-text">A consideración de la Membresía en este momento</span></div>
   </section>
 
   <!-- 10 · Divider 02 -->
@@ -956,9 +1021,8 @@
 
   <!-- 19 · El día del lanzamiento -->
   <section class="lt" data-t="Día del lanzamiento">
-    <div class="k r">15 de octubre · Senado de la República</div>
     <div class="t r d1">El día del lanzamiento</div>
-    <div class="lead r d2" style="max-width:860px">No es solo GEMI. Alrededor de la mesa se está formando un consenso; el lanzamiento es donde se hace visible.</div>
+    <div class="lead r d2" style="max-width:920px">15 de octubre en la Comisión Especial de Economía Circular del Senado de la República.</div>
     <div class="coal">
       <div class="coal-col r d3">
         <div class="coal-h">Firmantes fundadores</div>
@@ -1039,7 +1103,7 @@
 
   <!-- 22 · Tres semanas del clima (Apple features + México colorea) -->
   <section class="lt" data-t="Tres semanas del clima">
-    <div class="t r d1">Tres semanas del clima, casi seguidas</div>
+    <div class="t r d1">Tres semanas del clima</div>
     <div class="cards c3">
       <div class="card feat" style="--i:0"><div class="cn" style="font-size:15px;color:var(--kick-l)">20–27 SEP</div><div class="ct" style="margin-top:8px">Climate Week NYC</div><div class="cs" style="margin-top:6px">En paralelo a la Asamblea General de la ONU. Agenda climática y empresarial internacional.</div></div>
       <div class="card feat" style="--i:1"><div class="cn" style="font-size:15px;color:var(--kick-l)">28 SEP–1 OCT</div><div class="ct" style="margin-top:8px">UNECE Sustainable Energy Week</div><div class="cs" style="margin-top:6px">Ginebra. Agenda internacional de transición energética.</div></div>
