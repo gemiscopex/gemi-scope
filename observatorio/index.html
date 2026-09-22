@@ -139,6 +139,10 @@ a{color:inherit;text-decoration:none}
 .nomrow .nc{font-family:var(--mono);font-size:var(--fs-body);font-weight:600;color:var(--green);white-space:nowrap}
 .nomrow .nx{font-size:var(--fs-body);color:var(--text-sec);line-height:1.45}
 .nomrow .nx b{color:var(--text);font-weight:700}
+.nomrow a.nc{color:var(--green);text-decoration:none;transition:color .15s}
+.nomrow a.nc:hover{text-decoration:underline}
+.nsrc{display:inline-block;margin-top:6px;font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted);text-decoration:none}
+.nsrc:hover{color:var(--green)}
 .loading{color:var(--text-muted);font-size:var(--fs-body);padding:12px 0;font-family:var(--mono)}
 /* ── footer ── */
 footer{margin-top:48px;border-top:1px solid var(--border)}
@@ -263,14 +267,14 @@ var POD=[
  {estado:'Hidalgo',mun:'Tlaxcoapan y Atitalaquia',c:[20.09,-99.22],st:'cancelado',cc:'#9aa7b4',decl:'2025',ha:null,enf:'',nota:'Primer PODECIBI declarado. Cancelado en jul-2026 por rechazo en votación.'}
 ];
 var NOMS=[
- {c:'LGEC 2026',x:'<b>Ley General de Economía Circular.</b> Marco nacional de REP, gestión circular, distintivo nacional e instrumentos económicos.'},
- {c:'REP',x:'<b>Responsabilidad Extendida del Productor.</b> Traslada al productor la gestión del producto al final de su vida útil — reforma en proceso.'},
- {c:'NOM-161-SEMARNAT-2011',x:'Plan de manejo de <b>residuos de manejo especial</b>: acopio, valorización y disposición para grandes generadores y productores.'},
- {c:'NOM-052-SEMARNAT-2005',x:'Clasificación y características de los <b>residuos peligrosos</b> y su listado.'},
- {c:'NOM-160-SEMARNAT-2011',x:'Elementos para instrumentar <b>planes de manejo de residuos peligrosos</b>.'},
- {c:'NOM-083-SEMARNAT-2003',x:'Especificaciones de <b>disposición final</b> en rellenos sanitarios de residuos sólidos urbanos y de manejo especial.'},
- {c:'NOM-165-SEMARNAT-2013',x:'Registro de Emisiones y Transferencia de Contaminantes (<b>RETC</b>).'},
- {c:'NOM-004-SEMARNAT-2002',x:'Aprovechamiento y disposición de <b>lodos y biosólidos</b>.'}
+ {c:'LGEC 2026',src:'DOF',u:'https://dof.gob.mx/nota_detalle.php?codigo=5778439&fecha=19%2F01%2F2026',x:'<b>Ley General de Economía Circular.</b> Marco nacional de REP, gestión circular, distintivo nacional e instrumentos económicos.'},
+ {c:'REP',src:'LGPGIR',u:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGPGIR.pdf',x:'<b>Responsabilidad Extendida del Productor.</b> Traslada al productor la gestión del producto al final de su vida útil — reforma en proceso (LGPGIR).'},
+ {c:'NOM-161-SEMARNAT-2011',src:'DOF',u:'https://dof.gob.mx/nota_detalle.php?codigo=5286505&fecha=01%2F02%2F2013',x:'Plan de manejo de <b>residuos de manejo especial</b>: acopio, valorización y disposición para grandes generadores y productores.'},
+ {c:'NOM-052-SEMARNAT-2005',src:'DOF',u:'https://dof.gob.mx/nota_detalle.php?codigo=4912592&fecha=23%2F06%2F2006',x:'Clasificación y características de los <b>residuos peligrosos</b> y su listado.'},
+ {c:'NOM-160-SEMARNAT-2011',src:'DOF',u:'https://dof.gob.mx/nota_detalle.php?codigo=5220972',x:'Elementos para instrumentar <b>planes de manejo de residuos peligrosos</b>.'},
+ {c:'NOM-083-SEMARNAT-2003',src:'DOF',u:'https://dof.gob.mx/nota_detalle.php?codigo=658648&fecha=20%2F10%2F2004',x:'Especificaciones de <b>disposición final</b> en rellenos sanitarios de residuos sólidos urbanos y de manejo especial.'},
+ {c:'NOM-165-SEMARNAT-2013',src:'DOF',u:'https://dof.gob.mx/nota_detalle.php?codigo=5330750&fecha=24%2F01%2F2014',x:'Registro de Emisiones y Transferencia de Contaminantes (<b>RETC</b>).'},
+ {c:'NOM-004-SEMARNAT-2002',src:'DOF',u:'https://dof.gob.mx/nota_detalle.php?codigo=691939&fecha=15%2F08%2F2003',x:'Aprovechamiento y disposición de <b>lodos y biosólidos</b>.'}
 ];
 var _MAP_BOUNDS={lngMin:-117.8,lngMax:-86.0,latMin:14.0,latMax:33.2},_MAP_INSET={x0:6,x1:96,y0:10,y1:88};
 function _projX(l){return _MAP_INSET.x0+(l-_MAP_BOUNDS.lngMin)/(_MAP_BOUNDS.lngMax-_MAP_BOUNDS.lngMin)*(_MAP_INSET.x1-_MAP_INSET.x0);}
@@ -343,7 +347,7 @@ document.querySelectorAll('.tab-btn[data-go]').forEach(function(b){b.addEventLis
   document.querySelectorAll('.tab-btn').forEach(function(x){x.classList.remove('active');});b.classList.add('active');
   var t=document.getElementById(b.dataset.go);if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-60,behavior:'smooth'});});});
 
-document.getElementById('noms').innerHTML=NOMS.map(function(n){return '<div class="nomrow"><span class="nc">'+n.c+'</span><span class="nx">'+n.x+'</span></div>';}).join('');
+document.getElementById('noms').innerHTML=NOMS.map(function(n){return '<div class="nomrow"><a class="nc" href="'+n.u+'" target="_blank" rel="noopener">'+n.c+'</a><span class="nx">'+n.x+' <a class="nsrc" href="'+n.u+'" target="_blank" rel="noopener">Texto oficial · '+n.src+' &#8599;</a></span></div>';}).join('');
 
 var ECNEWS=[];
 var INC=/econom[ií]a circular|circularidad|\bLGEC\b|ley general de econom|reglamento de la (?:ley general de )?econom|reciclaj|recicla(?:d|r|bl)|valorizaci[oó]n|residuos?\s+(?:de manejo|peligros|s[oó]lid|industrial|urban|org[aá]nic|electr[oó]nic|de envase)|manejo (?:integral )?de residuos|gesti[oó]n (?:integral )?de residuos|responsabilidad extendida del productor|pl[aá]sticos?\s+de un solo uso|plan(?:es)? de manejo|rellenos? sanitarios?|envases?\s+(?:retornabl|reciclabl|pl[aá]stic|reutiliz|sostenibl)|\bPET\b|poliestireno|compostaj|biodegradabl|reutilizaci[oó]n de/i;
