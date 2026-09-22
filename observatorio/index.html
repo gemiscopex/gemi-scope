@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observatorio de Economía Circular · Scope</title>
+<meta name="description" content="Centro de inteligencia de Economía Circular: monitoreo de las leyes federales y estatales, los Polos de Desarrollo (PODECIBI), NOMs y la agenda regulatoria en México.">
+<style>
+  :root{
+    --ink:#0e3b2c; --ink2:#12352a; --mut:#57685f; --dim:#8b9a90;
+    --paper:#ffffff; --paper2:#f6f8f1; --line:#e4eae2; --line2:#eef2ec;
+    --g:#12b98a; --g2:#0e8c74; --g3:#066750; --kick:#2f9e6d;
+    /* status */
+    --st-vig:#0e8c74; --st-ini:#1f4e79; --st-adv:#9a6a1c; --st-sin:#93a29a;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+    --maxw:1240px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.5}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+  .mono{font-family:var(--mono)}
+  /* ---- topbar ---- */
+  .topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.9);backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+  .brand{display:flex;align-items:baseline;gap:12px;min-width:0}
+  .brand .logo{font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--ink)}
+  .brand .logo b{color:var(--g2)}
+  .brand .sep{width:1px;height:18px;background:var(--line);align-self:center}
+  .brand .prod{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--kick);font-weight:700;white-space:nowrap}
+  .topbar .collab{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--dim);text-align:right;line-height:1.35}
+  @media(max-width:720px){.topbar .collab{display:none}}
+  /* ---- hero ---- */
+  .hero{padding:clamp(34px,6vw,64px) 0 8px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--kick);font-weight:700}
+  .hero h1{font-size:clamp(30px,5.2vw,52px);line-height:1.04;letter-spacing:-.02em;margin:14px 0 0;font-weight:800}
+  .hero .sub{font-size:clamp(15px,1.7vw,19px);color:var(--mut);max-width:760px;margin:16px 0 0}
+  .collab-line{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:9px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink);background:var(--paper2)}
+  .collab-line .cd{width:7px;height:7px;border-radius:50%;background:var(--g);flex:0 0 auto;box-shadow:0 0 0 4px rgba(18,185,138,.14)}
+  .collab-line b{font-weight:700}
+  /* ---- federal banner ---- */
+  .fed{margin-top:30px;border:1px solid var(--line);border-left:3px solid var(--g2);border-radius:14px;background:var(--paper2);padding:20px 22px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+  .fed .fk{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--kick);font-weight:700}
+  .fed h2{margin:6px 0 0;font-size:clamp(18px,2.2vw,24px);font-weight:800}
+  .fed p{margin:8px 0 0;font-size:14px;color:var(--mut);max-width:820px}
+  .fed .badge{align-self:start;font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--g2);padding:7px 13px;border-radius:8px;white-space:nowrap}
+  @media(max-width:640px){.fed{grid-template-columns:1fr}}
+  /* ---- kpis ---- */
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:22px}
+  .kpi{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fff;position:relative;overflow:hidden}
+  .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--kc,var(--g2))}
+  .kpi .n{font-size:clamp(26px,3.4vw,40px);font-weight:800;line-height:1;letter-spacing:-.02em}
+  .kpi .l{font-size:12px;color:var(--mut);margin-top:8px;line-height:1.3}
+  .kpi.k-vig{--kc:var(--st-vig)} .kpi.k-ini{--kc:var(--st-ini)} .kpi.k-adv{--kc:var(--st-adv)} .kpi.k-sin{--kc:var(--st-sin)} .kpi.k-tot{--kc:var(--ink)}
+  @media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi.k-tot{grid-column:span 2}}
+  /* ---- section heads ---- */
+  .shead{display:flex;align-items:baseline;gap:14px;margin:0 0 4px}
+  .shead .sn{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--kick);font-weight:700}
+  .shead h3{font-size:clamp(19px,2.4vw,26px);font-weight:800;margin:0;letter-spacing:-.01em}
+  .srule{height:1px;background:var(--line);margin:12px 0 0}
+  /* ---- map layout ---- */
+  .mapsec{margin-top:44px}
+  .mapgrid{display:grid;grid-template-columns:1.55fr 1fr;gap:26px;margin-top:22px;align-items:start}
+  @media(max-width:900px){.mapgrid{grid-template-columns:1fr}}
+  .mappane{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
+  .maptools{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:14px 16px;border-bottom:1px solid var(--line2);background:var(--paper2)}
+  .layers{display:flex;gap:8px;flex-wrap:wrap}
+  .lyr{font-family:var(--mono);font-size:11px;letter-spacing:.04em;font-weight:700;text-transform:uppercase;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--mut);cursor:pointer;user-select:none;transition:.15s}
+  .lyr[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .lyr.dis{opacity:.5;cursor:not-allowed}
+  .legend{display:flex;gap:14px;flex-wrap:wrap}
+  .lg{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--mut);cursor:pointer;user-select:none}
+  .lg .d{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
+  .lg[data-off="1"]{opacity:.32}
+  .maparea{position:relative;padding:10px 10px 16px}
+  .maparea svg.base{position:absolute;inset:10px 10px 16px;width:calc(100% - 20px);height:calc(100% - 26px);pointer-events:none}
+  #mx{position:relative;width:100%;aspect-ratio:1.32/1}
+  .dot{position:absolute;transform:translate(-50%,-50%);cursor:pointer}
+  .dot .core{width:13px;height:13px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(14,59,44,.28);transition:transform .15s}
+  .dot:hover .core,.dot.sel .core{transform:scale(1.5)}
+  .dot .ab{position:absolute;left:50%;top:calc(50% + 11px);transform:translateX(-50%);font-family:var(--mono);font-size:8.5px;letter-spacing:.02em;color:var(--ink);font-weight:700;white-space:nowrap;background:rgba(255,255,255,.7);padding:0 2px;border-radius:3px;pointer-events:none}
+  .dot.hidden{display:none}
+  .dot.pod{cursor:pointer}
+  .dot.pod .pin{width:16px;height:16px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #fff;box-shadow:0 2px 6px rgba(14,59,44,.35)}
+  .dot.pod .pin.vigente{background:var(--g2)} .dot.pod .pin.conflicto{background:#c65a2e} .dot.pod .pin.cancelado{background:#93a29a}
+  .maphint{font-size:11.5px;color:var(--dim);padding:0 16px 14px}
+  /* detail panel */
+  .detail{border:1px solid var(--line);border-radius:16px;background:#fff;padding:22px;min-height:300px;position:sticky;top:76px}
+  .detail .dk{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--kick);font-weight:700}
+  .detail h4{margin:8px 0 0;font-size:22px;font-weight:800}
+  .chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.03em;padding:6px 12px;border-radius:8px;margin-top:12px;color:#fff}
+  .chip .cdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.85)}
+  .detail .lawlbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:20px}
+  .detail .law{font-size:15.5px;color:var(--ink);line-height:1.5;margin-top:6px;font-weight:600}
+  .detail .meta{margin-top:18px;border-top:1px solid var(--line2);padding-top:16px;display:flex;flex-direction:column;gap:10px}
+  .detail .mrow{display:flex;justify-content:space-between;gap:12px;font-size:13px}
+  .detail .mrow .k{color:var(--mut)} .detail .mrow .v{font-weight:700;text-align:right}
+  .detail .empty{color:var(--mut);font-size:14px;margin-top:16px;line-height:1.55}
+  .detail .empty b{color:var(--ink)}
+  .detail .pod-list{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+  .podcard{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .podcard .ph{display:flex;justify-content:space-between;gap:10px;align-items:center}
+  .podcard .pn{font-weight:800;font-size:14px} .podcard .px{font-size:12.5px;color:var(--mut);margin-top:5px;line-height:1.4}
+  .pstat{font-family:var(--mono);font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:4px 8px;border-radius:6px;color:#fff}
+  .pstat.vigente{background:var(--g2)} .pstat.conflicto{background:#c65a2e} .pstat.cancelado{background:#93a29a}
+  /* ---- feeds ---- */
+  .feeds{display:grid;grid-template-columns:1.35fr 1fr;gap:26px;margin-top:48px}
+  @media(max-width:900px){.feeds{grid-template-columns:1fr}}
+  .panel{border:1px solid var(--line);border-radius:16px;background:#fff;padding:22px}
+  .news-list{margin-top:6px}
+  .nitem{display:block;padding:14px 0;border-top:1px solid var(--line2);text-decoration:none}
+  .nitem:first-child{border-top:none}
+  .nitem .nt{font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.35}
+  .nitem .nm{margin-top:6px;display:flex;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--dim);text-transform:uppercase}
+  .nitem .nm .est{color:var(--g2);font-weight:700}
+  .nitem:hover .nt{color:var(--g2)}
+  .noms-list{margin-top:6px}
+  .nomrow{padding:13px 0;border-top:1px solid var(--line2);display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+  .nomrow:first-child{border-top:none}
+  .nomrow .nc{font-family:var(--mono);font-size:12px;font-weight:800;color:var(--g2);white-space:nowrap}
+  .nomrow .nx{font-size:13px;color:var(--mut);line-height:1.4}
+  .nomrow .nx b{color:var(--ink)}
+  .loading{color:var(--dim);font-size:13px;padding:14px 0}
+  /* ---- footer ---- */
+  footer{margin-top:56px;border-top:1px solid var(--line);background:var(--paper2)}
+  footer .wrap{padding:26px 0 40px;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
+  footer .note{font-size:12px;color:var(--mut);max-width:640px;line-height:1.5}
+  footer .fcollab{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.05em;text-align:right;line-height:1.6}
+  footer b{color:var(--ink)}
+  .updated{font-family:var(--mono);font-size:10.5px;color:var(--dim);letter-spacing:.08em}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <div class="brand"><span class="logo">sc<b>·</b>pe</span><span class="sep"></span><span class="prod">Observatorio</span></div>
+  <div class="collab">En colaboración con el Senado de la República<br>y el Tecnológico de Monterrey</div>
+</div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Centro de inteligencia · Economía Circular</div>
+    <h1>Observatorio de Economía Circular</h1>
+    <p class="sub">Monitoreo del desarrollo de las leyes de Economía Circular a nivel federal y estatal, los Polos de Desarrollo para el Bienestar (PODECIBI), las Normas Oficiales aplicables y la agenda regulatoria en todo el país.</p>
+    <div class="collab-line"><span class="cd"></span><span>En colaboración con el <b>Senado de la República</b> y el <b>Tecnológico de Monterrey</b></span></div>
+  </section>
+
+  <section class="fed">
+    <div class="badge">Vigente</div>
+    <div>
+      <div class="fk">Marco federal</div>
+      <h2>Ley General de Economía Circular</h2>
+      <p>Publicada el 19 de enero de 2026 y en vigor al día siguiente. Establece un marco nacional para incrementar la vida útil de los productos, reducir la generación de residuos y recuperar su valor, distribuyendo competencias entre Federación, entidades y municipios. El plazo de 180 días para que las entidades armonizaran su legislación ya concluyó.</p>
+    </div>
+  </section>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section class="mapsec">
+    <div class="shead"><span class="sn">Mapa nacional</span><h3>Estatus legislativo por entidad</h3></div>
+    <div class="srule"></div>
+    <div class="mapgrid">
+      <div class="mappane">
+        <div class="maptools">
+          <div class="layers">
+            <button class="lyr" data-layer="leg" aria-pressed="true">Legislación estatal</button>
+            <button class="lyr" data-layer="pod" aria-pressed="false">PODECIBI</button>
+            <button class="lyr dis" title="Capa en integración">Municipios · SE</button>
+          </div>
+          <div class="legend" id="legend"></div>
+        </div>
+        <div class="maparea"><div id="mx"><svg class="base" id="mxbase" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg></div></div>
+        <div class="maphint">Haz clic en una entidad para ver su ley o iniciativa. Fuente: DAP · mapeo legislativo 2026.</div>
+      </div>
+      <aside class="detail" id="detail"></aside>
+    </div>
+  </section>
+
+  <section class="feeds">
+    <div class="panel">
+      <div class="shead"><span class="sn">Radar</span><h3>Economía Circular en la prensa</h3></div>
+      <div class="srule"></div>
+      <div class="news-list" id="news"><div class="loading">Cargando monitoreo…</div></div>
+    </div>
+    <div class="panel">
+      <div class="shead"><span class="sn">Normativa</span><h3>NOMs aplicables</h3></div>
+      <div class="srule"></div>
+      <div class="noms-list" id="noms"></div>
+    </div>
+  </section>
+</div>
+
+<footer><div class="wrap">
+  <div class="note"><b>Nota metodológica.</b> La existencia de una ley vigente no equivale a haber cumplido con la armonización federal: las leyes expedidas antes del 19 de enero de 2026 requieren revisión de compatibilidad con la Ley General. Panorama legislativo con base en el mapeo de DAP · Despacho de Asuntos Públicos y ordenamientos de congresos estatales. <span class="updated" id="upd"></span></div>
+  <div class="fcollab">Observatorio de Economía Circular<br>en colaboración con el <b>Senado de la República</b><br>y el <b>Tecnológico de Monterrey</b></div>
+</div></footer>
+
+<script>
+/* ---------------- datos ---------------- */
+var SC={'Aguascalientes':[21.876,-102.296],'Baja California':[30.840,-115.285],'Baja California Sur':[26.011,-111.346],'Campeche':[19.830,-90.535],'Chiapas':[16.756,-93.129],'Chihuahua':[28.632,-106.068],'Ciudad de México':[19.432,-99.133],'Coahuila':[27.058,-101.706],'Colima':[19.245,-103.724],'Durango':[24.027,-104.653],'Guanajuato':[20.917,-101.162],'Guerrero':[17.549,-99.500],'Hidalgo':[20.091,-98.762],'Jalisco':[20.659,-103.349],'México':[19.359,-99.851],'Michoacán':[19.566,-101.707],'Morelos':[18.924,-99.233],'Nayarit':[21.751,-104.845],'Nuevo León':[25.592,-99.996],'Oaxaca':[17.073,-96.726],'Puebla':[19.041,-98.206],'Querétaro':[20.588,-100.389],'Quintana Roo':[19.181,-88.480],'San Luis Potosí':[22.150,-100.976],'Sinaloa':[25.022,-107.604],'Sonora':[29.291,-110.309],'Tabasco':[17.987,-92.948],'Tamaulipas':[24.266,-98.836],'Tlaxcala':[19.318,-98.238],'Veracruz':[19.173,-96.134],'Yucatán':[20.710,-89.073],'Zacatecas':[22.770,-102.583]};
+var AB={'Aguascalientes':'AGS','Baja California':'BC','Baja California Sur':'BCS','Campeche':'CAM','Chiapas':'CHIS','Chihuahua':'CHIH','Ciudad de México':'CDMX','Coahuila':'COAH','Colima':'COL','Durango':'DGO','Guanajuato':'GTO','Guerrero':'GRO','Hidalgo':'HGO','Jalisco':'JAL','México':'MEX','Michoacán':'MICH','Morelos':'MOR','Nayarit':'NAY','Nuevo León':'NL','Oaxaca':'OAX','Puebla':'PUE','Querétaro':'QRO','Quintana Roo':'QROO','San Luis Potosí':'SLP','Sinaloa':'SIN','Sonora':'SON','Tabasco':'TAB','Tamaulipas':'TAM','Tlaxcala':'TLAX','Veracruz':'VER','Yucatán':'YUC','Zacatecas':'ZAC'};
+var DISP={'México':'Estado de México'};
+/* estatus por entidad — DAP mapeo legislativo 2026 (textos verbatim) */
+var EC={
+ 'Aguascalientes':{s:'ini',l:'Iniciativa — Ley de Economía Circular de Aguascalientes'},
+ 'Baja California':{s:'vig',l:'Ley para la Prevención, Gestión Integral y Economía Circular de los Residuos de BC'},
+ 'Baja California Sur':{s:'vig',l:'Ley de Prevención y Gestión Integral de Residuos y Economía Circular de BCS'},
+ 'Campeche':{s:'ini',l:'Iniciativa — Ley de Economía Circular de Campeche'},
+ 'Chiapas':{s:'sin',l:'Sin iniciativa localizada'},
+ 'Chihuahua':{s:'vig',l:'Ley de Economía Circular para el Estado de Chihuahua'},
+ 'Ciudad de México':{s:'vig',l:'Ley de Economía Circular de la Ciudad de México'},
+ 'Coahuila':{s:'adv',l:'Sin ley; reformas parciales a Ley de Equilibrio Ecológico'},
+ 'Colima':{s:'adv',l:'Anunciada — Ley de Economía Circular para Colima (pendiente presentación)'},
+ 'Durango':{s:'adv',l:'Reformas a Constitución y Ley Orgánica Municipal (sin ley específica)'},
+ 'México':{s:'ini',l:'Iniciativa — Ley de Economía Circular del Estado de México y Municipios'},
+ 'Guanajuato':{s:'vig',l:'Ley de Economía Circular para el Estado de Guanajuato y sus Municipios'},
+ 'Guerrero':{s:'adv',l:'Reforma a Ley de Cambio Climático para Plan Estatal de Economía Circular'},
+ 'Hidalgo':{s:'ini',l:'Iniciativa de ley en materia de economía circular'},
+ 'Jalisco':{s:'ini',l:'Iniciativa — Ley de Economía Circular del Estado de Jalisco y sus Municipios'},
+ 'Michoacán':{s:'ini',l:'Iniciativa — Ley de Economía Circular del Estado de Michoacán de Ocampo'},
+ 'Morelos':{s:'vig',l:'Ley de Residuos Sólidos y de Economía Circular para el Estado de Morelos'},
+ 'Nayarit':{s:'sin',l:'Sin iniciativa localizada'},
+ 'Nuevo León':{s:'ini',l:'Iniciativa — Ley de Fomento de la Economía Circular de Nuevo León'},
+ 'Oaxaca':{s:'vig',l:'Ley Estatal de Economía Circular del Estado de Oaxaca'},
+ 'Puebla':{s:'vig',l:'Ley de Economía Circular del Estado de Puebla'},
+ 'Querétaro':{s:'vig',l:'Ley para la Prevención, Gestión Integral y Economía Circular de los Residuos de Querétaro'},
+ 'Quintana Roo':{s:'vig',l:'Ley para la Prevención, Gestión Integral y Economía Circular de los Residuos de Quintana Roo'},
+ 'San Luis Potosí':{s:'ini',l:'Iniciativa — Ley de Economía Circular para el Estado y Municipios de SLP'},
+ 'Sinaloa':{s:'ini',l:'Iniciativa — Ley de Economía Circular del Estado de Sinaloa'},
+ 'Sonora':{s:'ini',l:'Iniciativa — Ley de Economía Circular para el Estado de Sonora'},
+ 'Tabasco':{s:'adv',l:'Contemplada en agenda legislativa 2026; sin iniciativa formal'},
+ 'Tamaulipas':{s:'adv',l:'Dictamen elaborado y pendiente de aprobación en pleno'},
+ 'Tlaxcala':{s:'ini',l:'Iniciativa — Ley de Economía Circular del Estado de Tlaxcala'},
+ 'Veracruz':{s:'sin',l:'Sin iniciativa localizada'},
+ 'Yucatán':{s:'ini',l:'Dos propuestas: Ley de Economía Circular y Permacultural + Ley de Economía Circular de Yucatán'},
+ 'Zacatecas':{s:'sin',l:'Sin iniciativa localizada'}
+};
+var STAT={vig:{n:'Ley vigente',c:'var(--st-vig)'},ini:{n:'Iniciativa en comisión',c:'var(--st-ini)'},adv:{n:'Avance parcial / dictamen',c:'var(--st-adv)'},sin:{n:'Sin iniciativa localizada',c:'var(--st-sin)'}};
+/* PODECIBI — declaratorias DOF/SEMARNAT (coords municipio aprox.) */
+var POD=[
+ {estado:'Quintana Roo',mun:'Puerto Morelos',c:[20.848,-86.875],st:'vigente',sitio:'Corredor Cancún–Puerto Morelos–Playa del Carmen',ha:39.9,decl:'27 jul 2026',enf:'Valorización de sargazo, plásticos y residuos de construcción',nota:'Firmada por SEMARNAT. Consulta ejidal 55–0 a favor; vínculo con el CICY. Único vigente sin conflicto activo.'},
+ {estado:'Tlaxcala',mun:'Atlangatepec',c:[19.578,-98.211],st:'conflicto',sitio:'Ex Hacienda de San Pedro Ecatepec',ha:20.0,decl:'8 jun 2026',enf:'Gestión integral de residuos del estado',nota:'160 mdp de urbanización; vínculo con la U. Politécnica de Tlaxcala. Enfrentamientos con pobladores (jun-2026).'},
+ {estado:'Puebla',mun:'San José Chiapa',c:[19.30,-97.83],st:'conflicto',sitio:'Antigua Hacienda de San Miguel del Salado',ha:40.4,decl:'2 mar 2026',enf:'Llantas, plásticos, textiles, aceites y residuos de construcción',nota:'500 empleos directos previstos. Oposición de pobladores y organizaciones; denuncia ante PROFEPA. MIA aún no ingresada.'},
+ {estado:'Hidalgo',mun:'Tlaxcoapan y Atitalaquia',c:[20.09,-99.22],st:'cancelado',sitio:'',ha:null,decl:'2025',enf:'',nota:'Primer PODECIBI declarado. Cancelado en jul-2026 por rechazo en votación.'}
+];
+/* NOMs aplicables a economía circular / residuos (marco federal) */
+var NOMS=[
+ {c:'LGEC 2026',x:'<b>Ley General de Economía Circular.</b> Marco nacional de REP, gestión circular, distintivo nacional e instrumentos económicos.'},
+ {c:'REP',x:'<b>Responsabilidad Extendida del Productor.</b> Traslada al productor la gestión del producto al final de su vida útil — reforma en proceso.'},
+ {c:'NOM-161-SEMARNAT-2011',x:'Plan de manejo de <b>residuos de manejo especial</b>: acopio, valorización y disposición para grandes generadores y productores.'},
+ {c:'NOM-052-SEMARNAT-2005',x:'Clasificación y características de los <b>residuos peligrosos</b> y el listado de los mismos.'},
+ {c:'NOM-160-SEMARNAT-2011',x:'Elementos y procedimientos para instrumentar <b>planes de manejo de residuos peligrosos</b>.'},
+ {c:'NOM-083-SEMARNAT-2003',x:'Especificaciones de <b>disposición final</b> de residuos sólidos urbanos y de manejo especial en rellenos sanitarios.'},
+ {c:'NOM-165-SEMARNAT-2013',x:'Registro de Emisiones y Transferencia de Contaminantes (<b>RETC</b>): sustancias y umbrales de reporte.'},
+ {c:'NOM-004-SEMARNAT-2002',x:'Aprovechamiento y disposición de <b>lodos y biosólidos</b> — valorización de subproductos.'}
+];
+
+/* ---------------- proyección ---------------- */
+var B={lngMin:-117.8,lngMax:-86.0,latMin:14.0,latMax:33.2},I={x0:6,x1:96,y0:10,y1:88};
+function pX(l){return I.x0+(l-B.lngMin)/(B.lngMax-B.lngMin)*(I.x1-I.x0);}
+function pY(l){return I.y0+(B.latMax-l)/(B.latMax-B.latMin)*(I.y1-I.y0);}
+var CSS=function(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();};
+
+/* ---------------- KPIs ---------------- */
+(function(){
+  var counts={vig:0,ini:0,adv:0,sin:0};Object.keys(EC).forEach(function(k){counts[EC[k].s]++;});
+  var K=document.getElementById('kpis');
+  function kpi(cls,n,l){return '<div class="kpi '+cls+'"><div class="n">'+n+'</div><div class="l">'+l+'</div></div>';}
+  K.innerHTML=kpi('k-vig',counts.vig,'Estados con ley vigente')+kpi('k-ini',counts.ini,'Iniciativa en comisión')+kpi('k-adv',counts.adv,'Avance parcial o dictamen')+kpi('k-sin',counts.sin,'Sin iniciativa localizada')+kpi('k-tot','72%','23 de 32 entidades ya legislan o tienen propuesta en curso');
+})();
+
+/* ---------------- leyenda ---------------- */
+var hidden={vig:0,ini:0,adv:0,sin:0};
+(function(){
+  var L=document.getElementById('legend');
+  Object.keys(STAT).forEach(function(s){
+    var b=document.createElement('span');b.className='lg';b.setAttribute('data-s',s);
+    b.innerHTML='<span class="d" style="background:'+STAT[s].c+'"></span>'+STAT[s].n;
+    b.addEventListener('click',function(){hidden[s]=!hidden[s];b.setAttribute('data-off',hidden[s]?'1':'0');applyFilter();});
+    L.appendChild(b);
+  });
+})();
+
+/* ---------------- mapa ---------------- */
+var mx=document.getElementById('mx'), curLayer={leg:true,pod:false}, selName=null;
+function drawDots(){
+  // legislación
+  Object.keys(SC).forEach(function(st){
+    var c=SC[st],e=EC[st]; if(!e)return;
+    var d=document.createElement('div');d.className='dot leg';d.dataset.st=st;d.dataset.s=e.s;
+    d.style.left=pX(c[1])+'%';d.style.top=pY(c[0])+'%';
+    d.innerHTML='<span class="core" style="background:'+STAT[e.s].c+'"></span><span class="ab">'+(AB[st]||'')+'</span>';
+    d.addEventListener('click',function(){selectState(st);});
+    mx.appendChild(d);
+  });
+  // podecibi
+  POD.forEach(function(p,i){
+    var d=document.createElement('div');d.className='dot pod hidden';d.dataset.pod=i;
+    d.style.left=pX(p.c[1])+'%';d.style.top=pY(p.c[0])+'%';
+    d.innerHTML='<span class="pin '+p.st+'"></span>';
+    d.title='PODECIBI · '+p.mun+', '+p.estado;
+    d.addEventListener('click',function(){selectPod();});
+    mx.appendChild(d);
+  });
+}
+function applyFilter(){
+  document.querySelectorAll('.dot.leg').forEach(function(d){
+    var off=hidden[d.dataset.s]||!curLayer.leg; d.classList.toggle('hidden',!!off);
+  });
+  document.querySelectorAll('.dot.pod').forEach(function(d){d.classList.toggle('hidden',!curLayer.pod);});
+}
+/* base silhouette */
+fetch('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json',{cache:'force-cache'})
+ .then(function(r){return r.json();}).then(function(g){
+   var d='';(g.features||[]).forEach(function(f){var gm=f.geometry;if(!gm)return;var ps=gm.type==='Polygon'?[gm.coordinates]:(gm.type==='MultiPolygon'?gm.coordinates:[]);
+     ps.forEach(function(poly){poly.forEach(function(ring){if(ring.length<3)return;var dec=ring.filter(function(_,k){return k===0||k===ring.length-1||k%2===0;});
+       d+='M'+dec.map(function(p){return pX(p[0]).toFixed(2)+' '+pY(p[1]).toFixed(2);}).join('L')+'Z';});});});
+   document.getElementById('mxbase').innerHTML='<style>path{vector-effect:non-scaling-stroke}</style><path d="'+d+'" fill="#eef4ec" stroke="#cfdcd4" stroke-width="1"/>';
+ }).catch(function(){});
+drawDots();applyFilter();
+
+/* ---------------- selección / detalle ---------------- */
+var detail=document.getElementById('detail');
+function defaultDetail(){
+  detail.innerHTML='<div class="dk">Lectura del mapa</div><h4>23 de 32 entidades ya legislan</h4>'
+   +'<p class="empty">No existe un solo modelo: algunas entidades expidieron <b>leyes específicas</b> de economía circular y otras integraron el tema en su <b>legislación de residuos</b>. Las leyes anteriores a enero de 2026 requieren revisión de compatibilidad con la Ley General.<br><br>Selecciona una entidad en el mapa para ver su ley o iniciativa, o activa la capa <b>PODECIBI</b> para ver los Polos de Desarrollo de Economía Circular.</p>';
+}
+function selectState(st){
+  selName=st;document.querySelectorAll('.dot.leg').forEach(function(d){d.classList.toggle('sel',d.dataset.st===st);});
+  var e=EC[st],disp=DISP[st]||st;
+  var news=ECNEWS.filter(function(n){return (n.estado||'')===st;});
+  detail.innerHTML='<div class="dk">Entidad federativa</div><h4>'+disp+'</h4>'
+   +'<span class="chip" style="background:'+STAT[e.s].c+'"><span class="cdot"></span>'+STAT[e.s].n+'</span>'
+   +'<div class="lawlbl">Ley o iniciativa localizada</div><div class="law">'+e.l+'</div>'
+   +'<div class="meta"><div class="mrow"><span class="k">Clave</span><span class="v mono">'+(AB[st]||'')+'</span></div>'
+   +'<div class="mrow"><span class="k">Noticias en el Radar</span><span class="v">'+news.length+'</span></div></div>'
+   +(news.length?('<div class="lawlbl">Prensa reciente</div>'+news.slice(0,3).map(function(n){return '<a class="nitem" href="'+n.url+'" target="_blank" rel="noopener"><div class="nt">'+esc(n.titulo)+'</div><div class="nm"><span>'+esc(n.fuente||'')+'</span></div></a>';}).join('')):'');
+}
+function selectPod(){
+  detail.innerHTML='<div class="dk">Polos de Desarrollo · PODECIBI</div><h4>Economía Circular para el Bienestar</h4>'
+   +'<p class="empty">Declaratorias de SEMARNAT (Subsecretaría de Desarrollo Sostenible y Economía Circular) publicadas en el DOF.</p>'
+   +'<div class="pod-list">'+POD.map(function(p){return '<div class="podcard"><div class="ph"><span class="pn">'+p.mun+', '+p.estado+'</span><span class="pstat '+p.st+'">'+p.st+'</span></div>'
+     +'<div class="px">'+(p.enf?p.enf+'. ':'')+p.nota+'</div>'
+     +'<div class="px mono" style="margin-top:6px;color:var(--dim)">Declaratoria '+p.decl+(p.ha?(' · '+p.ha+' ha'):'')+'</div></div>';}).join('')+'</div>';
+}
+function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+/* capas */
+document.querySelectorAll('.lyr[data-layer]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var ly=b.dataset.layer,on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on?'true':'false');
+    curLayer[ly]=on;applyFilter();
+    if(ly==='pod'&&on)selectPod(); else if(ly==='pod'&&!on)defaultDetail();
+  });
+});
+
+/* ---------------- NOMs ---------------- */
+document.getElementById('noms').innerHTML=NOMS.map(function(n){return '<div class="nomrow"><span class="nc">'+n.c+'</span><span class="nx">'+n.x+'</span></div>';}).join('');
+
+/* ---------------- noticias (Radar EC, en vivo) ---------------- */
+var ECNEWS=[];
+var RX=/econom[ií]a circular|circularidad|\breciclaj|residuo|valorizaci[oó]n|\bREP\b|pl[aá]stico|reutiliz|un solo uso|reducci[oó]n de residuos|manejo especial|reciclad/i;
+var NAMES=Object.keys(SC);
+function stateOf(n){ if(n.estado&&SC[n.estado])return n.estado; var t=(n.titulo||'')+' '+(n.resumen||''); for(var i=0;i<NAMES.length;i++){if(t.indexOf(NAMES[i])>=0)return NAMES[i];} return ''; }
+function fdate(s){try{var d=new Date(s);return d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});}catch(e){return '';}}
+fetch('../data/noticias.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(arr){
+  var seen={};
+  ECNEWS=arr.filter(function(n){
+    var cat=(n.categoria_nombre||''); var t=(n.titulo||'')+' '+(n.resumen||'');
+    return cat==='Residuos'||RX.test(t);
+  }).map(function(n){n.estado=stateOf(n);return n;})
+   .filter(function(n){var k=n.titulo;if(seen[k])return false;seen[k]=1;return true;})
+   .sort(function(a,b){return (b.fecha_publicacion||'').localeCompare(a.fecha_publicacion||'');});
+  renderNews();
+}).catch(function(){document.getElementById('news').innerHTML='<div class="loading">No se pudo cargar el monitoreo en este momento.</div>';});
+function renderNews(){
+  var host=document.getElementById('news');
+  if(!ECNEWS.length){host.innerHTML='<div class="loading">Sin coincidencias recientes.</div>';return;}
+  host.innerHTML=ECNEWS.slice(0,9).map(function(n){
+    var est=n.estado?('<span class="est">'+(AB[n.estado]||n.estado)+'</span>'):'';
+    return '<a class="nitem" href="'+n.url+'" target="_blank" rel="noopener"><div class="nt">'+esc(n.titulo)+'</div>'
+     +'<div class="nm">'+est+'<span>'+esc(n.fuente||'')+'</span><span>'+fdate(n.fecha_publicacion)+'</span></div></a>';
+  }).join('');
+}
+
+defaultDetail();
+document.getElementById('upd').textContent='Actualizado · 2026';
+</script>
+</body>
+</html>
