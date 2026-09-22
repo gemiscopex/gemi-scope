@@ -283,7 +283,9 @@
   .tree-hub img{width:52%;height:auto;position:relative;z-index:2}
   .tree-hub .hub-lbl{position:absolute;bottom:-26px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--kick-l);font-weight:700;white-space:nowrap}
   @keyframes hubpulse{0%{transform:scale(.9);opacity:.55}70%{transform:scale(1.35);opacity:0}100%{opacity:0}}
-  @media(max-width:820px){.tree{grid-template-columns:1fr;gap:10px}.tree-links{display:none}.tree-hub{display:none}.tree-left,.tree-right{align-items:flex-start;text-align:left}.tnode2{max-width:none}}
+  section[data-t="Decálogo"]{justify-content:flex-start;text-align:center}
+  section[data-t="Decálogo"] .tree{margin-top:auto;margin-bottom:auto;margin-left:auto;margin-right:auto}
+  @media(max-width:820px){.tree{grid-template-columns:1fr;gap:10px}.tree-links{display:none}.tree-hub{display:none}.tree-left,.tree-right{align-items:flex-start;text-align:left}.tnode2{max-width:none}section[data-t="Decálogo"]{justify-content:center}section[data-t="Decálogo"] .tree{margin:18px auto}}
   /* ===== bienvenida ===== */
   .bienv{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
   @media(max-width:760px){.bienv{grid-template-columns:1fr;gap:26px}}
