@@ -410,6 +410,15 @@
   .santi .sli.sub{margin-left:26px}
   .santi .sli .sb{color:var(--g2);font-weight:700}
   .santi .gr{color:var(--kick-l)}
+  .reg-split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,3.6vw,58px);margin-top:20px;align-items:start}
+  .reg-copy .santi{margin-top:0}
+  .obs-card{padding:20px 22px}
+  .obs-card-h{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--kick-l);font-weight:700;margin-bottom:12px}
+  .obs-item{display:grid;grid-template-columns:15px 1fr;gap:10px;font-size:clamp(12px,1.2vw,15px);line-height:1.48;color:var(--ink-l);padding:9px 0;border-top:1px solid #dbe7df}
+  .obs-item:first-of-type{border-top:none;padding-top:2px}
+  .obs-item.sub{margin-left:20px}
+  .obs-item .sb{color:var(--g2);font-weight:700}
+  @media(max-width:900px){.reg-split{grid-template-columns:1fr;gap:22px}}
   @media(max-width:640px){.owr{grid-template-columns:1fr;gap:4px}}
   .obs-ctx{margin-top:26px;max-width:920px;border-left:2px solid var(--dk);padding:4px 0 4px 18px}
   .octx-h{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--kick-l);font-weight:700}
@@ -650,44 +659,46 @@
     </div>
   </section>
 
-  <!-- Santiago · 2 · Registro de infractores -->
+    <!-- Santiago · 2 · Registro de infractores -->
   <section class="lt" data-t="Registro de infractores">
-    <div class="t r d1">Registro de infractores</div>
-    <div class="santi">
-      <div class="ss r d2">¿Qué es el Registro de Infractores?</div>
-      <div class="sp r d2">Es un Registro/Listado de las personas físicas o jurídicas, que hayan realizado alguna conducta enlistada en el <span class="gr">artículo 313,</span> tiene una duración de un periodo mínimo de siete años y máximo de diez años.</div>
-      <div class="sp gr r d3">Algunas amplias en su formulación y aplicables a operaciones industriales son:</div>
-      <div class="sfrac r d3">II. Obras o actividades realizadas que no cuenten con autorización de impacto ambiental.</div>
-      <div class="sfrac r d3">XI. Acopiar, almacenar, transportar, tratar o disponer finalmente, residuos peligrosos, sin contar con la debida autorización para ello;</div>
-      <div class="sfrac r d3">XV. Conducirse con falsedad en los procedimientos de solicitud de permisos, licencias o autorizaciones</div>
-      <div class="sobs r d4">OBSERVACIONES</div>
-      <div class="sli r d4"><span class="sb">&#10146;</span><span><b>NO describe procedimiento operativo de salida</b>: no define quién solicita la reducción, cómo se acredita el cumplimiento, ante qué instancia, con qué documentación, en qué plazos, con qué medio de impugnación si la reducción es negada.</span></div>
-      <div class="sli r d5"><span class="sb">&#10146;</span><span><b>Riesgo de operatividad:</b> las personas infractoras inscritas en dicho registro, NO serán sujetas al otorgamiento de permisos, subsidios fiscales, autorizaciones y concesiones previstos en la normativa ambiental en el sitio o predio en el que se cometió la infracción.</span></div>
-      <div class="sli r d5"><span class="sb">&#10146;</span><span><b>Existe una asimetría temporal:</b> permite que una persona salga del período de reincidencia pero permanezca en el registro por 5-8 años adicionales, con todas las consecuencias jurídicas del Art. 313</span></div>
+    <div class="t r d1">¿Qué es el Registro de Infractores?</div>
+    <div class="reg-split">
+      <div class="reg-copy">
+        <div class="santi">
+          <div class="sp r d2">Es un Registro/Listado de las personas físicas o jurídicas, que hayan realizado alguna conducta enlistada en el <span class="gr">artículo 313,</span> tiene una duración de un periodo mínimo de siete años y máximo de diez años.</div>
+          <div class="sp gr r d3">Algunas amplias en su formulación y aplicables a operaciones industriales son:</div>
+          <div class="sfrac r d3">II. Obras o actividades realizadas que no cuenten con autorización de impacto ambiental.</div>
+          <div class="sfrac r d3">XI. Acopiar, almacenar, transportar, tratar o disponer finalmente, residuos peligrosos, sin contar con la debida autorización para ello;</div>
+          <div class="sfrac r d3">XV. Conducirse con falsedad en los procedimientos de solicitud de permisos, licencias o autorizaciones</div>
+        </div>
+      </div>
+      <div class="obs-card card tint r d4">
+        <div class="obs-card-h">Observaciones</div>
+        <div class="obs-item"><span class="sb">&#10146;</span><span><b>NO describe procedimiento operativo de salida</b>: no define quién solicita la reducción, cómo se acredita el cumplimiento, ante qué instancia, con qué documentación, en qué plazos, con qué medio de impugnación si la reducción es negada.</span></div>
+        <div class="obs-item"><span class="sb">&#10146;</span><span><b>Riesgo de operatividad:</b> las personas infractoras inscritas en dicho registro, NO serán sujetas al otorgamiento de permisos, subsidios fiscales, autorizaciones y concesiones previstos en la normativa ambiental en el sitio o predio en el que se cometió la infracción.</span></div>
+        <div class="obs-item"><span class="sb">&#10146;</span><span><b>Existe una asimetría temporal:</b> permite que una persona salga del período de reincidencia pero permanezca en el registro por 5-8 años adicionales, con todas las consecuencias jurídicas del Art. 313</span></div>
+        <div class="obs-item"><span class="sb">&#10146;</span><span>Capturar información incorrecta en cualquier trámite ambiental te hace acreedor al registro de infractores y a las sanciones correspondientes. El estándar de "falsedad" no está definido en el artículo, puede interpretarse desde un error material.</span></div>
+      </div>
     </div>
   </section>
 
-  <!-- Santiago · 3 · Registro de infractores (continuación) -->
-  <section class="lt" data-t="Registro de infractores">
-    <div class="t r d1">Registro de infractores</div>
-    <div class="santi">
-      <div class="sobs r d2">OBSERVACIONES</div>
-      <div class="sli r d3"><span class="sb">&#10146;</span><span>Capturar información incorrecta en cualquier trámite ambiental te hace acreedor al registro de infractores y a las sanciones correspondientes. El estándar de "falsedad" no está definido en el artículo, puede interpretarse desde un error material.</span></div>
-    </div>
-  </section>
-
-  <!-- Santiago · 4 · Sanciones -->
+  <!-- Santiago · 3 · Sanciones -->
   <section class="lt" data-t="Sanciones">
-    <div class="t r d1">Sanciones</div>
-    <div class="santi">
-      <div class="ss r d2">¿Qué cambia?</div>
-      <div class="sp r d2">Eres acreedor a las sanciones por cometer violaciones a la normativa ambiental, sus reglamentos y las disposiciones que de ellas emanen por personas físicas o morales.</div>
-      <div class="sp r d3">La Normativa Ambiental se refiere a la totalidad del marco legal en materia ambiental, incluye a las Leyes Federales, NOMS, y tratados internacionales de los que México forme parte (Escazú).</div>
-      <div class="sp r d3">El Régimen de responsabilidad administrativa amplía el catálogo de sujetos responsables. La responsabilidad de personas morales se establece por las infracciones y daños de sus representantes, administradores, gerentes, directores, empleados.</div>
-      <div class="sobs r d4">OBSERVACIONES</div>
-      <div class="sli r d4"><span class="sb">&#10146;</span><span><b>Riesgo de Infracción:</b> Una sola infracción puede tener múltiples elementos, <b>por ejemplo un parámetro fuera de lugar en alguna NOM, estará sujeto a una sanción que</b> va desde $9,051 pesos hasta $848,550,000 pesos por infracción.</span></div>
-      <div class="sli sub r d5"><span class="sb">&#10146;</span><span>Una infracción inicial en una planta puede eliminar el acceso a modificación de multa para todas las infracciones subsecuentes en cualquier planta del asociado por 7-10 años.</span></div>
-      <div class="sli r d5"><span class="sb">&#10146;</span><span><b>Riesgo de Régimen de Responsabilidad:</b> ausencia de criterios de proporcionalidad por conducta de colaborador.</span></div>
+    <div class="t r d1">¿Qué cambia?</div>
+    <div class="reg-split">
+      <div class="reg-copy">
+        <div class="santi">
+          <div class="sp r d2">Eres acreedor a las sanciones por cometer violaciones a la normativa ambiental, sus reglamentos y las disposiciones que de ellas emanen por personas físicas o morales.</div>
+          <div class="sp r d3">La Normativa Ambiental se refiere a la totalidad del marco legal en materia ambiental, incluye a las Leyes Federales, NOMS, y tratados internacionales de los que México forme parte (Escazú).</div>
+          <div class="sp r d4">El Régimen de responsabilidad administrativa amplía el catálogo de sujetos responsables. La responsabilidad de personas morales se establece por las infracciones y daños de sus representantes, administradores, gerentes, directores, empleados.</div>
+        </div>
+      </div>
+      <div class="obs-card card tint r d4">
+        <div class="obs-card-h">Observaciones</div>
+        <div class="obs-item"><span class="sb">&#10146;</span><span><b>Riesgo de Infracción:</b> Una sola infracción puede tener múltiples elementos, <b>por ejemplo un parámetro fuera de lugar en alguna NOM, estará sujeto a una sanción que</b> va desde $9,051 pesos hasta $848,550,000 pesos por infracción.</span></div>
+        <div class="obs-item sub"><span class="sb">&#10146;</span><span>Una infracción inicial en una planta puede eliminar el acceso a modificación de multa para todas las infracciones subsecuentes en cualquier planta del asociado por 7-10 años.</span></div>
+        <div class="obs-item"><span class="sb">&#10146;</span><span><b>Riesgo de Régimen de Responsabilidad:</b> ausencia de criterios de proporcionalidad por conducta de colaborador.</span></div>
+      </div>
     </div>
   </section>
 
