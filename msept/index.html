@@ -582,6 +582,8 @@
   body.print-mode .deck{height:auto;overflow:visible;scroll-snap-type:none}
   body.print-mode section{height:720px!important;min-height:720px!important;max-height:720px;width:1280px!important;overflow:hidden;scroll-snap-align:none}
   body.print-mode .prog,body.print-mode .dots{display:none!important}
+  body.print-mode *{transition:none!important;animation:none!important}
+  body.print-mode .r{opacity:1!important;transform:none!important}
   @media print{
     @page{size:1280px 720px;margin:0}
     html,body{width:1280px;background:#fff}
@@ -1274,6 +1276,7 @@
   // typewriter "cambiando" (igual que la presentación a socios)
   (function(){
     var el=document.getElementById('tw'); if(!el)return;
+    if(/[?&]print/i.test(location.search)){el.textContent='cambiando';el.style.borderRight='none';return;}
     var word='cambiando',i=word.length,dir=-1;
     el.textContent=word;
     requestAnimationFrame(function(){el.style.minWidth=el.offsetWidth+'px';setTimeout(tick,2600);});
@@ -1296,8 +1299,10 @@
     secs.forEach(function(s){s.classList.add('in');});
     document.querySelectorAll('[data-count]').forEach(function(el){el.textContent=el.getAttribute('data-count');});
     try{TW.forEach(function(x){x.el.innerHTML=x.html;});}catch(e){}
-    function _ptrees(){secs.forEach(function(s){if(s.getAttribute('data-anim')==='tree'){try{s.dataset.treeDone='';tree(s);}catch(e){}}});}
-    _ptrees(); setTimeout(_ptrees,900); setTimeout(function(){_ptrees();window.__printReady=true;},1800);
+    var _sm=location.search.match(/slide=(\d+)/), _n=_sm?+_sm[1]:null;
+    if(_n!=null){secs.forEach(function(s,i){if(i!==_n)s.style.display='none';});}
+    function _ptrees(){secs.forEach(function(s){if(s.style.display!=='none'&&s.getAttribute('data-anim')==='tree'){try{s.dataset.treeDone='';tree(s);}catch(e){}}});}
+    _ptrees(); setTimeout(_ptrees,500); setTimeout(function(){_ptrees();window.__printReady=true;},1200);
   }
 })();
 </script>
