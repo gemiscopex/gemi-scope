@@ -347,12 +347,12 @@ document.getElementById('noms').innerHTML=NOMS.map(function(n){return '<div clas
 
 var ECNEWS=[];
 var INC=/econom[ií]a circular|circularidad|\bLGEC\b|ley general de econom|reglamento de la (?:ley general de )?econom|reciclaj|recicla(?:d|r|bl)|valorizaci[oó]n|residuos?\s+(?:de manejo|peligros|s[oó]lid|industrial|urban|org[aá]nic|electr[oó]nic|de envase)|manejo (?:integral )?de residuos|gesti[oó]n (?:integral )?de residuos|responsabilidad extendida del productor|pl[aá]sticos?\s+de un solo uso|plan(?:es)? de manejo|rellenos? sanitarios?|envases?\s+(?:retornabl|reciclabl|pl[aá]stic|reutiliz|sostenibl)|\bPET\b|poliestireno|compostaj|biodegradabl|reutilizaci[oó]n de/i;
-var BLOCK=/beb[eé]s?|reci[eé]n nacid|\bmuert|\bmuere|muri[oó]|falleci|asesin|homicid|feminicid|balac|narco|\bdroga|esteroide|dopaje|salmonel|cyclospor|cicl[oó]spor|\bbacteria|diarrea|c[oó]lera|suplemento aliment|alerta sanitaria|cofepris|contagi|\bvirus\b|influenza|dengue|sarampi|\bpagos?\b|terminal(?:es)? de (?:venta|pago|punto)|punto de venta|tarjeta|contactless|fintech|pr[eé]stamo|l[ií]neas sin registr|celular|telefon|isocron|abracadabra|hor[oó]scopo|f[uú]tbol/i;
+var BLOCK=/beb[eé]s?|reci[eé]n nacid|\bmuert|\bmuere|muri[oó]|falleci|asesin|homicid|feminicid|balac|balead|balean|narco|secuestr|extorsi|asalt|\bherid[oa]|lesionad|sicari|apu[ñn]al|cad[aá]ver|sin vida|detenid[oa]|v[ií]ctima|violaci[oó]n|\bdroga|esteroide|dopaje|salmonel|cyclospor|cicl[oó]spor|\bbacteria|diarrea|c[oó]lera|suplemento aliment|alerta sanitaria|cofepris|contagi|\bvirus\b|influenza|dengue|sarampi|\bpagos?\b|terminal(?:es)? de (?:venta|pago|punto)|punto de venta|tarjeta|contactless|fintech|pr[eé]stamo|l[ií]neas sin registr|celular|telefon|isocron|abracadabra|hor[oó]scopo|f[uú]tbol/i;
 var NM=Object.keys(STATE_COORDS);
 function stOf(n){if(n.estado&&STATE_COORDS[n.estado])return n.estado;var t=(n.titulo||'')+' '+(n.resumen||'');for(var i=0;i<NM.length;i++){if(t.indexOf(NM[i])>=0)return NM[i];}return '';}
 function fdate(s){try{return new Date(s).toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});}catch(e){return '';}}
 fetch('../data/noticias.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(a){
-  var seen={};ECNEWS=a.filter(function(n){var ti=n.titulo||'',t=ti+' '+(n.resumen||'');return INC.test(ti)&&!BLOCK.test(t);})
+  var seen={};ECNEWS=a.filter(function(n){var t=(n.titulo||'')+' '+(n.resumen||'');return INC.test(t)&&!BLOCK.test(t);})
    .map(function(n){n.estado=stOf(n);return n;}).filter(function(n){if(seen[n.titulo])return false;seen[n.titulo]=1;return true;})
    .sort(function(x,y){return (y.fecha_publicacion||'').localeCompare(x.fecha_publicacion||'');});
   var h=document.getElementById('news');
