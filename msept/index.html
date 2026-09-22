@@ -263,13 +263,27 @@
   .val .vdot{width:10px;height:10px;border-radius:50%;background:var(--mint);flex:0 0 auto;box-shadow:0 0 14px rgba(63,224,173,.6)}
   .val .vt{font-size:clamp(15px,1.6vw,19px);font-weight:700}
   /* ===== decálogo ===== */
-  .deca{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px;max-width:1160px}
-  @media(max-width:760px){.deca{grid-template-columns:1fr}}
-  .dc{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:12px 15px;border:1px solid var(--lineL);border-radius:12px;background:#fff;box-shadow:0 4px 16px rgba(14,59,44,.06);opacity:0;transform:translateY(12px);transition:opacity .45s,transform .45s;transition-delay:calc(var(--i,0)*.07s)}
-  section.in .dc{opacity:1;transform:none}
-  .dc .dcn{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--kick-l)}
-  .dc .dct{font-size:14.5px;font-weight:700;color:var(--ink-l);line-height:1.2}
-  .dc .dcx{font-size:12.5px;color:var(--mut-l);line-height:1.35;margin-top:3px}
+  /* ===== Decálogo · árbol tech ===== */
+  .tree{position:relative;margin-top:clamp(14px,2.5vh,30px);display:grid;grid-template-columns:1fr clamp(112px,13vw,158px) 1fr;gap:clamp(16px,2.4vw,44px);align-items:center;width:100%;max-width:1200px}
+  .tree-links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:0}
+  .tree-links path{fill:none;stroke:url(#tg);stroke-width:1.5;stroke-linecap:round}
+  .tree-links circle{fill:var(--g2);opacity:0;transition:opacity .4s ease}
+  .tree-col{display:flex;flex-direction:column;gap:clamp(8px,1.5vh,17px);z-index:1}
+  .tree-left{align-items:flex-end;text-align:right}
+  .tree-right{align-items:flex-start;text-align:left}
+  .tnode2{max-width:330px;opacity:0;transform:translateY(7px);transition:opacity .55s ease,transform .55s ease;transition-delay:calc(var(--i,0)*.1s + .35s)}
+  section.in .tnode2{opacity:1;transform:none}
+  .tn-h{font-size:clamp(12.5px,1.3vw,15.5px);font-weight:700;color:var(--ink-l);line-height:1.2}
+  .tn-n{color:var(--kick-l);font-family:var(--mono);font-size:.82em;margin-right:7px}
+  .tn-x{font-size:clamp(10px,1vw,12px);color:var(--mut-l);line-height:1.38;margin-top:3px}
+  .tree-hub{position:relative;justify-self:center;width:clamp(108px,13vw,156px);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2}
+  .tree-hub .hub-core{position:absolute;inset:12%;border-radius:50%;background:radial-gradient(circle at 50% 40%,#ffffff,#e7f0ea);box-shadow:0 12px 34px rgba(14,59,44,.16),inset 0 0 0 1px #d9e6df}
+  .tree-hub .hub-ring{position:absolute;inset:6%;border-radius:50%;border:2px solid var(--g2);opacity:.5}
+  section.in .tree-hub .hub-ring{animation:hubpulse 2.8s ease-out infinite}
+  .tree-hub img{width:52%;height:auto;position:relative;z-index:2}
+  .tree-hub .hub-lbl{position:absolute;bottom:-26px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--kick-l);font-weight:700;white-space:nowrap}
+  @keyframes hubpulse{0%{transform:scale(.9);opacity:.55}70%{transform:scale(1.35);opacity:0}100%{opacity:0}}
+  @media(max-width:820px){.tree{grid-template-columns:1fr;gap:10px}.tree-links{display:none}.tree-hub{display:none}.tree-left,.tree-right{align-items:flex-start;text-align:left}.tnode2{max-width:none}}
   /* ===== bienvenida ===== */
   .bienv{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
   @media(max-width:760px){.bienv{grid-template-columns:1fr;gap:26px}}
@@ -596,22 +610,27 @@
   </section>
 
   <!-- 4 · Decálogo -->
-  <section class="lt" data-t="Decálogo">
+  <section class="lt" data-anim="tree" data-t="Decálogo">
     <div class="k r">Declaratoria de los asociados</div>
     <div class="t r d1">Decálogo por la sustentabilidad</div>
-    <div class="lead r d2" style="margin-top:12px">Ética en los negocios, acciones en favor del entorno y compromiso con la sociedad. Diez principios que asumen los asociados de GEMI.</div>
-    <div class="deca">
-      <div class="dc" style="--i:0"><div class="dcn">01</div><div><div class="dct">Sustentabilidad</div><div class="dcx">Considerar siempre los factores ambiental, social y económico, con los principios de la economía circular.</div></div></div>
-      <div class="dc" style="--i:1"><div class="dcn">02</div><div><div class="dct">Responsabilidad y honestidad</div><div class="dcx">Ser honestos, abiertos, transparentes y directos; impulsar tecnologías respetuosas con el ambiente.</div></div></div>
-      <div class="dc" style="--i:2"><div class="dcn">03</div><div><div class="dct">Economía circular baja en carbono</div><div class="dcx">Reducir desechos en toda la cadena de valor, con ahorro y uso eficiente de los recursos.</div></div></div>
-      <div class="dc" style="--i:3"><div class="dcn">04</div><div><div class="dct">Uso responsable de los recursos</div><div class="dcx">Mantener un uso responsable con enfoque preventivo que favorezca al medio ambiente.</div></div></div>
-      <div class="dc" style="--i:4"><div class="dcn">05</div><div><div class="dct">Innovación y diseño</div><div class="dcx">Innovar de forma disruptiva y evolutiva, con respeto y cuidado hacia los seres vivos.</div></div></div>
-      <div class="dc" style="--i:5"><div class="dcn">06</div><div><div class="dct">Legalidad</div><div class="dcx">Cumplir la legislación ambiental vigente y los compromisos de autorregulación.</div></div></div>
-      <div class="dc" style="--i:6"><div class="dcn">07</div><div><div class="dct">Compromiso</div><div class="dcx">Con el planeta y el bienestar de la gente.</div></div></div>
-      <div class="dc" style="--i:7"><div class="dcn">08</div><div><div class="dct">Diversidad e inclusión</div><div class="dcx">Promover la diversidad, la inclusión y las mejores prácticas de desarrollo humano.</div></div></div>
-      <div class="dc" style="--i:8"><div class="dcn">09</div><div><div class="dct">Comunidad</div><div class="dcx">Seguridad, bienestar y equidad; impacto positivo en las comunidades donde se vive y trabaja.</div></div></div>
-      <div class="dc" style="--i:9"><div class="dcn">10</div><div><div class="dct">Cadena de valor</div><div class="dcx">Inspirar al sector empresarial con las mejores prácticas y capacitar en todos los niveles.</div></div></div>
+    <div class="tree">
+      <svg class="tree-links" aria-hidden="true"><defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#12b98a"/><stop offset="1" stop-color="#3fe0ad"/></linearGradient></defs></svg>
+      <div class="tree-col tree-left">
+        <div class="tnode2" data-side="l" style="--i:0"><div class="tn-h"><b class="tn-n">01</b>Sustentabilidad</div><div class="tn-x">Considerar siempre los factores ambiental, social y económico, con los principios de la economía circular.</div></div>
+        <div class="tnode2" data-side="l" style="--i:1"><div class="tn-h"><b class="tn-n">02</b>Responsabilidad y honestidad</div><div class="tn-x">Ser honestos, abiertos, transparentes y directos; impulsar tecnologías respetuosas con el ambiente.</div></div>
+        <div class="tnode2" data-side="l" style="--i:2"><div class="tn-h"><b class="tn-n">03</b>Economía circular baja en carbono</div><div class="tn-x">Reducir desechos en toda la cadena de valor, con ahorro y uso eficiente de los recursos.</div></div>
+        <div class="tnode2" data-side="l" style="--i:3"><div class="tn-h"><b class="tn-n">04</b>Uso responsable de los recursos</div><div class="tn-x">Mantener un uso responsable con enfoque preventivo que favorezca al medio ambiente.</div></div>
+        <div class="tnode2" data-side="l" style="--i:4"><div class="tn-h"><b class="tn-n">05</b>Innovación y diseño</div><div class="tn-x">Innovar de forma disruptiva y evolutiva, con respeto y cuidado hacia los seres vivos.</div></div>
       </div>
+      <div class="tree-hub r d1"><div class="hub-core"></div><div class="hub-ring"></div><img src="/assets/logo-gemi-icon.png" alt="GEMI" onerror="this.style.display='none'"><div class="hub-lbl">10 principios</div></div>
+      <div class="tree-col tree-right">
+        <div class="tnode2" data-side="r" style="--i:5"><div class="tn-h"><b class="tn-n">06</b>Legalidad</div><div class="tn-x">Cumplir la legislación ambiental vigente y los compromisos de autorregulación.</div></div>
+        <div class="tnode2" data-side="r" style="--i:6"><div class="tn-h"><b class="tn-n">07</b>Compromiso</div><div class="tn-x">Con el planeta y el bienestar de la gente.</div></div>
+        <div class="tnode2" data-side="r" style="--i:7"><div class="tn-h"><b class="tn-n">08</b>Diversidad e inclusión</div><div class="tn-x">Promover la diversidad, la inclusión y las mejores prácticas de desarrollo humano.</div></div>
+        <div class="tnode2" data-side="r" style="--i:8"><div class="tn-h"><b class="tn-n">09</b>Comunidad</div><div class="tn-x">Seguridad, bienestar y equidad; impacto positivo en las comunidades donde se vive y trabaja.</div></div>
+        <div class="tnode2" data-side="r" style="--i:9"><div class="tn-h"><b class="tn-n">10</b>Cadena de valor</div><div class="tn-x">Inspirar al sector empresarial con las mejores prácticas y capacitar en todos los niveles.</div></div>
+      </div>
+    </div>
   </section>
 
   <!-- 5 · Bienvenida -->
@@ -1189,7 +1208,43 @@
     if(!items.length)return;
     twType(items[0],function(){ items.slice(1).forEach(function(it){twType(it);}); });
   }
-  function animate(sec){ var a=sec.getAttribute('data-anim'); if(a==='stats')countUp(sec); else if(a==='type')typewriter(sec); }
+  // Decálogo · árbol tech (conectores hub → nodos)
+  function tree(sec){
+    if(sec.dataset.treeDone)return; sec.dataset.treeDone='1';
+    var tree=sec.querySelector('.tree'), svg=sec.querySelector('.tree-links'), hub=sec.querySelector('.tree-hub');
+    if(!tree||!svg||!hub)return;
+    var nodes=[].slice.call(sec.querySelectorAll('.tnode2'));
+    function build(){
+      var tb=tree.getBoundingClientRect();
+      svg.setAttribute('viewBox','0 0 '+tb.width+' '+tb.height);
+      var hb=hub.getBoundingClientRect();
+      var hx=hb.left+hb.width/2-tb.left, hy=hb.top+hb.height/2-tb.top, hr=hb.width*0.42;
+      var frag='<defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#12b98a"/><stop offset="1" stop-color="#3fe0ad"/></linearGradient></defs>';
+      var geo=[];
+      nodes.forEach(function(n,i){
+        var r=n.getBoundingClientRect(), side=n.getAttribute('data-side');
+        var nx=(side==='l'? r.right : r.left)-tb.left, ny=r.top+r.height/2-tb.top;
+        var ang=Math.atan2(ny-hy,nx-hx), sx=hx+Math.cos(ang)*hr, sy=hy+Math.sin(ang)*hr;
+        var mx=(sx+nx)/2;
+        var d='M '+sx.toFixed(1)+' '+sy.toFixed(1)+' C '+mx.toFixed(1)+' '+sy.toFixed(1)+', '+mx.toFixed(1)+' '+ny.toFixed(1)+', '+nx.toFixed(1)+' '+ny.toFixed(1);
+        frag+='<path d="'+d+'"></path><circle cx="'+nx.toFixed(1)+'" cy="'+ny.toFixed(1)+'" r="3.4"></circle>';
+        geo.push(i);
+      });
+      svg.innerHTML=frag;
+      var paths=svg.querySelectorAll('path'), dots=svg.querySelectorAll('circle');
+      paths.forEach(function(p,i){
+        var len=p.getTotalLength();
+        p.style.strokeDasharray=len; p.style.strokeDashoffset=len; p.getBoundingClientRect();
+        p.style.transition='stroke-dashoffset .95s cubic-bezier(.4,0,.2,1) '+(0.35+i*0.1)+'s';
+        p.style.strokeDashoffset='0';
+        var dt=dots[i]; if(dt){dt.style.transitionDelay=(0.35+i*0.1+0.75)+'s'; dt.style.opacity='1';}
+      });
+    }
+    requestAnimationFrame(function(){requestAnimationFrame(build);});
+    var ro=window.ResizeObserver?new ResizeObserver(function(){sec.dataset.treeDone='';svg.innerHTML='';tree.__b&&clearTimeout(tree.__b);tree.__b=setTimeout(function(){if(sec.classList.contains('in')){sec.dataset.treeDone='1';build();}},150);}):null;
+    if(ro)ro.observe(tree);
+  }
+  function animate(sec){ var a=sec.getAttribute('data-anim'); if(a==='stats')countUp(sec); else if(a==='type')typewriter(sec); else if(a==='tree')tree(sec); }
   function cur(){return Math.max(0,Math.min(secs.length-1,Math.round(deck.scrollTop/deck.clientHeight)));}
   var lastCur=-1;
   function setCurrent(i){
