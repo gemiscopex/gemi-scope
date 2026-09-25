@@ -8845,7 +8845,7 @@ var SCOPE_PLANES = [
 var _sb=null,_session=null,_perfil=null,_authLocked=false;
 var _PUBLIC_TABS={}; // beta: todo Scope queda detrás del login
 function _authOn(){return !!(SUPABASE_URL&&SUPABASE_ANON&&window.supabase);}
-function _hasAccess(){return !!(_session&&_perfil&&_perfil.activo);}
+function _hasAccess(){if(!(_session&&_perfil&&_perfil.activo))return false;var v=_perfil.vence;if(v){var d=/^\d{4}-\d{2}-\d{2}$/.test(String(v))?new Date(String(v)+'T23:59:59-06:00'):new Date(v);if(!isNaN(d.getTime())&&Date.now()>d.getTime())return false;}return true;}
 function _isPublicTab(id){return !!_PUBLIC_TABS[id];}
 function _gate(){if(!_authOn())return true;if(_hasAccess())return true;openAuth(_session?'pending':'login',true);return false;}
 function _gateTab(id){if(!_authOn())return true;if(_isPublicTab(id))return true;if(_hasAccess())return true;openAuth(_session?'pending':'login',true);return false;}
