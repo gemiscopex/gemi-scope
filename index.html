@@ -1237,6 +1237,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
       <button class="tab-btn" onclick="navDrop(event,this,function(){goObligaciones('federal')})">Obligaciones ▾</button>
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="goObligaciones('matriz')">Matriz por proceso<span class="nd-sub">Qué te aplica según tu operación</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('sanciones')">Estimación de sanciones<span class="nd-sub">Rangos de multa vigentes</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('instrumentos')">Instrumentos<span class="nd-sub">Planes, REP, registros, distintivos</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs</div>
         <div class="nav-drop-it" onclick="goObligaciones('federal')">Leyes Federales</div>
@@ -2711,6 +2712,7 @@ function goObligaciones(sub){
   _pushRoute(_OBLURL[sub]||'obligaciones');
   if(sub==='noms'){showTab('normas',null);return;}
   if(sub==='matriz'){_oblView='matriz';showTab('obligaciones',null);return;}
+  if(sub==='sanciones'){_oblView='sanciones';showTab('obligaciones',null);return;}
   if(sub==='instrumentos'){_oblView='instrumentos';showTab('obligaciones',null);return;}
   if(sub==='eventualidades'){_oblView='eventualidades';showTab('obligaciones',null);return;}
   showTab('legislacion',null);
@@ -3646,14 +3648,56 @@ function _matrizHTML(){
   h+='</div>';
   return h;
 }
+// ── Estimación de sanciones (rangos estatutarios vigentes · UMA 2026) ──
+var _UMA2026=117.31;
+function _mxn(n){return '$'+Math.round(n).toLocaleString('es-MX');}
+var _SANCIONES=[
+  {ley:'LGEEPA',art:'art. 171',ambito:'Emisiones a la atmósfera, impacto ambiental, RETC y actividades altamente riesgosas — competencia de PROFEPA.',min:30,max:50000,
+   otras:'Clausura temporal o definitiva (total o parcial) · arresto administrativo hasta 36 h · suspensión o revocación de licencias, permisos, concesiones o autorizaciones.',
+   reinc:'En reincidencia la multa puede aumentar hasta el doble del monto originalmente impuesto y proceder clausura definitiva (art. 173).'},
+  {ley:'LGPGIR',art:'art. 112',ambito:'Residuos peligrosos y de manejo especial: registro de generador, plan de manejo, bitácora, manifiesto y transporte.',min:50,max:50000,
+   otras:'Clausura · arresto administrativo hasta 36 h · suspensión o revocación de autorizaciones · remediación de sitios contaminados.',
+   reinc:'Se considera reincidente a quien comete infracciones similares en un periodo de dos años; la multa puede duplicarse y proceder clausura definitiva.'},
+  {ley:'Ley de Aguas Nacionales',art:'art. 120',ambito:'Descarga de aguas residuales y uso o aprovechamiento de aguas nacionales — competencia de CONAGUA.',min:260,max:26000,
+   brackets:[{r:'260 – 1,950 UMA',f:'fracc. X, XI, XVI, XXI, XXII del art. 119'},{r:'1,560 – 6,500 UMA',f:'fracc. I, VI, XII, XVIII, XIX del art. 119'},{r:'1,950 – 26,000 UMA',f:'demás fracciones del art. 119'}],
+   otras:'Suspensión de la descarga · clausura del aprovechamiento · revocación de la concesión o asignación.',
+   reinc:'La multa se calcula con el valor diario de la UMA vigente al momento de cometerse la infracción y puede duplicarse en reincidencia.'}
+];
+function _sancionesHTML(){
+  var h='<div>'+_oblSubhead('Estimación de sanciones','Rangos de multa vigentes por régimen, convertidos a pesos con la UMA 2026 ($'+_UMA2026.toFixed(2)+' diarios). El monto final lo determina la autoridad —PROFEPA o CONAGUA— según la gravedad y el daño, las condiciones económicas del infractor, la reincidencia, el dolo o negligencia y el beneficio obtenido (LGEEPA art. 173). Lo que ves es el <b>rango legal</b>, no una cifra fija.');
+  var i=0;
+  _SANCIONES.forEach(function(s){
+    var rango=_mxn(s.min*_UMA2026)+' – '+_mxn(s.max*_UMA2026);
+    h+=_oblRow({
+      title:s.ley+' · '+s.art,
+      desc:s.ambito+'<br><span style="color:var(--text-muted)">Otras sanciones: '+s.otras+'</span>',
+      meta:'Multa: '+s.min.toLocaleString('es-MX')+' – '+s.max.toLocaleString('es-MX')+' UMA · '+s.reinc,
+      right:_oblStatus('Multa',(s.ley==='LGEEPA'?'#066750':s.ley==='LGPGIR'?'#B45309':'#1f4e79')),
+      rightSub:rango,
+      zeb:(i++)%2===1
+    });
+    if(s.brackets){
+      h+='<div style="padding:2px 12px 12px 12px;background:'+((i-1)%2?'rgba(13,27,42,0.025)':'transparent')+'">';
+      s.brackets.forEach(function(b){
+        h+='<div style="display:flex;justify-content:space-between;gap:14px;padding:5px 0;font-size:11px;color:var(--text-sec);border-top:0.6px dotted var(--border)"><span style="font-family:var(--mono)">'+b.r+'</span><span style="text-align:right">'+b.f+'</span></div>';
+      });
+      h+='</div>';
+    }
+  });
+  h+='<div style="font-size:11px;color:var(--text-sec);background:rgba(0,158,144,0.05);border-left:2px solid var(--green);padding:9px 12px;margin-top:12px;line-height:1.55;max-width:760px">Las multas expresadas en la ley en «días de salario mínimo» se aplican en <b>UMA</b> por mandato constitucional (reforma de desindexación, 2016). Un día de UMA 2026 = $'+_UMA2026.toFixed(2)+'.</div>';
+  h+='<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:12px">Fuente: LGEEPA art. 171 y 173 · LGPGIR art. 112 · Ley de Aguas Nacionales art. 120 · valor UMA 2026 (INEGI). Rangos estatutarios vigentes.</div>';
+  h+='</div>';
+  return h;
+}
 var _oblView='matriz';
 function oblSetView(v){_oblView=v;renderObligaciones();}
 function renderObligaciones(){
   var host=document.getElementById('obligaciones-body');if(!host)return;
-  var views=[['matriz','Matriz por proceso'],['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
+  var views=[['matriz','Matriz por proceso'],['sanciones','Estimación de sanciones'],['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
   var nav='<div class="stab-bar">'
     +views.map(function(v){var beta=(v[0]==='eventualidades')?'<span style="font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.1em;color:var(--green);border:0.8px solid var(--green);border-radius:3px;padding:1px 3px;margin-left:5px;vertical-align:middle">BETA</span>':'';return '<span class="stab'+(v[0]===_oblView?' on':'')+'" onclick="oblSetView(\''+v[0]+'\')">'+v[1]+beta+'</span>';}).join('')+'</div>';
   var body= _oblView==='matriz'?_matrizHTML()
+    : _oblView==='sanciones'?_sancionesHTML()
     : _oblView==='precedentes'?_jurisprudenciaHTML()
     : _oblView==='sustancias'?_sustanciasHTML()
     : _oblView==='ecocircular'?_ecocircularHTML()
@@ -8719,7 +8763,7 @@ function _spark(vals,color){
 /* ===== Rutas limpias · scopegemi.com/obligaciones/leyesfederales ===== */
 var _routing=false;
 var _TABURL={dashboard:'dashboard',estados:'estados',radares:'radares',consola:'terminal',acerca:'acerca',alertas:'alertas'};
-var _OBLURL={matriz:'obligaciones/matriz',instrumentos:'obligaciones/instrumentos',noms:'obligaciones/noms',federal:'obligaciones/leyesfederales',estatal:'obligaciones/leyesestatales',rme:'obligaciones/tramitesrme',gacetas:'obligaciones/gacetas'};
+var _OBLURL={matriz:'obligaciones/matriz',sanciones:'obligaciones/sanciones',instrumentos:'obligaciones/instrumentos',noms:'obligaciones/noms',federal:'obligaciones/leyesfederales',estatal:'obligaciones/leyesestatales',rme:'obligaciones/tramitesrme',gacetas:'obligaciones/gacetas'};
 var _AGENDAURL={congreso:'agenda/congreso',pendientes:'agenda/pendientes',dof:'dof'};
 var _ACTURL={federal:'actores/federal',estatal:'actores/estatal',legfed:'actores/legislativo-federal',legest:'actores/legislativo-estatal'};
 function _pushRoute(path){
