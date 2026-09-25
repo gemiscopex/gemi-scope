@@ -4810,6 +4810,14 @@ function _impParse(t){
 }
 function _impMoney(v){return '$'+Math.round(v).toLocaleString('es-MX');}
 function _impMoneyRange(p){return p.isRange?(_impMoney(p.mxnMin)+'–'+_impMoney(p.mxnMax)):_impMoney(p.mxnMax);}
+// Calculadora: cantidad (en la unidad base de la tarifa) × tarifa oficial → impuesto estimado
+function impCalc(el){
+  var out=el.parentNode.querySelector('.impcalc-out'); if(!out)return;
+  var q=parseFloat(el.value);
+  if(isNaN(q)||q<0){out.textContent='= —';return;}
+  var mn=parseFloat(el.getAttribute('data-min')),mx=parseFloat(el.getAttribute('data-max'));
+  out.innerHTML=(mn===mx)?('= '+_impMoney(q*mx)):('= '+_impMoney(q*mn)+' – '+_impMoney(q*mx));
+}
 var _impNatCache=null;
 function _impNationalByType(){
   if(_impNatCache)return _impNatCache;
@@ -4857,7 +4865,19 @@ function renderSPImpuestos(state){
     const specs=t.especificaciones?`<div style="font-size:12px;color:var(--text);line-height:1.5;margin:7px 0 5px">${t.especificaciones}</div>`:'';
     const oblig=t.obligados?`<div style="font-size:11px;color:var(--text-sec);margin-bottom:4px"><span style="font-weight:600">Obligados:</span> ${t.obligados}</div>`:'';
     const fechas=(t.fechaPublicado&&t.fechaPublicado!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted)">Publicado: <b>${t.fechaPublicado}</b></span>`:'')+(t.vigencia&&t.vigencia!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted);margin-left:14px">Vigencia: <b>${t.vigencia}</b></span>`:'');
-    return `<div style="padding:14px 0;border-bottom:0.8px solid var(--border)"><div style="display:flex;align-items:center;gap:12px">${lab}${contro}</div>${money}${posbar}${specs}${oblig}${fechas?`<div style="margin-top:4px">${fechas}</div>`:''}</div>`;
+    let calc='';
+    if(p&&p.basis){
+      calc=`<div style="margin-top:11px;padding-top:10px;border-top:0.6px dotted var(--border)">`
+        +`<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px">Calcula tu impuesto</div>`
+        +`<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">`
+          +`<input type="number" min="0" step="any" inputmode="decimal" data-min="${p.mxnMin}" data-max="${p.mxnMax}" oninput="impCalc(this)" placeholder="cantidad" style="width:120px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:13px;color:var(--text);background:var(--card2,#f6f8fa)">`
+          +`<span style="font-size:12px;color:var(--text-sec)">× ${p.basis} <span style="color:var(--text-muted)">(${p.orig})</span></span>`
+          +`<span class="impcalc-out" style="font-size:15px;font-weight:700;color:var(--green);font-variant-numeric:tabular-nums;margin-left:auto;white-space:nowrap">= —</span>`
+        +`</div>`
+        +`<div style="font-size:10px;color:var(--text-muted);margin-top:7px;line-height:1.45;max-width:640px">Estimación con la tarifa oficial vigente. El monto final puede variar por reglas de la ley estatal (base gravable, mínimos, deducciones o topes).</div>`
+      +`</div>`;
+    }
+    return `<div style="padding:14px 0;border-bottom:0.8px solid var(--border)"><div style="display:flex;align-items:center;gap:12px">${lab}${contro}</div>${money}${posbar}${specs}${oblig}${fechas?`<div style="margin-top:4px">${fechas}</div>`:''}${calc}</div>`;
   }).join('');
   const footer=hasUMA?`<div style="margin-top:12px;font-size:9px;font-family:var(--mono);color:var(--text-muted)">Precios en UMA convertidos a MXN · UMA 2026 (INEGI/DOF): $117.31 / día · comparación entre estados con el mismo impuesto</div>`:'';
   document.getElementById('sp-impuestos').innerHTML=cards+footer;
