@@ -1238,6 +1238,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="goObligaciones('matriz')">Matriz por proceso<span class="nd-sub">Qué te aplica según tu operación</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('sanciones')">Estimación de sanciones<span class="nd-sub">Rangos de multa vigentes</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('sce')">Comercio de emisiones<span class="nd-sub">Mercado de carbono (SCE)</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('instrumentos')">Instrumentos<span class="nd-sub">Planes, REP, registros, distintivos</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs</div>
         <div class="nav-drop-it" onclick="goObligaciones('federal')">Leyes Federales</div>
@@ -2713,6 +2714,7 @@ function goObligaciones(sub){
   if(sub==='noms'){showTab('normas',null);return;}
   if(sub==='matriz'){_oblView='matriz';showTab('obligaciones',null);return;}
   if(sub==='sanciones'){_oblView='sanciones';showTab('obligaciones',null);return;}
+  if(sub==='sce'){_oblView='sce';showTab('obligaciones',null);return;}
   if(sub==='instrumentos'){_oblView='instrumentos';showTab('obligaciones',null);return;}
   if(sub==='eventualidades'){_oblView='eventualidades';showTab('obligaciones',null);return;}
   showTab('legislacion',null);
@@ -3474,8 +3476,12 @@ var _JURISPRUDENCIA=[
 // ── Gramática de fila canónica de SCOPE (plana, sin cajas; estatus a la derecha) ──
 function _oblStatus(text,color){
   var t=String(text||'').toLowerCase();t=t.charAt(0).toUpperCase()+t.slice(1);
+  return _oblStatusRaw(t,color);
+}
+// Variante que respeta las mayúsculas del texto (para acrónimos: RENE, COA, tCO₂…)
+function _oblStatusRaw(text,color){
   return '<span style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.02em;color:'+color+';white-space:nowrap">'
-    +'<span style="width:6px;height:6px;border-radius:50%;background:'+color+';flex-shrink:0"></span>'+t+'</span>';
+    +'<span style="width:6px;height:6px;border-radius:50%;background:'+color+';flex-shrink:0"></span>'+text+'</span>';
 }
 function _oblRow(o){
   var right='';
@@ -3689,15 +3695,41 @@ function _sancionesHTML(){
   h+='</div>';
   return h;
 }
+// ── Sistema de Comercio de Emisiones (SCE) · mercado de carbono nacional ──
+var _SCE_ITEMS=[
+  {t:'¿Quiénes participan?',d:'Instalaciones con emisiones iguales o mayores a 100,000 toneladas de CO₂ directas al año, provenientes de fuentes fijas. En el programa de prueba participaron alrededor de 300 instalaciones.',st:'Umbral: ≥100,000 tCO₂/año',c:'#066750'},
+  {t:'Sectores cubiertos',d:'Energía e industria: generación eléctrica, automotriz, cemento, química y petroquímica, alimentos, vidrio, acero y siderurgia, metalurgia, minería y celulosa y papel.',st:'Energía · Industria',c:'#1f4e79'},
+  {t:'Mecanismo: tope y comercio',d:'La autoridad fija un tope máximo de emisiones para los sectores cubiertos y reparte derechos de emisión que las instalaciones pueden comprar y vender entre sí. El tope disminuye con el tiempo para reducir emisiones al menor costo.',st:'Cap-and-trade',c:'#066750'},
+  {t:'Reporte verificado · RENE',d:'El SCE se apoya en el Registro Nacional de Emisiones (RENE): las instalaciones reportan sus emisiones —a través de la Cédula de Operación Anual— y las verifica un organismo acreditado. Esos datos verificados sirven para asignar derechos y comprobar el cumplimiento.',st:'RENE · COA · dictamen de verificación',c:'#1f4e79'},
+  {t:'Fundamento legal',d:'Ley General de Cambio Climático, artículos 94 y 95 (reforma del 13 de julio de 2018) · Reglamento de la LGCC en materia del Registro Nacional de Emisiones · Acuerdo de bases preliminares del Programa de Prueba del SCE (DOF, 1 de octubre de 2019).',st:'LGCC art. 94–95',c:'#066750',url:'https://dof.gob.mx/nota_detalle.php?codigo=5573934&fecha=01/10/2019'}
+];
+function _sceHTML(){
+  var h='<div>'+_oblSubhead('Sistema de Comercio de Emisiones (SCE)','El mercado de carbono nacional: un esquema de «tope y comercio» sobre las emisiones de gases de efecto invernadero de las grandes instalaciones de energía e industria, previsto en la Ley General de Cambio Climático.');
+  h+='<div style="font-size:12px;color:var(--text-sec);background:rgba(180,83,9,0.06);border-left:2px solid #B45309;padding:10px 13px;margin-bottom:12px;line-height:1.55;max-width:760px">'
+    +'<b style="color:#B45309">Estado actual:</b> concluido el programa de prueba (piloto 2020–2021 y transición). La <b>fase operativa</b> —con efectos económicos y obligación de entregar derechos— <b>se prevé para inicio de 2027</b>; SEMARNAT trabaja en las reglas definitivas. Hoy la participación reporta y se prepara, sin obligación de compra-venta de derechos.'
+  +'</div>';
+  var i=0;
+  h+=_SCE_ITEMS.map(function(s){
+    return _oblRow({title:s.t,desc:s.d,right:_oblStatusRaw(s.st,s.c||'var(--green)'),url:s.url,zeb:(i++)%2===1});
+  }).join('');
+  h+='<div style="display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:14px">'
+    +'<a href="https://www.gob.mx/semarnat/acciones-y-programas/programa-de-prueba-del-sistema-de-comercio-de-emisiones-179414" target="_blank" rel="noopener" style="font-size:12px;font-weight:600;color:var(--green);text-decoration:none">Programa del SCE (SEMARNAT) <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>'
+    +'<a href="https://www.diputados.gob.mx/LeyesBiblio/pdf/LGCC.pdf" target="_blank" rel="noopener" style="font-size:12px;font-weight:600;color:var(--green);text-decoration:none">Ley General de Cambio Climático (PDF) <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>'
+  +'</div>';
+  h+='<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:12px">Fuente: LGCC art. 94–95 · Acuerdo DOF 01-oct-2019 (Programa de Prueba) · SEMARNAT. Fase operativa prevista para 2027 (en preparación).</div>';
+  h+='</div>';
+  return h;
+}
 var _oblView='matriz';
 function oblSetView(v){_oblView=v;renderObligaciones();}
 function renderObligaciones(){
   var host=document.getElementById('obligaciones-body');if(!host)return;
-  var views=[['matriz','Matriz por proceso'],['sanciones','Estimación de sanciones'],['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
+  var views=[['matriz','Matriz por proceso'],['sanciones','Estimación de sanciones'],['sce','Comercio de emisiones'],['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
   var nav='<div class="stab-bar">'
     +views.map(function(v){var beta=(v[0]==='eventualidades')?'<span style="font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.1em;color:var(--green);border:0.8px solid var(--green);border-radius:3px;padding:1px 3px;margin-left:5px;vertical-align:middle">BETA</span>':'';return '<span class="stab'+(v[0]===_oblView?' on':'')+'" onclick="oblSetView(\''+v[0]+'\')">'+v[1]+beta+'</span>';}).join('')+'</div>';
   var body= _oblView==='matriz'?_matrizHTML()
     : _oblView==='sanciones'?_sancionesHTML()
+    : _oblView==='sce'?_sceHTML()
     : _oblView==='precedentes'?_jurisprudenciaHTML()
     : _oblView==='sustancias'?_sustanciasHTML()
     : _oblView==='ecocircular'?_ecocircularHTML()
@@ -8783,7 +8815,7 @@ function _spark(vals,color){
 /* ===== Rutas limpias · scopegemi.com/obligaciones/leyesfederales ===== */
 var _routing=false;
 var _TABURL={dashboard:'dashboard',estados:'estados',radares:'radares',consola:'terminal',acerca:'acerca',alertas:'alertas'};
-var _OBLURL={matriz:'obligaciones/matriz',sanciones:'obligaciones/sanciones',instrumentos:'obligaciones/instrumentos',noms:'obligaciones/noms',federal:'obligaciones/leyesfederales',estatal:'obligaciones/leyesestatales',rme:'obligaciones/tramitesrme',gacetas:'obligaciones/gacetas'};
+var _OBLURL={matriz:'obligaciones/matriz',sanciones:'obligaciones/sanciones',sce:'obligaciones/comercio-emisiones',instrumentos:'obligaciones/instrumentos',noms:'obligaciones/noms',federal:'obligaciones/leyesfederales',estatal:'obligaciones/leyesestatales',rme:'obligaciones/tramitesrme',gacetas:'obligaciones/gacetas'};
 var _AGENDAURL={congreso:'agenda/congreso',pendientes:'agenda/pendientes',dof:'dof'};
 var _ACTURL={federal:'actores/federal',estatal:'actores/estatal',legfed:'actores/legislativo-federal',legest:'actores/legislativo-estatal'};
 function _pushRoute(path){
