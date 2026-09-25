@@ -3586,7 +3586,8 @@ var _PROCESOS=[
   {id:'ruido',n:'Emisión de ruido (fuentes fijas)',d:'Ruido perimetral de la instalación'},
   {id:'transp',n:'Transporte de materiales / residuos peligrosos',d:'Traslado propio o contratado'},
   {id:'riesgo',n:'Actividad altamente riesgosa',d:'Manejo de sustancias en cantidad de reporte'},
-  {id:'obra',n:'Obra nueva, ampliación o cambio de uso de suelo',d:'Construcción, ampliación de planta o desmonte'}
+  {id:'obra',n:'Obra nueva, ampliación o cambio de uso de suelo',d:'Construcción, ampliación de planta o desmonte'},
+  {id:'zona_fed',n:'Uso u ocupación de zona federal',d:'Cauces, riberas, vasos o zona federal marítimo-terrestre (ZOFEMAT)'}
 ];
 // nivel: obl = Obligatorio · cond = Condicionado (depende de umbral, giro o entidad)
 var _OBL_MATRIZ=[
@@ -3604,7 +3605,8 @@ var _OBL_MATRIZ=[
   {n:'Estudio de riesgo y Programa para la Prevención de Accidentes (PPA)',procs:['riesgo'],nivel:'cond',d:'Aplica cuando se manejan sustancias en cantidades iguales o mayores a las de reporte de los listados de actividades altamente riesgosas.',s:'LGEEPA art. 147 · Primer y Segundo Listado de Actividades Altamente Riesgosas (DOF)'},
   {n:'Manifestación de Impacto Ambiental (MIA)',procs:['obra'],nivel:'obl',d:'Evaluación previa a obra o actividad nueva de competencia federal; sin resolutivo favorable no puede iniciarse.',s:'LGEEPA art. 28 · Reglamento de la LGEEPA en materia de Evaluación del Impacto Ambiental'},
   {n:'Autorización de cambio de uso de suelo en terrenos forestales',procs:['obra'],nivel:'cond',d:'Necesaria cuando la obra implica remover vegetación forestal; se tramita ante SEMARNAT.',s:'Ley General de Desarrollo Forestal Sustentable art. 93'},
-  {n:'Estudio y registro de ruido de fuentes fijas',procs:['ruido'],nivel:'cond',d:'Medición perimetral y cumplimiento de límites de ruido; su exigibilidad y registro dependen de la autoridad local.',s:'NOM-081-SEMARNAT-1994 (límites de emisión de ruido de fuentes fijas)'}
+  {n:'Estudio y registro de ruido de fuentes fijas',procs:['ruido'],nivel:'cond',d:'Medición perimetral y cumplimiento de límites de ruido; su exigibilidad y registro dependen de la autoridad local.',s:'NOM-081-SEMARNAT-1994 (límites de emisión de ruido de fuentes fijas)'},
+  {n:'Concesión y pago de derechos por uso de zona federal',procs:['zona_fed'],nivel:'obl',d:'Ocupar o aprovechar cauces, riberas, vasos o la zona federal marítimo-terrestre requiere título de CONAGUA/SEMARNAT y el pago del derecho anual (7.5% del valor del inmueble). En muchos casos el cobro y la vigilancia se hacen mediante convenios de colaboración administrativa entre la Federación, los estados y los municipios, que reciben hasta el 90% de lo recaudado.',s:'Ley Federal de Derechos art. 232 · Ley de Aguas Nacionales (zona federal de cauces) · convenios de colaboración administrativa CONAGUA–estados–municipios'}
 ];
 var _MATRIZ_KEY='scope_matriz_proc_v1';
 function _matrizLoad(){try{var r=localStorage.getItem(_MATRIZ_KEY);if(r)return JSON.parse(r)||[];}catch(e){}return[];}
