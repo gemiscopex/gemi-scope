@@ -306,10 +306,10 @@
   "Nuevo León": [
     {
       "tipo": "GEI",
-      "especificaciones": "PM10, PM2.5, PST, NOx, SO₂. El impuesto se determina a partir de la primera tonelada.",
+      "especificaciones": "Emisión de contaminantes a la atmósfera de fuentes fijas: PM10, PM2.5, PST, NOx, SO₂. Base gravable: por cada tonelada o fracción emitida, a partir de la primera tonelada completa. Reforma aprobada por el Congreso de N.L. en mayo 2026 (art. 124, Ley de Hacienda del Estado): incorpora gases de efecto invernadero al gravamen — en seguimiento.",
       "fechaPublicado": "23/12/2021",
       "vigencia": "23/05/2023",
-      "precio": "2.79/tonCO₂eq",
+      "precio": "2.79/tonelada de contaminante",
       "unidad": "UMA",
       "obligados": "Que cuenten con fuentes fijas que generen emisiones.",
       "controversia": false
