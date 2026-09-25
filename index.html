@@ -1236,6 +1236,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
     <div class="nav-drop-wrap">
       <button class="tab-btn" onclick="navDrop(event,this,function(){goObligaciones('federal')})">Obligaciones ▾</button>
       <div class="nav-drop">
+        <div class="nav-drop-it" onclick="goObligaciones('matriz')">Matriz por proceso<span class="nd-sub">Qué te aplica según tu operación</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('instrumentos')">Instrumentos<span class="nd-sub">Planes, REP, registros, distintivos</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs</div>
         <div class="nav-drop-it" onclick="goObligaciones('federal')">Leyes Federales</div>
@@ -2709,6 +2710,7 @@ function goObligaciones(sub){
   if(typeof _gate==='function'&&!_gate())return;
   _pushRoute(_OBLURL[sub]||'obligaciones');
   if(sub==='noms'){showTab('normas',null);return;}
+  if(sub==='matriz'){_oblView='matriz';showTab('obligaciones',null);return;}
   if(sub==='instrumentos'){_oblView='instrumentos';showTab('obligaciones',null);return;}
   if(sub==='eventualidades'){_oblView='eventualidades';showTab('obligaciones',null);return;}
   showTab('legislacion',null);
@@ -3451,7 +3453,7 @@ var _OBLIGACIONES=[
   {n:'Plan de Manejo de Residuos',d:'Obligatorio para grandes generadores y para productores de bienes que al desecharse se vuelven residuos de manejo especial. Define acopio, valorización y disposición.',s:'LGPGIR arts. 27–28 · NOM-161-SEMARNAT-2011',via:'federal'},
   {n:'Responsabilidad Extendida del Productor (REP)',d:'Traslada al productor la responsabilidad sobre el ciclo de vida de sus envases y empaques. Eje de la reforma de economía circular.',s:'Reforma LGPGIR (economía circular) · en proceso',via:'agenda'},
   {n:'Registro de Emisiones y Transferencia de Contaminantes (RETC)',d:'Inventario nacional de sustancias emitidas o transferidas. Base de datos de cumplimiento ambiental de la instalación.',s:'LGEEPA · Reglamento RETC',via:'federal',url:'https://www.gob.mx/semarnat/acciones-y-programas/registro-de-emisiones-y-transferencia-de-contaminantes-retc',urlTxt:'Ir al RETC (SEMARNAT) →'},
-  {n:'Cédula de Operación Anual (COA)',d:'Reporte anual multimedios (aire, agua, residuos, RETC) que rinde el establecimiento industrial ante SEMARNAT.',s:'LGEEPA · Reglamento en materia de Registro de Emisiones',via:'federal',url:'https://www.gob.mx/tramites/ficha/cedula-de-operacion-anual-coa/SEMARNAT909',urlTxt:'Ir al trámite (gob.mx) →'},
+  {n:'Cédula de Operación Anual (COA)',d:'Reporte anual multimedios (aire, agua, residuos, RETC) que rinde el establecimiento industrial ante SEMARNAT.',s:'LGEEPA · Reglamento en materia de Registro de Emisiones',via:'federal',url:'https://www.gob.mx/public/tramites/detalleTramite.xhtml?homoclave=SEMARNAT-05-001',urlTxt:'Ir al trámite (gob.mx) →'},
   {n:'Distintivos y Certificaciones',d:'Instrumentos voluntarios que acreditan desempeño ambiental. Despliega para ver los principales y su portal oficial.',s:'Esquemas voluntarios',via:'noms',certs:[
     {n:'Industria Limpia',dep:'PROFEPA · Programa Nacional de Auditoría Ambiental (PNAA)',url:'https://www.gob.mx/profepa/acciones-y-programas/programa-nacional-de-auditoria-ambiental-pnaa'},
     {n:'Calidad Ambiental · Calidad Ambiental Turística',dep:'PROFEPA · PNAA',url:'https://www.gob.mx/profepa/acciones-y-programas/programa-nacional-de-auditoria-ambiental-pnaa'},
@@ -3459,7 +3461,7 @@ var _OBLIGACIONES=[
     {n:'Empresa Socialmente Responsable (ESR)',dep:'CEMEFI',url:'https://www.cemefi.org/'},
     {n:'ISO 14001 · Sistema de Gestión Ambiental',dep:'Certificación internacional · organismos acreditados por la EMA',url:'https://www.ema.org.mx/'}
   ]},
-  {n:'Registro como Generador de Residuos Peligrosos',d:'Alta ante SEMARNAT según volumen (micro, pequeño o gran generador). Condiciona el manifiesto y el transporte de residuos peligrosos.',s:'LGPGIR · NOM-052-SEMARNAT-2005',via:'noms',url:'https://www.gob.mx/tramites/ficha/registro-como-generador-de-residuos-peligrosos/SEMARNAT169',urlTxt:'Ir al trámite (gob.mx) →'}
+  {n:'Registro como Generador de Residuos Peligrosos',d:'Alta ante SEMARNAT según volumen (micro, pequeño o gran generador). Condiciona el manifiesto y el transporte de residuos peligrosos.',s:'LGPGIR · NOM-052-SEMARNAT-2005',via:'noms',url:'https://www.gob.mx/public/tramites/detalleTramite.xhtml?homoclave=SEMARNAT-07-017',urlTxt:'Ir al trámite (gob.mx) →'}
 ];
 // Precedentes judiciales (SCJN) sobre regulación ambiental estatal — capa factual pública
 var _JURISPRUDENCIA=[
@@ -3565,14 +3567,94 @@ function _instrumentosHTML(){
       return row;
     }).join('')+'</div>';
 }
-var _oblView='instrumentos';
+// ── Matriz regulatoria por proceso / insumo (plano regulatorio, más allá del legislativo) ──
+var _PROCESOS=[
+  {id:'atmosfera',n:'Emisiones a la atmósfera',d:'Fuentes fijas: calderas, hornos, combustión, procesos con emisiones'},
+  {id:'agua_desc',n:'Descarga de aguas residuales',d:'Vertido a cuerpo nacional o al alcantarillado'},
+  {id:'agua_uso',n:'Extracción / uso de agua nacional',d:'Pozos, tomas o aprovechamiento de aguas nacionales'},
+  {id:'rp',n:'Generación de residuos peligrosos',d:'Solventes, aceites, lodos, envases contaminados'},
+  {id:'rme',n:'Generación de residuos de manejo especial',d:'Grandes volúmenes de residuos no peligrosos'},
+  {id:'retc',n:'Uso o emisión de sustancias RETC',d:'Sustancias sujetas a reporte del RETC'},
+  {id:'ruido',n:'Emisión de ruido (fuentes fijas)',d:'Ruido perimetral de la instalación'},
+  {id:'transp',n:'Transporte de materiales / residuos peligrosos',d:'Traslado propio o contratado'},
+  {id:'riesgo',n:'Actividad altamente riesgosa',d:'Manejo de sustancias en cantidad de reporte'},
+  {id:'obra',n:'Obra nueva, ampliación o cambio de uso de suelo',d:'Construcción, ampliación de planta o desmonte'}
+];
+// nivel: obl = Obligatorio · cond = Condicionado (depende de umbral, giro o entidad)
+var _OBL_MATRIZ=[
+  {n:'Licencia Ambiental Única (LAU)',procs:['atmosfera'],nivel:'obl',d:'Autorización integral para fuentes fijas de jurisdicción federal (industria química, celulosa y papel, cementera, metalúrgica, entre otras del art. 111 BIS). Integra en un solo trámite las obligaciones atmosféricas.',s:'LGEEPA art. 111 BIS · Reglamento de la LGEEPA en materia de prevención y control de la contaminación de la atmósfera',url:'https://www.gob.mx/public/tramites/detalleTramite.xhtml?homoclave=SEMARNAT-05-002'},
+  {n:'Cédula de Operación Anual (COA)',procs:['atmosfera','retc','agua_desc','rp'],nivel:'obl',d:'Reporte anual multimedios (aire, agua, residuos, RETC) del establecimiento con LAU o de jurisdicción federal. Se presenta del 1 de marzo al 30 de junio.',s:'LGEEPA · Reglamento en materia de Registro de Emisiones y Transferencia de Contaminantes',url:'https://www.gob.mx/public/tramites/detalleTramite.xhtml?homoclave=SEMARNAT-05-001'},
+  {n:'Registro de Emisiones y Transferencia de Contaminantes (RETC)',procs:['retc','atmosfera'],nivel:'obl',d:'Inventario de sustancias emitidas o transferidas por la instalación. Se rinde a través de la COA.',s:'LGEEPA · Reglamento del RETC · NOM-165-SEMARNAT-2013 (lista de sustancias)',url:'https://www.gob.mx/semarnat/acciones-y-programas/registro-de-emisiones-y-transferencia-de-contaminantes-retc'},
+  {n:'Monitoreo de emisiones a la atmósfera',procs:['atmosfera'],nivel:'obl',d:'Medición periódica de contaminantes en fuentes fijas de combustión y de proceso, con métodos y límites de la norma aplicable.',s:'NOM-085-SEMARNAT-2011 (combustión) · NOM-043-SEMARNAT-1993 (partículas)'},
+  {n:'Permiso de descarga de aguas residuales',procs:['agua_desc'],nivel:'obl',d:'Autorización y cumplimiento de límites para descargar a cuerpos nacionales; condiciona el pago de derechos por descarga.',s:'Ley de Aguas Nacionales · NOM-001-SEMARNAT-2021',url:'https://www.gob.mx/conagua'},
+  {n:'Concesión de aguas nacionales (REPDA)',procs:['agua_uso'],nivel:'obl',d:'Título de concesión inscrito en el Registro Público de Derechos de Agua para extraer o aprovechar aguas nacionales.',s:'Ley de Aguas Nacionales · REPDA (CONAGUA)',url:'https://www.gob.mx/conagua/acciones-y-programas/registro-publico-de-derechos-de-agua-repda'},
+  {n:'Pago de derechos por uso de aguas nacionales',procs:['agua_uso'],nivel:'obl',d:'Derecho federal por el volumen concesionado, según zona de disponibilidad.',s:'Ley Federal de Derechos, arts. 222–231'},
+  {n:'Registro como generador de residuos peligrosos',procs:['rp'],nivel:'obl',d:'Alta ante SEMARNAT según volumen (micro, pequeño o gran generador). Condiciona manifiesto y transporte.',s:'LGPGIR · NOM-052-SEMARNAT-2005',url:'https://www.gob.mx/public/tramites/detalleTramite.xhtml?homoclave=SEMARNAT-07-017'},
+  {n:'Plan de manejo, bitácora y manifiesto de RP',procs:['rp'],nivel:'obl',d:'Documentación del acopio temporal, la entrega a prestador autorizado y el destino final de los residuos peligrosos.',s:'LGPGIR · Reglamento de la LGPGIR · NOM-052-SEMARNAT-2005'},
+  {n:'Plan de manejo de residuos de manejo especial',procs:['rme'],nivel:'cond',d:'Exigible a grandes generadores y a productores de bienes que al desecharse se vuelven RME; el umbral lo fija cada entidad.',s:'LGPGIR arts. 27–28 · NOM-161-SEMARNAT-2011'},
+  {n:'Autorización para transporte de residuos peligrosos',procs:['transp'],nivel:'obl',d:'El traslado debe hacerse con prestador y unidades autorizadas, con manifiesto que acompañe la carga.',s:'LGPGIR (autorización de transporte de RP) · Reglamento para el Transporte Terrestre de Materiales y Residuos Peligrosos'},
+  {n:'Estudio de riesgo y Programa para la Prevención de Accidentes (PPA)',procs:['riesgo'],nivel:'cond',d:'Aplica cuando se manejan sustancias en cantidades iguales o mayores a las de reporte de los listados de actividades altamente riesgosas.',s:'LGEEPA art. 147 · Primer y Segundo Listado de Actividades Altamente Riesgosas (DOF)'},
+  {n:'Manifestación de Impacto Ambiental (MIA)',procs:['obra'],nivel:'obl',d:'Evaluación previa a obra o actividad nueva de competencia federal; sin resolutivo favorable no puede iniciarse.',s:'LGEEPA art. 28 · Reglamento de la LGEEPA en materia de Evaluación del Impacto Ambiental'},
+  {n:'Autorización de cambio de uso de suelo en terrenos forestales',procs:['obra'],nivel:'cond',d:'Necesaria cuando la obra implica remover vegetación forestal; se tramita ante SEMARNAT.',s:'Ley General de Desarrollo Forestal Sustentable art. 93'},
+  {n:'Estudio y registro de ruido de fuentes fijas',procs:['ruido'],nivel:'cond',d:'Medición perimetral y cumplimiento de límites de ruido; su exigibilidad y registro dependen de la autoridad local.',s:'NOM-081-SEMARNAT-1994 (límites de emisión de ruido de fuentes fijas)'}
+];
+var _MATRIZ_KEY='scope_matriz_proc_v1';
+function _matrizLoad(){try{var r=localStorage.getItem(_MATRIZ_KEY);if(r)return JSON.parse(r)||[];}catch(e){}return[];}
+function _matrizSave(){try{localStorage.setItem(_MATRIZ_KEY,JSON.stringify(_matrizProc));}catch(e){}}
+var _matrizProc=_matrizLoad();
+function matrizToggleProc(id){var i=_matrizProc.indexOf(id);if(i>=0)_matrizProc.splice(i,1);else _matrizProc.push(id);_matrizSave();renderObligaciones();}
+function matrizAll(v){_matrizProc=v?_PROCESOS.map(function(p){return p.id;}):[];_matrizSave();renderObligaciones();}
+function _procNames(ids){return ids.map(function(id){var p=_PROCESOS.filter(function(x){return x.id===id;})[0];return p?p.n:id;});}
+function _matrizHTML(){
+  var STc={obl:{c:'#066750',t:'Obligatorio'},cond:{c:'#B45309',t:'Condicionado'}};
+  var sel=_matrizProc;
+  var h='<div>'+_oblSubhead('Matriz regulatoria por proceso','Marca los procesos e insumos de tu operación y verás qué obligaciones federales te aplican, con su sustento. Es el plano regulatorio, más allá de lo legislativo.');
+  // Selector de procesos (casillas, sin pills)
+  var allOn=sel.length===_PROCESOS.length;
+  h+='<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px">'
+    +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted)">Procesos e insumos de tu operación</div>'
+    +'<span onclick="matrizAll('+(allOn?'false':'true')+')" style="cursor:pointer;font-family:var(--mono);font-size:10px;color:var(--green);font-weight:600">'+(allOn?'Limpiar':'Marcar todos')+'</span>'
+  +'</div>';
+  h+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 22px;margin-bottom:18px">';
+  _PROCESOS.forEach(function(p){
+    var on=sel.indexOf(p.id)>=0;
+    h+='<div onclick="matrizToggleProc(\''+p.id+'\')" style="display:flex;align-items:flex-start;gap:11px;padding:9px 4px;border-top:0.8px solid var(--border);cursor:pointer">'
+      +'<span style="width:15px;height:15px;border-radius:4px;border:1.5px solid '+(on?'var(--green)':'var(--border)')+';background:'+(on?'var(--green)':'transparent')+';flex:0 0 auto;margin-top:2px;display:inline-flex;align-items:center;justify-content:center">'
+        +(on?'<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>':'')+'</span>'
+      +'<div style="flex:1;min-width:0"><div style="font-size:12.5px;font-weight:600;color:var(--text);line-height:1.35">'+p.n+'</div>'
+        +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:2px;line-height:1.4">'+p.d+'</div></div>'
+    +'</div>';
+  });
+  h+='</div>';
+  if(!sel.length){
+    h+='<div style="font-size:12px;color:var(--text-sec);background:rgba(0,158,144,0.05);border-left:2px solid var(--green);padding:10px 13px;line-height:1.55;max-width:760px">Marca al menos un proceso para ver las obligaciones que te aplican.</div></div>';
+    return h;
+  }
+  var apply=_OBL_MATRIZ.map(function(o){var m=o.procs.filter(function(id){return sel.indexOf(id)>=0;});return m.length?{o:o,m:m}:null;}).filter(Boolean);
+  apply.sort(function(a,b){return (a.o.nivel==='obl'?0:1)-(b.o.nivel==='obl'?0:1);});
+  var nObl=apply.filter(function(x){return x.o.nivel==='obl';}).length;
+  var nCond=apply.length-nObl;
+  h+='<div style="font-size:12px;color:var(--text-sec);margin-bottom:4px"><b style="color:var(--text)">'+apply.length+'</b> obligaciones te aplican — '
+    +'<span style="color:#066750;font-weight:600">'+nObl+' obligatorias</span> · <span style="color:#B45309;font-weight:600">'+nCond+' condicionadas</span></div>';
+  var i=0;
+  h+=apply.map(function(x){
+    var st=STc[x.o.nivel];
+    var row=_oblRow({title:x.o.n,desc:x.o.d,meta:'Sustento · '+x.o.s+' · Detona: '+_procNames(x.m).join(', '),right:_oblStatus(st.t,st.c),url:x.o.url,zeb:(i++)%2===1});
+    return row;
+  }).join('');
+  h+='<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-top:14px">Fuente: Monitoreo regulatorio GEMI · marco federal (LGEEPA, LGPGIR, LAN, LFD, LGDFS) y NOMs aplicables</div>';
+  h+='</div>';
+  return h;
+}
+var _oblView='matriz';
 function oblSetView(v){_oblView=v;renderObligaciones();}
 function renderObligaciones(){
   var host=document.getElementById('obligaciones-body');if(!host)return;
-  var views=[['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
+  var views=[['matriz','Matriz por proceso'],['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
   var nav='<div class="stab-bar">'
     +views.map(function(v){var beta=(v[0]==='eventualidades')?'<span style="font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.1em;color:var(--green);border:0.8px solid var(--green);border-radius:3px;padding:1px 3px;margin-left:5px;vertical-align:middle">BETA</span>':'';return '<span class="stab'+(v[0]===_oblView?' on':'')+'" onclick="oblSetView(\''+v[0]+'\')">'+v[1]+beta+'</span>';}).join('')+'</div>';
-  var body= _oblView==='precedentes'?_jurisprudenciaHTML()
+  var body= _oblView==='matriz'?_matrizHTML()
+    : _oblView==='precedentes'?_jurisprudenciaHTML()
     : _oblView==='sustancias'?_sustanciasHTML()
     : _oblView==='ecocircular'?_ecocircularHTML()
     : _oblView==='eventualidades'?_eventualidadesHTML()
@@ -8637,7 +8719,7 @@ function _spark(vals,color){
 /* ===== Rutas limpias · scopegemi.com/obligaciones/leyesfederales ===== */
 var _routing=false;
 var _TABURL={dashboard:'dashboard',estados:'estados',radares:'radares',consola:'terminal',acerca:'acerca',alertas:'alertas'};
-var _OBLURL={instrumentos:'obligaciones/instrumentos',noms:'obligaciones/noms',federal:'obligaciones/leyesfederales',estatal:'obligaciones/leyesestatales',rme:'obligaciones/tramitesrme',gacetas:'obligaciones/gacetas'};
+var _OBLURL={matriz:'obligaciones/matriz',instrumentos:'obligaciones/instrumentos',noms:'obligaciones/noms',federal:'obligaciones/leyesfederales',estatal:'obligaciones/leyesestatales',rme:'obligaciones/tramitesrme',gacetas:'obligaciones/gacetas'};
 var _AGENDAURL={congreso:'agenda/congreso',pendientes:'agenda/pendientes',dof:'dof'};
 var _ACTURL={federal:'actores/federal',estatal:'actores/estatal',legfed:'actores/legislativo-federal',legest:'actores/legislativo-estatal'};
 function _pushRoute(path){
