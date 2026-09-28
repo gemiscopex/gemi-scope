@@ -1236,9 +1236,6 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
     <div class="nav-drop-wrap">
       <button class="tab-btn" onclick="navDrop(event,this,function(){goObligaciones('federal')})">Obligaciones ▾</button>
       <div class="nav-drop">
-        <div class="nav-drop-it" onclick="goObligaciones('matriz')">Matriz por proceso<span class="nd-sub">Qué te aplica según tu operación</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('sanciones')">Estimación de sanciones<span class="nd-sub">Rangos de multa vigentes</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('sce')">Comercio de emisiones<span class="nd-sub">Mercado de carbono (SCE)</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('instrumentos')">Instrumentos<span class="nd-sub">Planes, REP, registros, distintivos</span></div>
         <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs</div>
         <div class="nav-drop-it" onclick="goObligaciones('federal')">Leyes Federales</div>
@@ -2712,9 +2709,6 @@ function goObligaciones(sub){
   if(typeof _gate==='function'&&!_gate())return;
   _pushRoute(_OBLURL[sub]||'obligaciones');
   if(sub==='noms'){showTab('normas',null);return;}
-  if(sub==='matriz'){_oblView='matriz';showTab('obligaciones',null);return;}
-  if(sub==='sanciones'){_oblView='sanciones';showTab('obligaciones',null);return;}
-  if(sub==='sce'){_oblView='sce';showTab('obligaciones',null);return;}
   if(sub==='instrumentos'){_oblView='instrumentos';showTab('obligaciones',null);return;}
   if(sub==='eventualidades'){_oblView='eventualidades';showTab('obligaciones',null);return;}
   showTab('legislacion',null);
@@ -3722,17 +3716,14 @@ function _sceHTML(){
   h+='</div>';
   return h;
 }
-var _oblView='matriz';
+var _oblView='instrumentos';
 function oblSetView(v){_oblView=v;renderObligaciones();}
 function renderObligaciones(){
   var host=document.getElementById('obligaciones-body');if(!host)return;
-  var views=[['matriz','Matriz por proceso'],['sanciones','Estimación de sanciones'],['sce','Comercio de emisiones'],['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
+  var views=[['instrumentos','Instrumentos'],['precedentes','Precedentes judiciales'],['sustancias','Sustancias restringidas'],['ecocircular','Economía circular']];
   var nav='<div class="stab-bar">'
     +views.map(function(v){var beta=(v[0]==='eventualidades')?'<span style="font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.1em;color:var(--green);border:0.8px solid var(--green);border-radius:3px;padding:1px 3px;margin-left:5px;vertical-align:middle">BETA</span>':'';return '<span class="stab'+(v[0]===_oblView?' on':'')+'" onclick="oblSetView(\''+v[0]+'\')">'+v[1]+beta+'</span>';}).join('')+'</div>';
-  var body= _oblView==='matriz'?_matrizHTML()
-    : _oblView==='sanciones'?_sancionesHTML()
-    : _oblView==='sce'?_sceHTML()
-    : _oblView==='precedentes'?_jurisprudenciaHTML()
+  var body= _oblView==='precedentes'?_jurisprudenciaHTML()
     : _oblView==='sustancias'?_sustanciasHTML()
     : _oblView==='ecocircular'?_ecocircularHTML()
     : _oblView==='eventualidades'?_eventualidadesHTML()
@@ -4899,19 +4890,7 @@ function renderSPImpuestos(state){
     const specs=t.especificaciones?`<div style="font-size:12px;color:var(--text);line-height:1.5;margin:7px 0 5px">${t.especificaciones}</div>`:'';
     const oblig=t.obligados?`<div style="font-size:11px;color:var(--text-sec);margin-bottom:4px"><span style="font-weight:600">Obligados:</span> ${t.obligados}</div>`:'';
     const fechas=(t.fechaPublicado&&t.fechaPublicado!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted)">Publicado: <b>${t.fechaPublicado}</b></span>`:'')+(t.vigencia&&t.vigencia!=='No aplica'?`<span style="font-size:10px;color:var(--text-muted);margin-left:14px">Vigencia: <b>${t.vigencia}</b></span>`:'');
-    let calc='';
-    if(p&&p.basis){
-      calc=`<div style="margin-top:11px;padding-top:10px;border-top:0.6px dotted var(--border)">`
-        +`<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px">Calcula tu impuesto</div>`
-        +`<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">`
-          +`<input type="number" min="0" step="any" inputmode="decimal" data-min="${p.mxnMin}" data-max="${p.mxnMax}" oninput="impCalc(this)" placeholder="cantidad" style="width:120px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:13px;color:var(--text);background:var(--card2,#f6f8fa)">`
-          +`<span style="font-size:12px;color:var(--text-sec)">× ${p.basis} <span style="color:var(--text-muted)">(${p.orig})</span></span>`
-          +`<span class="impcalc-out" style="font-size:15px;font-weight:700;color:var(--green);font-variant-numeric:tabular-nums;margin-left:auto;white-space:nowrap">= —</span>`
-        +`</div>`
-        +`<div style="font-size:10px;color:var(--text-muted);margin-top:7px;line-height:1.45;max-width:640px">Estimación con la tarifa oficial vigente. El monto final puede variar por reglas de la ley estatal (base gravable, mínimos, deducciones o topes).</div>`
-      +`</div>`;
-    }
-    return `<div style="padding:14px 0;border-bottom:0.8px solid var(--border)"><div style="display:flex;align-items:center;gap:12px">${lab}${contro}</div>${money}${posbar}${specs}${oblig}${fechas?`<div style="margin-top:4px">${fechas}</div>`:''}${calc}</div>`;
+    return `<div style="padding:14px 0;border-bottom:0.8px solid var(--border)"><div style="display:flex;align-items:center;gap:12px">${lab}${contro}</div>${money}${posbar}${specs}${oblig}${fechas?`<div style="margin-top:4px">${fechas}</div>`:''}</div>`;
   }).join('');
   const footer=hasUMA?`<div style="margin-top:12px;font-size:9px;font-family:var(--mono);color:var(--text-muted)">Precios en UMA convertidos a MXN · UMA 2026 (INEGI/DOF): $117.31 / día · comparación entre estados con el mismo impuesto</div>`:'';
   document.getElementById('sp-impuestos').innerHTML=cards+footer;
@@ -8817,7 +8796,7 @@ function _spark(vals,color){
 /* ===== Rutas limpias · scopegemi.com/obligaciones/leyesfederales ===== */
 var _routing=false;
 var _TABURL={dashboard:'dashboard',estados:'estados',radares:'radares',consola:'terminal',acerca:'acerca',alertas:'alertas'};
-var _OBLURL={matriz:'obligaciones/matriz',sanciones:'obligaciones/sanciones',sce:'obligaciones/comercio-emisiones',instrumentos:'obligaciones/instrumentos',noms:'obligaciones/noms',federal:'obligaciones/leyesfederales',estatal:'obligaciones/leyesestatales',rme:'obligaciones/tramitesrme',gacetas:'obligaciones/gacetas'};
+var _OBLURL={instrumentos:'obligaciones/instrumentos',noms:'obligaciones/noms',federal:'obligaciones/leyesfederales',estatal:'obligaciones/leyesestatales',rme:'obligaciones/tramitesrme',gacetas:'obligaciones/gacetas'};
 var _AGENDAURL={congreso:'agenda/congreso',pendientes:'agenda/pendientes',dof:'dof'};
 var _ACTURL={federal:'actores/federal',estatal:'actores/estatal',legfed:'actores/legislativo-federal',legest:'actores/legislativo-estatal'};
 function _pushRoute(path){
