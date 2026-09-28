@@ -398,6 +398,16 @@ def main():
     except Exception as e:
         print(f"  ERROR datamexico: {str(e)[:120]}")
 
+    # Etiquetado de empresas (capa privada) — corre al final, sobre noticias.json
+    # y noticias-estatales.json ya actualizados.
+    print("\n── Etiquetado de empresas (terminal privada) ──")
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import tag_empresas
+        tag_empresas.main()
+    except Exception as e:
+        print(f"  ERROR tag_empresas: {str(e)[:120]}")
+
     # Drift de integrantes (informativo)
     print("\n── Verificación de integrantes (informativo) ──")
     for c in coms_data["comisiones"]:
