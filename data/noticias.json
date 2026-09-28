@@ -1,5 +1,52 @@
 [
   {
+    "id": "bcc6c9018c99",
+    "titulo": "Vuelan Ravens sobre Cowboys en el Maracaná",
+    "url": "https://www.reforma.com/vuelan-ravens-sobre-cowboys-en-el-maracana/ar3283694",
+    "fuente": "Reforma",
+    "resumen": "Con un segundo en el reloj y un gol de campo de 56 yardas, los Baltimore Ravens vencieron 34-31 a los Dallas Cowboys en Río de Janeiro.",
+    "fecha_publicacion": "2026-09-27T23:59:45Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-28T00:11:31.036625+00:00"
+  },
+  {
+    "id": "dc450dcab047",
+    "titulo": "Pemex y autoridades verifican descargas en la Refinería Madero tras intensas lluvias en Tamaulipas",
+    "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOdU83Wm9tLTRsc21Uc1BYTEpNcWlBUmpjcDBQYy03YmdnNUk3bUpmaUYwckQ1NkRvSm90ak9RRTRQaG9xeGNpQUdqR2twQVFhTFFWT1NNUjU1Q0ZnZlZ4QzVEM29iZzFZQnRTN0ptUDg3LWsxd2tDRkE1X2lHZHZ2VmxpSVpORkY2RHk3ZXEzaXR3bDdHb3RHSjN3dkZVMW5oNmlWWTJHVUhXeG1kMkRFN08wdnpJWl9yUE9qRFlzWVo1N1R3N0ZrS1NOcVVSS01Vd25BZVp1WGlJOFMtUDc2Ym5URzFFTk9jZXRYQ2tOdUxzWTJkSG5DYQ?oc=5",
+    "fuente": "El Heraldo de México",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-27T23:56:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": "Tamaulipas",
+    "scrapeado_en": "2026-09-28T00:11:46.656888+00:00"
+  },
+  {
+    "id": "a00e908070d4",
+    "titulo": "Incrementa el precio del Gas LP en Veracruz",
+    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNeERsaXNzanJHNThQQzJScVVPejYzcGstVmtZWEs5OXExeDNhV0ZxNl9QZTlnWm9yV3VidkQwWlE5WDBma2xmdEYtX2dhcjNvNkRRSUtvbDlISUM2Q1RacE40MWJTdnZQaEk2aFZaYW5uYThQTFdyUFhWUmJFdjdIVktweHRKeUZjdXliaFVmX3hZN1VadXc?oc=5",
+    "fuente": "Meganoticias.mx",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-27T20:00:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": "Veracruz",
+    "scrapeado_en": "2026-09-28T00:11:47.748831+00:00"
+  },
+  {
     "id": "f0bbde81a089",
     "titulo": "Huracán ‘Polo’ se debilita a categoría 3: México y EU piden a la población reforzar medidas para preservar la vida",
     "url": "https://www.elfinanciero.com.mx/nacional/2026/09/27/huracan-polo-se-debilita-a-categoria-3-mexico-y-eu-piden-a-la-poblacion-reforzar-medidas-para-preservar-la-vida/",
@@ -13,6 +60,22 @@
     ],
     "estado": "Baja California",
     "scrapeado_en": "2026-09-27T20:36:18.359607+00:00"
+  },
+  {
+    "id": "202ae7577292",
+    "titulo": "Pemex necesitaría apoyo del gobierno durante los próximos cinco años: Moody’s",
+    "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPVVVzWmlQOXRuS3czeWVXdjNxOTlNTl8zR1FuUUpNYUJicG4xbk5qTnZ1NXBXQVFRaWNkbFJPOWlTd1Z3UE92UGU0em95cEljMFpFUjJ0N3dBVktvQ1FFYnVmU2poSHlMOWNhbG1iRXRlNjljUUJyaUNQLVFuQmw4dWUzcWVCRk93Nll6UTE0QjRGc3FMamE5RnVVT1JkN1JLM0tzWG5aX0RRMmhERkEtZEpLYkY?oc=5",
+    "fuente": "La Region Tamaulipas",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-27T16:26:52Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-28T00:11:46.659300+00:00"
   },
   {
     "id": "8fac5b22217e",
@@ -9262,67 +9325,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-09-17T20:45:52.109786+00:00"
-  },
-  {
-    "id": "5c8b035d1476",
-    "titulo": "First Solar retira su demanda de patentes TOPCon",
-    "url": "https://www.pv-magazine-mexico.com/2026/09/17/first-solar-retira-su-demanda-de-patentes-topcon/",
-    "fuente": "PV Magazine MX",
-    "resumen": "El fabricante de película delgada retiró su denuncia bajo la Sección 337 ante la USITC tras las nuevas restricciones a las importaciones impuestas en virtud de la Sección 232, mientras avanzan las disputas judiciales sobre patentes contra fabricantes nacionales y extranjeros en tribunales federales.",
-    "fecha_publicacion": "2026-09-17T15:35:00Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-09-17T20:45:36.012803+00:00"
-  },
-  {
-    "id": "e0b0ccddf61b",
-    "titulo": "Sheinbaum confrontó a funcionarios por caída en producción de Pemex, reporta Reuters",
-    "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPSVIxd29za0IyLWV1TV80dXpVd1dBQ2I0a1lYTjRDZXpsSmVkaTFTbmNmNXhuOHpZVHZaS0pDdWdmNHVzanp5ZzlaWnBjWnNpTG1hMXB5bDNYSERGNEZPLVBKR1BnZmJqVmNCUGNwclpGSE4wY0RSSW56OENDWm1QVnFIMU5RSURTejZsT0RKUjA5VDNIRG5FMWgzUUdEYnNOWXotWDhJMnR0ZWwtWUp6MTdfQ2VHVENkWnJmMTRpdnQyamxpRURDSTVyalVaQnJoU2c?oc=5",
-    "fuente": "vanguardia.com.mx",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-09-17T15:31:35Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-09-17T20:45:52.102441+00:00"
-  },
-  {
-    "id": "a558a6e26faa",
-    "titulo": "Sheinbaum habría reprendido a funcionarios de Pemex por caída en producción",
-    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOeTJDLXZaWVNCcjJMWEpYTUw0N0hHREVSWkVaT0JkaF9ycm9NQ2Vvb2pzelloR2JhdlhlcVhWcDJlRkpsaEpMWlJsX0dGd2VCN0VmVEV2WnBWSTdpU2xrVDlSdUt1Rk04NkZTWDhPSmx5aEdjLTZSal9qYTNRQjdJYlBBRUpVNnBXU3ZJeDVNeER2eGdSUm0wUkZleVp4bW05R1IwLVZBNC1LdGVub0gxejVPRHBjdG5jSUkxMzZ2cTk?oc=5",
-    "fuente": "elindependiente.mx",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-09-17T15:26:16Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-09-17T20:45:52.113481+00:00"
-  },
-  {
-    "id": "53afed95cfd0",
-    "titulo": "Inflar de más las llantas para ahorrar gasolina parece buena idea, pero puede salirte muy caro",
-    "url": "https://expansion.mx/tendencias/2026/09/17/inflar-mas-las-llantas-ahorrar-gasolina-consecuencia",
-    "fuente": "Expansion",
-    "resumen": "Muchos conductores buscan reducir el gasto de combustible de esta manera, pero antes conviene saber qué ocurre cuando se supera la presión indicada.",
-    "fecha_publicacion": "2026-09-17T15:06:05Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-09-17T20:45:35.881912+00:00"
   }
 ]
