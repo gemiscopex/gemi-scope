@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "nota": "Lista de empresas que los scrapers etiquetan en las noticias (campo `empresas`). CAPA PRIVADA: la consume la terminal por empresa, NO el Radar publico. Sembrada con las empresas verificadas del propio Scope (cuentas y datos GEMI). Completar/curar con los 12 asociados oficiales de GEMI.",
+    "actualizado": "2026-09-26",
+    "surface": "privado"
+  },
+  "empresas": [
+    { "id": "biopappel", "nombre": "Bio Pappel", "alias": ["Bio Pappel", "BioPappel", "Scribe"] },
+    { "id": "siegwerk", "nombre": "Siegwerk", "alias": ["Siegwerk"] },
+    { "id": "chep", "nombre": "CHEP", "alias": ["CHEP", "Brambles"] },
+    { "id": "herdez", "nombre": "Grupo Herdez", "alias": ["Herdez", "Grupo Herdez"] },
+    { "id": "jumex", "nombre": "Grupo Jumex", "alias": ["Jumex", "Grupo Jumex"] },
+    { "id": "norkim", "nombre": "Norkim", "alias": ["Norkim"] },
+    { "id": "siemens_energy", "nombre": "Siemens Energy", "alias": ["Siemens Energy", "Siemens-Energy"] }
+  ]
+}
