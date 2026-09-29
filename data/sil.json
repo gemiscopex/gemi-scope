@@ -401,6 +401,27 @@
       "scrapeado_en": "2026-09-15T15:19:01.273815+00:00"
     },
     {
+      "camara_origen": "Cámara de Senadores",
+      "camara_revisora": "Cámara de Diputados",
+      "fecha_presentacion": "2026-09-08",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Sen. Agustín Dorantes Lámbarri (PAN)",
+      "aspectos": "El senador propone exhortar a la Comisión Federal de Electricidad y a Petróleos Mexicanos, para que, a la brevedad posible, analicen la viabilidad de establecer una posible alianza estratégica para desarrollar centrales de cogeneración de energía eléctrica en las refinerías que conforman el Sistema Nacional de Refinación (SNR), así como en Complejos Procesadores de Gas (CPG), e informen a esta Soberanía sus resultados.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Energía de Cámara de Senadores. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Senadores del 08 de septiembre de 2026, por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 08/09/2026",
+      "asunto_id": "5122923",
+      "seguimiento": "5143515",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5143515&Asunto=5122923",
+      "categorias": [
+        "hidrocarburos"
+      ],
+      "categoria": "hidrocarburos",
+      "categoria_nombre": "Hidrocarburos",
+      "id": "666a64cd4d48",
+      "scrapeado_en": "2026-09-29T21:46:43.105340+00:00"
+    },
+    {
       "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2026-09-08",
       "legislatura": "LXVI",
@@ -10785,35 +10806,13 @@
       "categoria_nombre": "Calidad del Aire",
       "id": "d6cc58a2e592",
       "scrapeado_en": "2026-04-29T21:16:52.461831+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Senadores",
-      "camara_revisora": "Cámara de Diputados",
-      "fecha_presentacion": "2026-03-24",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que adiciona diversas disposiciones de la Ley de Desarrollo Rural Sustentable.",
-      "presentador": "Sen. Gina Gerardina Campuzano González (PAN)",
-      "aspectos": "La iniciativa tiene por objeto establecer que el Estado promoverá la incorporación de información climática preventiva como instrumento estratégico para la planeación y toma de decisiones en las actividades agropecuarias. Entre lo propuesto destaca: 1) el fortalecer la resiliencia productiva, la seguridad hídrica y la sostenibilidad ambiental del medio rural; 2) Asimismo, la Comisión Intersecretarial para el Desarrollo Rural Sustentable, deberá considerar acciones orientadas a la generación, coordinación y difusión de información climática preventiva regionalizada, que permita anticipar riesgos derivados de la variabilidad y el cambio climático en las actividades agropecuarias, en el ámbito de sus respectivas competencias.",
-      "ultimo_tramite": "Se turnó a comisiones unidas: Estudios Legislativos, Segunda de Cámara de Senadores. Dictamina. El turno se publicó en Gaceta del Senado del 24 de marzo de 2026. Ver todos los trámites",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 24/03/2026",
-      "asunto_id": "5048297",
-      "seguimiento": "5080500",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5080500&Asunto=5048297",
-      "categorias": [
-        "cambio_climatico"
-      ],
-      "categoria": "cambio_climatico",
-      "categoria_nombre": "Cambio Climático",
-      "id": "1237c699df5d",
-      "scrapeado_en": "2026-04-27T21:06:40.424649+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 68,
-    "actualizado": "2026-09-29T16:49:33Z"
+    "nuevas": 64,
+    "actualizado": "2026-09-29T21:52:01Z"
   }
 }
