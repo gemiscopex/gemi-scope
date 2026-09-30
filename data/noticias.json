@@ -1,5 +1,561 @@
 [
   {
+    "id": "47b22ba5ffcd",
+    "titulo": "Pemex se desploma: producción y exportaciones tocan mínimos históricos",
+    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPV18yY3pYZlNvLVZYSmVRSEM1eVNuVlU1YVVjRUdyNU01cHAxbkpDc2pKbkVHR2lnQjQyNnlwa3EwZWZkOUUxMkprWXhQT3h5a3puNDRUTkx5bTNYY2VIVFFxN3Awcm01MzRLaHNuTnl0MDRRdU54eXF0VjZkUDdOcGRnYnlZTk82RFpxb1NtSUdJVVktM3J4QUR1WVl4ZTdUVlpnWnZUTlI?oc=5",
+    "fuente": "PalabrasClaras.mx",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T16:15:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.152709+00:00"
+  },
+  {
+    "id": "22753f7847bc",
+    "titulo": "Los propietarios de viviendas en EE. UU. desconfían ahora ligeramente menos de las empresas solares",
+    "url": "https://www.pv-magazine-mexico.com/2026/09/30/los-propietarios-de-viviendas-en-ee-uu-desconfian-ahora-ligeramente-menos-de-las-empresas-solares/",
+    "fuente": "PV Magazine MX",
+    "resumen": "El proveedor de plataformas de ventas y diseño Aurora Solar registró una disminución en la proporción de propietarios de viviendas que informaron experiencias negativas con empresas solares durante los cuatro trimestres más recientes.",
+    "fecha_publicacion": "2026-09-30T16:10:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.360088+00:00"
+  },
+  {
+    "id": "639ad61a44a4",
+    "titulo": "Diésel roza los 32 pesos por litro pese a estímulos",
+    "url": "https://energy21.com.mx/diesel-se-dispara-a-31-99-pesos-por-litro-pese-a-estimulos/",
+    "fuente": "Energy21",
+    "resumen": "El diésel en México ya se vende hasta en 31.99 pesos por litro, rozando el umbral de los 32 pesos, pese al pacto voluntario de contención de precios y a los estímulos fiscales vigentes. De acuerdo con datos de PetroIntelligence, una estación bajo la imagen comercial de DiéselMax en Navolato, Sinaloa, comercializa el combustible que […] El cargo Diésel roza los 32 pesos por litro pese a estímulos apareció primero en Energy21 .",
+    "fecha_publicacion": "2026-09-30T15:39:10Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": "Sinaloa",
+    "scrapeado_en": "2026-09-30T16:29:05.237754+00:00"
+  },
+  {
+    "id": "ad23847c6465",
+    "titulo": "La energía solar supera por primera vez a la nuclear a escala mundial",
+    "url": "https://www.pv-magazine-mexico.com/2026/09/30/la-energia-solar-supera-por-primera-vez-a-la-nuclear-a-escala-mundial/",
+    "fuente": "PV Magazine MX",
+    "resumen": "La energía solar y la eólica superan cada vez más a la nuclear a escala mundial, y la generación solar rebasó por primera vez a la nuclear en 2025, según el WNISR 2026. El informe destaca el lento crecimiento de la energía nuclear, sus prolongados plazos de construcción y el limitado despliegue de los reactores modulares pequeños, frente a la rápida expansión de las energías renovables y las baterías.",
+    "fecha_publicacion": "2026-09-30T15:35:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.361283+00:00"
+  },
+  {
+    "id": "a1c0a8aefe11",
+    "titulo": "Argumentos a favor de la fotovoltaica integrada en edificios vertical",
+    "url": "https://www.pv-magazine-mexico.com/2026/09/30/argumentos-a-favor-de-la-fotovoltaica-integrada-en-edificios-vertical/",
+    "fuente": "PV Magazine MX",
+    "resumen": "Un importante estudio de la Tarea 15 del IEA PVPS (Programa de Sistemas de Energía Fotovoltaica de la Agencia Internacional de la Energía) concluye que las fachadas BIPV verticales pueden complementar la energía solar en cubiertas con penalizaciones mínimas en el rendimiento, al tiempo que suavizan la generación a lo largo del día y ofrecen una mayor flexibilidad de diseño.",
+    "fecha_publicacion": "2026-09-30T15:00:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.362410+00:00"
+  },
+  {
+    "id": "f15abb2713e5",
+    "titulo": "Pemex toca fondo: Producción de petróleo y exportaciones registran mínimos históricos en agosto",
+    "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQNGVEd3VvdWFjWkpMWU5aVk5ESW9HNlFWT0FiUWVnSHBDSHM1cnNfOG1Vai10UUc2TTF4SzFGcER2eFhpU0U5ckgyQjg5SG9PNVhRVU5SMXhRLW9YdE9ZLW9DODIybzdKZm53N1Z3QUw5cWVqQVY3S3VMc3BSYVJzWkVnUjFXSkhKcVFsVlNISGNReUVhcXVQVEhBdE1PZWoyLUNjT19ONkh4Qm5VODhWbS1kQjROTG5rY1RPTVdKbjZDZkw1b19aVmlPdGo0R1AyNFBUUFRfTWt4VTliWG5Xdg?oc=5",
+    "fuente": "El Financiero",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T14:18:07Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.149482+00:00"
+  },
+  {
+    "id": "71de00eb0636",
+    "titulo": "Pemex toca fondo: Producción de petróleo y exportaciones registran mínimos históricos en agosto",
+    "url": "https://www.elfinanciero.com.mx/economia/2026/09/30/pemex-toca-fondo-produccion-de-petroleo-y-exportaciones-registran-minimos-historicos-en-agosto/",
+    "fuente": "El Financiero",
+    "resumen": "La producción de crudo de Pemex cayó a 1.336 millones de barriles diarios en agosto, su menor nivel registrado, mientras las exportaciones se desplomaron 44.9 por ciento anual.",
+    "fecha_publicacion": "2026-09-30T14:18:07Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.280228+00:00"
+  },
+  {
+    "id": "fcd201acd1bc",
+    "titulo": "La descarbonización también se construye entre empresas",
+    "url": "https://www.elfinanciero.com.mx/opinion/colaborador-invitado/2026/09/30/la-descarbonizacion-tambien-se-construye-entre-empresas/",
+    "fuente": "El Financiero",
+    "resumen": "El principio sigue vigente para cualquier organización: los grandes desafíos requieren respuestas colectivas.",
+    "fecha_publicacion": "2026-09-30T14:12:37Z",
+    "categoria": "cambio_climatico",
+    "categoria_nombre": "Cambio Climático",
+    "categorias": [
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.281634+00:00"
+  },
+  {
+    "id": "eaf0c8059248",
+    "titulo": "TikTok, música y defensa del territorio: cinco jóvenes indígenas cuentan la Amazonía ecuatoriana desde las redes sociales",
+    "url": "https://es.mongabay.com/2026/09/tiktok-musica-defensa-territorio-jovenes-indigenas-amazonia-ecuatoriana-redes-sociales/",
+    "fuente": "Mongabay Latam",
+    "resumen": "Roxana Tanguila baila a los pies de dos antorchas de un pozo petrolero. El fuego que sale al final de esos altísimos tubos de metal es producto de la quema continua del gas que se produce durante la extracción del crudo pesado. La mujer de nacionalidad quijos mueve su largo cabello negro de un lado […]",
+    "fecha_publicacion": "2026-09-30T12:17:55Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.086799+00:00"
+  },
+  {
+    "id": "063032db68ce",
+    "titulo": "Pemex cierra agosto con déficit comercial de US$4.000M",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPeFM1dlYtT1pZRHpSVGFsc3JybGxYVU5xNlB3bkNnWFpLQzVuQUlURHMwTlBZQVVuT1lUOFVIR3h6OHdjd0thd3JlQzQ3S3ZaR19xNGVVcWtYcnVLdnpBVUszb0ltOGZyQ0R1cDBIZUVpN21PZVoxR1Jta0o0TFU1RVJ5NFYxU05xTGI0TQ?oc=5",
+    "fuente": "El Ecosistema Startup",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T12:07:01Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.150834+00:00"
+  },
+  {
+    "id": "8a6f4a795235",
+    "titulo": "Revive la esperanza petrolera: sindicato de Pemex busca liberar plazas bloqueadas en Ciudad Madero",
+    "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOOU1LN1lRb216eGFvVzRZV2tTa0FLSzU5RkQ3UXh6Rks1QXliTW9MNVd3V3o4Q1JkUWVNQTJBelA1TWdsV2FkOHp3bVM1ZkRHYnhMTTU1cGNkOFJJVmFyMGE0cW8xYmo0dUZuTmNGUUNFY292UkxDeTVNd1JwT3duNzY4QnkzRlhxbGJtT1U0QUc4S1poVGtBY2V4MFE5SVlCNW9XN1ZpclNXOVlwaG8tM0dFWGtieDc1NUQ3bHpnWVhWZi1qWmxsY1lQODBQTHVKRlZxV2xYVmxqdnZpYUdj?oc=5",
+    "fuente": "El Sol de México",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T11:58:06Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.154854+00:00"
+  },
+  {
+    "id": "5e16db270b5f",
+    "titulo": "México enfrenta riesgo en el abasto de diésel por dependencia de 40% de importaciones",
+    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPc2FiUFdaSFcxcU1CeDdobTgzX05CdHFWVVh0SVRKN3pvLWNQcTRDcjlBTm5YM0JhOU5JYlJkbkd2SFBBcVYxU1U4WVlxemthUmFxU1dYUExxV19OdTJQS3UtRmJKSlcyUXdZQ09qOEViUjQ5eVgta00yZnVTdG11MkJFRlVsbXJXdW1oM3ZqTEVoRnVSR3JmX1FSWGRZUdIBqwFBVV95cUxOMXNmeUp1SEt3T2ZhNU1Ka2d4cjBkQ3lZdHV1N0pWVFhpdXpfakkwUHZEY01kaF94WGI1MWFueFNWcTZyY0NVQmlmaVdNWGZ6S0lCaU5UdkhuVDJ1QWtJTVQySEN1SmJ2eng3Z0xabEd4QlVoLVZJazJ5T29uR0UxLThXRWJOX0toOTQ3SzVpVXRiOW8tQ2tQbHlXNUpaM1h3TDdRYzZtWDFxbnM?oc=5",
+    "fuente": "expansion.mx",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T11:55:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:22.235312+00:00"
+  },
+  {
+    "id": "3dd10ddc3789",
+    "titulo": "Pemex acumula déficit comercial de US$4.000 millones por importación de combustibles",
+    "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOa1V6N1JzUHlIMFVVTmpiRVZFbmFUOGFOaU5Nd3VMWTJVTDhwM1JhYnBmRktrY2dqRUtwVG85NkRwam9aZ29WQ3pUM3RkbEtaWXlFVlhBMC1tUDZ2THNoa2pSdllVWi1TMFc5S0NOcGhaNzRwalpXQVNha01HSk9QNm5YOFhyT0R1VE95VENRcnJUY3pXcWxVQWRxQnhZV01ldzBXRGZtcFBrQVBwZGhxNU5kU3hUU3Q0TlpGTGlkbDk2RVJxX2xJQW5yX0JYUnk10gHkAUFVX3lxTFBpU2xXa1QwVWF1cjFyMGhyUThaRXA4bGN0MlRZWDBhVkM2Y05Vamp0Wnlhc3BMeElvUXRVSW82eVJVR0pfeHB5RHVFRThqdGxkZXdJQS1qclhJNUtEeDE1dTJpZHZ0LVJXUFQ0VS1EQTFQZkYtMzI0clRMc0JOcXh4N2hCVE9lTEpjOVlRSXpOQXBHenFKOUNFMndlTGhtT1kyUlBuMmJJVVlwcXBfWW4xTml2Q2U0Xy1mdDQtZHZfZ1p3LXlfVTVldEF1bFUwT2E3d2NzSFRwdlJHTC1mMjFLWTZrUw?oc=5",
+    "fuente": "Bloomberg Línea",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T11:51:01Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.150201+00:00"
+  },
+  {
+    "id": "7b87f1a60ea9",
+    "titulo": "Gasolina en Nuevo León: precio de la magna, premium y diésel este miércoles 30 de septiembre",
+    "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxONzJxUWcwTmMyUUNFeTNodXZTcEJBd25zcFZsSzRVZEw3Znp3S245bmlVM21HM29ReDZEQ1B5U3RCY1BfOV9WUXV5eXlFazJmX0lUVmVyQnZEcWY5MDBlQnIzRDhCVGlMejhhQWhlMVEtRGZjc0FJSWpOV2dLb183ZU14eFVJa1ppU1RmRGNISFlKMVQ1ZkxCZkYydXhmdkVfalhxQ1JUdG1CMVp3X1FZZ1F0TDZDUkNPYTkxX0FEcWE0anRZWTQ2ZGNPSHZ5UdIB6AFBVV95cUxNWF94NGszYkdwSjU3QWJWb3pRZ1ZNNDN6WE9UQXhiQUxzaGVKaHFoODViY01UVWxOTU16ZGFSbGllOWFkTXo2RnluSmhoTTBtMU5ZUzdaZjMxUVIxd1pxcVFoSzNCUUo2R0RRYWx4MTFDTGc0WFBNSTZ5c0lxVjZBZzNwek4wXzQxeE84UUJUR05FNVRVSldoUXVRLXNNODNILWlRRWNqN2FmcVpVbGw0dVR2YXFDdE44Q2E0Y09oR0xfQUJJVk16VGZHLUhyZGwtdXpNMjljbEE0WTZVZ1VjeXlxcXhaNDM1?oc=5",
+    "fuente": "Infobae",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T10:26:19Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": "Nuevo Leon",
+    "scrapeado_en": "2026-09-30T16:29:22.242904+00:00"
+  },
+  {
+    "id": "d3cc0796efa4",
+    "titulo": "Jalisco: cuál es el precio de la gasolina este 30 de septiembre",
+    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNRzcxNG8xdFhlWGNRUTBPeFBBeFJZMW9CMDk3NFh3M2pTUXNZa3doelBVRTlXcEVxLWJLZG9NQmtPTUE5ZTViek4zMXp6UmZxeHJlYUNLS2czYXFpYkdnLXJfZVdPUEh2c3VnQXRveVdmVm1qbUVhelFKcHN4NEkzM2pLRVZ1alNBeV9hSXVIS3JmUFpOeWtKcTYxMTRXZ0d2ZTBVbUI2Z0jSAcMBQVVfeXFMTW9uUmpZUjRRNmtiOUp6YkNmRWwxRlNVb29nX0pTZ3NkSklZdE02MFlHMW03eDAtNGtzV2F3aUlZZmRvWTBCM0xKSkFNV2ZTZjRJR0kydW5DWW0yMkI5SFJlbzMxbEg5VGdWd05XUHdlY25EUFNhZm1sYi1ONkEtRFNMRk1nN1dKWnhBQVRxSGFvS3lCWWh1eGlCT0RTejNJYkNreFZPWk5DSVpzS2NYMVVkb19zRWtHRmY3RkhBYl9RQ3FR?oc=5",
+    "fuente": "Infobae",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T10:24:21Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": "Jalisco",
+    "scrapeado_en": "2026-09-30T16:29:22.242091+00:00"
+  },
+  {
+    "id": "08a048e8e11a",
+    "titulo": "Inundaciones, cortes de luz y daños a casas deja Polo a su paso por Sonora",
+    "url": "https://www.jornada.com.mx/2026/09/30/estados/025n1est?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "El huracán Polo golpeó ayer la costa de Sonora entre las 11 y las 12 horas, y dejó inundaciones, daños en viviendas e infraestructura, cortes de energía, así como afectaciones en vialidades de los municipios de Guaymas y Empalme, donde fueron evacuadas las casas de más de 75 familias, principalmente en comunidades rurales, debido al ingreso del agua.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Sonora",
+    "scrapeado_en": "2026-09-30T16:29:05.129990+00:00"
+  },
+  {
+    "id": "a5fd7b8922ef",
+    "titulo": "Perdura la lucha de Berta Cáceres en el movimiento popular hondureño",
+    "url": "https://www.jornada.com.mx/2026/09/30/politica/014n1pol?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "Tegucigalpa. En el departamento de Intibucá, en la región montañosa del occidente de Honduras, hay una localidad, Río Blanco, donde a pesar de la larga sequía que afecta al resto del país, este año hubo lluvias y buena cosecha de maíz. En días pasados celebró sus fiestas patronales agradeciendo la bendición del río Gualcarque, el que defendió hasta la muerte la dirigente lenca Berta Cáceres.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.133712+00:00"
+  },
+  {
+    "id": "f830b134d578",
+    "titulo": "Cede México territorio para trasiego de gas de EU a Asia",
+    "url": "https://www.jornada.com.mx/2026/09/30/economia/019n2eco?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "El gobierno federal, por conducto de la Secretaría de Marina (Semar), cedió 36 hectáreas de superficie marítima en Bahía Catalina, en Guaymas, Sonora, para la construcción y operación de una terminal de gas natural licuado (GNL) de Amigo LNG.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": "Sonora",
+    "scrapeado_en": "2026-09-30T16:29:05.134659+00:00"
+  },
+  {
+    "id": "36ff86096a02",
+    "titulo": "Marchan cientos de miles en Francia por mejores salarios y recursos a educación",
+    "url": "https://www.jornada.com.mx/2026/09/30/mundo/022n2mun?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "París. Francia vivió ayer una jornada de protestas, con huelgas de funcionarios y choques entre estudiantes y policías, a dos días de la presentación del presupuesto y a pocos meses de unas elecciones presidenciales en las que la ultraderecha parte como favorita.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "cambio_climatico",
+    "categoria_nombre": "Cambio Climático",
+    "categorias": [
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.135688+00:00"
+  },
+  {
+    "id": "f94208951f8f",
+    "titulo": "Recuperan terrenos del frustrado  NAIM para producir maíz y frijol",
+    "url": "https://www.jornada.com.mx/2026/09/30/estados/027n1est?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "San Salvador Atenco, Méx., Más de 4 mil 500 hectáreas de los pueblos de la ribera del lago de Texcoco, que estaban destinadas para la infraestructura del cancelado Nuevo Aeropuerto Internacional de México (NAIM), han sido recuperadas y son sembradas y cosechadas por los campesinos. Actualmente producen maíz, frijol, haba, calabaza, granos y forraje.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.143685+00:00"
+  },
+  {
+    "id": "c5fad21c2af4",
+    "titulo": "Luis Linares Zapata: El sustento y la estrategia",
+    "url": "https://www.jornada.com.mx/2026/09/30/politica/016a2pol?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "Llevamos largo tiempo usando los hidrocarburos como sustento energético del país.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.144350+00:00"
+  },
+  {
+    "id": "8a6feeb1eed0",
+    "titulo": "Gómez Urrutia participa en reunión minera internacional",
+    "url": "https://www.jornada.com.mx/2026/09/30/politica/009n2pol?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "Ante los retos que enfrentan la minería y la clase trabajadora por la desindustrialización, la transición energética y la salud y seguridad en los espacios laborales, el líder del Sindicato Nacional Minero, Napoleón Gómez Urrutia, participa en la Conferencia del Sector de los Metales Básicos y de la Industria Siderúrgica de las organizaciones sindicales afiliadas IndustriALL Global Union, la central obrera más grande del mundo.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable",
+      "mineria"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.145476+00:00"
+  },
+  {
+    "id": "321004baeacb",
+    "titulo": "Anuncia Jordi Savall plataforma en línea para favorecer música tradicional, clásica y jazz",
+    "url": "https://www.jornada.com.mx/2026/09/30/cultura/a04n2cul?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "París. El músico español Jordi Savall, renombrado especialista de la música barroca, anunció el lunes en París el lanzamiento, para finales de 2027 o principios de 2028, de una plataforma en línea para temas clásicos, de jazz y tradicionales, con la idea de “remunerar de manera justa a sus creadores”.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "cambio_climatico",
+    "categoria_nombre": "Cambio Climático",
+    "categorias": [
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.156729+00:00"
+  },
+  {
+    "id": "53f52992529f",
+    "titulo": "Garantiza la Federación defensa de granos nativos y apoyo al agro",
+    "url": "https://www.jornada.com.mx/2026/09/30/estados/027n3est?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "En el Día Nacional del Maíz, que se conmemoró ayer, el gobierno federal refrendó que en el país no se producirá transgénico, por el contrario, se seguirá fomentando la protección de este alimento, así como el apoyo a los productores y campesinos.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "transgenico",
+    "categoria_nombre": "Transgénico",
+    "categorias": [
+      "transgenico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.163341+00:00"
+  },
+  {
+    "id": "b26b6c6dd296",
+    "titulo": "Empresas de IA poco hacen para proteger al mundo de su extinción: investigadores",
+    "url": "https://www.jornada.com.mx/2026/09/30/ciencias/a06n1cie?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "San Francisco. Investigadores actuales y antiguos de OpenAI y Google DeepMind advierten que las empresas no están haciendo lo suficiente para proteger al mundo de las consecuencias potencialmente desastrosas que podría acarrear el desarrollo de sistemas de inteligencia artificial (IA) capaces de mejorarse a sí mismos que podrían superar la capacidad de los seres humanos para controlarlos.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.193055+00:00"
+  },
+  {
+    "id": "35dc08a8620a",
+    "titulo": "Regresa El lago de los cisnes con una versión más humana que hace hincapié en los gestos",
+    "url": "https://www.jornada.com.mx/2026/09/30/cultura/a03n1cul?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "Con música en vivo de Piotr Ilich Chaikovski, interpretada por la Orquesta del Teatro de Bellas Artes, El lago de los cisnes de la Compañía Nacional de Danza (CND) regresa al Auditorio Nacional este 10 de octubre con la versión coreográfica de Cuauhtémoc Nájera.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.199320+00:00"
+  },
+  {
+    "id": "75554a6f3ad4",
+    "titulo": "Habitantes resisten el paso del huracán en BCS; “trajo más viento que agua”, dicen",
+    "url": "https://www.jornada.com.mx/2026/09/30/estados/025n2est?partner=rss",
+    "fuente": "La Jornada",
+    "resumen": "La Paz, BCS., Las poblaciones de Baja California Sur, a orillas del océano Pacífico, resistieron ayer el paso del huracán Polo, que tras impactar con cate-goría 2 en la escala Saffir-Simpson dejó carreteras cortadas, árboles caídos y tejados arrancados de cuajo.",
+    "fecha_publicacion": "2026-09-30T09:26:06Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Baja California",
+    "scrapeado_en": "2026-09-30T16:29:05.206351+00:00"
+  },
+  {
+    "id": "1a26f5d36908",
+    "titulo": "Emite Conuee normatividad para el registro de usuarios de alto consumo energético",
+    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPblI3QnJReVVHNUU1X044SzVxTnZOSUZiT21LeV9pSE5HTUlQdk1LaU9FVm9LMThyYlVHNkpSY01XWTA5bkQyS1dkakViTFFTTnRSUGxiMGR2RDJNX0l2UVZIUVR6MUV1VGViUmtGZjJLVHktUW9rWF91am5lZEQ3VFhXdDhEOERTRXZQQVhXVEE2eDlJYVNsYVB0ZEZZZXlOa1d4SG4tMnEyVTVxbUE?oc=5",
+    "fuente": "Energía A Debate",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T07:09:55Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:23.072817+00:00"
+  },
+  {
+    "id": "e15a6fffdc14",
+    "titulo": "A pesar de la carga que representa Pemex, Moody’s prevé mejoras para México",
+    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQSm02UndLNTk5OWx0VmlMaGtWMTlRYnA4aVpWX3JrOFlhenp2RTU5R1VkUE1OM0ViWTFGQ0pYUUlHRVFKTktBMGhqdUtNM3Nyc1cyc1BDQkIzNTdoQTBSY3NmT2k1U2dmNEw5dms2VE5UZGxrbDZ2TUV1dWVlcV8yOW1vMFdyWVF0RWI1bndoYmYxUkJzcGhBWGRBY1JmQVZmWGhr?oc=5",
+    "fuente": "Energía A Debate",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T04:53:51Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.153465+00:00"
+  },
+  {
+    "id": "9c246058656a",
+    "titulo": "A pesar de la carga que representa Pemex, Moody’s prevé mejoras para México",
+    "url": "https://energiaadebate.com/a-pesar-de-la-carga-que-representa-pemex-moodys-preve-mejoras-para-mexico/",
+    "fuente": "Energia a Debate",
+    "resumen": "Moody's estima que para el periodo 2026-2027, la deuda de las empresas no financieras y de manufactura, incluida Pemex, se reducirá The post A pesar de la carga que representa Pemex, Moody’s prevé mejoras para México first appeared on Energia a Debate .",
+    "fecha_publicacion": "2026-09-30T04:52:44Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.420749+00:00"
+  },
+  {
+    "id": "e1202e79ecde",
+    "titulo": "México expuesto a eventual prohibición de exportación de diésel de EU • Economía y finanzas",
+    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQYlgwX2xnRWx2UXB3elg1MjRNTFRfdEpJYjVQLWNjdWM1WERpejJDVkFxR1BVRGl5X1pKMWRfTWxTQ2IyNjk5TkNLWnp4WlRIWWFOMXdGa1hnYXJkdnhjcE9tOEk3YVhGaS1EMDFVQnhfbEYyMTE4ZTNjRzBzamVsV3JlamJRTGRDdXBSQTNsSi1wVGVFYkxv?oc=5",
+    "fuente": "Forbes México",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T03:25:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:22.236204+00:00"
+  },
+  {
+    "id": "264fa0577201",
+    "titulo": "Vemo emite sus primeros 9,000 bonos de carbono bajo el estándar Verra",
+    "url": "https://energiaadebate.com/vemo-emite-sus-primeros-9000-bonos-de-carbono-bajo-el-estandar-verra/",
+    "fuente": "Energia a Debate",
+    "resumen": "La empresa mexicana de electromovilidad Vemo emitió sus primeros 9,000 bonos de carbono bajo la certificación internacional VCS (Verified Carbon Standard) de Verra, como parte de los resultados presentados en su Reporte de Sustentabilidad 2025. La generación de estos créditos proviene de la unidad Vemo Conduce, un modelo de operación de flotas de vehículos eléctricos […] The post Vemo emite sus primeros 9,000 bonos de carbono bajo el estándar Verra first appeared on Energia a Debate .",
+    "fecha_publicacion": "2026-09-30T02:52:09Z",
+    "categoria": "cambio_climatico",
+    "categoria_nombre": "Cambio Climático",
+    "categorias": [
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:05.422108+00:00"
+  },
+  {
+    "id": "a2ee66c87512",
+    "titulo": "Impactaría a Pemex veto de EU a exportaciones de diesel",
+    "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQVFpWUmFYdzFXa0FxajFMVWpMbGRZZnIwRFVpakJIdDRjVU85N2VWTk9NclNYNU9KZ3AwM05DMVNpZGtLTENvNDZ5MVQzcHBSemJQd3BYYnFtYTdPWE5DZkR4UXl6SGZWaFdlY2V1eHRhSWI0RVlwa1g3R0M0VWVLMWQ1NVFSQ0twSU9IZkpPNU9EbFU?oc=5",
+    "fuente": "Reforma",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T01:56:24Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.151483+00:00"
+  },
+  {
+    "id": "80089ab8402a",
+    "titulo": "Pemex ya firmó acuerdos con empresas privadas, pero existen omisiones en los datos públicos",
+    "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNVzRITDhKSXBaeGg4WnBjZ1VPVEN5d296UjI1UmkzY3k5TzVScTY0cGxmSmZ5UzZnbzRwanl0dUs3UTBqX2JuWWVaSGdfQ1laYkFuWnFIRk9wZE9wWHRka2x5c09pMzhhZHFuU2Q3NTkyTk9YZ25Uc1ZhSXZRYVpGT3ZvbXgxQW9MajZVZzFiem9lNDBfd2ozNWNQY2p4UVZyNl9Vd0JLRkpmdFBTMnBsY1dZMzV4NERXODFQT2hkelkzdGItdlJoY2wxQmFBd9IB6AFBVV95cUxPQXZtV1ZWdTRlbGhIVW9SSHNFTXlNVHRvNnNvZTdxbmlpbG5iYi1hXy16bjByRDdfdm45d3F2N2hKSThkeDIxQ2RzSkt5YTk2VlRuSnlUdEdKSkZCY0dHOXNBVzdhbl9ZbmFickVWTXJhSnF5MTVPRGFfaWZYMlRKS1hyUlZlczZsY3EwRFA4ZGpqWFRSNmh4bVpEODR6ZEJJMWxlck9Cb2pzUG9SUWtrM2UxczZrLUo2bGZueV9naDZFZHJfT05jOFBPcEl3YWJ5Zzhzb1pHckZySWtlaE9mZ2thaGZyM29M?oc=5",
+    "fuente": "Infobae",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T01:53:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.154168+00:00"
+  },
+  {
+    "id": "df2c5eb9a9f7",
+    "titulo": "Desde el año pasado, Pemex avanza en el pago a proveedores: Raúl Ojeda",
+    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQVDJqZFo1NkhuMFRJYm9rdDFwWDIxTGh1VHIxNVlHYkVMSXVHR3pGclpQRmhQMFNtRVphVFVzQTNSN2tDWUhWSUNsUW03Y1Q5SHBPbjlXX2lBQXE2T2NuWEZPWFh3OUoxamlWZndsSXk5WGRtbTFtQURFQmIyQ3hOVTd4Z21rNmV4V21DRThXVDNsSFM0S3hGMHZkQW54YTBHRElyS0I0TWQ?oc=5",
+    "fuente": "XEVT",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T01:50:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.167761+00:00"
+  },
+  {
+    "id": "3988e89c9e8a",
+    "titulo": "México enfrentaría mayor gasto en subsidios si EU veta exportación de diésel: Banamex",
+    "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQUldnXzBxbkZEalJmcl9mVTN5eDRfTzAyS2RzMlZrVVZpRTlOdG5UaUF5WXVIUkluOVhWWWhNcXlXSXBITEJPWW8tSDJhNldlaTRZZjlkRmlneGRqLXR0V0Nuc3pOYzlRRkpQdndqRVdPdlhhMlZqdGx2N3VpaTNWTnl5elZfRXlkRzd1b1ZQeDZzS0JvYk1xalFQNWdVa2gtejRWRzh5d3Z1YnRERXVXTEpzYjU0Y2E0dHZ6VVdieTdTdW1CRUJ3dE9KMWNaalhIaVU5N1RB?oc=5",
+    "fuente": "La Silla Rota",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-30T01:10:47Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:22.244533+00:00"
+  },
+  {
     "id": "bbc828e931bd",
     "titulo": "Deja 'Polo' comunidades incomunicadas y cortes viales en BCS",
     "url": "https://www.reforma.com/deja-polo-comunidades-incomunicadas-y-cortes-viales-en-bcs/ar3285062",
@@ -2069,6 +2625,38 @@
     "scrapeado_en": "2026-09-28T18:14:45.882446+00:00"
   },
   {
+    "id": "781b2d7fbe8a",
+    "titulo": "Pemex, el problema de refinar",
+    "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA5allyWWNOWk9WODNUZkFmSnlWSG5LTERyX1NtVzlSWkNfX21tQnBwX3M4eXNiS3UzanlWcXNXNElVaHE5YUdlZnFRdktuNzJJdExieTUxMUZMUlM3dFUzcFZkZlpCTXNvcVFHLTlTWkdoY0kwTTNndVRR0gF_QVVfeXFMT1lfQjF6UUFBenZyOTVmNUFiS0doZVVpRTBsaWpJcVNSWVdqMVZVWjY3V3JiQlhaZzZXQ0JnN01PajhBSUw0ZER0VlpMYVBQVkgwR3VYNE5hTXNoZ2cwRk9yeVNtSTJUZUQxMHprMENhdjVCaGtmbmtGNlRDQWsxaw?oc=5",
+    "fuente": "Excélsior",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-28T08:00:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.167115+00:00"
+  },
+  {
+    "id": "acfd19330984",
+    "titulo": "Cadenas de suministro: El factor diésel",
+    "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNZkM4SDNYMVZDLTdIYlRYRlBHZjZIOFEyZzJYaXoxd0I1RXBieTR2RlprdDhyeHprWUFJMWtOSkl3Z1JaYndSSlFpSUNWcWN6WFpONFZxSGFwLTdlZzhXMGdyanoxblJCSkxiX0oxWTNjeDVITVVHUEJBMWFVdlhRamNBcFM4d9IBiwFBVV95cUxNUGtsYkFOOU9uVzgzbTh5dFd3cmRKckV1SzhUZHlBUjBERTFRbVVJMHkxNkV6UVZuOWttblpZUG45SDAwbjJMRWptRUg0RDh1MTNuWnV0M3NGR01EWUlHWHNFbEpBbndSZU16U08wcklxTWFHUnMxdjh1dUVUeEJNb1Fjb2VmbkJkRUI4?oc=5",
+    "fuente": "Pulso Diario San Luis",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-28T08:00:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:22.264936+00:00"
+  },
+  {
     "id": "22fb2d6b3a2c",
     "titulo": "Refuerza Pemex monitoreo en la Refinería Madero",
     "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNVDFYdjdOU0lueHZLRHowWF9kNkQxLVJ5VkktUHk1N2N5Y196dFZfWWEtZ3NPU2Vnal9uYUtkdS1OREVvNmd6S0VJY1ZlR1NTZlhReG90cjNLdkh1U1FkWENZc0lrYkVxUzNXYmhDSko2YXN3MktzZWl6OEY2eU1MYy1aZ0JmMkJiTXVFalJ4Z2YwQdIBlwFBVV95cUxQZ20wRE90Z2s1cVFjTG1sRHkyVG5EdFpMbnpHT2piNk8xbWFFRVpaUkM1OThnSXlpNkNRLUxDZlpwazVrT2MyZS1mYzlNNndFTW9RemtQYXJMWnFUbjUycW9hb0Z3RHFBOFRNVFpibWtfSW5uR3c1anQtV0YwYS1tVFZodnZ5UkMyYzZNYVUwdUttdUhOZjJn?oc=5",
@@ -2181,6 +2769,23 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-09-28T22:45:43.585842+00:00"
+  },
+  {
+    "id": "4f4bc3897d09",
+    "titulo": "Mancha oscura en el río Pánuco: ¿qué encontraron Marina y Pemex frente a la Refinería Madero?",
+    "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNcU1HVGticC11TzdPbzB4RFB3RUN1c3BTYmVxa0UzMUNFeC1hd1A0TlByeV9DZHdCa3hMZE1ta0Vzc2xVek03YWdvQl9uZ2Q1NjVqZW50Q0dhUlBtc2M5eUkza2lsdlcweERTMFVqTm5HMTY0UE80UWRRN25YTjNpMnhfOEVBcEQ2LWtHdEhRZGV2SUdPUlhudjlQdlRiZ1k2RS16SEw4ZVlHbHFBNzVXR3dwUTRsQ1JkdWFXNV8tQlNaUG83T1dnS2hBY1Nud9IB6AFBVV95cUxOR2tzNk0yWG1yV05ZMUVpOWs0TEM4cmljSzgzeExRNFdEbkptZlgySTlUVms1aVc5Q19Nbl93WXJQMTd1N0VxZlNBZ01zOFo2VlRwQ2JPWThSMU5mQzJrS3lwQzRFTTNZNExkV2x0amRZbDFEY1B6TnhuUnVzamhBMElCNUlXSFZrTDdmZTJjeWkwNWJiWkNUTzdKMXNVQlJwZkdtcVE1aFR4NG5xektSREhfY1U0UGhkUWZrY3A0TkFYdkVPMTZ2X0lUNkhZVmFOS2twQ1l4LXR0SlZfdzEtZUJCMGFvLUd6?oc=5",
+    "fuente": "Infobae",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-28T03:10:00Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua",
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.162905+00:00"
   },
   {
     "id": "3f6209919626",
@@ -2757,6 +3362,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-09-28T18:14:28.950754+00:00"
+  },
+  {
+    "id": "a9f93e0d1971",
+    "titulo": "CFE refuerza operativo en Nuevo León para atender fallas y mejorar el suministro",
+    "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQVXNUczRGSFNzRkt5aVdzVV9mdVdRVS1vMnBqNkhMa1RJYS1Va0xvd002S3JLOWRDQl9LYnY1QjhyQmdpdTF3V0RndmJtLWhLY3IxMGVFVkxBLXpYZTNXV2RpTDc5ZlZNX1FqRHRDb0JTbkNPNWRUVWJSUHEza1dxME5ZWENOTWF4V3JPcmFZdU5DaG5maXhZSVR5QmJtX1RHcjJacXNKbGZ0T2VEQlc0cFYyX25YcUdUcVV5M21WNktqQ3VyN3BQZXhERQ?oc=5",
+    "fuente": "abcnoticias.mx",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-26T00:16:34Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": "Nuevo Leon",
+    "scrapeado_en": "2026-09-30T16:29:20.018848+00:00"
   },
   {
     "id": "3fbc4cec9c5f",
@@ -3932,6 +4553,22 @@
     "scrapeado_en": "2026-09-29T16:36:41.921251+00:00"
   },
   {
+    "id": "dc768bf05ead",
+    "titulo": "Conagua descarta vínculo de pozo con familia Yunes",
+    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOUWk2M0g1SjVPU1JSY0JvLUx3dmUtLU91LXdZbFJvQTlqVl9JeXNjamZPM3d3bDBfSHhMSmhaU1Y0WlZZZFZfQVMwUG92RVpnY1FfYUVTQnZfemxWUktKZDk2TUxvb0hPYzRYR3pIc3MwWHdDZnlSUDdBeEUzWkZzMWNZelctM0hQNk9lUEZjYjhUcjQ1aTdMN3ZYYUNUMkR2Q1oyMkE4ODU?oc=5",
+    "fuente": "Meganoticias.mx",
+    "autoridad": "CONAGUA",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-23T23:11:00Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:11.632824+00:00"
+  },
+  {
     "id": "38ad64e21730",
     "titulo": "A 1 año de levantar la voz, seguimos defendiendo la selva.",
     "url": "https://www.greenpeace.org/mexico/blog/65762/a-1-ano-de-levantar-la-voz-por-la-selva/",
@@ -4418,6 +5055,22 @@
     "scrapeado_en": "2026-09-28T18:14:28.958734+00:00"
   },
   {
+    "id": "c733b81b24b1",
+    "titulo": "El problema en México hoy es el diésel",
+    "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOLUpuN1NXbDZ5a3kxXzR5TkVLelRXMHh0VWZ6QUFxSWRCb0Z2UXkyYW1xdlAtRmpEd25mTVNzZVJ6YkVlS2MyaVBNVWlVcXAyYzRhX0dIcUpocnNWTUU0dDRqVmQ2OE5TSWpkU0dNN0ZxU1BaM0ZXRG5iU3E3c0hPa1I2b1d3Y3ZRc21jSDhaRDZwWjBLbFpxYzBUUUZxZWdOV1IzQm9aaExtcHM?oc=5",
+    "fuente": "El Financiero",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-22T07:00:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:22.266237+00:00"
+  },
+  {
     "id": "34590a460a8b",
     "titulo": "Revisan CNE y la IEA política energética de México",
     "url": "https://energiaadebate.com/revisan-cne-y-la-iea-politica-energetica-de-mexico/",
@@ -4635,6 +5288,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-09-29T21:39:52.120467+00:00"
+  },
+  {
+    "id": "8ce20f654d4d",
+    "titulo": "Refinerías de Pemex se ahogan en combustóleo ante la falta de presupuesto para terminar las coquizadoras",
+    "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQSzBtd1FQTllLS2JpRzYteGJIWVJER1pVbjB2cm9SQkZKUHVIWXFMTmFuaGM4YkZWc2NVOUpmbERlY3dOMk91VEQ5Zi1JeUoyamVLMFJKZVBFMW10bnlsd01udVJ4V0NmNGFzSVBvb2hxUUhzWktaT1N0UG0zSVQxLWVfSlpTZTNBSVB6UlFxY1hCamdEazBJTGRnS2tuYUJiVkHSAa8BQVVfeXFMTUFXSHh0XzJWMG50R2oyREFhdGcwVVhTM01xMVdSekFvZ0RIdGdWbnhHVHFReWRQbTYtWEVVRS1CbnMzcEFhaFpmRDFSWXJDd3gwOHoyZElOUVBkelN1N1ZPbmNoSjhvYndFdktJZm9FaG1rWVJhTG9JbUlxS3NaRjl6WHcxSFltNzJDVk9xZnE2VEgxNU9BRU5kMXF6TF83cGZOOVBvMTN6dHkyV3p5VQ?oc=5",
+    "fuente": "expansion.mx",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-21T07:00:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.165446+00:00"
   },
   {
     "id": "00aab7d6762d",
@@ -5308,6 +5977,22 @@
     "scrapeado_en": "2026-09-28T18:14:28.969839+00:00"
   },
   {
+    "id": "f4190c1789e6",
+    "titulo": "Oferentes presionan a CFE por financiamiento y plazos en licitación de planta a gas en Baja California Sur",
+    "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOMThYSjFJTHpfbnR5dEZScVV3dzhLbEhPc1A3RExybXliVmJMV2xSX2NSRTR3dFg1bkVVdjZpVzBUdXV6YTN1SExJUnhjZmhHMjhkM0NaYlJpV0s3alUzNlpNMkUxLW9KRTZsb05FQ2o0Ny10UTQteUJ3NUV0aGtZTk5nMXF4V3BlUlJYQkxsclpDMmhzNlRoUUVmNWtqb09ySmFjYXRnN2c1UUtqTGNuRlRoU21zb1dTaVNOYmd5bkhCdktpZ3JBUmRLNnBsWVhtUVFiMWNxeXpOUEM2Z2JadA?oc=5",
+    "fuente": "BNamericas",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-15T07:00:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": "Baja California",
+    "scrapeado_en": "2026-09-30T16:29:20.021548+00:00"
+  },
+  {
     "id": "a5f325419714",
     "titulo": "Hidrógeno verde en México: 31 proyectos y una inversión récord de 22,370 millones de dólares",
     "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPel81UFBHN1g5Q0pSRUN1XzA5dGF4cHozMHBWTkUtdGtXZFdHNWh1b0tkOXBQaG5qMWRyS3ZyR3U0Y0FKWFVHWU1aMXhwNjNYenNhdUZDSUJvNWlwX2hDQ0Z4UmR2WmFsV1RDMmxDZXBxR2ZoSmZvZk51XzF5RWNGLVZhQzJ3ZTBnOWdMV3N6VkJtU1lZZ3FMQ2RBRnUyNG5GTTljazRWUWlVSmVEcE9WZXZ2SWhCQ2daZHR2bF8xN1c2ekVoX3lrcFVBenR3a2JBU0FGQkprZUdSN0JPdFJv?oc=5",
@@ -5691,6 +6376,54 @@
     "scrapeado_en": "2026-09-28T18:14:28.816826+00:00"
   },
   {
+    "id": "ae9d729d2885",
+    "titulo": "Suman tres días del derrame en el Golfo de México: Pemex reporta avance del 70% en trabajos en el ducto",
+    "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNbEtFbXUyUGJFU2x3VEQ0OG84Q3VDbGM3TElMYnN0QWFvUXdYc1g2RXBtcmJDWWxEMWhBdUJtSnVZeUZsaG1NT0s2NW9ydWlYalVlOWk4YzJQWXBEd3UyaUJXZ0FlVGpfa2VlLUVJbWw5NVNxQnRsb2pmdG52Y1RSQ0NVcWN0djVxQkluTi1SemU5QUFydEplVG5zMU5QbWRuOGhFTXpSVkVITDd4Wkd4ZzFlaVBwQ0hlcDFZY2lqZzlRTmYyT2VKYWZJNkp4S2ZCVUxyTXQ2cGc2azVxNFNPdzdoUdIB4wFBVV95cUxNbEtFbXUyUGJFU2x3VEQ0OG84Q3VDbGM3TElMYnN0QWFvUXdYc1g2RXBtcmJDWWxEMWhBdUJtSnVZeUZsaG1NT0s2NW9ydWlYalVlOWk4YzJQWXBEd3UyaUJXZ0FlVGpfa2VlLUVJbWw5NVNxQnRsb2pmdG52Y1RSQ0NVcWN0djVxQkluTi1SemU5QUFydEplVG5zMU5QbWRuOGhFTXpSVkVITDd4Wkd4ZzFlaVBwQ0hlcDFZY2lqZzlRTmYyT2VKYWZJNkp4S2ZCVUxyTXQ2cGc2azVxNFNPdzdoUQ?oc=5",
+    "fuente": "LatinUS",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-13T07:00:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.200825+00:00"
+  },
+  {
+    "id": "0b9046435a0a",
+    "titulo": "Gasolina en México: precio de la magna, premium y diésel este domingo 13 de septiembre",
+    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQTzlUSklRMGx0eFVRdVJrcks1Wlo0NTdPZGdrOUlzZEtGLTAyYzlNa1cteHJWRWpQUFpmOFpmcERzdnpqYW5fbG9rRFFwRGg4ZVQ4bzZiYkhhN3ktU19INXV3MWV6RjV0aHJSSWRGWnVGVGlza2NrOFJqR05VMDkwQmxmUHc2WkpWREp3dDE0VzlXMl9hbENyY3RMTFdabWg3X196TkVCWEhSZ3l6STBJR19lS1RxQ1dTTXpCNDZsandjdWQySEHSAeABQVVfeXFMUHl2REg4S21tdWNIUGxTUll6R0R5OWM2WW9TMVJZNmFDM1BKVDh4NFlNWU5mdlQ4VG9TUHFLZGhyX2NockhOOWFjQ3VBc2ZiNThhZm1DMWpSMmxDaS1mTEs5N3RpaTBmTEVYLW5oeV9kREFsUzEwX2lIeFpROXhYMnlOX2ZqVl8tOGotcXgwQVhGOFNWS0dLbzFhcXdyQUN1VVdydDlvM25kWXNCbHlWNkFGdUhaTXJ1REwzYlRtNllseFpYU3Q5QzE0eEpvOUQ0SDRRV1pCakpkZThZWFVGT0E?oc=5",
+    "fuente": "Infobae",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-13T07:00:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:22.273002+00:00"
+  },
+  {
+    "id": "193ee333b345",
+    "titulo": "Precio del gas LP en México del 13 al 19 de septiembre 2026: checa cuánto cuesta por región",
+    "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPcU03NUsyMzZIN1hlWmZGeVRBWEF5b1k1eS1DblJ5bVJrbU9lcTFDODRPQ0luZ1NIbUduR2JObzhLZ2ZTcmVpREZsMThsUnVvdkdINjBDLXdnNG5hclBoa0IwQ1hYa3RrYU1kSFRXdkhyOFhzRC1CT2lkbTY2WXg5aDVRZE9aUlY5WHdVU3lucV9jV0liUWJDUlJ2RUMwMU5uSk9nc0JUQUFCaUIzQmtYNXF4eXRnYzFIakdWeVRjMXY1bE5Sejc3OXFQd1BUOTU0Vy1ycWtn0gHbAUFVX3lxTE91TDM4WGF5SFNfR1NkZG0taERTVGFSaGhGYl9DTGl1dHprcVdhdFY4ZWxrRHNfZVlXYlBBNmJFbjJIS2JDdWNQLU85YlpxOGdMNDNIbzBROGlYQ09XVE1LQi1wX3FZX3hjZEh0azl0VGEwOW9xTHc2d0YyWkpBVjFyeGNxSEZLZHl0Q3RrOGs5RGw2czE1NlMtZUJwUS14VUQySUR2MXJPU2IzVFY4WGk0VjE4Y2tFcWVnOUhHQ01PRVdrbDRHMlBLaVA1MGljLVNCRFhCYlN2OE9Ldw?oc=5",
+    "fuente": "Ambito",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-13T07:00:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:22.283203+00:00"
+  },
+  {
     "id": "b9511985df83",
     "titulo": "CFE dobla su apuesta por el mercado",
     "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOSVdoMnZVVks5elBZY1VJUmplcENRLVBVM1Nya05oSjQyOFpoSVg5OXRxQ0pJd09INE52bnViUVdEZ0NJQjFocWZEYnVhTEJKLXZfZ2czSU03WFRxT2tMQjZJeXB6WkFmdkhOUGNkelFsbGd5WmdHR3hzcy1fYURnSVV3R1M0RTRpbk12X3RTMNIBlAFBVV95cUxOUzAwSFpOYUtCTGZUZHU3bC1KbXpsNm5Gd1FjbUZXaEJackRSYVZmdzFabGh5WlF5ZTJaYTl1c0JZOUNMTndqejJwZ1NTSUJFUnZEYVN6V1hTUEU1SHpfdmltR2d3SVNDSElmT0xrRkxRUG1jQVJ0SzNBQlJtbG1RaFM1U3Z2ZXkyU0lUM2FiVnFTV3dh?oc=5",
@@ -5769,6 +6502,86 @@
     ],
     "estado": "Durango",
     "scrapeado_en": "2026-09-28T18:14:36.203611+00:00"
+  },
+  {
+    "id": "10961b8c6d2d",
+    "titulo": "Se alcanzan los 727 registros de autoconsumos de combustibles en México",
+    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNamo4dElTWkNWSFpWMHhKWHRUUmhJYnJYX0FkZE9iZmxQZU1sYkFyeDdpbVdiUlJDMzJ5enNWUVhYY3BmbFJUY1dvT0tJbXFLOEI2R3VMNHdEd2NXV0FoZl9qeXhWQ3pYRTBtUUZ4bmY1dlBLZFgtOEdOSUNkd1FxYVFIblZZblJtNzNHZmRn0gGOAUFVX3lxTE5GcnZpMzZ1Y3Z0NG1namdMcDhWb3RHNDVJaGxUOVFxQ1VWQnYzQzJnal81di0xZzFVRjBHTmV0RFRWV3Z6VWxjM3lrUURaMUZORnA2Q1JYUUd4TmwyT3FmN05uUjJodEhBaEpBb1hJTzZ4Smp6d0xHRlh3MG83ai1fSEJLVFJBMWVqSU95bGc?oc=5",
+    "fuente": "Milenio",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-12T07:00:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:14.960460+00:00"
+  },
+  {
+    "id": "d036a30def1b",
+    "titulo": "Repuntará 80% la generación eólica en 4 años, afirma Sener",
+    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE91b3djWi1uYVJFQjBrQURMb194R0tmeldrWDA3VEFDNHRJM1h0TmlJN1pueU9SQ05TLXVrcy04S2hhc1NWWjI4YVVrdHpJTXkxMW0wT1duZjl3cjNyTkd2ZXRqaDNEZw?oc=5",
+    "fuente": "La Jornada",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-12T07:00:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:15.986224+00:00"
+  },
+  {
+    "id": "34ea1fb753e4",
+    "titulo": "Pemex aplaza su meta de autosuficiencia financiera: recibirá 81.100 millones de pesos del Gobierno federal en 2027",
+    "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNVDNfWU1VcExGMVdyVUJLdG1GMTRjZm9UeHFPejRSaG5QeDVReU9UOUtHeEZ0N1RSeUVBRkxyLTBIN3RLdmVQRHYtdHdmMU56TXdMWENSR3dNUEEwNXMzT2o0QmJWM29rd2hraEhMaWVZMlZNX2RkT1dYS1dFZ25yVW9pWUZxUmZwa3pMb2JRTlZObEhFY2gyWkF6amxrOWNsdDh6d1pUNEpjV1JTQU13bjVTNmdSekhLSnMwd1JHMXM4UFRPd0FMclpoQ0hVSnRKOEV0czdRdklLMkRCX3JPaU1QX3JzdXV6Zko1dmZXYnFQbzYtR0HSAYoCQVVfeXFMT0Y0ZTBEbU1CSGwzWVMtb3dZRXNLMWFrZlRoYTlhRnotRGpFWEhfbFJiVGR6am9ZN2hTZXN3dVJQR3JhYW8zLTU2N0UxOWp3SzNOSGhuUFpWckdGVVdTWHRYTjNUQnhTUmFZbkZwSk01ZE5kOGNjSHlEazlxbVpMNEJkRUsteGRWNHdra1NXYVJ4NnhKSW9EVVJ1Mk9faE5mUDZsZXNzdjZKR05oczgxX3psSTR0UnZjcUNHYi11QWJQa0dRVzVsaUx2eEZaWmZ4NDVDXzdrczF2c09MZDBOdnJtZDJtVHhiNVJzTTRTNDdPZi1ScmkyM09ydVBSMFREXzJiSTNCd3FwMmc?oc=5",
+    "fuente": "EL PAÍS",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-12T07:00:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.177658+00:00"
+  },
+  {
+    "id": "8d904ebf0f70",
+    "titulo": "Pemex descarta que el derrame de petróleo en el Golfo de México llegue a las costas de Campeche",
+    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPbWlBeUxmYXp6cndsdTl0TEx6NU5USXhxTzNmYWRSZWhQSF9ZMm1NY3d0MUdvQjVuWDN5Y2VXemRaMEs1MVhqbDlyUmJqZDBIN0RBSUhueTBsdFNyZ0V5QUtrZ3NyOUYtMTZiaENGeUFkRnY1QnQyamhnVDI1N1RhdnI0MHljbFNDclB3bUROSFNleHAtU0lqNXc2S01oMFI2SVd3VkpneC1GdzVGZHBtejhOYUxNWFVuTlR5MmEtQjJubDBNOEttSDV4ZHVab29JWGpR0gHnAUFVX3lxTE1vSE9CU2tFOHExS29HZUFqSExlc016X2ZVTHhOS2ZhQlJBNU5KcDFOS0xOS0hpVUVhMDFLSENhN2VEU1RQdnJhRUFWcERFbnJPdUlMOS01RmVXbWRJb0Eta0RmcjVtWFVjQk9UWm9fdWhZdVlXOV83ZVJQVFlHeFNrOTNOeEZZdlNFVW8ta3Jsb3NCRlNWNkJmZzM5a0JmM043TEhaa3lXbGdTZFVnREpMOUJOQUtheVpqeldGaW1SUFllNkQ1bUxaQzJpNENac2pHSU9ERS1QdUZOQmVkRzU5OGtKMUg3MA?oc=5",
+    "fuente": "EL PAÍS",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-12T07:00:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": "Campeche",
+    "scrapeado_en": "2026-09-30T16:29:21.178808+00:00"
+  },
+  {
+    "id": "6baa37ddbf13",
+    "titulo": "Pemex reporta que continúan en la reparación de ducto marino tras derrame de petróleo en el Golfo de México",
+    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQOUkwY3ZPRXJqS3BIZ2FmRGtMekJkRGl3OTFWcmFSUWNXcFBXNmJ6RlVCUmdnbG5mdVkxNEtHMmZnTC1nVGFHTjVCeTJEbE9yR2ZuNmY5MUEzWmNmZU1DLW1nZzJrSmlJQXpaUlZ3MG11OU1aYkNDMU1Sejg5NTlxWUVfQ2VTbHdRQjk5dFY3RkQ5TGl1bFE?oc=5",
+    "fuente": "Grupo Animal",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-09-12T07:00:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-09-30T16:29:21.191158+00:00"
   },
   {
     "id": "7c1d5f29a671",
@@ -8586,798 +9399,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-08-26T19:34:46.242580+00:00"
-  },
-  {
-    "id": "701bbc78f781",
-    "titulo": "Los precios de la plata repuntan mientras la IA y los centros de datos se suman a la demanda industrial",
-    "url": "https://www.pv-magazine-mexico.com/2026/08/26/los-precios-de-la-plata-repuntan-mientras-la-ia-y-los-centros-de-datos-se-suman-a-la-demanda-industrial/",
-    "fuente": "PV Magazine MX",
-    "resumen": "Los precios de la plata han retomado su tendencia alcista en medio de un repunte más amplio de los metales preciosos, mientras el mercado se encamina hacia su sexto déficit estructural anual consecutivo. La creciente demanda de la inteligencia artificial, los centros de datos y la electrificación está surgiendo, junto con la energía fotovoltaica, como un factor cada vez más importante del consumo de plata.",
-    "fecha_publicacion": "2026-08-26T15:35:00Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.406361+00:00"
-  },
-  {
-    "id": "d1afc2cbfa9d",
-    "titulo": "Entra en insolvencia la mayor planta solar de Portugal por baja producción y precios de la electricidad hundidos",
-    "url": "https://www.pv-magazine-mexico.com/2026/08/26/entra-en-insolvencia-la-mayor-planta-solar-de-portugal-por-baja-produccion-y-precios-de-la-electricidad-hundidos/",
-    "fuente": "PV Magazine MX",
-    "resumen": "Una producción inferior a la prevista, la caída de los precios mayoristas y problemas técnicos han reducido los ingresos de Alcoutim, que ahora se prepara para una posible venta y una futura hibridación con eólica y almacenamiento.",
-    "fecha_publicacion": "2026-08-26T15:00:00Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.407334+00:00"
-  },
-  {
-    "id": "0575abd53022",
-    "titulo": "La IA cambia la conversación energética",
-    "url": "https://energy21.com.mx/la-ia-cambia-la-conversacion-energetica/",
-    "fuente": "Energy21",
-    "resumen": "El crecimiento de la IA exige redes resilientes, monitoreo y una gestión más eficiente de la capacidad eléctrica disponible. El cargo La IA cambia la conversación energética apareció primero en Energy21 .",
-    "fecha_publicacion": "2026-08-26T14:50:09Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.243435+00:00"
-  },
-  {
-    "id": "e919d50e7b76",
-    "titulo": "La transformación energética y el Power To X que el país necesita",
-    "url": "https://www.elfinanciero.com.mx/opinion/colaborador-invitado/2026/02/13/la-transformacion-energetica-y-el-power-to-x-que-el-pais-necesita/",
-    "fuente": "El Financiero",
-    "resumen": "En México, la participación de las energías renovables en el mix de generación es aún bajo, aunque con metas ambiciosas para los próximos años, según la Secretaría de Energía.",
-    "fecha_publicacion": "2026-08-26T14:12:02Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.277927+00:00"
-  },
-  {
-    "id": "ad575caec3ba",
-    "titulo": "Energía nuclear: ¿La solución para México?",
-    "url": "https://www.elfinanciero.com.mx/opinion/colaborador-invitado/2026/08/26/energia-nuclear-la-solucion-para-mexico/",
-    "fuente": "El Financiero",
-    "resumen": "El tema es complicado en México, ya que cerca del 70% de la electricidad que se genera es con gas natural, el cual en su mayoría es importado principalmente de Estados Unidos, lo que nos deja en un estado de exposición en cuanto a nuestra seguridad energética.",
-    "fecha_publicacion": "2026-08-26T14:09:38Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.278897+00:00"
-  },
-  {
-    "id": "06ea1622156d",
-    "titulo": "Irán contradice a Trump y advierte que Ormuz no está desminado: ‘Es estrategia propagandística’",
-    "url": "https://www.elfinanciero.com.mx/mundo/2026/08/26/iran-contradice-a-trump-y-advierte-que-ormuz-no-esta-desminado-es-estrategia-propagandistica/",
-    "fuente": "El Financiero",
-    "resumen": "Irán rechazó las declaraciones de Donald Trump sobre el desminado del estrecho de Ormuz y advirtió que la vía estratégica para el transporte de petróleo solo reabrirá bajo sus condiciones.",
-    "fecha_publicacion": "2026-08-26T13:34:42Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.281412+00:00"
-  },
-  {
-    "id": "c2db088f3f99",
-    "titulo": "Pastizales: los aliados ignorados que Latinoamérica busca rescatar contra la sequía y la desertificación en la COP17",
-    "url": "https://es.mongabay.com/2026/08/pastizales-cop17-latinoamerica-sequia-desertificacion/",
-    "fuente": "Mongabay Latam",
-    "resumen": "Para ser más resilientes ante la sequía y restaurar la tierra degradada, Latinoamérica y el mundo deberán apoyarse en los pastizales, ecosistemas estratégicos que permiten no solo la producción de alimento mediante prácticas agropecuarias sostenibles, sino que también son clave para la captación de carbono, el almacenamiento de agua y el sustento de millones de […]",
-    "fecha_publicacion": "2026-08-26T11:09:35Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua",
-      "cambio_climatico"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.100773+00:00"
-  },
-  {
-    "id": "f5b91a3d1b90",
-    "titulo": "Piedra, seda y sangre: leer la historia de la universidad camino a Oaxaca",
-    "url": "https://www.elfinanciero.com.mx/opinion/alberto-munoz/2026/08/26/piedra-seda-y-sangre-leer-la-historia-de-la-universidad-camino-a-oaxaca/",
-    "fuente": "El Financiero",
-    "resumen": "La historia de las universidades muestra cómo distintas civilizaciones crearon instituciones para preservar y transmitir el conocimiento.",
-    "fecha_publicacion": "2026-08-26T11:00:00Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": "Oaxaca",
-    "scrapeado_en": "2026-08-26T19:34:46.290086+00:00"
-  },
-  {
-    "id": "807d66ff6722",
-    "titulo": "Editorial: Pueblos indígenas: sujetos de derecho",
-    "url": "https://www.jornada.com.mx/2026/08/26/opinion/002a1edi?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "La Suprema Corte de  Justicia de la Nación (SCJN) emitió un fallo histórico que reconoce, por primera vez, a las comunidades indígenas como “terceros interesados” en controversias constitucionales que las afecten, lo que les da voz en juicios hasta ahora reservados a entes públicos, como poderes, autoridades y órganos administrativos. La Corte aclaró que esto no les permite promover una controversia constitucional, sino intervenir en una ya iniciada, consultar el expediente, presentar alegatos y",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.140020+00:00"
-  },
-  {
-    "id": "4d0de7f0c07b",
-    "titulo": "Piden priorizar a mexicanos en adquisiciones del sector salud",
-    "url": "https://www.jornada.com.mx/2026/08/26/economia/016n1eco?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "La Confederación de Cámaras Industriales (Concamin), junto con los sectores textil, farmacéutico y de dispositivos médicos, solicitó al gobierno federal dar prioridad al contenido nacional en la Compra Consolidada de Medicamentos y Material de Curación 2027-2028, luego de que abrió la posibilidad de que participen proveedores extranjeros mediante una licitación internacional abierta.",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.153672+00:00"
-  },
-  {
-    "id": "7930594dbb79",
-    "titulo": "Conagua: canícula y El Niño provocan déficit de lluvias a nivel nacional",
-    "url": "https://www.jornada.com.mx/2026/08/26/politica/010n1pol?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "La canícula y el fenómeno de El Niño han provocado en el último mes un déficit de lluvias de 34.5 por ciento respecto al promedio histórico en el país mientras 210 presas se encuentran, en conjunto, 11 por ciento por debajo de sus niveles, informó la Comisión Nacional del Agua (Conagua).",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.175665+00:00"
-  },
-  {
-    "id": "c0c2fab87c0e",
-    "titulo": "Histórico: pueblos indígenas tendrán voz en controversias constitucionales",
-    "url": "https://www.jornada.com.mx/2026/08/26/politica/005n1pol?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "La Suprema Corte de Justicia de la Nación (SCJN) emitió ayer un fallo histórico al reconocer, por primera vez, a las comunidades indígenas como “terceras interesadas” en controversias constitucionales que puedan afectarles. La decisión les permite tener voz en juicios que hasta ahora estaban reservados a entes públicos, como poderes, autoridades y órganos del Estado.",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.196321+00:00"
-  },
-  {
-    "id": "0cd34faba954",
-    "titulo": "Exposición homenajea a Sabines",
-    "url": "https://www.jornada.com.mx/2026/08/26/cultura/a04n1cul?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "La lectura de la poesía de Jaime Sabines (1926-1999) impactó en varias generaciones de artistas mexicanos, quienes han abrevado en esa “imaginería amorosa y doliente para sus vidas personales. Después de Amado Nervo, es el poeta más popular que ha habido en México, el más leído y del que se compran más libros”, afirma Luis Ignacio Sáinz, curador con Pilar Jiménez Trejo de Es la sombra del agua, exposición homenaje al poeta chiapaneco en el centenario de su nacimiento que será abierta hoy tanto e",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.198299+00:00"
-  },
-  {
-    "id": "0f7a7fa684fe",
-    "titulo": "Lago Ontario será lago América:  el magnate",
-    "url": "https://www.jornada.com.mx/2026/08/26/mundo/019n3mun?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Washington. El presidente de Estados Unidos, Donald Trump, expresó ayer que considera cambiar el nombre del lago Ontario a “lago América”, en medio de la guerra comercial que libra con Canadá.",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.203687+00:00"
-  },
-  {
-    "id": "03d59b3ac289",
-    "titulo": "Especulan grandes empresas con gestión del agua: Oxfam",
-    "url": "https://www.jornada.com.mx/2026/08/26/economia/018n1eco?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "El gobierno federal recibió 847.9 millones de pesos durante la primera mitad del año para mantener vigentes concesiones de agua que no se han ocupado en los últimos dos años, pero cuyos titulares buscan amarrar bajo su control.",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.205308+00:00"
-  },
-  {
-    "id": "f5bffdaa75f9",
-    "titulo": "Ricardo Yáñez: Isocronías",
-    "url": "https://www.jornada.com.mx/2026/08/26/opinion/a04o1cul?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "De Juchitán, Chapala, Morelia, Tepic y Culiacán me llegan cuatro libros y una revista, Papalotzi. El juchiteco Gustavo López, de familia cantora y en una de sus facetas artista plástico, me deja saber –en He aquí al hombre, editado por Laberinto– que hizo estudios formales de música y letras.",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "residuos",
-    "categoria_nombre": "Residuos",
-    "categorias": [
-      "residuos"
-    ],
-    "estado": "Michoacan",
-    "scrapeado_en": "2026-08-26T19:34:46.207010+00:00"
-  },
-  {
-    "id": "97aca7acdffa",
-    "titulo": "“El ser humano acelera la desaparición de especies a una escala desmesurada”",
-    "url": "https://www.jornada.com.mx/2026/08/26/ciencias/a06n1cie?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "¿Cómo explicar a un niño que un animal puede desaparecer para siempre? Esa pregunta acompañó a Clementina Equihua y Alejandra Medellín durante la creación del libro Conoce algunas especies mexicanas en peligro ¡y cómo podemos ayudarlas!",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.208001+00:00"
-  },
-  {
-    "id": "58656e9daead",
-    "titulo": "Baja el precio  del petróleo 3%  ante el bloqueo financiero al país islámico",
-    "url": "https://www.jornada.com.mx/2026/08/26/mundo/021n4mun?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Con los inversionistas atentos a la evolución de la guerra entre Estados Unidos e Irán, tras el lanzamiento de la operación que busca bloquear las fuentes de ingresos de Irán, el precio del petróleo reacciona con bajas.",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.215567+00:00"
-  },
-  {
-    "id": "3efdcde8aa11",
-    "titulo": "Alista Bárcena reforma a ley que rige la política ambiental",
-    "url": "https://www.jornada.com.mx/2026/08/26/sociedad/031n1soc?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "La secretaria de Medio Ambiente y Recursos Naturales (Semarnat), Alicia Bárcena, adelantó que está por ingresar al Congreso una iniciativa para reformar la Ley General de Equilibrio Ecológico y Protección al Ambiente, que se espera se discuta y apruebe en el próximo periodo ordinario de sesiones, que inicia el 1° de septiembre.",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T19:34:46.216709+00:00"
-  },
-  {
-    "id": "8ec52d8e94a1",
-    "titulo": "Suprema Corte atrae caso de área protegida en Edomex en riesgo por proyecto de CFE",
-    "url": "https://www.jornada.com.mx/2026/08/26/estados/025n2est?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "La Suprema Corte de Justicia de la Nación (SCJN) atrajo ayer el caso del área natural protegida Espíritu Santo, en Jilotepec, estado de México, que lleva 32 años sin un programa de manejo, omisión que la ha dejado vulnerable a cambios de uso de suelo ante proyectos de infraestructura, como la intención de la Comisión Federal de Electricidad (CFE) de construir una línea de transmisión.",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable",
-      "biodiversidad"
-    ],
-    "estado": "Mexico",
-    "scrapeado_en": "2026-08-26T19:34:46.222129+00:00"
-  },
-  {
-    "id": "b65a8723ff83",
-    "titulo": "Reporta Sonora 5 casos de gusano barrenador",
-    "url": "https://www.jornada.com.mx/2026/08/26/sociedad/031n2soc?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Sonora es la primera entidad que pudo reabrir su frontera para exportar ganado en pie hacia Estados Unidos debido a su control sanitario y la nula presencia de casos de gusano barrenador del ganado. Sin embargo, sólo un día después de que se habilitó el cruce fronterizo de Agua Prieta que conecta con Douglas, Arizona, la entidad ya reporta cinco animales enfermos de esta plaga.",
-    "fecha_publicacion": "2026-08-26T10:01:56Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Sonora",
-    "scrapeado_en": "2026-08-26T19:34:46.230342+00:00"
-  },
-  {
-    "id": "c7bb94b31ce2",
-    "titulo": "Genux desarrollará 201 MW de proyectos solares con baterías en México",
-    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOaEtBNFR0M0hrdGFxWk9qT2dfVDNYS1YzaDRIY004R19QTzJSa3VsU29QYzZWQVVjTU5RTDNHZ2VsZldkb25OeU9ITlE4c3REcTVsQ2hLM1pBTDNWMnNUVURxX1NUVjFwVE92NzlNUHVWYktKU3BPQjRaVWxQalU4LWYtU0FKdUZqR2xxQzRtdXI3aGs3QllVQ2tBU04?oc=5",
-    "fuente": "Energías Renovables, el periodismo de las energías limpias.",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-08-26T09:42:02Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T11:04:11.504604+00:00"
-  },
-  {
-    "id": "15546efbaaea",
-    "titulo": "Viable concretar un cambio de concesionario de El Realito: Conagua",
-    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQTDVmV2Y0WGV0MUl4M1ZnY1daSjNTdHdlUXRiTU1ycDB4NVdNZ3IzZ3RMMzdyTkI0WnduMXdJVHBDOU9QS1ZSWkg1YnV2WmUwQnVBY3lhcVJCRzNuQWc3REFxcmQtUHA5R043dmxobVRxNW5iZGpXeFA2SlJkZmhYRVBtYkpjV05zTUM1Ukg4M19fbUZBcU1KaDl0WWRTU2I0eUNsM3piWHZZQmVGYnc?oc=5",
-    "fuente": "El Heraldo de San Luis Potosí.",
-    "autoridad": "CONAGUA",
-    "resumen": "",
-    "fecha_publicacion": "2026-08-26T09:27:19Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T11:04:05.533153+00:00"
-  },
-  {
-    "id": "7381334d031e",
-    "titulo": "Pemex se aleja del riesgo: Baja el costo de su deuda y mejoran sus calificaciones",
-    "url": "https://www.elfinanciero.com.mx/economia/2026/08/26/pemex-se-aleja-del-riesgo-baja-el-costo-de-su-deuda-y-mejoran-sus-calificaciones/",
-    "fuente": "El Financiero",
-    "resumen": "La percepción de riesgo crediticio de México y Petróleos Mexicanos (Pemex ) disminuyó de manera sostenida durante la actual administración, de acuerdo con indicadores de mercado como los Credit Default Swaps (CDS ), reportó la Secretaría de Hacienda. ¿Cuánto ha bajado la deuda de Pemex? Argumentó que el CDS de México a cinco años pasó de 120 puntos base al inicio de la administración a 80 puntos base al cierre de este martes, una reducción de alrededor de 40 puntos base. Este mismo indicador ha ",
-    "fecha_publicacion": "2026-08-26T08:49:15Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T11:04:00.695756+00:00"
-  },
-  {
-    "id": "5159fcda5da7",
-    "titulo": "Retomará CFE la planta de Lerdo… ¿con todo y problemas?",
-    "url": "https://www.elfinanciero.com.mx/opinion/atzayaelh-torres/2026/08/26/retomara-cfe-la-planta-de-lerdo-con-todo-y-problemas/",
-    "fuente": "El Financiero",
-    "resumen": "Fue a finales de julio de 2025, cuando la CFE, que dirige Emilia Calleja Alor, decidió terminar anticipadamente el contrato con la empresa china HBP en consorcio con la mexicana SOLARTEM, ambas encargadas del proyecto en el que se destinaron 319 millones de dólares.",
-    "fecha_publicacion": "2026-08-26T07:49:00Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T11:04:00.698776+00:00"
-  },
-  {
-    "id": "83daa9e92743",
-    "titulo": "Conagua realiza mesa de atención a usuarios del Distrito de Riego 017 en San Pedro de las Colonias, Coahuila",
-    "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQSzAyUmh2TnRFN0NsNnVyNUoyQ3drTTJYZ0Z6Q3dqV3BNMGJyZ3A1ME9rMDZxaFZqZnNDNFh5SWYwNmVRaE1uU2kyaVVpMnRGdl9NdWY5RUFFMVNvRHdyOFBvM1Y4bjN0YWROLXRCVktHdzZYamFINm41Wndnb25yQ1NvOXU1M0hkRGJxM1dQUl9uZ1hxaGVnNlBPUEx5S29xd2JJRm5Mbl9walBLTExtdHF6QnUxVjBYaHJXXzlPY04teV9XRnRQbEJxb09TMmtodEZhRnR2UGtwOGRGSmlTMm9HYWI4c2YyZDJTODFn?oc=5",
-    "fuente": "El Sol de México",
-    "autoridad": "CONAGUA",
-    "resumen": "",
-    "fecha_publicacion": "2026-08-26T06:40:38Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Coahuila",
-    "scrapeado_en": "2026-08-26T11:04:06.451523+00:00"
-  },
-  {
-    "id": "c4027de856bd",
-    "titulo": "Mantiene Conagua operativos permanentes contra pozos clandestinos en Guanajuato",
-    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQSV8wcUF6SHJYeV9pM182S1A2cTVjSGNLbloyeTVieE84YnRNdDRJSnRBRWt4UHZWUTVhZ3FxVkN6MmZJWFNBbGtERTZsQkFQd2ZBWk9vNEY4eVpUcG12cjRDQWRBZnlESnBEVS13bkwtdmtRWjJMb3Y1OFNpM3RWUnVHVUktaEpyZDNhV2JKU2tEUk44MG1heWp6d0wyeEhWWFRoQWRpSnI2XzBiZ0E?oc=5",
-    "fuente": "Hoja de Ruta Digital",
-    "autoridad": "CONAGUA",
-    "resumen": "",
-    "fecha_publicacion": "2026-08-26T05:26:10Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Guanajuato",
-    "scrapeado_en": "2026-08-26T19:34:52.494154+00:00"
-  },
-  {
-    "id": "e97842cdeb58",
-    "titulo": "Acueducto de León no reducirá el agua del lago de Chapala, asegura Conagua",
-    "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQd205MWJXT3A4bHdteVNEaGRTTm05OEM3blQ5dTlPUWlQb0pPWFhoMS13Z3F4S2JUMER5Njd0ZFYyd2l6YjVTVlJWTC1xdS1GbjlNbjR0a0FQT21QaGFNSHhrdGx5ay1zQ0N2UkcwUzlpalVsTzZmQ19WU3dDektzRlc1QjlCdVFybXNSRXc0cE96NVVTMUM2a3VTd215LUxlQjZkd3pVWmFkSDc4SlB0OWI5YnBBbm1WcWc?oc=5",
-    "fuente": "La Jornada",
-    "autoridad": "CONAGUA",
-    "resumen": "",
-    "fecha_publicacion": "2026-08-26T03:16:00Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T11:04:06.451075+00:00"
-  },
-  {
-    "id": "c4739377f48b",
-    "titulo": "SUVs híbridas: opciones para evitar el Hoy No Circula y contingencias ambientales",
-    "url": "https://expansion.mx/empresas/2026/08/25/suvs-hibridas-evitar-hoy-no-circula-contingencia-ambiental",
-    "fuente": "Expansion",
-    "resumen": "Estos modelos de SUVs destacan por las características con las que cuentan, desde precio hasta un gran rendimiento de combustible.",
-    "fecha_publicacion": "2026-08-25T23:12:09Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos",
-      "calidad_aire"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T11:04:00.652340+00:00"
-  },
-  {
-    "id": "c09c90d1ed7d",
-    "titulo": "Salinas Pliego paga 319 mil mdp en impuestos",
-    "url": "https://energy21.com.mx/salinas-pliego-paga-319-mil-mdp-en-impuestos/",
-    "fuente": "Energy21",
-    "resumen": "El grupo empresarial de Ricardo Salinas Pliego, quien tiene presencia en el sector energético a través de Grupo Dragón y Typhoon Offshore, ha pagado más de 319 mil millones de pesos en impuestos entre 2005 y la fecha. Solo entre enero y julio de 2026, sus empresas han pagado más de 30 mil millones de […] El cargo Salinas Pliego paga 319 mil mdp en impuestos apareció primero en Energy21 .",
-    "fecha_publicacion": "2026-08-25T22:55:48Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-26T11:04:00.676269+00:00"
-  },
-  {
-    "id": "ce64ea7f413c",
-    "titulo": "Chile impulsa combustibles sintéticos como eje de transición energética",
-    "url": "https://energiahoy.com/energias-verdes/chile-impulsa-combustibles-sinteticos-como-eje-de-transicion-energetica/",
-    "fuente": "Energia Hoy",
-    "resumen": "Chile acelera su estrategia de descarbonización con el desarrollo de combustibles sintéticos, una alternativa que busca reducir emisiones en sectores donde la electrificación enfrenta límites. El proyecto piloto SynFuels Biobío integra hidrógeno verde y CO₂ biogénico para crear energéticos con menor impacto ambiental. Un piloto industrial en el sur de Chile El proyecto se ubica [...] El cargo Chile impulsa combustibles sintéticos como eje de transición energética apareció primero en Energía Hoy ",
-    "fecha_publicacion": "2026-08-25T20:39:28Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable",
-      "hidrocarburos",
-      "calidad_aire",
-      "cambio_climatico"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T22:18:35.062579+00:00"
-  },
-  {
-    "id": "89f66a5c28ac",
-    "titulo": "Aranceles estadounidenses impuestos a Canadá afectarán exportaciones plásticas por 3 mil mdd",
-    "url": "https://ambienteplastico.com/aranceles-plasticos-canadienses-estados-unidos/#utm_source=rss&utm_medium=rss&utm_campaign=aranceles-plasticos-canadienses-estados-unidos",
-    "fuente": "Ambiente Plastico",
-    "resumen": "Estados Unidos impuso aranceles del 50% a importaciones canadienses clave que incluyen plásticos, automóviles y otros productos, gravámenes que representan un valor aproximado de 3 mil millones de dólares. Las medidas arancelarias impuestas entraron en vigor el 22 de agosto, estos tras el fracaso de las negociaciones de última hora entre ambos gobiernos. Los aranceles […] La entrada Aranceles estadounidenses impuestos a Canadá afectarán exportaciones plásticas por 3 mil mdd se publicó primero en",
-    "fecha_publicacion": "2026-08-25T19:45:19Z",
-    "categoria": "residuos",
-    "categoria_nombre": "Residuos",
-    "categorias": [
-      "residuos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T22:18:35.073473+00:00"
-  },
-  {
-    "id": "fd0528abdb77",
-    "titulo": "Bahía de Ohuira: un sitio Ramsar que hay que proteger.",
-    "url": "https://www.greenpeace.org/mexico/blog/65473/bahia-de-ohuira-sitio-ramsar/",
-    "fuente": "Greenpeace MX",
-    "resumen": "Los humedales son ecosistemas fundamentales para la vida por su gran valor ecológico y su importancia para conservar la biodiversidad, ya que son el hábitat de muchas especies de fauna…",
-    "fecha_publicacion": "2026-08-25T19:04:38Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T22:18:34.878148+00:00"
-  },
-  {
-    "id": "d6310c981dc4",
-    "titulo": "Rafiqui, el proyecto que reciclará 2 mil 500 toneladas de paneles solares al año",
-    "url": "https://energy21.com.mx/rafiqui-el-proyecto-que-reciclara-2-mil-500-toneladas-de-paneles-solares-al-ano/",
-    "fuente": "Energy21",
-    "resumen": "Rafiqui anunció su lanzamiento como la primer asociación civil de reciclaje de paneles solares y baterías de litio en México, la cual pondrá en marcha una campaña de acopio y recolección estos componentes en desuso, además de la instalación de una planta con capacidad para reciclar 2 mil 500 toneladas de paneles solares al año. […] El cargo Rafiqui, el proyecto que reciclará 2 mil 500 toneladas de paneles solares al año apareció primero en Energy21 .",
-    "fecha_publicacion": "2026-08-25T18:56:30Z",
-    "categoria": "residuos",
-    "categoria_nombre": "Residuos",
-    "categorias": [
-      "residuos",
-      "mineria"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T22:18:34.886168+00:00"
-  },
-  {
-    "id": "06e233fc82a8",
-    "titulo": "Desperdicio alimentario impacta al sistema: WESS 2026",
-    "url": "https://energiahoy.com/wess/desperdicio-alimentario-impacta-al-sistema-wess-2026/",
-    "fuente": "Energia Hoy",
-    "resumen": "Gran parte de los alimentos producidos se pierde antes de llegar al consumidor, reflejando ineficiencias en distintos puntos de la cadena. Este tema estará presente en WESS 2026, donde se analizarán estrategias para optimizar procesos y mejorar la disponibilidad de alimentos. Pérdidas a lo largo de la cadena El desperdicio no ocurre en un solo [...] El cargo Desperdicio alimentario impacta al sistema: WESS 2026 apareció primero en Energía Hoy .",
-    "fecha_publicacion": "2026-08-25T18:16:40Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T18:24:38.090007+00:00"
-  },
-  {
-    "id": "3198b59e962b",
-    "titulo": "¿Galletas hechas con plástico? Científicos convierten residuos de PET en alimento",
-    "url": "https://ambienteplastico.com/galletas-hechas-plastico-pet-alimento/#utm_source=rss&utm_medium=rss&utm_campaign=galletas-hechas-plastico-pet-alimento",
-    "fuente": "Ambiente Plastico",
-    "resumen": "La cobertura mediática en contra de los plásticos ha dado una fama terrible a uno de los materiales más flexibles y dinámicos de la vida moderna, pero no todo son malas noticias y las características de este material todavía pueden sorprender a millones, por ejemplo, ¿estarías dispuesto a comer una galleta hecha con residuos de […] La entrada ¿Galletas hechas con plástico? Científicos convierten residuos de PET en alimento se publicó primero en Ambiente Plástico .",
-    "fecha_publicacion": "2026-08-25T17:59:35Z",
-    "categoria": "residuos",
-    "categoria_nombre": "Residuos",
-    "categorias": [
-      "residuos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T18:24:38.077380+00:00"
-  },
-  {
-    "id": "98a9f0f9b4d9",
-    "titulo": "Contratos mixtos reactivan inversión",
-    "url": "https://energy21.com.mx/contratos-mixtos-reactivan-inversion/",
-    "fuente": "Energy21",
-    "resumen": "Los contratos mixtos en electricidad marcan el regreso de la inversión privada al mercado de generación en México, aunque con menor rentabilidad. En la primera licitación de la Comisión Federal de Electricidad (CFE) se adjudicaron 7,411 MW de nueva capacidad a 31 desarrolladores, con inversiones estimadas por 7,400 millones de dólares. Según Caraiva y Asociados, […] El cargo Contratos mixtos reactivan inversión apareció primero en Energy21 .",
-    "fecha_publicacion": "2026-08-25T17:50:35Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T18:24:37.810905+00:00"
-  },
-  {
-    "id": "1413bf5ff9d5",
-    "titulo": "Genux se adjudica en el estado de México dos proyectos solares con 201 MWp y almacenamiento",
-    "url": "https://www.pv-magazine-mexico.com/2026/08/25/genux-se-adjudica-en-el-estado-de-mexico-dos-proyectos-solares-con-201-mwp-y-almacenamiento/",
-    "fuente": "PV Magazine MX",
-    "resumen": "Lagartija y Ocelote, previstos en el estado de México, movilizarán aproximadamente 165 millones de dólares. La compañía estima una generación conjunta de 490 GWh anuales y no ha precisado la potencia ni la capacidad energética del sistema de baterías.",
-    "fecha_publicacion": "2026-08-25T17:20:00Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": "Mexico",
-    "scrapeado_en": "2026-08-25T18:24:38.046533+00:00"
-  },
-  {
-    "id": "5bbf205cc9b3",
-    "titulo": "¿Cuánto se aprecia el peso ante el dólar HOY martes 25 de agosto? Mercado espera más ‘pistas’ de la Fed",
-    "url": "https://www.elfinanciero.com.mx/mercados/2026/08/25/peso-dolar-precio-hoy-25-de-agosto-de-2026/",
-    "fuente": "El Financiero",
-    "resumen": "El mercado en EU espera que el discurso de Kevin Warsh en el simposio de Jackson Hole dé más pistas sobre los siguientes movimientos de la Reserva Federal en la recta final de 2026.",
-    "fecha_publicacion": "2026-08-25T16:46:53Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T18:24:37.885705+00:00"
-  },
-  {
-    "id": "aaa6f517d9f4",
-    "titulo": "Presentan al Semarnat una planta solar de 100 MWp con 27.6 MW / 82.8 MWh de almacenamiento en San Luis Potosí",
-    "url": "https://www.pv-magazine-mexico.com/2026/08/25/presentan-al-semarnat-una-planta-solar-de-100-mwp-con-27-6-mw-82-8-mwh-de-almacenamiento-en-san-luis-potosi/",
-    "fuente": "PV Magazine MX",
-    "resumen": "La central Ficus Solar se plantea en el municipio de Ébano y contará con 135,148 módulos bifaciales, 27.6 MW de baterías con tres horas de duración y una línea de transmisión de 115 kV para conectarse a la SE Ébano.",
-    "fecha_publicacion": "2026-08-25T16:45:00Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable",
-      "biodiversidad"
-    ],
-    "estado": "San Luis Potosi",
-    "scrapeado_en": "2026-08-25T18:24:38.047350+00:00"
-  },
-  {
-    "id": "89909588c85f",
-    "titulo": "Energía solar impulsa a Rumania hacia liderazgo europeo",
-    "url": "https://energiahoy.com/energia-solar/energia-solar-impulsa-a-rumania-hacia-liderazgo-europeo/",
-    "fuente": "Energia Hoy",
-    "resumen": "La energía solar se posiciona como eje estratégico en Rumania, donde avanza un proyecto que busca cambiar su papel dentro del sistema energético europeo y acelerar su transición hacia fuentes limpias. Un proyecto de escala sin precedentes Rumania impulsa el parque Dama Solar con una capacidad prevista de 1,24 GW, lo que lo colocaría como [...] El cargo Energía solar impulsa a Rumania hacia liderazgo europeo apareció primero en Energía Hoy .",
-    "fecha_publicacion": "2026-08-25T16:38:58Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T18:24:38.091244+00:00"
-  },
-  {
-    "id": "7b04883bd749",
-    "titulo": "Investigadores utilizan realidad virtual para aumentar la comprensión de la agrovoltaica",
-    "url": "https://www.pv-magazine-mexico.com/2026/08/25/investigadores-utilizan-realidad-virtual-para-aumentar-la-comprension-de-la-agrovoltaica/",
-    "fuente": "PV Magazine MX",
-    "resumen": "Una investigación de Dinamarca concluye que el uso de realidad virtual inmersiva puede ayudar a los ciudadanos a comprender la lógica de doble uso de la agrovoltaica. Los participantes en la investigación evaluaron la agrovoltaica como más ecológica, más innovadora y al menos tan aceptable como los parques solares convencionales.",
-    "fecha_publicacion": "2026-08-25T15:35:00Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T18:24:38.049470+00:00"
-  },
-  {
-    "id": "8e87117f7763",
-    "titulo": "México, líder mundial… en el diésel más caro",
-    "url": "https://energy21.com.mx/mexico-lider-mundial-en-el-diesel-mas-caro/",
-    "fuente": "Energy21",
-    "resumen": "México encabeza la lista de los diez países de mayor consumo mundial de diésel con el precio más alto por litro con 27.06 pesos, y también con el mayor monto de impuesto de 8.93 pesos por litro, equivalentes al 33% del precio total, la proporción más alta entre las diez economías analizadas, según datos de […] El cargo México, líder mundial… en el diésel más caro apareció primero en Energy21 .",
-    "fecha_publicacion": "2026-08-25T15:20:54Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T18:24:37.812202+00:00"
-  },
-  {
-    "id": "cf3ecc77b703",
-    "titulo": "EE. UU. actualiza la prohibición de inversores extranjeros para incluir dispositivos cableados",
-    "url": "https://www.pv-magazine-mexico.com/2026/08/25/ee-uu-actualiza-la-prohibicion-de-inversores-extranjeros-para-incluir-dispositivos-cableados/",
-    "fuente": "PV Magazine MX",
-    "resumen": "La Comisión Federal de Comunicaciones (FCC, por sus iniciales en inglés) amplió sus normas de seguridad nacional de la Lista Cubierta para dirigirse explícitamente a inversores conectados por Ethernet, al tiempo que crea una vía de cumplimiento para la fabricación nacional elegible para los créditos fiscales de producción de manufactura avanzada de la Sección 45X.",
-    "fecha_publicacion": "2026-08-25T15:00:00Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T18:24:38.050745+00:00"
-  },
-  {
-    "id": "f4a32f706346",
-    "titulo": "Trump amenaza con renombrar el lago Ontario como ‘lago América’ en plena guerra comercial con Canadá",
-    "url": "https://www.elfinanciero.com.mx/mundo/2026/08/25/trump-amenaza-con-renombrar-el-lago-ontario-como-lago-america-en-plena-guerra-comercial-con-canada/",
-    "fuente": "El Financiero",
-    "resumen": "EU y Canadá mantienen una guerra comercial, en la que se esperan represalias de Canadá en respuesta a las decisiones de la Casa Blanca.",
-    "fecha_publicacion": "2026-08-25T13:38:51Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T18:24:37.899805+00:00"
-  },
-  {
-    "id": "d1063e756be8",
-    "titulo": "Ecatepec trabaja para mejorar suministro de agua en la Quinta Zona",
-    "url": "https://www.jornada.com.mx/2026/08/25/estados/026n3est?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Ecatepec, Méx., La presidenta municipal Azucena Cisneros Coss afirmó que desde el inicio de su gestión trabaja para resolver el grave problema de desabasto de agua en Ecatepec, y en especial en la llamada Quinta Zona, por lo que acatará la sentencia de la Suprema Corte de Justicia de la Nación (SCJN) que ordena al gobierno municipal garantizar de inmediato el suministro de líquido a familias de dicha región.",
-    "fecha_publicacion": "2026-08-25T09:33:51Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Mexico",
-    "scrapeado_en": "2026-08-25T11:01:27.245338+00:00"
-  },
-  {
-    "id": "5b03186c0500",
-    "titulo": "Precios del crudo bajan 2.35% al empezar la semana",
-    "url": "https://www.jornada.com.mx/2026/08/25/mundo/022n2mun?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "En medio de la intención de Estados Unidos de cortar todos los recursos económicos de Irán, los precios del petróleo perdieron ayer más de 2 por ciento.",
-    "fecha_publicacion": "2026-08-25T09:33:51Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T11:01:27.248570+00:00"
-  },
-  {
-    "id": "45559af8c380",
-    "titulo": "Alfonso Durazo y Claudia Sheinbaum reactivan exportación de ganado a EU",
-    "url": "https://www.jornada.com.mx/2026/08/25/estados/027n3est?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Agua Prieta, Son., Sonora se convirtió en la primera entidad de la frontera norte en reabrir la exportación de ganado bovino a Estados Unidos, en un acto realizado desde la cuarentenaria de Agua Prieta, encabezado por el gobernador Alfonso Durazo Montaño y la secretaria de Agricultura y Desarrollo Rural, Columba Jazmín López Gutiérrez, con el respaldo de la presidenta Claudia Sheinbaum Pardo.",
-    "fecha_publicacion": "2026-08-25T09:33:51Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Sonora",
-    "scrapeado_en": "2026-08-25T11:01:27.261504+00:00"
-  },
-  {
-    "id": "e972e16aec29",
-    "titulo": "Fundación obsequia agua purificada en colonias de Guadalajara, ante desabasto",
-    "url": "https://www.jornada.com.mx/2026/08/25/estados/026n1est?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Guadalajara, Jal., La fundación civil Somos Manos Tapatías comenzó a distribuir gratuitamente agua potable a través de pipas y a instalar plantas purificadoras en la zona metropolitana de Guadalajara, en respuesta al desabasto y la mala calidad en el suministro que otorga el Sistema Intermunicipal de los Servicios de Agua Potable y Alcantarillado (Siapa).",
-    "fecha_publicacion": "2026-08-25T09:33:51Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Jalisco",
-    "scrapeado_en": "2026-08-25T11:01:27.270349+00:00"
-  },
-  {
-    "id": "f7398fbb774d",
-    "titulo": "Juez niega a Gilda Lozoya suspensión contra posible orden de aprehensión",
-    "url": "https://www.jornada.com.mx/2026/08/25/politica/013n1pol?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Un juez de distrito negó la suspensión definitiva a Gilda Susana Lozoya Austin, hermana del ex director de Petróleos Mexicanos (Pemex), Emilio Lozoya, contra cualquier orden de aprehensión o presentación que existiera en su contra por su presunto involucramiento en operaciones con recursos de procedencia ilícita relacionados con la entrega de sobornos por parte de la empresa Odebrecht.",
-    "fecha_publicacion": "2026-08-25T09:33:51Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T11:01:27.270986+00:00"
-  },
-  {
-    "id": "68c16df18711",
-    "titulo": "Incurrió en faltas",
-    "url": "https://www.jornada.com.mx/2026/08/25/capital/030n3cap?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "La Secretaría de Medio Ambiente clausuró el balneario del Bosque de San Juan de Aragón, luego de identificar irregularidades en su funcionamiento, entre ellas el consumo de bebidas alcohólicas y la venta de animales de compañía. La dependencia detalló que el pasado fin de semana, junto con personal de la Secretaría de Seguridad Ciudadana hizo una revisión, donde se constataron las anomalías.",
-    "fecha_publicacion": "2026-08-25T09:33:51Z",
-    "categoria": "deforestacion",
-    "categoria_nombre": "Forestal",
-    "categorias": [
-      "deforestacion"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-08-25T11:01:27.282240+00:00"
-  },
-  {
-    "id": "a53b108782be",
-    "titulo": "Corte ordena garantizar agua potable a 806 habitantes de Ecatepec, tras litigio de 5 años",
-    "url": "https://www.jornada.com.mx/2026/08/25/estados/025n2est?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Después de más de cinco años de batalla legal, 806 habitantes de Ecatepec, estado de México, lograron ayer que la Suprema Corte de Justicia de la Nación (SCJN) ordenara garantizarles agua potable directamente en sus hogares. El litigio comenzó en 2021, en plena pandemia de covid-19, cuando la falta del líquido agravaba los riesgos sanitarios.",
-    "fecha_publicacion": "2026-08-25T09:33:51Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Mexico",
-    "scrapeado_en": "2026-08-25T11:01:27.287494+00:00"
   }
 ]
