@@ -108,6 +108,25 @@ KEYWORDS_AMBIENTAL = {
     "transgenico":      ["transgenico","glifosato","bayer","monsanto",
                          "semilla","soberania alimentaria","maiz nativo",
                          "plaguicida","glifo","cebada maltera","lupulo","malta"],
+    "finanzas_sostenibles": ["finanzas sostenibles","finanzas sustentables","finanzas verdes",
+                         "finanzas climaticas","taxonomia sostenible","taxonomia sustentable",
+                         "taxonomia verde","bono verde","bonos verdes","bono sostenible",
+                         "bonos sostenibles","bono sustentable","bonos sustentables",
+                         "bonos tematicos","bonos de carbono","bono de carbono",
+                         "mercado de carbono","mercados de carbono","creditos de carbono",
+                         "financiamiento sostenible","financiamiento verde","financiamiento climatico",
+                         "credito verde","creditos verdes","credito sostenible","creditos sostenibles",
+                         "criterios asg","criterios esg","factores esg","agenda esg",
+                         "greenwashing","lavado verde","ifrs s1","ifrs s2","niif s1","niif s2",
+                         "informe de sostenibilidad","reporte de sostenibilidad"],
+    "fiscal_ambiental": ["impuesto ambiental","impuestos ambientales","impuesto verde",
+                         "impuestos verdes","impuesto ecologico","impuestos ecologicos",
+                         "tasa ecologica","ecotasa","fiscalidad verde","fiscalidad ambiental",
+                         "impuesto a la emision","impuestos a la emision","impuesto al carbono",
+                         "impuestos al carbono","ieps al carbono","precio al carbono",
+                         "recaudacion ambiental","derechos ambientales",
+                         "impuesto por remediacion","impuesto a la extraccion",
+                         "impuestos a la extraccion","impuesto al deposito de residuos"],
 }
 
 # Fuentes especializadas: todos sus artículos pasan aunque no tengan keyword explícito
@@ -134,6 +153,8 @@ CAT_LABEL = {
     "cambio_climatico": "Cambio Climático",
     "mineria":          "Minería",
     "transgenico":      "Transgénico",
+    "finanzas_sostenibles": "Finanzas Sostenibles",
+    "fiscal_ambiental": "Impuestos Ambientales",
 }
 
 # ---------------------------------------------------------------------------

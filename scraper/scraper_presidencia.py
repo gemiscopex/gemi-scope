@@ -83,7 +83,7 @@ KEYWORDS_AMBIENTAL = {
     "circular":         ["economia circular","circularidad","ecodiseno","valorizac","reutiliz",
                          "envase","empaque","simbiosis industrial","parque industrial",
                          "desarrollo circular","podecibi","basura cero","acopio",
-                         "aprovechamiento de residuos","responsabilidad extendida","chatarra",
+                         "aprovechamiento de residuos","responsabilidad extendida","chatarrizac",
                          "compost","reincorpora"],
     "cambio_climatico": ["cambio climatic","carbono","gases de efecto","gei","co2",
                          "calentamiento global","inecc","mitigacion","descarboniz",
@@ -194,11 +194,16 @@ def normalize(text: str) -> str:
     t = unicodedata.normalize("NFD", t)
     return "".join(c for c in t if unicodedata.category(c) != "Mn")
 
+# Palabras cortas que como prefijo casan otras ("agua" → "aguacate"): se exigen completas (con plural).
+_EXACTAS = {"agua", "rio", "lago", "presa", "cfe", "gei", "co2", "acero", "pemex", "sener", "litio"}
+
 def _kw_match(kw_norm: str, text_norm: str) -> bool:
     """Frase (con espacio) → substring; palabra suelta → prefijo anclado a inicio de
     palabra (\\bstem), igual que el Radar de Scope: 'residuo' casa 'residuo/residuos'."""
     if " " in kw_norm:
         return kw_norm in text_norm
+    if kw_norm in _EXACTAS:
+        return bool(re.search(r"\b" + re.escape(kw_norm) + r"(s|es)?\b", text_norm))
     return bool(re.search(r"\b" + re.escape(kw_norm), text_norm))
 
 def is_relevant(text: str) -> bool:
@@ -222,7 +227,10 @@ _SOFT = {
     "capital extranjero","kia","nissan","tesla","planta de","complejo industrial",
     "sancion","multa","clausura","infraccion","inspeccion","procedimiento administrativo",
     "arancel","exportacion","importacion","t-mec","tmec","tratado comercial","comercio exterior",
-}
+    # Pemex/CFE/petróleo/acero salen en temas de salud, finanzas o comercio: necesitan
+    # otra ancla ambiental para contar.
+    "pemex","cfe","petroleo","acero","gas natural","hidrocarburo",
+} | set(KEYWORDS_AMBIENTAL["inversion"]) | set(KEYWORDS_AMBIENTAL["comercio_tmec"])
 def _core_hits(text_norm: str) -> int:
     """Hits de keywords ambientales REALES (excluye los términos económicos suaves)."""
     return sum(1 for kw in ALL_KW
@@ -339,8 +347,12 @@ def _speaker_kind(label: str) -> str:
 def _short_speaker(label: str) -> str:
     """'ALICIA BÁRCENA IBARRA, SECRETARIA DE MEDIO AMBIENTE...' -> 'Alicia Bárcena Ibarra (Semarnat)'."""
     name = label.split(",")[0].strip()
-    name = " ".join(w.capitalize() for w in name.split())
+    menores = {"de", "del", "la", "las", "los", "y", "e", "en", "para", "el"}
+    name = " ".join(w.lower() if i and w.lower() in menores else w.capitalize() for i, w in enumerate(name.split()))
     su = normalize(label)
+    # Etiqueta que es solo un cargo ("SECRETARIA DE MEDIO AMBIENTE..."): basta con el cargo en formato oración
+    if re.match(r"(?i)(secretari|subsecretari|director|titular|comisionad)", normalize(name)):
+        name = name[0] + name[1:].lower()
     for key, tag in _ORG_TAG:
         if key in su:
             return f"{name} ({tag})"
@@ -350,7 +362,10 @@ def parse_turns(html: str) -> list:
     """Divide la estenográfica en turnos [(etiqueta_orador, [párrafos])]."""
     soup = BeautifulSoup(html, "html.parser")
     body = soup.find("div", class_="article-body") or soup
-    parrafos = [p.get_text(" ", strip=True) for p in body.find_all(["p", "div"])]
+    # Solo elementos "hoja": un <div> contenedor trae el texto de TODA la conferencia
+    # pegado en un solo bloque (saludo inicial incluido) y se colaba como fragmento.
+    parrafos = [p.get_text(" ", strip=True) for p in body.find_all(["p", "div"])
+                if not p.find(["p", "div"])]
     turns = []
     speaker = None
     buf = []
