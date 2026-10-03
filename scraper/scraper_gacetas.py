@@ -85,9 +85,15 @@ EXCLUDE_KW = [
 ]
 
 
+# El nombre del partido NO es tema: "Partido Verde Ecologista de México" suma dos
+# palabras débiles ("verde" + "ecol") y metía al monitoreo cualquier iniciativa del PVEM
+# (Amnistía, Migración, Salud…). Se quita antes de evaluar.
+_NOMBRE_PARTIDO = re.compile(r"partido\s+verde\s+ecologista\s+de\s+m[eé]xico", re.I)
+
+
 def is_relevant(titulo: str) -> bool:
     """True si el título tiene relación genuina con medio ambiente / sostenibilidad."""
-    t = titulo.lower()
+    t = _NOMBRE_PARTIDO.sub(" ", titulo or "").lower()
     # Exclusión directa: si contiene algún término típico de falso positivo, descarta
     if any(ex in t for ex in EXCLUDE_KW):
         return False
@@ -661,6 +667,9 @@ def merge_and_save(new_diputados: list, new_senado: list) -> None:
             fecha = item.get("fecha", "")
             if fecha and fecha < cutoff:
                 continue
+            # Limpieza: lo que ya no pasa el filtro vigente sale (p. ej. falsos por el nombre del PVEM)
+            if not is_relevant(item.get("titulo", "")):
+                continue
             iid = item.get("id") or make_id(item.get("url", "") + item.get("titulo", ""))
             if iid not in seen_ids:
                 seen_ids.add(iid)
@@ -710,9 +719,16 @@ def append_archive(new_diputados: list, new_senado: list) -> None:
             archive = []
 
     by_id = {}
+    purgados = 0
     for it in archive:
+        # Limpieza: lo que no pasa el filtro vigente no es instrumento ambiental (falsos por el nombre del PVEM)
+        if not is_relevant(it.get("titulo", "")):
+            purgados += 1
+            continue
         iid = it.get("id") or make_id(it.get("url", "") + it.get("titulo", ""))
         by_id[iid] = it
+    if purgados:
+        print(f"  [ARCHIVO] {purgados} registros fuera por no pasar el filtro ambiental vigente")
 
     added = 0
     for it in list(new_diputados) + list(new_senado):
