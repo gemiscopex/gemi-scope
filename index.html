@@ -1062,6 +1062,8 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .pro-q{font-size:12px;color:var(--text-sec);line-height:1.5}
 .cons-rail-senal{margin-bottom:28px}
 .cmp-tipwrap{position:relative}
+.gac-detail{margin-top:24px;padding-top:18px;border-top:1px solid var(--text);scroll-margin-top:80px}
+.gac-cell.on{background:rgba(6,103,80,0.07);box-shadow:inset 2px 0 0 #066750}
 .cmp-tip{display:none;position:absolute;right:0;top:calc(100% + 4px);background:var(--card);border:0.8px solid var(--border2);box-shadow:0 10px 36px rgba(0,0,0,0.13);min-width:280px;max-width:380px;z-index:500;padding:6px 0}
 .cmp-tipwrap:hover .cmp-tip{display:block}
 .cmp-tiph{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);padding:6px 14px 8px;border-bottom:0.8px solid var(--border)}
@@ -1069,9 +1071,9 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cmp-tipit{font-size:12px;color:var(--text);padding:6px 14px;line-height:1.35}
 .cmp-tipmore{font-family:var(--mono);font-size:9px;color:var(--text-muted);padding:6px 14px}
 .sen-head{background:rgba(13,27,42,0.045)}
-.sen-head span{font-family:var(--mono);font-size:8px;font-style:italic;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-sec)}
+.sen-head span{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-sec)}
 .sen-cell{display:flex;align-items:center;justify-content:center;height:30px;font-family:var(--mono);font-size:12px;font-weight:700;font-variant-numeric:tabular-nums}
-.sen-prio{display:inline-flex;align-items:center;justify-content:center;padding:4px 7px;border-radius:3px;font-family:var(--mono);font-size:9px;font-weight:800;font-style:italic;letter-spacing:.06em}
+.sen-prio{display:inline-flex;align-items:center;justify-content:center;padding:4px 7px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.06em;color:var(--text-sec)}
 .pro-drawer{border-top:0.8px solid var(--border)}
 .pro-drawer:last-child{border-bottom:0.8px solid var(--border)}
 .pro-drawerh{display:flex;align-items:center;gap:12px;padding:14px 6px;cursor:pointer}
@@ -1364,14 +1366,14 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
     <button class="radar-fab" onclick="showTab('radares',null)" data-tt="Radares: Monitoreo de actividad de los sectores"><svg class="radar-ico" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="rdrsw" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#12A594" stop-opacity="0"/><stop offset="100%" stop-color="#12A594" stop-opacity="0.6"/></radialGradient></defs><circle cx="50" cy="50" r="40" fill="none" stroke="#0E8C74" stroke-width="6" stroke-opacity="0.30"/><circle cx="50" cy="50" r="26" fill="none" stroke="#0E8C74" stroke-width="6" stroke-opacity="0.38"/><g class="radar-spin"><path d="M50 50 L50 8 A42 42 0 0 1 88 34 Z" fill="url(#rdrsw)"/><line x1="50" y1="50" x2="50" y2="8" stroke="#066750" stroke-width="6" stroke-linecap="round"/></g><circle cx="50" cy="50" r="7" fill="#066750"/></svg><span class="radar-fab-lbl">RADAR</span></button>
     <span class="nav-tab-sep" aria-hidden="true"></span>
     <div class="nav-drop-wrap">
-      <button class="tab-btn" onclick="navDrop(event,this,function(){goObligaciones('federal')})">Obligaciones ▾</button>
+      <button class="tab-btn" onclick="navDrop(event,this,function(){goObligaciones('federal')})">Cumplimiento ▾</button>
       <div class="nav-drop">
         <div class="nav-drop-it" onclick="goObligaciones('instrumentos')">Instrumentos<span class="nd-sub">Planes, REP, registros, distintivos</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('noms')">NOMs</div>
         <div class="nav-drop-it" onclick="goObligaciones('federal')">Leyes Federales</div>
         <div class="nav-drop-it" onclick="goObligaciones('estatal')">Leyes Estatales</div>
-        <div class="nav-drop-it" onclick="goObligaciones('rme')">Trámites RME<span class="nd-sub">Residuos de manejo especial</span></div>
-        <div class="nav-drop-it" onclick="goObligaciones('gacetas')">Gacetas por entidades</div>
+        <div class="nav-drop-it" onclick="goObligaciones('noms')">Normas Oficiales Mexicanas</div>
+        <div class="nav-drop-it" onclick="goObligaciones('rme')">Trámites de residuos<span class="nd-sub">Residuos de manejo especial</span></div>
+        <div class="nav-drop-it" onclick="goObligaciones('gacetas')">Gacetas estatales</div>
         <!-- Eventualidades (Ley seca · Beta) oculto por ahora; código y datos conservados para cuando se sumen Cerveceros de México -->
 
       </div>
@@ -1566,7 +1568,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
     <!-- Vista Gacetas Oficiales (directorio por entidad) -->
     <div id="leg-view-gacetas" style="display:none">
       <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
-        <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Gacetas por entidades</div>
+        <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em">Gacetas estatales</div>
       </div>
       <div id="gacetas-dir" style="margin-top:6px"></div>
     </div>
@@ -1727,7 +1729,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 
   <!-- ═══ OBLIGACIONES · instrumentos que regulan los materiales ═══ -->
   <div id="tab-obligaciones" class="tab-content">
-    <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Obligaciones</div>
+    <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Cumplimiento</div>
     <div style="font-size:12px;color:var(--text-muted);margin-bottom:22px">Instrumentos, precedentes judiciales, sustancias restringidas y economía circular que regulan y enmarcan los materiales de las empresas</div>
     <div id="obligaciones-body"></div>
   </div>
@@ -2349,30 +2351,30 @@ function _segSpark(v){
   var Wd=90,H=22,mx=Math.max.apply(null,v.concat([1])),n=v.length;
   var P=v.map(function(x,i){return [(i/(n-1))*Wd,H-2-(x/mx)*(H-6)];});
   var d=P.map(function(p,i){return (i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
-  return '<svg viewBox="0 0 '+Wd+' '+H+'" preserveAspectRatio="none" style="width:100%;height:22px;display:block;overflow:visible"><path d="'+d+' L'+Wd+','+H+' L0,'+H+' Z" fill="#066750" opacity="0.13"/><path d="'+d+'" fill="none" stroke="#066750" stroke-width="1.5" vector-effect="non-scaling-stroke"/><circle cx="'+P[n-1][0].toFixed(1)+'" cy="'+P[n-1][1].toFixed(1)+'" r="2.2" fill="#066750"/></svg>';
+  return '<svg viewBox="0 0 '+Wd+' '+H+'" preserveAspectRatio="none" style="width:100%;height:22px;display:block;overflow:visible"><path d="'+d+'" fill="none" stroke="#066750" stroke-width="1.5" vector-effect="non-scaling-stroke"/><circle cx="'+P[n-1][0].toFixed(1)+'" cy="'+P[n-1][1].toFixed(1)+'" r="2.2" fill="#066750"/></svg>';
 }
 function _segCSS(){
   if(document.getElementById('seg3-css'))return;
   var st=document.createElement('style');st.id='seg3-css';st.textContent=''
   +'.seg3-mk{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:6px}'
-  +'.seg3-ttl{font-size:26px;font-weight:700;letter-spacing:-.02em;color:var(--text);line-height:1.1}'
-  +'.seg3-sub{font-size:13px;color:var(--text-muted);margin-top:6px}'
-  +'.seg3-kpis{display:flex;gap:30px;align-items:flex-end;flex-wrap:wrap;margin:18px 0 6px}'
-  +'.seg3-k span{display:block;font-size:12px;color:var(--text-muted);margin-bottom:4px}'
-  +'.seg3-k b{font-size:34px;font-weight:700;letter-spacing:-.02em;color:var(--text);font-variant-numeric:tabular-nums;line-height:1}'
+  +'.seg3-ttl{font-size:16px;font-weight:700;color:var(--text);line-height:1.2}'
+  +'.seg3-sub{font-size:12px;color:var(--text-muted);margin-top:4px}'
+  +'.seg3-kpis{display:flex;gap:24px;align-items:flex-end;flex-wrap:wrap;margin:14px 0 4px}'
+  +'.seg3-k span{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}'
+  +'.seg3-k b{font-family:var(--mono);font-size:21px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;line-height:1}'
   +'.seg3-k b.g{color:#066750}'
-  +'.seg3-k em{font-style:normal;font-family:var(--mono);font-size:12px;font-weight:700;margin-left:8px}'
+  +'.seg3-k em{font-style:normal;font-family:var(--mono);font-size:10px;font-weight:700;margin-left:8px}'
   +'.seg3-sep{width:0.8px;align-self:stretch;background:var(--border)}'
   +'.seg3-clock{display:flex;gap:16px;align-items:flex-end}'
   +'.seg3-clock div{text-align:center}'
-  +'.seg3-clock b{display:block;font-family:var(--mono);font-size:30px;font-weight:700;color:#066750;line-height:1}'
-  +'.seg3-clock i{display:block;font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--text-muted);margin-top:5px}'
+  +'.seg3-clock b{display:block;font-family:var(--mono);font-size:21px;font-weight:700;color:#066750;line-height:1}'
+  +'.seg3-clock i{display:block;font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--text-muted);margin-top:6px}'
   +'.seg3-chart{position:relative;margin:14px 0 6px}'
   +'.seg3-pt{cursor:pointer}'
   +'.seg3-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0 30px}'
   +'.seg3-past{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:0.8px solid var(--border);border-radius:3px;font-family:var(--mono);font-size:10px;color:var(--text-muted)}'
   +'.seg3-dot{width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:8px}'
-  +'.seg3-mbtn{padding:8px 14px;border:0.8px solid var(--border);border-radius:3px;background:none;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text);display:inline-flex;align-items:center;gap:7px}'
+  +'.seg3-mbtn{padding:7px 12px;border:0.8px solid var(--border);border-radius:3px;background:none;cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--text);display:inline-flex;align-items:center;gap:7px}'
   +'.seg3-mbtn:hover{border-color:#066750}'
   +'.seg3-mbtn.on{background:#066750;border-color:#066750;color:#fff}'
   +'.seg3-mbtn i{font-style:normal;font-size:8px}'
@@ -2420,17 +2422,16 @@ function _segRun(){
   var Wk=7*864e5,now=Date.now(),NS=26,serie=[];
   for(var k2=NS-1;k2>=0;k2--){var lo=now-(k2+1)*Wk,hi=now-k2*Wk;serie.push({c:F.filter(function(x){var t=x.d.getTime();return t>=lo&&t<hi;}).length,d:new Date(hi-864e5)});}
   var prom=serie.reduce(function(a,s){return a+s.c;},0)/NS;
-  var Wc=900,Hc=220,PL=10,PR=56,PT=14,PB=26,mx=Math.max(2,Math.max.apply(null,serie.map(function(s){return s.c;})),Math.ceil(prom));
+  var Wc=1100,Hc=150,PL=10,PR=56,PT=12,PB=22,mx=Math.max(2,Math.max.apply(null,serie.map(function(s){return s.c;})),Math.ceil(prom));
   var X=function(i){return PL+i*(Wc-PL-PR)/(NS-1);},Y=function(v){return PT+(Hc-PT-PB)*(1-v/mx);};
   var dPath=serie.map(function(s,i){return (i?'L':'M')+X(i).toFixed(1)+','+Y(s.c).toFixed(1);}).join(' ');
-  var grid=[0,Math.round(mx/2),mx].map(function(v){return '<line x1="'+PL+'" x2="'+(Wc-PR)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="var(--border)" stroke-width="0.7"/><text x="'+(Wc-PR+8)+'" y="'+(Y(v)+3)+'" font-size="10" fill="var(--text-muted)" font-family="var(--mono)">'+v+'</text>';}).join('');
-  var xl='';for(var i3=0;i3<NS;i3+=4){var dd=serie[i3].d;xl+='<text x="'+X(i3)+'" y="'+(Hc-6)+'" font-size="10" text-anchor="'+(i3===0?'start':'middle')+'" fill="var(--text-muted)" font-family="var(--mono)">'+dd.getDate()+' '+MES[dd.getMonth()]+'</text>';}
+  var grid=[0,Math.round(mx/2),mx].map(function(v){return '<line x1="'+PL+'" x2="'+(Wc-PR)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="var(--border)" stroke-width="0.7"/><text x="'+(Wc-PR+8)+'" y="'+(Y(v)+3)+'" font-size="9" fill="var(--text-muted)" font-family="var(--mono)">'+v+'</text>';}).join('');
+  var xl='';for(var i3=0;i3<NS;i3+=4){var dd=serie[i3].d;xl+='<text x="'+X(i3)+'" y="'+(Hc-6)+'" font-size="9" text-anchor="'+(i3===0?'start':'middle')+'" fill="var(--text-muted)" font-family="var(--mono)">'+dd.getDate()+' '+MES[dd.getMonth()]+'</text>';}
   var pts=serie.map(function(s,i){return '<circle class="seg3-pt" cx="'+X(i).toFixed(1)+'" cy="'+Y(s.c).toFixed(1)+'" r="'+(i===NS-1?4:2.6)+'" fill="#066750" stroke="#fff" stroke-width="1"><title>Semana al '+s.d.getDate()+' '+MES[s.d.getMonth()]+' · '+s.c+(s.c===1?' mención':' menciones')+'</title></circle>';}).join('');
   var yp=Y(prom).toFixed(1);
   var chart='<div class="seg3-chart"><svg viewBox="0 0 '+Wc+' '+Hc+'" style="width:100%;height:auto;display:block">'+grid
     +'<line x1="'+PL+'" x2="'+(Wc-PR)+'" y1="'+yp+'" y2="'+yp+'" stroke="#066750" stroke-dasharray="5 5" stroke-width="1" opacity="0.6"/>'
     +'<rect x="'+(Wc-PR+2)+'" y="'+(yp-9)+'" width="'+(PR-4)+'" height="18" rx="3" fill="#066750"/><text x="'+(Wc-PR/2)+'" y="'+(+yp+4)+'" font-size="9" text-anchor="middle" fill="#fff" font-family="var(--mono)" font-weight="700">Prom '+prom.toFixed(1)+'</text>'
-    +'<path d="'+dPath+' L'+X(NS-1)+','+Y(0)+' L'+X(0)+','+Y(0)+' Z" fill="#066750" opacity="0.08"/>'
     +'<path d="'+dPath+'" fill="none" stroke="#066750" stroke-width="2.2" stroke-linejoin="round"/>'+pts+xl+'</svg></div>';
   // periodos: meses como botones; los anteriores muestran si subieron o bajaron
   var ult=months.slice(-6);
@@ -3741,7 +3742,7 @@ function _oblToggleCerts(i){var el=document.getElementById('obl-certs-'+i);var a
 function _instrumentosHTML(){
   var lnk='cursor:pointer;color:var(--green);text-decoration:none;font-family:var(--sans);font-size:11px;font-weight:600;white-space:nowrap';
   return '<div>'
-    +_oblSubhead('Instrumentos legales','Obligaciones y figuras regulatorias vigentes. Los registros y reportes enlazan a su portal oficial; los distintivos se despliegan.')
+    +_oblSubhead('Instrumentos legales','Instrumentos y figuras regulatorias vigentes. Los registros y reportes enlazan a su portal oficial; los distintivos se despliegan.')
     +_OBLIGACIONES.map(function(o,i){
       var right;
       if(o.certs)right='<a onclick="_oblToggleCerts('+i+')" style="'+lnk+'">Ver certificaciones <span id="obl-certs-arr-'+i+'">▾</span></a>';
@@ -4235,18 +4236,23 @@ function _agendaGacetas(keepFocus){
     var g=GACETAS_OFICIALES[s];
     var n=((_gacOficiales&&_gacOficiales.items)||[]).filter(function(it){return it.estado===s;}).length;
     var badge=n?('<span class="gc-open">'+n+' recientes</span>'):'<span class="gc-open" style="color:var(--text-muted)">Portal</span>';
-    return '<div class="gac-cell" onclick="_gacPeek(\''+s.replace(/'/g,"\\'")+'\')">'
+    return '<div class="gac-cell'+(_gacSel===s?' on':'')+'" onclick="_gacPeek(\''+s.replace(/'/g,"\\'")+'\')">'
       +'<div class="gc-top"><span class="gc-name">'+s+'</span>'+badge+'</div>'
       +'<div class="gc-pub">'+g[0]+'</div>'
       +'</div>';
   }).join('');
   var grid=estados.length?('<div class="gac-grid">'+cells+'</div>'):'<div style="padding:12px 0;font-size:13px;color:var(--text-muted)">Sin coincidencias.</div>';
-  host.innerHTML=head+grid;
+  host.innerHTML=head+grid+'<div id="gac-detail"></div>';
+  if(_gacSel&&estados.indexOf(_gacSel)>=0)_gacPeek(_gacSel,true);
   if(keepFocus){var i=document.getElementById('gac-search');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}}
 }
-// Panel lateral (drawer) de un estado: ediciones oficiales recientes + portal
-function _gacPeek(estado){
+// Ficha del estado DEBAJO de la cuadrícula (no en panel lateral): portal oficial + ediciones recientes
+var _gacSel=null;
+function _gacClose(){_gacSel=null;var d=document.getElementById('gac-detail');if(d)d.innerHTML='';document.querySelectorAll('.gac-cell.on').forEach(function(c){c.classList.remove('on');});}
+function _gacPeek(estado,sinScroll){
   var g=GACETAS_OFICIALES[estado];if(!g)return;
+  _gacSel=estado;
+  document.querySelectorAll('.gac-cell').forEach(function(c){var n=c.querySelector('.gc-name');c.classList.toggle('on',!!n&&n.textContent===estado);});
   function fmtF(f){var d=new Date(String(f||'').substring(0,10)+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});}
   var eds=((_gacOficiales&&_gacOficiales.items)||[]).filter(function(it){return it.estado===estado;})
     .sort(function(a,b){return new Date(String(b.fecha||'').substring(0,10))-new Date(String(a.fecha||'').substring(0,10));}).slice(0,14);
@@ -4264,14 +4270,17 @@ function _gacPeek(estado){
   }else{
     body='<div style="font-size:12.5px;color:var(--text-sec);line-height:1.6">Las ediciones de esta entidad se consultan directamente en su portal oficial. Estamos sumando el rastreo automático de más estados por etapas.</div>';
   }
-  _scopePeek({
-    kind:'Gaceta oficial · '+estado,
-    title:g[0],
-    meta:[{l:'Entidad',v:estado},{l:'Ediciones rastreadas',v:eds.length?String(eds.length):'—'}],
-    body:body,
-    url:g[1],
-    urlLabel:'Abrir portal oficial'
-  });
+  var el=document.getElementById('gac-detail');if(!el)return;
+  el.innerHTML='<div class="gac-detail">'
+    +'<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;padding-bottom:12px;border-bottom:0.8px solid var(--border)">'
+      +'<div><div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--green)">Gaceta oficial · '+estado+'</div>'
+      +'<div style="font-size:16px;font-weight:700;color:var(--text);margin-top:6px">'+g[0]+'</div>'
+      +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:4px">Ediciones rastreadas por Scope: '+(eds.length||'—')+'</div></div>'
+      +'<a href="'+String(g[1]).replace(/"/g,'&quot;')+'" target="_blank" rel="noopener" class="cons-edit" style="text-decoration:none;white-space:nowrap">Abrir portal oficial →</a>'
+    +'</div><div style="padding-top:12px">'+body+'</div>'
+    +'<div onclick="_gacClose()" style="font-family:var(--mono);font-size:9px;color:var(--text-muted);cursor:pointer;margin-top:12px">Cerrar ✕</div>'
+  +'</div>';
+  if(!sinScroll)el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 // ── Trámites de Residuos de Manejo Especial (RME) por entidad ────────────
 var _RME_COL={integral:'#0E8C74',portal:'#2AA88B',fichas:'#7A9B8E',catalogo:'#9AA3A0'};
@@ -9152,9 +9161,9 @@ function _consSenal(sen){
       return '<div class="cons-tema-row" style="cursor:pointer" onclick="_consTemaToggle(\''+r.c.id+'\')" title="Ver las menciones de este tema">'
         +'<span style="font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+r.c.name+' <span id="cment-arr-'+r.c.id+'" style="font-size:8px;color:var(--text-muted)">▸</span></span>'
         +'<span style="min-width:0">'+(function(){var s=(typeof _consWeekSeries==='function')?_consWeekSeries(r.c.kw,8):[];return (s.length>1)?_sparkArea(s):'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">—</span>';})()+'</span>'
-        +'<span class="sen-cell" style="background:rgba(6,103,80,'+(0.05+0.25*pct/100).toFixed(2)+');color:var(--text)">'+r.n7+'</span>'
+        +'<span class="sen-cell" style="color:var(--text)">'+r.n7+'</span>'
         +'<span class="sen-cell" style="color:'+r.arrow[1]+';background:'+(r.arrow[0]==='↑'?'rgba(220,38,38,0.08)':r.arrow[0]==='↓'?'rgba(6,103,80,0.10)':'rgba(13,27,42,0.04)')+'">'+r.arrow[0]+'</span>'
-        +'<span style="text-align:center"><span class="sen-prio" style="color:'+r.r[1]+';background:'+(r.r[0]==='ALTO'?'rgba(220,38,38,0.10)':r.r[0]==='BAJO'?'rgba(6,103,80,0.10)':'rgba(13,27,42,0.06)')+'">'+r.r[0]+'</span></span>'
+        +'<span style="text-align:center"><span class="sen-prio">'+r.r[0]+'</span></span>'
         +'</div>'
         +'<div class="cons-tema-ment" id="cment-'+r.c.id+'" style="display:none;padding:4px 0 10px 18px"></div>';
     }).join('');})()
@@ -9420,7 +9429,6 @@ function _sparkArea(vals){
   var line=P.map(function(p,i){return (i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
   var last=P[n-1];
   return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" style="width:100%;height:26px;display:block;overflow:visible">'
-    +'<path d="'+line+' L'+W+','+H+' L0,'+H+' Z" fill="#066750" opacity="0.14"/>'
     +'<path d="'+line+'" fill="none" stroke="#066750" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>'
     +'<circle cx="'+last[0].toFixed(1)+'" cy="'+last[1].toFixed(1)+'" r="2.4" fill="#066750"/></svg>';
 }
