@@ -1,923 +1,1707 @@
 {
-  "_meta": {
-    "descripcion": "Actores estatales por sector (autoridades publicas): medio ambiente, agua, energia, cambio climatico, movilidad, economia. Titular solo si verificado.",
-    "actualizado": "2026-09-07",
-    "nota": "Nombres verificados a la fecha; los gabinetes estatales cambian — reverificar periódicamente."
+ "_meta": {
+  "descripcion": "Actores estatales por sector (autoridades públicas): medio ambiente, procuraduría ambiental, agua, energía, cambio climático, calidad del aire, economía circular y residuos, economía y movilidad. Titular solo si está verificado como vigente en una fuente oficial (campo fuente).",
+  "actualizado": "2026-10-03",
+  "nota": "Verificación completa de los 32 estados en octubre de 2026. Los gabinetes estatales cambian: reverificar periódicamente."
+ },
+ "estados": {
+  "Aguascalientes": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Sustentabilidad, Medio Ambiente y Agua (SSMAA)",
+    "titular": "Sarahí Macías Alicea",
+    "url": "https://www.aguascalientes.gob.mx/SSMAA/",
+    "fuente": "https://www.lja.mx/2026/09/gobernadora-en-aguascalientes-encabeza-entrega-del-sello-de-bajo-carbono-a-20-empresas-e-instituciones/",
+    "verificado": "2026-10",
+    "nota": "Prensa 04-sep-2026 (LJA) la nombra Secretaria; también El Congresista 17-feb-2026. Israel Ortega González (titular en 2024) pasó a dirigir Ficotrece desde 01-feb-2025 (boletín oficial 24-ene-2025)."
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Sustentabilidad, Medio Ambiente y Agua (SSMAA)",
+    "url": "https://www.aguascalientes.gob.mx/SSMAA/",
+    "nota": "Política climática (Comisión Intersecretarial de Cambio Climático, PEACC, Sello de Bajo Carbono, mercado voluntario de carbono) a cargo de la SSMAA; titular de la unidad específica no verificado."
+   },
+   "agua": {
+    "dependencia": "Instituto del Agua del Estado de Aguascalientes (INAGUA)",
+    "titular": "Noel Mata Atilano",
+    "url": "https://www.aguascalientes.gob.mx/INAGUA/",
+    "fuente": "https://informacion.aguascalientes.gob.mx/news/gobierno-del-estado-anuncia-la-incorporaci%C3%B3n-de-nuevos-perfiles-al-gabinete",
+    "verificado": "2026-10",
+    "nota": "Nombrado director general desde 01-feb-2025 (boletín oficial 24-ene-2025); corroborado como director en prensa 07-may-2026 (Yahoo Noticias)."
+   },
+   "energia": {
+    "dependencia": "Agencia de Energía del Estado de Aguascalientes (AGEEA)",
+    "titular": "Jorge Armando Llamas Esparza",
+    "url": "https://www.aguascalientes.gob.mx/AGEEA/",
+    "fuente": "https://www.lja.mx/2026/03/alianza-para-fortalecer-la-eficiencia-energetica-en-aguascalientes/",
+    "verificado": "2026-10",
+    "nota": "Director general según prensa marzo 2026 (LJA); agencia creada en 2025."
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico, Ciencia y Tecnología (SEDECYT)",
+    "titular": "Esaú Garza de Vega",
+    "url": "https://www.aguascalientes.gob.mx/sedecyt/",
+    "fuente": "https://informacion.aguascalientes.gob.mx/news/aguascalientes,-puerto-seguro-para-la-inversi%C3%B3n-y-el-crecimiento-en-2026:-tere-jim%C3%A9nez",
+    "verificado": "2026-10",
+    "nota": "Boletín oficial 17-feb-2026."
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría Estatal de Protección Ambiental y Animal (PROESPA)",
+    "titular": "Omar Alejandro Plesent Sánchez",
+    "url": "https://informacion.aguascalientes.gob.mx/news/recibe-omar-plesent-nombramiento-oficial-como-procurador-estatal-de-protecci%C3%B3n-al-ambiente",
+    "fuente": "https://informacion.aguascalientes.gob.mx/news/recibe-omar-plesent-nombramiento-oficial-como-procurador-estatal-de-protecci%C3%B3n-al-ambiente",
+    "verificado": "2026-10",
+    "nota": "Nombramiento por el Congreso, boletín oficial 19-ago-2025; sin evidencia de relevo. En feb-2026 el Congreso aprobó cambiar el nombre de Procuraduría Estatal de Protección al Ambiente a 'de Protección Ambiental y Animal' (nwnoticias 22-feb-2026)."
+   },
+   "movilidad": {
+    "dependencia": "Coordinación General de Movilidad (CMOV)",
+    "titular": "Ricardo Alfredo Serrano Rangel",
+    "url": "https://www.aguascalientes.gob.mx/AMOVEA/",
+    "fuente": "https://www.lja.mx/2026/02/presentan-al-congreso-de-aguascalientes-la-agencia-estatal-de-movilidad/",
+    "verificado": "2026-10",
+    "nota": "Prensa 06-feb-2026: como titular de la CMOV presentó al Congreso la nueva Agencia de Movilidad del Estado de Aguascalientes (AMOVEA), que 'pronto' entraría en operación; no se verificó si ya sustituyó a la CMOV ni su titular formal."
+   }
   },
-  "estados": {
-    "Aguascalientes": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Sustentabilidad, Medio Ambiente y Agua (SSMAA)",
-        "titular": "Israel Ortega González",
-        "url": "https://www.aguascalientes.gob.mx/SSMAA/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico, Ciencia y Tecnología (SEDECYT)",
-        "titular": "Esaú Garza de Vega",
-        "url": "https://www.aguascalientes.gob.mx/sedecyt/"
-      },
-      "agua": {
-        "dependencia": "Instituto del Agua del Estado de Aguascalientes (INAGUA)",
-        "url": "https://www.aguascalientes.gob.mx/INAGUA/"
-      },
-      "energia": {
-        "dependencia": "Agencia de Energía del Estado de Aguascalientes (AGEEA)",
-        "url": "https://www.aguascalientes.gob.mx/AGEEA/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Sustentabilidad, Medio Ambiente y Agua (SSMAA)",
-        "url": "https://www.aguascalientes.gob.mx/SSMAA/"
-      },
-      "movilidad": {
-        "dependencia": "Agencia de Movilidad del Estado de Aguascalientes (AMOVEA)",
-        "url": "https://www.aguascalientes.gob.mx/AMOVEA/"
-      }
-    },
-    "Baja California": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente y Desarrollo Sustentable (SMADS)",
-        "titular": "Mónica Juliana Vega Aguirre",
-        "url": "https://bajacalifornia.gob.mx/Secretarias/Secretaria_Medio_Ambiente_Desarrollo_Sustentable"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Economía e Innovación (SEI)",
-        "titular": "Kurt Ignacio Honold Morales",
-        "url": "https://www.bajacalifornia.gob.mx/Secretarias/Secretaria_Economia_Innovacion"
-      },
-      "agua": {
-        "dependencia": "Secretaría para el Manejo, Saneamiento y Protección del Agua (SEPROA)",
-        "url": "https://www.bajacalifornia.gob.mx/seproa"
-      },
-      "energia": {
-        "dependencia": "Comisión Estatal de Energía de Baja California (CEE)",
-        "url": "https://energiabc.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente y Desarrollo Sustentable",
-        "url": "https://www.bajacalifornia.gob.mx/medio_ambiente"
-      },
-      "movilidad": {
-        "dependencia": "Instituto de Movilidad Sustentable del Estado de Baja California (IMOS)",
-        "url": "http://www.imos.gob.mx/"
-      }
-    },
-    "Baja California Sur": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Planeación Urbana, Infraestructura, Movilidad, Medio Ambiente y Recursos Naturales (SEPUIMM)",
-        "titular": "Carolina Armenta Cervantes",
-        "url": "https://sepuimm.bcs.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Turismo y Economía (SETUE)",
-        "titular": "Rosa Maribel Collins Sánchez",
-        "url": "https://setuesbcs.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal del Agua de Baja California Sur (CEA)",
-        "url": "https://cea.bcs.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Planeación Urbana, Infraestructura, Movilidad, Medio Ambiente y Recursos Naturales (SEPUIMM)",
-        "url": "https://sepuimm.bcs.gob.mx/transicion-energetica/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Planeación Urbana, Infraestructura, Movilidad, Medio Ambiente y Recursos Naturales (SEPUIMM)",
-        "url": "https://sepuimm.bcs.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Planeación Urbana, Infraestructura, Movilidad, Medio Ambiente y Recursos Naturales (SEPUIMM)",
-        "url": "https://sepuimm.bcs.gob.mx/"
-      }
-    },
-    "Campeche": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Cambio Climático y Energía (SEMABICCE)",
-        "titular": "Jocelyn Durán Murrieta",
-        "url": "https://www.semabicce.campeche.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "titular": "Jorge Luis Lavalle Maury",
-        "url": "https://sedeco.campeche.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión de Agua Potable y Alcantarillado del Estado de Campeche (CAPAE)",
-        "url": "https://capae.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Cambio Climático y Energía (SEMABICCE)",
-        "url": "https://www.semabicce.campeche.gob.mx/direccion-general-de-energia-sostenible/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Cambio Climático y Energía (SEMABICCE)",
-        "url": "https://www.semabicce.campeche.gob.mx/cambio-climatico/"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Desarrollo Urbano, Movilidad y Obras Públicas (SEDUMOP)",
-        "url": "https://campeche.gob.mx/gobierno/"
-      }
-    },
-    "Chiapas": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente e Historia Natural (SEMAHN)",
-        "titular": "María del Rosario Bonifaz Alfonzo",
-        "url": "https://www.semahn.chiapas.gob.mx/portal/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Economía y del Trabajo",
-        "titular": "Luis Pedrero González",
-        "url": "https://economiaytrabajo.chiapas.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Instituto Estatal del Agua",
-        "url": "https://www.institutodelagua.chiapas.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Medio Ambiente e Historia Natural (SEMAHN) · Dirección de Desarrollo de Energías",
-        "url": "https://www.semahn.chiapas.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente e Historia Natural (SEMAHN)",
-        "url": "https://www.semahn.chiapas.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Movilidad y Transporte (SMyT)",
-        "url": "https://smyt.chiapas.gob.mx/"
-      }
-    },
-    "Chihuahua": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Desarrollo Urbano y Ecología (SDUE)",
-        "titular": "Gabriel Valdez Juárez",
-        "url": "https://chihuahua.gob.mx/sedue"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Innovación y Desarrollo Económico",
-        "titular": "Ulises Alejandro Fernández Gamboa",
-        "url": "https://chihuahua.gob.mx/tax-portal-principal/secretaria-de-innovacion-y-desarrollo-economico"
-      },
-      "agua": {
-        "dependencia": "Junta Central de Agua y Saneamiento (JCAS)",
-        "url": "https://www.jcas.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Desarrollo Urbano y Ecología (SEDUE)",
-        "url": "https://www.chihuahua.gob.mx/sedue"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Desarrollo Urbano y Ecología (SEDUE)",
-        "url": "https://chihuahua.gob.mx/sedue/movilidad"
-      }
-    },
-    "Ciudad de México": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría del Medio Ambiente (SEDEMA)",
-        "titular": "Julia Álvarez Icaza Ramírez",
-        "url": "https://www.sedema.cdmx.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "titular": "Manola Zabalza Aldama",
-        "url": "https://www.sedeco.cdmx.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Sistema de Aguas de la Ciudad de México (SACMEX)",
-        "url": "https://www.sacmex.cdmx.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Secretaría del Medio Ambiente (SEDEMA)",
-        "url": "https://www.sedema.cdmx.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría del Medio Ambiente (SEDEMA)",
-        "url": "https://www.sedema.cdmx.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Movilidad (SEMOVI)",
-        "url": "https://www.semovi.cdmx.gob.mx/"
-      }
-    },
-    "Coahuila": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente (SMA)",
-        "titular": "Eglantina Canales Gutiérrez",
-        "url": "https://sma.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Economía",
-        "titular": "Luis Eduardo Olivares Martínez",
-        "url": "https://www.seccoahuila.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal de Aguas y Saneamiento de Coahuila (CEAS)",
-        "url": "https://ceascoahuila.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Economía de Coahuila · Dirección de Energía",
-        "url": "https://coahuila.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente (SMA)",
-        "url": "https://sma.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Infraestructura, Desarrollo Urbano y Movilidad (SIDUM)",
-        "url": "https://coahuila.gob.mx/"
-      }
-    },
-    "Colima": {
-      "medio_ambiente": {
-        "dependencia": "Instituto para el Medio Ambiente y Desarrollo Sustentable (IMADES)",
-        "titular": "Angélica Lizeth Jiménez Hernández",
-        "url": "https://www.col.gob.mx/imades/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "titular": "Francisco Javier Rodríguez García",
-        "url": "https://www.col.gob.mx/economico"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal del Agua de Colima (CEAC)",
-        "url": "https://www.col.gob.mx/ceacolima"
-      },
-      "cambio_climatico": {
-        "dependencia": "Instituto para el Medio Ambiente y Desarrollo Sustentable (IMADES)",
-        "url": "https://imades.col.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Infraestructura, Desarrollo Urbano y Movilidad (SEIDUM)",
-        "url": "https://www.col.gob.mx/movilidad"
-      }
-    },
-    "Durango": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Recursos Naturales y Medio Ambiente (SRNyMA)",
-        "titular": "Claudia Ernestina Hernández Espino",
-        "url": "https://medioambiente.durango.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "titular": "Fernando Miguel Rosas Palafox",
-        "url": "https://sedeco.durango.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión del Agua del Estado de Durango (CAED)",
-        "url": "https://caed.durango.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Recursos Naturales y Medio Ambiente (SRNyMA)",
-        "url": "https://medioambiente.durango.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Subsecretaría de Movilidad y Transportes (Secretaría de Comunicaciones y Obras Públicas)",
-        "url": "https://transportes.durango.gob.mx/"
-      }
-    },
-    "Estado de México": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría del Medio Ambiente y Desarrollo Sostenible",
-        "titular": "Alhely Rubio Arronis",
-        "url": "https://sma.edomex.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "titular": "Laura Teresa González Hernández",
-        "url": "https://desarrolloeconomico.edomex.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Secretaría del Agua del Estado de México",
-        "url": "https://agua.edomex.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Instituto Estatal de Energía y Cambio Climático (IEECC)",
-        "url": "http://ieecc.edomex.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Instituto Estatal de Energía y Cambio Climático (IEECC)",
-        "url": "http://ieecc.edomex.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Movilidad del Estado de México",
-        "url": "https://semov.edomex.gob.mx/"
-      }
-    },
-    "Guanajuato": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría del Agua y Medio Ambiente (SAMA)",
-        "titular": "José Lara Lona",
-        "url": "https://smaot.guanajuato.gob.mx/sitio/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Economía",
-        "titular": "Claudia Cristina Villaseñor Aguilar",
-        "url": "https://sde.guanajuato.gob.mx/sdes/"
-      },
-      "agua": {
-        "dependencia": "Secretaría de Agua y Medio Ambiente",
-        "titular": "José Lara Lona",
-        "url": "https://smaot.guanajuato.gob.mx"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Agua y Medio Ambiente · Subsecretaría de Gestión Ambiental, Cambio Climático y Sustentabilidad Energética",
-        "titular": "José Lara Lona",
-        "url": "https://smaot.guanajuato.gob.mx"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Agua y Medio Ambiente",
-        "titular": "José Lara Lona",
-        "url": "https://smaot.guanajuato.gob.mx"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Infraestructura, Conectividad y Movilidad (SICOM)",
-        "titular": "Juan Pablo Pérez Beltrán",
-        "url": "https://sicom.guanajuato.gob.mx"
-      }
-    },
-    "Guerrero": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente y Recursos Naturales (SEMAREN)",
-        "titular": "Ángel Almazán Juárez",
-        "url": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-medio-ambiente-y-recursos-naturales/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Fomento y Desarrollo Económico (SEFODECO)",
-        "titular": "Teodora Ramírez Vega",
-        "url": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-fomento-y-desarrollo-economico/"
-      },
-      "agua": {
-        "dependencia": "Comisión de Agua Potable, Alcantarillado y Saneamiento del Estado de Guerrero (CAPASEG)",
-        "titular": "Facundo Gastélum Félix",
-        "url": "https://www.guerrero.gob.mx"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente y Recursos Naturales (SEMAREN)",
-        "titular": "Ángel Almazán Juárez",
-        "url": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-medio-ambiente-y-recursos-naturales/"
-      },
-      "movilidad": {
-        "dependencia": "Comisión Técnica de Transporte y Vialidad",
-        "titular": "Arturo Salinas Sandoval",
-        "url": "https://www.guerrero.gob.mx/dependencia/sector-paraestatal/comision-tecnica-de-transporte-y-vialidad/"
-      }
-    },
-    "Hidalgo": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente y Recursos Naturales de Hidalgo (SEMARNATH)",
-        "titular": "Mónica Mixtega Trejo",
-        "url": "https://s-medioambiente.hidalgo.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "titular": "Carlos Henkel Escorza",
-        "url": "https://sedeco.hidalgo.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal de Agua y Alcantarillado (CEAA)",
-        "titular": "Juan Carlos Chávez González",
-        "url": "https://ceaa.hidalgo.gob.mx"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente y Recursos Naturales (SEMARNATH)",
-        "titular": "Mónica Patricia Mixtega Trejo",
-        "url": "https://medioambiente.hidalgo.gob.mx"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Movilidad y Transporte",
-        "titular": "Lyzbeth Robles Gutiérrez",
-        "url": "https://semot.hidalgo.gob.mx"
-      }
-    },
-    "Jalisco": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente y Desarrollo Territorial (SEMADET)",
-        "titular": "Paola Bauche Petersen",
-        "url": "https://semadet.jalisco.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "titular": "Cindy Blanco Ochoa",
-        "url": "https://sedeco.jalisco.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal del Agua de Jalisco (CEA Jalisco)",
-        "url": "https://www.ceajalisco.gob.mx"
-      },
-      "energia": {
-        "dependencia": "Agencia de Energía del Estado de Jalisco (AEEJ)",
-        "url": "https://aeej.jalisco.gob.mx"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente y Desarrollo Territorial (SEMADET)",
-        "url": "https://semadet.jalisco.gob.mx"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Transporte (SETRAN)",
-        "url": "https://setran.jalisco.gob.mx"
-      }
-    },
-    "Michoacán": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente, Cambio Climático y Desarrollo Territorial (SEMACCDET)",
-        "titular": "Alejandro Méndez López",
-        "url": "https://medioambiente.michoacan.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "titular": "Claudio Méndez Fernández",
-        "url": "https://sedeco.michoacan.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal del Agua y Gestión de Cuencas (CEAC)",
-        "url": "https://ceac.michoacan.gob.mx"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente (SECMA)",
-        "titular": "Alejandro Méndez López",
-        "url": "https://medioambiente.michoacan.gob.mx"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Desarrollo Urbano y Movilidad (SEDUM)",
-        "titular": "Gladyz Butanda Macías",
-        "url": "https://sedum.michoacan.gob.mx"
-      }
-    },
-    "Morelos": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Desarrollo Sustentable (SDS)",
-        "titular": "Alan Dupré Ramírez",
-        "url": "https://www.morelos.gob.mx/inicio/secretaria-de-desarrollo-sustentable"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico y del Trabajo",
-        "titular": "José Víctor Sánchez Trujillo",
-        "url": "https://www.morelos.gob.mx/desarrollo-economico"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal del Agua (CEAGUA)",
-        "url": "https://www.morelos.gob.mx/inicio/comision-estatal-del-agua"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Desarrollo Sustentable",
-        "titular": "Alan Dupré",
-        "url": "https://sustentable.morelos.gob.mx"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Desarrollo Sustentable",
-        "titular": "Alan Dupré",
-        "url": "https://sustentable.morelos.gob.mx"
-      },
-      "movilidad": {
-        "dependencia": "Coordinación General de Movilidad y Transporte",
-        "titular": "Jorge Alberto Barrera Toledo",
-        "url": "https://www.morelos.gob.mx/sitios/directorio/coordinacion-general-de-movilidad-y-transporte"
-      }
-    },
-    "Nayarit": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Desarrollo Sustentable (SDS)",
-        "titular": "Rosa Elizabeth Segura Saldaña",
-        "url": "https://sds.nayarit.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico y Social",
-        "titular": "César Octavio Lara Fonseca",
-        "url": "https://economia.nayarit.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal de Agua Potable y Alcantarillado de Nayarit (CEA)",
-        "url": "https://www.cea.nayarit.gob.mx"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Desarrollo Sustentable (SDS)",
-        "url": "https://sds.nayarit.gob.mx"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Desarrollo Sustentable (SDS)",
-        "url": "https://sds.nayarit.gob.mx"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Movilidad (SEMOVI)",
-        "titular": "Sistiel Karime Buhaya Lora",
-        "url": "https://semovi.nayarit.gob.mx"
-      }
-    },
-    "Nuevo León": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente",
-        "titular": "Raúl Lozano Caballero",
-        "url": "https://www.nl.gob.mx/es/medioambiente"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Economía",
-        "titular": "Betsabé Rocha Nieto",
-        "url": "https://www.nl.gob.mx/es/economia"
-      },
-      "agua": {
-        "dependencia": "Servicios de Agua y Drenaje de Monterrey (SADM)",
-        "url": "https://www.sadm.gob.mx"
-      },
-      "energia": {
-        "dependencia": "Agencia Estatal de Energías Renovables de Nuevo León",
-        "url": "https://www.nl.gob.mx/es/agenciaenergia"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente",
-        "titular": "Raúl Lozano Caballero",
-        "url": "https://www.nl.gob.mx/es/medioambiente"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Movilidad y Planeación Urbana",
-        "titular": "Hernán Villarreal",
-        "url": "https://www.nl.gob.mx/es/movilidad"
-      }
-    },
-    "Oaxaca": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Energías y Sostenibilidad",
-        "titular": "Karime Unda Harp",
-        "url": "https://www.oaxaca.gob.mx/medioambiente/"
-      },
-      "economia": {
-        "dependencia": "Secretaría del Trabajo y Economía",
-        "titular": "Raúl Ruiz Robles",
-        "url": "https://www.oaxaca.gob.mx/sedeco/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal del Agua para el Bienestar (Ceabien)",
-        "url": "https://www.oaxaca.gob.mx/cea"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Energías y Sostenibilidad (SEMABIENS)",
-        "titular": "Karime Unda Harp",
-        "url": "https://www.oaxaca.gob.mx/medioambiente"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Energías y Sostenibilidad (SEMABIENS)",
-        "titular": "Karime Unda Harp",
-        "url": "https://www.oaxaca.gob.mx/medioambiente"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Movilidad (SEMOVI)",
-        "titular": "Yesenia Nolasco Ramírez",
-        "url": "https://www.oaxaca.gob.mx/semovi"
-      }
-    },
-    "Puebla": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente, Desarrollo Sustentable y Ordenamiento Territorial (SMADSOT)",
-        "titular": "María de los Ángeles Ballesteros García",
-        "url": "https://smadsot.puebla.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico y Trabajo (SEDETRA)",
-        "titular": "Víctor Gabriel Chedraui",
-        "url": "https://sedetra.puebla.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal de Agua y Saneamiento del Estado de Puebla (CEASPUE)",
-        "titular": "José Lauro Sánchez López",
-        "url": "https://ceaspue.puebla.gob.mx"
-      },
-      "energia": {
-        "dependencia": "Agencia de Energía del Estado de Puebla",
-        "url": "https://www.puebla.gob.mx"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente, Desarrollo Sustentable y Ordenamiento Territorial (SMADSOT)",
-        "url": "https://smadsot.puebla.gob.mx"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Movilidad y Transporte",
-        "titular": "Silvia Tanús Osorio",
-        "url": "https://www.puebla.gob.mx"
-      }
-    },
-    "Querétaro": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Desarrollo Sustentable (SEDESU)",
-        "titular": "Marco Antonio del Prete Tercero",
-        "url": "https://portal.queretaro.gob.mx/sedesu/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Sustentable (SEDESU)",
-        "titular": "Marco Antonio del Prete Tercero",
-        "url": "https://portal.queretaro.gob.mx/sedesu/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal de Aguas (CEA Querétaro)",
-        "url": "https://www.ceaqueretaro.gob.mx"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Desarrollo Sustentable (SEDESU)",
-        "url": "https://www.queretaro.gob.mx/sedesu"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Desarrollo Sustentable (SEDESU)",
-        "url": "https://www.queretaro.gob.mx/sedesu"
-      },
-      "movilidad": {
-        "dependencia": "Agencia de Movilidad del Estado de Querétaro (AMEQ)",
-        "titular": "Gerardo Gabriel Cuanalo Santos",
-        "url": "https://www.ameq.gob.mx"
-      }
-    },
-    "Quintana Roo": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Ecología y Medio Ambiente (SEMA)",
-        "titular": "Óscar Alberto Rébora Aguilera",
-        "url": "https://qroo.gob.mx/sema/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDE)",
-        "titular": "Paul Carrillo de Cáceres",
-        "url": "https://sede.qroo.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión de Agua Potable y Alcantarillado (CAPA)",
-        "url": "https://capa.qroo.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDE) · Dirección de Energía",
-        "url": "https://qroo.gob.mx/sede/energia/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Ecología y Medio Ambiente (SEMA)",
-        "titular": "Óscar Rébora Aguilera",
-        "url": "https://qroo.gob.mx/sema/"
-      },
-      "movilidad": {
-        "dependencia": "Instituto de Movilidad del Estado de Quintana Roo (IMOVEQROO)",
-        "titular": "Rafael Hernández Kotasek",
-        "url": "https://imoveqroo.qroo.gob.mx/"
-      }
-    },
-    "San Luis Potosí": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Ecología y Gestión Ambiental (SEGAM)",
-        "titular": "Sonia Mendoza Díaz",
-        "url": "https://segam.slp.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "titular": "Mario García Valdez",
-        "url": "https://sedeco.slp.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal del Agua de San Luis Potosí (CEA)",
-        "url": "https://cea.slp.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "url": "https://sedeco.slp.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Ecología y Gestión Ambiental (SEGAM)",
-        "url": "https://segam.slp.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Comunicaciones y Transportes (SCT)",
-        "titular": "Araceli Martínez Acosta",
-        "url": "https://sct.slp.gob.mx/"
-      }
-    },
-    "Sinaloa": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Bienestar y Desarrollo Sustentable (SEBIDES)",
-        "titular": "Francisco Javier Barrón Aguayo",
-        "url": "https://sinaloa.gob.mx/p/secretaria-de-bienestar-y-desarrollo-sustentable"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Economía",
-        "titular": "Feliciano Castro Meléndrez",
-        "url": "https://economia.sinaloa.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal de Agua Potable y Alcantarillado de Sinaloa (CEAPAS)",
-        "url": "https://ceapas.sinaloa.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Economía",
-        "url": "https://sinaloa.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Bienestar y Desarrollo Sustentable (SEBIDES)",
-        "titular": "Omar Alejandro López Campos",
-        "url": "https://sinaloa.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Dirección de Vialidad y Transportes (Secretaría General de Gobierno)",
-        "titular": "Marco Antonio Osuna Moreno",
-        "url": "https://sinaloa.gob.mx/"
-      }
-    },
-    "Sonora": {
-      "medio_ambiente": {
-        "dependencia": "Comisión de Ecología y Desarrollo Sustentable (CEDES)",
-        "titular": "Carlos Ernesto Zatarain González",
-        "url": "https://cedes.sonora.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Economía y Turismo",
-        "titular": "Margarita Vélez de la Rocha",
-        "url": "https://economiayturismo.sonora.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal del Agua (CEA)",
-        "url": "https://cea.sonora.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Comisión de Energía del Estado de Sonora (COEES)",
-        "url": "https://coees.sonora.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Comisión de Ecología y Desarrollo Sustentable del Estado de Sonora (CEDES)",
-        "titular": "Carlos Ernesto Zatarain González",
-        "url": "https://cedes.sonora.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Instituto de Movilidad y Transporte para el Estado de Sonora (IMTES)",
-        "titular": "Carlos Sosa Castañeda",
-        "url": "https://movilidadytransporte.sonora.gob.mx/"
-      }
-    },
-    "Tabasco": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente y Desarrollo Sostenible (SEMADES)",
-        "titular": "Sheila Guadalupe Cadena Nieto",
-        "url": "https://tabasco.gob.mx/medio-ambiente"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Turismo y Desarrollo Económico (SETUDE)",
-        "titular": "Katia Ornelas Gil",
-        "url": "https://tabasco.gob.mx/turismo"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal de Agua y Saneamiento (CEAS)",
-        "titular": "Rashid Valdez Dagdug",
-        "url": "https://tabasco.gob.mx/ceas"
-      },
-      "energia": {
-        "dependencia": "Secretaría para el Desarrollo Energético (SEDENER)",
-        "url": "https://tabasco.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Bienestar, Sustentabilidad y Cambio Climático (SBSCC)",
-        "url": "https://tabasco.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Movilidad (SEMOVI)",
-        "titular": "Rafael Elías Sánchez Cabrales",
-        "url": "https://tabasco.gob.mx/"
-      }
-    },
-    "Tamaulipas": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Desarrollo Urbano y Medio Ambiente (SEDUMA)",
-        "titular": "Karl Heinz Becker Hernández",
-        "url": "https://www.tamaulipas.gob.mx/seduma/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Economía",
-        "titular": "Ninfa Cantú Deándar",
-        "url": "https://www.tamaulipas.gob.mx/economia/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal del Agua de Tamaulipas (CEAT)",
-        "url": "https://www.tamaulipas.gob.mx/ceat/"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Desarrollo Energético (SEDENER)",
-        "titular": "Walter Julián Ángel Jiménez",
-        "url": "https://www.tamaulipas.gob.mx/energia/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Desarrollo Urbano y Medio Ambiente (SEDUMA)",
-        "url": "https://www.tamaulipas.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Subsecretaría de Transporte Público (Secretaría General de Gobierno)",
-        "url": "https://www.tamaulipas.gob.mx/secretariageneral/subsecretarias/transporte-publico/"
-      }
-    },
-    "Tlaxcala": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente (SMA)",
-        "titular": "Pedro Aquino Alvarado",
-        "url": "http://sma.tlaxcala.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "titular": "Javier Marroquín Calderón",
-        "url": "https://sedecotlaxcala.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Comisión Estatal de Agua y Saneamiento del Estado de Tlaxcala (CEAS)",
-        "url": "https://ceastlaxcala.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
-        "url": "https://sedecotlaxcala.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente (SMA)",
-        "titular": "Pedro Aquino Alvarado",
-        "url": "http://sma.tlaxcala.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Secretaría de Movilidad y Transporte (SMyT)",
-        "titular": "Marco Tulio Munive Temoltzin",
-        "url": "https://smyt.tlaxcala.gob.mx/"
-      }
-    },
-    "Veracruz": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Medio Ambiente (SEDEMA)",
-        "titular": "Luz Mariela Zaleta Mendoza",
-        "url": "https://www.veracruz.gob.mx/medioambiente/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Desarrollo Económico y Portuario",
-        "titular": "Ernesto Pérez Astorga",
-        "url": "https://www.veracruz.gob.mx/desarrolloeconomico/"
-      },
-      "agua": {
-        "dependencia": "Comisión del Agua del Estado de Veracruz (CAEV)",
-        "titular": "Luis Fernando Cervantes Cruz",
-        "url": "https://www.caev.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Agencia Estatal de Energía de Veracruz (AEEV)",
-        "url": "https://aeev.veracruz.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Medio Ambiente (SEDEMA)",
-        "titular": "Luz Mariela Zaleta Mendoza",
-        "url": "https://www.veracruz.gob.mx/medioambiente/"
-      },
-      "movilidad": {
-        "dependencia": "Dirección General de Transporte del Estado (DGTE)",
-        "url": "https://www.veracruz.gob.mx/"
-      }
-    },
-    "Yucatán": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría de Desarrollo Sustentable (SDS)",
-        "titular": "Neyra Concepción Silva Rosado",
-        "url": "https://sds.yucatan.gob.mx/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Economía y Trabajo (SETY)",
-        "titular": "Jorge Ermilo Barrera Novelo",
-        "url": "http://sefoet.yucatan.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Junta de Agua Potable y Alcantarillado de Yucatán (JAPAY)",
-        "url": "https://japay.yucatan.gob.mx/"
-      },
-      "energia": {
-        "dependencia": "Agencia de Energía de Yucatán (AEY)",
-        "url": "https://energia.yucatan.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría de Desarrollo Sustentable (SDS)",
-        "titular": "Neyra Concepción Silva Rosado",
-        "url": "https://sds.yucatan.gob.mx/"
-      },
-      "movilidad": {
-        "dependencia": "Agencia de Transporte de Yucatán (ATY)",
-        "titular": "Jacinto Sosa Novelo",
-        "url": "https://tramites.yucatan.gob.mx/aty"
-      }
-    },
-    "Zacatecas": {
-      "medio_ambiente": {
-        "dependencia": "Secretaría del Agua y Medio Ambiente (SAMA)",
-        "titular": "Susana Rodríguez Márquez",
-        "url": "https://www.zacatecas.gob.mx/gobierno/dependencias/sama/"
-      },
-      "economia": {
-        "dependencia": "Secretaría de Economía",
-        "titular": "Jorge Miranda Castro",
-        "url": "https://economia.zacatecas.gob.mx/"
-      },
-      "agua": {
-        "dependencia": "Secretaría del Agua y Medio Ambiente (SAMA)",
-        "titular": "Susana Rodríguez Márquez",
-        "url": "https://www.zacatecas.gob.mx/gobierno/dependencias/sama/"
-      },
-      "energia": {
-        "dependencia": "Secretaría de Economía",
-        "url": "https://economia.zacatecas.gob.mx/"
-      },
-      "cambio_climatico": {
-        "dependencia": "Secretaría del Agua y Medio Ambiente (SAMA)",
-        "titular": "Susana Rodríguez Márquez",
-        "url": "https://www.zacatecas.gob.mx/gobierno/dependencias/sama/"
-      },
-      "movilidad": {
-        "dependencia": "Subsecretaría de Transporte Público (Secretaría General de Gobierno)",
-        "url": "https://segob.zacatecas.gob.mx/tys-substp/"
-      }
-    }
+  "Baja California Sur": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Planeación Urbana, Infraestructura, Movilidad, Medio Ambiente y Recursos Naturales (SEPUIMM)",
+    "titular": "Carolina Armenta Cervantes",
+    "url": "https://sepuimm.bcs.gob.mx/",
+    "fuente": "https://www.lapolacabcs.com/2026/05/gobierno-del-estado-une-esfuerzos-con.html",
+    "verificado": "2026-10",
+    "nota": "Titular de SEPUIMM citada 16-may-2026 (La Polaca BCS) y 22-mar-2026 (Radar Político); también en https://sepuimm.bcs.gob.mx/directorio/ (sin fecha). Director General de Medio Ambiente y Recursos Naturales en directorio: Francisco Flores González (sin fecha, no confirmado)"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal del Agua de Baja California Sur (CEA)",
+    "titular": "Lesvia Tatiana Davis Monzón",
+    "url": "https://cea.bcs.gob.mx/",
+    "fuente": "https://www.lapolacabcs.com/2026/09/concluye-cea-perforacion-de-pozo-para.html",
+    "verificado": "2026-10",
+    "nota": "Directora General; citada como tal el 8-sep-2026; directorio oficial https://cea.bcs.gob.mx/directorio/ la lista"
+   },
+   "energia": {
+    "dependencia": "SEPUIMM — Dirección de Energía y Telecomunicaciones",
+    "url": "https://sepuimm.bcs.gob.mx/transicion-energetica/",
+    "nota": "Directorio SEPUIMM (sin fecha) lista a Zulleth Monserrath Tejas Álvarez como directora; no corroborado en 2025-2026"
+   },
+   "cambio_climatico": {
+    "dependencia": "SEPUIMM — Dirección de Cambio Climático",
+    "titular": "Hamid Tejas Álvarez",
+    "url": "https://sepuimm.bcs.gob.mx/",
+    "fuente": "https://www.bcs.gob.mx/convocan-sepuimm-y-uabcs-a-talleres-sobre-cambio-climatico/",
+    "verificado": "2026-10",
+    "nota": "Director de Cambio Climático citado en boletín oficial de ~jun-jul 2026; también en directorio SEPUIMM"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Turismo y Economía (SETUE)",
+    "titular": "Rosa Maribel Collins Sánchez",
+    "url": "https://setuesbcs.gob.mx/",
+    "fuente": "https://www.radarpolitico.com.mx/2026/07/29/baja-california-sur-consolida-su-prestigio-gastronomico-en-la-guia-michelin-2026/",
+    "verificado": "2026-10",
+    "nota": "Citada como secretaria de SETUE el 29-jul-2026 (prensa); setuesbcs.gob.mx también publica su actividad 2026"
+   },
+   "movilidad": {
+    "dependencia": "SEPUIMM — Dirección de Infraestructura Vial y Movilidad Urbana",
+    "titular": "Israel Soria Villa",
+    "url": "https://sepuimm.bcs.gob.mx/",
+    "fuente": "https://www.bcs.gob.mx/iniciara-sepuimm-pavimentacion-del-bulevar-padre-juan-de-ugarte-en-loreto/",
+    "verificado": "2026-10",
+    "nota": "Citado en boletín oficial de fines de sep-2026. La secretaría (SEPUIMM) la encabeza Carolina Armenta Cervantes; existe además una Unidad de Transporte y Movilidad (directorio sin fecha: Martín Guadalupe Salinas Ceseña, no confirmado)"
+   }
+  },
+  "Baja California": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente y Desarrollo Sustentable (SMADS)",
+    "titular": "Norma Elvia Martínez Santos",
+    "url": "https://www.bajacalifornia.gob.mx/Secretarias/Secretaria_Medio_Ambiente_Desarrollo_Sustentable",
+    "fuente": "https://www.bajacalifornia.gob.mx/Gobierno/Gabinete",
+    "verificado": "2026-10",
+    "nota": "Nombrada 26-ene-2026 (Zeta Tijuana); sustituyó a Mónica Juliana Vega Aguirre, que pasó a la CESPT. Corroborado El Imparcial 5-jun-2026."
+   },
+   "agua": {
+    "dependencia": "Secretaría para el Manejo, Saneamiento y Protección del Agua (SEPROA)",
+    "titular": "Víctor Daniel Amador Barragán",
+    "url": "https://www.bajacalifornia.gob.mx/seproa",
+    "fuente": "https://www.bajacalifornia.gob.mx/Gobierno/Gabinete",
+    "verificado": "2026-10",
+    "nota": "En el cargo desde nov-2023; corroborado El Imparcial 2-mar-2026."
+   },
+   "energia": {
+    "dependencia": "Comisión Estatal de Energía de Baja California (CEE)",
+    "url": "https://energiabc.gob.mx/",
+    "nota": "titular no verificado en fuente 2025-2026"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Medio Ambiente y Desarrollo Sustentable (SMADS)",
+    "url": "https://www.bajacalifornia.gob.mx/Secretarias/Secretaria_Medio_Ambiente_Desarrollo_Sustentable",
+    "nota": "Sin unidad de cambio climático con titular verificable en el sitio oficial; materia a cargo de SMADS"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Economía e Innovación (SEI)",
+    "titular": "Kurt Ignacio Honold Morales",
+    "url": "https://www.bajacalifornia.gob.mx/Secretarias/Secretaria_Economia_Innovacion",
+    "fuente": "https://www.bajacalifornia.gob.mx/Gobierno/Gabinete",
+    "verificado": "2026-10",
+    "nota": "Titular desde nov-2021; sin evidencia de relevo en 2026."
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría de Protección al Ambiente del Estado de Baja California",
+    "nota": "Opera desde 1-ene-2024 (Ley de la Procuraduría de Protección al Ambiente para el Estado de BC). Titular previo sin confirmar: Omar Durán (El Imparcial, ago-2024)."
+   },
+   "movilidad": {
+    "dependencia": "Instituto de Movilidad Sustentable del Estado de Baja California (IMOS)",
+    "titular": "Jorge Alberto Gutiérrez Topete",
+    "url": "http://www.imos.gob.mx/",
+    "fuente": "https://www.elimparcial.com/tij/tijuana/2026/02/23/imos-asegura-servicio-regular-de-transporte-publico-personal-y-de-carga-este-lunes-en-baja-california/",
+    "verificado": "2026-10",
+    "nota": "Solo prensa (El Imparcial, 23-feb-2026) lo cita como director general; no figura en el gabinete oficial."
+   }
+  },
+  "Campeche": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Cambio Climático y Energía (SEMABICCE)",
+    "titular": "Jocelyn Durán Murrieta",
+    "url": "https://www.semabicce.campeche.gob.mx/",
+    "fuente": "https://www.semabicce.campeche.gob.mx/directorio/",
+    "verificado": "2026-10",
+    "nota": "Directorio oficial SEMABICCE; corroborado por Por Esto! 08-sep-2026 (https://www.poresto.com/campeche/2026/9/8/campeche-pierde-13-mil-636-hectareas-de-manglar-entre-2020-y-2025.amp.html)"
+   },
+   "agua": {
+    "dependencia": "Comisión de Agua Potable y Alcantarillado del Estado de Campeche (CAPAE)",
+    "titular": "Álvaro Gutiérrez Castro",
+    "url": "https://capae.gob.mx/",
+    "fuente": "https://www.poresto.com/campeche/2026/1/21/acuaferico-de-campeche-reduciria-uso-de-tanques-de-agua-potable-en-la-capital-capae.html",
+    "verificado": "2026-10",
+    "nota": "Solo prensa (Por Esto! 21-ene-2026); el sitio de CAPAE no muestra el nombre del director"
+   },
+   "energia": {
+    "dependencia": "SEMABICCE · Subsecretaría de Energía Sostenible",
+    "titular": "Jorge Sergio Narro Ríos",
+    "url": "https://www.semabicce.campeche.gob.mx/directorio/",
+    "fuente": "https://www.semabicce.campeche.gob.mx/directorio/",
+    "verificado": "2026-10",
+    "nota": "Directorio oficial SEMABICCE (sin fecha); sin evidencia de relevo"
+   },
+   "cambio_climatico": {
+    "dependencia": "SEMABICCE · Subsecretaría de Medio Ambiente (cambio climático)",
+    "url": "https://www.semabicce.campeche.gob.mx/cambio-climatico/",
+    "nota": "El directorio no lista una dirección de cambio climático con titular propio"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
+    "titular": "Jorge Luis Lavalle Maury",
+    "url": "https://sedeco.campeche.gob.mx/",
+    "fuente": "https://sedeco.campeche.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Sitio oficial SEDECO lo muestra como secretario; indicadores publicados hasta ago-2026"
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría de Protección al Ambiente del Estado de Campeche (PPA), sectorizada en SEMABICCE",
+    "titular": "Magaly Miss Ortega",
+    "url": "https://www.semabicce.campeche.gob.mx/directorio/",
+    "fuente": "https://www.semabicce.campeche.gob.mx/directorio/",
+    "verificado": "2026-10",
+    "nota": "Solo directorio oficial SEMABICCE (sin fecha); sin corroboración en prensa"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Desarrollo Urbano, Movilidad y Obras Públicas (SEDUMOP)",
+    "url": "https://campeche.gob.mx/gobierno/",
+    "nota": "Titular no confirmado: prensa oct-2025 mencionaba a Bernhard Rehn como encargado del despacho; sin fuente 2026"
+   }
+  },
+  "Chiapas": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente e Historia Natural (SEMAHN)",
+    "titular": "Obdulia Magdalena Torres Abarca",
+    "url": "https://www.semahn.chiapas.gob.mx/portal/",
+    "fuente": "https://chiapas.gob.mx/funcionarios/estatal/ejecutivo/secretaria-medio-ambiente",
+    "verificado": "2026-10",
+    "nota": "Directorio oficial de funcionarios actualizado al 09-jul-2026; sin evidencia de relevo posterior. Titular previo (Bonifaz Alfonzo) ya no figura."
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal del Agua y Saneamiento de Chiapas (CEAS)",
+    "titular": "Karina Montesinos Cárdenas",
+    "url": "https://www.ceas.chiapas.gob.mx/",
+    "fuente": "https://chiapas.gob.mx/funcionarios/estatal/ejecutivo/comision-estatal-agua",
+    "verificado": "2026-10",
+    "nota": "Directora General. CEAS sustituyó al Instituto Estatal del Agua; organismo descentralizado sectorizado a la Secretaría de Infraestructura."
+   },
+   "energia": {
+    "dependencia": "SEMAHN · Dirección de Protección Ambiental y Desarrollo de Energías",
+    "titular": "Domingo Ismael Ramos Meza",
+    "url": "https://www.semahn.chiapas.gob.mx/portal/",
+    "fuente": "https://chiapas.gob.mx/funcionarios/estatal/ejecutivo/secretaria-medio-ambiente",
+    "verificado": "2026-10",
+    "nota": "No existe secretaría estatal de energía; es una dirección dentro de SEMAHN (nombre exacto de la dirección a confirmar contra el directorio)."
+   },
+   "cambio_climatico": {
+    "dependencia": "SEMAHN · Dirección de Cambio Climático y Economía Ambiental (Subsecretaría de Medio Ambiente, Cambio Climático y Microcuencas)",
+    "titular": "Eva Margarita Melgar Paniagua",
+    "url": "https://www.semahn.chiapas.gob.mx/portal/",
+    "fuente": "https://chiapas.gob.mx/funcionarios/estatal/ejecutivo/secretaria-medio-ambiente",
+    "verificado": "2026-10",
+    "nota": "Subsecretario de Medio Ambiente, Cambio Climático y Microcuencas: Jorge Constantino Kanter (mismo directorio)."
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría Ambiental del Estado de Chiapas (PAECH)",
+    "titular": "Héctor Jesús Zuart Córdova",
+    "url": "https://paech.chiapas.gob.mx/",
+    "fuente": "https://chiapas.gob.mx/funcionarios/estatal/ejecutivo/procuraduria-ambiental",
+    "verificado": "2026-10",
+    "nota": "Cargo: Director General. Corroborado en Manual de Organización PAECH 2025."
+   },
+   "economia": {
+    "dependencia": "Secretaría de Economía y del Trabajo (SEyT)",
+    "titular": "Luis Pedrero González",
+    "url": "https://economiaytrabajo.chiapas.gob.mx/",
+    "fuente": "https://chiapas.gob.mx/funcionarios/estatal/ejecutivo/secretaria-economia",
+    "verificado": "2026-10",
+    "nota": "Ratificado en el gabinete de Ramírez Aguilar; prensa 2026 lo cita como secretario."
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Movilidad y Transporte (SMyT)",
+    "titular": "Albania González Pólito",
+    "url": "https://smyt.chiapas.gob.mx/",
+    "fuente": "https://chiapas.gob.mx/funcionarios/estatal/ejecutivo/secretaria-transportes",
+    "verificado": "2026-10",
+    "nota": "Corroborado en prensa (evento de electromovilidad 29-jun-2026, elcongresista.mx)."
+   }
+  },
+  "Chihuahua": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Desarrollo Urbano y Ecología (SEDUE)",
+    "titular": "Gabriel Martín Valdez Juárez",
+    "url": "https://chihuahua.gob.mx/sedue",
+    "fuente": "https://chihuahua.gob.mx/sedue",
+    "verificado": "2026-10",
+    "nota": "Sitio oficial vigente lo muestra como titular; corroborado como secretario en boletín estatal de mayo 2026 (Consejo Consultivo de Ordenamiento Territorial Metropolitano). Política ambiental a cargo de la Dirección de Ecología de SEDUE."
+   },
+   "agua": {
+    "dependencia": "Junta Central de Agua y Saneamiento (JCAS)",
+    "titular": "Mario Mata Carrasco",
+    "url": "https://www.jcas.gob.mx/",
+    "fuente": "https://www.jcas.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Cargo: director ejecutivo. Sitio oficial con noticias de sep-2026 lo identifica como director ejecutivo."
+   },
+   "energia": {
+    "dependencia": "Agencia Estatal de Desarrollo Energético (AEDE)",
+    "titular": "Luis Carlos Hernández Ayala",
+    "url": "https://www.chihuahua.gob.mx",
+    "fuente": "https://chihuahua.gob.mx/sites/default/atach2/noticias/adjuntos/2025-11/06-11-2025-------MENSAJE%20DE%20LA%20GOBERNADORA%20MARU%20CAMPOS%20DURANTE%20LA%20INAUGURACI%C3%93N%20DEL%20FORO-EXPO%20INTERNACIONAL%20DE%20ENERGIA%20CHIHUAHUA%202025%2C%20CELEBRADA%20EN%20LAS%20INSTALACIONES%20DEL%20SAL%C3%93N%20LAGO%20DI%20COMO.pdf",
+    "verificado": "2026-10",
+    "nota": "Cargo: director general. Última evidencia: mensaje de la Gobernadora del 6-nov-2025; sin evidencia de relevo en 2026, pero tampoco confirmación de 2026. Organismo creado en 2022; sin página propia localizada."
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Desarrollo Urbano y Ecología (SEDUE) · Dirección de Ecología",
+    "url": "https://www.chihuahua.gob.mx/sedue",
+    "nota": "La agenda de cambio climático (actualización de la Ley de Cambio Climático) la lleva la Dirección de Ecología de SEDUE; titular de la unidad no verificado."
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Desarrollo Urbano y Ecología (SEDUE) · Dirección de Ecología",
+    "url": "https://www.chihuahua.gob.mx/sedue",
+    "nota": "Monitoreo de calidad del aire a cargo de la Dirección de Ecología de SEDUE; titular de la unidad no verificado."
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Desarrollo Urbano y Ecología (SEDUE) · Dirección de Ecología",
+    "url": "https://www.chihuahua.gob.mx/sedue",
+    "nota": "Residuos: programa Chihuahua Recicla 2026 en SEDUE; no se identificó unidad específica de economía circular ni su titular."
+   },
+   "economia": {
+    "dependencia": "Secretaría de Innovación y Desarrollo Económico (SIDE)",
+    "titular": "Ulises Alejandro Fernández Gamboa",
+    "url": "https://chihuahua.gob.mx/tax-portal-principal/secretaria-de-innovacion-y-desarrollo-economico",
+    "fuente": "https://www.tiempo.com.mx/local/imco-reconoce-a-chihuahua-por-20-anos-de-competitividad-y-como-lider-exportador/",
+    "verificado": "2026-10",
+    "nota": "Nota de prensa del 23-sep-2026 (El Heraldo/Tiempo) lo cita como secretario de SIDE; también en mensaje oficial de la Gobernadora nov-2025."
+   },
+   "movilidad": {
+    "dependencia": "Secretaría General de Gobierno (SGG) · área de transporte (Bowí / JuárezBus)",
+    "url": "https://www.chihuahua.gob.mx",
+    "nota": "Por Ley de Transporte del Estado, la rectoría del transporte público es de la SGG (secretario Santiago De la Peña Grajeda, no verificado en fuente oficial abierta); la planeación de movilidad urbana aparece en SEDUE (https://chihuahua.gob.mx/sedue/movilidad). Titular del área de transporte no verificado."
+   }
+  },
+  "Ciudad de México": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría del Medio Ambiente (SEDEMA)",
+    "titular": "Julia Álvarez Icaza Ramírez",
+    "url": "https://www.sedema.cdmx.gob.mx/",
+    "fuente": "https://www.sedema.cdmx.gob.mx/secretaria/directorio",
+    "verificado": "2026-10",
+    "nota": "Corroborado: La Razón 22-jul-2026 (reconocimiento post-Mundial)"
+   },
+   "agua": {
+    "dependencia": "Secretaría de Gestión Integral del Agua (SEGIAGUA)",
+    "titular": "José Mario Esparza Hernández",
+    "url": "https://www.segiagua.cdmx.gob.mx/",
+    "fuente": "https://www.segiagua.cdmx.gob.mx/dependencia/directorio",
+    "verificado": "2026-10",
+    "nota": "Sustituyó al Sistema de Aguas de la Ciudad de México (SACMEX) por reforma aprobada por el Congreso CDMX en 2025; corroborado La Razón 22-jul-2026"
+   },
+   "energia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO) · Dirección General de Desarrollo y Sustentabilidad Energética",
+    "titular": "Carlos Osorio Torres",
+    "url": "https://www.sedeco.cdmx.gob.mx/",
+    "fuente": "https://www.sedeco.cdmx.gob.mx/secretaria/directorio",
+    "verificado": "2026-10",
+    "nota": "Titular de la Dirección General (no de la Secretaría), según directorio oficial de SEDECO"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría del Medio Ambiente (SEDEMA)",
+    "url": "https://www.sedema.cdmx.gob.mx/",
+    "nota": "SEDEMA coordina el Programa de Acción Climática (PACCM); el directorio oficial no muestra una Dirección General de Cambio Climático separada"
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría del Medio Ambiente (SEDEMA) · Dirección General de Calidad del Aire (DGCA)",
+    "titular": "Gabriel Pérez Zaguilan",
+    "url": "https://www.sedema.cdmx.gob.mx/",
+    "fuente": "https://www.sedema.cdmx.gob.mx/secretaria/directorio",
+    "verificado": "2026-10",
+    "nota": "Directorio oficial vigente sin fecha visible; sin nota de nombramiento corroborada en prensa"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
+    "titular": "Manola Zabalza Aldama",
+    "url": "https://www.sedeco.cdmx.gob.mx/",
+    "fuente": "https://www.sedeco.cdmx.gob.mx/secretaria/directorio",
+    "verificado": "2026-10",
+    "nota": "En el cargo desde 5-oct-2024; presentó balance económico del Mundial en jul-2026"
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría del Medio Ambiente (SEDEMA)",
+    "url": "https://www.sedema.cdmx.gob.mx/",
+    "nota": "El directorio oficial de SEDEMA no lista una Dirección General de Economía Circular; el tema lo lleva la DG de Coordinación de Políticas y Cultura Ambiental (titular en directorio: Alejandra Atzin Ramírez Hernández), sin confirmar que sea la unidad responsable"
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría Ambiental y del Ordenamiento Territorial de la Ciudad de México (PAOT)",
+    "titular": "Mónica Viétnica Alegre González",
+    "url": "https://paot.org.mx/",
+    "fuente": "https://paot.org.mx/conocenos/directorio.php",
+    "verificado": "2026-10",
+    "nota": "Designada por el Congreso CDMX el 9-oct-2025 para el periodo 2025-2029 (Publimetro)"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Movilidad (SEMOVI)",
+    "titular": "Héctor Ulises García Nieto",
+    "url": "https://www.semovi.cdmx.gob.mx/",
+    "fuente": "https://www.semovi.cdmx.gob.mx/secretaria/directorio",
+    "verificado": "2026-10",
+    "nota": "Corroborado: La Razón 22-jul-2026; colectivos pidieron su renuncia en abr-2026, sin evidencia de relevo"
+   }
+  },
+  "Coahuila": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente (SMA)",
+    "titular": "Diana Susana Estens de la Garza",
+    "url": "https://sma.gob.mx/",
+    "fuente": "https://sma.gob.mx/wp-content/uploads/2026/06/IIIDIRECTORIO-JUNIO.pdf",
+    "verificado": "2026-10",
+    "nota": "Directorio oficial SMA junio 2026; corroborado en nota del 23-sep-2026 (aquilaguna.com). Titular previo en datos (Eglantina Canales Gutiérrez) era de la administración anterior."
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría de Protección al Ambiente del Estado de Coahuila (PROPAEC)",
+    "titular": "Claudia Elvira Rodríguez Márquez",
+    "url": "https://sma.gob.mx/",
+    "fuente": "https://sma.gob.mx/wp-content/uploads/2026/06/IIIDIRECTORIO-JUNIO.pdf",
+    "verificado": "2026-10",
+    "nota": "Órgano desconcentrado de la SMA; cargo 'Procuradora de Protección al Ambiente' según directorio oficial SMA junio 2026."
+   },
+   "economia_circular": {
+    "dependencia": "SMA · Subsecretaría de Gestión Ambiental · Coordinación de Gestión Integral de Residuos",
+    "titular": "Francisco Javier Encina Domínguez",
+    "url": "https://sma.gob.mx/",
+    "fuente": "https://sma.gob.mx/wp-content/uploads/2026/06/IIIDIRECTORIO-JUNIO.pdf",
+    "verificado": "2026-10",
+    "nota": "Cargo 'Coordinador de gestión integral de residuos' en directorio oficial SMA junio 2026. Subsecretario de Gestión Ambiental: Santiago Barrios Rosillo (misma fuente)."
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Medio Ambiente (SMA)",
+    "url": "https://sma.gob.mx/",
+    "nota": "El directorio SMA junio 2026 no muestra una unidad específica de cambio climático; el tema lo atiende la SMA (inventario de emisiones/GEI)."
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Medio Ambiente (SMA)",
+    "url": "https://sma.gob.mx/",
+    "nota": "Monitoreo atmosférico e inventario de emisiones a cargo de la SMA (posta.com.mx, 4-dic-2025); sin dirección de calidad del aire identificada en el directorio junio 2026."
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal de Aguas y Saneamiento de Coahuila (CEAS)",
+    "titular": "José Lauro Villarreal Navarro",
+    "url": "https://ceascoahuila.gob.mx/",
+    "fuente": "https://ceascoahuila.gob.mx/directorio/",
+    "verificado": "2026-10",
+    "nota": "Director General según directorio oficial CEAS consultado oct-2026 (página sin fecha visible); sin evidencia de reemplazo encontrada."
+   },
+   "economia": {
+    "dependencia": "Secretaría de Economía de Coahuila (SEC)",
+    "titular": "Luis Eduardo Olivares Martínez",
+    "url": "https://www.seccoahuila.gob.mx/",
+    "fuente": "https://blobcore.periodicolavoz.com.mx/docs/2026/08/28/1_sabinas_1787978879222.pdf",
+    "verificado": "2026-10",
+    "nota": "Corroborado en prensa: La Voz de Coahuila 29-ago-2026 ('Luis Olivares, secretario de Economía'). También encabeza ProCoahuila. Ajustes de gabinete ago-2026 (Hugo Dávila, Jorge Piñones) no lo afectan."
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Infraestructura, Desarrollo Urbano y Movilidad (SIDUM)",
+    "titular": "Miguel Ángel Algara Acosta",
+    "url": "https://coahuila.gob.mx/",
+    "fuente": "https://blobcore.periodicolavoz.com.mx/docs/2026/07/09/1_saltillo_1783606355495.pdf",
+    "verificado": "2026-10",
+    "nota": "Corroborado en prensa: La Voz de Coahuila 9-jul-2026 ('secretario de Infraestructura, Miguel Ángel Algara Acosta'); no se abrió directorio oficial."
+   }
+  },
+  "Colima": {
+   "medio_ambiente": {
+    "dependencia": "Instituto para el Medio Ambiente y Desarrollo Sustentable del Estado de Colima (IMADES)",
+    "titular": "Angélica Lizeth Jiménez Hernández",
+    "url": "https://www.col.gob.mx/imades/",
+    "fuente": "https://directoriointegral.col.gob.mx/v3/index.php/Portal/BusquedaDependencia",
+    "verificado": "2026-10",
+    "nota": "Directora General; Directorio Integral del Gobierno de Colima (búsqueda por dependencia)"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal del Agua de Colima (CEAC)",
+    "titular": "Lizette del Carmen Cardona Rodríguez",
+    "url": "https://www.col.gob.mx/ceacolima",
+    "fuente": "https://directoriointegral.col.gob.mx/v3/index.php/Portal/BusquedaDependencia",
+    "verificado": "2026-10",
+    "nota": "Encargada del despacho de la Dirección General (no es titular nombrada)"
+   },
+   "cambio_climatico": {
+    "dependencia": "Instituto para el Medio Ambiente y Desarrollo Sustentable del Estado de Colima (IMADES)",
+    "url": "https://www.col.gob.mx/imades/",
+    "nota": "Sin unidad específica de cambio climático en el directorio de IMADES; titular de IMADES: Angélica Lizeth Jiménez Hernández"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
+    "titular": "Francisco Javier Rodríguez García",
+    "url": "https://www.col.gob.mx/economico",
+    "fuente": "https://directoriointegral.col.gob.mx/v3/index.php/Portal/BusquedaDependencia",
+    "verificado": "2026-10"
+   },
+   "economia_circular": {
+    "dependencia": "IMADES · Departamento de Residuos y Estrategia de Economía Circular",
+    "titular": "Carlos Abraham Abarca Venegas",
+    "url": "https://www.col.gob.mx/imades/",
+    "fuente": "https://directoriointegral.col.gob.mx/v3/index.php/Portal/BusquedaDependencia",
+    "verificado": "2026-10",
+    "nota": "Jefe de departamento (nivel jefatura, dentro de la Dirección de Gestión Ambiental)"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Infraestructura, Desarrollo Urbano y Movilidad (SEIDUM)",
+    "titular": "Marisol Neri León",
+    "url": "https://www.col.gob.mx/movilidad",
+    "fuente": "https://directoriointegral.col.gob.mx/v3/index.php/Portal/BusquedaDependencia",
+    "verificado": "2026-10",
+    "nota": "Subsecretaria de Movilidad: Blanca Ciria Ballesteros Uribe"
+   }
+  },
+  "Durango": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Recursos Naturales y Medio Ambiente (SRNyMA)",
+    "titular": "Claudia Ernestina Hernández Espino",
+    "url": "https://medioambiente.durango.gob.mx/",
+    "fuente": "https://medioambiente.durango.gob.mx/titular",
+    "verificado": "2026-10"
+   },
+   "agua": {
+    "dependencia": "Comisión del Agua del Estado de Durango (CAED)",
+    "titular": "Yadira Graciela Nerváez Salas",
+    "url": "https://caed.durango.gob.mx/",
+    "fuente": "https://www.durango.gob.mx/gabinete",
+    "verificado": "2026-10",
+    "nota": "Apellido tal como aparece en el gabinete oficial ('Nerváez'); confirmar ortografía"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Recursos Naturales y Medio Ambiente (SRNyMA) · Subsecretaría de Medio Ambiente",
+    "url": "https://medioambiente.durango.gob.mx/",
+    "fuente": "https://transparencia.durango.gob.mx/srnma/organigrama",
+    "nota": "Sin unidad específica de cambio climático en el organigrama; Subsecretario de Medio Ambiente: Felipe Norberto Coria Quiñones"
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Recursos Naturales y Medio Ambiente (SRNyMA) · Subsecretaría de Medio Ambiente",
+    "url": "http://calidadaire.durango.gob.mx/",
+    "fuente": "https://transparencia.durango.gob.mx/srnma/organigrama",
+    "nota": "Sin dirección específica de calidad del aire en el organigrama; Subsecretario de Medio Ambiente: Felipe Norberto Coria Quiñones; Director de Medio Ambiente: Pedro Alfonso Pasillas Martos"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
+    "titular": "Fernando Miguel Rosas Palafox",
+    "url": "https://sedeco.durango.gob.mx/",
+    "fuente": "https://sedeco.durango.gob.mx/titular",
+    "verificado": "2026-10"
+   },
+   "movilidad": {
+    "dependencia": "Subsecretaría de Movilidad y Transportes (Secretaría de Comunicaciones y Obras Públicas)",
+    "titular": "Rafael Valentín Aragón",
+    "url": "https://transportes.durango.gob.mx/",
+    "fuente": "https://transportes.durango.gob.mx/titular",
+    "verificado": "2026-10",
+    "nota": "Subsecretario; la SECOPE la encabeza Ana Rosa Hernández Rentería"
+   }
+  },
+  "Estado de México": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría del Medio Ambiente y Desarrollo Sostenible (SMADS)",
+    "titular": "Alhely Rubio Arronis",
+    "url": "https://sma.edomex.gob.mx/",
+    "fuente": "https://sma.edomex.gob.mx/titular",
+    "verificado": "2026-10"
+   },
+   "agua": {
+    "dependencia": "Secretaría del Agua del Estado de México",
+    "titular": "José Arnulfo Silva Adaya",
+    "url": "https://agua.edomex.gob.mx/",
+    "fuente": "https://edomex.gob.mx/gabinete",
+    "verificado": "2026-10"
+   },
+   "energia": {
+    "dependencia": "Instituto Estatal de Energía y Cambio Climático (IEECC)",
+    "titular": "Edgar Daniel Hernández César",
+    "url": "https://ieecc.edomex.gob.mx/",
+    "fuente": "https://ieecc.edomex.gob.mx/titular",
+    "verificado": "2026-10"
+   },
+   "cambio_climatico": {
+    "dependencia": "Instituto Estatal de Energía y Cambio Climático (IEECC)",
+    "titular": "Edgar Daniel Hernández César",
+    "url": "https://ieecc.edomex.gob.mx/",
+    "fuente": "https://ieecc.edomex.gob.mx/titular",
+    "verificado": "2026-10"
+   },
+   "calidad_aire": {
+    "dependencia": "SMADS · Dirección General de Prevención y Control de la Contaminación Atmosférica",
+    "url": "https://sma.edomex.gob.mx/",
+    "nota": "El directorio de SMADS está vacío en el portal; titular no verificado"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
+    "titular": "Laura González Hernández",
+    "url": "https://desarrolloeconomico.edomex.gob.mx/",
+    "fuente": "https://edomex.gob.mx/gabinete",
+    "verificado": "2026-10",
+    "nota": "El gabinete oficial la lista como 'Laura González Hernández' (antes registrada como Laura Teresa González Hernández)"
+   },
+   "economia_circular": {
+    "dependencia": "SMADS · Dirección General de Manejo Integral de Residuos",
+    "url": "https://sma.edomex.gob.mx/",
+    "nota": "Titular no verificado"
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría de Protección al Ambiente del Estado de México (PROPAEM)",
+    "titular": "Emmanuel Ruiz Albarrán",
+    "url": "https://propaem.edomex.gob.mx/",
+    "fuente": "https://propaem.edomex.gob.mx/titular",
+    "verificado": "2026-10"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Movilidad del Estado de México (SEMOV)",
+    "titular": "Juan Hugo de la Rosa García",
+    "url": "https://semov.edomex.gob.mx/",
+    "fuente": "https://edomex.gob.mx/gabinete",
+    "verificado": "2026-10"
+   }
+  },
+  "Guanajuato": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría del Agua y Medio Ambiente (SAMA)",
+    "titular": "José Lara Lona",
+    "url": "https://smaot.guanajuato.gob.mx/sitio/",
+    "fuente": "https://guanajuato.gob.mx/gabinete.html",
+    "verificado": "2026-10"
+   },
+   "agua": {
+    "dependencia": "Secretaría del Agua y Medio Ambiente (SAMA)",
+    "titular": "José Lara Lona",
+    "url": "https://smaot.guanajuato.gob.mx/sitio/",
+    "fuente": "https://transparencia.guanajuato.gob.mx/transparencia/informacion_publica_directorio.php",
+    "verificado": "2026-10",
+    "nota": "Subsecretario de Gestión Hídrica: Javier René Pérez Zárate; Subsecretario de Vinculación Hídrica: Héctor Javier Morales Ramírez"
+   },
+   "energia": {
+    "dependencia": "SAMA · Dirección General de Cambio Climático y Sustentabilidad Energética",
+    "titular": "Sergio Domínguez Solórzano",
+    "url": "https://smaot.guanajuato.gob.mx/sitio/",
+    "fuente": "https://transparencia.guanajuato.gob.mx/transparencia/informacion_publica_directorio.php",
+    "verificado": "2026-10"
+   },
+   "cambio_climatico": {
+    "dependencia": "SAMA · Dirección General de Cambio Climático y Sustentabilidad Energética",
+    "titular": "Sergio Domínguez Solórzano",
+    "url": "https://smaot.guanajuato.gob.mx/sitio/",
+    "fuente": "https://transparencia.guanajuato.gob.mx/transparencia/informacion_publica_directorio.php",
+    "verificado": "2026-10",
+    "nota": "Subsecretario de Gestión Ambiental: Christopher González Navarro"
+   },
+   "calidad_aire": {
+    "dependencia": "SAMA · Dirección General de Calidad del Aire",
+    "titular": "Juan Guillermo de Jesús López Azpeitia",
+    "url": "https://smaot.guanajuato.gob.mx/sitio/",
+    "fuente": "https://transparencia.guanajuato.gob.mx/transparencia/informacion_publica_directorio.php",
+    "verificado": "2026-10"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Economía",
+    "titular": "Claudia Cristina Villaseñor Aguilar",
+    "url": "https://sde.guanajuato.gob.mx/sdes/",
+    "fuente": "https://guanajuato.gob.mx/gabinete.html",
+    "verificado": "2026-10"
+   },
+   "economia_circular": {
+    "dependencia": "SAMA · Coordinación de Manejo Integral de Residuos",
+    "titular": "Judith Daniela Guzmán Mora",
+    "url": "https://smaot.guanajuato.gob.mx/sitio/",
+    "fuente": "https://transparencia.guanajuato.gob.mx/transparencia/informacion_publica_directorio.php",
+    "verificado": "2026-10",
+    "nota": "Coordinadora; existe además la Jefatura del Departamento de Economía Circular: Martha Yadira Morales Rodríguez"
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría Ambiental y de Ordenamiento Territorial (PAOT)",
+    "titular": "Karina Padilla Ávila",
+    "url": "https://paot.guanajuato.gob.mx",
+    "fuente": "https://guanajuato.gob.mx/gabinete.html",
+    "verificado": "2026-10",
+    "nota": "URL de la PAOT no verificada"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Obra Pública · Subsecretaría de Conectividad y Movilidad",
+    "titular": "Francisco José de Anda Orellana",
+    "url": "https://sicom.guanajuato.gob.mx",
+    "fuente": "https://transparencia.guanajuato.gob.mx/transparencia/informacion_publica_directorio.php",
+    "verificado": "2026-10",
+    "nota": "La antes SICOM aparece ahora como Secretaría de Obra Pública (titular: Juan Pablo Pérez Beltrán); Directora de Movilidad: Martha Carina Gutiérrez Méndez"
+   }
+  },
+  "Guerrero": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente y Recursos Naturales (SEMAREN)",
+    "titular": "Ángel Almazán Juárez",
+    "url": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-medio-ambiente-y-recursos-naturales/",
+    "fuente": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-medio-ambiente-y-recursos-naturales/",
+    "verificado": "2026-10"
+   },
+   "agua": {
+    "dependencia": "Comisión de Agua Potable, Alcantarillado y Saneamiento del Estado de Guerrero (CAPASEG)",
+    "titular": "Facundo Gastélum Félix",
+    "url": "https://www.guerrero.gob.mx/dependencia/sector-paraestatal/comision-de-agua-potable-alcantarillado-y-saneamiento-del-estado-de-guerrero/",
+    "fuente": "https://www.guerrero.gob.mx/dependencia/sector-paraestatal/comision-de-agua-potable-alcantarillado-y-saneamiento-del-estado-de-guerrero/",
+    "verificado": "2026-10"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Medio Ambiente y Recursos Naturales (SEMAREN)",
+    "url": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-medio-ambiente-y-recursos-naturales/",
+    "nota": "Sin unidad específica de cambio climático en el directorio de SEMAREN; titular de SEMAREN: Ángel Almazán Juárez"
+   },
+   "calidad_aire": {
+    "dependencia": "SEMAREN · Dirección de Emisiones a la Atmósfera",
+    "titular": "José Luis Núñez Mayares",
+    "url": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-medio-ambiente-y-recursos-naturales/",
+    "fuente": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-medio-ambiente-y-recursos-naturales/",
+    "verificado": "2026-10"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Fomento y Desarrollo Económico (SEFODECO)",
+    "titular": "Teodora Ramírez Vega",
+    "url": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-fomento-y-desarrollo-economico/",
+    "fuente": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-fomento-y-desarrollo-economico/",
+    "verificado": "2026-10"
+   },
+   "economia_circular": {
+    "dependencia": "SEMAREN · Dirección de Residuos",
+    "titular": "Moisés Castro Casarrubias",
+    "url": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-medio-ambiente-y-recursos-naturales/",
+    "fuente": "https://www.guerrero.gob.mx/dependencia/sector-central/secretaria-de-medio-ambiente-y-recursos-naturales/",
+    "verificado": "2026-10"
+   },
+   "movilidad": {
+    "dependencia": "Comisión Técnica de Transporte y Vialidad (CTTV)",
+    "titular": "Arturo Salinas Sandoval",
+    "url": "https://www.guerrero.gob.mx/dependencia/sector-paraestatal/comision-tecnica-de-transporte-y-vialidad/",
+    "fuente": "https://www.guerrero.gob.mx/dependencia/sector-paraestatal/comision-tecnica-de-transporte-y-vialidad/",
+    "verificado": "2026-10"
+   }
+  },
+  "Hidalgo": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente y Recursos Naturales de Hidalgo (SEMARNATH)",
+    "titular": "Mónica Patricia Mixtega Trejo",
+    "url": "https://s-medioambiente.hidalgo.gob.mx/",
+    "fuente": "https://s-medioambiente.hidalgo.gob.mx/Transparencia/xlsx/a69_f07SEMARNATH.xlsx",
+    "verificado": "2026-10",
+    "nota": "Directorio de transparencia (art. 69 fr. VII), periodo abr-jun 2026"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal de Agua y Alcantarillado (CEAA)",
+    "url": "https://ceaa.hidalgo.gob.mx",
+    "nota": "titular previo sin confirmar: Juan Carlos Chávez González (el directorio de transparencia publicado por CEAA es de 2023)"
+   },
+   "cambio_climatico": {
+    "dependencia": "SEMARNATH · Dirección General de Cambio Climático",
+    "titular": "Ana María Martínez Ramos",
+    "url": "https://s-medioambiente.hidalgo.gob.mx/",
+    "fuente": "https://s-medioambiente.hidalgo.gob.mx/Transparencia/xlsx/a69_f07SEMARNATH.xlsx",
+    "verificado": "2026-10",
+    "nota": "Subsecretario de Sustentabilidad y Cambio Climático: Enrique Rojo García"
+   },
+   "calidad_aire": {
+    "dependencia": "SEMARNATH · Dirección General de Gestión de Calidad del Aire",
+    "titular": "Francisco de Jesús Zaragoza Tapia",
+    "url": "https://s-medioambiente.hidalgo.gob.mx/",
+    "fuente": "https://s-medioambiente.hidalgo.gob.mx/Transparencia/xlsx/a69_f07SEMARNATH.xlsx",
+    "verificado": "2026-10"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
+    "titular": "Carlos Henkel Escorza",
+    "url": "https://sedeco.hidalgo.gob.mx/",
+    "fuente": "https://gobierno.hidalgo.gob.mx/Gabinete",
+    "verificado": "2026-10"
+   },
+   "economia_circular": {
+    "dependencia": "SEMARNATH · Dirección de Manejo Integral de Residuos",
+    "titular": "Elga Martínez Hernández",
+    "url": "https://s-medioambiente.hidalgo.gob.mx/",
+    "fuente": "https://s-medioambiente.hidalgo.gob.mx/Transparencia/xlsx/a69_f07SEMARNATH.xlsx",
+    "verificado": "2026-10"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Movilidad y Transporte (SEMOT)",
+    "titular": "Lyzbeth Robles Gutiérrez",
+    "url": "https://semot.hidalgo.gob.mx",
+    "fuente": "https://gobierno.hidalgo.gob.mx/Gabinete",
+    "verificado": "2026-10"
+   }
+  },
+  "Jalisco": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente y Desarrollo Territorial (SEMADET)",
+    "titular": "Paola Bauche Petersen",
+    "url": "https://semadet.jalisco.gob.mx/",
+    "fuente": "https://semadet.jalisco.gob.mx/api/rest/v1/pages/3606/",
+    "verificado": "2026-10"
+   },
+   "agua": {
+    "dependencia": "Secretaría de Gestión Integral del Agua (SGIA)",
+    "titular": "Ernesto Marroquín Álvarez",
+    "url": "https://agua.jalisco.gob.mx/",
+    "fuente": "https://agua.jalisco.gob.mx/api/rest/v1/pages/1458/",
+    "verificado": "2026-10",
+    "nota": "Cabeza de sector del agua desde dic-2024; la CEA Jalisco (ceajalisco.gob.mx) sigue como organismo sectorizado, titular no verificado"
+   },
+   "energia": {
+    "dependencia": "Secretaría de Desarrollo Energético Sustentable (SEDES)",
+    "titular": "Manuel Jesús Herrera Vega",
+    "url": "https://sedes.jalisco.gob.mx/",
+    "fuente": "https://sedes.jalisco.gob.mx/api/rest/v1/pages/11/",
+    "verificado": "2026-10",
+    "nota": "Sustituye a la Agencia de Energía del Estado de Jalisco (AEEJ)"
+   },
+   "cambio_climatico": {
+    "dependencia": "SEMADET · Dirección de Gestión Transversal ante el Cambio Climático",
+    "titular": "Gemma Isabel Pérez Rojas",
+    "url": "https://semadet.jalisco.gob.mx/",
+    "fuente": "https://semadet.jalisco.gob.mx/api/rest/v1/pages/3680/",
+    "verificado": "2026-10",
+    "nota": "Adscrita a la Dirección General de Transversalidad y Gobernanza Territorial (Omar Saucedo Mora)"
+   },
+   "calidad_aire": {
+    "dependencia": "SEMADET · Dirección General de Calidad del Aire",
+    "titular": "Karen de la Cabada Ruíz",
+    "url": "https://semadet.jalisco.gob.mx/",
+    "fuente": "https://semadet.jalisco.gob.mx/api/rest/v1/pages/3755/",
+    "verificado": "2026-10"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
+    "titular": "Cindy Blanco Ochoa",
+    "url": "https://sedeco.jalisco.gob.mx/",
+    "fuente": "https://sedeco.jalisco.gob.mx/api/rest/v1/pages/?type=organization.OrganigramaPersonasPage&fields=*&search=Titular",
+    "verificado": "2026-10"
+   },
+   "economia_circular": {
+    "dependencia": "SEMADET · Dirección de Gestión Integral de Residuos",
+    "titular": "Kevin Fraga Moreno",
+    "url": "https://semadet.jalisco.gob.mx/",
+    "fuente": "https://semadet.jalisco.gob.mx/api/rest/v1/pages/3633/",
+    "verificado": "2026-10"
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría Estatal de Protección al Ambiente (PROEPA)",
+    "titular": "Iker Frangie Martínez Gallardo",
+    "url": "https://semadet.jalisco.gob.mx/",
+    "fuente": "https://semadet.jalisco.gob.mx/api/rest/v1/pages/3615/",
+    "verificado": "2026-10",
+    "nota": "Publicado en el organigrama oficial de SEMADET; URL propia de PROEPA no verificada"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Transporte (SETRAN)",
+    "titular": "Diego Monraz Villaseñor",
+    "url": "https://setran.jalisco.gob.mx",
+    "fuente": "https://setran.jalisco.gob.mx/api/rest/v1/pages/3241/",
+    "verificado": "2026-10"
+   }
+  },
+  "Michoacán": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría del Medio Ambiente (SECMA)",
+    "titular": "Alejandro Méndez López",
+    "url": "https://medioambiente.michoacan.gob.mx/",
+    "fuente": "https://michoacan.gob.mx/noticias/inicia-bedolla-reforestacion-de-32-mil-arboles-por-obra-del-morebus-plantan-los-primeros-5-mil-en-villas-del-pedregal/",
+    "verificado": "2026-10",
+    "nota": "Boletín oficial del Gobierno de Michoacán, 23-ago-2026"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal del Agua y Gestión de Cuencas (CEAC)",
+    "titular": "Olivia Cazárez Arreola",
+    "url": "https://ceac.michoacan.gob.mx",
+    "fuente": "https://ceac.michoacan.gob.mx/titular-de-la-ceac/",
+    "verificado": "2026-10",
+    "nota": "Coordinadora/Directora General; corroborado en boletín oficial 14-jul-2026"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría del Medio Ambiente (SECMA)",
+    "url": "https://medioambiente.michoacan.gob.mx/",
+    "nota": "Unidad específica y titular no verificados (el sitio no publica directorio legible)"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
+    "titular": "Claudio Méndez Fernández",
+    "url": "https://sedeco.michoacan.gob.mx/",
+    "fuente": "https://michoacan.gob.mx/noticias/encabeza-bedolla-el-25-aniversario-del-dia-del-artesano-michoacano-entrega-65-galardones/",
+    "verificado": "2026-10",
+    "nota": "Boletín oficial 20-sep-2026"
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría de Protección al Ambiente del Estado de Michoacán (PROAM)",
+    "titular": "Rosendo Caro Gómez",
+    "url": "https://proam.michoacan.gob.mx/",
+    "fuente": "https://michoacan.gob.mx/noticias/inaugura-bedolla-centro-de-residuos-en-ario-fuente-ingresos-para-municipio-y-recolectores/",
+    "verificado": "2026-10",
+    "nota": "Boletín oficial 24-abr-2026 (dato más reciente encontrado)"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Desarrollo Urbano y Movilidad (SEDUM)",
+    "titular": "María Elena Huerta Moctezuma",
+    "url": "https://sedum.michoacan.gob.mx",
+    "fuente": "https://michoacan.gob.mx/noticias/morebus-no-retirara-613-arboles-durante-su-proceso-de-construccion/",
+    "verificado": "2026-10",
+    "nota": "Cambio de titular: antes Gladyz Butanda Macías. Boletín oficial 22-ago-2026"
+   }
+  },
+  "Morelos": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS)",
+    "titular": "Alan Dupré Ramírez",
+    "url": "https://www.morelos.gob.mx/sustentable",
+    "fuente": "https://www.morelos.gob.mx/sitios/directorio/secretaria-de-desarrollo-sustentable",
+    "verificado": "2026-10",
+    "nota": "Directorio oficial vigente; también como secretario en boletín oficial del 18-may-2026: https://www.morelos.gob.mx/ultimas-noticias/arranca-sds-el-reciclatron-morelos-2026-en-el-parque-barranca-chapultepec"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal del Agua (CEAGUA)",
+    "url": "https://ceagua.morelos.gob.mx/",
+    "nota": "titular previo sin confirmar: Javier Bolaños Aguilar (renunció el 6-may-2026 para buscar la alcaldía de Cuernavaca, según Quadratín); sucesor no verificado"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS) · Dirección General de Mejoramiento Ecosistémico y Cambio Climático",
+    "titular": "Pedro Delgado Salgado",
+    "url": "https://www.morelos.gob.mx/sustentable",
+    "fuente": "https://www.morelos.gob.mx/sitios/directorio/secretaria-de-desarrollo-sustentable",
+    "verificado": "2026-10",
+    "nota": "Cargo: Director General de Mejoramiento Ecosistémico y Cambio Climático (directorio oficial)"
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS) · Dirección de Calidad del Aire",
+    "titular": "Lizzy Mayela Román Ramírez",
+    "url": "https://www.morelos.gob.mx/sustentable",
+    "fuente": "https://www.morelos.gob.mx/sitios/directorio/secretaria-de-desarrollo-sustentable",
+    "verificado": "2026-10",
+    "nota": "Cargo: Directora de Calidad del Aire (directorio oficial)"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico y del Trabajo (SDEyT)",
+    "titular": "José Víctor Sánchez Trujillo",
+    "url": "https://www.morelos.gob.mx/sitios/directorio/secretaria-de-desarrollo-economico-y-del-trabajo",
+    "fuente": "https://www.morelos.gob.mx/sitios/directorio/secretaria-de-desarrollo-economico-y-del-trabajo",
+    "verificado": "2026-10",
+    "nota": "Directorio oficial; firma reglas de operación fechadas 2-sep-2026 (mir.morelos.gob.mx)"
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS) · Dirección de Gestión Integral de Residuos Sólidos Urbanos",
+    "titular": "Hossanna Natali Bahena Ayala",
+    "url": "https://www.morelos.gob.mx/sustentable",
+    "fuente": "https://www.morelos.gob.mx/sitios/directorio/secretaria-de-desarrollo-sustentable",
+    "verificado": "2026-10",
+    "nota": "Cargo: Directora de Gestión Integral de Residuos Sólidos Urbanos (directorio oficial)"
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría de Protección al Ambiente del Estado de Morelos (PROPAEM)",
+    "titular": "Nadia Martínez Sánchez",
+    "url": "https://www.morelos.gob.mx/sustentable",
+    "fuente": "https://www.morelos.gob.mx/sitios/directorio/secretaria-de-desarrollo-sustentable",
+    "verificado": "2026-10",
+    "nota": "Órgano desconcentrado de la SDS; cargo: Procuradora de Protección al Ambiente del Estado de Morelos"
+   },
+   "movilidad": {
+    "dependencia": "Coordinación General de Movilidad y Transporte (CGMyT)",
+    "titular": "Jorge Alberto Barrera Toledo",
+    "url": "https://www.morelos.gob.mx/sitios/directorio/coordinacion-general-de-movilidad-y-transporte",
+    "fuente": "https://www.morelos.gob.mx/sitios/directorio/coordinacion-general-de-movilidad-y-transporte",
+    "verificado": "2026-10",
+    "nota": "Directorio oficial; firma lineamientos fechados 17-feb-2026"
+   }
+  },
+  "Nayarit": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS)",
+    "titular": "Rosa Elizabeth Segura Saldaña",
+    "url": "https://sds.nayarit.gob.mx/",
+    "fuente": "https://sds.nayarit.gob.mx/index.php/nayarit-presente-en-la-feria-nacional-forestal-2026/",
+    "verificado": "2026-10",
+    "nota": "Boletín oficial SDS del 4-sep-2026 la nombra titular (también 17-jul-2026). Xitle Xanitzin González Domínguez fue titular en 2025, ya no"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal de Agua Potable y Alcantarillado de Nayarit (CEA)",
+    "url": "https://www.cea.nayarit.gob.mx",
+    "nota": "El organigrama oficial (sin fecha) indica a Eulalio Ortiz Gómez como titular; sin confirmación 2026"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS) · área de Cambio Climático",
+    "url": "https://sds.nayarit.gob.mx/",
+    "nota": "El directorio SDS muestra el área, pero sin nombre completo legible; Titular de la unidad no verificado"
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS) · Departamento de Monitoreo de Calidad del Aire",
+    "url": "https://sds.nayarit.gob.mx/",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico y Social (antes Secretaría de Economía)",
+    "titular": "César Octavio Lara Fonseca",
+    "url": "https://investmentforum.nayarit.gob.mx",
+    "fuente": "https://investmentforum.nayarit.gob.mx/assets/docs/2026%20Nayarit_Investment_Forum_Agenda.pdf",
+    "verificado": "2026-10",
+    "nota": "La agenda oficial del Nayarit Investment Forum (15-16 oct 2026) lo presenta como Secretario de Economía de Nayarit; hubo iniciativa para renombrar la dependencia a Desarrollo Económico y Social: confirmar denominación vigente"
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS) · Departamento de Residuos Sólidos",
+    "url": "https://sds.nayarit.gob.mx/",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría Estatal de Protección al Ambiente y Ordenamiento Territorial (PROEPAOT)",
+    "url": "https://sds.nayarit.gob.mx/",
+    "nota": "Órgano de la SDS con autonomía técnica; procurador 2026 no verificado"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Movilidad (SEMOVI)",
+    "url": "https://semovi.nayarit.gob.mx",
+    "nota": "titular previo sin confirmar: Sistiel Karime Buhaya Lora"
+   }
+  },
+  "Nuevo León": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente",
+    "titular": "Raúl Lozano Caballero",
+    "url": "https://www.nl.gob.mx/es/medioambiente",
+    "fuente": "https://www.hcnl.gob.mx/sala_de_prensa/2026/09/comparece_secretario_de_medio_ambiente_ante_los_diputados.php",
+    "verificado": "2026-10",
+    "nota": "Compareció ante el Congreso de NL el 23-sep-2026"
+   },
+   "agua": {
+    "dependencia": "Servicios de Agua y Drenaje de Monterrey, I.P.D. (SADM)",
+    "titular": "Eduardo Ortegón Williamson",
+    "url": "https://www.sadm.gob.mx",
+    "fuente": "https://www.publimetro.com.mx/nuevo-leon/2026/03/01/desazolva-ayd-en-cuatro-meses-328-kilometros-de-tuberia-previene-riesgos-y-desbordamientos/",
+    "verificado": "2026-10",
+    "nota": "Director General; nota de prensa del 1-mar-2026"
+   },
+   "energia": {
+    "dependencia": "Agencia para la Promoción y Aprovechamiento de las Energías Renovables",
+    "url": "https://www.nl.gob.mx/es/agenciaenergia",
+    "nota": "Nombre oficial según nl.gob.mx; titular no verificado"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Medio Ambiente · Subsecretaría de Cambio Climático y Residuos",
+    "url": "https://www.nl.gob.mx/es/medioambiente",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Medio Ambiente · Agencia de Calidad del Aire",
+    "titular": "Armandina Valdez Cavazos",
+    "url": "https://www.nl.gob.mx/es/medioambiente",
+    "fuente": "https://www.nl.gob.mx/sites/default/files/repositorio/Dependencias/Secretar%C3%ADa%20de%20Medio%20Ambiente/Noticias/20260112_01_balance_medio_ambiente.docx",
+    "verificado": "2026-10",
+    "nota": "Comunicado oficial del 12-ene-2026: Directora de la Agencia de Calidad del Aire"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Economía",
+    "titular": "Betsabé Rocha Nieto",
+    "url": "https://www.nl.gob.mx/es/economia",
+    "fuente": "https://www.nl.gob.mx/es/economia",
+    "verificado": "2026-10",
+    "nota": "La página oficial la nombra titular; también Publimetro 12-ago-2026"
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Medio Ambiente · Subsecretaría de Cambio Climático y Residuos",
+    "url": "https://www.nl.gob.mx/es/medioambiente",
+    "nota": "Titular de la unidad no verificado; Ley estatal de Economía Circular en comisiones del Congreso (ago-2026)"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Movilidad y Planeación Urbana",
+    "titular": "Hernán Manuel Villarreal Rodríguez",
+    "url": "https://www.nl.gob.mx/funcionarios/hernan-manuel-villarreal-rodriguez",
+    "fuente": "https://www.publimetro.com.mx/nuevo-leon/2026/09/07/afectaciones-en-gonzalitos-no-son-por-obras-del-metro-asegura-secretario-de-movilidad-y-planeacion-urbana/",
+    "verificado": "2026-10",
+    "nota": "Nota del 7-sep-2026 lo cita como secretario"
+   }
+  },
+  "Oaxaca": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Energías y Sostenibilidad (SEMABIESO)",
+    "titular": "Karime Unda Harp",
+    "url": "https://www.oaxaca.gob.mx/medioambiente/",
+    "fuente": "https://www.oaxaca.gob.mx/medioambiente/titular/",
+    "verificado": "2026-10",
+    "nota": "Página oficial 'Titular'. El sitio usa la sigla SEMABIESO (no SEMABIENS)"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal del Agua para el Bienestar (CEA)",
+    "titular": "Neftalí Amigdael López Hernández",
+    "url": "https://www.oaxaca.gob.mx/cea/",
+    "fuente": "https://www.oaxaca.gob.mx/cea/titular/",
+    "verificado": "2026-10",
+    "nota": "Página oficial 'Titular'; cargo: Director"
+   },
+   "energia": {
+    "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Energías y Sostenibilidad (SEMABIESO)",
+    "url": "https://www.oaxaca.gob.mx/medioambiente/",
+    "nota": "La materia energética está en SEMABIESO; no hay agencia estatal separada; Titular de la unidad no verificado"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Energías y Sostenibilidad (SEMABIESO)",
+    "url": "https://www.oaxaca.gob.mx/medioambiente/",
+    "nota": "Sección de Cambio Climático en el sitio; Titular de la unidad no verificado"
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Energías y Sostenibilidad (SEMABIESO)",
+    "url": "https://www.oaxaca.gob.mx/medioambiente/",
+    "nota": "Sección de Calidad del Aire en el sitio; Titular de la unidad no verificado"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
+    "titular": "Raúl Ruiz Robles",
+    "url": "https://www.oaxaca.gob.mx/sedeco/",
+    "fuente": "https://www.oaxaca.gob.mx/sedeco/titular/",
+    "verificado": "2026-10",
+    "nota": "Página oficial 'Titular'; compareció ante el Congreso el 6-feb-2026. El nombre previo 'Secretaría del Trabajo y Economía' era incorrecto"
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Medio Ambiente, Biodiversidad, Energías y Sostenibilidad (SEMABIESO)",
+    "url": "https://www.oaxaca.gob.mx/medioambiente/",
+    "nota": "SEMABIESO lleva el padrón de residuos de manejo especial; Titular de la unidad no verificado"
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría de Protección al Ambiente del Estado de Oaxaca (PROPAEO)",
+    "titular": "Isaías Valdés Martel",
+    "url": "https://www.oaxaca.gob.mx/propaeo/",
+    "fuente": "https://www.oaxaca.gob.mx/propaeo/",
+    "verificado": "2026-10",
+    "nota": "Directorio de la página oficial; sin cobertura de prensa 2026"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Movilidad (SEMOVI)",
+    "titular": "Yesenia Nolasco Ramírez",
+    "url": "https://www.oaxaca.gob.mx/semovi/",
+    "fuente": "https://www.cronica.com.mx/estados/2026/07/07/salomon-jara-llama-al-dialogo-para-la-mejora-de-la-movilidad-del-transporte-publico-en-oaxaca/",
+    "verificado": "2026-10",
+    "nota": "Nota del 7-jul-2026 la cita como Secretaria de Movilidad"
+   }
+  },
+  "Puebla": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente, Desarrollo Sustentable y Ordenamiento Territorial (SMADSOT)",
+    "titular": "María de los Ángeles Ballesteros García",
+    "url": "https://smadsot.puebla.gob.mx/",
+    "fuente": "https://smadsot.puebla.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Página oficial con semblanza; nombrada en mayo 2026 en sustitución de Mayra Orellana Caballero"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal de Agua y Saneamiento del Estado de Puebla (CEASPUE)",
+    "url": "https://ceaspue.puebla.gob.mx/",
+    "nota": "titular previo sin confirmar: José Lauro Sánchez López (ya sustituido). Alberto Jiménez Merino aparece como director en sep-2025 (Publimetro), sin confirmación 2026"
+   },
+   "energia": {
+    "dependencia": "Agencia de Energía del Estado de Puebla",
+    "titular": "Héctor Rodolfo Camacho Hernández",
+    "url": "https://agenciadeenergia.puebla.gob.mx/",
+    "fuente": "https://agenciadeenergia.puebla.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Director General (página oficial; también Jefe de Oficina del Gobernador); activo en el Foro Energético 2026 (mexicoindustry.com)"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Medio Ambiente, Desarrollo Sustentable y Ordenamiento Territorial (SMADSOT)",
+    "url": "https://smadsot.puebla.gob.mx/",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Medio Ambiente, Desarrollo Sustentable y Ordenamiento Territorial (SMADSOT)",
+    "url": "https://smadsot.puebla.gob.mx/",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico y Trabajo (SEDETRA)",
+    "titular": "Víctor Gerardo Gabriel Chedraui",
+    "url": "https://sedetra.puebla.gob.mx/",
+    "fuente": "https://sedetra.puebla.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Página oficial con semblanza"
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Medio Ambiente, Desarrollo Sustentable y Ordenamiento Territorial (SMADSOT)",
+    "url": "https://smadsot.puebla.gob.mx/",
+    "nota": "Gestión de residuos dentro de SMADSOT; Titular de la unidad no verificado"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Movilidad y Transporte (SMT)",
+    "titular": "Silvia Tanús Osorio",
+    "url": "https://smt.puebla.gob.mx/",
+    "fuente": "https://smt.puebla.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Página oficial; también Publimetro 19-ago-2026"
+   }
+  },
+  "Querétaro": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SEDESU)",
+    "titular": "Marco Antonio del Prete Tercero",
+    "url": "https://www.queretaro.gob.mx/web/sedesu",
+    "fuente": "https://www.queretaro.gob.mx/web/guest/directorio-gabinete",
+    "verificado": "2026-10",
+    "nota": "Querétaro no tiene secretaría de medio ambiente separada; la política ambiental está en SEDESU"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal de Aguas (CEA Querétaro)",
+    "titular": "Luis Alberto Vega Ricoy",
+    "url": "https://www.ceaqueretaro.gob.mx/",
+    "fuente": "https://www.queretaro.gob.mx/web/guest/directorio-gabinete",
+    "verificado": "2026-10",
+    "nota": "Cargo: Vocal Ejecutivo"
+   },
+   "energia": {
+    "dependencia": "Agencia de Energía del Estado de Querétaro",
+    "titular": "Martín Mauricio Reyes Caracheo",
+    "url": "https://queretaro.gob.mx/es/web/energia",
+    "fuente": "https://www.queretaro.gob.mx/web/guest/directorio-gabinete",
+    "verificado": "2026-10",
+    "nota": "El directorio también lo escribe 'Mauricio Martín Reyes Caracheo'"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SEDESU)",
+    "url": "https://www.queretaro.gob.mx/web/sedesu",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SEDESU)",
+    "url": "https://www.queretaro.gob.mx/web/sedesu",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SEDESU)",
+    "titular": "Marco Antonio del Prete Tercero",
+    "url": "https://www.queretaro.gob.mx/web/sedesu",
+    "fuente": "https://www.queretaro.gob.mx/web/guest/directorio-gabinete",
+    "verificado": "2026-10",
+    "nota": "SEDESU concentra desarrollo económico y medio ambiente"
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SEDESU)",
+    "url": "https://www.queretaro.gob.mx/web/sedesu",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría Estatal de Protección al Medio Ambiente y Desarrollo Urbano (PEPMADU)",
+    "url": "https://www.queretaro.gob.mx/",
+    "nota": "Sitio propio no disponible y no figura en el directorio del gabinete; titular no verificado"
+   },
+   "movilidad": {
+    "dependencia": "Agencia de Movilidad del Estado de Querétaro (AMEQ)",
+    "titular": "Gerardo Gabriel Cuanalo Santos",
+    "url": "https://www.ameq.gob.mx",
+    "fuente": "https://www.queretaro.gob.mx/web/guest/directorio-gabinete",
+    "verificado": "2026-10",
+    "nota": "Director General"
+   }
+  },
+  "Quintana Roo": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Ecología y Medio Ambiente (SEMA)",
+    "titular": "Óscar Alberto Rébora Aguilera",
+    "url": "https://sema.qroo.gob.mx/",
+    "fuente": "https://www.poresto.com/quintana-roo/2026/9/6/desarrolladores-inmobiliarios-desafian-al-gobierno-pese-a-la-revocacion-de-permisos-ambientales-por-la-sema.html",
+    "verificado": "2026-10",
+    "nota": "Nota del 6-sep-2026 (Por Esto) lo cita como titular de la SEMA"
+   },
+   "agua": {
+    "dependencia": "Comisión de Agua Potable y Alcantarillado (CAPA)",
+    "titular": "Héctor Masegosa Llanas",
+    "url": "https://capa.qroo.gob.mx/",
+    "fuente": "https://ruptura360.mx/gobierno/capa-quintana-roo-renueva-direccion/",
+    "verificado": "2026-10",
+    "nota": "Encargado de despacho desde el 21-jul-2026, tras la renuncia de Hugo Garza Sáenz"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Ecología y Medio Ambiente (SEMA)",
+    "url": "https://sema.qroo.gob.mx/",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Ecología y Medio Ambiente (SEMA)",
+    "url": "https://sema.qroo.gob.mx/",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDE)",
+    "titular": "Paul Michell Carrillo de Cáceres",
+    "url": "https://sede.qroo.gob.mx/",
+    "fuente": "https://ruptura360.mx/gobierno/expo-mundo-pyme-cancun-mara-lezama/",
+    "verificado": "2026-10",
+    "nota": "Nota del 18-mar-2026 lo cita como secretario"
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Ecología y Medio Ambiente (SEMA)",
+    "url": "https://sema.qroo.gob.mx/",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría de Protección al Ambiente del Estado de Quintana Roo (PPA)",
+    "titular": "Alonso Fernández Lemmen Meyer",
+    "url": "https://ppa.qroo.gob.mx/",
+    "fuente": "https://www.poresto.com/quintana-roo/2026/1/24/multas-millonarias-en-puerta-ppa-detecta-irregularidades-en-rellenos-sanitarios-de-chetumal-y-tulum.amp.html",
+    "verificado": "2026-10",
+    "nota": "Nota del 24-ene-2026 (Por Esto) lo cita como titular"
+   },
+   "movilidad": {
+    "dependencia": "Instituto de Movilidad del Estado de Quintana Roo (IMOVEQROO)",
+    "titular": "Rafael Hernández Kotasek",
+    "url": "https://qroo.gob.mx/imoveqroo/",
+    "fuente": "https://www.poresto.com/quintana-roo/cancun/2026/3/14/cancun-al-limite-trafico-con-mas-de-423-mil-vehiculos-impulsa-nuevo-sistema-de-transporte-mobi.html",
+    "verificado": "2026-10",
+    "nota": "Nota del 14-mar-2026"
+   }
+  },
+  "San Luis Potosí": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Ecología y Gestión Ambiental (SEGAM)",
+    "titular": "Sonia Mendoza Díaz",
+    "url": "https://slp.gob.mx/segam/",
+    "fuente": "https://elcongresista.mx/politica/san-luis-potosi/san-luis-potosi-dialogo-conservacion-ambiental",
+    "verificado": "2026-10",
+    "nota": "Nota del 8-jul-2026 la cita como titular de la SEGAM"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal del Agua (CEA)",
+    "titular": "Pascual Martínez Sánchez",
+    "url": "https://slp.gob.mx/cea/",
+    "fuente": "https://elcongresista.mx/politica/san-luis-potosi/estrategia-hidrica-san-luis-potosi",
+    "verificado": "2026-10",
+    "nota": "Director General; nota del 6-jul-2026"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Ecología y Gestión Ambiental (SEGAM)",
+    "url": "https://slp.gob.mx/segam/",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Ecología y Gestión Ambiental (SEGAM)",
+    "url": "https://slp.gob.mx/segam/",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
+    "titular": "Mario García Valdez",
+    "url": "https://slp.gob.mx/sedeco/",
+    "fuente": "https://planoinformativo.com/1162426/la-voz-de-slp-busca-convertir-inversion-en-desarrollo",
+    "verificado": "2026-10",
+    "nota": "Asumió en junio 2026 (columna propia en Plano Informativo, ago-2026); antes Jesús Salvador González Martínez. SEDECO anunció en dic-2025 una Agencia de Energía para 2026, no confirmada"
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Ecología y Gestión Ambiental (SEGAM)",
+    "url": "https://slp.gob.mx/segam/",
+    "nota": "Titular de la unidad no verificado"
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Comunicaciones y Transportes (SCT)",
+    "titular": "Araceli Martínez Acosta",
+    "url": "https://slp.gob.mx/sct/",
+    "fuente": "https://www.globalmedia.mx/articles/regreso_del_tren_de_pasajeros_transformara_movilidad_en_slp",
+    "verificado": "2026-10",
+    "nota": "Nota del 17-feb-2026; fuente más reciente que la nombra"
+   }
+  },
+  "Sinaloa": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Bienestar y Desarrollo Sustentable (SEBIDES)",
+    "titular": "Francisco Javier Barrón Aguayo",
+    "url": "https://sinaloa.gob.mx/",
+    "fuente": "https://ceapas.sinaloa.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Sitio oficial de CEAPAS (1-oct-2026) lo nombra Secretario de SEBIDES; nombramiento 27-jun-2026 por la gobernadora interina Yeraldine Bonilla (luznoticias.mx). La URL previa de SEBIDES en sinaloa.gob.mx da 404."
+   },
+   "economia": {
+    "dependencia": "Secretaría de Economía",
+    "titular": "Diego Armando Aguerrebere Espitia",
+    "url": "https://sinaloa.gob.mx/",
+    "fuente": "https://www.luznoticias.mx/2026-06-27/sinaloa/yeraldine-bonilla-designa-a-nuevos-secretarios-en-economia-y-sebides/294742",
+    "verificado": "2026-10",
+    "nota": "Solo fuente periodística (nombramiento 27-jun-2026); no se encontró directorio oficial. Sustituye a Feliciano Castro Meléndrez. economia.sinaloa.gob.mx no corresponde a la Secretaría."
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal de Agua Potable y Alcantarillado de Sinaloa (CEAPAS)",
+    "titular": "Carlos Alfaro Morales",
+    "url": "https://ceapas.sinaloa.gob.mx/",
+    "fuente": "https://ceapas.sinaloa.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Vocal Ejecutivo; tomó protesta el 1-oct-2026 (antes Abraham Bello Esquivel)."
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Bienestar y Desarrollo Sustentable (SEBIDES)",
+    "url": "https://sinaloa.gob.mx/",
+    "nota": "titular previo sin confirmar: Omar Alejandro López Campos (dejó SEBIDES en mayo-2026). No se identificó la unidad específica de cambio climático ni su titular."
+   },
+   "movilidad": {
+    "dependencia": "Dirección de Vialidad y Transportes (Secretaría General de Gobierno)",
+    "url": "https://sinaloa.gob.mx/",
+    "nota": "titular previo sin confirmar: Marco Antonio Osuna Moreno (nombrado nov-2024; sin fuente 2026)."
+   }
+  },
+  "Sonora": {
+   "medio_ambiente": {
+    "dependencia": "Comisión de Ecología y Desarrollo Sustentable del Estado de Sonora (CEDES)",
+    "titular": "Carlos Ernesto Zatarain González",
+    "url": "https://cedes.sonora.gob.mx/",
+    "fuente": "https://cedes.sonora.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Comisionado Ejecutivo; sitio con noticias al 24-sep-2026."
+   },
+   "economia": {
+    "dependencia": "Secretaría de Economía y Turismo del Estado de Sonora",
+    "titular": "Roberto Gradillas Pineda",
+    "url": "https://economiayturismo.sonora.gob.mx/",
+    "fuente": "https://economiayturismo.sonora.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Sustituye a Margarita Vélez de la Rocha (dato previo)."
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal del Agua (CEA Sonora)",
+    "titular": "Ariel Monge Martínez",
+    "url": "https://cea.sonora.gob.mx/",
+    "fuente": "https://cea.sonora.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Vocal Ejecutivo."
+   },
+   "energia": {
+    "dependencia": "Comisión de Energía del Estado de Sonora (COEES)",
+    "url": "https://www.sonora.gob.mx/",
+    "nota": "El dominio coees.sonora.gob.mx no resuelve; no se pudo confirmar titular ni vigencia del organismo."
+   },
+   "cambio_climatico": {
+    "dependencia": "Comisión de Ecología y Desarrollo Sustentable del Estado de Sonora (CEDES)",
+    "url": "https://cedes.sonora.gob.mx/",
+    "nota": "Tema de Cambio Climático dentro de CEDES; sin titular específico de la unidad identificado."
+   },
+   "calidad_aire": {
+    "dependencia": "Procuraduría Ambiental del Estado de Sonora (PROAES)",
+    "url": "https://proaes.sonora.gob.mx/",
+    "nota": "PROAES opera el monitoreo de calidad del aire (sitio, sep-2026); sin titular de la unidad específica."
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría Ambiental del Estado de Sonora (PROAES)",
+    "titular": "Perla Patricia Alday Lara",
+    "url": "https://proaes.sonora.gob.mx/",
+    "fuente": "https://proaes.sonora.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Procuradora Ambiental; sitio con noticias al 27-sep-2026."
+   },
+   "movilidad": {
+    "dependencia": "Instituto de Movilidad y Transporte para el Estado de Sonora (IMTES)",
+    "titular": "Carlos Sosa Castañeda",
+    "url": "https://movilidadytransporte.sonora.gob.mx/",
+    "fuente": "https://movilidadytransporte.sonora.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Coordinador Ejecutivo; última noticia del sitio 8-jul-2026."
+   }
+  },
+  "Tabasco": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente y Desarrollo Sostenible (SEMADES)",
+    "titular": "Sheila Guadalupe Cadena Nieto",
+    "url": "https://tabasco.gob.mx/medio-ambiente",
+    "fuente": "https://tabasco.gob.mx/medio-ambiente",
+    "verificado": "2026-10"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Turismo y Desarrollo Económico (SETUDE)",
+    "titular": "Katia Ornelas Gil",
+    "url": "https://tabasco.gob.mx/turismo",
+    "fuente": "https://tabasco.gob.mx/turismo",
+    "verificado": "2026-10"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal de Agua y Saneamiento (CEAS)",
+    "titular": "Rashid Valdez Dagdug",
+    "url": "https://tabasco.gob.mx/ceas",
+    "fuente": "https://tabasco.gob.mx/ceas",
+    "verificado": "2026-10",
+    "nota": "Director General."
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Medio Ambiente y Desarrollo Sostenible (SEMADES)",
+    "url": "https://tabasco.gob.mx/medio-ambiente",
+    "nota": "Con la Ley Orgánica vigente desde 2025 el cambio climático quedó en SEMADES (la antigua Secretaría de Bienestar, Sustentabilidad y Cambio Climático ya no figura en el gabinete). Sin titular de unidad específica identificado."
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Movilidad (SEMOVI)",
+    "titular": "Rafael Elías Sánchez Cabrales",
+    "url": "https://tabasco.gob.mx/movilidad",
+    "fuente": "https://tabasco.gob.mx/movilidad",
+    "verificado": "2026-10"
+   }
+  },
+  "Tamaulipas": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Desarrollo Urbano y Medio Ambiente (SEDUMA)",
+    "titular": "Karl Heinz Becker Hernández",
+    "url": "https://www.tamaulipas.gob.mx/seduma/",
+    "fuente": "https://www.tamaulipas.gob.mx/seduma/",
+    "verificado": "2026-10"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Economía",
+    "titular": "Ninfa Cantú Deándar",
+    "url": "https://www.tamaulipas.gob.mx/economia/",
+    "fuente": "https://www.tamaulipas.gob.mx/economia/",
+    "verificado": "2026-10"
+   },
+   "agua": {
+    "dependencia": "Secretaría de Recursos Hidráulicos para el Desarrollo Social (SRHDS)",
+    "titular": "Raúl Quiroga Álvarez",
+    "url": "https://www.tamaulipas.gob.mx/ceat/",
+    "fuente": "https://www.tamaulipas.gob.mx/ceat/",
+    "verificado": "2026-10",
+    "nota": "La ruta /ceat/ hoy corresponde a la SRHDS. Existe además la Comisión de Agua Potable y Saneamiento del Estado de Tamaulipas (CAPSET), Director General Juan Enrique Cabrero Ramírez (https://www.tamaulipas.gob.mx/CAPSET/)."
+   },
+   "energia": {
+    "dependencia": "Secretaría de Desarrollo Energético (SEDENER)",
+    "titular": "Walter Julián Ángel Jiménez",
+    "url": "https://www.tamaulipas.gob.mx/energia/",
+    "fuente": "https://www.tamaulipas.gob.mx/energia/",
+    "verificado": "2026-10"
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Desarrollo Urbano y Medio Ambiente (SEDUMA) - Subsecretaría de Medio Ambiente",
+    "url": "https://www.tamaulipas.gob.mx/seduma/",
+    "nota": "Sin titular de la Subsecretaría de Medio Ambiente confirmado."
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Desarrollo Urbano y Medio Ambiente (SEDUMA) - Subsecretaría de Medio Ambiente",
+    "url": "https://www.tamaulipas.gob.mx/seduma/",
+    "nota": "Gestión de residuos dentro de SEDUMA; sin titular de unidad identificado."
+   },
+   "movilidad": {
+    "dependencia": "Subsecretaría de Transporte Público (Secretaría General de Gobierno)",
+    "titular": "Armando Núñez Montelongo",
+    "url": "https://www.tamaulipas.gob.mx/secretariageneral/subsecretarias/transporte-publico/",
+    "fuente": "https://www.tamaulipas.gob.mx/secretariageneral/subsecretarias/transporte-publico/",
+    "verificado": "2026-10",
+    "nota": "La página oficial lo lista como Subsecretario. Una búsqueda arrojó a José Armando Lara Valdés (no confirmado en fuente oficial)."
+   }
+  },
+  "Tlaxcala": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente (SMA)",
+    "titular": "Pedro Aquino Alvarado",
+    "url": "http://sma.tlaxcala.gob.mx/",
+    "fuente": "https://www.tlaxcala.gob.mx/index.php/gobierno/dependencias",
+    "verificado": "2026-10",
+    "nota": "sma.tlaxcala.gob.mx rechaza conexión; confirmado en el directorio de dependencias del portal estatal."
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico (SEDECO)",
+    "titular": "Javier Marroquín Calderón",
+    "url": "https://sedecotlaxcala.gob.mx/",
+    "fuente": "https://www.tlaxcala.gob.mx/index.php/gobierno/dependencias",
+    "verificado": "2026-10"
+   },
+   "agua": {
+    "dependencia": "Comisión Estatal del Agua y Saneamiento de Tlaxcala (CEAS)",
+    "titular": "Javier Israel Tobón Solano",
+    "url": "https://ceastlaxcala.gob.mx/",
+    "fuente": "https://ceastlaxcala.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Comisionado desde oct-2023; página fechada 29-jun-2026."
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Medio Ambiente (SMA)",
+    "url": "http://sma.tlaxcala.gob.mx/",
+    "nota": "Sin titular de unidad específica de cambio climático identificado."
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría de Protección al Ambiente del Estado de Tlaxcala (PROPAET)",
+    "titular": "Iván García Juárez",
+    "url": "https://propaet.tlaxcala.gob.mx/",
+    "fuente": "https://propaet.tlaxcala.gob.mx/",
+    "verificado": "2026-10",
+    "nota": "Órgano desconcentrado; el sitio solo muestra © 2026, sin noticias fechadas."
+   },
+   "movilidad": {
+    "dependencia": "Secretaría de Movilidad y Transporte (SMyT)",
+    "titular": "Marco Tulio Munive Temoltzin",
+    "url": "https://smyt.tlaxcala.gob.mx/",
+    "fuente": "https://www.tlaxcala.gob.mx/index.php/gobierno/dependencias",
+    "verificado": "2026-10"
+   }
+  },
+  "Veracruz": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Medio Ambiente (SEDEMA)",
+    "url": "https://www.veracruz.gob.mx/medioambiente/",
+    "nota": "titular previo sin confirmar: Luz Mariela Zaleta Mendoza. veracruz.gob.mx está detrás de captcha anti-bots; no se pudo abrir el directorio."
+   },
+   "economia": {
+    "dependencia": "Secretaría de Desarrollo Económico y Portuario (SEDECOP)",
+    "url": "https://www.veracruz.gob.mx/desarrolloeconomico/",
+    "nota": "titular previo sin confirmar: Ernesto Pérez Astorga. Sitio detrás de captcha."
+   },
+   "agua": {
+    "dependencia": "Comisión del Agua del Estado de Veracruz (CAEV)",
+    "titular": "Luis Fernando Cervantes Cruz",
+    "url": "https://www.caev.gob.mx/",
+    "fuente": "https://www.caev.gob.mx/supervisa-caev-sistema-de-abastecimiento-de-agua-en-tempoal/",
+    "verificado": "2026-10",
+    "nota": "Director General; boletín oficial del 28-sep-2026."
+   },
+   "energia": {
+    "dependencia": "Agencia Estatal de Energía de Veracruz (AEEV)",
+    "url": "https://aeev.veracruz.gob.mx/",
+    "nota": "Sitio activo (2026) pero no nombra titular."
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Medio Ambiente (SEDEMA)",
+    "url": "https://www.veracruz.gob.mx/medioambiente/",
+    "nota": "titular previo sin confirmar: Luz Mariela Zaleta Mendoza (era la titular de SEDEMA, no de una unidad específica)."
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Medio Ambiente (SEDEMA) - área de Calidad del Agua y Aire",
+    "url": "https://www.veracruz.gob.mx/medioambiente/",
+    "nota": "Área visible en el menú del sitio de SEDEMA; sin titular verificado."
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Medio Ambiente (SEDEMA) - Gestión de Residuos Industriales",
+    "url": "https://www.veracruz.gob.mx/medioambiente/",
+    "nota": "Área visible en el menú del sitio de SEDEMA; sin titular verificado."
+   },
+   "movilidad": {
+    "dependencia": "Dirección General de Transporte del Estado (DGTE)",
+    "url": "https://www.veracruz.gob.mx/",
+    "nota": "Sin verificar (portal estatal detrás de captcha)."
+   }
+  },
+  "Yucatán": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS)",
+    "titular": "Neyra Concepción Silva Rosado",
+    "url": "https://sds.yucatan.gob.mx/",
+    "fuente": "https://www.yucatan.gob.mx/gobierno/detalle.php?id_d=9",
+    "verificado": "2026-10"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Economía y Trabajo (SETY)",
+    "titular": "Jorge Ermilo Barrera Novelo",
+    "url": "https://www.yucatan.gob.mx/gobierno/detalle.php?id_d=5",
+    "fuente": "https://www.yucatan.gob.mx/gobierno/detalle.php?id_d=5",
+    "verificado": "2026-10"
+   },
+   "agua": {
+    "dependencia": "Junta de Agua Potable y Alcantarillado de Yucatán (JAPAY)",
+    "titular": "Francisco Alberto Torres Rivas",
+    "url": "https://japay.yucatan.gob.mx/",
+    "fuente": "https://www.yucatan.gob.mx/gobierno/detalle.php?id_d=40",
+    "verificado": "2026-10",
+    "nota": "Director General."
+   },
+   "energia": {
+    "dependencia": "Agencia de Energía de Yucatán (AEY)",
+    "titular": "Pablo Gamboa Miner",
+    "url": "https://energia.yucatan.gob.mx/",
+    "fuente": "https://www.yucatan.gob.mx/gobierno/detalle.php?id_d=96",
+    "verificado": "2026-10",
+    "nota": "Director General."
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS) - Dirección de Planeación y Cambio Climático",
+    "titular": "Adrián Cataño Pérez",
+    "url": "https://sds.yucatan.gob.mx/",
+    "fuente": "https://www.yucatan.gob.mx/gobierno/detalle.php?id_d=9",
+    "verificado": "2026-10",
+    "nota": "Director; adscrita a la Subsecretaría de Planeación para la Sustentabilidad (José Luis González Pérez)."
+   },
+   "calidad_aire": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS) - Departamento de Calidad Ambiental",
+    "titular": "Agur Mendicuti Ramos",
+    "url": "https://sds.yucatan.gob.mx/",
+    "fuente": "https://www.yucatan.gob.mx/gobierno/detalle.php?id_d=9",
+    "verificado": "2026-10",
+    "nota": "Jefe de Departamento; es calidad ambiental en general, no exclusivamente aire."
+   },
+   "economia_circular": {
+    "dependencia": "Secretaría de Desarrollo Sustentable (SDS) - Departamento de Manejo Integral de Residuos",
+    "titular": "Francisco Javier Alfaro Espinosa",
+    "url": "https://sds.yucatan.gob.mx/",
+    "fuente": "https://www.yucatan.gob.mx/gobierno/detalle.php?id_d=9",
+    "verificado": "2026-10",
+    "nota": "Jefe de Departamento."
+   },
+   "movilidad": {
+    "dependencia": "Instituto de Movilidad y Desarrollo Urbano Territorial (IMDUT)",
+    "titular": "Irak Abraham Greene Marrufo",
+    "url": "https://www.yucatan.gob.mx/gobierno/detalle.php?id_d=61",
+    "fuente": "https://www.yucatan.gob.mx/gobierno/detalle.php?id_d=61",
+    "verificado": "2026-10",
+    "nota": "Director General. La Agencia de Transporte de Yucatán (ATY) ya no aparece en el directorio oficial; titular previo sin confirmar: Jacinto Sosa Novelo."
+   }
+  },
+  "Zacatecas": {
+   "medio_ambiente": {
+    "dependencia": "Secretaría del Agua y Medio Ambiente (SAMA)",
+    "titular": "Susana Rodríguez Márquez",
+    "url": "https://www.zacatecas.gob.mx/gobierno/dependencias/sama/",
+    "fuente": "https://www.zacatecas.gob.mx/gobierno/gabinete/",
+    "verificado": "2026-10"
+   },
+   "economia": {
+    "dependencia": "Secretaría de Economía",
+    "titular": "Jorge Miranda Castro",
+    "url": "https://economia.zacatecas.gob.mx/",
+    "fuente": "https://www.zacatecas.gob.mx/gobierno/gabinete/",
+    "verificado": "2026-10"
+   },
+   "agua": {
+    "dependencia": "Secretaría del Agua y Medio Ambiente (SAMA)",
+    "titular": "Susana Rodríguez Márquez",
+    "url": "https://www.zacatecas.gob.mx/gobierno/dependencias/sama/",
+    "fuente": "https://www.zacatecas.gob.mx/gobierno/gabinete/",
+    "verificado": "2026-10",
+    "nota": "La SAMA concentra la política hídrica estatal."
+   },
+   "cambio_climatico": {
+    "dependencia": "Secretaría del Agua y Medio Ambiente (SAMA)",
+    "url": "https://www.zacatecas.gob.mx/gobierno/dependencias/sama/",
+    "nota": "Sin titular de unidad específica de cambio climático identificado (Susana Rodríguez Márquez es la titular de la SAMA)."
+   },
+   "movilidad": {
+    "dependencia": "Subsecretaría de Transporte Público (Secretaría General de Gobierno)",
+    "url": "https://segob.zacatecas.gob.mx/tys-substp/",
+    "nota": "La página oficial no publica el nombre del subsecretario."
+   }
   }
+ }
 }

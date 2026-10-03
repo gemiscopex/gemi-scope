@@ -3266,7 +3266,7 @@ function _actorEstRow(label,o){
     ?'<a href="'+o.url+'" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:7px 0;border-bottom:0.8px solid var(--border)">'+inner+'</a>'
     :'<div style="padding:7px 0;border-bottom:0.8px solid var(--border)">'+inner+'</div>';
 }
-var _ACT_EST_SECTORS=[['medio_ambiente','Medio Ambiente'],['agua','Agua'],['energia','Energía'],['cambio_climatico','Cambio Climático'],['movilidad','Movilidad'],['economia','Economía']];
+var _ACT_EST_SECTORS=[['medio_ambiente','Medio ambiente'],['procuraduria_ambiental','Procuraduría ambiental'],['agua','Agua'],['energia','Energía'],['cambio_climatico','Cambio climático'],['calidad_aire','Calidad del aire'],['economia_circular','Economía circular y residuos'],['economia','Economía'],['movilidad','Movilidad']];
 function _actorEstState(e,idx){
   var d=(_actoresEstatales.estados||{})[e]||{}, id='aest-'+idx;
   var present=_ACT_EST_SECTORS.filter(function(s){return d[s[0]];});
