@@ -1059,6 +1059,14 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .pro-lbody i{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--text-muted);margin:2px 0 5px}
 .pro-q{font-size:12px;color:var(--text-sec);line-height:1.5}
 .cons-rail-senal{margin-bottom:28px}
+.pro-drawer{border-top:0.8px solid var(--border)}
+.pro-drawer:last-child{border-bottom:0.8px solid var(--border)}
+.pro-drawerh{display:flex;align-items:center;gap:12px;padding:14px 6px;cursor:pointer}
+.pro-drawerh:hover{background:rgba(6,103,80,0.04)}
+.pro-drawerh b{font-size:13px;font-weight:600;color:var(--text)}
+.pro-drawerh i{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-left:auto}
+.pro-drawerh .pro-car{font-family:var(--mono);font-size:13px;color:#066750;width:14px}
+.pro-drawerb{padding:4px 6px 18px}
 @media(max-width:680px){.pro-gc{grid-template-columns:1fr}.pro-sched{border-right:0;padding-right:0;display:flex;gap:6px;overflow-x:auto}.pro-schedh{display:none}.pro-schedit{flex-shrink:0;border-left:0;border-bottom:2px solid transparent}.pro-schedit.on{border-bottom-color:#066750}.pro-log{padding-left:8px}}
 @media(max-width:1080px){.cons-shell{grid-template-columns:1fr}.cons-rail{position:static;order:-1;margin-bottom:12px}.cons-main{order:0}}
 /* Widgets reordenables (drag-and-drop v1) */
@@ -8154,7 +8162,7 @@ function _consWidgetHTML(w){
 // ── Mi Terminal · secciones con botones (inspiración Sleeper, estilo Scope) ──
 // Debajo de "Señal de mis temas", cada bloque de seguimiento vive en su propia sección.
 var _CONS_TABS=[
-  {id:'estados',lbl:'Estados',wids:['estados','leyes'],add:'estados',ico:'<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>'},
+  {id:'estados',lbl:'Estados',wids:['estados'],add:'estados',ico:'<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>'},
   {id:'normas',lbl:'NOMs',wids:['ref-noms','ref-imps','ref-mats','ref-vacio','dof'],add:'referencias',ico:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>'},
   {id:'legisladores',lbl:'Legisladores',wids:['legisladores'],add:'legisladores',ico:'<circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c0-3.6 2.9-5.6 6.5-5.6s6.5 2 6.5 5.6"/>'},
   {id:'comisiones',lbl:'Comisiones',wids:['comisiones'],add:'comisiones',ico:'<path d="M3 21h18M5 21V10M19 21V10M9 21V10M15 21V10M2 10l10-6 10 6z"/>'},
@@ -8202,7 +8210,6 @@ function _consSetTab(id){
 function _consTabFill(){
   var c=_consTabCtx;
   if(document.getElementById('cons-estados'))_consEstados(c.estados);
-  if(document.getElementById('cons-leyes'))_consLeyes(c.estados);
   if(document.getElementById('cons-coms'))_consComs(c.coms);
   if(c.legs&&c.legs.length&&document.getElementById('cons-legs'))_consLegs(c.legs);
   if(document.getElementById('cons-pres')){window.__consAllKw=c.allKw;_consPres(c.allKw);}
@@ -9220,7 +9227,13 @@ function _consEstados(estados){
       +'</div>';
   }).join('');
   el.style.display='block';
-  el.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">'+cards+'</div>'+_consEstadosCompare(estados);
+  var nLey=estados.reduce(function(a,s){return a+((typeof _nLeyes==='function')?_nLeyes(s):0);},0);
+  var drawers=(estados.length>1?_consDrawer('cons-dr-cmp','Comparar mis estados','Leyes · impuestos · materiales · prensa',''):'')
+    +_consDrawer('cons-dr-leyes','Legislación de mis estados',nLey+' ordenamientos en '+estados.length+' estado'+(estados.length===1?'':'s'),'<div id="cons-leyes"></div>');
+  _consDrawerFill['cons-dr-cmp']=function(){var b=document.getElementById('cons-dr-cmp');if(b)b.innerHTML=_consEstadosCompare(estados);};
+  _consDrawerFill['cons-dr-leyes']=function(){_consLeyes(estados);};
+  el.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">'+cards+'</div>'
+    +'<div style="margin-top:22px">'+drawers+'</div>';
 }
 // Legislación de mis estados: lista las leyes (fuente única _leyEntry) de cada estado seguido
 function _consLeyes(estados){
@@ -9234,11 +9247,12 @@ function _consLeyes(estados){
       if(typeof _isLeyPlaceholder==='function'&&_isLeyPlaceholder(l))return; rows.push(l);
     });});
     var se=s.replace(/'/g,"\\'");
-    var head='<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-bottom:0.8px solid var(--border);padding-bottom:6px;margin:16px 0 6px">'
-      +'<span style="font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--green)">'+s+'</span>'
-      +'<span onclick="openStatePanel(\''+se+'\')" title="Abrir expediente estatal" style="font-family:var(--mono);font-size:10px;color:var(--text-muted);cursor:pointer;white-space:nowrap">'+rows.length+' leyes · ver expediente →</span></div>';
-    if(!rows.length)return head+'<div style="font-size:11px;color:var(--text-muted);padding:4px 0 8px">Sin datos de legislación local disponibles.</div>';
-    var body=rows.map(function(l,i){
+    var sid='cons-lx-'+(STATE_ABBR[s]||s).replace(/[^A-Za-z]/g,'');
+    var head='<div onclick="_proToggle(\''+sid+'\')" style="cursor:pointer;display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-bottom:0.8px solid var(--border);padding:10px 0 8px">'
+      +'<span style="font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--green)"><span id="'+sid+'-c" style="display:inline-block;width:14px">▸</span>'+s+'</span>'
+      +'<span onclick="event.stopPropagation();openStatePanel(\''+se+'\')" title="Abrir expediente estatal" style="font-family:var(--mono);font-size:10px;color:var(--text-muted);cursor:pointer;white-space:nowrap">'+rows.length+' leyes · ver expediente →</span></div>';
+    if(!rows.length)return head+'<div id="'+sid+'" style="display:none;font-size:11px;color:var(--text-muted);padding:4px 0 8px">Sin datos de legislación local disponibles.</div>';
+    var body=rows.slice(0,6).map(function(l,i){
       var nombre=(typeof _leyName==='function')?_leyName(l.nombre||''):(l.nombre||'');
       var sig=/^\s*c[oó]digo/i.test(nombre)?'CÓD':/^\s*reglamento/i.test(nombre)?'REG':/^\s*programa/i.test(nombre)?'PROG':'LEY';
       var sigCol=sig==='LEY'?'var(--green)':sig==='CÓD'?'#2563eb':'#6b7280';
@@ -9253,10 +9267,23 @@ function _consLeyes(estados){
         +'</div>'
         +'<span style="font-size:16px;font-weight:300;color:var(--text-muted);opacity:.4;flex-shrink:0;line-height:1">›</span></div>';
     }).join('');
-    return head+body;
+    var mas=rows.length>6?'<div onclick="openStatePanel(\''+se+'\')" style="font-size:11px;font-weight:600;color:var(--green);cursor:pointer;padding:10px 0 4px">Ver las '+rows.length+' en el expediente de '+s+' →</div>':'';
+    return head+'<div id="'+sid+'" style="display:none">'+body+mas+'</div>';
   }).join('');
   el.style.display='block';
   el.innerHTML=html;
+}
+// Cajón plegable: muestra título y resumen; el contenido se dibuja al abrirlo
+function _consDrawer(id,title,meta,body){
+  return '<div class="pro-drawer"><div class="pro-drawerh" onclick="_consDrawerToggle(\''+id+'\')"><span class="pro-car" id="'+id+'-c">▸</span><b>'+title+'</b><i>'+meta+'</i></div>'
+    +'<div class="pro-drawerb" id="'+id+'" style="display:none">'+(body||'')+'</div></div>';
+}
+var _consDrawerFill={};
+function _consDrawerToggle(id){
+  var b=document.getElementById(id);if(!b)return;
+  var open=b.style.display!=='none';b.style.display=open?'none':'';
+  var c=document.getElementById(id+'-c');if(c)c.textContent=open?'▸':'▾';
+  if(!open&&_consDrawerFill[id]){_consDrawerFill[id]();delete _consDrawerFill[id];}
 }
 // Comparativa de los estados que sigues (nutre Mis estados con benchmark)
 function _consEstadosCompare(estados){
@@ -9275,9 +9302,7 @@ function _consEstadosCompare(estados){
       +estados.map(function(s,i){var v=vals[i],w=Math.max(2,v/max*100);return '<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><div style="flex:1;min-width:0;height:7px;background:rgba(0,0,0,0.05);overflow:hidden"><div style="height:100%;width:'+w.toFixed(0)+'%;background:'+COL[i%COL.length]+'"></div></div><div style="width:36px;text-align:right;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;flex-shrink:0">'+v+'</div></div>';}).join('')
     +'</div>';
   }).join('');
-  return '<div style="margin-top:18px;padding-top:14px;border-top:0.8px solid var(--border)">'
-    +'<div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:12px">Comparativa de tus estados</div>'
-    +legend+bars+'</div>';
+  return '<div style="padding-top:6px">'+legend+bars+'</div>';
 }
 // Quitar un ítem de la terminal al instante (estados/comisiones/legisladores/noms/…)
 function _consQuickRemove(kind,id,ev){
