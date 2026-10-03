@@ -1292,7 +1292,6 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
         <div class="nav-drop-it" onclick="goAgenda('congreso')">Congreso de la Unión</div>
         <div class="nav-drop-it" onclick="goAgenda('conamer')">En consulta</div>
         <div class="nav-drop-it" onclick="showTab('mananera',null)">Seguimiento Ejecutivo</div>
-        <div class="nav-drop-it" onclick="goAgenda('pendientes')">Reglamentaciones Pendientes</div>
         <div class="nav-drop-it" onclick="goAgenda('noticias')">Noticias</div>
       </div>
     </div>
@@ -1641,10 +1640,10 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
     <div id="obligaciones-body"></div>
   </div>
 
-  <!-- ═══ AGENDA · reglamentaciones pendientes + DOF hoy ═══ -->
+  <!-- ═══ AGENDA · consultas, DOF y noticias ═══ -->
   <div id="tab-agenda" class="tab-content">
     <div style="font-size:22px;font-weight:700;font-family:var(--sans);letter-spacing:0.02em;margin-bottom:4px">Agenda Regulatoria</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:26px">Lo que está por venir · reglamentaciones pendientes, publicaciones del DOF de hoy y accesos al monitoreo legislativo</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:26px">Lo que está por venir · consultas públicas, publicaciones del DOF y archivo de noticias</div>
     <div id="agenda-body"></div>
   </div>
   <div id="tab-mananera" class="tab-content" style="padding:28px 0">
@@ -2760,7 +2759,7 @@ function goAgenda(sub){
   if(sub!=='locales') _pushRoute(_AGENDAURL[sub]||'agenda');
   if(sub==='congreso'){showTab('legislacion',null);showLegSub('congresomx',null);return;}
   if(sub==='locales'){goObligaciones('gacetas');return;}
-  showTab('agenda',null);renderAgenda(sub||'pendientes');
+  showTab('agenda',null);renderAgenda(sub==='pendientes'?'conamer':(sub||'conamer'));
 }
 // Internacional : acuerdos y tratados (vista existente)
 function goInternacional(){if(typeof _gate==='function'&&!_gate())return;_pushRoute('internacional');showTab('legislacion',null);showLegSub('acuerdos',null);}
@@ -3594,7 +3593,7 @@ function _instrumentosHTML(){
       var right;
       if(o.certs)right='<a onclick="_oblToggleCerts('+i+')" style="'+lnk+'">Ver certificaciones <span id="obl-certs-arr-'+i+'">▾</span></a>';
       else if(o.url)right='<a href="'+o.url+'" target="_blank" rel="noopener" style="'+lnk+'">'+(o.urlTxt||'Portal oficial →')+'</a>';
-      else if(o.via==='agenda')right='<a onclick="goAgenda(\'pendientes\')" style="'+lnk+'">Reglamentación pendiente →</a>';
+      else if(o.via==='agenda')right='';
       else right='<a onclick="goObligaciones(\''+o.via+'\')" style="'+lnk+'">Ver sustento →</a>';
       var row=_oblRow({title:o.n,desc:o.d,meta:'Sustento · '+o.s,right:right,zeb:i%2===1});
       if(o.certs){
@@ -3903,6 +3902,8 @@ function _lsRun(){
   if(cd)cd.textContent=list.length+' evento'+(list.length===1?'':'s')+(edo==='__mine__'?' · tus plazas':'')+' · '+nv+' en vigor · '+np+' próximas · '+nedo+' estados'+(list.length>CAP?' · mostrando '+CAP:'')+actx;
 }
 // ── AGENDA · reglamentaciones pendientes + DOF hoy + accesos ──
+// Oculto del front desde oct-2026 (decisión de producto). Datos y _agendaPend() se conservan:
+// para reactivarlo, volver a agregar ['pendientes','Reglamentaciones pendientes'] a las pestañas de renderAgenda.
 // docs: [{label, url}] — enlaces a documentos cuando estén disponibles (opcional)
 var _PENDIENTES=[
   {t:'Reglamento de la Ley General de Economía Circular',e:'PENDIENTE',d:'La LGEC (DOF 19-ene-2026) mandató su Reglamento en 180 días: el plazo venció el 19-jul-2026 sin publicación registrada. Detonará las obligaciones de REP para envases y empaques.',org:'Ejecutivo Federal / SEMARNAT',docs:[{label:'Ley (DOF)',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEC.pdf'}]},
@@ -3924,16 +3925,16 @@ var _PENDIENTES=[
   {t:'Microplásticos en cosmética',e:'PENDIENTE',d:'La UE ya restringió microplásticos añadidos intencionalmente (Reg. 2023/2055); México podría seguir la tendencia.',org:'COFEPRIS / SEMARNAT',docs:[]},
   {t:'Biodegradabilidad de tensoactivos',e:'PENDIENTE',d:'Regulación de biodegradabilidad para tensoactivos en productos de cuidado personal y limpieza.',org:'SEMARNAT',docs:[]}
 ];
-var _agendaView='pendientes',_agendaEst='todos';
+var _agendaView='conamer',_agendaEst='todos';
 var _AG_ESTCOL={'PENDIENTE':'#ef4444','EN PROCESO':'#f97316','PROYECTO':'#009E90'};
 var _AG_ESTORD={'PENDIENTE':0,'EN PROCESO':1,'PROYECTO':2};
 function agendaSetView(v){_agendaView=v;_agendaEst='todos';renderAgenda();}
 function agendaSetEst(e){_agendaEst=e;_agendaPend();}
 function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
-  if(['dof','pendientes','conamer','noticias'].indexOf(view)>=0)_agendaView=view;
-  if(['pendientes','conamer','dof','noticias'].indexOf(_agendaView)<0)_agendaView='pendientes';
-  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta'],['dof','DOF · publicaciones'],['noticias','Noticias']];
+  if(['dof','conamer','noticias'].indexOf(view)>=0)_agendaView=view;
+  if(['conamer','dof','noticias'].indexOf(_agendaView)<0)_agendaView='conamer';
+  var tabs=[['conamer','En consulta'],['dof','DOF · publicaciones'],['noticias','Noticias']];
   var nav='<div class="stab-bar" style="margin-bottom:20px">'+tabs.map(function(t){
       return '<button class="stab'+(_agendaView===t[0]?' on':'')+'" onclick="agendaSetView(\''+t[0]+'\')">'+t[1]+'</button>';
     }).join('')+'</div>';
@@ -9030,7 +9031,7 @@ function _applyRoute(raw){
       case 'obligaciones/tramitesrme': goObligaciones('rme');break;
       case 'obligaciones/gacetas': goObligaciones('gacetas');break;
       case 'agenda': case 'agenda/congreso': goAgenda('congreso');break;
-      case 'agenda/pendientes': goAgenda('pendientes');break;
+      case 'agenda/pendientes': goAgenda('conamer');break;
       case 'agenda/noticias': goAgenda('noticias');break;
       case 'dof': goAgenda('dof');break;
       case 'actores': case 'actores/federal': showActores('federal');break;
