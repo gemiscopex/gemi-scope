@@ -65,6 +65,10 @@ jobs:
       - name: Scraper Gacetas Estatales (ediciones oficiales)
         run: python scraper/scraper_gacetas_estatales.py
 
+      # ── Archivo histórico de noticias (append-only, por mes) ──────────────
+      - name: Archivo histórico de noticias
+        run: python scraper/archivo_noticias.py
+
       # ── Commit y push ─────────────────────────────────────────────────────
 
       - name: Commit y push del JSON actualizado
