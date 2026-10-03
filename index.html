@@ -8182,7 +8182,8 @@ function _renderPanelAgenda(el){
   var admin=((_agendaGemiData&&_agendaGemiData.eventos)||[]).map(function(e){return {fecha:e.fecha,titulo:e.titulo,nota:e.nota||e.lugar||'',src:'GEMI'};});
   var user=_pgemiUserEvents().map(function(e,i){return {fecha:e.fecha,titulo:e.titulo,nota:'',src:'Tú',ui:i};});
   // Sesiones que vienen de las comisiones del Congreso (Gaceta de cada cámara)
-  var hoyISO=new Date().toISOString().slice(0,10);
+  // "Hoy" en hora de la Ciudad de México (UTC-6): lo que ya pasó no se muestra.
+  var hoyISO=new Date(Date.now()-6*3600000).toISOString().slice(0,10);
   var cong=[];
   ((_comisionesData&&_comisionesData.comisiones)||[]).forEach(function(c){
     (c.sesiones||[]).forEach(function(s){
@@ -8191,14 +8192,12 @@ function _renderPanelAgenda(el){
       cong.push({fecha:s.fecha,titulo:'Sesión · '+(c.nombre||'Comisión'),nota:(s.nombre?s.nombre+' · ':'')+camA+' · Convocatoria en Gaceta',url:c.url||'',src:'Congreso'});
     });
   });
-  var all=admin.concat(cong).concat(user).filter(function(e){return e.fecha;}).sort(function(a,b){return String(a.fecha).localeCompare(String(b.fecha));});
-  var hoy=new Date(new Date().toDateString());
+  var all=admin.concat(cong).concat(user).filter(function(e){return e.fecha&&String(e.fecha)>=hoyISO;}).sort(function(a,b){return String(a.fecha).localeCompare(String(b.fecha));});
   var rows=all.map(function(e){
     var dd=new Date(e.fecha+'T12:00:00');var day=isNaN(dd)?'':dd.getDate();var mon=isNaN(dd)?'':MES[dd.getMonth()];
-    var past=!isNaN(dd)&&dd<hoy;
     var ymd=String(e.fecha).replace(/-/g,'');
     var gcal='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(e.titulo||'')+'&dates='+ymd+'/'+ymd+'&details='+encodeURIComponent((e.nota||'')+' · Scope GEMI');
-    return '<div style="display:flex;gap:11px;padding:9px 0;border-top:0.8px solid var(--border);opacity:'+(past?'.5':'1')+'">'
+    return '<div style="display:flex;gap:11px;padding:9px 0;border-top:0.8px solid var(--border)">'
       +'<div style="text-align:center;flex-shrink:0;width:34px"><div style="font-family:var(--mono);font-size:17px;font-weight:700;color:#066750;line-height:1">'+day+'</div><div style="font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--text-muted)">'+mon+'</div></div>'
       +'<div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:var(--text);line-height:1.3">'+_escHtml(e.titulo||'')+' <span style="font-family:var(--mono);font-size:8px;color:var(--text-muted)">'+e.src+'</span></div>'
         +(e.nota?'<div style="font-size:10px;color:var(--text-sec);line-height:1.4;margin-top:2px">'+_escHtml(e.nota)+'</div>':'')
