@@ -7456,7 +7456,7 @@ function _wizPaint(){
     estados:'¿En qué entidades opera tu organización? Verás su señal, gacetas y noticias.',
     comisiones:'Comisiones del Congreso a seguir: fechas de sesión, integrantes y asuntos turnados.',
     legisladores:'Opcional: legisladores clave para tu agenda (máximo '+_WIZ_MAX_LEG+'). Por ahora solo se puede dar seguimiento a legisladores federales (Cámara de Diputados y Senado).',
-    referencias:'Opcional: NOMs, impuestos ambientales, instrumentos legales y materiales prohibidos que quieres tener siempre a la mano en tu terminal como referencia.',
+    referencias:'Opcional: NOMs, impuestos ambientales y materiales prohibidos que quieres tener siempre a la mano en tu terminal como referencia.',
     afinar:'Opcional: palabras clave propias (empresa, cuenca, trámite…) y nivel de riesgo por tema.'
   };
   document.getElementById('consola-wiz-bg').innerHTML=
@@ -7559,7 +7559,7 @@ function _wizPaintBody(){
     _lgemiLoad(function(){_wizPaintLegFilters();_wizPaintLegList();});
   }
   else if(p==='referencias'){
-    var tabs=[['noms','NOMs'],['impuestos','Impuestos'],['materiales','Materiales'],['instrumentos','Instrumentos']];
+    var tabs=[['noms','NOMs'],['impuestos','Impuestos'],['materiales','Materiales']];
     b.innerHTML='<div class="wref-tabs">'+tabs.map(function(t){
         return '<button class="wref-tab'+(_wiz.refTab===t[0]?' on':'')+'" onclick="_wizSetRefTab(\''+t[0]+'\')"><span>'+t[1]+'</span><span class="wchev">»</span></button>';
       }).join('')+'</div><div id="cw-ref-body"></div>';
@@ -7928,7 +7928,7 @@ function _consPrintReport(){
   items.forEach(function(it){var st=cm[it.key];if(st==='cumplo')cc.cumplo++;else if(st==='proceso')cc.proceso++;else if(st==='na')cc.na++;else cc.pend++;});
   var GRN='#066750';
   var _nm=(typeof _userDisplayName==='function')?_userDisplayName():'';
-  var nRefs=(cfg.noms||[]).length+(cfg.instrumentos||[]).length+(cfg.impuestos||[]).length+(cfg.materiales||[]).length;
+  var nRefs=(cfg.noms||[]).length+(cfg.impuestos||[]).length+(cfg.materiales||[]).length;
   var nivelWord=sen.total>=12?'alto':sen.total>=5?'medio':'bajo';
   // ── Síntesis inteligente ──
   var lead=sen.lead,upN=sen.rows.filter(function(r){return r.arrow&&/▲/.test(r.arrow[0]);}).length,downN=sen.rows.filter(function(r){return r.arrow&&/▼/.test(r.arrow[0]);}).length;
@@ -8048,11 +8048,6 @@ function _consRefWidgets(cfg){
         +'<div style="font-size:11px;color:var(--text);line-height:1.35;margin-top:2px">'+n.objeto+'</div>'
         +(n.implic?'<div style="font-size:10px;color:var(--text-muted);margin-top:2px;line-height:1.35">'+n.implic+'</div>':'')+'</a>';
     }).join('')+'</div>'});
-  if(instr.length)out.push({id:'ref-instr',title:'Instrumentos legales',count:instr.length,body:
-    instr.map(function(nm){var o=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).find(function(x){return x.n===nm;});
-      return '<div class="cons-refit"><div style="font-size:12px;font-weight:600;color:var(--text)">'+nm+'</div>'
-        +(o?'<div style="font-size:10px;color:var(--text-muted);line-height:1.4;margin-top:2px">'+o.d+'</div><div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:3px">'+o.s+'</div>':'')+'</div>';
-    }).join('')});
   if(imps.length)out.push({id:'ref-imps',title:'Impuestos ambientales',count:imps.length,body:
     imps.map(function(t){var inf=_consImpInfo(t);
       return '<div class="cons-refit"><div style="font-size:12px;font-weight:600;color:var(--text)">'+(inf.controv?'<span style="color:var(--red)" title="Controversia constitucional">● </span>':'')+t+'</div>'
@@ -8179,15 +8174,15 @@ function renderConsola(){
   var allKw=temaKw.concat(userKw);
 
   var sen=_consComputeSenal(temas,cfg.riesgos||{});
-  var nRefs=(cfg.noms||[]).length+(cfg.instrumentos||[]).length+(cfg.impuestos||[]).length+(cfg.materiales||[]).length;
+  var nRefs=(cfg.noms||[]).length+(cfg.impuestos||[]).length+(cfg.materiales||[]).length;
   var kpis=_consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg);
   // ── Widgets reordenables (drag-and-drop). Señal vive en el dúo (arriba); cumplimiento en modal. ──
   var widgets=[];
   widgets.push({id:'estados',title:'Mis estados',count:estados.length,add:'estados',desc:'Las entidades que sigues, con su nivel de actividad regulatoria. Para vigilar dónde se mueve tu agenda.',body:'<div id="cons-estados"></div>'});
   if(estados.length)widgets.push({id:'leyes',title:'Legislación de mis estados',count:estados.reduce(function(a,s){return a+((typeof _nLeyes==='function')?_nLeyes(s):0);},0),add:'estados',wide:true,desc:'Leyes, reglamentos y códigos ambientales vigentes en los estados que sigues, de la misma base estatal que el directorio. Para el seguimiento normativo de tu operación en cada entidad.',body:'<div id="cons-leyes"></div>'});
   _consRefWidgets(cfg).forEach(function(w){w.add='referencias';widgets.push(w);});
-  if(!(cfg.noms||[]).length&&!(cfg.instrumentos||[]).length&&!(cfg.impuestos||[]).length&&!(cfg.materiales||[]).length)
-    widgets.push({id:'ref-vacio',title:'Referencias',count:null,add:'referencias',body:'<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos, instrumentos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> aquí arriba) para tenerlos a la mano.</div>'});
+  if(!(cfg.noms||[]).length&&!(cfg.impuestos||[]).length&&!(cfg.materiales||[]).length)
+    widgets.push({id:'ref-vacio',title:'Referencias',count:null,add:'referencias',body:'<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos o materiales en <b>Editar terminal → Referencias</b> (o con el <b>+</b> aquí arriba) para tenerlos a la mano.</div>'});
   widgets.push({id:'dof',title:'Normas de mis temas',count:null,desc:'Publicaciones del DOF que cruzan tus temas, más las que guardaste. Tu radar normativo del día.',body:'<div id="cons-normas"></div>'});
   widgets.push({id:'ejecutivo',title:'Ejecutivo · menciones',count:null,desc:'Menciones de tus temas en la conferencia matutina del Ejecutivo, con su liga a la versión estenográfica.',body:'<div class="cons-scroll" id="cons-pres"></div>'});
   widgets.push({id:'comisiones',title:'Mis comisiones',count:coms.length,add:'comisiones',wide:true,desc:'Las comisiones legislativas que sigues y sus integrantes. Para saber quién decide en tu agenda.',body:'<div id="cons-coms" style="overflow-x:auto"></div>'});
@@ -8231,7 +8226,7 @@ function renderConsola(){
   if(userKw.length&&document.getElementById('cons-kw'))_consKwFeed(userKw);
 }
 // ── Autoevaluación de cumplimiento: el usuario marca ¿cumplo? sobre los
-//    instrumentos legales (NOMs + instrumentos) que ya eligió en Referencias ──
+//    distintivos y lo que ya eligió en Referencias (NOMs, impuestos, materiales) ──
 function _consCumplGet(){try{return JSON.parse(localStorage.getItem('scope_cumplimiento_v1'))||{};}catch(e){return {};}}
 function _consCumplSet(key,st){var m=_consCumplGet();if(m[key]===st)delete m[key];else m[key]=st;try{localStorage.setItem('scope_cumplimiento_v1',JSON.stringify(m));}catch(e){}_cumplRender();}
 // Mi cumplimiento = catálogo COMPLETO de obligaciones (siempre presente) + lo que agregaste en Referencias.
@@ -8239,9 +8234,8 @@ function _cumplItems(cfg){
   cfg=cfg||{};
   var items=[],seen={};
   function push(key,titulo,sub,url,mono,grupo){if(seen[key])return;seen[key]=1;items.push({key:key,titulo:titulo,sub:sub||'',url:url||'',mono:!!mono,grupo:grupo});}
-  // 1) Instrumentos legales (todo el catálogo base) + distintivos/certificaciones
+  // 1) Distintivos y certificaciones (catálogo base)
   (typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).forEach(function(o){
-    push('ins:'+o.n,o.n,o.d,o.url||'',false,'Instrumentos legales');
     (o.certs||[]).forEach(function(c){push('cert:'+c.n,c.n,'Distintivo voluntario · '+c.dep,c.url||'',false,'Distintivos y certificaciones');});
   });
   // 2) NOMs que agregaste en Referencias
@@ -8250,15 +8244,13 @@ function _cumplItems(cfg){
   (cfg.impuestos||[]).forEach(function(t){var inf=(typeof _consImpInfo==='function')?_consImpInfo(t):{states:[]};push('imp:'+t,t,'Impuesto ambiental · en '+inf.states.length+' entidad'+(inf.states.length===1?'':'es'),'',false,'Impuestos ambientales');});
   // 4) Materiales restringidos que agregaste
   (cfg.materiales||[]).forEach(function(mm){var inf=(typeof _consMatInfo==='function')?_consMatInfo(mm):{states:[]};push('mat:'+mm,mm,'Material restringido · prohibido en '+inf.states.length+' entidad'+(inf.states.length===1?'':'es'),'',false,'Materiales restringidos');});
-  // 5) Instrumentos que hayas agregado a mano fuera del catálogo
-  (cfg.instrumentos||[]).forEach(function(nm){var o=(typeof _OBLIGACIONES!=='undefined'?_OBLIGACIONES:[]).find(function(x){return x.n===nm;});push('ins:'+nm,nm,o?o.d:'',o&&o.url?o.url:'',false,'Instrumentos legales');});
   return items;
 }
 function _cumplRender(){
   var el=document.getElementById('cumpl-body');if(!el)return;
   var cfg=(typeof loadConsola==='function')?loadConsola():{};
   var items=_cumplItems(cfg),m=_consCumplGet();
-  if(!items.length){el.innerHTML='<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs o instrumentos legales en <b>Editar terminal → Referencias</b> para autoevaluar tu cumplimiento aquí.</div>';return;}
+  if(!items.length){el.innerHTML='<div style="font-size:11px;color:var(--text-muted);line-height:1.5">Agrega NOMs, impuestos o materiales en <b>Editar terminal → Referencias</b> para autoevaluar tu cumplimiento aquí.</div>';return;}
   var nOk=items.filter(function(it){return m[it.key]==='cumplo';}).length;
   var nProc=items.filter(function(it){return m[it.key]==='proceso';}).length;
   var opts=[['cumplo','Cumplo','#066750','rgba(6,103,80,.08)'],['proceso','En proceso','#B7791F','rgba(183,121,31,.08)'],['na','No aplica','var(--text-muted)','rgba(0,0,0,.03)']];
@@ -8521,7 +8513,6 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
   var refList=[];
   (cfg.noms||[]).forEach(function(x){refList.push('NOM · '+x);});
   (cfg.impuestos||[]).forEach(function(x){refList.push('Impuesto · '+x);});
-  (cfg.instrumentos||[]).forEach(function(x){refList.push('Instrumento · '+x);});
   (cfg.materiales||[]).forEach(function(x){refList.push('Material · '+x);});
   var mtile=function(icon,label,n,list,jump){
     list=(list||[]).filter(Boolean);
@@ -8672,7 +8663,6 @@ function _refCardHTML(cfg){
   }
   return '<div class="card"><div class="card-label">Mis referencias</div>'
     +grp('NOMs',noms,nomUrl)
-    +grp('Instrumentos legales',instr,null)
     +grp('Impuestos ambientales',imps,null)
     +grp('Materiales regulados',mats,null)
   +'</div>';
