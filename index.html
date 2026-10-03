@@ -181,6 +181,45 @@ body.dash-fixed .dash-left,body.dash-fixed .dash-right{min-height:0;overflow-y:a
 .stab,.leg-sub-btn{background:none;border:none;border-bottom:2px solid transparent;padding:0 0 11px;margin-bottom:-1px;font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:0.01em;color:var(--text-muted);cursor:pointer;white-space:nowrap;transition:color .12s,border-color .12s}
 .stab:hover,.leg-sub-btn:hover{color:var(--text-sec)}
 .stab.on,.stab.active,.leg-sub-btn.active{color:var(--text);font-weight:600;border-bottom-color:var(--green)}
+/* Agenda › Noticias: archivo histórico (hemeroteca) */
+.nh-wrap{display:grid;grid-template-columns:236px minmax(0,1fr);gap:44px;align-items:start}
+.nh-rail{position:sticky;top:76px}
+.nh-k{font-family:var(--mono);font-size:var(--fs-11);font-weight:700;letter-spacing:0.02em;color:var(--green)}
+.nh-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:10px}
+.nh-cal .dw{font-family:var(--mono);font-size:var(--fs-micro);color:var(--text-muted);text-align:center;padding-bottom:4px}
+.nh-cal .d{position:relative;height:30px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:var(--fs-11);color:var(--text-muted)}
+.nh-cal .d.on{color:var(--text);cursor:pointer}
+.nh-cal .d.on:hover{outline:0.8px solid var(--green)}
+.nh-cal .d .t{position:absolute;inset:0;background:var(--green)}
+.nh-cal .d span{position:relative}
+.nh-cal .d.sel{color:#fff;font-weight:700}
+.nh-cal .d.sel .t{opacity:1!important}
+.nh-mrow{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:0.8px solid var(--border);cursor:pointer;font-size:var(--fs-body);color:var(--text-sec)}
+.nh-mrow:hover{color:var(--text)}
+.nh-mrow.sel{color:var(--text);font-weight:600}
+.nh-mrow .bar{flex:1;height:3px;background:var(--border);position:relative}
+.nh-mrow .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--green)}
+.nh-mrow .n{font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-muted);min-width:38px;text-align:right}
+.nh-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.nh-tools select,.nh-tools input{padding:8px 10px;font-size:var(--fs-body);color:var(--text);background:var(--card2);border:0.8px solid var(--border);font-family:var(--sans);outline:none}
+.nh-tools select{padding-right:26px;cursor:pointer}
+.nh-dl{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:10px;border-bottom:1.6px solid var(--text);margin-bottom:6px}
+.nh-dl h3{margin:0;font-size:var(--fs-title);font-weight:700;color:var(--text);letter-spacing:-0.01em}
+.nh-dl .m{font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-muted);letter-spacing:0.04em}
+.nh-nav{display:flex;justify-content:space-between;font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-muted);margin:0 0 26px}
+.nh-nav a{color:var(--green);cursor:pointer;text-decoration:none}
+.nh-sec{margin:0 0 26px}
+.nh-sec .h{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:6px;border-bottom:0.8px solid var(--border)}
+.nh-it{padding:11px 0;border-bottom:0.8px solid var(--border)}
+.nh-it a{font-size:var(--fs-lg);font-weight:600;line-height:1.4;color:var(--text);text-decoration:none}
+.nh-it a:hover{color:var(--green)}
+.nh-it .m{font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-muted);margin-top:5px;letter-spacing:0.02em}
+.nh-day{font-size:var(--fs-16);font-weight:700;color:var(--text);margin:26px 0 2px;padding-bottom:6px;border-bottom:1.6px solid var(--text)}
+.nh-mark{background:rgba(6,103,80,0.12);color:inherit;padding:0 1px}
+.nh-mode{display:flex;gap:4px 22px;margin:0 0 18px}
+.nh-mode button{background:none;border:none;border-bottom:1.5px solid transparent;cursor:pointer;font-family:var(--sans);font-size:var(--fs-body);font-weight:500;color:var(--text-muted);padding:0 0 6px}
+.nh-mode button.on{color:var(--text);font-weight:600;border-bottom-color:var(--green)}
+@media(max-width:900px){.nh-wrap{grid-template-columns:1fr;gap:26px}.nh-rail{position:static}.nh-mlist{display:none}}
 .normas-filter-link{padding:0;border:none;background:none;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:var(--sans);transition:color 0.15s;letter-spacing:0.02em}
 .normas-filter-link.active{color:var(--text);font-weight:700}
 /* ── Badge component ── */
@@ -1254,6 +1293,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
         <div class="nav-drop-it" onclick="goAgenda('conamer')">En consulta</div>
         <div class="nav-drop-it" onclick="showTab('mananera',null)">Seguimiento Ejecutivo</div>
         <div class="nav-drop-it" onclick="goAgenda('pendientes')">Reglamentaciones Pendientes</div>
+        <div class="nav-drop-it" onclick="goAgenda('noticias')">Noticias</div>
       </div>
     </div>
     <div class="nav-drop-wrap">
@@ -3891,14 +3931,14 @@ function agendaSetView(v){_agendaView=v;_agendaEst='todos';renderAgenda();}
 function agendaSetEst(e){_agendaEst=e;_agendaPend();}
 function renderAgenda(view){
   var host=document.getElementById('agenda-body');if(!host)return;
-  if(['dof','pendientes','conamer'].indexOf(view)>=0)_agendaView=view;
-  if(['pendientes','conamer','dof'].indexOf(_agendaView)<0)_agendaView='pendientes';
-  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta'],['dof','DOF · publicaciones']];
+  if(['dof','pendientes','conamer','noticias'].indexOf(view)>=0)_agendaView=view;
+  if(['pendientes','conamer','dof','noticias'].indexOf(_agendaView)<0)_agendaView='pendientes';
+  var tabs=[['pendientes','Reglamentaciones pendientes'],['conamer','En consulta'],['dof','DOF · publicaciones'],['noticias','Noticias']];
   var nav='<div class="stab-bar" style="margin-bottom:20px">'+tabs.map(function(t){
       return '<button class="stab'+(_agendaView===t[0]?' on':'')+'" onclick="agendaSetView(\''+t[0]+'\')">'+t[1]+'</button>';
     }).join('')+'</div>';
   host.innerHTML=nav+'<div id="agenda-view"></div>';
-  if(_agendaView==='dof')_agendaDof();else if(_agendaView==='conamer')_agendaConamer();else if(_agendaView==='historico')_agendaHistorico();else if(_agendaView==='proximo')_agendaProximo();else _agendaPend();
+  if(_agendaView==='dof')_agendaDof();else if(_agendaView==='noticias')_agendaNoticias();else if(_agendaView==='conamer')_agendaConamer();else if(_agendaView==='historico')_agendaHistorico();else if(_agendaView==='proximo')_agendaProximo();else _agendaPend();
 }
 // Directorio de gacetas / periódicos oficiales por entidad (publicación oficial estatal)
 var GACETAS_OFICIALES={
@@ -4393,6 +4433,160 @@ function _congHistToggle(i){
   }
   d.style.display='block';if(arr)arr.textContent='▾';
 }
+// ── Agenda › Noticias: archivo histórico de noticias (data/noticias-historico/AAAA-MM.json) ──
+// Hemeroteca: calendario del mes a la izquierda, el día como portada agrupado por tema,
+// vista por mes y búsqueda en todo el archivo. Los meses se cargan bajo demanda.
+var _nhIdx=null,_nhMes={},_nhF={dia:'',mes:'',vista:'dia',tema:'todos',amb:'todos',edo:'todos',q:''},_nhQT=null,_nhAll=false;
+var _NH_MES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+var _NH_DIA=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+function _nhGet(url,cb){fetch(url,{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).then(cb).catch(function(){cb(null);});}
+function _nhMeses(){return Object.keys((_nhIdx&&_nhIdx.meses)||{}).filter(function(m){return (_nhIdx.meses[m].total||0)>=20;}).sort();}
+function _nhLoadMes(m,cb){if(_nhMes[m])return cb();_nhGet('data/noticias-historico/'+m+'.json',function(d){_nhMes[m]=d||[];cb();});}
+function _nhFecha(iso,larga){var d=new Date(iso+'T12:00:00');if(isNaN(d))return iso;var t=d.getDate()+' de '+_NH_MES[d.getMonth()]+' de '+d.getFullYear();return larga?(_NH_DIA[d.getDay()].charAt(0).toUpperCase()+_NH_DIA[d.getDay()].slice(1)+' '+t):t;}
+function _nhMesLbl(m){var p=m.split('-');return _NH_MES[+p[1]-1].charAt(0).toUpperCase()+_NH_MES[+p[1]-1].slice(1)+' '+p[0];}
+function _nhTemaLbl(r){return r.categoria_nombre||(r.categoria?String(r.categoria).replace(/_/g,' '):'Sin tema');}
+function _nhPasa(r){
+  var f=_nhF;
+  if(f.tema!=='todos'&&(r.categoria||'')!==f.tema)return false;
+  if(f.amb!=='todos'&&(r.ambito||'nacional')!==f.amb)return false;
+  if(f.edo!=='todos'&&(r.estado||'')!==f.edo)return false;
+  return true;
+}
+function _agendaNoticias(){
+  var host=document.getElementById('agenda-view');if(!host)return;
+  if(!_nhIdx){
+    host.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando archivo…</div>';
+    _nhGet('data/noticias-historico/indice.json',function(d){_nhIdx=d||{meses:{}};_agendaNoticias();});
+    return;
+  }
+  var meses=_nhMeses();
+  if(!meses.length){host.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:16px 0">El archivo de noticias todavía no tiene notas.</div>';return;}
+  if(!_nhF.mes||meses.indexOf(_nhF.mes)<0)_nhF.mes=meses[meses.length-1];
+  _nhLoadMes(_nhF.mes,function(){
+    var dias=_nhDiasMes(_nhF.mes);
+    if(!_nhF.dia||_nhF.dia.substring(0,7)!==_nhF.mes){var ks=Object.keys(dias).sort();_nhF.dia=ks.length?ks[ks.length-1]:'';}
+    _nhPaint();
+  });
+}
+function _nhDiasMes(m){var c={};(_nhMes[m]||[]).forEach(function(r){if(!_nhPasa(r))return;var d=(r.fecha||'').substring(0,10);if(d)c[d]=(c[d]||0)+1;});return c;}
+function _nhRail(){
+  var m=_nhF.mes,p=m.split('-'),y=+p[0],mo=+p[1]-1;
+  var dias=_nhDiasMes(m),max=Math.max.apply(null,[1].concat(Object.keys(dias).map(function(k){return dias[k];})));
+  var meses=_nhMeses(),i=meses.indexOf(m);
+  var prev=i>0?'<a onclick="_nhSetMes(\''+meses[i-1]+'\')" style="cursor:pointer;color:var(--green)">‹</a>':'<span style="opacity:.25">‹</span>';
+  var next=i<meses.length-1?'<a onclick="_nhSetMes(\''+meses[i+1]+'\')" style="cursor:pointer;color:var(--green)">›</a>':'<span style="opacity:.25">›</span>';
+  var off=(new Date(y,mo,1).getDay()+6)%7,nd=new Date(y,mo+1,0).getDate(),cells='';
+  ['L','M','M','J','V','S','D'].forEach(function(w){cells+='<div class="dw">'+w+'</div>';});
+  for(var k=0;k<off;k++)cells+='<div></div>';
+  for(var d=1;d<=nd;d++){
+    var iso=m+'-'+(d<10?'0':'')+d,n=dias[iso]||0,sel=iso===_nhF.dia&&_nhF.vista==='dia';
+    var op=n?(0.10+0.55*n/max).toFixed(2):0;
+    cells+=n?('<div class="d on'+(sel?' sel':'')+'" title="'+n+' nota'+(n===1?'':'s')+'" onclick="_nhSetDia(\''+iso+'\')"><i class="t" style="opacity:'+op+'"></i><span>'+d+'</span></div>')
+            :('<div class="d"><span>'+d+'</span></div>');
+  }
+  var mmax=Math.max.apply(null,[1].concat(meses.map(function(x){return _nhIdx.meses[x].total||0;})));
+  var mlist=meses.slice().reverse().map(function(x){
+    var t=_nhIdx.meses[x].total||0;
+    return '<div class="nh-mrow'+(x===m?' sel':'')+'" onclick="_nhSetMes(\''+x+'\')"><span style="min-width:112px">'+_nhMesLbl(x)+'</span><span class="bar"><i style="width:'+Math.round(t/mmax*100)+'%"></i></span><span class="n">'+t.toLocaleString('es-MX')+'</span></div>';
+  }).join('');
+  return '<aside class="nh-rail">'
+    +'<div style="display:flex;justify-content:space-between;align-items:baseline"><span class="nh-k">'+_nhMesLbl(m)+'</span><span style="font-family:var(--mono);font-size:14px;display:flex;gap:14px">'+prev+next+'</span></div>'
+    +'<div class="nh-cal">'+cells+'</div>'
+    +'<div class="nh-mlist"><div class="nh-k" style="margin:30px 0 4px">Archivo por mes</div>'+mlist
+    +'<div style="font-family:var(--mono);font-size:var(--fs-micro);color:var(--text-muted);margin-top:12px;line-height:1.6">'+((_nhIdx._meta&&_nhIdx._meta.total)||0).toLocaleString('es-MX')+' notas · nacional desde marzo, estatal desde julio de 2026</div></div>'
+    +'</aside>';
+}
+function _nhTools(){
+  var temas={},edos={};
+  Object.keys(_nhMes).forEach(function(m){(_nhMes[m]||[]).forEach(function(r){if(r.categoria)temas[r.categoria]=_nhTemaLbl(r);if(r.estado)edos[r.estado]=1;});});
+  var opt=function(v,l,cur){return '<option value="'+_esc(v)+'"'+(cur===v?' selected':'')+'>'+_esc(l)+'</option>';};
+  var tOpts=opt('todos','Todos los temas',_nhF.tema)+Object.keys(temas).sort(function(a,b){return temas[a].localeCompare(temas[b],'es');}).map(function(k){return opt(k,temas[k],_nhF.tema);}).join('');
+  var aOpts=opt('todos','Nacional y estatal',_nhF.amb)+opt('nacional','Nacional',_nhF.amb)+opt('estatal','Estatal',_nhF.amb);
+  var eOpts=opt('todos','Todos los estados',_nhF.edo)+Object.keys(edos).sort(function(a,b){return a.localeCompare(b,'es');}).map(function(k){return opt(k,k,_nhF.edo);}).join('');
+  return '<div class="nh-tools">'
+    +'<input id="nh-q" value="'+_esc(_nhF.q).replace(/"/g,'&quot;')+'" oninput="_nhSearch(this.value)" placeholder="Buscar en todo el archivo: tema, empresa, medio, lugar…" style="flex:1;min-width:240px">'
+    +'<select onchange="_nhSet(\'tema\',this.value)">'+tOpts+'</select>'
+    +'<select onchange="_nhSet(\'amb\',this.value)">'+aOpts+'</select>'
+    +'<select onchange="_nhSet(\'edo\',this.value)">'+eOpts+'</select>'
+    +'</div>';
+}
+// Algunos medios estatales mandan el texto con la codificación rota ("reuniÃ³n" → "reunión")
+function _nhFix(s){s=String(s||'');if(/Ã.|Â./.test(s)){try{return decodeURIComponent(escape(s));}catch(e){}}return s;}
+function _nhItem(r,q){
+  var t=_esc(_nhFix(r.titulo));
+  if(q){var i=qa(t.toLowerCase()).indexOf(q);if(i>=0)t=t.substring(0,i)+'<mark class="nh-mark">'+t.substring(i,i+q.length)+'</mark>'+t.substring(i+q.length);}
+  var meta=[_nhFix(r.fuente),r.estado||'',r.ambito==='estatal'?'Prensa estatal':''].filter(Boolean).map(_esc).join('  ·  ');
+  var url=r.url?_esc(r.url):'';
+  return '<div class="nh-it">'+(url?'<a href="'+url+'" target="_blank" rel="noopener">'+t+'</a>':'<span style="font-size:14px;font-weight:600">'+t+'</span>')
+    +'<div class="m">'+meta+'</div></div>';
+}
+function _nhSecciones(lista,q){
+  var g={};lista.forEach(function(r){var k=r.categoria||'_';(g[k]=g[k]||{lbl:_nhTemaLbl(r),rs:[]}).rs.push(r);});
+  return Object.keys(g).sort(function(a,b){return g[b].rs.length-g[a].rs.length;}).map(function(k){
+    return '<section class="nh-sec"><div class="h"><span class="nh-k">'+_esc(g[k].lbl)+'</span><span style="font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-muted)">'+g[k].rs.length+'</span></div>'
+      +g[k].rs.map(function(r){return _nhItem(r,q);}).join('')+'</section>';
+  }).join('');
+}
+function _nhPaint(){
+  var host=document.getElementById('agenda-view');if(!host)return;
+  var q=qa((_nhF.q||'').toLowerCase()).trim(),main='';
+  var modo='<div class="nh-mode"><button class="'+(_nhF.vista==='dia'?'on':'')+'" onclick="_nhSet(\'vista\',\'dia\')">Día</button><button class="'+(_nhF.vista==='mes'?'on':'')+'" onclick="_nhSet(\'vista\',\'mes\')">Mes</button></div>';
+  if(q){
+    main=_nhResultados(q);
+  }else if(_nhF.vista==='mes'){
+    var rs=(_nhMes[_nhF.mes]||[]).filter(_nhPasa).sort(function(a,b){return String(b.fecha).localeCompare(String(a.fecha));}),porDia={},MCAP=300;
+    rs.slice(0,MCAP).forEach(function(r){(porDia[r.fecha]=porDia[r.fecha]||[]).push(r);});
+    main=modo+'<div class="nh-dl"><h3>'+_nhMesLbl(_nhF.mes)+'</h3><span class="m">'+rs.length.toLocaleString('es-MX')+' notas</span></div>'
+      +Object.keys(porDia).sort().reverse().map(function(d){
+        return '<div class="nh-day">'+_nhFecha(d,true)+' <span style="font-family:var(--mono);font-size:var(--fs-xs);font-weight:400;color:var(--text-muted)">'+porDia[d].length+'</span></div>'
+          +porDia[d].map(function(r){return _nhItem(r,'');}).join('');
+      }).join('')
+      +(rs.length>MCAP?'<div style="font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-muted);padding:14px 0">Mostrando las '+MCAP+' más recientes de '+rs.length.toLocaleString('es-MX')+'. Elige un día en el calendario o usa los filtros para ver el resto.</div>':'');
+  }else{
+    var lista=(_nhMes[_nhF.mes]||[]).filter(function(r){return r.fecha===_nhF.dia&&_nhPasa(r);});
+    var nac=lista.filter(function(r){return r.ambito!=='estatal';}).length;
+    var ks=Object.keys(_nhDiasMes(_nhF.mes)).sort(),i=ks.indexOf(_nhF.dia);
+    var ant=i>0?'<a onclick="_nhSetDia(\''+ks[i-1]+'\')">← '+_nhFecha(ks[i-1])+'</a>':'<span></span>';
+    var sig=i>=0&&i<ks.length-1?'<a onclick="_nhSetDia(\''+ks[i+1]+'\')">'+_nhFecha(ks[i+1])+' →</a>':'<span></span>';
+    main=modo+'<div class="nh-dl"><h3>'+(_nhF.dia?_nhFecha(_nhF.dia,true):_nhMesLbl(_nhF.mes))+'</h3><span class="m">'+lista.length+' nota'+(lista.length===1?'':'s')+' · '+nac+' nacionales · '+(lista.length-nac)+' estatales</span></div>'
+      +'<div class="nh-nav">'+ant+sig+'</div>'
+      +(lista.length?_nhSecciones(lista,''):'<div style="font-size:12px;color:var(--text-muted);padding:8px 0">Sin notas para este día con los filtros elegidos.</div>')
+      +'<div class="nh-nav" style="margin-top:6px">'+ant+sig+'</div>';
+  }
+  host.innerHTML='<div class="nh-wrap">'+_nhRail()+'<div>'+_nhTools()+'<div id="nh-main">'+main+'</div></div></div>';
+}
+function _nhResultados(q){
+  if(!_nhAll){
+    var faltan=_nhMeses().filter(function(m){return !_nhMes[m];});
+    if(faltan.length){
+      var n=faltan.length;faltan.forEach(function(m){_nhLoadMes(m,function(){if(--n===0){_nhAll=true;_nhPaintMain();}});});
+      return '<div style="font-size:12px;color:var(--text-muted);padding:8px 0">Buscando en todo el archivo…</div>';
+    }
+    _nhAll=true;
+  }
+  var res=[];
+  Object.keys(_nhMes).forEach(function(m){(_nhMes[m]||[]).forEach(function(r){
+    if(!_nhPasa(r))return;
+    var hay=qa(((r.titulo||'')+' '+(r.fuente||'')+' '+(r.estado||'')+' '+(r.resumen||'')).toLowerCase());
+    if(hay.indexOf(q)>=0)res.push(r);
+  });});
+  res.sort(function(a,b){return String(b.fecha).localeCompare(String(a.fecha));});
+  var CAP=150,show=res.slice(0,CAP),porDia={},ord=[];
+  show.forEach(function(r){if(!porDia[r.fecha]){porDia[r.fecha]=[];ord.push(r.fecha);}porDia[r.fecha].push(r);});
+  return '<div class="nh-dl"><h3>Resultados</h3><span class="m">'+res.length.toLocaleString('es-MX')+' nota'+(res.length===1?'':'s')+' para “'+_esc(_nhF.q)+'”</span></div>'
+    +(res.length?ord.map(function(d){return '<div class="nh-day">'+_nhFecha(d,true)+'</div>'+porDia[d].map(function(r){return _nhItem(r,q);}).join('');}).join(''):'<div style="font-size:12px;color:var(--text-muted);padding:8px 0">Sin notas que coincidan.</div>')
+    +(res.length>CAP?'<div style="font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-muted);padding:14px 0">Mostrando '+CAP+' de '+res.length.toLocaleString('es-MX')+'. Usa los filtros de tema, ámbito o estado para acotar.</div>':'');
+}
+function _nhPaintMain(){var el=document.getElementById('nh-main');if(!el)return;var q=qa((_nhF.q||'').toLowerCase()).trim();if(q)el.innerHTML=_nhResultados(q);else _nhPaint();}
+function _nhSet(k,v){
+  _nhF[k]=v;
+  // si con el nuevo filtro el día elegido queda vacío, salta al día más reciente que sí tenga notas
+  if(k==='tema'||k==='amb'||k==='edo'){var ks=Object.keys(_nhDiasMes(_nhF.mes)).sort();if(ks.length&&ks.indexOf(_nhF.dia)<0)_nhF.dia=ks[ks.length-1];}
+  _nhPaint();
+}
+function _nhSetMes(m){_nhF.mes=m;_nhF.dia='';_nhF.q='';_agendaNoticias();}
+function _nhSetDia(d){_nhF.dia=d;_nhF.vista='dia';_nhF.q='';_nhPaint();}
+function _nhSearch(v){_nhF.q=v;clearTimeout(_nhQT);_nhQT=setTimeout(_nhPaintMain,260);}
 function _agendaPend(){
   var host=document.getElementById('agenda-view');if(!host)return;
   var col=function(e){return _AG_ESTCOL[e]||'#009E90';};
@@ -8808,7 +9002,7 @@ function _spark(vals,color){
 var _routing=false;
 var _TABURL={dashboard:'dashboard',estados:'estados',radares:'radares',consola:'terminal',acerca:'acerca',alertas:'alertas'};
 var _OBLURL={instrumentos:'obligaciones/instrumentos',noms:'obligaciones/noms',federal:'obligaciones/leyesfederales',estatal:'obligaciones/leyesestatales',rme:'obligaciones/tramitesrme',gacetas:'obligaciones/gacetas'};
-var _AGENDAURL={congreso:'agenda/congreso',pendientes:'agenda/pendientes',dof:'dof'};
+var _AGENDAURL={congreso:'agenda/congreso',pendientes:'agenda/pendientes',dof:'dof',noticias:'agenda/noticias'};
 var _ACTURL={federal:'actores/federal',estatal:'actores/estatal',legfed:'actores/legislativo-federal',legest:'actores/legislativo-estatal'};
 function _pushRoute(path){
   if(_routing)return;
@@ -8837,6 +9031,7 @@ function _applyRoute(raw){
       case 'obligaciones/gacetas': goObligaciones('gacetas');break;
       case 'agenda': case 'agenda/congreso': goAgenda('congreso');break;
       case 'agenda/pendientes': goAgenda('pendientes');break;
+      case 'agenda/noticias': goAgenda('noticias');break;
       case 'dof': goAgenda('dof');break;
       case 'actores': case 'actores/federal': showActores('federal');break;
       case 'actores/estatal': showActores('estatal');break;
