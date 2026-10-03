@@ -12,6 +12,7 @@ import hashlib
 import json
 import os
 import re
+import unicodedata
 import sys
 import time
 from datetime import datetime, date, timedelta
@@ -45,17 +46,16 @@ MONTH3 = {
 STRONG_KW = [
     "medio ambiente", "cambio climatico", "cambio clim",
     "semarnat", "profepa", "conagua", "conafor", "conanp",
-    "lgeepa", "lgcc", "lgpgir", "lgdfs", "lgvs", "lfra", "lan ",
-    "lte ", "lie ", "lgec",
+    "lgeepa", "lgcc", "lgpgir", "lgdfs", "lgvs", "lfra", "lgec",
     "nom-", "norma oficial mexicana",
     "residuo", "contaminac", "biodiver",
     "forestal", "reforest", "deforest",
     "hidric", "acuifer", "cuenca hidro",
-    "emision", "gases de efecto",
+    "emisiones", "emision de gases", "emision de contaminantes", "gases de efecto",
     "sustentabilidad", "sostenibilidad",
     "responsabilidad ambiental",
     "impuesto ecolog", "tasa ecolog", "impuesto ambient",
-    "area natural protegida", "anp ",
+    "area natural protegida",
     "ecosis", "habitat",
 ]
 
@@ -91,11 +91,33 @@ EXCLUDE_KW = [
 _NOMBRE_PARTIDO = re.compile(r"partido\s+verde\s+ecologista\s+de\s+m[eé]xico", re.I)
 
 
+# Leyes del compendio de Scope: si el título las nombra, el instrumento entra siempre
+# (aunque traiga "educación" o "transporte": p. ej. educación ambiental en la LGEEPA).
+# El estudio de cobertura de oct-2026 encontró que 1 de cada 4 reformas a estas leyes
+# se quedaba fuera por depender solo de palabras sueltas.
+LEYES_COMPENDIO = [
+    "equilibrio ecologico", "gestion integral de los residuos", "gestion integral de residuos",
+    "aguas nacionales", "ley general de aguas", "cambio climatico", "desarrollo forestal sustentable",
+    "vida silvestre", "responsabilidad ambiental", "sector electrico", "transicion energetica",
+    "economia circular",
+]
+
+
+def _sin_acentos(s: str) -> str:
+    return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn")
+
+
 def is_relevant(titulo: str) -> bool:
     """True si el título tiene relación genuina con medio ambiente / sostenibilidad."""
-    t = _NOMBRE_PARTIDO.sub(" ", titulo or "").lower()
+    t = _sin_acentos(_NOMBRE_PARTIDO.sub(" ", titulo or "").lower())
+    if any(l in t for l in LEYES_COMPENDIO):
+        return True
+    # Siglas como palabra completa (antes "lan " casaba "Tultitlán", "lte " casaba "Tamulté")
+    if re.search(r"(lan|lte|lie|anp)", t):
+        return True
     # Exclusión directa: si contiene algún término típico de falso positivo, descarta
-    if any(ex in t for ex in EXCLUDE_KW):
+    # (salvo que el título sea claramente ambiental: 2+ palabras fuertes)
+    if any(ex in t for ex in EXCLUDE_KW) and sum(k in t for k in STRONG_KW) < 2:
         return False
     # Una palabra clave fuerte basta
     if any(k in t for k in STRONG_KW):
