@@ -1055,6 +1055,19 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-widget.open .cons-wt{color:var(--green)}
 .cons-wbody{max-height:0;overflow:hidden;transition:max-height .32s ease}
 .cons-wdesc{font-size:11px;color:var(--text-muted);line-height:1.5;margin:7px 0 0;max-width:70ch}
+.cons-tabs{margin-top:38px}
+.cons-tabbar{display:flex;flex-wrap:nowrap;gap:6px;padding:0 0 16px;border-bottom:0.8px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.cons-tabbtn{display:inline-flex;align-items:center;gap:7px;flex:1 0 auto;justify-content:center;padding:9px 10px;border:0.8px solid var(--border);border-radius:3px;background:none;cursor:pointer;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--green);white-space:nowrap;transition:background .12s,color .12s,border-color .12s}
+.cons-tabbtn svg{width:14px;height:14px;flex-shrink:0}
+.cons-tabbtn:hover{border-color:var(--green)}
+.cons-tabbtn.on{background:#066750;border-color:#066750;color:#fff}
+.cons-tabbtn:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.cons-tabn{font-weight:500;opacity:.7}
+.cons-tabhead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:22px 0 16px}
+.cons-tabtitle{font-size:20px;font-weight:700;letter-spacing:-.01em;color:var(--text)}
+.cons-tabblock{margin-bottom:30px;min-width:0}
+.cons-tabkick{display:flex;align-items:baseline;gap:8px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--green);padding-bottom:6px;border-bottom:0.8px solid var(--border);margin-bottom:10px}
+@media(max-width:680px){.cons-tabbar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.cons-tabhead{flex-direction:column}}
 /* wizard */
 .cw-bg{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1300;display:none;align-items:center;justify-content:center;padding:18px}
 .cw{background:var(--card);border:1px solid var(--border2);width:660px;max-width:calc(100vw - 24px);max-height:calc(100vh - 40px);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.2)}
@@ -8081,18 +8094,99 @@ function _consWidgetHTML(w){
     +'<span class="cons-wcaret">▾</span></div>'
     +'<div class="cons-wbody"><div style="padding-top:12px">'+(w.desc?'<div class="cons-wdesc" style="margin:0 0 13px">'+w.desc+'</div>':'')+w.body+'</div></div></div>';
 }
+// ── Mi Terminal · secciones con botones (inspiración Sleeper, estilo Scope) ──
+// Debajo de "Señal de mis temas", cada bloque de seguimiento vive en su propia sección.
+var _CONS_TABS=[
+  {id:'estados',lbl:'Estados',wids:['estados','leyes'],add:'estados',ico:'<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>'},
+  {id:'normas',lbl:'NOMs',wids:['ref-noms','ref-imps','ref-mats','ref-vacio','dof'],add:'referencias',ico:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>'},
+  {id:'legisladores',lbl:'Legisladores',wids:['legisladores'],add:'legisladores',ico:'<circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c0-3.6 2.9-5.6 6.5-5.6s6.5 2 6.5 5.6"/>'},
+  {id:'comisiones',lbl:'Comisiones',wids:['comisiones'],add:'comisiones',ico:'<path d="M3 21h18M5 21V10M19 21V10M9 21V10M15 21V10M2 10l10-6 10 6z"/>'},
+  {id:'ejecutivo',lbl:'Ejecutivo',wids:['ejecutivo'],ico:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>'},
+  {id:'noticias',lbl:'Noticias',wids:['noticias'],ico:'<path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5"/>'},
+  {id:'keywords',lbl:'Keywords',wids:['keywords'],add:'afinar',ico:'<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>'}
+];
+var _consTab=(function(){try{return localStorage.getItem('scope_cons_tab_v1')||'estados';}catch(e){return 'estados';}})();
+var _consWidgetsCache=[],_consTabCtx={};
+function _consTabOf(wid){var t=_CONS_TABS.find(function(t){return t.wids.indexOf(wid)>=0;});return t?t.id:null;}
+function _consTabsHTML(widgets,ctx){
+  _consWidgetsCache=widgets;_consTabCtx=ctx;
+  if(!_CONS_TABS.some(function(t){return t.id===_consTab;}))_consTab='estados';
+  var bar='<div class="cons-tabbar" role="tablist">'+_CONS_TABS.map(function(t){
+      var w0=widgets.find(function(w){return w.id===t.wids[0];}),n=w0&&w0.count!=null?+w0.count:0;
+      var on=t.id===_consTab;
+      return '<button role="tab" aria-selected="'+on+'" class="cons-tabbtn'+(on?' on':'')+'" onclick="_consSetTab(\''+t.id+'\')">'
+        +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+t.ico+'</svg>'
+        +'<span>'+t.lbl+'</span>'+(n?'<span class="cons-tabn">'+n+'</span>':'')+'</button>';
+    }).join('')+'</div>';
+  return '<section class="cons-tabs">'+bar+'<div id="cons-tabpanel" class="cons-tabpanel">'+_consTabPanelHTML()+'</div></section>';
+}
+function _consTabPanelHTML(){
+  var t=_CONS_TABS.find(function(x){return x.id===_consTab;});
+  var ws=t.wids.map(function(id){return _consWidgetsCache.find(function(w){return w.id===id;});}).filter(Boolean);
+  var head='<div class="cons-tabhead"><div><div class="cons-tabtitle">'+t.lbl+'</div>'
+    +(ws.length===1&&ws[0].desc?'<div class="cons-wdesc" style="margin-top:6px">'+ws[0].desc+'</div>':'')+'</div>'
+    +(t.add?'<button class="cons-edit" onclick="openConsolaWizard(\''+t.add+'\')">Agregar o quitar</button>':'')+'</div>';
+  if(!ws.length){
+    var vacio={legisladores:'Aún no sigues a ningún legislador. Elige a quienes han presentado iniciativas en tus temas.',keywords:'Aún no tienes palabras clave (empresa, plantas, cuenca…). Agrégalas en Afinar para ver sus menciones aquí.'};
+    return head+'<div style="font-size:12px;color:var(--text-muted);line-height:1.55;padding:14px 0">'+(vacio[t.id]||'Sin información todavía.')+'</div>';
+  }
+  return head+ws.map(function(w){
+    return '<div class="cons-tabblock" data-wid="'+w.id+'">'
+      +(ws.length>1?'<div class="cons-tabkick"><span>'+w.title+'</span>'+(w.count!=null?'<span class="cons-wn">'+w.count+'</span>':'')+'</div>'+(w.desc?'<div class="cons-wdesc" style="margin:0 0 12px">'+w.desc+'</div>':''):'')
+      +w.body+'</div>';
+  }).join('');
+}
+function _consSetTab(id){
+  _consTab=id;try{localStorage.setItem('scope_cons_tab_v1',id);}catch(e){}
+  document.querySelectorAll('.cons-tabbtn').forEach(function(b,i){var on=_CONS_TABS[i].id===id;b.classList.toggle('on',on);b.setAttribute('aria-selected',on);});
+  var p=document.getElementById('cons-tabpanel');if(p){p.innerHTML=_consTabPanelHTML();_consTabFill();}
+}
+// Llena solo lo que está en la sección abierta (cada renderer revisa que su contenedor exista)
+function _consTabFill(){
+  var c=_consTabCtx;
+  if(document.getElementById('cons-estados'))_consEstados(c.estados);
+  if(document.getElementById('cons-leyes'))_consLeyes(c.estados);
+  if(document.getElementById('cons-coms'))_consComs(c.coms);
+  if(c.legs&&c.legs.length&&document.getElementById('cons-legs'))_consLegs(c.legs);
+  if(document.getElementById('cons-pres'))_consPres(c.allKw);
+  if(document.getElementById('cons-normas'))_consNormas(c.allKw);
+  if(document.getElementById('cons-kw'))_consKwFeed(c.userKw);
+  if(document.getElementById('cons-news'))_consNoticiasTemas(c.temas);
+}
+// Noticias de mis temas: una columna por tema con su conteo y sus últimas notas
+function _consNoticiasTemas(temas){
+  var el=document.getElementById('cons-news');if(!el)return;
+  if(!temas||!temas.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Elige tus temas en Editar terminal.</div>';return;}
+  var lim=Date.now()-30*864e5;
+  var blocks=temas.map(function(t){
+    var arts=(noticias||[]).filter(function(n){return new Date(n.fecha_publicacion||0).getTime()>lim&&_consMatch((n.titulo||'')+' '+(n.resumen||''),t.kw);})
+      .sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);});
+    return {t:t,arts:arts};
+  });
+  el.style.display='grid';el.style.gridTemplateColumns='repeat(auto-fill,minmax(250px,1fr))';el.style.gap='0 28px';
+  el.innerHTML=blocks.map(function(b){
+    var head='<div style="display:flex;align-items:baseline;gap:8px;padding:1px 0 7px;border-bottom:0.8px solid var(--border);margin-bottom:6px">'
+      +'<span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--green)">'+b.t.name+'</span>'
+      +'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-left:auto">'+b.arts.length+' en 30 días</span></div>';
+    if(!b.arts.length)return '<div style="min-width:0;margin-bottom:18px">'+head+'<div style="font-size:10px;color:var(--dim);padding:4px 0">Sin notas en los últimos 30 días</div></div>';
+    return '<div style="min-width:0;margin-bottom:18px">'+head+b.arts.slice(0,6).map(function(n){
+      var f=n.fecha_publicacion?new Date(n.fecha_publicacion).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
+      return '<div class="cons-feed-it" onclick="window.open(\''+(n.url||'#').replace(/'/g,'%27')+'\',\'_blank\')"><div class="cft">'+n.titulo+'</div><div class="cfm">'+f+(n.fuente?' · '+_escUser(n.fuente):'')+'</div>'+_liBtn(n.url,n.titulo)+'</div>';
+    }).join('')+'</div>';
+  }).join('');
+}
 // Desde el tooltip de "Estado de tu terminal": salta al bloque correspondiente,
 // lo abre, hace scroll y resalta el ítem elegido. Todo conectado.
 function _consJump(widgetId,item){
   item=(item||'').trim();
   if(widgetId==='senal'){var s=document.getElementById('cons-senal');if(s)s.scrollIntoView({behavior:'smooth',block:'center'});_consHighlightIn(document.getElementById('cons-senal'),item);return;}
-  var w=document.querySelector('.cons-widget[data-wid="'+widgetId+'"]');if(!w)return;
-  var wasOpen=w.classList.contains('open');
-  if(!wasOpen)_consWToggle(null,widgetId);
+  var tab=_consTabOf(widgetId);if(!tab)return;
+  if(tab!==_consTab)_consSetTab(tab);
   setTimeout(function(){
-    w.scrollIntoView({behavior:'smooth',block:'center'});
+    var w=document.querySelector('.cons-tabblock[data-wid="'+widgetId+'"]')||document.getElementById('cons-tabpanel');if(!w)return;
+    w.scrollIntoView({behavior:'smooth',block:'start'});
     _consHighlightIn(w,item);
-  },wasOpen?60:360);
+  },120);
 }
 function _consHighlightIn(root,item){
   if(!root||!item)return;
@@ -8188,7 +8282,7 @@ function renderConsola(){
   widgets.push({id:'comisiones',title:'Mis comisiones',count:coms.length,add:'comisiones',wide:true,desc:'Las comisiones legislativas que sigues y sus integrantes. Para saber quién decide en tu agenda.',body:'<div id="cons-coms" style="overflow-x:auto"></div>'});
   if(legs.length)widgets.push({id:'legisladores',title:'Mis legisladores',count:legs.length,add:'legisladores',wide:true,desc:'Legisladores que sigues, por cámara y partido. Los actores clave para tu incidencia.',body:'<div class="cons-leg-grid" id="cons-legs"></div>'});
   if(userKw.length)widgets.push({id:'keywords',title:'Feed de mis keywords',count:null,add:'afinar',wide:true,desc:'Coincidencias de tus palabras clave (empresa, plantas, cuenca…) en medios y fuentes oficiales.',body:'<div id="cons-kw"></div>'});
-  widgets=_consApplyOrder(widgets,cfg.layout);
+  widgets.push({id:'noticias',title:'Noticias de mis temas',count:null,desc:'Lo que publica la prensa nacional y estatal sobre cada uno de tus temas en los últimos 30 días.',body:'<div id="cons-news"></div>'});
 
   var _nm=(typeof _userDisplayName==='function')?_userDisplayName():'';
   var _greet=(_nm&&_nm!=='Mi cuenta')?('Bienvenido, '+_escUser(_nm)):'Bienvenido';
@@ -8208,22 +8302,16 @@ function renderConsola(){
         +kpis
         +'<div id="cons-intel-banner"></div>'
         +'<section style="margin-top:32px"><div class="cons-hero-kick" style="color:var(--green);padding-bottom:7px;border-bottom:0.8px solid var(--border);margin-bottom:14px">Señal de mis temas</div><div id="cons-senal"></div></section>'
-        +'<div class="cons-widgets" id="cons-widgets">'+widgets.map(_consWidgetHTML).join('')+'</div>'
+        +_consTabsHTML(widgets,{estados:estados,coms:coms,legs:legs,allKw:allKw,userKw:userKw,temas:temas})
       +'</div>'
-      +'<div class="cons-rail">'+_consSignalRailHTML()+_consPanelGemiRailHTML()+'</div>'
+      +'<div class="cons-rail">'+_consPanelGemiRailHTML()+'</div>'
     +'</div>';
 
   try{_intelLoad(_consIntelBannerFill);}catch(e){}
   _loadPanelGemi();
   if(document.getElementById('cumpl-body'))_cumplRender();
   if(document.getElementById('cons-senal'))_consSenal(sen);
-  if(document.getElementById('cons-estados'))_consEstados(estados);
-  if(document.getElementById('cons-leyes'))_consLeyes(estados);
-  if(document.getElementById('cons-coms'))_consComs(coms);
-  if(legs.length&&document.getElementById('cons-legs'))_consLegs(legs);
-  if(document.getElementById('cons-pres'))_consPres(allKw);
-  if(document.getElementById('cons-normas'))_consNormas(allKw);
-  if(userKw.length&&document.getElementById('cons-kw'))_consKwFeed(userKw);
+  _consTabFill();
 }
 // ── Autoevaluación de cumplimiento: el usuario marca ¿cumplo? sobre los
 //    distintivos y lo que ya eligió en Referencias (NOMs, impuestos, materiales) ──
@@ -8945,7 +9033,7 @@ function _consLegs(legs){
     return '<div class="cons-leg-card" style="flex-direction:column;align-items:stretch;cursor:pointer" onclick="_toggleConsLeg(\''+uid+'\')">'
       +'<div style="display:flex;align-items:center;gap:10px">'+av
       +'<div style="flex:1;min-width:0"><div style="font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
-      +'<div style="font-family:var(--mono);font-size:8px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(l.cargo||'Integrante')+' · '+(comsAll[0]||'')+'</div></div>'
+      +'<div style="font-family:var(--mono);font-size:8px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(comsAll.length?(l.cargo||'Integrante')+' · '+comsAll[0]:[l.camara,l.partido,l.g&&l.g.entidad].filter(Boolean).join(' · '))+'</div></div>'
       +(logo?'<img src="'+logo+'" style="height:16px;width:auto;max-width:40px;object-fit:contain;flex-shrink:0" alt="'+l.partido+'">':'')
       +'<a href="'+silUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Ficha en el SIL" style="font-size:10px;color:var(--green);text-decoration:none;flex-shrink:0">SIL <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>'
       +'<button title="Quitar de mi terminal" onclick="_consQuickRemove(\'legisladores\',\''+String(l.id).replace(/'/g,"\\'")+'\',event)" style="background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;padding:2px;flex-shrink:0;opacity:.55">✕</button>'
