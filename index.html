@@ -9435,7 +9435,10 @@ var _PUBLIC_TABS={}; // beta: todo Scope queda detrás del login
 function _authOn(){return !!(SUPABASE_URL&&SUPABASE_ANON&&window.supabase);}
 function _hasAccess(){if(!(_session&&_perfil&&_perfil.activo))return false;var v=_perfil.vence;if(v){var d=/^\d{4}-\d{2}-\d{2}$/.test(String(v))?new Date(String(v)+'T23:59:59-06:00'):new Date(v);if(!isNaN(d.getTime())&&Date.now()>d.getTime())return false;}return true;}
 function _isPublicTab(id){return !!_PUBLIC_TABS[id];}
-function _gate(){if(!_authOn())return true;if(_hasAccess())return true;openAuth(_session?'pending':'login',true);return false;}
+function _gate(){if(!_authOn())return true;if(_hasAccess())return true;
+  // con sesión pero sin perfil cargado (consulta en curso o fallida): reintenta antes de mostrar "Acceso pendiente"
+  if(_session&&!_perfil){_loadPerfil().then(function(){_updateAuthUI();if(!_hasAccess())openAuth('pending',true);});return false;}
+  openAuth(_session?'pending':'login',true);return false;}
 function _gateTab(id){if(!_authOn())return true;if(_isPublicTab(id))return true;if(_hasAccess())return true;openAuth(_session?'pending':'login',true);return false;}
 function _av(id){var e=document.getElementById(id);return e?(e.value||'').trim():'';}
 function _authErr(e){var m=(e&&e.message)||'';if(/Invalid login/i.test(m))return'Correo o contraseña incorrectos.';if(/already registered/i.test(m))return'Ese correo ya tiene una cuenta. Inicia sesión.';if(/rate limit/i.test(m))return'Demasiados intentos, espera un momento.';return m||'Ocurrió un error, intenta de nuevo.';}
@@ -9549,10 +9552,22 @@ function _renderPending(){
     +'<a href="mailto:'+GEMI_PAGO.correo+'?subject='+encodeURIComponent('Comprobante de pago Scope · '+email)+'" style="display:block;text-align:center;margin-top:18px;height:44px;line-height:44px;background:#066750;color:#fff;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none">Enviar mi comprobante</a>'
     +'<div style="margin-top:14px;text-align:center"><button style="background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;font-family:var(--sans)" onclick="_logout()">Cerrar sesión</button></div>';
 }
+// El perfil NO se borra mientras se vuelve a pedir: al renovarse el token (cada ~hora o al
+// volver a la pestaña) se borraba antes de la consulta y, si el usuario navegaba en ese
+// instante o la consulta fallaba, el candado mostraba "Acceso pendiente" a cuentas activas.
 async function _loadPerfil(){
-  _perfil=null;
-  if(!_sb||!_session)return;
-  try{var r=await _sb.from('perfiles').select('*').eq('id',_session.user.id).single();_perfil=r.data||null;}catch(e){_perfil=null;}
+  if(!_sb||!_session){_perfil=null;return;}
+  var uid=_session.user.id;
+  if(_perfil&&_perfil.id!==uid)_perfil=null;   // cambió de usuario
+  for(var i=0;i<2;i++){
+    try{
+      var r=await _sb.from('perfiles').select('*').eq('id',uid).single();
+      if(r&&r.data){_perfil=r.data;return;}
+      if(r&&r.error&&r.error.code==='PGRST116'){_perfil=null;return;}  // de verdad no existe el perfil
+    }catch(e){}
+    await new Promise(function(ok){setTimeout(ok,800);});
+  }
+  // falló la red/consulta: se conserva el último perfil conocido de este usuario
 }
 async function authLogin(){
   if(!_sb){_authMsg('El acceso estará disponible muy pronto.');return;}
@@ -9704,7 +9719,13 @@ async function _authInit(){
     // Al restaurar la sesión en un refresh, re-aplica la ruta para volver a la vista
     // gateada (p. ej. /terminal) en vez de dejar al usuario pasmado en el login.
     if(_hasAccess()){_authLocked=false;closeAuth();_applyRoute(location.pathname);} else _enforceGate();
-    _sb.auth.onAuthStateChange(async function(_e,sess){_session=sess||null;await _loadPerfil();_consHydrate();_updateAuthUI();});
+    _sb.auth.onAuthStateChange(async function(ev,sess){
+      var mismo=sess&&_session&&sess.user&&_session.user&&sess.user.id===_session.user.id;
+      _session=sess||null;
+      // renovar el token no cambia el acceso: no hace falta volver a pedir el perfil
+      if(mismo&&_perfil&&(ev==='TOKEN_REFRESHED'||ev==='INITIAL_SESSION'))return;
+      await _loadPerfil();_consHydrate();_updateAuthUI();
+    });
   }catch(e){console.warn('Auth init:',e);_authLocked=false;closeAuth();}
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAuth();});
