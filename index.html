@@ -1003,6 +1003,63 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .cons-shell{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:22px;align-items:start;margin-bottom:12px}
 .cons-main{min-width:0}
 .cons-rail{position:sticky;top:16px;align-self:start;min-width:0}
+.pro-sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:20px;padding:4px 0 18px;margin-bottom:6px;border-bottom:0.8px solid var(--border)}
+.pro-sum b,.pro-stats b{display:block;font-size:22px;font-weight:700;color:var(--text);letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
+.pro-sum span,.pro-stats span{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted);margin-top:5px}
+.pro-scroll{overflow-x:auto}
+.pro-table{min-width:720px}
+.pro-row{display:grid;gap:10px;align-items:center;padding:10px 8px;border-bottom:0.8px solid rgba(0,0,0,0.05)}
+.pro-head{padding:8px;border-bottom:0.8px solid var(--border)}
+.pro-head span{font-family:var(--mono);font-size:8px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)}
+.pro-head span:not(:first-child){text-align:right}
+.pro-zeb{background:rgba(13,27,42,0.025)}
+.pro-click{cursor:pointer}
+.pro-click:hover{background:rgba(6,103,80,0.05)}
+.pro-who{display:flex;align-items:center;gap:10px;min-width:0}
+.pro-badge{flex-shrink:0;width:34px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.04em;color:#066750;border:0.8px solid #066750;border-radius:3px}
+.pro-av{position:relative;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden}
+.pro-av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pro-nm{display:flex;flex-direction:column;min-width:0}
+.pro-nm b{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pro-nm i{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pro-nm i.pro-last{color:var(--text-sec)}
+.pro-num{text-align:right;font-size:12px;color:var(--text);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pro-num em{font-style:normal;color:var(--text-muted)}
+.pro-mono{font-family:var(--mono);font-size:10px}
+.pro-dim{color:var(--text-muted)}
+.pro-g{color:#066750;font-weight:700}
+.pro-bar{display:inline-block;width:34px;height:4px;background:var(--border);margin-right:6px;vertical-align:middle;position:relative}
+.pro-bar span{position:absolute;left:0;top:0;bottom:0;background:#066750}
+.pro-log{padding:4px 8px 14px 52px;background:rgba(6,103,80,0.03)}
+.pro-logmeta{font-family:var(--mono);font-size:9px;color:var(--text-sec);padding:8px 0}
+.pro-logrow{display:grid;grid-template-columns:50px 52px 58px 1fr;gap:10px;align-items:baseline;padding:7px 0;border-top:0.8px solid rgba(0,0,0,0.05);text-decoration:none}
+.pro-t{font-size:12px;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pro-logfoot{display:flex;gap:18px;flex-wrap:wrap;padding:10px 0 2px;font-size:11px;font-weight:600}
+.pro-logfoot span,.pro-logfoot a{color:var(--green);cursor:pointer;text-decoration:none}
+.pro-logfoot span:last-child{color:var(--text-muted);font-weight:500}
+.pro-com{border-bottom:0.8px solid var(--border)}
+.pro-comhead{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:14px 8px}
+.pro-stats{display:flex;gap:24px;flex-wrap:wrap}
+.pro-stats b{font-size:18px}
+.pro-gc{display:grid;grid-template-columns:150px minmax(0,1fr);gap:26px}
+.pro-sched{border-right:0.8px solid var(--border);padding-right:14px}
+.pro-schedh{font-family:var(--mono);font-size:8px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted);padding-bottom:8px;border-bottom:0.8px solid var(--border);margin-bottom:4px}
+.pro-schedit{display:flex;justify-content:space-between;align-items:baseline;padding:8px 6px;cursor:pointer;border-left:2px solid transparent}
+.pro-schedit b{font-size:12px;font-weight:600;color:var(--text)}
+.pro-schedit span{font-family:var(--mono);font-size:10px;color:var(--text-muted)}
+.pro-schedit.on{border-left-color:#066750;background:rgba(6,103,80,0.05)}
+.pro-ftabs{display:flex;gap:18px;flex-wrap:wrap;padding-bottom:10px;border-bottom:0.8px solid var(--border);margin-bottom:4px}
+.pro-ftabs span{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--text-muted);cursor:pointer;padding-bottom:4px;border-bottom:1.5px solid transparent}
+.pro-ftabs span.on{color:var(--text);border-bottom-color:#066750}
+.pro-lead{display:flex;gap:14px;align-items:flex-start;padding:12px 4px;border-bottom:0.8px solid rgba(0,0,0,0.05);text-decoration:none}
+.pro-lead:hover{background:rgba(6,103,80,0.04)}
+.pro-rank{flex-shrink:0;width:28px;height:28px;border-radius:50%;border:0.8px solid #066750;color:#066750;display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700}
+.pro-lbody{display:flex;flex-direction:column;min-width:0}
+.pro-lbody b{font-size:12px;font-weight:600;color:var(--text)}
+.pro-lbody i{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--text-muted);margin:2px 0 5px}
+.pro-q{font-size:12px;color:var(--text-sec);line-height:1.5}
+.cons-rail-senal{margin-bottom:28px}
+@media(max-width:680px){.pro-gc{grid-template-columns:1fr}.pro-sched{border-right:0;padding-right:0;display:flex;gap:6px;overflow-x:auto}.pro-schedh{display:none}.pro-schedit{flex-shrink:0;border-left:0;border-bottom:2px solid transparent}.pro-schedit.on{border-bottom-color:#066750}.pro-log{padding-left:8px}}
 @media(max-width:1080px){.cons-shell{grid-template-columns:1fr}.cons-rail{position:static;order:-1;margin-bottom:12px}.cons-main{order:0}}
 /* Widgets reordenables (drag-and-drop v1) */
 .cons-widgets{display:grid;grid-template-columns:1fr;gap:14px;align-items:start;margin-bottom:12px}
@@ -1706,7 +1763,7 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 // coloquiales ("apagón"), actores ("Semarnat","CFE") y nombres exactos de leyes.
 const CATS=[
   {id:'circular',name:'Economía Circular',color:'#009E90',kw:['economia circular','circularidad','reciclaje economico','reutilizacion','ecodiseno','simbiosis industrial','responsabilidad extendida del productor','responsabilidad extendida','rep envases','rep vidrio','rep aluminio','envase retornable','contenido reciclado','material reciclado','valorizacion','ecoce','ley general de economia circular']},
-  {id:'agua',name:'Agua',color:'#38bdf8',kw:['agua','hidrico','sequia','inundacion','conagua','cuenca','acuifero','potable','rio','lago','presa','saneamiento','potabilizadora','agua contaminada','rio contaminado','concesion de agua','titulo de agua','concesion de agua industrial','veda de agua','decreto de veda','repda','registro publico de derechos de agua','derecho por uso de agua','impuesto estatal al agua','tandeo','infraestructura hidrica','ley de aguas nacionales','ley general de aguas']},
+  {id:'agua',name:'Agua',color:'#38bdf8',kw:['agua','hidrico','sequia','inundacion','conagua','cuenca','acuifero','potable','rio','presa','saneamiento','potabilizadora','agua contaminada','rio contaminado','concesion de agua','titulo de agua','concesion de agua industrial','veda de agua','decreto de veda','repda','registro publico de derechos de agua','derecho por uso de agua','impuesto estatal al agua','tandeo','infraestructura hidrica','ley de aguas nacionales','ley general de aguas'],ex:/aguas (profundas|ultraprofundas|someras|territoriales|internacionales)|cuencas? (petrolera|salina|de burgos|del golfo)|hurac[aá]n|tormenta tropical|frente fr[ií]o|onda tropical|cicl[oó]n|pron[oó]stico|clima hoy|aguaceros?|lluvias?|temperaturas?|r[ií]o de janeiro|san juan del r[ií]o|casa del lago|lago de los cisnes/i,ancla:/concesi[oó]n|acu[ií]fero|abasto|desabasto|potable|saneamiento|tratamiento|sequ[ií]a|presa|infraestructura h[ií]drica|tandeo|repda|veda|ley (general )?de aguas|descarga|drenaje|acueducto/i,titulo:true},
   {id:'energia',name:'Energía',color:'#f59e0b',kw:['energia','solar','eolica','fotovoltaica','renovable','electricidad','cfe','hidroelectrica','combustible','pemex','petroleo','hidrocarburos','gasolina','refineria','mezcla mexicana','huachicoleo','toma clandestina','fracking','tarifas electricas','apagon','corte de luz','falla electrica','generacion electrica','transicion energetica','energia limpia','geotermia','biocombustible','litio','concesion minera','gas natural','gas lp','gasoducto','soberania energetica','reforma energetica','ley del sector electrico','ley del sector hidrocarburos','ley de mineria','sener','comision nacional de energia','cne','certificado de energia limpia','certificados de energias limpias','almacenamiento de energia','bess','sistema de informacion energetica','contenido nacional','planeacion vinculante','contrato de cobertura electrica']},
   {id:'impuestos',name:'Impuestos Ambientales',color:'#f87171',kw:['bono de carbono','bonos de carbono','mercado de carbono','impuesto ambiental','impuestos ambientales','impuesto verde','impuestos verdes','impuesto ecologic','impuestos ecologic','tasa ecologic','ecotasa','fiscalidad verde','fiscalidad ambiental','impuesto a emisiones','impuesto a la emision','impuestos a la emision','impuesto al carbono','impuestos al carbono','ieps al carbono','precio al carbono','precio del carbono','recaudacion ambiental','ley federal de derechos','derechos ambientales','impuesto por remediacion','impuesto a la extraccion','impuestos a la extraccion','extraccion de materiales petreos','impuesto al deposito de residuos']},
   {id:'residuos',name:'Residuos',color:'#a78bfa',kw:['residuo','basura','desecho','plastico','reciclaje','vertedero','relleno sanitario','contaminacion','toxico','derrame','residuos peligrosos','contingencia ambiental','calidad del aire','smog','tiradero','gestion de residuos','residuos solidos','norma ambiental','impacto ambiental','unicel','popote','bolsas de plastico','resina pet','resina hdpe','botella pet','envases pet','rep envases rigidos','ley general para la prevencion y gestion']},
@@ -8148,18 +8205,176 @@ function _consTabFill(){
   if(document.getElementById('cons-leyes'))_consLeyes(c.estados);
   if(document.getElementById('cons-coms'))_consComs(c.coms);
   if(c.legs&&c.legs.length&&document.getElementById('cons-legs'))_consLegs(c.legs);
-  if(document.getElementById('cons-pres'))_consPres(c.allKw);
+  if(document.getElementById('cons-pres')){window.__consAllKw=c.allKw;_consPres(c.allKw);}
   if(document.getElementById('cons-normas'))_consNormas(c.allKw);
   if(document.getElementById('cons-kw'))_consKwFeed(c.userKw);
   if(document.getElementById('cons-news'))_consNoticiasTemas(c.temas);
 }
+// ── Mi Terminal · vistas tipo terminal deportiva (Sleeper / PFF): tablas de jugadores,
+//    columnas de estadísticas reales y filas que se despliegan con su historial ──
+function _proTemaHits(l){
+  var hits=0,cfg=loadConsola(),temas=(cfg.temas||[]).map(function(id){return CATS.find(function(c){return c.id===id;});}).filter(Boolean);
+  if(!l.g)return {n:0,pct:null,porTema:{}};
+  var porTema={},own=l.g.instrumentos.filter(function(i){return !i.adhesion;});
+  own.forEach(function(i){
+    var t=qa((i.titulo||'').toLowerCase()),hit=false;
+    temas.forEach(function(c){if(c.kw.some(function(k){return _kwHit(t,k);})){porTema[c.name]=(porTema[c.name]||0)+1;hit=true;}});
+    if(hit)hits++;
+  });
+  return {n:hits,pct:own.length?Math.round(100*hits/own.length):null,porTema:porTema};
+}
+function _proBadge(txt){return '<span class="pro-badge">'+txt+'</span>';}
+function _proAv(nombre,foto,partido,sz){
+  var col=PARTIDO_COLOR[(partido||'').toUpperCase()]||'#444';sz=sz||34;
+  return '<span class="pro-av" style="width:'+sz+'px;height:'+sz+'px;background:'+col+'">'+initials(nombre||'')
+    +(foto?'<img src="'+foto+'" alt="" onerror="this.remove()">':'')+'</span>';
+}
+function _proToggle(id){var r=document.getElementById(id);if(!r)return;var open=r.style.display!=='none';r.style.display=open?'none':'';var c=document.getElementById(id+'-c');if(c)c.textContent=open?'▸':'▾';}
+var _proMes=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function _proF(iso){var p=String(iso||'').slice(0,10).split('-');return p.length===3?(+p[2])+' '+_proMes[+p[1]-1]:'—';}
+
+// LEGISLADORES · roster con estadísticas por legislador
+function _consLegs(legs){
+  var el=document.getElementById('cons-legs');if(!el)return;
+  if(!_LGEMI){el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:12px 0">Cargando…</div>';_lgemiLoad(function(){_consLegs(legs);});return;}
+  legs=legs.map(function(l){if(!l.g&&_LGEMI[l.id])l.g=_LGEMI[l.id];l._h=_proTemaHits(l);return l;})
+    .sort(function(a,b){return ((b.g&&b.g.total)||0)-((a.g&&a.g.total)||0);});
+  var tot=0,enT=0,top=null;legs.forEach(function(l){if(l.g){tot+=l.g.total;enT+=l._h.n;if(!top||l.g.total>top.g.total)top=l;}});
+  var sum='<div class="pro-sum">'
+    +'<div><b>'+legs.length+'</b><span>Legisladores</span></div>'
+    +'<div><b>'+tot+'</b><span>Instrumentos propios</span></div>'
+    +'<div><b>'+(tot?Math.round(100*enT/tot)+'%':'—')+'</b><span>En tus temas</span></div>'
+    +'<div><b style="font-size:13px">'+(top?top.n:'—')+'</b><span>Más activo</span></div></div>';
+  var cols='grid-template-columns:minmax(220px,1fr) 52px 52px 62px 78px 92px 56px 18px';
+  var head='<div class="pro-row pro-head" style="'+cols+'"><span>Legislador</span><span>Inic.</span><span>P. A.</span><span>Bancada</span><span>En tus temas</span><span>Ley principal</span><span>Último</span><span></span></div>';
+  var rows=legs.map(function(l,i){
+    var g=l.g,h=l._h,id='prol-'+i,foto=_legFoto(l);
+    var sub=[l.partido,l.camara,g&&g.entidad].filter(Boolean).join(' · ');
+    var ult=g&&g.instrumentos.filter(function(x){return !x.adhesion;})[0];
+    var row='<div class="pro-row pro-click" style="'+cols+'" onclick="_proToggle(\''+id+'\')">'
+      +'<span class="pro-who">'+_proBadge(l.camara==='Senado'?'SEN':'DIP')+_proAv(l.n,foto,l.partido)
+        +'<span class="pro-nm"><b>'+l.n+'</b><i>'+sub+'</i>'+(ult?'<i class="pro-last">'+ult.tipo+' · '+_proF(ult.fecha)+'</i>':'')+'</span></span>'
+      +'<span class="pro-num">'+(g?g.iniciativas:'—')+'</span>'
+      +'<span class="pro-num">'+(g?g.puntos_acuerdo:'—')+'</span>'
+      +'<span class="pro-num pro-dim">'+(g?g.adhesiones:'—')+'</span>'
+      +'<span class="pro-num">'+(h.pct==null?'—':'<span class="pro-bar"><span style="width:'+h.pct+'%"></span></span>'+h.pct+'%')+'</span>'
+      +'<span class="pro-num pro-mono">'+(g&&g.leyes&&g.leyes[0]?_sig(g.leyes[0].ley)+' <em>'+g.leyes[0].n+'</em>':'—')+'</span>'
+      +'<span class="pro-num pro-mono">'+(g?_proF(g.ultimo):'—')+'</span>'
+      +'<span class="pro-num pro-dim" id="'+id+'-c">▸</span></div>';
+    var log='<div id="'+id+'" class="pro-log" style="display:none">';
+    if(g){
+      var pt=Object.keys(h.porTema).map(function(k){return k+' '+h.porTema[k];}).join(' · ');
+      log+='<div class="pro-logmeta">'+(pt?'En tus temas: '+pt+'  ·  ':'')+(g.leyes.length?'Leyes: '+g.leyes.map(function(x){return _sig(x.ley)+' '+x.n;}).join(' · '):'')+'</div>'
+        +g.instrumentos.slice(0,8).map(function(x){
+          return '<a class="pro-logrow'+(x.adhesion?' pro-dim':'')+'" href="'+String(x.url||'#').replace(/"/g,'&quot;')+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'
+            +'<span class="pro-mono">'+_proF(x.fecha)+'</span><span class="pro-mono pro-g">'+(x.adhesion?'Bancada':x.tipo==='Iniciativa'?'INIC':'P. A.')+'</span>'
+            +'<span class="pro-mono" title="'+_escHtml((x.leyes||[])[0]||'')+'">'+((x.leyes||[])[0]?(_SIGLA[x.leyes[0]]||'Otra ley'):'—')+'</span><span class="pro-t">'+_escHtml(x.titulo||'')+'</span></a>';
+        }).join('')
+        +'<div class="pro-logfoot"><span onclick="event.stopPropagation();_legiPerfil(\''+l.n.replace(/'/g,"\\'")+'\')">Perfil completo →</span>'
+        +(g.ficha_url?'<a href="'+g.ficha_url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ficha oficial →</a>':'')
+        +'<span onclick="_consQuickRemove(\'legisladores\',\''+String(l.id).replace(/'/g,"\\'")+'\',event)">Dejar de seguir</span></div>';
+    }else log+='<div class="pro-logmeta">Sin instrumentos propios en temas GEMI registrados.</div>';
+    return '<div class="pro-item'+(i%2?' pro-zeb':'')+'">'+row+log+'</div></div>';
+  }).join('');
+  el.innerHTML=sum+'<div class="pro-scroll"><div class="pro-table">'+head+rows+'</div></div>';
+}
+
+// COMISIONES · cada comisión con su plantilla y la actividad GEMI de sus integrantes
+function _consComs(coms){
+  var el=document.getElementById('cons-coms');if(!el)return;
+  if(!coms.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Sin comisiones seleccionadas</div>';return;}
+  if(!_LGEMI){el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:12px 0">Cargando…</div>';_lgemiLoad(function(){_consComs(coms);});return;}
+  function pDate(s){if(!s||!/^\d{2}\/\d{2}\/\d{4}$/.test(s))return 0;var p=s.split('/');return new Date(p[2]+'-'+p[1]+'-'+p[0]).getTime();}
+  var ORD={presidente:0,presidenta:0,'secretaría':1,secretario:1,secretaria:1};
+  el.innerHTML=coms.slice().sort(function(a,b){return pDate(b.ur)-pDate(a.ur);}).map(function(c,ci){
+    var M=(c.integrantes||[]).map(function(m){var nk=_consNk(m.n||'');return {n:m.n,cargo:m.cargo||'Integrante',partido:m.partido||'',g:_LGEMI[nk]||null,
+      foto:(_fotosMap.senado&&_fotosMap.senado[nk])||(_fotosMap.diputados&&_fotosMap.diputados[nk])||(_LGEMI[nk]&&_LGEMI[nk].foto)||null};});
+    var activos=M.filter(function(m){return m.g;}),inst=activos.reduce(function(a,m){return a+m.g.total;},0);
+    var pres=M.find(function(m){return /presid/i.test(m.cargo);});
+    var part={};M.forEach(function(m){if(m.partido)part[m.partido]=(part[m.partido]||0)+1;});
+    var comp=Object.keys(part).sort(function(a,b){return part[b]-part[a];}).map(function(p){return p+' '+part[p];}).join(' · ');
+    var id='proc-'+ci,maxT=Math.max.apply(null,M.map(function(m){return m.g?m.g.total:0;}).concat([1]));
+    var head='<div class="pro-comhead pro-click" onclick="_proToggle(\''+id+'\')">'
+      +'<div class="pro-who">'+_proBadge(c.camara==='Senado'?'SEN':'DIP')
+        +'<span class="pro-nm"><b>'+c.nombre+'</b><i>'+(pres?'Presidencia: '+pres.n+(pres.partido?' ('+pres.partido+')':''):'')+'</i><i class="pro-last">'+comp+'</i></span></div>'
+      +'<div class="pro-stats">'
+        +'<div><b>'+M.length+'</b><span>Integrantes</span></div>'
+        +'<div><b>'+activos.length+'</b><span>Activos en GEMI</span></div>'
+        +'<div><b>'+inst+'</b><span>Instrumentos GEMI</span></div>'
+        +'<div><b class="pro-mono" style="font-size:12px">'+(c.ur?fmtReunion(c.ur):'—')+'</b><span>Última sesión</span></div>'
+        +'<div><b class="pro-mono" style="font-size:12px;color:'+(c.pr?'var(--green)':'inherit')+'">'+(c.pr?fmtReunion(c.pr):'—')+'</b><span>Próxima</span></div>'
+        +'<div><b class="pro-dim" id="'+id+'-c">▸</b><span>&nbsp;</span></div></div></div>';
+    var roster=M.sort(function(a,b){var oa=ORD[a.cargo.toLowerCase()],ob=ORD[b.cargo.toLowerCase()];oa=oa==null?2:oa;ob=ob==null?2:ob;return (oa-ob)||(((b.g&&b.g.total)||0)-((a.g&&a.g.total)||0));})
+      .map(function(m,i){
+        var t=m.g?m.g.total:0;
+        return '<div class="pro-row'+(i%2?' pro-zeb':'')+(m.g?' pro-click':'')+'" style="grid-template-columns:minmax(200px,1fr) 110px 70px 150px"'+(m.g?' onclick="_legiPerfil(\''+m.n.replace(/'/g,"\\'")+'\')"':'')+'>'
+          +'<span class="pro-who">'+_proAv(m.n,m.foto,m.partido,28)+'<span class="pro-nm"><b style="font-weight:'+(m.g?600:500)+'">'+m.n+'</b></span></span>'
+          +'<span class="pro-mono pro-dim">'+m.cargo+'</span><span class="pro-mono">'+m.partido+'</span>'
+          +'<span class="pro-num">'+(t?'<span class="pro-bar"><span style="width:'+Math.round(100*t/maxT)+'%"></span></span>'+t:'<span class="pro-dim">—</span>')+'</span></div>';
+      }).join('');
+    return '<div class="pro-com">'+head+'<div id="'+id+'" style="display:none">'
+      +'<div class="pro-row pro-head" style="grid-template-columns:minmax(200px,1fr) 110px 70px 150px"><span>Integrante</span><span>Cargo</span><span>Partido</span><span>Instrumentos GEMI</span></div>'
+      +roster
+      +'<div class="pro-logfoot">'+(c.at?'<a href="'+c.at+'" target="_blank" rel="noopener">Asuntos turnados →</a>':'')+(c.url?'<a href="'+c.url+'" target="_blank" rel="noopener">Micrositio →</a>':'')
+      +'<span onclick="_consQuickRemove(\'comisiones\',\''+String(_comId(c)).replace(/'/g,"\\'")+'\',event)">Dejar de seguir</span></div></div></div>';
+  }).join('');
+}
+
+// EJECUTIVO · "game center": conferencias a la izquierda, líderes de menciones a la derecha
+var _proPresSel=null,_proPresTema='todos';
+function _consPres(kwList){
+  var el=document.getElementById('cons-pres');if(!el)return;
+  el.classList.remove('cons-scroll');
+  var cfg=loadConsola(),temas=(cfg.temas||[]).map(function(id){return CATS.find(function(c){return c.id===id;});}).filter(Boolean);
+  var confs=(presData||[]).filter(function(a){return (a.fragmentos||[]).length;}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);}).slice(0,12);
+  var Q=[];
+  confs.forEach(function(a){(a.fragmentos||[]).forEach(function(fr){
+    var m=String(fr).match(/^([^:]{3,90}\([^)]+\)):\s*(.+)$/),quien=m?m[1]:'Presidenta Claudia Sheinbaum',txt=m?m[2]:String(fr);
+    var tt=temas.filter(function(c){return _consMatch(txt,c.kw);}).map(function(c){return c.name;});
+    var kw=(kwList||[]).some(function(k){return _consMatch(txt,[k]);});
+    if(tt.length||kw)Q.push({fecha:a.fecha,url:a.url,quien:quien,txt:txt,temas:tt});
+  });});
+  if(!Q.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Sin menciones recientes de tus temas en las conferencias matutinas.</div>';return;}
+  var porConf={};Q.forEach(function(q){porConf[q.fecha]=(porConf[q.fecha]||0)+1;});
+  var porTema={};Q.forEach(function(q){q.temas.forEach(function(t){porTema[t]=(porTema[t]||0)+1;});});
+  var sched='<div class="pro-sched"><div class="pro-schedh">Conferencias</div>'
+    +'<div class="pro-schedit'+(_proPresSel?'':' on')+'" onclick="_proPresSel=null;_consPres(window.__consAllKw||[])"><b>Todas</b><span>'+Q.length+'</span></div>'
+    +confs.filter(function(a){return porConf[a.fecha];}).map(function(a){
+      var on=_proPresSel===a.fecha;
+      return '<div class="pro-schedit'+(on?' on':'')+'" onclick="_proPresSel=\''+a.fecha+'\';_consPres(window.__consAllKw||[])"><b>'+_proF(a.fecha)+'</b><span>'+porConf[a.fecha]+'</span></div>';
+    }).join('')+'</div>';
+  var tabs='<div class="pro-ftabs">'+[['todos','Todos']].concat(Object.keys(porTema).sort(function(a,b){return porTema[b]-porTema[a];}).map(function(t){return [t,t+' '+porTema[t]];})).map(function(t){
+      return '<span class="'+(_proPresTema===t[0]?'on':'')+'" onclick="_proPresTema=\''+t[0].replace(/'/g,"\\'")+'\';_consPres(window.__consAllKw||[])">'+t[1]+'</span>';}).join('')+'</div>';
+  var L=Q.filter(function(q){return (!_proPresSel||q.fecha===_proPresSel)&&(_proPresTema==='todos'||q.temas.indexOf(_proPresTema)>=0);});
+  var list=L.slice(0,25).map(function(q,i){
+    var s=q.txt.length>260?q.txt.slice(0,258)+'…':q.txt;
+    return '<a class="pro-lead" href="'+String(q.url||'#').replace(/"/g,'&quot;')+'" target="_blank" rel="noopener">'
+      +'<span class="pro-rank">'+(i+1)+'</span>'
+      +'<span class="pro-lbody"><b>'+_escHtml(q.quien)+'</b><i>'+_proF(q.fecha)+(q.temas.length?' · '+q.temas.join(' · '):'')+'</i>'
+      +'<span class="pro-q">“'+_consHighlight(s,kwList)+'”</span></span></a>';
+  }).join('')||'<div style="color:var(--dim);font-size:11px;padding:10px 0">Sin menciones con este filtro.</div>';
+  el.innerHTML='<div class="pro-gc">'+sched+'<div style="min-width:0">'+tabs+list+'</div></div>';
+}
 // Noticias de mis temas: una columna por tema con su conteo y sus últimas notas
+// ¿La nota es de este tema? Temas con titulo:true (p. ej. Agua) exigen la palabra en el título o
+// 2+ términos distintos; ex/ancla descartan ruido (clima, homónimos) salvo que haya un ancla del tema.
+function _temaHit(t,n){
+  var tit=qa((n.titulo||'').toLowerCase()),txt=tit+' '+qa((n.resumen||'').toLowerCase());
+  var hitsTit=t.kw.filter(function(k){return _kwHit(tit,k);}).length;
+  if(!hitsTit){
+    if(t.titulo){if(t.kw.filter(function(k){return _kwHit(txt,k);}).length<2)return false;}
+    else if(!t.kw.some(function(k){return _kwHit(txt,k);}))return false;
+  }
+  if(t.ex&&t.ex.test(txt)&&!(t.ancla&&t.ancla.test(txt)))return false;
+  if(t.titulo&&((typeof isMxRelevant==='function'&&!isMxRelevant(n))||(/nepal|hondur|guatemal|per[uú]|bolivia|argentin|chile|colombia|ecuador|brasil|tailandia|india|china|espa[nñ]a|europa|estados unidos|eeuu/.test(txt)&&!/mexic|cdmx/.test(txt))))return false;
+  return true;
+}
 function _consNoticiasTemas(temas){
   var el=document.getElementById('cons-news');if(!el)return;
   if(!temas||!temas.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Elige tus temas en Editar terminal.</div>';return;}
   var lim=Date.now()-30*864e5;
   var blocks=temas.map(function(t){
-    var arts=(noticias||[]).filter(function(n){return new Date(n.fecha_publicacion||0).getTime()>lim&&_consMatch((n.titulo||'')+' '+(n.resumen||''),t.kw);})
+    var arts=(noticias||[]).filter(function(n){return new Date(n.fecha_publicacion||0).getTime()>lim&&_temaHit(t,n);})
       .sort(function(a,b){return new Date(b.fecha_publicacion||0)-new Date(a.fecha_publicacion||0);});
     return {t:t,arts:arts};
   });
@@ -8280,7 +8495,7 @@ function renderConsola(){
   widgets.push({id:'dof',title:'Normas de mis temas',count:null,desc:'Publicaciones del DOF que cruzan tus temas, más las que guardaste. Tu radar normativo del día.',body:'<div id="cons-normas"></div>'});
   widgets.push({id:'ejecutivo',title:'Ejecutivo · menciones',count:null,desc:'Menciones de tus temas en la conferencia matutina del Ejecutivo, con su liga a la versión estenográfica.',body:'<div class="cons-scroll" id="cons-pres"></div>'});
   widgets.push({id:'comisiones',title:'Mis comisiones',count:coms.length,add:'comisiones',wide:true,desc:'Las comisiones legislativas que sigues y sus integrantes. Para saber quién decide en tu agenda.',body:'<div id="cons-coms" style="overflow-x:auto"></div>'});
-  if(legs.length)widgets.push({id:'legisladores',title:'Mis legisladores',count:legs.length,add:'legisladores',wide:true,desc:'Legisladores que sigues, por cámara y partido. Los actores clave para tu incidencia.',body:'<div class="cons-leg-grid" id="cons-legs"></div>'});
+  if(legs.length)widgets.push({id:'legisladores',title:'Mis legisladores',count:legs.length,add:'legisladores',wide:true,desc:'Legisladores que sigues, por cámara y partido. Los actores clave para tu incidencia.',body:'<div id="cons-legs"></div>'});
   if(userKw.length)widgets.push({id:'keywords',title:'Feed de mis keywords',count:null,add:'afinar',wide:true,desc:'Coincidencias de tus palabras clave (empresa, plantas, cuenca…) en medios y fuentes oficiales.',body:'<div id="cons-kw"></div>'});
   widgets.push({id:'noticias',title:'Noticias de mis temas',count:null,desc:'Lo que publica la prensa nacional y estatal sobre cada uno de tus temas en los últimos 30 días.',body:'<div id="cons-news"></div>'});
 
@@ -8301,10 +8516,9 @@ function renderConsola(){
       +'<div class="cons-main">'
         +kpis
         +'<div id="cons-intel-banner"></div>'
-        +'<section style="margin-top:32px"><div class="cons-hero-kick" style="color:var(--green);padding-bottom:7px;border-bottom:0.8px solid var(--border);margin-bottom:14px">Señal de mis temas</div><div id="cons-senal"></div></section>'
         +_consTabsHTML(widgets,{estados:estados,coms:coms,legs:legs,allKw:allKw,userKw:userKw,temas:temas})
       +'</div>'
-      +'<div class="cons-rail">'+_consPanelGemiRailHTML()+'</div>'
+      +'<div class="cons-rail"><section class="cons-rail-senal"><div class="cons-hero-kick" style="color:var(--green);padding-bottom:7px;border-bottom:0.8px solid var(--border);margin-bottom:14px">Señal de mis temas</div><div id="cons-senal"></div></section>'+_consPanelGemiRailHTML()+'</div>'
     +'</div>';
 
   try{_intelLoad(_consIntelBannerFill);}catch(e){}
@@ -8954,24 +9168,6 @@ function _consTermToggle(idx){
   }
   d.style.display='block';if(arr)arr.innerHTML='&#9662;';
 }
-function _consComs(coms){
-  var el=document.getElementById('cons-coms');if(!el)return;
-  if(!coms.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Sin comisiones seleccionadas</div>';return;}
-  function pDate(s){if(!s||!/^\d{2}\/\d{2}\/\d{4}$/.test(s))return 0;var p=s.split('/');return new Date(p[2]+'-'+p[1]+'-'+p[0]).getTime();}
-  coms=coms.slice().sort(function(a,b){return pDate(b.ur)-pDate(a.ur);});
-  el.innerHTML='<table class="cons-table"><tr><th>Comisión</th><th>Cámara</th><th>Int.</th><th>Última sesión</th><th>Próxima</th><th></th></tr>'
-    +coms.map(function(c){
-      return '<tr>'
-        +'<td style="color:var(--text);max-width:220px">'+c.nombre+'</td>'
-        +'<td style="font-family:var(--mono);font-size:9px;color:var(--dim)">'+(c.camara||'').toUpperCase()+'</td>'
-        +'<td style="font-family:var(--mono)">'+((c.integrantes||[]).length)+'</td>'
-        +'<td style="font-family:var(--mono);font-size:10px">'+(c.ur?fmtReunion(c.ur):'—')+'</td>'
-        +'<td style="font-family:var(--mono);font-size:10px;color:'+(c.pr?'var(--green)':'var(--dim)')+'">'+(c.pr?fmtReunion(c.pr):'—')+'</td>'
-        +'<td style="white-space:nowrap">'+(c.at?'<a href="'+c.at+'" target="_blank" rel="noopener" style="font-size:10px;font-weight:600">Asuntos <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>':'')
-          +'<button title="Quitar de mi terminal" onclick="_consQuickRemove(\'comisiones\',\''+String(_comId(c)).replace(/'/g,"\\'")+'\',event)" style="background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;padding:2px;margin-left:8px;opacity:.55">✕</button></td>'
-        +'</tr>';
-    }).join('')+'</table>';
-}
 // Últimos instrumentos del legislador (de la gaceta oficial ya scrapeada).
 // Regla FIAT: el enlace va SIEMPRE a la fuente oficial; sin URL → sin link.
 function _consLegInstrumentos(leg){
@@ -8999,49 +9195,6 @@ function _toggleConsLeg(uid,ev){
   if(arr)arr.style.transform=open?'':'rotate(180deg)';
   var card=d.closest('.cons-leg-card');
   if(card)card.classList.toggle('exp',!open);
-}
-function _consLegs(legs){
-  var el=document.getElementById('cons-legs');if(!el)return;
-  el.innerHTML=legs.map(function(l,idx){
-    var foto=_legFoto(l);
-    var color=PARTIDO_COLOR[(l.partido||'').toUpperCase()]||'#444';
-    var av='<span style="position:relative;width:34px;height:34px;border-radius:50%;background:'+color+';display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden">'+initials(l.n)
-      +(foto?'<img src="'+foto+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="" onerror="this.remove()">':'')+'</span>';
-    var logo=PARTIDO_LOGO[(l.partido||'').toUpperCase()];
-    var silUrl='http://sil.gobernacion.gob.mx/Busquedas/Legisladores/busquedas_legisladores_buscar.php?SID=&Nombre='+encodeURIComponent(l.n);
-    var instr=_consLegInstrumentos(l);
-    var uid='cleg-'+idx;
-    var listado=instr.map(function(it){
-      var f=it.fecha?new Date(it.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
-      var t=(it.titulo||'').replace(/\s+/g,' ').trim();
-      if(t.length>120)t=t.slice(0,118).replace(/\s+\S*$/,'')+'…';
-      var inner='<span style="color:var(--text-muted);flex-shrink:0">'+f+'</span>'
-        +'<span style="flex:1;min-width:0">'+t+'</span>'
-        +(it.url?'<span style="color:var(--green);flex-shrink:0"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></span>':'');
-      var st='display:flex;gap:8px;align-items:baseline;padding:6px 0;border-top:0.8px solid rgba(0,0,0,0.05);font-size:11px;color:var(--text2);line-height:1.45;text-decoration:none';
-      return it.url
-        ?'<a href="'+(it.url||'').replace(/'/g,'%27')+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="'+st+'">'+inner+'</a>'
-        :'<div style="'+st+'">'+inner+'</div>';
-    }).join('');
-    var comsAll=(l.coms||[]).filter(Boolean);
-    function info(lab,val){return val?'<div style="display:flex;gap:8px;padding:5px 0;border-top:0.8px solid rgba(0,0,0,0.05);font-size:11px;line-height:1.4"><span style="font-family:var(--mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);flex:0 0 82px">'+lab+'</span><span style="flex:1;min-width:0;color:var(--text)">'+val+'</span></div>':'';}
-    var detalle=info('Partido',l.partido||'')
-      +info('Cargo',l.cargo||(comsAll.length?'Integrante':''))
-      +info('Comisión'+(comsAll.length>1?'es':''),comsAll.join(' · '))
-      +info('Leyes',l.g&&l.g.leyes&&l.g.leyes.length?l.g.leyes.slice(0,4).map(function(x){return x.ley+' ('+x.n+')';}).join(' · '):'')
-      +(instr.length?'<div style="font-family:var(--mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin:9px 0 2px">Últimas propuestas ('+instr.length+')</div>'+listado:'<div style="font-size:10px;color:var(--dim);padding:6px 0">Sin propuestas registradas en la gaceta por ahora.</div>');
-    return '<div class="cons-leg-card" style="flex-direction:column;align-items:stretch;cursor:pointer" onclick="_toggleConsLeg(\''+uid+'\')">'
-      +'<div style="display:flex;align-items:center;gap:10px">'+av
-      +'<div style="flex:1;min-width:0"><div style="font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
-      +'<div style="font-family:var(--mono);font-size:8px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(comsAll.length?(l.cargo||'Integrante')+' · '+comsAll[0]:[l.camara,l.partido,l.g&&l.g.entidad].filter(Boolean).join(' · '))+'</div></div>'
-      +(logo?'<img src="'+logo+'" style="height:16px;width:auto;max-width:40px;object-fit:contain;flex-shrink:0" alt="'+l.partido+'">':'')
-      +'<a href="'+silUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Ficha en el SIL" style="font-size:10px;color:var(--green);text-decoration:none;flex-shrink:0">SIL <svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></a>'
-      +'<button title="Quitar de mi terminal" onclick="_consQuickRemove(\'legisladores\',\''+String(l.id).replace(/'/g,"\\'")+'\',event)" style="background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;padding:2px;flex-shrink:0;opacity:.55">✕</button>'
-      +'</div>'
-      +'<div style="font-size:10px;color:var(--text-muted);margin-top:7px;user-select:none">Ver detalle <span id="'+uid+'-arr" style="display:inline-block;transition:transform 0.2s;font-size:8px">▾</span></div>'
-      +'<div id="'+uid+'" style="display:none;margin-top:5px">'+detalle+'</div>'
-      +'</div>';
-  }).join('');
 }
 function _consEstados(estados){
   var el=document.getElementById('cons-estados');if(!el)return;
@@ -9147,23 +9300,6 @@ function _consHighlight(text,kwList){
     try{out=out.replace(new RegExp('(?<![a-zA-Z0-9áéíóúñ])(?![^<]*>)('+pat+')(?![a-zA-Z0-9])','gi'),'<b>$1</b>');}catch(e){}
   });
   return out;
-}
-function _consPres(kwList){
-  var el=document.getElementById('cons-pres');if(!el)return;
-  var arts=(presData||[]).filter(function(a){
-    return _consMatch((a.titulo||'')+' '+((a.fragmentos||[]).join(' ')),kwList);
-  }).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);}).slice(0,5);
-  if(!arts.length){el.innerHTML='<div style="color:var(--dim);font-size:11px;padding:8px 0">Sin menciones recientes en tus temas</div>';return;}
-  el.innerHTML=arts.map(function(a){
-    var f=a.fecha?new Date(a.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
-    // Preferir el fragmento que hace match con los filtros
-    var frags=(a.fragmentos&&a.fragmentos.length)?a.fragmentos:[a.titulo||''];
-    var frag=(frags.find(function(fr){return _consMatch(fr,kwList);})||frags[0]).trim();
-    if(frag.length>130)frag=frag.substring(0,128)+'…';
-    return '<div class="cons-feed-it" onclick="window.open(\''+(a.url||'#').replace(/'/g,'%27')+'\',\'_blank\')">'
-      +'<div class="cft" style="font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--text-sec);font-style:normal">“'+_consHighlight(frag,kwList)+'”</div>'
-      +'<div class="cfm" style="font-family:var(--mono)"><span style="display:inline-flex;align-items:center;gap:5px"><span class="chyron-live" style="width:5px;height:5px"></span>Conferencia matutina · '+f+'</span></div>'+_liBtn(a.url,a.titulo)+'</div>';
-  }).join('');
 }
 function _consDof(kwList){
   var el=document.getElementById('cons-dof');if(!el)return;
