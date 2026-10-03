@@ -7177,7 +7177,21 @@ function _consTemaKws(temaIds){
   (temaIds||[]).forEach(function(id){var c=CATS.find(function(x){return x.id===id;});if(c)out=out.concat(c.kw);});
   return out;
 }
-// Universo de legisladores: se deriva de comisiones.json (id = nombre normalizado)
+// Base de legisladores con actividad en temas GEMI (data/legisladores-gemi.json):
+// solo quien ha PRESENTADO al menos 1 iniciativa o punto de acuerdo propio; trae foto
+// oficial, sus instrumentos y las leyes que tocan.
+var _LGEMI=null,_LGEMI_P=null;
+function _lgemiLoad(cb){
+  if(_LGEMI){cb&&cb();return;}
+  if(!_LGEMI_P)_LGEMI_P=fetch('data/legisladores-gemi.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(d){
+    _LGEMI={};((d&&d.legisladores)||[]).forEach(function(l){_LGEMI[_consNk(l.nombre)]=l;});
+  }).catch(function(){_LGEMI={};});
+  _LGEMI_P.then(function(){cb&&cb();});
+}
+function _legFoto(l){
+  return (_fotosMap.senado&&_fotosMap.senado[l.id])||(_fotosMap.diputados&&_fotosMap.diputados[l.id])||(l.g&&l.g.foto)||null;
+}
+// Universo de legisladores: integrantes de comisiones (comisiones.json) + base GEMI (id = nombre normalizado)
 function consolaLegisladores(){
   var out=[],seen={};
   var coms=(_comisionesData&&_comisionesData.comisiones)||[];
@@ -7189,6 +7203,12 @@ function consolaLegisladores(){
       var o={id:nk,n:m.n,partido:m.partido||'',camara:c.camara||'',cargo:m.cargo||'',coms:[c.nombre]};
       seen[nk]=o;out.push(o);
     });
+  });
+  Object.keys(_LGEMI||{}).forEach(function(nk){
+    var g=_LGEMI[nk];
+    if(seen[nk]){seen[nk].g=g;return;}
+    var o={id:nk,n:g.nombre,partido:g.partido||'',camara:g.camara||'',cargo:'',coms:[],g:g};
+    seen[nk]=o;out.push(o);
   });
   return out.sort(function(a,b){return a.n.localeCompare(b.n,'es');});
 }
@@ -7356,11 +7376,10 @@ function _wizPaintBody(){
     b.innerHTML=_comSec('Cámara de Diputados',dip)+_comSec('Senado de la República',sen)+_comSec('Otras',otras);
   }
   else if(p==='legisladores'){
-    b.innerHTML='<div style="font-size:11px;color:var(--text-sec);background:rgba(0,158,144,0.06);border-left:2px solid var(--green);padding:7px 10px;margin-bottom:12px;line-height:1.45">Por ahora solo se puede dar seguimiento a legisladores <b>federales</b> (Cámara de Diputados y Senado). Los congresos locales llegarán en una próxima etapa.</div>'
-      +'<div id="cw-leg-filters"></div>'
-      +'<input class="cw-search" id="cw-leg-search" placeholder="Buscar por nombre…" value="'+_wiz.search.replace(/"/g,'&quot;')+'" oninput="_wiz.search=this.value;_wizPaintLegList()">'
-      +'<div id="cw-leg-list" style="max-height:300px;overflow-y:auto"></div>';
-    _wizPaintLegFilters();_wizPaintLegList();
+    b.innerHTML='<div id="cw-leg-filters"></div>'
+      +'<input class="cw-search" id="cw-leg-search" placeholder="Buscar por nombre o estado…" value="'+_wiz.search.replace(/"/g,'&quot;')+'" oninput="_wiz.search=this.value;_wizPaintLegList()">'
+      +'<div id="cw-leg-list" style="max-height:430px;overflow-y:auto"></div>';
+    _lgemiLoad(function(){_wizPaintLegFilters();_wizPaintLegList();});
   }
   else if(p==='referencias'){
     var tabs=[['noms','NOMs'],['impuestos','Impuestos'],['materiales','Materiales'],['instrumentos','Instrumentos']];
@@ -7405,65 +7424,74 @@ function _wizLegPartidos(){
   return Object.keys(counts).filter(function(k){return k!=='N/D';}).map(function(k){return [k,counts[k]];}).sort(function(a,b){return b[1]-a[1];});
 }
 function _wizSetLegFilter(type,val){
-  if(type==='cam')_wiz.legCam=val;else _wiz.legPart=val;
+  if(type==='cam')_wiz.legCam=val;else if(type==='min')_wiz.legMin=+val;else _wiz.legPart=val;
   _wizPaintLegFilters();_wizPaintLegList();
 }
+// Instrumentos propios del legislador que cruzan los temas elegidos en el paso 1
+function _wizLegHits(l){
+  var hits={};if(!l.g)return hits;
+  var temas=Array.from(_wiz.sel.temas);
+  l.g.instrumentos.forEach(function(i){
+    if(i.adhesion)return;
+    var t=qa((i.titulo||'').toLowerCase());
+    temas.forEach(function(id){var c=CATS.find(function(c){return c.id===id;});
+      if(c&&c.kw.some(function(k){return _kwHit(t,k);}))hits[id]=(hits[id]||0)+1;});
+  });
+  return hits;
+}
+// Universo del paso: solo quien ha presentado algo propio en temas GEMI (+ los que ya seguías)
+function _wizLegUniverso(){
+  return consolaLegisladores().filter(function(l){return (l.g&&l.g.total>=(_wiz.legMin||1))||_wiz.sel.legisladores.has(l.id);});
+}
+function _wizLegFecha(iso){var M=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];var p=(iso||'').split('-');return p.length===3?(+p[2])+' '+M[+p[1]-1]:'';}
 function _wizPaintLegFilters(){
   var el=document.getElementById('cw-leg-filters');if(!el)return;
-  var segBtn=function(active,label,onclick){
-    return '<button onclick="'+onclick+'" style="padding:5px 12px;border:0.8px solid '+(active?'var(--green)':'var(--border)')+';background:'+(active?'rgba(0,158,144,0.08)':'none')+';color:'+(active?'var(--green)':'var(--text-muted)')+';font-family:var(--sans);font-size:11px;font-weight:'+(active?'600':'500')+';cursor:pointer;white-space:nowrap">'+label+'</button>';
-  };
-  var cams=[['todas','Todas'],['Diputados','Diputados'],['Senado','Senado']];
-  var camRow='<div style="display:flex;gap:6px;margin-bottom:8px">'+cams.map(function(c){
-    return segBtn(_wiz.legCam===c[0],c[1],'_wizSetLegFilter(\'cam\',\''+c[0]+'\')');
-  }).join('')+'</div>';
-  var parts=_wizLegPartidos();
-  var partAll=segBtn(_wiz.legPart==='todas','Todos','_wizSetLegFilter(\'part\',\'todas\')');
-  var partBtns=parts.map(function(e){
-    var active=_wiz.legPart===e[0];
-    return '<button onclick="_wizSetLegFilter(\'part\',\''+e[0]+'\')" title="'+e[0]+'" style="display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border:0.8px solid '+(active?'var(--green)':'var(--border)')+';background:'+(active?'rgba(0,158,144,0.08)':'none')+';cursor:pointer;white-space:nowrap">'
-      +_wizPartyLogoEl(e[0],15)
-      +'<span style="font-family:var(--mono);font-size:9px;font-weight:600;color:'+(active?'var(--green)':'var(--text-muted)')+'">'+e[0]+' <span style="opacity:.6">'+e[1]+'</span></span>'
-      +'</button>';
-  }).join('');
-  el.innerHTML=camRow+'<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">'+partAll+partBtns+'</div>';
+  if(!_wiz.legMin)_wiz.legMin=1;
+  var tab=function(v,l){var on=_wiz.legCam===v;return '<button onclick="_wizSetLegFilter(\'cam\',\''+v+'\')" style="background:none;border:none;border-bottom:1.5px solid '+(on?'var(--green)':'transparent')+';cursor:pointer;font-family:var(--sans);font-size:12px;font-weight:'+(on?600:500)+';color:'+(on?'var(--text)':'var(--text-muted)')+';padding:0 0 6px">'+l+'</button>';};
+  var parts={};_wizLegUniverso().forEach(function(l){if(l.partido)parts[l.partido]=1;});
+  var sel='padding:6px 24px 6px 8px;font-size:11px;color:var(--text);background:var(--card2);border:0.8px solid var(--border);font-family:var(--sans)';
+  el.innerHTML='<div style="font-size:11px;color:var(--text-sec);line-height:1.5;margin-bottom:12px">Solo legisladores federales que han <b>presentado</b> iniciativas o puntos de acuerdo en temas GEMI. Las firmas en exhortos de toda una bancada no cuentan como autoría. Se ordenan por lo que han presentado en <b>tus temas</b>.</div>'
+    +'<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px">'
+    +'<div style="display:flex;gap:18px">'+tab('todas','Ambas cámaras')+tab('Diputados','Diputados')+tab('Senado','Senado')+'</div>'
+    +'<div style="display:flex;gap:8px">'
+    +'<select style="'+sel+'" onchange="_wizSetLegFilter(\'part\',this.value)"><option value="todas">Todos los partidos</option>'+Object.keys(parts).sort().map(function(p){return '<option'+(_wiz.legPart===p?' selected':'')+'>'+p+'</option>';}).join('')+'</select>'
+    +'<select style="'+sel+'" onchange="_wizSetLegFilter(\'min\',this.value)">'+[1,2,3,5].map(function(n){return '<option value="'+n+'"'+(_wiz.legMin===n?' selected':'')+'>'+n+'+ instrumento'+(n===1?'':'s')+' propio'+(n===1?'':'s')+'</option>';}).join('')+'</select>'
+    +'</div></div>';
 }
 function _wizLegRow(l){
-  var on=_wiz.sel.legisladores.has(l.id);
-  var foto=(_fotosMap.senado&&_fotosMap.senado[l.id])||(_fotosMap.diputados&&_fotosMap.diputados[l.id])||null;
+  var on=_wiz.sel.legisladores.has(l.id),g=l.g;
+  var foto=_legFoto(l);
   var color=(PARTIDO_COLOR[(l.partido||'').toUpperCase()]||PARTIDO_COLOR[l.partido]||'#444');
-  var av='<span style="position:relative;width:26px;height:26px;border-radius:50%;background:'+color+';display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden">'+initials(l.n)
+  var av='<span style="position:relative;width:32px;height:32px;border-radius:50%;background:'+color+';display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden">'+initials(l.n)
     +(foto?'<img src="'+foto+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="" onerror="this.remove()">':'')+'</span>';
-  return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'legisladores\',\''+l.id.replace(/'/g,"\\'")+'\')" style="margin-bottom:5px">'
-    +'<span class="mark">'+(on?'●':'○')+'</span>'+av
-    +'<div style="flex:1;min-width:0"><div style="font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.n+'</div>'
-    +'<div style="font-family:var(--mono);font-size:8px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+l.coms[0]+'</div></div>'
-    +_wizPartyLogoEl(l.partido,18)
-    +'</div>';
+  var h=l._hits||{},ht=Object.keys(h).sort(function(a,b){return h[b]-h[a];}).map(function(id){var c=CATS.find(function(c){return c.id===id;});return (c?c.name:id)+' '+h[id];}).join(' · ');
+  var donde=[l.camara,l.partido,g&&g.entidad].filter(Boolean).join(' · ');
+  var stats=g?(g.iniciativas+' iniciativa'+(g.iniciativas===1?'':'s')+' · '+g.puntos_acuerdo+' punto'+(g.puntos_acuerdo===1?'':'s')+' de acuerdo'+(g.adhesiones?' <span style="color:var(--text-muted)">· '+g.adhesiones+(g.adhesiones===1?' firma':' firmas')+' de bancada</span>':'')):'Sin instrumentos propios en temas GEMI';
+  var leyes=g&&g.leyes&&g.leyes.length?'<div style="font-size:10px;color:var(--text-muted);margin-top:3px;line-height:1.4">Leyes que toca: '+g.leyes.slice(0,3).map(function(x){return x.ley+' ('+x.n+')';}).join(' · ')+'</div>':'';
+  return '<div class="cw-opt'+(on?' on':'')+'" onclick="_wizToggle(\'legisladores\',\''+l.id.replace(/'/g,"\\'")+'\')" style="margin-bottom:5px;align-items:flex-start">'
+    +'<span class="mark" style="padding-top:8px">'+(on?'●':'○')+'</span>'+av
+    +'<div style="flex:1;min-width:0">'
+    +'<div style="display:flex;justify-content:space-between;gap:10px"><span style="font-size:12px;font-weight:600;color:var(--text)">'+l.n+'</span>'+(g&&g.ultimo?'<span style="font-family:var(--mono);font-size:9px;color:var(--text-muted);white-space:nowrap">último '+_wizLegFecha(g.ultimo)+'</span>':'')+'</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:2px">'+donde+'</div>'
+    +'<div style="font-size:11px;color:var(--text-sec);margin-top:4px">'+stats+'</div>'
+    +leyes
+    +'<div style="font-family:var(--mono);font-size:9px;margin-top:4px;color:'+(ht?'var(--green)':'var(--text-muted)')+'">'+(ht?'En tus temas: '+ht:'Sin instrumentos en tus temas')+'</div>'
+    +'</div></div>';
 }
 function _wizPaintLegList(){
   var el=document.getElementById('cw-leg-list');
   if(!el)return;
+  if(!_LGEMI){el.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:12px 0">Cargando…</div>';_lgemiLoad(_wizPaintLegList);return;}
   var q=qa(_wiz.search.toLowerCase());
-  var legs=consolaLegisladores().filter(function(l){
-    if(_wiz.legCam!=='todas'&&l.camara!==_wiz.legCam)return false;
-    if(_wiz.legPart!=='todas'&&(l.partido||'').toUpperCase()!==_wiz.legPart)return false;
-    if(q&&!qa((l.n+' '+l.partido+' '+l.coms.join(' ')).toLowerCase()).includes(q))return false;
-    return true;
-  });
+  var legs=_wizLegUniverso().map(function(l){l._hits=_wizLegHits(l);l._score=Object.values(l._hits).reduce(function(a,b){return a+b;},0);return l;})
+    .filter(function(l){
+      if(_wiz.legCam!=='todas'&&l.camara!==_wiz.legCam)return false;
+      if(_wiz.legPart&&_wiz.legPart!=='todas'&&l.partido!==_wiz.legPart)return false;
+      if(q&&!qa((l.n+' '+l.partido+' '+((l.g&&l.g.entidad)||'')).toLowerCase()).includes(q))return false;
+      return true;
+    }).sort(function(a,b){return (b._score-a._score)||(((b.g&&b.g.total)||0)-((a.g&&a.g.total)||0));});
   if(!legs.length){el.innerHTML='<div style="color:var(--dim);font-size:12px;padding:16px 0">Sin resultados</div>';return;}
-  var html='';
-  if(_wiz.legCam==='todas'){
-    [['Diputados','Cámara de Diputados'],['Senado','Senado de la República']].forEach(function(cm){
-      var g=legs.filter(function(l){return l.camara===cm[0];});
-      if(!g.length)return;
-      html+='<div style="font-size:11px;font-weight:700;color:var(--green);margin:8px 0 6px">'+cm[1]+' <span style="color:var(--dim);font-weight:500;font-size:10px">· '+g.length+'</span></div>'
-        +g.map(_wizLegRow).join('');
-    });
-  }else{
-    html=legs.map(_wizLegRow).join('');
-  }
-  el.innerHTML=html;
+  el.innerHTML='<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin:4px 0 8px">'+legs.length+' legisladores · abril a octubre de 2026</div>'+legs.map(_wizLegRow).join('');
 }
 // ── Referencias: sub-tabs (NOMs con filtros de tema · Monitoreo interactivo) ──
 function _wizSetRefTab(t){_wiz.refTab=t;_wizPaintBody();_wizPaintFoot();}
@@ -7945,6 +7973,8 @@ function _consDrop(ev,targetId){
 function renderConsola(){
   var root=document.getElementById('consola-root');
   if(!root)return;
+  // Los legisladores que sigues pueden venir de la base GEMI (no solo de comisiones): cargarla primero
+  if(!_LGEMI&&consolaConfigurada()&&(loadConsola().legisladores||[]).length){_lgemiLoad(renderConsola);return;}
   if(!consolaConfigurada()){
     root.innerHTML='<div class="cons-onboard">'
       +'<div class="cob-inner">'
@@ -8690,6 +8720,9 @@ function _consComs(coms){
 // Últimos instrumentos del legislador (de la gaceta oficial ya scrapeada).
 // Regla FIAT: el enlace va SIEMPRE a la fuente oficial; sin URL → sin link.
 function _consLegInstrumentos(leg){
+  // Base GEMI: sus instrumentos propios (SIL + gacetas), más recientes primero
+  if(leg.g&&leg.g.instrumentos&&leg.g.instrumentos.length)
+    return leg.g.instrumentos.filter(function(i){return !i.adhesion;}).slice(0,5);
   var lw=_consNk(leg.n).split(' ').filter(function(w){return w.length>2;});
   var out=[];
   (_congItems||[]).forEach(function(it){
@@ -8715,7 +8748,7 @@ function _toggleConsLeg(uid,ev){
 function _consLegs(legs){
   var el=document.getElementById('cons-legs');if(!el)return;
   el.innerHTML=legs.map(function(l,idx){
-    var foto=(_fotosMap.senado&&_fotosMap.senado[l.id])||(_fotosMap.diputados&&_fotosMap.diputados[l.id])||null;
+    var foto=_legFoto(l);
     var color=PARTIDO_COLOR[(l.partido||'').toUpperCase()]||'#444';
     var av='<span style="position:relative;width:34px;height:34px;border-radius:50%;background:'+color+';display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden">'+initials(l.n)
       +(foto?'<img src="'+foto+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="" onerror="this.remove()">':'')+'</span>';
@@ -8738,8 +8771,9 @@ function _consLegs(legs){
     var comsAll=(l.coms||[]).filter(Boolean);
     function info(lab,val){return val?'<div style="display:flex;gap:8px;padding:5px 0;border-top:0.8px solid rgba(0,0,0,0.05);font-size:11px;line-height:1.4"><span style="font-family:var(--mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);flex:0 0 82px">'+lab+'</span><span style="flex:1;min-width:0;color:var(--text)">'+val+'</span></div>':'';}
     var detalle=info('Partido',l.partido||'')
-      +info('Cargo',l.cargo||'Integrante')
+      +info('Cargo',l.cargo||(comsAll.length?'Integrante':''))
       +info('Comisión'+(comsAll.length>1?'es':''),comsAll.join(' · '))
+      +info('Leyes',l.g&&l.g.leyes&&l.g.leyes.length?l.g.leyes.slice(0,4).map(function(x){return x.ley+' ('+x.n+')';}).join(' · '):'')
       +(instr.length?'<div style="font-family:var(--mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin:9px 0 2px">Últimas propuestas ('+instr.length+')</div>'+listado:'<div style="font-size:10px;color:var(--dim);padding:6px 0">Sin propuestas registradas en la gaceta por ahora.</div>');
     return '<div class="cons-leg-card" style="flex-direction:column;align-items:stretch;cursor:pointer" onclick="_toggleConsLeg(\''+uid+'\')">'
       +'<div style="display:flex;align-items:center;gap:10px">'+av

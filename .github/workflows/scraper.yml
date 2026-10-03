@@ -68,6 +68,10 @@ jobs:
       - name: Scraper Gacetas Estatales (ediciones oficiales)
         run: python scraper/scraper_gacetas_estatales.py
 
+      # ── Legisladores con actividad en temas GEMI (append-only) ────────────
+      - name: Legisladores GEMI
+        run: python scraper/legisladores_gemi.py
+
       # ── Archivo histórico de noticias (append-only, por mes) ──────────────
       - name: Archivo histórico de noticias
         run: python scraper/archivo_noticias.py
