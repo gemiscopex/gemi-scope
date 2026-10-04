@@ -1564,12 +1564,18 @@
    "medio_ambiente": {
     "dependencia": "Secretaría de Medio Ambiente (SEDEMA)",
     "url": "https://www.veracruz.gob.mx/medioambiente/",
-    "nota": "titular previo sin confirmar: Luz Mariela Zaleta Mendoza. veracruz.gob.mx está detrás de captcha anti-bots; no se pudo abrir el directorio."
+    "nota": "Titular de SEDEMA en nota del 6-jul-2026; también la cuenta oficial @SEDEMAVeracruz la nombra secretaria (mar-2026). El portal veracruz.gob.mx pide captcha.",
+    "titular": "Luz Mariela Zaleta Mendoza",
+    "fuente": "https://www.veracruzenlinea.com/2026/07/comision-de-medio-ambiente-y-autoridades-revisan-estrategias-ambientales/",
+    "verificado": "2026-10"
    },
    "economia": {
     "dependencia": "Secretaría de Desarrollo Económico y Portuario (SEDECOP)",
     "url": "https://www.veracruz.gob.mx/desarrolloeconomico/",
-    "nota": "titular previo sin confirmar: Ernesto Pérez Astorga. Sitio detrás de captcha."
+    "nota": "Nombrado titular de la Sedecop en nota del 2-oct-2026; boletines oficiales de sep-2026 de la Sedecop lo citan.",
+    "titular": "Ernesto Pérez Astorga",
+    "fuente": "https://golpepolitico.com/2026/10/02/tato-vega-renuncia-a-la-secretaria-de-desarrollo-economico-y-portuario-de-veracruz/",
+    "verificado": "2026-10"
    },
    "agua": {
     "dependencia": "Comisión del Agua del Estado de Veracruz (CAEV)",
@@ -1582,12 +1588,14 @@
    "energia": {
     "dependencia": "Agencia Estatal de Energía de Veracruz (AEEV)",
     "url": "https://aeev.veracruz.gob.mx/",
-    "nota": "Sitio activo (2026) pero no nombra titular."
+    "nota": "Director General; aparece en publicaciones oficiales de la AEEV de feb a sep-2026.",
+    "titular": "Carlos Andrés Morales Mar",
+    "fuente": "https://aeev.veracruz.gob.mx/difusion/",
+    "verificado": "2026-10"
    },
    "cambio_climatico": {
     "dependencia": "Secretaría de Medio Ambiente (SEDEMA)",
-    "url": "https://www.veracruz.gob.mx/medioambiente/",
-    "nota": "titular previo sin confirmar: Luz Mariela Zaleta Mendoza (era la titular de SEDEMA, no de una unidad específica)."
+    "url": "https://www.veracruz.gob.mx/medioambiente/"
    },
    "calidad_aire": {
     "dependencia": "Secretaría de Medio Ambiente (SEDEMA) - área de Calidad del Agua y Aire",
@@ -1603,6 +1611,14 @@
     "dependencia": "Dirección General de Transporte del Estado (DGTE)",
     "url": "https://www.veracruz.gob.mx/",
     "nota": "Sin verificar (portal estatal detrás de captcha)."
+   },
+   "procuraduria_ambiental": {
+    "dependencia": "Procuraduría Estatal de Protección al Medio Ambiente (PMA)",
+    "titular": "Ángel Carrizales López",
+    "url": "https://www.pmaver.gob.mx/",
+    "fuente": "https://www.pmaver.gob.mx/contactanos/",
+    "verificado": "2026-10",
+    "nota": "Procurador Ambiental según el directorio oficial; prensa de mayo-2026 lo confirma en el cargo."
    }
   },
   "Yucatán": {
