@@ -8961,12 +8961,9 @@ function _consHeroHTML(sen,temas,estados,coms,legs,nRefs,cfg){
   // Novedades compactas, pegadas al pie del héroe (solo cuando hay)
   var sl=(typeof _consSinceLast==='function')?_consSinceLast(cfg):{items:[]},nv=sl.items.length,nvStrip='';
   if(nv){
+    window.__consNv=sl.items;_consNvN=3;
     nvStrip='<div class="cons-nvstrip"><div class="cons-hero-kick" style="color:var(--green);margin-bottom:9px">Nuevo desde tu última visita · '+nv+'</div>'
-      +sl.items.slice(0,3).map(function(i){
-        var oc=i.url?(' onclick="window.open(\''+String(i.url).replace(/'/g,'%27')+'\',\'_blank\')" style="cursor:pointer"'):'';
-        return '<div class="cons-nvrow"'+oc+'><span class="src" style="color:'+i.color+'">'+i.cat+'</span><span class="txt">'+_escUser(i.text)+'</span><span class="ago">'+((typeof _agoText==='function')?_agoText(i.ts):'')+'</span></div>';
-      }).join('')
-      +(nv>3?'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);padding-top:8px">+'+(nv-3)+' más</div>':'')
+      +'<div id="cons-nvlist">'+_consNvRows()+'</div>'
     +'</div>';
   }
   return '<div class="cons-hero">'
@@ -9108,6 +9105,24 @@ function _consHits(kwList,days){
     return _consMatch((n.titulo||'')+' '+(n.resumen||''),kwList);
   });
 }
+// Novedades desde tu última visita: primeras 3 y "Ver N más" (de 10 en 10) en el mismo bloque
+var _consNvN=3;
+function _consNvRows(){
+  var it=window.__consNv||[],n=it.length;
+  var rows=it.slice(0,_consNvN).map(function(i){
+    var oc=i.url?(' onclick="window.open(\''+String(i.url).replace(/'/g,'%27')+'\',\'_blank\')" style="cursor:pointer"'):'';
+    return '<div class="cons-nvrow"'+oc+'><span class="src" style="color:'+i.color+'">'+i.cat+'</span><span class="txt">'+_escUser(i.text)+'</span><span class="ago">'+((typeof _agoText==='function')?_agoText(i.ts):'')+'</span></div>';
+  }).join('');
+  var lnk='font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green);cursor:pointer';
+  var pie='<div style="display:flex;gap:18px;align-items:center;padding-top:10px">'
+    +(n>_consNvN?'<span class="cons-nvmas" style="'+lnk+'" onclick="_consNvMas()">Ver '+Math.min(10,n-_consNvN)+' más · '+(n-_consNvN)+' restantes</span>':'')
+    +(_consNvN>3?'<span class="cons-nvmenos" style="'+lnk+';color:var(--text-muted)" onclick="_consNvN=3;_consNvPaint()">Ver menos</span>':'')
+    +(_consNvN>3&&typeof _consMarkSeen==='function'?'<span style="'+lnk+';color:var(--text-muted);margin-left:auto" onclick="_consMarkSeen()">Marcar todo como visto</span>':'')
+    +'</div>';
+  return rows+((n>3)?pie:'');
+}
+function _consNvPaint(){var el=document.getElementById('cons-nvlist');if(el)el.innerHTML=_consNvRows();}
+function _consNvMas(){_consNvN+=10;_consNvPaint();}
 // ── Rediseño paso 1: "Desde tu última visita" (cruce DOF+Congreso+mañanera+prensa filtrado al perfil) ──
 function _agoText(ts){
   var ms=Date.now()-ts; if(ms<0)ms=0;
@@ -9131,9 +9146,16 @@ function _consSinceLast(cfg){
     var ts=new Date(String(x.fecha||'').substring(0,10)+'T12:00:00').getTime();
     if(ts>=since&&_consMatch((x.titulo||'')+' '+((x.fragmentos||[]).join(' ')),allKw))push('EJECUTIVO','#2AA88B',(x.fragmentos&&x.fragmentos[0])||x.titulo,ts,x.url||'');
   });
+  // Prensa: mismo filtro afinado de Noticias (palabra del tema en el título o 2+ términos;
+  // sin clima/homónimos ni notas de otros países). Tus keywords propias se buscan en todo el texto.
+  var temasSel=(typeof CATS!=='undefined'?CATS:[]).filter(function(c){return (cfg.temas||[]).indexOf(c.id)>=0;})
+    .map(function(c){return Object.assign({},c,{titulo:true});});
+  var userKw=cfg.keywords||[];
   (noticias||[]).forEach(function(n){
     var ts=new Date(n.fecha_publicacion).getTime();
-    if(ts>=since&&_consMatch((n.titulo||'')+' '+(n.resumen||''),allKw))push('PRENSA','#0E8C74',n.titulo,ts,n.url);
+    if(ts<since)return;
+    var ok=temasSel.some(function(t){return _temaHit(t,n);})||(userKw.length&&_consMatch((n.titulo||'')+' '+(n.resumen||''),userKw));
+    if(ok)push('PRENSA','#0E8C74',n.titulo,ts,n.url);
   });
   items.sort(function(a,b){return b.ts-a.ts;});
   var byCat={}; items.forEach(function(i){byCat[i.cat]=(byCat[i.cat]||0)+1;});
