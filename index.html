@@ -1061,6 +1061,52 @@ a:hover .arrlk,[onclick]:hover .arrlk{opacity:1}
 .pro-lbody i{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--text-muted);margin:2px 0 5px}
 .pro-q{font-size:12px;color:var(--text-sec);line-height:1.5}
 .cons-rail-senal{margin-bottom:28px}
+.mu{padding-top:4px}
+.mu-head{display:grid;grid-template-columns:1fr 56px 1fr;align-items:center;gap:12px;padding:6px 0 16px;border-bottom:0.8px solid var(--border)}
+.mu-team{display:flex;align-items:center;gap:14px;min-width:0}
+.mu-b{flex-direction:row-reverse;text-align:right}
+.mu-logo{flex-shrink:0;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border:0.8px solid var(--border);border-radius:50%;opacity:.85}
+.mu-tinfo{display:flex;flex-direction:column;gap:3px;min-width:0}
+.mu-ab{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;color:#066750}
+.mu-name{font-size:16px;font-weight:700;color:var(--text)}
+.mu-sel{font-family:var(--sans);font-size:16px;font-weight:700;color:var(--text);background:none;border:none;border-bottom:1px dashed var(--border2);padding:0 2px;cursor:pointer;max-width:100%}
+.mu-b .mu-sel{text-align:right}
+.mu-rec{font-family:var(--mono);font-size:9px;color:var(--text-muted)}
+.mu-vs{width:44px;height:44px;margin:0 auto;border-radius:50%;border:0.8px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text-muted)}
+.mu-hint{font-family:var(--mono);font-size:9px;color:var(--text-muted);padding:10px 0 4px}
+.mu-row{display:grid;grid-template-columns:1fr 132px 1fr;align-items:center;gap:14px;padding:12px 6px;border-bottom:0.8px solid var(--border);cursor:pointer}
+.mu-row:hover{background:rgba(6,103,80,0.04)}
+.mu-row.open{background:rgba(6,103,80,0.06)}
+.mu-side{display:flex;align-items:center;gap:12px;min-width:0}
+.mu-side.l{flex-direction:row-reverse}
+.mu-val{display:flex;flex-direction:column;flex-shrink:0;min-width:64px}
+.mu-side.l .mu-val{text-align:right}
+.mu-val b{font-family:var(--mono);font-size:21px;font-weight:700;color:var(--text-muted);line-height:1;font-variant-numeric:tabular-nums}
+.mu-side.win .mu-val b{color:#066750}
+.mu-val i{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:4px}
+.mu-track{flex:1;height:6px;background:rgba(13,27,42,0.06);display:flex}
+.mu-side.l .mu-track{justify-content:flex-end}
+.mu-track span{display:block;height:100%;background:var(--border2)}
+.mu-side.win .mu-track span{background:#066750}
+.mu-pos{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.mu-pos span{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;color:#066750;border:0.8px solid #066750;border-radius:3px;padding:3px 8px}
+.mu-pos i{font-style:normal;font-size:10px;color:var(--text-sec);line-height:1.2}
+.mu-det{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:10px 6px 18px;background:rgba(6,103,80,0.03);border-bottom:0.8px solid var(--border)}
+.mu-listh{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);padding-bottom:6px;border-bottom:0.8px solid var(--border);margin-bottom:4px}
+.mu-li{font-size:12px;color:var(--text);padding:5px 0;border-bottom:0.8px solid rgba(0,0,0,0.04);line-height:1.35}
+.mu-more{font-family:var(--mono);font-size:9px;color:var(--text-muted);padding:6px 0}
+.mu-sub{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--green);margin:22px 0 8px}
+.mu-tbl{width:100%;border-collapse:collapse}
+.mu-tbl th{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted);text-align:center;padding:6px;border-bottom:0.8px solid var(--border)}
+.mu-tbl th:first-child,.mu-tbl td:first-child{text-align:left}
+.mu-tbl td{font-size:12px;color:var(--text);padding:8px 6px;text-align:center}
+.mu-tbl tr.z td{background:rgba(13,27,42,0.025)}
+.mu-tbl td b{font-family:var(--mono);font-size:12px}
+.mu-rk{display:block;width:34px;height:3px;background:rgba(13,27,42,0.08);margin:4px auto 0}
+.mu-rk span{display:block;height:100%;background:#066750}
+.mu-foot{border-top:0.8px solid var(--border);margin-top:14px;padding-top:12px}
+.mu-foot span{cursor:pointer;font-family:var(--mono);font-size:11px;color:var(--green);font-weight:600}
+@media(max-width:680px){.mu-row{grid-template-columns:1fr 70px 1fr;gap:6px}.mu-pos i{display:none}.mu-track{display:none}.mu-det{grid-template-columns:1fr}.mu-logo{width:38px;height:38px}}
 .cmp-tipwrap{position:relative}
 .gac-detail{margin-top:24px;padding-top:18px;border-top:1px solid var(--text);scroll-margin-top:80px}
 .gac-cell.on{background:rgba(6,103,80,0.07);box-shadow:inset 2px 0 0 #066750}
@@ -3322,7 +3368,7 @@ function renderDofMenu(){
   el.innerHTML='<div class="nav-drop-lbl">'+(deHoy.length?'Publicado hoy en el DOF':'Últimas publicaciones DOF · nuestros temas')+'</div>'
     +list.map(function(d){
       var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
-      return '<div class="dof-it" onclick="window.open(\''+(d.url||'https://www.dof.gob.mx/').replace(/'/g,'%27')+'\',\'_blank\')">'
+      return '<div class="dof-it" onclick="window.open(\''+(d.url||'https://dof.gob.mx/').replace(/'/g,'%27')+'\',\'_blank\')">'
         +'<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">'
           +'<span style="font-size:10px;font-weight:700;color:var(--text);letter-spacing:0.02em">'+(d.dependencia||'DOF')+'</span>'
           +'<span style="font-family:var(--mono);font-size:8px;color:var(--text-muted);flex-shrink:0;white-space:nowrap">'+f+(d.relevante?' · <span style="color:var(--amber)">REL</span>':'')+'</span>'
@@ -3657,7 +3703,7 @@ var _OBLIGACIONES=[
 // Precedentes judiciales (SCJN) sobre regulación ambiental estatal — capa factual pública
 var _JURISPRUDENCIA=[
   {t:'Amparo · prohibiciones absolutas de PET y unicel (Oaxaca)',org:'SCJN · Segunda Sala',anio:2022,criterio:'Invasión de competencias',resumen:'Amparó a Propimex y Oxxo (Coca-Cola FEMSA) contra la Ley de Residuos Sólidos de Oaxaca y declaró inconstitucionales las prohibiciones absolutas de PET y unicel: los estados no pueden prohibir de forma absoluta materiales que la Ley General federal solo prevé regular como residuos de manejo especial.',url:'https://www.scjn.gob.mx/'},
-  {t:'Declaratoria General de Inconstitucionalidad 8/2022',org:'SCJN · Pleno',anio:2023,criterio:'Efectos generales',resumen:'Eliminó con efectos generales las fracciones XI y XII del artículo 98 de la Ley de Residuos de Oaxaca (prohibiciones absolutas de materiales), extendiendo el criterio a todos los casos comparables.',url:'https://www.dof.gob.mx/'},
+  {t:'Declaratoria General de Inconstitucionalidad 8/2022',org:'SCJN · Pleno',anio:2023,criterio:'Efectos generales',resumen:'Eliminó con efectos generales las fracciones XI y XII del artículo 98 de la Ley de Residuos de Oaxaca (prohibiciones absolutas de materiales), extendiendo el criterio a todos los casos comparables.',url:'https://dof.gob.mx/'},
   {t:'Amparo · decreto de popotes (Culiacán)',org:'SCJN',anio:2023,criterio:'Invasión de competencias',resumen:'Aplicó el mismo criterio a un decreto municipal de Culiacán que prohibía popotes de un solo uso: la prohibición absoluta de un material invade la competencia federal en materia de residuos de manejo especial.',url:'https://www.scjn.gob.mx/'}
 ];
 // ── Gramática de fila canónica de SCOPE (plana, sin cajas; estatus a la derecha) ──
@@ -4871,7 +4917,7 @@ function _agendaDof(){
     var full=groups[dep],exp=!!_dofExpanded[dep],vis=exp?full:full.slice(0,3);
     var rows=vis.map(function(d,i){
       var f=d.fecha?new Date(d.fecha.substring(0,10)+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'short'}):'';
-      var _u=(d.url||'https://www.dof.gob.mx/').replace(/\x27/g,'%27');
+      var _u=(d.url||'https://dof.gob.mx/').replace(/\x27/g,'%27');
       var _sv=(typeof _dofIsSaved==='function')&&_dofIsSaved(d.url);
       return '<div class="dof-item'+(i%2?' zeb':'')+'">'
         +'<div style="flex:1;min-width:0;font-size:13px;color:var(--text);line-height:1.5;cursor:pointer" onclick="window.open(\''+_u+'\',\'_blank\')">'+(d.titulo||'')+'</div>'
@@ -4892,37 +4938,35 @@ var _dofExpanded={};
 function _dofToggleDep(dep){_dofExpanded[dep]=!_dofExpanded[dep];_agendaDof();}
 // ── NORMAS ────────────────────────────────────────────────────
 var NORMAS=[
-  {id:'NOM-127-SSA1-2021',dep:'SSA',tema:'Agua',tipo:'NOM',objeto:'Calidad de agua para consumo humano',implic:'Base para discusión de agua regenerada y crisis hídrica',afecta:'Organismos operadores de agua · agua potable',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=2063863'},
-  {id:'NOM-003-SEMARNAT-1997',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Calidad de aguas tratadas para reúso',implic:'Limita expansión de reúso potable',afecta:'Industria con reúso de agua',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=4863829'},
-  {id:'NOM-001-SEMARNAT-2021',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Límites de descarga a cuerpos receptores',implic:'Alto impacto en inversión en tratamiento',afecta:'Papel · alimentos · bebidas · higiene · química',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5657958'},
-  {id:'NOM-002-SEMARNAT-1996',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Descargas a alcantarillado',implic:'En proceso de ajuste técnico (color verdadero, toxicidad)',afecta:'Alimentos · bebidas · papel · higiene',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5199671'},
-  {id:'NOM-043-SEMARNAT-1993',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Emisiones de partículas en fuentes fijas',implic:'Riesgo de endurecimiento regulatorio',afecta:'Papel · tintas · alimentos · conversión de empaque',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=4788035'},
-  {id:'NOM-085-SEMARNAT-2011',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Emisiones de equipos de combustión',implic:'Impacto en costos industriales',afecta:'Papel · alimentos · bebidas · higiene · logística (fitosanitario)',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5220972'},
-  {id:'PROY-NOM-160-SEMARNAT-2011',dep:'SEMARNAT',tema:'Residuos',tipo:'PROY',objeto:'Planes de manejo de residuos peligrosos',implic:'Instrumento clave en economía circular',afecta:'Manufactura · química',url:'https://www.conamer.gob.mx'},
-  {id:'PROY-NOM-161-SEMARNAT-2021',dep:'SEMARNAT',tema:'Residuos',tipo:'PROY',objeto:'Actualización de residuos de manejo especial',implic:'Amplía obligaciones empresariales',afecta:'Empaque · marcas de consumo',url:'https://www.conamer.gob.mx'},
-  {id:'NOM-161-SEMARNAT-2011',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Clasificación de residuos de manejo especial',implic:'Base operativa para REP',afecta:'Empaque · multilaminados · marcas de consumo',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5202411'},
-  {id:'NOM-052-SEMARNAT-2005',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Identificación de residuos peligrosos',implic:'Norma estructural de cumplimiento',afecta:'Manufactura industrial',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=4920605'},
-  {id:'NOM-002-1-SCT-SEMAR-ARTF/2023',dep:'SCT / SEMAR / ARTF',tema:'Logística',tipo:'NOM',objeto:'Transporte de materiales peligrosos',implic:'Impacto en cadena de suministro',afecta:'Logística · transporte',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5682459'},
-  {id:'NOM-144-SEMARNAT-2017',dep:'SEMARNAT',tema:'Comercio',tipo:'NOM',objeto:'Embalaje de madera para exportación',implic:'Incide en comercio internacional',afecta:'Logística · tarimas · exportadores',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5484957'},
-  {id:'NOM-005-ASEA-2016',dep:'ASEA',tema:'Energía',tipo:'NOM',objeto:'Diseño, construcción y operación de estaciones de servicio (diésel y gasolinas)',implic:'Hermeticidad de tanques, recuperación de vapores y protección ambiental en gasolineras',afecta:'Estaciones de servicio · hidrocarburos · retail',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5459927&fecha=07/11/2016'},
-  {id:'NOM-016-CRE-2016',dep:'CNE',tema:'Energía',tipo:'NOM',objeto:'Especificaciones de calidad de los petrolíferos',implic:'Calidad de combustibles en toda la cadena de producción y suministro',afecta:'Combustibles · estaciones de servicio',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5450011&fecha=29/08/2016'},
-  {id:'NOM-251-SSA1-2009',dep:'SSA',tema:'Inocuidad',tipo:'NOM',objeto:'Prácticas de higiene para el proceso de alimentos, bebidas o suplementos',implic:'Base sanitaria para procesamiento y empaque en contacto con alimentos',afecta:'Alimentos · bebidas · empaque en contacto con alimentos',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5133449&fecha=01/03/2010'},
-  {id:'NOM-025-STPS-2008',dep:'STPS',tema:'Laboral',tipo:'NOM',objeto:'Condiciones de iluminación en los centros de trabajo',implic:'Mínimos obligatorios de iluminación; concurre con regulación ambiental de iluminación (contaminación lumínica) y de seguridad',afecta:'Todos los centros de trabajo · concurrencia con NOM ambiental de iluminación',url:'https://www.dof.gob.mx/nota_detalle.php?codigo=5076393&fecha=30/12/2008'},
-  {id:'NOM-003-CONAGUA-1996',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Requisitos durante la construcción de pozos de extracción de agua para prevenir la contaminación de acuíferos',implic:'',afecta:'Usuarios de aguas subterráneas · perforación de pozos',url:''},
-  {id:'NOM-004-CONAGUA-1996',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Requisitos para la protección de acuíferos durante el mantenimiento, rehabilitación y cierre de pozos de extracción de agua',implic:'',afecta:'Usuarios de aguas subterráneas',url:''},
-  {id:'NOM-011-CONAGUA-2015',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Conservación del recurso agua: método para determinar la disponibilidad media anual de las aguas nacionales',implic:'',afecta:'Concesionarios de agua · industria',url:''},
-  {id:'NOM-014-CONAGUA-2003',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Requisitos para la recarga artificial de acuíferos con agua residual tratada',implic:'',afecta:'Reúso de agua · organismos operadores',url:''},
-  {id:'NOM-015-CONAGUA-2007',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Infiltración artificial de agua a los acuíferos: características de las obras y del agua',implic:'',afecta:'Gestión de acuíferos',url:''},
-  {id:'NOM-165-SEMARNAT-2013',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Lista de sustancias sujetas a reporte para el Registro de Emisiones y Transferencia de Contaminantes (RETC)',implic:'',afecta:'Establecimientos sujetos a RETC · industria',url:''},
-  {id:'NOM-054-SEMARNAT-1993',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Procedimiento para determinar la incompatibilidad entre dos o más residuos peligrosos (NOM-052)',implic:'',afecta:'Manejo de residuos peligrosos',url:''},
-  {id:'NOM-087-SEMARNAT-SSA1-2002',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Residuos peligrosos biológico-infecciosos (RPBI): clasificación y especificaciones de manejo',implic:'',afecta:'Salud · laboratorios · hospitales',url:''},
-  {id:'NOM-160-SEMARNAT-2011',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Elementos y procedimientos para formular Planes de Manejo de Residuos Peligrosos',implic:'',afecta:'Generadores de residuos peligrosos',url:''},
-  {id:'NOM-004-SEMARNAT-2002',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Lodos y biosólidos: límites máximos permisibles de contaminantes para su aprovechamiento y disposición final',implic:'',afecta:'Plantas de tratamiento · saneamiento',url:''},
-  {id:'NOM-037-STPS-2023',dep:'STPS',tema:'Laboral',tipo:'NOM',objeto:'Condiciones de seguridad y salud en el trabajo bajo la modalidad de teletrabajo',implic:'',afecta:'Centros de trabajo con teletrabajo',url:''},
-  {id:'NOM-035-STPS-2018',dep:'STPS',tema:'Laboral',tipo:'NOM',objeto:'Factores de riesgo psicosocial en el trabajo: identificación, análisis y prevención',implic:'',afecta:'Todos los centros de trabajo',url:''},
-  {id:'NOM-081-SEMARNAT-1994',dep:'SEMARNAT',tema:'Ruido y luz',tipo:'NOM',objeto:'Límites máximos permisibles de emisión de ruido de las fuentes fijas y su método de medición',implic:'',afecta:'Industria · fuentes fijas',url:''},
-  {id:'NOM-000-SEMARNAT-2026',dep:'SEMARNAT',tema:'Ruido y luz',tipo:'NOM',objeto:'Especificaciones técnicas y clasificación de instalaciones de iluminación respecto a la contaminación lumínica; niveles máximos permisibles de luz artificial en el ambiente',implic:'En desarrollo',afecta:'Alumbrado · instalaciones de iluminación',url:''},
-  {id:'PROY-NOM-AGUA-REGENERADA-2026',dep:'SEMARNAT',tema:'Agua',tipo:'PROY',objeto:'Agua regenerada para uso y consumo humano: límites permisibles de calidad del agua',implic:'Nueva norma en desarrollo en el Programa Nacional de Infraestructura de la Calidad 2026',afecta:'Reúso de agua · agua potable · industria',url:''}
+  {id:'NOM-127-SSA1-2021',dep:'SSA',tema:'Agua',tipo:'NOM',objeto:'Calidad de agua para consumo humano',implic:'Base para discusión de agua regenerada y crisis hídrica',afecta:'Organismos operadores de agua · agua potable',url:'https://dof.gob.mx/nota_detalle.php?codigo=5650705&fecha=02/05/2022'},
+  {id:'NOM-003-SEMARNAT-1997',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Calidad de aguas tratadas para reúso',implic:'Limita expansión de reúso potable',afecta:'Industria con reúso de agua',url:'https://dof.gob.mx/nota_detalle.php?codigo=4893449&fecha=21/09/1998'},
+  {id:'NOM-001-SEMARNAT-2021',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Límites de descarga a cuerpos receptores',implic:'Alto impacto en inversión en tratamiento',afecta:'Papel · alimentos · bebidas · higiene · química',url:'https://dof.gob.mx/nota_detalle.php?codigo=5645374&fecha=11/03/2022'},
+  {id:'NOM-002-SEMARNAT-1996',dep:'SEMARNAT',tema:'Agua',tipo:'NOM',objeto:'Descargas a alcantarillado',implic:'En proceso de ajuste técnico (color verdadero, toxicidad)',afecta:'Alimentos · bebidas · papel · higiene',url:'https://dof.gob.mx/nota_detalle.php?codigo=4881304&fecha=03/06/1998'},
+  {id:'NOM-043-SEMARNAT-1993',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Emisiones de partículas en fuentes fijas',implic:'Riesgo de endurecimiento regulatorio',afecta:'Papel · tintas · alimentos · conversión de empaque',url:'https://dof.gob.mx/nota_detalle.php?codigo=4795450&fecha=22/10/1993'},
+  {id:'NOM-085-SEMARNAT-2011',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Emisiones de equipos de combustión',implic:'Impacto en costos industriales',afecta:'Papel · alimentos · bebidas · higiene · logística (fitosanitario)',url:'https://dof.gob.mx/nota_detalle.php?codigo=5232012&fecha=02/02/2012'},
+  {id:'PROY-NOM-160-SEMARNAT-2026',dep:'SEMARNAT',tema:'Residuos',tipo:'PROY',objeto:'Planes de manejo de residuos peligrosos',implic:'Instrumento clave en economía circular',afecta:'Manufactura · química',url:'https://dof.gob.mx/nota_detalle.php?codigo=5790008&fecha=09/06/2026'},
+  {id:'NOM-161-SEMARNAT-2011',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Clasificación de residuos de manejo especial',implic:'Base operativa para REP',afecta:'Empaque · multilaminados · marcas de consumo',url:'https://dof.gob.mx/nota_detalle.php?codigo=5286505&fecha=01/02/2013'},
+  {id:'NOM-052-SEMARNAT-2005',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Identificación de residuos peligrosos',implic:'Norma estructural de cumplimiento',afecta:'Manufactura industrial',url:'https://dof.gob.mx/nota_detalle.php?codigo=4912592&fecha=23/06/2006'},
+  {id:'NOM-002-1-SCT-SEMAR-ARTF/2023',dep:'SCT / SEMAR / ARTF',tema:'Logística',tipo:'NOM',objeto:'Transporte de materiales peligrosos',implic:'Impacto en cadena de suministro',afecta:'Logística · transporte',url:'https://dof.gob.mx/nota_detalle.php?codigo=5734678&fecha=29/07/2024'},
+  {id:'NOM-144-SEMARNAT-2017',dep:'SEMARNAT',tema:'Comercio',tipo:'NOM',objeto:'Embalaje de madera para exportación',implic:'Incide en comercio internacional',afecta:'Logística · tarimas · exportadores',url:'https://dof.gob.mx/nota_detalle.php?codigo=5514060&fecha=22/02/2018'},
+  {id:'NOM-005-ASEA-2016',dep:'ASEA',tema:'Energía',tipo:'NOM',objeto:'Diseño, construcción y operación de estaciones de servicio (diésel y gasolinas)',implic:'Hermeticidad de tanques, recuperación de vapores y protección ambiental en gasolineras',afecta:'Estaciones de servicio · hidrocarburos · retail',url:'https://dof.gob.mx/nota_detalle.php?codigo=5459927&fecha=07/11/2016'},
+  {id:'NOM-016-CRE-2016',dep:'CNE',tema:'Energía',tipo:'NOM',objeto:'Especificaciones de calidad de los petrolíferos',implic:'Calidad de combustibles en toda la cadena de producción y suministro',afecta:'Combustibles · estaciones de servicio',url:'https://dof.gob.mx/nota_detalle.php?codigo=5450011&fecha=29/08/2016'},
+  {id:'NOM-251-SSA1-2009',dep:'SSA',tema:'Inocuidad',tipo:'NOM',objeto:'Prácticas de higiene para el proceso de alimentos, bebidas o suplementos',implic:'Base sanitaria para procesamiento y empaque en contacto con alimentos',afecta:'Alimentos · bebidas · empaque en contacto con alimentos',url:'https://dof.gob.mx/nota_detalle.php?codigo=5133449&fecha=01/03/2010'},
+  {id:'NOM-025-STPS-2008',dep:'STPS',tema:'Laboral',tipo:'NOM',objeto:'Condiciones de iluminación en los centros de trabajo',implic:'Mínimos obligatorios de iluminación; concurre con regulación ambiental de iluminación (contaminación lumínica) y de seguridad',afecta:'Todos los centros de trabajo · concurrencia con NOM ambiental de iluminación',url:'https://dof.gob.mx/nota_detalle.php?codigo=5076393&fecha=30/12/2008'},
+  {id:'NOM-003-CONAGUA-1996',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Requisitos durante la construcción de pozos de extracción de agua para prevenir la contaminación de acuíferos',implic:'',afecta:'Usuarios de aguas subterráneas · perforación de pozos',url:'https://dof.gob.mx/nota_detalle.php?codigo=4866103&fecha=03/02/1997'},
+  {id:'NOM-004-CONAGUA-1996',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Requisitos para la protección de acuíferos durante el mantenimiento, rehabilitación y cierre de pozos de extracción de agua',implic:'',afecta:'Usuarios de aguas subterráneas',url:'https://dof.gob.mx/nota_detalle.php?codigo=4890289&fecha=08/08/1997'},
+  {id:'NOM-011-CONAGUA-2015',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Conservación del recurso agua: método para determinar la disponibilidad media anual de las aguas nacionales',implic:'',afecta:'Concesionarios de agua · industria',url:'https://dof.gob.mx/nota_detalle.php?codigo=5387027&fecha=27/03/2015'},
+  {id:'NOM-014-CONAGUA-2003',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Requisitos para la recarga artificial de acuíferos con agua residual tratada',implic:'',afecta:'Reúso de agua · organismos operadores',url:'https://dof.gob.mx/nota_detalle.php?codigo=5105753&fecha=18/08/2009'},
+  {id:'NOM-015-CONAGUA-2007',dep:'CONAGUA',tema:'Agua',tipo:'NOM',objeto:'Infiltración artificial de agua a los acuíferos: características de las obras y del agua',implic:'',afecta:'Gestión de acuíferos',url:'https://dof.gob.mx/nota_detalle.php?codigo=5105754&fecha=18/08/2009'},
+  {id:'NOM-165-SEMARNAT-2013',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Lista de sustancias sujetas a reporte para el Registro de Emisiones y Transferencia de Contaminantes (RETC)',implic:'',afecta:'Establecimientos sujetos a RETC · industria',url:'https://dof.gob.mx/nota_detalle.php?codigo=5330750&fecha=24/01/2014'},
+  {id:'NOM-054-SEMARNAT-1993',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Procedimiento para determinar la incompatibilidad entre dos o más residuos peligrosos (NOM-052)',implic:'',afecta:'Manejo de residuos peligrosos',url:'https://dof.gob.mx/nota_detalle.php?codigo=4795538&fecha=22/10/1993'},
+  {id:'NOM-087-SEMARNAT-SSA1-2002',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Residuos peligrosos biológico-infecciosos (RPBI): clasificación y especificaciones de manejo',implic:'',afecta:'Salud · laboratorios · hospitales',url:'https://dof.gob.mx/nota_detalle.php?codigo=704675&fecha=17/02/2003'},
+  {id:'NOM-004-SEMARNAT-2002',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Lodos y biosólidos: límites máximos permisibles de contaminantes para su aprovechamiento y disposición final',implic:'',afecta:'Plantas de tratamiento · saneamiento',url:'https://dof.gob.mx/nota_detalle.php?codigo=691939&fecha=15/08/2003'},
+  {id:'NOM-037-STPS-2023',dep:'STPS',tema:'Laboral',tipo:'NOM',objeto:'Condiciones de seguridad y salud en el trabajo bajo la modalidad de teletrabajo',implic:'',afecta:'Centros de trabajo con teletrabajo',url:'https://dof.gob.mx/nota_detalle.php?codigo=5691672&fecha=08/06/2023'},
+  {id:'NOM-035-STPS-2018',dep:'STPS',tema:'Laboral',tipo:'NOM',objeto:'Factores de riesgo psicosocial en el trabajo: identificación, análisis y prevención',implic:'',afecta:'Todos los centros de trabajo',url:'https://dof.gob.mx/nota_detalle.php?codigo=5541828&fecha=23/10/2018'},
+  {id:'NOM-081-SEMARNAT-1994',dep:'SEMARNAT',tema:'Ruido y luz',tipo:'NOM',objeto:'Límites máximos permisibles de emisión de ruido de las fuentes fijas y su método de medición',implic:'',afecta:'Industria · fuentes fijas',url:'https://dof.gob.mx/nota_detalle.php?codigo=4866673&fecha=13/01/1995'},
+  {id:'NOM-000-SEMARNAT-2026',dep:'SEMARNAT',tema:'Ruido y luz',tipo:'PROY',objeto:'Especificaciones técnicas y clasificación de instalaciones de iluminación respecto a la contaminación lumínica; niveles máximos permisibles de luz artificial en el ambiente',implic:'En desarrollo',afecta:'Alumbrado · instalaciones de iluminación',url:'https://dof.gob.mx/nota_detalle.php?codigo=5780781&fecha=24/02/2026'},
+  {id:'PROY-NOM-AGUA-REGENERADA-2026',dep:'SEMARNAT',tema:'Agua',tipo:'PROY',objeto:'Agua regenerada para uso y consumo humano: límites permisibles de calidad del agua',implic:'Nueva norma en desarrollo en el Programa Nacional de Infraestructura de la Calidad 2026',afecta:'Reúso de agua · agua potable · industria',url:'https://dof.gob.mx/nota_detalle.php?codigo=5780781&fecha=24/02/2026'}
 ];
 var NORMAS_TEMA_COLOR={'Agua':'#2563eb','Aire':'#0ea5e9','Residuos':'#d97706','Logística':'#7c3aed','Comercio':'#16a34a','Energía':'#f59e0b','Inocuidad':'#db2777','Laboral':'#475569','Ruido y luz':'#0f766e'};
 // ── Señal de match con el perfil del usuario (temas + keywords de Mi Terminal) ──
@@ -4952,7 +4996,7 @@ function filterNormasType(type,btn){
 var NOM_EXTRA={
  'PROY-NOM-AGUA-REGENERADA-2026':{programa2026:true,grupo:'ACTIVO',pnic:'Nueva · en desarrollo (PNIC 2026)',gemi:true,contexto:'Nueva NOM sobre agua regenerada para uso y consumo humano, en desarrollo dentro del Programa Nacional de Infraestructura de la Calidad 2026. GEMI participa activamente en su grupo de trabajo.'},
  'NOM-002-SEMARNAT-1996':{programa2026:true,grupo:'PAUSADO',pnic:'Modificación · pausada (PNIC 2026)',gemi:true,contexto:'Propuesta de modificación dentro del PNIC 2026, actualmente pausada. GEMI participa en el grupo de trabajo.'},
- 'NOM-160-SEMARNAT-2011':{programa2026:true,grupo:'PAUSADO',pnic:'Reprogramación · en consulta pública (PNIC 2026)',gemi:true,contexto:'Reprogramada en el PNIC 2026; actualmente en consulta pública. GEMI participa en su revisión.'},
+ 'PROY-NOM-160-SEMARNAT-2026':{programa2026:true,grupo:'PAUSADO',pnic:'Reprogramación · en consulta pública (PNIC 2026)',gemi:true,contexto:'Reprogramada en el PNIC 2026; actualmente en consulta pública. GEMI participa en su revisión.'},
  'NOM-161-SEMARNAT-2011':{programa2026:true,grupo:'CANCELADO',pnic:'Cancelada en el PNIC 2026',gemi:false,contexto:'Su revisión fue cancelada dentro del PNIC 2026.'},
  'NOM-043-SEMARNAT-1993':{programa2026:true,grupo:'ACTIVO',pnic:'Modificación · en desarrollo (PNIC 2026)',gemi:true,contexto:'En desarrollo su modificación dentro del PNIC 2026. GEMI participa activamente.'},
  'NOM-085-SEMARNAT-2011':{programa2026:true,grupo:'ACTIVO',pnic:'Modificación · en desarrollo (PNIC 2026)',gemi:true,contexto:'En desarrollo su modificación dentro del PNIC 2026. GEMI participa activamente.'},
@@ -5772,7 +5816,7 @@ function _radarDetailHTML(temaId){
     .sort(function(a,b){return new Date(String(b.fecha||'').substring(0,10))-new Date(String(a.fecha||'').substring(0,10));});
   var est=estAll.slice(0,15).map(function(it){return row(it.titulo||'',(it.estado||'')+' · '+(it.medio?it.medio+' · ':'')+_rdDate(it.fecha),it.url);});
   var dofAll=(_dofData||[]).filter(function(d){return _radarKwMatch(kw,d.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
-  var dof=dofAll.map(function(d){var t=(d.titulo||'');if(t.length>60)t=t.slice(0,58)+'…';return row('<b>'+(d.dependencia||'DOF')+'</b> · '+t,_rdDate(d.fecha),d.url||'https://www.dof.gob.mx/');});
+  var dof=dofAll.map(function(d){var t=(d.titulo||'');if(t.length>60)t=t.slice(0,58)+'…';return row('<b>'+(d.dependencia||'DOF')+'</b> · '+t,_rdDate(d.fecha),d.url||'https://dof.gob.mx/');});
   var congAll=(_congItems||[]).filter(function(c){return _radarKwMatch(kw,c.titulo);}).sort(function(a,b){return new Date(b.fecha||0)-new Date(a.fecha||0);});
   var cong=congAll.map(function(c){
     var pp=(typeof _congParse==='function')?_congParse(c):{accion:'',titulo:(c.titulo||'')};
@@ -7353,7 +7397,7 @@ function initSearch(){
     // DOF
     try{
       var dr=((typeof _dofData!=='undefined'&&_dofData)||[]).filter(function(d){return norm((d.titulo||'')+' '+(d.dependencia||'')).includes(qn);}).slice(0,3).map(function(d){
-        return {title:(d.dependencia?d.dependencia+' · ':'')+(d.titulo||''),meta:'DOF'+(d.fecha?' · '+fmtDate(d.fecha):''),fn:function(){window.open(d.url||'https://www.dof.gob.mx/','_blank');}};
+        return {title:(d.dependencia?d.dependencia+' · ':'')+(d.titulo||''),meta:'DOF'+(d.fecha?' · '+fmtDate(d.fecha):''),fn:function(){window.open(d.url||'https://dof.gob.mx/','_blank');}};
       });
       if(dr.length)groups.push({label:'DOF',items:dr});
     }catch(e){}
@@ -9378,25 +9422,70 @@ function _cmpListas(s){
   var notas=(noticias||[]).filter(function(n){var t=qa((n.titulo||'').toLowerCase());return t.indexOf(st)>=0||(cap&&t.indexOf(cap)>=0);}).map(function(n){return n.titulo;});
   return {leyes:leyes,impuestos:imps,materiales:mats,notas:notas};
 }
-var _CMP_METRICS=[['leyes','Leyes ambientales'],['impuestos','Impuestos ambientales'],['materiales','Materiales restringidos'],['notas','Señal en prensa · notas']];
+// Comparar mis estados · "matchup" estilo Sleeper: dos estados frente a frente, filas por categoría
+// con barras que salen del centro, lugar entre los 32 estados y detalle desplegable de cuáles son.
+var _CMP_METRICS=[['leyes','Leyes ambientales','LEY'],['impuestos','Impuestos ambientales','IMP'],['materiales','Materiales restringidos','MAT'],['notas','Notas en prensa','PRENSA']];
+var _cmpA=null,_cmpB=null,_cmpOpen=null,_cmpRankCache=null;
+function _cmpRanks(){
+  if(_cmpRankCache)return _cmpRankCache;
+  var all=Object.keys(typeof estadoData!=='undefined'?estadoData:{});
+  var R={};
+  _CMP_METRICS.forEach(function(m){
+    var vals=all.map(function(s){return {s:s,v:_cmpListas(s)[m[0]].length};}).sort(function(a,b){return b.v-a.v;});
+    R[m[0]]={};vals.forEach(function(x){R[m[0]][x.s]=1+vals.filter(function(y){return y.v>x.v;}).length;});
+  });
+  R._n=all.length;_cmpRankCache=R;return R;
+}
+function _cmpOrd(n){return n+'º';}
+function _cmpSel(lado,s){if(lado==='a'){if(s===_cmpB)_cmpB=_cmpA;_cmpA=s;}else{if(s===_cmpA)_cmpA=_cmpB;_cmpB=s;}_cmpOpen=null;_cmpPaint();}
+function _cmpToggle(k){_cmpOpen=_cmpOpen===k?null:k;_cmpPaint();}
+function _cmpPaint(){var b=document.getElementById('cons-dr-cmp');if(b)b.innerHTML=_consEstadosCompare(window.__consCmpEstados||[]);}
+function _cmpTeam(s,lado,estados,D,R){
+  var ab=(typeof STATE_ABBR!=='undefined'&&STATE_ABBR[s])||s.slice(0,3).toUpperCase();
+  var logo=(typeof _stateOutlineSVG==='function')?_stateOutlineSVG(s,46):'';
+  var gana=_CMP_METRICS.filter(function(m){var o=lado==='a'?_cmpB:_cmpA;return D[s][m[0]].length>D[o][m[0]].length;}).length;
+  var opts=estados.map(function(x){return '<option'+(x===s?' selected':'')+'>'+x+'</option>';}).join('');
+  return '<div class="mu-team mu-'+lado+'">'
+    +'<div class="mu-logo">'+logo+'</div>'
+    +'<div class="mu-tinfo"><span class="mu-ab">'+ab+'</span>'
+    +(estados.length>2?'<select class="mu-sel" onchange="_cmpSel(\''+lado+'\',this.value)">'+opts+'</select>':'<b class="mu-name">'+s+'</b>')
+    +'<span class="mu-rec">Gana '+gana+' de '+_CMP_METRICS.length+' categorías</span></div></div>';
+}
 function _consEstadosCompare(estados){
   if(!estados||estados.length<2)return '';
   window.__consCmpEstados=estados;
-  var COL=(typeof _CMP_COLORS!=='undefined'?_CMP_COLORS:['#0E8C74','#2F6FB0','#E0A500','#12A594','#1F5E52']);
-  var D=estados.map(_cmpListas);
-  var legend='<div style="display:flex;flex-wrap:wrap;gap:8px 14px;margin-bottom:13px">'+estados.map(function(s,i){return '<span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--text-sec)"><span style="width:9px;height:9px;background:'+COL[i%COL.length]+';display:inline-block;flex-shrink:0"></span>'+s+'</span>';}).join('')+'</div>';
-  var bars=_CMP_METRICS.map(function(m){
-    var vals=D.map(function(d){return d[m[0]].length;}),max=Math.max.apply(null,vals.concat([1]));
-    return '<div style="margin-bottom:15px"><div style="font-size:11px;font-weight:600;color:var(--text-sec);margin-bottom:8px">'+m[1]+'</div>'
-      +estados.map(function(s,i){
-        var v=vals[i],w=Math.max(2,v/max*100),items=D[i][m[0]];
-        var tip='<div class="cmp-tip"><div class="cmp-tiph">'+m[1]+' · '+s+' <b>'+v+'</b></div>'
-          +(items.length?items.slice(0,14).map(function(x){return '<div class="cmp-tipit">'+_escHtml(x)+'</div>';}).join('')+(items.length>14?'<div class="cmp-tipmore">+'+(items.length-14)+' más en el expediente</div>':''):'<div class="cmp-tipmore">Sin registros</div>')+'</div>';
-        return '<div class="cmp-tipwrap" style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><div style="flex:1;min-width:0;height:7px;background:rgba(0,0,0,0.05);overflow:hidden"><div style="height:100%;width:'+w.toFixed(0)+'%;background:'+COL[i%COL.length]+'"></div></div><div style="width:36px;text-align:right;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;flex-shrink:0">'+v+'</div>'+tip+'</div>';
-      }).join('')+'</div>';
+  if(estados.indexOf(_cmpA)<0)_cmpA=estados[0];
+  if(estados.indexOf(_cmpB)<0||_cmpB===_cmpA)_cmpB=estados.filter(function(s){return s!==_cmpA;})[0];
+  var D={};D[_cmpA]=_cmpListas(_cmpA);D[_cmpB]=_cmpListas(_cmpB);
+  var R=_cmpRanks();
+  var head='<div class="mu-head">'+_cmpTeam(_cmpA,'a',estados,D,R)+'<div class="mu-vs">VS</div>'+_cmpTeam(_cmpB,'b',estados,D,R)+'</div>';
+  var rows=_CMP_METRICS.map(function(m){
+    var a=D[_cmpA][m[0]].length,b=D[_cmpB][m[0]].length,mx=Math.max(a,b,1);
+    var ra=R[m[0]][_cmpA],rb=R[m[0]][_cmpB],open=_cmpOpen===m[0];
+    var lado=function(v,r,otro,izq){
+      var w=Math.round(100*v/mx),win=v>otro;
+      return '<div class="mu-side'+(izq?' l':' r')+(win?' win':'')+'">'
+        +'<div class="mu-val"><b>'+v+'</b><i>'+_cmpOrd(r)+' de '+R._n+'</i></div>'
+        +'<div class="mu-track"><span style="width:'+w+'%"></span></div></div>';
+    };
+    var det='';
+    if(open){
+      var lista=function(s){var it=D[s][m[0]];return '<div class="mu-list"><div class="mu-listh">'+s+' · '+it.length+'</div>'+(it.length?it.slice(0,25).map(function(x){return '<div class="mu-li">'+_escHtml(x)+'</div>';}).join('')+(it.length>25?'<div class="mu-more">+'+(it.length-25)+' más en el expediente</div>':''):'<div class="mu-more">Sin registros</div>')+'</div>';};
+      det='<div class="mu-det">'+lista(_cmpA)+lista(_cmpB)+'</div>';
+    }
+    return '<div class="mu-row'+(open?' open':'')+'" onclick="_cmpToggle(\''+m[0]+'\')" title="Ver cuáles son">'
+      +lado(a,ra,b,true)+'<div class="mu-pos"><span>'+m[2]+'</span><i>'+m[1]+'</i></div>'+lado(b,rb,a,false)+'</div>'+det;
   }).join('');
-  return '<div style="padding-top:6px">'+legend+bars
-    +'<div style="border-top:0.8px solid var(--border);padding-top:12px"><span onclick="_consCmpCSV()" style="cursor:pointer;font-family:var(--mono);font-size:11px;color:var(--green);font-weight:600">↓ Descargar comparativa (CSV / Excel)</span></div></div>';
+  // tabla tipo "Team metrics · lugar entre los 32 estados" para todos los estados que sigues
+  var cols=estados.map(function(s){return '<th>'+((typeof STATE_ABBR!=='undefined'&&STATE_ABBR[s])||s.slice(0,3))+'</th>';}).join('');
+  var tbl='<table class="mu-tbl"><tr><th>Métrica · lugar entre '+R._n+'</th>'+cols+'</tr>'+_CMP_METRICS.map(function(m,i){
+    return '<tr'+(i%2?' class="z"':'')+'><td>'+m[1]+'</td>'+estados.map(function(s){var r=R[m[0]][s],w=Math.max(6,Math.round(100*(R._n-r+1)/R._n));
+      return '<td><b>'+_cmpOrd(r)+'</b><span class="mu-rk"><span style="width:'+w+'%"></span></span></td>';}).join('')+'</tr>';}).join('')+'</table>';
+  return '<div class="mu">'+head
+    +'<div class="mu-hint">Da clic en una categoría para ver cuáles son'+(estados.length>2?' · cambia los estados en los selectores':'')+'</div>'
+    +rows
+    +(estados.length>2?'<div class="mu-sub">Todos tus estados</div>'+tbl:'')
+    +'<div class="mu-foot"><span onclick="_consCmpCSV()">↓ Descargar comparativa (CSV / Excel)</span></div></div>';
 }
 function _consCmpCSV(){
   var est=window.__consCmpEstados||[];if(!est.length)return;
