@@ -1,10 +1,10 @@
 {
  "_meta": {
-  "ultima_actualizacion": "2026-10-04T14:56:35 CDMX",
+  "ultima_actualizacion": "2026-10-04T18:38:08 CDMX",
   "estados_con_actividad": 3,
   "por_estado": {
    "Yucatán": 17,
-   "Colima": 9,
+   "Colima": 8,
    "Durango": 12
   },
   "nota": "Ediciones oficiales recientes raspadas por estado (etapa 1: estados con portal accesible). No es cobertura nacional completa."
@@ -127,6 +127,12 @@
   {
    "estado": "Yucatán",
    "fecha": "2026-09-29",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-29_1.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-09-29",
    "titulo": "Diario Oficial · edición vespertina",
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-29_2.pdf"
   },
@@ -225,18 +231,6 @@
    "fecha": "2026-09-15",
    "titulo": "Diario Oficial · edición matutina",
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-15_1.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-09-14",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-14_1.pdf"
-  },
-  {
-   "estado": "Colima",
-   "fecha": "2026-09-14",
-   "titulo": "Periódico Oficial del Estado",
-   "url": "https://periodicooficial.col.gob.mx/p/14092026/p26091401.pdf"
   }
  ]
 }
