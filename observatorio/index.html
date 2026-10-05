@@ -46,6 +46,7 @@ button{font-family:inherit}
 .tab.on{color:var(--ink);font-weight:700;border-bottom-color:var(--ink)}
 .allies{display:flex;align-items:center;gap:16px;flex-shrink:0}
 .allies img{display:block}
+.allies a{display:block;transition:opacity .2s}.allies a:hover{opacity:.7}
 .allies .sen{height:46px}
 .allies .gemi{height:30px}
 .allies .tec{height:22px}
@@ -159,9 +160,10 @@ button{font-family:inherit}
 .win b{font-size:15px}
 .win p{font-size:13px;color:var(--ink2);margin:6px 0 0;line-height:1.55;max-width:none}
 @media(max-width:560px){.win{grid-template-columns:1fr;gap:6px}}
-.news a{display:block;padding:16px 0;border-bottom:1px solid var(--line)}
-.news a:first-child{border-top:1px solid var(--line)}
-.news .nt{font-size:15px;font-weight:700;line-height:1.35}
+.news{height:420px;overflow-y:auto;position:relative;scrollbar-width:thin;scrollbar-color:var(--line2) transparent;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 24px,#000 calc(100% - 40px),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 24px,#000 calc(100% - 40px),transparent 100%)}
+.news::-webkit-scrollbar{width:3px}.news::-webkit-scrollbar-thumb{background:var(--line2);border-radius:2px}
+.news a{display:block;padding:14px 0;border-bottom:1px solid var(--line)}
+.news .nt{font-size:14px;font-weight:400;line-height:1.45;color:var(--ink)}
 .news a:hover .nt{color:var(--pine)}
 .news .nm{margin-top:6px;font-family:var(--mono);font-size:10px;color:var(--mute);display:flex;gap:12px}
 /* gancho Scope */
@@ -318,12 +320,12 @@ table.t td.n{font-family:var(--mono);font-variant-numeric:tabular-nums}
 .drow{display:grid;grid-template-columns:1fr auto;gap:16px;padding:11px 0;border-bottom:1px solid var(--hair);font-size:13px;align-items:baseline}
 .drow .u{font-family:var(--mono);font-size:10px;color:var(--sec);word-break:break-all;margin-top:3px}
 /* partidos */
-.pty{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;vertical-align:middle}
-.pty img{width:18px;height:18px;border-radius:4px;object-fit:contain;background:#fff;box-shadow:0 0 0 1px var(--line)}
-.pty.lg img{width:22px;height:22px}
-.pty .ap{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:4px;background:var(--soft);font-family:var(--mono);font-size:8px;font-weight:700;color:var(--sec);box-shadow:0 0 0 1px var(--line)}
+.pty{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;vertical-align:-2px;font-family:var(--mono);font-size:10px;color:var(--sec);letter-spacing:.02em}
+.pty img{width:13px;height:13px;object-fit:contain;border-radius:2px;display:block}
+.pty .ap{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:2px;background:var(--soft);font-size:6px;font-weight:700;color:var(--sec)}
 .hb{display:grid;grid-template-columns:150px 1fr 34px;gap:10px;align-items:center;padding:5px 0;font-size:12px}
-.hb .l{display:flex;align-items:center;gap:7px;justify-content:flex-end;text-align:right;color:var(--sec)}
+.hb .l{display:flex;align-items:center;gap:6px;justify-content:flex-end;text-align:right;color:var(--sec)}
+.hb .l .pty{order:-1}
 .hb .t{height:12px;background:rgba(13,27,42,.05);border-radius:3px;overflow:hidden}
 .hb .t span{display:block;height:100%;border-radius:3px}
 .hb b{font-family:var(--mono);font-size:12px}
@@ -454,11 +456,11 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
     </nav>
     <button class="sbtn" id="sbtn" aria-label="Buscar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8.5" cy="8.5" r="6"/><path d="M13 13l5 5"/></svg><span>Buscar</span></button>
     <div class="allies">
-      <img class="sen" src="../assets/obs/senado.png" alt="Senado de la República · LXVI Legislatura">
+      <a href="https://comisiones.senado.gob.mx/e_economia_desarrollo/" target="_blank" rel="noopener" title="Comisión Especial de Economía Circular y Desarrollo Empresarial"><img class="sen" src="../assets/obs/senado.png" alt="Senado de la República · LXVI Legislatura"></a>
       <i></i>
-      <img class="tec" src="../assets/obs/tec.svg" alt="Tecnológico de Monterrey">
+      <a href="https://tec.mx/" target="_blank" rel="noopener" title="Tecnológico de Monterrey"><img class="tec" src="../assets/obs/tec.svg" alt="Tecnológico de Monterrey"></a>
       <i></i>
-      <img class="gemi" src="../assets/obs/gemi.png" alt="Iniciativa GEMI">
+      <a href="https://iniciativagemi.org/" target="_blank" rel="noopener" title="Iniciativa GEMI"><img class="gemi" src="../assets/obs/gemi.png" alt="Iniciativa GEMI"></a>
     </div>
   </div>
 </header>
@@ -483,7 +485,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
     </div>
 
     <div class="mapwrap" id="mapwrap">
-    <div class="maphead"><div class="eyebrow">Mapa nacional</div><h2>Dónde está cada entidad</h2><button class="lnk" id="close-map">Cerrar mapa</button></div>
+    <div class="maphead"><div class="eyebrow">Mapa nacional</div><h2>Régimen de economía circular por entidad</h2><button class="lnk" id="close-map">Cerrar mapa</button></div>
     <div class="mapstage" id="mapa">
       <div>
         <div class="mapbox" id="mapbox"><div class="tip" id="tip"></div></div>
@@ -501,37 +503,37 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
   </div>
 
   <div class="chapter"><div class="wrap grid">
-    <div class="reveal"><div class="stat" id="c1-n">0<small> de 32</small></div><h2 id="c1-h">entidades han publicado su armonización con la Ley General.</h2><p id="c1-p">El transitorio cuarto dio a los congresos locales 180 días naturales. Venció el 19 de julio de 2026. Ciudad de México y Puebla aprobaron a tiempo y publicaron en agosto.</p></div>
+    <div class="reveal"><div class="stat" id="c1-n">0<small> de 32</small></div><h2 id="c1-h">entidades con armonización publicada</h2><p id="c1-p">El transitorio cuarto dio a los congresos locales 180 días naturales. Venció el 19 de julio de 2026. Ciudad de México y Puebla aprobaron a tiempo y publicaron en agosto.</p></div>
     <div class="reveal chart" id="c1-chart"></div>
   </div></div>
 
   <div class="chapter"><div class="wrap grid">
-    <div class="reveal"><div class="stat" id="c2-n">0</div><h2>entidades sin ordenamiento propio. Ahí rige directamente la Ley General.</h2><p>De la ley armonizada a la entidad sin iniciativa: cada cuadro es una entidad, ordenada por su avance. Toca una para abrir su ficha.</p><button class="cta" data-go="entidades/tablero">Ver las 32 entidades →</button></div>
+    <div class="reveal"><div class="stat" id="c2-n">0</div><h2>entidades sin ordenamiento propio, donde rige directamente la Ley General</h2><p>De la ley armonizada a la entidad sin iniciativa: cada cuadro es una entidad, ordenada por su avance. Toca una para abrir su ficha.</p><button class="cta" data-go="entidades/tablero">Ver las 32 entidades →</button></div>
     <div class="reveal"><div class="waffle" id="waffle"></div><div class="legend" id="waffle-leg"></div></div>
   </div></div>
 
   <div class="chapter"><div class="wrap grid">
-    <div class="reveal"><div class="stat" id="c3-n">0</div><h2 id="c3-h">iniciativas de ley vivas en los congresos locales.</h2><p>Cada punto es una iniciativa, con promovente, comisión, nivel de seguimiento y su documento oficial.</p><button class="cta" data-go="legislacion/iniciativas">Explorar iniciativas →</button></div>
+    <div class="reveal"><div class="stat" id="c3-n">0</div><h2 id="c3-h">iniciativas de ley en los congresos locales</h2><p>Cada punto es una iniciativa, con promovente, comisión, nivel de seguimiento y su documento oficial.</p><button class="cta" data-go="legislacion/iniciativas">Explorar iniciativas →</button></div>
     <div class="reveal"><div class="chart" id="crono"></div><div class="legend" id="crono-leg"></div></div>
   </div></div>
 
   <div class="chapter"><div class="wrap grid">
-    <div class="reveal"><div class="stat">9<small> de 15</small></div><h2>entidades más manufactureras no tienen ley propia.</h2><p id="c4-p"></p></div>
+    <div class="reveal"><div class="stat">9</div><h2>de las 15 entidades más manufactureras no tienen ley propia</h2><p id="c4-p"></p></div>
     <div class="reveal"><div class="chart" id="ind-chart"></div></div>
   </div></div>
 
   <div class="chapter"><div class="wrap grid" style="align-items:start">
-    <div class="reveal"><div class="eyebrow">Qué sigue</div><h2 style="margin-top:14px">Las ventanas que pueden mover el mapa.</h2><p>Votaciones, dictámenes e instrumentos federales pendientes, con su fundamento.</p><button class="cta" data-go="legislacion/federal">Ver el marco federal →</button></div>
+    <div class="reveal"><div class="eyebrow">Qué sigue</div><h2 style="margin-top:14px">Próximas ventanas legislativas y regulatorias</h2><p>Votaciones, dictámenes e instrumentos federales pendientes, con su fundamento.</p><button class="cta" data-go="legislacion/federal">Ver el marco federal →</button></div>
     <div class="reveal" id="ventanas"></div>
   </div></div>
 
   <div class="chapter"><div class="wrap grid" style="align-items:start">
-    <div class="reveal"><div class="eyebrow">En la prensa</div><h2 style="margin-top:14px">Lo último sobre economía circular en México.</h2><p>Monitoreo diario de medios nacionales y estatales de Scope.</p></div>
+    <div class="reveal"><div class="eyebrow">En la prensa</div><h2 style="margin-top:14px">Notas recientes sobre economía circular</h2><p>Monitoreo diario de medios nacionales y estatales de Scope. Pasa el cursor para detener la lista.</p></div>
     <div class="reveal news" id="news"><div class="empty">Cargando monitoreo…</div></div>
   </div></div>
 
   <section class="join" id="unete"><div class="wrap grid">
-    <div class="reveal"><div class="eyebrow">Súmate</div><h2>Conoce más del Observatorio.</h2><p>Déjanos tus datos y te contactamos: para participar en las sesiones, recibir el Pulso del Observatorio o conocer Scope, la plataforma que lo hace posible.</p></div>
+    <div class="reveal"><div class="eyebrow">Contacto</div><h2>Información y participación</h2><p>Déjanos tus datos y te contactamos: para participar en las sesiones, recibir el Pulso del Observatorio o conocer Scope, la plataforma que lo hace posible.</p></div>
     <form class="form reveal" id="lead" novalidate>
       <label>Nombre<input name="nombre" autocomplete="name" required></label>
       <label>Correo<input name="correo" type="email" autocomplete="email" required></label>
@@ -548,8 +550,8 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
   <section class="scope">
     <div class="wrap">
       <img class="lg reveal" src="../assets/scope-logo.png" alt="Scope">
-      <h2 class="reveal">Este Observatorio funciona con Scope.</h2>
-      <p class="reveal">La plataforma de inteligencia regulatoria ambiental de Iniciativa GEMI. Lo que ves aquí es una sola materia; Scope sigue todas las que le importan a tu operación, todos los días.</p>
+      <h2 class="reveal">El Observatorio funciona con Scope</h2>
+      <p class="reveal">Scope es la plataforma de inteligencia regulatoria ambiental de Iniciativa GEMI. Da seguimiento diario a legislación federal y estatal, Congreso, NOMs y agenda regulatoria.</p>
       <div class="cta-row reveal"><a class="cta solid" href="https://scopegemi.com/" target="_blank" rel="noopener">Conoce Scope</a></div>
       <div class="imac reveal"><div class="scr"><img src="../assets/obs/scope-dashboard.jpg" alt="Scope, vista principal" loading="lazy"></div><div class="chin"><img src="../assets/scope-logo.png" alt=""></div><div class="neck"></div><div class="foot"></div></div>
       <div class="feats reveal">
@@ -566,7 +568,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
 <section class="view" id="v-entidades">
   <div class="wrap">
     <div data-sub="tablero">
-      <div class="phead"><div class="eyebrow">Entidades</div><h1>Las 32 entidades, lado a lado.</h1><p>Ordena por cualquier columna. Toca una fila para abrir su ficha.</p></div>
+      <div class="phead"><div class="eyebrow">Entidades</div><h1>Tablero de las 32 entidades</h1><p>Ordena por cualquier columna. Toca una fila para abrir su ficha.</p></div>
       <div class="tbar">
         <span><span class="flab">Régimen</span><select class="sel" id="ent-reg"></select></span>
         <span><span class="flab">Ordenamiento</span><select class="sel" id="ent-ord"><option value="">Todos</option><option value="1">Con ordenamiento propio</option><option value="0">Rige la Ley General</option></select></span>
@@ -580,7 +582,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
       <div id="pf"></div>
     </div>
     <div data-sub="comparar">
-      <div class="phead"><div class="eyebrow">Comparar</div><h1>Frente a frente.</h1><p>Elige dos entidades. Cada fila muestra quién va adelante y su lugar entre las 32.</p></div>
+      <div class="phead"><div class="eyebrow">Comparar</div><h1>Comparación entre entidades</h1><p>Elige dos entidades. Cada fila muestra el valor de cada una y su lugar entre las 32.</p></div>
       <div id="mu"></div>
       <div class="block" style="margin-top:30px">
         <div class="bh"><h2>Línea de tiempo</h2><span class="aside">Hasta 8 entidades</span></div>
@@ -589,7 +591,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
       </div>
     </div>
     <div data-sub="grafica">
-      <div class="phead"><div class="eyebrow">Crea tu gráfica</div><h1>Elige la métrica. Elige el grupo.</h1><p>Descárgala en CSV o como imagen para tu presentación.</p></div>
+      <div class="phead"><div class="eyebrow">Crea tu gráfica</div><h1>Gráfica por métrica y grupo de entidades</h1><p>Descárgala en CSV o como imagen.</p></div>
       <div class="tbar">
         <span><span class="flab">Métrica</span><select class="sel" id="gb-m"></select></span>
         <span><span class="flab">Grupo</span><select class="sel" id="gb-g"></select></span>
@@ -605,7 +607,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
 <section class="view" id="v-legislacion">
   <div class="wrap">
     <div data-sub="monitor">
-      <div class="phead"><div class="eyebrow">Monitor federal</div><h1>Lo que se presenta y discute en el Congreso de la Unión.</h1><p>Iniciativas, puntos de acuerdo y dictámenes sobre economía circular, residuos, plásticos y envases. Fuente: Sistema de Información Legislativa (SIL) de la Secretaría de Gobernación. Se actualiza todos los días.</p><div class="livebar"><i></i><span id="mon-upd">Cargando…</span></div></div>
+      <div class="phead"><div class="eyebrow">Monitor federal</div><h1>Asuntos de economía circular en el Congreso de la Unión</h1><p>Iniciativas, puntos de acuerdo y dictámenes sobre economía circular, residuos, plásticos y envases. Fuente: Sistema de Información Legislativa (SIL) de la Secretaría de Gobernación. Se actualiza todos los días.</p><div class="livebar"><i></i><span id="mon-upd">Cargando…</span></div></div>
       <div class="facts" id="mon-facts"></div>
       <div class="two" style="margin-top:36px">
         <div><div class="sub-h" style="margin-top:0">Asuntos presentados por semana</div><div class="chart" id="mon-chart"></div></div>
@@ -623,7 +625,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
       <span class="more" id="mon-more" style="display:none"></span>
     </div>
     <div data-sub="iniciativas">
-      <div class="phead"><div class="eyebrow">Congresos locales</div><h1>Lo que se discute en los congresos locales.</h1><p id="ini-lead"></p></div>
+      <div class="phead"><div class="eyebrow">Congresos locales</div><h1>Iniciativas en los congresos locales</h1><p id="ini-lead"></p></div>
       <div class="seg" id="ini-set">
         <button class="on" data-s="ley">Ley de economía circular</button>
         <button data-s="otras">Otras leyes</button>
@@ -645,17 +647,17 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
       <div id="ini-list"></div>
     </div>
     <div data-sub="reformas">
-      <div class="phead"><div class="eyebrow">Reformas publicadas</div><h1>Diez reformas desde la Ley General. Dos se declaran de armonización.</h1><p>Lo publicado en periódicos oficiales estatales que toca la economía circular, y si se presenta como armonización.</p></div>
+      <div class="phead"><div class="eyebrow">Reformas publicadas</div><h1>Reformas publicadas desde la Ley General</h1><p>Diez reformas estatales publicadas desde el 19 de enero de 2026 que tocan la economía circular. Dos se declaran de armonización.</p></div>
       <div class="chart" id="tab-chart"></div>
       <div class="block"><div class="bh"><h2>Reformas desde el 19 de enero de 2026</h2></div><div id="tab-list"></div></div>
-      <div class="block"><div class="bh"><h2>Las dos armonizaciones publicadas</h2></div><div id="arm"></div></div>
+      <div class="block"><div class="bh"><h2>Armonizaciones publicadas</h2></div><div id="arm"></div></div>
       <div class="block"><div class="bh"><h2>Reformas a otras leyes con economía circular</h2><span class="aside" id="ref-n"></span></div><div class="tbl-wrap"><table class="t" id="ref-tbl"></table></div></div>
     </div>
     <div data-sub="federal">
-      <div class="phead"><div class="eyebrow">Marco federal</div><h1>Ley General de Economía Circular.</h1><p>Publicada el 19 de enero de 2026. Lo que ya opera, lo que falta y de qué depende. <a class="src" href="https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEC.pdf" target="_blank" rel="noopener">Texto vigente · Cámara de Diputados ↗</a></p></div>
+      <div class="phead"><div class="eyebrow">Marco federal</div><h1>Ley General de Economía Circular</h1><p>Publicada el 19 de enero de 2026. Lo que ya opera, lo que falta y de qué depende. <a class="src" href="https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEC.pdf" target="_blank" rel="noopener">Texto vigente · Cámara de Diputados ↗</a></p></div>
       <div class="facts" id="lg-facts"></div>
       <div class="kv" id="lg-kv"></div>
-      <div class="block"><div class="bh"><h2>Instrumentos y qué falta para que operen</h2></div><div id="instr"></div></div>
+      <div class="block"><div class="bh"><h2>Instrumentos de la Ley General</h2></div><div id="instr"></div></div>
       <div class="block"><div class="bh"><h2>Próximas ventanas</h2></div><div id="frentes"></div></div>
       <div class="block"><div class="bh"><h2>Polos de economía circular</h2></div><div class="tbl-wrap"><table class="t" id="polos"></table></div></div>
       <div class="block"><div class="bh"><h2>Acuerdo Nacional de Municipios</h2></div><div class="facts" id="anm-facts"></div><p class="lead" id="anm-hall" style="margin-top:16px"></p><div class="tbl-wrap"><table class="t" id="anm"></table></div></div>
@@ -668,7 +670,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
 <section class="view" id="v-fuentes">
   <div class="wrap">
     <div data-sub="metodo">
-      <div class="phead"><div class="eyebrow">Fuentes y método</div><h1>Cada dato remite a su documento oficial.</h1><p>Ningún registro entra sin haber leído su articulado en el documento oficial. La prensa contrasta; nunca sustituye al registro.</p></div>
+      <div class="phead"><div class="eyebrow">Fuentes y método</div><h1>Método de registro y verificación</h1><p>Ningún registro entra sin haber leído su articulado en el documento oficial. La prensa contrasta; nunca sustituye al registro.</p></div>
       <div class="block" style="padding-top:0"><div class="bh"><h2>Lectura al corte</h2><span class="aside" id="corte"></span></div><p class="ab-def" id="tesis" style="font-size:18px"></p></div>
       <div class="block two">
         <div>
@@ -686,12 +688,12 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
       </div>
     </div>
     <div data-sub="prensa">
-      <div class="phead"><div class="eyebrow">Contraste en prensa</div><h1>Lo que dijo la prensa de cada registro.</h1><p id="pr-n"></p></div>
+      <div class="phead"><div class="eyebrow">Contraste en prensa</div><h1>Contraste en prensa por registro</h1><p id="pr-n"></p></div>
       <div class="seg" id="pr-set"><button class="on" data-p="">Todo</button><button data-p="confirma">Confirma</button><button data-p="no se localizó">No se localizó</button></div>
       <div class="tbl-wrap"><table class="t" id="pr-tbl"></table></div>
     </div>
     <div data-sub="documentos">
-      <div class="phead"><div class="eyebrow">Documentos</div><h1 id="doc-h">Documentos oficiales citados.</h1><p>Gacetas, diarios de los debates, periódicos oficiales, registros parlamentarios y compilaciones. Busca por entidad, promovente o dominio.</p></div>
+      <div class="phead"><div class="eyebrow">Documentos</div><h1 id="doc-h">Documentos oficiales citados</h1><p>Gacetas, diarios de los debates, periódicos oficiales, registros parlamentarios y compilaciones. Busca por entidad, promovente o dominio.</p></div>
       <div class="tbar"><input class="inp" id="doc-q" placeholder="Buscar"></div>
       <div id="docs"></div>
     </div>
@@ -701,7 +703,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
 <!-- ═════════ ACERCA ═════════ -->
 <section class="view" id="v-acerca">
   <div class="wrap">
-    <div class="phead"><div class="eyebrow">Acerca del Observatorio</div><h1>Concentrar. Compartir. Aplicar.</h1></div>
+    <div class="phead"><div class="eyebrow">Acerca</div><h1>Acerca del Observatorio</h1></div>
     <p class="ab-def">Un mecanismo técnico, plural y permanente de colaboración, coordinado por la Comisión Especial de Economía Circular y Desarrollo Empresarial del Senado de la República. Conecta conocimiento, regulación, experiencias y buenas prácticas para que cada participante los aplique en su ámbito: legislativo, público, empresarial, académico o social.</p>
     <div class="verbs">
       <div><b>Concentrar</b><span>Información, avances regulatorios y experiencias que hoy están dispersos entre instituciones, empresas, universidades y congresos.</span></div>
@@ -760,9 +762,9 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
 
 <footer><div class="wrap">
   <div class="flogos">
-    <img class="sen" src="../assets/obs/senado.png" alt="Senado de la República">
-    <img class="tec" src="../assets/obs/tec.svg" alt="Tecnológico de Monterrey">
-    <img class="gemi" src="../assets/obs/gemi.png" alt="Iniciativa GEMI">
+    <a href="https://comisiones.senado.gob.mx/e_economia_desarrollo/" target="_blank" rel="noopener"><img class="sen" src="../assets/obs/senado.png" alt="Senado de la República"></a>
+    <a href="https://tec.mx/" target="_blank" rel="noopener"><img class="tec" src="../assets/obs/tec.svg" alt="Tecnológico de Monterrey"></a>
+    <a href="https://iniciativagemi.org/" target="_blank" rel="noopener"><img class="gemi" src="../assets/obs/gemi.png" alt="Iniciativa GEMI"></a>
     <i></i>
     <img class="scp" src="../assets/scope-logo.png" alt="Scope">
   </div>
@@ -907,7 +909,7 @@ function hero(){
   var c=D.conteos;DIAS=Math.floor((hoyCDMX()-Date.UTC(2026,6,19))/864e5);
   $('c1-p').textContent='El transitorio cuarto dio a los congresos locales 180 días naturales para armonizar. Venció el 19 de julio de 2026, hace '+DIAS+' días. Ciudad de México y Puebla aprobaron a tiempo y publicaron en agosto; en '+c.entidades_aplicacion_directa+' entidades no hay ordenamiento propio y rige directamente la Ley General.';
   $('minimap-n').textContent='En vivo · 32 entidades';
-  $('c3-h').textContent='iniciativas de ley vivas en '+c.entidades_con_iniciativa_ley_ec+' congresos locales.';
+  $('c3-h').textContent='iniciativas de ley vivas en '+c.entidades_con_iniciativa_ley_ec+' congresos locales';
   $('f-corte').textContent=fd(D.meta.corte_documental);
 }
 var miniTimer=null;
@@ -1048,10 +1050,18 @@ function radar(){
   fetch('../data/noticias.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(a){
     var seen={};
     var R=a.filter(function(n){var t=(n.titulo||'')+' '+(n.resumen||'');return INC.test(t)&&!BLOCK.test(n.titulo||'');}).filter(function(n){if(seen[n.titulo])return false;seen[n.titulo]=1;return true;})
-      .sort(function(x,y){return (y.fecha_publicacion||'').localeCompare(x.fecha_publicacion||'');}).slice(0,8);
+      .sort(function(x,y){return (y.fecha_publicacion||'').localeCompare(x.fecha_publicacion||'');}).slice(0,24);
     $('news').innerHTML=R.length?R.map(function(n){var t=(n.titulo||'')+' '+(n.resumen||''),st=(n.estado&&E[n.estado])?n.estado:(ENT.filter(function(x){return t.indexOf(x)>=0;})[0]||'');
       return '<a href="'+esc(n.url)+'" target="_blank" rel="noopener"><div class="nt">'+esc(n.titulo)+'</div><div class="nm">'+(st?'<span style="color:var(--pine);font-weight:700">'+ab(st)+'</span>':'')+'<span>'+esc(n.fuente||'')+'</span><span>'+fd(String(n.fecha_publicacion||'').slice(0,10))+'</span></div></a>';}).join(''):'<div class="empty">Sin coincidencias recientes.</div>';
+    newsScroll();
   }).catch(function(){$('news').innerHTML='<div class="empty">No se pudo cargar el monitoreo.</div>';});
+}
+// mismo ritmo que Últimas Noticias en Scope: 12 px/s, se detiene al pasar el cursor y vuelve al inicio
+function newsScroll(){
+  var w=$('news');if(!w||reduce)return;var last=null,acc=0;
+  (function tick(t){if(last===null)last=t;var dt=Math.min(t-last,100);last=t;
+    if(!w.matches(':hover')&&cur.s==='inicio'){acc+=12*dt/1000;if(acc>=1){var st=Math.floor(acc);acc-=st;w.scrollTop+=st;if(w.scrollTop+w.clientHeight>=w.scrollHeight-4)w.scrollTop=0;}}
+    requestAnimationFrame(tick);})(performance.now());
 }
 function counters(){
   var c=D.conteos,targets=[['c1-n',c.armonizaciones_publicadas,'<small> de 32</small>'],['c2-n',c.entidades_aplicacion_directa,''],['c3-n',c.iniciativas_ley_ec,'']];
@@ -1326,7 +1336,7 @@ function renderFuentes(){
   $('m-prim').innerHTML=D.fuentes.fuentes_primarias_generales.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
   $('m-adv').textContent=D.fuentes.advertencia;
   $('m-pend').innerHTML=D.pendientes.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
-  $('doc-h').textContent=D.fuentes.documentos.length+' documentos oficiales citados.';
+  $('doc-h').textContent=D.fuentes.documentos.length+' documentos oficiales citados';
   renderPrensa();renderDocs();
 }
 function renderPrensa(){
