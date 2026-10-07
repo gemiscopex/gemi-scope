@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-10-06T12:04 CDMX",
+  "actualizado": "2026-10-06T20:05 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -145,18 +145,25 @@
   ],
   "Medio Ambiente": [
    {
+    "titulo": "Gestión de Riesgos",
+    "org": "Secretaría de Seguridad y Protección Ciudadana (SSPC)",
+    "fecha": "2026-10-06",
+    "url": "https://www.datos.gob.mx/dataset/gestion_riesgos",
+    "recursos": 4
+   },
+   {
+    "titulo": "Alertamiento sobre fenómenos naturales (2026)",
+    "org": "Secretaría de Seguridad y Protección Ciudadana (SSPC)",
+    "fecha": "2026-10-06",
+    "url": "https://www.datos.gob.mx/dataset/alertamiento_fenomenos_naturales_2026",
+    "recursos": 8
+   },
+   {
     "titulo": "Inventario de sitios contaminados y remediados",
     "org": "Secretaría de Medio Ambiente y Recursos Naturales (SEMARNAT)",
     "fecha": "2026-08-14",
     "url": "https://www.datos.gob.mx/dataset/inventario_sitios_contaminados_remediados",
     "recursos": 2
-   },
-   {
-    "titulo": "Alertamiento sobre fenómenos naturales (2026)",
-    "org": "Secretaría de Seguridad y Protección Ciudadana (SSPC)",
-    "fecha": "2026-07-14",
-    "url": "https://www.datos.gob.mx/dataset/alertamiento_fenomenos_naturales_2026",
-    "recursos": 5
    },
    {
     "titulo": "Comités ambientales",
@@ -185,13 +192,6 @@
     "fecha": "2026-05-07",
     "url": "https://www.datos.gob.mx/dataset/economia_sectorial_ambiental_recursos_naturales",
     "recursos": 5
-   },
-   {
-    "titulo": "Identificación de áreas potenciales de distribución de vertebrados terrestres en un contexto de cambio climático de INECC",
-    "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
-    "fecha": "2026-05-07",
-    "url": "https://www.datos.gob.mx/dataset/areas_potenciales_distribucion_vertebrados_terrestres_contexto_cambio_climatico_inecc",
-    "recursos": 7
    }
   ],
   "Energía": [
