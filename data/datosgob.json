@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-10-07T20:30 CDMX",
+  "actualizado": "2026-10-08T12:35 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -145,6 +145,13 @@
   ],
   "Medio Ambiente": [
    {
+    "titulo": "Certificados de Calidad Ambiental e Industria Limpia",
+    "org": "Comisión Federal de Electricidad (CFE)",
+    "fecha": "2026-10-08",
+    "url": "https://www.datos.gob.mx/dataset/certificados_calidad_ambiental_industria_limpia",
+    "recursos": 4
+   },
+   {
     "titulo": "Gestión de Riesgos",
     "org": "Secretaría de Seguridad y Protección Ciudadana (SSPC)",
     "fecha": "2026-10-06",
@@ -185,13 +192,6 @@
     "fecha": "2026-05-07",
     "url": "https://www.datos.gob.mx/dataset/escenarios_cambio_climatico",
     "recursos": 1
-   },
-   {
-    "titulo": "Economía sectorial, ambiental y de recursos naturales",
-    "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
-    "fecha": "2026-05-07",
-    "url": "https://www.datos.gob.mx/dataset/economia_sectorial_ambiental_recursos_naturales",
-    "recursos": 5
    }
   ],
   "Energía": [
