@@ -10041,12 +10041,22 @@ async function _loadPerfil(){
   for(var i=0;i<2;i++){
     try{
       var r=await _sb.from('perfiles').select('*').eq('id',uid).single();
-      if(r&&r.data){_perfil=r.data;return;}
+      if(r&&r.data){_perfil=r.data;await _arrancaPrueba();return;}
       if(r&&r.error&&r.error.code==='PGRST116'){_perfil=null;return;}  // de verdad no existe el perfil
     }catch(e){}
     await new Promise(function(ok){setTimeout(ok,800);});
   }
   // falló la red/consulta: se conserva el último perfil conocido de este usuario
+}
+// Pruebas que cuentan desde el primer acceso: perfil con plan "Prueba N dias · desde primer acceso" y sin vence.
+// En el primer ingreso se fija vence = hoy (CDMX) + N días y el plan queda "Prueba N dias".
+async function _arrancaPrueba(){
+  var p=_perfil;if(!p||p.vence||!p.activo)return;
+  var m=/prueba\s+(\d+)\s*d[ií]as.*primer acceso/i.exec(p.plan||'');if(!m)return;
+  var d=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Mexico_City'}));d.setDate(d.getDate()+(+m[1]));
+  var v=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  try{var r=await _sb.from('perfiles').update({vence:v,plan:'Prueba '+m[1]+' dias'}).eq('id',p.id).select().single();if(r&&r.data){_perfil=r.data;return;}}catch(e){}
+  _perfil.vence=v;   // si no se pudo guardar, esta sesión igual respeta el plazo
 }
 async function authLogin(){
   if(!_sb){_authMsg('El acceso estará disponible muy pronto.');return;}
