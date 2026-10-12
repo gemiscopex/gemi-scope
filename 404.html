@@ -12,6 +12,9 @@
 (function(){
   var pathSegmentsToKeep = 0;
   var l = window.location;
+  // Si piden un archivo que no existe (tiene extensión: .html, .json, .png…) no es una ruta de Scope:
+  // se muestra la página de "no encontrada" en lugar de rebotar a la app.
+  if (/\.[a-z0-9]{2,5}$/i.test(l.pathname) || /^\/observatorio\/./.test(l.pathname)) { window.__noEncontrada = true; return; }
   l.replace(
     l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
     l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
@@ -21,6 +24,29 @@
   );
 })();
 </script>
+<style>
+@font-face{font-family:'Scope Sans';src:url('/assets/fonts/heros-regular.woff2') format('woff2');font-weight:1 550}
+@font-face{font-family:'Scope Sans';src:url('/assets/fonts/heros-bold.woff2') format('woff2');font-weight:551 1000}
+body{margin:0;font-family:'Scope Sans','Helvetica Neue',Helvetica,Arial,sans-serif;background:#fff;color:#0D1B2A;-webkit-font-smoothing:antialiased}
+#nf{display:none;min-height:100vh;align-items:center;justify-content:center;padding:32px;box-sizing:border-box}
+#nf .in{max-width:520px}
+#nf img{height:30px;display:block}
+#nf .k{font-family:'Courier New',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#066750;font-weight:700;margin-top:56px}
+#nf h1{font-size:40px;line-height:1.08;letter-spacing:-1px;margin:14px 0 0}
+#nf p{font-size:17px;line-height:1.6;color:#3D5A75;margin:16px 0 0}
+#nf .a{display:flex;gap:24px;margin-top:30px;flex-wrap:wrap;align-items:center}
+#nf a{font-size:15px;font-weight:700;color:#066750;text-decoration:none}
+#nf a.solid{background:#0D1B2A;color:#fff;padding:12px 22px;border-radius:999px}
+</style>
 </head>
-<body></body>
+<body>
+<div id="nf"><div class="in">
+  <img src="/assets/scope-logo.png" alt="Scope">
+  <div class="k">Error 404</div>
+  <h1>No encontramos esta página</h1>
+  <p>La dirección no existe o cambió de lugar.</p>
+  <div class="a"><a class="solid" href="/">Ir a Scope</a><a href="/observatorio/">Observatorio de Economía Circular →</a></div>
+</div></div>
+<script>if(window.__noEncontrada){document.getElementById('nf').style.display='flex';document.title='Página no encontrada · Scope';}</script>
+</body>
 </html>

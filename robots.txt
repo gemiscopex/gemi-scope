@@ -1,0 +1,14 @@
+# scopegemi.com
+User-agent: *
+Allow: /
+Allow: /observatorio/
+Disallow: /data/
+Disallow: /scraper/
+Disallow: /docs/
+Disallow: /msept/
+Disallow: /pitch.html
+Disallow: /presentacion.html
+Disallow: /correo-
+Disallow: /*.md$
+
+Sitemap: https://scopegemi.com/sitemap.xml

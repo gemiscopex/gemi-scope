@@ -27,6 +27,9 @@ jobs:
           playwright install chromium --with-deps
 
       - name: Ejecutar scraper
+        env:
+          # Lista privada de empresas monitoreadas (Settings → Secrets and variables → Actions → Variables)
+          EMPRESAS_MONITOREO: ${{ vars.EMPRESAS_MONITOREO }}
         run: python scraper/auto_update.py
 
       - name: Commit y push si hay cambios

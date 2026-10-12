@@ -14,7 +14,7 @@ La clasificación temática de cada nota NO cambia; el tag es aditivo.
 Match con frontera de palabra sobre el texto normalizado (sin acentos, minúsculas)
 para no activar por subcadena. Costo $0, sin IA, sin base de datos.
 """
-import sys, json, re, unicodedata
+import os, sys, json, re, unicodedata
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -29,8 +29,11 @@ def norm(s):
     return s.lower()
 
 def cargar_empresas():
+    # La lista es privada: en GitHub Actions llega por la variable EMPRESAS_MONITOREO (no vive en el repo público).
+    # En local se puede seguir usando data/empresas-monitoreo.json, que está en .gitignore.
     try:
-        d = json.loads(LISTA.read_text(encoding="utf-8"))
+        bruto = os.environ.get("EMPRESAS_MONITOREO") or LISTA.read_text(encoding="utf-8")
+        d = json.loads(bruto)
     except Exception:
         return []
     out = []

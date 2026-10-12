@@ -3,7 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scope | GEMI</title>
+<title>Scope · Inteligencia regulatoria ambiental | Iniciativa GEMI</title>
+<meta name="description" content="Scope es la plataforma de inteligencia regulatoria ambiental de Iniciativa GEMI: legislación federal y estatal, Congreso, NOMs, agenda regulatoria y expedientes de las 32 entidades, actualizados todos los días.">
+<link rel="canonical" href="https://scopegemi.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Scope">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://scopegemi.com/">
+<meta property="og:title" content="Scope · Inteligencia regulatoria ambiental">
+<meta property="og:description" content="Legislación federal y estatal, Congreso, NOMs y agenda regulatoria de México, al día. Una plataforma de Iniciativa GEMI.">
+<meta property="og:image" content="https://scopegemi.com/assets/og-scope.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scope, plataforma de inteligencia regulatoria ambiental">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Scope · Inteligencia regulatoria ambiental">
+<meta name="twitter:description" content="Legislación federal y estatal, Congreso, NOMs y agenda regulatoria de México, al día.">
+<meta name="twitter:image" content="https://scopegemi.com/assets/og-scope.png">
 <base href="/">
 <script>
 /* Rutas limpias (SPA): restaura la ruta tras el rebote de 404.html.
@@ -2821,8 +2836,15 @@ var _ADMIN_EMAILS=['gemiscopex@gmail.com','rleon@iniciativagemi.org','sdecelis@i
 var _INTEL=null,_intelSel=null,_intelN=0;
 function _isAdmin(){try{return _ADMIN_EMAILS.indexOf((_userEmail()||'').toLowerCase())>=0;}catch(_){return false;}}
 function _intelLoad(cb){
-  if(_INTEL){cb&&cb();return;}
-  fetch('data/inteligencia.json').then(function(r){return r.ok?r.json():null;}).then(function(d){_INTEL=d||{empresas:{},dominios:{}};cb&&cb();}).catch(function(){_INTEL={empresas:{},dominios:{}};cb&&cb();});
+  // Vive en Supabase (tabla inteligencia_empresas): cada empresa solo recibe su propio análisis; GEMI ve todos.
+  // Lo cargado sin sesión se marca como anónimo para volver a pedirlo al iniciar sesión.
+  if(_INTEL&&!(_INTEL._anon&&_session)){cb&&cb();return;}
+  if(!_sb||!_session){_INTEL={empresas:{},dominios:{},_anon:true};cb&&cb();return;}
+  _sb.from('inteligencia_empresas').select('id,dominios,datos').then(function(r){
+    var I={empresas:{},dominios:{}};
+    ((r&&r.data)||[]).forEach(function(x){I.empresas[x.id]=x.datos;(x.dominios||[]).forEach(function(d){I.dominios[d]=x.id;});});
+    _INTEL=I;cb&&cb();
+  },function(){_INTEL={empresas:{},dominios:{}};cb&&cb();});
 }
 function _intelEmpresaFor(){try{var dom=((_userEmail()||'').toLowerCase().split('@')[1])||'';if(_INTEL&&_INTEL.dominios&&_INTEL.dominios[dom])return _INTEL.dominios[dom];}catch(_){}return null;}
 function _intelCurrentId(){var emp=_intelEmpresaFor();if(_isAdmin()){if(_intelSel&&_INTEL.empresas[_intelSel])return _intelSel;return emp||Object.keys(_INTEL.empresas||{})[0]||null;}return emp;}
@@ -10213,6 +10235,7 @@ async function _authInit(){
       _session=sess||null;
       // renovar el token no cambia el acceso: no hace falta volver a pedir el perfil
       if(mismo&&_perfil&&(ev==='TOKEN_REFRESHED'||ev==='INITIAL_SESSION'))return;
+      if(!mismo)_INTEL=null;   // otro usuario o cierre de sesión: no conservar el análisis de la empresa anterior
       await _loadPerfil();_consHydrate();_updateAuthUI();
     });
   }catch(e){console.warn('Auth init:',e);_authLocked=false;closeAuth();}
