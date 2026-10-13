@@ -1,11 +1,21 @@
 {
  "_meta": {
-  "actualizado": "2026-10-13T17:46:21Z",
+  "actualizado": "2026-10-13T22:06:00Z",
   "fuente": "Prensa nacional y local vía Google News",
   "nota": "Capa de prensa (Beta). Detección de restricciones a la venta de alcohol. La vigencia exacta se confirma en el bando o periódico oficial de cada plaza.",
   "total": 200
  },
  "eventos": [
+  {
+   "id": "6e5165665bf5",
+   "titulo": "Ley seca en Santa Marta por movilización de Fecode: estas son las medidas para este miércoles",
+   "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNeWV1b2lRLXJ5ZTVoYmx6YU5Wd2YwU1ptVlc2UjhLZ3NtNW5HTHBINlhDOWREVnd0UHNHdk03TURJcWdaWC04NGpfTmxET0JhUEVxakZtelZrYmkzNHlVcXZEMEMzRDVQR0dOOFhKeEQtRm9IMWpDMWFFblNQNDl5Q01nMTYwM2tBeGRxanFsZTFNT0N6ZG9FeXpjaTZCVzBJQVpQSXlzYjMwNm9nSDRtbmRNNzE1X0J6WElIOFJoWkVjSXZnRGfSAdoBQVVfeXFMUFhUN2djMjhHdGw3LUtZM21rS3pEc3RCaTUyemJjZVVubFd1ME5vdnh1aWV2djVWUWpjRkZjbmVKNUs1QXQtd1pXdFpoNVAydHRvLWxmZjNXODZ2SkR2NGVUVnp2R18xUzhPRFhkdEdFNF93MmM0UUxHWDRDekdvY052WlgzY0p1b3ZTZmVvS0tFTEY2MEF6MkZ2RVZQZkdkZU5nWHFGVkpZMkRwU3lMb1hNT2V3cWdpZ243cGNFNzhfaDhCUHJjYTB0emdWS1FXYXRtVUVLV0xCWlE?oc=5",
+   "fuente": "Caracol Radio",
+   "fecha_publicacion": "2026-10-13T19:58:23Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
   {
    "id": "f99ac05a71ed",
    "titulo": "Ley seca en Tlalpan: conoce las fechas, horarios y colonia de CDMX donde se prohibirá la venta de alcohol",
@@ -35,6 +45,16 @@
    "estado": "Ciudad de México",
    "ambito": "Alcaldía",
    "motivo": "Otro"
+  },
+  {
+   "id": "fc796e2960fc",
+   "titulo": "Ley Seca en Tlalpan por fiestas patronales: Fechas y colonias afectadas - La Prensa",
+   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQejFkZ001TmFTOUJOS1dWY0VteElxU3pPcFU2cWR0LWdxay1aVTR4ZTRzeTlUZGtVQ0hxajZmd0JXbGpSOWtSeFB4b3hUc05SNllTT2hCQjlmMFlhcVB6enczaWUtaG9lUHAtb3c0ZGFseHpiWjJQQjFzVUw3WFZnZklIVWd4SnR2MC1DUTZVY0xIRll2LUV1ZmlPcEZoWXpNS3UtaXNTMzlOR0lTUVhhYjhsaVBSU2tFSWc?oc=5",
+   "fuente": "El Sol de México",
+   "fecha_publicacion": "2026-10-12T21:39:34Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
+   "motivo": "Festividad"
   },
   {
    "id": "319bc08b0e62",
@@ -1984,26 +2004,6 @@
    "fecha_publicacion": "2026-09-12T03:47:52Z",
    "estado": "Ciudad de México",
    "ambito": "Alcaldía",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "a33059c44a2a",
-   "titulo": "Sin alcohol en el Grito de Independencia: ¿Dónde habrá Ley Seca en CDMX hasta el 30 de septiembre?",
-   "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOcGZEdnVvbDFLdEgwTXVyeWdfWkN4a040RE9BcDJDUGJSSjhNRl8zNHVBM3ZMd3RiTGJnZnRqSTF0NjZTeU1JaVVaV0Q2R1kzSHktNVRqRml3dW1NYnN0NURuTjdiUUlPMHFzR2VRQk44X01KSVNDcFlVblRlbnpOMFpJbXFQNXpicUtLcFFSRXlIVE5YaXo0VlVxczZGZ3g1MVlHNW9OVEQ5VGFwLThsMWIwR19MU0ZXQ3VlcHpIM09TZVRvSm5DaWdjOG9IVkoyU25sTEZuQUlnclRy?oc=5",
-   "fuente": "El Financiero",
-   "fecha_publicacion": "2026-09-12T02:26:00Z",
-   "estado": "Ciudad de México",
-   "ambito": "Municipal",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "99ebe57fa2c0",
-   "titulo": "No habrá Ley Seca en la capital por el Día del Grito: Fiscalización",
-   "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNbzNpVEZQcWxLSmpnZGlnSDVLemJGSzk0V01OdlpNM1BTNW1hOVphNmJIN2JTM3pNd1QtOFFNNmNMMFc5dTZqZUluMWk2TVZRX05uUWRuUzVvd0ZMVU5mQ3lpdEhXdXVhQnpIVjBLWmdxdmVDaWYwLWctRXRXdkR1RUNaRTd1bmhKV3FkaEdIdXpLZ0k4TnkxMnk3LW9aeV9zN2pwTU5Td2t2U0k?oc=5",
-   "fuente": "zonafranca.mx",
-   "fecha_publicacion": "2026-09-12T01:50:44Z",
-   "estado": "",
-   "ambito": "Municipal",
    "motivo": "Festividad"
   }
  ]
