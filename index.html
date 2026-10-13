@@ -1897,6 +1897,7 @@ const RADAR_TEMAS=[
   {id:'circular',name:'Econom\u00eda Circular',icon:'',color:'#009E90',kw:['economia circular','circularidad','ecodiseno','reciclaj','valorizac','reutiliz','envase','empaque','simbiosis industrial','parque industrial','desarrollo circular','podecibi','polo de desarrollo','sargazo','estacion de transferencia','centro de valorizacion','basura cero','acopio','economia verde','aprovechamiento de residuos','responsabilidad extendida','llantas','textiles','aceites usados','residuos de construccion','chatarra','compost','reincorpora','ecoce','rep vidrio','rep aluminio','contenido reciclado','envase retornable','material reciclado'],leyKey:'economia_circular'},
   {id:'cc',name:'Cambio Clim\u00e1tico',icon:'',color:'#6366f1',kw:['cambio climatic','descarboniz','gases de efecto invernadero','gei','carbono','emision','ndc','metano','transicion energetica','ola de calor','clima'],leyKey:'cambio_climatico',emisNacional:true},
   {id:'fiscal',name:'Impuestos Ambientales',icon:'',color:'#f87171',kw:['impuesto ambiental','impuestos ambientales','impuesto verde','impuestos verdes','impuesto ecologic','impuestos ecologic','tasa ecologic','ecotasa','fiscalidad verde','fiscalidad ambiental','impuesto a emisiones','impuesto a la emision','impuestos a la emision','impuesto al carbono','impuestos al carbono','ieps al carbono','precio al carbono','precio del carbono','recaudacion ambiental','ley federal de derechos','derechos ambientales','impuesto por remediacion','impuesto a la extraccion','impuestos a la extraccion','extraccion de materiales petreos','impuesto al deposito de residuos'],leyKey:null},
+  {id:'rep',name:'Responsabilidad extendida (REP)',icon:'',color:'#0E8C74',kw:['responsabilidad extendida','extended producer responsibility','plan de manejo','planes de manejo','ecoce','gestion circular','reglamento de la ley general de economia circular','organizacion de productores','ecomodulacion','eco-modulacion','sistema de deposito','deposito y retorno','envase retornable','envases retornables','logistica inversa','contenido reciclado','reciclaje de envases','residuos de envases','ppwr','reglamento de envases'],leyKey:'economia_circular'},
   {id:'plasticos',name:'Pl\u00e1sticos',icon:'',color:'#ec4899',kw:['plastic','unicel','poliestireno','monouso','un solo uso','popote','desechable','bolsa de plastico','poliet','resina pet','resina hdpe','botella pet','contenido reciclado','envase retornable','rep envases','microplastico'],leyKey:'plasticos'},
   {id:'energia',name:'Energ\u00eda',icon:'',color:'#f59e0b',kw:['energia solar','energia renovable','energia limpia','renovable','fotovoltaic','eolic','cfe','hidrogeno','panel solar','parque eolico','geotermia','biogas','transicion energetica','litio','cne','comision nacional de energia','sener','almacenamiento de energia','bess','certificado de energia limpia','sistema de informacion energetica','contenido nacional','asea'],leyKey:null,emis:'Energ\u00eda'},
   {id:'sanciones',name:'Inspección y sanciones',icon:'',color:'#ef4444',kw:['sancion','multa','clausura','infraccion','profepa','inspeccion','verificacion ambiental','denuncia ambiental','delito ambiental','procedimiento administrativo','cofepris','etiquetado','norma de etiquetado','evaluacion de impacto social','plan de gestion social','autorizacion ambiental','permiso'],leyKey:null},
@@ -3026,8 +3027,10 @@ function renderAcuerdos(){
   var subbar='<div class="stab-bar" style="margin-bottom:18px">'
     +'<button class="stab'+(_intlView==='instrumentos'?' on':'')+'" onclick="intlSetView(\'instrumentos\')">Instrumentos</button>'
     +'<button class="stab'+(_intlView==='agenda2030'?' on':'')+'" onclick="intlSetView(\'agenda2030\')">Agenda 2030 · ODS</button>'
+    +'<button class="stab'+(_intlView==='rep'?' on':'')+'" onclick="intlSetView(\'rep\')">REP en el mundo</button>'
     +'</div>';
   if(_intlView==='agenda2030'){el.innerHTML=subbar+_agenda2030HTML();return;}
+  if(_intlView==='rep'){el.innerHTML=subbar+_repMundoHTML();_repRenderRows();return;}
   var jurs=Array.from(new Set(_INTL.map(function(a){return a.jurisdiccion;}).filter(Boolean))).sort(function(a,b){return a.localeCompare(b,'es');});
   var cats=[];_INTL.forEach(function(a){if(a.categoria&&cats.indexOf(a.categoria)<0)cats.push(a.categoria);});
   var sel='padding:9px 30px 9px 12px;font-size:12px;color:var(--text);background:var(--card);border:0.8px solid var(--border);cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;font-family:var(--sans)';
@@ -3107,12 +3110,88 @@ function _intlRenderRows(){
       +'<div style="min-width:0">'
         +'<div style="display:flex;align-items:baseline;gap:7px"><span style="width:6px;height:6px;border-radius:50%;background:'+col+';flex-shrink:0;position:relative;top:1px"></span><span style="font-size:13px;font-weight:600;color:var(--text);line-height:1.3">'+a.nombre+'</span></div>'
         +'<div style="font-size:11px;color:var(--text-sec);margin-top:3px;line-height:1.45">'+(a.relevancia_mexico||'')+'</div>'
+        +((a.hitos&&a.hitos.length)?'<div style="margin-top:7px">'+a.hitos.map(function(h){return '<div style="display:flex;gap:12px;font-size:11px;line-height:1.45;padding:2px 0"><span style="font-family:var(--mono);font-size:10px;color:var(--green);font-weight:600;flex:0 0 74px">'+h[0]+'</span><span style="color:var(--text-sec)">'+h[1]+'</span></div>';}).join('')+'</div>':'')
         +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:5px;letter-spacing:0.03em">'+_intlCatLbl(a.categoria).toUpperCase()+(a.estatus?'  ·  '+a.estatus:'')+'</div>'
       +'</div>'
       +'<div style="text-align:right;min-width:0"><div style="font-size:11px;color:var(--text-sec);font-weight:500;line-height:1.3">'+a.jurisdiccion+(a.organismo?'<br><span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+a.organismo+'</span>':'')+'</div><div style="font-size:13px;color:var(--green);margin-top:3px"><svg class="arrlk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8"/><path d="M8 16L16 8"/></svg></div></div>'
       +'</div>';
   }).join('');
   host.innerHTML=head+body;
+}
+// ── REP en el mundo: sistemas de responsabilidad extendida del productor para envases ──
+// Fuente: The Packaging EPR Library (C. Lakhan, York University, ago 2026). Ficha de México actualizada por Scope.
+var _REPM=null,_repF={q:'',est:'todas',reg:'todas'},_repOpen=null;
+var _REP_EST={operando:['Operando','#066750'],adoptada:['Adoptada, sin operar','#3FA07E'],propuesta:['Propuesta o voluntaria','#8A9CB0'],sin_rep:['Sin REP identificada','#B3BFCA']};
+function _repLoad(cb){
+  if(_REPM){cb&&cb();return;}
+  fetch('data/rep-mundo.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(d){_REPM=d||{jurisdicciones:[]};cb&&cb();}).catch(function(){_REPM={jurisdicciones:[]};cb&&cb();});
+}
+function _repEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function _repSet(k,v){_repF[k]=v;_repOpen=null;renderAcuerdos();}
+function _repSearch(v){_repF.q=v;_repRenderRows();}
+function _repToggle(id){_repOpen=_repOpen===id?null:id;_repRenderRows();}
+function _goRepMundo(){_intlView='rep';goInternacional();}
+var _REP_PREGUNTAS=[
+  {q:'¿Una organización de productores o varias?',e:'Alemania abrió la competencia entre sistemas y el costo de cumplimiento bajó 63% (Rasek y Smuda, 2018), aunque en 2019 tuvo que crear un registro central y auditoría cruzada para contener a quienes dejaban de declarar. Con una sola organización, la disciplina de costos depende de que la metodología de cuotas sea pública y de que el regulador pueda revisarla.',r:'Gobernanza · Alemania, Austria, España, Ontario'},
+  {q:'¿Quién fija las cuotas y cómo se revisan?',e:'Casi ninguna jurisdicción permite al productor apelar su cuota. En Oregon, un juez federal suspendió la ley de forma cautelar en febrero de 2026 por ese motivo. Las referencias disponibles combinan metodología publicada, acceso del regulador al modelo completo y una vía de revisión con resolución fundada.',r:'Gobernanza · Oregon, Colorado, Francia'},
+  {q:'¿Qué costos cubre la cuota?',e:'El porcentaje de cobertura dice menos que la lista de costos que entran: vía pública, contenedores, educación, costo del regulador y material rechazado. Reino Unido cobra el 100% del costo modelado de un servicio municipal eficiente; Manitoba cubre 80% y Saskatchewan 75% del costo municipal.',r:'Cuotas · Reino Unido, Manitoba, Saskatchewan'},
+  {q:'¿Quién es el productor obligado?',e:'Los sistemas maduros usan una cascada: dueño de marca residente, luego importador, luego distribuidor, con un representante autorizado para empresas extranjeras. Alemania obliga desde 2022 a los marketplaces a verificar que sus vendedores estén registrados. Ontario tiene 1,918 registrados sin una estimación de cuántos obligados existen.',r:'Alcance · Alemania, Ontario'},
+  {q:'¿Cómo se trata a los pequeños productores?',e:'Alemania no tiene umbral mínimo. Reino Unido tiene un nivel que reporta sin pagar. Quebec cobra cuotas fijas por tramo, de C$1,010 a C$6,120. Ninguna jurisdicción publica cuánto tonelaje queda exento por los umbrales.',r:'Alcance · Alemania, Reino Unido, Quebec'},
+  {q:'¿Entra el papel impreso?',e:'Francia estimó entre €22 y €26 millones al año trasladados a otros productores por las exenciones y el pago en especie de la prensa. Finlandia obliga a las papeleras e importadores de papel en lugar de a los editores.',r:'Alcance · Francia, Finlandia'},
+  {q:'¿Qué pasa con compostables y envases difíciles de reciclar?',e:'Quebec cobra más al PLA porque sus plantas de composta no lo procesan. Reino Unido cobra 1.2 veces más al envase de grado rojo. La Unión Europea prohíbe desde 2030 el envase por debajo del grado C de reciclabilidad.',r:'Alcance · Quebec, Reino Unido, Unión Europea'},
+  {q:'¿La ecomodulación cambia el diseño del envase?',e:'La OCDE (2021) y la agencia neerlandesa PBL/CPB (2021) no encuentran cambios de diseño a gran escala: la cuota equivale a entre 0.4% y 2% del precio del producto. Los cambios documentados son los baratos: tapas, pigmentos detectables, etiquetas y envases de un solo material. La modulación es más fuerte cuando la fija la autoridad.',r:'Diseño · Francia, Reino Unido, Italia'},
+  {q:'¿Cómo se medirá la tasa de reciclaje?',e:'En Alemania el aluminio pasó de 90.1% a 55.5% en 2020 solo por cambiar el punto de medición. Reino Unido publicó 64.1% y 75.2% para el mismo año. Las cifras que publican las organizaciones de productores superan a Eurostat entre 10 y 15 puntos.',r:'Medición · Alemania, Reino Unido, Unión Europea'},
+  {q:'¿Habrá línea base antes de arrancar?',e:'Ontario dispensó la verificación de datos de 2025 y 2026 y dejó de medir los costos municipales, por lo que ya no puede evaluar su transición contra el punto de partida. Francia audita 15% de las declaraciones de los productores.',r:'Medición · Ontario, Francia'},
+  {q:'¿Cómo convive con un sistema de depósito?',e:'El depósito retira el PET y el aluminio, los materiales de mayor valor, y deja a la REP el flujo más caro de recolectar. Estudios de sectores opuestos estiman la pérdida para las plantas de selección entre USD 12 y 24 por tonelada, compensable: California transfiere USD 183 millones al año. El depósito reduce entre 70% y 85% la basura dispersa de envases de bebida.',r:'Otros instrumentos · California, Alemania, Canadá'},
+  {q:'¿Cuánto paga un mismo envase sumando instrumentos?',e:'Reino Unido combina cuota REP, impuesto al plástico con menos de 30% de contenido reciclado (£229 por tonelada) y metas de reciclaje. En México pueden coincidir acuerdos generales, impuestos estatales a envases y metas de contenido reciclado. Ninguna jurisdicción publica la carga total por envase.',r:'Otros instrumentos · Reino Unido, México'},
+  {q:'¿Qué cuenta como material reciclado?',e:'Reino Unido tardó cinco años en dejar de contar el residuo preindustrial como reciclado. La Unión Europea aceptó en 2026 el reciclaje químico con balance de masa para botellas. Estas definiciones fijan buena parte del costo de cumplir metas de contenido reciclado.',r:'Medición · Reino Unido, Unión Europea'},
+  {q:'¿Qué tan estable es el marco durante la transición?',e:'Ontario recortó alcance y metas a mitad de su transición, porque sus reglamentos se modifican sin pasar por el Congreso. Quebec fijó un calendario con fechas por función. Los acuerdos generales de la LGEC también son instrumentos administrativos.',r:'Transición · Ontario, Quebec'}
+];
+function _repMundoHTML(){
+  if(!_REPM){_repLoad(function(){if(_intlView==='rep')renderAcuerdos();});return '<div style="font-size:12px;color:var(--text-muted);padding:16px 0">Cargando…</div>';}
+  var J=_REPM.jurisdicciones||[],cnt={};J.forEach(function(j){cnt[j.estatus]=(cnt[j.estatus]||0)+1;});
+  var regs=Array.from(new Set(J.map(function(j){return j.region;}).filter(Boolean))).sort(function(a,b){return a.localeCompare(b,'es');});
+  var sel='padding:9px 30px 9px 12px;font-size:12px;color:var(--text);background:var(--card);border:0.8px solid var(--border);cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;font-family:var(--sans)';
+  var regOpts='<option value="todas">Todas las regiones</option>'+regs.map(function(r){return '<option value="'+_repEsc(r)+'"'+(_repF.reg===r?' selected':'')+'>'+r+'</option>';}).join('');
+  var estTabs='<button class="stab'+(_repF.est==='todas'?' on':'')+'" onclick="_repSet(\'est\',\'todas\')">Todas</button>'
+    +['operando','adoptada','propuesta'].map(function(k){return '<button class="stab'+(_repF.est===k?' on':'')+'" onclick="_repSet(\'est\',\''+k+'\')">'+_REP_EST[k][0]+'</button>';}).join('');
+  var m=_REPM.meta||{};
+  return '<div style="font-size:12px;color:var(--text-sec);line-height:1.55;margin-bottom:14px;max-width:760px">Sistemas de responsabilidad extendida del productor (REP) para envases en '+J.length+' jurisdicciones. Canadá y Estados Unidos aparecen por provincia y por estado, que es donde está la obligación. Da clic en una jurisdicción para ver su modelo, quién paga y qué reporta.</div>'
+    +'<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px">'+(cnt.operando||0)+' operando · '+(cnt.adoptada||0)+' adoptadas sin operar · '+(cnt.propuesta||0)+' propuestas o voluntarias · '+(cnt.sin_rep||0)+' sin REP</div>'
+    +'<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px">'
+      +'<div style="position:relative;flex:1;min-width:220px"><span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:13px;pointer-events:none">⌕</span>'
+      +'<input value="'+_repEsc(_repF.q)+'" oninput="_repSearch(this.value)" placeholder="Buscar país, ley u organización…" style="width:100%;box-sizing:border-box;padding:9px 12px 9px 32px;border:0.8px solid var(--border);background:var(--card2);color:var(--text);font-size:12px;font-family:var(--sans);outline:none"></div>'
+      +'<div style="position:relative"><select onchange="_repSet(\'reg\',this.value)" style="'+sel+'">'+regOpts+'</select><span style="position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);font-size:9px">▾</span></div>'
+    +'</div>'
+    +'<div class="stab-bar" style="margin-bottom:12px">'+estTabs+'</div>'
+    +'<div id="rep-stats" style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px"></div>'
+    +'<div id="rep-table"></div>'
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:12px;line-height:1.6;max-width:760px">Fuente: <a href="'+(m.url||'https://eprlibrary.netlify.app/')+'" target="_blank" rel="noopener" style="color:var(--text-muted)">The Packaging EPR Library</a> · Calvin Lakhan, Circular Innovation Hub, York University (agosto de 2026). Ficha de México actualizada por Scope al 11 oct 2026. Las tasas reportadas no son comparables entre jurisdicciones: cada una se mide distinto.</div>'
+    +'<div style="margin-top:34px">'+_oblSubhead('Preguntas de diseño para México','Lo que muestra la evidencia internacional sobre decisiones que tomarán el Reglamento de la Ley General de Economía Circular y los acuerdos generales de REP de SEMARNAT.')
+    +_REP_PREGUNTAS.map(function(p,i){return _oblRow({title:p.q,desc:p.e,meta:p.r,zeb:i%2===1});}).join('')
+    +'<div style="font-family:var(--mono);font-size:9px;color:var(--text-muted);margin-top:12px">Fuente: The Packaging EPR Library, 46 revisiones de evidencia. Cada hallazgo indica la jurisdicción y el estudio que lo respalda.</div></div>';
+}
+function _repRenderRows(){
+  var host=document.getElementById('rep-table');if(!host||!_REPM)return;
+  var J=_REPM.jurisdicciones||[],q=_intlNk(_repF.q),ORD={operando:0,adoptada:1,propuesta:2,sin_rep:3};
+  var rows=J.filter(function(j){
+    if(_repF.est!=='todas'&&j.estatus!==_repF.est)return false;
+    if(_repF.reg!=='todas'&&j.region!==_repF.reg)return false;
+    if(q&&_intlNk([j.nombre,j.pais,j.ley,j.pro,j.regulador,j.nota].join(' ')).indexOf(q)<0)return false;
+    return true;
+  }).sort(function(a,b){return (a.id==='Mexico'?-1:b.id==='Mexico'?1:0)||(ORD[a.estatus]-ORD[b.estatus])||String(a.nombre).localeCompare(String(b.nombre),'es');});
+  var st=document.getElementById('rep-stats');if(st)st.textContent=rows.length+' de '+J.length+' jurisdicciones';
+  if(!rows.length){host.innerHTML='<div style="font-size:12px;color:var(--text-muted);padding:28px 0;text-align:center">Sin coincidencias. Ajusta los filtros o la búsqueda.</div>';return;}
+  var F=[['Modelo','modelo'],['Organización de productores','pro'],['Forma de la organización','forma_pro'],['Regulador','regulador'],['Alcance','alcance'],['Corrientes cubiertas','corrientes'],['Papel impreso','papel_impreso'],['Qué paga el productor','costo'],['Metas','metas'],['Sistema de depósito','deposito'],['Tasa reportada','tasa'],['Fecha de inicio','desde_nota']];
+  host.innerHTML=rows.map(function(j,i){
+    var e=_REP_EST[j.estatus]||['—','var(--text-muted)'],id=String(j.id).replace(/'/g,'');
+    var row=_oblRow({title:_repEsc(j.nombre)+(j.nivel==='subnacional'?' <span style="font-weight:400;color:var(--text-muted)">· '+_repEsc(j.pais)+'</span>':''),
+      desc:_repEsc(j.nota||''),meta:[j.desde?'Desde '+j.desde:null,j.ley].filter(Boolean).map(_repEsc).join(' · '),
+      right:_oblStatusRaw(e[0],e[1]),rightSub:_repEsc(j.region||''),onclick:"_repToggle('"+id+"')",zeb:i%2===1});
+    if(_repOpen!==id)return row;
+    var det=F.filter(function(f){return j[f[1]];}).map(function(f){return '<div style="display:grid;grid-template-columns:minmax(96px,190px) 1fr;gap:14px;padding:7px 0;border-top:0.8px solid var(--border)"><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);padding-top:2px">'+f[0]+'</div><div style="font-size:12px;color:var(--text);line-height:1.5">'+_repEsc(j[f[1]])+'</div></div>';}).join('');
+    return row+'<div style="padding:4px 12px 14px 12px'+(i%2===1?';background:rgba(13,27,42,0.025)':'')+'">'+det+'</div>';
+  }).join('');
 }
 // ── Gabinete ambiental federal (Actores) ──
 var ACTORES_FED=[
@@ -5875,6 +5954,7 @@ function _radarDetailHTML(temaId){
   var estBlock='<div style="margin-bottom:20px"><div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid '+col+'33"><span style="width:7px;height:7px;border-radius:50%;background:'+col+'"></span><span style="font-size:12px;font-weight:700;color:'+col+'">Estados más activos</span> <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+topE.length+'</span></div>'+estBars+'</div>';
   return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:9px;height:9px;border-radius:50%;background:'+col+'"></span><span style="font-family:var(--mono);font-size:9px;color:'+col+';letter-spacing:0.1em;text-transform:uppercase;font-weight:700">'+tema.name+' · Vista 360°</span></div>'
     +(tema.id==='circular'?_podecibiBlock():'')
+    +(tema.id==='rep'?_repRadarBlock():'')
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start">'
       +'<div>'+block('Señal en medios · 2 sem','var(--text)',news,true)+block('Prensa estatal','var(--text)',est,true)+estBlock+'</div>'
       +'<div>'+block('DOF · publicaciones','var(--text)',dof,true)+block('Congreso','var(--text)',cong,true)+block('NOMs','var(--text)',noms)+block('Internacional','var(--text)',intl)+'</div>'
@@ -5907,6 +5987,29 @@ function _emisCurve(serie,valField,color){
     +'<circle cx="'+X(n-1).toFixed(1)+'" cy="'+Y(vals[n-1]).toFixed(1)+'" r="2.6" fill="'+color+'"/>'+lab+'</svg>';
 }
 // PODECIBIs — Polos de Desarrollo de Economía Circular para el Bienestar (panel del tema EC)
+// Bloque del tema REP en Radar: lo que sigue en México y el contexto internacional (rep-mundo.json)
+function _repRadarBlock(){
+  if(!_REPM){_repLoad(function(){if(_radarSel==='rep'&&typeof _radarToggle==='function'){var d=document.getElementById('rep-radar-mundo');if(d)d.outerHTML=_repRadarMundo();}});}
+  var mx=[['Reglamento de la Ley General de Economía Circular','Anunciado por SEMARNAT para finales de octubre de 2026 (comparecencia del 6 oct ante comisiones de la Cámara de Diputados).','Pendiente','#3FA07E'],
+          ['Acuerdos generales de REP','Definirán por sector o producto quién está obligado, con qué metas, indicadores y plazos (arts. 10 y 12 de la LGEC). Se esperan en 2027.','2027','#8A9CB0'],
+          ['Planes de manejo vigentes','Mientras no haya acuerdos generales, siguen aplicando los planes de manejo de la ley general de residuos.','Vigente','#066750']];
+  return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
+    +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid rgba(0,158,144,0.25)"><span style="width:7px;height:7px;border-radius:50%;background:#009E90"></span><span style="font-size:12px;font-weight:700;color:#009E90">Lo que sigue en México</span></div>'
+    +mx.map(function(r){return '<div style="display:flex;align-items:flex-start;gap:11px;padding:10px 0;border-top:0.8px solid var(--border)"><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:var(--text)">'+r[0]+'</div><div style="font-size:11px;color:var(--text-sec);line-height:1.45;margin-top:3px">'+r[1]+'</div></div><div style="flex-shrink:0">'+_oblStatusRaw(r[2],r[3])+'</div></div>';}).join('')
+    +_repRadarMundo()
+  +'</div>';
+}
+function _repRadarMundo(){
+  var J=(_REPM&&_REPM.jurisdicciones)||[];
+  if(!J.length)return '<div id="rep-radar-mundo"></div>';
+  var c={};J.forEach(function(j){c[j.estatus]=(c[j.estatus]||0)+1;});
+  var la=J.filter(function(j){return j.region==='América Latina y el Caribe';}).sort(function(a,b){var o={operando:0,adoptada:1,propuesta:2,sin_rep:3};return (o[a.estatus]-o[b.estatus])||String(a.nombre).localeCompare(String(b.nombre),'es');});
+  return '<div id="rep-radar-mundo" style="margin-top:16px">'
+    +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid rgba(0,158,144,0.25)"><span style="width:7px;height:7px;border-radius:50%;background:#009E90"></span><span style="font-size:12px;font-weight:700;color:#009E90">REP de envases en el mundo</span> <span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">'+J.length+' jurisdicciones · '+(c.operando||0)+' operando</span></div>'
+    +la.map(function(j){var e=_REP_EST[j.estatus]||['—','var(--text-muted)'];return '<div style="display:flex;align-items:baseline;gap:11px;padding:7px 0;border-top:0.8px solid var(--border)"><div style="flex:1;min-width:0;font-size:12px;color:var(--text)">'+_repEsc(j.nombre)+(j.desde?' <span style="font-family:var(--mono);font-size:9px;color:var(--text-muted)">desde '+j.desde+'</span>':'')+'</div><div style="flex-shrink:0">'+_oblStatusRaw(e[0],e[1])+'</div></div>';}).join('')
+    +'<div onclick="_goRepMundo()" style="margin-top:10px;font-size:11px;color:var(--green);cursor:pointer;font-weight:600">Ver las '+J.length+' jurisdicciones y las preguntas de diseño →</div>'
+  +'</div>';
+}
 function _podecibiBlock(){
   var d=_podecibiData;if(!d||!d.polos||!d.polos.length)return '';
   var COL={vigente:'#066750',conflicto:'#B7791F',cancelado:'var(--text-muted)'};

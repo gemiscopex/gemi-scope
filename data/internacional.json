@@ -40,9 +40,31 @@
   "jurisdiccion": "Unión Europea",
   "categoria": "cadena_suministro",
   "anio": 2025,
-  "estatus": "En vigor desde 11-feb-2025; la mayoría de obligaciones desde 12-ago-2026",
-  "relevancia_mexico": "Exige que los envases sean reciclables, minimizados y con contenido reciclado mínimo; afecta a exportadores de alimentos, bebidas, cosméticos y bienes de consumo.",
-  "url": "https://eur-lex.europa.eu/eli/reg/2025/40/oj"
+  "estatus": "En vigor desde 11-feb-2025; aplicación general desde 12-ago-2026",
+  "relevancia_mexico": "Exige que los envases sean reciclables, minimizados y con contenido reciclado mínimo, y armoniza la responsabilidad extendida del productor con cuotas moduladas por grado de reciclabilidad. Afecta a exportadores de alimentos, bebidas, cosméticos y bienes de consumo. Las fechas que dependen de actos delegados pueden recorrerse.",
+  "url": "https://eur-lex.europa.eu/eli/reg/2025/40/oj",
+  "hitos": [
+   [
+    "12 ago 2026",
+    "Aplicación general. Prohibición de PFAS en envases en contacto con alimentos."
+   ],
+   [
+    "2028",
+    "Criterios de diseño para reciclaje por categoría de envase."
+   ],
+   [
+    "2029",
+    "Depósito obligatorio para botellas de plástico y latas de un solo uso, con meta de 90% de recolección separada. Cuotas REP moduladas por grado."
+   ],
+   [
+    "2030",
+    "Todo envase debe ser reciclable, en grado A, B o C (95%, 80% o 70%). Contenido reciclado mínimo en plástico: 30% en PET sensible al contacto y en botellas de un solo uso, 10% en otros plásticos sensibles y 35% en el resto."
+   ],
+   [
+    "2038",
+    "Se retira el grado C: solo podrán comercializarse envases de grado A o B."
+   ]
+  ]
  },
  {
   "nombre": "Directiva (UE) 2022/2464 — Reporte de Sostenibilidad Corporativa (CSRD)",
