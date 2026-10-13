@@ -10343,6 +10343,66 @@ async function _authInit(){
     });
   }catch(e){console.warn('Auth init:',e);_authLocked=false;closeAuth();}
 }
+// ── Registro de uso por sección (tabla uso_eventos en Supabase; el usuario solo puede escribir lo suyo) ──
+// Mide qué secciones abren, qué buscan, qué documentos consultan y cuánto tiempo pasan, para el reporte de uso de GEMI.
+var _USO={q:[],sid:Math.random().toString(36).slice(2,12),last:{},ini:false,bloq:false};
+function _usoDev(){var u=navigator.userAgent||'';return /ipad|tablet/i.test(u)?'tableta':/iphone|android|mobile/i.test(u)?'móvil':'escritorio';}
+function _usoTab(){var a=document.querySelector('.tab-content.active');return a?a.id.replace(/^tab-/,''):null;}
+function _uso(tipo,seccion,detalle){
+  try{
+    if(!_sb||!_session||!_session.user)return;
+    var k=tipo+'|'+(seccion||'')+'|'+(detalle||''),now=Date.now();
+    if(_USO.last[k]&&now-_USO.last[k]<4000)return;
+    _USO.last[k]=now;
+    _USO.q.push({tipo:String(tipo).slice(0,40),seccion:seccion?String(seccion).slice(0,80):null,detalle:detalle?String(detalle).slice(0,300):null,
+      ruta:String(location.pathname||'').slice(0,120),sesion:_USO.sid,dispositivo:_usoDev()});
+    if(_USO.q.length>=20)_usoFlush();
+  }catch(e){}
+}
+function _usoFlush(){
+  if(!_USO.q.length||!_sb||!_session)return;
+  var b=_USO.q.splice(0,_USO.q.length);
+  try{_sb.from('uso_eventos').insert(b).then(function(r){if(r&&r.error)console.warn('uso:',r.error.message);},function(){});}catch(e){}
+}
+setInterval(_usoFlush,15000);
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')_usoFlush();});
+// latido: cada minuto con la pestaña visible, la sección en pantalla (permite medir tiempo de uso)
+setInterval(function(){if(document.visibilityState==='visible'&&_session&&typeof _hasAccess==='function'&&_hasAccess())_uso('activo',_usoTab());},60000);
+// inicio de sesión de uso, y acceso bloqueado (prueba vencida o cuenta pendiente)
+setInterval(function(){
+  if(!_session||typeof _hasAccess!=='function'||!_perfil)return;
+  if(_hasAccess()){if(!_USO.ini){_USO.ini=true;_uso('inicio',_usoTab(),(window.innerWidth||0)+'x'+(window.innerHeight||0));}}
+  else if(!_USO.bloq){_USO.bloq=true;_uso('acceso bloqueado',null,'plan: '+(_perfil.plan||'—')+' · vence: '+(_perfil.vence||'—')+' · activo: '+(_perfil.activo?'sí':'no'));_usoFlush();}
+},3000);
+(function(){
+  function wrap(name,fn){var o=window[name];if(typeof o!=='function')return;window[name]=function(){try{fn.apply(null,arguments);}catch(e){}return o.apply(this,arguments);};}
+  wrap('showTab',function(id){_uso('pestaña',id);});
+  wrap('showLegSub',function(v){_uso('subsección','legislacion/'+v);});
+  wrap('intlSetView',function(v){_uso('subsección','internacional/'+v);});
+  wrap('showActores',function(v){_uso('subsección','actores/'+v);});
+  wrap('showActoresSub',function(v){_uso('subsección','actores/'+v);});
+  wrap('oblSetView',function(v){_uso('subsección','obligaciones/'+v);});
+  wrap('agendaSetView',function(v){_uso('subsección','agenda/'+v);});
+  wrap('agendaSetEst',function(v){_uso('filtro','agenda/estado',v);});
+  wrap('showSPTab',function(v){_uso('subsección','panel/'+v);});
+  wrap('showRegulacion',function(v){_uso('subsección','regulacion/'+v);});
+  wrap('_radarToggle',function(v){_uso('tema','radar/'+v);});
+  wrap('_repToggle',function(v){_uso('ficha','internacional/rep',v);});
+  wrap('_repSet',function(k,v){_uso('filtro','internacional/rep',k+': '+v);});
+  var wo=window.open;window.open=function(u){try{_uso('documento',_usoTab(),String(u||''));}catch(e){}return wo.apply(window,arguments);};
+})();
+document.addEventListener('click',function(e){
+  var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;if(!a)return;
+  var h=a.getAttribute('href')||'';if(/^https?:/i.test(h))_uso('documento',_usoTab(),h);
+},true);
+// búsquedas: buscador general (al dejar de teclear) y preguntas a Signal (al enviar)
+(function(){var t=null;document.addEventListener('input',function(e){
+  if(!e.target||e.target.id!=='nav-search-input')return;var v=(e.target.value||'').trim();clearTimeout(t);
+  if(v.length>=3)t=setTimeout(function(){_uso('búsqueda',_usoTab(),v);},1500);
+},true);})();
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'||!e.target||e.target.id!=='cons-chat-input')return;var v=(e.target.value||'').trim();if(v)_uso('pregunta a Signal',_usoTab(),v);
+},true);
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAuth();});
 _authInit();
 </script>
