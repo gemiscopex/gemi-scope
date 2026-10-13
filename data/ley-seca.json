@@ -1,11 +1,31 @@
 {
  "_meta": {
-  "actualizado": "2026-10-13T02:47:54Z",
+  "actualizado": "2026-10-13T17:46:21Z",
   "fuente": "Prensa nacional y local vía Google News",
   "nota": "Capa de prensa (Beta). Detección de restricciones a la venta de alcohol. La vigencia exacta se confirma en el bando o periódico oficial de cada plaza.",
   "total": 200
  },
  "eventos": [
+  {
+   "id": "f99ac05a71ed",
+   "titulo": "Ley seca en Tlalpan: conoce las fechas, horarios y colonia de CDMX donde se prohibirá la venta de alcohol",
+   "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPekNFaWl4Rm10RDVDalBCcUh6TmhOd2pva19UQ090SkNXcGdrRUQ5RVl3ZlFpbUhLSGRtbzNLUTd4QWlISm1vUGlIeEl5Z2V2aGZmam1RajZ4d19BNjEzc0hSM01mblZMX25zV0Z6QVI1cEl2UjV0dWhHQ29zRXcyS25DZHl5Y3AtZjFMUnRjaGYwVmdFVmRhdXRKc2oxQWNnd0NmZ05qSm1sbWJRbXQ5ZmxMUFh6VnI5SVFyWm44X0E4TzlCdTM3ZnQwaWlLSUp2Q0wwWW5Uc2hwRlRxSk4zR0FVTWpCUQ?oc=5",
+   "fuente": "UnoTV",
+   "fecha_publicacion": "2026-10-13T16:27:24Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
+   "motivo": "Otro"
+  },
+  {
+   "id": "7d4cadcbdcd2",
+   "titulo": "Ley seca en Santa Marta por movilización de Fecode: estas son las medidas para este 14 de octubre",
+   "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNcTRZTGlrU2U4alFVOGhjblBfMTlZTHhoeC1MN0tXa2VOY2VFUFpOclc5RjVheUVqVHdkbHNiMHB5Ym5KRWlSWUxIMVlzSnFBYnI0QW9NcmJQN2t0RGI0U21RSjkyRlNiSmtxTGl6UG11LXp6OS03UEZFOFY5d203YWdLLW1DSHkzaDJVMHlBZXZTSTRhWjhaMlFReVM0TWE2TWp1MFJxQS1PZkR3cGtCUktVdF9zdUdrNk8yeFV3NWJPdWhQY1gwZlQ5bERsdHhxVmJPVXM5cTNfZVFpT1FmWHRaMHJxNVJCRm1HeVk0UW8waXlMR2dGMGtZUQ?oc=5",
+   "fuente": "EL INFORMADOR - Santa Marta, Colombia",
+   "fecha_publicacion": "2026-10-13T16:09:09Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
   {
    "id": "5f2048667e26",
    "titulo": "Ley Seca CDMX 2026: fechas y lista de colonias y pueblos donde se prohíbe la venta de alcohol en Tlalpan",
@@ -1982,26 +2002,6 @@
    "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNbzNpVEZQcWxLSmpnZGlnSDVLemJGSzk0V01OdlpNM1BTNW1hOVphNmJIN2JTM3pNd1QtOFFNNmNMMFc5dTZqZUluMWk2TVZRX05uUWRuUzVvd0ZMVU5mQ3lpdEhXdXVhQnpIVjBLWmdxdmVDaWYwLWctRXRXdkR1RUNaRTd1bmhKV3FkaEdIdXpLZ0k4TnkxMnk3LW9aeV9zN2pwTU5Td2t2U0k?oc=5",
    "fuente": "zonafranca.mx",
    "fecha_publicacion": "2026-09-12T01:50:44Z",
-   "estado": "",
-   "ambito": "Municipal",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "616abf8894e9",
-   "titulo": "Metepec alista operativo con más de 400 agentes, tecnología y Ley Seca para Fiestas Patrias",
-   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5PRmZjNzRpQU1TS0JmS01VckRwaUJneGZUdF90emlVZ09JY0ZxZ2JmeWxCM3l3TlBiS3BCQVVkVWxPV2xmREYweXQ2VnVqbjZaU2FaQ3lzTDJIdUgzc1E?oc=5",
-   "fuente": "elmonitoredomex.com",
-   "fecha_publicacion": "2026-09-12T01:33:57Z",
-   "estado": "",
-   "ambito": "Municipal",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "171b28870a2e",
-   "titulo": "Estados donde habrá Ley Seca en festejos del 15 y 16 de septiembre",
-   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNRzByRlVWVDJlTEdJcVlaYUFIaDR5YUk1Um55c2lQTWNmOXV0ZVVMMnV2THRDX09Jd0NESEJwbkRHdkNGUElkamFFSVFSaWpfeWp2OE5tNFdOc044cWZzdkFPRXdOYm1qTzNNa0s1TTluQ01KSHJ4VEFOMGxhRjZzcWJ3UzVLYXp6RmJ2YVBoX3E4RHY0M3l6d1FpLTE4VEl0dGxoTk9jeFVBNG1DQzN5c3JCSnFCVWY5aWfSAb8BQVVfeXFMUC1lZ0FJNjdhVmFLVmhyRkdsamtLNjUzWThxSUxBUjhfdUVlb1FSd2hsNS1xZEFnc3gtS0JwV0hMcVVhMGFXUDJKcGNBdWlRX1dYZjMwU0ZkM1lnYWhMUFZ2NDFwV3VBMlJabnVHaEd2LTJ6ZXpZVkViV3A5SHJsZ281a25mM09MVWV0cjhHdW5LdVJlV0xHeDNkaVZCcEY3cjdjTFo3WTJ6MGNZeHRyWmZtVUNaSTVmOG5iUjR0R28?oc=5",
-   "fuente": "El Informador",
-   "fecha_publicacion": "2026-09-11T23:54:17Z",
    "estado": "",
    "ambito": "Municipal",
    "motivo": "Festividad"
