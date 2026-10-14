@@ -1,10 +1,12 @@
 {
  "_meta": {
-  "ultima_actualizacion": "2026-10-14T09:43:56 CDMX",
-  "estados_con_actividad": 3,
+  "ultima_actualizacion": "2026-10-14T15:32:34 CDMX",
+  "estados_con_actividad": 5,
   "por_estado": {
-   "Yucatán": 18,
-   "Colima": 7,
+   "Yucatán": 10,
+   "Guerrero": 27,
+   "Tabasco": 10,
+   "Colima": 8,
    "Durango": 12
   },
   "nota": "Ediciones oficiales recientes raspadas por estado (etapa 1: estados con portal accesible). No es cobertura nacional completa."
@@ -17,10 +19,58 @@
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-10-14_1.pdf"
   },
   {
-   "estado": "Yucatán",
-   "fecha": "2026-10-13",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-10-13_1.pdf"
+   "estado": "Tabasco",
+   "fecha": "2026-10-14",
+   "titulo": "Periódico Oficial · SUPLEMENTO C AYUNTAMIENTO DE PARAISO. -REGLAS DE OPERACIÓN DEL PROGRAM…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9161/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-10-14",
+   "titulo": "Periódico Oficial · SUPLEMENTO E UNIVERSIDAD POPULAR DE LA CHONTALPA. -CÓDIGO DE CONDUCTA …",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9160/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-10-14",
+   "titulo": "Periódico Oficial · SUPLEMENTO B AYUNTAMIENTO DE NACAJUCA. -ACUERDO POR EL QUE SE APRUEBAN…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9159/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-10-14",
+   "titulo": "Periódico Oficial · SUPLEMENTO 0 AYUNTAMIENTO DE JALPA DE MÉNDEZ. -REGLAMENTO INTERNO DE L…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9158/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-10-14",
+   "titulo": "Periódico Oficial · SUPLEMENTO G AYUNTAMIENTO DE EMILIANO ZAPATA. -REGLAS DE OPERACIÓN 202…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9157/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-10-14",
+   "titulo": "Periódico Oficial · SUPLEMENTO F IEPCT. -ACUERDO CE/2026/058 QUE EMITE EL CONSEJO ESTATAL …",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9156/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-10-14",
+   "titulo": "Periódico Oficial · SUPLEMENTO D AYUNTAMIETO DE BALANCÁN. --REGLAS DE OPERACIÓN DEL PROYEC…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9155/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-10-14",
+   "titulo": "Periódico Oficial · ORDINARIO 0 NOTARIO PÚBLICO No. 19 Y DEL PATRIMONIO INUMUEBLE FEDERAL …",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9154/firmado_qr.pdf"
+  },
+  {
+   "estado": "Colima",
+   "fecha": "2026-10-14",
+   "titulo": "Periódico Oficial del Estado",
+   "url": "https://periodicooficial.col.gob.mx/p/14102026/p26101401.pdf"
   },
   {
    "estado": "Yucatán",
@@ -107,28 +157,34 @@
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/72-normal-2026_20260904165538.pdf"
   },
   {
+   "estado": "Tabasco",
+   "fecha": "2026-10-10",
+   "titulo": "Periódico Oficial · SUPLEMENTO Ñ AYUNTAMIENTO DE CUNDUACÁN. -RESOLUCIÓN POR LA QUE EL AYUN…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9152/firmado_qr.pdf"
+  },
+  {
+   "estado": "Tabasco",
+   "fecha": "2026-10-10",
+   "titulo": "Periódico Oficial · SUPLEMENTO N OSFE. -ACUERDO POR EL QUE SE EMITE EL MANUAL DE PROCEDIMI…",
+   "url": "https://publicacionperiodico.tabasco.gob.mx/documento/9151/firmado_qr.pdf"
+  },
+  {
    "estado": "Colima",
    "fecha": "2026-10-10",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/10102026/p26101001.pdf"
   },
   {
-   "estado": "Yucatán",
+   "estado": "Guerrero",
    "fecha": "2026-10-09",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-10-09_1.pdf"
+   "titulo": "Periódico Oficial · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/Periodico-81-Alcance-II-9-Octubre-2026.pdf"
   },
   {
-   "estado": "Yucatán",
-   "fecha": "2026-10-08",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-10-08_1.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-10-07",
-   "titulo": "Diario Oficial · edición vespertina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-10-07_2.pdf"
+   "estado": "Guerrero",
+   "fecha": "2026-10-09",
+   "titulo": "Periódico Oficial",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/Periodico-081-A-I-09-Octubre-2026.pdf"
   },
   {
    "estado": "Colima",
@@ -137,16 +193,22 @@
    "url": "https://periodicooficial.col.gob.mx/p/07102026/p26100701.pdf"
   },
   {
-   "estado": "Yucatán",
+   "estado": "Guerrero",
    "fecha": "2026-10-06",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-10-06_1.pdf"
+   "titulo": "Periódico Oficial · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/Periodico-80-Alcance-V-6-Octubre-2026.pdf"
   },
   {
-   "estado": "Yucatán",
-   "fecha": "2026-10-05",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-10-05_1.pdf"
+   "estado": "Guerrero",
+   "fecha": "2026-10-06",
+   "titulo": "Periódico Oficial · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/Periodico-80-Alcance-IV-6-Octubre-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-10-06",
+   "titulo": "Periódico Oficial",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/Periodico-080-A-III-06-Octubre-2026.pdf"
   },
   {
    "estado": "Colima",
@@ -155,22 +217,70 @@
    "url": "https://periodicooficial.col.gob.mx/p/03102026/p26100301.pdf"
   },
   {
-   "estado": "Yucatán",
-   "fecha": "2026-10-02",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-10-02_1.pdf"
-  },
-  {
    "estado": "Colima",
    "fecha": "2026-10-02",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/02102026/p26100201.pdf"
   },
   {
-   "estado": "Yucatán",
+   "estado": "Guerrero",
    "fecha": "2026-10-01",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-10-01_1.pdf"
+   "titulo": "Periódico Oficial No. 82 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/P.O-82-ALCANCE-I-13-OCT-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-10-01",
+   "titulo": "Periódico Oficial No. 82",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/P.O-82-13-OCT-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-10-01",
+   "titulo": "Periódico Oficial No. 81",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/P.O-81-09-OCT-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-10-01",
+   "titulo": "Periódico Oficial",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/P.O-EXTRAORDINARIO-08-OCT-2026-1.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-10-01",
+   "titulo": "Periódico Oficial No. 80 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/P.O-80-ALCANCE-II-06-OCT-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-10-01",
+   "titulo": "Periódico Oficial No. 80 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/P.O-80-ALCANCE-I-06-OCT-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-10-01",
+   "titulo": "Periódico Oficial No. 80",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/P.O-80-06-OCT-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-10-01",
+   "titulo": "Periódico Oficial No. 79 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/P.O-79-ALCANCE-II-02-OCT-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-10-01",
+   "titulo": "Periódico Oficial No. 79",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/P.O-79-02-OCT-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-10-01",
+   "titulo": "Periódico Oficial",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/10/P.O-EXTRAORDINARIO-MIERCOLES-30-DE-SEP-2026.pdf"
   },
   {
    "estado": "Yucatán",
@@ -197,16 +307,34 @@
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-29_1.pdf"
   },
   {
-   "estado": "Yucatán",
+   "estado": "Guerrero",
    "fecha": "2026-09-29",
-   "titulo": "Diario Oficial · edición vespertina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-29_2.pdf"
+   "titulo": "Periódico Oficial",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/Periodico-078-A-III-29-Septiembre-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-09-29",
+   "titulo": "Periódico Oficial",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/Periodico-078-A-II-29-Septiembre-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-09-29",
+   "titulo": "Periódico Oficial · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/Periodico-78-Alcance-I-29-Septiembre-2026.pdf"
   },
   {
    "estado": "Colima",
    "fecha": "2026-09-29",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/29092026/p26092901.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-09-28",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-28_1.pdf"
   },
   {
    "estado": "Colima",
@@ -231,6 +359,60 @@
    "fecha": "2026-09-24",
    "titulo": "Diario Oficial · edición vespertina",
    "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-09-24_2.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-09-01",
+   "titulo": "Periódico Oficial No. 78 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/P.O-78-ALCANCE-VII-29-SEP-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-09-01",
+   "titulo": "Periódico Oficial No. 78 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/P.O-78-ALCANCE-VI-29-SEP-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-09-01",
+   "titulo": "Periódico Oficial No. 78 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/P.O-78-ALCANCE-V-29-SEP-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-09-01",
+   "titulo": "Periódico Oficial No. 78 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/P.O-78-ALCANCE-IV-29-SEP-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-09-01",
+   "titulo": "Periódico Oficial No. 78",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/P.O-78-29-SEP-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-09-01",
+   "titulo": "Periódico Oficial",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/P.O-EXTRAORDINARIIO-LUNES-28-SEP-2026-1.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-09-01",
+   "titulo": "Periódico Oficial No. 77 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/P.O-77-ALCANCE-II-25-SEP-2026-1.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-09-01",
+   "titulo": "Periódico Oficial No. 77 · alcance",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/P.O-77-ALCANCE-I-25-SEP-2026.pdf"
+  },
+  {
+   "estado": "Guerrero",
+   "fecha": "2026-09-01",
+   "titulo": "Periódico Oficial No. 77",
+   "url": "https://periodicooficial.guerrero.gob.mx/wp-content/uploads/2026/09/P.O-77-25-SEP-2026.pdf"
   }
  ]
 }
