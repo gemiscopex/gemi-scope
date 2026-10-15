@@ -4290,10 +4290,10 @@ function _lsRun(){
 // para reactivarlo, volver a agregar ['pendientes','Reglamentaciones pendientes'] a las pestañas de renderAgenda.
 // docs: [{label, url}] — enlaces a documentos cuando estén disponibles (opcional)
 var _PENDIENTES=[
-  {t:'Reglamento de la Ley General de Economía Circular',e:'PENDIENTE',d:'La LGEC (DOF 19-ene-2026) mandató su Reglamento en 180 días: el plazo venció el 19-jul-2026 sin publicación registrada. Detonará las obligaciones de REP para envases y empaques.',org:'Ejecutivo Federal / SEMARNAT',docs:[{label:'Ley (DOF)',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEC.pdf'}]},
-  {t:'Armonización estatal de la LGEC',e:'EN PROCESO',d:'Las 32 legislaturas deben armonizar su marco local (plazo 18-jul-2026). Puebla aprobó dictámenes en comisión (jul-2026) y Tlaxcala trabaja su ley local; el resto va parcial.',org:'32 legislaturas estatales',docs:[]},
+  {t:'Reglamento de la Ley General de Economía Circular',e:'PENDIENTE',d:'La LGEC (DOF 19-ene-2026) mandató su Reglamento en 180 días: el plazo venció el 19-jul-2026. La secretaria Bárcena dijo el 6-oct-2026, ante comisiones de la Cámara de Diputados, que saldrá a finales de octubre, con enfoque por sector. Sin anteproyecto público ni ingreso localizado a CONAMER.',org:'Ejecutivo Federal / SEMARNAT',docs:[{label:'Ley (DOF)',url:'https://www.diputados.gob.mx/LeyesBiblio/pdf/LGEC.pdf'}]},
+  {t:'Armonización estatal de la LGEC',e:'EN PROCESO',d:'El plazo venció el 19-jul-2026. La Ciudad de México y Puebla aprobaron su armonización a tiempo y la publicaron en agosto (21 y 6). En las 22 entidades sin ordenamiento propio rige directamente la Ley General. Hay 46 iniciativas de ley en comisión en 22 entidades.',org:'32 legislaturas estatales',docs:[]},
   {t:'Programa Nacional de Economía Circular',e:'PENDIENTE',d:'Instrumento de planeación derivado de la LGEC; corre a 180 días de publicado el Reglamento, por lo que está condicionado a que éste salga primero.',org:'SEMARNAT',docs:[]},
-  {t:'Acuerdo General de Implementación de la REP',e:'PENDIENTE',d:'Definirá la operación de la Responsabilidad Extendida del Productor bajo la LGEC (metas, sujetos obligados y planes de manejo). No iniciado.',org:'SEMARNAT',docs:[]},
+  {t:'Acuerdo General de Implementación de la REP',e:'PENDIENTE',d:'Los acuerdos generales definirán, por sector o producto, sujetos obligados, metas, indicadores y plazos de la Responsabilidad Extendida del Productor (arts. 10 y 12 de la LGEC). Sin anteproyecto público; se esperan en 2027.',org:'SEMARNAT',docs:[]},
   {t:'Reglamento de la Ley General de Aguas',e:'PENDIENTE',d:'Reglamento de la nueva Ley General de Aguas (DOF 11-dic-2025); definirá concesiones, usos y obligaciones de reporte para usuarios industriales.',org:'CONAGUA / SEMARNAT',docs:[]},
   {t:'Reforma a la LGEEPA (anunciada)',e:'PENDIENTE',d:'Reforma anunciada a la Ley General del Equilibrio Ecológico y la Protección al Ambiente; ajustaría instrumentos de política ambiental y evaluación de impacto.',org:'Ejecutivo Federal / Congreso',docs:[]},
   {t:'Reforma a la LGPGIR en materia de REP',e:'EN PROCESO',d:'Adecúa la Ley General para la Prevención y Gestión Integral de los Residuos al esquema de Responsabilidad Extendida del Productor.',org:'Congreso de la Unión',docs:[]},
@@ -5046,6 +5046,7 @@ var NORMAS=[
   {id:'NOM-043-SEMARNAT-1993',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Emisiones de partículas en fuentes fijas',implic:'Riesgo de endurecimiento regulatorio',afecta:'Papel · tintas · alimentos · conversión de empaque',url:'https://dof.gob.mx/nota_detalle.php?codigo=4795450&fecha=22/10/1993'},
   {id:'NOM-085-SEMARNAT-2011',dep:'SEMARNAT',tema:'Aire',tipo:'NOM',objeto:'Emisiones de equipos de combustión',implic:'Impacto en costos industriales',afecta:'Papel · alimentos · bebidas · higiene · logística (fitosanitario)',url:'https://dof.gob.mx/nota_detalle.php?codigo=5232012&fecha=02/02/2012'},
   {id:'PROY-NOM-160-SEMARNAT-2026',dep:'SEMARNAT',tema:'Residuos',tipo:'PROY',objeto:'Planes de manejo de residuos peligrosos',implic:'Instrumento clave en economía circular',afecta:'Manufactura · química',url:'https://dof.gob.mx/nota_detalle.php?codigo=5790008&fecha=09/06/2026'},
+  {id:'NOM-157-SEMARNAT-2026',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Planes de manejo de residuos mineros',implic:'Sustituye a la NOM-157-SEMARNAT-2009; publicada el 9-sep-2026, obligatoria desde el 8-mar-2027',afecta:'Minería · metalurgia',url:'https://sidof.segob.gob.mx/notas/5798261'},
   {id:'NOM-161-SEMARNAT-2011',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Clasificación de residuos de manejo especial',implic:'Base operativa para REP',afecta:'Empaque · multilaminados · marcas de consumo',url:'https://dof.gob.mx/nota_detalle.php?codigo=5286505&fecha=01/02/2013'},
   {id:'NOM-052-SEMARNAT-2005',dep:'SEMARNAT',tema:'Residuos',tipo:'NOM',objeto:'Identificación de residuos peligrosos',implic:'Norma estructural de cumplimiento',afecta:'Manufactura industrial',url:'https://dof.gob.mx/nota_detalle.php?codigo=4912592&fecha=23/06/2006'},
   {id:'NOM-002-1-SCT-SEMAR-ARTF/2023',dep:'SCT / SEMAR / ARTF',tema:'Logística',tipo:'NOM',objeto:'Transporte de materiales peligrosos',implic:'Impacto en cadena de suministro',afecta:'Logística · transporte',url:'https://dof.gob.mx/nota_detalle.php?codigo=5734678&fecha=29/07/2024'},
@@ -5097,7 +5098,7 @@ function filterNormasType(type,btn){
 var NOM_EXTRA={
  'PROY-NOM-AGUA-REGENERADA-2026':{programa2026:true,grupo:'ACTIVO',pnic:'Nueva · en desarrollo (PNIC 2026)',gemi:true,contexto:'Nueva NOM sobre agua regenerada para uso y consumo humano, en desarrollo dentro del Programa Nacional de Infraestructura de la Calidad 2026. GEMI participa activamente en su grupo de trabajo.'},
  'NOM-002-SEMARNAT-1996':{programa2026:true,grupo:'PAUSADO',pnic:'Modificación · pausada (PNIC 2026)',gemi:true,contexto:'Propuesta de modificación dentro del PNIC 2026, actualmente pausada. GEMI participa en el grupo de trabajo.'},
- 'PROY-NOM-160-SEMARNAT-2026':{programa2026:true,grupo:'PAUSADO',pnic:'Reprogramación · en consulta pública (PNIC 2026)',gemi:true,contexto:'Reprogramada en el PNIC 2026; actualmente en consulta pública. GEMI participa en su revisión.'},
+ 'PROY-NOM-160-SEMARNAT-2026':{programa2026:true,grupo:'PAUSADO',pnic:'Reprogramación · consulta cerrada el 8-ago-2026 (PNIC 2026)',gemi:true,contexto:'Reprogramada en el PNIC 2026. Su consulta pública cerró el 8 de agosto de 2026 y está pendiente de publicación. GEMI participa en su revisión.'},
  'NOM-161-SEMARNAT-2011':{programa2026:true,grupo:'CANCELADO',pnic:'Cancelada en el PNIC 2026',gemi:false,contexto:'Su revisión fue cancelada dentro del PNIC 2026.'},
  'NOM-043-SEMARNAT-1993':{programa2026:true,grupo:'ACTIVO',pnic:'Modificación · en desarrollo (PNIC 2026)',gemi:true,contexto:'En desarrollo su modificación dentro del PNIC 2026. GEMI participa activamente.'},
  'NOM-085-SEMARNAT-2011':{programa2026:true,grupo:'ACTIVO',pnic:'Modificación · en desarrollo (PNIC 2026)',gemi:true,contexto:'En desarrollo su modificación dentro del PNIC 2026. GEMI participa activamente.'},
@@ -6012,8 +6013,8 @@ function _repRadarMundo(){
 }
 function _podecibiBlock(){
   var d=_podecibiData;if(!d||!d.polos||!d.polos.length)return '';
-  var COL={vigente:'#066750',conflicto:'#B7791F',cancelado:'var(--text-muted)'};
-  var LBL={vigente:'Vigente',conflicto:'En conflicto',cancelado:'Cancelado'};
+  var COL={vigente:'#066750',conflicto:'#B7791F',descartado:'var(--text-muted)',cancelado:'var(--text-muted)',anunciado:'#8A9CB0'};
+  var LBL={vigente:'En curso',conflicto:'En conflicto',descartado:'Descartado',cancelado:'Abrogado',anunciado:'Anunciado'};
   var esc=function(u){return (u||'').replace(/'/g,'%27');};
   var fmt=function(f){if(!f)return '';if(/^\d{4}$/.test(f))return f;var x=new Date(String(f).substring(0,10)+'T12:00:00');return isNaN(x)?f:x.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});};
   var rows=(d.polos||[]).map(function(p){
@@ -6035,7 +6036,7 @@ function _podecibiBlock(){
   }).join('');
   var vig=(d.polos||[]).filter(function(p){return p.estatus==='vigente';}).length;
   return '<div style="margin-bottom:22px;padding-bottom:18px;border-bottom:0.8px solid var(--border)">'
-    +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid rgba(0,158,144,0.25)"><span style="width:7px;height:7px;border-radius:50%;background:#009E90"></span><span style="font-size:12px;font-weight:700;color:#009E90">Polos de Economía Circular (PODECIBI)</span> <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+d.polos.length+' · '+vig+' vigente'+(vig===1?'':'s')+'</span></div>'
+    +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid rgba(0,158,144,0.25)"><span style="width:7px;height:7px;border-radius:50%;background:#009E90"></span><span style="font-size:12px;font-weight:700;color:#009E90">Polos de Economía Circular (PODECIBI)</span> <span style="font-family:var(--mono);font-size:9px;font-weight:400;color:var(--text-muted)">'+d.polos.length+' · '+vig+' en curso</span></div>'
     +'<div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);margin-bottom:4px">Declaratorias SEMARNAT · DOF</div>'
     +rows
   +'</div>';

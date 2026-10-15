@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Economía circular en las entidades federativas · Iniciativa GEMI</title>
+<meta name="description" content="Reporte de Iniciativa GEMI con información de Scope: el mapa regulatorio de la economía circular en los 32 estados de México. Descárgalo gratis.">
+<link rel="canonical" href="https://scopegemi.com/reporte-ec/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Economía circular en las entidades federativas">
+<meta property="og:description" content="El nuevo mapa regulatorio de la economía circular en México desde los 32 estados. Reporte de Iniciativa GEMI con información de Scope.">
+<meta property="og:url" content="https://scopegemi.com/reporte-ec/">
+<meta property="og:image" content="https://scopegemi.com/reporte-ec/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://scopegemi.com/reporte-ec/og.jpg">
+<link rel="icon" href="/assets/logo-gemi-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Scope Sans';src:url('/assets/fonts/heros-regular.woff2') format('woff2');font-weight:1 550;font-display:swap}
+@font-face{font-family:'Scope Sans';src:url('/assets/fonts/heros-bold.woff2') format('woff2');font-weight:551 1000;font-display:swap}
+:root{--ink:#0D1B2A;--sec:#4E6A86;--mute:#8A9CB0;--line:rgba(13,27,42,.1);--soft:#F5F7F6;--g:#066750;--g2:#0A7C63;--bg:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Scope Sans',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:inherit}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+/* barra */
+.bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:52px}
+.bar img{height:28px;display:block}
+.bar nav{display:flex;gap:24px;font-size:13px}
+.bar nav a{text-decoration:none;color:var(--sec)}
+.bar nav a:hover{color:var(--ink)}
+.bar .dl{color:var(--g);font-weight:700}
+/* portada */
+.hero{text-align:center;padding:88px 0 0}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--g);font-weight:500}
+h1{font-size:clamp(40px,6.4vw,80px);line-height:1.02;letter-spacing:-.04em;font-weight:700;margin:18px auto 0;max-width:900px;text-wrap:balance}
+.lede{font-size:clamp(18px,2.2vw,24px);line-height:1.4;color:var(--sec);margin:22px auto 0;max-width:680px;text-wrap:balance}
+.ctas{display:flex;gap:28px;justify-content:center;align-items:center;margin-top:34px;flex-wrap:wrap}
+.btn{display:inline-block;background:var(--g);color:#fff;text-decoration:none;font-weight:700;font-size:16px;padding:14px 28px;border-radius:12px;border:0;cursor:pointer;font-family:inherit;transition:background .2s}
+.btn:hover{background:var(--g2)}
+.btn:focus-visible,.lnk:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--g);outline-offset:3px}
+.lnk{color:var(--g);text-decoration:none;font-size:16px;font-weight:500}
+.lnk:hover{text-decoration:underline}
+.cover{margin:64px auto 0;max-width:460px;perspective:1600px}
+.cover img{width:100%;display:block;border-radius:4px;box-shadow:0 40px 80px -20px rgba(13,27,42,.35),0 18px 36px -18px rgba(13,27,42,.3);transform:rotateX(10deg) translateY(30px);opacity:0;transition:transform 1.4s cubic-bezier(.16,1,.3,1),opacity 1.1s ease}
+.cover.on img{transform:rotateX(0) translateY(0);opacity:1}
+.by{margin-top:26px;font-size:13px;color:var(--mute)}
+/* cifras */
+.nums{margin-top:110px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.nums .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.num{padding:44px 20px 40px;text-align:left}
+.num+.num{border-left:1px solid var(--line)}
+.num b{display:block;font-size:clamp(44px,5.4vw,68px);line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.num span{display:block;margin-top:12px;font-size:15px;color:var(--sec);line-height:1.4;max-width:220px}
+/* contenido */
+section.blk{padding:120px 0 0}
+h2{font-size:clamp(32px,4.2vw,52px);line-height:1.05;letter-spacing:-.035em;font-weight:700;max-width:760px;text-wrap:balance}
+.intro{font-size:19px;color:var(--sec);margin-top:18px;max-width:680px;line-height:1.5}
+.toc{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;column-gap:56px}
+.toc div{display:flex;gap:18px;padding:20px 0;border-top:1px solid var(--line)}
+.toc i{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--g);font-weight:500;padding-top:3px;flex:0 0 26px}
+.toc b{display:block;font-size:17px;letter-spacing:-.01em}
+.toc p{font-size:14.5px;color:var(--sec);margin-top:4px;line-height:1.5}
+/* formulario */
+.get{padding:130px 0 120px}
+.get .wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.get h2{max-width:460px}
+.get .intro{max-width:440px}
+.get .mini{margin-top:36px;display:flex;gap:18px;align-items:center}
+.get .mini img{width:92px;border-radius:3px;box-shadow:0 14px 30px -12px rgba(13,27,42,.35)}
+.get .mini span{font-size:14px;color:var(--sec);line-height:1.5}
+form{display:grid;gap:18px}
+label{display:block;font-size:13px;color:var(--sec);margin-bottom:7px;font-weight:500}
+input[type=text],input[type=email],select{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--soft);border:1px solid transparent;border-radius:12px;padding:14px 16px;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none;appearance:none}
+input:focus,select:focus{background:#fff;border-color:var(--g)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.chk{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--sec);line-height:1.5}
+.chk input{margin-top:3px;accent-color:var(--g);width:16px;height:16px;flex-shrink:0}
+.hp{position:absolute;left:-9999px}
+.msg{font-size:14px;color:var(--sec);min-height:20px}
+.msg.err{color:#B42318}
+.ok{display:none}
+.ok.on{display:block}
+.ok h3{font-size:30px;letter-spacing:-.03em;line-height:1.1}
+.ok p{color:var(--sec);margin-top:12px;font-size:16px}
+.ok .btn{margin-top:24px}
+footer{border-top:1px solid var(--line);padding:34px 0 46px;font-size:13px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:var(--sec);text-decoration:none}
+footer a:hover{color:var(--ink)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s cubic-bezier(.16,1,.3,1)}
+.rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv,.cover img{opacity:1!important;transform:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media (max-width:860px){
+  .nums .wrap{grid-template-columns:1fr 1fr}
+  .num:nth-child(3){border-left:0}
+  .num:nth-child(n+3){border-top:1px solid var(--line)}
+  .toc{grid-template-columns:1fr}
+  .get .wrap{grid-template-columns:1fr;gap:44px}
+  .bar nav a:not(.dl){display:none}
+}
+@media (max-width:480px){.wrap{padding:0 16px}.row{grid-template-columns:1fr}.num{padding:30px 14px 28px}.hero{padding-top:64px}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <a href="https://iniciativagemi.org" target="_blank" rel="noopener" aria-label="Iniciativa GEMI"><img src="/assets/logo-gemi-icon.png" alt="Iniciativa GEMI"></a>
+  <nav><a href="/observatorio/">Observatorio</a><a href="/">Scope</a><a class="dl" href="#descarga">Descargar</a></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <div class="eyebrow mono">Reporte · Octubre 2026</div>
+  <h1>Economía circular en las entidades federativas</h1>
+  <p class="lede">El nuevo mapa regulatorio de la economía circular en México, desde los 32 estados.</p>
+  <div class="ctas"><a class="btn" href="#descarga">Descargar el reporte</a><a class="lnk" href="/observatorio/">Explorar el Observatorio →</a></div>
+  <div class="cover" id="cover"><img src="portada.jpg" alt="Portada del reporte Economía circular en las entidades federativas" width="900" height="1272"></div>
+  <div class="by">Análisis de Iniciativa GEMI con información de Scope · Corte al 11 de octubre de 2026</div>
+</div></section>
+
+<section class="nums rv" aria-label="Cifras clave"><div class="wrap">
+  <div class="num"><b data-n="46">46</b><span>iniciativas de ley en comisión en 22 congresos estatales</span></div>
+  <div class="num"><b data-n="10">10</b><span>entidades con ordenamiento propio de economía circular</span></div>
+  <div class="num"><b data-n="22">22</b><span>entidades donde se aplica directamente la Ley General</span></div>
+  <div class="num"><b data-n="32">32</b><span>entidades verificadas en fuente primaria</span></div>
+</div></section>
+
+<section class="blk"><div class="wrap">
+  <h2 class="rv">Lo que encontrarás en el reporte</h2>
+  <p class="intro rv">Cada dato está ligado al documento oficial que lo sostiene: decretos, dictámenes, gacetas parlamentarias y periódicos oficiales de las 32 entidades y de la Federación.</p>
+  <div class="toc rv">
+    <div><i>01</i><span><b>El marco de la Ley General</b><p>Qué establece, qué falta para que opere y qué le toca a cada orden de gobierno.</p></span></div>
+    <div><i>02</i><span><b>Expediente por entidad</b><p>La situación de los 32 estados, con su último movimiento y promovente.</p></span></div>
+    <div><i>03</i><span><b>Antecedentes estatales</b><p>Las ocho leyes anteriores a la Ley General y los tres diseños que siguen.</p></span></div>
+    <div><i>04</i><span><b>Comparación con la Ley General</b><p>Doce elementos centrales revisados artículo por artículo en los diez ordenamientos.</p></span></div>
+    <div><i>05</i><span><b>Polos y municipios</b><p>Las figuras federales y el Acuerdo Nacional de Municipios en el territorio.</p></span></div>
+    <div><i>06</i><span><b>Peso manufacturero</b><p>Dónde se concentra la industria y qué régimen aplica en cada estado.</p></span></div>
+    <div><i>07</i><span><b>Quién promueve</b><p>Las 46 iniciativas por grupo parlamentario, comisión y etapa del trámite.</p></span></div>
+    <div><i>08</i><span><b>Factores asociados</b><p>Qué distingue a los congresos que más legislan en la materia.</p></span></div>
+    <div><i>09</i><span><b>Lo que viene</b><p>Los frentes que definirán las obligaciones para la industria en los próximos doce meses.</p></span></div>
+  </div>
+</div></section>
+
+<section class="get" id="descarga"><div class="wrap">
+  <div class="rv">
+    <h2>Descarga el reporte</h2>
+    <p class="intro">Déjanos tus datos y la descarga empieza de inmediato. Es gratuito.</p>
+    <div class="mini"><img src="portada.jpg" alt="" width="92" height="130"><span>PDF · 23 páginas · 3.2 MB<br>Octubre de 2026</span></div>
+  </div>
+  <div class="rv">
+    <form id="f" novalidate>
+      <div><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" autocomplete="name" required></div>
+      <div><label for="correo">Correo</label><input id="correo" name="correo" type="email" autocomplete="email" required></div>
+      <div class="row">
+        <div><label for="institucion">Organización</label><input id="institucion" name="institucion" type="text" autocomplete="organization"></div>
+        <div><label for="cargo">Cargo</label><input id="cargo" name="cargo" type="text" autocomplete="organization-title"></div>
+      </div>
+      <div><label for="sector">Sector</label><select id="sector" name="sector"><option value="">Selecciona</option><option>Empresa</option><option>Gobierno</option><option>Poder Legislativo</option><option>Academia</option><option>Organización de la sociedad civil</option><option>Consultoría o despacho</option><option>Medios</option><option>Otro</option></select></div>
+      <input class="hp" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="chk"><input type="checkbox" name="acepto"><span>Acepto que Iniciativa GEMI use mis datos para enviarme el reporte y novedades sobre economía circular. Puedo pedir que los eliminen en cualquier momento escribiendo a contacto@scopegemi.com.</span></label>
+      <div><button class="btn" type="submit">Descargar PDF</button></div>
+      <div class="msg" id="msg" role="status" aria-live="polite"></div>
+    </form>
+    <div class="ok" id="ok">
+      <h3 id="ok-h">Listo.</h3>
+      <p>Tu descarga empezó. Si no se abrió, usa el botón.</p>
+      <a class="btn" id="ok-a" href="GEMI_Economia_Circular_Entidades_Oct2026.pdf" download>Descargar PDF</a>
+      <p style="margin-top:28px">También puedes consultar los datos estado por estado en el <a class="lnk" href="/observatorio/">Observatorio de Economía Circular</a>.</p>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>Análisis de Iniciativa GEMI con información de Scope</span>
+  <span><a href="/observatorio/">Observatorio</a> &nbsp;·&nbsp; <a href="/">scopegemi.com</a> &nbsp;·&nbsp; <a href="mailto:contacto@scopegemi.com">contacto@scopegemi.com</a></span>
+</div></footer>
+
+<script>
+(function(){
+  var PDF='GEMI_Economia_Circular_Entidades_Oct2026.pdf';
+  var URL_='https://winssrwnqsaahfjpxgcj.supabase.co/rest/v1/observatorio_contactos';
+  var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndpbnNzcnducXNhYWhmanB4Z2NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2NDMxMzQsImV4cCI6MjA4ODIxOTEzNH0.ObupFS_cfoAVu8hzfo44dloiuYUmxY3twZ_9u0jkWLw';
+  // aparición suave al entrar en pantalla
+  var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.18}):null;
+  document.querySelectorAll('.rv').forEach(function(el){io?io.observe(el):el.classList.add('on');});
+  var cv=document.getElementById('cover');var img=cv.querySelector('img');
+  var show=function(){requestAnimationFrame(function(){cv.classList.add('on');});};
+  if(img.complete)show();else img.addEventListener('load',show);
+  // las cifras cuentan hacia arriba una vez
+  var nums=document.querySelector('.nums');
+  if(io&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io2=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;io2.disconnect();
+      nums.querySelectorAll('b[data-n]').forEach(function(b){var n=+b.dataset.n,t0=performance.now();
+        (function f(t){var u=Math.min(1,(t-t0)/1300);u=1-Math.pow(1-u,3);b.textContent=Math.round(n*u);if(u<1)requestAnimationFrame(f);})(t0);});
+    },{threshold:.5});io2.observe(nums);
+  }
+  // formulario: guarda el contacto y entrega el PDF
+  var f=document.getElementById('f'),msg=document.getElementById('msg'),btn=f.querySelector('button');
+  function bajar(nombre){
+    f.style.display='none';var ok=document.getElementById('ok');ok.classList.add('on');
+    if(nombre)document.getElementById('ok-h').textContent='Listo, '+nombre+'.';
+    var a=document.createElement('a');a.href=PDF;a.download='';document.body.appendChild(a);a.click();a.remove();
+  }
+  var intentos=0;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var d={};['nombre','correo','institucion','cargo','sector'].forEach(function(k){d[k]=(f.elements[k].value||'').trim();});
+    if(f.elements.web.value)return; // bot
+    if(!d.nombre){msg.className='msg err';msg.textContent='Escribe tu nombre.';f.elements.nombre.focus();return;}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(d.correo)){msg.className='msg err';msg.textContent='Escribe un correo válido.';f.elements.correo.focus();return;}
+    if(!f.elements.acepto.checked){msg.className='msg err';msg.textContent='Marca la casilla para continuar.';return;}
+    d.interes='Descarga del reporte de economía circular (oct 2026)';d.origen='reporte-ec-oct2026';d.mensaje=null;
+    msg.className='msg';msg.textContent='Preparando tu descarga…';btn.disabled=true;
+    var primer=d.nombre.split(' ')[0];
+    fetch(URL_,{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(d)})
+      .then(function(r){if(r.ok){bajar(primer);}else throw new Error(r.status);})
+      .catch(function(){intentos++;btn.disabled=false;
+        if(intentos>=2){bajar(primer);return;}
+        msg.className='msg err';msg.textContent='No pudimos registrar tus datos. Intenta de nuevo.';});
+  });
+})();
+</script>
+</body>
+</html>

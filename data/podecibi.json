@@ -1,7 +1,7 @@
 {
  "_meta": {
-  "actualizado": "2026-08-05",
-  "fuente": "Declaratorias DOF · SEMARNAT (Subsecretaría de Desarrollo Sostenible y Economía Circular)",
+  "actualizado": "2026-10-11",
+  "fuente": "Declaratorias DOF · SEMARNAT · Reporte \"Economía circular en las entidades federativas\" (Iniciativa GEMI, corte 11 oct 2026)",
   "nota": "Polos de Desarrollo de Economía Circular para el Bienestar (PODECIBI). Seguimiento de declaratorias, estatus y conflicto social."
  },
  "polos": [
@@ -14,7 +14,7 @@
    "declaratoria": "2026-07-27",
    "estatus": "vigente",
    "enfoque": "Valorización de sargazo, plásticos y residuos de construcción",
-   "nota": "Firmada por SEMARNAT (Bárcena). Consulta ejidal 55–0 a favor; vínculo con CICY. Único vigente sin conflicto activo.",
+   "nota": "En curso: desarrollador pendiente de asignación (corte 11 oct 2026). Firmada por SEMARNAT (Bárcena). Consulta ejidal 55–0 a favor; vínculo con CICY.",
    "url": "https://www.dof.gob.mx/"
   },
   {
@@ -24,9 +24,9 @@
    "sitio": "Ex Hacienda de San Pedro Ecatepec",
    "superficie_ha": 20.0,
    "declaratoria": "2026-06-08",
-   "estatus": "conflicto",
+   "estatus": "descartado",
    "enfoque": "Gestión integral de residuos del estado",
-   "nota": "160 mdp de urbanización; vínculo con la U. Politécnica de Tlaxcala. Enfrentamientos con pobladores de San Pedro Ecatepec (jun-2026).",
+   "nota": "El gobierno estatal anunció el 8 oct 2026 que no lo construirá en este predio. La declaratoria sigue sin abrogar. Hubo enfrentamientos con pobladores de San Pedro Ecatepec (jun 2026).",
    "url": "https://normatecambiental.org/2026/06/08/declaratoria-de-polo-de-desarrollo-de-economia-circular-en-tlaxcala/"
   },
   {
@@ -36,9 +36,9 @@
    "sitio": "Antigua Hacienda de San Miguel del Salado",
    "superficie_ha": 40.4,
    "declaratoria": "2026-03-02",
-   "estatus": "conflicto",
+   "estatus": "vigente",
    "enfoque": "Llantas, plásticos, textiles, aceites y residuos de construcción",
-   "nota": "500 empleos directos previstos. Oposición de pobladores, Movimiento Ciudadano y Greenpeace; denuncia ante PROFEPA. MIA aún no ingresada.",
+   "nota": "En curso: autorizaciones ambientales en trámite (corte 11 oct 2026). 500 empleos directos previstos. Hubo oposición de pobladores, Movimiento Ciudadano y Greenpeace, y denuncia ante PROFEPA.",
    "url": "https://sidof.segob.gob.mx/notas/docFuente/5781224"
   },
   {
@@ -46,11 +46,35 @@
    "estado": "Hidalgo",
    "municipio": "Tlaxcoapan y Atitalaquia",
    "sitio": "",
-   "superficie_ha": null,
-   "declaratoria": "2025",
+   "superficie_ha": 275.1,
+   "declaratoria": "2025-08-01",
    "estatus": "cancelado",
    "enfoque": "",
-   "nota": "Primer PODECIBI declarado. Cancelado en jul-2026 por rechazo en votación.",
+   "nota": "Primer PODECIBI declarado. SEMARNAT lo abrogó el 23 jul 2026, tras la consulta pública.",
+   "url": ""
+  },
+  {
+   "id": "cuautla",
+   "estado": "Morelos",
+   "municipio": "Cuautla",
+   "sitio": "",
+   "superficie_ha": null,
+   "declaratoria": "",
+   "estatus": "anunciado",
+   "enfoque": "",
+   "nota": "Anunciado por el gobierno estatal el 18 jul 2026, sin declaratoria.",
+   "url": ""
+  },
+  {
+   "id": "tecate",
+   "estado": "Baja California",
+   "municipio": "Tecate",
+   "sitio": "",
+   "superficie_ha": null,
+   "declaratoria": "",
+   "estatus": "anunciado",
+   "enfoque": "",
+   "nota": "SEMARNAT dijo el 6 oct 2026, ante comisiones de la Cámara de Diputados, que se plantea. Sin declaratoria.",
    "url": ""
   }
  ]

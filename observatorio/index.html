@@ -527,7 +527,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
   </div></div>
 
   <div class="chapter"><div class="wrap grid">
-    <div class="reveal"><div class="stat" id="c3-n">0</div><h2 id="c3-h">iniciativas de ley en los congresos locales</h2><p>Cada punto es una iniciativa, con promovente, comisión, nivel de seguimiento y su documento oficial.</p><button class="cta" data-go="legislacion/iniciativas">Explorar iniciativas →</button></div>
+    <div class="reveal"><div class="stat" id="c3-n">0</div><h2 id="c3-h">iniciativas de ley en los congresos locales</h2><p>Cada punto es una iniciativa, con promovente, comisión, etapa del trámite y su documento oficial.</p><button class="cta" data-go="legislacion/iniciativas">Explorar iniciativas →</button></div>
     <div class="reveal"><div class="chart" id="crono"></div><div class="legend" id="crono-leg"></div></div>
   </div></div>
 
@@ -647,7 +647,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
       </div>
       <div class="two" id="ini-charts">
         <div><div class="sub-h" style="margin-top:0">Por partido</div><div class="chart" id="ini-part"></div></div>
-        <div><div class="sub-h" style="margin-top:0" id="ini-niv-h">Por nivel de seguimiento y objeto</div><div class="chart" id="ini-niv"></div></div>
+        <div><div class="sub-h" style="margin-top:0" id="ini-niv-h">Por etapa del trámite y objeto</div><div class="chart" id="ini-niv"></div></div>
       </div>
       <div class="tbar" style="margin-top:34px">
         <span><span class="flab">Entidad</span><select class="sel" id="if-ent"></select></span>
@@ -806,7 +806,7 @@ var REGC={LEY_ARM:'#066750',LEY_ESP:'#3E8C77',LEY_INT:'#8DBFB0',DICTAMEN:'#3D5A7
 var REGL={LEY_ARM:'Ley armonizada',LEY_ESP:'Ley específica',LEY_INT:'Ley integrada a residuos',DICTAMEN:'Dictamen pendiente del Pleno',INICIATIVA:'Iniciativa de ley en estudio',OTRAS:'Solo reformas a otras leyes',PARCIAL:'Reformas parciales',ANUNCIO:'Sin ordenamiento ni iniciativa'};
 var REGINV={LEY_ARM:1,LEY_ESP:1,DICTAMEN:1};
 var ABBR={'Aguascalientes':'AGS','Baja California':'BC','Baja California Sur':'BCS','Campeche':'CAM','Chiapas':'CHIS','Chihuahua':'CHIH','Ciudad de México':'CDMX','Coahuila':'COAH','Colima':'COL','Durango':'DGO','Estado de México':'MEX','Guanajuato':'GTO','Guerrero':'GRO','Hidalgo':'HGO','Jalisco':'JAL','Michoacán':'MICH','Morelos':'MOR','Nayarit':'NAY','Nuevo León':'NL','Oaxaca':'OAX','Puebla':'PUE','Querétaro':'QRO','Quintana Roo':'QROO','San Luis Potosí':'SLP','Sinaloa':'SIN','Sonora':'SON','Tabasco':'TAB','Tamaulipas':'TAM','Tlaxcala':'TLAX','Veracruz':'VER','Yucatán':'YUC','Zacatecas':'ZAC'};
-var NIVL={prioritario:'Prioritario',activo:'Activo','de fondo':'De fondo'};
+var NIVL={prioritario:'Dictamen o promovente en la comisión',activo:'Movimiento reciente','de fondo':'Sin movimiento reciente'};
 var NIVC={prioritario:'#066750',activo:'#3D5A75','de fondo':'#B9C6D2'};
 var OBJL={EXPIDE:'Expide ley',REFORMA_LEY_EC:'Reforma ley de economía circular',REFORMA_OTRA:'Reforma otra ley para armonizar'};
 var EXCL={excluida:'Excluida',movida_a_nucleo:'Movida al núcleo',sustituida:'Sustituida',sin_verificar:'Sin verificar',concluido:'Concluido',duplicado:'Duplicado'};
@@ -833,7 +833,7 @@ function stats(n){
 var METRICS=[
   {k:'step',l:'Avance de régimen (1 a 8)',f:function(s){return s.step;}},
   {k:'ini',l:'Iniciativas de ley de economía circular',f:function(s){return s.ini.length;}},
-  {k:'pri',l:'Iniciativas prioritarias',f:function(s){return s.pri;}},
+  {k:'pri',l:'Con dictamen o promovente en la comisión',f:function(s){return s.pri;}},
   {k:'otr',l:'Iniciativas a otras leyes',f:function(s){return s.otr.length;}},
   {k:'ref',l:'Reformas publicadas a otras leyes',f:function(s){return s.ref.length;}},
   {k:'vacb',l:'Peso manufacturero (% VACB)',f:function(s){return s.vacb;},pct:1},
@@ -1056,7 +1056,7 @@ function drawIndustria(){
   $('ind-chart').querySelectorAll('g[data-n]').forEach(function(g){g.onclick=function(){go('entidades/ficha/'+encodeURIComponent(g.dataset.n));};});
 }
 function drawVentanas(){
-  $('ventanas').innerHTML=D.frentes.slice(0,4).map(function(f){return '<div class="win"><div class="w">'+esc(f.ventana)+'<span>Valoración '+esc(f.valoracion.toLowerCase())+'</span></div><div><b>'+esc(f.frente)+'</b><p>'+esc(f.fundamento)+'</p></div></div>';}).join('');
+  $('ventanas').innerHTML=D.frentes.slice(0,4).map(function(f){return '<div class="win"><div class="w">'+esc(f.ventana)+'</div><div><b>'+esc(f.frente)+'</b><p>'+esc(f.fundamento)+'</p></div></div>';}).join('');
 }
 var INC=/econom[ií]a circular|circularidad|\bLGEC\b|ley general de econom|reciclaj|recicla(?:d|r|bl)|valorizaci[oó]n|responsabilidad extendida del productor|pl[aá]sticos?\s+de un solo uso|gesti[oó]n (?:integral )?de residuos|manejo (?:integral )?de residuos|rellenos? sanitarios?/i;
 var BLOCK=/beb[eé]s?|\bmuert|asesin|homicid|balac|narco|secuestr|extorsi|\bherid|cad[aá]ver|detenid|v[ií]ctima|\bdroga|salmonel|bacteria|f[uú]tbol|hor[oó]scopo|suecia|estados unidos|polac|europa|china|india|brasil|argentina|chile|colombia|espa[ñn]a/i;
@@ -1089,7 +1089,7 @@ var ECOLS=[
   {k:'n',l:'Entidad',v:function(n){return n;}},
   {k:'step',l:'Régimen',v:function(n,s){return s.step;}},
   {k:'ini',l:'Inic. ley',v:function(n,s){return s.ini.length;},r:1},
-  {k:'pri',l:'Prioritarias',v:function(n,s){return s.pri;},r:1},
+  {k:'pri',l:'Dictamen o promovente',v:function(n,s){return s.pri;},r:1},
   {k:'otr',l:'Otras leyes',v:function(n,s){return s.otr.length;},r:1},
   {k:'ref',l:'Reformas publ.',v:function(n,s){return s.ref.length;},r:1},
   {k:'vacb',l:'% VACB manuf.',v:function(n,s){return s.vacb==null?-1:s.vacb;},r:1},
@@ -1115,7 +1115,7 @@ function renderEnt(){
   $('ent-tbl').querySelectorAll('tr.row').forEach(function(tr){tr.onclick=function(){go('entidades/ficha/'+encodeURIComponent(tr.dataset.n));};});
 }
 function entCSV(){
-  var rows=[['Entidad','Abreviatura','Régimen','Ordenamiento propio','Aplicación directa LGEC','Armonización publicada','Ordenamiento','Último acto','Lectura','Iniciativas de ley EC','Prioritarias','Iniciativas a otras leyes','Reformas publicadas a otras leyes','% VACB manufacturero','Días periodo ordinario en plazo','Días receso en plazo','Verificación']];
+  var rows=[['Entidad','Abreviatura','Régimen','Ordenamiento propio','Aplicación directa LGEC','Armonización publicada','Ordenamiento','Último acto','Lectura','Iniciativas de ley EC','Dictamen o promovente en la comisión','Iniciativas a otras leyes','Reformas publicadas a otras leyes','% VACB manufacturero','Días periodo ordinario en plazo','Días receso en plazo','Verificación']];
   ENT.forEach(function(n){var s=stats(n),e=s.e;rows.push([n,ab(n),REGL[e.regimen],e.ordenamiento_propio?'Sí':'No',e.aplicacion_directa_lgec?'Sí':'No',e.armonizacion_publicada?'Sí':'No',e.ordenamiento,e.ultimo_acto,e.lectura,s.ini.length,s.pri,s.otr.length,s.ref.length,s.vacb,s.ord,s.rec,e.nivel_verificacion]);});
   dl('observatorio-ec-entidades.csv',csv(rows));
 }
@@ -1134,7 +1134,7 @@ function renderPF(){
     +'<div class="ladder">'+REG.slice().reverse().map(function(r,i){return '<span class="'+(i<s.step?'on':'')+'" title="'+esc(REGL[r])+'"></span>';}).join('')+'</div>'
     +'<div class="ladder-l"><span>Sin iniciativa</span><span>Avance '+s.step+' de 8</span><span>Ley armonizada</span></div>'
     +'<p class="pf-lect">'+esc(e.lectura)+'</p>'
-    +'<div class="pf-stats">'+stat(s.ini.length,'Iniciativas de ley',RANK.ini[n])+stat(s.pri,'Prioritarias',RANK.pri[n])+stat(s.otr.length,'A otras leyes',RANK.otr[n])+stat(s.ref.length,'Reformas publicadas',RANK.ref[n])+stat(s.vacb!=null?s.vacb.toFixed(2)+'%':'—','Peso manufacturero',RANK.vacb[n])+'</div>'
+    +'<div class="pf-stats">'+stat(s.ini.length,'Iniciativas de ley',RANK.ini[n])+stat(s.pri,'Dictamen o promovente',RANK.pri[n])+stat(s.otr.length,'A otras leyes',RANK.otr[n])+stat(s.ref.length,'Reformas publicadas',RANK.ref[n])+stat(s.vacb!=null?s.vacb.toFixed(2)+'%':'—','Peso manufacturero',RANK.vacb[n])+'</div>'
     +'<div class="two" style="margin-top:44px"><div><div class="sub-h" style="margin-top:0">Ficha</div><div class="kv">'
     +kv('Ordenamiento',(LEYURL(n)?'<a class="tlink" href="'+esc(LEYURL(n))+'" target="_blank" rel="noopener">'+esc(e.ordenamiento)+' ↗</a>':esc(e.ordenamiento)))+kv('Último acto',esc(e.ultimo_acto))
     +kv('Promovente destacado',pd.nombre?esc(pd.nombre)+(pd.grupo?' &nbsp;'+pbadges(pd.grupo):'')+(pd.comision?'<br><span class="muted">'+esc(pd.comision)+'</span>':''):'')
@@ -1161,7 +1161,7 @@ var muA='Nuevo León',muB='Jalisco';
 var MUR=[
   {l:'Régimen',k:'step',v:function(s){return s.step;},t:function(s){return REGL[s.e.regimen];}},
   {l:'Iniciativas de ley',k:'ini',v:function(s){return s.ini.length;}},
-  {l:'Prioritarias',k:'pri',v:function(s){return s.pri;}},
+  {l:'Dictamen o promovente',k:'pri',v:function(s){return s.pri;}},
   {l:'Iniciativas a otras leyes',k:'otr',v:function(s){return s.otr.length;}},
   {l:'Reformas publicadas',k:'ref',v:function(s){return s.ref.length;}},
   {l:'Peso manufacturero',k:'vacb',v:function(s){return s.vacb||0;},f:function(v){return v.toFixed(2)+'%';}},
@@ -1264,7 +1264,7 @@ function renderIni(){
   if(iniSet!=='excl'){
     var pc={};R.forEach(function(r){partidos(r.grupo_parlamentario).forEach(function(p){pc[p]=(pc[p]||0)+1;});});
     hbarsHTML($('ini-part'),Object.keys(pc).map(function(k){return [k,pc[k]];}).sort(function(a,b){return b[1]-a[1];}),true);
-    if(iniSet==='ley'){var nc={},oc={};R.forEach(function(r){nc[r.nivel_seguimiento]=(nc[r.nivel_seguimiento]||0)+1;oc[r.objeto]=(oc[r.objeto]||0)+1;});$('ini-niv-h').textContent='Por nivel de seguimiento y objeto';
+    if(iniSet==='ley'){var nc={},oc={};R.forEach(function(r){nc[r.nivel_seguimiento]=(nc[r.nivel_seguimiento]||0)+1;oc[r.objeto]=(oc[r.objeto]||0)+1;});$('ini-niv-h').textContent='Por etapa del trámite y objeto';
       hbars($('ini-niv'),Object.keys(NIVL).map(function(k){return [NIVL[k],nc[k]||0,NIVC[k]];}).concat([['Expide ley',oc.EXPIDE||0,'#8A9CB0'],['Reforma ley de EC',oc.REFORMA_LEY_EC||0,'#8A9CB0'],['Reforma otra ley',oc.REFORMA_OTRA||0,'#8A9CB0']]));}
     else{var ec={};R.forEach(function(r){ec[r.entidad]=(ec[r.entidad]||0)+1;});$('ini-niv-h').textContent='Por entidad';hbars($('ini-niv'),Object.keys(ec).map(function(k){return [k,ec[k],'#8A9CB0'];}).sort(function(a,b){return b[1]-a[1];}));}
   }
@@ -1276,7 +1276,7 @@ function renderIni(){
     if(open){var kv=function(k,v){return v?'<div class="r"><span class="k">'+k+'</span><span>'+v+'</span></div>':'';};
       h+='<div class="idet"><div class="kv">'+kv('Título',esc(r.titulo))+kv('Ley',iniSet!=='ley'?esc(r.ley):'')+kv('Objeto',esc(OBJL[r.objeto]||''))+kv('Invoca la Ley General',r.invoca_lgec===true?'Sí':r.invoca_lgec===false?'No':'')
         +kv('Comisión receptora',esc(r.comision_receptora))+kv('Turno',(r.turno||[]).map(function(t){return esc(t.comision)+(t.tematica?'':' (no temática)')+(t.preside?' · el promovente la preside':'');}).join('<br>'))
-        +kv('Cargo del promovente',esc(r.cargo_promovente))+kv('Nivel de seguimiento',r.criterio_nivel?esc(NIVL[r.nivel_seguimiento]+'. '+r.criterio_nivel):'')+kv('Dictamen',r.dictamen?esc(r.criterio_dictamen||'Sí'):'')
+        +kv('Cargo del promovente',esc(r.cargo_promovente))+kv('Etapa del trámite',r.criterio_nivel?esc(NIVL[r.nivel_seguimiento]+'. '+r.criterio_nivel):'')+kv('Dictamen',r.dictamen?esc(r.criterio_dictamen||'Sí'):'')
         +kv('Último acto',fd(r.ultimo_acto))+kv('Periodo',r.periodo==='posterior'?'Presentada desde la Ley General':r.periodo==='anterior'?'Presentada antes de la Ley General, sigue en comisión':'')
         +kv('Clasificación',esc(r.nota_clasificacion))+kv('Motivo',esc(r.motivo_exclusion_o_cambio))+kv('Fuente',esc(r.fuente||r.url_documento_ref||''))+kv('Verificación',esc(cap(r.verificacion||'')))
         +kv('Prensa',r.prensa?esc(cap(r.prensa.sentido)+'. '+(r.prensa.medio||'')+(r.prensa.fecha_nota?', '+fd(r.prensa.fecha_nota):'')+'. '+(r.prensa.nota||''))+' '+src(r.prensa.url,'Nota'):'')
@@ -1286,7 +1286,7 @@ function renderIni(){
   $('ini-list').querySelectorAll('.irow').forEach(function(x){x.onclick=function(ev){if(ev.target.closest('a'))return;iniOpen=iniOpen===x.dataset.id?null:x.dataset.id;renderIni();};});
 }
 function iniCSV(){
-  var rows=[['Entidad','Promovente','Grupo parlamentario','Presentada','Último acto','Periodo','Título / ley','Propone','Objeto','Nivel de seguimiento','Comisión receptora','Estado','Verificación','Documento oficial']];
+  var rows=[['Entidad','Promovente','Grupo parlamentario','Presentada','Último acto','Periodo','Título / ley','Propone','Objeto','Etapa del trámite','Comisión receptora','Estado','Verificación','Documento oficial']];
   iniFiltered().forEach(function(r){rows.push([r.entidad,r.promovente,r.grupo_parlamentario,r.presentada,r.ultimo_acto,r.periodo,r.titulo||r.ley,r.propone,OBJL[r.objeto]||r.objeto,NIVL[r.nivel_seguimiento]||'',r.comision_receptora,EXCL[r.estado]||r.estado,r.verificacion,r.url_documento]);});
   dl('observatorio-ec-iniciativas-'+iniSet+'.csv',csv(rows));
 }
@@ -1325,7 +1325,7 @@ function renderFed(){
   var kv=function(k,v){return '<div class="r"><span class="k">'+k+'</span><span>'+esc(cap(v))+'</span></div>';};
   $('lg-kv').innerHTML=kv('Transitorio cuarto',lg.transitorio_cuarto)+kv('Transitorio quinto',lg.transitorio_quinto)+kv('Artículo 8',lg.art_8)+kv('Artículo 45',lg.art_45);
   $('instr').innerHTML=F.instrumentos_lgec.map(function(x){return '<div class="frow"><div class="a">'+esc(x.instrumento)+'<span>'+esc(x.fundamento)+'</span></div><div class="b">'+esc(x.que_hace)+'.<br><b>Depende de:</b> '+esc(x.que_falta_para_operar.replace(/^De(l)? /,function(m,l){return l?'el ':'';}))+'</div><div class="c">'+esc(x.estado)+'</div></div>';}).join('');
-  $('frentes').innerHTML=D.frentes.map(function(f){return '<div class="frow"><div class="a">'+esc(f.frente)+'</div><div class="b">'+esc(f.fundamento)+'<br><b>Qué lo activa.</b> '+esc(f.que_lo_activa)+'</div><div class="c">'+esc(f.ventana)+'<span style="display:block;color:var(--mute);font-weight:500;margin-top:4px">Valoración '+esc(f.valoracion.toLowerCase())+'</span></div></div>';}).join('');
+  $('frentes').innerHTML=D.frentes.map(function(f){return '<div class="frow"><div class="a">'+esc(f.frente)+'</div><div class="b">'+esc(f.fundamento)+'<br><b>Qué lo activa.</b> '+esc(f.que_lo_activa)+'</div><div class="c">'+esc(f.ventana)+'</div></div>';}).join('');
   var ha=function(s){var m=String(s).match(/[\d.]+/);return m?+m[0]:0;},mxh=Math.max.apply(null,F.polos.map(function(p){return ha(p.superficie);}));
   $('polos').innerHTML='<tr><th>Ubicación</th><th>Figura</th><th>Declaratoria</th><th class="r">Superficie</th><th>Régimen estatal</th><th>Situación</th></tr>'+F.polos.map(function(p,i){var h=ha(p.superficie);return '<tr'+(i%2?' class="z"':'')+'><td><b>'+esc(p.ubicacion)+'</b></td><td>'+esc(p.figura)+'</td><td class="n">'+esc(p.declaratoria)+'</td><td class="n r">'+esc(p.superficie)+(h?'<span class="minibar"><span style="width:'+Math.round(100*h/mxh)+'%"></span></span>':'')+'</td><td>'+esc(p.ordenamiento_estatal)+'</td><td style="font-size:12px;color:var(--sec);min-width:240px">'+esc(p.situacion)+'</td></tr>';}).join('');
   var A=F.acuerdo_nacional_municipios;
@@ -1344,7 +1344,7 @@ function renderFuentes(){
   $('tesis').textContent=D.meta.tesis;
   $('m-conteo').innerHTML=Rg.conteo.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
   var kv=function(k,v){return '<div class="r"><span class="k">'+esc(k)+'</span><span>'+esc(cap(v))+'</span></div>';};
-  var ns=Rg.niveles_seguimiento;$('m-niv').innerHTML=kv('Prioritario',ns.prioritario)+kv('De fondo',ns.de_fondo)+kv('Activo',ns.activo)+kv('Corte de doce meses',fd(ns.corte_para_doce_meses));
+  var ns=Rg.niveles_seguimiento;$('m-niv').innerHTML=kv('Dictamen o promovente en la comisión',ns.prioritario)+kv('Movimiento reciente',ns.activo)+kv('Sin movimiento reciente',ns.de_fondo)+kv('Corte de doce meses',fd(ns.corte_para_doce_meses));
   $('m-ver').innerHTML=Object.keys(Rg.niveles_verificacion).map(function(k){return kv(cap(k.replace('_',' ')),Rg.niveles_verificacion[k]);}).join('');
   $('m-reg').innerHTML=REG.map(function(k){return '<div class="r"><span class="k"><span class="sw" style="background:'+REGC[k]+(k==='ANUNCIO'?';outline:1px solid #B9C6D2':'')+'"></span>'+esc(REGL[k])+'</span><span>'+esc(Rg.regimenes[k])+'</span></div>';}).join('');
   $('m-prim').innerHTML=D.fuentes.fuentes_primarias_generales.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
