@@ -1,5 +1,35 @@
 [
   {
+    "id": "6736c90271e8",
+    "titulo": "Lanzan explosivos  en acceso al Congreso  de Jalisco",
+    "url": "https://www.reforma.com/lanzan-explosivos-en-acceso-al-congreso-de-jalisco/ar3297276",
+    "fuente": "Reforma",
+    "resumen": "Reportan lanzamiento de artefactos explosivos en el acceso principal del Congreso de Jalisco durante las protestas por la crisis de agua.",
+    "fecha_publicacion": "2026-10-18T23:03:45Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Jalisco",
+    "scrapeado_en": "2026-10-18T23:49:54.012007+00:00"
+  },
+  {
+    "id": "afd6b5b6bd91",
+    "titulo": "Impuestos ambientales: solo 18 estados de México los aplican",
+    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNM2VaTk9zWEZzb3lsQlBQNlhrRnBwZkZaMkplSE5ZOGpEa25Rb29lZm9mM3NzWmVkcXI4Vnp3ZXIyNkV5ZjRObVJ2S2lGd3ZTcldNU3RhMWJQQmhWLXB1NVZVZ3N0UUJsWEttNFFXTHNNaFAyOWJ0SFVwdzE0cXFnQUF3VThRVGZua0g0QWxMclB0WktQbkHSAZYBQVVfeXFMTTNlWk5Pc1hGc295bEJQUDZYa0ZwcGZGWjJKZUhOWThqRGtuUW9vZWZvZjNzc1plZHFyOFZ6d2VyMjZFeWY0Tm1SdktpRnd2U3JXTVN0YTFiUEJoVi1wdTVWVWdzdFFCbFhLbTRRV0xzTWhQMjlidEhVcHcxNHFxZ0FBd1U4UVRmbmtINEFsTHJQdFpLUG5B?oc=5",
+    "fuente": "eltiempomx.com",
+    "resumen": "",
+    "fecha_publicacion": "2026-10-18T19:55:05Z",
+    "categoria": "fiscal_ambiental",
+    "categoria_nombre": "Impuestos Ambientales",
+    "categorias": [
+      "fiscal_ambiental"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-10-18T23:50:17.114253+00:00"
+  },
+  {
     "id": "2f63ec4306c5",
     "titulo": "Suspende CFE contratación de carbón para central de Nava, Coahuila",
     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQakl4YXJicGxDcS1QOTZMVzMwM3M3Y3Y3MkQ3QU1CVF8tTDQ2NlYxTV9PVkRHZHA0MXlYbWI3WFVFbGU1a05aSEFRUWVXS0NBTWJvdWRFVTNxcFlkMnp0RVVRWlJYVXE2Y2syZUprVVNJOTY3OG9pRnA2VF9CZWVfQXFLTl95bXNzR3oyZTQtYl93bW1PX3FUYlk1Q0JmQm0wRllpTXpYRU5BSVpnNDVxbFpldVM1RDRVejU2TEZyWjlPUi1o?oc=5",
@@ -90,6 +120,38 @@
     ],
     "estado": "Sonora",
     "scrapeado_en": "2026-10-18T19:52:01.795613+00:00"
+  },
+  {
+    "id": "d68a90e7a7ef",
+    "titulo": "CNE iniciará procedimeinto de caducidad contra 132 permisos de comercialización de hidrocarburos, petrolíferos y petroquímicos",
+    "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOakJmZ0hFSkNZSk11QnEzSnI1ajRNYmVYXzhBU2gzeHM3ci1IX2dYSkEySk0yOTQ2SWxvMzBaM3J6ZmRJb1loQXlRWmRwTTRDdTRScV9IbUdGVFdkWVQzMlktWlB3dm5Sck1fSXNXQkotUjV5cklQcDJucjlwTmZvbzVMNS1zdXY0VDRrbnhFaVlKMHpQZGFMSVhxOEdLbTBweFg5eHVaN192azFsTHZtb2tkYkNvdzV0U01xMGtKN0VTTVJiLUpSeEp4UVhjUGtwR0F2cTBiaVcxT1E5ejZaTnpJS1NrZjV2X0E?oc=5",
+    "fuente": "Factor energético",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-10-18T17:12:58Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable",
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-10-18T23:50:10.841103+00:00"
+  },
+  {
+    "id": "6a3da248dbae",
+    "titulo": "Dispersan con gas lacrimógeno  nueva protesta en París",
+    "url": "https://www.reforma.com/dispersan-con-gas-lacrimogeno-nueva-protesta-en-paris/ar3297135",
+    "fuente": "Reforma",
+    "resumen": "En nueva protesta en Francia, policías dispersaron con gases lacrimógenos a manifestantes, tras una jornada que dejó ayer 2 mil detenidos.",
+    "fecha_publicacion": "2026-10-18T17:10:07Z",
+    "categoria": "cambio_climatico",
+    "categoria_nombre": "Cambio Climático",
+    "categorias": [
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-10-18T23:49:54.013643+00:00"
   },
   {
     "id": "59bce75e4091",
@@ -9231,67 +9293,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-10-09T01:36:04.481885+00:00"
-  },
-  {
-    "id": "eaed1fb952fe",
-    "titulo": "La inflación en México acelera a 3.45% interanual en septiembre impulsada por el alza de precio en jitomate, cebolla y gas LP",
-    "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOb2lrYnA1RDlOYzNSQk1vWTlzU3JhUlJUeERMUVBKc2xfdklLN2pvYzhUdld2SUVNbmU5cmxGYnZSeG1MWkFTMF9sZldGMmN1Z2JHb29QRFlUaTMtblh6bWtJUWdNTUk1aWdqaWVfWENuYUZqOVFpOVJQT3VwaV9VUzZZVEVGOEY0emFPYkRiOThvaloxWFEwOXlvb1l2ODNhUTBEekNFNmxWbjRGd2QwNUxlUmQ3dU5kSFV0emF3dTNRNFoxRVNZQ05GZWZWbDVmVDgwYlVlSXJHZE5ERjdRNWozYkNZNWZHMVVLWWZYcGJDWkN3TExwZ2h3aWNsd9IBmAJBVV95cUxQM0RJNHpMVXVCWDZFbTNlanE5UC01TjJJcXEzTHpiNzVKVms2WF9FZ0llR21JUHUta3FtaTlkOUlZekFrczJLdEoyek5mV3lQVUZ0a1A0aUNwdGF0NUx1SkFYWU9mUGtmaVdVU1RHVDR2OVRGb1I3Smc5RzNIdFBKTFRMOTZKWkpPY3ZpZmkxbDBidFhFeFowRUlfWnJKWU44SUd3M3lMb3pZNWgyanpIclN2NlMtOEpKUEdNT0gxbmRyaXdraEJHeFhEUExvNk1rcUkyWkZCdFhUczVtRjZtWWZEaEpVaVVKV0tPb25kN0c4cnY3RjJjQmNGZm5xaUcxUzlLUDFrb2ZuRm5ySjNteV80SVoyN2lp?oc=5",
-    "fuente": "El Imparcial",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-10-08T23:26:46Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-10-10T01:25:52.404607+00:00"
-  },
-  {
-    "id": "4d44b536832f",
-    "titulo": "Baterías, datos y talento: Clarios y LTH impulsan la movilidad autónoma desde México",
-    "url": "https://energiahoy.com/electromovilidad/baterias-datos-y-talento-clarios-y-lth-impulsan-la-movilidad-autonoma-desde-mexico/",
-    "fuente": "Energia Hoy",
-    "resumen": "La movilidad del futuro no dependerá únicamente de vehículos eléctricos más eficientes. También requerirá sistemas capaces de procesar información, interpretar el entorno y mantener operando sensores y dispositivos electrónicos. En esta convergencia entre energía, inteligencia y movilidad se encuentra la colaboración entre Clarios, su marca LTH y la Escuela de Ingeniería y Ciencias del Tecnológico [...] El cargo Baterías, datos y talento: Clarios y LTH impulsan la movilidad autónoma desde México",
-    "fecha_publicacion": "2026-10-08T23:23:17Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-10-09T01:36:04.558944+00:00"
-  },
-  {
-    "id": "d4f130ac0500",
-    "titulo": "Los contratos mixtos no atraen a los gigantes petroleros, pero algunas empresas sí ven negocio con Pemex",
-    "url": "https://expansion.mx/empresas/2026/10/08/contratos-mixtos-no-atraen-shell-bp-empresas-negocio-pemex",
-    "fuente": "Expansion",
-    "resumen": "Consorcio 5M del Golfo ya obtuvo tres campos bajo este esquema, pero considera que los contratos mixtos no son adecuados para todos los proyectos petroleros.",
-    "fecha_publicacion": "2026-10-08T23:08:33Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-10-09T01:36:04.412960+00:00"
-  },
-  {
-    "id": "d14833867ca9",
-    "titulo": "Los contratos mixtos no atraen a BP o Shell, pero algunas empresas sí ven negocio con Pemex",
-    "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPRUNfc09EbXV5ZzNGRXJUVVdwc0lmNVBjLWhrZUNxUWF4QklmVWVIdjhsWU1WaVg3ZFQ1TmVHMF90TjRXRnZWOXRTS1dGa3h3V1JDOWhfb0lva3Z0aDBzdEVXeU1LSk1reTA2MmJLSWJMa1REeEVfZ2JpMFdGc1F4Snc4cTBaX2huSEtKV2QtbzhBeHkxcHNiOEV6dTJtOS0z0gGuAUFVX3lxTE1VNmQxQWhHUXZrTmNfQ1lDYTh3Szg2WmJQNTdlT3hzeXpGUWtDaVdUdTVkNGNOZFJ1SVpaNHJ1NmlZUUt2MnRfbHFqZGNMZG1KQ1lGOWNuWDNFRmJVTG9XUVlaVl9pTUI2Q3p0Sk8yd3A3UkZlSEJMblVWMG9JUmtNN2Q2T3VieWpSRDNvR053QWpFZEZfM0s3WFMyZDJlWWFkLVBzOWwtc21ja2tBdw?oc=5",
-    "fuente": "Expansión",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-10-08T23:08:00Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-10-09T01:36:20.338433+00:00"
   }
 ]
