@@ -685,7 +685,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
   <div class="wrap">
     <div data-sub="metodo">
       <div class="phead"><div class="eyebrow">Fuentes y método</div><h1>Método de registro y verificación</h1><p>Ningún registro entra sin haber leído su articulado en el documento oficial. La prensa contrasta; nunca sustituye al registro.</p></div>
-      <div class="block" style="padding-top:0"><div class="bh"><h2>Lectura al corte</h2><span class="aside" id="corte"></span></div><p class="ab-def" id="tesis" style="font-size:18px"></p></div>
+      <div class="block" style="padding-top:0"><div class="bh"><h2>Lectura a la fecha</h2><span class="aside" id="corte"></span></div><p class="ab-def" id="tesis" style="font-size:18px"></p></div>
       <div class="block two">
         <div>
           <div class="bh"><h2>Cómo se cuenta</h2></div>
@@ -782,7 +782,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
     <i></i>
     <img class="scp" src="../assets/scope-logo.png" alt="Scope">
   </div>
-  <p class="fnote"><b>Observatorio de Economía Circular</b> de la Comisión Especial de Economía Circular y Desarrollo Empresarial del Senado de la República, con el Tecnológico de Monterrey e Iniciativa GEMI. Análisis de Iniciativa GEMI con información de Scope. Corte documental: <span id="f-corte"></span>.</p>
+  <p class="fnote"><b>Observatorio de Economía Circular</b> de la Comisión Especial de Economía Circular y Desarrollo Empresarial del Senado de la República, con el Tecnológico de Monterrey e Iniciativa GEMI. Análisis de Iniciativa GEMI con información de Scope. Información al <span id="f-corte"></span>.</p>
 </div></footer>
 
 <script>
@@ -1217,7 +1217,7 @@ function renderGB(){
   var h='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'" font-family="IBM Plex Mono, monospace" font-size="11"><text x="0" y="13" style="fill:#0D1B2A;font-weight:700">'+esc(m.l)+'</text>';
   rows.forEach(function(r,i){var y=i*rh+24,w=(W-x0-70)*r.v/mx;
     h+='<text x="'+(x0-10)+'" y="'+(y+13)+'" text-anchor="end" fill="#3D5A75">'+esc(r.n)+'</text><rect x="'+x0+'" y="'+(y+4)+'" width="'+Math.max(w,1)+'" height="13" rx="2" fill="'+(m.k==='step'?REGC[r.r]:'#066750')+'"/><text x="'+(x0+w+7)+'" y="'+(y+13)+'" fill="#0D1B2A">'+(m.pct?r.v.toFixed(2)+'%':r.v)+'</text>';});
-  h+='<text x="0" y="'+(H-2)+'" fill="#8A9CB0">Observatorio de Economía Circular · Scope · corte '+fd(D.meta.corte_documental)+'</text></svg>';
+  h+='<text x="0" y="'+(H-2)+'" fill="#8A9CB0">Observatorio de Economía Circular · Scope · información al '+fd(D.meta.corte_documental)+'</text></svg>';
   $('gb').innerHTML=rows.length?h:'<div class="empty">El grupo no tiene entidades.</div>';
   $('gb-csv').onclick=function(){dl('observatorio-ec-grafica.csv',csv([['Entidad',m.l]].concat(rows.map(function(r){return [r.n,r.v];}))));};
   $('gb-svg').onclick=function(){dl('observatorio-ec-grafica.svg',h,'image/svg+xml');};
@@ -1340,11 +1340,11 @@ function renderFed(){
 var prSet='',docN=40;
 function renderFuentes(){
   var Rg=D.reglas;
-  $('corte').textContent='Corte '+fd(D.meta.corte_documental);
+  $('corte').textContent='Información al '+fd(D.meta.corte_documental);
   $('tesis').textContent=D.meta.tesis;
   $('m-conteo').innerHTML=Rg.conteo.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
   var kv=function(k,v){return '<div class="r"><span class="k">'+esc(k)+'</span><span>'+esc(cap(v))+'</span></div>';};
-  var ns=Rg.niveles_seguimiento;$('m-niv').innerHTML=kv('Dictamen o promovente en la comisión',ns.prioritario)+kv('Movimiento reciente',ns.activo)+kv('Sin movimiento reciente',ns.de_fondo)+kv('Corte de doce meses',fd(ns.corte_para_doce_meses));
+  var ns=Rg.niveles_seguimiento;$('m-niv').innerHTML=kv('Dictamen o promovente en la comisión',ns.prioritario)+kv('Movimiento reciente',ns.activo)+kv('Sin movimiento reciente',ns.de_fondo)+kv('Inicio de la ventana de doce meses',fd(ns.corte_para_doce_meses));
   $('m-ver').innerHTML=Object.keys(Rg.niveles_verificacion).map(function(k){return kv(cap(k.replace('_',' ')),Rg.niveles_verificacion[k]);}).join('');
   $('m-reg').innerHTML=REG.map(function(k){return '<div class="r"><span class="k"><span class="sw" style="background:'+REGC[k]+(k==='ANUNCIO'?';outline:1px solid #B9C6D2':'')+'"></span>'+esc(REGL[k])+'</span><span>'+esc(Rg.regimenes[k])+'</span></div>';}).join('');
   $('m-prim').innerHTML=D.fuentes.fuentes_primarias_generales.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
