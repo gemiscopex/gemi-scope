@@ -653,7 +653,42 @@ section.in .pm-call{opacity:1}
 .aud-r b{color:var(--ink-l);font-size:clamp(14px,1.45vw,17px)}
 .aud-r span:last-child{color:var(--ink-l)}
 section[data-t="Ruta al dictamen"] .pend-box{margin-top:34px}
-@media (max-width:820px){.aud-n{grid-template-columns:1fr 1fr}.aud-h,.aud-r{grid-template-columns:1fr}.pan,.rg-top,.inst{grid-template-columns:1fr}.cv-qr{display:none}}
+.t-sm{font-size:clamp(22px,2.8vw,38px);max-width:42ch;text-wrap:balance}
+.hz{margin-top:30px;display:flex;flex-direction:column;gap:22px;max-width:1040px}
+.hz-r{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;padding-top:18px;border-top:1px solid var(--lineL)}
+.hz-n{font-size:clamp(34px,4vw,52px);font-weight:800;color:var(--g2);line-height:.9}
+.hz-r b{display:block;font-size:clamp(18px,2vw,25px);line-height:1.25;color:var(--ink-l);letter-spacing:-.01em}
+.hz-r p{margin:8px 0 0;font-size:clamp(14px,1.45vw,17px);line-height:1.5;color:var(--mut-l)}
+.mb{margin-top:20px;display:flex;flex-direction:column;gap:5px;max-width:1080px}
+.mb-r{display:grid;grid-template-columns:170px 1fr 64px 220px;gap:14px;align-items:center;font-size:14px;color:var(--mut-l)}
+.mb-e{color:var(--ink-l);font-weight:700}
+.mb-r.own .mb-e{font-weight:500;color:var(--mut-l)}
+.mb-t{height:14px;position:relative}
+.mb-t i,.pb-t i{position:absolute;left:0;top:0;bottom:0;width:0;background:#066750;border-radius:2px;transition:width .7s cubic-bezier(.3,0,.2,1);transition-delay:calc(.35s + var(--i)*.09s)}
+.mb-r.own .mb-t i{background:#C8D3DC}
+section.in .mb-t i,section.in .pb-t i{width:var(--w)}
+.mb-p{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;color:var(--ink-l)}
+.mb-s{font-size:13px}
+.mb-leg{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--mut-l)}
+.mb-leg span{display:inline-flex;align-items:center;gap:7px}
+.mb-leg .lg{background:#066750}.mb-leg .lg.own{background:#C8D3DC}
+.pb{margin-top:20px;display:flex;flex-direction:column;gap:4px;max-width:960px}
+.pb-r{display:grid;grid-template-columns:330px 1fr 36px;gap:14px;align-items:center;font-size:13.5px;color:var(--ink-l)}
+.pb-t{height:13px;position:relative}
+.pb-n{font-family:var(--mono);font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.fx{margin-top:14px;max-width:860px}
+.fx img{width:100%;height:auto;display:block;mix-blend-mode:multiply}
+.fr{margin-top:22px;max-width:1120px}
+.fr-h,.fr-r{display:grid;grid-template-columns:300px 170px 1fr;gap:24px;padding:11px 0;align-items:baseline}
+.fr-h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kick-l);font-weight:700;padding-bottom:4px}
+.fr-r{border-top:1px solid var(--lineL);font-size:clamp(13px,1.3vw,15.5px);line-height:1.4;color:var(--mut-l)}
+.fr-r b{color:var(--ink-l);font-size:clamp(14px,1.4vw,16.5px)}
+.fr-v{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--kick-l)}
+.iq{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px 34px;max-width:1120px}
+.iq-c{padding-top:12px;border-top:1px solid var(--lineL);display:flex;flex-direction:column;gap:7px}
+.iq-c b{font-size:clamp(15px,1.55vw,18px);color:var(--ink-l);line-height:1.25}
+.iq-c span{font-size:clamp(13px,1.3vw,15px);line-height:1.45;color:var(--mut-l)}
+@media (max-width:820px){.mb-r{grid-template-columns:110px 1fr 56px}.mb-s{display:none}.pb-r{grid-template-columns:150px 1fr 30px}.fr-h,.fr-r{grid-template-columns:1fr}.iq{grid-template-columns:1fr}.aud-n{grid-template-columns:1fr 1fr}.aud-h,.aud-r{grid-template-columns:1fr}.pan,.rg-top,.inst{grid-template-columns:1fr}.cv-qr{display:none}}
 </style>
 </head>
 <body>
@@ -799,6 +834,56 @@ section[data-t="Ruta al dictamen"] .pend-box{margin-top:34px}
     <div class="foot r d6"><b>Estado de México, en ruta a su ley.</b> Iniciativa del PVEM para expedir la Ley de Economía Circular del Estado de México y Municipios, presentada el 11 de marzo de 2026 y en comisiones unidas. Es la cuarta entidad con mayor peso manufacturero, con 9.82% del valor agregado nacional.</div>
   </section>
 
+  <!-- Hallazgos principales -->
+  <section class="lt" data-t="Hallazgos principales">
+    <div class="k r">Economía circular en las entidades federativas · Iniciativa GEMI</div>
+    <div class="t r d1">Hallazgos principales</div>
+    <div class="hz">
+      <div class="hz-r r d2"><span class="hz-n">1</span><div><b>Más de la mitad del valor agregado manufacturero se genera en entidades de aplicación directa.</b><p>Nueve de las 15 entidades con mayor peso manufacturero aplican directamente la Ley General, entre ellas Nuevo León y Coahuila, las dos primeras.</p></div></div>
+      <div class="hz-r r d3"><span class="hz-n">2</span><div><b>SEMARNAT definirá las obligaciones.</b><p>Lo hará con los acuerdos generales, pendientes como el reglamento. La ley estatal define quién opera en el territorio, con qué procedimiento y con qué incentivos.</p></div></div>
+      <div class="hz-r r d4"><span class="hz-n">3</span><div><b>La agenda atraviesa las principales fuerzas políticas.</b><p>Legisladores de diez partidos presentan iniciativas, y los factores económicos, ambientales y políticos que examinamos explican de manera limitada dónde se concentran.</p></div></div>
+    </div>
+  </section>
+
+  <!-- Peso manufacturero -->
+  <section class="lt" data-t="Peso manufacturero">
+    <div class="k r">Peso manufacturero · TABLA 7</div>
+    <div class="t r d1 t-sm">Nueve de las 15 entidades con mayor peso manufacturero aplican directamente la Ley General</div>
+    <div class="mb r d2"><div class="mb-r" style="--i:0"><span class="mb-e">Nuevo León</span><span class="mb-t"><i style="--w:100.0%"></i></span><span class="mb-p">11.63%</span><span class="mb-s">Iniciativa en estudio</span></div><div class="mb-r" style="--i:1"><span class="mb-e">Coahuila</span><span class="mb-t"><i style="--w:94.2%"></i></span><span class="mb-p">10.96%</span><span class="mb-s">Reforma parcial</span></div><div class="mb-r own" style="--i:2"><span class="mb-e">Guanajuato</span><span class="mb-t"><i style="--w:86.4%"></i></span><span class="mb-p">10.05%</span><span class="mb-s">Ley específica</span></div><div class="mb-r" style="--i:3"><span class="mb-e">Estado de México</span><span class="mb-t"><i style="--w:84.4%"></i></span><span class="mb-p">9.82%</span><span class="mb-s">Iniciativa en estudio</span></div><div class="mb-r" style="--i:4"><span class="mb-e">Jalisco</span><span class="mb-t"><i style="--w:60.9%"></i></span><span class="mb-p">7.08%</span><span class="mb-s">Iniciativa en estudio</span></div><div class="mb-r own" style="--i:5"><span class="mb-e">Chihuahua</span><span class="mb-t"><i style="--w:43.7%"></i></span><span class="mb-p">5.08%</span><span class="mb-s">Ley específica</span></div><div class="mb-r own" style="--i:6"><span class="mb-e">Baja California</span><span class="mb-t"><i style="--w:42.7%"></i></span><span class="mb-p">4.97%</span><span class="mb-s">Ley integrada</span></div><div class="mb-r own" style="--i:7"><span class="mb-e">Querétaro</span><span class="mb-t"><i style="--w:38.6%"></i></span><span class="mb-p">4.49%</span><span class="mb-s">Ley integrada</span></div><div class="mb-r" style="--i:8"><span class="mb-e">Sonora</span><span class="mb-t"><i style="--w:34.7%"></i></span><span class="mb-p">4.04%</span><span class="mb-s">Iniciativa en estudio</span></div><div class="mb-r" style="--i:9"><span class="mb-e">San Luis Potosí</span><span class="mb-t"><i style="--w:34.4%"></i></span><span class="mb-p">4.00%</span><span class="mb-s">Iniciativa en estudio</span></div><div class="mb-r" style="--i:10"><span class="mb-e">Tamaulipas</span><span class="mb-t"><i style="--w:33.2%"></i></span><span class="mb-p">3.86%</span><span class="mb-s">Dictamen pendiente del Pleno</span></div><div class="mb-r own" style="--i:11"><span class="mb-e">Ciudad de México</span><span class="mb-t"><i style="--w:32.2%"></i></span><span class="mb-p">3.75%</span><span class="mb-s">Ley armonizada</span></div><div class="mb-r own" style="--i:12"><span class="mb-e">Puebla</span><span class="mb-t"><i style="--w:30.9%"></i></span><span class="mb-p">3.59%</span><span class="mb-s">Ley armonizada</span></div><div class="mb-r" style="--i:13"><span class="mb-e">Veracruz</span><span class="mb-t"><i style="--w:29.2%"></i></span><span class="mb-p">3.40%</span><span class="mb-s">Iniciativa en estudio</span></div><div class="mb-r" style="--i:14"><span class="mb-e">Aguascalientes</span><span class="mb-t"><i style="--w:27.8%"></i></span><span class="mb-p">3.23%</span><span class="mb-s">Iniciativa en estudio</span></div></div>
+    <div class="mb-leg r d3"><span><i class="lg"></i>Aplicación directa</span><span><i class="lg own"></i>Ordenamiento propio</span><span>Participación en el valor agregado censal bruto manufacturero nacional · INEGI, Censos Económicos 2024</span></div>
+  </section>
+
+  <!-- Quién presenta -->
+  <section class="lt" data-t="Quién presenta">
+    <div class="k r">Iniciativas en trámite por grupo parlamentario · TABLA 8</div>
+    <div class="t r d1 t-sm">Diez partidos, una asociación parlamentaria y un Ejecutivo estatal presentan las 46 iniciativas</div>
+    <div class="pb r d2"><div class="pb-r" style="--i:0"><span class="pb-g">Morena</span><span class="pb-t"><i style="--w:100.0%"></i></span><span class="pb-n">13</span></div><div class="pb-r" style="--i:1"><span class="pb-g">PVEM</span><span class="pb-t"><i style="--w:92.3%"></i></span><span class="pb-n">12</span></div><div class="pb-r" style="--i:2"><span class="pb-g">PAN</span><span class="pb-t"><i style="--w:46.2%"></i></span><span class="pb-n">6</span></div><div class="pb-r" style="--i:3"><span class="pb-g">Asociación parlamentaria Mujeres por el Comercio Feminista e Incluyente</span><span class="pb-t"><i style="--w:15.4%"></i></span><span class="pb-n">2</span></div><div class="pb-r" style="--i:4"><span class="pb-g">MC</span><span class="pb-t"><i style="--w:15.4%"></i></span><span class="pb-n">2</span></div><div class="pb-r" style="--i:5"><span class="pb-g">PRI</span><span class="pb-t"><i style="--w:15.4%"></i></span><span class="pb-n">2</span></div><div class="pb-r" style="--i:6"><span class="pb-g">PT</span><span class="pb-t"><i style="--w:15.4%"></i></span><span class="pb-n">2</span></div><div class="pb-r" style="--i:7"><span class="pb-g">Ejecutivo estatal</span><span class="pb-t"><i style="--w:7.7%"></i></span><span class="pb-n">1</span></div><div class="pb-r" style="--i:8"><span class="pb-g">Futuro</span><span class="pb-t"><i style="--w:7.7%"></i></span><span class="pb-n">1</span></div><div class="pb-r" style="--i:9"><span class="pb-g">PAN y PRD</span><span class="pb-t"><i style="--w:7.7%"></i></span><span class="pb-n">1</span></div><div class="pb-r" style="--i:10"><span class="pb-g">Partido Encuentro Solidario</span><span class="pb-t"><i style="--w:7.7%"></i></span><span class="pb-n">1</span></div><div class="pb-r" style="--i:11"><span class="pb-g">PT y Morena</span><span class="pb-t"><i style="--w:7.7%"></i></span><span class="pb-n">1</span></div><div class="pb-r" style="--i:12"><span class="pb-g">PT, PVEM y Morena</span><span class="pb-t"><i style="--w:7.7%"></i></span><span class="pb-n">1</span></div><div class="pb-r" style="--i:13"><span class="pb-g">Redes Sociales Progresistas</span><span class="pb-t"><i style="--w:7.7%"></i></span><span class="pb-n">1</span></div></div>
+    <div class="foot r d4">Cada iniciativa cuenta para el grupo de quien la presenta, así que la suma no mide apoyo parlamentario.</div>
+  </section>
+
+  <!-- Factores asociados -->
+  <section class="lt" data-t="Qué explica la actividad">
+    <div class="k r">Factores asociados · GRÁFICO 3</div>
+    <div class="t r d1 t-sm">Dos factores muestran una relación con la actividad legislativa, y ninguno resiste la corrección por pruebas múltiples</div>
+    <div class="fx r d2"><img src="/reporte-ec/graficas/g3-factores.jpg" alt="Cambio esperado en las iniciativas en trámite por una desviación estándar más de cada factor"></div>
+    <div class="foot r d3">Con los diez factores que examinamos, el modelo mejora apenas 9% la predicción fuera de la muestra frente al promedio nacional.</div>
+  </section>
+
+  <!-- Seis frentes -->
+  <section class="lt" data-t="Seis frentes">
+    <div class="k r">Lo que viene · TABLA 15</div>
+    <div class="t r d1 t-sm">Seis frentes definirán las obligaciones que llegarán a la industria</div>
+    <div class="fr"><div class="fr-h r d1"><span>Frente</span><span>Ventana</span><span>Qué definirá</span></div><div class="fr-r r d2"><b>Acuerdos generales de Responsabilidad Extendida</b><span class="fr-v">Sin plazo legal</span><span>Definirán sectores, metas, indicadores y plazos. La obligación existe desde que se publiquen en el Diario Oficial.</span></div><div class="fr-r r d3"><b>Tamaulipas, votación del dictamen en el Pleno</b><span class="fr-v">Oct–dic 2026</span><span>Único dictamen de ley propia que espera al Pleno. Hace de la Secretaría de Economía estatal la autoridad rectora de la ley.</span></div><div class="fr-r r d4"><b>Nuevo León, dictamen de las cuatro iniciativas de ley</b><span class="fr-v">Sin fecha</span><span>Cuatro proyectos de distintos grupos parlamentarios atienden la misma materia.</span></div><div class="fr-r r d5"><b>Reglamento de la Ley General</b><span class="fr-v">Fin de oct 2026, anunciado</span><span>Activa el Distintivo Nacional y condiciona el Programa Nacional.</span></div><div class="fr-r r d6"><b>Jalisco, dictamen de la iniciativa estatal</b><span class="fr-v">Sin fecha</span><span>El proyecto crea un registro obligatorio de generadores con trazabilidad y deja la Responsabilidad Extendida a la Ley General.</span></div><div class="fr-r r d7"><b>Polos de Economía Circular, validación de reportes</b><span class="fr-v">Sin fecha</span><span>Aplican a las empresas que se instalen dentro del polígono.</span></div></div>
+  </section>
+
+  <!-- Seis inquietudes -->
+  <section class="lt" data-t="Seis inquietudes">
+    <div class="k r">Posicionamientos · TABLA 16</div>
+    <div class="t r d1 t-sm">Seis inquietudes concentran los posicionamientos públicos</div>
+    <div class="iq"><div class="iq-c r d2"><b>Certeza sobre los requisitos</b><span>La inquietud que más se repite es conocer con precisión qué se va a exigir y cómo se acreditará. Se pide que el reglamento defina los requisitos con anticipación a su aplicación.</span></div><div class="iq-c r d3"><b>Definiciones que no coinciden</b><span>Se plantea que las definiciones de la Ley General no coinciden con las de las leyes de residuos vigentes y que hoy esas diferencias se resuelven caso por caso.</span></div><div class="iq-c r d4"><b>Metas graduales según el tamaño de la empresa</b><span>Se pide escalonar las metas de Responsabilidad Extendida según el tamaño de la empresa obligada.</span></div><div class="iq-c r d5"><b>Evitar la doble certificación</b><span>Se pide que el distintivo estatal no obligue a certificarse dos veces.</span></div><div class="iq-c r d6"><b>Incentivos y trámites digitales</b><span>Se pide que la obligación venga acompañada de incentivos económicos locales y que el registro sea digital desde el principio.</span></div><div class="iq-c r d7"><b>Indicadores para los Polos</b><span>Se pide que los Polos cuenten con metas públicas medibles y con un procedimiento para validar los reportes que prevé la declaratoria.</span></div></div>
+    <div class="foot r d7">Rastreamos los posicionamientos públicos de 2025 y 2026 y no localizamos objeciones a que los estados legislen en la materia.</div>
+  </section>
+
   <!-- Reglamento LGEC y REP -->
   <section class="lt" data-anim="tl" data-t="Reglamento y REP">
     <div class="k r">Lo que está en curso</div>
@@ -811,8 +896,8 @@ section[data-t="Ruta al dictamen"] .pend-box{margin-top:34px}
       <div class="tl-base"></div><div class="tl-fill"></div>
       <div class="tnode" style="--i:0"><div class="tdot"></div><div class="tdate">19 ene 2026</div><div class="tdesc">Se publica la Ley General en el DOF. Entra en vigor al día siguiente</div></div>
       <div class="tnode hl" style="--i:1"><div class="tdot"></div><div class="tdate">19 jul 2026</div><div class="tdesc"><b>Vence el plazo</b> del Reglamento y de la armonización estatal</div></div>
-      <div class="tnode" style="--i:2"><div class="tdot"></div><div class="tdate">Ago 2026</div><div class="tdesc">Puebla y Ciudad de México publican su armonización</div></div>
-      <div class="tnode" style="--i:3"><div class="tdot"></div><div class="tdate">28 oct 2026</div><div class="tdesc">Se instala el Observatorio en el Senado</div></div>
+      <div class="tnode" style="--i:2"><div class="tdot"></div><div class="tdate">28 oct 2026</div><div class="tdesc">Se instala el Observatorio en el Senado</div></div>
+      <div class="tnode hl" style="--i:3"><div class="tdot"></div><div class="tdate">Fin de oct 2026</div><div class="tdesc"><b>Reglamento anunciado</b> por la Secretaria Bárcena</div></div>
       <div class="tnode" style="--i:4"><div class="tdot"></div><div class="tdate">Dic 2026</div><div class="tdesc">Acuerdo General de REP previsto</div></div>
       <div class="tnode hl" style="--i:5"><div class="tdot"></div><div class="tdate">28 ene 2027</div><div class="tdesc">Sesión del Observatorio sobre el Reglamento</div></div>
     </div>
