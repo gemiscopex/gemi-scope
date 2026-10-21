@@ -1359,6 +1359,36 @@ section.in .ht-x{opacity:1;transform:none}
 .ht-c.g .ht-d,.ht-c.g p{color:#066750}.ht-c.g p{font-weight:700}
 .ht-c.r .ht-d,.ht-c.r p{color:#c04a52}.ht-c.r p{font-weight:700}
 .ht-c.h .ht-d{color:#066750;font-size:clamp(24px,2.8vw,38px)}.ht-c.h p{color:var(--ink-l);font-weight:700}
+/* Orden del día · identidad Scope */
+section.sg{background:#fff!important}
+.sg-g{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#EDF2F6 1px,transparent 1px),linear-gradient(90deg,#EDF2F6 1px,transparent 1px);background-size:52px 52px;-webkit-mask-image:radial-gradient(ellipse at 72% 50%,#000 30%,transparent 78%);mask-image:radial-gradient(ellipse at 72% 50%,#000 30%,transparent 78%)}
+.sg-w{position:relative;display:grid;grid-template-columns:.8fr 1.2fr;gap:4vw;align-items:center;width:100%}
+.sg-k{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:#009E90;font-weight:600;padding-bottom:10px;border-bottom:1px solid rgba(0,0,0,.07);margin-bottom:20px}
+.sg-t{font-family:'Scope Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(34px,4.4vw,60px);font-weight:700;letter-spacing:-.025em;line-height:1.02;color:#0D1B2A}
+.sg-f{font-size:clamp(15px,1.5vw,19px);color:#3D5A75;margin-top:clamp(22px,5vh,48px)}
+.sg-u{font-family:var(--mono);font-size:clamp(19px,2.1vw,29px);color:#5A7A98;margin-top:6px}
+.sg-u b{color:#009E90;font-weight:600}
+.sg-q{margin-top:20px}
+.sg-qr{width:clamp(100px,10vw,136px);height:auto;display:block;shape-rendering:crispEdges}
+.ag{border-top:1px solid rgba(0,0,0,.13);background:#fff}
+.ag-hd,.ag-r{display:grid;grid-template-columns:76px 1fr;gap:16px;align-items:baseline}
+.ag-hd{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A9CB0;padding:8px 14px;border-bottom:1px solid rgba(0,0,0,.07)}
+.ag-r{padding:clamp(9px,1.6vh,14px) 14px;border-bottom:1px solid rgba(0,0,0,.07);opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s;transition-delay:calc(.4s + var(--i)*.14s)}
+.ag-r:nth-child(odd){background:#F6F8FA}
+section.in .ag-r{opacity:1;transform:none}
+.ag-h{font-family:var(--mono);font-size:clamp(13px,1.3vw,16px);font-weight:600;color:#009E90;font-variant-numeric:tabular-nums}
+.ag-x b{display:block;font-size:clamp(15px,1.55vw,20px);font-weight:700;color:#0D1B2A;line-height:1.2}
+.ag-x span{display:block;font-family:var(--mono);font-size:clamp(11px,1vw,13px);color:#5A7A98;margin-top:3px}
+@media (max-width:820px){.sg-w{grid-template-columns:1fr}}
+/* Radar en el mapa */
+@keyframes rdp{0%{transform:scale(.6);opacity:.55}100%{transform:scale(3.4);opacity:0}}
+.rsvg circle.rd{transform-box:fill-box;transform-origin:center;opacity:0}
+section.in .rsvg circle.rd{animation:rdp 2.6s cubic-bezier(.2,.6,.3,1) infinite;animation-delay:calc(1.2s + var(--d))}
+@media (prefers-reduced-motion:reduce){section.in .rsvg circle.rd{animation:none;opacity:.13}}
+/* Resultados · puntos con efecto positivo recorren su intervalo */
+@keyframes pzm{0%,100%{left:var(--c)}25%{left:var(--hi)}50%{left:var(--c)}75%{left:var(--lo)}}
+section.in .fp-d.pz{animation:pzm 3.2s cubic-bezier(.45,0,.55,1) infinite;animation-delay:calc(1.6s + var(--i)*.25s);box-shadow:0 0 0 4px rgba(6,103,80,.16)}
+@media (prefers-reduced-motion:reduce){section.in .fp-d.pz{animation:none}}
 @media (max-width:820px){.mb-r{grid-template-columns:110px 1fr 56px}.mb-s{display:none}.pb-r{grid-template-columns:150px 1fr 30px}.fr-h,.fr-r{grid-template-columns:1fr}.iq{grid-template-columns:1fr}.aud-n{grid-template-columns:1fr 1fr}.aud-h,.aud-r{grid-template-columns:1fr}.pan,.rg-top,.inst{grid-template-columns:1fr}.cv-qr{display:none}}
 </style>
 </head>
@@ -1405,11 +1435,19 @@ section.in .ht-x{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- Orden del día -->
-  <section class="lt" data-t="Orden del día">
-    <div class="k r">Sesión de membresía · 21 de octubre de 2026</div>
-    <div class="t r d1">Orden del día</div>
-    <div class="rows"><div class="row r d1"><div class="tm">8:30</div><div class="tx"><b>Bienvenida</b><span class="orn">Griscelda Ramos</span></div></div><div class="row r d2"><div class="tm">8:35</div><div class="tx"><b>Economía circular en las entidades federativas</b><span class="orn">El reporte, el Reglamento y los acuerdos de REP</span></div></div><div class="row r d3"><div class="tm">8:58</div><div class="tx"><b>Observatorio de Economía Circular</b><span class="orn">Instalación en el Senado, 28 de octubre</span></div></div><div class="row r d4"><div class="tm">9:05</div><div class="tx"><b>Audiencias públicas de la nueva LGEEPA</b><span class="orn">Lo que se dijo y la ruta al dictamen</span></div></div><div class="row r d5"><div class="tm">9:20</div><div class="tx"><b>Infraestructura de la Calidad</b><span class="orn">NOM de Contingencias Ambientales y Programa 2027</span></div></div><div class="row r d6"><div class="tm">9:35</div><div class="tx"><b>Scope</b><span class="orn">Plataformas GEMI</span></div></div><div class="row r d7"><div class="tm">9:45</div><div class="tx"><b>Cierre</b><span class="orn">Anuncios y lo que viene</span></div></div></div>
+  <!-- Orden del día · identidad Scope -->
+  <section class="lt sg" data-t="Orden del día">
+    <div class="sg-g"></div>
+    <div class="sg-w">
+      <div class="sg-l">
+        <div class="sg-k r">Sesión de membresía · 21 de octubre de 2026</div>
+        <div class="sg-t r d1">Orden del día</div>
+        <div class="sg-f r d3">Sigue la sesión o descarga la presentación</div>
+        <div class="sg-u r d3">scopegemi.com/<b>moct</b></div>
+        <div class="sg-q r d4"><svg class="sg-qr" viewBox="0 0 25 25" class="segno"><path class="qrline" stroke="#0d1b2a" d="M0 0.5h7m1 0h1m3 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m5 0h1m2 0h2m1 0h3m1 0h1m1 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m1 0h1m4 0h4m1 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m2 0h3m1 0h3m2 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m2 0h1m3 0h2m3 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-16 1h1m2 0h1m1 0h1m1 0h1m-17 1h1m1 0h1m3 0h2m1 0h1m1 0h2m3 0h1m2 0h1m2 0h1m1 0h1m-25 1h5m2 0h1m3 0h3m1 0h2m1 0h2m1 0h1m1 0h2m-25 1h2m2 0h1m1 0h1m1 0h1m1 0h2m3 0h1m1 0h2m2 0h2m1 0h1m-23 1h1m2 0h1m2 0h4m2 0h1m1 0h3m2 0h1m-20 1h1m2 0h3m1 0h1m2 0h1m2 0h2m1 0h1m5 0h1m-24 1h2m4 0h1m1 0h1m3 0h1m1 0h2m1 0h2m3 0h2m-25 1h2m2 0h4m1 0h5m1 0h1m5 0h2m1 0h1m-23 1h1m2 0h1m1 0h4m1 0h1m1 0h8m-22 1h3m1 0h1m1 0h2m3 0h1m2 0h7m2 0h1m-16 1h1m2 0h3m2 0h1m3 0h1m3 0h1m-25 1h7m1 0h2m1 0h1m4 0h1m1 0h1m1 0h1m3 0h1m-25 1h1m5 0h1m4 0h1m2 0h3m3 0h1m3 0h1m-25 1h1m1 0h3m1 0h1m4 0h2m2 0h6m2 0h1m-24 1h1m1 0h3m1 0h1m3 0h4m1 0h1m1 0h1m2 0h1m1 0h2m-24 1h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m2 0h1m2 0h3m1 0h2m-25 1h1m5 0h1m4 0h2m1 0h1m1 0h1m2 0h2m-21 1h7m1 0h2m2 0h1m3 0h3m2 0h1m2 0h1"/></svg></div>
+      </div>
+      <div class="ag"><div class="ag-hd"><span>Hora</span><span>Tema</span></div><div class="ag-r" style="--i:0"><span class="ag-h">8:30</span><span class="ag-x"><b>Bienvenida</b><span>Griscelda Ramos</span></span></div><div class="ag-r" style="--i:1"><span class="ag-h">8:35</span><span class="ag-x"><b>Economía circular en las entidades federativas</b><span>El reporte, el Reglamento y los acuerdos de REP</span></span></div><div class="ag-r" style="--i:2"><span class="ag-h">8:58</span><span class="ag-x"><b>Observatorio de Economía Circular</b><span>Instalación en el Senado, 28 de octubre</span></span></div><div class="ag-r" style="--i:3"><span class="ag-h">9:05</span><span class="ag-x"><b>Audiencias públicas de la nueva LGEEPA</b><span>Lo que se dijo y la ruta al dictamen</span></span></div><div class="ag-r" style="--i:4"><span class="ag-h">9:20</span><span class="ag-x"><b>Infraestructura de la Calidad</b><span>NOM de Contingencias Ambientales y Programa 2027</span></span></div><div class="ag-r" style="--i:5"><span class="ag-h">9:35</span><span class="ag-x"><b>Scope</b><span>Plataformas GEMI</span></span></div><div class="ag-r" style="--i:6"><span class="ag-h">9:45</span><span class="ag-x"><b>Cierre</b><span>Anuncios y lo que viene</span></span></div></div>
+    </div>
   </section>
 
   <!-- 01 · Reporte -->
@@ -1505,9 +1543,9 @@ section.in .ht-x{opacity:1;transform:none}
 <circle cx="946" cy="474" r="6.2" fill="#5A7A98" stroke="#FFFFFF" stroke-width="1.6"/>
 <circle cx="568" cy="426" r="8.5" fill="#5A7A98" opacity=".13"/>
 <circle cx="568" cy="426" r="4.6" fill="#5A7A98" stroke="#FFFFFF" stroke-width="1.4"/>
-<circle cx="645" cy="508" r="8.5" fill="#009E90" opacity=".13"/>
+<circle cx="645" cy="508" r="8.5" fill="#009E90" opacity=".13" class="rd" style="--d:0.37s"/>
 <circle cx="645" cy="508" r="4.6" fill="#009E90" stroke="#FFFFFF" stroke-width="1.4"/>
-<circle cx="681" cy="566" r="10.5" fill="#E39B2E" opacity=".13"/>
+<circle cx="681" cy="566" r="10.5" fill="#E39B2E" opacity=".13" class="rd" style="--d:0.74s"/>
 <circle cx="681" cy="566" r="6.2" fill="#E39B2E" stroke="#FFFFFF" stroke-width="1.6"/>
 <circle cx="564" cy="256" r="10.5" fill="#CDD6DE" opacity=".13"/>
 <circle cx="564" cy="256" r="6.2" fill="#CDD6DE" stroke="#FFFFFF" stroke-width="1.6"/>
@@ -1525,18 +1563,18 @@ section.in .ht-x{opacity:1;transform:none}
 <circle cx="601" cy="439" r="4.6" fill="#CDD6DE" stroke="#FFFFFF" stroke-width="1.4"/>
 <circle cx="558" cy="545" r="10.5" fill="#CDD6DE" opacity=".13"/>
 <circle cx="558" cy="545" r="6.2" fill="#CDD6DE" stroke="#FFFFFF" stroke-width="1.6"/>
-<circle cx="530" cy="424" r="10.5" fill="#E39B2E" opacity=".13"/>
+<circle cx="530" cy="424" r="10.5" fill="#E39B2E" opacity=".13" class="rd" style="--d:1.11s"/>
 <circle cx="530" cy="424" r="6.2" fill="#E39B2E" stroke="#FFFFFF" stroke-width="1.6"/>
 <circle cx="399" cy="280" r="10.5" fill="#CDD6DE" opacity=".13"/>
 <circle cx="399" cy="280" r="6.2" fill="#CDD6DE" stroke="#FFFFFF" stroke-width="1.6"/>
-<circle cx="594" cy="484" r="8.5" fill="#009E90" opacity=".13"/>
+<circle cx="594" cy="484" r="8.5" fill="#009E90" opacity=".13" class="rd" style="--d:1.48s"/>
 <circle cx="594" cy="484" r="4.6" fill="#009E90" stroke="#FFFFFF" stroke-width="1.4"/>
 <path d="M435 487 L406 502" fill="none" stroke="#D5DEE5" stroke-width="1.2"/>
 <circle cx="435" cy="487" r="9" fill="#CDD6DE" opacity=".13"/>
 <circle cx="435" cy="487" r="5.4" fill="#CDD6DE" stroke="#FFFFFF" stroke-width="1.5"/>
 <circle cx="495" cy="195" r="10.5" fill="#CDD6DE" opacity=".13"/>
 <circle cx="495" cy="195" r="6.2" fill="#CDD6DE" stroke="#FFFFFF" stroke-width="1.6"/>
-<circle cx="352" cy="142" r="10.5" fill="#E39B2E" opacity=".13"/>
+<circle cx="352" cy="142" r="10.5" fill="#E39B2E" opacity=".13" class="rd" style="--d:1.85s"/>
 <circle cx="352" cy="142" r="6.2" fill="#E39B2E" stroke="#FFFFFF" stroke-width="1.6"/>
 <circle cx="812" cy="583" r="10.5" fill="#CDD6DE" opacity=".13"/>
 <circle cx="812" cy="583" r="6.2" fill="#CDD6DE" stroke="#FFFFFF" stroke-width="1.6"/>
@@ -1593,14 +1631,14 @@ section.in .ht-x{opacity:1;transform:none}
 <circle cx="743.3" cy="238.5" r="7" fill="#CDD6DE" stroke="#FFFFFF" stroke-width="1.6"/>
 <text x="755.3" y="243.5" font-family="IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace" font-size="15" text-anchor="start" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4.5" stroke-linejoin="round">Edo. Méx.</text><text x="755.3" y="243.5" font-family="IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace" font-size="15" text-anchor="start" fill="#3D5A75">Edo. Méx.</text>
 <circle cx="803.9" cy="273.1" r="7" fill="#009E90" stroke="#FFFFFF" stroke-width="1.6"/>
-<circle cx="803.9" cy="273.1" r="11" fill="none" stroke="#009E90" stroke-width="2.4"/>
+<circle cx="803.9" cy="273.1" r="11" fill="none" stroke="#009E90" stroke-width="2.4" class="rd" style="--d:2.22s"/>
 <text x="790.9" y="278.1" font-family="IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace" font-size="15" text-anchor="end" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4.5" stroke-linejoin="round">CDMX</text><text x="790.9" y="278.1" font-family="IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace" font-size="15" text-anchor="end" fill="#3D5A75">CDMX</text>
 <circle cx="875.3" cy="255.8" r="7" fill="#CDD6DE" stroke="#FFFFFF" stroke-width="1.6"/>
 <text x="887.3" y="249.8" font-family="IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace" font-size="15" text-anchor="start" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4.5" stroke-linejoin="round">Tlaxcala</text><text x="887.3" y="249.8" font-family="IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace" font-size="15" text-anchor="start" fill="#3D5A75">Tlaxcala</text>
 <circle cx="810.4" cy="312.1" r="7" fill="#5A7A98" stroke="#FFFFFF" stroke-width="1.6"/>
 <text x="798.4" y="326.1" font-family="IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace" font-size="15" text-anchor="end" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4.5" stroke-linejoin="round">Morelos</text><text x="798.4" y="326.1" font-family="IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace" font-size="15" text-anchor="end" fill="#3D5A75">Morelos</text>
 <circle cx="914.2" cy="325.0" r="7" fill="#009E90" stroke="#FFFFFF" stroke-width="1.6"/>
-<circle cx="914.2" cy="325.0" r="11" fill="none" stroke="#009E90" stroke-width="2.4"/>
+<circle cx="914.2" cy="325.0" r="11" fill="none" stroke="#009E90" stroke-width="2.4" class="rd" style="--d:2.59s"/>
 <text x="899.2" y="330.0" font-family="IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace" font-size="15" text-anchor="end" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4.5" stroke-linejoin="round">Puebla</text><text x="899.2" y="330.0" font-family="IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace" font-size="15" text-anchor="end" fill="#3D5A75">Puebla</text>
 <path d="M929.2 302.0 L937.2 316.0 L921.2 316.0 Z" fill="#0D1B2A" stroke="#FFFFFF" stroke-width="1.4"/>
 <path d="M961 450 L970 466 L952 466 Z" fill="#0D1B2A" stroke="#FFFFFF" stroke-width="1.4"/>
@@ -1684,7 +1722,7 @@ section.in .ht-x{opacity:1;transform:none}
     
     <div class="fx-g" style="grid-template-columns:.8fr 1.2fr"><div class="fx-l"><div class="k r">Factores asociados · GRÁFICO 3</div><div class="t r d1 fx-t">La riqueza de cada estado es el resultado más firme</div><div class="rz"><div class="rz-n up"><span class="rz-s">+</span><b data-count="34">34</b><span class="rz-s">%</span></div><p>Entre dos estados de población y congreso parecidos, el que tiene un PIB por habitante 53% más alto registra en promedio 34% más iniciativas</p></div>
        <div class="rz"><div class="rz-n dn"><span class="rz-s">−</span><b data-count="21">21</b><span class="rz-s">%</span></div><p>Si el partido del Ejecutivo estatal y sus aliados ocupan 67 de cada 100 curules en lugar de la mitad, hay en promedio 21% menos iniciativas</p></div>
-       <p class="fx-s">Con los diez factores juntos el modelo explica 52% de las diferencias entre entidades dentro de la muestra, pero al predecir entidades que no vio mejora apenas 9%.</p></div><div class="fx-r"><div class="fp r d3"><div class="fp-h"><span>Factor</span><span></span><span>Efecto</span><span>p corregido</span></div><div class="fp-r " style="--i:0"><span class="fp-l">Generación de residuos por habitante</span><span class="fp-a"><i class="fp-ci" style="left:59.1%;width:26.6%;--o:50%"></i><i class="fp-d" style="left:72.4%"></i></span><span class="fp-v">+19%</span><span class="fp-p">1.00</span></div><div class="fp-r up" style="--i:1"><span class="fp-l">PIB por habitante</span><span class="fp-a"><i class="fp-ci" style="left:67.2%;width:23.0%;--o:50%"></i><i class="fp-d" style="left:78.7%"></i></span><span class="fp-v">+34%</span><span class="fp-p">0.19</span></div><div class="fp-r " style="--i:2"><span class="fp-l">Gestión de residuos</span><span class="fp-a"><i class="fp-ci" style="left:63.5%;width:18.7%;--o:50%"></i><i class="fp-d" style="left:72.8%"></i></span><span class="fp-v">+19%</span><span class="fp-p">0.49</span></div><div class="fp-r " style="--i:3"><span class="fp-l">Materias ambientales con ley</span><span class="fp-a"><i class="fp-ci" style="left:49.1%;width:28.4%;--o:50%"></i><i class="fp-d" style="left:63.3%"></i></span><span class="fp-v">0%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:4"><span class="fp-l">Impuesto ambiental (sí o no)</span><span class="fp-a"><i class="fp-ci" style="left:40.4%;width:56.9%;--o:50%"></i><i class="fp-d" style="left:68.9%"></i></span><span class="fp-v">+11%</span><span class="fp-p">1.00</span></div><div class="fp-r dn" style="--i:5"><span class="fp-l">Curules del bloque del Ejecutivo estatal</span><span class="fp-a"><i class="fp-ci" style="left:39.1%;width:23.7%;--o:50%"></i><i class="fp-d" style="left:51.0%"></i></span><span class="fp-v">−21%</span><span class="fp-p">0.52</span></div><div class="fp-r " style="--i:6"><span class="fp-l">Fragmentación del congreso</span><span class="fp-a"><i class="fp-ci" style="left:47.4%;width:27.2%;--o:50%"></i><i class="fp-d" style="left:61.0%"></i></span><span class="fp-v">−5%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:7"><span class="fp-l">Ejecutivo estatal de la coalición federal (sí o no)</span><span class="fp-a"><i class="fp-ci" style="left:5.8%;width:68.0%;--o:50%"></i><i class="fp-d" style="left:39.8%"></i></span><span class="fp-v">−36%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:8"><span class="fp-l">Vecinos con ley previa</span><span class="fp-a"><i class="fp-ci" style="left:31.2%;width:34.1%;--o:50%"></i><i class="fp-d" style="left:48.2%"></i></span><span class="fp-v">−25%</span><span class="fp-p">0.72</span></div><div class="fp-r " style="--i:9"><span class="fp-l">Peso manufacturero</span><span class="fp-a"><i class="fp-ci" style="left:51.8%;width:38.9%;--o:50%"></i><i class="fp-d" style="left:71.2%"></i></span><span class="fp-v">+16%</span><span class="fp-p">1.00</span></div>
+       <p class="fx-s">Con los diez factores juntos el modelo explica 52% de las diferencias entre entidades dentro de la muestra, pero al predecir entidades que no vio mejora apenas 9%.</p></div><div class="fx-r"><div class="fp r d3"><div class="fp-h"><span>Factor</span><span></span><span>Efecto</span><span>p corregido</span></div><div class="fp-r " style="--i:0"><span class="fp-l">Generación de residuos por habitante</span><span class="fp-a"><i class="fp-ci" style="left:59.1%;width:26.6%;--o:50%"></i><i class="fp-d pz" style="left:72.4%;--c:72.4%;--lo:59.1%;--hi:85.7%"></i></span><span class="fp-v">+19%</span><span class="fp-p">1.00</span></div><div class="fp-r up" style="--i:1"><span class="fp-l">PIB por habitante</span><span class="fp-a"><i class="fp-ci" style="left:67.2%;width:23.0%;--o:50%"></i><i class="fp-d pz" style="left:78.7%;--c:78.7%;--lo:67.2%;--hi:90.2%"></i></span><span class="fp-v">+34%</span><span class="fp-p">0.19</span></div><div class="fp-r " style="--i:2"><span class="fp-l">Gestión de residuos</span><span class="fp-a"><i class="fp-ci" style="left:63.5%;width:18.7%;--o:50%"></i><i class="fp-d pz" style="left:72.8%;--c:72.8%;--lo:63.5%;--hi:82.1%"></i></span><span class="fp-v">+19%</span><span class="fp-p">0.49</span></div><div class="fp-r " style="--i:3"><span class="fp-l">Materias ambientales con ley</span><span class="fp-a"><i class="fp-ci" style="left:49.1%;width:28.4%;--o:50%"></i><i class="fp-d" style="left:63.3%"></i></span><span class="fp-v">0%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:4"><span class="fp-l">Impuesto ambiental (sí o no)</span><span class="fp-a"><i class="fp-ci" style="left:40.4%;width:56.9%;--o:50%"></i><i class="fp-d pz" style="left:68.9%;--c:68.9%;--lo:40.4%;--hi:97.4%"></i></span><span class="fp-v">+11%</span><span class="fp-p">1.00</span></div><div class="fp-r dn" style="--i:5"><span class="fp-l">Curules del bloque del Ejecutivo estatal</span><span class="fp-a"><i class="fp-ci" style="left:39.1%;width:23.7%;--o:50%"></i><i class="fp-d" style="left:51.0%"></i></span><span class="fp-v">−21%</span><span class="fp-p">0.52</span></div><div class="fp-r " style="--i:6"><span class="fp-l">Fragmentación del congreso</span><span class="fp-a"><i class="fp-ci" style="left:47.4%;width:27.2%;--o:50%"></i><i class="fp-d" style="left:61.0%"></i></span><span class="fp-v">−5%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:7"><span class="fp-l">Ejecutivo estatal de la coalición federal (sí o no)</span><span class="fp-a"><i class="fp-ci" style="left:5.8%;width:68.0%;--o:50%"></i><i class="fp-d" style="left:39.8%"></i></span><span class="fp-v">−36%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:8"><span class="fp-l">Vecinos con ley previa</span><span class="fp-a"><i class="fp-ci" style="left:31.2%;width:34.1%;--o:50%"></i><i class="fp-d" style="left:48.2%"></i></span><span class="fp-v">−25%</span><span class="fp-p">0.72</span></div><div class="fp-r " style="--i:9"><span class="fp-l">Peso manufacturero</span><span class="fp-a"><i class="fp-ci" style="left:51.8%;width:38.9%;--o:50%"></i><i class="fp-d pz" style="left:71.2%;--c:71.2%;--lo:51.8%;--hi:90.7%"></i></span><span class="fp-v">+16%</span><span class="fp-p">1.00</span></div>
        <div class="fp-x"><span></span><span class="fp-ax"><i class="fp-z" style="left:63.5%"></i><span style="left:26.9%">−50%</span><span style="left:48.3%">−25%</span><span style="left:63.5%">0</span><span style="left:75.2%">+25%</span><span style="left:84.8%">+50%</span></span><span></span><span></span></div></div>
        <p class="fx-n r d6">Cambio esperado por una desviación estándar más de cada factor, con intervalo de 95%. Ninguno pasa la corrección por pruebas múltiples.</p></div></div>
   </section>
