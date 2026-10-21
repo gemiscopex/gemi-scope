@@ -1335,6 +1335,29 @@ section.in .fs-b i{height:var(--hp)!important}
 .sc-big{width:clamp(320px,42vw,600px)!important;height:auto!important;max-height:none!important;min-height:0!important;object-fit:contain!important;display:block;margin:6px 0 4px -6px}
 .sc-hero{width:clamp(220px,26vw,360px)!important;height:auto!important;max-height:none!important;min-height:0!important;max-width:none!important;object-fit:contain!important;display:block;margin:0 0 18px -4px}
 section[data-t="Lo nuevo en Scope"] .fx-t{font-size:clamp(26px,3vw,40px)}
+/* Cronología horizontal */
+section[data-t="Cronología NOM"] .t{max-width:none!important;font-size:clamp(28px,3.4vw,46px)!important}
+.ht{position:relative;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:1fr 1fr;height:min(62vh,500px);margin-top:clamp(18px,3vh,36px)}
+.ht-ln{position:absolute;left:0;right:0;top:50%;height:3px;margin-top:-1.5px;background:linear-gradient(90deg,#cfd9d3 0%,#066750 55%,#3fe0ad 78%,#c04a52 100%);transform:scaleX(0);transform-origin:left;transition:transform 2.2s cubic-bezier(.6,0,.3,1) .3s}
+section.in .ht-ln{transform:none}
+.ht-c{position:relative;grid-row:1 / span 2;display:flex;flex-direction:column;align-items:center}
+.ht-c i{position:absolute;top:50%;left:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#fff;border:3px solid #b9c7bf;transform:scale(0);transition:transform .45s cubic-bezier(.3,1.6,.5,1);transition-delay:calc(.45s + var(--i)*.3s)}
+.ht-c.g i{border-color:#066750;background:#066750}.ht-c.r i{border-color:#c04a52;background:#c04a52}
+.ht-c.h i{width:24px;height:24px;margin:-12px 0 0 -12px;border-color:#3fe0ad;background:#3fe0ad;box-shadow:0 0 0 9px rgba(63,224,173,.22)}
+section.in .ht-c i{transform:scale(1)}
+.ht-c::before{content:"";position:absolute;left:50%;width:1px;background:#d9e2dd;transform:scaleY(0);transition:transform .4s;transition-delay:calc(.6s + var(--i)*.3s)}
+.ht-c.up::before{bottom:50%;height:20px;margin-bottom:12px;transform-origin:bottom}
+.ht-c.dn::before{top:50%;height:20px;margin-top:12px;transform-origin:top}
+section.in .ht-c::before{transform:scaleY(1)}
+.ht-x{position:absolute;left:4px;right:4px;text-align:center;opacity:0;transition:opacity .5s,transform .5s;transition-delay:calc(.6s + var(--i)*.3s)}
+.ht-c.up .ht-x{bottom:calc(50% + 34px);transform:translateY(10px)}
+.ht-c.dn .ht-x{top:calc(50% + 34px);transform:translateY(-10px)}
+section.in .ht-x{opacity:1;transform:none}
+.ht-d{display:block;font-family:var(--mono);font-size:clamp(20px,2.3vw,30px);font-weight:700;letter-spacing:-.02em;color:var(--ink-l);margin-bottom:6px}
+.ht-x p{font-size:clamp(12.5px,1.2vw,15px);line-height:1.38;color:var(--mut-l);text-wrap:balance}
+.ht-c.g .ht-d,.ht-c.g p{color:#066750}.ht-c.g p{font-weight:700}
+.ht-c.r .ht-d,.ht-c.r p{color:#c04a52}.ht-c.r p{font-weight:700}
+.ht-c.h .ht-d{color:#066750;font-size:clamp(24px,2.8vw,38px)}.ht-c.h p{color:var(--ink-l);font-weight:700}
 @media (max-width:820px){.mb-r{grid-template-columns:110px 1fr 56px}.mb-s{display:none}.pb-r{grid-template-columns:150px 1fr 30px}.fr-h,.fr-r{grid-template-columns:1fr}.iq{grid-template-columns:1fr}.aud-n{grid-template-columns:1fr 1fr}.aud-h,.aud-r{grid-template-columns:1fr}.pan,.rg-top,.inst{grid-template-columns:1fr}.cv-qr{display:none}}
 </style>
 </head>
@@ -1817,8 +1840,8 @@ section[data-t="Lo nuevo en Scope"] .fx-t{font-size:clamp(26px,3vw,40px)}
 
   <!-- Cronología NOM -->
   <section class="lt fx2" data-t="Cronología NOM">
-    
-    <div class="fx-g" style="grid-template-columns:.9fr 1.1fr"><div class="fx-l"><div class="k r">NOM de Contingencias Ambientales · Programa 2027</div><div class="t r d1 fx-t">De la presentación del proyecto al Grupo de Trabajo</div><p class="fx-p">GEMI pasó de comentar el proyecto a formar parte del <b>Grupo de Trabajo de SEMARNAT</b> que elabora la norma.</p><p class="fx-s">El 4 de noviembre vence el formulario con el que los asociados documentan el impacto en su operación.</p></div><div class="fx-r"><div class="vt"><div class="vt-r " style="--i:0"><span class="vt-d">30 sep</span><i></i><p>COMARNAT presenta en sesión extraordinaria el proyecto de NOM de Contingencias Ambientales</p></div><div class="vt-r g" style="--i:1"><span class="vt-d">6 oct</span><i></i><p>GEMI elabora con los asociados el documento de comentarios</p></div><div class="vt-r " style="--i:2"><span class="vt-d">9 oct</span><i></i><p>COMARNAT envía a GEMI el Programa de Infraestructura de la Calidad 2027 de SEMARNAT</p></div><div class="vt-r " style="--i:3"><span class="vt-d">19 oct</span><i></i><p>Sesión especial de revisión técnica de la NOM</p></div><div class="vt-r g" style="--i:4"><span class="vt-d">19 oct</span><i></i><p>SEMARNAT acepta a GEMI en el Grupo de Trabajo</p></div><div class="vt-r h" style="--i:5"><span class="vt-d">21 oct</span><i></i><p>Hoy. COMARNAT presenta el Programa 2027 y lo vota</p></div><div class="vt-r r" style="--i:6"><span class="vt-d">4 nov</span><i></i><p>Fecha límite del formulario de impacto de la NOM elaborado por GEMI</p></div></div></div></div>
+    <div class="k r">NOM de Contingencias Ambientales · Programa 2027</div><div class="t r d1 fx-t">De la presentación del proyecto al Grupo de Trabajo</div>
+    <div class="ht"><div class="ht-ln"></div><div class="ht-c  up" style="--i:0"><div class="ht-x"><span class="ht-d">30 sep</span><p>COMARNAT presenta en sesión extraordinaria el proyecto de NOM de Contingencias Ambientales</p></div><i></i></div><div class="ht-c g dn" style="--i:1"><div class="ht-x"><span class="ht-d">6 oct</span><p>GEMI elabora con los asociados el documento de comentarios</p></div><i></i></div><div class="ht-c  up" style="--i:2"><div class="ht-x"><span class="ht-d">9 oct</span><p>COMARNAT envía a GEMI el Programa de Infraestructura de la Calidad 2027 de SEMARNAT</p></div><i></i></div><div class="ht-c  dn" style="--i:3"><div class="ht-x"><span class="ht-d">19 oct</span><p>Sesión especial de revisión técnica de la NOM</p></div><i></i></div><div class="ht-c g up" style="--i:4"><div class="ht-x"><span class="ht-d">19 oct</span><p>SEMARNAT acepta a GEMI en el Grupo de Trabajo</p></div><i></i></div><div class="ht-c h dn" style="--i:5"><div class="ht-x"><span class="ht-d">21 oct</span><p>Hoy. COMARNAT presenta el Programa 2027 y lo vota</p></div><i></i></div><div class="ht-c r up" style="--i:6"><div class="ht-x"><span class="ht-d">4 nov</span><p>Fecha límite del formulario de impacto de la NOM elaborado por GEMI</p></div><i></i></div></div>
   </section>
 
   <!-- PNIC 2027 -->
