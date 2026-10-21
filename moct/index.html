@@ -1323,6 +1323,18 @@ section.in .gz-n{transform:rotate(var(--a))}
 .pd-x.g span{color:#066750;font-weight:700}
 .pd-x p{font-size:clamp(13px,1.3vw,15px);line-height:1.45;color:var(--ink-l);margin-top:4px}
 @media (max-width:820px){.pa{grid-template-columns:1fr 1fr}.pd{grid-template-columns:1fr}}
+.fs-c{display:grid!important;grid-template-rows:1fr 96px;height:100%}
+.fs-b{height:auto!important;align-self:end;margin-bottom:10px}
+.fs-b i{height:0}
+section.in .fs-b i{height:var(--hp)!important}
+.fs-b{display:block!important;width:100%}
+.fs-b i{width:100%!important}
+.fs-t{display:flex;flex-direction:column;align-self:start}
+.fs-t b{font-size:clamp(15px,1.5vw,18px);color:var(--ink-l);line-height:1.2}
+.fs-t em{font-style:normal;font-size:13px;color:var(--mut-l)}
+.sc-big{width:clamp(320px,42vw,600px)!important;height:auto!important;max-height:none!important;min-height:0!important;object-fit:contain!important;display:block;margin:6px 0 4px -6px}
+.sc-hero{width:clamp(220px,26vw,360px)!important;height:auto!important;max-height:none!important;min-height:0!important;max-width:none!important;object-fit:contain!important;display:block;margin:0 0 18px -4px}
+section[data-t="Lo nuevo en Scope"] .fx-t{font-size:clamp(26px,3vw,40px)}
 @media (max-width:820px){.mb-r{grid-template-columns:110px 1fr 56px}.mb-s{display:none}.pb-r{grid-template-columns:150px 1fr 30px}.fr-h,.fr-r{grid-template-columns:1fr}.iq{grid-template-columns:1fr}.aud-n{grid-template-columns:1fr 1fr}.aud-h,.aud-r{grid-template-columns:1fr}.pan,.rg-top,.inst{grid-template-columns:1fr}.cv-qr{display:none}}
 </style>
 </head>
@@ -1648,14 +1660,14 @@ section.in .gz-n{transform:rotate(var(--a))}
     
     <div class="fx-g" style="grid-template-columns:.8fr 1.2fr"><div class="fx-l"><div class="k r">Factores asociados · GRÁFICO 3</div><div class="t r d1 fx-t">La riqueza de cada estado es el resultado más firme</div><div class="rz"><div class="rz-n up"><span class="rz-s">+</span><b data-count="34">34</b><span class="rz-s">%</span></div><p>Entre dos estados de población y congreso parecidos, el que tiene un PIB por habitante 53% más alto registra en promedio 34% más iniciativas</p></div>
        <div class="rz"><div class="rz-n dn"><span class="rz-s">−</span><b data-count="21">21</b><span class="rz-s">%</span></div><p>Si el partido del Ejecutivo estatal y sus aliados ocupan 67 de cada 100 curules en lugar de la mitad, hay en promedio 21% menos iniciativas</p></div>
-       <p class="fx-s">Con los diez factores juntos el modelo explica 52% de las diferencias entre entidades dentro de la muestra, pero al predecir entidades que no vio mejora apenas 9%.</p></div><div class="fx-r"><div class="fp r d3"><div class="fp-h"><span>Factor</span><span></span><span>Efecto</span><span>p corregido</span></div><div class="fp-r " style="--i:0"><span class="fp-l">Generación de residuos por habitante</span><span class="fp-a"><i class="fp-ci" style="left:59.1%;width:26.6%;--o:50%"></i><i class="fp-d" style="left:72.4%"></i></span><span class="fp-v">+19%</span><span class="fp-p">1.00</span></div><div class="fp-r up" style="--i:1"><span class="fp-l">PIB por habitante</span><span class="fp-a"><i class="fp-ci" style="left:67.2%;width:23.0%;--o:50%"></i><i class="fp-d" style="left:78.7%"></i></span><span class="fp-v">+34%</span><span class="fp-p">0.19</span></div><div class="fp-r " style="--i:2"><span class="fp-l">Gestión de residuos</span><span class="fp-a"><i class="fp-ci" style="left:63.5%;width:18.7%;--o:50%"></i><i class="fp-d" style="left:72.8%"></i></span><span class="fp-v">+19%</span><span class="fp-p">0.49</span></div><div class="fp-r " style="--i:3"><span class="fp-l">Materias ambientales con ley</span><span class="fp-a"><i class="fp-ci" style="left:49.1%;width:28.4%;--o:50%"></i><i class="fp-d" style="left:63.3%"></i></span><span class="fp-v">-0%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:4"><span class="fp-l">Impuesto ambiental (sí o no)</span><span class="fp-a"><i class="fp-ci" style="left:40.4%;width:56.9%;--o:50%"></i><i class="fp-d" style="left:68.9%"></i></span><span class="fp-v">+11%</span><span class="fp-p">1.00</span></div><div class="fp-r dn" style="--i:5"><span class="fp-l">Curules del bloque del Ejecutivo estatal</span><span class="fp-a"><i class="fp-ci" style="left:39.1%;width:23.7%;--o:50%"></i><i class="fp-d" style="left:51.0%"></i></span><span class="fp-v">-21%</span><span class="fp-p">0.52</span></div><div class="fp-r " style="--i:6"><span class="fp-l">Fragmentación del congreso</span><span class="fp-a"><i class="fp-ci" style="left:47.4%;width:27.2%;--o:50%"></i><i class="fp-d" style="left:61.0%"></i></span><span class="fp-v">-5%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:7"><span class="fp-l">Ejecutivo estatal de la coalición federal (sí o no)</span><span class="fp-a"><i class="fp-ci" style="left:5.8%;width:68.0%;--o:50%"></i><i class="fp-d" style="left:39.8%"></i></span><span class="fp-v">-36%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:8"><span class="fp-l">Vecinos con ley previa</span><span class="fp-a"><i class="fp-ci" style="left:31.2%;width:34.1%;--o:50%"></i><i class="fp-d" style="left:48.2%"></i></span><span class="fp-v">-25%</span><span class="fp-p">0.72</span></div><div class="fp-r " style="--i:9"><span class="fp-l">Peso manufacturero</span><span class="fp-a"><i class="fp-ci" style="left:51.8%;width:38.9%;--o:50%"></i><i class="fp-d" style="left:71.2%"></i></span><span class="fp-v">+16%</span><span class="fp-p">1.00</span></div>
+       <p class="fx-s">Con los diez factores juntos el modelo explica 52% de las diferencias entre entidades dentro de la muestra, pero al predecir entidades que no vio mejora apenas 9%.</p></div><div class="fx-r"><div class="fp r d3"><div class="fp-h"><span>Factor</span><span></span><span>Efecto</span><span>p corregido</span></div><div class="fp-r " style="--i:0"><span class="fp-l">Generación de residuos por habitante</span><span class="fp-a"><i class="fp-ci" style="left:59.1%;width:26.6%;--o:50%"></i><i class="fp-d" style="left:72.4%"></i></span><span class="fp-v">+19%</span><span class="fp-p">1.00</span></div><div class="fp-r up" style="--i:1"><span class="fp-l">PIB por habitante</span><span class="fp-a"><i class="fp-ci" style="left:67.2%;width:23.0%;--o:50%"></i><i class="fp-d" style="left:78.7%"></i></span><span class="fp-v">+34%</span><span class="fp-p">0.19</span></div><div class="fp-r " style="--i:2"><span class="fp-l">Gestión de residuos</span><span class="fp-a"><i class="fp-ci" style="left:63.5%;width:18.7%;--o:50%"></i><i class="fp-d" style="left:72.8%"></i></span><span class="fp-v">+19%</span><span class="fp-p">0.49</span></div><div class="fp-r " style="--i:3"><span class="fp-l">Materias ambientales con ley</span><span class="fp-a"><i class="fp-ci" style="left:49.1%;width:28.4%;--o:50%"></i><i class="fp-d" style="left:63.3%"></i></span><span class="fp-v">0%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:4"><span class="fp-l">Impuesto ambiental (sí o no)</span><span class="fp-a"><i class="fp-ci" style="left:40.4%;width:56.9%;--o:50%"></i><i class="fp-d" style="left:68.9%"></i></span><span class="fp-v">+11%</span><span class="fp-p">1.00</span></div><div class="fp-r dn" style="--i:5"><span class="fp-l">Curules del bloque del Ejecutivo estatal</span><span class="fp-a"><i class="fp-ci" style="left:39.1%;width:23.7%;--o:50%"></i><i class="fp-d" style="left:51.0%"></i></span><span class="fp-v">−21%</span><span class="fp-p">0.52</span></div><div class="fp-r " style="--i:6"><span class="fp-l">Fragmentación del congreso</span><span class="fp-a"><i class="fp-ci" style="left:47.4%;width:27.2%;--o:50%"></i><i class="fp-d" style="left:61.0%"></i></span><span class="fp-v">−5%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:7"><span class="fp-l">Ejecutivo estatal de la coalición federal (sí o no)</span><span class="fp-a"><i class="fp-ci" style="left:5.8%;width:68.0%;--o:50%"></i><i class="fp-d" style="left:39.8%"></i></span><span class="fp-v">−36%</span><span class="fp-p">1.00</span></div><div class="fp-r " style="--i:8"><span class="fp-l">Vecinos con ley previa</span><span class="fp-a"><i class="fp-ci" style="left:31.2%;width:34.1%;--o:50%"></i><i class="fp-d" style="left:48.2%"></i></span><span class="fp-v">−25%</span><span class="fp-p">0.72</span></div><div class="fp-r " style="--i:9"><span class="fp-l">Peso manufacturero</span><span class="fp-a"><i class="fp-ci" style="left:51.8%;width:38.9%;--o:50%"></i><i class="fp-d" style="left:71.2%"></i></span><span class="fp-v">+16%</span><span class="fp-p">1.00</span></div>
        <div class="fp-x"><span></span><span class="fp-ax"><i class="fp-z" style="left:63.5%"></i><span style="left:26.9%">−50%</span><span style="left:48.3%">−25%</span><span style="left:63.5%">0</span><span style="left:75.2%">+25%</span><span style="left:84.8%">+50%</span></span><span></span><span></span></div></div>
        <p class="fx-n r d6">Cambio esperado por una desviación estándar más de cada factor, con intervalo de 95%. Ninguno pasa la corrección por pruebas múltiples.</p></div></div>
   </section>
 
   <!-- Dos rutas -->
   <section class="lt fx2" data-t="Dos rutas" data-anim="stats">
-    <div class="k r">Dos rutas</div><div class="t r d1 fx-t">La agenda tiene una ruta ambiental y otra económica</div>
+    <div class="k r">Conclusión 06</div><div class="t r d1 fx-t">La agenda tiene una ruta ambiental y otra económica</div>
     <div class="rt2">
       <div class="rt-c r d2"><span class="rt-k">Ruta ambiental</span><b class="rt-n"><span data-count="16">16</span></b><span class="rt-u">de las 46 iniciativas van solo a la comisión de medio ambiente</span></div>
       <div class="rt-c eco r d3"><span class="rt-k">Ruta económica</span><b class="rt-n"><span data-count="23">23</span></b><span class="rt-u">de las 46 iniciativas pasan por la comisión de desarrollo económico</span>
@@ -1672,15 +1684,15 @@ section.in .gz-n{transform:rotate(var(--a))}
 
   <!-- Dos instrumentos federales -->
   <section class="lt fx2" data-t="Dos instrumentos federales">
-    <div class="k r">Lo que viene · TABLA 15</div><div class="t r d1 fx-t fx-long">Las obligaciones para la industria dependen de dos instrumentos federales pendientes de publicación</div>
-    <div class="fx-g" style="grid-template-columns:.9fr 1.1fr"><div class="fx-l"><div class="cd"><b id="rg-days">94</b><span>días de retraso del Reglamento. El plazo legal venció el 19 de julio</span></div><p class="fx-s">Tres de las seis inquietudes públicas dependen de SEMARNAT. La certeza sobre los requisitos remite al reglamento y las metas graduales según el tamaño de la empresa se definirán en los acuerdos generales.</p></div><div class="fx-r"><div class="in2 r d3">
-         <div class="in2-c"><span class="in2-k">Reglamento</span><b>Fin de octubre</b><p>Anunciado por la Secretaria Bárcena para finales de octubre. Fija los requisitos del Distintivo Nacional y abre el plazo del Programa Nacional</p></div>
-         <div class="in2-c"><span class="in2-k">Primer acuerdo de REP</span><b>Diciembre</b><p>Fijarán sectores, metas y plazos (artículos 10 y 12). Sin plazo legal y pendientes de publicación</p></div>
+    <div class="k r">Implicaciones · TABLA 15</div><div class="t r d1 fx-t fx-long">Las obligaciones para la industria dependen de dos instrumentos federales pendientes de publicación</div>
+    <div class="fx-g" style="grid-template-columns:.9fr 1.1fr"><div class="fx-l"><div class="cd"><b id="rg-days">94</b><span>días de retraso del Reglamento. El plazo legal venció el 19 de julio</span></div><p class="fx-s">Del reglamento depende la certeza sobre los requisitos. Las metas graduales según el tamaño de la empresa se definirán en los acuerdos generales.</p></div><div class="fx-r"><div class="in2 r d3">
+         <div class="in2-c"><span class="in2-k">Reglamento</span><b>Fin de octubre</b><p>Anunciado por la Secretaria Bárcena. Fija los requisitos del Distintivo Nacional y abre el plazo del Programa Nacional</p></div>
+         <div class="in2-c"><span class="in2-k">Primer acuerdo de REP</span><b>Diciembre</b><p>Es la fecha esperada, porque la ley no les fija plazo. Fijarán sectores, metas y plazos (artículos 10 y 12)</p></div>
        </div>
        <div class="mtl r d4"><span class="mtl-b"><i></i></span>
          <div class="mtl-n" style="--i:0"><i></i><b>19 jul 2026</b>Vence el plazo del Reglamento</div>
          <div class="mtl-n hl" style="--i:1"><i></i><b>Fin de octubre</b>Reglamento anunciado</div>
-         <div class="mtl-n hl" style="--i:2"><i></i><b>Diciembre</b>Primer acuerdo de REP</div>
+         <div class="mtl-n hl" style="--i:2"><i></i><b>Diciembre</b>Primer acuerdo de REP, esperado</div>
        </div></div></div>
   </section>
 
@@ -1705,7 +1717,7 @@ section.in .gz-n{transform:rotate(var(--a))}
 
   <!-- Con quién -->
   <section class="lt fx2" data-t="Con quién" data-anim="stats">
-    <div class="k r">Fundadores</div><div class="t r d1 fx-t">Un esfuerzo con el Senado y el Tec</div>
+    <div class="k r">Fundadores</div><div class="t r d1 fx-t">Un esfuerzo del Senado, el Tec y GEMI</div>
     <div class="f3">
       <div class="f3-c r d2"><span class="f3-k">Rectoría</span><b>Comisión Especial de Economía Circular y Desarrollo Empresarial</b><p>Senado de la República. Define agenda, integrantes, sesiones, prioridades y lo que se publica a nombre del Observatorio.</p></div>
       <div class="f3-c r d3"><span class="f3-k">Aliado fundador</span><b>Tecnológico de Monterrey</b><p>Rigor académico y metodológico, investigación y transferencia de conocimiento.</p></div>
@@ -1726,8 +1738,8 @@ section.in .gz-n{transform:rotate(var(--a))}
         <div class="k r">La instalación</div>
         <div class="ins2-r r d2"><span>13:30</span><div><b>Acto protocolario</b><p>Sala Ifigenia Martínez</p></div></div>
         <div class="ins2-r r d3"><span>14:10</span><div><b>Encuentro abierto</b><p>Sala 7, con transmisión del Canal del Congreso</p></div></div>
-        <div class="ins2-r r d4"><span>Encuentro</span><div><b>Conversatorio "La economía circular en la operación"</b><p>Con empresas asociadas</p></div></div>
-        <div class="ins2-r r d5"><span>Invitados</span><div><b>SEMARNAT, Secretaría de Economía y congresos locales</b><p>Comisiones de Medio Ambiente y Desarrollo Sustentable</p></div></div>
+        <div class="ins2-r r d4"><span>Conversatorio</span><div><b>"La economía circular en la operación"</b><p>Con empresas asociadas, dentro del encuentro abierto</p></div></div>
+        <div class="ins2-r r d5"><span>Invitados</span><div><b>SEMARNAT, Secretaría de Economía y congresos locales</b><p>De los congresos, las comisiones de Medio Ambiente y Desarrollo Sustentable</p></div></div>
       </div>
     </div>
   </section>
@@ -1890,7 +1902,7 @@ section.in .gz-n{transform:rotate(var(--a))}
   <!-- Cuatro fases -->
   <section class="lt fx2" data-t="Cuatro fases">
     
-    <div class="fx-g" style="grid-template-columns:1fr 1fr"><div class="fx-l"><div class="k r">Fases y umbrales</div><div class="t r d1 fx-t">Cuatro fases, dos con recortes</div><div class="fs r d2"><div class="fs-c" style="--i:0;--h:8%"><span class="fs-b"><i></i></span><span class="fs-k">Fase 1</span><b>Alerta temprana</b><em>Solo informa</em></div><div class="fs-c" style="--i:1;--h:8%"><span class="fs-b"><i></i></span><span class="fs-k">Fase 2</span><b>Alerta preventiva</b><em>Sin recortes</em></div><div class="fs-c" style="--i:2;--h:45%"><span class="fs-b"><i></i></span><span class="fs-k">Fase 3</span><b>Contingencia</b><em>Recortes de 20 a 30%</em></div><div class="fs-c" style="--i:3;--h:100%"><span class="fs-b"><i></i></span><span class="fs-k">Fase 4</span><b>Emergencia</b><em>Recortes hasta 60%</em></div></div></div><div class="fx-r"><div class="um r d3"><div class="um-r um-h"><span>Contaminante</span><span>Contingencia</span><span>Emergencia</span></div><div class="um-r"><b>PM10</b><span>≥ 133 µg/m³ · 24 h</span><span>≥ 214 µg/m³ · 24 h</span></div><div class="um-r"><b>PM2.5</b><span>≥ 80 µg/m³ · 24 h</span><span>≥ 131 µg/m³ · 24 h</span></div><div class="um-r"><b>O3</b><span>≥ 136 ppb · 1 h</span><span>≥ 176 ppb · 1 h</span></div><div class="um-r"><b>SO2</b><span>≥ 305 ppb · 1 h</span><span>≥ 305 ppb · 2 h</span></div><div class="um-r"><b>NO2</b><span>≥ 214 ppb · 1 h</span><span>≥ 214 ppb · 2 h</span></div></div><p class="fx-n r d5">Se activa al medirse en dos o más estaciones (tres para ozono, una para SO2 y NO2).</p></div></div>
+    <div class="fx-g" style="grid-template-columns:1fr 1fr"><div class="fx-l"><div class="k r">Fases y umbrales</div><div class="t r d1 fx-t">Cuatro fases, dos con recortes</div><div class="fs r d2"><div class="fs-c" style="--i:0;--hp:19px"><span class="fs-b"><i></i></span><div class="fs-t"><span class="fs-k">Fase 1</span><b>Alerta temprana</b><em>Solo informa</em></div></div><div class="fs-c" style="--i:1;--hp:19px"><span class="fs-b"><i></i></span><div class="fs-t"><span class="fs-k">Fase 2</span><b>Alerta preventiva</b><em>Sin recortes</em></div></div><div class="fs-c" style="--i:2;--hp:108px"><span class="fs-b"><i></i></span><div class="fs-t"><span class="fs-k">Fase 3</span><b>Contingencia</b><em>Recortes de 20 a 30%</em></div></div><div class="fs-c" style="--i:3;--hp:240px"><span class="fs-b"><i></i></span><div class="fs-t"><span class="fs-k">Fase 4</span><b>Emergencia</b><em>Recortes hasta 60%</em></div></div></div></div><div class="fx-r"><div class="um r d3"><div class="um-r um-h"><span>Contaminante</span><span>Contingencia</span><span>Emergencia</span></div><div class="um-r"><b>PM10</b><span>≥ 133 µg/m³ · 24 h</span><span>≥ 214 µg/m³ · 24 h</span></div><div class="um-r"><b>PM2.5</b><span>≥ 80 µg/m³ · 24 h</span><span>≥ 131 µg/m³ · 24 h</span></div><div class="um-r"><b>O3</b><span>≥ 136 ppb · 1 h</span><span>≥ 176 ppb · 1 h</span></div><div class="um-r"><b>SO2</b><span>≥ 305 ppb · 1 h</span><span>≥ 305 ppb · 2 h</span></div><div class="um-r"><b>NO2</b><span>≥ 214 ppb · 1 h</span><span>≥ 214 ppb · 2 h</span></div></div><p class="fx-n r d5">Se activa al medirse en dos o más estaciones (tres para ozono, una para SO2 y NO2).</p></div></div>
   </section>
 
   <!-- Cuatro frentes -->
@@ -1937,17 +1949,17 @@ section.in .gz-n{transform:rotate(var(--a))}
   </section>
 
   <!-- 05 · Scope -->
-  <section class="dk" data-t="05 · Scope">
+  <section class="dk sc-div" data-t="05 · Scope">
     <div class="glow" style="width:560px;height:560px;background:var(--g2);top:-8%;right:-8%;opacity:.24"></div>
     <div class="big-n r">05</div>
-    <h1 class="r d1" style="font-size:clamp(34px,5.4vw,74px)">Scope</h1>
+    <img class="sc-big r d1" src="/assets/scope-logo-dark.png?v=2" alt="Scope">
     <div class="div-sub r d2">Lo nuevo en la plataforma</div>
   </section>
 
   <!-- Lo nuevo en Scope -->
   <section class="lt fx2" data-t="Lo nuevo en Scope">
-    <div class="k r">Plataformas GEMI · Scope</div><div class="t r d1 fx-t">Lo que cambió en Scope este mes</div>
-    <img class="sc-logo r d1" src="/assets/scope-logo.png?v=2" alt="Scope"><div class="nvg"><div class="nv" style="--i:0"><b>Observatorio de Economía Circular</b><p>Scope aloja el sitio del Observatorio. Ahí vivirán el mapa de las 32 entidades, las sesiones, el Pulso del Observatorio y las aportaciones de sus integrantes</p><span>scopegemi.com/observatorio</span></div><div class="nv" style="--i:1"><b>Reporte de economía circular en los estados</b><p>Descarga con correo institucional y gráficas del reporte</p><span>scopegemi.com/reporte-ec</span></div><div class="nv" style="--i:2"><b>Responsabilidad Extendida del Productor</b><p>Comparador internacional y radar de REP con los avances de otros países</p><span>Internacional · REP</span></div><div class="nv" style="--i:3"><b>Expediente por entidad</b><p>Leyes, impuestos, residuos y actividad legislativa de cada estado en una ficha</p><span>Estados</span></div></div><p class="fx-p fx-w r d6">La meta es que cada empresa tenga <b>dos usuarios activos antes de la asamblea del 18 de noviembre</b>.</p>
+    <img class="sc-hero r" src="/assets/scope-logo.png?v=2" alt="Scope"><div class="k r">Plataformas GEMI</div><div class="t r d1 fx-t">Lo que cambió este mes</div>
+    <div class="nvg"><div class="nv" style="--i:0"><b>Observatorio de Economía Circular</b><p>Scope aloja el sitio del Observatorio. Ahí vivirán el mapa de las 32 entidades, las sesiones, el Pulso del Observatorio y las aportaciones de sus integrantes</p><span>scopegemi.com/observatorio</span></div><div class="nv" style="--i:1"><b>Reporte de economía circular en los estados</b><p>Descarga con correo institucional y gráficas del reporte</p><span>scopegemi.com/reporte-ec</span></div><div class="nv" style="--i:2"><b>Responsabilidad Extendida del Productor</b><p>Comparador internacional y radar de REP con los avances de otros países</p><span>Internacional · REP</span></div><div class="nv" style="--i:3"><b>Expediente por entidad</b><p>Leyes, impuestos, residuos y actividad legislativa de cada estado en una ficha</p><span>Estados</span></div></div><p class="fx-p fx-w r d6">La meta es que cada empresa tenga <b>dos usuarios activos antes de la asamblea del 18 de noviembre</b>.</p>
   </section>
 
   <!-- 06 · Cierre -->
