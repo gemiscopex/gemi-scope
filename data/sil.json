@@ -1,6 +1,28 @@
 {
   "iniciativas": [
     {
+      "camara_origen": "Cámara de Senadores",
+      "camara_revisora": "Cámara de Diputados",
+      "fecha_presentacion": "2026-10-21",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "titulo": "Que reforma y adiciona diversas disposiciones de la Ley General de Aguas.",
+      "presentador": "Sen. Gina Gerardina Campuzano González (PAN)",
+      "aspectos": "La iniciativa tiene por objeto incorporar los criterios e indicadores de eficiencia y calidad de carácter hídrico, económico, social y ambiental relacionados con el cumplimiento del derecho humano al agua, incluyendo aquellos que permitan conocer y evaluar la eficiencia física de los sistemas, las pérdidas físicas de agua en las redes de conducción y distribución, el grado de medición de los volúmenes que ingresan a los sistemas y de los volúmenes suministrados a las personas usuarias, así como la continuidad de los servicios. Para ello propone incorporar la identificación, en materia de agua potable, de objetivos, metas e indicadores orientados a mejorar la eficiencia física de los sistemas y promover la reducción progresiva de pérdidas físicas de agua.\n\nPara ello modifica los artículos 29 y 31 de la Ley General de Aguas.",
+      "ultimo_tramite": "Se turnó a comisiones unidas: Estudios Legislativos, Segunda de Cámara de Senadores. Dictamina. Ver todos los trámites",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 21/10/2026",
+      "asunto_id": "5172083",
+      "seguimiento": "5173816",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5173816&Asunto=5172083",
+      "categorias": [
+        "agua"
+      ],
+      "categoria": "agua",
+      "categoria_nombre": "Agua",
+      "id": "f90eedc29823",
+      "scrapeado_en": "2026-10-22T21:11:05.442474+00:00"
+    },
+    {
       "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2026-10-13",
       "legislatura": "LXVI",
@@ -10783,35 +10805,13 @@
       "categoria_nombre": "Cambio Climático",
       "id": "2c7bb48e7aad",
       "scrapeado_en": "2026-05-11T16:29:31.866256+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-04-22",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que adiciona diversas disposiciones al Código Penal Federal, en materia de ecocidio.",
-      "presentador": "Dip. Eduardo Gaona Domínguez (MC)",
-      "aspectos": "La iniciativa tiene por objeto tipificar el delito del ecocidio a nivel federal.\nEntre lo propuesto destaca: 1) definir el concepto del delito de -ecocidio- como quien o quienes de manera dolosa cause destrucción generalizada, daños graves y duraderos al medio ambiente y afecte los recursos naturales de la nación; 2) indicar que la Procuraduría Federal de Protección al Ambiente llevará a cabo el análisis técnico que ayude a determinar el daño ambiental para que la autoridad penal pueda realizar la investigación y persecución del delito; 3) imponer: a) una pena de cinco a doce años de prisión y de mil quinientos a tres mil días multa, a quien cometa el delito de ecocidio; y, b) una pena adicional hasta de tres años más de prisión y hasta mil días multa adicionales cuando las conductas se realicen en o afecten un área natural protegida federal; y, 3) determinar que la reparación del daño ambiental se llevará de conformidad con lo dispuesto en la Ley Federal de Responsabilidad Ambiental, sin perjuicio de las sanciones penales que resulten procedentes.\n\nPara ello adiciona un capítulo sexto al Título Vigésimo Quinto, Delitos contra el Ambiente y la Gestión Ambiental, así como los artículos 423 Bis, 423 Ter, 423 Quáter y 423 Quintus del Código Penal Federal.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Justicia  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 22 de abril de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 22/04/2026",
-      "asunto_id": "5077462",
-      "seguimiento": "5080555",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5080555&Asunto=5077462",
-      "categorias": [
-        "biodiversidad"
-      ],
-      "categoria": "biodiversidad",
-      "categoria_nombre": "Biodiversidad",
-      "id": "853e1f64a2e2",
-      "scrapeado_en": "2026-05-11T16:29:44.757509+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 64,
-    "actualizado": "2026-10-22T15:43:50Z"
+    "nuevas": 66,
+    "actualizado": "2026-10-22T21:16:19Z"
   }
 }
