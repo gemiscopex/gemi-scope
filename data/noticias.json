@@ -1,5 +1,35 @@
 [
   {
+    "id": "aa7419db90ff",
+    "titulo": "Huracán ‘Vance’ y el frente frío 3 afectarán el país: ¿Qué estados tendrán lluvias este sábado?",
+    "url": "https://www.elfinanciero.com.mx/cdmx/2026/10/24/huracan-vance-y-el-frente-frio-3-afectaran-el-pais-que-estados-tendran-lluvias-este-sabado/",
+    "fuente": "El Financiero",
+    "resumen": "De acuerdo con Conagua, el centro del huracán Vance en categoría 2 se encuentra a 555 kilómetros al suroeste de Acapulco, Guerrero.",
+    "fecha_publicacion": "2026-10-24T18:32:30Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Guerrero",
+    "scrapeado_en": "2026-10-24T19:58:36.929227+00:00"
+  },
+  {
+    "id": "fc8b728b1ae6",
+    "titulo": "¿Qué sabemos del viaje del hijo de Guadalupe Taddei con el contratista del INE? ‘París a tus pies’",
+    "url": "https://www.elfinanciero.com.mx/nacional/2026/10/24/que-sabemos-del-viaje-del-hijo-de-guadalupe-taddei-con-el-contratista-del-ine-paris-a-tus-pies/",
+    "fuente": "El Financiero",
+    "resumen": "El hijo de Guadalupe Taddei habría viajado a París con un contratista del INE que suma más de 240 millones de pesos en licitaciones.",
+    "fecha_publicacion": "2026-10-24T17:17:02Z",
+    "categoria": "cambio_climatico",
+    "categoria_nombre": "Cambio Climático",
+    "categorias": [
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-10-24T19:58:36.930295+00:00"
+  },
+  {
     "id": "e6a6195a2d90",
     "titulo": "La IA ayuda a predecir la deforestación en el bosque seco chiquitano de Bolivia para evitar incendios",
     "url": "https://es.mongabay.com/2026/10/ia-ayuda-predecir-deforestacion-bosque-seco-chiquitano-bolivia-evitar-incendios/",
@@ -30,6 +60,21 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-10-24T14:06:02.759176+00:00"
+  },
+  {
+    "id": "d7c1337fa7f3",
+    "titulo": "\"¡París a tus pies, chamaquito!\"",
+    "url": "https://www.reforma.com/paris-a-tus-pies-chamaquito/ar3301255",
+    "fuente": "Reforma",
+    "resumen": "Un video difundido muestra que el proveedor del INE pagó viaje a París a los hijos de Taddei, alojándolos en un hotel de los más costosos.",
+    "fecha_publicacion": "2026-10-24T11:00:43Z",
+    "categoria": "cambio_climatico",
+    "categoria_nombre": "Cambio Climático",
+    "categorias": [
+      "cambio_climatico"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-10-24T19:58:36.896978+00:00"
   },
   {
     "id": "6df7bf1f6622",
@@ -9296,51 +9341,5 @@
     ],
     "estado": "Veracruz",
     "scrapeado_en": "2026-10-23T20:48:36.044231+00:00"
-  },
-  {
-    "id": "a3cf1484ec55",
-    "titulo": "Píldoras solares: India sufre falta de especialización laboral, Italia podría llegar a los 137 GW instalados en 2035 y Túnez licita",
-    "url": "https://www.pv-magazine-mexico.com/2026/10/16/pildoras-solares-india-sufre-falta-de-especializacion-laboral-italia-podria-llegar-a-los-137-gw-instalados-en-2035-y-tunez-licita/",
-    "fuente": "PV Magazine MX",
-    "resumen": "Al final de cada semana, pv magazine resume en español noticias importantes acaecidas en los últimos 7 días.",
-    "fecha_publicacion": "2026-10-16T17:54:49Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-10-16T20:15:42.662877+00:00"
-  },
-  {
-    "id": "1d3b592acf79",
-    "titulo": "Hitachi Energy y Rockwell Automation se unen para acelerar la electrificacióny en las industrias",
-    "url": "https://energiahoy.com/industrias/hitachi-energy-y-rockwell-automation-se-unen-para-acelerar-la-electrificaciony-en-las-industrias/",
-    "fuente": "Energia Hoy",
-    "resumen": "Hitachi Energy, compañía global especializada en electrificación, y Rockwell Automation, referente mundial en automatización industrial y transformación digital, dieron a conocer una alianza estratégica para desarrollar una arquitectura integrada que conecte la infraestructura eléctrica de las instalaciones industriales con los sistemas responsables de administrar los procesos productivos. La iniciativa responde a los desafíos que enfrenta [...] El cargo Hitachi Energy y Rockwell Automation se u",
-    "fecha_publicacion": "2026-10-16T17:20:12Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-10-16T20:15:42.639136+00:00"
-  },
-  {
-    "id": "a66c4d9c5ef4",
-    "titulo": "Análisis crediticio prevé alza de 8% en producción de crudo de Pemex",
-    "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOeTJKOVB2RUJ4Sm5NQjhmNGpDbWx5WmllaUs3ZjJJbnFfNzU5TnpkRzB6WGNwTERhX1pYUncxbEZERTYwSGJ5YUR5aTJFeWpWbkhZZUx6TEhkemZTMmxuX3h6ckV2ekxhNFlLbmJLSXVwc3h1cG8tMmozZVpCWHY4dko4dGNoLUlBRXRFRUtuU3BXelBzVFYxSDh6SkFJQWVXZUU0NnhZMEhCdw?oc=5",
-    "fuente": "BNamericas",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-10-16T17:14:41Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-10-17T00:05:11.533287+00:00"
   }
 ]
