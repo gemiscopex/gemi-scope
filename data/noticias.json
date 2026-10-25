@@ -1,5 +1,20 @@
 [
   {
+    "id": "5dac867e53fa",
+    "titulo": "Xcaret advierte por mensajes de texto falsos para cobrar reservaciones: ¿Qué datos fueron extraídos?",
+    "url": "https://www.elfinanciero.com.mx/empresas/2026/10/25/xcaret-advierte-sobre-mensajes-de-texto-falsos-para-cobrar-reservaciones-que-datos-fueron-extraidos/",
+    "fuente": "El Financiero",
+    "resumen": "Unos 8,300 clientes de Grupo Xcaret fueron afectados por la extracción no autorizada de información. Esto informó la empresa.",
+    "fecha_publicacion": "2026-10-25T22:26:27Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-10-25T23:41:45.709359+00:00"
+  },
+  {
     "id": "8f807c7c0590",
     "titulo": "Xcaret advierte sobre mensajes de texto falsos para cobrar reservaciones; ¿Qué datos fueron extraídos?",
     "url": "https://www.elfinanciero.com.mx/empresas/2026/10/25/xcaret-advierte-sobre-mensajes-de-texto-falsos-para-cobrar-reservaciones-que-datos-fueron-extraidos/",
@@ -804,6 +819,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-10-24T14:06:01.674414+00:00"
+  },
+  {
+    "id": "c5459b85c691",
+    "titulo": "Pemex fortalece producción nacional y estabiliza cuentas claves",
+    "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPd2J2X3RTbnhTbGVPQU10elJWaXF3dUxKNGM2UVJWa1piVkpJM3JjQXl6cFlVVzJDdjBKVGV6T0ltcFE5STd1M0ZCLUFPc2hBdE5qcW40bWZUWWJEcDZmdmFuOU8wQzFzVWJqSnZFN3JHUmtEYXhSMU5uN1kteTV4NmgtbWxKY1JKN05pdC1ZVkJIMUYwWUJZeW5NcDFZRGQ0YXBkb3hnWFlyb0laMDhVbGVRVzdrMTlBVnNqMtIBwgFBVV95cUxPNTN5LWJFT1pHcjh5TGRVVVFVUktFYnZFREY4b3dmN3M1aUpEcndvT0ZKSHp4R2c1RDI2S09Oc2xPRWpDUlNua3NqV1E4Y01HSFNEZlVDLXFxdmhlakZhZ3FVUnFkQkdXck9LTFJkV0pHeFpKTjg0M2M1clVRbVhDZExOaTU4YjVRZGxXcXdSVTNsNmdjSW1iYi04eWgzVXpmWWoxMmE3Smdvb0hncEFseTBhOVU4dEhjS3VwOTE0ZXh4Zw?oc=5",
+    "fuente": "Imagen Radio",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-10-24T02:57:24Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-10-25T23:41:59.807405+00:00"
   },
   {
     "id": "a4304b22cbf7",
@@ -9317,37 +9348,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-10-17T13:53:00.454187+00:00"
-  },
-  {
-    "id": "562e47cc15d3",
-    "titulo": "México, en ruta para reducir sus gases de invernadero: Semarnat",
-    "url": "https://www.jornada.com.mx/2026/10/17/politica/010n2pol?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "México avanza en su plan nacional obligatorio para reducir sus emisiones de gases de efecto invernadero o Contribuciones Determinadas a Nivel Nacional (NCD), como parte del Acuerdo de París sobre cambio climático, incluyendo metas de mitigación en términos absolutos y netos, como una reducción del carbono negro de entre 35 mil 800 y 39 mil 700 toneladas para 2030, señaló Norma Munguía, directora general de Políticas Públicas para la Acción Climática de la Secretaría de Medio Ambiente y Recursos ",
-    "fecha_publicacion": "2026-10-17T08:02:24Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad",
-      "calidad_aire",
-      "cambio_climatico"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-10-17T13:52:53.018326+00:00"
-  },
-  {
-    "id": "185638118f26",
-    "titulo": "Por tandeos, decenas de colonias de ZMG sufren desabasto",
-    "url": "https://www.jornada.com.mx/2026/10/17/estados/021n2est?partner=rss",
-    "fuente": "La Jornada",
-    "resumen": "Guadalajara, Jal., Los tandeos de agua comenzaron en la zona metropolitana de Guadalajara (ZMG) y con ello los problemas para decenas de colonias que se quedan sin el servicio por días, lo que ha hecho que varios ayuntamientos anuncien apoyo con pipas.",
-    "fecha_publicacion": "2026-10-17T08:02:24Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Jalisco",
-    "scrapeado_en": "2026-10-17T13:52:53.019223+00:00"
   }
 ]
