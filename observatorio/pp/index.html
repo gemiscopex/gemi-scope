@@ -1456,6 +1456,8 @@ section.in .pp-br-v img{animation:ppcyc 12s infinite;animation-delay:calc(var(--
 @media print{section.in .pp-br-v img{animation:none}.pp-br-v img:first-child{opacity:1}}
 .print-mode section.in .pp-br-v img{animation:none}.print-mode .pp-br-v img:first-child{opacity:1}
 .pp-tool .t{font-size:clamp(28px,3.4vw,46px)}
+/* Regresión fija: sin puntos en movimiento ni trazos animados (en Jumex confundió) */
+section[data-t="Resultados del modelo"] .fp-r,section[data-t="Resultados del modelo"] .fp-ci,section[data-t="Resultados del modelo"] .fp-d{transition:none!important;animation:none!important;opacity:1!important;transform:none!important;box-shadow:none!important}
 
 @media (max-width:820px){.mb-r{grid-template-columns:110px 1fr 56px}.mb-s{display:none}.pb-r{grid-template-columns:150px 1fr 30px}.fr-h,.fr-r{grid-template-columns:1fr}.iq{grid-template-columns:1fr}.aud-n{grid-template-columns:1fr 1fr}.aud-h,.aud-r{grid-template-columns:1fr}.pan,.rg-top,.inst{grid-template-columns:1fr}.cv-qr{display:none}}
 </style>
