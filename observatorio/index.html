@@ -181,8 +181,11 @@ button{font-family:inherit}
 .news a:hover .nt{color:var(--pine)}
 .news .nm{margin-top:6px;font-family:var(--mono);font-size:10px;color:var(--mute);display:flex;gap:12px}
 /* gancho Scope */
-.scope{padding:130px 0;text-align:center;border-top:1px solid var(--line);background:linear-gradient(180deg,#fff,var(--soft))}
-.scope img.lg{height:44px;margin:0 auto;display:block}
+.scope{padding:34px 0;border-top:1px solid var(--line)}
+.scope .wrap{display:flex;align-items:center;gap:16px}
+.scope .wrap p{margin:0;font-size:13px;color:var(--sec);line-height:1.5}
+.scope .wrap a{color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
+.scope img.lg{height:20px;display:block;flex:none;opacity:.8}
 .scope h2{font-size:clamp(30px,4.4vw,56px);letter-spacing:-.03em;line-height:1.05;margin:26px auto 0;max-width:860px;font-weight:700;text-wrap:balance}
 .scope p{font-size:17px;color:var(--ink2);max-width:640px;margin:18px auto 0;line-height:1.55}
 .imac{max-width:900px;margin:60px auto 0;filter:drop-shadow(0 40px 60px rgba(13,27,42,.16))}
@@ -536,10 +539,6 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
     <div class="reveal"><div class="chart" id="ind-chart"></div></div>
   </div></div>
 
-  <div class="chapter"><div class="wrap grid" style="align-items:start">
-    <div class="reveal"><div class="eyebrow">Qué sigue</div><h2 style="margin-top:14px">Próximas ventanas legislativas y regulatorias</h2><p>Votaciones, dictámenes e instrumentos federales pendientes, con su fundamento.</p><button class="cta" data-go="legislacion/federal">Ver el marco federal →</button></div>
-    <div class="reveal" id="ventanas"></div>
-  </div></div>
 
   <div class="chapter"><div class="wrap grid" style="align-items:start">
     <div class="reveal"><div class="eyebrow">En la prensa</div><h2 style="margin-top:14px">Notas recientes sobre economía circular</h2><p>Monitoreo diario de medios nacionales y estatales de Scope. Pasa el cursor para detener la lista.</p></div>
@@ -562,18 +561,9 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
   </div></section>
 
   <section class="scope">
-    <div class="wrap">
-      <img class="lg reveal" src="../assets/scope-logo.png" alt="Scope">
-      <h2 class="reveal">El Observatorio funciona con Scope</h2>
-      <p class="reveal">Scope es la plataforma de inteligencia regulatoria ambiental de Iniciativa GEMI. Da seguimiento diario a legislación federal y estatal, Congreso, NOMs y agenda regulatoria.</p>
-      <div class="cta-row reveal"><a class="cta solid" href="https://scopegemi.com/" target="_blank" rel="noopener">Conoce Scope</a></div>
-      <div class="imac reveal"><div class="scr"><img src="../assets/obs/scope-dashboard.jpg" alt="Scope, vista principal" loading="lazy"></div><div class="chin"><img src="../assets/scope-logo.png" alt=""></div><div class="neck"></div><div class="foot"></div></div>
-      <div class="feats reveal">
-        <div><b>Legislación federal y estatal</b><span>Leyes, reglamentos y reformas de las 32 entidades, con su texto oficial.</span></div>
-        <div><b>Congreso</b><span>Iniciativas, dictámenes, comisiones y legisladores que mueven tus temas.</span></div>
-        <div><b>NOMs y agenda regulatoria</b><span>Normas, proyectos, consultas y fechas que vienen.</span></div>
-        <div><b>Expediente por entidad</b><span>Todo lo que aplica a tu operación en cada estado, en un solo lugar.</span></div>
-      </div>
+    <div class="wrap reveal">
+      <img class="lg" src="../assets/scope-logo.png" alt="Scope">
+      <p>El Observatorio funciona con Scope, la plataforma de inteligencia regulatoria ambiental de Iniciativa GEMI. <a href="https://scopegemi.com/" target="_blank" rel="noopener">scopegemi.com</a></p>
     </div>
   </section>
 </section>
@@ -672,7 +662,6 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
       <div class="facts" id="lg-facts"></div>
       <div class="kv" id="lg-kv"></div>
       <div class="block"><div class="bh"><h2>Instrumentos de la Ley General</h2></div><div id="instr"></div></div>
-      <div class="block"><div class="bh"><h2>Próximas ventanas</h2></div><div id="frentes"></div></div>
       <div class="block"><div class="bh"><h2>Polos de economía circular</h2></div><div class="tbl-wrap"><table class="t" id="polos"></table></div></div>
       <div class="block"><div class="bh"><h2>Acuerdo Nacional de Municipios</h2></div><div class="facts" id="anm-facts"></div><p class="lead" id="anm-hall" style="margin-top:16px"></p><div class="tbl-wrap"><table class="t" id="anm"></table></div></div>
       <div class="block"><div class="bh"><h2>Normas en paralelo y NOMs aplicables</h2></div><div id="noms"></div></div>
@@ -1056,7 +1045,7 @@ function drawIndustria(){
   $('ind-chart').querySelectorAll('g[data-n]').forEach(function(g){g.onclick=function(){go('entidades/ficha/'+encodeURIComponent(g.dataset.n));};});
 }
 function drawVentanas(){
-  $('ventanas').innerHTML=D.frentes.slice(0,4).map(function(f){return '<div class="win"><div class="w">'+esc(f.ventana)+'</div><div><b>'+esc(f.frente)+'</b><p>'+esc(f.fundamento)+'</p></div></div>';}).join('');
+  if($('ventanas'))$('ventanas').innerHTML=D.frentes.slice(0,4).map(function(f){return '<div class="win"><div class="w">'+esc(f.ventana)+'</div><div><b>'+esc(f.frente)+'</b><p>'+esc(f.fundamento)+'</p></div></div>';}).join('');
 }
 var INC=/econom[ií]a circular|circularidad|\bLGEC\b|ley general de econom|reciclaj|recicla(?:d|r|bl)|valorizaci[oó]n|responsabilidad extendida del productor|pl[aá]sticos?\s+de un solo uso|gesti[oó]n (?:integral )?de residuos|manejo (?:integral )?de residuos|rellenos? sanitarios?/i;
 var BLOCK=/beb[eé]s?|\bmuert|asesin|homicid|balac|narco|secuestr|extorsi|\bherid|cad[aá]ver|detenid|v[ií]ctima|\bdroga|salmonel|bacteria|f[uú]tbol|hor[oó]scopo|suecia|estados unidos|polac|europa|china|india|brasil|argentina|chile|colombia|espa[ñn]a/i;
@@ -1325,7 +1314,7 @@ function renderFed(){
   var kv=function(k,v){return '<div class="r"><span class="k">'+k+'</span><span>'+esc(cap(v))+'</span></div>';};
   $('lg-kv').innerHTML=kv('Transitorio cuarto',lg.transitorio_cuarto)+kv('Transitorio quinto',lg.transitorio_quinto)+kv('Artículo 8',lg.art_8)+kv('Artículo 45',lg.art_45);
   $('instr').innerHTML=F.instrumentos_lgec.map(function(x){return '<div class="frow"><div class="a">'+esc(x.instrumento)+'<span>'+esc(x.fundamento)+'</span></div><div class="b">'+esc(x.que_hace)+'.<br><b>Depende de:</b> '+esc(x.que_falta_para_operar.replace(/^De(l)? /,function(m,l){return l?'el ':'';}))+'</div><div class="c">'+esc(x.estado)+'</div></div>';}).join('');
-  $('frentes').innerHTML=D.frentes.map(function(f){return '<div class="frow"><div class="a">'+esc(f.frente)+'</div><div class="b">'+esc(f.fundamento)+'<br><b>Qué lo activa.</b> '+esc(f.que_lo_activa)+'</div><div class="c">'+esc(f.ventana)+'</div></div>';}).join('');
+  if($('frentes'))$('frentes').innerHTML=D.frentes.map(function(f){return '<div class="frow"><div class="a">'+esc(f.frente)+'</div><div class="b">'+esc(f.fundamento)+'<br><b>Qué lo activa.</b> '+esc(f.que_lo_activa)+'</div><div class="c">'+esc(f.ventana)+'</div></div>';}).join('');
   var ha=function(s){var m=String(s).match(/[\d.]+/);return m?+m[0]:0;},mxh=Math.max.apply(null,F.polos.map(function(p){return ha(p.superficie);}));
   $('polos').innerHTML='<tr><th>Ubicación</th><th>Figura</th><th>Declaratoria</th><th class="r">Superficie</th><th>Régimen estatal</th><th>Situación</th></tr>'+F.polos.map(function(p,i){var h=ha(p.superficie);return '<tr'+(i%2?' class="z"':'')+'><td><b>'+esc(p.ubicacion)+'</b></td><td>'+esc(p.figura)+'</td><td class="n">'+esc(p.declaratoria)+'</td><td class="n r">'+esc(p.superficie)+(h?'<span class="minibar"><span style="width:'+Math.round(100*h/mxh)+'%"></span></span>':'')+'</td><td>'+esc(p.ordenamiento_estatal)+'</td><td style="font-size:12px;color:var(--sec);min-width:240px">'+esc(p.situacion)+'</td></tr>';}).join('');
   var A=F.acuerdo_nacional_municipios;
