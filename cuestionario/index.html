@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tu opinión sobre Scope</title>
+<meta name="description" content="Cuestionario de Iniciativa GEMI sobre tu experiencia con Scope. Toma unos 4 minutos.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/assets/logo-gemi-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Scope Sans';src:url('/assets/fonts/heros-regular.woff2') format('woff2');font-weight:100 550;font-display:swap}
+@font-face{font-family:'Scope Sans';src:url('/assets/fonts/heros-bold.woff2') format('woff2');font-weight:551 1000;font-display:swap}
+:root{
+  --bg:#FFFFFF;--soft:#F6F8FA;--ink:#0D1B2A;--ink2:#3D5A75;--sec:#5A7A98;--mute:#8A9CB0;
+  --line:rgba(0,0,0,.07);--line2:rgba(0,0,0,.13);--teal:#009E90;--teal-l:#E6F7F5;--err:#C04A52;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --sans:'Scope Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body{min-height:100vh;display:flex;flex-direction:column}
+.grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(#EDF2F6 1px,transparent 1px),linear-gradient(90deg,#EDF2F6 1px,transparent 1px);background-size:52px 52px;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 25%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 40%,#000 25%,transparent 75%)}
+header{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:20px 28px}
+header img{height:26px;display:block}
+.cnt{font-family:var(--mono);font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+.bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--line);z-index:3}
+.bar i{display:block;height:100%;width:0;background:var(--teal);transition:width .45s cubic-bezier(.3,0,.2,1)}
+main{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;padding:24px 20px 120px}
+.q{margin:auto 0}
+.q{width:100%;max-width:640px;animation:in .45s cubic-bezier(.2,.7,.2,1)}
+.q.out{animation:out .25s ease forwards}
+@keyframes in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes out{to{opacity:0;transform:translateY(-14px)}}
+.k{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--teal);font-weight:600;display:flex;gap:10px;align-items:center}
+.k::after{content:"";flex:1;height:1px;background:var(--line)}
+h1{font-size:clamp(26px,4.2vw,40px);line-height:1.1;letter-spacing:-.02em;font-weight:700;margin:16px 0 0;text-wrap:balance}
+.h{font-size:16px;line-height:1.55;color:var(--ink2);margin:12px 0 0;max-width:56ch}
+.ops{display:flex;flex-direction:column;margin-top:26px;border-top:1px solid var(--line)}
+.op{display:grid;grid-template-columns:30px 1fr 20px;gap:12px;align-items:center;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:14px 10px;font:inherit;font-size:16px;color:var(--ink);cursor:pointer;transition:background .15s}
+.op:hover{background:var(--soft)}
+.op:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.op .l{font-family:var(--mono);font-size:12px;color:var(--mute);font-weight:500}
+.op .c{width:18px;height:18px;border:1.5px solid var(--line2);border-radius:50%;position:relative}
+.multi .op .c{border-radius:3px}
+.op.on{background:var(--teal-l)}
+.op.on .l{color:var(--teal);font-weight:600}
+.op.on .c{border-color:var(--teal);background:var(--teal)}
+.op.on .c::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.op small{display:block;font-size:13px;color:var(--sec);margin-top:2px}
+.fld{display:block;margin-top:22px}
+.fld span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+input[type=text],input[type=email],textarea{width:100%;border:0;border-bottom:1.5px solid var(--line2);background:transparent;font:inherit;font-size:20px;color:var(--ink);padding:10px 0;outline:none;transition:border-color .15s}
+textarea{font-size:17px;line-height:1.5;resize:vertical;min-height:110px}
+input:focus,textarea:focus{border-color:var(--teal)}
+.otro{margin:6px 0 0 52px;display:none}
+.otro.on{display:block}
+.otro input{font-size:16px}
+.sc{display:grid;gap:6px;margin-top:28px}
+.sc .row{display:grid;gap:6px}
+.sc button{height:52px;border:1px solid var(--line2);background:#fff;border-radius:4px;font-family:var(--mono);font-size:16px;color:var(--ink);cursor:pointer;transition:all .15s}
+.sc button:hover{border-color:var(--teal)}
+.sc button.on{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:600}
+.sc .ends{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:4px}
+.nav{display:flex;align-items:center;gap:16px;margin-top:30px}
+.go{border:0;background:var(--ink);color:#fff;font:inherit;font-weight:700;font-size:15px;padding:13px 22px;border-radius:4px;cursor:pointer;transition:opacity .15s}
+.go:disabled{opacity:.35;cursor:default}
+.go:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.hint{font-family:var(--mono);font-size:11px;color:var(--mute)}
+.back{position:fixed;left:24px;bottom:24px;z-index:3;border:1px solid var(--line2);background:#fff;font-family:var(--mono);font-size:12px;color:var(--sec);padding:8px 12px;border-radius:4px;cursor:pointer}
+.back[hidden]{display:none}
+.err{color:var(--err);font-size:14px;margin-top:12px;min-height:1em}
+.consent{display:flex;gap:10px;align-items:flex-start;margin-top:22px;font-size:13px;color:var(--sec);line-height:1.5}
+.consent input{margin-top:3px;accent-color:var(--teal)}
+.consent a{color:var(--ink2)}
+.done{text-align:left}
+.done .tick{width:44px;height:44px;border-radius:50%;background:var(--teal);display:grid;place-items:center;margin-bottom:22px}
+.done .tick::after{content:"";width:10px;height:20px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) translate(-2px,-2px)}
+@media (max-width:560px){header{padding:16px}.op{font-size:15px}.sc .row.n11{grid-template-columns:repeat(6,1fr)!important}h1{font-size:26px}}
+@media (prefers-reduced-motion:reduce){.q,.q.out{animation:none}.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="bar"><i id="bar"></i></div>
+<header><img src="/assets/scope-logo.png" alt="Scope"><span class="cnt" id="cnt"></span></header>
+<main id="main"></main>
+<button class="back" id="back" hidden>← Anterior</button>
+<script>
+// Cuestionario de experiencia con Scope. Guarda en Supabase (observatorio_contactos, solo inserción pública), origen 'cuestionario-scope'.
+var URL_='https://winssrwnqsaahfjpxgcj.supabase.co/rest/v1/observatorio_contactos';
+var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndpbnNzcnducXNhYWhmanB4Z2NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2NDMxMzQsImV4cCI6MjA4ODIxOTEzNH0.ObupFS_cfoAVu8hzfo44dloiuYUmxY3twZ_9u0jkWLw';
+var SECC=['Radar','Cumplimiento (NOMs y obligaciones)','Estados','Agenda (Congreso y consultas)','Seguimiento Ejecutivo','DOF','Actores','Internacional','Mi Terminal','Buscador','Signal (asistente)'];
+var Q=[
+ {id:'intro',t:'intro',k:'Iniciativa GEMI · Scope',q:'Ayúdanos a mejorar Scope',h:'Usaste Scope en su etapa de prueba. Queremos saber qué te sirvió, qué no y qué le falta antes de abrirlo al público. Toma unos 5 minutos.'},
+ {id:'datos',t:'datos',k:'Sobre ti',q:'¿Quién responde?',h:'Lo usamos solo para dar seguimiento a tus comentarios.'},
+ {id:'veces',t:'one',k:'Uso',q:'¿Cuántas veces entraste a Scope durante tu prueba?',o:['Ninguna','Una vez','Dos o tres veces','Más de tres veces']},
+ {id:'barrera',t:'multi',k:'Uso',q:'¿Qué hizo que no entraras o que entraras poco?',h:'Elige todas las que apliquen.',o:['No tuve tiempo','No recordé que tenía acceso','Tuve problemas para entrar','No entendí cómo usarlo','No encontré información que aplique a mi operación','Ya recibo esta información por otro medio','La prueba fue muy corta'],otro:true},
+ {id:'secciones',t:'multi',k:'Uso',q:'¿Qué secciones usaste?',h:'Elige todas las que recuerdes.',o:SECC,otro:true,skip:function(a){return a.veces==='Ninguna';}},
+ {id:'para',t:'multi',k:'Uso',q:'¿Para qué lo usaste?',o:['Revisar novedades regulatorias de la semana','Dar seguimiento a una ley, NOM o iniciativa en particular','Revisar qué aplica en un estado','Preparar un reporte o presentación interna','Ubicar a legisladores o funcionarios','Comparar con otros países'],otro:true,skip:function(a){return a.veces==='Ninguna';}},
+ {id:'instrumentos',t:'multi',k:'Lo que seguiste',q:'¿Qué seguiste en Scope?',h:'Elige todo lo que revisaste al menos una vez.',o:['Iniciativas en el Congreso de la Unión','Iniciativas en congresos estatales','Publicaciones del Diario Oficial de la Federación','Periódicos oficiales de los estados','NOMs y proyectos de NOM','Consultas públicas y trámites ante CONAMER','Conferencias del Ejecutivo federal','Notas de prensa'],otro:true,skip:function(a){return a.veces==='Ninguna';}},
+ {id:'temas',t:'multi',k:'Tu operación',q:'¿Qué temas regulatorios afectan directamente a tu operación?',h:'Elige hasta cinco.',max:5,o:['Residuos y economía circular','Responsabilidad Extendida del Productor','Envases y plásticos','Agua y descargas','Emisiones y calidad del aire','Contingencias ambientales','Residuos peligrosos y sustancias químicas','Impuestos ambientales estatales','Energía','Cambio climático y reporte de emisiones'],otro:true},
+ {id:'deteccion',t:'one',k:'Oportunidad',q:'Cuando hubo un cambio que te importaba, ¿cuándo lo viste en Scope?',o:['Antes que en mis otras fuentes','El mismo día que en mis otras fuentes','Días después que en mis otras fuentes','No apareció en Scope','No hubo cambios relevantes mientras lo usé'],skip:function(a){return a.veces==='Ninguna';}},
+ {id:'fallas',t:'multi',k:'Cobertura',q:'¿Qué falló cuando buscaste algo?',h:'Elige todo lo que te haya pasado.',o:['No estaba una ley o reforma estatal','No estaba una publicación del DOF','No estaba una NOM o su proyecto','No estaba información municipal','La información llegó tarde','El estatus de un trámite estaba desactualizado','Una liga no abría el documento oficial','No falló nada'],otro:true,skip:function(a){return a.veces==='Ninguna';}},
+ {id:'accion',t:'multi',k:'Impacto',q:'¿Qué hiciste con lo que viste en Scope?',h:'Elige todo lo que aplique.',o:['Lo compartí con mi equipo','Lo incluí en un reporte para dirección','Lo turné a jurídico o a cumplimiento','Agendé una fecha límite u obligación','Preparé comentarios a una consulta o NOM','Ajusté un proceso, permiso o presupuesto de planta','Nada todavía'],otro:true,skip:function(a){return a.veces==='Ninguna';}},
+ {id:'util',t:'long',k:'Valor',q:'¿Qué fue lo más útil?',h:'Un dato, una vista, una alerta. Lo que te haya servido.',skip:function(a){return a.veces==='Ninguna';}},
+ {id:'utilidad',t:'scale',k:'Valor',q:'¿Qué tan útil fue Scope para tu trabajo?',n:[1,5],ends:['Nada útil','Muy útil'],skip:function(a){return a.veces==='Ninguna';}},
+ {id:'falta',t:'multi',k:'Qué mejorar',q:'¿Qué le falta a Scope para que lo uses cada semana?',h:'Elige hasta cuatro.',max:4,o:['Alertas por correo sobre mis temas','Resumen semanal en mi correo','Más cobertura de mi estado o municipio','Análisis de impacto para mi empresa, no solo la noticia','Calendario de fechas límite y obligaciones','Exportar reportes en PDF o Excel','Una versión cómoda en el teléfono','Que sea más fácil encontrar las cosas'],otro:true},
+ {id:'mejorar',t:'long',k:'Qué mejorar',q:'¿Qué cambiarías o quitarías?',h:'Lo que te confundió, te sobró o no funcionó bien.',opt:true},
+ {id:'frecuencia',t:'one',k:'Tu necesidad',q:'¿Cada cuánto necesitas información regulatoria ambiental?',o:['Todos los días','Una vez a la semana','Una vez al mes','Solo cuando surge un tema']},
+ {id:'canal',t:'multi',k:'Tu necesidad',q:'¿Cómo prefieres recibirla?',o:['Entrando a la plataforma','Alertas por correo','Resumen semanal por correo','WhatsApp','Reporte mensual'],otro:true},
+ {id:'fuentes',t:'long',k:'Tu necesidad',q:'¿Qué usas hoy para enterarte de cambios regulatorios?',h:'Despachos, boletines, cámaras, otra plataforma, búsqueda propia.',opt:true},
+ {id:'nps',t:'scale',k:'Recomendación',q:'¿Qué tan probable es que recomiendes Scope a un colega?',n:[0,10],ends:['Nada probable','Muy probable']},
+ {id:'llamada',t:'one',k:'Seguimiento',q:'¿Podemos llamarte 20 minutos para profundizar?',o:['Sí','No, por ahora no']},
+ {id:'fin',t:'fin',k:'Enviar',q:'Listo. ¿Enviamos tus respuestas?',h:'Gracias por tu tiempo. Iniciativa GEMI las usará para ajustar Scope antes de su lanzamiento.'}
+];
+var A={},i=0,hist=[],$=function(id){return document.getElementById(id);};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function visible(){return Q.filter(function(x){return !(x.skip&&x.skip(A));});}
+function progress(){var v=visible().filter(function(x){return x.t!=='intro'&&x.t!=='fin';}),cur=Q[i],k=v.indexOf(cur);
+  $('cnt').textContent=k>=0?(k+1)+' / '+v.length:'';$('bar').style.width=(cur.t==='fin'?100:Math.max(0,k)/v.length*100)+'%';
+  $('back').hidden=!hist.length||cur.t==='done';}
+function L(n){return String.fromCharCode(65+n);}
+function render(){
+  var x=Q[i],h='<div class="q" id="q"><div class="k">'+esc(x.k)+'</div><h1>'+esc(x.q)+'</h1>'+(x.h?'<p class="h">'+esc(x.h)+'</p>':'');
+  if(x.t==='intro')h+='<div class="nav"><button class="go" id="go">Empezar</button><span class="hint">o presiona Enter ↵</span></div>';
+  if(x.t==='datos'){var d=A.datos||{};h+='<label class="fld"><span>Nombre</span><input type="text" id="f-nombre" autocomplete="name" value="'+esc(d.nombre||'')+'"></label>'
+    +'<label class="fld"><span>Correo con el que entraste a Scope</span><input type="email" id="f-correo" autocomplete="email" value="'+esc(d.correo||'')+'"></label>'
+    +'<label class="fld"><span>Empresa</span><input type="text" id="f-empresa" autocomplete="organization" value="'+esc(d.empresa||'')+'"></label>'
+    +'<label class="fld"><span>Cargo</span><input type="text" id="f-cargo" autocomplete="organization-title" value="'+esc(d.cargo||'')+'"></label>'
+    +'<div class="err" id="err"></div><div class="nav"><button class="go" id="go">Continuar</button><span class="hint">Enter ↵</span></div>';}
+  if(x.t==='one'||x.t==='multi'){var cur=A[x.id]||(x.t==='multi'?[]:null);
+    h+='<div class="ops '+(x.t==='multi'?'multi':'')+'">'+x.o.map(function(o,k){var on=x.t==='multi'?cur.indexOf(o)>=0:cur===o;
+      return '<button class="op'+(on?' on':'')+'" data-v="'+esc(o)+'"><span class="l">'+L(k)+'</span><span>'+esc(o)+'</span><span class="c"></span></button>';}).join('')
+      +(x.otro?'<button class="op'+((A[x.id+'_otro']||'')?' on':'')+'" data-v="__otro"><span class="l">'+L(x.o.length)+'</span><span>Otro</span><span class="c"></span></button>':'')+'</div>'
+      +(x.otro?'<div class="otro'+((A[x.id+'_otro']||'')?' on':'')+'" id="otro"><input type="text" id="f-otro" placeholder="Escribe cuál" value="'+esc(A[x.id+'_otro']||'')+'"></div>':'');
+    if(x.t==='multi')h+='<div class="err" id="err"></div><div class="nav"><button class="go" id="go">Continuar</button><span class="hint">Teclas A–'+L(x.o.length-(x.otro?0:1))+' · Enter ↵</span></div>';
+    else h+='<div class="nav"><span class="hint">Elige una opción o usa las teclas A–'+L(x.o.length-1)+'</span></div>';}
+  if(x.t==='long')h+='<label class="fld"><textarea id="f-long" placeholder="Escribe aquí">'+esc(A[x.id]||'')+'</textarea></label><div class="err" id="err"></div><div class="nav"><button class="go" id="go">'+(x.opt?'Continuar':'Continuar')+'</button><span class="hint">'+(x.opt?'Opcional · ':'')+'Ctrl + Enter ↵</span></div>';
+  if(x.t==='scale'){var a=x.n[0],b=x.n[1],c=b-a+1,btn='';for(var v=a;v<=b;v++)btn+='<button data-v="'+v+'" class="'+(A[x.id]===v?'on':'')+'">'+v+'</button>';
+    h+='<div class="sc"><div class="row'+(c>6?' n11':'')+'" style="grid-template-columns:repeat('+c+',1fr)">'+btn+'</div><div class="ends"><span>'+esc(x.ends[0])+'</span><span>'+esc(x.ends[1])+'</span></div></div>';}
+  if(x.t==='fin')h+='<label class="consent"><input type="checkbox" id="f-ok"><span>Acepto que Iniciativa GEMI use estas respuestas para mejorar Scope y contactarme sobre ellas. Consulta el <a href="https://scopegemi.com/" target="_blank" rel="noopener">aviso de privacidad</a>.</span></label><div class="err" id="err"></div><div class="nav"><button class="go" id="go">Enviar respuestas</button></div>';
+  if(x.t==='done')h='<div class="q done"><div class="tick"></div><div class="k">Recibido</div><h1>Gracias'+(A.datos&&A.datos.nombre?', '+esc(A.datos.nombre.split(' ')[0]):'')+'</h1><p class="h">Tus respuestas ya están con el equipo de Iniciativa GEMI.</p><div class="nav"><a class="go" style="text-decoration:none" href="https://scopegemi.com/">Ir a Scope</a></div></div>';
+  else h+='</div>';
+  $('main').innerHTML=h;progress();wire(x);
+  var f=document.querySelector('#q input[type=text],#q input[type=email],#q textarea');window.scrollTo(0,0);if(f&&x.t!=='one'&&x.t!=='multi')f.focus({preventScroll:true});else{var g=$('go');if(g)g.focus({preventScroll:true});}
+}
+function err(t){var e=$('err');if(e)e.textContent=t||'';}
+function next(){var v=visible(),k=v.indexOf(Q[i]);if(k<v.length-1){hist.push(i);var q=$('q');if(q){q.classList.add('out');setTimeout(function(){i=Q.indexOf(v[k+1]);render();},200);}else{i=Q.indexOf(v[k+1]);render();}}}
+function wire(x){
+  var g=$('go');
+  if(x.t==='intro')g.onclick=next;
+  if(x.t==='datos')g.onclick=function(){var d={nombre:$('f-nombre').value.trim(),correo:$('f-correo').value.trim(),empresa:$('f-empresa').value.trim(),cargo:$('f-cargo').value.trim()};A.datos=d;
+    if(!d.nombre)return err('Escribe tu nombre.');if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.correo))return err('Escribe un correo válido.');next();};
+  if(x.t==='one'||x.t==='multi'){
+    document.querySelectorAll('.op').forEach(function(b){b.onclick=function(){var v=b.getAttribute('data-v');
+      if(v==='__otro'){var o=$('otro'),on=!b.classList.contains('on');b.classList.toggle('on',on);o.classList.toggle('on',on);if(on)$('f-otro').focus();else{$('f-otro').value='';A[x.id+'_otro']='';}
+        if(x.t==='one'){document.querySelectorAll('.op').forEach(function(z){if(z!==b)z.classList.remove('on');});A[x.id]=null;}return;}
+      if(x.t==='one'){A[x.id]=v;document.querySelectorAll('.op').forEach(function(z){z.classList.toggle('on',z===b);});setTimeout(next,260);return;}
+      var EX=['No falló nada','Nada todavía'],cur=A[x.id]||[],k=cur.indexOf(v);
+      if(k>=0)cur.splice(k,1);else{if(EX.indexOf(v)>=0)cur=[];else cur=cur.filter(function(z){return EX.indexOf(z)<0;});if(x.max&&cur.length>=x.max)return err('Elige hasta '+x.max+'.');cur.push(v);}
+      A[x.id]=cur;err('');document.querySelectorAll('.op').forEach(function(z){var zv=z.getAttribute('data-v');if(zv!=='__otro')z.classList.toggle('on',cur.indexOf(zv)>=0);});};});
+    var fo=$('f-otro');if(fo)fo.oninput=function(){A[x.id+'_otro']=fo.value.trim();};
+    if(g)g.onclick=function(){if(!(A[x.id]||[]).length&&!(A[x.id+'_otro']))return err('Elige al menos una opción.');next();};}
+  if(x.t==='long')g.onclick=function(){var v=$('f-long').value.trim();A[x.id]=v;if(!v&&!x.opt)return err('Escribe una respuesta corta, aunque sea una línea.');next();};
+  if(x.t==='scale')document.querySelectorAll('.sc button').forEach(function(b){b.onclick=function(){A[x.id]=+b.getAttribute('data-v');document.querySelectorAll('.sc button').forEach(function(z){z.classList.toggle('on',z===b);});setTimeout(next,260);};});
+  if(x.t==='fin')g.onclick=send;
+}
+function send(){
+  if(!$('f-ok').checked)return err('Marca la casilla del aviso de privacidad para enviar.');
+  var g=$('go');g.disabled=true;g.textContent='Enviando…';
+  var r={};visible().forEach(function(x){if(['intro','datos','fin'].indexOf(x.t)<0){r[x.id]=A[x.id]===undefined?null:A[x.id];if(A[x.id+'_otro'])r[x.id+'_otro']=A[x.id+'_otro'];}});
+  var d=A.datos||{},body={nombre:d.nombre,correo:d.correo,institucion:d.empresa||null,cargo:d.cargo||null,interes:'Cuestionario de experiencia con Scope',origen:'cuestionario-scope',
+    mensaje:JSON.stringify({respuestas:r,ref:document.referrer||'',utm:location.search||'',ua:navigator.userAgent,enviado:new Date().toISOString()})};
+  fetch(URL_,{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(body)})
+    .then(function(res){if(!res.ok)throw 0;hist=[];i=Q.length;Q.push({t:'done'});render();$('bar').style.width='100%';$('cnt').textContent='';})
+    .catch(function(){g.disabled=false;g.textContent='Enviar respuestas';err('No se pudo enviar. Revisa tu conexión e intenta de nuevo, o escríbenos a contacto@scopegemi.com.');});
+}
+$('back').onclick=function(){if(hist.length){i=hist.pop();render();}};
+document.addEventListener('keydown',function(e){var x=Q[i];if(!x)return;var t=e.target.tagName;
+  if(e.key==='Enter'){if(x.t==='long'){if(e.ctrlKey||e.metaKey){e.preventDefault();$('go').click();}return;}
+    if(t==='BUTTON'&&e.target.id!=='go')return;var g=$('go');if(g&&x.t!=='fin'){e.preventDefault();g.click();}return;}
+  if((x.t==='one'||x.t==='multi')&&t!=='INPUT'&&/^[a-z]$/i.test(e.key)){var b=document.querySelectorAll('.op')[e.key.toUpperCase().charCodeAt(0)-65];if(b)b.click();}
+  if(x.t==='scale'&&t!=='INPUT'&&/^[0-9]$/.test(e.key)){var s=[].filter.call(document.querySelectorAll('.sc button'),function(z){return z.getAttribute('data-v')===e.key;})[0];if(s)s.click();}
+});
+render();
+</script>
+</body>
+</html>
