@@ -1,11 +1,21 @@
 {
  "_meta": {
-  "actualizado": "2026-10-26T22:06:56Z",
+  "actualizado": "2026-10-27T01:02:18Z",
   "fuente": "Prensa nacional y local vía Google News",
   "nota": "Capa de prensa (Beta). Detección de restricciones a la venta de alcohol. La vigencia exacta se confirma en el bando o periódico oficial de cada plaza.",
   "total": 200
  },
  "eventos": [
+  {
+   "id": "4dba0179fe82",
+   "titulo": "Chamula, Zinacantán y Tenejapa no aplicarán ley seca en Día de Muertos",
+   "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPei1nc1lPcENuMFBkaGxEcDdKbHBDYlRCVDY1c25WS3B3OUUxU0dxcnRWc01SbkZjcGVSWG9JRDR2dk9uQ0pQQzBTaUhpVklabTdKMlQ2ZDFKNXd2Y09TWTZuUzZiaU4yMGwwRWpnTFVOT0Vob0lnbXhOZjJaa2hrX3FiU2hJUjNGazlwM1MwSWdlejhrMlV3Mg?oc=5",
+   "fuente": "alertachiapas.com",
+   "fecha_publicacion": "2026-10-26T23:25:27Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Festividad"
+  },
   {
    "id": "a53284d595d7",
    "titulo": "Día de Muertos 2026: ¿dónde habrá ley seca en CDMX?",
@@ -15,6 +25,16 @@
    "estado": "Ciudad de México",
    "ambito": "Municipal",
    "motivo": "Festividad"
+  },
+  {
+   "id": "8c75126baa97",
+   "titulo": "Imponen ley seca en 3 colonias de Tlalpan, del 26 al 30 de octubre",
+   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQTUY0U0FzbFo0aTNyYU5uMW5wYXJiSlAyRWNzb1B6dnBUdERyd0M0VkRyemNjZC1uLUtsLWZFUzlOaFBLQXFnRXlka3ViR1ZnTnFJZG9iZkhSeU9pMWUtQ2pPYzI2Q3J5S0dOZjlud0JxZFNhYzVKOGdGTU1KQXg4WlM5UnlLUlRGVjVybjlsUEg?oc=5",
+   "fuente": "El Momento Nacional",
+   "fecha_publicacion": "2026-10-24T00:29:57Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
+   "motivo": "Otro"
   },
   {
    "id": "f0a27c49f6e0",
@@ -72,6 +92,16 @@
    "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQZ01heDYxTjJnT0lSTE9fWFlLNjVHZV9MVUNzVTNvczhmWEE5TFpjZlhpaGRQSDg1YkJ1NURnNGtnVVBTanppSFUtWEJtMnl5MFRZWFRiSWhud05iVDVBelp4WGFKRTlWN2FJWWNHeVM2XzY5eTUyUDhScVhIdlhpRE5Hd0Y1WF9WVEpiY3FDRnhtdmQ4cGR6OWNsQkNDREpZVWtXRVlOTTNEdnh5ZWZTSDA3d2pRalJfMXFfaDhHaXJObUJ0?oc=5",
    "fuente": "La Silla Rota",
    "fecha_publicacion": "2026-10-19T22:31:14Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
+   "motivo": "Festividad"
+  },
+  {
+   "id": "d412ec35aa1a",
+   "titulo": "Decretan Ley Seca en Tláhuac por Día de Muertos: fechas, alcance y lo que debes saber",
+   "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQNGtVQ3AyWkRtT1VqNTB1emF3aVgxLUFxeEljajVhVFgzUW9DTWd4aVZ0Z0NYc205LXV5cmoyQ3RFOVVqeThqdEg0b3dOS2I5c1NtQlJuS3d6VC00OExOSHJkbmxPVWc2OS00N2wxOGtxc0wxTnlUazM0TWRwVmh4UzhNWFhkTmhsb1BxMjl1dnFFMUo2U0g2bVNaZjgwdHVvT0U3eG5MSWZVOHhTNW4xYVcxUlNzUEIzdkFGRGkwYnJWbi1RQk1SZV9YZUZBSHRvZlRZaFJReS1FQTA?oc=5",
+   "fuente": "Debate",
+   "fecha_publicacion": "2026-10-19T22:10:13Z",
    "estado": "Ciudad de México",
    "ambito": "Alcaldía",
    "motivo": "Festividad"
@@ -1974,36 +2004,6 @@
    "fecha_publicacion": "2026-09-14T05:51:03Z",
    "estado": "Ciudad de México",
    "ambito": "Alcaldía",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "0f5d24cfbea5",
-   "titulo": "Querétaro descarta Ley Seca durante las Fiestas Patrias de 2026",
-   "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOMGpjY1VwOS1NTnJDa3VSV245ZXZDUmRhSWFWYlFoMm9CZ2tUX1REM3I1WGYzeS1PRG5NWFE5S2RFTlplRldRV1dwUHBxMnVXYTFheVFYLXA2RnBXdjFuNXBzTVhTUVI4ci1xWWpPb3JIRFpCU1FzWmRGY0ZVMlRIUWw4a3FrSmExWm01c2ZHRDFOYjE2MEE?oc=5",
-   "fuente": "anews.mx",
-   "fecha_publicacion": "2026-09-14T01:17:00Z",
-   "estado": "Querétaro",
-   "ambito": "Municipal",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "e9d082d82acf",
-   "titulo": "Ley Seca por Fiestas Patrias en Edomex: Lista de municipios que no venderán alcohol",
-   "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOWUN4bTZFNGloRXdtMG12Mlpwb003Q1NDTHV4TlZIYXR3MGIxTFgtaUhpaXZSSmt0SjBFeXpKNTNUeFRmdjhldmVNS2NSbE5nUkRCRGxWaDBlUXVoRkhDVVlWRk5XM2tPWUtwR0pqY2QxaUJsbFFDRjVJRGp3UnR3VDFEUV9pd0IyM3loZTkzX2M4Rlc0OVhhRFdhcjI3RFVkOTFJ0gGwAUFVX3lxTE1Vc2VqbjJDTThKdmxlN1I4WWxFSThNclVKMjFyZS1kOGcwVmVhVkNfYjVoYUFWaHNCME13dm5lV1FBOFJQUEFIck5ZMjRaQVFPMnA1UDNmYUNUREdkdVVKeTFHencxajVrWkluLWZBdnlIY3VMWVFvQzktMkpVeVVJRk9NT05fMnB1cHRackFXSWZmSnprNFJmejh2LV92dy1MMkZYMmhsQ1gzRlA3cHky?oc=5",
-   "fuente": "TV Azteca",
-   "fecha_publicacion": "2026-09-13T22:33:13Z",
-   "estado": "Estado de México",
-   "ambito": "Municipal",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "32b292ccd9ed",
-   "titulo": "¿Habrá Ley Seca el 15 de septiembre en el estado de Querétaro? Esto dicen las autoridades",
-   "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNVTZVWkl0aEtjQjBsQXpJU1M3RW1iQ0c1cEFBM1AtZ0tfR21CdGZOczB5aWVxeDBtYjFCOFJLLUFyRXV3a2RlLWg1YkNxVEtuWm1XWUJ3YmM5dnBxNWJrcEI5Sk1qRElncEZ6SWxIMDkzMG1jVGZTRllFckFXM0Z4WXdYN1JNNFdmc0hja2t4OWRzRHRSZDFLUWY4MkM5d9IBngFBVV95cUxPZDJWcXZKdFNxTFNNNWhmcS0za25CRnpBVVBoVHlNSzZQRVVtc29tVnd6ZG50WHFDcmUwd3ZoX0pOdUZCbnJDaEdPVzRTTWlPaWdsWk95S1h1YzYyczFXbDNaUjZQeGl6X1VrLVVIRDVDbktlekF2ZkRNTFVOc2kzZEdMeU9WRFRuVm9UVkZzOV83MWNNTk5fQkJFUHBXZw?oc=5",
-   "fuente": "Telediario",
-   "fecha_publicacion": "2026-09-13T21:52:00Z",
-   "estado": "Querétaro",
-   "ambito": "Estatal",
    "motivo": "Festividad"
   }
  ]
