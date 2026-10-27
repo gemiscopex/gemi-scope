@@ -2194,11 +2194,5 @@ section.in .pp-sp-l .b{opacity:1}
   document.querySelectorAll('section[data-draw]').forEach(function(s){mo.observe(s,{attributes:true,attributeFilter:['class']});if(s.classList.contains('in')){s.__drawn=1;draw(s);}});
 })();
 </script>
-<script>
-// días sin Reglamento (desde el 19 jul 2026) y video que arranca al llegar a su lámina
-(function(){var d=Math.floor((Date.now()-Date.UTC(2026,6,19,6))/864e5),e=document.getElementById('rg-dias');if(e&&d>0)e.textContent=d;
-var v=document.getElementById('pp-tour'),s=v&&v.closest('section');if(!s||/print/.test(location.search))return;
-new MutationObserver(function(){if(s.classList.contains('in')){if(v.paused){v.currentTime=0;v.play().catch(function(){});}}else if(!v.paused)v.pause();}).observe(s,{attributes:true,attributeFilter:['class']});})();
-</script>
 </body>
 </html>
