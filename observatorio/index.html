@@ -503,7 +503,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
         <div class="uses reveal">
           <div><i>01</i><div><b>Monitoreamos cada entidad y sus avances</b><span>Ley propia, iniciativa o aplicación directa de la Ley General, en las 32 entidades.</span></div></div>
           <div><i>02</i><div><b>Seguimos la discusión a nivel nacional y en cada uno de los estados</b><span>El Congreso de la Unión y los 32 congresos locales, al día.</span></div></div>
-          <div><i>03</i><div><b>Vamos directo a la fuente y trazamos la prensa</b><span>Cada dato abre su gaceta, decreto o periódico oficial, contrastado con la prensa.</span></div></div>
+          <div><i>03</i><div><b>Vamos directo a la fuente</b><span>Cada dato abre su gaceta, decreto o periódico oficial.</span></div></div>
         </div>
         <div class="cta-row reveal" style="margin-top:30px"><button class="cta solid" id="open-map">Explorar el mapa</button><button class="cta" data-go="inicio" data-anchor="unete">Quiero saber más →</button></div>
       </div>
@@ -682,7 +682,7 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
 <section class="view" id="v-fuentes">
   <div class="wrap">
     <div data-sub="metodo">
-      <div class="phead"><div class="eyebrow">Fuentes y método</div><h1>Método de registro y verificación</h1><p>Ningún registro entra sin haber leído su articulado en el documento oficial. La prensa contrasta; nunca sustituye al registro.</p></div>
+      <div class="phead"><div class="eyebrow">Fuentes y método</div><h1>Método de registro y verificación</h1><p>Ningún registro entra sin haber leído su articulado en el documento oficial.</p></div>
       <div class="block" style="padding-top:0"><div class="bh"><h2>Lectura a la fecha</h2><span class="aside" id="corte"></span></div><p class="ab-def" id="tesis" style="font-size:18px"></p></div>
       <div class="block two">
         <div>
@@ -698,11 +698,6 @@ footer .wrap{padding-top:40px;padding-bottom:56px}
           <div class="sub-h">Pendientes de verificación</div><ol class="ol" id="m-pend"></ol>
         </div>
       </div>
-    </div>
-    <div data-sub="prensa">
-      <div class="phead"><div class="eyebrow">Contraste en prensa</div><h1>Contraste en prensa por registro</h1><p id="pr-n"></p></div>
-      <div class="seg" id="pr-set"><button class="on" data-p="">Todo</button><button data-p="confirma">Confirma</button><button data-p="no se localizó">No se localizó</button></div>
-      <div class="tbl-wrap"><table class="t" id="pr-tbl"></table></div>
     </div>
     <div data-sub="documentos">
       <div class="phead"><div class="eyebrow">Documentos</div><h1 id="doc-h">Documentos oficiales citados</h1><p>Gacetas, diarios de los debates, periódicos oficiales, registros parlamentarios y compilaciones. Busca por entidad, promovente o dominio.</p></div>
@@ -897,7 +892,7 @@ var SECS={
   inicio:{t:'Inicio',subs:[]},
   entidades:{t:'Entidades',subs:[['tablero','Tablero'],['ficha','Ficha por entidad'],['comparar','Comparar'],['grafica','Crea tu gráfica']]},
   legislacion:{t:'Legislación',subs:[['monitor','Monitor federal'],['iniciativas','Congresos locales'],['reformas','Reformas publicadas'],['federal','Marco federal']]},
-  fuentes:{t:'Fuentes',subs:[['metodo','Método'],['prensa','Contraste en prensa'],['documentos','Documentos oficiales']]},
+  fuentes:{t:'Fuentes',subs:[['metodo','Método'],['documentos','Documentos oficiales']]},
   repositorio:{t:'Repositorio ITESM',subs:[['proyectos','Proyectos en marcha'],['agenda','Agenda de trabajo'],['estudios','Estudios'],['otros','Otros materiales']]},
   acerca:{t:'Acerca',subs:[]}
 };
@@ -1172,7 +1167,6 @@ function renderPF(){
     +'<div><div class="sub-h" style="margin-top:0">Actos registrados · '+ev.length+'</div><div class="log">'+(ev.length?ev.slice(0,pfLim).map(function(x){return '<div class="ev'+(x.key?' key':'')+'"><span class="dt">'+fd(x.d)+'</span><span><span class="tp">'+esc(x.tp)+'</span>'+x.tx+'</span><span>'+src(x.u,'Doc.')+'</span></div>';}).join(''):'<div class="empty">Sin actos registrados.</div>')+'</div>'
     +(ev.length>pfLim?'<span class="more" id="pf-more">Ver '+(ev.length-pfLim)+' más</span>':'');
   var pr=s.pr.filter(function(p){return p.url;});
-  if(pr.length)h+='<div class="sub-h">Contraste en prensa</div><div class="log">'+pr.map(function(p){return '<div class="ev"><span class="dt">'+fd(p.fecha_nota)+'</span><span><span class="tp">'+esc(p.medio)+'</span>'+esc(p.nota)+'</span><span>'+src(p.url,'Nota')+'</span></div>';}).join('')+'</div>';
   h+='</div></div>';
   $('pf').innerHTML=h;fitShapes($('pf'));
   var to=function(x){pfLim=8;go('entidades/ficha/'+encodeURIComponent(x));};
@@ -1305,7 +1299,6 @@ function renderIni(){
         +kv('Cargo del promovente',esc(r.cargo_promovente))+kv('Etapa del trámite',r.criterio_nivel?esc(NIVL[r.nivel_seguimiento]+'. '+r.criterio_nivel):'')+kv('Dictamen',r.dictamen?esc(r.criterio_dictamen||'Sí'):'')
         +kv('Último acto',fd(r.ultimo_acto))+kv('Periodo',r.periodo==='posterior'?'Presentada desde la Ley General':r.periodo==='anterior'?'Presentada antes de la Ley General, sigue en comisión':'')
         +kv('Clasificación',esc(r.nota_clasificacion))+kv('Motivo',esc(r.motivo_exclusion_o_cambio))+kv('Fuente',esc(r.fuente||r.url_documento_ref||''))+kv('Verificación',esc(cap(r.verificacion||'')))
-        +kv('Prensa',r.prensa?esc(cap(r.prensa.sentido)+'. '+(r.prensa.medio||'')+(r.prensa.fecha_nota?', '+fd(r.prensa.fecha_nota):'')+'. '+(r.prensa.nota||''))+' '+src(r.prensa.url,'Nota'):'')
         +kv('Documento oficial',r.url_documento?src(r.url_documento,esc(r.url_documento.replace(/^https?:\/\//,'').slice(0,70))):'Sin liga directa publicada')+'</div></div>';}
   });
   $('ini-list').innerHTML=h||'<div class="empty">Sin registros con esos filtros.</div>';
@@ -1377,13 +1370,7 @@ function renderFuentes(){
   $('m-adv').textContent=D.fuentes.advertencia;
   $('m-pend').innerHTML=D.pendientes.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
   $('doc-h').textContent=D.fuentes.documentos.length+' documentos oficiales citados';
-  renderPrensa();renderDocs();
-}
-function renderPrensa(){
-  document.querySelectorAll('#pr-set button').forEach(function(b){b.classList.toggle('on',b.dataset.p===prSet);});
-  var R=D.prensa.filter(function(p){return !prSet||p.sentido===prSet;}).sort(function(a,b){return a.entidad.localeCompare(b.entidad)||String(b.fecha).localeCompare(String(a.fecha));});
-  $('pr-n').textContent=D.conteos.prensa.confirma+' registros confirmados en prensa y '+D.conteos.prensa['no se localizó']+' sin nota localizada. La prensa nunca sube el nivel de verificación.';
-  $('pr-tbl').innerHTML='<tr><th>Entidad</th><th>Registro</th><th>Fecha</th><th>Resultado</th><th>Medio</th><th>Lectura</th></tr>'+R.map(function(p,i){return '<tr'+(i%2?' class="z"':'')+'><td><b>'+esc(p.entidad)+'</b></td><td>'+esc(p.promovente)+'</td><td class="n">'+fd(p.fecha)+'</td><td style="'+(p.sentido==='confirma'?'color:var(--pine);font-weight:700':'color:var(--sec)')+'">'+esc(cap(p.sentido))+'</td><td>'+(p.url?src(p.url,esc(p.medio||'Nota')):'<span class="muted">—</span>')+'</td><td style="font-size:12px;color:var(--sec);min-width:260px">'+esc(p.nota)+'</td></tr>';}).join('');
+  renderDocs();
 }
 function renderDocs(){
   var q=$('doc-q').value.trim().toLowerCase();
@@ -1573,7 +1560,6 @@ function init(data){
   $('ini-csv').onclick=iniCSV;
   ['mf-tema','mf-cam','mf-tipo','mf-st'].forEach(function(id){$(id).onchange=function(){monN=25;renderMon();};});
   $('mf-q').oninput=function(){monN=25;renderMon();};$('mon-csv').onclick=monCSV;
-  document.querySelectorAll('#pr-set button').forEach(function(b){b.onclick=function(){prSet=b.dataset.p;renderPrensa();};});
   $('doc-q').oninput=function(){docN=40;renderDocs();};
   document.querySelectorAll('.tab').forEach(function(b){b.onclick=function(){go(b.dataset.s);};});
   document.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){go(b.dataset.go,b.dataset.anchor);};});
