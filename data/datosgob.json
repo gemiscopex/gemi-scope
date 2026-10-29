@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-10-28T20:06 CDMX",
+  "actualizado": "2026-10-29T12:10 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -145,6 +145,13 @@
   ],
   "Medio Ambiente": [
    {
+    "titulo": "Áreas destinadas voluntariamente a la conservación",
+    "org": "Comisión Nacional de Áreas Naturales Protegidas (CONANP)",
+    "fecha": "2026-10-29",
+    "url": "https://www.datos.gob.mx/dataset/areas_destinadas_voluntariamente_conservacion",
+    "recursos": 2
+   },
+   {
     "titulo": "Certificados de Calidad Ambiental e Industria Limpia",
     "org": "Comisión Federal de Electricidad (CFE)",
     "fecha": "2026-10-08",
@@ -178,13 +185,6 @@
     "fecha": "2026-07-09",
     "url": "https://www.datos.gob.mx/dataset/comites_ambientales",
     "recursos": 5
-   },
-   {
-    "titulo": "Áreas destinadas voluntariamente a la conservación",
-    "org": "Comisión Nacional de Áreas Naturales Protegidas (CONANP)",
-    "fecha": "2026-05-08",
-    "url": "https://www.datos.gob.mx/dataset/areas_destinadas_voluntariamente_conservacion",
-    "recursos": 2
    },
    {
     "titulo": "Escenarios de cambio climático",
