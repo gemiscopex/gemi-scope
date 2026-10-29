@@ -3,6 +3,50 @@
     {
       "camara_origen": "Cámara de Senadores",
       "camara_revisora": "Cámara de Diputados",
+      "fecha_presentacion": "2026-10-28",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Senado: Estudios Legislativos Senado: Medio Ambiente, Recursos Naturales y Cambio Climático",
+      "aspectos": "Las comisiones aprueban establecer que la Comisión Intersecretarial de Cambio Climático convocará a otras dependencias y entidades gubernamentales entre ellos al Consejo Nacional de Ciencia y Tecnología, la Agencia Nacional de Seguridad Industrial y de Protección al Medio Ambiente del Sector Hidrocarburos, así como invitar a representantes del Consejo, de los Poderes Legislativo y Judicial, de órganos autónomos, de las Entidades Federativas y en su caso, los Municipios, así como a representantes de los sectores público, social y privado a participar en sus trabajos cuando se aborden temas relacionados con el ámbito de su competencia.",
+      "ultimo_tramite": "Túrnese a la Cámara de Diputados para sus efectos constitucionales: Ver todos los trámites",
+      "ultimo_estatus": "Turnado a revisora Pendiente 28/10/2026",
+      "asunto_id": "5181592",
+      "seguimiento": "5163403",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5163403&Asunto=5181592",
+      "categorias": [
+        "hidrocarburos",
+        "cambio_climatico"
+      ],
+      "categoria": "hidrocarburos",
+      "categoria_nombre": "Hidrocarburos",
+      "id": "ba6e0c9431c4",
+      "scrapeado_en": "2026-10-29T17:07:17.134469+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Senadores",
+      "fecha_presentacion": "2026-10-27",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Senado: Medio Ambiente, Recursos Naturales y Cambio Climático",
+      "aspectos": "La Comisión remite, en cumplimiento de la fracción XI, numerales 1 y 2, del artículo 133 del Reglamento del Senado de la República, su Informe de Actividades, correspondiente al segundo año de ejercicio de la LXVI Legislatura, el cual da cuenta del trabajo desarrollado y del esfuerzo colectivo que ha permitido avanzar en una agenda de especial relevancia para el presente y el futuro del país. Se resalta que fueron aprobados 45 asuntos: 13 iniciativas, 8 minutas y 24 puntos de acuerdo, mediante los cuales se atendieron materias relacionadas con educación ambiental, desarrollo forestal sustentable, protección de la vida silvestre, conservación de áreas naturales, cambio climático, justicia ambiental, carbono azul, manejo de residuos, protección de la biodiversidad y atención de diversas problemáticas ambientales del país.",
+      "ultimo_tramite": "De enterado:",
+      "ultimo_estatus": "Resuelto / Aprobado Aprobado 27/10/2026",
+      "asunto_id": "5174704",
+      "seguimiento": "5177630",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5177630&Asunto=5174704",
+      "categorias": [
+        "biodiversidad",
+        "residuos",
+        "cambio_climatico"
+      ],
+      "categoria": "biodiversidad",
+      "categoria_nombre": "Biodiversidad",
+      "id": "18c7e028722b",
+      "scrapeado_en": "2026-10-29T17:07:19.698928+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Senadores",
+      "camara_revisora": "Cámara de Diputados",
       "fecha_presentacion": "2026-10-21",
       "legislatura": "LXVI",
       "periodo": "1er Ordinario",
@@ -427,6 +471,28 @@
       "categoria_nombre": "Forestal",
       "id": "b0d7cdcd26b0",
       "scrapeado_en": "2026-10-08T17:37:34.649842+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-10-06",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "titulo": "Que adiciona los artículos 97, 99 y 100 de la Ley General para la Prevención y Gestión Integral de los Residuos.",
+      "presentador": "Dip. Asael Hernández Cerón (PAN)",
+      "aspectos": "La iniciativa tiene por objeto regular los tiraderos a cielo abierto y los rellenos sanitarios. Entre lo propuesto destaca: 1) establecer requisitos para autorizar el uso de suelo como sitio de desechos sólidos urbanos y de manejo especial; 2) determinar que los municipios deberán considerar el control y erradicación de los tiraderos a cielo abierto no autorizados o sitios donde se han abandonado clandestinamente residuos sólidos de diferente índole; 3) prohibir el verter residuos electrónicos y residuos de manejo especial en zonas rivereñas y presas residuales; y, 4) imponer sanciones de clausura y multas.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 06 de octubre de 2026 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 06/10/2026",
+      "asunto_id": "5151265",
+      "seguimiento": "5158834",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5158834&Asunto=5151265",
+      "categorias": [
+        "residuos"
+      ],
+      "categoria": "residuos",
+      "categoria_nombre": "Residuos",
+      "id": "f1d74ec20a2e",
+      "scrapeado_en": "2026-10-29T17:08:16.321265+00:00"
     },
     {
       "camara_origen": "Cámara de Diputados",
@@ -10735,79 +10801,13 @@
       "categoria_nombre": "Biodiversidad",
       "id": "f0438f4ce40c",
       "scrapeado_en": "2026-05-06T16:01:45.378674+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-04-28",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que reforma el artículo 3° y adiciona un artículo 159 Bis de la Ley del Sector Eléctrico.",
-      "presentador": "Dip. Marco Antonio De la Mora Torreblanca (PVEM)",
-      "aspectos": "La iniciativa tiene por objeto la incorporación de suministro Eléctrico Básico de agua potable. Entre lo propuesto destaca: 1) se entenderá por Suministro Eléctrico Básico de Agua Potable: El Suministro Eléctrico a los organismos públicos, sean estos municipales, estatales o de cualquier otra naturaleza pública, cuya única o principal función sea la prestación de los servicios de agua potable, alcantarillado, saneamiento y tratamiento de aguas residuales; 2) Comisión Nacional de Energía, en colaboración con la Secretaría de Hacienda y Crédito Público, se encargará de establecer una tarifa eléctrica especial y subsidiada de bajo costo para los organismos operadores de agua y el saneamiento en el país, que será aplicable exclusivamente al Suministro Eléctrico Básico para Agua Potable, considerando que son servicios públicos sin fines de lucro y desempeñan un papel crucial en garantizar el derecho humano al agua, tal como lo establece el artículo 4° de la Constitución Política de los Estados Unidos Mexicanos; 3) se establece la metodología para fijar la tarifa especial, ala cual deberá incluir mecanismos de subsidios que sean transparentes y específicos, asegurando que el costo de la energía no comprometa la viabilidad financiera de los organismos ni eleve el precio final del servicio de agua más allá de lo asequible para la población; y, 4) precisar que la Secretaría de Hacienda y Crédito Público y la Secretaría, en coordinación con la Comisión Nacional de Energía, deberán establecer los mecanismos presupuestarios y regulatorios necesarios para la implementación y operación de este subsidio.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Energía  de Cámara de Diputados. Dictamina.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 28/04/2026",
-      "asunto_id": "5082469",
-      "seguimiento": "5084281",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5084281&Asunto=5082469",
-      "categorias": [
-        "agua"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "0304136499ed",
-      "scrapeado_en": "2026-04-30T19:23:00.043435+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-04-28",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que adiciona el artículo 23 Bis de la Ley General de Desarrollo Social, para crear un esquema permanente de intervención territorial integral y prioridad presupuestaria en comunidades de alto y muy alto rezago social, con el objeto de reducir brechas estructurales, fortalecer capacidades productivas y garantizar justicia territorial en México.",
-      "presentador": "Dip. Juan Carlos Varela Domínguez (Morena)",
-      "aspectos": "La iniciativa tiene por objeto crear un esquema permanente de intervención territorial integral y prioridad presupuestaria en comunidades de alto y muy alto rezago social. Para ello propone: 1) contemplar que la  federación, en coordinación con las entidades federativas y los municipios, deberá establecer un esquema permanente de priorización territorial para la atención integral de las localidades clasificadas con grado de rezago social alto y muy alto, conforme a los indicadores oficiales emitidos por la autoridad competente en materia de evaluación de la política de desarrollo social; 2) observar que la intervención territorial integral se entenderá como el conjunto articulado, concurrente y progresivo de acciones públicas orientadas a reducir brechas estructurales, garantizar el acceso efectivo a derechos sociales y fortalecer las capacidades productivas y comunitarias de la población en situación de rezago; 3) convenir que dicha intervención deberá contemplar, de manera coordinada y bajo criterios de planeación estratégica, al menos los siguientes ejes: a) infraestructura básica y servicios esenciales, incluyendo agua potable, drenaje, electrificación, vivienda adecuada, caminos rurales, equipamiento comunitario y demás elementos indispensables para el desarrollo digno; b) acceso efectivo y oportuno a servicios de salud, educación básica y media superior, así como acciones de permanencia escolar y fortalecimiento de capacidades; c) impulso al desarrollo productivo local, mediante programas de fortalecimiento a micro y pequeñas unidades económicas, economía social, proyectos comunitarios, capacitación técnica y generación de empleo; d) inclusión digital y conectividad, promoviendo el acceso a tecnologías de la información y comunicación como herramientas para el desarrollo educativo, productivo y social; e) seguridad alimentaria, sostenibilidad ambiental y aprovechamiento responsable de los recursos naturales, procurando esquemas que favorezcan el desarrollo sostenible; f) inclusión financiera y acceso a mecanismos de ahorro, crédito y servicios financieros básicos; y, g) participación comunitaria en el diagnóstico, planeación, implementación y seguimiento de las acciones, bajo principios de corresponsabilidad, transparencia y rendición de cuenta; 4) observar que las dependencias y entidades de la administración pública federal deberán armonizar sus programas, lineamientos y reglas de operación para priorizar la concurrencia de recursos en las localidades identificadas conforme al presente artículo, evitando duplicidad de acciones y maximizando el impacto territorial del gasto público; 5) señalar que la priorización territorial prevista deberá integrarse en los instrumentos de planeación y programación presupuestaria correspondientes, conforme a disponibilidad presupuestaria y bajo el principio de progresividad de los derechos sociales; 6) apuntar que el Ejecutivo Federal incluirá en el informe anual que rinda al Congreso de la Unión un apartado específico que detalle las acciones implementadas, cobertura territorial, metas alcanzadas e indicadores de avance en la reducción del rezago social en las zonas intervenidas; y, 7) agregar que la implementación de lo dispuesto no implicará la creación de nuevas estructuras administrativas, sino la optimización y coordinación de los recursos y programas existentes.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Bienestar  de Cámara de Diputados. Dictamina.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 28/04/2026",
-      "asunto_id": "5082125",
-      "seguimiento": "5084343",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5084343&Asunto=5082125",
-      "categorias": [
-        "agua"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "60ec43880833",
-      "scrapeado_en": "2026-04-30T19:23:01.331535+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-04-28",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que reforma el segundo párrafo del artículo 36 y el artículo 46 de la Ley de Aeropuertos, en materia de acceso de agua potable gratuita en los aeropuertos nacionales.",
-      "presentador": "Dip. Flor de María Esponda Torres (Morena)",
-      "aspectos": "La iniciativa tiene por objeto garantizar el acceso de agua potable gratuita en los aeropuertos nacionales. Para ello propone establecer que los concesionarios y permisionarios de aeródromos civiles deberán implementar bebederos con suministro de agua potable gratuita para los usuarios y trabajadores del transporte aéreo, garantizando su disponibilidad y adecuado funcionamiento.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Comunicaciones y Transportes  de Cámara de Diputados. Dictamina.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 28/04/2026",
-      "asunto_id": "5081742",
-      "seguimiento": "5084230",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5084230&Asunto=5081742",
-      "categorias": [
-        "agua"
-      ],
-      "categoria": "agua",
-      "categoria_nombre": "Agua",
-      "id": "34c3d2c77e6f",
-      "scrapeado_en": "2026-04-30T19:23:02.619780+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 67,
-    "actualizado": "2026-10-29T01:40:04Z"
+    "nuevas": 65,
+    "actualizado": "2026-10-29T17:13:08Z"
   }
 }
