@@ -1,8 +1,8 @@
 {
  "_meta": {
-  "actualizado": "2026-11-01T11:05:03-06:00",
+  "actualizado": "2026-11-01T15:51:03-06:00",
   "nota": "Archivo acumulado de noticias (nacional y estatal). Append-only: no se descarta por antigüedad.",
-  "total": 16319
+  "total": 16346
  },
  "meses": {
   "2025-08": {
@@ -76,14 +76,14 @@
    "estatal": 1170
   },
   "2026-10": {
-   "total": 3595,
-   "nacional": 2204,
-   "estatal": 1391
+   "total": 3600,
+   "nacional": 2205,
+   "estatal": 1395
   },
   "2026-11": {
-   "total": 20,
-   "nacional": 17,
-   "estatal": 3
+   "total": 42,
+   "nacional": 25,
+   "estatal": 17
   }
  }
 }
