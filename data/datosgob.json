@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-01T20:05 CDMX",
+  "actualizado": "2026-11-02T15:30 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -34,6 +34,13 @@
     "recursos": 3
    },
    {
+    "titulo": "Rezago social",
+    "org": "Consejo Nacional de Evaluación de la Política de Desarrollo Social (CONEVAL)",
+    "fecha": "2026-11-02",
+    "url": "https://www.datos.gob.mx/dataset/rezago_social",
+    "recursos": 18
+   },
+   {
     "titulo": "Certificados de sanidad acuícola",
     "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
     "fecha": "2026-03-10",
@@ -53,13 +60,6 @@
     "fecha": "2025-08-18",
     "url": "https://www.datos.gob.mx/dataset/unidades_produccion_acuicola_senasica",
     "recursos": 1
-   },
-   {
-    "titulo": "Rezago social",
-    "org": "Consejo Nacional de Evaluación de la Política de Desarrollo Social (CONEVAL)",
-    "fecha": "2025-06-04",
-    "url": "https://www.datos.gob.mx/dataset/rezago_social",
-    "recursos": 17
    }
   ],
   "Residuos": [
@@ -254,9 +254,9 @@
    {
     "titulo": "Gas Natural",
     "org": "Comisión Nacional de Energía (CNE)",
-    "fecha": "2026-10-28",
+    "fecha": "2026-11-02",
     "url": "https://www.datos.gob.mx/dataset/gas_natural",
-    "recursos": 9
+    "recursos": 10
    }
   ],
   "Forestal": [
