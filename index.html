@@ -10048,6 +10048,23 @@ function _gateTab(id){if(!_authOn())return true;if(_isPublicTab(id))return true;
 function _av(id){var e=document.getElementById(id);return e?(e.value||'').trim():'';}
 function _authErr(e){var m=(e&&e.message)||'';if(/Invalid login/i.test(m))return'Correo o contraseña incorrectos.';if(/already registered/i.test(m))return'Ese correo ya tiene una cuenta. Inicia sesión.';if(/rate limit/i.test(m))return'Demasiados intentos, espera un momento.';return m||'Ocurrió un error, intenta de nuevo.';}
 
+// Campo de contraseña con botón para mostrarla mientras se escribe
+var _PW_EYE='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+var _PW_EYE_OFF='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-7 0-11-7-11-7a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/></svg>';
+function _pwField(id,ac,inp,enter){
+  return '<div style="position:relative">'
+    +'<input id="'+id+'" type="password" autocomplete="'+ac+'" style="'+inp+';padding-right:46px" onkeydown="if(event.key===\'Enter\')'+enter+'">'
+    +'<button type="button" onclick="_pwToggle(\''+id+'\',this)" aria-label="Mostrar contraseña" title="Mostrar contraseña" style="position:absolute;right:4px;top:6px;height:42px;width:40px;display:flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0">'+_PW_EYE+'</button>'
+    +'</div>';
+}
+function _pwToggle(id,btn){
+  var i=document.getElementById(id);if(!i)return;
+  var show=i.type==='password';
+  i.type=show?'text':'password';
+  btn.innerHTML=show?_PW_EYE_OFF:_PW_EYE;
+  var t=show?'Ocultar contraseña':'Mostrar contraseña';btn.setAttribute('aria-label',t);btn.title=t;
+  i.focus();try{var n=i.value.length;i.setSelectionRange(n,n);}catch(e){}
+}
 function _ensureAuthModal(){
   if(document.getElementById('auth-bg'))return;
   var inp='width:100%;height:42px;border:1px solid var(--border-med);border-radius:10px;padding:0 14px;font-size:13px;font-family:var(--sans);color:var(--text);outline:none;background:var(--card2);margin-top:6px';
@@ -10067,7 +10084,7 @@ function _ensureAuthModal(){
       +'<div style="text-align:center;font-size:20px;font-weight:700;color:var(--text);margin:0 0 5px">Inicia sesión</div>'
       +'<div style="text-align:center;font-size:13px;color:var(--text-sec);margin-bottom:20px">Accede a tu terminal de inteligencia regulatoria</div>'
       +'<label style="'+lbl+'">Correo</label><input id="auth-email" type="email" autocomplete="email" style="'+inp+'">'
-      +'<label style="'+lbl+'">Contraseña</label><input id="auth-pass" type="password" autocomplete="current-password" style="'+inp+'" onkeydown="if(event.key===\'Enter\')authLogin()">'
+      +'<label style="'+lbl+'">Contraseña</label>'+_pwField('auth-pass','current-password',inp,'authLogin()')
       +'<button style="'+pri+'" onclick="authLogin()" id="auth-login-btn">Entrar</button>'
       +'<button style="width:100%;margin-top:11px;padding:12px;border:1.5px solid var(--green);background:none;color:var(--green);border-radius:11px;font-size:14px;font-weight:700;cursor:pointer" onclick="_authView(\'preview\')">Regístrate al preview →</button>'
       +'<div style="text-align:center;font-size:11.5px;color:var(--text-muted);margin-top:9px;line-height:1.5">Estamos en preview. Déjanos tu correo y te damos de alta en cuanto abramos tu acceso.</div>'
@@ -10080,7 +10097,7 @@ function _ensureAuthModal(){
       +'<label style="'+lbl+'">Nombre</label><input id="auth-nombre" type="text" style="'+inp+'">'
       +'<label style="'+lbl+'">Empresa / organización</label><input id="auth-empresa" type="text" style="'+inp+'">'
       +'<label style="'+lbl+'">Correo</label><input id="auth-email2" type="email" autocomplete="email" style="'+inp+'">'
-      +'<label style="'+lbl+'">Contraseña</label><input id="auth-pass2" type="password" autocomplete="new-password" style="'+inp+'" onkeydown="if(event.key===\'Enter\')authSignup()">'
+      +'<label style="'+lbl+'">Contraseña</label>'+_pwField('auth-pass2','new-password',inp,'authSignup()')
       +'<button style="'+pri+'" onclick="authSignup()" id="auth-signup-btn">Crear cuenta</button>'
       +'<div style="margin-top:16px;text-align:center"><button style="'+link+'" onclick="_authView(\'login\')">← Ya tengo cuenta</button></div>'
     +'</div>'
