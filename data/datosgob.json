@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-03T13:13 CDMX",
+  "actualizado": "2026-11-03T20:55 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -145,6 +145,13 @@
   ],
   "Medio Ambiente": [
    {
+    "titulo": "Nuevos proyectos de cooperación de oferta de medio ambiente",
+    "org": "Agencia Mexicana de Cooperación Internacional para el Desarrollo (AMEXCID)",
+    "fecha": "2026-11-03",
+    "url": "https://www.datos.gob.mx/dataset/proyectos_cooperacion_oferta_medio_ambiente",
+    "recursos": 2
+   },
+   {
     "titulo": "Áreas destinadas voluntariamente a la conservación",
     "org": "Comisión Nacional de Áreas Naturales Protegidas (CONANP)",
     "fecha": "2026-10-29",
@@ -185,13 +192,6 @@
     "fecha": "2026-07-09",
     "url": "https://www.datos.gob.mx/dataset/comites_ambientales",
     "recursos": 5
-   },
-   {
-    "titulo": "Escenarios de cambio climático",
-    "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
-    "fecha": "2026-05-07",
-    "url": "https://www.datos.gob.mx/dataset/escenarios_cambio_climatico",
-    "recursos": 1
    }
   ],
   "Energía": [
