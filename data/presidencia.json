@@ -1,6 +1,26 @@
 {
   "articulos": [
     {
+      "id": "ee10c98317",
+      "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 05 de noviembre de 2026",
+      "fecha": "2026-11-05",
+      "url": "https://www.gob.mx/presidencia/es/articulos/version-estenografica-conferencia-de-prensa-de-la-presidenta-claudia-sheinbaum-pardo-del-05-de-noviembre-de-2026",
+      "fuente": "Presidencia de México — Estenográfica",
+      "categorias": [
+        "agua",
+        "infra",
+        "agricultura",
+        "inversion"
+      ],
+      "fragmentos": [
+        "En este momento, estamos trabajando en un acueducto que va a llevar agua a Ciudad Victoria, que ya está muy adelantado. El gobierno del estado está haciendo una planta potabilizadora y nosotros estamos haciendo un acueducto que viene de una presa, creo que se llama “Guadalupe Victoria”.",
+        "Durante el periodo en el que el papá de Américo Villarreal fue gobernador se hizo el primer acueducto, pero todavía hay posibilidad de llevar más agua desde la presa, por eso estamos haciendo el segundo acueducto con mayor capacidad. Eso va a llevar agua a Ciudad Victoria.",
+        "Una parte es agua potable, pero la mayor parte es agua para riego, porque es una zona que era muy productiva en términos agrícolas y que por la disminución de las lluvias en esa zona ha perdido productividad.",
+        "Entonces, estamos trabajando con el gobernador para cambios de cultivos y otros mecanismos.",
+        "Y también hay un viejo proyecto que se tiene que trabajar con todos los estados, de que las aguas residuales de Nuevo León, que vienen de una planta de tratamiento, lleguen a Tamaulipas para usarlas para riego."
+      ]
+    },
+    {
       "id": "e88be6bd74",
       "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 03 de noviembre de 2026",
       "fecha": "2026-11-03",
@@ -8245,8 +8265,8 @@
   ],
   "_meta": {
     "fuente": "Presidencia de México — Estenográficas mañanera",
-    "total": 476,
-    "nuevos_hoy": 3,
-    "actualizado": "2026-11-05T18:15:52Z"
+    "total": 477,
+    "nuevos_hoy": 4,
+    "actualizado": "2026-11-05T23:04:55Z"
   }
 }
