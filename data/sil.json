@@ -2,6 +2,72 @@
   "iniciativas": [
     {
       "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-11-03",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "titulo": "Que reforma y adiciona diversas disposiciones de la Ley General de Salud, en materia de atención de los efectos del cambio climático en la salud.",
+      "presentador": "Dip. Éctor Jaime Ramírez Barba (PAN)",
+      "ultimo_tramite": "Se turnó a Comisión (es): Salud  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 03 de noviembre de 2026 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 03/11/2026",
+      "asunto_id": "5185936",
+      "seguimiento": "5190489",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5190489&Asunto=5185936",
+      "categorias": [
+        "cambio_climatico"
+      ],
+      "categoria": "cambio_climatico",
+      "categoria_nombre": "Cambio Climático",
+      "id": "a505d9e43e48",
+      "scrapeado_en": "2026-11-05T18:16:52.394515+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Senadores",
+      "camara_revisora": "Cámara de Diputados",
+      "fecha_presentacion": "2026-11-03",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Senado: Estudios Legislativos Senado: Medio Ambiente, Recursos Naturales y Cambio Climático",
+      "aspectos": "Las comisiones aprueban incorporar el concepto de Arborización: como el conjunto de acciones dirigidas a la plantación, mantenimiento y conservación de especies vegetales adecuadas, en ciudades y asentamientos humanos, considerando las condiciones climáticas y ecosistémicas de cada región, con el fin de crear hábitats para la fauna urbana y mejorar la calidad del aire, para que contribuyan al bienestar ambiental y social; se plantea establecer políticas de arborización y gestión de áreas verdes urbanas que promuevan la plantación, mantenimiento y conservación de especies vegetales adecuadas, considerando las condiciones climáticas y ecosistémicas de cada región, para contribuir al bienestar ambiental y social de los asentamientos humanos. \n\nSe precisa que el uso, aprovechamiento y custodia del Espacio Público se sujetará a las previsiones y acciones específicas de plantación, mantenimiento y conservación de especies vegetales adecuadas y gestión de áreas verdes, en espacios públicos de áreas urbanas, considerando las condiciones climáticas y ecosistémicas de cada región, con el fin de mejorar la calidad ambiental, mitigar el cambio climático y promover el bienestar social.",
+      "ultimo_tramite": "Queda de primera lectura / Se emite declaratoria de publicidad:",
+      "ultimo_estatus": "De primera lectura en origen Pendiente 03/11/2026",
+      "asunto_id": "5184487",
+      "seguimiento": "5187426",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5187426&Asunto=5184487",
+      "categorias": [
+        "biodiversidad",
+        "calidad_aire",
+        "cambio_climatico"
+      ],
+      "categoria": "biodiversidad",
+      "categoria_nombre": "Biodiversidad",
+      "id": "97db76558c22",
+      "scrapeado_en": "2026-11-05T18:16:53.737548+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Senadores",
+      "camara_revisora": "Cámara de Diputados",
+      "fecha_presentacion": "2026-11-03",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Cámara de Senadores",
+      "aspectos": "La Cámara de Senadores aprueba establecer que la Comisión Intersecretarial de Cambio Climático convocará a otras dependencias y entidades gubernamentales entre ellos al Consejo Nacional de Ciencia y Tecnología, la Agencia Nacional de Seguridad Industrial y de Protección al Medio Ambiente del Sector Hidrocarburos, así como invitar a representantes del Consejo, de los Poderes Legislativo y Judicial, de órganos autónomos, de las Entidades Federativas y en su caso, los Municipios, así como a representantes de los sectores público, social y privado a participar en sus trabajos cuando se aborden temas relacionados con el ámbito de su competencia.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Cambio Climático y Sostenibilidad de Cámara de Diputados. Dictamina.",
+      "ultimo_estatus": "Pendiente en comisión(es) de revisora Pendiente 03/11/2026",
+      "asunto_id": "5183198",
+      "seguimiento": "5163403",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5163403&Asunto=5183198",
+      "categorias": [
+        "hidrocarburos",
+        "cambio_climatico"
+      ],
+      "categoria": "hidrocarburos",
+      "categoria_nombre": "Hidrocarburos",
+      "id": "777626876809",
+      "scrapeado_en": "2026-11-05T18:16:55.021731+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2026-10-28",
       "legislatura": "LXVI",
       "periodo": "1er Ordinario",
@@ -10719,81 +10785,13 @@
       "categoria_nombre": "Biodiversidad",
       "id": "75730a3aec95",
       "scrapeado_en": "2026-05-12T16:18:16.556373+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-04-29",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que adiciona los artículos 50 y 70 de la Ley de Caminos, Puentes y Autotransporte Federal.",
-      "presentador": "Dip. María Del Rosario Guzmán Avilés (PAN)",
-      "aspectos": "La iniciativa tiene por objeto impulsar operativos y mejorar la seguridad en las vías de comunicación. Entre lo propuesto destaca 1) Cuando se trate de transporte de hidrocarburos y materiales, sustancias o residuos peligrosos, la Secretaría, en coordinación con la Guardia Nacional, podrá realizar operativos de inspección de carácter preventivo, con criterios objetivos y no discriminatorios, en los términos de la normatividad aplicable, para la aplicación de pruebas de alcoholemia y detección de sustancias psicotrópicas a los conductores; 2) En el ejercicio de sus atribuciones, la Secretaría, con el apoyo de la Guardia Nacional, podrá suspender la circulación y ordenar el resguardo preventivo de cualquier vehículo que transporte hidrocarburos o materiales, sustancias o residuos peligrosos, si el conductor da positivo en las pruebas de alcohol o de sustancias psicotrópicas, sin perjuicio de las sanciones administrativas y penales que correspondan. En dichos casos, los gastos derivados del resguardo serán a cargo del permisionario, quien deberá garantizar de manera inmediata la continuidad segura del transporte, ya sea mediante la sustitución del conductor o el trasvase de la carga si fuera técnicamente necesario, para prevenir cualquier riesgo potencial.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Comunicaciones y Transportes  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 29 de abril de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 29/04/2026",
-      "asunto_id": "5086803",
-      "seguimiento": "5091779",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5091779&Asunto=5086803",
-      "categorias": [
-        "hidrocarburos",
-        "residuos"
-      ],
-      "categoria": "hidrocarburos",
-      "categoria_nombre": "Hidrocarburos",
-      "id": "582b1cc6ef2b",
-      "scrapeado_en": "2026-05-12T16:18:32.079117+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-04-29",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que reforma y adiciona los artículos 60 y 68 de la Ley General de Movilidad y Seguridad Vial.",
-      "presentador": "Dip. Miguel Ángel Guevara Rodríguez (PAN)",
-      "aspectos": "La iniciativa tiene por objeto desarrollar e implementar programas de sustitución progresiva de flotillas municipales contaminantes, incluyendo patrullas, camiones recolectores de residuos, vehículos administrativos y demás unidades destinadas a la prestación de servicios públicos, priorizando la incorporación de vehículos eléctricos, híbridos enchufables o de bajas emisiones, en coordinación con las entidades federativas y el gobierno federal, conforme a los principios de movilidad sustentable y seguridad vial previstos en la ley.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Movilidad  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 29 de abril de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 29/04/2026",
-      "asunto_id": "5086851",
-      "seguimiento": "5091809",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5091809&Asunto=5086851",
-      "categorias": [
-        "calidad_aire",
-        "residuos"
-      ],
-      "categoria": "calidad_aire",
-      "categoria_nombre": "Calidad del Aire",
-      "id": "60b2e0aee7a7",
-      "scrapeado_en": "2026-05-12T16:18:41.148832+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-04-29",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que adiciona el artículo 79 Bis de la Ley General de Protección Civil, en materia de prevención de accidentes por transporte de materiales peligrosos en áreas urbanas.",
-      "presentador": "Dip. Rosario del Carmen Moreno Villatoro (Morena)",
-      "aspectos": "La iniciativa tiene por objeto establecer las obligaciones de las personas físicas o morales que se dediquen al transporte de materiales peligrosos en zonas urbanas. Para ello propone obligar los prestadores del servicio a: 1) contar con planes específicos de prevención, respuesta y mitigación de riesgos; 2) capacitar y certificar a su personal en materia de gestión integral de riesgos y primeros auxilios; 3) coordinarse con las autoridades locales de protección civil para la ejecución de simulacros y protocolos de emergencia; y, 4) implementar sistemas de monitoreo y rastreo en tiempo real de las unidades de transporte. Asimismo, plantea que el incumplimiento será sancionado conforme a la legislación aplicable.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Protección Civil y Prevención de Desastres de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 29 de abril de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 29/04/2026",
-      "asunto_id": "5086818",
-      "seguimiento": "5091789",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5091789&Asunto=5086818",
-      "categorias": [
-        "cambio_climatico"
-      ],
-      "categoria": "cambio_climatico",
-      "categoria_nombre": "Cambio Climático",
-      "id": "09defdb7a31b",
-      "scrapeado_en": "2026-05-12T16:18:42.432851+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 69,
-    "actualizado": "2026-11-05T02:05:53Z"
+    "nuevas": 58,
+    "actualizado": "2026-11-05T18:22:50Z"
   }
 }
