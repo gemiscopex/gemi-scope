@@ -1988,9 +1988,11 @@ function processData(){
     const cat=catArt(n.titulo||'');
     if(cat)catCounts[cat]++;
     const t=qa((n.titulo||'').toLowerCase());
-    Object.keys(estadoData).forEach(est=>{if(_edoHit(t,est))stateNews[est]=(stateNews[est]||0)+1});
-    const caps={'ciudad de mexico':'Ciudad de México','guadalajara':'Jalisco','monterrey':'Nuevo León','puebla':'Puebla','tijuana':'Baja California','merida':'Yucatán','cancun':'Quintana Roo','oaxaca':'Oaxaca','chihuahua':'Chihuahua','hermosillo':'Sonora','culiacan':'Sinaloa','mexicali':'Baja California','veracruz':'Veracruz'};
-    Object.entries(caps).forEach(([cap,est])=>{if(t.includes(cap))stateNews[est]=(stateNews[est]||0)+1});
+    const hit={};   // una nota cuenta una sola vez por estado
+    Object.keys(estadoData).forEach(est=>{if(_edoHit(t,est))hit[est]=1});
+    const caps={'guadalajara':'Jalisco','monterrey':'Nuevo León','puebla':'Puebla','tijuana':'Baja California','merida':'Yucatán','cancun':'Quintana Roo','oaxaca':'Oaxaca','chihuahua':'Chihuahua','hermosillo':'Sonora','culiacan':'Sinaloa','mexicali':'Baja California','veracruz':'Veracruz'};
+    Object.entries(caps).forEach(([cap,est])=>{if(t.includes(cap))hit[est]=1});
+    Object.keys(hit).forEach(est=>{stateNews[est]=(stateNews[est]||0)+1});
   });
 }
 function getTopCat(){let top=null,max=-1;CATS.forEach(c=>{if(catCounts[c.id]>max){max=catCounts[c.id];top=c}});return{cat:top,count:max}}
@@ -5342,9 +5344,17 @@ function formatFecha(f){
 // Papalotla, Donato Guerra, Isidro Fabela, Melchor Ocampo): esas notas entran si además dicen Edomex o mexiquense.
 var _EDOMEX_RE=new RegExp('\\b(estado de mexico|edomex|edo\\.? ?mex|mexiquenses?|gobierno mexiquense|delfina gomez|la marquesa|nevado de toluca|neza'
   +'|acambay|acolman|aculco|almoloya de alquisiras|almoloya de juarez|almoloya del rio|amanalco|amatepec|amecameca|apaxco|(?<!rio )atenco|atizapan|atlacomulco|atlautla|axapusco|ayapango|calimaya|capulhuac|chalco|chapa de mota|chiautla|chicoloapan|chiconcuac|chimalhuacan|coacalco|coatepec harinas|cocotitlan|coyotepec|cuautitlan|ecatepec|ecatzingo|huehuetoca|hueypoxtla|huixquilucan|ixtapaluca|ixtapan de la sal|ixtapan del oro|ixtlahuaca|izcalli|jaltenco|jilotepec|jilotzingo|jiquipilco|jocotitlan|joquicingo|juchitepec|luvianos|malinalco|metepec|mexicaltzingo|naucalpan|nextlalpan|nezahualcoyotl|nicolas romero|nopaltepec|ocoyoacac|ocuilan|otumba|otzoloapan|otzolotepec|ozumba|polotitlan|san antonio la isla|san felipe del progreso|san jose del rincon|san martin de las piramides|san mateo atenco|san simon de guerrero|soyaniquilpan|sultepec|tecamac|tejupilco|temamatla|temascalapa|temascalcingo|temascaltepec|temoaya|tenancingo|tenango del aire|tenango del valle|teoloyucan|teotihuacan|tepetlaoxtoc|tepetlixpa|tepotzotlan|tequixquiac|texcaltitlan|texcalyacac|texcoco|tezoyuca|tianguistenco|timilpan|tlalmanalco|tlalnepantla|tlatlaya|toluca|tonanitla|tonatico|tultepec|tultitlan|valle de bravo|valle de chalco|villa de allende|villa del carbon|villa guerrero|villa victoria|xalatlaco|xonacatlan|zacazonapan|zinacantepec|zumpahuacan|zumpango)\\b');
+// CDMX: "CDMX" y sus 16 alcaldías. Se descarta "Ciudad de México" como lugar de redacción ("Ciudad de México.- La
+// Presidenta…", "Reuters Ciudad de México.") y el AICM, que meten notas nacionales. Las alcaldías con nombre de
+// persona u otro municipio (Benito Juárez, Cuauhtémoc, Miguel Hidalgo, Venustiano Carranza, Álvaro Obregón) cuentan
+// solo como "alcaldía X".
+var _CDMX_RE=/\b(ciudad de mexico|cdmx|cd\.? ?mx|capital del pais|clara brugada|sacmex|bordo poniente|ajusco|bosque de chapultepec|congreso capitalino|azcapotzalco|coyoacan|cuajimalpa|gustavo a\.? madero|gam|iztacalco|iztapalapa|magdalena contreras|milpa alta|tlahuac|tlalpan|xochimilco|alcaldias? (alvaro obregon|benito juarez|cuauhtemoc|miguel hidalgo|venustiano carranza))\b/;
+var _CDMX_NO=/aeropuerto internacional de la ciudad de mexico|ciudad de mexico\s*(\([^)]{1,20}\))?\s*(\.|,\s*\d{1,2} de |–|—)/g;
 function _edoHit(txt,state){
   var sn=qa(state.toLowerCase());
-  return sn==='mexico'?_EDOMEX_RE.test(txt):txt.includes(sn);
+  if(sn==='mexico')return _EDOMEX_RE.test(txt);
+  if(sn==='ciudad de mexico')return _CDMX_RE.test(txt.replace(_CDMX_NO,' '));
+  return txt.includes(sn);
 }
 function filterNoticiasEstado(state,kws){
   return noticias.filter(n=>{
