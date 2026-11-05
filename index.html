@@ -1988,7 +1988,7 @@ function processData(){
     const cat=catArt(n.titulo||'');
     if(cat)catCounts[cat]++;
     const t=qa((n.titulo||'').toLowerCase());
-    Object.keys(estadoData).forEach(est=>{if(t.includes(qa(est.toLowerCase())))stateNews[est]=(stateNews[est]||0)+1});
+    Object.keys(estadoData).forEach(est=>{if(_edoHit(t,est))stateNews[est]=(stateNews[est]||0)+1});
     const caps={'ciudad de mexico':'Ciudad de México','guadalajara':'Jalisco','monterrey':'Nuevo León','puebla':'Puebla','tijuana':'Baja California','merida':'Yucatán','cancun':'Quintana Roo','oaxaca':'Oaxaca','chihuahua':'Chihuahua','hermosillo':'Sonora','culiacan':'Sinaloa','mexicali':'Baja California','veracruz':'Veracruz'};
     Object.entries(caps).forEach(([cap,est])=>{if(t.includes(cap))stateNews[est]=(stateNews[est]||0)+1});
   });
@@ -5336,11 +5336,20 @@ function formatFecha(f){
   if(!f)return'';
   try{const d=new Date(f);return d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});}catch(e){return f.slice(0,10);}
 }
+// "México" solo como palabra cuela casi toda nota nacional; para el Edomex se buscan sus propios nombres:
+// la entidad, sus 125 municipios (INEGI) y referencias locales. Quedan fuera los nombres que se confunden con
+// otro estado, persona o lugar (Morelos, La Paz, El Oro, Lerma, Chapultepec, Rayón, Santo Tomás, Zacualpan,
+// Papalotla, Donato Guerra, Isidro Fabela, Melchor Ocampo): esas notas entran si además dicen Edomex o mexiquense.
+var _EDOMEX_RE=new RegExp('\\b(estado de mexico|edomex|edo\\.? ?mex|mexiquenses?|gobierno mexiquense|delfina gomez|la marquesa|nevado de toluca|neza'
+  +'|acambay|acolman|aculco|almoloya de alquisiras|almoloya de juarez|almoloya del rio|amanalco|amatepec|amecameca|apaxco|(?<!rio )atenco|atizapan|atlacomulco|atlautla|axapusco|ayapango|calimaya|capulhuac|chalco|chapa de mota|chiautla|chicoloapan|chiconcuac|chimalhuacan|coacalco|coatepec harinas|cocotitlan|coyotepec|cuautitlan|ecatepec|ecatzingo|huehuetoca|hueypoxtla|huixquilucan|ixtapaluca|ixtapan de la sal|ixtapan del oro|ixtlahuaca|izcalli|jaltenco|jilotepec|jilotzingo|jiquipilco|jocotitlan|joquicingo|juchitepec|luvianos|malinalco|metepec|mexicaltzingo|naucalpan|nextlalpan|nezahualcoyotl|nicolas romero|nopaltepec|ocoyoacac|ocuilan|otumba|otzoloapan|otzolotepec|ozumba|polotitlan|san antonio la isla|san felipe del progreso|san jose del rincon|san martin de las piramides|san mateo atenco|san simon de guerrero|soyaniquilpan|sultepec|tecamac|tejupilco|temamatla|temascalapa|temascalcingo|temascaltepec|temoaya|tenancingo|tenango del aire|tenango del valle|teoloyucan|teotihuacan|tepetlaoxtoc|tepetlixpa|tepotzotlan|tequixquiac|texcaltitlan|texcalyacac|texcoco|tezoyuca|tianguistenco|timilpan|tlalmanalco|tlalnepantla|tlatlaya|toluca|tonanitla|tonatico|tultepec|tultitlan|valle de bravo|valle de chalco|villa de allende|villa del carbon|villa guerrero|villa victoria|xalatlaco|xonacatlan|zacazonapan|zinacantepec|zumpahuacan|zumpango)\\b');
+function _edoHit(txt,state){
+  var sn=qa(state.toLowerCase());
+  return sn==='mexico'?_EDOMEX_RE.test(txt):txt.includes(sn);
+}
 function filterNoticiasEstado(state,kws){
-  const sn=qa(state.toLowerCase());
   return noticias.filter(n=>{
     const txt=qa((n.titulo+' '+(n.descripcion||'')).toLowerCase());
-    return txt.includes(sn)||(kws&&kws.some(k=>txt.includes(qa(k))));
+    return _edoHit(txt,state)&&(!kws||!kws.length||kws.some(k=>txt.includes(qa(k))));
   });
 }
 function showSPTab(id,btn){
