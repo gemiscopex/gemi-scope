@@ -70,6 +70,9 @@ KEYWORDS = {
                  "deforestacion", "area natural protegida", "biodiversidad",
                  "vida silvestre", "manglar", "arrecife", "incendio forestal",
                  "tala ilegal", "tala clandestina", "reforestacion", "conafor",
+                 # arbolado urbano y ruido (frecuentes en prensa de ciudades, p. ej. CDMX)
+                 "tala de arbol", "derribo de arbol", "poda de arbol", "arbolado urbano",
+                 "contaminacion acustica", "contaminacion por ruido",
                  "impacto ambiental", "ecocidio", "ambientalista", "ola de calor",
                  # controversias/impugnaciones ambientales (multiword para evitar ruido
                  # de amparos laborales/fiscales genéricos)
@@ -211,15 +214,27 @@ def _tag(item, tag):
     return v.strip()
 
 def scrape_rss(url, desde):
-    feed = url.rstrip("/") + "/feed"
+    # url puede ser el feed completo (…/capital.xml) o la portada: WordPress publica en /feed, OEM en /rss
+    u = url.rstrip("/")
+    feeds = [u] if re.search(r"\.xml$|/rss$|/feed$|outboundfeeds", u) else [u + "/feed", u + "/rss"]
+    r = None
+    for feed in feeds:
+        try:
+            r = requests.get(feed, headers=UA, timeout=12, verify=False)
+        except Exception:
+            r = None
+            continue
+        if r.status_code == 200 and "<item" in r.text:
+            break
+    if r is None or r.status_code != 200:
+        return []
+    # sin charset en la cabecera, requests asume Latin-1 y rompe los acentos ("Ã¡rbol"): se prueba UTF-8 primero
     try:
-        r = requests.get(feed, headers=UA, timeout=12, verify=False)
-    except Exception:
-        return []
-    if r.status_code != 200:
-        return []
+        txt = r.content.decode("utf-8")
+    except UnicodeDecodeError:
+        txt = r.text
     out = []
-    for m in re.finditer(r"<item>([\s\S]*?)</item>", r.text):
+    for m in re.finditer(r"<item>([\s\S]*?)</item>", txt):
         it = m.group(1)
         fecha = _fecha_rss(_tag(it, "pubDate"))
         if fecha and fecha < desde.strftime("%Y-%m-%d"):
@@ -398,7 +413,10 @@ def main():
         try:
             notas = None
             if mrow["metodo"] == "wp_api":
-                notas = scrape_wp(mrow["url"], desde)
+                # paginado: los medios grandes publican más de 30 notas al día
+                notas = scrape_wp_pages(mrow["url"], desde, max_pages=3)
+                if notas == []:   # algunos sitios no aguantan per_page=100: vuelve a la consulta corta
+                    notas = scrape_wp(mrow["url"], desde)
             elif mrow["metodo"] == "sitemap":
                 notas = scrape_sitemap(mrow["url"], desde, max_urls=120)
             if notas is None or mrow["metodo"] == "rss":

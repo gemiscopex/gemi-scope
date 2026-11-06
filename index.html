@@ -1990,7 +1990,7 @@ function processData(){
     const t=qa((n.titulo||'').toLowerCase());
     const hit={};   // una nota cuenta una sola vez por estado
     Object.keys(estadoData).forEach(est=>{if(_edoHit(t,est))hit[est]=1});
-    const caps={'guadalajara':'Jalisco','monterrey':'Nuevo León','puebla':'Puebla','tijuana':'Baja California','merida':'Yucatán','cancun':'Quintana Roo','oaxaca':'Oaxaca','chihuahua':'Chihuahua','hermosillo':'Sonora','culiacan':'Sinaloa','mexicali':'Baja California','veracruz':'Veracruz'};
+    const caps={'guadalajara':'Jalisco','monterrey':'Nuevo León','tijuana':'Baja California','merida':'Yucatán','cancun':'Quintana Roo','hermosillo':'Sonora','culiacan':'Sinaloa','mexicali':'Baja California'};
     Object.entries(caps).forEach(([cap,est])=>{if(t.includes(cap))hit[est]=1});
     Object.keys(hit).forEach(est=>{stateNews[est]=(stateNews[est]||0)+1});
   });
@@ -5350,10 +5350,20 @@ var _EDOMEX_RE=new RegExp('\\b(estado de mexico|edomex|edo\\.? ?mex|mexiquenses?
 // solo como "alcaldía X".
 var _CDMX_RE=/\b(ciudad de mexico|cdmx|cd\.? ?mx|capital del pais|clara brugada|sacmex|bordo poniente|ajusco|bosque de chapultepec|congreso capitalino|azcapotzalco|coyoacan|cuajimalpa|gustavo a\.? madero|gam|iztacalco|iztapalapa|magdalena contreras|milpa alta|tlahuac|tlalpan|xochimilco|alcaldias? (alvaro obregon|benito juarez|cuauhtemoc|miguel hidalgo|venustiano carranza))\b/;
 var _CDMX_NO=/aeropuerto internacional de la ciudad de mexico|ciudad de mexico\s*(\([^)]{1,20}\))?\s*(\.|,\s*\d{1,2} de |–|—)/g;
+// Menciones que llevan el nombre del estado pero hablan de otro lugar o de una persona: se quitan antes de buscar.
+var _EDO_NO={
+  'baja california':/baja california sur/g,
+  'guerrero':/vicente guerrero|villa guerrero|guerrero negro/g,
+  'hidalgo':/miguel hidalgo|dolores hidalgo|ciudad hidalgo|hidalgo del parral/g,
+  'morelos':/puerto morelos|ecatepec de morelos|jose maria morelos|morelos y pavon|la morelos\b/g,
+  'queretaro':/mexico\s*[-–]\s*queretaro/g,
+  'puebla':/mexico\s*[-–]\s*puebla/g
+};
 function _edoHit(txt,state){
   var sn=qa(state.toLowerCase());
   if(sn==='mexico')return _EDOMEX_RE.test(txt);
   if(sn==='ciudad de mexico')return _CDMX_RE.test(txt.replace(_CDMX_NO,' '));
+  if(_EDO_NO[sn])txt=txt.replace(_EDO_NO[sn],' ');
   return txt.includes(sn);
 }
 function filterNoticiasEstado(state,kws){
