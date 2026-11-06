@@ -2,6 +2,26 @@
   "iniciativas": [
     {
       "camara_origen": "Cámara de Diputados",
+      "fecha_presentacion": "2026-11-03",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "presentador": "Dip. Zoraya Villacis Palacios (Morena)",
+      "aspectos": "La legisladora propone exhortar: 1) a la Fiscalía General del estado de Veracruz continuar firmemente con las investigaciones correspondientes a las presuntas irregularidades financieras de Grupo Metropolitano de Agua y Saneamiento (Grupo MAS), a fin de garantizar la protección de los derechos de las personas usuarias del servicio de agua potable en los municipios de Veracruz y Medellín de Bravo; y 2) al Servicio de Administración Tributaria (SAT) iniciar una investigación en el ámbito de sus atribuciones fiscales respecto de las operaciones financieras y presunta evasión fiscal relacionadas con Grupo Metropolitano de Agua y Saneamiento (Grupo MAS) y sus empresas vinculadas.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Recursos Hidráulicos, Agua Potable y Saneamiento  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 03 de noviembre de 2026 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 03/11/2026",
+      "asunto_id": "5186026",
+      "seguimiento": "5190532",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5190532&Asunto=5186026",
+      "categorias": [
+        "agua"
+      ],
+      "categoria": "agua",
+      "categoria_nombre": "Agua",
+      "id": "3cb40d8a962e",
+      "scrapeado_en": "2026-11-06T22:36:35.807384+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
       "camara_revisora": "Cámara de Senadores",
       "fecha_presentacion": "2026-11-03",
       "legislatura": "LXVI",
@@ -10761,36 +10781,13 @@
       "categoria_nombre": "Cambio Climático",
       "id": "13a2b44ca58a",
       "scrapeado_en": "2026-05-12T16:18:03.585802+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-04-29",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que reforma la fracción VII del artículo 1° de la Ley General del Equilibrio Ecológico y la Protección al Ambiente, en materia de participación de las comunidades indígenas, afromexicanas y de la comunidad académica y científica en la mitigación del cambio climático.",
-      "presentador": "Dip. Leoncio Alfonso Morán  Sánchez (Morena)",
-      "aspectos": "La iniciativa tiene por objeto promover la participación ciudadana, de las comunidades indígenas y afromexicanas, de las instituciones académicas y científicas y la sociedad en general, en la preservación y restauración del equilibrio ecológico y la protección al ambiente, así como en la conservación de la biodiversidad, el uso responsable de los recursos naturales y las acciones de mitigación y adaptación al cambio climático, en beneficio de las generaciones presentes y futuras.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 29 de abril de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 29/04/2026",
-      "asunto_id": "5086785",
-      "seguimiento": "5091770",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5091770&Asunto=5086785",
-      "categorias": [
-        "biodiversidad",
-        "cambio_climatico"
-      ],
-      "categoria": "biodiversidad",
-      "categoria_nombre": "Biodiversidad",
-      "id": "76244c6e2511",
-      "scrapeado_en": "2026-05-12T16:18:04.875734+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 71,
-    "actualizado": "2026-11-06T17:53:38Z"
+    "nuevas": 70,
+    "actualizado": "2026-11-06T22:44:35Z"
   }
 }
