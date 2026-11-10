@@ -1,5 +1,522 @@
 [
   {
+    "id": "6a1a78889206",
+    "titulo": "Pemex contamina y ¡el planeta lo paga!",
+    "url": "https://www.greenpeace.org/mexico/informacion-prensa/66062/pemex-contamina-y-el-planeta-lo-paga/",
+    "fuente": "Greenpeace MX",
+    "resumen": "Greenpeace México realizó una protesta pacífica en las oficinas centrales de Petróleos Mexicanos para exigirle que repare los daños que provoca a comunidades, territorios y ecosistemas, y que implemente planes integrales de remediación en las zonas afectadas.",
+    "fecha_publicacion": "2026-11-10T22:23:10Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:33.983532+00:00"
+  },
+  {
+    "id": "b0fc6d693018",
+    "titulo": "Enfrentan sequía 64 municipios de Veracruz: Conagua",
+    "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNT1hPV1E1Ql9NeFhaZng5UlVIaldUcEs0cGFRTTFYdFpDTFFJUHRnbzVpVEVieXI3WkZYZl8wLVkyWHczaW5GZk1HQmxGd3ZpME1IUmpZSVlVZkgtT0Ria1dGTGhhQTBUYzFQVjUzcTFZanl1Q1NTSW9WT004QTFrbUZqbmtGd0l1cmc?oc=5",
+    "fuente": "Crónica de Xalapa",
+    "autoridad": "CONAGUA",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T22:11:29Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Veracruz",
+    "scrapeado_en": "2026-11-10T22:39:39.046635+00:00"
+  },
+  {
+    "id": "0a7432910bf5",
+    "titulo": "No todos se van: ¿Qué sabemos del redoblaje de ‘Wildwood: El bosque salvaje’?",
+    "url": "https://www.elfinanciero.com.mx/entretenimiento/2026/11/10/wildwood-el-bosque-salvaje-esto-sabemos-del-redoblaje-para-mexico/",
+    "fuente": "El Financiero",
+    "resumen": "Después de las críticas, parodias y comparaciones que inundaron las redes sociales, Wildwood tendrá una nueva versión de doblaje latino.",
+    "fecha_publicacion": "2026-11-10T22:08:56Z",
+    "categoria": "deforestacion",
+    "categoria_nombre": "Forestal",
+    "categorias": [
+      "deforestacion"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:34.021307+00:00"
+  },
+  {
+    "id": "07ef1f6a919d",
+    "titulo": "Conagua: 9 de 13 acuíferos en San Luis Potosí no tienen agua disponible para nuevas concesiones",
+    "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5VZ25RRnRpVEhqQ2gxN1pVMFhIUGF3T0l2V3FTcWZNUVU4MEJVSHFXX1FleDFjSGtEbGlsNml5aDdraWZYV0Y2V1E2YWtmVWN1Z1M5VnNQcTROdnhoOEZob3dFa0ZIV210WXU5X1NxNXJkRmhy?oc=5",
+    "fuente": "Antena San Luis",
+    "autoridad": "CONAGUA",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T21:48:15Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "San Luis Potosi",
+    "scrapeado_en": "2026-11-10T22:39:38.346812+00:00"
+  },
+  {
+    "id": "7b75910bc0ca",
+    "titulo": "CONAGUA tiene mil 400 títulos de concesión pendientes de entrega y 3 mil 700 trámites rezagados",
+    "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNNl84aXNTT1hxS2hiYzhLbEpTaFVjVHI2Sm1WSHNqY2NhYWctRU45d0owQlpwZmppdVRwUm5JaExUV0h0aW96c0NERTZQUnRyVWM0VHFaR2pjNkRjLXY3eVVjSFZtRzFPVjhlelRER1UwYnBkQnJmZXV3dVlkVUlOcTNkcEdwNHFFNE1hRWRoaXFPeDdIdUhVd3dmd3dIYVYyNW15SHdXdTREU2JlX0tUWkdFUGVwYzJ2VlhKeV9lTXZBQ202Z1JtbGlSdDlFVHc?oc=5",
+    "fuente": "B15 Digital",
+    "autoridad": "CONAGUA",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T21:46:09Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:37.634323+00:00"
+  },
+  {
+    "id": "e62d4e49b470",
+    "titulo": "Leapmotor C10 ya está en México: es eléctrica, tiene tanque de gasolina y este es su precio",
+    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQX196RUU2MGN5QXdYYzE2VEVIOUk5ZHBRak5vZFRnVkRraWk1LWVzaS1zZzUwNlUxbUwydEtBb3otalM5MjBBMDQxRDR0SGRFQldNNzRPa1o4ZVpudFlFWFB0aFc5VXRNMHBsZ21VYWtmWHRLdVZjVEVpcHNsc1c0RnBvdktoYjNici1qaW9zczBjTGtNdDRpVkRoYzh6YVNtUC1xTEsxeFYzYmpMZmfSAbMBQVVfeXFMT1Bja2lNSXN6eGJscVVvZWF5WEc3TU1WQ05WWFJXSE4tSW5NdlFpMmdUWHotQVY3ZWhzX3lLSE9BY0QtTXVNMlUwR1dqNFVNeU5ZVjVMNUh6VEJxVXp3TVdqRHU1YTFRU1libmxaMHh4cldQNWJCazA3RzVrb1RkcG9fc2l4Y1BObkFZbDdLM29UeHBvOXN3QVhtQ2lBX1ptMk5LU2tjUEQwOVliQjFPMmN3S00?oc=5",
+    "fuente": "El Economista",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T21:39:09Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:46.139024+00:00"
+  },
+  {
+    "id": "1e597d9b1f87",
+    "titulo": "Una foto inesperada revela el regreso de un ave que llevaba 13 años sin ser vista en África",
+    "url": "https://es.mongabay.com/short-article/2026/11/foto-inesperada-revela-regreso-ave-africa/",
+    "fuente": "Mongabay Latam",
+    "resumen": "Después de 13 años, investigadores avistaron al colorido cuco-alcaudón de Ghana (Lobotos lobatus) en el Parque Nacional de Taï, en Costa de Marfil. Stephanie Bartlett, becaria de investigación de campo de la Asociación Internacional para la Conservación de las Aves (IBCP), fotografió al cuco-alcaudón mientras Paulo Ditzel, también becario de investigación de la IBCP, le […]",
+    "fecha_publicacion": "2026-11-10T21:30:11Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:33.889247+00:00"
+  },
+  {
+    "id": "f53dcee2961d",
+    "titulo": "Conagua alerta por 2027: menos lluvias y 9 de 13 acuíferos de SLP sin disponibilidad",
+    "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNQTZPUUMyVG1wcktERUFfandUbFVSWWpJWmtUTnEyeHJTVGM2bjlxbzg4RGJ3S25XUDR2TUdhQTF1Qy1vdTEzMzRVb01mdmZveFJrNFhCVGZIdGE3QVZOeEtwYkxXRnBabnVCTTlEaEp0NWJvMUNGekg0dWwyMkZyUlM2aEJ6NnF3NldaOVFwbk04YlA5UjFwS29jeHJHSGxncnVSMHRDWXJ3QnZkTzNhdU5ycVNkZVFGcFFmOXJB?oc=5",
+    "fuente": "Metrópoli San Luis",
+    "autoridad": "CONAGUA",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T21:27:55Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "San Luis Potosi",
+    "scrapeado_en": "2026-11-10T22:39:38.336635+00:00"
+  },
+  {
+    "id": "d85ca724b634",
+    "titulo": "CFE Fibra E vuelve al mercado por hasta US$867M",
+    "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQc1k5TXZoSTlfdzBMR3lUVER4VFE0UzNDRC04X0hyaEc1WjAwYUtMSHdwUG9uNk1NS1ZvWGZlTjJrbXhsd2ZTTGVLVlR4M2p6TDRBWU1zVTV0V1F6cTFrSDRsVjFuU2pNLWNkUS1PYlZzc3E0WGNWYnpfd1ZjMmYyRm14WQ?oc=5",
+    "fuente": "El Ecosistema Startup",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T21:24:40Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:44.484610+00:00"
+  },
+  {
+    "id": "72623bec1668",
+    "titulo": "Deer Park ‘da frutos’ a Pemex: Ganó 1,882 millones de dólares en 9 meses, más de lo que costó su compra",
+    "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNMnhtdXkzdl95eVVJaHk5YzVuMUZfYndQclhzZVNDMG9QRGJMSUVJRVdOTFB3dHhKa3FTZHdIeEdVdkEtMUtCX05qU243eU1GbF9DenBSTXB5Y011Y1JKbkl0c1dvZDRHVUJnaG83cjRjVEF6WHMxZ3F0NzYwcG40aWM5UVA5NkxJVldLcDVWOGZiRUFMU1AyR0w0OVhaNHlOdzRHMDJUV3VXVTE3NU1wMVBqUlFlMDByUHpENHROY1FrT0JTdDFTWDB1cG5WNkZjUk9COXI0V2dXYm9hcVBjVGhJUE1NZw?oc=5",
+    "fuente": "El Financiero",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T21:12:30Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:45.321291+00:00"
+  },
+  {
+    "id": "6586cfa0f4dc",
+    "titulo": "Deer Park ‘da frutos’ a Pemex: Ganó 1,882 millones de dólares en 9 meses, más de lo que costó su compra",
+    "url": "https://www.elfinanciero.com.mx/economia/2026/11/10/deer-park-da-frutos-a-pemex-gano-1882-millones-de-dolares-en-9-meses-mas-de-lo-que-costo-su-compra/",
+    "fuente": "El Financiero",
+    "resumen": "La refinería Deer Park obtuvo un rendimiento de mil 882 millones de dólares durante los primeros 9 meses de 2026, monto que superó los mil 816 millones de dólares que le costó a Pemex.",
+    "fecha_publicacion": "2026-11-10T21:12:30Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:34.024286+00:00"
+  },
+  {
+    "id": "b2b1e6f9bfb3",
+    "titulo": "Arrancan Conagua construcción de la planta de tratamiento en Santo Domingo Ingenio",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOQU4wdWc1M3dJczNWUEk1SDNCcUFCMVc3aG9sRGhPMHBxUjZ5cTFFWEwyM3VUUE5pSDd1allEZFlzTl9jZzNXeGVGUXI5bXRMaE5LN1UwSlBBd0s2QVcyN2l3S2JFalV4VFN1d01ieE5vUWJGR1ZKSWxSVDJaOGFKa3M3aEx5blhyV0hoQmpBaG5oek1ETnV5ZXVscHlxekNBeTY2ckN1aVRxVlNkXzI1UDcxek82OXIwNnVnVnl3RQ?oc=5",
+    "fuente": "Diario Marca | La historia de Oaxaca",
+    "autoridad": "CONAGUA",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T20:52:37Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:38.337033+00:00"
+  },
+  {
+    "id": "6c03b4bbac2c",
+    "titulo": "CFE busca inversión privada para modernizar la red nacional de transmisión",
+    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQak0xZURtTTAxd2pJOWo0S3dKNDZoSmpOck1oZVk5QTZHRWlnV2ZPNkoxZktWb1ppdWd1NW1Bb2hkSFhwNy1Fbk9MWlp4MkZzVWpzelZFbUZTMklXWWo3cjJNWmJTWXo3MjI1bnd4SGVaclNvZUxSWnN2TjFSLVcta1RfdGdGaV9VdnMyM1BGOWxhZEtqOVNjUzk1dWdsSXZYY3RoY3lpeXdEejY2dGc1SVFSN01YZnFHR3FFVjg3aTJRZWJfU3pR?oc=5",
+    "fuente": "Notigram",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T20:38:12Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:44.498438+00:00"
+  },
+  {
+    "id": "a2cf559e90ed",
+    "titulo": "Propone Carlos Olson reducir precio de gasolina Magna a 20 pesos por litro",
+    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPMnczV0U3SVFKLWdldXVvRlg5Skl2ak9zV1JkWEhTY29HR3B4a3k2cEtJYUVKbGttQ3lDNXJubmlMckswMHA3UGFZRUtDY3BYYlc1RVVmZURXMkFjQ1NvZW1rRDBvbC02TF81dWc2ekdhRjE5U3BVQ1pmeE5rR095b0JXNDZBVlBRX2cwQTNlMG5WalRWZHlwLXVUenhDM0FRcjM3SlFBZEs?oc=5",
+    "fuente": "ADN | A Diario Network",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T20:28:58Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:46.140970+00:00"
+  },
+  {
+    "id": "c70ceafd39a5",
+    "titulo": "CFE Fibra E busca hasta 867 mdd para ampliar red eléctrica • Negocios",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQcUFhb1pXbVRLWVc0Mm5Pb3pETE12RWRkWHF3YkVnYVBoay05ZkxpS1lYSEljZXZYMHhybWhvSU5IVTlISWU0SkVUMTRLODZKR2dxUzdIUXFuTU5lZ2RfRUpyZGRWOFpsWk9IdEo0T0dLS2FQRzlHeDlkSTRBRXJkV0pobkdSb1Rl?oc=5",
+    "fuente": "Forbes México",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T20:26:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:44.485081+00:00"
+  },
+  {
+    "id": "0ce1da35b3ad",
+    "titulo": "CNE asignó más de $38.000 millones para financiar el funcionamiento de los partidos políticos",
+    "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNUlJFcE1LN1Qxb2ZDOFkxVXBrQVJtbnRzNkt6NG9uUHFRSFdQY2JTeVJ2MTdIWjBvWUVIcHFmMnc2SlJLbVBaZDZMUUdWeGRCelZoQVRsWGk1SjJCZTlySE9xcHNnVXdhOXljdnotUUhrYUZkeDJNVnRoQkdfTEptVzAwbEV6VkNyeFVsNEpzMlVzTEFMWFZWT3huUzh2a0h5ME8zUHVmR2tMbVIwRk9KeWZFWnU0SFdsOU5BVGE1cXluTnY30gHYAUFVX3lxTFBBYmhEMDRwMmdlaGI2UFVyeTBnVGVmX0RwT1pPS0JFNnRkeHJuSFdEWnN2Z2hlY0M1eS13bWlGNzBzcldaOGVmTDlwS2xqX3pwdzMyODJCRUtsZkhEREZIai1QZUJYUlZHakl5VnB0czZNNG5ORFJmd2liVDhoTnphbk56SE9LUEVsM0U3c2ZiSXo3eF9WWFQxWnVmdE1RWGlUWm0wbHJPblpEb1cxMkhJdldqS01NY1FVVmc0aEl3bnNaNWpMYy1QVldpTFBmbkVmdWZrMW1RUQ?oc=5",
+    "fuente": "Caracol Radio",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T20:25:21Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:40.739198+00:00"
+  },
+  {
+    "id": "636f8720de55",
+    "titulo": "Diputado de Huauchinango exige investigar a CFE por presunta complicidad en granjas de criptomonedas",
+    "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxQU1VqZzRfa19ocXdkcktLUnVwcm1IMU5aV09hZzRQN0xoOURTSDJ5T3VkSThwWWpZN01ZSW1YQ1NEWkJlS2tDZG0xMFlxTzdsU0R3UENXdUxsTVFWQWhxUVRPWktibU1zS0tMUndwUHgtbnp2eTlkZGRIS3pjZUw2SUpTQnpJc2pKVUllTllSZUNGTmJmeHVpS1ZSNU9NanQxcEhTcV94YTVlSEFSdzk5aV81TDV2c3pUemsxV3Z3TGthTDYtQjFEcFRYQVNsZnlpNTZmN3JXMVc3cXQ5SEQtYUVwN3NPVDJpZDQzWl9NdHB4aWI5ZzlEOWZtQXk?oc=5",
+    "fuente": "Periódico Central",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T20:17:23Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:44.485549+00:00"
+  },
+  {
+    "id": "3895cd3ba94b",
+    "titulo": "Notas sobre día de actividades 10 de noviembre 2026",
+    "url": "https://cemda.org.mx/notas-sobre-dia-de-actividades-10-de-noviembre-2026/",
+    "fuente": "CEMDA",
+    "resumen": "Este día, el Centro Mexicano de Derecho Ambiental, A.C. (CEMDA) participó en el Taller de Reparaciones Climáticas, organizado por La Ruta del Clima, la Asociación Interamericana para la Defensa del... La entrada Notas sobre día de actividades 10 de noviembre 2026 se publicó primero en CEMDA .",
+    "fecha_publicacion": "2026-11-10T20:03:02Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:34.072917+00:00"
+  },
+  {
+    "id": "a7ab538c5915",
+    "titulo": "Pemex proyecta invertir más de 1.8 billones de pesos para recuperar su capacidad productiva",
+    "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9VTVliSkUzbTBGR2pmZFJTX1p5R2JRYnJfbDQyQVNDdmVCOC1DNldfUFBOc3BxdFpRREZTTDNiRHJnSUFTNTNHQ0Yyd2pDTk8yb2dwTlRVZGJ4a0xQT2c?oc=5",
+    "fuente": "https://www.elexpres.com/",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T19:59:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:45.320069+00:00"
+  },
+  {
+    "id": "cca4cd96b51a",
+    "titulo": "Inicia Plastimagen 2026: la Industria del Plástico se reúne en Centro Citibanamex",
+    "url": "https://ambienteplastico.com/inicia-plastimagen-2026-la-industria-del-plastico-se-reune-en-centro-citibanamex/",
+    "fuente": "Ambiente Plastico",
+    "resumen": "Plastimagen México 2026 abrió sus puertas este martes 10 de noviembre en Centro Banamex, en la Ciudad de México, para reunir a fabricantes, transformadores, proveedores de maquinaria y especialistas de toda la cadena de valor del plástico. Durante cuatro días, la exposición presentará tecnologías, materiales y soluciones orientadas a mejorar la productividad, impulsar la innovación […] La entrada Inicia Plastimagen 2026: la Industria del Plástico se reúne en Centro Citibanamex se publicó primero",
+    "fecha_publicacion": "2026-11-10T19:58:57Z",
+    "categoria": "residuos",
+    "categoria_nombre": "Residuos",
+    "categorias": [
+      "residuos"
+    ],
+    "estado": "Ciudad de Mexico",
+    "scrapeado_en": "2026-11-10T22:39:34.113219+00:00"
+  },
+  {
+    "id": "73f2d015e51b",
+    "titulo": "Busca CFE colocar hasta 867 millones de dólares en certificados bursátiles",
+    "url": "https://energiaadebate.com/busca-cfe-colocar-hasta-867-millones-de-dolares-en-certificados-bursatiles/",
+    "fuente": "Energia a Debate",
+    "resumen": "CFE Fibra E sostiene reuniones con inversionistas para colocaciones de CBFE en mercados nacionales y extranjeros con una oferta pública subsecuente de 451 millones de dólares, con opción de colocación adicional de hasta 30 %",
+    "fecha_publicacion": "2026-11-10T19:56:10Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:34.126528+00:00"
+  },
+  {
+    "id": "13513abb8fd0",
+    "titulo": "CFE ‘atraerá’ hasta 867 millones de dólares en mercados financieros para ampliar red eléctrica",
+    "url": "https://www.elfinanciero.com.mx/economia/2026/11/10/cfe-atraera-hasta-867-millones-de-dolares-en-mercados-financieros-para-ampliar-red-electrica/",
+    "fuente": "El Financiero",
+    "resumen": "La operación de CFE contempla una oferta inicial estimada en 580 millones de dólares, aunque podría incrementarse hasta 867 millones de dólares.",
+    "fecha_publicacion": "2026-11-10T19:52:09Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:34.028068+00:00"
+  },
+  {
+    "id": "efed8c7e1623",
+    "titulo": "Conagua advierte falta de agua disponible en nueve acuíferos de SLP",
+    "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5jZDdXYmE1akV0V0E0Tk9NTDhmeC10dkt6dXFidEY2N1JVR1Z6TXh3eWxVMDgzQmVhd0JoaG1oVFNIaGxQYzZkbThWa3FGSTFlbHVyZk5fTldyazc0RkliM0h3bE9vRWZPTjVBNzE2NFQ0dDhrcVFv?oc=5",
+    "fuente": "Código San Luis",
+    "autoridad": "CONAGUA",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T19:27:51Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "San Luis Potosi",
+    "scrapeado_en": "2026-11-10T22:39:38.336208+00:00"
+  },
+  {
+    "id": "8518190f0bfd",
+    "titulo": "CFE llama a inversionistas: busca 867 millones de dólares para reforzar la red eléctrica",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxORTlyWUFNaVJodk41ZkxnNjVkUjVFRF9xc3lqWWkzWjJTLWFlUDNRZFhwT1hVUExkRVo1UXBSWVBRNXRFdHpLUmxyVE5iRXF4X3ZMdEFiTkNpdGxjdm9fdEU4MEp3RlVOdkVWSzliZWhPUnJ1MDVuR084aWFXd1ZmaFItUWktVFFtOHo0eUxobk9qdUs0RHZPUXlDQjgzV1FVb1RydTRaZS1idDZsdHd3R1JRcERIUUJWaTZuZWdaOA?oc=5",
+    "fuente": "Industry & Energy Magazine",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T19:27:24Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:44.486002+00:00"
+  },
+  {
+    "id": "dd1e02ad9c2b",
+    "titulo": "Conuee fortalece la eficiencia energética...",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOUjk1eXFocTBIT09Cc3RrX3FzQVA3UGlDakt6Tk9qdUdYcjkyenJBRi1ubkY5Q3BoX29YUHlKUlNLZUFmV2l0b1IzanNaTHBqMkFCSlBPTWZQemNVSUt5Y19OLUNWTjhXWWxIWDZZMWdmV3lfTllXeU1UTEdaWE1mLUVIVTQyQ3E3eGNHaA?oc=5",
+    "fuente": "Gob MX",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T19:23:42Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:46.817702+00:00"
+  },
+  {
+    "id": "f0286a6fadee",
+    "titulo": "Conuee promueve la eficiencia energética...",
+    "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOd1NuODVHOXZUcTVncWkwTEJVMWQ1UWd4QWRpMHZKcVRhXzNENE9Ea3JvX1ZtRTVBRVlJV1VBMUg4NTNsWVpwV3BLRUd3QURESkhMeDU4Ym94YkJqMDk0VWNZNV8xTURBQk5sejlfVDFyM3JtYTN1VEFTNlFZYWdyQU5nREI2RVpoVHI4?oc=5",
+    "fuente": "Gob MX",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T19:23:42Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:46.818141+00:00"
+  },
+  {
+    "id": "91d8efed7699",
+    "titulo": "Pemex corteja a BP y Eni para explorar aguas profundas del golfo de México",
+    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOdGEwV3RJNHFGUTFqLXZNWEZFb2xRMno3RU1CYjRtdkRVd0ZvRV9wWGRlNE5EYnFCLWJrVnE4VlBkVTl4UW5BTnZoQzVFY0VlS3VZS3dzdVUwNU9DX0ZTbktOZkVPWXJ3R3puSzJ0NWVyRElCeEEyNVR0Yk4yOE9TRnNhY1VGOFRjMzVHUjVyRUtvdlFOWHRSRWF5M3dnd196NGotQVBFLWhUNDJPbm1WXzBCTQ?oc=5",
+    "fuente": "BNamericas",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T19:21:39Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:45.316570+00:00"
+  },
+  {
+    "id": "dd50c6e7d6de",
+    "titulo": "Pemex reporta estabilidad en producción, repunte de refinación y reducción de deuda",
+    "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOVjJVRDIyejdTa1NsZHZ0UUJRNHNCYmRmZ0piSDYzcllZTVE3T19pelZxbWFtTjhHeGFWVW90eUYtc19wTHBFaElXNnB3OXk5aE1RbkUtNnN3YVVjVDF5YV9lWEl3MXp2anVfT013ME5wWkhqaFRGb28zTmpYeHpkV1Nhb1hGWFRLZVEwSV9WaVFrb0FoVW0yWFRob2RVelUxVTdLcFJlblMyOVJYak1HbUhfVUo?oc=5",
+    "fuente": "Energía Hoy",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T18:39:47Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:45.315635+00:00"
+  },
+  {
+    "id": "0c325be75317",
+    "titulo": "CCE busca blindar la inversión y el T-MEC desde Washington",
+    "url": "https://energy21.com.mx/cce-busca-blindar-la-inversion-y-el-t-mec-desde-washington/",
+    "fuente": "Energy21",
+    "resumen": "La atracción de inversiones de mayor valor agregado, la transferencia de tecnología, el fortalecimiento de los proveedores locales y el aumento del contenido regional centran la agenda que el Consejo Coordinador Empresarial (CCE) impulsa en el B20 USA Summit 2026, en Washington, D.C. Con una delegación de 35 representantes del sector privado mexicano ante las […] El cargo CCE busca blindar la inversión y el T-MEC desde Washington apareció primero en Energy21 .",
+    "fecha_publicacion": "2026-11-10T18:24:59Z",
+    "categoria": "biodiversidad",
+    "categoria_nombre": "Biodiversidad",
+    "categorias": [
+      "biodiversidad"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:33.917642+00:00"
+  },
+  {
+    "id": "d04164b3246b",
+    "titulo": "Director de Pemex destaca, ante Diputados, menor deuda desde 2014 y más refinación",
+    "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPMHh6R0M1RXU5elBKa0pQMzlTX09sRFlSZm1US19jei1sZWVhZWV0SGF2bG1ydkRmZFBmOVJ3dHRSdlhGNzAzWGxSTXVTbWM3WFcxTkJKaHJnWjlSR0tjYXN1SHQzZDhJS2U2OGd5YXNKSk9aT0pSS2gxSmVLQXRCZGkzOHh6bTlENmZr?oc=5",
+    "fuente": "Grupo Animal",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T18:19:50Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:45.316109+00:00"
+  },
+  {
+    "id": "0823378f5de9",
+    "titulo": "Pemex reporta estabilidad en producción, repunte de refinación y reducción de deuda",
+    "url": "https://energiahoy.com/oil-gas/pemex-reporta-estabilidad-en-produccion-repunte-de-refinacion-y-reduccion-de-deuda/",
+    "fuente": "Energia Hoy",
+    "resumen": "Petróleos Mexicanos (Pemex) reportó avances en sus principales indicadores operativos y financieros durante el segundo año de la actual administración federal, con una producción petrolera estable, mayor procesamiento de crudo y una reducción de su deuda financiera superior a los 20 mil millones de dólares en menos de dos años. Al comparecer ante la Comisión [...] El cargo Pemex reporta estabilidad en producción, repunte de refinación y reducción de deuda apareció primero en Energía Hoy .",
+    "fecha_publicacion": "2026-11-10T18:19:17Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:34.079437+00:00"
+  },
+  {
+    "id": "26c579c353fa",
+    "titulo": "CNE autoriza millonarios pagos a los partidos políticos para su funcionamiento en 2026",
+    "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPNm9XWF9TbUFsaDB4X1c4MlRILUNJT2NXZFM1ZUZkMFN5ZlkwQm9YYXlTa3VNSzE2azNzbnRyakpabm5YcHh6S1hOc3RDOW54TG9kbTBablVqVVlBSkNhTHRRczgzUk5qa2dhSGZnQVJMR0VYLUZaUDhDRXVTLTFIdmVWaElENnlMSVpUckVrLWdkR3p1ZF9fRDVBTmtOM1o4TGfSAaIBQVVfeXFMTkQwU2JjOHhHUUtnRFlYYVZWdWRWMEgweVlDOTJFOEVoMkdtTXVpb29FMXJQclJOYllqMjlpZWZDS3R6WTJ3TEQtQmZWVWstMW1QcmFSb0Q4UDlHVWNUMk5jeldvUXg4c1lFMWN0d05FNnBzT0hZVm4tMk9oQzZweTZmbUg5aDlfZ2JEZzdIYjFNNlJWdFloZkQtWkZYc3JDZTJ3?oc=5",
+    "fuente": "La FM",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T18:10:50Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:40.737717+00:00"
+  },
+  {
+    "id": "50c1f2ef74f9",
+    "titulo": "Autorizan con condiciones el parque solar Los Girasoles de 110 MW con almacenamiento en Quintana Roo",
+    "url": "https://www.pv-magazine-mexico.com/2026/11/10/autorizan-con-condiciones-el-parque-solar-los-girasoles-de-110-mw-con-almacenamiento-en-quintana-roo/",
+    "fuente": "PV Magazine MX",
+    "resumen": "La central, que forma parte del acuerdo de inversión mixta entre Polaris Renewable Energy y la Comisión Federal de Electricidad, contempla un sistema de baterías de 33 MW / 101.5 MWh. El inicio de las obras está sujeto a una consulta indígena y a otras autorizaciones ambientales.",
+    "fecha_publicacion": "2026-11-10T18:08:22Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": "Quintana Roo",
+    "scrapeado_en": "2026-11-10T22:39:34.086837+00:00"
+  },
+  {
     "id": "a91091bfd2c4",
     "titulo": "Director de Pemex: en 2030, las 7 refinerías y Deer Park podrían abastecer el total de los combustibles que demanda el país",
     "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNUFRDSlNqY21YRGN6S0UwOXRkOWw4dkJsMDdFZ0NZYUROTEFxN2kxajJ4UGh6SEZnbmpEVV9rcEVUcVVrY2NxbExueThoeWtlM1NMVUVPVVVLN3Vqa3ZJUFhFcHNNRGl6RjRrYmFTV254ank0MEZiVHRoWUtUZzlNek9ET3psbVZHNXdFbnFDWk5tNkc5OEE?oc=5",
@@ -14,6 +531,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-10T18:07:59.856132+00:00"
+  },
+  {
+    "id": "a935f44bfd79",
+    "titulo": "El Toyota Corolla 2027 ya tiene precio en México: gana tecnología en versiones híbrida y gasolina",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQM2ZabU90cGJldTlLMU1rd1RRRXVTcjBZdDlOTmpOYUxOWGVvZ2xEWHhjQURNQlJ0NTJLMGtkaWx5aFcyMnMwdndLR0NyaUExUEpVSG91SjBZUlozV2x2djdVTC1JYjhaZGNhbDJJeWRVX3dVdDkzbnRVN1B6THhfUHc4MEZqOWpwNFNWNmNSUGhCM2dRa1pzWHV1cGhnLXRyU0JPUzlnRmtGNDZuN0ZvdzRHYkZGNVlwMlN5ZUU4Mm3SAcYBQVVfeXFMTi1TbV96MW82eDJ5di1fRWZWYjFmN05HVmdPeWF6WDI5MFhabVhsTlY3UGZ1MVRPeVhUSUF4eC0wY2VIdGo0VFFKdVBfMzE5SkIwMzFPNVVtUkhKb1AtZGpKTkZPWlg4bHMyS1Z5UUZPeHpOWGhPa2xVRXFfTVlEcThJRHhZdlctZHNYWGZVbWdlR0JxdTc4bDJ4aTFqSllNZDhpS1dKeXBzN3hQa0E0eklscmVpbHNfZ3JXaDVOVlQ5UXhCcFBR?oc=5",
+    "fuente": "Motorpasión México",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T17:31:49Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:46.139943+00:00"
   },
   {
     "id": "5ca7cdb3f9c2",
@@ -606,6 +1139,22 @@
     "scrapeado_en": "2026-11-10T18:07:47.122197+00:00"
   },
   {
+    "id": "40b9f82d0838",
+    "titulo": "Director de Pemex: En 2030, las 7 refinerías y Deer Park podrían abastecer el total de los combustibles que demanda el país – Energia a Debate",
+    "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNUVpsN3JFbXNCZ1U3WHk5NDNiUV9RUjRjVXVaRTNhV0lZNnRXcjJDZ3RwSVdEQVN2TEdrRnk5REdjY2IzUzk2c0p4SWpxYWpieEhncVlxS09PaFJ2cVdta3ZPRXRZM0puc2xRY19pQ0J0cmxBYlhSN3BjZ0c0ZjM4alhRNWdpVHNWbkx4UUQ3dkROTjVTR3Znc0V4YmhseTVZU1pleHZPQm4yU1JlcVFkd044dVJheFROcEp6OVl5TlozbjZncmZ1WXZLZ0Y3ejhtaExlN3ZFTUZSRWZ2Qk5XdlRuYw?oc=5",
+    "fuente": "Energía a Debate",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T08:06:21Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:45.319600+00:00"
+  },
+  {
     "id": "ed6894ecc454",
     "titulo": "Director de Pemex: En 2030, las 7 refinerías y Deer Park podrían abastecer el total de los combustibles que demanda el país",
     "url": "https://energiaadebate.com/director-de-pemex-en-2030-las-7-refinerias-y-deer-park-podrian-abastecer-el-total-de-los-combustibles-que-demanda-el-pais/",
@@ -619,6 +1168,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-10T18:07:47.328199+00:00"
+  },
+  {
+    "id": "94f29b2eac3b",
+    "titulo": "Pemex: cada mexicano tendría que pagar 10,500 pesos para liquidar su deuda",
+    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOQkVmOHl6YmxOQzBLZEk1SHFLUkx2ZGk1ZHQxVXVrLUpDMVVFelhhSy1YZ09CVXhmcDJkaUhSMVFQQ2g3bUlVd1JyR3AxeW03OS05WXJfcW9DVnVyS3puOTQybmpVVkpJTkUwdmlfaThWT2drY2FWTDl5OVRNNDBvSQ?oc=5",
+    "fuente": "EL CEO",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T08:02:48Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:45.324939+00:00"
   },
   {
     "id": "95bc9fefa24f",
@@ -794,6 +1359,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-10T03:55:03.503640+00:00"
+  },
+  {
+    "id": "f2f55becd3a9",
+    "titulo": "PEMEX defiende finanzas en San Lázaro ante reclamos por pagos atrasados a proveedores",
+    "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPR0llSWxFSHd3cU9NUEtCLXExblBCVExKaUFFYnpMbm9YamtDSG56Uk04ZncydnR4QUdUYWlKd2IzdGJ4b1hseGxPbHYwZkI1OFM0ZE5hcGk0T25ZVHIycFJtd0lOTWJ0aDRsd295SjlHMUdFa2RPQ0thT0Q4aWpCc2pqLUE4cW5oS0FWcXFGMnBPQkFzN1BiNmRhSDhHUVlWTGc0dXZhX3NvR2dJRk1oQWRLSFp1QUdOZm1GTjRPd3JiVEhHa3pEMzF0S3FUZ3ZSbDRxV25n?oc=5",
+    "fuente": "Entorno Político",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T02:56:14Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:45.340369+00:00"
   },
   {
     "id": "fac99650c49c",
@@ -1016,6 +1597,38 @@
     "scrapeado_en": "2026-11-10T03:54:50.504245+00:00"
   },
   {
+    "id": "bd4e3c93fb8e",
+    "titulo": "La CNE aprueba seis permisos solares por 649 MW con almacenamiento en baterías",
+    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQNzJSOVg1ajdPa2xycjNsck5XdFc1N0ZvbVR6eXhub0p6UlNMOXhkNkpTSG41bEtNV2h4RjBqTkp5bFFPQ0gxdFhWU0FnVzlZQ3BZd1FBeVpvY0pnWDI1TG5MTXp0TDlta0VHcjdzanhvUVd1Z2t5czJhX2tXZmVFaG80eTJ1LVpYQlQyLU1DSkVSYmRBTlBuNVNrVm9qT0hpdFdyMDREQWgxdkt3LUNzTFh3djRRdWloSDZaQy1wSGRDS0U?oc=5",
+    "fuente": "pv magazine México",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T00:25:43Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:42.235904+00:00"
+  },
+  {
+    "id": "626767c5081d",
+    "titulo": "Pemex inicia estudios para valorar la viabilidad del \"fracking\" en el norte de México",
+    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNQzRTaFhKR29VN05sZmpWd1A1Q1FpeDZoWHVROFFzY0dBNllyTVlmeTBRYkNTYzA4VU5uc2Exb0NmNHZlemxxdTVjSXV3a2R1TGdvNzN0R2VXUmZvMmtPc2dTRUE2RnY2MWt5dXVmYmFmN25fZ19MSFBJN1BMaU1Fd3BlMXB3MWZ1QkZTY0k4ajg4eHlpSUJ4ZHpsWWpQbVZPQ2JGcXg4UWlhWXpLeW5OQkJtRXE1UnFjTGhOMzBjSWFXbjI4Q2VicXdxMm1fZTlsX2hj?oc=5",
+    "fuente": "ABC Noticias",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-10T00:13:47Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:45.338536+00:00"
+  },
+  {
     "id": "52c21184db29",
     "titulo": "Pemex valora viabilidad del fracking en Coahuila • Negocios",
     "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1Xbm9CaExMZF8xWmc5UE02RVhtU3NCemkzRV93MmxOeW5VMjRpTVlRSXlOWVZaRmphUlFYYWwxZzlRbzRCQ0JhN1NWVEhzcmlkWDhOUG12MnZjUVNxY3pPQ1doaHc3TlhFWjJFbVpPdDFGRVJoaHhiTlI3WQ?oc=5",
@@ -1206,6 +1819,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-10T00:58:49.020416+00:00"
+  },
+  {
+    "id": "5927ea654b23",
+    "titulo": "Pemex fortalece su soberanía energética y reduce su deuda en 20,000 millones de dólares: Plan Estratégico 2025-2035",
+    "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOUVBZTWZWd3ROU3ZNWm5HVVBXS0hNMnR2bWNrZDRhb1JTci1jUkEwVGtqVUxHR1VsRGFMTmFnb3RvREhsYUtFRjh6clJKZFoxTGFQOHl0QzhXVTMxU2tPM3NFNFRrSUh0cFpJWV8tYW1IQ2ktbTYxSGd4eUVobXdXbVRlSlhoOU95QW4zQXhDT2ctN3YzSGVvSHZLSGs0V3JxSWtBMzdsU1FyV0FLN3hXWU1wRDZ4WHNzQm5fYWVGVmlsbV9UbkJrUmhLRmx6dmlsQUF0bEVVR0txQVpjWURvbA?oc=5",
+    "fuente": "W Radio México",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-09T22:47:16Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:45.331939+00:00"
   },
   {
     "id": "b042a5a6c4bd",
@@ -3173,6 +3802,22 @@
     ],
     "estado": "Nuevo Leon",
     "scrapeado_en": "2026-11-08T16:46:00.909094+00:00"
+  },
+  {
+    "id": "71259689d8d1",
+    "titulo": "Pemex pasa de sostener las cuentas de México a depender del Estado",
+    "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNUnlXOWo3WFRlaTl2N3dJUUFsVTB2c1ZaSU9LRnJYQ25zNFNWUXh5QVBCMGdxdUdHQXhXNUtXZC1nLWlIR2RqWjMtM1pySjJ4SDFEeHZkanFweGV5NUJIc1hmWXhuZXVaSDFBa2Q5eXBSZ2dwbWU0TkNJWVBvcUF5YWkzUC1LM3hmYmU3d0VvQ0hyeUVFSDJNUmtoT2pLSnR2N1h0dVM1dmxJei1OdnJKbm5xZG5OT3UyYzQ2eEFVR0Jnd9IBxwFBVV95cUxQOE1CYVZicmlEcWx3RWEwbktyYjZvNTBMM1hMOGY3aVc3TFgtTi1NYW0zTzFQUEZUZklqWk9waWRwZmdYQVo2YzJocl9vTVRFQXdLNXQtd1ZDMmpUVkdiTll2VmtCRUZUZFNxTmVBa0VENV9wWTk3QTl1LVdGTEV0eW5vdTA2N2JleXA1NHpuQkVOMTRodDRFcjFIV24tTTNIaHFlOHMwOHJ0QWxtZi1qcE1WekdiRnRnWllzOU14UGhpajI2OHJv?oc=5",
+    "fuente": "Estrella Digital",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-08T06:30:00Z",
+    "categoria": "hidrocarburos",
+    "categoria_nombre": "Hidrocarburos",
+    "categorias": [
+      "hidrocarburos"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-10T22:39:45.350309+00:00"
   },
   {
     "id": "a53409359ee4",
@@ -8768,647 +9413,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-08T16:46:15.105015+00:00"
-  },
-  {
-    "id": "d57e5d8db2d1",
-    "titulo": "“La gente está cansada de pagar más”: Se desploma el precio de la gasolina en EU previo a elecciones 2026, ¿el",
-    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNYjR4X2phX3RSb3Z0X1MyeG1BdWJWS1FmaXlNZ19RY0l6V0ZRM0k4ZlNTZjlObVdiWnRvay1HVnlnQjhSZkRjWWRSbjNKTDdIQmw2Y2RtNGRZVVRZM1RRUzZoeXV0Ul9CaS1xOXN3c2ZGTDhoa3EzbG5QazhLRWVEdG80bzl5aDhNR3VBa0JSbU9adURuTF9hZ09LRWV1VldfNThxbjNpNkNNOHdidExZU2lDcVpsM0J4eENlMHV0ZEY2cTNTd2lB0gHUAUFVX3lxTFBNanVUQnpCSDBfaDhqbEtLaUxKUHNqRmFHcW9nOTB1aEZXNmJlUTliZXRKWGF3NzNxV01wQm0wWGJtYUZ1akRjdXlWMkJyVDBVS0tORlJWSzZuelF6b3VVT09WNlVJRFVvMFVOUE1uaGtUelBoVVpoUDNBdHZxaHFGUHFNRkZjamJqNjVpTDhIZXVIOUpBUTVnVXZVZmF1QjFVcExvS2pvUE9XYnpoNFpwSHhLUHZSajF1LVdETFduSWx4X05LSmJlc25ZdVZxS2tMTTNq?oc=5",
-    "fuente": "TV Azteca",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T20:23:26Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:57.142240+00:00"
-  },
-  {
-    "id": "dd17f3d369be",
-    "titulo": "Bambú, conchas y cáscaras de coco: el exitoso método de control de inundaciones que aplica una comunidad en Filipinas",
-    "url": "https://es.mongabay.com/short-article/2026/11/bambu-conchas-cascaras-coco-comunidad-frenar-inundaciones-filipinas/",
-    "fuente": "Mongabay Latam",
-    "resumen": "Durante años, los residentes de la aldea de Pamarawan, en la ciudad de Malolos, Filipinas, tuvieron que vivir con las calles inundadas por el agua, ya que los vientos estacionales del suroeste traían fuertes olas a las zonas pesqueras. El problema empeoraba durante los tifones. «Las olas pasaban casi un metro por encima del rompeolas, […]",
-    "fecha_publicacion": "2026-11-03T20:08:30Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:40.122350+00:00"
-  },
-  {
-    "id": "e8a18732b997",
-    "titulo": "Pemex aumenta a 262 Mbd la refinación de diésel en septiembre; 53.8% corresponde a UBA",
-    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQS0tZMzd5MUJxbVE4OUVTU0hhMEhURDljQVA2YlJxQ1ZxOEVYVFByVjhOODR4X3NzSFBjLVh6ZWRPR0VMODluN0NiQ1lJdk93ejhKV1BxeVBMMUE1R015YmRDeGxWT2dEM1dkMnVhTWw0aTM2T0pHa3cweERZYnA2VzhLV0NwVXhESkVocUhQN2ZKN2ZzVjU1TjM3eklCM19NaTk2aW05ejBZTEVGYkFxMm10UHgwRFZ0djdDZlRKWl9pWkhWS1hR?oc=5",
-    "fuente": "Revista TyT",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T20:08:11Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-04T18:11:44.876365+00:00"
-  },
-  {
-    "id": "d51b18358276",
-    "titulo": "Pemex aumenta a 262,254 barriles diarios la refinación de diésel en septiembre; 53.8% corresponde a UBA",
-    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQS0tZMzd5MUJxbVE4OUVTU0hhMEhURDljQVA2YlJxQ1ZxOEVYVFByVjhOODR4X3NzSFBjLVh6ZWRPR0VMODluN0NiQ1lJdk93ejhKV1BxeVBMMUE1R015YmRDeGxWT2dEM1dkMnVhTWw0aTM2T0pHa3cweERZYnA2VzhLV0NwVXhESkVocUhQN2ZKN2ZzVjU1TjM3eklCM19NaTk2aW05ejBZTEVGYkFxMm10UHgwRFZ0djdDZlRKWl9pWkhWS1hR?oc=5",
-    "fuente": "Revista TyT",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T20:08:11Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:56.104420+00:00"
-  },
-  {
-    "id": "c1485dfac81b",
-    "titulo": "Representantes de CFE y del sector privado consideran necesario impulsar inversión mixta y financiamiento",
-    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOMjIzaHZpRWJNU0twdTA3aU1uWHdJcG02ZUs2NkdmY1FsR0hzYUNleDhNU0Z0UTNYc1h5Qjl6Q3c1R1Z4QnVWZlpJVWd4ZUNzbENZYkYwNEx2cHA1RjRuSEpzWENlTmlCbVU1elFjc3ZqTzkwQUczY0taWmVOV1plclJORzlKWEl1djZhV09fc2lhcFQxQjhQcldERjUxamFYa3hndEV2V1oxWTlrUGM3VGJsZEE4RkQxbnoyTEdCeXQ?oc=5",
-    "fuente": "Cámara Mexicana de la Industria de la Construcción",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T19:15:32Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:54.933512+00:00"
-  },
-  {
-    "id": "579d8e45f0b2",
-    "titulo": "INEOS Inovyn adquiere la única planta de EDC del Reino Unido, clave para fabricar PVC",
-    "url": "https://ambienteplastico.com/ineos-inovyn-planta-edc-reino-unido/",
-    "fuente": "Ambiente Plastico",
-    "resumen": "INEOS Inovyn completó la adquisición de la única planta de dicloruro de etileno (EDC) del Reino Unido, un insumo esencial en la cadena de producción del PVC. Según la compañía, la operación evita el cierre de este activo y refuerza la continuidad de las operaciones químicas de Runcorn. La compra se concretó el 30 de […] La entrada INEOS Inovyn adquiere la única planta de EDC del Reino Unido, clave para fabricar PVC se publicó primero en Ambiente Plástico .",
-    "fecha_publicacion": "2026-11-03T19:02:18Z",
-    "categoria": "residuos",
-    "categoria_nombre": "Residuos",
-    "categorias": [
-      "residuos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:40.501821+00:00"
-  },
-  {
-    "id": "aff7a781a35a",
-    "titulo": "Presentan un sistema solar desplegable para vehículos con una potencia de hasta 2,000 W",
-    "url": "https://www.pv-magazine-mexico.com/2026/11/03/presentan-un-sistema-solar-desplegable-para-vehiculos-con-una-potencia-de-hasta-2000-w/",
-    "fuente": "PV Magazine MX",
-    "resumen": "DartSolar, fabricante de equipos solares con sede en Los Ángeles, ha anunciado que las entregas de los pedidos anticipados de su sistema solar extensible para vehículos comenzarán en diciembre de 2026. El equipo modular está diseñado para suministrar electricidad fuera de la red a automóviles, camionetas ligeras y vehículos recreativos.",
-    "fecha_publicacion": "2026-11-03T18:53:35Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:40.455823+00:00"
-  },
-  {
-    "id": "1dc61977cac3",
-    "titulo": "Data centers en México: infraestructura eléctrica, el desafío detrás del auge de la inteligencia artificial",
-    "url": "https://energiahoy.com/tech-trends/data-centers-en-mexico-infraestructura-electrica-el-desafio-detras-del-auge-de-la-inteligencia-artificial/",
-    "fuente": "Energia Hoy",
-    "resumen": "El acelerado desarrollo de la inteligencia artificial está transformando las necesidades de infraestructura digital en México y América Latina. Sin embargo, el crecimiento de los data centers enfrenta un desafío estratégico: garantizar la disponibilidad de energía eléctrica suficiente, confiable y de calidad para atender cargas cada vez más demandantes. De acuerdo con estimaciones de la [...] El cargo Data centers en México: infraestructura eléctrica, el desafío detrás del auge de la inteligenci",
-    "fecha_publicacion": "2026-11-03T18:41:59Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:40.443985+00:00"
-  },
-  {
-    "id": "a427026fd341",
-    "titulo": "GNC abre la puerta a aprovechar gas que hoy se quema en México",
-    "url": "https://energy21.com.mx/gnc-abre-la-puerta-a-aprovechar-gas-que-hoy-se-quema-en-mexico/",
-    "fuente": "Energy21",
-    "resumen": "México puede aprovechar gas natural de pozos cerrados o de baja producción, así como combustible que actualmente se quema por falta de infraestructura para transportarlo, mediante tecnología de gas natural comprimido (GNC), que permite llevar la molécula en autotanques hacia centros de consumo sin necesidad de construir gasoductos. Esta alternativa, conocida como ducto virtual, abre […] El cargo GNC abre la puerta a aprovechar gas que hoy se quema en México apareció primero en Energy21 .",
-    "fecha_publicacion": "2026-11-03T18:40:30Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:40.181632+00:00"
-  },
-  {
-    "id": "9312e01c4b3d",
-    "titulo": "CFE fortalece sus finanzas y alcanza utilidad operativa de 90 mil 511 mdp al tercer trimestre de 2026",
-    "url": "https://energiahoy.com/electricidad/cfe-fortalece-sus-finanzas-y-alcanza-utilidad-operativa-de-90-mil-511-mdp-al-tercer-trimestre-de-2026/",
-    "fuente": "Energia Hoy",
-    "resumen": "Comisión Federal de Electricidad (CFE) reportó resultados positivos en su desempeño operativo y financiero al cierre del tercer trimestre de 2026, con una utilidad operativa de 90 mil 511 millones de pesos y un EBITDA de 164 mil 128 millones, equivalente a un margen de 31.7%. De acuerdo con su informe financiero, la empresa pública [...] El cargo CFE fortalece sus finanzas y alcanza utilidad operativa de 90 mil 511 mdp al tercer trimestre de 2026 apareció primero en Energía Hoy .",
-    "fecha_publicacion": "2026-11-03T18:25:00Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:40.445478+00:00"
-  },
-  {
-    "id": "6bd356501173",
-    "titulo": "CNE declara Alerta Verde en todo el país ante posible aumento de las lluvias",
-    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQbER1V2s4M1NTd1o5U2NnV0Jhb1laOW5QQ0pSWHhuMkVNbUV4M3U0TWtuUTZHN2I4SVliMTdOS3Z6cHVBbFRSTDB5alk3VGhLcWo3N0YwNWNSY0NzbUFVMU44M01FblBPUW5YY1FJTGxqTzBNMk1kcVZCcHNSSFU0RtIBgAFBVV95cUxQampWMG1zRVZZbXA2Z0RXRW81WlJCbWxqc2RYcHhiSkJvT05xMGZoRmtZblBDSEZfZlJUY2pwUWl4QXdqOUYyb3lQQ2I0SU5lN0MxRk1CMWEzUkVndVFmT2tsQWM3cG41UzhHc1AtaUpxNEpJdjc0ajlNT3k1SE15UA?oc=5",
-    "fuente": "Telediario Costa Rica",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T18:15:02Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:50.176913+00:00"
-  },
-  {
-    "id": "b09ceabfa432",
-    "titulo": "Pemex reporta aumento de 28.5% en ingresos durante el tercer trimestre de 2026",
-    "url": "https://energiahoy.com/oil-gas/pemex-reporta-aumento-de-28-5-en-ingresos-durante-el-tercer-trimestre-de-2026/",
-    "fuente": "Energia Hoy",
-    "resumen": "Petróleos Mexicanos (Pemex) reportó una mejora en sus resultados operativos y financieros durante el tercer trimestre de 2026, con un incremento de 28.5% en sus ingresos por ventas y servicios, que alcanzaron 487 mil millones de pesos. La producción total de hidrocarburos creció 2.6% respecto al mismo periodo de 2025, mientras que la extracción de [...] El cargo Pemex reporta aumento de 28.5% en ingresos durante el tercer trimestre de 2026 apareció primero en Energía Hoy .",
-    "fecha_publicacion": "2026-11-03T18:13:42Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:40.446941+00:00"
-  },
-  {
-    "id": "97d0df8b13ef",
-    "titulo": "Nivea incorpora 22% de plástico reciclado en película retráctil para embalaje",
-    "url": "https://ambienteplastico.com/nivea-incorpora-22-de-plastico-reciclado-en-pelicula-retractil-para-embalaje/",
-    "fuente": "Ambiente Plastico",
-    "resumen": "El uso de plástico reciclado en empaques no solo ha permitido reducir el uso de materias primas vírgenes, disminuir la huella de carbono empresarial, además de reincorporar materiales postconsumo en la cadena de valor, también posibilita responder a las demandas del publico y las crecientes regulaciones. Bajó este contexto, Nivea desarrolló una película retráctil con […] La entrada Nivea incorpora 22% de plástico reciclado en película retráctil para embalaje se publicó primero en Ambiente Plásti",
-    "fecha_publicacion": "2026-11-03T17:46:41Z",
-    "categoria": "residuos",
-    "categoria_nombre": "Residuos",
-    "categorias": [
-      "residuos",
-      "cambio_climatico"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:33.393510+00:00"
-  },
-  {
-    "id": "750facb8b1d7",
-    "titulo": "Pemex cubre con importaciones 88 % de la demanda de gasolina Premium",
-    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNdDF6RllPWUwwbF95M0ZqVUtWZ21aTXdiUk9ZcUNKZUo5d09HUk1ELWlNMmZfZGZ1LWVJaW5lZW9zYlcxTG1ROXRPT01INTlWaW5fdVRoMXNReUxtbUVzamFhM2JRTHY1eGJnaklCSlVLZ0JjcUhDQXphQldHNXBObzA1ejVGTWVtbUR4RHgzT0N2SWpUVEU2SWdR?oc=5",
-    "fuente": "Energía a Debate",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T17:32:56Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-04T01:47:13.274014+00:00"
-  },
-  {
-    "id": "280bfdfbf7af",
-    "titulo": "Pemex cubre con importaciones 88 % de la demanda de gasolina Premium",
-    "url": "https://energiaadebate.com/pemex-cubre-con-importaciones-88-de-la-demanda-de-gasolina-premium/",
-    "fuente": "Energia a Debate",
-    "resumen": "Las refinerías de Pemex priorizan la elaboración de gasolina tipo Magna",
-    "fecha_publicacion": "2026-11-03T17:32:44Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:33.406738+00:00"
-  },
-  {
-    "id": "3e92f8ffcd82",
-    "titulo": "Sonora tendrá la primera granja solar pedagógica de nivel medio superior en México",
-    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOc19sQ05ubjFQVk1IbllvUGZYY3pMUjEtTUl6VE94SmszVUVjOVRRcXp5MmNkcFNvRmV3R0NvSTVqVlFWalVDOVlkZms2M01UUzRWVTU3ZmRLcy1XdVFkNGVDUUpSS1VJUjNtdXVob0U3TWdwdVVNTzM5Z1F1V2YwTGdUaDFGYXd2aXBoa0pSclFCZVV4em9MbE1hNDN5dEVWT0ZpZlFZZzlzUm0zMkh5alBONlRINU9UaDJhTlpiU180UXN5TEtR?oc=5",
-    "fuente": "El Diario de Sonora",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T17:23:56Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": "Sonora",
-    "scrapeado_en": "2026-11-04T18:11:43.082912+00:00"
-  },
-  {
-    "id": "edfc8cab75fa",
-    "titulo": "México da seis meses más a la danesa CIP para planta solar con baterías de 600MW",
-    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNNWZsNHlld3NPT2cxX1FZcUU2UnZsQnhUd0xocFZwYUthdFRUZEVPVTgyTXJJdERpYnZrQmhwNDlzV014a3I2ZElaMlhHMkxlUERGVTRuTEVuVlFhYjJQc0dqdjFINHhQQm9Vazh4WGpOZ3hJOFpUSlIyOEdhUUJxZTJqWl9xNFB3WTBFWkpHNDZ6N2tzUUllZXBpN1BxcWRSNDR5YWJmam5wVG9XeUJ2WTY3dmVCOXNIdlBj?oc=5",
-    "fuente": "BNamericas",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T17:22:58Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:49.670007+00:00"
-  },
-  {
-    "id": "589b746c5d31",
-    "titulo": "Conuee fortalece la promoción de la eficiencia energética...",
-    "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPNnd4U05iU2tGOGNCS2RUMGx2OVVTMDNSNEhhVWNyT2NvalBDblFBcVR4enREbDlva0tNYVoyWGVPdW0tLXFsckNqdDl6QVhHY0ZJenptbGFpRnlDV09jbUtjV2ROeUxiYnFlRzBYMTZqNHZMZFA4UHJZVk1OUWVzdnJweF9aaXdJeE90c2kzbUU1aVdUWV9kTA?oc=5",
-    "fuente": "Gob MX",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T16:53:27Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:58.043060+00:00"
-  },
-  {
-    "id": "8086f0b807d4",
-    "titulo": "Empresas con autoconsumo deben registrarse ante CNE antes del 31 de diciembre",
-    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOaHRmdVZSYnkwUXY0Uk1UcTlvZTQwSFRLNE8teThWYUp2eEU3cnphaTNaMlZrWHF5ZzRrQldKTGxhOFhWZklRbU5oRVRoS0w0bnJicnJVTUNvdzhJOWp5TVRCVGlfSDNVZ2tQUlRIX0xtVlRzcWMyelRYaVIwUzJPMU9qNXN2SUdFTXQ1Vlh4NnhJLXExdGV3?oc=5",
-    "fuente": "Onexpo Nacional",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T16:18:54Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:50.174123+00:00"
-  },
-  {
-    "id": "13bdd0dd8799",
-    "titulo": "Redujo Pemex sus pasivos y endeudamiento; lejos aún la autosuficiencia",
-    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPcjM5S2g2TEQ5b2Z1ajlTYk5telpaeThteE83RG1xNF9FYW1hcTNOX0ZSX2J1Z2pxSExqS3hOR1hqbmpsRnByb3YwZ2pzaDBid1VBNE9sSElYWkNlc1NMc25RS1pIYjEtdjUzeENJS3hHa1kyRklFVEN3TEh6TDhhaW5TX3lwX0ZaRzNEZkY0b0ZkU19tNFA4?oc=5",
-    "fuente": "Onexpo Nacional",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T16:18:54Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:56.109408+00:00"
-  },
-  {
-    "id": "3423c745601b",
-    "titulo": "Las tuberías de calor planar reducen las temperaturas máximas hasta en 32 °C en las pruebas de refrigeración fotovoltaica",
-    "url": "https://www.pv-magazine-mexico.com/2026/11/03/las-tuberias-de-calor-planar-reducen-las-temperaturas-maximas-hasta-en-32-c-en-las-pruebas-de-refrigeracion-fotovoltaica/",
-    "fuente": "PV Magazine MX",
-    "resumen": "Un equipo internacional de investigación ha probado cinco diseños de tubos de calor planos para refrigeración de módulos fotovoltaicos, logrando reducciones máximas de temperatura superficial de 8 °C a 32 °C. Los investigadores estimaron que la refrigeración activa por agua podría aumentar la generación anual de electricidad entre un 2.2% y un 3.6% bajo las condiciones de Riad, Arabia Saudí.",
-    "fecha_publicacion": "2026-11-03T16:10:00Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua",
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:40.457001+00:00"
-  },
-  {
-    "id": "fd259841bea1",
-    "titulo": "Pemex impulsa su producción de gas natural con aportes clave de Bakté e Ixachi -",
-    "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQY1VlbVROd21vTDVyLVdha0dXRTFhSlB6Rk4yQTVXbUdMVEVXQ0NOLXJnWWpJNWV5cHNkUlJZOUlhVDdBSFRRWlJWZjlkMXRkdFUxV0JsVmpCWWRyM0dXdTlDMXI0OUxQWlZ2RVVSOXJzaHFyX2FncURHdlliNmQ3bDYzeS03cm81OF9MZWN1Um9yT09DR3RxOGxlbXVURUpIT1h4SGlwajdGeGp4TWRQd0NCWGtPQjdCTlpaaldMSmM1cXlq?oc=5",
-    "fuente": "Petróleo y Energía",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T16:02:02Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:51.646097+00:00"
-  },
-  {
-    "id": "a0cd7023be41",
-    "titulo": "CFE y empresarios impulsan inversión en energías renovables",
-    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQX0hib1BoVzlqWUFjUmtOWVJQakRxanhxbjBhZDM2VF9QZVZVVElyU2hKT3RHa1dlRFgwcU45eXRMQlZNZm4yVWQ1endWcWlPaW16SVFoeFVGWGZZYTgxMUV4MHhtUmlIcURUaXNOVnhpVFRmekV0eWpNQllGTzBNMEQxMFpqY1N0UV9hYlJJdUdlZVJUVTcw?oc=5",
-    "fuente": "Maya Comunicación",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T15:49:28Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:50.608564+00:00"
-  },
-  {
-    "id": "fca2a88fbb60",
-    "titulo": "Gigante chino CATL mira a México para impulsar baterías de almacenamiento, pero advierte tres desafíos",
-    "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOVWtGeDhDQ0RpWWdVRk5yb1M0X2h3eEZ3VlpoRGxRYXI3cWE1QTlhekphWWIybHJkdnJzMVlRYzJhS0NlcE9pblZYMFF4WTJZOG5SNE10NHY2QmlSZ21Bb3NHMmh6U3A3eE5nNkxXS241TzhKdlZZUm9XNHRWa3ZMZXZxMk9zQUh4MmZIcmtHaDBiWEVMZXdJbDIzX2JMY1NUNEVWQlZ3X2pRa1cxbU9RLW5nWjh4OWJ1SlNxWlBqcHhpVktPTVVVdGg2VUliSGR3OU14bVBLbUhEMko2TDZyUDI4NDFJYkF3WHc?oc=5",
-    "fuente": "El Financiero",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T15:41:27Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:47.892999+00:00"
-  },
-  {
-    "id": "92b0959186fe",
-    "titulo": "Gigante chino CATL mira a México para impulsar baterías de almacenamiento, pero advierte tres desafíos",
-    "url": "https://www.elfinanciero.com.mx/economia/2026/11/03/gigante-chino-catl-mira-a-mexico-para-impulsar-baterias-de-almacenamiento-pero-advierte-tres-desafios/",
-    "fuente": "El Financiero",
-    "resumen": "La falta de certidumbre regulatoria y de políticas para atraer capital privado frena el desarrollo del almacenamiento energético en México, pese al potencial de generación solar y eólica del país.",
-    "fecha_publicacion": "2026-11-03T15:41:27Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:33.240703+00:00"
-  },
-  {
-    "id": "dca16e724a5d",
-    "titulo": "¿La contratación de almacenamiento de energía de larga duración es rehén del éxito de las baterías de iones de litio?",
-    "url": "https://www.pv-magazine-mexico.com/2026/11/03/la-contratacion-de-almacenamiento-de-energia-de-larga-duracion-es-rehen-del-exito-de-las-baterias-de-iones-de-litio/",
-    "fuente": "PV Magazine MX",
-    "resumen": "Los analistas concluyen que la viabilidad financiera de los sistemas de almacenamiento de energía en baterías (BESS) podría estar obstaculizando el desarrollo de tecnologías mejores.",
-    "fecha_publicacion": "2026-11-03T15:35:00Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable",
-      "mineria"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:33.339255+00:00"
-  },
-  {
-    "id": "7570ca534d99",
-    "titulo": "Pemex: pérdidas en refinación se multiplicaron por 10 en el sexenio de AMLO",
-    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPQXVJdGVoMi1pY1pQdWNkTjYtbjdTNjFXRzZyX21KUTlnRFJKOU5pYXVlcjZmQm9VUHF0TjFieFllaHBpTUFTbHFxSU5JODhScXhGRW9paXIwV3EzS2FaeHZDV0pJR2x0NGEwSTZ6dHgzakxZeWVSZWk3bV9lSTc2RWZZYk9IT2JxM2U2b0xTV0drWTFSeGVYc3JWWVh4Qmg4UFBqNUlIaHpTWHltNGc?oc=5",
-    "fuente": "Industry & Energy Magazine",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T15:22:30Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:51.660497+00:00"
-  },
-  {
-    "id": "975eb7a4c296",
-    "titulo": "Gasolina en México cuesta hasta 14% más que en EU",
-    "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBacHZFVHpKc1RySS1HeERfcmV4WHJISzZWMkNOWUhEeXRydFJ5QXZqRENnclR3X2tsSGdicnZoZGpxNVFQaGRTY05ON0k4eUxEVWQ3RzhEbXBJbGFVSWZTNE5wbVFpNW1EaVZvYTlYNmNNQXhremxWT2R5cTFxQQ?oc=5",
-    "fuente": "Energy21",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T15:20:13Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:52.795674+00:00"
-  },
-  {
-    "id": "7c862ea7cf8b",
-    "titulo": "Gasolina en México cuesta hasta 14% más que en EU",
-    "url": "https://energy21.com.mx/gasolina-en-mexico-cuesta-hasta-14-mas-que-en-eu/",
-    "fuente": "Energy21",
-    "resumen": "La gasolina Magna en México cuesta 14.1% más que la regular en Estados Unidos, mientras que la Premium es 13% más cara, pese a los estímulos fiscales aplicados por el Gobierno federal para contener los precios de los combustibles, de acuerdo con un análisis de la consultoría Caraiva y Asociados. El análisis con corte al […] El cargo Gasolina en México cuesta hasta 14% más que en EU apareció primero en Energy21 .",
-    "fecha_publicacion": "2026-11-03T15:20:13Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:33.167097+00:00"
-  },
-  {
-    "id": "22756cfdca0e",
-    "titulo": "La provincia canadiense de Nueva Escocia abre una convocatoria tecnológicamente neutral para sustituir el carbón",
-    "url": "https://www.pv-magazine-mexico.com/2026/11/03/la-provincia-canadiense-de-nueva-escocia-abre-una-convocatoria-tecnologicamente-neutral-para-sustituir-el-carbon/",
-    "fuente": "PV Magazine MX",
-    "resumen": "El operador de la red de la provincia canadiense de Nueva Escocia evaluará propuestas de almacenamiento en baterías, centrales hidroeléctricas de bombeo y otras tecnologías junto con una licitación independiente para centrales de gas, con el objetivo de determinar la combinación de capacidad de generación bajo demanda de menor costo.",
-    "fecha_publicacion": "2026-11-03T15:00:00Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:33.340491+00:00"
-  },
-  {
-    "id": "b96aa194adc4",
-    "titulo": "Pemex importó 88% de la gasolina premium en el tercer trimestre",
-    "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPNjNSNnpJSUFEdTNFdDlXc0RKX1F0UFE0b3NZcGdxVGxMUVJVTVh2aUY4N2JmOFpHQ0V1Q0RkY2J1dnhVTUlNbmo0bmQwOG96NFA5WmdKNWxzNHVMblFfeUprLXBXTUgtWVNTOW9obWZ2QmMyc3ZmQmdFVFV4aFRMRjVwQUtCek9NZW1FazQ5TUVQU1pDczVpRlh3aXpDQ2h2ajlralVRT1hyUGlwQk93N1BwZmVfdUxNQ3BiR09PbVFfTjk3Mm9iY0ROemlvUDZwZXhvbU42RlA0UdIB9AFBVV95cUxPN2h0YThxUWhXRXBBdFMtM2hKT0JSN2ZOVUFIZkgtaW5kU1Y4YlZTN1hlSm9oU3dEM2k0aHk5Q3FyYXVQY0ptMXBkdlBVNnBBdWQ3VlRMaEpyd014OEFvektpbU12ZFp5YlIwUUFXZUJnams1Zm0xMlFHMkVhZXZoeTk3Z1pnaXowMzZMSzZwZUFSNWFJSDZPTkZGZ3UwQ0ZqeU12MGV0NHR1U3ZySS1oY3ktUTNsM2xkME5ONi1pekFiZHZxZXp0RkpJX1pBdDlSb2owRXhJQzJyTjZmTndPMmxNTGdNVS1SOUs4dVNzRnJhb0pR?oc=5",
-    "fuente": "El Cronista",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T14:50:48Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:51.649198+00:00"
-  },
-  {
-    "id": "d5668656eec5",
-    "titulo": "Pemex alcanza producción de gasolinas más alto de la última década",
-    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQek1sQ3dNcm5wQ0F6aURyYUl3MFBBZnNmZ2c3c3h2QXd2Mk83ZEdzTDBrZ2MteDR2V0N0WjQ2NktvU0dCVFpGMXdEU3plQXZPdnlvU0ZGQkxwY3NWanJ6UHdTMjNOSFpoS0U3b0xydnlrZWs4LWV0QUViZ0RVTGd4ZzlVVGtfMEZpMzNsZzRMdlhfbnhiN1dHZlY2SW1tZ9IBowFBVV95cUxOUlFGTVRwUGtQQmJQTERvVUQxTkllZkNSVENnN0RCTDBjT05hWWMwN1ZoWFNOcHp5WWpqTElyMVdIbFFlMWNfMExWRWVYZzRnVjcyZW9UR3d2Uy04YWNSTDFIM1JMUGxsZ3g4TWNnc3FFZXZkNXU4X3hzVzZpMzJiSlpma2VpdUpfV0NEcS1TYnRIYlhBR3ZOT3NrSk52WGRIajNB?oc=5",
-    "fuente": "Imagen Radio",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T14:41:28Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:51.645265+00:00"
-  },
-  {
-    "id": "6070ea3287fb",
-    "titulo": "Registra petróleo mayor caída en poco más de tres meses",
-    "url": "https://www.elfinanciero.com.mx/economia/2026/11/03/registra-petroleo-mayor-caida-en-poco-mas-de-tres-meses/",
-    "fuente": "El Financiero",
-    "resumen": "El petróleo registró su mayor caída desde julio: la Mezcla Mexicana perdió 14.57%, mientras el peso mexicano se apreció frente al dólar.",
-    "fecha_publicacion": "2026-11-03T14:08:19Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:33.244559+00:00"
-  },
-  {
-    "id": "6b16f7fa1f31",
-    "titulo": "CFE proyecta plan de inversión histórico por 740 mil mdp para infraestructura eléctrica",
-    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUGpGZUtZdlk0Sm14UFZsd1ZHTlhINElwcVNsWkpBemFMZldsU1pwdEs3enI0SHJKMDJvVW9KQ2tWcGNUQzVhMGNqSWNqSVNXX2NRMGJma0NXVDlERDQ1eEtwbXpWemt4RG90ZjhPU2ZBenYwN1d2djBfS2hFSGZZajFHMk9pZHRaS3kxemhpSFh5bUptSEhfaW9iMzNQMGVGVkI1YXdCSXI2Z2pTenNpMUxKUdIBuAFBVV95cUxQTXZMZ1lSX1VIb1BXbkZibFUwY0g2Wjc2d0NKNnNYcVFZT2FxM2dMOU81SzN2RmdjRUZwVGRHZUI5MWp2OUxIbEd1TDhZVFhCVURoS3NKOEZPQjJ0cTdyM2hVUGFGYkxpbUhuWnRNNXNWRGlGUmNtQ3lTRVd6V2Nueko2MHlZS1BtYmpLa2xzdElRM2ZvNUU2QVZ1NVF2U2F0YXJoeTczaHU4cHY0b1lYdExhSG9KTWpJ?oc=5",
-    "fuente": "Imagen Radio",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T14:03:32Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:50.607208+00:00"
-  },
-  {
-    "id": "2a93535d39cf",
-    "titulo": "\"Cortó\" Pemex tercio del envío de crudo durante el 3er trimestre",
-    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOSi1NckNySzZaX3cxYlFRNDFpWFRRX1c4aER6aGQtM1NwdlJXR2lSU1hsMVdXeXNYNDN5OFJ4SnMxbEZBcDFwM1lTdmFPem1HalBsUFlMck1XUmNobGkyQXNieUFWeHpyWF9jNWpEY25MTnVabkdZWkhFcnFtdnp5b3R1NTZuSnhia2liUGNLcTdfV3d6OHl2dnZ4b2VyR0E?oc=5",
-    "fuente": "Tiempo La Noticia Digital",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T13:31:00Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:51.650609+00:00"
-  },
-  {
-    "id": "bb55cc36725f",
-    "titulo": "¡Antes de cargar gasolina, revisa! Estos lugares venden el litro por debajo de los 23.82 pesos hoy 3 de noviembre",
-    "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOZnBveTFWeERjZjI5cFJCalJ1VmhwXzVNOGtTWDFQYUJabWhnWmNrakJSbnVnR0N3Ml92STVUOGhGazJzNUdlcjE5QWQtSHY1eVJhRnZ1cUNPY2g2SnlZUDBscDlHSEtGcjFLYThqSmFtZHAwXzB0REJHRmZrTEJpVFdqMllUVjU0TDhMVW9qdFk5Z1JuM0hZaXV0dTJ1WTM1UTlIbWRJNWhBN1FlUmE3bDVDbFRadmx3aENMWnRFUFVvTGtQU19SeHZfdmloTzd3TXFSOHl3TkV3TUFfTjZZNHBiUjN6VFlZcWxDSng2WjZWRW1LbDBONHU4UHQ2UQ?oc=5",
-    "fuente": "El Heraldo de México",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T13:00:00Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:52.794834+00:00"
-  },
-  {
-    "id": "d36755b7bd1b",
-    "titulo": "Ministerios de Ambiente operan con menos del 1% del presupuesto nacional en Latinoamérica",
-    "url": "https://es.mongabay.com/podcast/2026/11/ministerios-de-ambiente-operan-con-menos-del-1-del-presupuesto-nacional-en-latinoamerica/",
-    "fuente": "Mongabay Latam",
-    "resumen": "Estas cifras son las que realmente importan: aunque Latinoamérica alberga cerca del 40 % de la biodiversidad del planeta y más de una cuarta parte de los bosques del mundo, los recursos que destinan los gobiernos a proteger esa riqueza natural no son ni el 1% del presupuesto nacional de cada país. Una investigación de […]",
-    "fecha_publicacion": "2026-11-03T12:00:45Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T22:41:40.128552+00:00"
-  },
-  {
-    "id": "716c3b273b89",
-    "titulo": "“Busco un científico”: la herramienta que reúne a investigadores e investigadoras del medioambiente en América Latina",
-    "url": "https://es.mongabay.com/custom-story/2026/11/busco-un-cientifico-herramienta-reune-investigadores-investigadoras-medioambiente-america-latina/",
-    "fuente": "Mongabay Latam",
-    "resumen": "¿Buscas un científico o científica que trabaje temas de medioambiente en América Latina? Te presentamos “Busco un científico”, herramienta que reúne los perfiles de más de 180 investigadores e investigadoras que estudian la naturaleza y sus retos en la región, y que pueden darle mejor sustento a tus publicaciones, en caso de ser periodista, o […]",
-    "fecha_publicacion": "2026-11-03T11:33:00Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:33.025163+00:00"
-  },
-  {
-    "id": "a2b0b4c71bdb",
-    "titulo": "Pemex desploma 33% exportación de petróleo en el tercer trimestre",
-    "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNTWRtNDhFaDdEcC1jS0dkVFMxRXhhUThmcHJ1dHYtT3duNWNEUEM2R0E5LXFtUGR6cE4tU0tMMkN2cEFkRWRmeEwyZVlNbG40VEdETEVkWXdiSm9EVnJtYnZmTDVYcXRhQl9oa204Y1VlenNtZ2lMclFhMkZvTEt5SHRMWmo5RDZ6c3ZrR2Zwdm5BOTdsdlZjQ0dUQ3N6Uy1GNHc?oc=5",
-    "fuente": "PalabrasClaras.mx",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T11:30:00Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:51.654430+00:00"
-  },
-  {
-    "id": "e2d698007bcd",
-    "titulo": "Precio de la gasolina en Puebla este martes 3 de noviembre",
-    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPTm0tN2ZFdU4wOHNSQkUxNXZjV2lzd1ZWZUZPWnJwSWRuOEl0SjhnZlBUeUVfU19tb2s4dTBHeWRJZ0dVV2NXRWVkaExBSFcyNzVicE1NMXdHa2p1NTBlOWtrWGpMblFpR3pMYWhvU19xWkU4Qm54ZmwzMUdZREJadlJscmp5WnlkUDJQRnk1Unh5c3o2Vi1qTDIxZHlKQUxPWjZj0gG-AUFVX3lxTE1HMjFrZFA5U2lrc2x2b1Bzc1YtTllsRUNQb3NNak5KUEtUckdZUHQ4S3lZaXBKblVCQ0d0S2dadV81UHFVRmpSX3U2Z0lOUWNLWnF4OFZoTXkyZldwaW1FcTVvR1hDZGZLamxRU3dmRUF4ODZIaHNyQnRkcjhyd2w0Ri1yOUJFMUhNVEJnbmE0cGs4a2MxbUEwT0ZBZWVDcldxclg5aDJ2clNoMWFfank5aHFHV2xiWVVKcHR4TXc?oc=5",
-    "fuente": "Infobae",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T11:17:00Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": "Puebla",
-    "scrapeado_en": "2026-11-06T01:56:44.273519+00:00"
-  },
-  {
-    "id": "1cb9e2682fdf",
-    "titulo": "Firmará CFE en 2027 contratos mixtos con IP",
-    "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPcGhtZjBoT1pZbGp3OVYyd3ltMEZ4MW9JNFhldF9DOUpvaGFWQ1duY1BWbWdtMDlWY3VzVzUxVGw5TnRvQVp2UzZYTEtTU0VlT0x6cXdFejdYdDRVb2lUQmZ3X0NPOE1mTFVVX1dJOUszM2J0QUFwUFZBbzloTndJNXJQcw?oc=5",
-    "fuente": "Reforma",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-03T11:04:14Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-03T17:59:50.605477+00:00"
   }
 ]
