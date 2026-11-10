@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-09T16:01 CDMX",
+  "actualizado": "2026-11-09T22:30 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -152,6 +152,48 @@
   ],
   "Medio Ambiente": [
    {
+    "titulo": "Riesgos por Fenómenos Hidrometeorológicos",
+    "org": "Centro Nacional de Prevención de Desastres (CENAPRED)",
+    "fecha": "2026-11-10",
+    "url": "https://www.datos.gob.mx/dataset/riesgos_fenomenos_hidrometeorologicos",
+    "recursos": 1
+   },
+   {
+    "titulo": "Peligro por inundaciones a nivel municipal",
+    "org": "Centro Nacional de Prevención de Desastres (CENAPRED)",
+    "fecha": "2026-11-10",
+    "url": "https://www.datos.gob.mx/dataset/peligro_inundaciones_nivel_municipal",
+    "recursos": 1
+   },
+   {
+    "titulo": "Regiones potenciales de deslizamiento de laderas",
+    "org": "Centro Nacional de Prevención de Desastres (CENAPRED)",
+    "fecha": "2026-11-10",
+    "url": "https://www.datos.gob.mx/dataset/regiones_potenciales_deslizamiento_laderas",
+    "recursos": 1
+   },
+   {
+    "titulo": "Zonas de peligro por tsunamis lejanos y locales",
+    "org": "Centro Nacional de Prevención de Desastres (CENAPRED)",
+    "fecha": "2026-11-10",
+    "url": "https://www.datos.gob.mx/dataset/zonas_peligro_tsunamis_lejanos_locales",
+    "recursos": 1
+   },
+   {
+    "titulo": "Inundaciones",
+    "org": "Centro Nacional de Prevención de Desastres (CENAPRED)",
+    "fecha": "2026-11-10",
+    "url": "https://www.datos.gob.mx/dataset/inundaciones",
+    "recursos": 1
+   },
+   {
+    "titulo": "Estadística anual de frentes fríos",
+    "org": "Secretaría de Marina (SEMAR)",
+    "fecha": "2026-11-09",
+    "url": "https://www.datos.gob.mx/dataset/frentes_frios_semar",
+    "recursos": 1
+   },
+   {
     "titulo": "Nuevos proyectos de cooperación de oferta de medio ambiente",
     "org": "Agencia Mexicana de Cooperación Internacional para el Desarrollo (AMEXCID)",
     "fecha": "2026-11-03",
@@ -164,41 +206,6 @@
     "fecha": "2026-10-29",
     "url": "https://www.datos.gob.mx/dataset/areas_destinadas_voluntariamente_conservacion",
     "recursos": 2
-   },
-   {
-    "titulo": "Certificados de Calidad Ambiental e Industria Limpia",
-    "org": "Comisión Federal de Electricidad (CFE)",
-    "fecha": "2026-10-08",
-    "url": "https://www.datos.gob.mx/dataset/certificados_calidad_ambiental_industria_limpia",
-    "recursos": 8
-   },
-   {
-    "titulo": "Gestión de Riesgos",
-    "org": "Secretaría de Seguridad y Protección Ciudadana (SSPC)",
-    "fecha": "2026-10-06",
-    "url": "https://www.datos.gob.mx/dataset/gestion_riesgos",
-    "recursos": 4
-   },
-   {
-    "titulo": "Alertamiento sobre fenómenos naturales (2026)",
-    "org": "Secretaría de Seguridad y Protección Ciudadana (SSPC)",
-    "fecha": "2026-10-06",
-    "url": "https://www.datos.gob.mx/dataset/alertamiento_fenomenos_naturales_2026",
-    "recursos": 8
-   },
-   {
-    "titulo": "Inventario de sitios contaminados y remediados",
-    "org": "Secretaría de Medio Ambiente y Recursos Naturales (SEMARNAT)",
-    "fecha": "2026-08-14",
-    "url": "https://www.datos.gob.mx/dataset/inventario_sitios_contaminados_remediados",
-    "recursos": 2
-   },
-   {
-    "titulo": "Comités ambientales",
-    "org": "Instituto Politécnico Nacional (IPN)",
-    "fecha": "2026-07-09",
-    "url": "https://www.datos.gob.mx/dataset/comites_ambientales",
-    "recursos": 5
    }
   ],
   "Energía": [
