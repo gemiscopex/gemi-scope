@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-10T20:32 CDMX",
+  "actualizado": "2026-11-11T13:21 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -240,30 +240,30 @@
    {
     "titulo": "Contratos para la Exploración y Extracción de Hidrocarburos (2026)",
     "org": "Secretaría de Energía (SENER)",
-    "fecha": "2026-10-29",
+    "fecha": "2026-11-11",
     "url": "https://www.datos.gob.mx/dataset/contratos_para_exploracion_extraccion_hidrocarburos_2026",
-    "recursos": 13
-   },
-   {
-    "titulo": "Títulos de Asignación para Desarrollo Mixto para la exploración y extracción de hidrocarburos",
-    "org": "Secretaría de Energía (SENER)",
-    "fecha": "2026-09-29",
-    "url": "https://www.datos.gob.mx/dataset/titulos_asignacion_desarrollo_mixto_exploracion_extraccion_hidrocarburos",
-    "recursos": 2
+    "recursos": 16
    },
    {
     "titulo": "Títulos de Asignación para Desarrollo Propio para la exploración y extracción de hidrocarburos",
     "org": "Secretaría de Energía (SENER)",
-    "fecha": "2026-09-29",
+    "fecha": "2026-11-11",
     "url": "https://www.datos.gob.mx/dataset/titulos_asignacion_desarrollo_propio_exploracion_extraccion_hidrocarburos",
-    "recursos": 2
+    "recursos": 3
    },
    {
-    "titulo": "Información de transporte y almacenamiento de Gas Natural (2026)",
+    "titulo": "Títulos de Asignación para Desarrollo Mixto para la exploración y extracción de hidrocarburos",
     "org": "Secretaría de Energía (SENER)",
-    "fecha": "2026-09-29",
-    "url": "https://www.datos.gob.mx/dataset/informacion_transporte_almacenamiento_gas_natural_2026",
-    "recursos": 2
+    "fecha": "2026-11-11",
+    "url": "https://www.datos.gob.mx/dataset/titulos_asignacion_desarrollo_mixto_exploracion_extraccion_hidrocarburos",
+    "recursos": 3
+   },
+   {
+    "titulo": "Actividades que derivan de la Exploración de hidrocarburos. Pozos (2026)",
+    "org": "Secretaría de Energía (SENER)",
+    "fecha": "2026-11-11",
+    "url": "https://www.datos.gob.mx/dataset/actividades_derivan_exploracion_hidrocarburos_pozos_2026",
+    "recursos": 3
    },
    {
     "titulo": "Gas Natural",
