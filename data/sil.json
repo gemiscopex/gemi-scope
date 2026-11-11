@@ -869,6 +869,29 @@
       "scrapeado_en": "2026-10-19T17:15:32.961941+00:00"
     },
     {
+      "camara_origen": "Cámara de Senadores",
+      "camara_revisora": "Cámara de Diputados",
+      "fecha_presentacion": "2026-10-07",
+      "legislatura": "LXVI",
+      "periodo": "1er Ordinario",
+      "titulo": "Que adiciona un artículo 144 BIS a la Ley de la Empresa Pública del Estado, Comisión Federal de Electricidad.",
+      "presentador": "Sen. Maki Esther Ortiz Domínguez (PVEM)",
+      "aspectos": "La iniciativa tiene por objeto establecer diversas disposiciones en materia de manejo de residuos de los que tengan carácter como generadores la CFE y filiales. Entre lo propuesto destaca: 1) señalar que para su gestión se observarán los principios de eficiencia ambiental, tecnológica, económica y social; 2) resaltar que para tales efectos se observará la normativa aplicable en materia de gestión de residuos, conforme a su naturaleza y clasificación, a excepción de residuos radiactivos, que se sujetarán a ordenamientos específicos; y, 3) constituir el Plan de Sostenibilidad y otros programas previstos en la legislación en virtud de incorporar objetivos, acciones, metas e indicadores para prevenir y minimizar la generación de residuos, incrementar progresivamente su valorización, aprovechamiento circular y reducir su disposición final.",
+      "ultimo_tramite": "Se turnó a comisiones unidas: Estudios Legislativos de Cámara de Senadores. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Senadores del 7 de octubre de 2026, por acuerdo de la Mesa Directiva. Ver todos los trámites",
+      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 07/10/2026",
+      "asunto_id": "5155889",
+      "seguimiento": "5190717",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5190717&Asunto=5155889",
+      "categorias": [
+        "energia_renovable",
+        "residuos"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "5d9fe420db99",
+      "scrapeado_en": "2026-11-11T18:07:49.745313+00:00"
+    },
+    {
       "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2026-10-07",
       "legislatura": "LXVI",
@@ -10750,36 +10773,13 @@
       "categoria_nombre": "Hidrocarburos",
       "id": "b1f62b671d7d",
       "scrapeado_en": "2026-05-21T16:41:09.914226+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "fecha_presentacion": "2026-04-29",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "presentador": "Dip. Manuel Alejandro Cota Cárdenas (PVEM)",
-      "aspectos": "El legislador propone exhortar: 1) a la Comisión Federal de Electricidad (CFE) para que, en el ámbito de sus atribuciones, implemente de manera inmediata tecnologías eficientes de control, mitigación y reducción de emisiones contaminantes en las centrales de generación eléctrica ubicadas en el municipio de La Paz, particularmente en la Central Termoeléctrica Punta Prieta y la Central de Combustión Interna de la ciudad Capital de Baja California Sur; 2) a la Secretaría de Medio Ambiente y Recursos Naturales (Semarnat) y a la Procuraduría Federal de Protección al Ambiente (Profepa) para que, en el ámbito de sus competencias, realicen inspecciones periódicas, exhaustivas y transparentes a las referidas instalaciones, a efecto de verificar el cumplimiento de la normatividad ambiental vigente, imponiendo, en su caso, las medidas de seguridad y sanciones correspondientes; 3) a la Secretaría de Energía (Sener) y a la Comisión Federal de Electricidad (CFE) para que diseñen e implementen un programa integral, progresivo y calendarizado para la sustitución del combustóleo por combustibles menos contaminantes, así como para el impulso de proyectos de generación de energía renovable en el estado de Baja California Sur; 4) a la Secretaría de Medio Ambiente y Recursos Naturales (Semarnat) para que, en coordinación con las autoridades estatales y municipales, fortalezca la implementación, seguimiento y evaluación del Programa de Gestión para Mejorar la Calidad del Aire (Proaire) en Baja California Sur, garantizando la participación ciudadana y el acceso a la información pública en materia de calidad del aire; y 5) a la Comisión Federal de Electricidad (CFE) a informar a la ciudadanía sobre los niveles de emisiones contaminantes, las acciones de mitigación implementadas, los sistemas de control ambiental utilizados, así como los resultados de los análisis de los combustibles empleados en la generación de energía eléctrica en el municipio de La Paz.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 29 de abril de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 29/04/2026",
-      "asunto_id": "5088352",
-      "seguimiento": "5093784",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5093784&Asunto=5088352",
-      "categorias": [
-        "energia_renovable",
-        "biodiversidad",
-        "calidad_aire",
-        "cambio_climatico"
-      ],
-      "categoria": "energia_renovable",
-      "categoria_nombre": "Energía Renovable",
-      "id": "6709d8962f28",
-      "scrapeado_en": "2026-05-15T16:03:17.574020+00:00"
     }
   ],
   "_meta": {
     "fuente": "SIL — Sistema de Información Legislativa (Gobernación)",
     "legislatura": "LXVI",
     "total": 500,
-    "nuevas": 64,
-    "actualizado": "2026-11-11T01:47:38Z"
+    "nuevas": 68,
+    "actualizado": "2026-11-11T18:14:16Z"
   }
 }
