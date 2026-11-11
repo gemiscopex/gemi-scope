@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-10T13:26 CDMX",
+  "actualizado": "2026-11-10T20:32 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -152,11 +152,18 @@
   ],
   "Medio Ambiente": [
    {
+    "titulo": "Estadística de datos del nivel del mar de las estaciones de la Red Mareográfica de la Secretaría de Marina.",
+    "org": "Secretaría de Marina (SEMAR)",
+    "fecha": "2026-11-10",
+    "url": "https://www.datos.gob.mx/dataset/datos_nivel_mar_red_mareografica",
+    "recursos": 1
+   },
+   {
     "titulo": "Estadística del pronóstico de marea de las estaciones de la Red Mareográfica de la Secretaría de Marina.",
     "org": "Secretaría de Marina (SEMAR)",
     "fecha": "2026-11-10",
     "url": "https://www.datos.gob.mx/dataset/pronostico_marea_estaciones_red_mareografica",
-    "recursos": 0
+    "recursos": 1
    },
    {
     "titulo": "Riesgos por Fenómenos Hidrometeorológicos",
@@ -199,13 +206,6 @@
     "fecha": "2026-11-09",
     "url": "https://www.datos.gob.mx/dataset/frentes_frios_semar",
     "recursos": 1
-   },
-   {
-    "titulo": "Nuevos proyectos de cooperación de oferta de medio ambiente",
-    "org": "Agencia Mexicana de Cooperación Internacional para el Desarrollo (AMEXCID)",
-    "fecha": "2026-11-03",
-    "url": "https://www.datos.gob.mx/dataset/proyectos_cooperacion_oferta_medio_ambiente",
-    "recursos": 2
    }
   ],
   "Energía": [
