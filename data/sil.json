@@ -10064,6 +10064,29 @@
     },
     {
       "camara_origen": "Cámara de Diputados",
+      "fecha_presentacion": "2026-04-29",
+      "legislatura": "LXVI",
+      "periodo": "2do Ordinario",
+      "presentador": "Dip. Manuel Alejandro Cota Cárdenas (PVEM)",
+      "aspectos": "El legislador propone exhortar: 1) a la Comisión Federal de Electricidad (CFE) para que, en el ámbito de sus atribuciones, implemente de manera inmediata tecnologías eficientes de control, mitigación y reducción de emisiones contaminantes en las centrales de generación eléctrica ubicadas en el municipio de La Paz, particularmente en la Central Termoeléctrica Punta Prieta y la Central de Combustión Interna de la ciudad Capital de Baja California Sur; 2) a la Secretaría de Medio Ambiente y Recursos Naturales (Semarnat) y a la Procuraduría Federal de Protección al Ambiente (Profepa) para que, en el ámbito de sus competencias, realicen inspecciones periódicas, exhaustivas y transparentes a las referidas instalaciones, a efecto de verificar el cumplimiento de la normatividad ambiental vigente, imponiendo, en su caso, las medidas de seguridad y sanciones correspondientes; 3) a la Secretaría de Energía (Sener) y a la Comisión Federal de Electricidad (CFE) para que diseñen e implementen un programa integral, progresivo y calendarizado para la sustitución del combustóleo por combustibles menos contaminantes, así como para el impulso de proyectos de generación de energía renovable en el estado de Baja California Sur; 4) a la Secretaría de Medio Ambiente y Recursos Naturales (Semarnat) para que, en coordinación con las autoridades estatales y municipales, fortalezca la implementación, seguimiento y evaluación del Programa de Gestión para Mejorar la Calidad del Aire (Proaire) en Baja California Sur, garantizando la participación ciudadana y el acceso a la información pública en materia de calidad del aire; y 5) a la Comisión Federal de Electricidad (CFE) a informar a la ciudadanía sobre los niveles de emisiones contaminantes, las acciones de mitigación implementadas, los sistemas de control ambiental utilizados, así como los resultados de los análisis de los combustibles empleados en la generación de energía eléctrica en el municipio de La Paz.",
+      "ultimo_tramite": "Se turnó a Comisión (es): Medio Ambiente y Recursos Naturales  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 29 de abril de 2026 por acuerdo de la Mesa Directiva.",
+      "ultimo_estatus": "Desechado Desechado 29/05/2026",
+      "asunto_id": "5088352",
+      "seguimiento": "5093784",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5093784&Asunto=5088352",
+      "categorias": [
+        "energia_renovable",
+        "biodiversidad",
+        "calidad_aire",
+        "cambio_climatico"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "6709d8962f28",
+      "scrapeado_en": "2026-11-11T23:57:40.462794+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
       "camara_revisora": "Cámara de Senadores",
       "fecha_presentacion": "2026-04-29",
       "legislatura": "LXVI",
@@ -10751,28 +10774,6 @@
       "categoria_nombre": "Residuos",
       "id": "a459b7d2a705",
       "scrapeado_en": "2026-05-21T16:39:02.492484+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-04-29",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "titulo": "Que reforma los artículos 5°, 9° y 63 de la Ley de la Empresa Pública del Estado, Petróleos Mexicanos, en materia de régimen especial de contrataciones aplicable a sus empresas filiales.",
-      "presentador": "Dip. Francisco Javier Borrego Adame (Morena)",
-      "aspectos": "La iniciativa tiene por objeto establecer que las empresas filiales de Pemex deberán observar, de manera obligatoria, el régimen especial sobre contrataciones, adquisiciones, arrendamientos, servicios y obra.",
-      "ultimo_tramite": "Se turnó a Comisión (es): Energía  de Cámara de Diputados. Dictamina. El turno se publicó en la Gaceta Parlamentaria de la Cámara de Diputados del 29 de abril de 2026 por acuerdo de la Mesa Directiva.",
-      "ultimo_estatus": "Pendiente en comisión(es) de origen Pendiente 29/04/2026",
-      "asunto_id": "5087001",
-      "seguimiento": "5091897",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5091897&Asunto=5087001",
-      "categorias": [
-        "hidrocarburos"
-      ],
-      "categoria": "hidrocarburos",
-      "categoria_nombre": "Hidrocarburos",
-      "id": "b1f62b671d7d",
-      "scrapeado_en": "2026-05-21T16:41:09.914226+00:00"
     }
   ],
   "_meta": {
@@ -10780,6 +10781,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 68,
-    "actualizado": "2026-11-11T18:14:16Z"
+    "actualizado": "2026-11-12T00:03:18Z"
   }
 }
