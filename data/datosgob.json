@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-11T21:36 CDMX",
+  "actualizado": "2026-11-12T13:40 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -238,6 +238,20 @@
     "recursos": 24
    },
    {
+    "titulo": "Coordenadas de pozos terminados (2026)",
+    "org": "Secretaría de Energía (SENER)",
+    "fecha": "2026-11-12",
+    "url": "https://www.datos.gob.mx/dataset/coordenadas_pozos_terminados_2026",
+    "recursos": 9
+   },
+   {
+    "titulo": "Prontuario de Gas Natural y Petroquímicos",
+    "org": "Secretaría de Energía (SENER)",
+    "fecha": "2026-11-12",
+    "url": "https://www.datos.gob.mx/dataset/prontuario_gas_natural_petroquimicos",
+    "recursos": 8
+   },
+   {
     "titulo": "Contratos para la Exploración y Extracción de Hidrocarburos (2026)",
     "org": "Secretaría de Energía (SENER)",
     "fecha": "2026-11-11",
@@ -249,20 +263,6 @@
     "org": "Secretaría de Energía (SENER)",
     "fecha": "2026-11-11",
     "url": "https://www.datos.gob.mx/dataset/titulos_asignacion_desarrollo_propio_exploracion_extraccion_hidrocarburos",
-    "recursos": 3
-   },
-   {
-    "titulo": "Títulos de Asignación para Desarrollo Mixto para la exploración y extracción de hidrocarburos",
-    "org": "Secretaría de Energía (SENER)",
-    "fecha": "2026-11-11",
-    "url": "https://www.datos.gob.mx/dataset/titulos_asignacion_desarrollo_mixto_exploracion_extraccion_hidrocarburos",
-    "recursos": 3
-   },
-   {
-    "titulo": "Actividades que derivan de la Exploración de hidrocarburos. Pozos (2026)",
-    "org": "Secretaría de Energía (SENER)",
-    "fecha": "2026-11-11",
-    "url": "https://www.datos.gob.mx/dataset/actividades_derivan_exploracion_hidrocarburos_pozos_2026",
     "recursos": 3
    },
    {
