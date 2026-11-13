@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-12T13:40 CDMX",
+  "actualizado": "2026-11-12T21:09 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -71,40 +71,63 @@
   ],
   "Residuos": [
    {
+    "titulo": "Acciones de revisión en los puntos de verificación en puertos, aeropuertos y fronteras",
+    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
+    "fecha": "2026-11-13",
+    "url": "https://www.datos.gob.mx/dataset/acciones_revision_verificacion_puertos_aeropuertos_fronteras",
+    "recursos": 3
+   },
+   {
+    "titulo": "Emergencias ambientales asociadas a sustancias químicas ocurridas en la República Mexicana",
+    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
+    "fecha": "2026-11-13",
+    "url": "https://www.datos.gob.mx/dataset/emergencias_ambientales_sustancias_quimicas",
+    "recursos": 3
+   },
+   {
+    "titulo": "Certificados de cumplimiento ambiental emitidos por la PROFEPA a empresas comercializadoras e importadoras de Vehículos Nuevos",
+    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
+    "fecha": "2026-11-13",
+    "url": "https://www.datos.gob.mx/dataset/certificados_cumplimiento_ambiental_empresas_vehiculos",
+    "recursos": 3
+   },
+   {
+    "titulo": "Aprobaciones de cumplimiento ambiental emitidos por la PROFEPA a laboratorios de Prueba",
+    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
+    "fecha": "2026-11-13",
+    "url": "https://www.datos.gob.mx/dataset/aprobaciones_cumplimiento_ambiental_laboratorios_prueba",
+    "recursos": 3
+   },
+   {
+    "titulo": "Resultados de visitas de inspección industriales",
+    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
+    "fecha": "2026-11-13",
+    "url": "https://www.datos.gob.mx/dataset/resultados_visitas_inspeccion_industriales",
+    "recursos": 3
+   },
+   {
+    "titulo": "Acciones de inspección industriales, por materia inspeccionada",
+    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
+    "fecha": "2026-11-13",
+    "url": "https://www.datos.gob.mx/dataset/acciones_inspeccion_industriales_materia_inspeccionada",
+    "recursos": 3
+   },
+   {
+    "titulo": "Atención a Denuncias Ambientales en materia federal, por materia o recurso ambiental afectado",
+    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
+    "fecha": "2026-11-12",
+    "url": "https://www.datos.gob.mx/dataset/atencion_denuncias_ambientales_materia_federal_materia_recurso_ambiental_afectado",
+    "recursos": 3
+   },
+   {
     "titulo": "Sitios contaminados por tipo de contaminante",
     "org": "Agencia de Seguridad, Energía y Ambiente (ASEA)",
     "fecha": "2026-03-19",
     "url": "https://www.datos.gob.mx/dataset/sitios_contaminados-por-tipo-de-contaminante",
     "recursos": 1
-   },
-   {
-    "titulo": "Generación estimada de residuos peligrosos por tipo de residuo",
-    "org": "Agencia de Seguridad, Energía y Ambiente (ASEA)",
-    "fecha": "2026-03-19",
-    "url": "https://www.datos.gob.mx/dataset/generacion_estimada_residuos_peligrosos_tipo_residuo",
-    "recursos": 1
-   },
-   {
-    "titulo": "Directorio de laboratorios de Constatación Autorizados",
-    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
-    "fecha": "2026-03-12",
-    "url": "https://www.datos.gob.mx/dataset/directorio_laboratorios_constatacion_autorizados",
-    "recursos": 2
-   },
-   {
-    "titulo": "Directorio de Laboratorios de Constatación Aprobados",
-    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
-    "fecha": "2026-03-12",
-    "url": "https://www.datos.gob.mx/dataset/directorio_laboratorios_constatacion_aprobados",
-    "recursos": 1
-   },
-   {
-    "titulo": "Laboratorios de análisis de plaguicidas en vegetales y/o laboratorios de detección de organismos patógenos",
-    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
-    "fecha": "2026-03-11",
-    "url": "https://www.datos.gob.mx/dataset/laboratorios_analisis_plaguicidas_vegetales_laboratorios_deteccion_organismos_patogenos",
-    "recursos": 1
-   },
+   }
+  ],
+  "Emisiones / Aire": [
    {
     "titulo": "Concentraciones validadas de calidad del aire por entidad federativa",
     "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
@@ -112,22 +135,6 @@
     "url": "https://www.datos.gob.mx/dataset/concentraciones_validadas_calidad_aire_entidad_federativa",
     "recursos": 20
    },
-   {
-    "titulo": "Emergencias ambientales asociadas a sustancias químicas ocurridas en la República Mexicana",
-    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
-    "fecha": "2026-02-19",
-    "url": "https://www.datos.gob.mx/dataset/emergencias_ambientales_sustancias_quimicas",
-    "recursos": 1
-   },
-   {
-    "titulo": "Certificados de cumplimiento ambiental emitidos por la PROFEPA a empresas comercializadoras e importadoras de Vehículos Nuevos",
-    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
-    "fecha": "2026-02-19",
-    "url": "https://www.datos.gob.mx/dataset/certificados_cumplimiento_ambiental_empresas_vehiculos",
-    "recursos": 1
-   }
-  ],
-  "Emisiones / Aire": [
    {
     "titulo": "Inventario Nacional de Emisiones de Gases y Compuestos de Efecto Invernadero (INEGYCEI)",
     "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
@@ -152,60 +159,18 @@
   ],
   "Medio Ambiente": [
    {
-    "titulo": "Estadística de datos del nivel del mar de las estaciones de la Red Mareográfica de la Secretaría de Marina.",
-    "org": "Secretaría de Marina (SEMAR)",
-    "fecha": "2026-11-10",
-    "url": "https://www.datos.gob.mx/dataset/datos_nivel_mar_red_mareografica",
-    "recursos": 1
+    "titulo": "Acciones de inspección en materia industrial",
+    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
+    "fecha": "2026-11-13",
+    "url": "https://www.datos.gob.mx/dataset/acciones_inspeccion_materia_industrial",
+    "recursos": 3
    },
    {
-    "titulo": "Estadística del pronóstico de marea de las estaciones de la Red Mareográfica de la Secretaría de Marina.",
-    "org": "Secretaría de Marina (SEMAR)",
-    "fecha": "2026-11-10",
-    "url": "https://www.datos.gob.mx/dataset/pronostico_marea_estaciones_red_mareografica",
-    "recursos": 1
-   },
-   {
-    "titulo": "Riesgos por Fenómenos Hidrometeorológicos",
-    "org": "Centro Nacional de Prevención de Desastres (CENAPRED)",
-    "fecha": "2026-11-10",
-    "url": "https://www.datos.gob.mx/dataset/riesgos_fenomenos_hidrometeorologicos",
-    "recursos": 1
-   },
-   {
-    "titulo": "Peligro por inundaciones a nivel municipal",
-    "org": "Centro Nacional de Prevención de Desastres (CENAPRED)",
-    "fecha": "2026-11-10",
-    "url": "https://www.datos.gob.mx/dataset/peligro_inundaciones_nivel_municipal",
-    "recursos": 1
-   },
-   {
-    "titulo": "Regiones potenciales de deslizamiento de laderas",
-    "org": "Centro Nacional de Prevención de Desastres (CENAPRED)",
-    "fecha": "2026-11-10",
-    "url": "https://www.datos.gob.mx/dataset/regiones_potenciales_deslizamiento_laderas",
-    "recursos": 1
-   },
-   {
-    "titulo": "Zonas de peligro por tsunamis lejanos y locales",
-    "org": "Centro Nacional de Prevención de Desastres (CENAPRED)",
-    "fecha": "2026-11-10",
-    "url": "https://www.datos.gob.mx/dataset/zonas_peligro_tsunamis_lejanos_locales",
-    "recursos": 1
-   },
-   {
-    "titulo": "Inundaciones",
-    "org": "Centro Nacional de Prevención de Desastres (CENAPRED)",
-    "fecha": "2026-11-10",
-    "url": "https://www.datos.gob.mx/dataset/inundaciones",
-    "recursos": 1
-   },
-   {
-    "titulo": "Estadística anual de frentes fríos",
-    "org": "Secretaría de Marina (SEMAR)",
-    "fecha": "2026-11-09",
-    "url": "https://www.datos.gob.mx/dataset/frentes_frios_semar",
-    "recursos": 1
+    "titulo": "Inspecciones y operativos en materia de vida silvestre",
+    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
+    "fecha": "2026-11-13",
+    "url": "https://www.datos.gob.mx/dataset/inspecciones_operativos_materia_vida_silvestre",
+    "recursos": 3
    }
   ],
   "Energía": [
@@ -268,9 +233,9 @@
    {
     "titulo": "Gas Natural",
     "org": "Comisión Nacional de Energía (CNE)",
-    "fecha": "2026-11-02",
+    "fecha": "2026-11-12",
     "url": "https://www.datos.gob.mx/dataset/gas_natural",
-    "recursos": 10
+    "recursos": 12
    }
   ],
   "Forestal": [
