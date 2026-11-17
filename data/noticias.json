@@ -1,5 +1,21 @@
 [
   {
+    "id": "7eaaa5ed82d9",
+    "titulo": "La Comisión Nacional de Energía autorizó permiso de generación eléctrica en el municipio jalisciense de Cuquío",
+    "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQaGV1XzNHSjI1SjhINnNPN1ppWlRSRE5sZ0RsYjZ5Z21zVVh2Uy1aTGJ0dU5ib3hMdjY2MkZVTk9NNzNMcUtEYUs2eTVXZHBXRkRELTRsazd0eU9TWXNWUzdZWW1RNFdPN0JfLTlnR19ybDA4aEgtODNKRlZwZHNHRjRTWVFrLVZxMUNIU1k4dDhsR25iaFBpVFROX1psQ2pfUDN2Tk5ZNDBYblpHVVc0ZmZ2Mi1qUGNlTlVFODhOeGZBTklLMEVURUVOYzQ4VWd4TDJBdUMtNTFXTHp3VDVNZkp3dDVObnlxMG9CbVV3?oc=5",
+    "fuente": "El Sol de México",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-17T01:44:14Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-17T04:15:56.322150+00:00"
+  },
+  {
     "id": "e399cfe7f88e",
     "titulo": "Es lo de hoy / ¿PEMEX se está recuperando o México esta pagando su rescate financiero?",
     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPRFVnbEJQM0pBalozZFJUZFFPR1dFSTZUM2I5VFBnUGhHbG02c2h1dkZqUk53YTRLMW9RdE1ieHNQWS1TUDRQdEY3a2E3Y2VxajRoRUlQS3pBY1AyV2VwNlpzTWpyelFlaThsUnVSRmxOTm4tUXdGcW56YzN0ellyS3dMcTd3aW1VUUY3cUh4TC1fZlRpaFZEZDYxeE5DUnlsSWVjaHNYeGpTU3NlV1JabU5uSVJfS2c1TFZuc0Fn?oc=5",
@@ -14,6 +30,38 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-17T01:18:04.251197+00:00"
+  },
+  {
+    "id": "a19738fb967a",
+    "titulo": "Coahuila tiene 12 municipios con sequía y Durango uno al cierre de octubre 2026",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQclE1bkNpT2hfaW9pdE1FSjZ4YV9VNGxiekh6amFZT2Q2dm5lWmw0OGtRLWVhNk95M2ZnWW5zZnVSbERlVFVwcEJwVGpzemFyMjNsemRITHpiNU8zMThwb2p4UkoxRTJTOU5QWlEtdmN0M05kZVAteWxNMjdOWmdCU0Y2V29VdGRoV09qdlo5TzRJTl9XX19qYWpsT1JUc0hiLU4wWUNXc0pwRk40ZVJNWmpGdUZ3ZHFmeThmT0J0WQ?oc=5",
+    "fuente": "Super Channel 12",
+    "autoridad": "CONAGUA",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-16T23:55:38Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Coahuila",
+    "scrapeado_en": "2026-11-17T04:15:54.455541+00:00"
+  },
+  {
+    "id": "80a58fdb97e0",
+    "titulo": "Obtiene proyecto solar en Jalisco permiso de generación eléctrica",
+    "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQZGdqMTZJMzJ2WXFNeUpTRVB4eTBfWHlEVlc2QkFFTWtjbWpqZFFaOVhhdG9ZQ1Rfc1hEdXZ4QmVPb1dfdmQyaDQtTkhuZFN2UENyYUF2Y040T2NfSzVMY2lISmJYTzJCX3BPeXliSGo5dU1jTExqWXIwR0p3dFR2dUtwWHpZZmZLaDk2RU1Ib1Y3QUZPRXN4Q2lOcw?oc=5",
+    "fuente": "Hoja de Ruta Digital",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-16T21:56:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": "Jalisco",
+    "scrapeado_en": "2026-11-17T04:15:56.320416+00:00"
   },
   {
     "id": "9c5de7f9f8bc",
@@ -792,6 +840,22 @@
     ],
     "estado": "Veracruz",
     "scrapeado_en": "2026-11-15T22:17:18.682676+00:00"
+  },
+  {
+    "id": "ea2272f307cc",
+    "titulo": "CNE convoca a elecciones de alcalde y concejales del cantón Borbón en Esmeraldas",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOZm5JakF6bUx6VWkwRFNUMVVHNU9LdW5xN2dTQ0V5dElqUVM1X2JDdk1SRDF0ems2dWtvd19XYUlZdDN0bzhCYjkwcEMxcWNhay1pQWNtQlNzVFNDM3ZUdjd1eklfT1lUeHIxbTBDcy12cXlaWDhxMHFJX2hLS0E4REJwVXJYdWJ4RnJaZDFBMU8tSGVoWlVlNEVaaGtZbkhtS2dTZkpYUy1RRE50UERwRzVXdm90ZWhybkVsZVVic9IB0wFBVV95cUxPOGNPMEJoNW96WWFnMU9VZDJfaWJSWlhXa2ZVWmZsX1lwR1B3cnFBUFdWYW1GaElRa1JfZl8xTFB6M3VneWVCOHRhdkxQRm8zdnA1Wml3dFpkSGdRakRTWDVqd25fVDhsTXV3UDB4SVlYYk1QeThxQjM4MFU5MHdYUWVsSUpkczlrSVRHNVI5TTloNG5wd1NCVVA1SHNLSi1xVlZITTFhZ00wNU5HNUlKV1UyMGFZdDNZZkd6THNrOWZ6NUlKcEVVb3JhczRGRDQ4QjR3?oc=5",
+    "fuente": "El Universo",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-15T20:41:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-17T04:15:56.324678+00:00"
   },
   {
     "id": "04126a494cdd",
@@ -2643,6 +2707,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-13T17:58:58.119658+00:00"
+  },
+  {
+    "id": "16e13438ce89",
+    "titulo": "Ingreso de supuesto gemelo de hacker a la Registraduría abre interrogantes sobre autorización del CNE",
+    "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNRC1mdF83T24zVkl4WDRoRGNVUTg1aVRxenNBX1VDVm5jeUY0SEZ3UFZyazJ1VTdrX3A1Z3dwR2dfZFBWT3N2TWRGRzVWdVl2aFF4Q0pVaWM3eWZzQWVvUEpHQmVxOUQ1SWlhNUhsMUs1YW5PRm9vQUY3aFRCaG82c0dvSmNJUDRaYWd2OFNSSW83ZjgtRHZkQ2lzZDlCLXQwMElqd1BVUVl6b09XTjhxZFJubkdjNDFyXzMyc2FNRk50emVQeEJfSw?oc=5",
+    "fuente": "Diario del Huila",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-13T08:14:02Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-17T04:15:56.327946+00:00"
   },
   {
     "id": "58518ee1bf2b",
@@ -4963,6 +5043,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-11T18:00:20.889577+00:00"
+  },
+  {
+    "id": "f96c04f381d0",
+    "titulo": "Acumula CNE más de 300 permisos gasolineros pendientes de aprobación",
+    "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQZ0Yzd0F4Qm40LXF3Q3VYeE5nelNaWkR5ZkIxRVdrZGkwY0p0TTlDU3JTV1VRcXA5cGpRWWFUTloyYVN2ZkcxdUprVnp3SExDZDFweUR3dlZxMjBCc0NTVVZISUl1RkVCRXpCVWpVckdTM0xrQmdfRHJGZDctX0FKUHVPRjZFMGFwZkZhTFM3VVFuUXhZZmFmZnNOU2thdVhtZmViNnZ3?oc=5",
+    "fuente": "Fortuna y Poder",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-11T15:03:06Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-17T04:15:56.322932+00:00"
   },
   {
     "id": "a4fea0c6f708",
@@ -9317,98 +9413,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-11T23:51:52.472634+00:00"
-  },
-  {
-    "id": "5e8c29f84e6a",
-    "titulo": "Precio de gasolina HOY 9 de noviembre 2026: ¿A cuánto está el litro de Magna, Premium y Diésel?",
-    "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNTTlqdW8zWmRiTUlBV3BTUjczX3VHRkdsRDM2U3ZYRUdXZmZzS1UzNzh3SVpKeUhKZmNqZlJCX2dsX3pndlEyT3FVMmh5S2NuRlJTcGZRYlNRNW4yclpicEFaZGxwSWhsMWszUGlienVRcVBqV09tRlBwbHlaT05EUE5aTEVZY0F6T1h4d3ZQcWRzdlBiUmpITmFoR0RVdXNoX2V0WmlCczM0Q1lzRzFOREVDXzhpN1JiQnJoVW0tUlEwWlhnQzFfNXNoZDR1eUcwbE5pNHFaSlg?oc=5",
-    "fuente": "TV Azteca",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-09T13:08:50Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-09T20:59:48.939978+00:00"
-  },
-  {
-    "id": "7db2a71012e3",
-    "titulo": "Alianzas de Pemex con iniciativa privada, reactivan empleos en más de 200 pozos en el sur de Tamaulipas",
-    "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOczg1elJaLTVpRzQ4RElnUktxdUhRZkUtdWt4M2pCQlhYYWRHNFhzYTNObV9URW5hbXNhZ0Z2U3BQd2ZiWEktcjZGZVp1VTJFRVg1TG9sb0FJaFgwOW9pRW9CSWhCa3FCbTlYYTh2VXlCWFFPaURPcHppM1Ywejk1eXgwc0o0U3d5NVJDMDFXYWxySTlJSXBmY1FkYXgwNG9QdzR5SDJQVUowajVmQjRkMnRHeU90NGZnd3pNMmlUYjlZTkxpbVkxT1FTSVdwS2I3UnBZWmc1R1JUZy1nQk4xZWVocXg1Zw?oc=5",
-    "fuente": "El Sol de México",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-09T12:14:05Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": "Tamaulipas",
-    "scrapeado_en": "2026-11-09T20:59:47.961631+00:00"
-  },
-  {
-    "id": "fadc4e36b2dd",
-    "titulo": "Mapear lo sagrado: indígenas de la Amazonía venezolana hacen sus propios mapas como estrategia de defensa territorial",
-    "url": "https://es.mongabay.com/2026/11/indigenas-amazonia-venezolana-hacen-mapas-estrategia-defensa-territorial/",
-    "fuente": "Mongabay Latam",
-    "resumen": "En la Amazonía venezolana hay lugares que no aparecen en los mapas convencionales, pero han sido trazados durante generaciones en las palabras de los sabios y ancestros, en las manos y la memoria de las comunidades indígenas. Allí, cerros, piedras, ríos, lagunas, islas y petroglifos no son solo paisaje: son lugares sagrados protegidos por guardianes […]",
-    "fecha_publicacion": "2026-11-09T11:53:30Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-09T20:59:35.121069+00:00"
-  },
-  {
-    "id": "a2e5a2100e94",
-    "titulo": "Gas LP pide trato fiscal igual al de gasolinas y diésel",
-    "url": "https://energy21.com.mx/gas-lp-pide-trato-fiscal-igual-al-de-gasolinas-y-diesel/",
-    "fuente": "Energy21",
-    "resumen": "Distribuidores solicitaron al Congreso incluir al sector en la excepción a los nuevos límites fiscales aplicable a gasolinas y diésel. El cargo Gas LP pide trato fiscal igual al de gasolinas y diésel apareció primero en Energy21 .",
-    "fecha_publicacion": "2026-11-09T11:30:16Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-09T20:59:35.168590+00:00"
-  },
-  {
-    "id": "d53b305523c5",
-    "titulo": "El ciclo bajista de Banco de México",
-    "url": "https://www.elfinanciero.com.mx/opinion/ricardo-aguilar/2026/11/09/el-ciclo-bajista-de-banco-de-mexico/",
-    "fuente": "El Financiero",
-    "resumen": "El factor que definirá el margen de Banxico no necesariamente estará en México, en la inflación local o en sus determinantes. Podría estar en la Reserva Federal (FED).",
-    "fecha_publicacion": "2026-11-09T10:33:39Z",
-    "categoria": "biodiversidad",
-    "categoria_nombre": "Biodiversidad",
-    "categorias": [
-      "biodiversidad"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-09T20:59:35.374482+00:00"
-  },
-  {
-    "id": "16509015c8d7",
-    "titulo": "Ciudad de México: cuál es el precio de la gasolina este 8 de noviembre",
-    "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQOEFRdEpHS0pfTnUzcVhqMjkwN2hPSHV3cHFBbmlPeTJQb1NocFZTeW01LUhLbTlseTh5X3hpeG14aldvTlZUTWMzb29lTkR0djhFNVJGUnRIUE14WG5SeUd5VG5ZT1NEZ3d4U0RXM3RkdE91M2puZ1MyUDlKMU1taEJUc1FsRVdiRk4tWU1zb0Q3b2t3V3dkLU96OXZKNDZzTG9PTVFPZzZLeDZlLWR0cENB0gHMAUFVX3lxTE5NUVI0a2lrWDJVTjlhQmRxQ1VmTDNmVTFtVGpnS2dEMmFfN1pHazFOMk9LV1ZUcFBLR1o3U1ZiblV4aHktaUlQWW1sb1VUcXQtMllFdm15TXJPRUNCcm9raG1SUzB1NzlVRWh0bFJ2Tl96djB0VHBVd3BTVHExY0xEUzNsZV9mdWc0eXlYQV9aZDVJWktyVHdnaVBIcWpvQ2h0bXVTX3U1T1M4S0lreFk1MG0weERrME5yaFZoREZOTmE2SWVhQTVtX3FvSQ?oc=5",
-    "fuente": "Infobae",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-09T10:16:00Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": "Ciudad de Mexico",
-    "scrapeado_en": "2026-11-09T20:59:48.937835+00:00"
   }
 ]
