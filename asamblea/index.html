@@ -1807,6 +1807,67 @@ i.x.n{width:14px;height:2px;border-radius:0;background:#c9d4cd}
 
 /* Cada lámina mide exactamente una pantalla */
 .deck>section{height:100vh;min-height:100vh;max-height:100vh}
+/* ── Ronda 3: ponencias, contingencias, cierre en negro, navegación por apartados ── */
+.as-pon{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);margin-top:clamp(26px,5vh,52px);width:100%}
+.as-pon>div{border-top:2px solid var(--gm);padding-top:16px;display:flex;flex-direction:column;gap:6px}
+.as-pon span{font-family:var(--mono);font-size:12px;color:var(--gm)}
+.as-pon b{font-size:clamp(22px,2.6vw,36px);font-weight:800;letter-spacing:-.02em;color:var(--ink-l);line-height:1.1}
+.as-pon strong{font-size:clamp(16px,1.5vw,20px);color:var(--ink-l);margin-top:10px}
+.as-pon em{font-style:normal;font-size:clamp(13px,1.15vw,15px);line-height:1.45;color:var(--mut-l)}
+.as-pq{display:flex;align-items:center;gap:16px;margin-top:clamp(28px,6vh,60px);padding-top:16px;border-top:1px solid var(--ln);width:100%}
+.as-pq span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim-l);margin-right:8px}
+.as-pq b{font-size:clamp(15px,1.4vw,19px);color:var(--ink-l)}
+.as-pq i{width:5px;height:5px;border-radius:50%;background:var(--gm)}
+
+section.as-black{background:#000!important;color:#fff;justify-content:center;align-items:center;text-align:center}
+section.as-black .as-h{color:#fff}
+section.as-black .as-sub{color:rgba(255,255,255,.62)}
+section.as-black .tagline{color:rgba(255,255,255,.55)}
+section.as-black .twb{display:inline-block;text-align:left;color:#3fe0ad}
+section.as-black .twb .car{display:inline-block;width:2px;height:1em;background:#3fe0ad;margin-left:2px;vertical-align:-.15em;animation:as-caret 1.05s step-end infinite}
+@keyframes as-caret{50%{opacity:0}}
+section.as-black .folio{color:rgba(255,255,255,.35)}
+
+.as-fas>div{display:grid;grid-template-columns:96px 1fr 104px;gap:4px 12px;align-items:center;padding:clamp(5px,1vh,8px) 0;border-bottom:1px solid var(--ln)}
+.as-fas span{font-size:12.5px;color:var(--ink-l);font-weight:600}
+.as-fas i{height:12px;display:block;background:#eef3f0}
+.as-fas em{display:block;height:100%;width:0;transition:width 1s cubic-bezier(.3,.9,.2,1);transition-delay:calc(.5s + var(--i)*.25s)}
+.in .as-fas em{width:var(--v)}
+.as-fas .ok em{background:var(--gm)}
+.as-fas .no em{background:repeating-linear-gradient(135deg,#0e3b2c 0 5px,#2b5a4a 5px 10px)}
+.as-fas b{font-family:var(--mono);font-size:12px;color:var(--ink-l);text-align:right}
+.as-fas p{grid-column:2/4;font-size:11.5px;color:var(--mut-l)}
+.as-fas .no p{color:#9a5a5f;font-weight:600}
+.as-ramp{width:100%;height:auto;max-height:22vh;overflow:visible}
+.as-ramp .ax{stroke:var(--ink-l);stroke-width:1}.as-ramp .gl{stroke:var(--ln);stroke-width:1}
+.as-ramp .yl{font-family:var(--mono);font-size:10px;fill:var(--dim-l);text-anchor:end}
+.as-ramp .xl{font-family:var(--sans);font-size:12px;fill:var(--mut-l);text-anchor:middle}
+.as-ramp .ev{fill:rgba(192,74,82,.08)}
+.as-ramp .evl{font-family:var(--mono);font-size:10px;fill:#9a5a5f;text-anchor:middle}
+.as-ramp .ln{fill:none;stroke:var(--gm);stroke-width:3;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s cubic-bezier(.5,0,.2,1) .7s}
+.in .as-ramp .ln{stroke-dashoffset:0}
+.as-aire img{aspect-ratio:auto!important;max-height:58vh;object-fit:contain;object-position:top;background:#f3f6f4}
+.as-ls2>div{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:baseline;padding:clamp(7px,1.3vh,11px) 0;border-top:1px solid var(--ln)}
+.as-ls2 span{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--gm)}
+.as-ls2 b{font-size:clamp(13.5px,1.25vw,16.5px);color:var(--ink-l);line-height:1.3}
+.as-emp{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.4vh,22px) clamp(18px,2.6vw,36px)}
+.as-emp>div{border-top:2px solid var(--gm);padding-top:10px}
+.as-emp b{font-size:clamp(14px,1.25vw,16.5px);color:var(--ink-l)}
+.as-emp p{font-size:clamp(12px,1.04vw,13.5px);line-height:1.45;color:var(--mut-l);margin-top:5px}
+
+/* Navegación por apartados (sustituye los 79 puntos) */
+.dots{display:none!important}
+.as-nav{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:9px}
+.as-nav a{position:relative;display:block;width:6px;height:6px;border-radius:3px;background:rgba(139,154,144,.55);cursor:pointer;transition:height .3s,background .3s}
+.as-nav a.on{height:22px;background:#0e8c74}
+.as-nav.dk a{background:rgba(255,255,255,.28)}.as-nav.dk a.on{background:#3fe0ad}
+.as-nav a span{position:absolute;right:16px;top:50%;transform:translateY(-50%);white-space:nowrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:#57685f;background:rgba(255,255,255,.94);padding:3px 7px;opacity:0;pointer-events:none;transition:opacity .2s}
+.as-nav a:hover span{opacity:1}
+@media print{.as-nav{display:none}}
+body.print-mode .as-nav{display:none}
+
+.as-cd{grid-template-columns:repeat(3,1fr)!important;max-width:980px;margin-left:auto;margin-right:auto}
+.as-ramp{max-height:18vh}
 
 </style>
 </head>
@@ -1814,7 +1875,7 @@ i.x.n{width:14px;height:2px;border-radius:0;background:#c9d4cd}
 <div class="prog"></div>
 <div class="dots"></div>
 <div class="deck">
-<section class="lt as-full" data-t="Bienvenidos">
+<section class="dk as-full" data-t="Bienvenidos">
 <iframe src="bienvenida/?embed=1" title="Bienvenidos, Asamblea XXXII" tabindex="-1"></iframe>
 </section>
 
@@ -1823,7 +1884,7 @@ i.x.n{width:14px;height:2px;border-radius:0;background:#c9d4cd}
 <div class="k r">Bienvenida</div>
 <h1 class="as-pth lt r d1">Benjamín del Arco</h1>
 <div class="as-sub r d2" style="text-align:left">Presidente del Consejo Directivo de Iniciativa GEMI</div>
-<div class="as-meta r d3"><div><span>Asamblea</span><b>XXXII Asamblea General Ordinaria y Extraordinaria de Asociados</b></div><div><span>Fecha</span><b>18 de noviembre de 2026, de 8:00 a 10:30</b></div><div><span>Sede</span><b>Puebla 403, Roma Norte, Ciudad de México</b></div></div>
+<div class="as-meta r d3"><div><span>Asamblea</span><b>XXXII Asamblea General Ordinaria y Extraordinaria de Asociados</b></div><div><span>Fecha</span><b>18 de noviembre de 2026, de 8:00 a 10:30</b></div></div>
 </div><div class="as-por r d2"><img src="img/benjamin.jpg" alt="Benjamín del Arco"></div></div>
 </section>
 
@@ -1851,7 +1912,16 @@ i.x.n{width:14px;height:2px;border-radius:0;background:#c9d4cd}
 </section>
 
 <section class="lt" data-t="Consejo Directivo">
-<div class="k r">Consejo Directivo</div><div class="t r d1 fx-t">Consejo Directivo de Iniciativa GEMI</div><div class="as-cd"><div class="r" style="--i:2.0"><div class="as-ci"><img src=img/benjamin.jpg alt="Benjamín del Arco"></div><b>Benjamín del Arco</b><span>Presidencia</span></div><div class="r" style="--i:2.6"><div class="as-ci"><img src=img/griscelda.jpg alt="Griscelda Ramos"></div><b>Griscelda Ramos</b><span>Vicepresidencia de Responsabilidad Social Corporativa</span></div><div class="r" style="--i:3.2"><div class="as-ci"><img src=img/rodolfo.jpg alt="Rodolfo Ramírez"></div><b>Rodolfo Ramírez</b><span>Vicepresidencia Administrativa</span></div><div class="r" style="--i:3.8"><div class="as-ci va"></div><b>&nbsp;</b><span>Vicepresidencia Técnica</span></div></div>
+<div class="k r">Consejo Directivo</div><div class="t r d1 fx-t">Consejo Directivo de Iniciativa GEMI</div><div class="as-cd"><div class="r" style="--i:2.0"><div class="as-ci"><img src=img/benjamin.jpg alt="Benjamín del Arco"></div><b>Benjamín del Arco</b><span>Presidencia</span></div><div class="r" style="--i:2.6"><div class="as-ci"><img src=img/griscelda.jpg alt="Griscelda Ramos"></div><b>Griscelda Ramos</b><span>Vicepresidencia de Responsabilidad Social Corporativa</span></div><div class="r" style="--i:3.2"><div class="as-ci"><img src=img/rodolfo.jpg alt="Rodolfo Ramírez"></div><b>Rodolfo Ramírez</b><span>Vicepresidencia Administrativa</span></div></div>
+</section>
+
+<section class="lt" data-t="Ponencias">
+<div class="k r">Invitados de honor</div><div class="t r d1 fx-t">Dos ponencias para la Asamblea</div>
+<div class="as-pon">
+<div class="r d2"><span>8:40</span><b>Iniciativa de la nueva LGEEPA</b><strong>Héctor Herrera Ordóñez</strong><em>Doctor en Derecho. Socio fundador y director de Herrera y Sato, S.C.</em></div>
+<div class="r d3"><span>9:00</span><b>Panorama hídrico en México</b><strong>Raúl Rodríguez Márquez</strong><em>Presidente del Consejo Consultivo del Agua</em></div>
+</div>
+<div class="as-pq r d4"><span>Presentan</span><b>Ruben León</b><i></i><b>Santiago Decelis</b></div>
 </section>
 
 <section class="dk as-pt" data-t="Héctor Herrera">
@@ -2110,6 +2180,26 @@ i.x.n{width:14px;height:2px;border-radius:0;background:#c9d4cd}
 </div></div>
 </section>
 
+<section class="lt" data-t="Contingencias atmosféricas" data-presenta="Santiago Decelis">
+<div class="k r">Consulta técnica · norma de contingencias ambientales atmosféricas</div><div class="t r d1 fx-t fx-long">La fase de emergencia del proyecto es inviable para las plantas consultadas</div>
+<div class="as-g2" style="grid-template-columns:1fr 1fr;align-items:start"><div>
+<div class="as-mk r d2">Reducción obligatoria por fase</div>
+<div class="as-fas r d2"><div class="ok" style="--i:0;--v:20%"><span>Contingencia</span><i><em></em></i><b>20%</b><p>Alcanzable en eventos cortos</p></div><div class="ok" style="--i:1;--v:30%"><span>Contingencia</span><i><em></em></i><b>30%</b><p>Alcanzable en eventos cortos</p></div><div class="no" style="--i:2;--v:60%"><span>Emergencia</span><i><em></em></i><b>60%</b><p>Inviable para todas las plantas o si el evento se prolonga</p></div><div class="no" style="--i:3;--v:100%"><span>Emergencia</span><i><em></em></i><b>Suspensión total</b><p>Inviable</p></div></div>
+<div class="as-mk r d3" style="margin-top:clamp(14px,2.6vh,24px)">Los procesos dependen del vapor de calderas</div>
+<div class="r d3"><svg class="as-ramp" viewBox="0 -4 520 152" preserveAspectRatio="xMidYMid meet"><line class="ax" x1="30" x2="510" y1="120" y2="120"/><line class="gl" x1="30" x2="510" y1="24" y2="24"/><text class="yl" x="24" y="28">100%</text><text class="yl" x="24" y="124">0</text><rect class="ev" x="210" y="14" width="100" height="106"/><text class="evl" x="260" y="10">Contingencia</text><path class="ln" pathLength="1" d="M30,24 L60,24 L200,96 L320,96 L460,24 L510,24"/><text class="xl" x="130" y="140">Hasta 12 horas para bajar</text><text class="xl" x="390" y="140">Otras tantas para volver</text></svg></div>
+<p class="as-cap r d4">Las reducciones de 20% a 50% son alcanzables en eventos cortos. El proyecto entrará al Programa Nacional de Infraestructura de la Calidad 2027 y alcanza a fuentes fijas, móviles y de área de jurisdicción federal.</p>
+</div><figure class="as-ph as-aire r d3"><img src="img/calidad-aire.jpg" alt="Calidad del aire por estación de monitoreo"><figcaption>Calidad del aire y riesgo a la salud por estación de monitoreo</figcaption></figure></div>
+</section>
+
+<section class="lt" data-t="Impacto de las contingencias" data-presenta="Santiago Decelis">
+<div class="k r">Consulta técnica · impactos para los socios</div><div class="t r d1 fx-t fx-long">Una reducción abrupta afecta entregas, cadena de valor, equipos e inocuidad</div>
+<div class="as-g2" style="grid-template-columns:.85fr 1.15fr;align-items:start"><div>
+<div class="as-mk r d2">Impactos del proyecto</div><div class="as-ls2 r d2"><div style="--i:0"><span>1</span><b>La fase de emergencia es inviable.</b></div><div style="--i:1"><span>2</span><b>Los tiempos de respuesta no coinciden con la duración de los eventos.</b></div><div style="--i:2"><span>3</span><b>Los porcentajes no distinguen procesos.</b></div><div style="--i:3"><span>4</span><b>La medida puede generar emisiones y residuos no previstos.</b></div><div style="--i:4"><span>5</span><b>La seguridad del proceso depende de una reducción gradual.</b></div></div>
+<div class="as-mini r d4" style="margin-top:14px"><div><b>Jurisdicción estatal y federal</b><p>Riesgo de que la norma federal se vuelva referencia de los programas locales o de que ambos regímenes se apliquen al mismo tiempo con criterios distintos.</p></div>
+<div><b>Programas de contingencia vigentes</b><p>Las plantas consultadas tienen programas aprobados o en trámite. Falta saber si la norma los reconocerá o se sumará a ellos.</p></div></div>
+</div><div><div class="as-mk r d3">Impacto en las empresas</div><div class="as-emp r d3"><div style="--i:0"><b>Producción y entregas</b><p>Las tres plantas tienen contratos con penalizaciones por incumplimiento de entregas o niveles mínimos de abasto. Una contingencia en temporada alta se traduce en retrasos, menor disponibilidad de producto y costos contractuales.</p></div><div style="--i:1"><b>Cadena de valor</b><p>Hay que reprogramar la recepción de materias primas y empaques. Puede generar sobreinventario de insumos y retrasa la distribución.</p></div><div style="--i:2"><b>Mantenimiento y vida útil de los equipos</b><p>Dos de las tres plantas prevén más mantenimiento: los ciclos adicionales de paro y arranque desgastan componentes sometidos a cambios de temperatura y presión.</p></div><div style="--i:3"><b>Calidad e inocuidad</b><p>Sin afectación si la reducción es controlada. Una reducción forzada o abrupta pone en riesgo los tratamientos térmicos que garantizan la inocuidad alimentaria.</p></div></div></div></div>
+</section>
+
 <section class="lt" data-t="Scope">
 <div class="k r">Scope</div><div class="t r d1 fx-t fx-long">Scope convierte información pública dispersa en anticipación para los socios</div>
 <div class="as-chain"><div class="r" style="--i:2.0"><span>Captura</span><b class="as-n" data-n="33" data-dec="0" data-pre="" data-suf="">33</b><em>congresos en seguimiento</em><p>Diario Oficial, Congreso de la Unión, 32 congresos estatales, periódicos oficiales, conferencias del Ejecutivo y prensa legislativa</p></div><div class="r" style="--i:2.5"><span>Verificación</span><b class="as-n" data-n="87" data-dec="0" data-pre="" data-suf="">87</b><em>de 88 registros del estudio de las 32 entidades, en fuente primaria</em><p>Cada registro guarda su liga y su fecha y se abre en el documento oficial</p></div><div class="r" style="--i:3.0"><span>Análisis</span><b class="as-n" data-n="10" data-dec="0" data-pre="" data-suf="">10</b><em>leyes estatales comparadas · 50 iniciativas</em><p>Leyes comparadas artículo por artículo y rastreo de iniciativas listado por listado</p></div><div class="r" style="--i:3.5"><span>Alerta</span><b class="as-n" data-n="43" data-dec="0" data-pre="" data-suf="">43</b><em>reportes semanales</em><p>Reportes semanales, notas técnicas y alertas con tiempo para preparar la respuesta</p></div></div>
@@ -2213,11 +2303,11 @@ i.x.n{width:14px;height:2px;border-radius:0;background:#c9d4cd}
 <div class="as-logo1 r d2"><img src="img/s-alucaps.png" alt="Grupo Alucaps"></div>
 </section>
 
-<section class="lt cover as-cover" data-t="Gracias">
-<img class="as-gl r" src="/assets/logo-gemi-icon.png" alt="Iniciativa GEMI">
+<section class="as-black cover as-cover" data-t="Gracias">
+<img class="as-gl r" src="img/logo-white.png" alt="Iniciativa GEMI">
 <h1 class="as-h r d1">Gracias por su confianza este año</h1>
 <div class="as-sub r d2">XXXII Asamblea General de Asociados · 18 de noviembre de 2026</div>
-<div class="tagline r d3">Estamos cambiando el ambiente</div>
+<div class="tagline r d3">Estamos <span class="twb" id="twb2"><span id="tw2">cambiando</span><i class="car"></i></span> el ambiente</div>
 </section>
 </div>
 
@@ -2477,6 +2567,38 @@ i.x.n{width:14px;height:2px;border-radius:0;background:#c9d4cd}
     e.preventDefault();e.stopImmediatePropagation();go(n);
   },true);
   deck.addEventListener('scrollend',function(){tgt=null;});
+})();
+
+/* Navegación por apartados de la Asamblea */
+(function(){
+  if(/[?&]print/i.test(location.search))return;
+  var deck=document.querySelector('.deck'),secs=[].slice.call(document.querySelectorAll('.deck>section'));
+  var G=[['Bienvenida','Bienvenidos'],['Presidente','Bienvenida'],['Quórum','Verificación del quórum'],['Convocatoria','Convocatoria'],['Orden del día','Orden del día'],
+    ['Consejo Directivo','Designación del Consejo'],['Ponencias','Ponencias'],['Héctor Herrera','Héctor Herrera'],['Raúl Rodríguez','Raúl Rodríguez'],
+    ['Reporte Anual 2026','Reporte Anual 2026'],['Plan de trabajo 2027','Plan de trabajo 2027'],['Informe administrativo','Informe administrativo'],
+    ['Aprobación del presupuesto','Aprobación del presupuesto'],['Nuevos prospectos','Nuevos prospectos'],['Asuntos generales','Asuntos generales'],['Gracias','Gracias']];
+  var starts=[],nav=document.createElement('nav');nav.className='as-nav';nav.setAttribute('aria-label','Apartados');
+  G.forEach(function(g){var i=secs.findIndex(function(s){return s.getAttribute('data-t')===g[1];});if(i<0)return;
+    starts.push(i);var a=document.createElement('a');a.innerHTML='<span>'+g[0]+'</span>';a.addEventListener('click',function(){secs[i].scrollIntoView({behavior:'smooth'});});nav.appendChild(a);});
+  document.body.appendChild(nav);var links=[].slice.call(nav.children);
+  function cur(){var d=deck.getBoundingClientRect().top,m=deck.clientHeight*.5,b=0;for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top-d<=m)b=i;}return b;}
+  var last=-1;function upd(){var c=cur();if(c===last)return;last=c;var g=0;starts.forEach(function(s,k){if(c>=s)g=k;});
+    links.forEach(function(a,k){a.classList.toggle('on',k===g);});
+    var s=secs[c];nav.classList.toggle('dk',/\b(dk|nk|as-black)\b/.test(s.className));}
+  deck.addEventListener('scroll',upd,{passive:true});upd();
+})();
+
+/* "cambiando" del cierre: se escribe y se borra en loop */
+(function(){
+  var el=document.getElementById('tw2');if(!el)return;
+  if(/[?&]print/i.test(location.search))return;
+  var word='cambiando',i=word.length,dir=-1;
+  var bx=document.getElementById('twb2');requestAnimationFrame(function(){if(bx)bx.style.minWidth=bx.offsetWidth+'px';setTimeout(tick,2600);});
+  function tick(){
+    if(dir<0){i--;if(i<=0){i=0;dir=1;el.textContent='';setTimeout(tick,500);return;}}
+    else{i++;if(i>=word.length){i=word.length;dir=-1;el.textContent=word;setTimeout(tick,2600);return;}}
+    el.textContent=word.slice(0,i);setTimeout(tick,dir>0?120:60);
+  }
 })();
 
 </script>
