@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reporte Anual 2026 · Iniciativa GEMI</title>
+<meta name="description" content="Informe de actividades 2026 de Iniciativa GEMI.">
+<meta property="og:title" content="Reporte Anual 2026 · Iniciativa GEMI">
+<meta property="og:image" content="https://scopegemi.com/reporte-anual-2026/portada.jpg">
+<link rel="icon" href="/assets/logo-gemi-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Scope Sans';src:url('/assets/fonts/heros-regular.woff2') format('woff2');font-weight:1 550;font-display:swap}
+@font-face{font-family:'Scope Sans';src:url('/assets/fonts/heros-bold.woff2') format('woff2');font-weight:551 1000;font-display:swap}
+:root{--ink:#0D1B2A;--sec:#4E6A86;--mute:#8A9CB0;--line:rgba(13,27,42,.1);--soft:#F5F7F6;--g:#066750;--g2:#0A7C63;--bg:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Scope Sans',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:inherit}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+/* barra */
+.bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:52px}
+.bar img{height:28px;display:block}
+.bar nav{display:flex;gap:24px;font-size:13px}
+.bar nav a{text-decoration:none;color:var(--sec)}
+.bar nav a:hover{color:var(--ink)}
+.bar .dl{color:var(--g);font-weight:700}
+/* portada */
+.hero{padding:64px 0 0}
+.hero-g{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:72px;align-items:center}
+.hero-t h1{margin:16px 0 0;max-width:none;font-size:clamp(40px,5.6vw,76px);text-wrap:balance}
+.hero-t .lede{margin:20px 0 0;max-width:520px}
+.hero-t .ctas{justify-content:flex-start;margin-top:30px}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--g);font-weight:500}
+h1{font-size:clamp(34px,5vw,62px);line-height:1.03;letter-spacing:-.038em;font-weight:700;margin:14px auto 0;max-width:820px;text-wrap:balance}
+.lede{font-size:clamp(17px,1.8vw,20px);line-height:1.45;color:var(--sec);margin:16px auto 0;max-width:600px;text-wrap:balance}
+.ctas{display:flex;gap:28px;justify-content:center;align-items:center;margin-top:26px;flex-wrap:wrap}
+.btn{display:inline-block;background:var(--g);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:13px 26px;border-radius:12px;border:0;cursor:pointer;font-family:inherit;transition:background .2s}
+.btn:hover{background:var(--g2)}
+.btn:focus-visible,.lnk:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--g);outline-offset:3px}
+.lnk{color:var(--g);text-decoration:none;font-size:16px;font-weight:500}
+.lnk:hover{text-decoration:underline}
+.cover{max-width:400px;width:100%;perspective:1600px}
+.cvbox{position:relative;border-radius:4px;overflow:hidden;box-shadow:0 40px 80px -20px rgba(13,27,42,.35),0 18px 36px -18px rgba(13,27,42,.3);transform:rotateX(10deg) translateY(30px);opacity:0;transition:transform 1s cubic-bezier(.16,1,.3,1),opacity .8s ease}
+.cover.on .cvbox{transform:rotateX(0) translateY(0);opacity:1}
+.cover img{width:100%;height:auto;display:block}
+.cvbox svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.by{margin-top:26px;font-size:13px;color:var(--mute)}
+/* contenido */
+section.blk{padding:92px 0 0}
+h2{font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.033em;font-weight:700;max-width:760px;text-wrap:balance}
+.intro{font-size:17px;color:var(--sec);margin-top:14px;max-width:620px;line-height:1.5}
+.toc{margin-top:38px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:start}
+.tl{border-bottom:1px solid var(--line)}
+.ti{display:flex;gap:18px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:18px 0;font:inherit;color:inherit;cursor:pointer;position:relative}
+.ti::before{content:'';position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--g);transition:width .5s cubic-bezier(.16,1,.3,1)}
+.ti.on::before{width:64px}
+.ti i{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--mute);padding-top:4px;flex:0 0 24px;transition:color .3s}
+.ti b{display:block;font-size:17px;letter-spacing:-.01em;transition:color .3s;color:var(--mute)}
+.ti p{font-size:14px;color:var(--mute);margin-top:4px;line-height:1.5;transition:color .3s}
+.ti.on i{color:var(--g)}.ti.on b{color:var(--ink)}.ti.on p{color:var(--sec)}
+.ti:focus-visible{outline:2px solid var(--g);outline-offset:4px}
+.pv{position:sticky;top:76px}
+.pvf{position:relative;aspect-ratio:3/2;background-color:#fff;background-image:radial-gradient(rgba(13,27,42,.09) 1px,transparent 1.2px);background-size:18px 18px}
+.pane{position:absolute;inset:5% 4%;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s;display:flex;align-items:center;justify-content:center}
+.pane.on{opacity:1;visibility:visible;transition:opacity .35s ease}
+.pane svg.ch{width:100%;height:100%;display:block}
+.pane svg.ch>rect:first-child{fill:transparent}
+.pvf img{position:absolute;inset:6% 5%;width:90%;height:88%;object-fit:contain;opacity:0;transform:scale(.985);transition:opacity .45s ease,transform .6s cubic-bezier(.16,1,.3,1);background:#fff}
+.pvf img.on{opacity:1;transform:none}
+.pvf .c{position:absolute;width:18px;height:18px;border:0 solid var(--g)}
+.pvf .c1{left:0;top:0;border-left-width:2px;border-top-width:2px}.pvf .c2{right:0;top:0;border-right-width:2px;border-top-width:2px}
+.pvf .c3{left:0;bottom:0;border-left-width:2px;border-bottom-width:2px}.pvf .c4{right:0;bottom:0;border-right-width:2px;border-bottom-width:2px}
+.pvf .scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(6,103,80,.55),transparent);top:0;opacity:0}
+.pvf .scan.go{animation:scan .9s cubic-bezier(.4,0,.2,1)}
+@keyframes scan{0%{top:0;opacity:.9}100%{top:100%;opacity:0}}
+.pvc{display:flex;justify-content:space-between;gap:16px;margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.pvc b{color:var(--g);font-weight:500}
+/* formulario */
+.get{padding:96px 0 92px}
+.get .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.get h2{max-width:460px}
+.get .intro{max-width:440px}
+.get .mini{margin-top:36px;display:flex;gap:18px;align-items:center}
+.get .mini img{width:92px;height:auto;border-radius:3px;box-shadow:0 14px 30px -12px rgba(13,27,42,.35)}
+.get .mini span{font-size:14px;color:var(--sec);line-height:1.5}
+form{display:grid;gap:18px}
+label{display:block;font-size:13px;color:var(--sec);margin-bottom:7px;font-weight:500}
+input[type=text],input[type=email],select{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--soft);border:1px solid transparent;border-radius:12px;padding:14px 16px;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none;appearance:none}
+input:focus,select:focus{background:#fff;border-color:var(--g)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.chk{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--sec);line-height:1.5}
+.chk input{margin-top:3px;accent-color:var(--g);width:16px;height:16px;flex-shrink:0}
+.hp{position:absolute;left:-9999px}
+.msg{font-size:14px;color:var(--sec);min-height:20px}
+.msg.err{color:#B42318}
+.ok{display:none}
+.ok.on{display:block}
+.ok h3{font-size:30px;letter-spacing:-.03em;line-height:1.1}
+.ok p{color:var(--sec);margin-top:12px;font-size:16px}
+.ok .btn{margin-top:24px}
+footer{border-top:1px solid var(--line);padding:34px 0 46px;font-size:13px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:var(--sec);text-decoration:none}
+footer a:hover{color:var(--ink)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s cubic-bezier(.16,1,.3,1)}
+.rv.on{opacity:1;transform:none}
+.mb{width:100%;display:flex;flex-direction:column;gap:3px;padding:0 2%}
+.mb-r{display:grid;grid-template-columns:118px 1fr 52px 150px;gap:10px;align-items:center;font-size:11.5px;color:var(--mute);line-height:1.25}
+.mb-e{color:var(--ink);font-weight:700}
+.mb-r.own .mb-e{font-weight:400;color:var(--mute)}
+.mb-t{height:10px;position:relative}
+.mb-t i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--g);border-radius:2px}
+.mb-r.own .mb-t i{background:#C8D3DC}
+.pane.go .mb-t i{width:var(--w);transition:width .7s cubic-bezier(.3,0,.2,1);transition-delay:calc(.1s + var(--i)*.06s)}
+.mb-p{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;text-align:right;color:var(--ink)}
+.mb-leg{display:flex;gap:18px;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--mute)}
+.mb-leg span{display:inline-flex;align-items:center;gap:6px}
+.lg{width:9px;height:9px;border-radius:50%;background:var(--g);display:inline-block}.lg.own{background:#C8D3DC}
+@media (prefers-reduced-motion:reduce){.pvf img,.ti::before,.rv,.cvbox{opacity:1!important;transform:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media (max-width:860px){
+    .hero-g{grid-template-columns:1fr;gap:40px}
+  .cover{margin:0 auto;max-width:340px}
+  .hero-t{text-align:center}
+  .hero-t .lede{margin-left:auto;margin-right:auto}
+  .hero-t .ctas{justify-content:center}
+  .mb-r{grid-template-columns:96px 1fr 46px}.mb-s{display:none}
+  .toc{grid-template-columns:1fr;gap:28px}
+  .pv{position:relative;top:0;order:-1}
+  .get .wrap{grid-template-columns:1fr;gap:44px}
+  .bar nav a:not(.dl){display:none}
+}
+@media (max-width:480px){.wrap{padding:0 16px}.row{grid-template-columns:1fr}.hero{padding-top:64px}}
+</style>
+<style>
+.cover .cvbox img{display:block;width:100%;height:auto}
+.pvx{position:relative;aspect-ratio:760/1075;max-height:72vh;margin:0 auto;border:1px solid #dfe7e2;background:#fff;overflow:hidden}
+.pvx img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .45s}
+.pvx img.on{opacity:1}
+.pvn{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b9a90;margin-top:8px;text-align:center}
+.toc>div:last-child{position:sticky;top:90px}
+.ti{padding:12px 0!important}
+.get .dlw{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <img src="/assets/logo-gemi-icon.png" alt="Iniciativa GEMI">
+  <nav><a class="dl" href="#descarga">Descargar</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="wrap hero-g">
+  <div class="cover" id="cover"><div class="cvbox"><img src="portada.jpg" alt="Portada del Reporte Anual 2026" width="760" height="1075"></div></div>
+  <div class="hero-t">
+    <div class="eyebrow mono">Reporte Anual · 2026</div>
+    <h1>Informe de actividades 2026</h1>
+    <p class="lede">Lo que hicimos con nuestras empresas socias en 2026 y las prioridades de 2027</p>
+    <div class="ctas"><a class="btn" href="GEMI_Reporte_Anual_2026.pdf" download>Descargar el reporte</a></div>
+    <div class="by">Iniciativa GEMI · Información actualizada al 17 de noviembre de 2026</div>
+  </div>
+</div></section>
+<section class="blk"><div class="wrap">
+  <h2 class="rv">Lo que encontrarás en el reporte</h2>
+  <p class="intro rv">Cada cifra proviene de registros públicos que abrimos y verificamos, y de la agenda de trabajo de Iniciativa GEMI.</p>
+  <div class="toc rv">
+    <div class="tl" id="tl"><button class="ti on" data-p="02"><i>02</i><span><b>Empresas socias</b><p>Once empresas, el Consejo Directivo y 32 años de agenda común.</p></span></button><button class="ti" data-p="03"><i>03</i><span><b>Programa de Trabajo 2026</b><p>Balance por frente: lo logrado y lo que depende de otras instancias.</p></span></button><button class="ti" data-p="04"><i>04</i><span><b>Perspectivas regulatorias 2027</b><p>Cinco frentes y la exposición de cada sector de la industria.</p></span></button><button class="ti" data-p="05"><i>05</i><span><b>Economía circular</b><p>La Ley General, la REP y la implementación en las 32 entidades.</p></span></button><button class="ti" data-p="07"><i>07</i><span><b>Nueva LGEEPA y agenda legislativa</b><p>Los seis puntos que seguimos frente al cuadro de trabajo.</p></span></button><button class="ti" data-p="08"><i>08</i><span><b>Estado de México</b><p>La secuencia de trabajo con ocho empresas socias.</p></span></button><button class="ti" data-p="09"><i>09</i><span><b>2026 en imágenes</b><p>El año en el Senado, en las plantas y con las autoridades.</p></span></button><button class="ti" data-p="10"><i>10</i><span><b>Agua, energía e impuestos ambientales</b><p>El medidor obligatorio y 18 entidades con impuestos ambientales.</p></span></button><button class="ti" data-p="12"><i>12</i><span><b>Normas oficiales mexicanas</b><p>Ocho normas en seguimiento en el COMARNAT.</p></span></button><button class="ti" data-p="14"><i>14</i><span><b>Comercio exterior e inteligencia regulatoria</b><p>Sustancias en envases y las alertas anticipadas a los socios.</p></span></button><button class="ti" data-p="15"><i>15</i><span><b>Compromiso 2028 y prioridades</b><p>Agenda 2030 y las prioridades de 2027.</p></span></button><button class="ti" data-p="16"><i>16</i><span><b>Elecciones de 2027</b><p>La renovación política y la industria.</p></span></button><button class="ti" data-p="17"><i>17</i><span><b>Calendario 2027</b><p>Fechas del calendario público y compromisos de GEMI.</p></span></button><button class="ti" data-p="18"><i>18</i><span><b>Scope</b><p>La plataforma que sostiene nuestra inteligencia regulatoria.</p></span></button></div>
+    <div><div class="pvx" id="pvx"><img src="pag/02.jpg" data-p="02" alt="Página 2 del reporte" loading="lazy" class=on><img src="pag/03.jpg" data-p="03" alt="Página 3 del reporte" loading="lazy"><img src="pag/04.jpg" data-p="04" alt="Página 4 del reporte" loading="lazy"><img src="pag/05.jpg" data-p="05" alt="Página 5 del reporte" loading="lazy"><img src="pag/07.jpg" data-p="07" alt="Página 7 del reporte" loading="lazy"><img src="pag/08.jpg" data-p="08" alt="Página 8 del reporte" loading="lazy"><img src="pag/09.jpg" data-p="09" alt="Página 9 del reporte" loading="lazy"><img src="pag/10.jpg" data-p="10" alt="Página 10 del reporte" loading="lazy"><img src="pag/12.jpg" data-p="12" alt="Página 12 del reporte" loading="lazy"><img src="pag/14.jpg" data-p="14" alt="Página 14 del reporte" loading="lazy"><img src="pag/15.jpg" data-p="15" alt="Página 15 del reporte" loading="lazy"><img src="pag/16.jpg" data-p="16" alt="Página 16 del reporte" loading="lazy"><img src="pag/17.jpg" data-p="17" alt="Página 17 del reporte" loading="lazy"><img src="pag/18.jpg" data-p="18" alt="Página 18 del reporte" loading="lazy"></div><div class="pvn" id="pvn">Página 02 de 19</div></div>
+  </div>
+</div></section>
+<section class="get" id="descarga"><div class="wrap">
+  <div class="rv">
+    <h2>Descarga el reporte</h2>
+    <div class="mini"><img src="portada.jpg" alt="" width="92" height="130"><span>PDF · 19 páginas · 5 MB<br>Noviembre de 2026</span></div>
+  </div>
+  <div class="rv dlw"><a class="btn" href="GEMI_Reporte_Anual_2026.pdf" download>Descargar PDF</a></div>
+</div></section>
+</main>
+<footer><div class="wrap">
+  <span>Iniciativa GEMI · Reporte Anual 2026</span>
+  <span><a href="/">scopegemi.com</a> &nbsp;·&nbsp; <a href="mailto:contacto@scopegemi.com">contacto@scopegemi.com</a></span>
+</div></footer>
+<script>
+(function(){
+  var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.18}):null;
+  document.querySelectorAll('.rv').forEach(function(el){io?io.observe(el):el.classList.add('on');});
+  var cv=document.getElementById('cover');requestAnimationFrame(function(){cv.classList.add('on');});
+  var bs=[].slice.call(document.querySelectorAll('.ti')),ims=[].slice.call(document.querySelectorAll('#pvx img')),pvn=document.getElementById('pvn');
+  function pick(b){bs.forEach(function(x){x.classList.toggle('on',x===b);});var p=b.dataset.p;ims.forEach(function(im){im.classList.toggle('on',im.dataset.p===p);});pvn.textContent='Página '+p+' de 19';}
+  bs.forEach(function(b){b.addEventListener('click',function(){pick(b);});b.addEventListener('mouseenter',function(){pick(b);});});
+})();
+</script>
+</body>
+</html>
