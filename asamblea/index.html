@@ -1805,6 +1805,9 @@ i.x.n{width:14px;height:2px;border-radius:0;background:#c9d4cd}
 .as-src{left:calc(7vw + 84px)!important}
 .as-h{text-wrap:balance;max-width:18ch;margin-left:auto;margin-right:auto}
 
+/* Cada lámina mide exactamente una pantalla */
+.deck>section{height:100vh;min-height:100vh;max-height:100vh}
+
 </style>
 </head>
 <body>
@@ -2295,7 +2298,7 @@ i.x.n{width:14px;height:2px;border-radius:0;background:#c9d4cd}
     if(ro)ro.observe(tree);
   }
   function animate(sec){ var a=sec.getAttribute('data-anim'); if(a==='stats')countUp(sec); else if(a==='type')typewriter(sec); else if(a==='tree')tree(sec); }
-  function cur(){return Math.max(0,Math.min(secs.length-1,Math.round(deck.scrollTop/deck.clientHeight)));}
+  function cur(){var d=deck.getBoundingClientRect().top,m=deck.clientHeight*.5,b=0;for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top-d<=m)b=i;}return b;}
   var lastCur=-1;
   function setCurrent(i){
     if(i===lastCur)return; lastCur=i;
@@ -2455,6 +2458,25 @@ i.x.n{width:14px;height:2px;border-radius:0;background:#c9d4cd}
   if(PRINT){secs.forEach(function(s){s.classList.add('in');count(s);});return;}
   var mo=new MutationObserver(function(ms){ms.forEach(function(m){var s=m.target;if(s.classList.contains('in'))count(s);});});
   secs.forEach(function(s){mo.observe(s,{attributes:true,attributeFilter:['class']});if(s.classList.contains('in'))count(s);});
+})();
+
+/* Navegación por teclado: avanza desde la lámina destino, no desde la posición a medio desplazamiento */
+(function(){
+  if(/[?&]print/i.test(location.search))return;
+  var deck=document.querySelector('.deck'),secs=[].slice.call(document.querySelectorAll('.deck>section'));
+  if(!deck||!secs.length)return;
+  function cur(){var d=deck.getBoundingClientRect().top,m=deck.clientHeight*.5,b=0;for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top-d<=m)b=i;}return b;}
+  var tgt=null,tm=null;
+  function go(i){i=Math.max(0,Math.min(secs.length-1,i));tgt=i;secs[i].scrollIntoView({behavior:'smooth'});clearTimeout(tm);tm=setTimeout(function(){tgt=null;},1100);}
+  document.addEventListener('keydown',function(e){
+    var k=e.key,base=tgt!==null?tgt:cur(),n=null;
+    if(['ArrowDown','ArrowRight','PageDown',' '].indexOf(k)>=0)n=base+1;
+    else if(['ArrowUp','ArrowLeft','PageUp'].indexOf(k)>=0)n=base-1;
+    else if(k==='Home')n=0;else if(k==='End')n=secs.length-1;
+    if(n===null)return;
+    e.preventDefault();e.stopImmediatePropagation();go(n);
+  },true);
+  deck.addEventListener('scrollend',function(){tgt=null;});
 })();
 
 </script>
