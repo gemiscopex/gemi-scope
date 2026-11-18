@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-17T14:34 CDMX",
+  "actualizado": "2026-11-18T14:13 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -203,6 +203,13 @@
     "recursos": 24
    },
    {
+    "titulo": "Producción de Hidrocarburos (2026)",
+    "org": "Secretaría de Energía (SENER)",
+    "fecha": "2026-11-18",
+    "url": "https://www.datos.gob.mx/dataset/produccion_hidrocarburos_2026",
+    "recursos": 8
+   },
+   {
     "titulo": "Coordenadas de pozos terminados (2026)",
     "org": "Secretaría de Energía (SENER)",
     "fecha": "2026-11-12",
@@ -222,13 +229,6 @@
     "fecha": "2026-11-11",
     "url": "https://www.datos.gob.mx/dataset/contratos_para_exploracion_extraccion_hidrocarburos_2026",
     "recursos": 16
-   },
-   {
-    "titulo": "Títulos de Asignación para Desarrollo Propio para la exploración y extracción de hidrocarburos",
-    "org": "Secretaría de Energía (SENER)",
-    "fecha": "2026-11-11",
-    "url": "https://www.datos.gob.mx/dataset/titulos_asignacion_desarrollo_propio_exploracion_extraccion_hidrocarburos",
-    "recursos": 3
    },
    {
     "titulo": "Gas Natural",
