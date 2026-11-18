@@ -1455,12 +1455,11 @@ section.in .yr-c{opacity:1;transform:none}
 .bp-tl span{font-family:var(--mono);font-size:13px;font-weight:700;color:#066750}
 .bp-tl p{font-size:clamp(14px,1.35vw,16.5px);line-height:1.45;color:var(--mut-l)}
 .bp-tl p b{color:var(--ink-l)}
-.bp-tl .hl span{color:#066750}
 .bp-tl.dk>div{border-top-color:rgba(255,255,255,.12)}
 .bp-tl.dk span{color:var(--kick-d)}
 .bp-tl.dk p{color:var(--mut-d)}
 .bp-tl.dk p b{color:#fff}
-.bp-tl.dk .hl span{color:#ff9aa1}
+.bp-tl.dk .hl span{color:#3fe0ad}
 
 /* Dos bloques de texto plano */
 .bp-2c{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,3vw,44px)}
@@ -1707,6 +1706,14 @@ section.in .fb{opacity:1;transform:none}
 /* Tabla de estados: nota completa en texto */
 .bp-tt+.fx-t2{margin-top:10px}
 .bp-el .mx-lg span{font-family:var(--sans)!important;text-transform:none!important;letter-spacing:0!important;font-size:12px!important;font-weight:400!important}
+/* Cada lámina mide la pantalla */
+body:not(.print-mode) .deck>section{height:100vh!important;min-height:0!important;max-height:100vh}
+/* Tlaxcala: sin rojo en la línea de tiempo oscura */
+.bp-tl.dk .hl span{color:#3fe0ad!important}
+.bp-mul{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,2.6vw,40px);align-items:center;margin-top:10px}
+.bp-mul .mb3{gap:20px}
+
+.bp-fitting .r,.bp-fitting .r *{transform:none!important;transition:none!important}
 
 </style>
 </head>
@@ -1739,7 +1746,7 @@ section.in .fb{opacity:1;transform:none}
 </section>
 
 <section class="lt fx2" data-t="Contenido">
-<div class="k r">Contenido</div><div class="t r d1 fx-t">Ocho bloques, de la planta a la ley</div><div class="bp-idx r d2"><div class="bp-ix" style="--i:0"><span>01</span><b>El año en un mapa</b><em>Doce fechas, el reglamento y la nueva LGEEPA</em></div><div class="bp-ix" style="--i:1"><span>02</span><b>Agua</b><em>Medidor, permiso de descarga, NOM-001 y caducidad</em></div><div class="bp-ix" style="--i:2"><span>03</span><b>Energía y carbono</b><em>CONUEE, comercio de emisiones e impuestos estatales</em></div><div class="bp-ix" style="--i:3"><span>04</span><b>Residuos</b><em>NOM-160, disposición final, Tlaxcala y NOM-083</em></div><div class="bp-ix" style="--i:4"><span>05</span><b>Economía circular y REP</b><em>Acuerdos por sector, fibra recuperada y sustancias en envases</em></div><div class="bp-ix" style="--i:5"><span>06</span><b>Nueva LGEEPA</b><em>Texto en discusión</em></div><div class="bp-ix" style="--i:6"><span>07</span><b>Los estados donde opera Bio Pappel</b><em>Régimen, impuestos y elecciones de 2027</em></div><div class="bp-ix" style="--i:7"><span>08</span><b>Calendario de cumplimiento</b><em>Las fechas de 2027</em></div></div>
+<div class="k r">Contenido</div><div class="t r d1 fx-t">Ocho bloques, de la planta a la ley</div><div class="bp-idx r d2"><div class="bp-ix" style="--i:0"><span>01</span><b>El año en un mapa</b><em>Trece fechas, el reglamento y la nueva LGEEPA</em></div><div class="bp-ix" style="--i:1"><span>02</span><b>Agua</b><em>Medidor, permiso de descarga, NOM-001 y caducidad</em></div><div class="bp-ix" style="--i:2"><span>03</span><b>Energía y carbono</b><em>CONUEE, comercio de emisiones e impuestos estatales</em></div><div class="bp-ix" style="--i:3"><span>04</span><b>Residuos</b><em>NOM-160, disposición final, Tlaxcala y NOM-083</em></div><div class="bp-ix" style="--i:4"><span>05</span><b>Economía circular y REP</b><em>Acuerdos por sector, fibra recuperada y sustancias en envases</em></div><div class="bp-ix" style="--i:5"><span>06</span><b>Nueva LGEEPA</b><em>Texto en discusión</em></div><div class="bp-ix" style="--i:6"><span>07</span><b>Los estados donde opera Bio Pappel</b><em>Régimen, impuestos y elecciones de 2027</em></div><div class="bp-ix" style="--i:7"><span>08</span><b>Calendario de cumplimiento</b><em>Las fechas de 2027</em></div></div>
 </section>
 
 <section class="dk" data-t="01 · El año en un mapa">
@@ -1749,8 +1756,8 @@ section.in .fb{opacity:1;transform:none}
 <div class="div-sub r d2">Lo que pasó en 2026 y lo que sigue abierto</div>
 </section>
 
-<section class="lt fx2 bp-yr" data-t="Doce fechas" data-anim="yr">
-<div class="k r">01 · El año en un mapa</div><div class="t r d1 fx-t fx-long">Doce fechas de 2026 que tocan la operación de una planta</div><div class="yr r d2"><div class="yr-ax"><span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span><span>May</span><span>Jun</span><span>Jul</span><span>Ago</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dic</span></div><div class="yr-ln"><i></i></div><em class="yr-d" data-k="0" style="left:4.93%;--i:0"></em><em class="yr-d" data-k="1" style="left:18.90%;--i:1"></em><em class="yr-d" data-k="2" style="left:43.56%;--i:2"></em><em class="yr-d" data-k="3" style="left:54.52%;--i:3"></em><em class="yr-d" data-k="4" style="left:58.90%;--i:4"></em><em class="yr-d" data-k="5" style="left:64.93%;--i:5"></em><em class="yr-d" data-k="6" style="left:73.97%;--i:6"></em><em class="yr-d" data-k="7" style="left:74.52%;--i:7"></em><em class="yr-d" data-k="8" style="left:78.63%;--i:8"></em><em class="yr-d" data-k="9" style="left:82.74%;--i:9"></em><em class="yr-d" data-k="10" style="left:83.84%;--i:10"></em><em class="yr-d" data-k="11" style="left:86.58%;--i:11"></em><em class="yr-hoy" id="yr-hoy"></em></div><div class="yr-g"><div class="yr-c" data-k="0" style="--i:0"><span>19 ene</span><p><b>Ley General de Economía Circular</b> en el Diario Oficial</p></div><div class="yr-c" data-k="1" style="--i:1"><span>11 mar</span><p><b>NOM-001.</b> Color verdadero y toxicidad aguda, obligatorios en descargas</p></div><div class="yr-c" data-k="2" style="--i:2"><span>9 jun</span><p><b>PROY-NOM-160</b> de planes de manejo de residuos peligrosos</p></div><div class="yr-c" data-k="3" style="--i:3"><span>19 jul</span><p>Vence el plazo para el <b>reglamento</b> de la Ley General</p></div><div class="yr-c" data-k="4" style="--i:4"><span>4 ago</span><p><b>Cuota de garantía de no caducidad</b> de concesiones de agua</p></div><div class="yr-c" data-k="5" style="--i:5"><span>26 ago</span><p>Iniciativa de <b>nueva LGEEPA</b>; <b>PET, multicapa y llantas</b>, señalados para la REP</p></div><div class="yr-c" data-k="6" style="--i:6"><span>28 y 29 sep</span><p>Audiencias públicas de la <b>nueva LGEEPA</b></p></div><div class="yr-c" data-k="7" style="--i:7"><span>30 sep</span><p><b>CONUEE</b> exige ISO 50001 a grandes consumidores</p></div><div class="yr-c" data-k="8" style="--i:8"><span>15 oct</span><p><b>Tlaxcala</b> declara emergencia por saturación de su relleno</p></div><div class="yr-c" data-k="9" style="--i:9"><span>30 oct</span><p><b>Permiso de descarga</b> pide porcentaje de agua reutilizada</p></div><div class="yr-c" data-k="10" style="--i:10"><span>3 nov</span><p>La comisión ajusta la <b>nueva LGEEPA</b>, sin fecha de dictamen</p></div><div class="yr-c" data-k="11" style="--i:11"><span>13 nov</span><p><b>Medidor de agua</b> obligatorio desde 2027, en el Diario Oficial</p></div></div><p class="bp-src r d7">Fuente: Diario Oficial de la Federación, Cámara de Diputados, CONUEE y CONAGUA. Reportes semanales de Iniciativa GEMI.</p>
+<section class="lt fx2 bp-yr" data-t="Trece fechas" data-anim="yr">
+<div class="k r">01 · El año en un mapa</div><div class="t r d1 fx-t fx-long">Trece fechas de 2026 que tocan la operación de una planta</div><div class="yr r d2"><div class="yr-ax"><span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span><span>May</span><span>Jun</span><span>Jul</span><span>Ago</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dic</span></div><div class="yr-ln"><i></i></div><em class="yr-d" data-k="0" style="left:4.93%;--i:0"></em><em class="yr-d" data-k="1" style="left:18.90%;--i:1"></em><em class="yr-d" data-k="2" style="left:43.56%;--i:2"></em><em class="yr-d" data-k="3" style="left:54.52%;--i:3"></em><em class="yr-d" data-k="4" style="left:58.90%;--i:4"></em><em class="yr-d" data-k="5" style="left:64.93%;--i:5"></em><em class="yr-d" data-k="6" style="left:66.58%;--i:6"></em><em class="yr-d" data-k="7" style="left:73.97%;--i:7"></em><em class="yr-d" data-k="8" style="left:74.52%;--i:8"></em><em class="yr-d" data-k="9" style="left:78.63%;--i:9"></em><em class="yr-d" data-k="10" style="left:82.74%;--i:10"></em><em class="yr-d" data-k="11" style="left:83.84%;--i:11"></em><em class="yr-d" data-k="12" style="left:86.58%;--i:12"></em><em class="yr-hoy" id="yr-hoy"></em></div><div class="yr-g"><div class="yr-c" data-k="0" style="--i:0"><span>19 ene</span><p><b>Ley General de Economía Circular</b> en el Diario Oficial</p></div><div class="yr-c" data-k="1" style="--i:1"><span>11 mar</span><p><b>NOM-001.</b> Color verdadero y toxicidad aguda, obligatorios en descargas</p></div><div class="yr-c" data-k="2" style="--i:2"><span>9 jun</span><p><b>PROY-NOM-160</b> de planes de manejo de residuos peligrosos</p></div><div class="yr-c" data-k="3" style="--i:3"><span>19 jul</span><p>Vence el plazo para el <b>reglamento</b> de la Ley General</p></div><div class="yr-c" data-k="4" style="--i:4"><span>4 ago</span><p><b>Cuota de garantía de no caducidad</b> de concesiones de agua</p></div><div class="yr-c" data-k="5" style="--i:5"><span>26 ago</span><p><b>PET, multicapa y llantas</b>, señalados para la REP</p></div><div class="yr-c" data-k="6" style="--i:6"><span>1 sep</span><p>Iniciativa de <b>nueva LGEEPA</b> en la Gaceta Parlamentaria</p></div><div class="yr-c" data-k="7" style="--i:7"><span>28 y 29 sep</span><p>Audiencias públicas de la <b>nueva LGEEPA</b></p></div><div class="yr-c" data-k="8" style="--i:8"><span>30 sep</span><p><b>CONUEE</b> exige ISO 50001 a grandes consumidores</p></div><div class="yr-c" data-k="9" style="--i:9"><span>15 oct</span><p><b>Tlaxcala</b> declara emergencia por saturación de su relleno</p></div><div class="yr-c" data-k="10" style="--i:10"><span>30 oct</span><p><b>Permiso de descarga</b> pide porcentaje de agua reutilizada</p></div><div class="yr-c" data-k="11" style="--i:11"><span>3 nov</span><p>La comisión ajusta la <b>nueva LGEEPA</b>, sin fecha de dictamen</p></div><div class="yr-c" data-k="12" style="--i:12"><span>13 nov</span><p><b>Medidor de agua</b> obligatorio desde 2027, en el Diario Oficial</p></div></div><p class="bp-src r d7">Fuente: Diario Oficial de la Federación; Cámara de Diputados, Gaceta Parlamentaria 7116-II-2, 1 de septiembre de 2026; CONUEE y CONAGUA. Reportes semanales de Iniciativa GEMI.</p>
 </section>
 
 <section class="lt fx2" data-t="Sin reglamento">
@@ -1862,8 +1869,8 @@ section.in .fb{opacity:1;transform:none}
 <label class="calc-in"><span>Emisiones directas de una planta</span><input id="calc-t" type="text" inputmode="numeric" value="25,000" aria-label="Toneladas de CO2 equivalente al año"><em>tCO₂e al año</em></label>
 <div class="calc-b"><div class="cb" data-f="mex"><div class="cb-h"><b>Estado de México</b><span>4 plantas · $58 por tCO₂e</span></div><div class="cb-t"><i></i></div><em class="cb-v">—</em></div><div class="cb" data-f="qro"><div class="cb-h"><b>Querétaro</b><span>1 planta · 5.6 UMA por tCO₂e ($656.94)</span></div><div class="cb-t"><i></i></div><em class="cb-v">—</em></div><div class="cb" data-f="dgo"><div class="cb-h"><b>Durango</b><span>1 planta · $100 por tCO₂e</span></div><div class="cb-t"><i></i></div><em class="cb-v">—</em></div><div class="cb" data-f="gto"><div class="cb-h"><b>Guanajuato</b><span>1 planta · $100 por tCO₂e</span></div><div class="cb-t"><i></i></div><em class="cb-v">—</em></div></div>
 </div></div>
-<div class="fx-r"><div class="bp-num r d3"><b data-count="13">13</b><span>entidades cobran impuesto a las emisiones de gases de efecto invernadero</span></div><p class="fx-s r d3">La Ciudad de México subió su tarifa de 58 a 60 pesos en 2026.</p>
-<div class="bp-2c one r d4" style="margin-top:14px"><div><span class="bp-mk">Nuevo León · otra base gravable</span><p>Cuatro plantas. Grava PM10, PM2.5, PST, NOx y SO₂, no gases de efecto invernadero: 2.79 UMA por tonelada ($327.29). Su reforma de mayo de 2026 sigue en seguimiento.</p></div></div><p class="fx-t2 r d4">Jalisco, con cuatro plantas, tiene un impuesto a emisiones en evaluación.</p></div></div><p class="bp-src r d7">Fuente: Iniciativa GEMI, mapa de impuestos ambientales 2026. Ley de Hacienda de Durango, art. 88; Secretaría de Finanzas de Querétaro; Código Financiero del Estado de México; Ley de Hacienda de Guanajuato. UMA 2026 de $117.31. Bio Pappel, localizador de plantas. El cálculo es ilustrativo: cada ley define su base gravable, sus factores de conversión y sus exenciones, y la causación depende de las emisiones de cada instalación.</p>
+<div class="fx-r"><div class="bp-num r d3"><b data-count="13">13</b><span>entidades cobran impuesto a las emisiones de gases de efecto invernadero</span></div><p class="fx-s r d3">La Ciudad de México cobra 60 pesos por tonelada desde 2025.</p>
+<div class="bp-2c one r d4" style="margin-top:14px"><div><span class="bp-mk">Nuevo León · otra base gravable</span><p>Cuatro plantas. Grava PM10, PM2.5, PST, NOx y SO₂, no gases de efecto invernadero: 2.79 UMA por tonelada ($327.29). Su reforma de mayo de 2026 sigue en seguimiento.</p></div></div><p class="fx-t2 r d4">Jalisco, con cuatro plantas, tiene un impuesto a emisiones en evaluación.</p></div></div><p class="bp-src r d7">Fuente: Iniciativa GEMI, mapa de impuestos ambientales 2026. Ley de Hacienda de Durango, art. 88; Ley de Hacienda del Estado de Querétaro, art. 83 BIS-11 (5.6 UMA por tCO₂e); Código Financiero del Estado de México; Ley de Hacienda de Guanajuato. UMA 2026 de $117.31. Bio Pappel, localizador de plantas. El cálculo es ilustrativo: cada ley define su base gravable, sus factores de conversión y sus exenciones, y la causación depende de las emisiones de cada instalación.</p>
 </section>
 
 <section class="dk" data-t="04 · Residuos">
@@ -1957,11 +1964,11 @@ section.in .fb{opacity:1;transform:none}
 </section>
 
 <section class="lt fx2" data-t="Diseño del acuerdo de envases">
-<div class="k r">05 · Economía circular y REP</div><div class="t r d1 fx-t fx-long">La industria de la fibra recuperada puede participar en el diseño del acuerdo de envases</div><div class="fib r d2"><div class="fb" style="--i:0"><i></i><b>Recolección y acopio</b><p>Fibra recuperada como materia prima secundaria (art. 3 XVII).</p></div><div class="fb" style="--i:1"><i></i><b>Proceso en planta</b><p>Metas de incorporación de reciclados en el Programa Nacional (art. 21 XII e).</p></div><div class="fb" style="--i:2"><i></i><b>Envase de papel y cartón</b><p>Cumplimiento indirecto por Encadenamiento Sustentable (art. 40).</p></div><div class="fb" style="--i:3"><i></i><b>Acuerdo general del sector</b><p>SEMARNAT convoca al sector productivo a elaborar el proyecto (art. 10).</p></div></div><div class="fx-g" style="grid-template-columns:1fr 1fr;align-items:start;margin-top:26px"><div class="fx-l"><div class="bp-2c one r d4"><div><span class="bp-mk">Iniciativa GEMI</span><p>Firmará el 1 de diciembre un convenio con la Alianza Nacional de Recicladores, Transportistas y Similares, que agrupa a cerca de 800 recicladores. Participa en las mesas del Programa Nacional de envases y plásticos y de comercio, servicios, turismo y logística.</p></div></div></div><div class="fx-r r d5"><span class="bp-mk">Temas para el diseño del acuerdo</span><div class="ask chk r d3"><div class="ask-r"><span>01</span><b>Trazabilidad</b></div><div class="ask-r"><span>02</span><b>Acreditación de contenido reciclado</b></div><div class="ask-r"><span>03</span><b>Organismos coordinadores</b></div><div class="ask-r"><span>04</span><b>Reparto de responsabilidades en la cadena</b></div><div class="ask-r"><span>05</span><b>Sin duplicar obligaciones federales y estatales</b></div></div></div></div><p class="bp-src r d7">Fuente: Ley General de Economía Circular, DOF 19 de enero de 2026, arts. 3, 10, 21 y 40. Reporte semanal de Iniciativa GEMI del 17 de noviembre.</p>
+<div class="k r">05 · Economía circular y REP</div><div class="t r d1 fx-t fx-long">La industria de la fibra recuperada puede participar en el diseño del acuerdo de envases</div><div class="fib r d2"><div class="fb" style="--i:0"><i></i><b>Recolección y acopio</b><p>Fibra recuperada como materia prima secundaria (art. 3 XVII).</p></div><div class="fb" style="--i:1"><i></i><b>Proceso en planta</b><p>Metas de incorporación de reciclados en el Programa Nacional (art. 21 XII e).</p></div><div class="fb" style="--i:2"><i></i><b>Envase de papel y cartón</b><p>Cumplimiento indirecto por Encadenamiento Sustentable (art. 40).</p></div><div class="fb" style="--i:3"><i></i><b>Acuerdo general del sector</b><p>SEMARNAT convoca al sector productivo a elaborar el proyecto (art. 10).</p></div></div><div class="fx-g" style="grid-template-columns:1fr 1fr;align-items:start;margin-top:26px"><div class="fx-l"><div class="bp-2c one r d4"><div><span class="bp-mk">Iniciativa GEMI</span><p>Firmaremos el 1 de diciembre un convenio con la Alianza Nacional de Recicladores, Transportistas y Similares, que agrupa a cerca de 800 recicladores. Participamos en las mesas del Programa Nacional de envases y plásticos y de comercio, servicios, turismo y logística.</p></div></div></div><div class="fx-r r d5"><span class="bp-mk">Temas para el diseño del acuerdo</span><div class="ask chk r d3"><div class="ask-r"><span>01</span><b>Trazabilidad</b></div><div class="ask-r"><span>02</span><b>Acreditación de contenido reciclado</b></div><div class="ask-r"><span>03</span><b>Organismos coordinadores</b></div><div class="ask-r"><span>04</span><b>Reparto de responsabilidades en la cadena</b></div><div class="ask-r"><span>05</span><b>Sin duplicar obligaciones federales y estatales</b></div></div></div></div><p class="bp-src r d7">Fuente: Ley General de Economía Circular, DOF 19 de enero de 2026, arts. 3, 10, 21 y 40. Reporte semanal de Iniciativa GEMI del 17 de noviembre.</p>
 </section>
 
 <section class="lt fx2" data-t="Sustancias en envases">
-<div class="k r">05 · Economía circular y REP</div><div class="t r d1 fx-t fx-long">Los PFAS de las barreras contra grasa ponen al envase de papel en la agenda de sustancias</div><div class="fx-g" style="grid-template-columns:1fr 1fr;align-items:start"><div class="fx-l"><div class="bp-tl r d2"><div><span>12 ago 2026</span><p>Rige el límite europeo a los PFAS en envases en contacto con alimentos.</p></div><div class="hl"><span>1er trim 2027</span><p><b>Foro en el Senado y firma del Acuerdo Voluntario de Sustancias en Envases de Iniciativa GEMI.</b></p></div></div></div><div class="fx-r"><div class="bp-2c one r d3"><div><span class="bp-mk">Dónde está el tema en papel</span><p>Las barreras contra grasa de envases de papel y cartón pueden usar PFAS.</p></div><div><span class="bp-mk">Por confirmar con Bio Pappel</span><p>Si exporta envases a la Unión Europea, el límite europeo aplica a esos productos.</p></div></div></div></div><p class="bp-src r d7">Fuente: Reglamento (UE) 2025/40 de envases y residuos de envases. Iniciativa GEMI, Acuerdo Voluntario de Sustancias en Envases.</p>
+<div class="k r">05 · Economía circular y REP</div><div class="t r d1 fx-t fx-long">Los PFAS de las barreras contra grasa ponen al envase de papel en la agenda de sustancias</div><div class="fx-g" style="grid-template-columns:1fr 1fr;align-items:start"><div class="fx-l"><div class="bp-tl r d2"><div><span>12 ago 2026</span><p>Rige el límite europeo a los PFAS en envases en contacto con alimentos.</p></div><div class="hl"><span>1er trim 2027</span><p><b>Foro en el Senado y firma del Acuerdo Voluntario de Sustancias en Envases de Iniciativa GEMI.</b></p></div></div></div><div class="fx-r"><div class="bp-2c one r d3"><div><span class="bp-mk">Dónde está el tema en papel</span><p>Las barreras contra grasa de envases de papel y cartón pueden usar PFAS.</p></div><div><span class="bp-mk">Posición de los socios</span><p>Presentamos a la presidencia de la Comisión de Economía del Senado la posición de los socios sobre sustancias en envases, base del Acuerdo Voluntario.</p></div><div><span class="bp-mk">Por confirmar con Bio Pappel</span><p>Si exporta envases a la Unión Europea, el límite europeo aplica a esos productos.</p></div></div></div></div><p class="bp-src r d7">Fuente: Reglamento (UE) 2025/40 de envases y residuos de envases. Iniciativa GEMI, Acuerdo Voluntario de Sustancias en Envases.</p>
 </section>
 
 <section class="dk" data-t="06 · Nueva LGEEPA">
@@ -1982,14 +1989,16 @@ section.in .fb{opacity:1;transform:none}
 </section>
 
 <section class="lt fx2 bp-multas" data-t="Multas" data-anim="stats">
-<div class="fx-g" style="grid-template-columns:1fr 1fr"><div class="fx-l"><div class="k r">06 · Nueva LGEEPA · Texto en discusión</div><div class="t r d1 fx-t">El texto en discusión multiplicaría por 40 la multa máxima</div>
-<div class="x40-v r d2"><span>×</span><b data-count="40">40</b></div>
-<div class="bp-2c one r d3" style="margin-top:18px"><div><span class="bp-mk">Medidas anticipadas ante indicios de riesgo ambiental · art. 283</span><p>Con indicios de riesgo, aun con incertidumbre científica, antes de que se acredite el daño.</p></div></div></div>
-<div class="fx-r"><div class="mb3 r d3">
-<div class="mb3-r"><div class="mb3-h"><span>LGEEPA vigente</span><b>50,000 UMA</b></div><span class="mb3-t"><i style="--w:2.5%"></i></span><em>Unos 5.9 millones de pesos</em></div>
-<div class="mb3-r rd"><div class="mb3-h"><span>Texto en discusión · art. 305</span><b>2,000,000 UMA</b></div><span class="mb3-t"><i style="--w:100%"></i></span><em>De 80 a 2 millones de UMA (art. 305). Unos 234.6 millones de pesos con la UMA de 2026, de 117.31 pesos.</em></div>
-</div>
-<div class="bp-2c one r d5" style="margin-top:30px"><div><span class="bp-mk">Posición de los socios en las audiencias</span><p>Proporcionalidad entre la falta y la sanción, y procedimientos claros antes de suspender una operación.</p></div></div></div></div><p class="bp-src r d7">Fuente: cuadro de trabajo de la Comisión de Medio Ambiente y Recursos Naturales, Cámara de Diputados, 3 de noviembre de 2026. INEGI, UMA 2026.</p>
+<div class="k r">06 · Nueva LGEEPA · Texto en discusión</div><div class="t r d1 fx-t fx-long">El texto en discusión multiplicaría por 40 la multa máxima</div>
+<div class="fx-g" style="grid-template-columns:1.15fr .85fr;align-items:start"><div class="fx-l"><div class="bp-mul r d2">
+<div class="x40-v"><span>×</span><b data-count="40">40</b></div>
+<div class="mb3">
+<div class="mb3-r"><div class="mb3-h"><span>LGEEPA vigente · art. 171</span><b>50,000 UMA</b></div><span class="mb3-t"><i style="--w:2.5%"></i></span><em>Unos 5.9 millones de pesos</em></div>
+<div class="mb3-r rd"><div class="mb3-h"><span>Texto en discusión · art. 305</span><b>2,000,000 UMA</b></div><span class="mb3-t"><i style="--w:100%"></i></span><em>De 80 a 2 millones de UMA. Unos 234.6 millones de pesos con la UMA de 2026, de 117.31 pesos.</em></div>
+</div></div></div>
+<div class="fx-r"><div class="bp-2c one r d4">
+<div><span class="bp-mk">Medidas anticipadas ante indicios de riesgo ambiental · art. 283</span><p>Con indicios de riesgo, aun con incertidumbre científica, antes de que se acredite el daño.</p></div>
+<div><span class="bp-mk">Posición de los socios en las audiencias</span><p>Proporcionalidad entre la falta y la sanción, y procedimientos claros antes de suspender una operación.</p></div></div></div></div><p class="bp-src r d7">Fuente: cuadro de trabajo de la Comisión de Medio Ambiente y Recursos Naturales, Cámara de Diputados, 3 de noviembre de 2026. INEGI, UMA 2026.</p>
 </section>
 
 <section class="lt fx2" data-t="Plantas en operación">
@@ -2126,7 +2135,7 @@ section.in .fb{opacity:1;transform:none}
     if(ro)ro.observe(tree);
   }
   function animate(sec){ var a=sec.getAttribute('data-anim'); if(a==='stats')countUp(sec); else if(a==='type')typewriter(sec); else if(a==='tree')tree(sec); }
-  function cur(){return Math.max(0,Math.min(secs.length-1,Math.round(deck.scrollTop/deck.clientHeight)));}
+  function cur(){var d=deck.getBoundingClientRect().top,m=deck.clientHeight*.5,b=0;for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top-d<=m)b=i;}return b;}
   var lastCur=-1;
   function setCurrent(i){
     if(i===lastCur)return; lastCur=i;
@@ -2371,6 +2380,53 @@ section.in .fb{opacity:1;transform:none}
       p.addEventListener('click',function(){var n=p.getAttribute('data-e');if(sel===n)reset();else show(n);});
     });
   }
+})();
+
+/* Cada lámina mide exactamente la pantalla: si el contenido no cabe, se reduce hasta caber (ventanas bajas, Zoom, proyector) */
+(function(){
+  if(/[?&]print/i.test(location.search))return;
+  var secs=[].slice.call(document.querySelectorAll('.deck>section'));
+  function kids(s){return [].slice.call(s.children).filter(function(k){var p=getComputedStyle(k).position;return p!=='absolute'&&p!=='fixed'&&!k.classList.contains('glow')&&!k.classList.contains('folio');});}
+  function need(s,ks){var top=s.getBoundingClientRect().top,pb=parseFloat(getComputedStyle(s).paddingBottom)||0,m=0;
+    ks.forEach(function(k){var r=k.getBoundingClientRect();m=Math.max(m,r.bottom-top);});return m+Math.min(pb,24);}
+  function fit(){
+    document.body.classList.add('bp-fitting');
+    secs.forEach(function(s){
+      var ks=kids(s);ks.forEach(function(k){k.style.zoom='';});
+      var f=1;
+      for(var n=0;n<6;n++){
+        var nd=need(s,ks),have=s.clientHeight,src=s.querySelector(':scope>.bp-src');
+        if(src&&getComputedStyle(src).position==='absolute'){have=src.getBoundingClientRect().top-s.getBoundingClientRect().top-8;nd-=Math.min(parseFloat(getComputedStyle(s).paddingBottom)||0,24);}
+        if(nd<=have+1)break;
+        f=f*Math.max(.5,(have-2)/nd);ks.forEach(function(k){k.style.zoom=f;});
+      }
+    });
+    document.body.classList.remove('bp-fitting');
+  }
+  var t=null;
+  window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,150);});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+  window.addEventListener('load',fit);fit();
+})();
+
+/* Navegación por teclado: avanza desde la lámina destino, no desde la posición a medio desplazamiento */
+(function(){
+  if(/[?&]print/i.test(location.search))return;
+  var deck=document.querySelector('.deck'),secs=[].slice.call(document.querySelectorAll('.deck>section'));
+  if(!deck||!secs.length)return;
+  function cur(){var d=deck.getBoundingClientRect().top,m=deck.clientHeight*.5,b=0;for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top-d<=m)b=i;}return b;}
+  var tgt=null,tm=null;
+  function go(i){i=Math.max(0,Math.min(secs.length-1,i));tgt=i;secs[i].scrollIntoView({behavior:'smooth'});clearTimeout(tm);tm=setTimeout(function(){tgt=null;},1100);}
+  document.addEventListener('keydown',function(e){
+    if(e.target&&/INPUT|TEXTAREA/.test(e.target.tagName))return;
+    var k=e.key,base=tgt!==null?tgt:cur(),n=null;
+    if(['ArrowDown','ArrowRight','PageDown',' '].indexOf(k)>=0)n=base+1;
+    else if(['ArrowUp','ArrowLeft','PageUp'].indexOf(k)>=0)n=base-1;
+    else if(k==='Home')n=0;else if(k==='End')n=secs.length-1;
+    if(n===null)return;
+    e.preventDefault();e.stopImmediatePropagation();go(n);
+  },true);
+  deck.addEventListener('scrollend',function(){tgt=null;});
 })();
 
 </script>
