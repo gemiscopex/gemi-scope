@@ -2147,6 +2147,17 @@ section.in .ap-cal2 p{opacity:1}
 .bp-nav.hide{opacity:0}
 @media (max-width:900px){.bp-nav{display:none}.ap-ap,.ap-demo,.ap-cal2{grid-template-columns:1fr}}
 @media print{.bp-nav{display:none}}
+/* Etapas de las iniciativas */
+.ap-seg .bar{display:flex;height:28px;border-radius:4px;overflow:hidden;margin:12px 0 16px;background:#eef3f0}
+.ap-seg .bar i{display:block;height:100%;width:0;transition:width 1.2s cubic-bezier(.3,0,.2,1) .4s}
+section.in .ap-seg .bar i{width:var(--w)}
+.ap-seg .a{--c:#066750}.ap-seg .b{--c:#57a88a}.ap-seg .c{--c:#c9d6cf}
+.ap-seg .bar i{background:var(--c)}
+.ap-seg p{display:grid;grid-template-columns:16px 44px 1fr;align-items:baseline;gap:10px;padding:8px 0;border-bottom:1px solid #eef3f0;font-size:clamp(14px,1.25vw,17px);color:var(--ink-l)}
+.ap-seg p i{width:12px;height:12px;border-radius:2px;background:var(--c)}
+.ap-seg p b{font-size:clamp(22px,2.2vw,32px);font-weight:800;color:var(--ink-l);font-variant-numeric:tabular-nums}
+.ap-seg p.pub{grid-template-columns:60px 1fr;border-bottom:0;margin-top:8px;color:#066750;font-weight:600}
+.ap-seg p.pub b{color:#066750}
 
 </style>
 </head>
@@ -2179,8 +2190,8 @@ section.in .ap-cal2 p{opacity:1}
 <div class="ap-k r">Apertura · Scope</div><h2 class="ap-h r d1">La regulación tiene patrones que podemos estudiar</h2><div class="ap-ap r d3"><div style="--i:0"><span class="n">01</span><b>La actividad legislativa se concentra</b><p>5 de los 32 congresos concentran 21 de las 46 iniciativas de ley de economía circular.</p></div><div style="--i:1"><span class="n">02</span><b>Las políticas se replican entre entidades</b><p>34 de las 46 iniciativas se presentaron después de la Ley General: una entidad sirve de antecedente a otra.</p></div><div style="--i:2"><span class="n">03</span><b>El proceso legislativo deja señales</b><p>El medidor de agua pasó por Diputados (13 oct), Senado (27 oct) y Diario Oficial (13 nov) antes de ser obligatorio.</p></div><div style="--i:3"><span class="n">04</span><b>Anticipar tiene valor económico</b><p>Los socios supieron del medidor 74 días antes de que fuera obligatorio: tiempo para presupuestar e instalar.</p></div></div><p class="bp-src r d7">Fuentes: Iniciativa GEMI, rastreo de los 32 congresos estatales; Ley Federal de Derechos 2027, DOF 13 de noviembre de 2026; reportes semanales de Iniciativa GEMI.</p>
 </section>
 
-<section data-b="1" class="lt split ap" data-t="Predicción legislativa">
-<div class="ap-k r">Apertura · Inteligencia prospectiva</div><h2 class="ap-h r d1">¿Podemos anticipar qué iniciativas se convertirán en ley?</h2><p class="ap-l r d2">Estamos construyendo las bases de un modelo probabilístico. Una lección de nuestros ejercicios: el volumen de atención pública, por sí solo, predice poco. El reto es identificar qué variables sí anticipan y comprobarlo con datos históricos.</p><div class="ap-left ap-var r d4"><div><span class="ap-tag">Variables políticas</span><p>Composición política · perfil del promovente · prioridad gubernamental</p></div><div><span class="ap-tag">Variables de proceso</span><p>Trayectoria legislativa · precedentes regulatorios · calendario parlamentario</p></div></div><div class="ap-pred r d3"><div class="flow"><span style="--i:0">Iniciativa</span><span style="--i:1">Turno</span><span style="--i:2">Dictamen</span><span style="--i:3">Votación</span></div><div class="core"><b>Modelo probabilístico</b><em>se actualiza con cada movimiento legislativo</em></div><div class="out"><span>Aprobación</span><span>Modificación</span><span>Estancamiento</span></div></div><p class="bp-src r d7">Arquitectura conceptual de un modelo por desarrollar y validar con pruebas fuera de muestra. Iniciativa GEMI.</p>
+<section data-b="1" class="lt split ap" data-t="Inteligencia legislativa">
+<div class="ap-k r">Apertura · Inteligencia en desarrollo</div><h2 class="ap-h r d1">Estamos aprendiendo a leer la trayectoria de las iniciativas</h2><p class="ap-l r d2">Es una línea de inteligencia que desarrollamos en GEMI, no un pronóstico del Congreso. La mayoría de las iniciativas no llega a ser ley: en el Congreso de Estados Unidos, alrededor de 4%. Por eso es más fácil anticipar lo que se estanca que lo que se aprueba.</p><div class="ap-left ap-var r d4"><div><span class="ap-tag">Lo que observamos</span><p>Turno, dictamen y votación · antecedentes en otras entidades · calendario legislativo · prioridad del gobierno</p></div><div><span class="ap-tag">Lo que hemos aprendido</span><p>El volumen de atención en medios, por sí solo, dice poco sobre si una iniciativa avanzará.</p></div></div><div class="ap-seg r d3"><span class="ap-tag">Las 46 iniciativas de ley de economía circular, por etapa</span><div class="bar"><i class="a" style="--w:50.0%"></i><i class="b" style="--w:23.9%"></i><i class="c" style="--w:26.1%"></i></div><p class="a"><i></i><b>23</b>En estudio, con movimiento reciente</p><p class="b"><i></i><b>11</b>Dictamen pendiente o promovente en la comisión</p><p class="c"><i></i><b>12</b>Sin movimiento reciente</p><p class="pub"><b>2</b>leyes armonizadas publicadas en 2026: Ciudad de México y Puebla</p></div><p class="bp-src r d7">Fuente: Iniciativa GEMI, rastreo de los 32 congresos estatales. Cifras al 18 de noviembre de 2026. Referencia de Estados Unidos: estadísticas legislativas del Congreso.</p>
 </section>
 
 <section data-b="1" class="lt ap" data-t="Cronología 2026">
