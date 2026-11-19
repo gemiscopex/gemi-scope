@@ -2020,6 +2020,41 @@ section.in .ap-4>div{opacity:1;transform:none}
 .ap-tb{width:100%}
 .ap-tbar .rw>div{min-width:0}
 
+/* ===== Distribución en dos columnas: texto a la izquierda, widget a la derecha ===== */
+section.ap .ap-h{font-size:clamp(30px,3.4vw,52px);max-width:24ch}
+section.ap.split{display:grid!important;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);column-gap:clamp(36px,5vw,88px);align-content:center;grid-auto-flow:row dense;padding:8vh 6vw 10vh 7vw!important}
+section.split .ap-h{font-size:clamp(28px,2.9vw,46px);max-width:none}
+section.split>*{grid-column:2;grid-row:1/span 8;align-self:center;min-width:0;margin-top:0!important}
+section.split>.ap-k,section.split>.ap-h,section.split>.ap-l,section.split>.ap-left{grid-column:1;grid-row:auto;align-self:start}
+section.split>.ap-l{margin-top:clamp(12px,2.2vh,20px)!important}
+section.split>.bp-src,section.split>.folio,section.split>.glow{grid-column:1/-1;grid-row:auto}
+/* contenedores que se reparten entre las dos columnas */
+section.split .ap-mx,section.split .ap-ctx,section.split .ap-cy,section.split .ap-pg,section.split .ap-calc,section.split>.mx{display:contents}
+section.split .ap-mx>div:first-child,section.split .ap-ctx>div:last-child,section.split .ap-cy>svg,section.split .ap-pg>.ap-ck,section.split .ap-calc>.calc,section.split>.mx>.mx-m{grid-column:2;grid-row:1/span 8;align-self:center;min-width:0}
+section.split .ap-mx>.ap-st,section.split .ap-mx>.ap-rank,section.split .ap-ctx>div:first-child,section.split .ap-cy>.ap-ck,section.split .ap-pg>.nums,section.split .ap-calc>.ap-side,section.split>.mx>.mx-p,section.split>.ap-ph{grid-column:1;grid-row:auto;align-self:start;margin-top:clamp(18px,3.4vh,32px)!important}
+section.split .ap-st.v{grid-template-columns:repeat(3,1fr);gap:18px}
+section.split .ap-st.v b{font-size:clamp(26px,2.6vw,38px)}
+section.split .ap-ctx>div:first-child .ap-st.v{grid-template-columns:1fr}
+section.split .ap-gg{grid-template-columns:repeat(2,1fr)!important;gap:22px 30px}
+section.split .bgg{width:clamp(110px,10vw,150px)}
+section.split .ap-mx .mx-svg,section.split>.mx .mx-svg{max-height:66vh}
+section.split .ap-cyc{max-width:420px;justify-self:center}
+section.split .ap-tb td{font-size:clamp(13px,1.15vw,16px)}
+section.split .ap-rank{margin-top:clamp(16px,3vh,28px)}
+section.split .ap-rank>div{padding:8px 0}
+section.split .ap-dg{max-width:none!important}
+section.split .ap-tbar{max-width:none}
+section.split .ap-rs{grid-template-columns:1fr;max-width:420px;padding-bottom:0;gap:12px}
+section.split .ap-rs .lnk{position:static;margin-top:6px;text-align:left}
+section.split .ap-tree .br{grid-template-columns:1fr}
+section.split .ap-stack{max-width:none}
+section.split>.mx{grid-template-columns:none}
+section.split .ap-tbar .rw p{flex-direction:column;align-items:flex-start;gap:4px}
+section.split .ap-tbar .rw p i{max-width:100%}
+section.split .ap-tbar .rw p span{font-size:12.5px}
+section.split .ap-bars{max-width:none}
+section.split .ap-note{max-width:none}
+
 </style>
 </head>
 <body>
