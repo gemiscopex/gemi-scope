@@ -1,8 +1,9 @@
 {
  "_meta": {
-  "ultima_actualizacion": "2026-11-18T21:15:14 CDMX",
-  "estados_con_actividad": 2,
+  "ultima_actualizacion": "2026-11-19T13:22:42 CDMX",
+  "estados_con_actividad": 3,
   "por_estado": {
+   "Yucatán": 16,
    "Colima": 6,
    "Durango": 12
   },
@@ -10,76 +11,94 @@
  },
  "items": [
   {
+   "estado": "Yucatán",
+   "fecha": "2026-11-19",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-19_1.pdf"
+  },
+  {
    "estado": "Durango",
-   "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/93-bis-2026_20261118141944.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/93-normal-2026_20261118203428.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/8-ext-2026_20261117133937.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/92-bis-2026_20261113113021.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/92-normal-2026_20261113161544.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/91-normal-2026_20261111205233.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/91-bis-2026_20261111205451.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/90-normal-2026_20261106131802.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/89-normal-2026_20261104171629.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/89-bis-2026_20261105130703.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/88-normal-2026_20261030142225.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
+   "fecha": "2026-11-19",
+   "titulo": "Periódico Oficial No. 93",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/87-normal-2026_20261028140444.pdf"
   },
   {
-   "estado": "Durango",
-   "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/87-bis-2026_20261029132249.pdf"
+   "estado": "Yucatán",
+   "fecha": "2026-11-18",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-18_1.pdf"
   },
   {
-   "estado": "Durango",
+   "estado": "Yucatán",
    "fecha": "2026-11-17",
-   "titulo": "Periódico Oficial No. 8",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/86-bis-2026_20261023194205.pdf"
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-17_1.pdf"
   },
   {
    "estado": "Colima",
@@ -88,10 +107,46 @@
    "url": "https://periodicooficial.col.gob.mx/p/14112026/p26111401.pdf"
   },
   {
+   "estado": "Yucatán",
+   "fecha": "2026-11-13",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-13_1.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-11-12",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-12_1.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-11-11",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-11_1.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-11-11",
+   "titulo": "Diario Oficial · edición vespertina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-11_2.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-11-10",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-10_1.pdf"
+  },
+  {
    "estado": "Colima",
    "fecha": "2026-11-10",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/10112026/p26111001.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-11-09",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-09_1.pdf"
   },
   {
    "estado": "Colima",
@@ -100,10 +155,28 @@
    "url": "https://periodicooficial.col.gob.mx/p/07112026/p26110701.pdf"
   },
   {
+   "estado": "Yucatán",
+   "fecha": "2026-11-06",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-06_1.pdf"
+  },
+  {
    "estado": "Colima",
    "fecha": "2026-11-06",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/06112026/p26110601.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-11-05",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-05_1.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-11-05",
+   "titulo": "Diario Oficial · edición vespertina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-05_2.pdf"
   },
   {
    "estado": "Colima",
@@ -112,10 +185,34 @@
    "url": "https://periodicooficial.col.gob.mx/p/05112026/p26110501.pdf"
   },
   {
+   "estado": "Yucatán",
+   "fecha": "2026-11-04",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-04_1.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-11-03",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-03_1.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-11-03",
+   "titulo": "Diario Oficial · edición vespertina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-03_2.pdf"
+  },
+  {
    "estado": "Colima",
    "fecha": "2026-10-31",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/31102026/p26103101.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-10-30",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-10-30_1.pdf"
   }
  ]
 }
