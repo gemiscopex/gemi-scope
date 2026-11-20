@@ -1,5 +1,68 @@
 [
   {
+    "id": "a204f7a97815",
+    "titulo": "SpaceX niega que cohete Starship dejara cientos de escombros en playas de México: ‘Son invenciones’",
+    "url": "https://www.elfinanciero.com.mx/mundo/2026/11/19/spacex-niega-que-starship-dejara-cientos-de-escombros-en-playas-de-mexico-son-invenciones/",
+    "fuente": "El Financiero",
+    "resumen": "La Profepa reportó la recolección de más de mil 500 fragmentos del propulsor de Starship en playas de Tamaulipas y pedirá a SpaceX hacerse responsable de los residuos.",
+    "fecha_publicacion": "2026-11-20T01:20:12Z",
+    "categoria": "residuos",
+    "categoria_nombre": "Residuos",
+    "categorias": [
+      "residuos"
+    ],
+    "estado": "Tamaulipas",
+    "scrapeado_en": "2026-11-20T02:46:36.114729+00:00"
+  },
+  {
+    "id": "31ab0cd064d7",
+    "titulo": "Díaz Mena revisa con Conagua y Semar obras de agua en Mérida y ampliación del Puerto de Progreso",
+    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNbnVLdkMwdFVOSlctN3o4RWZKTzMwMjhGYVBLWFM0TzJKaEFhUEJrS1M2WS1fZzRWRFFSUnpKQWVkX0hreTFKeGs3REhjY21MSGIwQXJJbjlJUHV6WmJydENDRW12MWc3aUs1OXhTcFlKVllrUG9nNlk4ckxKRzJ3RGFYdlFONUJtR0dvc0ptVHZpcUs4Tld1RFk0cTRzQjItSVAxMG1kYmFfVGV1SXpjNGhxVy1aLWlVakNR0gHAAUFVX3lxTFBFWG53MndaNGRRU29jX3JnNWYzeERnZXl1WDhJWC1SZWRSeFZzNGxzNV92TzdDYnhBN0FrWkx6QXhfVHUtNWEwYkJFUWRuSTlGWk1JVmpZOE5nRDJOVUZmRGlWb0hHMEdWWUVxTmg4RDViYXBlcjEzbVZfTVVkSWRPV3lUZm9lNnJlVHFHTG5pc2V6ajJWc3dGZDFrTDB0Y2E4Qm9RaURETWRtRmREZXFPbjQ5cjJNS1hWblpSendKeg?oc=5",
+    "fuente": "Imagen Radio",
+    "autoridad": "CONAGUA",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-20T01:02:52Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": "Yucatan",
+    "scrapeado_en": "2026-11-20T02:46:40.871628+00:00"
+  },
+  {
+    "id": "2e124e3d8864",
+    "titulo": "Díaz Mena revisa avance de proyectos con Conagua y la Secretaría de Marina",
+    "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPd29xUEk0Sm5ScXJSeXNKc1lJTUljMTZYUDR3bXJzMnVxNVpidTNaRVBPUE1NaWhaVGtFc3FFQ1lQb2tFb2hYbTYwcTlqV2RSazlPNUVMNmxRUkY0SWp0eklzbmZUa3FVcHpaVXBKVFQySHhlNGdIcGt2Y1Z1VkVBb1Jsc1d5N0FqcmotcjVRZ1Vnb09FWm9nNGJscmNpQ0REUTFKTkp6cWRyNWlPdnRheFdSUUp0Wjlsd1E?oc=5",
+    "fuente": "La Jornada Maya",
+    "autoridad": "CONAGUA",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-20T00:39:56Z",
+    "categoria": "agua",
+    "categoria_nombre": "Agua",
+    "categorias": [
+      "agua"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-20T02:46:40.872323+00:00"
+  },
+  {
+    "id": "d22fa80051dc",
+    "titulo": "San Juanico es el Centro de Distribución de gas LP del Valle de México: Raciel Pérez",
+    "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOb0pya1YwNkoySEdpTWZhbjRpNU92MG8tTktSSTF4ZjY1QmNMdzZNZElLYTJsYzhMa0ozaTRfUjFHWXdrek1UQmJ4YW5jT2VqRHhCbGYwd2hRUVA3NGNja1lza01hcGRmTkJ6MnhjWWFjZlN5QldaLVBualVNRkllal9JSmVvcUNBMllaTlBPaWZaeW05NWdUdDFFTl9TN0VQYVFVNVFFNFRQT3ZSMUJHb09IX2E1ZUxTN3BpbXF1VHBQRUN3UHNIemJn?oc=5",
+    "fuente": "Heraldo Estado de México",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-20T00:30:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-20T02:46:49.732759+00:00"
+  },
+  {
     "id": "834a84334b54",
     "titulo": "Pagos digitales obligarán a comercios a invertir en respaldo eléctrico",
     "url": "https://energy21.com.mx/pagos-digitales-obligaran-a-comercios-a-invertir-en-respaldo-electrico/",
@@ -91,6 +154,21 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-20T00:01:40.152224+00:00"
+  },
+  {
+    "id": "620222bccdc3",
+    "titulo": "Newmont nombra a Ana Laura Ludlow como Country Manager en México; fortalecerá la operación de Peñasquito",
+    "url": "https://energiahoy.com/women-energy/newmont-nombra-a-ana-laura-ludlow-como-country-manager-en-mexico-fortalecera-la-operacion-de-penasquito/",
+    "fuente": "Energia Hoy",
+    "resumen": "La compañía minera Newmont anunció el nombramiento de Ana Laura Ludlow como Country Manager de México y directora de Relaciones Externas; posición desde la que impulsará el relacionamiento institucional y el fortalecimiento de las operaciones de la empresa en el país, particularmente de la mina Peñasquito, ubicada en Mazapil, Zacatecas. El nombramiento fue comunicado por [...] El cargo Newmont nombra a Ana Laura Ludlow como Country Manager en México; fortalecerá la operación de Peñasquito aparec",
+    "fecha_publicacion": "2026-11-19T23:10:11Z",
+    "categoria": "mineria",
+    "categoria_nombre": "Minería",
+    "categorias": [
+      "mineria"
+    ],
+    "estado": "Zacatecas",
+    "scrapeado_en": "2026-11-20T02:46:36.238812+00:00"
   },
   {
     "id": "b856d1d5ad1c",
@@ -1299,6 +1377,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-18T23:42:24.555002+00:00"
+  },
+  {
+    "id": "aac42365ae38",
+    "titulo": "¿Vas a cargar el tanque? Precios de la gasolina en Oaxaca este miércoles",
+    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPRHFDUDBMUm9GVWNhbl9BLTFLdkhRdkdXR0p0dGZiaFU5TUhSNUtXc283MEg1QlRtai0zUDlvVENkclcyLTE3NzA5d0I4SldBdGlkdUdJOGF4NDg5TEk4TlJ5cFRRWmt1YVJWWnREeTlJMmlmTkRLUWx4R0JMUzFHdlNKTk0wNU5uNTZNTGQ5QTBNdHF6RXVqSWJOYXE0WktRT1VjSG1QaG8?oc=5",
+    "fuente": "TV Azteca Guerrero",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-18T20:11:36Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": "Oaxaca",
+    "scrapeado_en": "2026-11-20T02:46:49.737296+00:00"
   },
   {
     "id": "6bca915a8d55",
@@ -3082,6 +3176,22 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-17T19:17:44.441732+00:00"
+  },
+  {
+    "id": "4cf39807bc0e",
+    "titulo": "¿Debes votar si eres ecuatoriano y vives en el exterior? Esto dice el CNE",
+    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQdXdsTkdkZnAyZmFZcGJZNDl6UWRiWnAzRzJJeGJJVkNvc3ZHYm15LVRmT3hjek0tUzdXNnozRDN4NEp5SmJEdV9HUlNlbXYwdlZsQ3htdjFiZ0hnX0ZLS2xESVZfdE1BUkhMNUdURWZRcjNPSFNLWXNudU9iMUNtRnlQajFtdmJZWWpBSFpmbHprUVM3dlhtWkdqTmJtNmdlckVtUGJrVkZLZHVOVWdJWmFldw?oc=5",
+    "fuente": "El Diario Ecuador",
+    "autoridad": "SENER/CNE",
+    "resumen": "",
+    "fecha_publicacion": "2026-11-17T12:45:00Z",
+    "categoria": "energia_renovable",
+    "categoria_nombre": "Energía Renovable",
+    "categorias": [
+      "energia_renovable"
+    ],
+    "estado": null,
+    "scrapeado_en": "2026-11-20T02:46:43.722655+00:00"
   },
   {
     "id": "0edd997dddc5",
@@ -9248,116 +9358,5 @@
     ],
     "estado": null,
     "scrapeado_en": "2026-11-11T18:00:20.762785+00:00"
-  },
-  {
-    "id": "1d0acd4f717e",
-    "titulo": "Gas LP podría escasear en algunas zonas de México por cambios a la Ley del ISR: Amexgas",
-    "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9hT2NHRmNFNTM2aEJoWUhQOG1QdDJtMUlkOWxHYS1nMnNFc0Z0Wm16UFFIbU94TXpPRC1rRjdKaUtfNVlpOVlIaFJwai1QV0M0d0UwSnFPZGM5bHJDYzZ1VDB5VHl0T3lMeE93VVVtdWNJUQ?oc=5",
-    "fuente": "EL CEO",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-11T08:03:43Z",
-    "categoria": "energia_renovable",
-    "categoria_nombre": "Energía Renovable",
-    "categorias": [
-      "energia_renovable"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-11T18:00:33.441308+00:00"
-  },
-  {
-    "id": "d855965c0e90",
-    "titulo": "Pemex: mejora continua",
-    "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5nQlRBWHBzZHZpcmg1TFFfNnRSVkN2b0JRLXBtOGwzN2VlSUNubFhfdWQta25DcTUxMFpHc2ozNTlEVG9RZ05PenVwc0VxdWFleF82YWN6RDU3SlRqdDFyX1d1UEJsV3Y0MUtlNHBTaktaSUtFeThIbE1wY1Z4Z9IBgwFBVV95cUxQR0FwSTd2a3E2dVNwN0JkZW1sT2NJaGxkUWlzVFp3cl9XT3ZkRjRGOXl1OGtDOGthcDNpb2x1VW9Gb2QwT2tFVmVCdTdrTlVXUS15dUNTaUh3bWJtM2ViYjVXMGlSb2lBX09DUENxdENBeXFMdHhCZDFhaGJYdWNTTEJwbw?oc=5",
-    "fuente": "Excélsior",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-11T08:00:00Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-11T18:00:32.605183+00:00"
-  },
-  {
-    "id": "1e295a11c2d3",
-    "titulo": "Frena el repunte del crudo procesado por Pemex",
-    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQSGJEQnpyTndDT0lyXzBnVjlzemV4YVJCcHlYMEF3VTFCSmZjeWdxbGtlSGxmMkpuaFM5WExEa3Q0WXg5VWx6NzNicmFrazhDdkFKUFhOcFVSV0llNllBeGFoZ1Uyb2dFRHlEODVNRGxnMDZaeTcwN01CZ3J0SjB6alA5VzV3V1ZGTzRPTUd5dXlaYTdhaWNNS200alltUdIBowFBVV95cUxNVGE5MGZCS1ozcVB6Q2RDYzdSdWNnNVNwRmV5MHhJYm5PZk00OWFmSW1SZ0RaTDFYQ1NIZ1Q0YlNJejhoRzFZTTBNTXJGeU1KX3d5YVp0UFlGb0hrVlVhc0ZzM3U2Z1VHZXBoTGtUVXF0MGNueUhnSmdhY29qZFdDeVY5Rmw2NjZXQmE4U0NTeE11U1ZUcHN3X3dGNk9yX1VWVFNr?oc=5",
-    "fuente": "El Economista",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-11T06:16:24Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-11T18:00:32.594566+00:00"
-  },
-  {
-    "id": "60736660f393",
-    "titulo": "Se consolida una nueva etapa de crecimiento en Pemex: Mejía Berdeja",
-    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQU1ZxTGJ5QUl1UEZ6ZDNJQkVnaGNCcFBnY3hkTGlGLUpGbHZacXFxOXJPVHFsMHREZzBrb2NoNEZYeFJyZ3htd1VhT2Z4VXNQXzdVQXA1dTRZRFIxbWFGbWxuWXFXZFFLWjBrZk44TUVFb3dJeWItbTBVU1J0TS12cktybEZNQ2pNQUl6em1ZVE9mZkRRUFBlbVUwQVlwTDlCQzU0UGx5YmttMlRp?oc=5",
-    "fuente": "Sociedad Noticias",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-11T05:30:00Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-11T18:00:32.600967+00:00"
-  },
-  {
-    "id": "1ba7e3e34dc2",
-    "titulo": "Lalo Garza opina sobre doblaje de ‘Wildwood’: ‘Ibarreche es buen actor, le faltó teatralidad’",
-    "url": "https://www.elfinanciero.com.mx/entretenimiento/2026/11/10/lalo-garza-opina-sobre-el-doblaje-de-javier-ibarreche-en-wildwood/",
-    "fuente": "El Financiero",
-    "resumen": "Lalo Garza opinó sobre el doblaje de Wildwood: El bosque salvaje y la interpretación de Javier Ibarreche. Esto dijo sobre los ‘star talents’.",
-    "fecha_publicacion": "2026-11-11T05:10:27Z",
-    "categoria": "deforestacion",
-    "categoria_nombre": "Forestal",
-    "categorias": [
-      "deforestacion"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-11T18:00:20.828095+00:00"
-  },
-  {
-    "id": "615df6346915",
-    "titulo": "'Desempolva' Pemex cláusula de impago",
-    "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE14YjZJSnV5SXJpUkUtUld6eklDSWd6SWZoT0h0LXkwZHRtRDF4MlVYZHhDVTgzR2IxcXJIdlE1TmZudGpTbks0a09NUTVZNC1ndmg3dFFqcGhMczVBYkk3R2R2clYtX3pwVzlQN3dTWVd6OHh6NGtRTg?oc=5",
-    "fuente": "Reforma",
-    "autoridad": "SENER/CNE",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-11T04:52:29Z",
-    "categoria": "hidrocarburos",
-    "categoria_nombre": "Hidrocarburos",
-    "categorias": [
-      "hidrocarburos"
-    ],
-    "estado": null,
-    "scrapeado_en": "2026-11-11T18:00:32.595696+00:00"
-  },
-  {
-    "id": "5b2909b1ed18",
-    "titulo": "Afirma Conagua que 64 municipios veracruzanos registran condiciones de sequía, siendo Jesús Carranza el más afectado",
-    "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9lQm4wYmdjWUVFb29HdUF1NHh4T3l1Q2xia0tlU0RBc2pyYlZWN1hTNlg5YUQxMmFIcVNjQnZpVzNGQTdsU19SUERnSnlnMGE1Y1ltLThQb2dmV3l4aUE?oc=5",
-    "fuente": "Gobernantes.com",
-    "autoridad": "CONAGUA",
-    "resumen": "",
-    "fecha_publicacion": "2026-11-11T03:48:21Z",
-    "categoria": "agua",
-    "categoria_nombre": "Agua",
-    "categorias": [
-      "agua"
-    ],
-    "estado": "Veracruz",
-    "scrapeado_en": "2026-11-17T19:17:40.980263+00:00"
   }
 ]
