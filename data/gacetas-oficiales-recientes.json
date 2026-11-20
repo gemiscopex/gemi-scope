@@ -1,21 +1,14 @@
 {
  "_meta": {
-  "ultima_actualizacion": "2026-11-19T13:22:42 CDMX",
-  "estados_con_actividad": 3,
+  "ultima_actualizacion": "2026-11-19T18:24:57 CDMX",
+  "estados_con_actividad": 2,
   "por_estado": {
-   "Yucatán": 16,
    "Colima": 6,
    "Durango": 12
   },
   "nota": "Ediciones oficiales recientes raspadas por estado (etapa 1: estados con portal accesible). No es cobertura nacional completa."
  },
  "items": [
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-11-19",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-19_1.pdf"
-  },
   {
    "estado": "Durango",
    "fecha": "2026-11-19",
@@ -89,52 +82,10 @@
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/87-normal-2026_20261028140444.pdf"
   },
   {
-   "estado": "Yucatán",
-   "fecha": "2026-11-18",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-18_1.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-11-17",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-17_1.pdf"
-  },
-  {
    "estado": "Colima",
    "fecha": "2026-11-14",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/14112026/p26111401.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-11-13",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-13_1.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-11-12",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-12_1.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-11-11",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-11_1.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-11-11",
-   "titulo": "Diario Oficial · edición vespertina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-11_2.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-11-10",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-10_1.pdf"
   },
   {
    "estado": "Colima",
@@ -143,22 +94,10 @@
    "url": "https://periodicooficial.col.gob.mx/p/10112026/p26111001.pdf"
   },
   {
-   "estado": "Yucatán",
-   "fecha": "2026-11-09",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-09_1.pdf"
-  },
-  {
    "estado": "Colima",
    "fecha": "2026-11-07",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/07112026/p26110701.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-11-06",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-06_1.pdf"
   },
   {
    "estado": "Colima",
@@ -167,52 +106,16 @@
    "url": "https://periodicooficial.col.gob.mx/p/06112026/p26110601.pdf"
   },
   {
-   "estado": "Yucatán",
-   "fecha": "2026-11-05",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-05_1.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-11-05",
-   "titulo": "Diario Oficial · edición vespertina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-05_2.pdf"
-  },
-  {
    "estado": "Colima",
    "fecha": "2026-11-05",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/05112026/p26110501.pdf"
   },
   {
-   "estado": "Yucatán",
-   "fecha": "2026-11-04",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-04_1.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-11-03",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-03_1.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-11-03",
-   "titulo": "Diario Oficial · edición vespertina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-03_2.pdf"
-  },
-  {
    "estado": "Colima",
    "fecha": "2026-10-31",
    "titulo": "Periódico Oficial del Estado",
    "url": "https://periodicooficial.col.gob.mx/p/31102026/p26103101.pdf"
-  },
-  {
-   "estado": "Yucatán",
-   "fecha": "2026-10-30",
-   "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-10-30_1.pdf"
   }
  ]
 }
