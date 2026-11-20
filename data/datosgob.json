@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-19T21:53 CDMX",
+  "actualizado": "2026-11-20T13:43 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -34,6 +34,13 @@
     "recursos": 3
    },
    {
+    "titulo": "Vigilancia de la calidad microbiológica del agua para uso y consumo humano",
+    "org": "Comisión Federal para la Protección contra Riesgos Sanitarios (COFEPRIS)",
+    "fecha": "2026-11-20",
+    "url": "https://www.datos.gob.mx/dataset/vigilancia_microbiologica_agua_consumo_humano",
+    "recursos": 1
+   },
+   {
     "titulo": "Agricultura protegida",
     "org": "Servicio de Información Agroalimentaria y Pesquera (SIAP)",
     "fecha": "2026-11-06",
@@ -59,13 +66,6 @@
     "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
     "fecha": "2025-11-13",
     "url": "https://www.datos.gob.mx/dataset/personas_reconocidas_buenas_practicas_acuicolas_manufactura_productos_acuicolas",
-    "recursos": 1
-   },
-   {
-    "titulo": "Unidades de Producción Acuícola de SENASICA",
-    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
-    "fecha": "2025-08-18",
-    "url": "https://www.datos.gob.mx/dataset/unidades_produccion_acuicola_senasica",
     "recursos": 1
    }
   ],
@@ -159,17 +159,17 @@
   ],
   "Medio Ambiente": [
    {
+    "titulo": "Alertamiento sobre fenómenos naturales (2026)",
+    "org": "Secretaría de Seguridad y Protección Ciudadana (SSPC)",
+    "fecha": "2026-11-20",
+    "url": "https://www.datos.gob.mx/dataset/alertamiento_fenomenos_naturales_2026",
+    "recursos": 9
+   },
+   {
     "titulo": "Acciones de inspección en materia industrial",
     "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
     "fecha": "2026-11-13",
     "url": "https://www.datos.gob.mx/dataset/acciones_inspeccion_materia_industrial",
-    "recursos": 3
-   },
-   {
-    "titulo": "Inspecciones y operativos en materia de vida silvestre",
-    "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
-    "fecha": "2026-11-13",
-    "url": "https://www.datos.gob.mx/dataset/inspecciones_operativos_materia_vida_silvestre",
     "recursos": 3
    }
   ],
