@@ -10696,6 +10696,27 @@
     },
     {
       "camara_origen": "Cámara de Diputados",
+      "camara_revisora": "Cámara de Senadores",
+      "fecha_presentacion": "2026-04-29",
+      "legislatura": "LXVI",
+      "periodo": "2do Ordinario",
+      "presentador": "Diputados: Cambio Climático y Sostenibilidad",
+      "aspectos": "La comisión aprueba fomentar el uso del hidrógeno verde como una fuente de energía limpia.\n\nPara ello propone incorporar el concepto de -Hidrógeno renovable- como aquel producido mediante el uso de energía renovable o electricidad producida con fuentes renovables.",
+      "ultimo_tramite": "Queda de primera lectura / Se emite declaratoria de publicidad:",
+      "ultimo_estatus": "Pendiente en comisión(es) de revisora Pendiente 02/09/2026",
+      "asunto_id": "5086683",
+      "seguimiento": "5090377",
+      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5090377&Asunto=5086683",
+      "categorias": [
+        "energia_renovable"
+      ],
+      "categoria": "energia_renovable",
+      "categoria_nombre": "Energía Renovable",
+      "id": "dc9b98828d73",
+      "scrapeado_en": "2026-11-23T02:10:19.816096+00:00"
+    },
+    {
+      "camara_origen": "Cámara de Diputados",
       "fecha_presentacion": "2026-04-29",
       "legislatura": "LXVI",
       "periodo": "2do Ordinario",
@@ -10739,27 +10760,6 @@
       "categoria_nombre": "Hidrocarburos",
       "id": "582b1cc6ef2b",
       "scrapeado_en": "2026-11-22T18:03:30.728788+00:00"
-    },
-    {
-      "camara_origen": "Cámara de Diputados",
-      "camara_revisora": "Cámara de Senadores",
-      "fecha_presentacion": "2026-04-29",
-      "legislatura": "LXVI",
-      "periodo": "2do Ordinario",
-      "presentador": "Diputados: Cambio Climático y Sostenibilidad",
-      "aspectos": "La comisión aprueba fomentar el uso del hidrógeno verde como una fuente de energía limpia. Para ello propone incorporar el concepto de -Hidrógeno renovable- como aquel producido mediante el uso de energía renovable o electricidad producida con fuentes renovables.",
-      "ultimo_tramite": "Túrnese a la Cámara de Senadores para sus efectos constitucionales: Ver todos los trámites",
-      "ultimo_estatus": "Pendiente en comisión(es) de revisora Pendiente 02/09/2026",
-      "asunto_id": "5088446",
-      "seguimiento": "5090377",
-      "url": "http://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Seguimiento=5090377&Asunto=5088446",
-      "categorias": [
-        "energia_renovable"
-      ],
-      "categoria": "energia_renovable",
-      "categoria_nombre": "Energía Renovable",
-      "id": "fcbc9975ac1e",
-      "scrapeado_en": "2026-11-22T01:55:19.975795+00:00"
     }
   ],
   "_meta": {
@@ -10767,6 +10767,6 @@
     "legislatura": "LXVI",
     "total": 500,
     "nuevas": 66,
-    "actualizado": "2026-11-22T23:07:46Z"
+    "actualizado": "2026-11-23T02:14:58Z"
   }
 }
