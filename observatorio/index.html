@@ -884,7 +884,9 @@ var METRICS=[
   {k:'pri',l:'Con dictamen o promovente en la comisión',f:function(s){return s.pri;}},
   {k:'otr',l:'Iniciativas a otras leyes',f:function(s){return s.otr.length;}},
   {k:'ref',l:'Reformas publicadas a otras leyes',f:function(s){return s.ref.length;}},
-  {k:'vacb',l:'Peso manufacturero (% VACB)',f:function(s){return s.vacb;},pct:1}
+  {k:'vacb',l:'Peso manufacturero (% VACB)',f:function(s){return s.vacb;},pct:1},
+  {k:'ord',l:'Días de periodo ordinario dentro del plazo',f:function(s){return s.ord;}},
+  {k:'rec',l:'Días de receso dentro del plazo',f:function(s){return s.rec;}}
 ];
 var RANK={};
 function ranks(){METRICS.forEach(function(m){var v=ENT.map(function(n){return {n:n,v:m.f(stats(n))};});RANK[m.k]={};v.forEach(function(x){RANK[m.k][x.n]=1+v.filter(function(y){return (y.v||0)>(x.v||0);}).length;});});}
@@ -1143,6 +1145,7 @@ var ECOLS=[
   {k:'otr',l:'Otras leyes',v:function(n,s){return s.otr.length;},r:1},
   {k:'ref',l:'Reformas publ.',v:function(n,s){return s.ref.length;},r:1},
   {k:'vacb',l:'% VACB manuf.',v:function(n,s){return s.vacb==null?-1:s.vacb;},r:1},
+  {k:'ord',l:'Días ordinario',v:function(n,s){return s.ord||0;},r:1},
   {k:'u',l:'Último acto',v:function(n,s){return s.e.ultimo_acto;}}
 ];
 function renderEnt(){
@@ -1158,14 +1161,14 @@ function renderEnt(){
      +'<td><span class="sw" style="background:'+REGC[e.regimen]+(e.regimen==='ANUNCIO'?';outline:1px solid #B9C6D2':'')+'"></span>'+esc(REGL[e.regimen])+'</td>'
      +'<td class="n r">'+s.ini.length+'</td><td class="n r">'+s.pri+'</td><td class="n r">'+s.otr.length+'</td><td class="n r">'+s.ref.length+'</td>'
      +'<td class="n r">'+(s.vacb!=null?s.vacb.toFixed(2)+'<span class="minibar"><span style="width:'+Math.round(100*s.vacb/mxv)+'%"></span></span>':'—')+'</td>'
-     +'<td style="font-size:12px;color:var(--sec);min-width:200px">'+esc(e.ultimo_acto)+'</td></tr>';});
+     +'<td class="n r">'+(s.ord!=null?s.ord:'—')+'</td><td style="font-size:12px;color:var(--sec);min-width:200px">'+esc(e.ultimo_acto)+'</td></tr>';});
   $('ent-tbl').innerHTML=h;
   $('ent-tbl').querySelectorAll('th[data-sort]').forEach(function(th){th.onclick=function(){var k=th.dataset.sort;entSort.d=entSort.k===k?-entSort.d:(k==='n'||k==='u'?1:-1);entSort.k=k;renderEnt();};});
   $('ent-tbl').querySelectorAll('tr.row').forEach(function(tr){tr.onclick=function(){go('entidades/ficha/'+encodeURIComponent(tr.dataset.n));};});
 }
 function entCSV(){
-  var rows=[['Entidad','Abreviatura','Régimen','Ordenamiento propio','Aplicación directa LGEC','Armonización publicada','Ordenamiento','Último acto','Lectura','Iniciativas de ley EC','Dictamen o promovente en la comisión','Iniciativas a otras leyes','Reformas publicadas a otras leyes','% VACB manufacturero','Verificación']];
-  ENT.forEach(function(n){var s=stats(n),e=s.e;rows.push([n,ab(n),REGL[e.regimen],e.ordenamiento_propio?'Sí':'No',e.aplicacion_directa_lgec?'Sí':'No',e.armonizacion_publicada?'Sí':'No',e.ordenamiento,e.ultimo_acto,e.lectura,s.ini.length,s.pri,s.otr.length,s.ref.length,s.vacb,e.nivel_verificacion]);});
+  var rows=[['Entidad','Abreviatura','Régimen','Ordenamiento propio','Aplicación directa LGEC','Armonización publicada','Ordenamiento','Último acto','Lectura','Iniciativas de ley EC','Dictamen o promovente en la comisión','Iniciativas a otras leyes','Reformas publicadas a otras leyes','% VACB manufacturero','Días periodo ordinario en plazo','Días receso en plazo','Verificación']];
+  ENT.forEach(function(n){var s=stats(n),e=s.e;rows.push([n,ab(n),REGL[e.regimen],e.ordenamiento_propio?'Sí':'No',e.aplicacion_directa_lgec?'Sí':'No',e.armonizacion_publicada?'Sí':'No',e.ordenamiento,e.ultimo_acto,e.lectura,s.ini.length,s.pri,s.otr.length,s.ref.length,s.vacb,s.ord,s.rec,e.nivel_verificacion]);});
   dl('observatorio-ec-entidades.csv',csv(rows));
 }
 var pfN='Nuevo León',pfLim=8;
@@ -1187,6 +1190,7 @@ function renderPF(){
     +'<div class="two" style="margin-top:44px"><div><div class="sub-h" style="margin-top:0">Ficha</div><div class="kv">'
     +kv('Ordenamiento',(LEYURL(n)?'<a class="tlink" href="'+esc(LEYURL(n))+'" target="_blank" rel="noopener">'+esc(e.ordenamiento)+' ↗</a>':esc(e.ordenamiento)))+kv('Último acto',esc(e.ultimo_acto))
     +kv('Promovente destacado',pd.nombre?esc(pd.nombre)+(pd.grupo?' &nbsp;'+pbadges(pd.grupo):'')+(pd.comision?'<br><span class="muted">'+esc(pd.comision)+'</span>':''):'')
+    +kv('Dentro del plazo',e.calendario_ventana_armonizacion?e.calendario_ventana_armonizacion.dias_periodo_ordinario+' días en periodo ordinario y '+e.calendario_ventana_armonizacion.dias_receso+' en receso, '+e.calendario_ventana_armonizacion.dias_receso_previo_al_vencimiento+' de ellos justo antes del vencimiento':'')
     +kv('Polo',polo.map(function(p){return esc(p.figura)+' · '+esc(p.ubicacion)+' · '+esc(p.declaratoria);}).join('<br>'))
     +kv('Acuerdo de municipios',anm?esc(anm.cuales)+' ('+anm.municipios_firmantes+')':'')
     +kv('Verificación',esc(cap(e.nivel_verificacion)))+'</div>'
@@ -1211,7 +1215,9 @@ var MUR=[
   {l:'Dictamen o promovente',k:'pri',v:function(s){return s.pri;}},
   {l:'Iniciativas a otras leyes',k:'otr',v:function(s){return s.otr.length;}},
   {l:'Reformas publicadas',k:'ref',v:function(s){return s.ref.length;}},
-  {l:'Peso manufacturero',k:'vacb',v:function(s){return s.vacb||0;},f:function(v){return v.toFixed(2)+'%';}}
+  {l:'Peso manufacturero',k:'vacb',v:function(s){return s.vacb||0;},f:function(v){return v.toFixed(2)+'%';}},
+  {l:'Días en periodo ordinario dentro del plazo',k:'ord',v:function(s){return s.ord||0;}},
+  {l:'Días en receso dentro del plazo',k:'rec',v:function(s){return s.rec||0;},inv:1}
 ];
 function renderMU(){
   var A=stats(muA),B=stats(muB),R=MUR;
