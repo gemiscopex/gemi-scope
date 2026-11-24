@@ -933,6 +933,7 @@ function go(path,anchor){
 function scrollToId(id){var el=$(id);if(el)window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-90,behavior:'smooth'});}
 function render(anchor){
   anchor=anchor||pendingAnchor;pendingAnchor=null;
+  if(!anchor){var hh=(location.hash||'').slice(1);if(hh&&!SECS[hh.split('/')[0]]&&document.getElementById(hh))anchor=hh;}
   var r=route(),changed=r.s!==cur.s||r.u!==cur.u||r.x!==cur.x;cur=r;
   Object.keys(SECS).forEach(function(k){$('v-'+k).classList.toggle('on',k===r.s);});
   document.querySelectorAll('.tab').forEach(function(b){b.classList.toggle('on',b.dataset.s===r.s);});
