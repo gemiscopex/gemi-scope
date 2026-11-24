@@ -939,7 +939,7 @@ section.fin .cv-by{color:#5A7A98}
 </div>
 <div id="nt"></div><div id="vbox"><video id="tourv" src="tour.mp4" controls playsinline preload="none"></video></div>
 <script>(function(){
-  function fit(){var z=Math.min(innerWidth/1366,innerHeight/768);document.documentElement.style.setProperty('--z',z.toFixed(3));}
+  function fit(){if(!innerWidth||!innerHeight)return;var z=Math.min(innerWidth/1366,innerHeight/768);document.documentElement.style.setProperty('--z',z.toFixed(3));}
   addEventListener('resize',fit);fit();
   var deck=document.getElementById('deck'),secs=[].slice.call(deck.querySelectorAll('section'));
   var dotsWrap=document.getElementById('dots'),prog=document.getElementById('prog'),nt=document.getElementById('nt'),vb=document.getElementById('vbox'),tv=document.getElementById('tourv');
