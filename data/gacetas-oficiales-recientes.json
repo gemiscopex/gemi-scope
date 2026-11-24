@@ -1,9 +1,9 @@
 {
  "_meta": {
-  "ultima_actualizacion": "2026-11-23T23:54:08 CDMX",
+  "ultima_actualizacion": "2026-11-24T15:00:41 CDMX",
   "estados_con_actividad": 3,
   "por_estado": {
-   "Yucatán": 15,
+   "Yucatán": 17,
    "Colima": 6,
    "Durango": 12
   },
@@ -12,81 +12,93 @@
  "items": [
   {
    "estado": "Yucatán",
-   "fecha": "2026-11-23",
+   "fecha": "2026-11-24",
    "titulo": "Diario Oficial · edición matutina",
-   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-23_1.pdf"
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-24_1.pdf"
+  },
+  {
+   "estado": "Yucatán",
+   "fecha": "2026-11-24",
+   "titulo": "Diario Oficial · edición vespertina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-24_2.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
+   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/9-ext-2026_20261124104645.pdf"
+  },
+  {
+   "estado": "Durango",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/94-normal-2026_20261120143020.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/93-bis-2026_20261118141944.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/93-normal-2026_20261118203428.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/8-ext-2026_20261117133937.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/92-bis-2026_20261113113021.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/92-normal-2026_20261113161544.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/91-normal-2026_20261111205233.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/91-bis-2026_20261111205451.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/90-normal-2026_20261106131802.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/89-normal-2026_20261104171629.pdf"
   },
   {
    "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
+   "fecha": "2026-11-24",
+   "titulo": "Periódico Oficial No. 9",
    "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/89-bis-2026_20261105130703.pdf"
   },
   {
-   "estado": "Durango",
-   "fecha": "2026-11-22",
-   "titulo": "Periódico Oficial No. 94",
-   "url": "https://transp23.s3.amazonaws.com/periodico_oficial/2026/88-normal-2026_20261030142225.pdf"
+   "estado": "Yucatán",
+   "fecha": "2026-11-23",
+   "titulo": "Diario Oficial · edición matutina",
+   "url": "https://www.yucatan.gob.mx/docs/diario_oficial/diarios/2026/2026-11-23_1.pdf"
   },
   {
    "estado": "Colima",

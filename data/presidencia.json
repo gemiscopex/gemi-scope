@@ -1,6 +1,21 @@
 {
   "articulos": [
     {
+      "id": "4ff1f0590d",
+      "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 24 de noviembre de 2026",
+      "fecha": "2026-11-24",
+      "url": "https://www.gob.mx/presidencia/es/articulos/version-estenografica-conferencia-de-prensa-de-la-presidenta-claudia-sheinbaum-pardo-del-24-de-noviembre-de-2026",
+      "fuente": "Presidencia de México — Estenográfica",
+      "categorias": [
+        "agua",
+        "residuos"
+      ],
+      "fragmentos": [
+        "En el caso de medio ambiente y energía, se quedaron todavía… O bueno, llegó antes la secretaria de Medio Ambiente, la secretaria de Energía se quedó unos días más. El objetivo fue analizar algunas tecnologías como, por ejemplo, el procesamiento de residuos sólidos para generar energía, entre otras, y también tratamiento de agua, esos dos temas.",
+        "Ahora, con las sobrecargos en el avión de regreso, tenían un aparatito así, y entonces ya le decía yo: “¿tienes agua?”, y ya le traducía. Entonces, también ya hay incluso adelantos tecnológicos para eso."
+      ]
+    },
+    {
       "id": "78de8d2c31",
       "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 23 de noviembre de 2026",
       "fecha": "2026-11-23",
@@ -8381,8 +8396,8 @@
   ],
   "_meta": {
     "fuente": "Presidencia de México — Estenográficas mañanera",
-    "total": 484,
-    "nuevos_hoy": 1,
-    "actualizado": "2026-11-24T05:44:41Z"
+    "total": 485,
+    "nuevos_hoy": 2,
+    "actualizado": "2026-11-24T20:52:15Z"
   }
 }
