@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-23T17:31 CDMX",
+  "actualizado": "2026-11-24T00:44 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -32,6 +32,41 @@
     "fecha": "2025-06-02",
     "url": "https://www.datos.gob.mx/dataset/estaciones_sistema_informacion_hidrologica",
     "recursos": 3
+   },
+   {
+    "titulo": "Vigilancia de la calidad microbiológica del agua para uso y consumo humano",
+    "org": "Comisión Federal para la Protección contra Riesgos Sanitarios (COFEPRIS)",
+    "fecha": "2026-11-20",
+    "url": "https://www.datos.gob.mx/dataset/vigilancia_microbiologica_agua_consumo_humano",
+    "recursos": 1
+   },
+   {
+    "titulo": "Agricultura protegida",
+    "org": "Servicio de Información Agroalimentaria y Pesquera (SIAP)",
+    "fecha": "2026-11-06",
+    "url": "https://www.datos.gob.mx/dataset/agricultura_protegida",
+    "recursos": 2
+   },
+   {
+    "titulo": "Rezago social",
+    "org": "Consejo Nacional de Evaluación de la Política de Desarrollo Social (CONEVAL)",
+    "fecha": "2026-11-02",
+    "url": "https://www.datos.gob.mx/dataset/rezago_social",
+    "recursos": 18
+   },
+   {
+    "titulo": "Certificados de sanidad acuícola",
+    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
+    "fecha": "2026-03-10",
+    "url": "https://www.datos.gob.mx/dataset/certificados_sanidad_acuicola",
+    "recursos": 1
+   },
+   {
+    "titulo": "Personas reconocidas por buenas prácticas acuícolas y de manufactura de productos acuícolas",
+    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
+    "fecha": "2025-11-13",
+    "url": "https://www.datos.gob.mx/dataset/personas_reconocidas_buenas_practicas_acuicolas_manufactura_productos_acuicolas",
+    "recursos": 1
    }
   ],
   "Residuos": [
