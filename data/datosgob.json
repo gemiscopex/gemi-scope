@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-24T16:01 CDMX",
+  "actualizado": "2026-11-24T23:14 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -34,6 +34,13 @@
     "recursos": 3
    },
    {
+    "titulo": "Indicadores del Protocolo de San Salvador de la Secretaría de Salud",
+    "org": "Secretaría de Salud",
+    "fecha": "2026-11-25",
+    "url": "https://www.datos.gob.mx/dataset/indicadores_protocolo_san_salvador_secretaria_salud",
+    "recursos": 51
+   },
+   {
     "titulo": "Vigilancia de la calidad microbiológica del agua para uso y consumo humano",
     "org": "Comisión Federal para la Protección contra Riesgos Sanitarios (COFEPRIS)",
     "fecha": "2026-11-20",
@@ -59,13 +66,6 @@
     "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
     "fecha": "2026-03-10",
     "url": "https://www.datos.gob.mx/dataset/certificados_sanidad_acuicola",
-    "recursos": 1
-   },
-   {
-    "titulo": "Personas reconocidas por buenas prácticas acuícolas y de manufactura de productos acuícolas",
-    "org": "Servicio Nacional de Sanidad, Inocuidad y Calidad Agroalimentaria (SENASICA)",
-    "fecha": "2025-11-13",
-    "url": "https://www.datos.gob.mx/dataset/personas_reconocidas_buenas_practicas_acuicolas_manufactura_productos_acuicolas",
     "recursos": 1
    }
   ],
@@ -203,6 +203,13 @@
     "recursos": 24
    },
    {
+    "titulo": "Comercio exterior de hidrocarburos; importaciones y exportaciones (2026)",
+    "org": "Secretaría de Energía (SENER)",
+    "fecha": "2026-11-24",
+    "url": "https://www.datos.gob.mx/dataset/comercio_exterior_hidrocarburos_importaciones_exportaciones_2026",
+    "recursos": 10
+   },
+   {
     "titulo": "Producción de Hidrocarburos (2026)",
     "org": "Secretaría de Energía (SENER)",
     "fecha": "2026-11-18",
@@ -222,13 +229,6 @@
     "fecha": "2026-11-12",
     "url": "https://www.datos.gob.mx/dataset/prontuario_gas_natural_petroquimicos",
     "recursos": 8
-   },
-   {
-    "titulo": "Contratos para la Exploración y Extracción de Hidrocarburos (2026)",
-    "org": "Secretaría de Energía (SENER)",
-    "fecha": "2026-11-11",
-    "url": "https://www.datos.gob.mx/dataset/contratos_para_exploracion_extraccion_hidrocarburos_2026",
-    "recursos": 16
    },
    {
     "titulo": "Gas Natural",
