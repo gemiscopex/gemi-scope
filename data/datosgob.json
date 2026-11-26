@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "actualizado": "2026-11-25T15:14 CDMX",
+  "actualizado": "2026-11-25T22:43 CDMX",
   "fuente": "datos.gob.mx · CKAN API"
  },
  "temas": {
@@ -71,6 +71,13 @@
   ],
   "Residuos": [
    {
+    "titulo": "Sustancias químicas",
+    "org": "Instituto Nacional de Ecología y Cambio Climático (INECC)",
+    "fecha": "2026-11-25",
+    "url": "https://www.datos.gob.mx/dataset/sustancias_quimicas",
+    "recursos": 1
+   },
+   {
     "titulo": "Acciones de revisión en los puntos de verificación en puertos, aeropuertos y fronteras",
     "org": "Procuraduría Federal de Protección al Ambiente (PROFEPA)",
     "fecha": "2026-11-13",
@@ -118,13 +125,6 @@
     "fecha": "2026-11-12",
     "url": "https://www.datos.gob.mx/dataset/atencion_denuncias_ambientales_materia_federal_materia_recurso_ambiental_afectado",
     "recursos": 3
-   },
-   {
-    "titulo": "Sitios contaminados por tipo de contaminante",
-    "org": "Agencia de Seguridad, Energía y Ambiente (ASEA)",
-    "fecha": "2026-03-19",
-    "url": "https://www.datos.gob.mx/dataset/sitios_contaminados-por-tipo-de-contaminante",
-    "recursos": 1
    }
   ],
   "Emisiones / Aire": [
