@@ -1,6 +1,25 @@
 {
   "articulos": [
     {
+      "id": "9a64a78127",
+      "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 26 de noviembre de 2026",
+      "fecha": "2026-11-26",
+      "url": "https://www.gob.mx/presidencia/es/articulos/version-estenografica-conferencia-de-prensa-de-la-presidenta-claudia-sheinbaum-pardo-del-26-de-noviembre-de-2026",
+      "fuente": "Presidencia de México — Estenográfica",
+      "categorias": [
+        "agua",
+        "residuos",
+        "hidrocarburos",
+        "sanciones"
+      ],
+      "fragmentos": [
+        "Se llevó a cabo una reunión con la Embajada de Estados Unidos porque —desde nuestro punto de vista— la relación es con el gobierno de Estados Unidos, no con la empresa SpaceX, más allá de las sanciones que pudiera tener por haber llegado basura de estas aeronaves a aguas nacionales.",
+        "Entonces, una parte es lo que haga Profepa, la investigación que haga y la sanción que pueda poner por esta circunstancia.",
+        "Y aparte está lo de la basura, que entra Profepa a hacer su investigación y, en todo caso, la sanción a la empresa.",
+        "Uno de los más importantes es la colaboración entre Pemex y Petrobras —de hecho, creo que están o estuvieron aquí esta semana otra vez— porque nuestro objetivo es que podamos utilizar tecnología y el desarrollo científico que tiene Petrobras para la investigación en aguas profundas en el Golfo de México."
+      ]
+    },
+    {
       "id": "4afab9cca8",
       "titulo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 25 de noviembre de 2026",
       "fecha": "2026-11-25",
@@ -8416,8 +8435,8 @@
   ],
   "_meta": {
     "fuente": "Presidencia de México — Estenográficas mañanera",
-    "total": 486,
-    "nuevos_hoy": 3,
-    "actualizado": "2026-11-26T19:50:12Z"
+    "total": 487,
+    "nuevos_hoy": 4,
+    "actualizado": "2026-11-27T01:20:12Z"
   }
 }

@@ -1,11 +1,21 @@
 {
  "_meta": {
-  "actualizado": "2026-11-26T19:46:34Z",
+  "actualizado": "2026-11-27T01:17:40Z",
   "fuente": "Prensa nacional y local vía Google News",
   "nota": "Capa de prensa (Beta). Detección de restricciones a la venta de alcohol. La vigencia exacta se confirma en el bando o periódico oficial de cada plaza.",
   "total": 200
  },
  "eventos": [
+  {
+   "id": "5735a61279c4",
+   "titulo": "Ley Seca en CDMX: Esta Alcaldía Suspenderá la Venta de Alcohol Este Fin de Semana",
+   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNSE1wZU5DMUVzeGRDQmwwWXE4Y3NlYU51d0tYbDJIeTVuQjVHNWtueG1BVHJQUmZwcmNCSzVOVVkxeVozdmU1LWtZN2wwMlllQThMRUNQa1NtT2xubFN2a3lmeVduQm14em9KUmF4Y2FlWnNTVzNSa1JBRVc5eXhBbHZ6a2Y1N1lRckFxdWNFblpGOHJBSVYtbjFMZE02dmFVU1AwVDNYeFdONS11OURiZUc4eUVnRjNwQURMQWdIQjduaW5DNjV3ZlpjU3ZzdlNibDd6T19R?oc=5",
+   "fuente": "N+",
+   "fecha_publicacion": "2026-11-26T22:07:23Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
+   "motivo": "Otro"
+  },
   {
    "id": "a2f9dcee9b5e",
    "titulo": "Habrá ley seca en San Andrés Totoltepec por fiesta patronal",
@@ -415,6 +425,16 @@
    "estado": "",
    "ambito": "Municipal",
    "motivo": "Otro"
+  },
+  {
+   "id": "7b3a9516f195",
+   "titulo": "¿Qué alcaldías de CDMX tendrán ley seca en Semana Santa 2021?",
+   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPTDlFZjU0ZlJsYU5OdUlYbllRWlF1bDJScFlMczV4b2ZKSnJ3LTl5c01fZ3QyR2MtNkJKQm1oODVxS1ZNU0dCQ3FQVGhta3UtX0ZDemUzU0s4UjNLNzZscFgzTGFONUstS2Itb2JNdXUwR0w3MjJteWgxX1pJQ3RMb3VQb2hPaVNaTmJOX0ZyTHEweUM5LU92SmZvdnBmS09ZeHJlVlRFS2Q?oc=5",
+   "fuente": "TV Azteca",
+   "fecha_publicacion": "2026-11-02T08:00:00Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
+   "motivo": "Festividad"
   },
   {
    "id": "815e95a1065c",
@@ -1984,26 +2004,6 @@
    "fecha_publicacion": "2026-09-15T20:17:02Z",
    "estado": "Ciudad de México",
    "ambito": "Alcaldía",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "84c404e4fac0",
-   "titulo": "Ley Seca en CDMX por el Grito: estas son las alcaldías y horarios de restricción",
-   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQTTJsRTYzeTBPeHBkNnJDWVNhQjFvZ0lqNEZwTEhPdktrMTFtQndUMEhZeF8tcnV0Nl8wTUpiYVU3M3VHaDdWRkhacm44cHowTkwtS1I3czJNa1VaRFVuZ3BpQWY1TS1Tcl9OdVk4QXA3VEZOZU9oQzl2WjdoejNEeEtqUFZHWkFBcDlCS0ZTU21BaUl1Q0k5bGV3UWVjVkMyLTI3UmVYYmZYZ3pfa2xxcHByOFM4RWdxV3c?oc=5",
-   "fuente": "Cadena Politica",
-   "fecha_publicacion": "2026-09-15T20:05:18Z",
-   "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "ea4ff5c1826e",
-   "titulo": "Fiestas Patrias sin alcohol: Las fechas, horarios y municipios donde aplicará la Ley Seca en Morelos",
-   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOX3hXd2hQX1VVZEVINjZfeldzcEFlVTlycWthOHlQbXp1eTZ1X0lsUHlCX0VPR1ZPRUlZdFhiNGxxYTJESG5MTDh3cHhCZ0ZYV1paLXBIWF91QVQwX2tad1pKaWNWU05BSHhUOTljY0RFOU5kb1dadlVDSTBNSC0zOUdPSnJiMXQxS2IwN2hYUXpEX2EzTFRHclhYa25scmdnYUVYVkVXQ1I0UlVGc0wxLTVlSi1KaG1IdVJRVkw4eTI4dHg3WVRnVFR2cVh3TWE4ZXFqOWln0gHjAUFVX3lxTFB6OWVreE1pRU1RUlBLa0kwZmdZeVZVZ0RwYmZESl9xOWtXYWVpM1RTeFZjbTByak5Oc0plRGxBdG1NbWNqQW1vSGkxRUlqblpDdHBISDhhRXk3NGNjZEMzdVVYZGVKaWo3dTZESEpvUEpKc0RnYmEtV2I5R2VfOHRvU2hsVGFTSF9mX25wTFZfdWJua0FBMUdfNmo4T2h4dUtFOXpBRnFnZTRmaVExZnhNR3VQZDdPZ0t3OGRkRzhKZER2MVR6NmExMnhGdnlEWDliaFp1ZVdaWVVhODZsQTJlTnp3?oc=5",
-   "fuente": "TV Azteca",
-   "fecha_publicacion": "2026-09-15T19:57:56Z",
-   "estado": "Morelos",
-   "ambito": "Municipal",
    "motivo": "Festividad"
   }
  ]
