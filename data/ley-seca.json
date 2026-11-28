@@ -1,11 +1,31 @@
 {
  "_meta": {
-  "actualizado": "2026-11-27T19:37:04Z",
+  "actualizado": "2026-11-28T00:51:39Z",
   "fuente": "Prensa nacional y local vía Google News",
   "nota": "Capa de prensa (Beta). Detección de restricciones a la venta de alcohol. La vigencia exacta se confirma en el bando o periódico oficial de cada plaza.",
   "total": 200
  },
  "eventos": [
+  {
+   "id": "ddb39b15be3a",
+   "titulo": "Este es el único municipio de Antioquia que tendrá ley seca y cierres viales este fin de semana",
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBHemlveDJYM0Z0OXpCeTFiZ3N6bnRmRWpoUndQdmU1RVdneFNOMHRDdjhGSkVmRHY2ZzdtQjBITC01UUg5M2J2MVgyVjUyZ2xNcEdROWVlWDJxWlROWDg2ZWNXV0xyYjFabHgzSHk3ZDg?oc=5",
+   "fuente": "Hora 13 Noticias",
+   "fecha_publicacion": "2026-11-27T23:52:05Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
+  {
+   "id": "dd55746eeb55",
+   "titulo": "Ley seca en Guarne: no habrá venta ni consumo de licor este domingo por la consulta popular",
+   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFB0Q0FXWk56UHN4ZTgxWDBsYUYtZVludW9wQmhQU0twdjFqVmdzRmJycW1vMXRTRlRxakFWLVFFQTYzNngxYWdwUS1yQUZWMkhNT2pMb05yNXREMTNBUlBBZEp3?oc=5",
+   "fuente": "Minuto30",
+   "fecha_publicacion": "2026-11-27T17:38:29Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Otro"
+  },
   {
    "id": "28b20a6c7f87",
    "titulo": "Guarne tendrá ley seca por la consulta del Área Metropolitana del Valle de San Nicolás",
@@ -35,6 +55,16 @@
    "estado": "Guerrero",
    "ambito": "Municipal",
    "motivo": "Electoral"
+  },
+  {
+   "id": "a128024b3354",
+   "titulo": "Tlalpan aplica Ley Seca por 10 días en San Andrés Totoltepec para garantizar seguridad",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQjd0OUNqLUdtb1BaNGF3NTlxV09HRzh3Y0lOSjloY2pKcGpTdWZvQUZGaENOUWVZb2tyMTFMaDhTbWVEQkdrYnJyTGxQRF9xLVJGZVJ3a1kyRHFZZ2VBVFcxeU1OVXJhZ21QekJXVzgzd19aaFpOdS1PZ3NveE5ZYlE0WWVzTTZI?oc=5",
+   "fuente": "El Congresista",
+   "fecha_publicacion": "2026-11-26T22:53:43Z",
+   "estado": "Ciudad de México",
+   "ambito": "Alcaldía",
+   "motivo": "Otro"
   },
   {
    "id": "5735a61279c4",
@@ -75,6 +105,16 @@
    "estado": "",
    "ambito": "Municipal",
    "motivo": "Festividad"
+  },
+  {
+   "id": "f695496a62b6",
+   "titulo": "Elecciones seccionales: multas, fiestas y allanamientos, lo que debes saber sobre la ley seca",
+   "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPTXFqWXktUm82N3FFN1Buc3dMdnJZejlvM1p2R2UwNkhoWkNER2MyVXdfUUJEck0tdUc2M2k3WEluOWFoaTd6U045YkswR1ZqcEN6RnhzSnhCekFrOWlhWFRiclRBZExGZ0lyOHB3bDZ3bkdrS1NyRGdTY1lyZVJfelF6aFFWbXVPNEkxeGtkUnRDMWVFNFd2NlU3NkVNRkNyYVJfZFNoX3NJcWhBdVJUdWo5TWpHVmVXbHp6NjlUbTFSVnR5TXFDbDhRS2xLLUliSGx5MGV2Q2dvVnc?oc=5",
+   "fuente": "Metro Ecuador",
+   "fecha_publicacion": "2026-11-24T15:57:49Z",
+   "estado": "",
+   "ambito": "Municipal",
+   "motivo": "Electoral"
   },
   {
    "id": "7de368b4a691",
@@ -1963,46 +2003,6 @@
    "fuente": "El Sol de México",
    "fecha_publicacion": "2026-09-15T23:14:29Z",
    "estado": "Ciudad de México",
-   "ambito": "Alcaldía",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "f1edbfe55cf9",
-   "titulo": "Ley Seca en CDMX, Edomex y otros estados: ¿Dónde hay restricciones el 15 y 16 de septiembre?",
-   "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNZUZTZk1PTzFMS0RHX0w4VlhBVGF3Ymd2UHJIemI3WGdFODlLYmh3d1ZUREd5VXFlcFFrNEt5TXZPU2FsbEd2Sl83aWNPT3hnNk84VExXcEVrX1R6VkNzNDVVWkc5SWxXZTQ5bTJzN2RCTDBEcXQ4NkhvSUhFUkpPVXdVaDdCOVdXRFFVWFBKNDJLNXdaNG92ZHF4OE83cVV1Y0FLQkpDRXJBMzNDUTZMVXZWRTA4QWZxZjBsWGJGU3JjMnluSFhlcTRB0gHKAUFVX3lxTFBEelFQbmVCQlZlSEpRS0s2UUdibngxOVA2bFpTenhEWFlOS1hXSmFCOWI4NWNnRHc0VW5RNVdNeEo1REtFck5vOTNSODJpZE1qREl5dDh4TGE3bjlIYUg0MHpxS2tZZS1EeURGcFVjd2hFQ285TTZLbVQ4dVJSR3J4TEJJMUo3c1VsbWpYaXRHdW5MMkFHTE16djdmLWZod25QeXZfY2VwWkZ5LXp4b1QxVkw3SjNEdnZpeHVVNnVzVWY2ZjRSeGFfMVE?oc=5",
-   "fuente": "MARCA",
-   "fecha_publicacion": "2026-09-15T22:11:03Z",
-   "estado": "Ciudad de México",
-   "ambito": "Municipal",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "edfb55b14155",
-   "titulo": "¿Sin brindis este 15 de septiembre? Estas alcaldías aplicarán Ley Seca y multas",
-   "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNWWlsRE9xVGZMWFF4ZndyQ0t6NGVqWlRHZEMxMzNLUGx1VjdNUzd3VUFrbndPQnptVzU3MDhmMVVkN3pWMmxTQlVxblpRcjJhbHdrLXZjNEVYRzJGNk81WllKeWotNHk0YTk2cVp6b2ZobG13ZnRPblcxc1ZfejE5TElUdi1yOUVmU055Q0JzSTN3czJTWmo0UlBSdDRfSFZJQkxBeC1VMWdPWTJycHpocEtGRjJzY1hXZ0xjSXlFdXQ3MUJ4UmJv?oc=5",
-   "fuente": "Publimetro México",
-   "fecha_publicacion": "2026-09-15T22:09:12Z",
-   "estado": "",
-   "ambito": "Alcaldía",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "0e3d08519246",
-   "titulo": "Ecatepec aplica ley seca por Fiestas Patrias; también prohíben venta de cohetes",
-   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPQ1F3aURRQXA3bzd3aTJHMmsxZndkMlktck0wRnBMVlhsYVRtQ1NhQlpZdVJ1UDloTmxPZS1KcTVDVjkxalNJMmJsY1FVczdHR2VOZ2ppVE5td2VZXzAtbElfQXdHY0JsS2xHUllMSVZLWkJGaWZBNXlTbl9GR196OTJEUXlUdTM1UzVxYkdzVTFyY2gtRkJrdTltNXJHdWoybUJCcnNPeVFNTlVGWENvaXZKZHJUUQ?oc=5",
-   "fuente": "La Jornada Estado de México",
-   "fecha_publicacion": "2026-09-15T21:12:02Z",
-   "estado": "Estado de México",
-   "ambito": "Municipal",
-   "motivo": "Festividad"
-  },
-  {
-   "id": "c6b046ff2ce6",
-   "titulo": "Grito de Independencia 2026: conciertos en alcaldías, alcoholímetro y Ley Seca",
-   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNcUlEVjJ6dl9YS2tlYTdMMTViT0xkVEFOT1JGSFUySlY3REhva1VwcGVNTUFDdmQ3WXBDcE1wckZXdHQzVlpaQVpYZ2pxWXlweFB3TzR1NnNvTkZ0Z1JHSm1DMk8zMjAzeGVVaEY2VUdITGtjMVdhYjFKckJTYzE2eHZzcEtDTFAzaTlYLWZrRTRUd1Rod1JBdkpiRVdGbnJQczZGZWtlRzgyaWpoYW0zUUdJaGRfQjZRaXfSAc4BQVVfeXFMT3dNTFZEdTBnaUtuUkZQekpwbllPMmtJY0kwZUVIc3dncUpNV0Y5RUNfZy1RRVlmRnZGRFc3UmFfOXpkOWpnVmw1NVN6QXdZN0JpaWEtczVGYkswak5yZk1jM2VlV1pHWE04eXcxaEpBcWRHbTc2VGlRX21lU1pIWDEtZGRvbFRYM2E4OVVDMXNVNWVidVZBZTRLYWxtamRCc1MzNHhPS3ZPZ3hTVHB0NFNTd1pWYXFwOXRhcEJCZ0dUU2dQalp6QTF3eU1oWFE?oc=5",
-   "fuente": "EL PAÍS",
-   "fecha_publicacion": "2026-09-15T20:55:29Z",
-   "estado": "",
    "ambito": "Alcaldía",
    "motivo": "Festividad"
   }
